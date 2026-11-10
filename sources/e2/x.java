@@ -2,20 +2,20 @@ package e2;
 
 import j$.util.Objects;
 public final class x {
-    public static final String f10641c;
+    public static final String f10646c;
     public static final String d;
-    public final String f10642a;
-    public final String f10643b;
+    public final String f10647a;
+    public final String f10648b;
 
     static {
-        String str = h2.m0.f14112a;
-        f10641c = Integer.toString(0, 36);
+        String str = h2.m0.f14114a;
+        f10646c = Integer.toString(0, 36);
         d = Integer.toString(1, 36);
     }
 
     public x(String str, String str2) {
-        this.f10642a = h2.m0.T(str);
-        this.f10643b = str2;
+        this.f10647a = h2.m0.T(str);
+        this.f10648b = str2;
     }
 
     public final boolean equals(Object obj) {
@@ -24,7 +24,7 @@ public final class x {
         }
         if (obj != null && x.class == obj.getClass()) {
             x xVar = (x) obj;
-            if (Objects.equals(this.f10642a, xVar.f10642a) && Objects.equals(this.f10643b, xVar.f10643b)) {
+            if (Objects.equals(this.f10647a, xVar.f10647a) && Objects.equals(this.f10648b, xVar.f10648b)) {
                 return true;
             }
         }
@@ -33,8 +33,8 @@ public final class x {
 
     public final int hashCode() {
         int i7;
-        int hashCode = this.f10643b.hashCode() * 31;
-        String str = this.f10642a;
+        int hashCode = this.f10648b.hashCode() * 31;
+        String str = this.f10647a;
         if (str != null) {
             i7 = str.hashCode();
         } else {

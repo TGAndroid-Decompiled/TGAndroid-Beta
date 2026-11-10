@@ -12,16 +12,16 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.pf;
+import org.telegram.ui.Components.of;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.e40;
+import org.telegram.ui.f40;
 import org.telegram.ui.mp;
-import org.telegram.ui.r90;
-import org.telegram.ui.sv0;
+import org.telegram.ui.s90;
 import org.telegram.ui.tv0;
-import org.telegram.ui.yw;
+import org.telegram.ui.uv0;
+import org.telegram.ui.zw;
 public final class o implements Runnable {
     public final int f4442a = 0;
     public final long f4443b;
@@ -43,7 +43,7 @@ public final class o implements Runnable {
     @Override
     public final void run() {
         SpannableStringBuilder X2;
-        org.telegram.ui.Components.r5 r5Var;
+        org.telegram.ui.Components.q5 q5Var;
         int i7 = this.f4442a;
         long j3 = this.f4443b;
         boolean z9 = this.f4444c;
@@ -74,7 +74,7 @@ public final class o implements Runnable {
                 final boolean z10 = this.f4444c;
                 P1.l0(j10, z10, false);
                 ?? obj5 = new Object();
-                obj5.f19611a = new Runnable() {
+                obj5.f19616a = new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
@@ -87,7 +87,7 @@ public final class o implements Runnable {
                         }
                     }
                 };
-                obj5.f19612b = new Runnable() {
+                obj5.f19617b = new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
@@ -105,19 +105,19 @@ public final class o implements Runnable {
                 } else {
                     X2 = org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131744759, org.telegram.messenger.g5.m(10, str, null)));
                 }
-                org.telegram.ui.Components.cc V = new org.telegram.ui.Components.hc(j4Var.M0, j4Var.f9195k0).V(Arrays.asList(tLObject2), X2, null, obj5);
-                V.f32620a = 2;
+                org.telegram.ui.Components.bc V = new org.telegram.ui.Components.gc(j4Var.M0, j4Var.f9200k0).V(Arrays.asList(tLObject2), X2, null, obj5);
+                V.f32196a = 2;
                 V.k(true);
                 return;
             case 2:
                 di.z6 z6Var = (di.z6) obj4;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj3;
                 c20 c20Var = (c20) obj2;
-                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) obj;
+                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) obj;
                 if (tL_error != null) {
                     if (tL_error.text.contains("BOOSTS_REQUIRED")) {
                         if (z9) {
-                            qp s12 = qp.s1(z6Var.f9992a);
+                            qp s12 = qp.s1(z6Var.f9997a);
                             org.telegram.messenger.f3 G0 = s12.G0();
                             long j11 = this.f4443b;
                             G0.a(j11, new r2(z6Var, c20Var, s12, j11, 2));
@@ -128,9 +128,9 @@ public final class o implements Runnable {
                     } else if (tL_error.text.startsWith("STORY_LIVE_ALREADY_")) {
                         org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
                         if (z9 && Q != null) {
-                            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, Q.getContext(), g6Var);
+                            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, Q.getContext(), h6Var);
                             String M0 = org.telegram.messenger.id.M0(2131748826, null);
-                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
+                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27300a;
                             u1Var.R = M0;
                             u1Var.T = org.telegram.messenger.id.M0(2131748827, null);
                             jg.g.C(null, 2131747831, alertDialog$Builder, null);
@@ -145,7 +145,7 @@ public final class o implements Runnable {
                         c20Var.a(Boolean.FALSE);
                         return;
                     } else {
-                        org.telegram.ui.Components.hc X = org.telegram.ui.Components.hc.X();
+                        org.telegram.ui.Components.gc X = org.telegram.ui.Components.gc.X();
                         if (X != null) {
                             X.f0(tL_error, false);
                         }
@@ -159,7 +159,7 @@ public final class o implements Runnable {
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj3;
                 String str2 = (String) obj2;
                 TLRPC.Document document = (TLRPC.Document) obj;
-                ChatActivityEnterView chatActivityEnterView = ((pf) obj4).f37005a;
+                ChatActivityEnterView chatActivityEnterView = ((of) obj4).f36599a;
                 if (editTextBoldCursor != null) {
                     int selectionEnd = editTextBoldCursor.getSelectionEnd();
                     if (selectionEnd < 0) {
@@ -173,15 +173,15 @@ public final class o implements Runnable {
                             }
                             SpannableString spannableString = new SpannableString(str2);
                             if (document != null) {
-                                r5Var = new org.telegram.ui.Components.r5(document, editTextBoldCursor.getPaint().getFontMetricsInt());
+                                q5Var = new org.telegram.ui.Components.q5(document, editTextBoldCursor.getPaint().getFontMetricsInt());
                             } else {
-                                r5Var = new org.telegram.ui.Components.r5(j3, editTextBoldCursor.getPaint().getFontMetricsInt());
+                                q5Var = new org.telegram.ui.Components.q5(j3, editTextBoldCursor.getPaint().getFontMetricsInt());
                             }
                             if (!z9) {
-                                r5Var.fromEmojiKeyboard = true;
+                                q5Var.fromEmojiKeyboard = true;
                             }
-                            r5Var.cacheType = org.telegram.ui.Components.i5.f();
-                            spannableString.setSpan(r5Var, 0, spannableString.length(), 33);
+                            q5Var.cacheType = org.telegram.ui.Components.h5.f();
+                            spannableString.setSpan(q5Var, 0, spannableString.length(), 33);
                             editTextBoldCursor.setText(editTextBoldCursor.getText().insert(selectionEnd, spannableString));
                             editTextBoldCursor.setSelection(spannableString.length() + selectionEnd, selectionEnd + spannableString.length());
                         } catch (Exception e10) {
@@ -196,7 +196,7 @@ public final class o implements Runnable {
                 }
                 return;
             case 4:
-                e40 e40Var = (e40) obj4;
+                f40 f40Var = (f40) obj4;
                 org.telegram.ui.ActionBar.u1[] u1VarArr = (org.telegram.ui.ActionBar.u1[]) obj2;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj3;
                 TL_phone.inviteToGroupCall invitetogroupcall = (TL_phone.inviteToGroupCall) obj;
@@ -206,45 +206,45 @@ public final class o implements Runnable {
                 }
                 u1VarArr[0] = null;
                 if (z9 && "USER_NOT_PARTICIPANT".equals(tL_error2.text)) {
-                    e40Var.C1(null, j3, 3);
+                    f40Var.C1(null, j3, 3);
                     return;
                 } else {
-                    org.telegram.ui.Components.v4.c0(e40Var.f28621a, tL_error2, (org.telegram.ui.ActionBar.f2) e40Var.Z1.M().getFragmentStack().get(e40Var.Z1.M().getFragmentStack().size() - 1), invitetogroupcall, new Object[0]);
+                    org.telegram.ui.Components.u4.c0(f40Var.f28669a, tL_error2, (org.telegram.ui.ActionBar.f2) f40Var.f45512c2.M().getFragmentStack().get(f40Var.f45512c2.M().getFragmentStack().size() - 1), invitetogroupcall, new Object[0]);
                     return;
                 }
             case 5:
-                r90 r90Var = (r90) obj4;
+                s90 s90Var = (s90) obj4;
                 TLObject tLObject3 = (TLObject) obj2;
                 String str3 = (String) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj3;
-                int i10 = r90Var.f49348b;
-                r90Var.c();
+                int i10 = s90Var.f49757b;
+                s90Var.c();
                 if (tLObject3 instanceof TLRPC.TL_contacts_resolvedPeer) {
                     TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject3;
                     qp.s1(i10).Y3(tL_contacts_resolvedPeer.users, false);
                     qp.s1(i10).S3(tL_contacts_resolvedPeer.chats, false);
                     TLRPC.User a22 = qp.s1(i10).a2(Long.valueOf(tL_contacts_resolvedPeer.peer.user_id));
                     if (a22 != null) {
-                        org.telegram.ui.Wallet.l9 l9Var = new org.telegram.ui.Wallet.l9(a22);
-                        l9Var.f42753s = j3;
-                        l9Var.f42740g0 = str3;
-                        l9Var.f42741h0 = z9;
-                        l9Var.f42739f0 = true;
-                        r90Var.u(l9Var, false);
+                        org.telegram.ui.Wallet.o9 o9Var = new org.telegram.ui.Wallet.o9(a22);
+                        o9Var.f42937s = j3;
+                        o9Var.f42924g0 = str3;
+                        o9Var.f42925h0 = z9;
+                        o9Var.f42923f0 = true;
+                        s90Var.u(o9Var, false);
                         return;
                     }
                     return;
                 } else if (tL_error3 != null) {
-                    r90.d().f0(tL_error3, false);
+                    s90.d().f0(tL_error3, false);
                     return;
                 } else {
                     return;
                 }
             default:
-                tv0 tv0Var = (tv0) obj4;
-                ProfileActivity profileActivity = tv0Var.f50246b;
-                mp mpVar = new mp(profileActivity.f41723d1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj2, 2, true, !z9, null);
-                mpVar.X0 = new sv0(tv0Var, (yw) obj);
+                uv0 uv0Var = (uv0) obj4;
+                ProfileActivity profileActivity = uv0Var.f50573b;
+                mp mpVar = new mp(profileActivity.f41714d1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj2, 2, true, !z9, null);
+                mpVar.X0 = new tv0(uv0Var, (zw) obj);
                 profileActivity.presentFragment(mpVar);
                 return;
         }
@@ -259,17 +259,17 @@ public final class o implements Runnable {
         this.d = tLObject;
     }
 
-    public o(di.z6 z6Var, TLRPC.TL_error tL_error, boolean z9, long j3, c20 c20Var, org.telegram.ui.ActionBar.g6 g6Var) {
+    public o(di.z6 z6Var, TLRPC.TL_error tL_error, boolean z9, long j3, c20 c20Var, org.telegram.ui.ActionBar.h6 h6Var) {
         this.f4445e = z6Var;
         this.f4446f = tL_error;
         this.f4444c = z9;
         this.f4443b = j3;
         this.d = c20Var;
-        this.h = g6Var;
+        this.h = h6Var;
     }
 
-    public o(pf pfVar, EditTextBoldCursor editTextBoldCursor, String str, TLRPC.Document document, long j3, boolean z9) {
-        this.f4445e = pfVar;
+    public o(of ofVar, EditTextBoldCursor editTextBoldCursor, String str, TLRPC.Document document, long j3, boolean z9) {
+        this.f4445e = ofVar;
         this.f4446f = editTextBoldCursor;
         this.d = str;
         this.h = document;
@@ -277,8 +277,8 @@ public final class o implements Runnable {
         this.f4444c = z9;
     }
 
-    public o(e40 e40Var, org.telegram.ui.ActionBar.u1[] u1VarArr, boolean z9, TLRPC.TL_error tL_error, long j3, TL_phone.inviteToGroupCall invitetogroupcall) {
-        this.f4445e = e40Var;
+    public o(f40 f40Var, org.telegram.ui.ActionBar.u1[] u1VarArr, boolean z9, TLRPC.TL_error tL_error, long j3, TL_phone.inviteToGroupCall invitetogroupcall) {
+        this.f4445e = f40Var;
         this.d = u1VarArr;
         this.f4444c = z9;
         this.f4446f = tL_error;
@@ -286,8 +286,8 @@ public final class o implements Runnable {
         this.h = invitetogroupcall;
     }
 
-    public o(r90 r90Var, TLObject tLObject, long j3, String str, boolean z9, TLRPC.TL_error tL_error) {
-        this.f4445e = r90Var;
+    public o(s90 s90Var, TLObject tLObject, long j3, String str, boolean z9, TLRPC.TL_error tL_error) {
+        this.f4445e = s90Var;
         this.d = tLObject;
         this.f4443b = j3;
         this.h = str;
@@ -295,12 +295,12 @@ public final class o implements Runnable {
         this.f4446f = tL_error;
     }
 
-    public o(tv0 tv0Var, long j3, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str, boolean z9, yw ywVar) {
-        this.f4445e = tv0Var;
+    public o(uv0 uv0Var, long j3, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str, boolean z9, zw zwVar) {
+        this.f4445e = uv0Var;
         this.f4443b = j3;
         this.f4446f = tL_chatAdminRights;
         this.d = str;
         this.f4444c = z9;
-        this.h = ywVar;
+        this.h = zwVar;
     }
 }

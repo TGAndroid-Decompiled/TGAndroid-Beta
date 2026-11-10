@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 public final class y0 implements Application.ActivityLifecycleCallbacks {
-    public final f1 f13785a;
+    public final f1 f13787a;
 
     public y0(f1 sharedSessionRepository) {
         kotlin.jvm.internal.j.e(sharedSessionRepository, "sharedSessionRepository");
-        this.f13785a = sharedSessionRepository;
+        this.f13787a = sharedSessionRepository;
     }
 
     @Override
@@ -24,13 +24,13 @@ public final class y0 implements Application.ActivityLifecycleCallbacks {
     @Override
     public final void onActivityPaused(Activity activity) {
         kotlin.jvm.internal.j.e(activity, "activity");
-        this.f13785a.b();
+        this.f13787a.b();
     }
 
     @Override
     public final void onActivityResumed(Activity activity) {
         kotlin.jvm.internal.j.e(activity, "activity");
-        this.f13785a.c();
+        this.f13787a.c();
     }
 
     @Override

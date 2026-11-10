@@ -2,7 +2,7 @@ package jg;
 
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qp;
-import org.telegram.ui.Components.hy;
+import org.telegram.ui.Components.gy;
 public final class e1 {
     public final int f16717a;
     public final long f16718b;
@@ -28,8 +28,8 @@ public final class e1 {
                 N = ((i1) this.h).N();
                 break;
             default:
-                hy hyVar = (hy) this.h;
-                if (hyVar.f34467t1 != null && hyVar.getVisibility() == 0 && hyVar.K0) {
+                gy gyVar = (gy) this.h;
+                if (gyVar.f34068t1 != null && gyVar.getVisibility() == 0 && gyVar.K0) {
                     N = true;
                     break;
                 } else {

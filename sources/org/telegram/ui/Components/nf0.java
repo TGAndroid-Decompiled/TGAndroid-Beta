@@ -1,84 +1,184 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-public final class nf0 implements c5.g {
-    public final org.telegram.ui.cv0 f36356a;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import java.util.ArrayList;
+public final class nf0 extends k9 implements pt0 {
+    public final int G;
+    public RadialProgress2 H;
+    public ValueAnimator I;
+    public float J;
+    public long K;
+    public boolean L;
+    public final int M;
+    public final Paint N;
+    public Runnable O;
+    public final sf0 P;
 
-    public nf0(org.telegram.ui.cv0 cv0Var) {
-        this.f36356a = cv0Var;
+    public nf0(sf0 sf0Var, Context context, int i7, Paint paint) {
+        super(context);
+        this.P = sf0Var;
+        this.G = org.telegram.messenger.g0.L(64.0f);
+        this.K = -1L;
+        this.M = i7;
+        this.N = paint;
+        setLayerNum(sf0Var.l1);
     }
 
     @Override
-    public final void a(int i7) {
-        boolean z9;
-        org.telegram.ui.cv0 cv0Var = this.f36356a;
-        int i10 = cv0Var.f38407o1;
-        int i11 = 0;
-        if (i7 >= i10) {
-            z9 = true;
-        } else {
-            z9 = false;
-        }
-        if (i7 != i10) {
-            cv0Var.f38407o1 = i7;
-        }
-        org.telegram.messenger.yo yoVar = cv0Var.S0;
-        if (yoVar != null) {
-            sf0 sf0Var = cv0Var.D0;
-            if (sf0Var != null) {
-                i11 = sf0Var.j();
-            }
-            yoVar.b(i7 - i11, z9);
+    public final void f(Runnable runnable) {
+        this.O = runnable;
+    }
+
+    @Override
+    public final void invalidate(int i7, int i10, int i11, int i12) {
+        super.invalidate(i7, i10, i11, i12);
+        Runnable runnable = this.O;
+        if (runnable != null) {
+            runnable.run();
         }
     }
 
     @Override
-    public final void b(float f10, int i7, int i10) {
-        org.telegram.messenger.hc hcVar;
-        org.telegram.ui.cv0 cv0Var = this.f36356a;
-        cv0Var.B(f10, i7);
-        if (i10 == 0) {
-            int k10 = cv0Var.D0.k(i7);
-            cv0Var.getCurrentItemView();
-            int childCount = cv0Var.getChildCount();
-            for (int i11 = 0; i11 < childCount; i11++) {
-                View childAt = cv0Var.getChildAt(i11);
-                if (childAt instanceof l9) {
-                    sf0 sf0Var = cv0Var.D0;
-                    int k11 = sf0Var.k(sf0Var.d.indexOf(childAt));
-                    ImageReceiver imageReceiver = ((l9) childAt).getImageReceiver();
-                    boolean z9 = imageReceiver.f21220t0;
-                    if (k11 >= 0 && k11 < cv0Var.W0.size()) {
-                        if (k11 == k10) {
-                            if (!z9) {
-                                imageReceiver.f21220t0 = true;
-                                imageReceiver.P0(false);
-                            }
-                            org.telegram.messenger.hc hcVar2 = (org.telegram.messenger.hc) cv0Var.W0.get(k11);
-                            if (hcVar2 != null) {
-                                org.telegram.messenger.w7 G = org.telegram.messenger.w7.G(cv0Var.L0);
-                                TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = hcVar2.f22869f;
-                                if (tL_fileLocationToBeDeprecated != null) {
-                                    org.telegram.messenger.w7.J.c(new org.telegram.messenger.x4(9, G, tL_fileLocationToBeDeprecated));
-                                }
-                            }
-                        } else if (z9) {
-                            v5 m10 = imageReceiver.m();
-                            if (m10 != null && (hcVar = (org.telegram.messenger.hc) cv0Var.W0.get(k11)) != null) {
-                                m10.y(hcVar.f22872j, false, true);
-                            }
-                            imageReceiver.f21220t0 = false;
-                            imageReceiver.Q0();
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        p80 p80Var;
+        long j3;
+        sf0 sf0Var = this.P;
+        float[] fArr = sf0Var.O0;
+        Path path = sf0Var.M0;
+        ArrayList arrayList = sf0Var.f37970b1;
+        RectF rectF = sf0Var.N0;
+        org.telegram.ui.ir0 ir0Var = sf0Var.f37976h1;
+        if (ir0Var == null || !ir0Var.f46737n) {
+            if (this.H != null) {
+                int k10 = sf0Var.D0.k(this.M);
+                if (sf0Var.f37977i1) {
+                    k10--;
+                }
+                Drawable t6 = getImageReceiver().t();
+                long j10 = 0;
+                if (k10 >= arrayList.size() || arrayList.get(k10) == null ? !(t6 == null || (this.L && (!(t6 instanceof u5) || ((u5) t6).d[4] <= 0))) : ((Float) arrayList.get(k10)).floatValue() >= 1.0f) {
+                    if (this.I == null) {
+                        RadialProgress2 radialProgress2 = this.H;
+                        if (radialProgress2.f31494c) {
+                            p80Var = radialProgress2.f31499j;
+                        } else {
+                            p80Var = radialProgress2.f31498i;
+                        }
+                        if (p80Var.f36857w < 1.0f) {
+                            radialProgress2.p(true, 1.0f);
+                            j10 = 100;
+                        }
+                        this.J = this.H.E;
+                        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                        this.I = ofFloat;
+                        ofFloat.setStartDelay(j10);
+                        this.I.setDuration(this.J * 250.0f);
+                        this.I.setInterpolator(wq.f40046f);
+                        this.I.addUpdateListener(new c60(this, 3));
+                        this.I.addListener(new hi.m2(this, k10, 11));
+                        this.I.start();
+                    }
+                } else {
+                    if (this.K < 0) {
+                        this.K = System.currentTimeMillis();
+                    } else {
+                        long currentTimeMillis = System.currentTimeMillis() - this.K;
+                        if (this.L) {
+                            j3 = 250;
+                        } else {
+                            j3 = 750;
+                        }
+                        if (currentTimeMillis <= 250 + j3 && currentTimeMillis > j3) {
+                            this.H.E = wq.f40046f.getInterpolation(((float) (currentTimeMillis - j3)) / 250.0f);
                         }
                     }
+                    if (sf0Var.f37975g1) {
+                        invalidate();
+                    } else {
+                        postInvalidateOnAnimation();
+                    }
+                    invalidate();
                 }
+                int i7 = sf0Var.f37980m1;
+                if (i7 == 0 && sf0Var.n1 == 0) {
+                    canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.N);
+                    canvas2 = canvas;
+                } else {
+                    canvas2 = canvas;
+                    int i10 = sf0Var.n1;
+                    Paint paint = this.N;
+                    if (i7 == i10) {
+                        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                        float f10 = sf0Var.f37980m1;
+                        canvas2.drawRoundRect(rectF, f10, f10, paint);
+                    } else {
+                        path.reset();
+                        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                        for (int i11 = 0; i11 < 4; i11++) {
+                            fArr[i11] = sf0Var.f37980m1;
+                            fArr[i11 + 4] = sf0Var.n1;
+                        }
+                        path.addRoundRect(rectF, fArr, Path.Direction.CW);
+                        canvas2.drawPath(path, paint);
+                    }
+                }
+            } else {
+                canvas2 = canvas;
+            }
+            super.onDraw(canvas);
+            RadialProgress2 radialProgress22 = this.H;
+            if (radialProgress22 != null && radialProgress22.E > 0.0f) {
+                radialProgress22.draw(canvas2);
             }
         }
     }
 
     @Override
-    public final void c(int i7) {
+    public final void onSizeChanged(int i7, int i10, int i11, int i12) {
+        int i13;
+        super.onSizeChanged(i7, i10, i11, i12);
+        if (this.H != null) {
+            if (this.P.f37987z0.getOccupyStatusBar()) {
+                i13 = org.telegram.messenger.g0.f22561m;
+            } else {
+                i13 = 0;
+            }
+            int currentActionBarHeight = org.telegram.ui.ActionBar.l.getCurrentActionBarHeight() + i13;
+            int M = org.telegram.messenger.g0.M(80.0f);
+            RadialProgress2 radialProgress2 = this.H;
+            int i14 = this.G;
+            int i15 = (i10 - currentActionBarHeight) - M;
+            radialProgress2.r((i7 - i14) / 2, jg.g.D(i15, i14, 2, currentActionBarHeight), (i7 + i14) / 2, ((i15 + i14) / 2) + currentActionBarHeight);
+        }
+    }
+
+    @Override
+    public final void invalidate(Rect rect) {
+        super.invalidate(rect);
+        Runnable runnable = this.O;
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        sf0 sf0Var = this.P;
+        if (sf0Var.f37975g1) {
+            sf0Var.invalidate();
+        }
+        Runnable runnable = this.O;
+        if (runnable != null) {
+            runnable.run();
+        }
     }
 }

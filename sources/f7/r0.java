@@ -6,27 +6,27 @@ import c8.xb;
 import java.util.Arrays;
 public final class r0 extends r6.a {
     public static final Parcelable.Creator<r0> CREATOR = new db.k(21);
-    public final String f11428a;
+    public final String f11433a;
 
     public r0(String str) {
-        this.f11428a = str;
+        this.f11433a = str;
     }
 
     public final boolean equals(Object obj) {
         if (!(obj instanceof r0)) {
             return false;
         }
-        return q6.m.k(this.f11428a, ((r0) obj).f11428a);
+        return q6.m.k(this.f11433a, ((r0) obj).f11433a);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f11428a});
+        return Arrays.hashCode(new Object[]{this.f11433a});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = xb.r(parcel, 20293);
-        xb.l(parcel, 1, this.f11428a);
+        xb.l(parcel, 1, this.f11433a);
         xb.s(parcel, r10);
     }
 }

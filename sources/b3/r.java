@@ -4,9 +4,8 @@ import android.net.Uri;
 import h2.m0;
 import j2.c0;
 import java.io.IOException;
-import x2.u;
 public final class r implements l {
-    public final long f2965a = u.f58485g.getAndIncrement();
+    public final long f2965a = x2.t.f58482g.getAndIncrement();
     public final j2.m f2966b;
     public final int f2967c;
     public final c0 d;
@@ -34,7 +33,7 @@ public final class r implements l {
             } catch (IOException unused) {
             }
         } finally {
-            String str = m0.f14112a;
+            String str = m0.f14114a;
             try {
                 kVar.close();
             } catch (IOException unused2) {

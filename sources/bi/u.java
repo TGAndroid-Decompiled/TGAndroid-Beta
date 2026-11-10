@@ -2,9 +2,9 @@ package bi;
 
 import android.content.Context;
 import android.view.MotionEvent;
-import org.telegram.ui.Components.mb0;
+import org.telegram.ui.Components.lb0;
 import org.telegram.ui.Components.r41;
-public final class u extends mb0 {
+public final class u extends lb0 {
     public final int L;
     public final Object M;
 
@@ -23,10 +23,10 @@ public final class u extends mb0 {
                 if (vVar != null && !vVar.isFocusable()) {
                     zVar.Z.setFocusable(true);
                     zVar.Z.setFocusableInTouchMode(true);
-                    int A1 = zVar.f5113e.A1(1);
-                    if (A1 >= 0 && A1 < zVar.f5113e.f37556f3.D.size()) {
-                        zVar.f5113e.C0();
-                        zVar.f5113e.y0(A1);
+                    int A1 = zVar.f5118e.A1(1);
+                    if (A1 >= 0 && A1 < zVar.f5118e.f37496f3.D.size()) {
+                        zVar.f5118e.C0();
+                        zVar.f5118e.y0(A1);
                     }
                     zVar.Z.requestFocus();
                 }
@@ -39,7 +39,7 @@ public final class u extends mb0 {
                     vVar2.setFocusable(true);
                     vVar2.setFocusableInTouchMode(true);
                     int A12 = r41Var.A1(3);
-                    if (A12 >= 0 && A12 < r41Var.f37556f3.D.size()) {
+                    if (A12 >= 0 && A12 < r41Var.f37496f3.D.size()) {
                         r41Var.C0();
                         r41Var.y0(A12);
                     }

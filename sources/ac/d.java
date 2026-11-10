@@ -75,13 +75,13 @@ public final class d implements tf {
                 l0Var.c(j3);
             }
             Interpolator interpolator = (Interpolator) this.d;
-            if (interpolator != null && (view = (View) l0Var.f54215a.get()) != null) {
+            if (interpolator != null && (view = (View) l0Var.f54214a.get()) != null) {
                 view.animate().setInterpolator(interpolator);
             }
             if (((m0) this.f1021e) != null) {
                 l0Var.d((i) this.f1022f);
             }
-            View view2 = (View) l0Var.f54215a.get();
+            View view2 = (View) l0Var.f54214a.get();
             if (view2 != null) {
                 view2.animate().start();
             }
@@ -104,11 +104,11 @@ public final class d implements tf {
         a0Var.f1764c = (eb) this.d;
         a0Var.d = Boolean.valueOf(z9);
         r7Var.f614b = new ta(a0Var);
-        int i10 = aVar.f56505e;
+        int i10 = aVar.f56504e;
         f.f1027l.getClass();
-        int i11 = aVar.f56505e;
+        int i11 = aVar.f56504e;
         if (i11 == -1) {
-            Bitmap bitmap = aVar.f56502a;
+            Bitmap bitmap = aVar.f56501a;
             m.g(bitmap);
             i7 = bitmap.getAllocationByteCount();
         } else if (i11 != 17 && i11 != 842094169) {
@@ -144,27 +144,27 @@ public final class d implements tf {
         } else {
             oaVar = oa.BITMAP;
         }
-        bVar.f57667b = oaVar;
-        bVar.f57668c = Integer.valueOf(i7 & Integer.MAX_VALUE);
+        bVar.f57666b = oaVar;
+        bVar.f57667c = Integer.valueOf(i7 & Integer.MAX_VALUE);
         r7Var.f615c = new pa(bVar);
         r7Var.d = fVar.f1028e.a();
         if (ggVar != null) {
             List list = ggVar.d;
-            g gVar = c8.i.f5709b;
+            g gVar = c8.i.f5714b;
             Object[] array = list.toArray();
             int length = array.length;
             x7.a(length, array);
             r7Var.f617f = c8.i.m(length, array);
-            List<fg> list2 = ggVar.f5688a;
+            List<fg> list2 = ggVar.f5693a;
             if (!list2.isEmpty()) {
                 Object[] objArr = new Object[4];
                 int i12 = 0;
                 for (fg fgVar : list2) {
                     b0 b0Var = new b0(2, false);
-                    b0Var.f907b = Integer.valueOf(fgVar.f5669c & Integer.MAX_VALUE);
+                    b0Var.f907b = Integer.valueOf(fgVar.f5674c & Integer.MAX_VALUE);
                     b0Var.f908c = Integer.valueOf(fgVar.d & Integer.MAX_VALUE);
-                    b0Var.d = Integer.valueOf(fgVar.f5670e & Integer.MAX_VALUE);
-                    b0Var.f909e = Integer.valueOf(fgVar.f5671f & Integer.MAX_VALUE);
+                    b0Var.d = Integer.valueOf(fgVar.f5675e & Integer.MAX_VALUE);
+                    b0Var.f909e = Integer.valueOf(fgVar.f5676f & Integer.MAX_VALUE);
                     re reVar = new re(b0Var);
                     int i13 = i12 + 1;
                     int length2 = objArr.length;

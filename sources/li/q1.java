@@ -6,16 +6,16 @@ import org.telegram.messenger.gf;
 import org.telegram.messenger.qs;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.bi;
-import org.telegram.ui.Components.di;
-import org.telegram.ui.Components.qg;
-public final class q1 implements bi {
-    public final di f18785a;
-    public final b2 f18786b;
+import org.telegram.ui.Components.ai;
+import org.telegram.ui.Components.ci;
+import org.telegram.ui.Components.pg;
+public final class q1 implements ai {
+    public final ci f18788a;
+    public final b2 f18789b;
 
-    public q1(b2 b2Var, di diVar) {
-        this.f18786b = b2Var;
-        this.f18785a = diVar;
+    public q1(b2 b2Var, ci ciVar) {
+        this.f18789b = b2Var;
+        this.f18788a = ciVar;
     }
 
     @Override
@@ -24,8 +24,8 @@ public final class q1 implements bi {
     }
 
     @Override
-    public final void c0(qg qgVar) {
-        qs.f(this.f18786b.getCurrentAccount()).d(qgVar);
+    public final void c0(pg pgVar) {
+        qs.f(this.f18789b.getCurrentAccount()).d(pgVar);
     }
 
     @Override
@@ -35,15 +35,15 @@ public final class q1 implements bi {
 
     @Override
     public final void o1(int i7, boolean z9, boolean z10, int i10, int i11, long j3, boolean z11, boolean z12, long j10) {
-        di diVar = this.f18785a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = diVar.f32987a2;
-        b2 b2Var = this.f18786b;
+        ci ciVar = this.f18788a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ciVar.d2;
+        b2 b2Var = this.f18789b;
         if (i7 == 7 || i7 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
             t3 t3Var = b2Var.P;
-            a aVar = t3Var.f18882i4;
-            t3Var.f18882i4 = null;
+            a aVar = t3Var.f18885i4;
+            t3Var.f18885i4 = null;
             int i12 = 0;
             while (true) {
                 if (i12 >= selectedPhotosOrder.size()) {
@@ -61,8 +61,8 @@ public final class q1 implements bi {
                 }
             }
         }
-        b2Var.P.f18882i4 = null;
-        diVar.a(true);
+        b2Var.P.f18885i4 = null;
+        ciVar.a(true);
     }
 
     @Override

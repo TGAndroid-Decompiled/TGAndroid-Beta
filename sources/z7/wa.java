@@ -3,16 +3,16 @@ package z7;
 import c8.ie;
 import java.util.AbstractMap;
 public final class wa extends ta {
-    public final xa f59985c;
+    public final xa f59983c;
 
     public wa(xa xaVar) {
-        this.f59985c = xaVar;
+        this.f59983c = xaVar;
     }
 
     @Override
     public final Object get(int i7) {
-        xa xaVar = this.f59985c;
-        ie.a(i7, xaVar.f59992e);
+        xa xaVar = this.f59983c;
+        ie.a(i7, xaVar.f59990e);
         Object[] objArr = xaVar.d;
         int i10 = i7 + i7;
         Object obj = objArr[i10];
@@ -24,6 +24,6 @@ public final class wa extends ta {
 
     @Override
     public final int size() {
-        return this.f59985c.f59992e;
+        return this.f59983c.f59990e;
     }
 }

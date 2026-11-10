@@ -6,20 +6,20 @@ import android.os.Parcelable;
 import c8.xb;
 import java.util.Arrays;
 public final class a extends r6.a {
-    public final int f20488a;
-    public final int f20489b;
-    public final PendingIntent f20490c;
+    public final int f20493a;
+    public final int f20494b;
+    public final PendingIntent f20495c;
     public final String d;
-    public final Integer f20491e;
-    public static final a f20487f = new a(0, null, null);
+    public final Integer f20496e;
+    public static final a f20492f = new a(0, null, null);
     public static final Parcelable.Creator<a> CREATOR = new m6.e(9);
 
     public a(int i7, int i10, PendingIntent pendingIntent, String str, Integer num) {
-        this.f20488a = i7;
-        this.f20489b = i10;
-        this.f20490c = pendingIntent;
+        this.f20493a = i7;
+        this.f20494b = i10;
+        this.f20495c = pendingIntent;
         this.d = str;
-        this.f20491e = num;
+        this.f20496e = num;
     }
 
     public static String d(int i7) {
@@ -95,14 +95,14 @@ public final class a extends r6.a {
     }
 
     public final boolean b() {
-        if (this.f20489b != 0 && this.f20490c != null) {
+        if (this.f20494b != 0 && this.f20495c != null) {
             return true;
         }
         return false;
     }
 
     public final boolean c() {
-        if (this.f20489b == 0) {
+        if (this.f20494b == 0) {
             return true;
         }
         return false;
@@ -116,22 +116,22 @@ public final class a extends r6.a {
             return false;
         }
         a aVar = (a) obj;
-        if (this.f20489b == aVar.f20489b && q6.m.k(this.f20490c, aVar.f20490c) && q6.m.k(this.d, aVar.d) && q6.m.k(this.f20491e, aVar.f20491e)) {
+        if (this.f20494b == aVar.f20494b && q6.m.k(this.f20495c, aVar.f20495c) && q6.m.k(this.d, aVar.d) && q6.m.k(this.f20496e, aVar.f20496e)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f20489b), this.f20490c, this.d, this.f20491e});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f20494b), this.f20495c, this.d, this.f20496e});
     }
 
     public final String toString() {
         j2.n nVar = new j2.n(this);
-        nVar.X(d(this.f20489b), "statusCode");
-        nVar.X(this.f20490c, "resolution");
+        nVar.X(d(this.f20494b), "statusCode");
+        nVar.X(this.f20495c, "resolution");
         nVar.X(this.d, "message");
-        nVar.X(this.f20491e, "clientMethodKey");
+        nVar.X(this.f20496e, "clientMethodKey");
         return nVar.toString();
     }
 
@@ -139,12 +139,12 @@ public final class a extends r6.a {
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = xb.r(parcel, 20293);
         xb.q(parcel, 1, 4);
-        parcel.writeInt(this.f20488a);
+        parcel.writeInt(this.f20493a);
         xb.q(parcel, 2, 4);
-        parcel.writeInt(this.f20489b);
-        xb.k(parcel, 3, this.f20490c, i7);
+        parcel.writeInt(this.f20494b);
+        xb.k(parcel, 3, this.f20495c, i7);
         xb.l(parcel, 4, this.d);
-        xb.i(parcel, 5, this.f20491e);
+        xb.i(parcel, 5, this.f20496e);
         xb.s(parcel, r10);
     }
 

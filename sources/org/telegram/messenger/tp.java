@@ -8,14 +8,14 @@ import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class tp implements Runnable {
-    public final int f25652a;
-    public final yr f25653b;
-    public final int f25654c;
+    public final int f25656a;
+    public final yr f25657b;
+    public final int f25658c;
 
     public tp(yr yrVar, int i7, int i10) {
-        this.f25652a = i10;
-        this.f25653b = yrVar;
-        this.f25654c = i7;
+        this.f25656a = i10;
+        this.f25657b = yrVar;
+        this.f25658c = i7;
     }
 
     @Override
@@ -24,18 +24,18 @@ public final class tp implements Runnable {
         boolean z9;
         boolean z10;
         boolean z11;
-        int i7 = this.f25652a;
+        int i7 = this.f25656a;
         SQLiteCursor sQLiteCursor = null;
-        int i10 = this.f25654c;
-        yr yrVar = this.f25653b;
+        int i10 = this.f25658c;
+        yr yrVar = this.f25657b;
         switch (i7) {
             case 0:
                 qp messagesController = yrVar.getMessagesController();
                 p10 userConfig = messagesController.getUserConfig();
-                int i11 = this.f25654c;
+                int i11 = this.f25658c;
                 if (userConfig.g(i11)[0] == 2147483647L) {
                     if (i11 == 1) {
-                        messagesController.f24819k0 = false;
+                        messagesController.f24823k0 = false;
                         messagesController.D();
                         return;
                     }
@@ -50,14 +50,14 @@ public final class tp implements Runnable {
             case 2:
                 yrVar.getClass();
                 try {
-                    yrVar.f26721b.executeFast("DELETE FROM shortcut_widget WHERE id = " + i10).stepThis().dispose();
+                    yrVar.f26725b.executeFast("DELETE FROM shortcut_widget WHERE id = " + i10).stepThis().dispose();
                     return;
                 } catch (Exception e10) {
                     yrVar.o(e10, true);
                     return;
                 }
             case 3:
-                yr yrVar2 = this.f25653b;
+                yr yrVar2 = this.f25657b;
                 try {
                     try {
                         ArrayList arrayList = new ArrayList();
@@ -65,18 +65,18 @@ public final class tp implements Runnable {
                         ArrayList arrayList3 = new ArrayList();
                         a0.h hVar = new a0.h();
                         if (i10 >= 0) {
-                            queryFinalized = yrVar2.f26721b.queryFinalized(String.format(Locale.US, "SELECT did, last_mid, unread_count, date FROM dialogs WHERE unread_count > 0 AND folder_id = %1$d", Integer.valueOf(i10)), new Object[0]);
+                            queryFinalized = yrVar2.f26725b.queryFinalized(String.format(Locale.US, "SELECT did, last_mid, unread_count, date FROM dialogs WHERE unread_count > 0 AND folder_id = %1$d", Integer.valueOf(i10)), new Object[0]);
                         } else {
-                            queryFinalized = yrVar2.f26721b.queryFinalized("SELECT did, last_mid, unread_count, date FROM dialogs WHERE unread_count > 0", new Object[0]);
+                            queryFinalized = yrVar2.f26725b.queryFinalized("SELECT did, last_mid, unread_count, date FROM dialogs WHERE unread_count > 0", new Object[0]);
                         }
                         while (queryFinalized.next()) {
                             try {
                                 long longValue = queryFinalized.longValue(0);
                                 if (!m5.D(longValue)) {
                                     ?? obj = new Object();
-                                    obj.f25889a = queryFinalized.intValue(1);
-                                    obj.f25891c = queryFinalized.intValue(2);
-                                    obj.f25890b = queryFinalized.intValue(3);
+                                    obj.f25893a = queryFinalized.intValue(1);
+                                    obj.f25895c = queryFinalized.intValue(2);
+                                    obj.f25894b = queryFinalized.intValue(3);
                                     hVar.k(obj, longValue);
                                     if (!m5.C(longValue)) {
                                         if (m5.z(longValue)) {
@@ -136,9 +136,9 @@ public final class tp implements Runnable {
             case 4:
                 try {
                     if (i10 == 0) {
-                        yrVar.f26721b.executeFast("DELETE FROM download_queue WHERE 1").stepThis().dispose();
+                        yrVar.f26725b.executeFast("DELETE FROM download_queue WHERE 1").stepThis().dispose();
                     } else {
-                        SQLiteDatabase sQLiteDatabase = yrVar.f26721b;
+                        SQLiteDatabase sQLiteDatabase = yrVar.f26725b;
                         Locale locale = Locale.US;
                         sQLiteDatabase.executeFast("DELETE FROM download_queue WHERE type = " + i10).stepThis().dispose();
                     }
@@ -154,22 +154,22 @@ public final class tp implements Runnable {
                 try {
                     try {
                         ArrayList arrayList7 = new ArrayList();
-                        SQLiteDatabase sQLiteDatabase2 = yrVar.f26721b;
+                        SQLiteDatabase sQLiteDatabase2 = yrVar.f26725b;
                         Locale locale2 = Locale.US;
                         SQLiteCursor queryFinalized2 = sQLiteDatabase2.queryFinalized("SELECT uid, type, data, parent FROM download_queue WHERE type = " + i10 + " ORDER BY date DESC LIMIT 3", new Object[0]);
                         while (queryFinalized2.next()) {
                             try {
                                 ?? obj2 = new Object();
-                                obj2.f21388b = queryFinalized2.intValue(1);
-                                obj2.f21389c = queryFinalized2.longValue(0);
-                                obj2.f21391f = queryFinalized2.stringValue(3);
+                                obj2.f21393b = queryFinalized2.intValue(1);
+                                obj2.f21394c = queryFinalized2.longValue(0);
+                                obj2.f21396f = queryFinalized2.stringValue(3);
                                 NativeByteBuffer byteBufferValue = queryFinalized2.byteBufferValue(2);
                                 if (byteBufferValue != null) {
                                     TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                                     byteBufferValue.reuse();
                                     TLRPC.Document document = TLdeserialize.document;
                                     if (document != null) {
-                                        obj2.f21387a = document;
+                                        obj2.f21392a = document;
                                         if (!ij.K4(document)) {
                                             if (!ij.Q4(TLdeserialize.document)) {
                                                 if (ij.i4(TLdeserialize.document)) {
@@ -188,7 +188,7 @@ public final class tp implements Runnable {
                                     } else {
                                         TLRPC.Photo photo = TLdeserialize.photo;
                                         if (photo != null) {
-                                            obj2.f21387a = photo;
+                                            obj2.f21392a = photo;
                                             int i14 = TLdeserialize.ttl_seconds;
                                             if ((i14 > 0 && i14 <= 60) || i14 == Integer.MAX_VALUE) {
                                                 z9 = true;
@@ -203,7 +203,7 @@ public final class tp implements Runnable {
                                     } else {
                                         z10 = false;
                                     }
-                                    obj2.f21390e = z10;
+                                    obj2.f21395e = z10;
                                 }
                                 arrayList7.add(obj2);
                             } catch (Exception e14) {

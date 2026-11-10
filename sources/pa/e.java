@@ -7,32 +7,32 @@ import java.util.Collection;
 import java.util.Map;
 import na.g;
 public final class e implements na.e, g {
-    public final boolean f53528a = true;
-    public final JsonWriter f53529b;
-    public final Map f53530c;
+    public final boolean f53527a = true;
+    public final JsonWriter f53528b;
+    public final Map f53529c;
     public final Map d;
-    public final na.d f53531e;
-    public final boolean f53532f;
+    public final na.d f53530e;
+    public final boolean f53531f;
 
     public e(Writer writer, Map map, Map map2, na.d dVar, boolean z9) {
-        this.f53529b = new JsonWriter(writer);
-        this.f53530c = map;
+        this.f53528b = new JsonWriter(writer);
+        this.f53529c = map;
         this.d = map2;
-        this.f53531e = dVar;
-        this.f53532f = z9;
+        this.f53530e = dVar;
+        this.f53531f = z9;
     }
 
     @Override
     public final na.e a(na.c cVar, Object obj) {
-        i(obj, cVar.f20532a);
+        i(obj, cVar.f20537a);
         return this;
     }
 
     @Override
     public final na.e b(na.c cVar, double d) {
-        String str = cVar.f20532a;
+        String str = cVar.f20537a;
         j();
-        JsonWriter jsonWriter = this.f53529b;
+        JsonWriter jsonWriter = this.f53528b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(d);
@@ -41,9 +41,9 @@ public final class e implements na.e, g {
 
     @Override
     public final na.e c(na.c cVar, boolean z9) {
-        String str = cVar.f20532a;
+        String str = cVar.f20537a;
         j();
-        JsonWriter jsonWriter = this.f53529b;
+        JsonWriter jsonWriter = this.f53528b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(z9);
@@ -52,9 +52,9 @@ public final class e implements na.e, g {
 
     @Override
     public final na.e d(na.c cVar, int i7) {
-        String str = cVar.f20532a;
+        String str = cVar.f20537a;
         j();
-        JsonWriter jsonWriter = this.f53529b;
+        JsonWriter jsonWriter = this.f53528b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(i7);
@@ -63,9 +63,9 @@ public final class e implements na.e, g {
 
     @Override
     public final na.e e(na.c cVar, long j3) {
-        String str = cVar.f20532a;
+        String str = cVar.f20537a;
         j();
-        JsonWriter jsonWriter = this.f53529b;
+        JsonWriter jsonWriter = this.f53528b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(j3);
@@ -75,19 +75,19 @@ public final class e implements na.e, g {
     @Override
     public final g f(String str) {
         j();
-        this.f53529b.value(str);
+        this.f53528b.value(str);
         return this;
     }
 
     @Override
     public final g g(boolean z9) {
         j();
-        this.f53529b.value(z9);
+        this.f53528b.value(z9);
         return this;
     }
 
     public final e h(Object obj) {
-        JsonWriter jsonWriter = this.f53529b;
+        JsonWriter jsonWriter = this.f53528b;
         if (obj == null) {
             jsonWriter.nullValue();
             return this;
@@ -170,7 +170,7 @@ public final class e implements na.e, g {
                 jsonWriter.endObject();
                 return this;
             } else {
-                na.d dVar = (na.d) this.f53530c.get(obj.getClass());
+                na.d dVar = (na.d) this.f53529c.get(obj.getClass());
                 if (dVar != null) {
                     jsonWriter.beginObject();
                     dVar.a(obj, this);
@@ -194,7 +194,7 @@ public final class e implements na.e, g {
                     return this;
                 } else {
                     jsonWriter.beginObject();
-                    this.f53531e.a(obj, this);
+                    this.f53530e.a(obj, this);
                     jsonWriter.endObject();
                     return this;
                 }
@@ -203,8 +203,8 @@ public final class e implements na.e, g {
     }
 
     public final e i(Object obj, String str) {
-        boolean z9 = this.f53532f;
-        JsonWriter jsonWriter = this.f53529b;
+        boolean z9 = this.f53531f;
+        JsonWriter jsonWriter = this.f53528b;
         if (z9) {
             if (obj == null) {
                 return this;
@@ -225,7 +225,7 @@ public final class e implements na.e, g {
     }
 
     public final void j() {
-        if (this.f53528a) {
+        if (this.f53527a) {
             return;
         }
         throw new IllegalStateException("Parent context used since this context was created. Cannot use this context anymore.");

@@ -1,80 +1,128 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RadialGradient;
 import android.graphics.RectF;
-import android.text.SpannableString;
-import android.text.style.ReplacementSpan;
-public final class kc extends ReplacementSpan {
-    public final org.telegram.ui.ActionBar.g6 f35305a;
-    public final Paint f35306b = new Paint(1);
-    public final ny0 f35307c;
-    public final Runnable d;
-    public ic f35308e;
-    public Integer f35309f;
+public final class kc {
+    public float A;
+    public float B;
+    public float C;
+    public float D;
+    public final mc E;
+    public final Paint f35268a;
+    public Bitmap f35269b;
+    public float f35270c;
+    public float d;
+    public final v5 f35271e;
+    public final v5 f35272f;
+    public float f35273g;
+    public final v5 h;
+    public float f35274i;
+    public final v5 f35275j;
+    public final h6 f35276k;
+    public float f35277l;
+    public final v5 f35278m;
+    public boolean f35279n;
+    public final v5 f35280o;
+    public final Path f35281p;
+    public final Paint f35282q;
+    public final RectF f35283r;
+    public final Paint f35284s;
+    public final Paint f35285t;
+    public final RectF f35286u;
+    public RadialGradient v;
+    public Matrix f35287w;
+    public float f35288x;
+    public float f35289y;
+    public float f35290z;
 
-    public kc(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.g6 g6Var) {
-        this.f35305a = g6Var;
-        this.d = runnable;
-        this.f35307c = new ny0(charSequence, 12.0f, null);
+    public kc(mc mcVar) {
+        this.E = mcVar;
+        Paint paint = new Paint(3);
+        this.f35268a = paint;
+        paint.setColor(-1);
+        wq wqVar = wq.h;
+        this.f35271e = new v5(mcVar, 650L, wqVar);
+        this.f35272f = new v5(mcVar, 650L, wqVar);
+        wq wqVar2 = wq.f40047g;
+        this.h = new v5(mcVar, 0L, 150L, wqVar2);
+        this.f35274i = 1.0f;
+        this.f35275j = new v5(mcVar, 0L, 150L, wqVar2);
+        h6 h6Var = new h6(false, true, true);
+        this.f35276k = h6Var;
+        this.f35278m = new v5(mcVar, 0L, 150L, wqVar2);
+        this.f35280o = new v5(mcVar, 0L, 200L, wqVar);
+        h6Var.u(-1);
+        h6Var.n(0.35f, 200L, wqVar);
+        h6Var.x(org.telegram.messenger.g0.o());
+        h6Var.w(org.telegram.messenger.g0.L(15.0f));
+        h6Var.f34187b = 17;
+        this.f35281p = new Path();
+        Paint paint2 = new Paint(1);
+        this.f35282q = paint2;
+        this.f35283r = new RectF();
+        this.f35284s = new Paint(1);
+        Paint paint3 = new Paint(1);
+        this.f35285t = paint3;
+        paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
+        this.f35286u = new RectF();
     }
 
-    public static SpannableString b(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.g6 g6Var, Integer num) {
-        SpannableString spannableString = new SpannableString("btn");
-        kc kcVar = new kc(charSequence, runnable, g6Var);
-        spannableString.setSpan(kcVar, 0, spannableString.length(), 33);
-        kcVar.f35309f = num;
-        return spannableString;
-    }
-
-    public final int a() {
-        return (int) (this.f35307c.f36541c + org.telegram.messenger.g0.L(14.0f));
-    }
-
-    public final void c(jc jcVar, boolean z9) {
-        if (this.f35308e == null) {
-            this.f35308e = new ic(jcVar);
+    public final void a(Canvas canvas, float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17, float f18, float f19) {
+        double d;
+        if (f19 > 0.0f && org.telegram.messenger.sc.e(360928)) {
+            long currentTimeMillis = System.currentTimeMillis();
+            float sqrt = (float) Math.sqrt(2.0d);
+            if (mc.f35921b0 < 0) {
+                mc.f35921b0 = currentTimeMillis;
+            }
+            float f20 = ((float) (currentTimeMillis - mc.f35921b0)) / 10000.0f;
+            Bitmap bitmap = this.f35269b;
+            if (bitmap != null) {
+                int width = bitmap.getWidth();
+                float f21 = width;
+                float N = org.telegram.messenger.g0.N(15.0f) / f21;
+                float f22 = 7.0f;
+                int floor = (int) Math.floor((f14 % 360.0f) / 7.0f);
+                int ceil = (int) Math.ceil((f15 % 360.0f) / 7.0f);
+                while (floor <= ceil) {
+                    float f23 = floor * f22;
+                    float sin = (float) (((((Math.sin(2000.0f * f23) + 1.0d) * 0.25d) + 1.0d) * (100.0f + f20)) % 1.0d);
+                    float f24 = f21 * sqrt;
+                    float f25 = f20;
+                    double T1 = org.telegram.messenger.g0.T1(f16 - f24, f17 + f24, sin);
+                    float d2 = (float) jg.g.d(mc.a(f23), T1, f10);
+                    int i7 = width;
+                    float sin2 = (float) ((Math.sin(mc.a(f23)) * T1) + f11);
+                    float abs = (Math.abs(sin - 0.5f) * (-1.75f)) + 1.0f;
+                    float B = com.google.android.recaptcha.internal.a.B((float) (Math.sin(sin * 3.141592653589793d) - 1.0d), 0.25f, 1.0f, abs * 0.65f * f19);
+                    Paint paint = this.f35268a;
+                    paint.setAlpha((int) (Math.max(0.0f, Math.min(1.0f, org.telegram.messenger.g0.T1(1.0f, Math.min(a8.r9.a(d2, sin2, f12, f13) / org.telegram.messenger.g0.N(64.0f), 1.0f), f18) * B)) * 255.0f));
+                    float f26 = N;
+                    float sin3 = f26 * ((float) ((((Math.sin(f23) + 1.0d) * 0.25d) + 0.800000011920929d) * com.google.android.recaptcha.internal.a.B((float) (Math.sin(d) - 1.0d), 0.25f, 1.0f, 0.75f)));
+                    canvas.save();
+                    canvas.translate(d2, sin2);
+                    canvas.scale(sin3, sin3);
+                    float f27 = -(i7 >> 1);
+                    canvas.drawBitmap(this.f35269b, f27, f27, paint);
+                    canvas.restore();
+                    floor++;
+                    sqrt = sqrt;
+                    width = i7;
+                    f21 = f21;
+                    N = f26;
+                    f20 = f25;
+                    f22 = 7.0f;
+                }
+            }
         }
-        this.f35308e.c(z9);
-    }
-
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-        float a10;
-        int w02;
-        float N = org.telegram.messenger.g0.N(17.0f);
-        float f11 = (i11 + i13) / 2.0f;
-        RectF rectF = org.telegram.messenger.g0.P;
-        float f12 = N / 2.0f;
-        rectF.set(f10, f11 - f12, a() + f10, f11 + f12);
-        ic icVar = this.f35308e;
-        if (icVar == null) {
-            a10 = 1.0f;
-        } else {
-            a10 = icVar.a(0.025f);
-        }
-        canvas.save();
-        canvas.scale(a10, a10, rectF.centerX(), rectF.centerY());
-        Integer num = this.f35309f;
-        if (num != null) {
-            w02 = num.intValue();
-        } else {
-            w02 = org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.Ci, this.f35305a);
-        }
-        int i14 = w02;
-        int r12 = org.telegram.ui.ActionBar.l6.r1(0.15f, i14);
-        Paint paint2 = this.f35306b;
-        paint2.setColor(r12);
-        canvas.drawRoundRect(rectF, f12, f12, paint2);
-        this.f35307c.c(f10 + org.telegram.messenger.g0.L(7.0f), f11, 1.0f, i14, canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
-        if (fontMetricsInt != null) {
-            paint.getFontMetricsInt(fontMetricsInt);
-        }
-        return a();
     }
 }

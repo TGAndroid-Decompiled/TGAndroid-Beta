@@ -3,25 +3,25 @@ package di;
 import android.app.Activity;
 import android.content.Context;
 import java.util.WeakHashMap;
-import org.telegram.ui.Components.di;
+import org.telegram.ui.Components.ci;
 import org.telegram.ui.cn;
 import org.telegram.ui.ql;
 import org.telegram.ui.sj;
-public final class u2 extends di {
-    public final int F4;
-    public final Object G4;
+public final class u2 extends ci {
+    public final int I4;
+    public final Object J4;
 
-    public u2(org.telegram.ui.ActionBar.f2 f2Var, Activity activity, org.telegram.ui.ActionBar.f2 f2Var2, org.telegram.ui.ActionBar.g6 g6Var, int i7) {
-        super(activity, f2Var2, false, false, true, g6Var);
-        this.F4 = i7;
-        this.G4 = f2Var;
+    public u2(org.telegram.ui.ActionBar.f2 f2Var, Activity activity, org.telegram.ui.ActionBar.f2 f2Var2, org.telegram.ui.ActionBar.h6 h6Var, int i7) {
+        super(activity, f2Var2, false, false, true, h6Var);
+        this.I4 = i7;
+        this.J4 = f2Var;
     }
 
     @Override
     public void K() {
         int i7;
-        int i10 = this.F4;
-        Object obj = this.G4;
+        int i10 = this.I4;
+        Object obj = this.J4;
         switch (i10) {
             case 1:
                 kg.m mVar = (kg.m) obj;
@@ -34,7 +34,7 @@ public final class u2 extends di {
             case 2:
                 cn cnVar = (cn) obj;
                 u2 u2Var2 = cnVar.X1;
-                if (u2Var2 != null && (u2Var2.isShowing() || this.f33032o2)) {
+                if (u2Var2 != null && (u2Var2.isShowing() || this.f32644r2)) {
                     Activity parentActivity = cnVar.getParentActivity();
                     i7 = ((org.telegram.ui.ActionBar.f2) cnVar).classGuid;
                     org.telegram.messenger.g0.a3(parentActivity, i7);
@@ -43,7 +43,7 @@ public final class u2 extends di {
                 cnVar.va(false, true);
                 ql qlVar = cnVar.l1;
                 if (qlVar != null) {
-                    WeakHashMap weakHashMap = r0.i0.f54203a;
+                    WeakHashMap weakHashMap = r0.i0.f54202a;
                     r0.y.c(qlVar);
                     return;
                 }
@@ -66,12 +66,12 @@ public final class u2 extends di {
     public void n0() {
         int i7;
         sj sjVar;
-        int i10 = this.F4;
-        Object obj = this.G4;
+        int i10 = this.I4;
+        Object obj = this.J4;
         switch (i10) {
             case 0:
                 j4 j4Var = (j4) obj;
-                u2 u2Var = j4Var.f9222r2;
+                u2 u2Var = j4Var.f9227r2;
                 if (u2Var != null) {
                     u2Var.A0(false);
                 }
@@ -95,8 +95,8 @@ public final class u2 extends di {
                 return;
             case 2:
                 cn cnVar = (cn) obj;
-                boolean z9 = this.f33032o2;
-                boolean N = this.f33047s2.N();
+                boolean z9 = this.f32644r2;
+                boolean N = this.f32660v2.N();
                 if (!N) {
                     cnVar.R3 = false;
                     sj sjVar2 = cnVar.Z;
@@ -126,7 +126,7 @@ public final class u2 extends di {
                     cnVar.va(false, false);
                     ql qlVar = cnVar.l1;
                     if (qlVar != null) {
-                        WeakHashMap weakHashMap = r0.i0.f54203a;
+                        WeakHashMap weakHashMap = r0.i0.f54202a;
                         r0.y.c(qlVar);
                         return;
                     }
@@ -138,15 +138,15 @@ public final class u2 extends di {
         }
     }
 
-    public u2(Context context, org.telegram.ui.ActionBar.f2 f2Var, org.telegram.ui.ActionBar.g6 g6Var, Runnable runnable) {
-        super(context, f2Var, false, false, true, g6Var);
-        this.F4 = 3;
-        this.G4 = runnable;
+    public u2(Context context, org.telegram.ui.ActionBar.f2 f2Var, org.telegram.ui.ActionBar.h6 h6Var, Runnable runnable) {
+        super(context, f2Var, false, false, true, h6Var);
+        this.I4 = 3;
+        this.J4 = runnable;
     }
 
-    public u2(j4 j4Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, null, false, false, true, g6Var);
-        this.F4 = 0;
-        this.G4 = j4Var;
+    public u2(j4 j4Var, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, null, false, false, true, h6Var);
+        this.I4 = 0;
+        this.J4 = j4Var;
     }
 }

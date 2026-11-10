@@ -6,19 +6,19 @@ import org.telegram.messenger.p10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.ActionBar.s6;
-import org.telegram.ui.Components.j6;
-import org.telegram.ui.Components.wf;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.Components.i6;
+import org.telegram.ui.Components.vf;
 import org.telegram.ui.sm;
-import org.telegram.ui.t81;
-public final class f0 implements wf {
-    public final TL_stars.TL_starGiftUnique f60319a;
-    public final h0 f60320b;
+import org.telegram.ui.u81;
+public final class f0 implements vf {
+    public final TL_stars.TL_starGiftUnique f60321a;
+    public final h0 f60322b;
 
     public f0(h0 h0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f60320b = h0Var;
-        this.f60319a = tL_starGiftUnique;
+        this.f60322b = h0Var;
+        this.f60321a = tL_starGiftUnique;
     }
 
     @Override
@@ -59,40 +59,40 @@ public final class f0 implements wf {
     public final void d(CharSequence charSequence) {
         int i7;
         boolean z9;
-        h0 h0Var = this.f60320b;
-        j6 j6Var = h0Var.f60364s1;
-        h0Var.f60356i1.a(this.f60319a, p10.i(h0Var.f28621a).e(), h0Var.f60360o1.getTextWithEntities(), id.M0(2131749745, null), true);
+        h0 h0Var = this.f60322b;
+        i6 i6Var = h0Var.f60369v1;
+        h0Var.l1.a(this.f60321a, p10.i(h0Var.f28669a).e(), h0Var.f60365r1.getTextWithEntities(), id.M0(2131749745, null), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
-        h0Var.f60368w1 = codePointCount;
-        int i10 = h0Var.f60367v1;
+        h0Var.f60373z1 = codePointCount;
+        int i10 = h0Var.f60372y1;
         if (i10 > 0 && (i7 = i10 - codePointCount) <= 15) {
             if (i7 < -9999) {
                 i7 = -9999;
             }
             String E = id.E(i7, ',');
-            if (j6Var.getVisibility() == 0) {
+            if (i6Var.getVisibility() == 0) {
                 z9 = true;
             } else {
                 z9 = false;
             }
-            j6Var.c(E, z9, true);
-            if (j6Var.getVisibility() != 0) {
-                j6Var.setVisibility(0);
-                j6Var.setAlpha(0.0f);
-                j6Var.setScaleX(0.5f);
-                j6Var.setScaleY(0.5f);
+            i6Var.c(E, z9, true);
+            if (i6Var.getVisibility() != 0) {
+                i6Var.setVisibility(0);
+                i6Var.setAlpha(0.0f);
+                i6Var.setScaleX(0.5f);
+                i6Var.setScaleY(0.5f);
             }
-            j6Var.animate().setListener(null).cancel();
-            j6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
+            i6Var.animate().setListener(null).cancel();
+            i6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i7 < 0) {
-                s6.Y(j6Var, l6.f28086p7, h0Var.I0);
+                t6.Y(i6Var, m6.f28111p7, h0Var.I0);
                 return;
             } else {
-                s6.Y(j6Var, l6.f28257y6, h0Var.I0);
+                t6.Y(i6Var, m6.f28282y6, h0Var.I0);
                 return;
             }
         }
-        j6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new t81(this, 25));
+        i6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new u81(this, 25));
     }
 
     @Override

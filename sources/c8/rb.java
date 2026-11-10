@@ -23,11 +23,11 @@ public abstract class rb {
                 j2.k kVar = new j2.k(c0Var, mVar2);
                 try {
                     byte[] b10 = i9.f.b(kVar);
-                    x2.u uVar = new x2.u(mVar, c0Var.f16417c, c0Var.d, SystemClock.elapsedRealtime(), 0L, b10.length);
+                    x2.t tVar = new x2.t(mVar, c0Var.f16417c, c0Var.d, SystemClock.elapsedRealtime(), 0L, b10.length);
                     j2.n nVar = new j2.n(b10);
-                    nVar.f16457c = uVar;
+                    nVar.f16457c = tVar;
                     q2.v vVar = new q2.v(nVar);
-                    String str2 = h2.m0.f14112a;
+                    String str2 = h2.m0.f14114a;
                     try {
                         kVar.close();
                     } catch (IOException unused) {
@@ -44,7 +44,7 @@ public abstract class rb {
                         j2.l a10 = mVar2.a();
                         a10.f16445e = Uri.parse(str3);
                         mVar2 = a10.d();
-                        String str4 = h2.m0.f14112a;
+                        String str4 = h2.m0.f14114a;
                         try {
                             kVar.close();
                         } catch (IOException unused2) {

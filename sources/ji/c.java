@@ -17,25 +17,25 @@ import org.telegram.messenger.id;
 import org.telegram.messenger.m5;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.Components.l9;
-import org.telegram.ui.Components.w8;
-public final class c extends FrameLayout implements b6 {
-    public final g6 f17077a;
-    public final l9 f17078b;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.Components.k9;
+import org.telegram.ui.Components.v8;
+public final class c extends FrameLayout implements c6 {
+    public final h6 f17077a;
+    public final k9 f17078b;
     public final TextView f17079c;
     public final TextView d;
     public final ImageView f17080e;
 
-    public c(Context context, g6 g6Var) {
+    public c(Context context, h6 h6Var) {
         super(context);
-        this.f17077a = g6Var;
-        l9 l9Var = new l9(context);
-        this.f17078b = l9Var;
-        l9Var.setRoundRadius(g0.L(9.0f));
-        addView(l9Var, ha.d(32, 32.0f, 19, 20.0f, 0.0f, 0.0f, 0.0f));
+        this.f17077a = h6Var;
+        k9 k9Var = new k9(context);
+        this.f17078b = k9Var;
+        k9Var.setRoundRadius(g0.L(9.0f));
+        addView(k9Var, ha.d(32, 32.0f, 19, 20.0f, 0.0f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setGravity(16);
@@ -67,7 +67,7 @@ public final class c extends FrameLayout implements b6 {
         if (chat == null) {
             return;
         }
-        TLRPC.ChatFull N0 = qp.s1(i7).N0(chat.f26956id);
+        TLRPC.ChatFull N0 = qp.s1(i7).N0(chat.f26960id);
         setTitle(m5.u(chat));
         if (N0 != null) {
             i10 = N0.linked_peers.size();
@@ -75,20 +75,20 @@ public final class c extends FrameLayout implements b6 {
             i10 = 0;
         }
         setSubtitle(id.G(i10, "CommunityWithChats", new Object[0]));
-        this.f17078b.e(chat, new w8(chat));
+        this.f17078b.e(chat, new v8(chat));
     }
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(l6.f28275z6));
-        hashSet.add(Integer.valueOf(l6.G6));
+        hashSet.add(Integer.valueOf(m6.f28300z6));
+        hashSet.add(Integer.valueOf(m6.G6));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        Drawable drawable = l6.S0;
-        l9 l9Var = this.f17078b;
-        s.a(canvas, drawable, (l9Var.getWidth() / 2.0f) + l9Var.getLeft(), (l9Var.getHeight() / 2.0f) + l9Var.getTop(), l9Var.getHeight());
+        Drawable drawable = m6.S0;
+        k9 k9Var = this.f17078b;
+        s.a(canvas, drawable, (k9Var.getWidth() / 2.0f) + k9Var.getLeft(), (k9Var.getHeight() / 2.0f) + k9Var.getTop(), k9Var.getHeight());
         super.dispatchDraw(canvas);
     }
 
@@ -107,10 +107,10 @@ public final class c extends FrameLayout implements b6 {
 
     @Override
     public final void updateColors() {
-        int i7 = l6.f28275z6;
-        g6 g6Var = this.f17077a;
-        this.f17080e.setColorFilter(l6.w0(i7, g6Var));
-        this.f17079c.setTextColor(l6.w0(l6.G6, g6Var));
-        this.d.setTextColor(l6.w0(i7, g6Var));
+        int i7 = m6.f28300z6;
+        h6 h6Var = this.f17077a;
+        this.f17080e.setColorFilter(m6.w0(i7, h6Var));
+        this.f17079c.setTextColor(m6.w0(m6.G6, h6Var));
+        this.d.setTextColor(m6.w0(i7, h6Var));
     }
 }

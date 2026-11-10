@@ -6,7 +6,7 @@ import java.util.Map;
 public interface q {
     k2.b A(byte[] bArr);
 
-    void B(org.telegram.ui.Components.n nVar);
+    void B(org.telegram.ui.Components.m mVar);
 
     byte[] D();
 

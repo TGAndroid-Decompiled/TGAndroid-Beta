@@ -1,31 +1,31 @@
 package org.telegram.messenger;
 
 import android.content.SharedPreferences;
-import org.telegram.ui.h60;
+import org.telegram.ui.i60;
 public final class xc implements Runnable {
-    public final int f26463a;
-    public final id f26464b;
-    public final String f26465c;
-    public final h60 d;
+    public final int f26467a;
+    public final id f26468b;
+    public final String f26469c;
+    public final i60 d;
 
-    public xc(id idVar, String str, h60 h60Var, int i7) {
-        this.f26463a = i7;
-        this.f26464b = idVar;
-        this.f26465c = str;
-        this.d = h60Var;
+    public xc(id idVar, String str, i60 i60Var, int i7) {
+        this.f26467a = i7;
+        this.f26468b = idVar;
+        this.f26469c = str;
+        this.d = i60Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f26463a) {
+        switch (this.f26467a) {
             case 0:
-                g0.h3(new xc(this.f26464b, this.f26465c, this.d, 1));
+                g0.h3(new xc(this.f26468b, this.f26469c, this.d, 1));
                 return;
             default:
                 SharedPreferences.Editor edit = qp.e1().edit();
-                edit.putBoolean("langpack_patched" + this.f26465c, true).apply();
+                edit.putBoolean("langpack_patched" + this.f26469c, true).apply();
                 this.d.run();
-                this.f26464b.Q = false;
+                this.f26468b.Q = false;
                 return;
         }
     }

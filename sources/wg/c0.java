@@ -11,18 +11,18 @@ import org.telegram.messenger.qp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.l2;
-import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.na;
+import org.telegram.ui.ActionBar.m2;
+import org.telegram.ui.Components.bc;
+import org.telegram.ui.Components.ma;
+import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.qj0;
-import org.telegram.ui.Components.tt0;
+import org.telegram.ui.Components.st0;
 import org.telegram.ui.LaunchActivity;
-public final class c0 extends na {
-    public final TLRPC.TL_payments_checkedGiftCode P1;
-    public final boolean Q1;
-    public b0 R1;
-    public final String S1;
+public final class c0 extends ma {
+    public final TLRPC.TL_payments_checkedGiftCode S1;
+    public final boolean T1;
+    public b0 U1;
+    public final String V1;
 
     public c0(f2 f2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
         super(f2Var, true);
@@ -32,21 +32,21 @@ public final class c0 extends na {
         } else {
             z9 = false;
         }
-        this.Q1 = z9;
-        this.P1 = tL_payments_checkedGiftCode;
-        this.S1 = str;
-        this.f28655u0 = false;
-        this.f28656v0 = false;
+        this.T1 = z9;
+        this.S1 = tL_payments_checkedGiftCode;
+        this.V1 = str;
+        this.f28706u0 = false;
+        this.f28707v0 = false;
         N();
         b1();
-        b0 b0Var = this.R1;
-        l2 l2Var = this.f28627c;
+        b0 b0Var = this.U1;
+        m2 m2Var = this.f28675c;
         b0Var.getClass();
         b0Var.d = tL_payments_checkedGiftCode.used_date == 0;
-        b0Var.f58736e = f2Var;
-        b0Var.f58737f = tL_payments_checkedGiftCode;
+        b0Var.f58734e = f2Var;
+        b0Var.f58735f = tL_payments_checkedGiftCode;
         b0Var.h = str;
-        b0Var.f58738n = l2Var;
+        b0Var.f58736n = m2Var;
     }
 
     public static boolean d1(Intent intent, vf.b bVar) {
@@ -87,34 +87,34 @@ public final class c0 extends na {
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         if (bVar != null) {
             bVar.d();
-            bVar.f57336b = new c(atomicBoolean, 1);
+            bVar.f57332b = new c(atomicBoolean, 1);
         }
         s2 s2Var = new s2(atomicBoolean, f2Var, str, bVar, 16);
         e eVar = new e(atomicBoolean, bVar, 1);
-        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(p10.f24470s0);
-        qp s12 = qp.s1(p10.f24470s0);
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(p10.f24474s0);
+        qp s12 = qp.s1(p10.f24474s0);
         TLRPC.TL_payments_checkGiftCode tL_payments_checkGiftCode = new TLRPC.TL_payments_checkGiftCode();
         tL_payments_checkGiftCode.slug = str;
         connectionsManager.sendRequest(tL_payments_checkGiftCode, new bi.f2(s12, s2Var, eVar, 22));
     }
 
     @Override
-    public final pj0 L0(qj0 qj0Var) {
+    public final oj0 L0(pj0 pj0Var) {
         b0 b0Var = new b0(this, this.I0);
-        this.R1 = b0Var;
+        this.U1 = b0Var;
         return b0Var;
     }
 
     @Override
     public final CharSequence O0() {
-        if (this.Q1) {
+        if (this.T1) {
             return id.M0(2131753500, null);
         }
         return id.M0(2131753173, null);
     }
 
     @Override
-    public final void U0(tt0 tt0Var) {
-        cc.a(this.f28627c, new r7(14));
+    public final void U0(st0 st0Var) {
+        bc.a(this.f28675c, new r7(14));
     }
 }

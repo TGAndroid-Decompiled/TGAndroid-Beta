@@ -2,15 +2,15 @@ package org.telegram.messenger;
 
 import android.os.Bundle;
 public final class aa implements com.google.android.gms.common.api.k {
-    public final pa f21407a;
+    public final pa f21412a;
 
     public aa(pa paVar) {
-        this.f21407a = paVar;
+        this.f21412a = paVar;
     }
 
     @Override
     public final void onConnected(Bundle bundle) {
-        sd sdVar = (sd) this.f21407a;
+        sd sdVar = (sd) this.f21412a;
         sdVar.L = true;
         try {
             ((h6.m) t0.j()).checkLocationSettings(sdVar.N, new md(sdVar, 1));
@@ -21,6 +21,6 @@ public final class aa implements com.google.android.gms.common.api.k {
 
     @Override
     public final void onConnectionSuspended(int i7) {
-        this.f21407a.getClass();
+        this.f21412a.getClass();
     }
 }

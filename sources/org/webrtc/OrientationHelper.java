@@ -7,7 +7,7 @@ public class OrientationHelper {
     public static volatile int cameraOrientation;
     public static volatile int cameraRotation;
     public static volatile boolean cameraRotationDisabled;
-    private OrientationEventListener orientationEventListener = new OrientationEventListener(t0.f25566b) {
+    private OrientationEventListener orientationEventListener = new OrientationEventListener(t0.f25570b) {
         @Override
         public void onOrientationChanged(int i7) {
             if (OrientationHelper.this.orientationEventListener != null && i7 != -1) {

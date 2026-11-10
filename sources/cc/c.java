@@ -13,30 +13,30 @@ import h2.x;
 import java.lang.reflect.Array;
 import java.util.List;
 public final class c implements z3.b {
-    public final int f6045a;
-    public int f6046b;
-    public int f6047c;
+    public final int f6050a;
+    public int f6051b;
+    public int f6052c;
     public final Object d;
 
     public c(Context context) {
-        this.f6045a = 3;
-        this.f6047c = 0;
+        this.f6050a = 3;
+        this.f6052c = 0;
         this.d = context;
     }
 
     @Override
     public int a() {
-        return this.f6046b;
+        return this.f6051b;
     }
 
     @Override
     public int b() {
-        return this.f6047c;
+        return this.f6052c;
     }
 
     @Override
     public int c() {
-        int i7 = this.f6046b;
+        int i7 = this.f6051b;
         if (i7 == -1) {
             return ((x) this.d).E();
         }
@@ -44,7 +44,7 @@ public final class c implements z3.b {
     }
 
     public int d() {
-        return ((((byte[]) this.d).length - this.f6046b) * 8) - this.f6047c;
+        return ((((byte[]) this.d).length - this.f6051b) * 8) - this.f6052c;
     }
 
     public byte e(int i7, int i10) {
@@ -54,35 +54,35 @@ public final class c implements z3.b {
     public int f(int i7) {
         byte[] bArr = (byte[]) this.d;
         if (i7 >= 1 && i7 <= 32 && i7 <= d()) {
-            int i10 = this.f6047c;
+            int i10 = this.f6052c;
             int i11 = 0;
             if (i10 > 0) {
                 int i12 = 8 - i10;
                 int min = Math.min(i7, i12);
                 int i13 = i12 - min;
-                int i14 = this.f6046b;
+                int i14 = this.f6051b;
                 int i15 = (((255 >> (8 - min)) << i13) & bArr[i14]) >> i13;
                 i7 -= min;
-                int i16 = this.f6047c + min;
-                this.f6047c = i16;
+                int i16 = this.f6052c + min;
+                this.f6052c = i16;
                 if (i16 == 8) {
-                    this.f6047c = 0;
-                    this.f6046b = i14 + 1;
+                    this.f6052c = 0;
+                    this.f6051b = i14 + 1;
                 }
                 i11 = i15;
             }
             if (i7 > 0) {
                 while (i7 >= 8) {
                     int i17 = i11 << 8;
-                    int i18 = this.f6046b;
-                    this.f6046b = i18 + 1;
+                    int i18 = this.f6051b;
+                    this.f6051b = i18 + 1;
                     i7 -= 8;
                     i11 = i17 | (bArr[i18] & 255);
                 }
                 if (i7 > 0) {
                     int i19 = 8 - i7;
-                    int i20 = ((bArr[this.f6046b] & ((255 >> i19) << i19)) >> i19) | (i11 << i7);
-                    this.f6047c += i7;
+                    int i20 = ((bArr[this.f6051b] & ((255 >> i19) << i19)) >> i19) | (i11 << i7);
+                    this.f6052c += i7;
                     return i20;
                 }
             }
@@ -96,7 +96,7 @@ public final class c implements z3.b {
     }
 
     public synchronized int h() {
-        int i7 = this.f6047c;
+        int i7 = this.f6052c;
         if (i7 != 0) {
             return i7;
         }
@@ -112,7 +112,7 @@ public final class c implements z3.b {
             intent.setPackage("com.google.android.gms");
             List<ResolveInfo> queryIntentServices = packageManager.queryIntentServices(intent, 0);
             if (queryIntentServices != null && !queryIntentServices.isEmpty()) {
-                this.f6047c = i10;
+                this.f6052c = i10;
                 return i10;
             }
         }
@@ -121,20 +121,20 @@ public final class c implements z3.b {
         List<ResolveInfo> queryBroadcastReceivers = packageManager.queryBroadcastReceivers(intent2, 0);
         if (queryBroadcastReceivers != null && !queryBroadcastReceivers.isEmpty()) {
             i10 = 2;
-            this.f6047c = i10;
+            this.f6052c = i10;
             return i10;
         }
         Log.w("Metadata", "Failed to resolve IID implementation package, falling back");
         if (true == x6.b.d()) {
             i10 = 2;
         }
-        this.f6047c = i10;
+        this.f6052c = i10;
         return i10;
     }
 
     public synchronized int i() {
         PackageInfo packageInfo;
-        if (this.f6046b == 0) {
+        if (this.f6051b == 0) {
             try {
                 packageInfo = z6.b.a((Context) this.d).c(0, "com.google.android.gms");
             } catch (PackageManager.NameNotFoundException e10) {
@@ -142,17 +142,17 @@ public final class c implements z3.b {
                 packageInfo = null;
             }
             if (packageInfo != null) {
-                this.f6046b = packageInfo.versionCode;
+                this.f6051b = packageInfo.versionCode;
             }
         }
-        return this.f6046b;
+        return this.f6051b;
     }
 
     public String toString() {
-        switch (this.f6045a) {
+        switch (this.f6050a) {
             case 2:
-                int i7 = this.f6046b;
-                int i10 = this.f6047c;
+                int i7 = this.f6051b;
+                int i10 = this.f6052c;
                 StringBuilder sb2 = new StringBuilder((i7 * 2 * i10) + 2);
                 for (int i11 = 0; i11 < i10; i11++) {
                     byte[] bArr = ((byte[][]) this.d)[i11];
@@ -177,38 +177,38 @@ public final class c implements z3.b {
     }
 
     public c(int i7, int i10) {
-        this.f6045a = 2;
+        this.f6050a = 2;
         this.d = (byte[][]) Array.newInstance(Byte.TYPE, i10, i7);
-        this.f6046b = i7;
-        this.f6047c = i10;
+        this.f6051b = i7;
+        this.f6052c = i10;
     }
 
     public c(byte[] bArr) {
-        this.f6045a = 0;
+        this.f6050a = 0;
         this.d = bArr;
     }
 
     public c(int i7, int i10, SparseArray sparseArray) {
-        this.f6045a = 1;
-        this.f6046b = i7;
-        this.f6047c = i10;
+        this.f6050a = 1;
+        this.f6051b = i7;
+        this.f6052c = i10;
         this.d = sparseArray;
     }
 
     public c(i2.d dVar, u uVar) {
-        this.f6045a = 4;
-        x xVar = dVar.f15153c;
+        this.f6050a = 4;
+        x xVar = dVar.f15155c;
         this.d = xVar;
         xVar.N(12);
         int E = xVar.E();
-        if ("audio/raw".equals(uVar.f10615s)) {
+        if ("audio/raw".equals(uVar.f10620s)) {
             int u10 = m0.u(uVar.M) * uVar.K;
             if (E % u10 != 0) {
                 h2.a.l("BoxParsers", "Audio sample size mismatch. stsd sample size: " + u10 + ", stsz sample size: " + E);
                 E = u10;
             }
         }
-        this.f6046b = E == 0 ? -1 : E;
-        this.f6047c = xVar.E();
+        this.f6051b = E == 0 ? -1 : E;
+        this.f6052c = xVar.E();
     }
 }

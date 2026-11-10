@@ -1,27 +1,23 @@
 package org.telegram.ui.Wallet;
-public final class r6 implements Runnable {
-    public final int f43054a;
-    public final u6 f43055b;
+public final class r6 implements r1.d {
+    public final int f43116a;
+    public final x6 f43117b;
 
-    public r6(u6 u6Var, int i7) {
-        this.f43054a = i7;
-        this.f43055b = u6Var;
+    public r6(x6 x6Var, int i7) {
+        this.f43116a = i7;
+        this.f43117b = x6Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43054a) {
+    public final void a(r1.g gVar, float f10, float f11) {
+        switch (this.f43116a) {
             case 0:
-                u6.a(this.f43055b);
+                x6 x6Var = this.f43117b;
+                x6Var.f43337c.setScaleX(f10);
+                x6Var.f43337c.setScaleY(f10);
                 return;
             default:
-                u6 u6Var = this.f43055b;
-                Runnable runnable = u6Var.f43179c0;
-                u6Var.f43179c0 = null;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                this.f43117b.P = f11;
                 return;
         }
     }

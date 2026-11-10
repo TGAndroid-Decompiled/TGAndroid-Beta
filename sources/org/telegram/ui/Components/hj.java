@@ -1,57 +1,57 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.widget.FrameLayout;
-public final class hj implements ValueAnimator.AnimatorUpdateListener {
-    public final int f34314a;
-    public final int f34315b;
-    public final float f34316c;
-    public final FrameLayout d;
+import java.io.File;
+import java.util.Comparator;
+public final class hj implements Comparator {
+    public final int f34364a;
+    public final uj f34365b;
 
-    public hj(FrameLayout frameLayout, int i7, float f10, int i10) {
-        this.f34314a = i10;
-        this.d = frameLayout;
-        this.f34315b = i7;
-        this.f34316c = f10;
+    public hj(uj ujVar, int i7) {
+        this.f34364a = i7;
+        this.f34365b = ujVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f34314a) {
+    public final int compare(Object obj, Object obj2) {
+        oj ojVar = (oj) obj;
+        oj ojVar2 = (oj) obj2;
+        switch (this.f34364a) {
             case 0:
-                vj vjVar = (vj) this.d;
-                kj kjVar = vjVar.f39113r;
-                kj kjVar2 = vjVar.f39114s;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                int i7 = this.f34315b;
-                float f10 = this.f34316c;
-                if (i7 == 1) {
-                    kjVar.setTranslationX(f10 * floatValue);
-                    kjVar.setAlpha(1.0f - floatValue);
-                    kjVar.invalidate();
-                    kjVar2.setAlpha(floatValue);
-                    float f11 = (floatValue * 0.05f) + 0.95f;
-                    kjVar2.setScaleX(f11);
-                    kjVar2.setScaleY(f11);
-                    return;
+                uj ujVar = this.f34365b;
+                ujVar.getClass();
+                File file = ojVar.f36624f;
+                if (file != null) {
+                    if (ojVar2.f36624f != null) {
+                        boolean isDirectory = file.isDirectory();
+                        if (isDirectory != ojVar2.f36624f.isDirectory()) {
+                            if (isDirectory) {
+                            }
+                        } else if (!isDirectory && !ujVar.f38693c0) {
+                            int i7 = (ojVar.f36624f.lastModified() > ojVar2.f36624f.lastModified() ? 1 : (ojVar.f36624f.lastModified() == ojVar2.f36624f.lastModified() ? 0 : -1));
+                            if (i7 == 0) {
+                                return 0;
+                            }
+                            if (i7 > 0) {
+                            }
+                        } else {
+                            return ojVar.f36624f.getName().compareToIgnoreCase(ojVar2.f36624f.getName());
+                        }
+                    }
+                    return 1;
                 }
-                kjVar2.setTranslationX(f10 * floatValue);
-                kjVar2.setAlpha(Math.max(0.0f, 1.0f - floatValue));
-                kjVar2.invalidate();
-                kjVar.setAlpha(floatValue);
-                float f12 = (floatValue * 0.05f) + 0.95f;
-                kjVar.setScaleX(f12);
-                kjVar.setScaleY(f12);
-                kjVar2.invalidate();
-                return;
+                return -1;
             default:
-                da0 da0Var = (da0) this.d;
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float f13 = 1.0f - floatValue2;
-                int i10 = (int) ((da0Var.R * floatValue2) + (this.f34315b * f13));
-                da0Var.T = i10;
-                da0Var.f((da0Var.S * floatValue2) + (this.f34316c * f13), i10);
-                return;
+                if (this.f34365b.f38693c0) {
+                    return ojVar.f36624f.getName().compareToIgnoreCase(ojVar2.f36624f.getName());
+                }
+                int i10 = (ojVar.f36624f.lastModified() > ojVar2.f36624f.lastModified() ? 1 : (ojVar.f36624f.lastModified() == ojVar2.f36624f.lastModified() ? 0 : -1));
+                if (i10 == 0) {
+                    return 0;
+                }
+                if (i10 > 0) {
+                    return -1;
+                }
+                return 1;
         }
     }
 }

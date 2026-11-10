@@ -4,14 +4,14 @@ import java.io.InputStream;
 public final class f extends b {
     public f(byte[] bArr) {
         super(bArr);
-        this.f56196a.mark(Integer.MAX_VALUE);
+        this.f56195a.mark(Integer.MAX_VALUE);
     }
 
     public final void b(long j3) {
-        int i7 = this.f56198c;
+        int i7 = this.f56197c;
         if (i7 > j3) {
-            this.f56198c = 0;
-            this.f56196a.reset();
+            this.f56197c = 0;
+            this.f56195a.reset();
         } else {
             j3 -= i7;
         }
@@ -21,7 +21,7 @@ public final class f extends b {
     public f(InputStream inputStream) {
         super(inputStream);
         if (inputStream.markSupported()) {
-            this.f56196a.mark(Integer.MAX_VALUE);
+            this.f56195a.mark(Integer.MAX_VALUE);
             return;
         }
         throw new IllegalArgumentException("Cannot create SeekableByteOrderedDataInputStream with stream that does not support mark/reset");

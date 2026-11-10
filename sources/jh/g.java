@@ -4,8 +4,8 @@ import a8.ua;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import e2.r0;
-import org.telegram.ui.Components.vy;
-import org.telegram.ui.ky0;
+import org.telegram.ui.Components.uy;
+import org.telegram.ui.ly0;
 import v4.d1;
 import v4.f1;
 import v4.n0;
@@ -29,19 +29,19 @@ public final class g {
         d1Var.q(false);
         f1 f1Var = (f1) recyclerView.f2845c0;
         f1Var.getClass();
-        int i12 = r0Var.f10533a;
-        int i13 = r0Var.f10534b;
-        View view = d1Var.f57056a;
+        int i12 = r0Var.f10538a;
+        int i13 = r0Var.f10539b;
+        View view = d1Var.f57052a;
         if (r0Var2 == null) {
             i7 = view.getLeft();
         } else {
-            i7 = r0Var2.f10533a;
+            i7 = r0Var2.f10538a;
         }
         int i14 = i7;
         if (r0Var2 == null) {
             i10 = view.getTop();
         } else {
-            i10 = r0Var2.f10534b;
+            i10 = r0Var2.f10539b;
         }
         int i15 = i10;
         if (!d1Var.j() && (i12 != i14 || i13 != i15)) {
@@ -58,7 +58,7 @@ public final class g {
                     }
                 }
             }
-            d1Var.f57062i = (d1Var.h - i17) + (i17 * 1000);
+            d1Var.f57058i = (d1Var.h - i17) + (i17 * 1000);
             f1Var.s(d1Var, r0Var);
             z9 = true;
         }
@@ -70,16 +70,16 @@ public final class g {
     public void b(d1 d1Var) {
         RecyclerView recyclerView = this.f17049a;
         n0 n0Var = recyclerView.f2873y;
-        View view = d1Var.f57056a;
+        View view = d1Var.f57052a;
         v0 v0Var = recyclerView.f2842b;
-        ky0 ky0Var = n0Var.f57143a;
-        vy vyVar = (vy) ky0Var.f47422b;
-        int indexOfChild = ((RecyclerView) vyVar.f39835b).indexOfChild(view);
+        ly0 ly0Var = n0Var.f57139a;
+        uy uyVar = (uy) ly0Var.f47746b;
+        int indexOfChild = ((RecyclerView) uyVar.f38776b).indexOfChild(view);
         if (indexOfChild >= 0) {
-            if (((ua) ky0Var.f47423c).G(indexOfChild)) {
-                ky0Var.M(view);
+            if (((ua) ly0Var.f47747c).G(indexOfChild)) {
+                ly0Var.M(view);
             }
-            vyVar.Q(indexOfChild);
+            uyVar.Q(indexOfChild);
         }
         v0Var.g(view);
     }

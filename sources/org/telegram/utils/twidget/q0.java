@@ -6,12 +6,12 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.RemoteException;
 public final class q0 implements ServiceConnection {
-    public b f52957a;
-    public int f52958b;
-    public int f52959c;
+    public b f52956a;
+    public int f52957b;
+    public int f52958c;
     public boolean d;
-    public boolean f52960e;
-    public final j0 f52961f = new j0(this, 2);
+    public boolean f52959e;
+    public final j0 f52960f = new j0(this, 2);
     public final r0 h;
 
     public q0(r0 r0Var) {
@@ -21,13 +21,13 @@ public final class q0 implements ServiceConnection {
     @Override
     public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
         b bVar;
-        synchronized (this.h.f52970b) {
+        synchronized (this.h.f52969b) {
             try {
                 if (!this.d) {
                     return;
                 }
-                final int i7 = this.f52958b + 1;
-                this.f52958b = i7;
+                final int i7 = this.f52957b + 1;
+                this.f52957b = i7;
                 try {
                     iBinder.linkToDeath(new IBinder.DeathRecipient() {
                         @Override
@@ -37,23 +37,23 @@ public final class q0 implements ServiceConnection {
                             q0Var.h.i(q0Var, i10);
                         }
                     }, 0);
-                    int i10 = z.f53022b;
+                    int i10 = z.f53021b;
                     IInterface queryLocalInterface = iBinder.queryLocalInterface("org.telegram.utils.twidget.IWidgetEngine");
                     if (queryLocalInterface != null && (queryLocalInterface instanceof b)) {
                         bVar = (b) queryLocalInterface;
                     } else {
                         ?? obj = new Object();
-                        obj.f52763a = iBinder;
+                        obj.f52762a = iBinder;
                         bVar = obj;
                     }
-                    this.f52957a = bVar;
-                    if (this.f52960e) {
+                    this.f52956a = bVar;
+                    if (this.f52959e) {
                         try {
                             bVar.b1();
                         } catch (RemoteException unused) {
                         }
                     }
-                    this.h.f52970b.notifyAll();
+                    this.h.f52969b.notifyAll();
                 } catch (RemoteException unused2) {
                 }
             } finally {
@@ -64,8 +64,8 @@ public final class q0 implements ServiceConnection {
     @Override
     public final void onServiceDisconnected(ComponentName componentName) {
         int i7;
-        synchronized (this.h.f52970b) {
-            i7 = this.f52958b;
+        synchronized (this.h.f52969b) {
+            i7 = this.f52957b;
         }
         this.h.i(this, i7);
     }

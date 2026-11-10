@@ -1,7 +1,7 @@
 package bi;
 
 import java.util.ArrayList;
-import org.telegram.ui.Components.ah0;
+import org.telegram.ui.Components.zg0;
 public final class n7 implements Runnable {
     public final int f4410a;
     public final p7 f4411b;
@@ -33,7 +33,7 @@ public final class n7 implements Runnable {
                 while (i7 < size) {
                     Object obj = arrayList.get(i7);
                     i7++;
-                    ((ah0) obj).C(true);
+                    ((zg0) obj).C(true);
                 }
                 arrayList.clear();
                 return;

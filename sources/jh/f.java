@@ -17,9 +17,9 @@ import c8.ha;
 import java.util.HashSet;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.k5;
-import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.c6;
 import r0.k1;
-public final class f extends FrameLayout implements b6 {
+public final class f extends FrameLayout implements c6 {
     public float D;
     public float E;
     public int F;
@@ -89,9 +89,9 @@ public final class f extends FrameLayout implements b6 {
 
     public final void c() {
         int i7;
-        k1 k1Var = ((rh.h) this.f17038a).f54564r;
+        k1 k1Var = ((rh.h) this.f17038a).f54563r;
         if (k1Var != null) {
-            i7 = k1Var.f54214a.f(2).d;
+            i7 = k1Var.f54213a.f(2).d;
         } else {
             i7 = 0;
         }
@@ -117,7 +117,7 @@ public final class f extends FrameLayout implements b6 {
         this.f17046w = ((rh.h) this.f17038a).c();
         int i11 = 0;
         boolean z10 = true;
-        if (((rh.h) this.f17038a).f54565s != 1) {
+        if (((rh.h) this.f17038a).f54564s != 1) {
             z9 = true;
         } else {
             z9 = false;
@@ -138,7 +138,7 @@ public final class f extends FrameLayout implements b6 {
         }
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) e5Var.getLayoutParams();
         int i12 = layoutParams.height;
-        int i13 = ((rh.h) this.f17038a).f54567x;
+        int i13 = ((rh.h) this.f17038a).f54566x;
         if (i12 != i13) {
             layoutParams.height = i13;
             requestLayout();
@@ -195,7 +195,7 @@ public final class f extends FrameLayout implements b6 {
         }
         if (z9) {
             canvas.save();
-            canvas.clipPath(this.h.Q.f11513k);
+            canvas.clipPath(this.h.Q.f11518k);
         }
         boolean drawChild = super.drawChild(canvas, view, j3);
         if (z9) {
@@ -259,7 +259,7 @@ public final class f extends FrameLayout implements b6 {
             int x10 = (int) motionEvent.getX();
             int y10 = (int) motionEvent.getY();
             fh.g gVar2 = this.f17042f;
-            if ((gVar2 != null && gVar2.f21076c == 255 && gVar2.getBounds().contains(x10, y10)) || ((gVar = this.h) != null && gVar.getBounds().contains(x10, y10))) {
+            if ((gVar2 != null && gVar2.f21081c == 255 && gVar2.getBounds().contains(x10, y10)) || ((gVar = this.h) != null && gVar.getBounds().contains(x10, y10))) {
                 z9 = true;
             } else {
                 z9 = false;
@@ -313,7 +313,7 @@ public final class f extends FrameLayout implements b6 {
         gVar.s(g0.L(29.0f), g0.L(29.0f), 0.0f, 0.0f);
         this.h.u(g0.L(32.0f));
         fh.g gVar2 = this.h;
-        gVar2.Q.f11510g = 0.4f;
+        gVar2.Q.f11515g = 0.4f;
         gVar2.n();
     }
 

@@ -10,19 +10,19 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class s implements b3.q {
-    public final p f54773a;
-    public final m f54774b;
-    public static final Pattern f54741c = Pattern.compile("AVERAGE-BANDWIDTH=(\\d+)\\b");
+    public final p f54772a;
+    public final m f54773b;
+    public static final Pattern f54740c = Pattern.compile("AVERAGE-BANDWIDTH=(\\d+)\\b");
     public static final Pattern d = Pattern.compile("VIDEO=\"((?:.|\f)+?)\"");
-    public static final Pattern f54744e = Pattern.compile("AUDIO=\"((?:.|\f)+?)\"");
-    public static final Pattern f54746f = Pattern.compile("SUBTITLES=\"((?:.|\f)+?)\"");
+    public static final Pattern f54743e = Pattern.compile("AUDIO=\"((?:.|\f)+?)\"");
+    public static final Pattern f54745f = Pattern.compile("SUBTITLES=\"((?:.|\f)+?)\"");
     public static final Pattern h = Pattern.compile("CLOSED-CAPTIONS=\"((?:.|\f)+?)\"");
-    public static final Pattern f54754n = Pattern.compile("[^-]BANDWIDTH=(\\d+)\\b");
-    public static final Pattern f54759r = Pattern.compile("CHANNELS=\"((?:.|\f)+?)\"");
-    public static final Pattern f54761s = Pattern.compile("VIDEO-RANGE=(SDR|PQ|HLG)");
-    public static final Pattern f54766w = Pattern.compile("CODECS=\"((?:.|\f)+?)\"");
-    public static final Pattern f54768x = Pattern.compile("SUPPLEMENTAL-CODECS=\"((?:.|\f)+?)\"");
-    public static final Pattern f54770y = Pattern.compile("MIME=\"(.+?)\"");
+    public static final Pattern f54753n = Pattern.compile("[^-]BANDWIDTH=(\\d+)\\b");
+    public static final Pattern f54758r = Pattern.compile("CHANNELS=\"((?:.|\f)+?)\"");
+    public static final Pattern f54760s = Pattern.compile("VIDEO-RANGE=(SDR|PQ|HLG)");
+    public static final Pattern f54765w = Pattern.compile("CODECS=\"((?:.|\f)+?)\"");
+    public static final Pattern f54767x = Pattern.compile("SUPPLEMENTAL-CODECS=\"((?:.|\f)+?)\"");
+    public static final Pattern f54769y = Pattern.compile("MIME=\"(.+?)\"");
     public static final Pattern D = Pattern.compile("CACHED=\"(.+?)\"");
     public static final Pattern E = Pattern.compile("DOCID=\"(.+?)\"");
     public static final Pattern F = Pattern.compile("DOCFILENAME=\"(.+?)\"");
@@ -46,32 +46,32 @@ public final class s implements b3.q {
     public static final Pattern X = a("CAN-BLOCK-RELOAD");
     public static final Pattern Y = Pattern.compile("#EXT-X-MEDIA-SEQUENCE:(\\d+)\\b");
     public static final Pattern Z = Pattern.compile("#EXTINF:([\\d\\.]+)\\b");
-    public static final Pattern f54739a0 = Pattern.compile("#EXTINF:[\\d\\.]+\\b,(.+)");
-    public static final Pattern f54740b0 = Pattern.compile("LAST-MSN=(\\d+)\\b");
-    public static final Pattern f54742c0 = Pattern.compile("LAST-PART=(\\d+)\\b");
-    public static final Pattern f54743d0 = Pattern.compile("TIME-OFFSET=(-?[\\d\\.]+)\\b");
-    public static final Pattern f54745e0 = Pattern.compile("#EXT-X-BYTERANGE:(\\d+(?:@\\d+)?)\\b");
-    public static final Pattern f54747f0 = Pattern.compile("BYTERANGE=\"(\\d+(?:@\\d+)?)\\b\"");
-    public static final Pattern f54748g0 = Pattern.compile("BYTERANGE-START=(\\d+)\\b");
-    public static final Pattern f54749h0 = Pattern.compile("BYTERANGE-LENGTH=(\\d+)\\b");
-    public static final Pattern f54750i0 = Pattern.compile("METHOD=(NONE|AES-128|SAMPLE-AES|SAMPLE-AES-CENC|SAMPLE-AES-CTR)\\s*(?:,|$)");
-    public static final Pattern f54751j0 = Pattern.compile("KEYFORMAT=\"((?:.|\f)+?)\"");
-    public static final Pattern f54752k0 = Pattern.compile("KEYFORMATVERSIONS=\"((?:.|\f)+?)\"");
-    public static final Pattern f54753l0 = Pattern.compile("URI=\"((?:.|\f)+?)\"");
+    public static final Pattern f54738a0 = Pattern.compile("#EXTINF:[\\d\\.]+\\b,(.+)");
+    public static final Pattern f54739b0 = Pattern.compile("LAST-MSN=(\\d+)\\b");
+    public static final Pattern f54741c0 = Pattern.compile("LAST-PART=(\\d+)\\b");
+    public static final Pattern f54742d0 = Pattern.compile("TIME-OFFSET=(-?[\\d\\.]+)\\b");
+    public static final Pattern f54744e0 = Pattern.compile("#EXT-X-BYTERANGE:(\\d+(?:@\\d+)?)\\b");
+    public static final Pattern f54746f0 = Pattern.compile("BYTERANGE=\"(\\d+(?:@\\d+)?)\\b\"");
+    public static final Pattern f54747g0 = Pattern.compile("BYTERANGE-START=(\\d+)\\b");
+    public static final Pattern f54748h0 = Pattern.compile("BYTERANGE-LENGTH=(\\d+)\\b");
+    public static final Pattern f54749i0 = Pattern.compile("METHOD=(NONE|AES-128|SAMPLE-AES|SAMPLE-AES-CENC|SAMPLE-AES-CTR)\\s*(?:,|$)");
+    public static final Pattern f54750j0 = Pattern.compile("KEYFORMAT=\"((?:.|\f)+?)\"");
+    public static final Pattern f54751k0 = Pattern.compile("KEYFORMATVERSIONS=\"((?:.|\f)+?)\"");
+    public static final Pattern f54752l0 = Pattern.compile("URI=\"((?:.|\f)+?)\"");
     public static final Pattern m0 = Pattern.compile("IV=([^,.*]+)");
-    public static final Pattern f54755n0 = Pattern.compile("TYPE=(AUDIO|VIDEO|SUBTITLES|CLOSED-CAPTIONS)");
-    public static final Pattern f54756o0 = Pattern.compile("TYPE=(PART|MAP)");
-    public static final Pattern f54757p0 = Pattern.compile("LANGUAGE=\"((?:.|\f)+?)\"");
-    public static final Pattern f54758q0 = Pattern.compile("NAME=\"((?:.|\f)+?)\"");
-    public static final Pattern f54760r0 = Pattern.compile("QUERYPARAM=\"((?:.|\f)+?)\"");
-    public static final Pattern f54762s0 = Pattern.compile("GROUP-ID=\"((?:.|\f)+?)\"");
-    public static final Pattern f54763t0 = Pattern.compile("CHARACTERISTICS=\"((?:.|\f)+?)\"");
-    public static final Pattern f54764u0 = Pattern.compile("INSTREAM-ID=\"((?:CC|SERVICE)\\d+)\"");
-    public static final Pattern f54765v0 = a("AUTOSELECT");
-    public static final Pattern f54767w0 = a("DEFAULT");
-    public static final Pattern f54769x0 = a("FORCED");
-    public static final Pattern f54771y0 = a("INDEPENDENT");
-    public static final Pattern f54772z0 = a("GAP");
+    public static final Pattern f54754n0 = Pattern.compile("TYPE=(AUDIO|VIDEO|SUBTITLES|CLOSED-CAPTIONS)");
+    public static final Pattern f54755o0 = Pattern.compile("TYPE=(PART|MAP)");
+    public static final Pattern f54756p0 = Pattern.compile("LANGUAGE=\"((?:.|\f)+?)\"");
+    public static final Pattern f54757q0 = Pattern.compile("NAME=\"((?:.|\f)+?)\"");
+    public static final Pattern f54759r0 = Pattern.compile("QUERYPARAM=\"((?:.|\f)+?)\"");
+    public static final Pattern f54761s0 = Pattern.compile("GROUP-ID=\"((?:.|\f)+?)\"");
+    public static final Pattern f54762t0 = Pattern.compile("CHARACTERISTICS=\"((?:.|\f)+?)\"");
+    public static final Pattern f54763u0 = Pattern.compile("INSTREAM-ID=\"((?:CC|SERVICE)\\d+)\"");
+    public static final Pattern f54764v0 = a("AUTOSELECT");
+    public static final Pattern f54766w0 = a("DEFAULT");
+    public static final Pattern f54768x0 = a("FORCED");
+    public static final Pattern f54770y0 = a("INDEPENDENT");
+    public static final Pattern f54771z0 = a("GAP");
     public static final Pattern A0 = a("PRECISE");
     public static final Pattern B0 = Pattern.compile("VALUE=\"((?:.|\f)+?)\"");
     public static final Pattern C0 = Pattern.compile("IMPORT=\"((?:.|\f)+?)\"");
@@ -98,8 +98,8 @@ public final class s implements b3.q {
     public static final Pattern X0 = Pattern.compile("\\b(X-[A-Z0-9-]+)=");
 
     public s(p pVar, m mVar) {
-        this.f54773a = pVar;
-        this.f54774b = mVar;
+        this.f54772a = pVar;
+        this.f54773b = mVar;
     }
 
     public static Pattern a(String str) {
@@ -110,38 +110,38 @@ public final class s implements b3.q {
         e2.q[] qVarArr2 = new e2.q[qVarArr.length];
         for (int i7 = 0; i7 < qVarArr.length; i7++) {
             e2.q qVar = qVarArr[i7];
-            qVarArr2[i7] = new e2.q(qVar.f10481b, qVar.f10482c, qVar.d, null);
+            qVarArr2[i7] = new e2.q(qVar.f10486b, qVar.f10487c, qVar.d, null);
         }
         return new e2.r(str, true, qVarArr2);
     }
 
     public static e2.q c(String str, String str2, HashMap hashMap, org.telegram.utils.twidget.v vVar) {
-        String i7 = i(str, f54752k0, "1", hashMap, vVar);
+        String i7 = i(str, f54751k0, "1", hashMap, vVar);
         boolean equals = "urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed".equals(str2);
-        Pattern pattern = f54753l0;
+        Pattern pattern = f54752l0;
         if (equals) {
             String j3 = j(str, pattern, hashMap, vVar);
-            return new e2.q(e2.l.f10341e, null, "video/mp4", Base64.decode(j3.substring(j3.indexOf(44)), 0));
+            return new e2.q(e2.l.f10346e, null, "video/mp4", Base64.decode(j3.substring(j3.indexOf(44)), 0));
         } else if ("com.widevine".equals(str2)) {
-            UUID uuid = e2.l.f10341e;
-            String str3 = m0.f14112a;
+            UUID uuid = e2.l.f10346e;
+            String str3 = m0.f14114a;
             return new e2.q(uuid, null, "hls", str.getBytes(StandardCharsets.UTF_8));
         } else if (!"com.microsoft.playready".equals(str2) || !"1".equals(i7)) {
             return null;
         } else {
             String j10 = j(str, pattern, hashMap, vVar);
             byte[] decode = Base64.decode(j10.substring(j10.indexOf(44)), 0);
-            UUID uuid2 = e2.l.f10342f;
+            UUID uuid2 = e2.l.f10347f;
             return new e2.q(uuid2, null, "video/mp4", z3.q.a(uuid2, null, decode));
         }
     }
 
-    public static s2.m d(s2.p r140, s2.m r141, org.telegram.ui.ky0 r142, android.net.Uri r143, org.telegram.utils.twidget.v r144) {
-        throw new UnsupportedOperationException("Method not decompiled: s2.s.d(s2.p, s2.m, org.telegram.ui.ky0, android.net.Uri, org.telegram.utils.twidget.v):s2.m");
+    public static s2.m d(s2.p r140, s2.m r141, org.telegram.ui.ly0 r142, android.net.Uri r143, org.telegram.utils.twidget.v r144) {
+        throw new UnsupportedOperationException("Method not decompiled: s2.s.d(s2.p, s2.m, org.telegram.ui.ly0, android.net.Uri, org.telegram.utils.twidget.v):s2.m");
     }
 
-    public static s2.p e(org.telegram.ui.ky0 r50, android.net.Uri r51, org.telegram.utils.twidget.v r52) {
-        throw new UnsupportedOperationException("Method not decompiled: s2.s.e(org.telegram.ui.ky0, android.net.Uri, org.telegram.utils.twidget.v):s2.p");
+    public static s2.p e(org.telegram.ui.ly0 r50, android.net.Uri r51, org.telegram.utils.twidget.v r52) {
+        throw new UnsupportedOperationException("Method not decompiled: s2.s.e(org.telegram.ui.ly0, android.net.Uri, org.telegram.utils.twidget.v):s2.p");
     }
 
     public static boolean f(String str, Pattern pattern, org.telegram.utils.twidget.v vVar) {

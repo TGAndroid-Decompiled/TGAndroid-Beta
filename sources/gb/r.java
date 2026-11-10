@@ -7,12 +7,12 @@ import java.nio.file.Files;
 import java.nio.file.attribute.FileAttribute;
 public final class r {
     public static m1.b0 a(m1.y0 y0Var, h9.f1 f1Var, ee.c cVar, rd.a aVar) {
-        hd.n nVar = hd.n.f14474a;
+        hd.n nVar = hd.n.f14476a;
         try {
             System.loadLibrary("datastore_shared_counter");
             return new m1.b0(new m1.f0(y0Var, new m1.y(cVar, 1), aVar), c8.d0.a(new be.l(nVar, (id.c) null, 8)), f1Var, cVar);
         } catch (SecurityException | UnsatisfiedLinkError unused) {
-            return new m1.b0(new m1.f0(y0Var, m1.e0.f19366b, aVar), c8.d0.a(new be.l(nVar, (id.c) null, 8)), f1Var, cVar);
+            return new m1.b0(new m1.f0(y0Var, m1.e0.f19371b, aVar), c8.d0.a(new be.l(nVar, (id.c) null, 8)), f1Var, cVar);
         }
     }
 

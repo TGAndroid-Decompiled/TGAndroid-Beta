@@ -1,25 +1,32 @@
 package org.telegram.ui;
 
-import android.net.Uri;
-public final class ho0 implements org.telegram.messenger.c20 {
-    public final int f46363a;
-    public final so0 f46364b;
+import android.graphics.Canvas;
+public final class ho0 implements ri.a, dh.b {
+    public final org.telegram.ui.Components.ba f46403a;
+    public final PhotoViewer f46404b;
 
-    public ho0(so0 so0Var, int i7) {
-        this.f46363a = i7;
-        this.f46364b = so0Var;
+    public ho0(PhotoViewer photoViewer) {
+        this.f46404b = photoViewer;
+        this.f46403a = new org.telegram.ui.Components.ba(photoViewer.f41354b0, photoViewer.f41382e0, 0, false);
     }
 
     @Override
-    public final void a(Object obj) {
-        Uri uri = (Uri) obj;
-        switch (this.f46363a) {
-            case 0:
-                new org.telegram.ui.Components.hc(this.f46364b.f49967b.f41391e0, null).m(org.telegram.ui.Components.gc.f33920r, 1, -115203550, -1, null).j();
-                return;
-            default:
-                new org.telegram.ui.Components.hc(this.f46364b.f49967b.f41391e0, null).m(org.telegram.ui.Components.gc.f33920r, 1, -115203550, -1, null).j();
-                return;
-        }
+    public final fh.g b() {
+        fh.g gVar = new fh.g(this, this, this);
+        this.f46404b.Z.add(gVar);
+        return gVar;
+    }
+
+    @Override
+    public final void e(Canvas canvas, float f10, float f11, float f12, float f13) {
+        canvas.save();
+        canvas.clipRect(f10, f11, f12, f13);
+        this.f46404b.N0(canvas, this.f46403a, -14277082, 855638016, false, true, true);
+        canvas.drawColor(637534208);
+        canvas.restore();
+    }
+
+    @Override
+    public final void c(fh.g gVar) {
     }
 }

@@ -6,29 +6,29 @@ import org.telegram.messenger.qp;
 import org.telegram.messenger.support.LongSparseLongArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.pa;
-import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.pj0;
 public final class y9 {
-    public static final y9[] f9976f = new y9[4];
-    public final int f9977a;
-    public final LongSparseLongArray f9978b = new LongSparseLongArray();
-    public final ArrayList f9979c = new ArrayList();
+    public static final y9[] f9981f = new y9[4];
+    public final int f9982a;
+    public final LongSparseLongArray f9983b = new LongSparseLongArray();
+    public final ArrayList f9984c = new ArrayList();
     public final ArrayList d = new ArrayList();
-    public final x9 f9980e;
+    public final x9 f9985e;
 
     public y9(int i7) {
         new ArrayList();
-        this.f9980e = new x9(this);
-        this.f9977a = i7;
+        this.f9985e = new x9(this);
+        this.f9982a = i7;
     }
 
-    public final void a(qj0 qj0Var) {
+    public final void a(pj0 pj0Var) {
         long j3;
         TLRPC.UserStatus userStatus;
         long currentTimeMillis = System.currentTimeMillis();
-        ArrayList arrayList = this.f9979c;
+        ArrayList arrayList = this.f9984c;
         arrayList.clear();
-        for (int i7 = 0; i7 < qj0Var.getChildCount(); i7++) {
-            View childAt = qj0Var.getChildAt(i7);
+        for (int i7 = 0; i7 < pj0Var.getChildCount(); i7++) {
+            View childAt = pj0Var.getChildAt(i7);
             if (childAt instanceof org.telegram.ui.Cells.t2) {
                 j3 = ((org.telegram.ui.Cells.t2) childAt).getDialogId();
             } else if (childAt instanceof pa) {
@@ -37,8 +37,8 @@ public final class y9 {
                 j3 = 0;
             }
             int i10 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-            int i11 = this.f9977a;
-            LongSparseLongArray longSparseLongArray = this.f9978b;
+            int i11 = this.f9982a;
+            LongSparseLongArray longSparseLongArray = this.f9983b;
             if (i10 > 0) {
                 TLRPC.User a22 = qp.s1(i11).a2(Long.valueOf(j3));
                 if (a22 != null && !a22.bot && !a22.self && !a22.contact && (userStatus = a22.status) != null && !(userStatus instanceof TLRPC.TL_userStatusEmpty) && currentTimeMillis - longSparseLongArray.get(j3, 0L) > 3600000) {
@@ -55,7 +55,7 @@ public final class y9 {
         }
         if (!arrayList.isEmpty()) {
             this.d.addAll(arrayList);
-            x9 x9Var = this.f9980e;
+            x9 x9Var = this.f9985e;
             org.telegram.messenger.g0.r(x9Var);
             org.telegram.messenger.g0.i3(x9Var, 300L);
         }

@@ -2,11 +2,11 @@ package l5;
 
 import a8.p0;
 public final class c {
-    public final String f18174a;
+    public final String f18177a;
 
     public c(String str) {
         if (str != null) {
-            this.f18174a = str;
+            this.f18177a = str;
             return;
         }
         throw new NullPointerException("name is null");
@@ -19,14 +19,14 @@ public final class c {
         if (!(obj instanceof c)) {
             return false;
         }
-        return this.f18174a.equals(((c) obj).f18174a);
+        return this.f18177a.equals(((c) obj).f18177a);
     }
 
     public final int hashCode() {
-        return this.f18174a.hashCode() ^ 1000003;
+        return this.f18177a.hashCode() ^ 1000003;
     }
 
     public final String toString() {
-        return p0.s(new StringBuilder("Encoding{name=\""), this.f18174a, "\"}");
+        return p0.s(new StringBuilder("Encoding{name=\""), this.f18177a, "\"}");
     }
 }

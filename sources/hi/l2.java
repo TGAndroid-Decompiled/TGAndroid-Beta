@@ -6,28 +6,28 @@ import android.view.View;
 import androidx.appcompat.widget.SearchView;
 import fi.v9;
 public final class l2 implements View.OnLayoutChangeListener {
-    public final int f14782a;
-    public final Object f14783b;
+    public final int f14784a;
+    public final Object f14785b;
 
     public l2(Object obj, int i7) {
-        this.f14782a = i7;
-        this.f14783b = obj;
+        this.f14784a = i7;
+        this.f14785b = obj;
     }
 
     @Override
     public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
         int i17;
-        int i18 = this.f14782a;
+        int i18 = this.f14784a;
         int i19 = 0;
-        Object obj = this.f14783b;
+        Object obj = this.f14785b;
         switch (i18) {
             case 0:
                 view.removeOnLayoutChangeListener(this);
                 a3 a3Var = (a3) obj;
-                org.telegram.messenger.h2 h2Var = a3Var.f14528n0;
-                r2 r2Var = a3Var.f14541x;
+                org.telegram.messenger.h2 h2Var = a3Var.f14530n0;
+                r2 r2Var = a3Var.f14543x;
                 r2Var.setSwipeOffsetY(r2Var.getHeight());
-                a3Var.f14519f.setAlpha(1.0f);
+                a3Var.f14521f.setAlpha(1.0f);
                 if (a3Var.H0 != Float.MAX_VALUE) {
                     r2Var.setSwipeOffsetAnimationDisallowed(true);
                     r2Var.setOffsetY(a3Var.H0);
@@ -37,18 +37,18 @@ public final class l2 implements View.OnLayoutChangeListener {
                 h2.f fVar = new h2.f((int[]) null);
                 fVar.d();
                 if (!a3Var.G0 && !a3Var.r()) {
-                    r1.g gVar = new r1.g((Object) r2Var, (r1.e) b4.f14559b0, 0.0f);
+                    r1.g gVar = new r1.g((Object) r2Var, (r1.e) b4.f14561b0, 0.0f);
                     r1.h hVar = new r1.h(0.0f);
                     hVar.a(0.75f);
                     hVar.b(500.0f);
-                    gVar.f54280m = hVar;
+                    gVar.f54279m = hVar;
                     gVar.a(new ti.c(fVar, 2));
                     gVar.h();
                 } else {
                     r2Var.f(r2Var.getTopActionBarOffsetY() + (-r2Var.getOffsetY()), false, new v9(fVar, 18));
                 }
                 r2Var.K = true;
-                if (a3Var.f14518e0 && h2Var != null) {
+                if (a3Var.f14520e0 && h2Var != null) {
                     h2Var.setAlpha(0.0f);
                     h2Var.animate().alpha(1.0f).setDuration(220L).start();
                     return;

@@ -4,15 +4,15 @@ import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
 public final class y extends ClickableSpan {
-    public final int f26565a;
-    public final int f26566b;
-    public final org.telegram.ui.ActionBar.g6 f26567c;
+    public final int f26569a;
+    public final int f26570b;
+    public final org.telegram.ui.ActionBar.h6 f26571c;
     public final Runnable d;
 
-    public y(int i7, int i10, org.telegram.ui.ActionBar.g6 g6Var, Runnable runnable) {
-        this.f26565a = i7;
-        this.f26566b = i10;
-        this.f26567c = g6Var;
+    public y(int i7, int i10, org.telegram.ui.ActionBar.h6 h6Var, Runnable runnable) {
+        this.f26569a = i7;
+        this.f26570b = i10;
+        this.f26571c = h6Var;
         this.d = runnable;
     }
 
@@ -28,16 +28,16 @@ public final class y extends ClickableSpan {
     public final void updateDrawState(TextPaint textPaint) {
         boolean z9;
         super.updateDrawState(textPaint);
-        int i7 = this.f26565a;
+        int i7 = this.f26569a;
         if (i7 == 4) {
             z9 = true;
         } else {
             z9 = false;
         }
         textPaint.setUnderlineText(z9);
-        int i10 = this.f26566b;
+        int i10 = this.f26570b;
         if (i10 >= 0) {
-            textPaint.setColor(org.telegram.ui.ActionBar.l6.w0(i10, this.f26567c));
+            textPaint.setColor(org.telegram.ui.ActionBar.m6.w0(i10, this.f26571c));
         }
         if (i7 == 2) {
             textPaint.setTypeface(g0.o());

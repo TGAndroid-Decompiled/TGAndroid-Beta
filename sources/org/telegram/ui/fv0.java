@@ -1,136 +1,43 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.graphics.RectF;
-import org.telegram.messenger.ImageReceiver;
-public final class fv0 extends AnimatorListenerAdapter {
-    public final int f45796a;
-    public final ProfileActivity f45797b;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Stories.ProfileStoriesView;
+public final class fv0 extends ProfileStoriesView {
+    public final Context f45854t0;
+    public final ProfileActivity f45855u0;
 
-    public fv0(ProfileActivity profileActivity, int i7) {
-        this.f45796a = i7;
-        this.f45797b = profileActivity;
+    public fv0(ProfileActivity profileActivity, Context context, int i7, long j3, boolean z9, k0 k0Var, cv0 cv0Var, org.telegram.ui.ActionBar.h6 h6Var, Context context2) {
+        super(context, i7, j3, z9, k0Var, cv0Var, h6Var);
+        this.f45855u0 = profileActivity;
+        this.f45854t0 = context2;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f45796a) {
-            case 1:
-                this.f45797b.Q5 = null;
+    public final void e(aa.n nVar) {
+        TL_stories.PeerStories peerStories;
+        TL_stories.PeerStories peerStories2;
+        ProfileActivity profileActivity = this.f45855u0;
+        long a10 = profileActivity.a();
+        di.z6 P1 = profileActivity.getMessagesController().P1();
+        boolean K = P1.K(a10);
+        Context context = this.f45854t0;
+        if (!K && !P1.M(a10) && !P1.Q(a10)) {
+            TLRPC.UserFull userFull = profileActivity.f41831u2;
+            if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.stories.isEmpty() && profileActivity.f41714d1 != profileActivity.getUserConfig().f24493n) {
+                profileActivity.getOrCreateStoryViewer().K(context, profileActivity.f41831u2.stories, nVar);
                 return;
-            case 4:
-                ProfileActivity profileActivity = this.f45797b;
-                profileActivity.N1 = false;
-                profileActivity.f41698a.O0 = true;
+            }
+            TLRPC.ChatFull chatFull = profileActivity.f41825t2;
+            if (chatFull != null && (peerStories = chatFull.stories) != null && !peerStories.stories.isEmpty()) {
+                profileActivity.getOrCreateStoryViewer().K(context, profileActivity.f41825t2.stories, nVar);
                 return;
-            default:
-                super.onAnimationCancel(animator);
+            } else {
+                profileActivity.a4();
                 return;
+            }
         }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        oi.q qVar;
-        org.telegram.ui.ActionBar.k kVar;
-        int w02;
-        int i7 = this.f45796a;
-        ProfileActivity profileActivity = this.f45797b;
-        switch (i7) {
-            case 0:
-                qVar = ((org.telegram.ui.ActionBar.f2) profileActivity).glassEngine;
-                qVar.g();
-                kVar = ((org.telegram.ui.ActionBar.f2) profileActivity).actionBar;
-                if (profileActivity.f41799o2) {
-                    w02 = 1090519039;
-                } else if (profileActivity.f41770j6 != null) {
-                    w02 = 553648127;
-                } else {
-                    w02 = org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.f27905f8, profileActivity.f41876z0);
-                }
-                kVar.D(w02, false);
-                bv0 bv0Var = profileActivity.f41729e0;
-                ImageReceiver imageReceiver = bv0Var.U;
-                org.telegram.ui.Components.v5 m10 = imageReceiver.m();
-                if (m10 != null) {
-                    m10.w(bv0Var);
-                }
-                imageReceiver.f();
-                org.telegram.messenger.jc jcVar = bv0Var.W;
-                if (jcVar != null) {
-                    jcVar.a();
-                    bv0Var.W = null;
-                }
-                bv0Var.V = 0.0f;
-                bv0Var.invalidate();
-                profileActivity.H0 = false;
-                profileActivity.O5(false);
-                return;
-            case 1:
-                if (profileActivity.Q5 != null && !profileActivity.T5) {
-                    AnimatorSet animatorSet = new AnimatorSet();
-                    profileActivity.R5 = animatorSet;
-                    animatorSet.playTogether(ObjectAnimator.ofFloat(profileActivity, profileActivity.f41782l5, 1.0f));
-                    profileActivity.R5.setDuration(100L);
-                    profileActivity.R5.addListener(new f30(this, 21));
-                    profileActivity.R5.start();
-                }
-                profileActivity.O5(false);
-                profileActivity.Q5 = null;
-                return;
-            case 2:
-                super.onAnimationEnd(animator);
-                RectF rectF = ProfileActivity.V6;
-                profileActivity.B4(true);
-                return;
-            case 3:
-                AnimatorSet animatorSet2 = profileActivity.f41852w;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    profileActivity.f41852w = null;
-                    return;
-                }
-                return;
-            case 4:
-                profileActivity.N1 = false;
-                profileActivity.f41698a.O0 = true;
-                profileActivity.f41760i2.removeListener(this);
-                profileActivity.f41716c1.setBackgroundColor(-16777216);
-                profileActivity.X.setVisibility(8);
-                profileActivity.f41791n0.setVisibility(0);
-                profileActivity.f41791n0.setAlpha(1.0f);
-                return;
-            case 5:
-                profileActivity.f41760i2.removeListener(this);
-                profileActivity.f41791n0.setVisibility(8);
-                profileActivity.f41791n0.setAlpha(1.0f);
-                return;
-            default:
-                profileActivity.f41853w0 = null;
-                profileActivity.fragmentView.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f45796a) {
-            case 0:
-                return;
-            case 4:
-                ProfileActivity profileActivity = this.f45797b;
-                ProfileActivity.G3(profileActivity, false);
-                profileActivity.f41791n0.setAnimatedFileMaybe(profileActivity.f41729e0.getImageReceiver().m());
-                profileActivity.f41791n0.L();
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
-        }
-    }
-
-    private final void a(Animator animator) {
+        profileActivity.getOrCreateStoryViewer().J(context, a10, nVar);
     }
 }

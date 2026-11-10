@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import java.util.Timer;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.d5;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.ActionBar.s6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Cells.g6;
 import org.telegram.ui.Cells.m8;
 import org.telegram.ui.Cells.x3;
-import org.telegram.ui.Components.mz;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.tm;
-public abstract class s1 extends pj0 {
+import org.telegram.ui.Components.lz;
+import org.telegram.ui.Components.oj0;
+import org.telegram.ui.Components.sm;
+public abstract class s1 extends oj0 {
     public boolean D;
     public int E;
     public int F;
@@ -38,7 +38,7 @@ public abstract class s1 extends pj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57060f;
+        int i7 = d1Var.f57056f;
         if (i7 != 0 && i7 != 2 && i7 != 3) {
             return false;
         }
@@ -153,17 +153,17 @@ public abstract class s1 extends pj0 {
                         if (i7 != 5) {
                             x3Var = new m8(16, context, false);
                         } else {
-                            mz mzVar = new mz(context, null);
-                            mzVar.setIsSingleCell(true);
-                            mzVar.setViewType(29);
-                            s6.h(l6.f27865d6, mzVar, null);
-                            x3Var = mzVar;
+                            lz lzVar = new lz(context, null);
+                            lzVar.setIsSingleCell(true);
+                            lzVar.setViewType(29);
+                            t6.h(m6.f27890d6, lzVar, null);
+                            x3Var = lzVar;
                         }
                     } else {
-                        View tmVar = new tm(context, 6);
-                        tmVar.setId(9);
-                        tmVar.setTag(-33024);
-                        x3Var = tmVar;
+                        View smVar = new sm(context, 6);
+                        smVar.setId(9);
+                        smVar.setTag(-33024);
+                        x3Var = smVar;
                     }
                 } else {
                     g6 g6Var = new g6(context, null);

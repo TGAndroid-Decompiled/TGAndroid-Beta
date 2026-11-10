@@ -3,13 +3,13 @@ package l2;
 import android.content.Context;
 import di.i4;
 public class j {
-    public final Context f17895a;
-    public final k0.b f17896b;
-    public int f17897c = 0;
+    public final Context f17898a;
+    public final k0.b f17899b;
+    public int f17900c = 0;
 
     public j(Context context) {
-        this.f17895a = context;
-        this.f17896b = new k0.b(context, false);
+        this.f17898a = context;
+        this.f17899b = new k0.b(context, false);
     }
 
     public n2.q0 a(Context context) {

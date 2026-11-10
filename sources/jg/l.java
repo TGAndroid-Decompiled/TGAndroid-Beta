@@ -51,7 +51,7 @@ public final class l extends rg.a {
     public l(n nVar, TLRPC.User user) {
         super(23, false);
         this.f16829n = user;
-        long j3 = user.f27105id;
+        long j3 = user.f27109id;
         LongSparseIntArray longSparseIntArray = nVar.X;
         int i7 = longSparseIntArray.get(j3, -1);
         if (i7 >= 0) {
@@ -61,13 +61,13 @@ public final class l extends rg.a {
         int i10 = nVar.W;
         nVar.W = i10 + 1;
         this.f16826k = i10;
-        longSparseIntArray.put(user.f27105id, i10);
+        longSparseIntArray.put(user.f27109id, i10);
     }
 
     public l(n nVar, TLRPC.Chat chat) {
         super(23, false);
         this.f16828m = chat;
-        long j3 = chat.f26956id;
+        long j3 = chat.f26960id;
         LongSparseIntArray longSparseIntArray = nVar.X;
         int i7 = longSparseIntArray.get(-j3, -1);
         if (i7 >= 0) {
@@ -77,7 +77,7 @@ public final class l extends rg.a {
         int i10 = nVar.W;
         nVar.W = i10 + 1;
         this.f16826k = i10;
-        longSparseIntArray.put(-chat.f26956id, i10);
+        longSparseIntArray.put(-chat.f26960id, i10);
     }
 
     public l(n nVar, int i7, TLRPC.Dialog dialog) {
@@ -86,14 +86,14 @@ public final class l extends rg.a {
         boolean z9 = true;
         this.f16820c = dialog;
         if (dialog != null) {
-            int i10 = longSparseIntArray.get(dialog.f26960id, -1);
+            int i10 = longSparseIntArray.get(dialog.f26964id, -1);
             if (i10 >= 0) {
                 this.f16826k = i10;
             } else {
                 int i11 = nVar.W;
                 nVar.W = i11 + 1;
                 this.f16826k = i11;
-                longSparseIntArray.put(dialog.f26960id, i11);
+                longSparseIntArray.put(dialog.f26964id, i11);
             }
         } else if (i7 == 19) {
             this.f16826k = 5;
@@ -109,10 +109,10 @@ public final class l extends rg.a {
                 this.f16823g = dialog.pinned;
             } else {
                 vo voVar = qp.s1(i14).M[nVar.h == 8 ? (char) 1 : (char) 0];
-                this.f16823g = (voVar == null || voVar.f26077j.indexOfKey(dialog.f26960id) < 0) ? false : z9;
+                this.f16823g = (voVar == null || voVar.f26081j.indexOfKey(dialog.f26964id) < 0) ? false : z9;
             }
             this.h = dialog.isFolder;
-            this.f16822f = qp.s1(i14).t2(dialog.f26960id);
+            this.f16822f = qp.s1(i14).t2(dialog.f26964id);
         }
     }
 

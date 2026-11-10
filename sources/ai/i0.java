@@ -42,10 +42,10 @@ import org.telegram.messenger.id;
 import org.telegram.messenger.sc;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.q4;
+import org.telegram.ui.ActionBar.r4;
 import org.telegram.ui.ActionBar.y1;
 import org.telegram.ui.Components.o41;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.wq;
 public final class i0 extends FrameLayout {
     public final Paint D;
     public final Paint E;
@@ -105,8 +105,8 @@ public final class i0 extends FrameLayout {
     public final RectF f1271x0;
     public final Paint f1272y;
     public final ra f1273y0;
-    public static final xq f1238z0 = new xq(0.05d, 0.7d, 0.1d, 1.0d);
-    public static final xq A0 = new xq(0.3d, 0.0d, 0.1d, 1.0d);
+    public static final wq f1238z0 = new wq(0.05d, 0.7d, 0.1d, 1.0d);
+    public static final wq A0 = new wq(0.3d, 0.0d, 0.1d, 1.0d);
 
     public i0(Activity activity, RectF rectF, RectF rectF2, h0 h0Var) {
         super(activity);
@@ -227,7 +227,7 @@ public final class i0 extends FrameLayout {
         FrameLayout frameLayout;
         int[] iArr;
         int[] iArr2;
-        q4 parentLayout = o41Var.getParentLayout();
+        r4 parentLayout = o41Var.getParentLayout();
         if (parentLayout != null) {
             frameLayout = parentLayout.getOverlayContainerView();
         } else {
@@ -253,9 +253,9 @@ public final class i0 extends FrameLayout {
         u8.n nVar;
         String str = null;
         try {
-            Context context = org.telegram.messenger.t0.f25566b;
+            Context context = org.telegram.messenger.t0.f25570b;
             ?? obj = new Object();
-            obj.f7658a = 256;
+            obj.f7663a = 256;
             nVar = new u8.n(new t2(context, (x1) obj));
         } catch (Throwable th2) {
             a8.g(th2, true);
@@ -264,7 +264,7 @@ public final class i0 extends FrameLayout {
         try {
             q4.q f10 = f(bitmap, nVar, new aa.n(20), d20Var);
             if (f10 != null) {
-                str = (String) f10.f53816b;
+                str = (String) f10.f53815b;
             }
             return str;
         } finally {
@@ -284,7 +284,7 @@ public final class i0 extends FrameLayout {
         if (f2Var.isFinished) {
             return;
         }
-        q4 parentLayout = f2Var.getParentLayout();
+        r4 parentLayout = f2Var.getParentLayout();
         if (parentLayout != null && ((parentLayout.getLastFragment() != f2Var || ((ActionBarLayout) parentLayout).B()) && i7 < 40)) {
             org.telegram.messenger.g0.i3(new e0(f2Var, i7, f0Var, 0), 50L);
         } else {
@@ -592,13 +592,13 @@ public final class i0 extends FrameLayout {
         RectF rectF2 = this.f1248f;
         if (rectF2.isEmpty()) {
             String[] strArr = l1.B9;
-            int i15 = org.telegram.messenger.g0.f22557m;
+            int i15 = org.telegram.messenger.g0.f22561m;
             View view = this;
             int i16 = 0;
             while (true) {
                 int top = view.getTop() + i16;
                 if (!(view.getParent() instanceof View)) {
-                    float currentActionBarHeight = (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() / 2.0f) + Math.max(0, i15 - top);
+                    float currentActionBarHeight = (org.telegram.ui.ActionBar.l.getCurrentActionBarHeight() / 2.0f) + Math.max(0, i15 - top);
                     rectF2.set(org.telegram.messenger.g0.L(9.0f), currentActionBarHeight - org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(49.0f), currentActionBarHeight + org.telegram.messenger.g0.L(20.0f));
                     return;
                 }

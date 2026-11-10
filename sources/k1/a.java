@@ -5,10 +5,10 @@ import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.WeakHashMap;
-import org.telegram.ui.Components.n;
+import org.telegram.ui.Components.m;
 import r0.i0;
 import s0.d;
-public final class a extends n {
+public final class a extends m {
     public final b f17153b;
 
     public a(b bVar) {
@@ -18,7 +18,7 @@ public final class a extends n {
 
     @Override
     public final d s(int i7) {
-        return new d(AccessibilityNodeInfo.obtain(this.f17153b.j(i7).f54613a));
+        return new d(AccessibilityNodeInfo.obtain(this.f17153b.j(i7).f54612a));
     }
 
     @Override
@@ -87,7 +87,7 @@ public final class a extends n {
             }
             return false;
         }
-        WeakHashMap weakHashMap = i0.f54203a;
+        WeakHashMap weakHashMap = i0.f54202a;
         return view.performAccessibilityAction(i10, bundle);
     }
 }

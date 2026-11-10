@@ -20,12 +20,12 @@ import org.json.JSONException;
 import org.telegram.messenger.d1;
 import q6.m;
 public final class l extends q {
-    public final int f8208b = 0;
-    public final Object f8209c;
+    public final int f8213b = 0;
+    public final Object f8214c;
 
     public l(RevocationBoundService revocationBoundService) {
         super("com.google.android.gms.auth.api.signin.internal.IRevocationService", 7);
-        this.f8209c = revocationBoundService;
+        this.f8214c = revocationBoundService;
     }
 
     @Override
@@ -33,8 +33,8 @@ public final class l extends q {
         boolean z9;
         BasePendingResult basePendingResult;
         String e10;
-        int i10 = this.f8208b;
-        Object obj = this.f8209c;
+        int i10 = this.f8213b;
+        Object obj = this.f8214c;
         switch (i10) {
             case 0:
                 RevocationBoundService revocationBoundService = (RevocationBoundService) obj;
@@ -48,7 +48,7 @@ public final class l extends q {
                     m1();
                     b a10 = b.a(revocationBoundService);
                     GoogleSignInAccount b10 = a10.b();
-                    GoogleSignInOptions googleSignInOptions = GoogleSignInOptions.f6460w;
+                    GoogleSignInOptions googleSignInOptions = GoogleSignInOptions.f6465w;
                     if (b10 != null) {
                         String e11 = a10.e("defaultGoogleSignInAccount");
                         if (!TextUtils.isEmpty(e11) && (e10 = a10.e(b.f("googleSignInOptions", e11))) != null) {
@@ -61,19 +61,19 @@ public final class l extends q {
                     }
                     j0 a11 = u7.a(revocationBoundService, googleSignInOptions);
                     if (b10 != null) {
-                        n0 n0Var = a11.f6719i;
-                        Context context = a11.f6713a;
+                        n0 n0Var = a11.f6724i;
+                        Context context = a11.f6718a;
                         if (a11.h() == 3) {
                             z9 = true;
                         } else {
                             z9 = false;
                         }
-                        h.f8204a.a("Revoking access", new Object[0]);
+                        h.f8209a.a("Revoking access", new Object[0]);
                         String e12 = b.a(context).e("refreshToken");
                         h.b(context);
                         if (z9) {
                             if (e12 == null) {
-                                d1 d1Var = c.f8190c;
+                                d1 d1Var = c.f8195c;
                                 Status status = new Status(4, null, null, null);
                                 m.a("Status code must not be SUCCESS", !status.b());
                                 basePendingResult = new s(status);
@@ -81,11 +81,11 @@ public final class l extends q {
                             } else {
                                 c cVar = new c(e12);
                                 new Thread(cVar).start();
-                                basePendingResult = cVar.f8192b;
+                                basePendingResult = cVar.f8197b;
                             }
                         } else {
                             g gVar = new g(n0Var, 1);
-                            n0Var.f6667b.d(1, gVar);
+                            n0Var.f6672b.d(1, gVar);
                             basePendingResult = gVar;
                         }
                         m.m(basePendingResult, new w7.s(21, false));
@@ -105,7 +105,7 @@ public final class l extends q {
     }
 
     public void m1() {
-        if (x6.b.e((RevocationBoundService) this.f8209c, Binder.getCallingUid())) {
+        if (x6.b.e((RevocationBoundService) this.f8214c, Binder.getCallingUid())) {
             return;
         }
         throw new SecurityException(jg.g.k(Binder.getCallingUid(), "Calling UID ", " is not Google Play services."));
@@ -113,6 +113,6 @@ public final class l extends q {
 
     public l(TaskCompletionSource taskCompletionSource) {
         super("com.google.android.gms.auth.api.identity.internal.IBeginSignInCallback", 7);
-        this.f8209c = taskCompletionSource;
+        this.f8214c = taskCompletionSource;
     }
 }

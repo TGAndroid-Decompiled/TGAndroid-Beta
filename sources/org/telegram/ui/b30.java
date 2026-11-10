@@ -1,35 +1,26 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-public final class b30 extends org.telegram.ui.ActionBar.k {
-    public final org.telegram.ui.Components.ap F1;
-    public final e40 G1;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+public final class b30 extends org.telegram.ui.Components.mo0 {
+    public final f40 U2;
 
-    public b30(e40 e40Var, LaunchActivity launchActivity, org.telegram.ui.Components.ap apVar) {
-        super(launchActivity, null);
-        this.G1 = e40Var;
-        this.F1 = apVar;
+    public b30(f40 f40Var, Context context, String str, String str2, String str3, String str4) {
+        super(context, null, str, str2, false, str3, str4, true);
+        this.U2 = f40Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (getAdditionalSubtitleTextView().getVisibility() == 0) {
-            canvas.save();
-            canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - org.telegram.messenger.g0.L(1.0f));
-            org.telegram.ui.Components.ap apVar = this.F1;
-            apVar.f31939f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
-            apVar.draw(canvas);
-            canvas.restore();
-            invalidate();
+    public final void R0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z9) {
+        if (!z9) {
+            return;
         }
-    }
-
-    @Override
-    public final void setAlpha(float f10) {
-        if (getAlpha() != f10) {
-            super.setAlpha(f10);
-            this.G1.f28624b.invalidate();
+        int m10 = hVar.m();
+        f40 f40Var = this.U2;
+        if (m10 == 1) {
+            f40Var.n1().m(((TLRPC.Dialog) hVar.n(0)).f26964id, Integer.valueOf(i7), 41);
+        } else {
+            f40Var.n1().k(0L, 41, Integer.valueOf(i7), Integer.valueOf(hVar.m()), null, null);
         }
     }
 }

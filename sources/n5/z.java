@@ -2,15 +2,15 @@ package n5;
 
 import android.util.SparseArray;
 public final class z {
-    public static final z f20485a;
-    public static final z[] f20486b;
+    public static final z f20490a;
+    public static final z[] f20491b;
     z EF0;
 
     static {
         Enum r02 = new Enum("NOT_SET", 0);
         ?? r12 = new Enum("EVENT_OVERRIDE", 1);
-        f20485a = r12;
-        f20486b = new z[]{r02, r12};
+        f20490a = r12;
+        f20491b = new z[]{r02, r12};
         SparseArray sparseArray = new SparseArray();
         sparseArray.put(0, r02);
         sparseArray.put(5, r12);
@@ -21,6 +21,6 @@ public final class z {
     }
 
     public static z[] values() {
-        return (z[]) f20486b.clone();
+        return (z[]) f20491b.clone();
     }
 }

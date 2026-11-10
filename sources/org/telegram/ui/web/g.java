@@ -15,45 +15,45 @@ import c8.ha;
 import c8.ka;
 import fi.a3;
 import java.util.HashSet;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.Components.l9;
-public final class g extends FrameLayout implements b6 {
-    public final g6 f51113a;
-    public final l9 f51114b;
-    public final LinearLayout f51115c;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.Components.k9;
+public final class g extends FrameLayout implements c6 {
+    public final h6 f51067a;
+    public final k9 f51068b;
+    public final LinearLayout f51069c;
     public final FrameLayout.LayoutParams d;
-    public final TextView f51116e;
-    public final TextView f51117f;
+    public final TextView f51070e;
+    public final TextView f51071f;
     public final TextView h;
-    public final ImageView f51118n;
-    public final a3 f51119r;
-    public int f51120s;
-    public final Paint f51121w;
-    public boolean f51122x;
+    public final ImageView f51072n;
+    public final a3 f51073r;
+    public int f51074s;
+    public final Paint f51075w;
+    public boolean f51076x;
 
-    public g(Context context, g6 g6Var) {
+    public g(Context context, h6 h6Var) {
         super(context);
-        this.f51121w = new Paint(1);
-        this.f51113a = g6Var;
+        this.f51075w = new Paint(1);
+        this.f51067a = h6Var;
         ka.b(this, 0.03f, 1.25f);
-        l9 l9Var = new l9(context);
-        this.f51114b = l9Var;
-        l9Var.setRoundRadius(org.telegram.messenger.g0.L(6.0f));
-        addView(l9Var, ha.d(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
+        k9 k9Var = new k9(context);
+        this.f51068b = k9Var;
+        k9Var.setRoundRadius(org.telegram.messenger.g0.L(6.0f));
+        addView(k9Var, ha.d(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f51115c = linearLayout;
+        this.f51069c = linearLayout;
         linearLayout.setOrientation(1);
         TextView textView = new TextView(context);
-        this.f51116e = textView;
+        this.f51070e = textView;
         textView.setTextSize(1, 16.0f);
         textView.setMaxLines(1);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
         linearLayout.addView(textView, ha.r(-1, -2, 51));
         TextView textView2 = new TextView(context);
-        this.f51117f = textView2;
+        this.f51071f = textView2;
         textView2.setTextSize(1, 13.0f);
         textView2.setMaxLines(1);
         textView2.setEllipsize(truncateAt);
@@ -70,13 +70,13 @@ public final class g extends FrameLayout implements b6 {
         textView3.setTextAlignment(6);
         addView(textView3, ha.d(-2, -2.0f, 21, 64.0f, -10.0f, 12.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f51118n = imageView;
+        this.f51072n = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(2131230875);
         addView(imageView, ha.d(32, 32.0f, 21, 8.0f, 8.0f, 8.0f, 8.0f));
-        a3 a3Var = new a3(this, getContext(), g6Var, 2);
-        this.f51119r = a3Var;
-        a3Var.b(-1, l6.f27865d6, l6.f27995k7);
+        a3 a3Var = new a3(this, getContext(), h6Var, 2);
+        this.f51073r = a3Var;
+        a3Var.b(-1, m6.f27890d6, m6.f28020k7);
         a3Var.setDrawUnchecked(false);
         a3Var.setDrawBackgroundAsArc(3);
         addView(a3Var, ha.d(24, 24.0f, 19, 26.0f, 12.0f, 0.0f, 0.0f));
@@ -84,15 +84,15 @@ public final class g extends FrameLayout implements b6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(l6.f27865d6));
-        hashSet.add(Integer.valueOf(l6.G6));
+        hashSet.add(Integer.valueOf(m6.f27890d6));
+        hashSet.add(Integer.valueOf(m6.G6));
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f51122x) {
-            canvas.drawRect(org.telegram.messenger.g0.L(59.0f), getHeight() - Math.max(org.telegram.messenger.g0.L(0.66f), 1), getWidth(), getHeight(), this.f51121w);
+        if (this.f51076x) {
+            canvas.drawRect(org.telegram.messenger.g0.L(59.0f), getHeight() - Math.max(org.telegram.messenger.g0.L(0.66f), 1), getWidth(), getHeight(), this.f51075w);
         }
     }
 
@@ -102,21 +102,21 @@ public final class g extends FrameLayout implements b6 {
     }
 
     public void setChecked(boolean z9) {
-        this.f51119r.a(z9, true);
+        this.f51073r.a(z9, true);
     }
 
     @Override
     public final void updateColors() {
-        int i7 = l6.f27865d6;
-        g6 g6Var = this.f51113a;
-        int w02 = l6.w0(i7, g6Var);
-        int w03 = l6.w0(l6.G6, g6Var);
-        this.f51120s = w03;
-        this.f51116e.setTextColor(w03);
-        this.f51117f.setTextColor(l6.w(w02, l6.r1(0.55f, w03)));
-        this.h.setTextColor(l6.r1(0.55f, w03));
-        this.f51118n.setColorFilter(new PorterDuffColorFilter(l6.r1(0.6f, w03), PorterDuff.Mode.SRC_IN));
-        this.f51121w.setColor(l6.r1(0.1f, w03));
-        this.f51114b.invalidate();
+        int i7 = m6.f27890d6;
+        h6 h6Var = this.f51067a;
+        int w02 = m6.w0(i7, h6Var);
+        int w03 = m6.w0(m6.G6, h6Var);
+        this.f51074s = w03;
+        this.f51070e.setTextColor(w03);
+        this.f51071f.setTextColor(m6.w(w02, m6.r1(0.55f, w03)));
+        this.h.setTextColor(m6.r1(0.55f, w03));
+        this.f51072n.setColorFilter(new PorterDuffColorFilter(m6.r1(0.6f, w03), PorterDuff.Mode.SRC_IN));
+        this.f51075w.setColor(m6.r1(0.1f, w03));
+        this.f51068b.invalidate();
     }
 }

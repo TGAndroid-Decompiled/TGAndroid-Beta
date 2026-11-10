@@ -5,15 +5,15 @@ import android.graphics.Canvas;
 import android.graphics.Path;
 import android.view.View;
 import bi.e7;
-import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.h6;
 public final class w extends e7 {
     public final Path D0;
     public final float[] E0;
     public final int F0;
     public final b0 G0;
 
-    public w(b0 b0Var, Context context, g6 g6Var, wg.a0 a0Var, bi.l1 l1Var, bi.l1 l1Var2, bi.l1 l1Var3, bi.l1 l1Var4, bi.l1 l1Var5, bi.l1 l1Var6, int i7) {
-        super(context, g6Var, a0Var, l1Var, null, l1Var2, l1Var3, l1Var4, l1Var5, l1Var6);
+    public w(b0 b0Var, Context context, h6 h6Var, wg.a0 a0Var, bi.l1 l1Var, bi.l1 l1Var2, bi.l1 l1Var3, bi.l1 l1Var4, bi.l1 l1Var5, bi.l1 l1Var6, int i7) {
+        super(context, h6Var, a0Var, l1Var, null, l1Var2, l1Var3, l1Var4, l1Var5, l1Var6);
         this.G0 = b0Var;
         this.F0 = i7;
         this.D0 = new Path();
@@ -30,7 +30,7 @@ public final class w extends e7 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f3767b) {
+        if (view == this.f3764b) {
             return true;
         }
         return super.drawChild(canvas, view, j3);
@@ -49,7 +49,7 @@ public final class w extends e7 {
     @Override
     public final void invalidate() {
         super.invalidate();
-        y yVar = this.G0.U1;
+        y yVar = this.G0.X1;
         if (yVar != null) {
             yVar.invalidate();
         }
@@ -57,7 +57,7 @@ public final class w extends e7 {
 
     @Override
     public final void k(int i7) {
-        this.G0.U1.setRibbonColor(i7);
+        this.G0.X1.setRibbonColor(i7);
     }
 
     @Override

@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-public final class ic extends org.telegram.ui.Components.l9 {
+public final class ic extends org.telegram.ui.Components.k9 {
     public xh.e G;
     public Path H;
     public RectF I;

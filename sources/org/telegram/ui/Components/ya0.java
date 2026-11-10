@@ -1,89 +1,12 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class ya0 extends Drawable {
-    public xa0 f40687a;
-    public final Paint f40688b;
-    public int f40689c;
-    public int d;
-    public final long f40690e;
-    public int f40691f;
+import android.view.View;
+public interface ya0 {
+    void addOnLayoutChangeListener(View.OnLayoutChangeListener onLayoutChangeListener);
 
-    public ya0() {
-        Paint paint = new Paint(1);
-        this.f40688b = paint;
-        this.f40689c = 255;
-        this.d = 255;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
-        this.f40690e = System.currentTimeMillis();
-    }
+    int getMeasuredHeight();
 
-    public final void a(int i7) {
-        if (i7 != this.f40691f) {
-            int alpha = Color.alpha(i7);
-            this.d = alpha;
-            this.f40688b.setColor(i0.a.o(i7, (int) ((alpha / 255.0f) * this.f40689c)));
-        }
-        this.f40691f = i7;
-    }
+    int getTop();
 
-    @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        int min = Math.min(bounds.width(), bounds.height());
-        Paint paint = this.f40688b;
-        canvas.drawCircle(bounds.centerX(), bounds.centerY(), (min >> 1) - org.telegram.messenger.g0.L(0.5f), paint);
-        long currentTimeMillis = System.currentTimeMillis();
-        canvas.save();
-        long j3 = this.f40690e;
-        canvas.rotate(((((float) (currentTimeMillis - j3)) % 1500.0f) * 360.0f) / 1500.0f, bounds.centerX(), bounds.centerY());
-        canvas.drawLine(bounds.centerX(), bounds.centerY(), bounds.centerX(), bounds.centerY() - org.telegram.messenger.g0.L(3.0f), paint);
-        canvas.restore();
-        canvas.save();
-        canvas.rotate(((((float) (currentTimeMillis - j3)) % 4500.0f) * 360.0f) / 4500.0f, bounds.centerX(), bounds.centerY());
-        canvas.drawLine(bounds.centerX(), bounds.centerY(), org.telegram.messenger.g0.L(2.3f) + bounds.centerX(), bounds.centerY(), paint);
-        canvas.restore();
-    }
-
-    @Override
-    public final Drawable.ConstantState getConstantState() {
-        if (this.f40687a == null) {
-            this.f40687a = new Drawable.ConstantState();
-        }
-        return this.f40687a;
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return org.telegram.messenger.g0.L(12.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return org.telegram.messenger.g0.L(12.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-        if (this.f40689c != i7) {
-            this.f40689c = i7;
-            this.f40688b.setAlpha((int) ((this.d / 255.0f) * i7));
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-    }
+    void removeOnLayoutChangeListener(View.OnLayoutChangeListener onLayoutChangeListener);
 }

@@ -4,11 +4,11 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.io.Serializable;
 import org.telegram.messenger.a20;
-import org.telegram.ui.Components.ft0;
-import org.telegram.ui.Components.ht0;
-import org.telegram.ui.Components.y31;
-import org.telegram.ui.bb1;
-public final class e implements te.b, ft0, ht0, org.telegram.ui.ActionBar.r1, a20 {
+import org.telegram.ui.Components.et0;
+import org.telegram.ui.Components.gt0;
+import org.telegram.ui.Components.x31;
+import org.telegram.ui.cb1;
+public final class e implements te.b, et0, gt0, org.telegram.ui.ActionBar.r1, a20 {
     public final z f3731a;
 
     public e(z zVar) {
@@ -22,14 +22,14 @@ public final class e implements te.b, ft0, ht0, org.telegram.ui.ActionBar.r1, a2
 
     @Override
     public int b() {
-        return this.f3731a.f5123n;
+        return this.f3731a.f5128n;
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
         z zVar = this.f3731a;
         zVar.getClass();
-        zVar.presentFragment(new bb1(6, null));
+        zVar.presentFragment(new cb1(6, null));
     }
 
     @Override
@@ -43,17 +43,17 @@ public final class e implements te.b, ft0, ht0, org.telegram.ui.ActionBar.r1, a2
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        z.a0(this.f3731a, (y31) obj);
+        z.a0(this.f3731a, (x31) obj);
     }
 
     @Override
     public RecyclerView l(View view) {
         z zVar = this.f3731a;
-        if (zVar.f5106a == 1) {
-            return ((y) view).f5055c;
+        if (zVar.f5111a == 1) {
+            return ((y) view).f5060c;
         }
         zVar.K.getClass();
-        return ((ad) view).f3468a;
+        return ((ad) view).f3471a;
     }
 
     @Override

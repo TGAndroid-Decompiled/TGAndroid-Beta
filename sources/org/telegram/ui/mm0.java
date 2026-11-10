@@ -1,80 +1,90 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-public final class mm0 extends org.telegram.ui.Components.tt0 {
-    public int f47897f0;
-    public boolean f47898g0;
-    public final om0 f47899h0;
+import android.text.Editable;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class mm0 implements zm0 {
+    public final int f47988a;
+    public final HashMap f47989b;
+    public final ArrayList f47990c;
+    public final pm0 d;
 
-    public mm0(om0 om0Var, Context context) {
-        super(context, null);
-        this.f47899h0 = om0Var;
+    public mm0(pm0 pm0Var, HashMap hashMap, ArrayList arrayList, int i7) {
+        this.f47988a = i7;
+        this.d = pm0Var;
+        this.f47989b = hashMap;
+        this.f47990c = arrayList;
     }
 
     @Override
-    public final void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.mm0.onLayout(boolean, int, int, int, int):void");
+    public final void A() {
+        int i7 = this.f47988a;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        int i11;
-        float f10;
-        int size = View.MeasureSpec.getSize(i7);
-        int size2 = View.MeasureSpec.getSize(i10);
-        setMeasuredDimension(size, size2);
-        int L = org.telegram.messenger.g0.L(20.0f);
-        int i12 = 0;
-        om0 om0Var = this.f47899h0;
-        if (L >= 0) {
-            if (!org.telegram.messenger.g0.E) {
-                size2 -= om0Var.M.getEmojiPadding();
-                i10 = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
-            }
-        } else {
-            this.f47898g0 = true;
-            om0Var.M.j();
-            this.f47898g0 = false;
+    public final void B(Editable editable) {
+        switch (this.f47988a) {
+            case 0:
+                pm0 pm0Var = this.d;
+                org.telegram.ui.Components.kt ktVar = pm0Var.M;
+                pm0Var.f48793a = editable;
+                ktVar.setText(editable);
+                return;
+            default:
+                pm0 pm0Var2 = this.d;
+                org.telegram.ui.Components.kt ktVar2 = pm0Var2.M;
+                pm0Var2.f48793a = editable;
+                ktVar2.setText(editable);
+                return;
         }
-        int i13 = i10;
-        int childCount = getChildCount();
-        while (i12 < childCount) {
-            View childAt = getChildAt(i12);
-            if (childAt != null && childAt.getVisibility() != 8) {
-                org.telegram.ui.Components.lt ltVar = om0Var.M;
-                if (ltVar != null && ltVar.l(childAt)) {
-                    if (!org.telegram.messenger.g0.E && !org.telegram.messenger.g0.Q1()) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
-                    } else if (org.telegram.messenger.g0.Q1()) {
-                        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
-                        if (org.telegram.messenger.g0.Q1()) {
-                            f10 = 200.0f;
-                        } else {
-                            f10 = 320.0f;
-                        }
-                        childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(f10), getPaddingTop() + (size2 - org.telegram.messenger.g0.f22557m)), 1073741824));
-                    } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (size2 - org.telegram.messenger.g0.f22557m), 1073741824));
-                    }
-                } else {
-                    i11 = i7;
-                    measureChildWithMargins(childAt, i11, 0, i13, 0);
-                    i12++;
-                    i7 = i11;
+    }
+
+    @Override
+    public final boolean e() {
+        switch (this.f47988a) {
+            case 0:
+                return true;
+            default:
+                return true;
+        }
+    }
+
+    @Override
+    public final void f0() {
+        int i7 = this.f47988a;
+    }
+
+    @Override
+    public final void v0(int i7, boolean z9, boolean z10) {
+        switch (this.f47988a) {
+            case 0:
+                pm0 pm0Var = this.d;
+                pm0Var.removeSelfFromStack();
+                if (!z9) {
+                    pm0Var.a0(this.f47989b, this.f47990c, z10, i7);
+                    return;
                 }
-            }
-            i11 = i7;
-            i12++;
-            i7 = i11;
+                return;
+            default:
+                pm0 pm0Var2 = this.d;
+                pm0Var2.removeSelfFromStack();
+                if (!z9) {
+                    pm0Var2.a0(this.f47989b, this.f47990c, z10, i7);
+                    return;
+                }
+                return;
         }
     }
 
-    @Override
-    public final void requestLayout() {
-        if (this.f47898g0) {
-            return;
-        }
-        super.requestLayout();
+    private final void a() {
+    }
+
+    private final void b() {
+    }
+
+    private final void c() {
+    }
+
+    private final void d() {
     }
 }

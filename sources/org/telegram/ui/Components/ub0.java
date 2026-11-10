@@ -1,36 +1,39 @@
 package org.telegram.ui.Components;
 
 import android.animation.ValueAnimator;
-public final class ub0 implements Runnable {
-    public final int f38682a;
-    public final fc0 f38683b;
+import android.widget.TextView;
+public final class ub0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f38618a;
+    public final ec0 f38619b;
 
-    public ub0(fc0 fc0Var, int i7) {
-        this.f38682a = i7;
-        this.f38683b = fc0Var;
+    public ub0(ec0 ec0Var, int i7) {
+        this.f38618a = i7;
+        this.f38619b = ec0Var;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f38682a;
-        fc0 fc0Var = this.f38683b;
-        switch (i7) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f38618a) {
             case 0:
-                EditTextBoldCursor editTextBoldCursor = fc0Var.f33632r;
-                if (!fc0Var.P && fc0Var.isAttachedToWindow() && fc0Var.f33636y.getVisibility() != 0 && editTextBoldCursor != null) {
-                    editTextBoldCursor.requestFocus();
-                    org.telegram.messenger.g0.K3(editTextBoldCursor);
-                    return;
-                }
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ec0 ec0Var = this.f38619b;
+                di.b4 b4Var = ec0Var.f33211e;
+                b4Var.setScaleX(org.telegram.messenger.g0.T1(0.8f, 1.0f, floatValue));
+                b4Var.setScaleY(org.telegram.messenger.g0.T1(0.8f, 1.0f, floatValue));
+                b4Var.setAlpha(org.telegram.messenger.g0.T1(0.0f, 1.0f, floatValue));
+                TextView textView = ec0Var.f33221x;
+                textView.setScaleX(org.telegram.messenger.g0.T1(1.0f, 0.9f, floatValue));
+                textView.setScaleY(org.telegram.messenger.g0.T1(1.0f, 0.9f, floatValue));
+                textView.setAlpha(org.telegram.messenger.g0.T1(1.0f, 0.0f, floatValue));
+                ec0Var.f33219s.setAlpha(org.telegram.messenger.g0.T1(0.0f, 1.0f, floatValue));
                 return;
             default:
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(fc0Var.f33619a0, 0.0f);
-                fc0Var.S = ofFloat;
-                ofFloat.addUpdateListener(new vb0(fc0Var, 1));
-                ofFloat.addListener(new f60(fc0Var, 6));
-                ofFloat.setDuration(420L);
-                ofFloat.setInterpolator(xq.h);
-                ofFloat.start();
+                ec0 ec0Var2 = this.f38619b;
+                ec0Var2.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ec0Var2.f33205a0 = floatValue2;
+                ec0Var2.h(floatValue2);
+                ec0Var2.setAlpha(ec0Var2.f33205a0);
                 return;
         }
     }

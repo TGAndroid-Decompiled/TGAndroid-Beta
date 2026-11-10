@@ -20,14 +20,14 @@ import org.telegram.messenger.g5;
 import org.telegram.messenger.id;
 import org.telegram.messenger.p10;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.ActionBar.s6;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.Components.qj0;
-public final class q0 extends qj0 implements b6 {
+import org.telegram.ui.ActionBar.v6;
+import org.telegram.ui.Components.pj0;
+public final class q0 extends pj0 implements c6 {
     public static final o0[] j3 = {new o0(2131232688, 2131745407, new TLRPC.TL_inputMessagesFilterPhotoVideo(), 0), new o0(2131232687, 2131745410, new TLRPC.TL_inputMessagesFilterUrl(), 2), new o0(2131232686, 2131745414, new TLRPC.TL_inputMessagesFilterDocument(), 1), new o0(2131232689, 2131745405, new TLRPC.TL_inputMessagesFilterMusic(), 3), new o0(2131232691, 2131745402, new TLRPC.TL_inputMessagesFilterRoundVoice(), 5)};
     public static final Pattern f16885k3 = Pattern.compile("20[0-9]{1,2}");
     public static final Pattern f16886l3 = Pattern.compile("(\\w{3,}) ([0-9]{0,4})");
@@ -41,8 +41,8 @@ public final class q0 extends qj0 implements b6 {
     public boolean f16894h3;
     public final l0 f16895i3;
 
-    public q0(Context context, g6 g6Var) {
-        super(context, g6Var);
+    public q0(Context context, h6 h6Var) {
+        super(context, h6Var);
         this.f16891e3 = new ArrayList();
         this.f16892f3 = new ArrayList();
         this.f16894h3 = true;
@@ -57,7 +57,7 @@ public final class q0 extends qj0 implements b6 {
         setWillNotDraw(false);
         setHideIfEmpty(false);
         setSelectorRadius(org.telegram.messenger.g0.L(28.0f));
-        s6.l(this, 20, l6.f27957i6, g6Var);
+        t6.l(this, 20, m6.f27982i6, h6Var);
     }
 
     public static void A1(int i7, int i10, ArrayList arrayList) {
@@ -310,7 +310,7 @@ public final class q0 extends qj0 implements b6 {
                 Object obj = arrayList.get(i7);
                 if (obj instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) obj;
-                    if (p10.i(p10.f24470s0).f().f27105id == user.f27105id) {
+                    if (p10.i(p10.f24474s0).f().f27109id == user.f27109id) {
                         m10 = id.M0(2131745901, null);
                     } else {
                         m10 = g5.m(10, user.first_name, user.last_name);
@@ -344,16 +344,16 @@ public final class q0 extends qj0 implements b6 {
         if (getAdapter() != null) {
             ca.i iVar = new ca.i(3, getAdapter(), false);
             v4.o.c(this.f16895i3, true).b(iVar);
-            if (!arrayList4.isEmpty() && iVar.f6013b) {
+            if (!arrayList4.isEmpty() && iVar.f6018b) {
                 this.f16893g3.h1(0, 0);
             }
         }
     }
 
-    public ArrayList<u6> getThemeDescriptions() {
-        ArrayList<u6> arrayList = new ArrayList<>();
-        arrayList.add(new u6(this, 0, (Class[]) null, (Paint) null, (Drawable[]) null, (t6) null, l6.f27885e7));
-        arrayList.add(new u6(this, 0, (Class[]) null, (Paint) null, (Drawable[]) null, (t6) null, l6.f27904f7));
+    public ArrayList<v6> getThemeDescriptions() {
+        ArrayList<v6> arrayList = new ArrayList<>();
+        arrayList.add(new v6(this, 0, (Class[]) null, (Paint) null, (Drawable[]) null, (u6) null, m6.f27910e7));
+        arrayList.add(new v6(this, 0, (Class[]) null, (Paint) null, (Drawable[]) null, (u6) null, m6.f27929f7));
         return arrayList;
     }
 
@@ -361,7 +361,7 @@ public final class q0 extends qj0 implements b6 {
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.f16894h3) {
-            canvas.drawRect(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), l6.f27988k0);
+            canvas.drawRect(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), m6.f28013k0);
         }
     }
 

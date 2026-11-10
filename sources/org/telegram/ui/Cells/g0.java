@@ -4,10 +4,10 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 public final class g0 extends FrameLayout {
-    public TextView f29143a;
+    public TextView f29154a;
 
     public TextView getTextView() {
-        return this.f29143a;
+        return this.f29154a;
     }
 
     @Override
@@ -16,6 +16,6 @@ public final class g0 extends FrameLayout {
     }
 
     public void setText(String str) {
-        this.f29143a.setText(str);
+        this.f29154a.setText(str);
     }
 }

@@ -1,72 +1,114 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.widget.TextView;
 import org.telegram.ui.Components.EditTextBoldCursor;
-public final class ri0 implements Runnable {
-    public final int f49490a;
-    public final dk0 f49491b;
+public final class ri0 implements TextView.OnEditorActionListener {
+    public final int f49425a;
+    public final ek0 f49426b;
 
-    public ri0(dk0 dk0Var, int i7) {
-        this.f49490a = i7;
-        this.f49491b = dk0Var;
+    public ri0(ek0 ek0Var, int i7) {
+        this.f49425a = i7;
+        this.f49426b = ek0Var;
     }
 
     @Override
-    public final void run() {
-        ViewGroup viewGroup;
-        switch (this.f49490a) {
+    public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
+        switch (this.f49425a) {
             case 0:
-                dk0 dk0Var = this.f49491b;
-                ViewGroup[] viewGroupArr = dk0Var.Z;
-                if (viewGroupArr != null && (viewGroup = viewGroupArr[0]) != null && viewGroup.getVisibility() == 0) {
-                    dk0Var.Y[0].requestFocus();
-                    org.telegram.messenger.g0.K3(dk0Var.Y[0]);
-                    return;
+                ek0 ek0Var = this.f49426b;
+                if (i7 == 5) {
+                    ek0Var.Y[2].requestFocus();
+                    return true;
+                } else if (i7 == 6) {
+                    ek0Var.L.callOnClick();
+                    return true;
+                } else {
+                    ek0Var.getClass();
+                    return false;
                 }
-                return;
             case 1:
-                dk0 dk0Var2 = this.f49491b;
-                dk0Var2.presentFragment(dk0Var2.f45011h1, true);
-                dk0Var2.f45011h1 = null;
-                return;
-            case 2:
-                dk0 dk0Var3 = this.f49491b;
-                EditTextBoldCursor[] editTextBoldCursorArr = dk0Var3.f44992a0;
-                if (editTextBoldCursorArr != null) {
-                    dk0Var3.M1(editTextBoldCursorArr[0]);
-                    return;
-                }
-                return;
-            case 3:
-                org.telegram.messenger.g0.K3(this.f49491b.Y[2]);
-                return;
-            case 4:
-                this.f49491b.B1();
-                return;
-            case 5:
-                int i7 = 0;
-                while (true) {
-                    dk0 dk0Var4 = this.f49491b;
-                    if (i7 < dk0Var4.f44998c0.getChildCount()) {
-                        View childAt = dk0Var4.f44998c0.getChildAt(i7);
-                        if (childAt instanceof ck0) {
-                            dk0Var4.f44998c0.removeView(childAt);
-                            i7--;
-                        }
-                        i7++;
-                    } else {
-                        dk0Var4.B1();
-                        dk0Var4.f45027q1.clear();
-                        dk0Var4.f45025p1.clear();
-                        dk0Var4.D.values.clear();
-                        dk0Var4.V1();
-                        return;
+                ek0 ek0Var2 = this.f49426b;
+                ek0Var2.getClass();
+                if (i7 == 5) {
+                    int intValue = ((Integer) textView.getTag()).intValue() + 1;
+                    EditTextBoldCursor[] editTextBoldCursorArr = ek0Var2.Y;
+                    if (intValue >= editTextBoldCursorArr.length) {
+                        return true;
                     }
+                    if (editTextBoldCursorArr[intValue].isFocusable()) {
+                        ek0Var2.Y[intValue].requestFocus();
+                        return true;
+                    }
+                    ek0Var2.Y[intValue].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
+                    textView.clearFocus();
+                    org.telegram.messenger.g0.v1(textView);
+                    return true;
                 }
+                return false;
+            case 2:
+                ek0 ek0Var3 = this.f49426b;
+                ek0Var3.getClass();
+                if (i7 == 5) {
+                    int intValue2 = ((Integer) textView.getTag()).intValue() + 1;
+                    EditTextBoldCursor[] editTextBoldCursorArr2 = ek0Var3.f45316a0;
+                    if (intValue2 >= editTextBoldCursorArr2.length) {
+                        return true;
+                    }
+                    if (editTextBoldCursorArr2[intValue2].isFocusable()) {
+                        ek0Var3.f45316a0[intValue2].requestFocus();
+                        return true;
+                    }
+                    ek0Var3.f45316a0[intValue2].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
+                    textView.clearFocus();
+                    org.telegram.messenger.g0.v1(textView);
+                    return true;
+                }
+                return false;
+            case 3:
+                ek0 ek0Var4 = this.f49426b;
+                ek0Var4.getClass();
+                if (i7 != 6 && i7 != 5) {
+                    return false;
+                }
+                ek0Var4.L.callOnClick();
+                return true;
+            case 4:
+                ek0 ek0Var5 = this.f49426b;
+                ek0Var5.getClass();
+                if (i7 == 5) {
+                    int intValue3 = ((Integer) textView.getTag()).intValue() + 1;
+                    EditTextBoldCursor[] editTextBoldCursorArr3 = ek0Var5.Y;
+                    if (intValue3 >= editTextBoldCursorArr3.length) {
+                        return true;
+                    }
+                    if (editTextBoldCursorArr3[intValue3].isFocusable()) {
+                        ek0Var5.Y[intValue3].requestFocus();
+                        return true;
+                    }
+                    ek0Var5.Y[intValue3].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
+                    textView.clearFocus();
+                    org.telegram.messenger.g0.v1(textView);
+                    return true;
+                }
+                return false;
+            case 5:
+                ek0 ek0Var6 = this.f49426b;
+                ek0Var6.getClass();
+                if (i7 != 5 && i7 != 6) {
+                    return false;
+                }
+                ek0Var6.L.callOnClick();
+                return true;
             default:
-                this.f49491b.finishFragment();
-                return;
+                ek0 ek0Var7 = this.f49426b;
+                ek0Var7.getClass();
+                if (i7 != 6 && i7 != 5) {
+                    return false;
+                }
+                ek0Var7.L.callOnClick();
+                return true;
         }
     }
 }

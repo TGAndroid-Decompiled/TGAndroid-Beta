@@ -10,20 +10,20 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 public final class s extends AbstractMap implements Serializable {
-    public static final Object f14382s = new Object();
-    public transient Object f14383a;
-    public transient int[] f14384b;
-    public transient Object[] f14385c;
+    public static final Object f14384s = new Object();
+    public transient Object f14385a;
+    public transient int[] f14386b;
+    public transient Object[] f14387c;
     public transient Object[] d;
-    public transient int f14386e;
-    public transient int f14387f;
+    public transient int f14388e;
+    public transient int f14389f;
     public transient q h;
-    public transient q f14388n;
-    public transient a8.n f14389r;
+    public transient q f14390n;
+    public transient a8.n f14391r;
 
     public static s b() {
         ?? abstractMap = new AbstractMap();
-        abstractMap.f14386e = Math.min(Math.max(3, 1), 1073741823);
+        abstractMap.f14388e = Math.min(Math.max(3, 1), 1073741823);
         return abstractMap;
     }
 
@@ -36,7 +36,7 @@ public final class s extends AbstractMap implements Serializable {
             z9 = false;
         }
         ia.e("Expected size must be >= 0", z9);
-        abstractMap.f14386e = Math.min(Math.max(i7, 1), 1073741823);
+        abstractMap.f14388e = Math.min(Math.max(i7, 1), 1073741823);
         return abstractMap;
     }
 
@@ -45,18 +45,18 @@ public final class s extends AbstractMap implements Serializable {
         if (h()) {
             return;
         }
-        this.f14386e += 32;
+        this.f14388e += 32;
         Map d = d();
         if (d != null) {
-            this.f14386e = Math.min(Math.max(size(), 3), 1073741823);
+            this.f14388e = Math.min(Math.max(size(), 3), 1073741823);
             d.clear();
-            this.f14383a = null;
-            this.f14387f = 0;
+            this.f14385a = null;
+            this.f14389f = 0;
             return;
         }
-        Arrays.fill(k(), 0, this.f14387f, (Object) null);
-        Arrays.fill(l(), 0, this.f14387f, (Object) null);
-        Object obj = this.f14383a;
+        Arrays.fill(k(), 0, this.f14389f, (Object) null);
+        Arrays.fill(l(), 0, this.f14389f, (Object) null);
+        Object obj = this.f14385a;
         Objects.requireNonNull(obj);
         if (obj instanceof byte[]) {
             Arrays.fill((byte[]) obj, (byte) 0);
@@ -65,8 +65,8 @@ public final class s extends AbstractMap implements Serializable {
         } else {
             Arrays.fill((int[]) obj, 0);
         }
-        Arrays.fill(j(), 0, this.f14387f, 0);
-        this.f14387f = 0;
+        Arrays.fill(j(), 0, this.f14389f, 0);
+        this.f14389f = 0;
     }
 
     @Override
@@ -87,7 +87,7 @@ public final class s extends AbstractMap implements Serializable {
         if (d != null) {
             return d.containsValue(obj);
         }
-        for (int i7 = 0; i7 < this.f14387f; i7++) {
+        for (int i7 = 0; i7 < this.f14389f; i7++) {
             if (ha.a(obj, l()[i7])) {
                 return true;
             }
@@ -96,7 +96,7 @@ public final class s extends AbstractMap implements Serializable {
     }
 
     public final Map d() {
-        Object obj = this.f14383a;
+        Object obj = this.f14385a;
         if (obj instanceof Map) {
             return (Map) obj;
         }
@@ -104,15 +104,15 @@ public final class s extends AbstractMap implements Serializable {
     }
 
     public final int e() {
-        return (1 << (this.f14386e & 31)) - 1;
+        return (1 << (this.f14388e & 31)) - 1;
     }
 
     @Override
     public final Set entrySet() {
-        q qVar = this.f14388n;
+        q qVar = this.f14390n;
         if (qVar == null) {
             q qVar2 = new q(this, 0);
-            this.f14388n = qVar2;
+            this.f14390n = qVar2;
             return qVar2;
         }
         return qVar;
@@ -124,7 +124,7 @@ public final class s extends AbstractMap implements Serializable {
         }
         int v = o.v(obj);
         int e10 = e();
-        Object obj2 = this.f14383a;
+        Object obj2 = this.f14385a;
         Objects.requireNonNull(obj2);
         int w10 = o.w(v & e10, obj2);
         if (w10 == 0) {
@@ -144,7 +144,7 @@ public final class s extends AbstractMap implements Serializable {
     }
 
     public final void g(int i7, int i10) {
-        Object obj = this.f14383a;
+        Object obj = this.f14385a;
         Objects.requireNonNull(obj);
         int[] j3 = j();
         Object[] k10 = k();
@@ -196,7 +196,7 @@ public final class s extends AbstractMap implements Serializable {
     }
 
     public final boolean h() {
-        if (this.f14383a == null) {
+        if (this.f14385a == null) {
             return true;
         }
         return false;
@@ -205,18 +205,18 @@ public final class s extends AbstractMap implements Serializable {
     public final Object i(Object obj) {
         if (!h()) {
             int e10 = e();
-            Object obj2 = this.f14383a;
+            Object obj2 = this.f14385a;
             Objects.requireNonNull(obj2);
             int s5 = o.s(obj, null, e10, obj2, j(), k(), null);
             if (s5 != -1) {
                 Object obj3 = l()[s5];
                 g(s5, e10);
-                this.f14387f--;
-                this.f14386e += 32;
+                this.f14389f--;
+                this.f14388e += 32;
                 return obj3;
             }
         }
-        return f14382s;
+        return f14384s;
     }
 
     @Override
@@ -228,13 +228,13 @@ public final class s extends AbstractMap implements Serializable {
     }
 
     public final int[] j() {
-        int[] iArr = this.f14384b;
+        int[] iArr = this.f14386b;
         Objects.requireNonNull(iArr);
         return iArr;
     }
 
     public final Object[] k() {
-        Object[] objArr = this.f14385c;
+        Object[] objArr = this.f14387c;
         Objects.requireNonNull(objArr);
         return objArr;
     }
@@ -262,7 +262,7 @@ public final class s extends AbstractMap implements Serializable {
         if (i12 != 0) {
             o.x(i11 & i13, i12 + 1, h);
         }
-        Object obj = this.f14383a;
+        Object obj = this.f14385a;
         Objects.requireNonNull(obj);
         int[] j3 = j();
         for (int i14 = 0; i14 <= i7; i14++) {
@@ -278,8 +278,8 @@ public final class s extends AbstractMap implements Serializable {
                 w10 = i16 & i7;
             }
         }
-        this.f14383a = h;
-        this.f14386e = o.q(this.f14386e, 32 - Integer.numberOfLeadingZeros(i13), 31);
+        this.f14385a = h;
+        this.f14388e = o.q(this.f14388e, 32 - Integer.numberOfLeadingZeros(i13), 31);
         return i13;
     }
 
@@ -295,7 +295,7 @@ public final class s extends AbstractMap implements Serializable {
             return d.remove(obj);
         }
         Object i7 = i(obj);
-        if (i7 == f14382s) {
+        if (i7 == f14384s) {
             return null;
         }
         return i7;
@@ -307,15 +307,15 @@ public final class s extends AbstractMap implements Serializable {
         if (d != null) {
             return d.size();
         }
-        return this.f14387f;
+        return this.f14389f;
     }
 
     @Override
     public final Collection values() {
-        a8.n nVar = this.f14389r;
+        a8.n nVar = this.f14391r;
         if (nVar == null) {
             a8.n nVar2 = new a8.n((Object) this, 6);
-            this.f14389r = nVar2;
+            this.f14391r = nVar2;
             return nVar2;
         }
         return nVar;

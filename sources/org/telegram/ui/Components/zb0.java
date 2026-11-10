@@ -1,199 +1,44 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.graphics.Point;
-import android.util.Property;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.animation.DecelerateInterpolator;
-import java.util.ArrayList;
-public final class zb0 implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final int f40952a;
-    public final int f40953b;
-    public final Runnable f40954c;
-    public final fc0 d;
+public final class zb0 extends AnimatorListenerAdapter {
+    public final int f40913a;
+    public final fi.a8 f40914b;
 
-    public zb0(fc0 fc0Var, int i7, int i10, Runnable runnable) {
-        this.d = fc0Var;
-        this.f40952a = i7;
-        this.f40953b = i10;
-        this.f40954c = runnable;
+    public zb0(fi.a8 a8Var, int i7) {
+        this.f40913a = i7;
+        this.f40914b = a8Var;
     }
 
     @Override
-    public final void onGlobalLayout() {
-        float f10;
-        int L;
-        float f11;
-        di.b4 b4Var;
-        int[] iArr;
-        double d;
-        View view;
-        AnimatorSet animatorSet;
-        float f12;
-        float f13;
-        float f14;
-        long j3;
-        fc0 fc0Var = this.d;
-        di.b4 b4Var2 = fc0Var.f33625e;
-        ArrayList arrayList = fc0Var.W;
-        int[] iArr2 = fc0Var.f33630h0;
-        dh0 dh0Var = fc0Var.M;
-        fc0Var.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-        if (!fc0Var.P && fc0Var.isAttachedToWindow()) {
-            fc0Var.setAlpha(1.0f);
-            dh0Var.getAnimatedDrawable().N(0, false, false);
-            dh0Var.getAnimatedDrawable().P(37);
-            dh0Var.d();
-            fc0Var.o(true);
-            org.telegram.messenger.g0.i3(new pb0(this, 1), 350L);
-            AnimatorSet animatorSet2 = new AnimatorSet();
-            fc0Var.Q = animatorSet2;
-            ArrayList arrayList2 = new ArrayList();
-            Point point = org.telegram.messenger.g0.f22563q;
-            int i7 = point.x;
-            int i10 = point.y + org.telegram.messenger.g0.f22557m;
-            int i11 = this.f40952a;
-            int i12 = i7 - i11;
-            int i13 = i12 * i12;
-            int i14 = this.f40953b;
-            int i15 = i10 - i14;
-            int i16 = i15 * i15;
-            int i17 = i11 * i11;
-            int i18 = 1;
-            int i19 = i14 * i14;
-            double max = Math.max(Math.max(Math.max(Math.sqrt(i16 + i13), Math.sqrt(i16 + i17)), Math.sqrt(i17 + i19)), Math.sqrt(i19 + i13));
-            arrayList.clear();
-            int childCount = b4Var2.getChildCount();
-            int i20 = 0;
-            while (i20 < childCount) {
-                View childAt = b4Var2.getChildAt(i20);
-                childAt.setScaleX(0.7f);
-                childAt.setScaleY(0.7f);
-                childAt.setAlpha(0.0f);
-                ?? obj = new Object();
-                childAt.getLocationInWindow(iArr2);
-                int measuredWidth = i11 - ((childAt.getMeasuredWidth() / 2) + iArr2[0]);
-                int measuredHeight = i14 - ((childAt.getMeasuredHeight() / 2) + iArr2[i18]);
-                obj.f32210b = ((float) Math.sqrt((measuredHeight * measuredHeight) + (measuredWidth * measuredWidth))) - org.telegram.messenger.g0.L(40.0f);
-                if (i20 != -1) {
-                    animatorSet = new AnimatorSet();
-                    Property property = View.SCALE_X;
-                    b4Var = b4Var2;
-                    float[] fArr = new float[i18];
-                    fArr[0] = 1.0f;
-                    view = childAt;
-                    iArr = iArr2;
-                    animatorSet.playTogether(ObjectAnimator.ofFloat(view, property, fArr), ObjectAnimator.ofFloat(view, View.SCALE_Y, 1.0f));
-                    d = max;
-                    animatorSet.setDuration(140L);
-                    animatorSet.setInterpolator(new DecelerateInterpolator());
-                } else {
-                    b4Var = b4Var2;
-                    iArr = iArr2;
-                    d = max;
-                    view = childAt;
-                    animatorSet = null;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f40913a) {
+            case 0:
+                fi.a8 a8Var = this.f40914b;
+                AnimatorSet animatorSet = (AnimatorSet) a8Var.f11619e;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    a8Var.f11619e = null;
+                    return;
                 }
-                AnimatorSet animatorSet3 = new AnimatorSet();
-                obj.f32209a = animatorSet3;
-                Property property2 = View.SCALE_X;
-                if (i20 == -1) {
-                    f12 = 0.9f;
-                } else {
-                    f12 = 0.6f;
+                return;
+            case 1:
+                fi.a8 a8Var2 = this.f40914b;
+                AnimatorSet animatorSet2 = (AnimatorSet) a8Var2.f11619e;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    a8Var2.f11619e = null;
+                    return;
                 }
-                float f15 = 1.04f;
-                if (i20 == -1) {
-                    f13 = 1.0f;
-                } else {
-                    f13 = 1.04f;
+                return;
+            default:
+                fi.a8 a8Var3 = this.f40914b;
+                AnimatorSet animatorSet3 = (AnimatorSet) a8Var3.f11619e;
+                if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                    a8Var3.f11619e = null;
+                    return;
                 }
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(view, property2, f12, f13);
-                Property property3 = View.SCALE_Y;
-                if (i20 == -1) {
-                    f14 = 0.9f;
-                } else {
-                    f14 = 0.6f;
-                }
-                if (i20 == -1) {
-                    f15 = 1.0f;
-                }
-                animatorSet3.playTogether(ofFloat, ObjectAnimator.ofFloat(view, property3, f14, f15), ObjectAnimator.ofFloat(view, View.ALPHA, 0.0f, 1.0f));
-                obj.f32209a.addListener(new f60(animatorSet, 7));
-                AnimatorSet animatorSet4 = obj.f32209a;
-                if (i20 == -1) {
-                    j3 = 232;
-                } else {
-                    j3 = 200;
-                }
-                animatorSet4.setDuration(j3);
-                obj.f32209a.setInterpolator(new DecelerateInterpolator());
-                arrayList.add(obj);
-                i20++;
-                b4Var2 = b4Var;
-                iArr2 = iArr;
-                max = d;
-                i18 = 1;
-            }
-            final double d2 = max;
-            arrayList2.add(ObjectAnimator.ofFloat(fc0Var.f33634w, View.ALPHA, 0.0f, 1.0f));
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
-            arrayList2.add(ofFloat2);
-            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    fc0 fc0Var2 = zb0.this.d;
-                    double animatedFraction = d2 * valueAnimator.getAnimatedFraction();
-                    int i21 = 0;
-                    while (true) {
-                        ArrayList arrayList3 = fc0Var2.W;
-                        if (i21 < arrayList3.size()) {
-                            bc0 bc0Var = (bc0) arrayList3.get(i21);
-                            if (bc0Var.f32210b <= animatedFraction) {
-                                bc0Var.f32209a.start();
-                                arrayList3.remove(i21);
-                                i21--;
-                            }
-                            i21++;
-                        } else {
-                            return;
-                        }
-                    }
-                }
-            });
-            xq xqVar = xq.h;
-            animatorSet2.setInterpolator(xqVar);
-            animatorSet2.setDuration(500L);
-            ValueAnimator ofFloat3 = ValueAnimator.ofFloat(fc0Var.f33619a0, 1.0f);
-            ofFloat3.addUpdateListener(new d60(this, 2));
-            ofFloat3.addListener(new yb0(this, 0));
-            ofFloat3.setDuration(420L);
-            ofFloat3.setInterpolator(xqVar);
-            arrayList2.add(ofFloat3);
-            animatorSet2.playTogether(arrayList2);
-            animatorSet2.addListener(new yb0(this, 1));
-            animatorSet2.start();
-            AnimatorSet animatorSet5 = new AnimatorSet();
-            fc0Var.R = animatorSet5;
-            animatorSet5.setDuration(332L);
-            if (!org.telegram.messenger.g0.Q1() && fc0Var.getContext().getResources().getConfiguration().orientation == 2) {
-                if (org.telegram.messenger.iz.f23431r == 0) {
-                    f11 = i7 / 2.0f;
-                } else {
-                    f11 = i7;
-                }
-                f10 = f11 / 2.0f;
-                L = org.telegram.messenger.g0.L(30.0f);
-            } else {
-                f10 = i7 / 2.0f;
-                L = org.telegram.messenger.g0.L(29.0f);
-            }
-            animatorSet5.playTogether(ObjectAnimator.ofFloat(dh0Var, View.TRANSLATION_X, i11 - org.telegram.messenger.g0.L(29.0f), f10 - L), ObjectAnimator.ofFloat(dh0Var, View.TRANSLATION_Y, i14 - org.telegram.messenger.g0.L(29.0f), fc0Var.L), ObjectAnimator.ofFloat(dh0Var, View.SCALE_X, 0.5f, 1.0f), ObjectAnimator.ofFloat(dh0Var, View.SCALE_Y, 0.5f, 1.0f));
-            animatorSet5.setInterpolator(xq.f40459g);
-            animatorSet5.start();
+                return;
         }
     }
 }

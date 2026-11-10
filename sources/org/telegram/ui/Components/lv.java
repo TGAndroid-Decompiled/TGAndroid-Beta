@@ -1,57 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class lv extends qj0 {
-    public boolean f35858e3;
-    public boolean f35859f3;
-    public final hy f35860g3;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class lv extends v4.m0 {
+    public final gy f35742a;
 
-    public lv(hy hyVar, Context context) {
-        super(context, null);
-        this.f35860g3 = hyVar;
+    public lv(gy gyVar) {
+        this.f35742a = gyVar;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ms p10 = org.telegram.ui.ms.p();
-        hy hyVar = this.f35860g3;
-        boolean q10 = p10.q(motionEvent, hyVar.f34430h0, hyVar.f34429g2, this.f37381n2);
-        if (!super.onInterceptTouchEvent(motionEvent) && !q10) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        hy hyVar = this.f35860g3;
-        if (hyVar.f34455q0 && hyVar.f34447n0.G > 1) {
-            this.f35858e3 = true;
-            hyVar.f34433i0.h1(0, 0);
-            hyVar.f34449o0.setVisibility(0);
-            hyVar.f34452p0.k(0, 0);
-            hyVar.f34455q0 = false;
-            this.f35858e3 = false;
-        }
-        super.onLayout(z9, i7, i10, i11, i12);
-        hy.f(hyVar, true);
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, i10);
-        if (!this.f35859f3) {
-            this.f35860g3.f34447n0.f();
-            this.f35859f3 = true;
-        }
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f35858e3) {
+    public final void e(Rect rect, View view, RecyclerView recyclerView, v4.a1 a1Var) {
+        int R = RecyclerView.R(view);
+        gy gyVar = this.f35742a;
+        v4.g0 adapter = gyVar.f34031h0.getAdapter();
+        lx lxVar = gyVar.f34048n0;
+        int i7 = 0;
+        if (adapter == lxVar && R == lxVar.I) {
+            rect.set(0, 0, 0, 0);
             return;
         }
-        super.requestLayout();
+        if (R == 0) {
+            lxVar.getClass();
+        }
+        rect.left = 0;
+        rect.bottom = 0;
+        rect.top = org.telegram.messenger.g0.L(2.0f);
+        mx mxVar = gyVar.f34034i0;
+        lxVar.getClass();
+        if (!mxVar.E1(R)) {
+            i7 = org.telegram.messenger.g0.L(2.0f);
+        }
+        rect.right = i7;
     }
 }

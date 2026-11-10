@@ -7,47 +7,47 @@ import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.tgnet.TLRPC;
 public final class yg implements Runnable {
-    public final int f26654a;
-    public final ui f26655b;
-    public final long f26656c;
+    public final int f26658a;
+    public final ui f26659b;
+    public final long f26660c;
 
     public yg(ui uiVar, long j3, int i7) {
-        this.f26654a = i7;
-        this.f26655b = uiVar;
-        this.f26656c = j3;
+        this.f26658a = i7;
+        this.f26659b = uiVar;
+        this.f26660c = j3;
     }
 
     @Override
     public final void run() {
         int i7;
-        int i10 = this.f26654a;
-        ui uiVar = this.f26655b;
-        long j3 = this.f26656c;
+        int i10 = this.f26658a;
+        ui uiVar = this.f26659b;
+        long j3 = this.f26660c;
         int i11 = 0;
         switch (i10) {
             case 0:
-                a0.h hVar = uiVar.f25850w1;
+                a0.h hVar = uiVar.f25854w1;
                 ArrayList arrayList = (ArrayList) hVar.f(j3);
                 if (arrayList != null) {
                     for (int i12 = 0; i12 < arrayList.size(); i12++) {
                         int i13 = uiVar.currentAccount;
                         xr a10 = xr.a(j3, ij.b2(i13, (TLRPC.Message) arrayList.get(i12), t3.b0(i13, j3), false));
-                        uiVar.f25853x1.remove(a10);
+                        uiVar.f25857x1.remove(a10);
                         uiVar.getNotificationCenter().k(69, null, a10);
                     }
                 }
                 hVar.l(j3);
                 return;
             case 1:
-                uiVar.f25833p1.l(j3);
+                uiVar.f25837p1.l(j3);
                 return;
             case 2:
-                final long j10 = this.f26656c;
-                final ui uiVar2 = this.f26655b;
+                final long j10 = this.f26660c;
+                final ui uiVar2 = this.f26659b;
                 uiVar2.getClass();
                 double d = 0.0d;
                 try {
-                    SQLiteDatabase sQLiteDatabase = uiVar2.getMessagesStorage().f26721b;
+                    SQLiteDatabase sQLiteDatabase = uiVar2.getMessagesStorage().f26725b;
                     Locale locale = Locale.US;
                     SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT MAX(mid), MAX(date) FROM messages_v2 WHERE uid = " + j10 + " AND out = 1", new Object[0]);
                     if (queryFinalized.next()) {
@@ -73,10 +73,10 @@ public final class yg implements Runnable {
                         int i14 = 0;
                         while (true) {
                             uiVar3 = ui.this;
-                            int size = uiVar3.f25821i1.size();
+                            int size = uiVar3.f25825i1.size();
                             j11 = j10;
                             if (i14 < size) {
-                                tL_topPeer = (TLRPC.TL_topPeer) uiVar3.f25821i1.get(i14);
+                                tL_topPeer = (TLRPC.TL_topPeer) uiVar3.f25825i1.get(i14);
                                 if (tL_topPeer.peer.user_id == j11) {
                                     break;
                                 }
@@ -91,25 +91,25 @@ public final class yg implements Runnable {
                             TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                             tL_topPeer.peer = tL_peerUser;
                             tL_peerUser.user_id = j11;
-                            uiVar3.f25821i1.add(tL_topPeer);
+                            uiVar3.f25825i1.add(tL_topPeer);
                         }
                         tL_topPeer.rating = Math.exp(d2 / uiVar3.getMessagesController().Z2) + tL_topPeer.rating;
-                        Collections.sort(uiVar3.f25821i1, new jg.x(22));
-                        uiVar3.getMessagesStorage().f26719a.c(new ah(uiVar3, j11, 0, tL_topPeer.rating));
+                        Collections.sort(uiVar3.f25825i1, new jg.x(22));
+                        uiVar3.getMessagesStorage().f26723a.c(new ah(uiVar3, j11, 0, tL_topPeer.rating));
                         uiVar3.getNotificationCenter().k(qs.S0, new Object[0]);
                     }
                 });
                 return;
             default:
-                ui uiVar3 = this.f26655b;
-                ArrayList[] arrayListArr = uiVar3.f25844u0;
+                ui uiVar3 = this.f26659b;
+                ArrayList[] arrayListArr = uiVar3.f25848u0;
                 arrayListArr[0].remove(Long.valueOf(j3));
-                uiVar3.f25846v0[0].remove(Long.valueOf(j3));
-                long[] jArr = uiVar3.f25832p0;
-                ArrayList[] arrayListArr2 = uiVar3.f25840s0;
+                uiVar3.f25850v0[0].remove(Long.valueOf(j3));
+                long[] jArr = uiVar3.f25836p0;
+                ArrayList[] arrayListArr2 = uiVar3.f25844s0;
                 jArr[0] = uiVar3.o(arrayListArr2[0], false);
                 uiVar3.getNotificationCenter().k(62, new Object[0]);
-                uiVar3.G1(false, arrayListArr2[0], arrayListArr[0], uiVar3.f25834q0[0], jArr[0], uiVar3.f25837r0);
+                uiVar3.G1(false, arrayListArr2[0], arrayListArr[0], uiVar3.f25838q0[0], jArr[0], uiVar3.f25841r0);
                 return;
         }
     }

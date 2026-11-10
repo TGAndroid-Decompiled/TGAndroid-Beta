@@ -44,7 +44,7 @@ public final class r9 implements RequestDelegate {
                                         if (t9Var2.e(tL_starGiftCollection.collection_id) == null) {
                                             v9 v9Var = new v9(i10, j3, false);
                                             int i12 = tL_starGiftCollection.collection_id;
-                                            v9Var.f4906c = true;
+                                            v9Var.f4907c = true;
                                             v9Var.d = i12;
                                             t9Var2.h.put(Integer.valueOf(i12), v9Var);
                                         }
@@ -116,7 +116,7 @@ public final class r9 implements RequestDelegate {
                                         if (t9Var22.e(tL_starGiftCollection.collection_id) == null) {
                                             v9 v9Var = new v9(i10, j3, false);
                                             int i12 = tL_starGiftCollection.collection_id;
-                                            v9Var.f4906c = true;
+                                            v9Var.f4907c = true;
                                             v9Var.d = i12;
                                             t9Var22.h.put(Integer.valueOf(i12), v9Var);
                                         }
@@ -189,7 +189,7 @@ public final class r9 implements RequestDelegate {
                                         if (t9Var22.e(tL_starGiftCollection.collection_id) == null) {
                                             v9 v9Var = new v9(i10, j3, false);
                                             int i12 = tL_starGiftCollection.collection_id;
-                                            v9Var.f4906c = true;
+                                            v9Var.f4907c = true;
                                             v9Var.d = i12;
                                             t9Var22.h.put(Integer.valueOf(i12), v9Var);
                                         }

@@ -15,9 +15,9 @@ import java.util.List;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 public abstract class b {
-    public static final float[][] f14008a = {new float[]{0.401288f, 0.650173f, -0.051461f}, new float[]{-0.250268f, 1.204414f, 0.045854f}, new float[]{-0.002079f, 0.048952f, 0.953127f}};
-    public static final float[][] f14009b = {new float[]{1.8620678f, -1.0112547f, 0.14918678f}, new float[]{0.38752654f, 0.62144744f, -0.00897398f}, new float[]{-0.0158415f, -0.03412294f, 1.0499644f}};
-    public static final float[] f14010c = {95.047f, 100.0f, 108.883f};
+    public static final float[][] f14010a = {new float[]{0.401288f, 0.650173f, -0.051461f}, new float[]{-0.250268f, 1.204414f, 0.045854f}, new float[]{-0.002079f, 0.048952f, 0.953127f}};
+    public static final float[][] f14011b = {new float[]{1.8620678f, -1.0112547f, 0.14918678f}, new float[]{0.38752654f, 0.62144744f, -0.00897398f}, new float[]{-0.0158415f, -0.03412294f, 1.0499644f}};
+    public static final float[] f14012c = {95.047f, 100.0f, 108.883f};
     public static final float[][] d = {new float[]{0.41233894f, 0.35762063f, 0.18051042f}, new float[]{0.2126f, 0.7152f, 0.0722f}, new float[]{0.01932141f, 0.11916382f, 0.9503448f}};
 
     public static wa a(TypedArray typedArray, XmlPullParser xmlPullParser, Resources.Theme theme, String str, int i7) {
@@ -86,7 +86,7 @@ public abstract class b {
         if (!z9) {
             f14 = ((f13 * 116.0f) - 16.0f) / 903.2963f;
         }
-        float[] fArr = f14010c;
+        float[] fArr = f14012c;
         return i0.a.e(f12 * fArr[0], f11 * fArr[1], f14 * fArr[2]);
     }
 
@@ -124,7 +124,7 @@ public abstract class b {
         if (next == 2) {
             xmlResourceParser.require(2, null, "font-family");
             if (xmlResourceParser.getName().equals("font-family")) {
-                TypedArray obtainAttributes = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f7924b);
+                TypedArray obtainAttributes = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f7929b);
                 String string = obtainAttributes.getString(0);
                 String string2 = obtainAttributes.getString(5);
                 String string3 = obtainAttributes.getString(6);
@@ -150,7 +150,7 @@ public abstract class b {
                 while (xmlResourceParser.next() != 3) {
                     if (xmlResourceParser.getEventType() == 2) {
                         if (xmlResourceParser.getName().equals("font")) {
-                            TypedArray obtainAttributes2 = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f7925c);
+                            TypedArray obtainAttributes2 = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f7930c);
                             int i12 = 8;
                             if (!obtainAttributes2.hasValue(8)) {
                                 i12 = 1;

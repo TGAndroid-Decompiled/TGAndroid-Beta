@@ -1,22 +1,22 @@
 package sg;
 
 import android.animation.ValueAnimator;
-import org.telegram.ui.Components.vy;
+import org.telegram.ui.Components.uy;
 public final class d0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f55051a;
-    public final j0 f55052b;
+    public final int f55050a;
+    public final j0 f55051b;
 
     public d0(j0 j0Var, int i7) {
-        this.f55051a = i7;
-        this.f55052b = j0Var;
+        this.f55050a = i7;
+        this.f55051b = j0Var;
     }
 
     @Override
     public final void onAnimationUpdate(final ValueAnimator valueAnimator) {
-        switch (this.f55051a) {
+        switch (this.f55050a) {
             case 0:
-                final j0 j0Var = this.f55052b;
-                j0Var.f55103f.f(new Runnable() {
+                final j0 j0Var = this.f55051b;
+                j0Var.f55102f.f(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r3) {
@@ -24,9 +24,9 @@ public final class d0 implements ValueAnimator.AnimatorUpdateListener {
                                 j0 j0Var2 = j0Var;
                                 j0Var2.getClass();
                                 j0Var2.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                vy vyVar = j0Var2.f55099a;
-                                if (vyVar != null) {
-                                    vyVar.b();
+                                uy uyVar = j0Var2.f55098a;
+                                if (uyVar != null) {
+                                    uyVar.b();
                                     return;
                                 }
                                 return;
@@ -34,9 +34,9 @@ public final class d0 implements ValueAnimator.AnimatorUpdateListener {
                                 j0 j0Var3 = j0Var;
                                 j0Var3.getClass();
                                 j0Var3.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                vy vyVar2 = j0Var3.f55099a;
-                                if (vyVar2 != null) {
-                                    vyVar2.b();
+                                uy uyVar2 = j0Var3.f55098a;
+                                if (uyVar2 != null) {
+                                    uyVar2.b();
                                     return;
                                 }
                                 return;
@@ -45,8 +45,8 @@ public final class d0 implements ValueAnimator.AnimatorUpdateListener {
                 });
                 return;
             default:
-                final j0 j0Var2 = this.f55052b;
-                j0Var2.f55103f.f(new Runnable() {
+                final j0 j0Var2 = this.f55051b;
+                j0Var2.f55102f.f(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r3) {
@@ -54,9 +54,9 @@ public final class d0 implements ValueAnimator.AnimatorUpdateListener {
                                 j0 j0Var22 = j0Var2;
                                 j0Var22.getClass();
                                 j0Var22.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                vy vyVar = j0Var22.f55099a;
-                                if (vyVar != null) {
-                                    vyVar.b();
+                                uy uyVar = j0Var22.f55098a;
+                                if (uyVar != null) {
+                                    uyVar.b();
                                     return;
                                 }
                                 return;
@@ -64,9 +64,9 @@ public final class d0 implements ValueAnimator.AnimatorUpdateListener {
                                 j0 j0Var3 = j0Var2;
                                 j0Var3.getClass();
                                 j0Var3.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                vy vyVar2 = j0Var3.f55099a;
-                                if (vyVar2 != null) {
-                                    vyVar2.b();
+                                uy uyVar2 = j0Var3.f55098a;
+                                if (uyVar2 != null) {
+                                    uyVar2.b();
                                     return;
                                 }
                                 return;

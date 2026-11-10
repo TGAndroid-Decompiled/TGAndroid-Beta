@@ -8,12 +8,12 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import org.telegram.ui.ActionBar.o5;
-import org.telegram.ui.Components.cs;
-import org.telegram.ui.Components.es;
-import org.telegram.ui.Components.ur0;
+import org.telegram.ui.ActionBar.p5;
+import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.ds;
+import org.telegram.ui.Components.tr0;
 import org.telegram.ui.Components.voip.h2;
-import org.telegram.ui.Components.zs0;
+import org.telegram.ui.Components.ys0;
 import org.telegram.ui.ProfileActivity;
 public final class j0 extends AnimatorListenerAdapter {
     public final int f16810a;
@@ -37,7 +37,7 @@ public final class j0 extends AnimatorListenerAdapter {
                 View view = (View) this.f16812c;
                 view.setTranslationY(0.0f);
                 if (view instanceof org.telegram.ui.Cells.q1) {
-                    ((org.telegram.ui.Cells.q1) view).getTransitionParams().f30806i = false;
+                    ((org.telegram.ui.Cells.q1) view).getTransitionParams().f30817i = false;
                     return;
                 }
                 return;
@@ -69,39 +69,39 @@ public final class j0 extends AnimatorListenerAdapter {
                 mi.l lVar = (mi.l) this.f16813e;
                 View view2 = (View) this.f16812c;
                 if (view2 instanceof org.telegram.ui.Cells.q1) {
-                    ((org.telegram.ui.Cells.q1) view2).getTransitionParams().f30806i = false;
+                    ((org.telegram.ui.Cells.q1) view2).getTransitionParams().f30817i = false;
                 }
                 ((ViewPropertyAnimator) this.d).setListener(null);
-                if (lVar.f57121y.remove(d1Var2)) {
+                if (lVar.f57117y.remove(d1Var2)) {
                     lVar.u(d1Var2);
                     lVar.G();
                     return;
                 }
                 return;
             case 2:
-                ((v4.d1) this.f16811b).f57056a.setAlpha(1.0f);
+                ((v4.d1) this.f16811b).f57052a.setAlpha(1.0f);
                 ((AnimatorSet) this.f16812c).removeAllListeners();
-                es esVar = (es) this.f16813e;
-                cs csVar = (cs) this.d;
-                esVar.d(csVar.f32747a);
-                esVar.f33490y.remove(csVar.f32747a);
-                esVar.A();
-                esVar.d(csVar.f32748b);
-                esVar.f33490y.remove(csVar.f32748b);
-                esVar.A();
+                ds dsVar = (ds) this.f16813e;
+                bs bsVar = (bs) this.d;
+                dsVar.d(bsVar.f32347a);
+                dsVar.f33070y.remove(bsVar.f32347a);
+                dsVar.A();
+                dsVar.d(bsVar.f32348b);
+                dsVar.f33070y.remove(bsVar.f32348b);
+                dsVar.A();
                 return;
             case 3:
-                ((zs0) this.f16813e).K1 = false;
+                ((ys0) this.f16813e).K1 = false;
                 View view3 = (View) this.f16812c;
                 if (view3.getParent() != null) {
-                    ((ur0) this.f16811b).removeView(view3);
+                    ((tr0) this.f16811b).removeView(view3);
                     ((Bitmap) this.d).recycle();
                     return;
                 }
                 return;
             case 4:
                 h2 h2Var = (h2) this.f16813e;
-                TextView[] textViewArr = h2Var.f39333a;
+                TextView[] textViewArr = h2Var.f39253a;
                 View view4 = (View) this.f16812c;
                 view4.setVisibility(8);
                 view4.setAlpha(1.0f);
@@ -118,25 +118,25 @@ public final class j0 extends AnimatorListenerAdapter {
                 if (runnable != null) {
                     runnable.run();
                 }
-                h2Var.f39337f = false;
-                CharSequence charSequence = h2Var.f39336e;
+                h2Var.f39257f = false;
+                CharSequence charSequence = h2Var.f39256e;
                 if (charSequence != null) {
                     if (charSequence.equals("timer")) {
                         h2Var.e(true);
                     } else {
-                        textViewArr[1].setText(h2Var.f39336e);
-                        h2Var.a(textViewArr[0], textViewArr[1], new o5(this, 6));
+                        textViewArr[1].setText(h2Var.f39256e);
+                        h2Var.a(textViewArr[0], textViewArr[1], new p5(this, 6));
                     }
-                    h2Var.f39336e = null;
+                    h2Var.f39256e = null;
                     return;
                 }
                 return;
             default:
                 Runnable runnable2 = (Runnable) this.f16812c;
                 ProfileActivity profileActivity = (ProfileActivity) this.f16813e;
-                org.telegram.ui.ActionBar.k kVar = (org.telegram.ui.ActionBar.k) this.f16811b;
-                if (kVar != null) {
-                    kVar.setSkipDrawChild(false);
+                org.telegram.ui.ActionBar.l lVar2 = (org.telegram.ui.ActionBar.l) this.f16811b;
+                if (lVar2 != null) {
+                    lVar2.setSkipDrawChild(false);
                 }
                 org.telegram.ui.ActionBar.r0 r0Var = (org.telegram.ui.ActionBar.r0) this.d;
                 if (r0Var != null) {
@@ -146,22 +146,22 @@ public final class j0 extends AnimatorListenerAdapter {
                     runnable2.run();
                     return;
                 }
-                profileActivity.f41729e0.setProgressToExpand(0.0f);
-                profileActivity.f41698a.setLayerType(0, null);
+                profileActivity.f41720e0.setProgressToExpand(0.0f);
+                profileActivity.f41689a.setLayerType(0, null);
                 runnable2.run();
                 if (profileActivity.I1 == 2) {
                     profileActivity.I1 = 1;
-                    profileActivity.f41729e0.setForegroundAlpha(1.0f);
+                    profileActivity.f41720e0.setForegroundAlpha(1.0f);
                     profileActivity.X.setVisibility(8);
-                    profileActivity.f41791n0.setAlpha(1.0f);
-                    profileActivity.f41791n0.L();
-                    profileActivity.f41791n0.setVisibility(0);
+                    profileActivity.f41782n0.setAlpha(1.0f);
+                    profileActivity.f41782n0.L();
+                    profileActivity.f41782n0.setVisibility(0);
                 }
                 profileActivity.W4 = null;
                 profileActivity.X4 = 0.0f;
                 profileActivity.Y.invalidate();
-                profileActivity.f41763i5 = null;
-                profileActivity.f41756h5 = null;
+                profileActivity.f41754i5 = null;
+                profileActivity.f41747h5 = null;
                 profileActivity.fragmentView.invalidate();
                 return;
         }
@@ -176,12 +176,12 @@ public final class j0 extends AnimatorListenerAdapter {
                 ((mi.l) this.f16813e).getClass();
                 return;
             case 2:
-                es esVar = (es) this.f16813e;
-                cs csVar = (cs) this.d;
-                v4.d1 d1Var = csVar.f32747a;
-                esVar.getClass();
-                v4.d1 d1Var2 = csVar.f32748b;
-                esVar.getClass();
+                ds dsVar = (ds) this.f16813e;
+                bs bsVar = (bs) this.d;
+                v4.d1 d1Var = bsVar.f32347a;
+                dsVar.getClass();
+                v4.d1 d1Var2 = bsVar.f32348b;
+                dsVar.getClass();
                 return;
             default:
                 super.onAnimationStart(animator);
@@ -205,10 +205,10 @@ public final class j0 extends AnimatorListenerAdapter {
         this.d = viewPropertyAnimator;
     }
 
-    public j0(es esVar, cs csVar, v4.d1 d1Var, AnimatorSet animatorSet) {
+    public j0(ds dsVar, bs bsVar, v4.d1 d1Var, AnimatorSet animatorSet) {
         this.f16810a = 2;
-        this.f16813e = esVar;
-        this.d = csVar;
+        this.f16813e = dsVar;
+        this.d = bsVar;
         this.f16811b = d1Var;
         this.f16812c = animatorSet;
     }

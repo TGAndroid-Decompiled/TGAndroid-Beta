@@ -24,66 +24,65 @@ import org.telegram.messenger.qp;
 import org.telegram.messenger.qs;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.jb;
-import org.telegram.ui.Components.ky;
+import org.telegram.ui.Components.ib;
+import org.telegram.ui.Components.jy;
 import org.telegram.ui.Components.m41;
-import org.telegram.ui.Components.na;
+import org.telegram.ui.Components.ma;
+import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.qj0;
-import org.telegram.ui.Components.x70;
-import org.telegram.ui.Components.xq;
-import org.telegram.ui.Components.y31;
+import org.telegram.ui.Components.w70;
+import org.telegram.ui.Components.wq;
+import org.telegram.ui.Components.x31;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.uq0;
-public final class g1 extends na implements ls {
-    public static final int f60333q2 = 0;
-    public final int P1;
-    public m41 Q1;
-    public List R1;
-    public TLRPC.DisallowedGiftsSettings S1;
-    public final long T1;
-    public final boolean U1;
-    public final String V1;
-    public final sc W1;
-    public final uq0 X1;
-    public final FrameLayout Y1;
-    public final LinearLayout Z1;
-    public final ky f60334a2;
-    public final r0 f60335b2;
-    public final jb f60336c2;
-    public final jb d2;
-    public final ArrayList f60337e2;
-    public final v9 f60338f2;
-    public int f60339g2;
-    public int f60340h2;
-    public int f60341i2;
-    public int f60342j2;
-    public boolean f60343k2;
-    public boolean f60344l2;
-    public boolean f60345m2;
-    public gc f60346n2;
-    public final x70 f60347o2;
-    public boolean f60348p2;
+import org.telegram.ui.vq0;
+public final class g1 extends ma implements ls {
+    public static final int f60335t2 = 0;
+    public final int S1;
+    public m41 T1;
+    public List U1;
+    public TLRPC.DisallowedGiftsSettings V1;
+    public final long W1;
+    public final boolean X1;
+    public final String Y1;
+    public final sc Z1;
+    public final vq0 f60336a2;
+    public final FrameLayout f60337b2;
+    public final LinearLayout f60338c2;
+    public final jy d2;
+    public final r0 f60339e2;
+    public final ib f60340f2;
+    public final ib f60341g2;
+    public final ArrayList f60342h2;
+    public final v9 f60343i2;
+    public int f60344j2;
+    public int f60345k2;
+    public int f60346l2;
+    public int f60347m2;
+    public boolean f60348n2;
+    public boolean f60349o2;
+    public boolean f60350p2;
+    public gc f60351q2;
+    public final w70 f60352r2;
+    public boolean f60353s2;
 
     public g1(LaunchActivity launchActivity, int i7, long j3) {
         this(launchActivity, i7, j3, null, null);
     }
 
     @Override
-    public final pj0 L0(qj0 qj0Var) {
-        m41 m41Var = new m41(this.f36303k1, getContext(), this.P1, 0, true, new p0(this, 0), this.I0);
-        this.Q1 = m41Var;
-        m41Var.f35945r = false;
+    public final oj0 L0(pj0 pj0Var) {
+        m41 m41Var = new m41(this.n1, getContext(), this.S1, 0, true, new p0(this, 0), this.I0);
+        this.T1 = m41Var;
+        m41Var.f35845r = false;
         return m41Var;
     }
 
     @Override
     public final CharSequence O0() {
-        if (this.U1) {
+        if (this.X1) {
             return id.M0(2131749939, null);
         }
-        return i6.m(id.a0(null, null, 2131749848, this.V1), null, false, null, 0);
+        return i6.m(id.a0(null, null, 2131749848, this.Y1), null, false, null, 0);
     }
 
     public final void d1(ArrayList arrayList, m41 m41Var) {
@@ -105,27 +104,27 @@ public final class g1 extends na implements ls {
         float f13;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings3;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings4;
-        uq0 uq0Var = this.X1;
-        long j10 = this.T1;
+        vq0 vq0Var = this.f60336a2;
+        long j10 = this.W1;
         long j11 = 0;
-        boolean z16 = this.U1;
-        if (z16 || j10 < 0 || ((disallowedGiftsSettings4 = this.S1) != null && disallowedGiftsSettings4.disallow_premium_gifts)) {
+        boolean z16 = this.X1;
+        if (z16 || j10 < 0 || ((disallowedGiftsSettings4 = this.V1) != null && disallowedGiftsSettings4.disallow_premium_gifts)) {
             j3 = 0;
             z9 = false;
         } else {
-            arrayList.add(y31.k(uq0Var));
-            arrayList.add(y31.k(this.Y1));
-            ArrayList arrayList3 = this.f60337e2;
+            arrayList.add(x31.k(vq0Var));
+            arrayList.add(x31.k(this.f60337b2));
+            ArrayList arrayList3 = this.f60342h2;
             if (arrayList3 != null && !arrayList3.isEmpty()) {
                 int size = arrayList3.size();
                 int i7 = 0;
                 while (i7 < size) {
                     Object obj = arrayList3.get(i7);
                     i7++;
-                    int i10 = x0.f60594b;
+                    int i10 = x0.f60606b;
                     long j12 = j11;
-                    y31 K = y31.K(x0.class);
-                    K.f40577u = 1;
+                    x31 K = x31.K(x0.class);
+                    K.f40165u = 1;
                     K.G = (ug.j) obj;
                     arrayList.add(K);
                     j11 = j12;
@@ -133,26 +132,26 @@ public final class g1 extends na implements ls {
                 j3 = j11;
             } else {
                 j3 = 0;
-                y31 q10 = y31.q(1, 34);
-                q10.f40577u = 1;
+                x31 q10 = x31.q(1, 34);
+                q10.f40165u = 1;
                 arrayList.add(q10);
-                y31 q11 = y31.q(2, 34);
-                q11.f40577u = 1;
+                x31 q11 = x31.q(2, 34);
+                q11.f40165u = 1;
                 arrayList.add(q11);
-                y31 q12 = y31.q(3, 34);
-                q12.f40577u = 1;
+                x31 q12 = x31.q(3, 34);
+                q12.f40165u = 1;
                 arrayList.add(q12);
             }
             z9 = true;
         }
-        int i11 = this.P1;
+        int i11 = this.S1;
         ea y10 = ea.y(i11, false);
-        if (this.f60343k2) {
+        if (this.f60348n2) {
             arrayList2 = y10.J;
         } else {
             arrayList2 = y10.I;
         }
-        if (this.S1 != null) {
+        if (this.V1 != null) {
             arrayList2 = (ArrayList) Collection.EL.stream(arrayList2).filter(new hi.j1(this, 2)).collect(Collectors.toCollection(new nk(1)));
         }
         int i12 = (j10 > j3 ? 1 : (j10 == j3 ? 0 : -1));
@@ -160,9 +159,9 @@ public final class g1 extends na implements ls {
             arrayList2 = (ArrayList) Collection.EL.stream(arrayList2).filter(new aa.m(7)).collect(Collectors.toCollection(new nk(1)));
         }
         int i13 = (j10 > p10.i(i11).e() ? 1 : (j10 == p10.i(i11).e() ? 0 : -1));
-        v9 v9Var = this.f60338f2;
+        v9 v9Var = this.f60343i2;
         if (i13 != 0 && v9Var != null) {
-            ArrayList arrayList4 = v9Var.f4913l;
+            ArrayList arrayList4 = v9Var.f4914l;
             int size2 = arrayList4.size();
             int i14 = 0;
             while (i14 < size2) {
@@ -176,55 +175,55 @@ public final class g1 extends na implements ls {
         }
         z10 = false;
         float f14 = 300.0f;
-        if (!qp.s1(i11).Y5 && (!arrayList2.isEmpty() || ((disallowedGiftsSettings3 = this.S1) != null && !disallowedGiftsSettings3.disallow_unique_stargifts && v9Var != null && !v9Var.f4913l.isEmpty()))) {
+        if (!qp.s1(i11).Y5 && (!arrayList2.isEmpty() || ((disallowedGiftsSettings3 = this.V1) != null && !disallowedGiftsSettings3.disallow_unique_stargifts && v9Var != null && !v9Var.f4914l.isEmpty()))) {
             if (!z9) {
-                arrayList.add(y31.k(uq0Var));
+                arrayList.add(x31.k(vq0Var));
             } else {
-                arrayList.add(y31.D(org.telegram.messenger.g0.L(16.0f)));
+                arrayList.add(x31.D(org.telegram.messenger.g0.L(16.0f)));
             }
-            arrayList.add(y31.k(this.Z1));
+            arrayList.add(x31.k(this.f60338c2));
             TreeSet treeSet = new TreeSet();
-            TLRPC.DisallowedGiftsSettings disallowedGiftsSettings5 = this.S1;
+            TLRPC.DisallowedGiftsSettings disallowedGiftsSettings5 = this.V1;
             if (disallowedGiftsSettings5 == null || !disallowedGiftsSettings5.disallow_unique_stargifts) {
                 for (int i15 = 0; i15 < arrayList2.size(); i15++) {
                     treeSet.add(Long.valueOf(((TL_stars.StarGift) arrayList2.get(i15)).stars));
                 }
             }
             ArrayList arrayList5 = new ArrayList();
-            this.f60340h2 = -1;
-            this.f60339g2 = -1;
+            this.f60345k2 = -1;
+            this.f60344j2 = -1;
             if (!arrayList2.isEmpty()) {
-                this.f60339g2 = arrayList5.size();
+                this.f60344j2 = arrayList5.size();
                 arrayList5.add(id.M0(2131749950, null));
             }
-            TLRPC.DisallowedGiftsSettings disallowedGiftsSettings6 = this.S1;
+            TLRPC.DisallowedGiftsSettings disallowedGiftsSettings6 = this.V1;
             if ((disallowedGiftsSettings6 == null || !disallowedGiftsSettings6.disallow_unique_stargifts) && z10) {
-                this.f60340h2 = arrayList5.size();
+                this.f60345k2 = arrayList5.size();
                 arrayList5.add(id.M0(2131749946, null));
             }
-            this.f60341i2 = arrayList5.size();
+            this.f60346l2 = arrayList5.size();
             arrayList5.add(id.M0(2131749949, null));
-            if (this.f60344l2 && !this.f60345m2) {
-                this.f60345m2 = true;
-                this.f60342j2 = this.f60341i2;
+            if (this.f60349o2 && !this.f60350p2) {
+                this.f60350p2 = true;
+                this.f60347m2 = this.f60346l2;
             }
-            int i16 = this.f60342j2;
+            int i16 = this.f60347m2;
             m0 m0Var = new m0(this, 0);
-            int i17 = e1.f60313b;
-            y31 K2 = y31.K(e1.class);
+            int i17 = e1.f60315b;
+            x31 K2 = x31.K(e1.class);
             K2.d = 1;
             K2.G = arrayList5;
-            K2.f40581z = i16;
+            K2.f40169z = i16;
             K2.H = m0Var;
             arrayList.add(K2);
-            if (this.f60342j2 == this.f60341i2 && !z16 && i12 >= 0) {
+            if (this.f60347m2 == this.f60346l2 && !z16 && i12 >= 0) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            if (z11 != this.f60348p2) {
-                this.f60348p2 = z11;
-                ViewPropertyAnimator animate = this.f60336c2.animate();
+            if (z11 != this.f60353s2) {
+                this.f60353s2 = z11;
+                ViewPropertyAnimator animate = this.f60340f2.animate();
                 float f15 = 0.0f;
                 float f16 = 1.0f;
                 if (!z11) {
@@ -245,9 +244,9 @@ public final class g1 extends na implements ls {
                     f12 = 0.85f;
                 }
                 ViewPropertyAnimator duration = scaleX.scaleY(f12).setDuration(380L);
-                xq xqVar = xq.h;
-                duration.setInterpolator(xqVar).start();
-                ViewPropertyAnimator animate2 = this.d2.animate();
+                wq wqVar = wq.h;
+                duration.setInterpolator(wqVar).start();
+                ViewPropertyAnimator animate2 = this.f60341g2.animate();
                 if (z11) {
                     f15 = 1.0f;
                 }
@@ -261,11 +260,11 @@ public final class g1 extends na implements ls {
                 if (!z11) {
                     f16 = 0.85f;
                 }
-                scaleX2.scaleY(f16).setDuration(380L).setInterpolator(xqVar).start();
+                scaleX2.scaleY(f16).setDuration(380L).setInterpolator(wqVar).start();
             }
-            if (v9Var != null && this.f60342j2 == this.f60340h2) {
+            if (v9Var != null && this.f60347m2 == this.f60345k2) {
                 arrayList2 = new ArrayList();
-                ArrayList arrayList6 = v9Var.f4913l;
+                ArrayList arrayList6 = v9Var.f4914l;
                 int size3 = arrayList6.size();
                 int i18 = 0;
                 while (i18 < size3) {
@@ -280,33 +279,33 @@ public final class g1 extends na implements ls {
             int i19 = 0;
             for (int i20 = 0; i20 < arrayList2.size(); i20++) {
                 TL_stars.StarGift starGift3 = (TL_stars.StarGift) arrayList2.get(i20);
-                int i21 = this.f60342j2;
-                if (i21 == this.f60339g2 || i21 == this.f60340h2 || (i21 == this.f60341i2 && (starGift3.availability_resale > j3 || starGift3.require_premium || starGift3.locked_until_date != 0))) {
-                    if (!starGift3.sold_out && starGift3.availability_resale > j3 && i21 != this.f60341i2) {
-                        if (i21 == this.f60340h2) {
+                int i21 = this.f60347m2;
+                if (i21 == this.f60344j2 || i21 == this.f60345k2 || (i21 == this.f60346l2 && (starGift3.availability_resale > j3 || starGift3.require_premium || starGift3.locked_until_date != 0))) {
+                    if (!starGift3.sold_out && starGift3.availability_resale > j3 && i21 != this.f60346l2) {
+                        if (i21 == this.f60345k2) {
                             z14 = true;
                         } else {
                             z14 = false;
                         }
-                        if (starGift3.limited && (disallowedGiftsSettings2 = this.S1) != null && disallowedGiftsSettings2.disallow_limited_stargifts) {
+                        if (starGift3.limited && (disallowedGiftsSettings2 = this.V1) != null && disallowedGiftsSettings2.disallow_limited_stargifts) {
                             z15 = true;
                         } else {
                             z15 = false;
                         }
-                        y31 i22 = x0.i(i21, starGift3, z14, z15, false, false, false);
+                        x31 i22 = x0.i(i21, starGift3, z14, z15, false, false, false);
                         starGift = starGift3;
                         arrayList.add(i22);
                         i19++;
                     } else {
                         starGift = starGift3;
                     }
-                    int i23 = this.f60342j2;
-                    if (i23 == this.f60340h2) {
+                    int i23 = this.f60347m2;
+                    if (i23 == this.f60345k2) {
                         z12 = true;
                     } else {
                         z12 = false;
                     }
-                    if (starGift.limited && (disallowedGiftsSettings = this.S1) != null && disallowedGiftsSettings.disallow_limited_stargifts) {
+                    if (starGift.limited && (disallowedGiftsSettings = this.V1) != null && disallowedGiftsSettings.disallow_limited_stargifts) {
                         z13 = true;
                     } else {
                         z13 = false;
@@ -315,39 +314,39 @@ public final class g1 extends na implements ls {
                     i19++;
                 }
             }
-            int i24 = this.f60342j2;
-            int i25 = this.f60340h2;
-            if (i24 == i25 && v9Var != null && !v9Var.f4911j) {
+            int i24 = this.f60347m2;
+            int i25 = this.f60345k2;
+            if (i24 == i25 && v9Var != null && !v9Var.f4912j) {
                 v9Var.a();
-                y31 q13 = y31.q(4, 34);
-                q13.f40577u = 1;
+                x31 q13 = x31.q(4, 34);
+                q13.f40165u = 1;
                 arrayList.add(q13);
-                y31 q14 = y31.q(5, 34);
-                q14.f40577u = 1;
+                x31 q14 = x31.q(5, 34);
+                q14.f40165u = 1;
                 arrayList.add(q14);
-                y31 q15 = y31.q(6, 34);
-                q15.f40577u = 1;
+                x31 q15 = x31.q(6, 34);
+                q15.f40165u = 1;
                 arrayList.add(q15);
             } else if (i24 != i25 && y10.C) {
-                y31 q16 = y31.q(4, 34);
-                q16.f40577u = 1;
+                x31 q16 = x31.q(4, 34);
+                q16.f40165u = 1;
                 arrayList.add(q16);
-                y31 q17 = y31.q(5, 34);
-                q17.f40577u = 1;
+                x31 q17 = x31.q(5, 34);
+                q17.f40165u = 1;
                 arrayList.add(q17);
-                y31 q18 = y31.q(6, 34);
-                q18.f40577u = 1;
+                x31 q18 = x31.q(6, 34);
+                q18.f40165u = 1;
                 arrayList.add(q18);
             }
             if (i19 >= 9) {
                 f14 = 40.0f;
             }
-            arrayList.add(y31.D(org.telegram.messenger.g0.L(f14)));
+            arrayList.add(x31.D(org.telegram.messenger.g0.L(f14)));
             return;
         }
-        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings7 = this.S1;
+        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings7 = this.V1;
         if (disallowedGiftsSettings7 != null && !disallowedGiftsSettings7.disallow_unique_stargifts && arrayList2.isEmpty()) {
-            arrayList.add(y31.D(org.telegram.messenger.g0.L(300.0f)));
+            arrayList.add(x31.D(org.telegram.messenger.g0.L(300.0f)));
         }
     }
 
@@ -355,44 +354,44 @@ public final class g1 extends na implements ls {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         m41 m41Var;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
-        if (i7 == qs.f25024j5) {
+        if (i7 == qs.f25028j5) {
             f1();
         } else if (i7 == qs.F3) {
-            m41 m41Var2 = this.Q1;
+            m41 m41Var2 = this.T1;
             if (m41Var2 != null) {
                 m41Var2.O(true);
             }
         } else if (i7 == qs.E0) {
             if (!this.I) {
                 long longValue = ((Long) objArr[0]).longValue();
-                long j3 = this.T1;
+                long j3 = this.W1;
                 if (longValue == j3 && j3 > 0) {
-                    int i11 = this.P1;
+                    int i11 = this.S1;
                     TLRPC.UserFull b22 = qp.s1(i11).b2(j3);
                     if (j3 != p10.i(i11).e() && b22 != null) {
                         disallowedGiftsSettings = b22.disallowed_stargifts;
                     } else {
                         disallowedGiftsSettings = null;
                     }
-                    this.S1 = disallowedGiftsSettings;
+                    this.V1 = disallowedGiftsSettings;
                     if (disallowedGiftsSettings != null && disallowedGiftsSettings.disallow_premium_gifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts) {
                         dismiss();
                         org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
                         if (T != null) {
-                            org.telegram.messenger.camera.q.s(id.a0(null, null, 2131743742, m5.t(j3)), hc.a0(T), 2131624011, 36);
+                            org.telegram.messenger.camera.q.s(id.a0(null, null, 2131743742, m5.t(j3)), org.telegram.ui.Components.gc.a0(T), 2131624011, 36);
                             return;
                         }
                         return;
                     }
-                    m41 m41Var3 = this.Q1;
+                    m41 m41Var3 = this.T1;
                     if (m41Var3 != null) {
                         m41Var3.O(true);
                     }
                 }
-                ArrayList arrayList = this.f60337e2;
+                ArrayList arrayList = this.f60342h2;
                 if (arrayList == null || arrayList.isEmpty()) {
                     f1();
-                    m41 m41Var4 = this.Q1;
+                    m41 m41Var4 = this.T1;
                     if (m41Var4 != null) {
                         m41Var4.O(true);
                     }
@@ -401,13 +400,13 @@ public final class g1 extends na implements ls {
         } else if (i7 == qs.I3) {
             if (!this.I) {
                 TL_stars.StarGift starGift = (TL_stars.StarGift) objArr[0];
-                new hc(this.f28627c, this.I0).s(starGift.sticker, id.M0(2131749967, null), org.telegram.messenger.g0.X2(id.H(',', "Gift2SoldOutCount", starGift.availability_total))).j();
-                m41 m41Var5 = this.Q1;
+                new org.telegram.ui.Components.gc(this.f28675c, this.I0).s(starGift.sticker, id.M0(2131749967, null), org.telegram.messenger.g0.X2(id.H(',', "Gift2SoldOutCount", starGift.availability_total))).j();
+                m41 m41Var5 = this.T1;
                 if (m41Var5 != null) {
                     m41Var5.O(true);
                 }
             }
-        } else if (i7 == qs.G3 && objArr[1] == this.f60338f2 && (m41Var = this.Q1) != null) {
+        } else if (i7 == qs.G3 && objArr[1] == this.f60343i2 && (m41Var = this.T1) != null) {
             m41Var.O(true);
         }
     }
@@ -415,8 +414,8 @@ public final class g1 extends na implements ls {
     @Override
     public final void dismiss() {
         super.dismiss();
-        int i7 = this.P1;
-        qs.f(i7).n(this, qs.f25024j5);
+        int i7 = this.S1;
+        qs.f(i7).n(this, qs.f25028j5);
         qs.f(i7).n(this, qs.F3);
         qs.f(i7).n(this, qs.E0);
         qs.f(i7).n(this, qs.I3);
@@ -424,22 +423,22 @@ public final class g1 extends na implements ls {
     }
 
     public final void e1(boolean z9) {
-        this.f60343k2 = z9;
-        this.Q1.O(false);
+        this.f60348n2 = z9;
+        this.T1.O(false);
     }
 
     public final void f1() {
         List list;
         TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption;
-        ArrayList arrayList = this.f60337e2;
+        ArrayList arrayList = this.f60342h2;
         arrayList.clear();
-        if (arrayList.isEmpty() && (list = this.R1) != null && !list.isEmpty()) {
+        if (arrayList.isEmpty() && (list = this.U1) != null && !list.isEmpty()) {
             ArrayList arrayList2 = new ArrayList();
             long j3 = 0;
-            for (int size = this.R1.size() - 1; size >= 0; size--) {
-                TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption2 = (TLRPC.TL_premiumGiftCodeOption) this.R1.get(size);
+            for (int size = this.U1.size() - 1; size >= 0; size--) {
+                TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption2 = (TLRPC.TL_premiumGiftCodeOption) this.U1.get(size);
                 if (!"XTR".equalsIgnoreCase(tL_premiumGiftCodeOption2.currency)) {
-                    Iterator it = this.R1.iterator();
+                    Iterator it = this.U1.iterator();
                     while (true) {
                         if (it.hasNext()) {
                             tL_premiumGiftCodeOption = (TLRPC.TL_premiumGiftCodeOption) it.next();
@@ -459,8 +458,8 @@ public final class g1 extends na implements ls {
                         }
                     } else if (jVar.h() != null && org.telegram.messenger.r1.i().k()) {
                         ?? obj = new Object();
-                        obj.f11113b = "inapp";
-                        obj.f11112a = jVar.h();
+                        obj.f11118b = "inapp";
+                        obj.f11117a = jVar.h();
                         arrayList2.add(obj.a());
                     }
                 }
@@ -471,7 +470,7 @@ public final class g1 extends na implements ls {
                 while (i7 < size2) {
                     Object obj2 = arrayList.get(i7);
                     i7++;
-                    ((ug.j) obj2).f56655g = j3;
+                    ((ug.j) obj2).f56654g = j3;
                 }
             } else if (!arrayList2.isEmpty()) {
                 System.currentTimeMillis();
@@ -479,7 +478,7 @@ public final class g1 extends na implements ls {
             }
         }
         if (arrayList.isEmpty()) {
-            wg.r.j(this.P1, null, new m0(this, 1));
+            wg.r.j(this.S1, null, new m0(this, 1));
         }
     }
 
@@ -494,16 +493,16 @@ public final class g1 extends na implements ls {
 
     @Override
     public final void show() {
-        int i7 = this.P1;
+        int i7 = this.S1;
         if (qp.s1(i7).v2()) {
             org.telegram.ui.b.b(i7);
             return;
         }
-        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings = this.S1;
+        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings = this.V1;
         if (disallowedGiftsSettings != null && disallowedGiftsSettings.disallow_premium_gifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts) {
             org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
             if (T != null) {
-                org.telegram.messenger.camera.q.s(id.a0(null, null, 2131743742, m5.t(this.T1)), hc.a0(T), 2131624011, 36);
+                org.telegram.messenger.camera.q.s(id.a0(null, null, 2131743742, m5.t(this.W1)), org.telegram.ui.Components.gc.a0(T), 2131624011, 36);
                 return;
             }
             return;

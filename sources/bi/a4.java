@@ -19,19 +19,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.ji0;
+import org.telegram.ui.Components.ii0;
 import org.telegram.ui.Components.wo;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.cn;
 public final class a4 implements Runnable {
-    public final int f3443a;
-    public final Object f3444b;
-    public final Object f3445c;
+    public final int f3446a;
+    public final Object f3447b;
+    public final Object f3448c;
 
     public a4(int i7, Object obj, Object obj2) {
-        this.f3443a = i7;
-        this.f3444b = obj;
-        this.f3445c = obj2;
+        this.f3446a = i7;
+        this.f3447b = obj;
+        this.f3448c = obj2;
     }
 
     @Override
@@ -41,25 +41,25 @@ public final class a4 implements Runnable {
         ArrayList<TLRPC.MessageReactor> arrayList;
         boolean z9;
         TLRPC.TL_messageReactions tL_messageReactions2;
-        org.telegram.ui.Components.r5[] r5VarArr;
-        org.telegram.ui.Components.r5[] r5VarArr2;
+        org.telegram.ui.Components.q5[] q5VarArr;
+        org.telegram.ui.Components.q5[] q5VarArr2;
         di.g1 g1Var;
-        int i7 = this.f3443a;
-        Object obj = this.f3445c;
-        Object obj2 = this.f3444b;
+        int i7 = this.f3446a;
+        Object obj = this.f3448c;
+        Object obj2 = this.f3447b;
         switch (i7) {
             case 0:
                 ((k7) obj2).k().f0((TLRPC.TL_error) obj, false);
                 return;
             case 1:
                 k7 k7Var = (k7) obj2;
-                org.telegram.ui.Components.hc.a0((cn) obj).L(2131624033, org.telegram.messenger.id.M0(2131745096, null), org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131745094, org.telegram.messenger.m5.t(k7Var.P1))), org.telegram.messenger.id.M0(2131745095, null), new z1(k7Var, 8)).k(true);
+                org.telegram.ui.Components.gc.a0((cn) obj).L(2131624033, org.telegram.messenger.id.M0(2131745096, null), org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131745094, org.telegram.messenger.m5.t(k7Var.S1))), org.telegram.messenger.id.M0(2131745095, null), new z1(k7Var, 8)).k(true);
                 return;
             case 2:
                 k7 k7Var2 = (k7) obj2;
                 k7Var2.getClass();
                 ((boolean[]) obj)[0] = true;
-                k7Var2.f4168c2.setLoading(false);
+                k7Var2.f4170f2.setLoading(false);
                 k7Var2.s1();
                 return;
             case 3:
@@ -83,7 +83,7 @@ public final class a4 implements Runnable {
                     if (zVar2 instanceof org.telegram.ui.Cells.q1) {
                         messageObject = ((org.telegram.ui.Cells.q1) zVar2).getPrimaryMessageObject();
                         if (messageObject != null) {
-                            TLRPC.Message message = messageObject.f23262k;
+                            TLRPC.Message message = messageObject.f23266k;
                             if (message != null && (tL_messageReactions2 = message.reactions) != null) {
                                 arrayList = tL_messageReactions2.top_reactors;
                             }
@@ -92,7 +92,7 @@ public final class a4 implements Runnable {
                             return;
                         }
                     } else if ((zVar2 instanceof org.telegram.ui.Cells.t0) && (messageObject = ((org.telegram.ui.Cells.t0) zVar2).getMessageObject()) != null) {
-                        TLRPC.Message message2 = messageObject.f23262k;
+                        TLRPC.Message message2 = messageObject.f23266k;
                         if (message2 != null && (tL_messageReactions = message2.reactions) != null) {
                             arrayList = tL_messageReactions.top_reactors;
                         }
@@ -105,7 +105,7 @@ public final class a4 implements Runnable {
                     if (caVar != null) {
                         caVar.b();
                     }
-                    TLRPC.ChatFull chatFull = cnVar.f44579p8;
+                    TLRPC.ChatFull chatFull = cnVar.f44620p8;
                     Context context = p7Var.getContext();
                     int currentAccount = cnVar.getCurrentAccount();
                     long a10 = cnVar.a();
@@ -118,8 +118,8 @@ public final class a4 implements Runnable {
                     ce ceVar = new ce(context, currentAccount, a10, cnVar, ijVar, arrayList2, z9, false, 0L, cnVar.getResourceProvider());
                     ijVar.e1();
                     org.telegram.ui.Cells.z zVar3 = p7Var.f4519b;
-                    ceVar.M1 = cnVar;
-                    ceVar.N1 = zVar3;
+                    ceVar.P1 = cnVar;
+                    ceVar.Q1 = zVar3;
                     ceVar.show();
                     return;
                 }
@@ -146,8 +146,8 @@ public final class a4 implements Runnable {
             case 8:
                 v9 v9Var = (v9) obj2;
                 TLObject tLObject2 = (TLObject) obj;
-                ArrayList arrayList3 = v9Var.f4913l;
-                int i10 = v9Var.f4904a;
+                ArrayList arrayList3 = v9Var.f4914l;
+                int i10 = v9Var.f4905a;
                 if (tLObject2 instanceof TL_stars.TL_payments_savedStarGifts) {
                     TL_stars.TL_payments_savedStarGifts tL_payments_savedStarGifts = (TL_stars.TL_payments_savedStarGifts) tLObject2;
                     qp.s1(i10).Y3(tL_payments_savedStarGifts.users, false);
@@ -159,7 +159,7 @@ public final class a4 implements Runnable {
                             i11++;
                         }
                         arrayList3.add(i11, savedStarGift);
-                        qs.f(i10).k(230, Long.valueOf(v9Var.f4905b), v9Var);
+                        qs.f(i10).k(230, Long.valueOf(v9Var.f4906b), v9Var);
                         return;
                     }
                     return;
@@ -169,16 +169,16 @@ public final class a4 implements Runnable {
                 ((qp) obj2).O3((TLRPC.Updates) ((TLObject) obj), false);
                 return;
             case 10:
-                new org.telegram.ui.Components.hc(((org.telegram.ui.ActionBar.v2[]) obj2)[0].E, (org.telegram.ui.ActionBar.g6) obj).Q(2131623993, 36, org.telegram.messenger.id.M0(2131744947, null)).k(false);
+                new org.telegram.ui.Components.gc(((org.telegram.ui.ActionBar.w2[]) obj2)[0].E, (org.telegram.ui.ActionBar.h6) obj).Q(2131623993, 36, org.telegram.messenger.id.M0(2131744947, null)).k(false);
                 return;
             case 11:
                 ce ceVar2 = (ce) obj2;
-                ceVar2.K1 = true;
+                ceVar2.N1 = true;
                 ceVar2.J0(new aa((ca) obj, 2));
                 org.telegram.messenger.g0.i3(new ed(ceVar2, 1), 240L);
                 return;
             case 12:
-                ((c1.e) obj2).f().a(((kotlin.jvm.internal.r) obj).f17615a);
+                ((c1.e) obj2).f().a(((kotlin.jvm.internal.r) obj).f17618a);
                 return;
             case 13:
                 ((c1.e) obj2).f().a((w0.h) obj);
@@ -188,13 +188,13 @@ public final class a4 implements Runnable {
                 return;
             case 15:
                 ch.o oVar = (ch.o) obj2;
-                org.telegram.ui.Components.r5 r5Var = (org.telegram.ui.Components.r5) obj;
+                org.telegram.ui.Components.q5 q5Var = (org.telegram.ui.Components.q5) obj;
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(oVar.h.getText());
-                for (org.telegram.ui.Components.r5 r5Var2 : (org.telegram.ui.Components.r5[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), org.telegram.ui.Components.r5.class)) {
-                    if (r5Var2 == r5Var) {
+                for (org.telegram.ui.Components.q5 q5Var2 : (org.telegram.ui.Components.q5[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), org.telegram.ui.Components.q5.class)) {
+                    if (q5Var2 == q5Var) {
                         int editTextSelectionEnd = oVar.h.getEditTextSelectionEnd();
-                        int spanEnd = spannableStringBuilder.getSpanEnd(r5Var2);
-                        int spanStart = spannableStringBuilder.getSpanStart(r5Var2);
+                        int spanEnd = spannableStringBuilder.getSpanEnd(q5Var2);
+                        int spanStart = spannableStringBuilder.getSpanStart(q5Var2);
                         oVar.h.getText().delete(spanStart, spanEnd);
                         int i12 = spanEnd - spanStart;
                         ch.l lVar = oVar.h;
@@ -217,17 +217,17 @@ public final class a4 implements Runnable {
                 if (str.equals("REACTIONS_TOO_MANY")) {
                     str = org.telegram.messenger.id.G(oVar2.N, "ReactionMaxCountError", new Object[0]);
                 }
-                org.telegram.ui.Components.hc.a0(oVar2).t(str, null).j();
+                org.telegram.ui.Components.gc.a0(oVar2).t(str, null).j();
                 return;
             case 17:
-                org.telegram.ui.Components.r5 r5Var3 = (org.telegram.ui.Components.r5) obj;
-                ch.o oVar3 = ((ch.m) obj2).f6306f2;
+                org.telegram.ui.Components.q5 q5Var3 = (org.telegram.ui.Components.q5) obj;
+                ch.o oVar3 = ((ch.m) obj2).f6311f2;
                 SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(oVar3.h.getText());
-                for (org.telegram.ui.Components.r5 r5Var4 : (org.telegram.ui.Components.r5[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), org.telegram.ui.Components.r5.class)) {
-                    if (r5Var4 == r5Var3) {
+                for (org.telegram.ui.Components.q5 q5Var4 : (org.telegram.ui.Components.q5[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), org.telegram.ui.Components.q5.class)) {
+                    if (q5Var4 == q5Var3) {
                         int editTextSelectionEnd2 = oVar3.h.getEditTextSelectionEnd();
-                        int spanEnd2 = spannableStringBuilder2.getSpanEnd(r5Var4);
-                        int spanStart2 = spannableStringBuilder2.getSpanStart(r5Var4);
+                        int spanEnd2 = spannableStringBuilder2.getSpanEnd(q5Var4);
+                        int spanStart2 = spannableStringBuilder2.getSpanStart(q5Var4);
                         oVar3.h.getText().delete(spanStart2, spanEnd2);
                         int i13 = spanEnd2 - spanStart2;
                         ch.l lVar2 = oVar3.h;
@@ -241,11 +241,11 @@ public final class a4 implements Runnable {
                 return;
             case 18:
                 ch.b0 b0Var = (ch.b0) obj2;
-                ji0 ji0Var = (ji0) obj;
-                b0Var.f6190l = true;
-                b0Var.f6181a.invalidate();
-                ji0Var.f35033c1 = false;
-                ji0Var.invalidate();
+                ii0 ii0Var = (ii0) obj;
+                b0Var.f6195l = true;
+                b0Var.f6186a.invalidate();
+                ii0Var.f34642c1 = false;
+                ii0Var.invalidate();
                 b0Var.c(true);
                 return;
             case 19:
@@ -259,8 +259,8 @@ public final class a4 implements Runnable {
                 ch.p0 p0Var = (ch.p0) obj2;
                 ch.m0 m0Var = (ch.m0) obj;
                 p0Var.getClass();
-                TLRPC.ReactionCount reactionCount = m0Var.f6307a;
-                org.telegram.ui.Cells.z zVar4 = p0Var.f6377w;
+                TLRPC.ReactionCount reactionCount = m0Var.f6312a;
+                org.telegram.ui.Cells.z zVar4 = p0Var.f6382w;
                 if (com.google.android.recaptcha.internal.a.u(zVar4)) {
                     ((org.telegram.ui.Cells.p4) zVar4).e(reactionCount, true, 0.0f, 0.0f);
                 }
@@ -271,7 +271,7 @@ public final class a4 implements Runnable {
                 return;
             case 21:
                 v0.f fVar = (v0.f) obj;
-                v0.g gVar = ((d1.e) obj2).f7939f;
+                v0.g gVar = ((d1.e) obj2).f7944f;
                 if (gVar != null) {
                     gVar.onResult(fVar);
                     return;
@@ -280,37 +280,37 @@ public final class a4 implements Runnable {
                     throw null;
                 }
             case 22:
-                ((d3.e) ((q4.q) obj2).f53817c).h.a((e2.x1) obj);
+                ((d3.e) ((q4.q) obj2).f53816c).h.a((e2.x1) obj);
                 return;
             case 23:
-                String str2 = h2.m0.f14112a;
-                j2.n.U(((l2.c0) ((d3.h0) ((wf.b) obj2).f57668c)).f17772a.G, (l2.c) obj);
+                String str2 = h2.m0.f14114a;
+                j2.n.U(((l2.c0) ((d3.h0) ((wf.b) obj2).f57667c)).f17775a.G, (l2.c) obj);
                 return;
             case 24:
                 e2.x1 x1Var = (e2.x1) obj;
-                String str3 = h2.m0.f14112a;
-                l2.i0 i0Var = ((l2.c0) ((d3.h0) ((wf.b) obj2).f57668c)).f17772a;
-                i0Var.f17868k0 = x1Var;
-                i0Var.f17871m.e(25, new l2.b0(x1Var));
+                String str3 = h2.m0.f14114a;
+                l2.i0 i0Var = ((l2.c0) ((d3.h0) ((wf.b) obj2).f57667c)).f17775a;
+                i0Var.f17871k0 = x1Var;
+                i0Var.f17874m.e(25, new l2.b0(x1Var));
                 return;
             case 25:
-                String str4 = h2.m0.f14112a;
-                m2.e eVar = ((l2.c0) ((d3.h0) ((wf.b) obj2).f57668c)).f17772a.f17882s;
+                String str4 = h2.m0.f14114a;
+                m2.e eVar = ((l2.c0) ((d3.h0) ((wf.b) obj2).f57667c)).f17775a.f17885s;
                 m2.a U = eVar.U();
                 eVar.V(U, 1030, new hi.x3(U, (Exception) obj, 26));
                 return;
             case 26:
-                String str5 = h2.m0.f14112a;
-                m2.e eVar2 = ((l2.c0) ((d3.h0) ((wf.b) obj2).f57668c)).f17772a.f17882s;
+                String str5 = h2.m0.f14114a;
+                m2.e eVar2 = ((l2.c0) ((d3.h0) ((wf.b) obj2).f57667c)).f17775a.f17885s;
                 m2.a U2 = eVar2.U();
                 eVar2.V(U2, 1019, new m2.c(U2, (String) obj, 3));
                 return;
             case 27:
-                ((di.q9) obj2).N(ProfileActivity.D4(((di.s0) obj).f9716c));
+                ((di.q9) obj2).N(ProfileActivity.D4(((di.s0) obj).f9721c));
                 return;
             case 28:
                 di.g2 g2Var = (di.g2) obj2;
-                org.telegram.messenger.g0.g(((di.n0) obj).f9375w);
+                org.telegram.messenger.g0.g(((di.n0) obj).f9380w);
                 if (org.telegram.messenger.g0.I3()) {
                     Toast.makeText(g2Var.getContext(), org.telegram.messenger.id.M0(2131744194, null), 0).show();
                     return;
@@ -319,24 +319,24 @@ public final class a4 implements Runnable {
             default:
                 di.g2 g2Var2 = (di.g2) obj2;
                 di.s0 s0Var = (di.s0) obj;
-                long j3 = s0Var.f9716c;
-                di.j4 j4Var = g2Var2.f9009i0;
-                if (j3 != p10.i(j4Var.f9200l2).e() && ((g1Var = g2Var2.f9008h0.A0) == null || j3 != org.telegram.messenger.m5.o(g1Var.i()))) {
-                    if (j4Var.f9247x3 != null) {
-                        for (int i14 = 0; i14 < j4Var.f9247x3.peers.size(); i14++) {
-                            if (j3 != org.telegram.messenger.m5.o(j4Var.f9247x3.peers.get(i14).peer)) {
+                long j3 = s0Var.f9721c;
+                di.j4 j4Var = g2Var2.f9014i0;
+                if (j3 != p10.i(j4Var.f9205l2).e() && ((g1Var = g2Var2.f9013h0.A0) == null || j3 != org.telegram.messenger.m5.o(g1Var.i()))) {
+                    if (j4Var.f9252x3 != null) {
+                        for (int i14 = 0; i14 < j4Var.f9252x3.peers.size(); i14++) {
+                            if (j3 != org.telegram.messenger.m5.o(j4Var.f9252x3.peers.get(i14).peer)) {
                             }
                         }
                     }
                     Context context2 = g2Var2.getContext();
-                    long j10 = s0Var.f9716c;
+                    long j10 = s0Var.f9721c;
                     di.b0 b0Var2 = new di.b0(0, g2Var2, s0Var);
                     di.i0 i0Var2 = new di.i0(1);
-                    org.telegram.ui.ActionBar.v2 v2Var = new org.telegram.ui.ActionBar.v2(1, context2, (org.telegram.ui.ActionBar.g6) i0Var2, false);
-                    v2Var.N();
+                    org.telegram.ui.ActionBar.w2 w2Var = new org.telegram.ui.ActionBar.w2(1, context2, (org.telegram.ui.ActionBar.h6) i0Var2, false);
+                    w2Var.N();
                     LinearLayout f10 = org.telegram.messenger.k5.f(context2, 1);
                     TextView g10 = org.telegram.messenger.k5.g(context2, 1, 20.0f);
-                    org.telegram.ui.ActionBar.s6.U(g10, org.telegram.ui.ActionBar.l6.f27973j5, i0Var2);
+                    org.telegram.ui.ActionBar.t6.U(g10, org.telegram.ui.ActionBar.m6.f27998j5, i0Var2);
                     g10.setTypeface(org.telegram.messenger.g0.o());
                     g10.setText(org.telegram.messenger.id.M0(2131751496, null));
                     f10.addView(g10, c8.ha.k(22.0f, 12.0f, 22.0f, 0.0f, -1, -2));
@@ -345,9 +345,9 @@ public final class a4 implements Runnable {
                     f10.addView(n4Var, c8.ha.k(0.0f, 0.0f, 0.0f, 4.0f, -1, -2));
                     final org.telegram.ui.Cells.c2 c2Var = new org.telegram.ui.Cells.c2(context2, 4, 21, true, i0Var2);
                     wo checkBoxRound = c2Var.getCheckBoxRound();
-                    int i15 = org.telegram.ui.ActionBar.l6.V6;
-                    int i16 = org.telegram.ui.ActionBar.l6.f27921g7;
-                    int i17 = org.telegram.ui.ActionBar.l6.f27995k7;
+                    int i15 = org.telegram.ui.ActionBar.m6.V6;
+                    int i16 = org.telegram.ui.ActionBar.m6.f27946g7;
+                    int i17 = org.telegram.ui.ActionBar.m6.f28020k7;
                     checkBoxRound.b(i15, i16, i17);
                     c2Var.e(org.telegram.messenger.id.M0(2131751502, null), null, false, true, false);
                     c2Var.setOnClickListener(new View.OnClickListener() {
@@ -369,15 +369,15 @@ public final class a4 implements Runnable {
                             }
                         }
                     });
-                    int i18 = org.telegram.ui.ActionBar.l6.f27957i6;
-                    org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.l6.h0(org.telegram.ui.ActionBar.l6.w0(i18, i0Var2), 2, -1);
-                    org.telegram.ui.ActionBar.o6 M = org.telegram.ui.ActionBar.s6.M(i18);
+                    int i18 = org.telegram.ui.ActionBar.m6.f27982i6;
+                    org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.m6.h0(org.telegram.ui.ActionBar.m6.w0(i18, i0Var2), 2, -1);
+                    org.telegram.ui.ActionBar.p6 M = org.telegram.ui.ActionBar.t6.M(i18);
                     c2Var.setBackground(h02);
-                    org.telegram.ui.ActionBar.s6.j(c2Var, h02, null, M, i0Var2);
+                    org.telegram.ui.ActionBar.t6.j(c2Var, h02, null, M, i0Var2);
                     f10.addView(c2Var, c8.ha.o(-1, -2));
                     final org.telegram.ui.Cells.c2 c2Var2 = new org.telegram.ui.Cells.c2(context2, 4, 21, true, i0Var2);
                     c2Var2.getCheckBoxRound().b(i15, i16, i17);
-                    c2Var2.e(org.telegram.messenger.id.a0(null, null, 2131751587, org.telegram.messenger.m5.l(p10.f24470s0, j10)), null, false, true, false);
+                    c2Var2.e(org.telegram.messenger.id.a0(null, null, 2131751587, org.telegram.messenger.m5.l(p10.f24474s0, j10)), null, false, true, false);
                     c2Var2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
@@ -397,14 +397,14 @@ public final class a4 implements Runnable {
                             }
                         }
                     });
-                    org.telegram.ui.Cells.y h03 = org.telegram.ui.ActionBar.l6.h0(org.telegram.ui.ActionBar.l6.w0(i18, i0Var2), 2, -1);
-                    org.telegram.ui.ActionBar.o6 M2 = org.telegram.ui.ActionBar.s6.M(i18);
+                    org.telegram.ui.Cells.y h03 = org.telegram.ui.ActionBar.m6.h0(org.telegram.ui.ActionBar.m6.w0(i18, i0Var2), 2, -1);
+                    org.telegram.ui.ActionBar.p6 M2 = org.telegram.ui.ActionBar.t6.M(i18);
                     c2Var2.setBackground(h03);
-                    org.telegram.ui.ActionBar.s6.j(c2Var2, h03, null, M2, i0Var2);
+                    org.telegram.ui.ActionBar.t6.j(c2Var2, h03, null, M2, i0Var2);
                     f10.addView(c2Var2, c8.ha.o(-1, -2));
                     final org.telegram.ui.Cells.c2 c2Var3 = new org.telegram.ui.Cells.c2(context2, 4, 21, true, i0Var2);
                     c2Var3.getCheckBoxRound().b(i15, i16, i17);
-                    c2Var3.e(org.telegram.messenger.id.a0(null, null, 2131751568, org.telegram.messenger.m5.l(p10.f24470s0, j10)), null, false, false, false);
+                    c2Var3.e(org.telegram.messenger.id.a0(null, null, 2131751568, org.telegram.messenger.m5.l(p10.f24474s0, j10)), null, false, false, false);
                     c2Var3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
@@ -424,10 +424,10 @@ public final class a4 implements Runnable {
                             }
                         }
                     });
-                    org.telegram.ui.Cells.y h04 = org.telegram.ui.ActionBar.l6.h0(org.telegram.ui.ActionBar.l6.w0(i18, i0Var2), 2, -1);
-                    org.telegram.ui.ActionBar.o6 M3 = org.telegram.ui.ActionBar.s6.M(i18);
+                    org.telegram.ui.Cells.y h04 = org.telegram.ui.ActionBar.m6.h0(org.telegram.ui.ActionBar.m6.w0(i18, i0Var2), 2, -1);
+                    org.telegram.ui.ActionBar.p6 M3 = org.telegram.ui.ActionBar.t6.M(i18);
                     c2Var3.setBackground(h04);
-                    org.telegram.ui.ActionBar.s6.j(c2Var3, h04, null, M3, i0Var2);
+                    org.telegram.ui.ActionBar.t6.j(c2Var3, h04, null, M3, i0Var2);
                     f10.addView(c2Var3, c8.ha.o(-1, -2));
                     org.telegram.ui.Cells.z8 z8Var = new org.telegram.ui.Cells.z8(context2, i0Var2);
                     z8Var.setBackgroundColor(-16777216);
@@ -436,25 +436,25 @@ public final class a4 implements Runnable {
                     FrameLayout frameLayout = new FrameLayout(context2);
                     fi.d dVar = new fi.d(context2, i0Var2, true);
                     dVar.i(org.telegram.messenger.id.M0(2131751513, null), false, true);
-                    dVar.setOnClickListener(new di.d0(c2Var, c2Var2, c2Var3, b0Var2, v2Var, 0));
+                    dVar.setOnClickListener(new di.d0(c2Var, c2Var2, c2Var3, b0Var2, w2Var, 0));
                     frameLayout.addView(dVar, c8.ha.d(-1, 48.0f, 119, 16.0f, 16.0f, 16.0f, 16.0f));
                     f10.addView(frameLayout, c8.ha.o(-1, -2));
-                    v2Var.N = f10;
-                    v2Var.show();
+                    w2Var.N = f10;
+                    w2Var.show();
                     return;
                 }
                 TL_phone.deleteGroupCallMessages deletegroupcallmessages = new TL_phone.deleteGroupCallMessages();
                 deletegroupcallmessages.call = g2Var2.O;
-                deletegroupcallmessages.messages.add(Integer.valueOf(s0Var.f9714a));
+                deletegroupcallmessages.messages.add(Integer.valueOf(s0Var.f9719a));
                 ConnectionsManager.getInstance(g2Var2.N).sendRequest(deletegroupcallmessages, null);
-                g2Var2.c(s0Var.f9714a);
+                g2Var2.c(s0Var.f9719a);
                 return;
         }
     }
 
     public a4(ea eaVar, boolean[] zArr, v10 v10Var) {
-        this.f3443a = 7;
-        this.f3444b = zArr;
-        this.f3445c = v10Var;
+        this.f3446a = 7;
+        this.f3447b = zArr;
+        this.f3448c = v10Var;
     }
 }

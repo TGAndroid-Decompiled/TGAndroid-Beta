@@ -1,36 +1,32 @@
 package org.telegram.ui.Components;
-public final class kv0 implements Runnable {
-    public final int f35491a;
-    public final zv0 f35492b;
 
-    public kv0(zv0 zv0Var, int i7) {
-        this.f35491a = i7;
-        this.f35492b = zv0Var;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+public final class kv0 extends mo0 {
+    public final yv0 U2;
+
+    public kv0(yv0 yv0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, null, str, false, str2, false, h6Var);
+        this.U2 = yv0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35491a) {
-            case 0:
-                this.f35492b.f41155k1.f();
-                return;
-            case 1:
-                this.f35492b.f41155k1.f();
-                return;
-            case 2:
-                zv0 zv0Var = this.f35492b;
-                zv0Var.dismiss();
-                org.telegram.messenger.ui.b0(zv0Var.f28621a).f2(zv0Var.getContext(), zv0Var.J1, 1, zv0Var.C1, false, false);
-                return;
-            case 3:
-                zv0 zv0Var2 = this.f35492b;
-                org.telegram.messenger.qp.s1(zv0Var2.f28621a).y3("stickers", zv0Var2.C1, 1, null);
-                return;
-            default:
-                zv0 zv0Var3 = this.f35492b;
-                zv0Var3.dismiss();
-                org.telegram.messenger.ui.b0(zv0Var3.f28621a).f2(zv0Var3.getContext(), zv0Var3.J1, 1, zv0Var3.C1, false, false);
-                return;
+    public final void K() {
+        super.K();
+        org.telegram.ui.ActionBar.f2 f2Var = this.U2.F1;
+        if (f2Var instanceof org.telegram.ui.cn) {
+            org.telegram.messenger.g0.a3(f2Var.getParentActivity(), f2Var.getClassGuid());
+            if (((org.telegram.ui.cn) f2Var).Z.getVisibility() == 0) {
+                f2Var.getFragmentView().requestLayout();
+            }
         }
+    }
+
+    @Override
+    public final void R0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z9) {
+        if (!z9) {
+            return;
+        }
+        org.telegram.messenger.g0.i3(new org.telegram.ui.q8(this, hVar, i7, 23), 100L);
     }
 }

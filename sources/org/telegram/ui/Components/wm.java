@@ -1,67 +1,60 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.ActionMode;
-import android.view.Menu;
-import java.util.ArrayList;
-public final class wm extends org.telegram.ui.Cells.a6 {
-    public final int F;
-    public final org.telegram.ui.l4 G;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.style.ImageSpan;
+public final class wm implements TextWatcher {
+    public final vm f40017a;
+    public final int f40018b;
+    public final org.telegram.ui.l4 f40019c;
 
-    public wm(org.telegram.ui.l4 l4Var, Context context, int i7, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
-        super(context, i7, null, g6Var);
-        this.G = l4Var;
-        this.F = i10;
+    public wm(org.telegram.ui.l4 l4Var, vm vmVar, int i7) {
+        this.f40019c = l4Var;
+        this.f40017a = vmVar;
+        this.f40018b = i7;
     }
 
     @Override
-    public final void g(org.telegram.ui.Cells.z5 z5Var, ActionMode actionMode) {
-        bn bnVar = (bn) this.G.f47458e;
-        if (!bnVar.f32309n && this.F == 11 && z5Var.isFocused() && z5Var.hasSelection()) {
-            Menu menu = actionMode.getMenu();
-            if (menu.findItem(16908321) != null) {
-                org.telegram.ui.cn.B8(menu, ((org.telegram.ui.cn) bnVar.f39071b.W1).h, false, true, true, true);
+    public final void afterTextChanged(Editable editable) {
+        int i7;
+        an anVar = (an) this.f40019c.f47512e;
+        vm vmVar = this.f40017a;
+        if (vmVar.getTag() != null) {
+            return;
+        }
+        int i10 = this.f40018b;
+        if (i10 == 11) {
+            i7 = anVar.f31913n0;
+        } else {
+            i7 = anVar.m0;
+        }
+        v4.d1 K = anVar.f31922s.K(i7);
+        if (K != null && anVar.f31931y != null) {
+            for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
+                editable.removeSpan(imageSpan);
             }
+            org.telegram.messenger.i6.l(editable, vmVar.getEditField().getPaint().getFontMetricsInt(), false);
+            anVar.f31931y.setDirection(1);
+            anVar.f31931y.setDelegate(vmVar);
+            anVar.f31931y.setTranslationY(K.f57052a.getY());
+            anVar.f31931y.e();
         }
-    }
-
-    @Override
-    public final void i(boolean z9) {
-        bn.Q((bn) this.G.f47458e, this, z9);
-    }
-
-    @Override
-    public final void j(org.telegram.ui.Cells.a6 a6Var) {
-        bn.R((bn) this.G.f47458e, a6Var);
-    }
-
-    @Override
-    public final void k(org.telegram.ui.Cells.z5 z5Var) {
-        ((bn) this.G.f47458e).f39071b.h1(z5Var, true);
-    }
-
-    @Override
-    public final boolean l(ArrayList arrayList) {
-        bn bnVar = (bn) this.G.f47458e;
-        if (arrayList.isEmpty()) {
-            return false;
+        if (i10 == 11) {
+            anVar.O = editable;
+        } else {
+            anVar.N = editable;
         }
-        org.telegram.ui.Cells.z5 z5Var = this.d;
-        z5Var.getText().replace(z5Var.getSelectionStart(), z5Var.getSelectionEnd(), (CharSequence) arrayList.remove(0));
-        int i7 = 0;
-        while (!arrayList.isEmpty() && i7 < bnVar.J) {
-            for (int length = bnVar.K.length - 1; length > i7; length--) {
-                CharSequence[] charSequenceArr = bnVar.K;
-                charSequenceArr[length] = charSequenceArr[length - 1];
-            }
-            bnVar.K[i7] = (CharSequence) arrayList.remove(0);
-            bnVar.M++;
-            i7++;
+        if (K != null) {
+            an.P(anVar, K.f57052a, i7);
         }
-        bnVar.n0();
-        bnVar.f32305k0 = (bnVar.f32321t0 + i7) - 1;
-        bnVar.f32319s.setItemAnimator(bnVar.f32324w);
-        bnVar.f32317r.f();
-        return true;
+        anVar.X();
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 }

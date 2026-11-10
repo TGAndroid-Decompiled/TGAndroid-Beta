@@ -173,10 +173,10 @@ public final class m extends p {
     public final void i() {
         gf.g gVar = this.h;
         if (gVar != null) {
-            h6.h hVar = (h6.h) gVar.f13889b;
+            h6.h hVar = (h6.h) gVar.f13891b;
             Iterator it = hVar.h.iterator();
             if (!it.hasNext()) {
-                Iterator it2 = hVar.f14253i.iterator();
+                Iterator it2 = hVar.f14255i.iterator();
                 while (it2.hasNext()) {
                     ((h6.g) it2.next()).c();
                 }
@@ -190,10 +190,10 @@ public final class m extends p {
     public final void j() {
         gf.g gVar = this.h;
         if (gVar != null) {
-            h6.h hVar = (h6.h) gVar.f13889b;
+            h6.h hVar = (h6.h) gVar.f13891b;
             Iterator it = hVar.h.iterator();
             if (!it.hasNext()) {
-                Iterator it2 = hVar.f14253i.iterator();
+                Iterator it2 = hVar.f14255i.iterator();
                 while (it2.hasNext()) {
                     ((h6.g) it2.next()).d();
                 }
@@ -207,10 +207,10 @@ public final class m extends p {
     public final void k() {
         gf.g gVar = this.h;
         if (gVar != null) {
-            h6.h hVar = (h6.h) gVar.f13889b;
+            h6.h hVar = (h6.h) gVar.f13891b;
             Iterator it = hVar.h.iterator();
             if (!it.hasNext()) {
-                Iterator it2 = hVar.f14253i.iterator();
+                Iterator it2 = hVar.f14255i.iterator();
                 while (it2.hasNext()) {
                     ((h6.g) it2.next()).e();
                 }
@@ -224,8 +224,8 @@ public final class m extends p {
     public final void l() {
         gf.g gVar = this.h;
         if (gVar != null) {
-            h6.h hVar = (h6.h) gVar.f13889b;
-            Iterator it = hVar.f14254j.values().iterator();
+            h6.h hVar = (h6.h) gVar.f13891b;
+            Iterator it = hVar.f14256j.values().iterator();
             if (it.hasNext()) {
                 if (it.next() == null) {
                     if (!hVar.h()) {
@@ -240,7 +240,7 @@ public final class m extends p {
             }
             Iterator it2 = hVar.h.iterator();
             if (!it2.hasNext()) {
-                Iterator it3 = hVar.f14253i.iterator();
+                Iterator it3 = hVar.f14255i.iterator();
                 while (it3.hasNext()) {
                     ((h6.g) it3.next()).g();
                 }
@@ -274,7 +274,7 @@ public final class m extends p {
         if (qVar == null) {
             mediaInfo = null;
         } else {
-            mediaInfo = qVar.f11309a;
+            mediaInfo = qVar.f11314a;
         }
         long j10 = 0;
         if (mediaInfo != null && qVar != null) {
@@ -286,7 +286,7 @@ public final class m extends p {
                         long longValue = l10.longValue();
                         f6.q qVar3 = this.f16519f;
                         if (qVar3 != null && (jVar = qVar3.K) != null) {
-                            long j11 = jVar.f11272b;
+                            long j11 = jVar.f11277b;
                             if (!jVar.d) {
                                 j10 = e(1.0d, j11, -1L);
                             } else {
@@ -298,10 +298,10 @@ public final class m extends p {
                     if (qVar2 == null) {
                         mediaInfo2 = null;
                     } else {
-                        mediaInfo2 = qVar2.f11309a;
+                        mediaInfo2 = qVar2.f11314a;
                     }
                     if (mediaInfo2 != null) {
-                        j3 = mediaInfo2.f6495e;
+                        j3 = mediaInfo2.f6500e;
                     } else {
                         j3 = 0;
                     }
@@ -309,10 +309,10 @@ public final class m extends p {
                         long longValue2 = l10.longValue();
                         f6.q qVar4 = this.f16519f;
                         if (qVar4 != null) {
-                            mediaInfo3 = qVar4.f11309a;
+                            mediaInfo3 = qVar4.f11314a;
                         }
                         if (mediaInfo3 != null) {
-                            j10 = mediaInfo3.f6495e;
+                            j10 = mediaInfo3.f6500e;
                         }
                         return Math.min(longValue2, j10);
                     }
@@ -321,9 +321,9 @@ public final class m extends p {
             } else if (this.f16518e != 0) {
                 double d = qVar.d;
                 long j12 = qVar.h;
-                int i7 = qVar.f11312e;
+                int i7 = qVar.f11317e;
                 if (d != 0.0d && i7 == 2) {
-                    return e(d, j12, mediaInfo.f6495e);
+                    return e(d, j12, mediaInfo.f6500e);
                 }
                 return j12;
             }
@@ -334,7 +334,7 @@ public final class m extends p {
     public final long p() {
         f6.q qVar = this.f16519f;
         if (qVar != null) {
-            return qVar.f11310b;
+            return qVar.f11315b;
         }
         throw new Exception();
     }

@@ -5,37 +5,37 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.drawable.GradientDrawable;
 import android.text.StaticLayout;
-import org.telegram.ui.Components.b80;
-import org.telegram.ui.Components.ic;
-import org.telegram.ui.Components.ra0;
+import org.telegram.ui.Components.a80;
+import org.telegram.ui.Components.hc;
+import org.telegram.ui.Components.qa0;
 public final class t1 {
-    public final q1 f30373a;
-    public GradientDrawable f30374b;
-    public int f30375c;
+    public final q1 f30384a;
+    public GradientDrawable f30385b;
+    public int f30386c;
     public int d;
-    public int f30376e;
-    public int f30377f;
-    public int f30378g;
+    public int f30387e;
+    public int f30388f;
+    public int f30389g;
     public StaticLayout h;
-    public StaticLayout f30379i;
-    public int f30380j;
-    public float f30381k;
-    public int f30382l;
-    public int f30383m;
-    public int f30384n;
-    public int f30385o = 45;
-    public LinearGradient f30386p;
-    public ra0 f30387q;
-    public int f30388r;
-    public b80 f30389s;
-    public Path f30390t;
-    public Paint f30391u;
+    public StaticLayout f30390i;
+    public int f30391j;
+    public float f30392k;
+    public int f30393l;
+    public int f30394m;
+    public int f30395n;
+    public int f30396o = 45;
+    public LinearGradient f30397p;
+    public qa0 f30398q;
+    public int f30399r;
+    public a80 f30400s;
+    public Path f30401t;
+    public Paint f30402u;
     public boolean v;
-    public ic f30392w;
-    public y f30393x;
+    public hc f30403w;
+    public y f30404x;
 
     public t1(q1 q1Var) {
-        this.f30373a = q1Var;
+        this.f30384a = q1Var;
     }
 
     public final void a(android.graphics.Canvas r60, float r61) {

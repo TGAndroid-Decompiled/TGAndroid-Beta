@@ -32,7 +32,7 @@ public final class a implements nf.a {
 
     @Override
     public final int c(e eVar, e eVar2) {
-        if (eVar.f13885g >= 2 && eVar2.f13885g >= 2) {
+        if (eVar.f13887g >= 2 && eVar2.f13887g >= 2) {
             return 2;
         }
         return 0;

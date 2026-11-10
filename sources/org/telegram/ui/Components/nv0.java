@@ -1,40 +1,252 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class nv0 extends AnimatorListenerAdapter {
-    public final int f36517a;
-    public final boolean f36518b;
-    public final zv0 f36519c;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class nv0 implements org.telegram.ui.ls {
+    public final yv0 f36400a;
 
-    public nv0(zv0 zv0Var, int i7, boolean z9) {
-        this.f36519c = zv0Var;
-        this.f36517a = i7;
-        this.f36518b = z9;
+    public nv0(yv0 yv0Var) {
+        this.f36400a = yv0Var;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        AnimatorSet[] animatorSetArr = this.f36519c.f41171z1;
-        int i7 = this.f36517a;
-        AnimatorSet animatorSet = animatorSetArr[i7];
-        if (animatorSet != null && animatorSet.equals(animator)) {
-            animatorSetArr[i7] = null;
-        }
+    public final org.telegram.messenger.ij A() {
+        return null;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        zv0 zv0Var = this.f36519c;
-        AnimatorSet[] animatorSetArr = zv0Var.f41171z1;
-        int i7 = this.f36517a;
-        AnimatorSet animatorSet = animatorSetArr[i7];
-        if (animatorSet != null && animatorSet.equals(animator)) {
-            if (!this.f36518b) {
-                zv0Var.A1[i7].setVisibility(4);
-            }
-            animatorSetArr[i7] = null;
+    public final boolean B() {
+        return false;
+    }
+
+    @Override
+    public final boolean D() {
+        return true;
+    }
+
+    @Override
+    public final boolean E(TLRPC.Document document) {
+        return false;
+    }
+
+    @Override
+    public final void F(TLRPC.Document document) {
+        yv0 yv0Var = this.f36400a;
+        yv0Var.M1.documents.remove(document);
+        boolean isEmpty = yv0Var.M1.documents.isEmpty();
+        if (isEmpty) {
+            yv0Var.dismiss();
         }
+        yv0Var.n1.f();
+        org.telegram.ui.ActionBar.u1 u1Var = new org.telegram.ui.ActionBar.u1(3, yv0Var.getContext(), yv0Var.I0);
+        u1Var.r(350L);
+        TLRPC.TL_stickers_removeStickerFromSet tL_stickers_removeStickerFromSet = new TLRPC.TL_stickers_removeStickerFromSet();
+        tL_stickers_removeStickerFromSet.sticker = org.telegram.messenger.ui.a0(document, "").document;
+        ConnectionsManager.getInstance(yv0Var.f28669a).sendRequest(tL_stickers_removeStickerFromSet, new bi.u9(this, isEmpty, u1Var, 4));
+    }
+
+    @Override
+    public final String G(boolean z9) {
+        return null;
+    }
+
+    @Override
+    public final boolean I() {
+        return true;
+    }
+
+    @Override
+    public final boolean J() {
+        return false;
+    }
+
+    @Override
+    public final boolean N(TLRPC.Document document) {
+        return false;
+    }
+
+    @Override
+    public final Boolean P(TLRPC.Document document) {
+        return null;
+    }
+
+    @Override
+    public final boolean Q() {
+        return false;
+    }
+
+    @Override
+    public final long a() {
+        org.telegram.ui.ActionBar.f2 f2Var = this.f36400a.F1;
+        if (f2Var instanceof org.telegram.ui.cn) {
+            return ((org.telegram.ui.cn) f2Var).a();
+        }
+        return 0L;
+    }
+
+    @Override
+    public final boolean b() {
+        vv0 vv0Var = this.f36400a.V1;
+        if (vv0Var != null && vv0Var.b()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        vv0 vv0Var = this.f36400a.V1;
+        if (vv0Var != null && vv0Var.c()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final TLRPC.TL_messageMediaPoll d() {
+        return null;
+    }
+
+    @Override
+    public final boolean e(TLRPC.Document document) {
+        return false;
+    }
+
+    @Override
+    public final boolean f() {
+        if (this.f36400a.R1 != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final TLRPC.PollAnswer g() {
+        return null;
+    }
+
+    @Override
+    public final boolean h() {
+        TLRPC.StickerSet stickerSet;
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = this.f36400a.M1;
+        if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null && stickerSet.emojis) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final void i(org.telegram.messenger.zy zyVar) {
+        this.f36400a.S0(zyVar);
+    }
+
+    @Override
+    public final boolean j() {
+        return false;
+    }
+
+    @Override
+    public final boolean k(int i7) {
+        if (this.f36400a.V1 != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void l(TLRPC.Document document, String str, Object obj, boolean z9, int i7, int i10) {
+        yv0 yv0Var = this.f36400a;
+        vv0 vv0Var = yv0Var.V1;
+        if (vv0Var == null) {
+            return;
+        }
+        vv0Var.a(document, str, obj, null, yv0Var.f40738c2, z9, i7, 0);
+        yv0Var.dismiss();
+    }
+
+    @Override
+    public final k60 m(bi.x5 x5Var) {
+        return null;
+    }
+
+    @Override
+    public final void o(TLRPC.Document document) {
+        yv0 yv0Var = this.f36400a;
+        yv0.M0(yv0Var.F1, yv0Var.M1, document);
+    }
+
+    @Override
+    public final boolean p() {
+        return false;
+    }
+
+    @Override
+    public final boolean y() {
+        return true;
+    }
+
+    @Override
+    public final void C(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void H(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void O(String str) {
+    }
+
+    @Override
+    public final void n(String str) {
+    }
+
+    @Override
+    public final void q(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void v(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void z(String str) {
+    }
+
+    @Override
+    public final void K() {
+    }
+
+    @Override
+    public final void L() {
+    }
+
+    @Override
+    public final void r() {
+    }
+
+    @Override
+    public final void t() {
+    }
+
+    @Override
+    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z9) {
+    }
+
+    @Override
+    public final void w(TLRPC.StickerSet stickerSet, String str) {
+    }
+
+    @Override
+    public final void x(TLObject tLObject, Object obj) {
+    }
+
+    @Override
+    public final void u(CharSequence charSequence, String str, ex exVar) {
+    }
+
+    @Override
+    public final void s(int i7, int i10, Object obj, TLObject tLObject, boolean z9) {
     }
 }

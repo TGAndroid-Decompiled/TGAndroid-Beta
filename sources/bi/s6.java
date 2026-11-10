@@ -28,12 +28,12 @@ public final class s6 {
 
     public s6(e7 e7Var) {
         this.f4673a = e7Var;
-        e7Var.f3769c.addOnAttachStateChangeListener(new m6(this, 0));
+        e7Var.f3766c.addOnAttachStateChangeListener(new m6(this, 0));
     }
 
     public final void a() {
         this.f4685o = false;
-        this.f4673a.f3769c.c();
+        this.f4673a.f3766c.c();
         o6 o6Var = this.h;
         if (o6Var != null) {
             o6Var.a();

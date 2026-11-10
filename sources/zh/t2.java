@@ -5,23 +5,23 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import c8.ha;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.ActionBar.s6;
-import org.telegram.ui.Components.ah0;
-import org.telegram.ui.Components.l9;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.Components.k9;
+import org.telegram.ui.Components.zg0;
 public final class t2 extends LinearLayout {
-    public final TextView f60544a;
+    public final TextView f60553a;
 
-    public t2(Context context, g6 g6Var) {
+    public t2(Context context, h6 h6Var) {
         super(context);
         setOrientation(1);
-        l9 l9Var = new l9(context);
-        l9Var.setImageDrawable(new ah0(2131624319, org.telegram.messenger.g0.L(130.0f), org.telegram.messenger.g0.L(130.0f)));
-        addView(l9Var, ha.t(64, 64, 17, 0, 32, 0, 0));
+        k9 k9Var = new k9(context);
+        k9Var.setImageDrawable(new zg0(2131624319, org.telegram.messenger.g0.L(130.0f), org.telegram.messenger.g0.L(130.0f)));
+        addView(k9Var, ha.t(64, 64, 17, 0, 32, 0, 0));
         TextView textView = new TextView(context);
-        this.f60544a = textView;
-        s6.U(textView, l6.A6, g6Var);
+        this.f60553a = textView;
+        t6.U(textView, m6.A6, h6Var);
         textView.setTextSize(1, 14.0f);
         textView.setGravity(17);
         addView(textView, ha.t(-1, -2, 7, 12, 12, 12, 24));
@@ -37,6 +37,6 @@ public final class t2 extends LinearLayout {
     }
 
     public void set(CharSequence charSequence) {
-        this.f60544a.setText(charSequence);
+        this.f60553a.setText(charSequence);
     }
 }

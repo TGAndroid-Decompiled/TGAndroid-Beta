@@ -7,16 +7,16 @@ import android.util.Log;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class i6 implements com.google.android.gms.common.api.internal.p {
-    public final int f59060a;
-    public Object f59061b;
+    public final int f59058a;
+    public Object f59059b;
 
     public i6(int i7) {
-        this.f59060a = i7;
+        this.f59058a = i7;
     }
 
     @Override
     public void accept(Object obj, Object obj2) {
-        y8.e eVar = (y8.e) this.f59061b;
+        y8.e eVar = (y8.e) this.f59059b;
         h8.b bVar = (h8.b) obj;
         bVar.getClass();
         h8.a aVar = new h8.a(1, (TaskCompletionSource) obj2);
@@ -25,29 +25,29 @@ public final class i6 implements com.google.android.gms.common.api.internal.p {
             Bundle B = bVar.B();
             Parcel obtain = Parcel.obtain();
             obtain.writeInterfaceToken("com.google.android.gms.wallet.internal.IOwService");
-            int i7 = h8.c.f14276a;
+            int i7 = h8.c.f14278a;
             obtain.writeInt(1);
             eVar.writeToParcel(obtain, 0);
             obtain.writeInt(1);
             B.writeToParcel(obtain, 0);
             obtain.writeStrongBinder(aVar);
-            iVar.f14284a.transact(14, obtain, null, 1);
+            iVar.f14286a.transact(14, obtain, null, 1);
             obtain.recycle();
         } catch (RemoteException e10) {
             Log.e("WalletClientImpl", "RemoteException during isReadyToPay", e10);
             Bundle bundle = Bundle.EMPTY;
-            a8.k8.a(Status.h, Boolean.FALSE, aVar.f14275b);
+            a8.k8.a(Status.h, Boolean.FALSE, aVar.f14277b);
         }
     }
 
     public String toString() {
-        switch (this.f59060a) {
+        switch (this.f59058a) {
             case 3:
-                ze.b bVar = ze.b.f60150e;
+                ze.b bVar = ze.b.f60148e;
                 StringBuffer stringBuffer = new StringBuffer();
                 stringBuffer.append("method-execution".substring(7));
                 stringBuffer.append("(");
-                stringBuffer.append(((ug.k0) this.f59061b).m());
+                stringBuffer.append(((ug.k0) this.f59059b).m());
                 stringBuffer.append(")");
                 return stringBuffer.toString();
             default:
@@ -56,7 +56,7 @@ public final class i6 implements com.google.android.gms.common.api.internal.p {
     }
 
     public i6(Object obj, int i7) {
-        this.f59060a = i7;
-        this.f59061b = obj;
+        this.f59058a = i7;
+        this.f59059b = obj;
     }
 }

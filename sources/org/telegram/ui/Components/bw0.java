@@ -1,9 +1,9 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class bw0 extends AlertDialog$Builder {
-    public ArrayList f32439c;
-    public int d;
-    public org.telegram.ui.ActionBar.f2 f32440e;
+import android.view.View;
+public final class bw0 extends EditTextBoldCursor {
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(50.0f), 1073741824));
+    }
 }

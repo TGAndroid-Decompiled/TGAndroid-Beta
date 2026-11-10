@@ -1,21 +1,11 @@
 package org.telegram.ui.Components;
-
-import android.content.Context;
-public final class uu extends l9 {
-    public final xu G;
-
-    public uu(xu xuVar, Context context) {
-        super(context);
-        this.G = xuVar;
-    }
-
+public final class uu extends ug.z0 {
     @Override
     public final void invalidate() {
         if (ch.e0.b(this)) {
             return;
         }
         super.invalidate();
-        this.G.f();
     }
 
     @Override

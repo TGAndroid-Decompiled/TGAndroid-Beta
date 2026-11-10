@@ -2,20 +2,20 @@ package l2;
 
 import a8.ia;
 public final class t1 {
-    public static final t1 f18049c;
+    public static final t1 f18052c;
     public static final t1 d;
-    public static final t1 f18050e;
-    public static final t1 f18051f;
-    public final long f18052a;
-    public final long f18053b;
+    public static final t1 f18053e;
+    public static final t1 f18054f;
+    public final long f18055a;
+    public final long f18056b;
 
     static {
         t1 t1Var = new t1(0L, 0L);
-        f18049c = t1Var;
+        f18052c = t1Var;
         d = new t1(Long.MAX_VALUE, Long.MAX_VALUE);
-        f18050e = new t1(Long.MAX_VALUE, 0L);
+        f18053e = new t1(Long.MAX_VALUE, 0L);
         new t1(0L, Long.MAX_VALUE);
-        f18051f = t1Var;
+        f18054f = t1Var;
     }
 
     public t1(long j3, long j10) {
@@ -27,8 +27,8 @@ public final class t1 {
         }
         ia.f(z9);
         ia.f(j10 >= 0);
-        this.f18052a = j3;
-        this.f18053b = j10;
+        this.f18055a = j3;
+        this.f18056b = j10;
     }
 
     public final long a(long r17, long r19, long r21) {
@@ -41,7 +41,7 @@ public final class t1 {
         }
         if (obj != null && t1.class == obj.getClass()) {
             t1 t1Var = (t1) obj;
-            if (this.f18052a == t1Var.f18052a && this.f18053b == t1Var.f18053b) {
+            if (this.f18055a == t1Var.f18055a && this.f18056b == t1Var.f18056b) {
                 return true;
             }
         }
@@ -49,6 +49,6 @@ public final class t1 {
     }
 
     public final int hashCode() {
-        return (((int) this.f18052a) * 31) + ((int) this.f18053b);
+        return (((int) this.f18055a) * 31) + ((int) this.f18056b);
     }
 }

@@ -3,37 +3,37 @@ package n;
 import android.os.Looper;
 import c8.w9;
 public final class a extends w9 {
-    public static volatile a f20112b;
-    public final b f20113a = new b();
+    public static volatile a f20117b;
+    public final b f20118a = new b();
 
     public static a a() {
-        if (f20112b != null) {
-            return f20112b;
+        if (f20117b != null) {
+            return f20117b;
         }
         synchronized (a.class) {
             try {
-                if (f20112b == null) {
-                    f20112b = new a();
+                if (f20117b == null) {
+                    f20117b = new a();
                 }
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        return f20112b;
+        return f20117b;
     }
 
     public final void b(Runnable runnable) {
-        b bVar = this.f20113a;
-        if (bVar.f20116c == null) {
-            synchronized (bVar.f20114a) {
+        b bVar = this.f20118a;
+        if (bVar.f20121c == null) {
+            synchronized (bVar.f20119a) {
                 try {
-                    if (bVar.f20116c == null) {
-                        bVar.f20116c = b.a(Looper.getMainLooper());
+                    if (bVar.f20121c == null) {
+                        bVar.f20121c = b.a(Looper.getMainLooper());
                     }
                 } finally {
                 }
             }
         }
-        bVar.f20116c.post(runnable);
+        bVar.f20121c.post(runnable);
     }
 }

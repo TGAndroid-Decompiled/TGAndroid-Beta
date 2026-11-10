@@ -1,15 +1,15 @@
 package z7;
 public final class c {
-    public static final c f59741a;
-    public static final c[] f59742b;
+    public static final c f59739a;
+    public static final c[] f59740b;
 
     static {
         ?? r02 = new Enum("DEFAULT", 0);
-        f59741a = r02;
-        f59742b = new c[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
+        f59739a = r02;
+        f59740b = new c[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
     }
 
     public static c[] values() {
-        return (c[]) f59742b.clone();
+        return (c[]) f59740b.clone();
     }
 }

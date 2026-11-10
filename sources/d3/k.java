@@ -7,22 +7,22 @@ import android.view.Surface;
 import e2.x1;
 import h2.m0;
 public final class k implements Handler.Callback {
-    public final Handler f8028a;
-    public final l f8029b;
+    public final Handler f8033a;
+    public final l f8034b;
 
     public k(l lVar, u2.l lVar2) {
-        this.f8029b = lVar;
+        this.f8034b = lVar;
         Handler q10 = m0.q(this);
-        this.f8028a = q10;
+        this.f8033a = q10;
         lVar2.h(this, q10);
     }
 
     public final void a(long j3) {
         boolean z9;
         Surface surface;
-        l lVar = this.f8029b;
-        wf.b bVar = lVar.f8031b1;
-        if (this == lVar.M1 && lVar.f56294d0 != null) {
+        l lVar = this.f8034b;
+        wf.b bVar = lVar.f8036b1;
+        if (this == lVar.M1 && lVar.f56293d0 != null) {
             if (j3 == Long.MAX_VALUE) {
                 lVar.M0 = true;
                 return;
@@ -34,19 +34,19 @@ public final class k implements Handler.Callback {
                     lVar.I1 = x1Var;
                     bVar.m0(x1Var);
                 }
-                lVar.O0.f17777e++;
-                y yVar = lVar.f8034e1;
-                if (yVar.f8096e != 3) {
+                lVar.O0.f17780e++;
+                y yVar = lVar.f8039e1;
+                if (yVar.f8101e != 3) {
                     z9 = true;
                 } else {
                     z9 = false;
                 }
-                yVar.f8096e = 3;
-                yVar.f8102l.getClass();
-                yVar.f8098g = m0.S(SystemClock.elapsedRealtime());
-                if (z9 && (surface = lVar.f8045r1) != null) {
+                yVar.f8101e = 3;
+                yVar.f8107l.getClass();
+                yVar.f8103g = m0.S(SystemClock.elapsedRealtime());
+                if (z9 && (surface = lVar.f8050r1) != null) {
                     bVar.g0(surface);
-                    lVar.f8048u1 = true;
+                    lVar.f8053u1 = true;
                 }
                 lVar.h0(j3);
             } catch (l2.l e10) {
@@ -62,7 +62,7 @@ public final class k implements Handler.Callback {
         }
         int i7 = message.arg1;
         int i10 = message.arg2;
-        String str = m0.f14112a;
+        String str = m0.f14114a;
         a(((i7 & 4294967295L) << 32) | (4294967295L & i10));
         return true;
     }

@@ -44,7 +44,7 @@ public final class n extends q1 {
     public final boolean f106z0;
 
     static {
-        String str = m0.f14112a;
+        String str = m0.f14114a;
         G0 = Integer.toString(1000, 36);
         H0 = Integer.toString(1001, 36);
         I0 = Integer.toString(1002, 36);
@@ -112,7 +112,7 @@ public final class n extends q1 {
                 int keyAt = sparseArray2.keyAt(i7);
                 for (Map.Entry entry : ((Map) sparseArray2.valueAt(i7)).entrySet()) {
                     if (entry.getValue() == null) {
-                        arrayList2.add((x2.q1) entry.getKey());
+                        arrayList2.add((x2.p1) entry.getKey());
                         arrayList.add(Integer.valueOf(keyAt));
                     } else {
                         throw new ClassCastException();
@@ -170,9 +170,9 @@ public final class n extends q1 {
                                             Map map2 = (Map) sparseArray.valueAt(indexOfKey);
                                             if (map2.size() == map.size()) {
                                                 for (Map.Entry entry : map.entrySet()) {
-                                                    x2.q1 q1Var = (x2.q1) entry.getKey();
-                                                    if (map2.containsKey(q1Var)) {
-                                                        if (!Objects.equals(entry.getValue(), map2.get(q1Var))) {
+                                                    x2.p1 p1Var = (x2.p1) entry.getKey();
+                                                    if (map2.containsKey(p1Var)) {
+                                                        if (!Objects.equals(entry.getValue(), map2.get(p1Var))) {
                                                         }
                                                     }
                                                 }

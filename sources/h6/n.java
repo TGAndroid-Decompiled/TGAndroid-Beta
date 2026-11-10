@@ -2,23 +2,23 @@ package h6;
 
 import com.google.android.gms.common.api.Status;
 public final class n implements com.google.android.gms.common.api.q {
-    public final int f14266a;
-    public final Status f14267b;
+    public final int f14268a;
+    public final Status f14269b;
 
     public n(Status status, int i7) {
-        this.f14266a = i7;
-        this.f14267b = status;
+        this.f14268a = i7;
+        this.f14269b = status;
     }
 
     @Override
     public final Status a() {
-        switch (this.f14266a) {
+        switch (this.f14268a) {
             case 0:
-                return this.f14267b;
+                return this.f14269b;
             case 1:
-                return this.f14267b;
+                return this.f14269b;
             default:
-                return this.f14267b;
+                return this.f14269b;
         }
     }
 }

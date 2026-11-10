@@ -15,15 +15,15 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.f10;
 import org.telegram.ui.g4;
-import org.telegram.ui.nd0;
-import org.telegram.ui.o40;
-import org.telegram.ui.s10;
+import org.telegram.ui.od0;
+import org.telegram.ui.p40;
 import org.telegram.ui.tp;
-import org.telegram.ui.yw;
+import org.telegram.ui.zw;
 public final class c1 implements Runnable {
     public final int f16682a;
     public final int f16683b;
@@ -83,15 +83,15 @@ public final class c1 implements Runnable {
         this.f16687n = str;
     }
 
-    public c1(TLObject tLObject, org.telegram.ui.ActionBar.u1 u1Var, Context context, int i7, TL_phone.exportGroupCallInvite exportgroupcallinvite, g6 g6Var, o40 o40Var) {
+    public c1(TLObject tLObject, org.telegram.ui.ActionBar.u1 u1Var, Context context, int i7, TL_phone.exportGroupCallInvite exportgroupcallinvite, h6 h6Var, p40 p40Var) {
         this.f16682a = 5;
         this.h = tLObject;
         this.d = u1Var;
         this.f16684c = context;
         this.f16683b = i7;
         this.f16685e = exportgroupcallinvite;
-        this.f16686f = g6Var;
-        this.f16687n = o40Var;
+        this.f16686f = h6Var;
+        this.f16687n = p40Var;
     }
 
     public c1(TLRPC.TL_error tL_error, TLObject tLObject, ArrayList arrayList, int i7, AtomicInteger atomicInteger, ArrayList arrayList2, tp tpVar) {
@@ -138,12 +138,12 @@ public final class c1 implements Runnable {
         this.f16687n = tL_messages_getWebPage;
     }
 
-    public c1(LaunchActivity launchActivity, TLObject tLObject, int i7, yw ywVar, f2 f2Var, TLRPC.User user, String str) {
+    public c1(LaunchActivity launchActivity, TLObject tLObject, int i7, zw zwVar, f2 f2Var, TLRPC.User user, String str) {
         this.f16682a = 11;
         this.d = launchActivity;
         this.h = tLObject;
         this.f16683b = i7;
-        this.f16684c = ywVar;
+        this.f16684c = zwVar;
         this.f16685e = f2Var;
         this.f16686f = user;
         this.f16687n = str;
@@ -160,31 +160,31 @@ public final class c1 implements Runnable {
         this.f16685e = str;
     }
 
-    public c1(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i7, org.telegram.ui.ActionBar.u1 u1Var, s10 s10Var, String str) {
+    public c1(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i7, org.telegram.ui.ActionBar.u1 u1Var, f10 f10Var, String str) {
         this.f16682a = 9;
         this.d = launchActivity;
         this.f16686f = tL_error;
         this.h = tLObject;
         this.f16683b = i7;
         this.f16684c = u1Var;
-        this.f16685e = s10Var;
+        this.f16685e = f10Var;
         this.f16687n = str;
     }
 
-    public c1(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, s10 s10Var, int i7, String str) {
+    public c1(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, f10 f10Var, int i7, String str) {
         this.f16682a = 12;
         this.d = launchActivity;
         this.f16686f = tL_error;
         this.h = tLObject;
         this.f16684c = tL_inputInvoiceSlug;
-        this.f16685e = s10Var;
+        this.f16685e = f10Var;
         this.f16683b = i7;
         this.f16687n = str;
     }
 
-    public c1(nd0 nd0Var, String str, f5.f fVar, List list, String str2, String str3, int i7) {
+    public c1(od0 od0Var, String str, f5.f fVar, List list, String str2, String str3, int i7) {
         this.f16682a = 13;
-        this.d = nd0Var;
+        this.d = od0Var;
         this.f16684c = str;
         this.f16685e = fVar;
         this.f16686f = list;

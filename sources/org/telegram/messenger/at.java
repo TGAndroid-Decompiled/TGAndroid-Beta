@@ -3,64 +3,64 @@ package org.telegram.messenger;
 import android.net.Uri;
 import org.telegram.tgnet.TLRPC;
 public final class at {
-    public final int f21516a;
-    public final long f21517b;
-    public final boolean f21518c;
+    public final int f21521a;
+    public final long f21522b;
+    public final boolean f21523c;
     public final String d;
-    public final TLRPC.User f21519e;
-    public final TLRPC.Chat f21520f;
-    public final e0.q f21521g;
+    public final TLRPC.User f21524e;
+    public final TLRPC.Chat f21525f;
+    public final e0.q f21526g;
     public final long h;
-    public final String f21522i;
-    public final long[] f21523j;
-    public final int f21524k;
-    public final Uri f21525l;
-    public final int f21526m;
-    public final boolean f21527n;
-    public final boolean f21528o;
-    public final boolean f21529p;
-    public final int f21530q;
-    public final dt f21531r;
+    public final String f21527i;
+    public final long[] f21528j;
+    public final int f21529k;
+    public final Uri f21530l;
+    public final int f21531m;
+    public final boolean f21532n;
+    public final boolean f21533o;
+    public final boolean f21534p;
+    public final int f21535q;
+    public final dt f21536r;
 
     public at(dt dtVar, int i7, long j3, boolean z9, String str, TLRPC.User user, TLRPC.Chat chat, e0.q qVar, long j10, String str2, long[] jArr, int i10, Uri uri, int i11, boolean z10, boolean z11, boolean z12, int i12) {
-        this.f21531r = dtVar;
+        this.f21536r = dtVar;
         this.h = j10;
-        this.f21522i = str2;
-        this.f21523j = jArr;
-        this.f21524k = i10;
-        this.f21525l = uri;
-        this.f21526m = i11;
-        this.f21527n = z10;
-        this.f21528o = z11;
-        this.f21529p = z12;
-        this.f21530q = i12;
-        this.f21516a = i7;
+        this.f21527i = str2;
+        this.f21528j = jArr;
+        this.f21529k = i10;
+        this.f21530l = uri;
+        this.f21531m = i11;
+        this.f21532n = z10;
+        this.f21533o = z11;
+        this.f21534p = z12;
+        this.f21535q = i12;
+        this.f21521a = i7;
         this.d = str;
-        this.f21519e = user;
-        this.f21520f = chat;
-        this.f21521g = qVar;
-        this.f21517b = j3;
-        this.f21518c = z9;
+        this.f21524e = user;
+        this.f21525f = chat;
+        this.f21526g = qVar;
+        this.f21522b = j3;
+        this.f21523c = z9;
     }
 
     public final void a() {
-        e0.q qVar = this.f21521g;
-        boolean z9 = r2.f25212a;
-        int i7 = this.f21516a;
+        e0.q qVar = this.f21526g;
+        boolean z9 = r2.f25216a;
+        int i7 = this.f21521a;
         if (z9) {
             StringBuilder n10 = jg.g.n(i7, "show dialog notification with id ", " ");
-            n10.append(this.f21517b);
+            n10.append(this.f21522b);
             n10.append(" user=");
-            n10.append(this.f21519e);
+            n10.append(this.f21524e);
             n10.append(" chat=");
-            n10.append(this.f21520f);
+            n10.append(this.f21525f);
             a8.l(n10.toString());
         }
         try {
-            dt.f22077l0.e(null, i7, qVar.b());
+            dt.f22081l0.e(null, i7, qVar.b());
         } catch (SecurityException e10) {
             a8.g(e10, true);
-            this.f21531r.P(qVar, this.f21517b, this.h, this.f21522i, this.f21523j, this.f21524k, this.f21525l, this.f21526m, this.f21527n, this.f21528o, this.f21529p, this.f21530q);
+            this.f21536r.P(qVar, this.f21522b, this.h, this.f21527i, this.f21528j, this.f21529k, this.f21530l, this.f21531m, this.f21532n, this.f21533o, this.f21534p, this.f21535q);
         }
     }
 }

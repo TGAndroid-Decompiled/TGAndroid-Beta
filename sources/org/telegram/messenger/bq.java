@@ -1,13 +1,13 @@
 package org.telegram.messenger;
 public final class bq implements Runnable {
-    public final int f21717a;
-    public final yr f21718b;
-    public final a0.h f21719c;
+    public final int f21722a;
+    public final yr f21723b;
+    public final a0.h f21724c;
 
     public bq(yr yrVar, a0.h hVar, int i7) {
-        this.f21717a = i7;
-        this.f21718b = yrVar;
-        this.f21719c = hVar;
+        this.f21722a = i7;
+        this.f21723b = yrVar;
+        this.f21724c = hVar;
     }
 
     @Override

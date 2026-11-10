@@ -6,21 +6,21 @@ import c8.xb;
 import com.google.android.gms.common.api.Status;
 public final class t extends r6.a implements com.google.android.gms.common.api.q {
     public static final Parcelable.Creator<t> CREATOR = new m(2);
-    public final Status f56402a;
+    public final Status f56401a;
 
     public t(Status status) {
-        this.f56402a = status;
+        this.f56401a = status;
     }
 
     @Override
     public final Status a() {
-        return this.f56402a;
+        return this.f56401a;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = xb.r(parcel, 20293);
-        xb.k(parcel, 1, this.f56402a, i7);
+        xb.k(parcel, 1, this.f56401a, i7);
         xb.s(parcel, r10);
     }
 }

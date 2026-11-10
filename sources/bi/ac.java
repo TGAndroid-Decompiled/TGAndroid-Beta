@@ -6,20 +6,20 @@ import android.view.View;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.cn;
 public final class ac extends ClickableSpan {
-    public final org.telegram.ui.ActionBar.v2[] f3466a;
-    public final long f3467b;
+    public final org.telegram.ui.ActionBar.w2[] f3469a;
+    public final long f3470b;
 
-    public ac(org.telegram.ui.ActionBar.v2[] v2VarArr, long j3) {
-        this.f3466a = v2VarArr;
-        this.f3467b = j3;
+    public ac(org.telegram.ui.ActionBar.w2[] w2VarArr, long j3) {
+        this.f3469a = w2VarArr;
+        this.f3470b = j3;
     }
 
     @Override
     public final void onClick(View view) {
-        this.f3466a[0].dismiss();
+        this.f3469a[0].dismiss();
         org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
         if (T != null) {
-            T.presentFragment(cn.ta(this.f3467b));
+            T.presentFragment(cn.ta(this.f3470b));
         }
     }
 

@@ -45,7 +45,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.Cells.f1;
 import org.telegram.ui.Cells.h3;
 import org.telegram.ui.Cells.j9;
@@ -53,71 +53,71 @@ import org.telegram.ui.Cells.l1;
 import org.telegram.ui.Cells.q1;
 import org.telegram.ui.Cells.t2;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.bi;
-import org.telegram.ui.Components.di;
-import org.telegram.ui.Components.fj0;
-import org.telegram.ui.Components.fy0;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.qg;
-import org.telegram.ui.Components.r5;
-import org.telegram.ui.Components.tt0;
-import org.telegram.ui.Components.xs;
-import org.telegram.ui.Components.zs;
+import org.telegram.ui.Components.ai;
+import org.telegram.ui.Components.ci;
+import org.telegram.ui.Components.ej0;
+import org.telegram.ui.Components.ey0;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.pg;
+import org.telegram.ui.Components.q5;
+import org.telegram.ui.Components.st0;
+import org.telegram.ui.Components.ws;
+import org.telegram.ui.Components.ys;
 import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.Wallet.w5;
-import org.telegram.ui.dk0;
-import org.telegram.ui.gf0;
+import org.telegram.ui.Wallet.z5;
+import org.telegram.ui.ek0;
 import org.telegram.ui.h5;
-import org.telegram.ui.hr0;
-import org.telegram.ui.ky0;
-import org.telegram.ui.mj0;
-import org.telegram.ui.ow;
-import org.telegram.ui.sj0;
-import org.telegram.ui.vg0;
-import org.telegram.ui.xw;
+import org.telegram.ui.hf0;
+import org.telegram.ui.ir0;
+import org.telegram.ui.ly0;
+import org.telegram.ui.nj0;
+import org.telegram.ui.pw;
+import org.telegram.ui.tj0;
+import org.telegram.ui.wg0;
 import org.telegram.ui.yw;
+import org.telegram.ui.zw;
 import ug.y0;
 import v4.d1;
 import v4.j1;
-public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, h2.d, te.b, bi, com.google.android.gms.common.api.internal.p {
-    public Object f19611a;
-    public Object f19612b;
+public final class d0 implements a0, Continuation, lm0, ws, l1, ej0, tj0, ri.a, h2.d, te.b, ai, com.google.android.gms.common.api.internal.p {
+    public Object f19616a;
+    public Object f19617b;
 
     public d0(Object obj) {
-        this.f19612b = null;
-        this.f19611a = obj;
+        this.f19617b = null;
+        this.f19616a = obj;
     }
 
     @Override
     public m9.y A(o0 o0Var) {
         Uri uri;
         byte[] bArr;
-        ky0 ky0Var = (ky0) this.f19612b;
-        if (ky0Var != null && (((uri = (Uri) ky0Var.f47423c) != null && uri.equals(o0Var.f10438n)) || ((bArr = (byte[]) ky0Var.f47422b) != null && Arrays.equals(bArr, o0Var.f10435k)))) {
-            m9.y yVar = (m9.y) ((ky0) this.f19612b).d;
+        ly0 ly0Var = (ly0) this.f19617b;
+        if (ly0Var != null && (((uri = (Uri) ly0Var.f47747c) != null && uri.equals(o0Var.f10443n)) || ((bArr = (byte[]) ly0Var.f47746b) != null && Arrays.equals(bArr, o0Var.f10440k)))) {
+            m9.y yVar = (m9.y) ((ly0) this.f19617b).d;
             yVar.getClass();
             return yVar;
         }
-        m9.y A = ((h2.d) this.f19611a).A(o0Var);
+        m9.y A = ((h2.d) this.f19616a).A(o0Var);
         if (A == null) {
             return null;
         }
-        this.f19612b = new ky0(o0Var, A);
+        this.f19617b = new ly0(o0Var, A);
         return A;
     }
 
     public byte[] B(q3.a aVar) {
-        DataOutputStream dataOutputStream = (DataOutputStream) this.f19612b;
-        ByteArrayOutputStream byteArrayOutputStream = (ByteArrayOutputStream) this.f19611a;
+        DataOutputStream dataOutputStream = (DataOutputStream) this.f19617b;
+        ByteArrayOutputStream byteArrayOutputStream = (ByteArrayOutputStream) this.f19616a;
         byteArrayOutputStream.reset();
         try {
-            dataOutputStream.writeBytes(aVar.f53772a);
+            dataOutputStream.writeBytes(aVar.f53771a);
             dataOutputStream.writeByte(0);
-            dataOutputStream.writeBytes(aVar.f53773b);
+            dataOutputStream.writeBytes(aVar.f53772b);
             dataOutputStream.writeByte(0);
-            dataOutputStream.writeLong(aVar.f53774c);
+            dataOutputStream.writeLong(aVar.f53773c);
             dataOutputStream.writeLong(aVar.d);
-            dataOutputStream.write(aVar.f53775e);
+            dataOutputStream.write(aVar.f53774e);
             dataOutputStream.flush();
             return byteArrayOutputStream.toByteArray();
         } catch (IOException e10) {
@@ -131,19 +131,19 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
     }
 
     public long C0(int i7, int i10, int i11) {
-        gw gwVar = ((gw[]) this.f19611a)[i7];
-        Integer num = gwVar.f22751c;
+        gw gwVar = ((gw[]) this.f19616a)[i7];
+        Integer num = gwVar.f22755c;
         if (num != null) {
             int i12 = gwVar.d;
-            int i13 = gwVar.f22752e;
+            int i13 = gwVar.f22756e;
             if (i10 >= i12 && i11 <= i13) {
                 return num.intValue();
             }
         }
         int i14 = gwVar.d;
-        int i15 = gwVar.f22752e;
+        int i15 = gwVar.f22756e;
         if (i14 >= i10 && i15 <= i11) {
-            return gwVar.f22749a;
+            return gwVar.f22753a;
         }
         if ((i10 <= i14 && i11 >= i14) || (i10 >= i14 && i10 <= i15)) {
             r0(i7);
@@ -179,7 +179,7 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
     }
 
     public long H0(int i7, int i10) {
-        long[] jArr = (long[]) this.f19612b;
+        long[] jArr = (long[]) this.f19617b;
         if (jArr.length < 30) {
             if (i7 < 0) {
                 i7 = 0;
@@ -200,42 +200,42 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
         return I0(1, i7, i10);
     }
 
-    public vg0 I(int i7, long j3, boolean z9) {
+    public wg0 I(int i7, long j3, boolean z9) {
         if (i7 > 0) {
-            i7 = ((SparseIntArray) this.f19612b).get(i7, 0);
+            i7 = ((SparseIntArray) this.f19617b).get(i7, 0);
         }
         Object obj = null;
         if (i7 == 0) {
             return null;
         }
         long j10 = i7;
-        LongSparseArray V = ((g6.d0) this.f19611a).V(j3, 0L);
+        LongSparseArray V = ((g6.d0) this.f19616a).V(j3, 0L);
         if (V != null) {
             obj = V.get(j10);
         }
-        vg0 vg0Var = (vg0) obj;
-        if (vg0Var == null && z9) {
-            vg0 vg0Var2 = new vg0();
-            ((g6.d0) this.f19611a).Z(j3, 0L, j10, vg0Var2);
-            return vg0Var2;
+        wg0 wg0Var = (wg0) obj;
+        if (wg0Var == null && z9) {
+            wg0 wg0Var2 = new wg0();
+            ((g6.d0) this.f19616a).Z(j3, 0L, j10, wg0Var2);
+            return wg0Var2;
         }
-        return vg0Var;
+        return wg0Var;
     }
 
     public long I0(int i7, int i10, int i11) {
-        gw gwVar = ((gw[]) this.f19611a)[i7];
-        Integer num = gwVar.f22751c;
+        gw gwVar = ((gw[]) this.f19616a)[i7];
+        Integer num = gwVar.f22755c;
         if (num != null) {
             int i12 = gwVar.d;
-            int i13 = gwVar.f22752e;
+            int i13 = gwVar.f22756e;
             if (i10 >= i12 && i11 <= i13) {
                 return num.intValue();
             }
         }
         int i14 = gwVar.d;
-        int i15 = gwVar.f22752e;
+        int i15 = gwVar.f22756e;
         if (i14 >= i10 && i15 <= i11) {
-            return gwVar.f22750b;
+            return gwVar.f22754b;
         }
         if ((i10 <= i14 && i11 >= i14) || (i10 >= i14 && i10 <= i15)) {
             r0(i7);
@@ -247,7 +247,7 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
 
     @Override
     public boolean J0(long j3) {
-        return ((fy0) this.f19612b).f33762w;
+        return ((ey0) this.f19617b).f33360w;
     }
 
     @Override
@@ -256,8 +256,8 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
     }
 
     public String L(String str) {
-        Resources resources = (Resources) this.f19611a;
-        int identifier = resources.getIdentifier(str, "string", (String) this.f19612b);
+        Resources resources = (Resources) this.f19616a;
+        int identifier = resources.getIdentifier(str, "string", (String) this.f19617b);
         if (identifier == 0) {
             return null;
         }
@@ -265,21 +265,21 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
     }
 
     public boolean M() {
-        w5 w5Var = (w5) this.f19612b;
-        if (w5Var.I0 <= 0.0f && !w5Var.A0()) {
+        z5 z5Var = (z5) this.f19617b;
+        if (z5Var.I0 <= 0.0f && !z5Var.A0()) {
             return false;
         }
         return true;
     }
 
     @Override
-    public hr0 N1() {
+    public ir0 N1() {
         return null;
     }
 
     public void O(long j3, File file) {
-        synchronized (((e0.g) this.f19612b).f10055f) {
-            ((HashMap) ((e0.g) this.f19612b).f10056g).put(Long.valueOf(j3), file);
+        synchronized (((e0.g) this.f19617b).f10060f) {
+            ((HashMap) ((e0.g) this.f19617b).f10061g).put(Long.valueOf(j3), file);
         }
     }
 
@@ -295,7 +295,7 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
 
     @Override
     public boolean Q1(long j3) {
-        return ((fy0) this.f19612b).f33761s;
+        return ((ey0) this.f19617b).f33359s;
     }
 
     @Override
@@ -304,11 +304,11 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
     }
 
     public void R0() {
-        m8.a aVar = (m8.a) this.f19611a;
+        m8.a aVar = (m8.a) this.f19616a;
         try {
-            v7.f fVar = (v7.f) aVar.f19928a;
+            v7.f fVar = (v7.f) aVar.f19933a;
             fVar.t1(fVar.p1(), 1);
-            ((fa) this.f19612b).f22392c.remove(aVar);
+            ((fa) this.f19617b).f22396c.remove(aVar);
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
         }
@@ -320,11 +320,11 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
     }
 
     public void S0(d1 d1Var) {
-        j1 j1Var = (j1) ((a0.f) this.f19611a).get(d1Var);
+        j1 j1Var = (j1) ((a0.f) this.f19616a).get(d1Var);
         if (j1Var == null) {
             return;
         }
-        j1Var.f57109a &= -2;
+        j1Var.f57105a &= -2;
     }
 
     @Override
@@ -338,8 +338,8 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
     }
 
     public void T0(d1 d1Var) {
-        a0.f fVar = (a0.f) this.f19611a;
-        a0.h hVar = (a0.h) this.f19612b;
+        a0.f fVar = (a0.f) this.f19616a;
+        a0.h hVar = (a0.h) this.f19617b;
         int m10 = hVar.m() - 1;
         while (true) {
             if (m10 < 0) {
@@ -359,16 +359,16 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
         j1 j1Var = (j1) fVar.get(d1Var);
         if (j1Var != null) {
             fVar.remove(d1Var);
-            j1Var.f57109a = 0;
-            j1Var.f57110b = null;
-            j1Var.f57111c = null;
+            j1Var.f57105a = 0;
+            j1Var.f57106b = null;
+            j1Var.f57107c = null;
             j1.d.v(j1Var);
         }
     }
 
     public void U0(int i7) {
         try {
-            v7.f fVar = (v7.f) ((m8.a) this.f19611a).f19928a;
+            v7.f fVar = (v7.f) ((m8.a) this.f19616a).f19933a;
             Parcel p12 = fVar.p1();
             p12.writeInt(i7);
             fVar.t1(p12, 11);
@@ -378,10 +378,10 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
     }
 
     public void V0(double d) {
-        m8.a aVar = (m8.a) this.f19611a;
+        m8.a aVar = (m8.a) this.f19616a;
         aVar.getClass();
         try {
-            v7.f fVar = (v7.f) aVar.f19928a;
+            v7.f fVar = (v7.f) aVar.f19933a;
             Parcel p12 = fVar.p1();
             p12.writeDouble(d);
             fVar.t1(p12, 5);
@@ -393,14 +393,14 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
     @Override
     public m9.y W(byte[] bArr) {
         byte[] bArr2;
-        ky0 ky0Var = (ky0) this.f19612b;
-        if (ky0Var != null && (bArr2 = (byte[]) ky0Var.f47422b) != null && Arrays.equals(bArr2, bArr)) {
-            m9.y yVar = (m9.y) ((ky0) this.f19612b).d;
+        ly0 ly0Var = (ly0) this.f19617b;
+        if (ly0Var != null && (bArr2 = (byte[]) ly0Var.f47746b) != null && Arrays.equals(bArr2, bArr)) {
+            m9.y yVar = (m9.y) ((ly0) this.f19617b).d;
             yVar.getClass();
             return yVar;
         }
-        m9.y W = ((h2.d) this.f19611a).W(bArr);
-        this.f19612b = new ky0(bArr, W);
+        m9.y W = ((h2.d) this.f19616a).W(bArr);
+        this.f19617b = new ly0(bArr, W);
         return W;
     }
 
@@ -416,7 +416,7 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
 
     public void X0(int i7) {
         try {
-            v7.f fVar = (v7.f) ((m8.a) this.f19611a).f19928a;
+            v7.f fVar = (v7.f) ((m8.a) this.f19616a).f19933a;
             Parcel p12 = fVar.p1();
             p12.writeInt(i7);
             fVar.t1(p12, 9);
@@ -427,11 +427,11 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
 
     @Override
     public void Y(int i7, float f10, float f11, te.c cVar) {
-        rh.h hVar = (rh.h) this.f19612b;
-        hVar.f54560c.a(f10);
+        rh.h hVar = (rh.h) this.f19617b;
+        hVar.f54559c.a(f10);
         hVar.d.a(f10);
-        hVar.f54559b.a(f10);
-        ((Runnable) this.f19611a).run();
+        hVar.f54558b.a(f10);
+        ((Runnable) this.f19616a).run();
     }
 
     @Override
@@ -441,11 +441,11 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
 
     @Override
     public void a(String str, String str2) {
-        dk0 dk0Var = ((mj0) this.f19612b).f47889a;
+        ek0 ek0Var = ((nj0) this.f19617b).f48219a;
         if ("PHONE_VERIFICATION_NEEDED".equals(str)) {
-            dk0Var.S1(true, str2, (gf0) this.f19611a, this, dk0Var.B1);
+            ek0Var.S1(true, str2, (hf0) this.f19616a, this, ek0Var.B1);
         } else {
-            dk0Var.R1(true, false);
+            ek0Var.R1(true, false);
         }
     }
 
@@ -471,14 +471,14 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
 
     @Override
     public void c(h2.x xVar) {
-        e0 e0Var = (e0) this.f19612b;
+        e0 e0Var = (e0) this.f19617b;
         SparseArray sparseArray = e0Var.h;
-        d4.f fVar = (d4.f) this.f19611a;
+        d4.f fVar = (d4.f) this.f19616a;
         if (xVar.A() == 0 && (xVar.A() & 128) != 0) {
             xVar.O(6);
             int a10 = xVar.a() / 4;
             for (int i7 = 0; i7 < a10; i7++) {
-                xVar.k(0, 4, (byte[]) fVar.f8162b);
+                xVar.k(0, 4, (byte[]) fVar.f8167b);
                 fVar.J(0);
                 int j3 = fVar.j(16);
                 fVar.L(3);
@@ -488,19 +488,19 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
                     int j10 = fVar.j(13);
                     if (sparseArray.get(j10) == null) {
                         sparseArray.put(j10, new b0(new a4.k(e0Var, j10)));
-                        e0Var.f19645n++;
+                        e0Var.f19650n++;
                     }
                 }
             }
-            if (e0Var.f19634a != 2) {
+            if (e0Var.f19639a != 2) {
                 sparseArray.remove(0);
             }
         }
     }
 
     @Override
-    public void c0(qg qgVar) {
-        qgVar.run();
+    public void c0(pg pgVar) {
+        pgVar.run();
     }
 
     @Override
@@ -510,16 +510,16 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
 
     @Override
     public void e(Canvas canvas, float f10, float f11, float f12, float f13) {
-        Paint paint = (Paint) this.f19611a;
-        PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f19612b;
+        Paint paint = (Paint) this.f19616a;
+        PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f19617b;
         y0 y0Var = premiumPreviewFragment.m0;
-        if (premiumPreviewFragment.f41624h0) {
-            paint.setColor(premiumPreviewFragment.getThemedColor(l6.f27809a7));
+        if (premiumPreviewFragment.f41615h0) {
+            paint.setColor(premiumPreviewFragment.getThemedColor(m6.f27834a7));
             canvas.drawRect(f10, f11, f12, f13, paint);
             return;
         }
-        y0Var.d(0, (-premiumPreviewFragment.f41618d0.getMeasuredWidth()) * 0.1f * premiumPreviewFragment.f41615b0, 0, premiumPreviewFragment.f41618d0.getMeasuredWidth(), 0.0f, premiumPreviewFragment.f41618d0.getMeasuredHeight());
-        canvas.drawRect(f10, f11, f12, f13, y0Var.f56881f);
+        y0Var.d(0, (-premiumPreviewFragment.f41609d0.getMeasuredWidth()) * 0.1f * premiumPreviewFragment.f41606b0, 0, premiumPreviewFragment.f41609d0.getMeasuredWidth(), 0.0f, premiumPreviewFragment.f41609d0.getMeasuredHeight());
+        canvas.drawRect(f10, f11, f12, f13, y0Var.f56877f);
     }
 
     @Override
@@ -529,19 +529,19 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
 
     @Override
     public boolean mo19f(float f10, float f11, int i7, View view) {
-        yw ywVar = (yw) this.f19612b;
+        zw zwVar = (zw) this.f19617b;
         if (view instanceof t2) {
             t2 t2Var = (t2) view;
-            if (t2Var.f30458n2) {
-                ywVar.Z4(t2Var.getDialogId(), view);
+            if (t2Var.f30469n2) {
+                zwVar.Z4(t2Var.getDialogId(), view);
                 return true;
             }
         }
-        ow owVar = ywVar.f52337z0;
-        if (owVar != null && owVar.getVisibility() == 0 && ywVar.f52337z0.f33782n) {
+        pw pwVar = zwVar.f52683z0;
+        if (pwVar != null && pwVar.getVisibility() == 0 && zwVar.f52683z0.f33380n) {
             return false;
         }
-        return ywVar.A4(view, i7, f10, ((xw) this.f19611a).d);
+        return zwVar.A4(view, i7, f10, ((yw) this.f19616a).d);
     }
 
     @Override
@@ -576,16 +576,16 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
 
     @Override
     public void i() {
-        Point point = org.telegram.messenger.g0.f22563q;
+        Point point = org.telegram.messenger.g0.f22567q;
         if (point.x > point.y) {
-            ((yw) this.f19612b).finishPreviewFragment();
+            ((zw) this.f19617b).finishPreviewFragment();
         }
     }
 
     public void j0(Exception exc, boolean z9) {
         int i7;
-        this.f19612b = null;
-        HashSet hashSet = (HashSet) this.f19611a;
+        this.f19617b = null;
+        HashSet hashSet = (HashSet) this.f19616a;
         i0 q10 = i0.q(hashSet);
         hashSet.clear();
         h9.g0 listIterator = q10.listIterator(0);
@@ -613,19 +613,19 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
 
     @Override
     public void l(boolean z9, float f10) {
-        h5.f46157j1 = f10;
-        ((TextView) this.f19611a).setText("Saturation " + (f10 * 5.0f));
-        tt0 tt0Var = ((h5) this.f19612b).f46159i1;
-        tt0Var.M();
-        tt0Var.L();
+        h5.f46218m1 = f10;
+        ((TextView) this.f19616a).setText("Saturation " + (f10 * 5.0f));
+        st0 st0Var = ((h5) this.f19617b).l1;
+        st0Var.M();
+        st0Var.L();
     }
 
     public void l0(o0.f fVar) {
-        androidx.biometric.o oVar = (androidx.biometric.o) this.f19612b;
-        gf.g gVar = (gf.g) this.f19611a;
-        int i7 = fVar.f20687b;
+        androidx.biometric.o oVar = (androidx.biometric.o) this.f19617b;
+        gf.g gVar = (gf.g) this.f19616a;
+        int i7 = fVar.f20692b;
         if (i7 == 0) {
-            oVar.execute(new m9.u(25, gVar, fVar.f20686a));
+            oVar.execute(new m9.u(25, gVar, fVar.f20691a));
         } else {
             oVar.execute(new f3(gVar, i7));
         }
@@ -633,11 +633,11 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
 
     @Override
     public void m() {
-        ((h3) this.f19612b).b(((zs) this.f19611a).getText());
+        ((h3) this.f19617b).b(((ys) this.f19616a).getText());
     }
 
     @Override
-    public boolean n0(r5 r5Var) {
+    public boolean n0(q5 q5Var) {
         return false;
     }
 
@@ -649,25 +649,25 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
     public r0 o0(d1 d1Var, int i7) {
         j1 j1Var;
         r0 r0Var;
-        a0.f fVar = (a0.f) this.f19611a;
+        a0.f fVar = (a0.f) this.f19616a;
         int d = fVar.d(d1Var);
         if (d >= 0 && (j1Var = (j1) fVar.i(d)) != null) {
-            int i10 = j1Var.f57109a;
+            int i10 = j1Var.f57105a;
             if ((i10 & i7) != 0) {
                 int i11 = i10 & (~i7);
-                j1Var.f57109a = i11;
+                j1Var.f57105a = i11;
                 if (i7 == 4) {
-                    r0Var = j1Var.f57110b;
+                    r0Var = j1Var.f57106b;
                 } else if (i7 == 8) {
-                    r0Var = j1Var.f57111c;
+                    r0Var = j1Var.f57107c;
                 } else {
                     throw new IllegalArgumentException("Must provide flag PRE or POST");
                 }
                 if ((i11 & 12) == 0) {
                     fVar.g(d);
-                    j1Var.f57109a = 0;
-                    j1Var.f57110b = null;
-                    j1Var.f57111c = null;
+                    j1Var.f57105a = 0;
+                    j1Var.f57106b = null;
+                    j1Var.f57107c = null;
                     j1.d.v(j1Var);
                 }
                 return r0Var;
@@ -678,18 +678,18 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
 
     @Override
     public void o1(int i7, boolean z9, boolean z10, int i10, int i11, long j3, boolean z11, boolean z12, long j10) {
-        di diVar = (di) this.f19611a;
+        ci ciVar = (ci) this.f19616a;
         try {
-            HashMap<Object, Object> selectedPhotos = diVar.f32987a2.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = ciVar.d2.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 gf gfVar = (gf) selectedPhotos.values().iterator().next();
                 String str = gfVar.h;
                 if (str == null) {
                     str = gfVar.I;
                 }
-                tg.g0 g0Var = (tg.g0) this.f19612b;
+                tg.g0 g0Var = (tg.g0) this.f19617b;
                 g0Var.d0(g0Var.f0(str, true));
-                diVar.dismiss();
+                ciVar.dismiss();
             }
         } catch (Throwable th2) {
             a8.g(th2, true);
@@ -703,9 +703,9 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
 
     @Override
     public void q(float f10) {
-        Point point = org.telegram.messenger.g0.f22563q;
+        Point point = org.telegram.messenger.g0.f22567q;
         if (point.x > point.y) {
-            ((yw) this.f19612b).movePreviewFragment(f10);
+            ((zw) this.f19617b).movePreviewFragment(f10);
         }
     }
 
@@ -715,39 +715,39 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
     }
 
     public void r0(int i7) {
-        gw[] gwVarArr = (gw[]) this.f19611a;
+        gw[] gwVarArr = (gw[]) this.f19616a;
         gw gwVar = gwVarArr[i7];
-        Integer num = gwVar.f22751c;
+        Integer num = gwVar.f22755c;
         if (num != null) {
             int i10 = i7 * 2;
             w(gwVarArr[i10], num.intValue());
-            w(gwVarArr[i10 + 1], gwVar.f22751c.intValue());
-            gwVar.f22751c = null;
+            w(gwVarArr[i10 + 1], gwVar.f22755c.intValue());
+            gwVar.f22755c = null;
         }
     }
 
     public void s(d1 d1Var, r0 r0Var) {
-        a0.f fVar = (a0.f) this.f19611a;
+        a0.f fVar = (a0.f) this.f19616a;
         j1 j1Var = (j1) fVar.get(d1Var);
         if (j1Var == null) {
             j1Var = j1.a();
             fVar.put(d1Var, j1Var);
         }
-        j1Var.f57111c = r0Var;
-        j1Var.f57109a |= 8;
+        j1Var.f57107c = r0Var;
+        j1Var.f57105a |= 8;
     }
 
     public void t(int i7, int i10, int i11) {
-        gw[] gwVarArr = (gw[]) this.f19611a;
+        gw[] gwVarArr = (gw[]) this.f19616a;
         ?? obj = new Object();
-        obj.f22751c = null;
+        obj.f22755c = null;
         gwVarArr[i7] = obj;
         obj.d = i10;
-        obj.f22752e = (i10 + i11) - 1;
+        obj.f22756e = (i10 + i11) - 1;
         if (i11 == 1) {
-            long j3 = ((long[]) this.f19612b)[i10];
-            obj.f22749a = j3;
-            obj.f22750b = j3;
+            long j3 = ((long[]) this.f19617b)[i10];
+            obj.f22753a = j3;
+            obj.f22754b = j3;
             return;
         }
         int i12 = i7 * 2;
@@ -761,21 +761,21 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
         gw gwVar3 = gwVarArr[i14];
         gwVar3.getClass();
         gwVar.getClass();
-        gwVar.f22749a = Math.max(gwVar2.f22749a, gwVar3.f22749a);
-        gwVarArr[i7].f22750b = Math.min(gwVarArr[i12].f22750b, gwVarArr[i14].f22750b);
+        gwVar.f22753a = Math.max(gwVar2.f22753a, gwVar3.f22753a);
+        gwVarArr[i7].f22754b = Math.min(gwVarArr[i12].f22754b, gwVarArr[i14].f22754b);
     }
 
     @Override
     public Object then(Task task) {
-        m6.c cVar = (m6.c) this.f19611a;
-        Bundle bundle = (Bundle) this.f19612b;
+        m6.c cVar = (m6.c) this.f19616a;
+        Bundle bundle = (Bundle) this.f19617b;
         cVar.getClass();
         if (!task.isSuccessful()) {
             return task;
         }
         Bundle bundle2 = (Bundle) task.getResult();
         if (bundle2 != null && bundle2.containsKey("google.messenger")) {
-            return cVar.d(bundle).onSuccessTask(m6.d.f19896b, pb.b.f53535b);
+            return cVar.d(bundle).onSuccessTask(m6.d.f19901b, pb.b.f53534b);
         }
         return task;
     }
@@ -786,31 +786,31 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
     }
 
     public void v0(q2.b bVar) {
-        ((HashSet) this.f19611a).add(bVar);
-        if (((q2.b) this.f19612b) != null) {
+        ((HashSet) this.f19616a).add(bVar);
+        if (((q2.b) this.f19617b) != null) {
             return;
         }
-        this.f19612b = bVar;
-        q2.p q10 = bVar.f53707b.q();
-        bVar.f53728z = q10;
-        android.support.v4.media.session.f fVar = bVar.f53722s;
-        String str = m0.f14112a;
+        this.f19617b = bVar;
+        q2.p q10 = bVar.f53706b.q();
+        bVar.f53727z = q10;
+        android.support.v4.media.session.f fVar = bVar.f53721s;
+        String str = m0.f14114a;
         q10.getClass();
         fVar.getClass();
-        fVar.obtainMessage(1, new q2.a(x2.u.f58485g.getAndIncrement(), true, SystemClock.elapsedRealtime(), q10)).sendToTarget();
+        fVar.obtainMessage(1, new q2.a(x2.t.f58482g.getAndIncrement(), true, SystemClock.elapsedRealtime(), q10)).sendToTarget();
     }
 
     public void w(gw gwVar, int i7) {
-        gwVar.f22751c = Integer.valueOf(i7);
+        gwVar.f22755c = Integer.valueOf(i7);
         int i10 = gwVar.d;
         long j3 = i7;
-        gwVar.f22749a = j3;
-        gwVar.f22750b = j3;
-        ((long[]) this.f19612b)[i10] = j3;
+        gwVar.f22753a = j3;
+        gwVar.f22754b = j3;
+        ((long[]) this.f19617b)[i10] = j3;
     }
 
     public long w0(int i7, int i10) {
-        long[] jArr = (long[]) this.f19612b;
+        long[] jArr = (long[]) this.f19617b;
         if (jArr.length < 30) {
             if (i7 < 0) {
                 i7 = 0;
@@ -843,56 +843,56 @@ public final class d0 implements a0, Continuation, mm0, xs, l1, fj0, sj0, ri.a, 
 
     @Override
     public String y(long j3) {
-        String trim = ((EditTextBoldCursor) this.f19611a).getText().toString().trim();
+        String trim = ((EditTextBoldCursor) this.f19616a).getText().toString().trim();
         if (trim.length() > 16) {
             trim = trim.substring(0, 16);
         }
-        if (!((fy0) this.f19612b).f33761s && TextUtils.isEmpty(trim)) {
+        if (!((ey0) this.f19617b).f33359s && TextUtils.isEmpty(trim)) {
             return null;
         }
         return trim;
     }
 
     public d0(Object obj, Object obj2) {
-        this.f19611a = obj;
-        this.f19612b = obj2;
+        this.f19616a = obj;
+        this.f19617b = obj2;
     }
 
     public d0(Object obj, Object obj2, boolean z9) {
-        this.f19612b = obj;
-        this.f19611a = obj2;
+        this.f19617b = obj;
+        this.f19616a = obj2;
     }
 
     public d0(Object obj, boolean z9) {
-        this.f19611a = obj;
+        this.f19616a = obj;
     }
 
     public d0(long[] jArr) {
-        this.f19612b = jArr;
+        this.f19617b = jArr;
         if (jArr.length < 30) {
             return;
         }
-        this.f19611a = new gw[(int) (Math.pow(2.0d, Math.floor((Math.log(jArr.length) / Math.log(2.0d)) + 1.0d)) * 2.0d)];
+        this.f19616a = new gw[(int) (Math.pow(2.0d, Math.floor((Math.log(jArr.length) / Math.log(2.0d)) + 1.0d)) * 2.0d)];
         t(1, 0, jArr.length);
     }
 
     public d0(int i7) {
         switch (i7) {
             case 19:
-                this.f19611a = new HashSet();
+                this.f19616a = new HashSet();
                 return;
             case 20:
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(512);
-                this.f19611a = byteArrayOutputStream;
-                this.f19612b = new DataOutputStream(byteArrayOutputStream);
+                this.f19616a = byteArrayOutputStream;
+                this.f19617b = new DataOutputStream(byteArrayOutputStream);
                 return;
             case 29:
-                this.f19611a = new a0.l(0);
-                this.f19612b = new a0.h();
+                this.f19616a = new a0.l(0);
+                this.f19617b = new a0.h();
                 return;
             default:
-                this.f19611a = new g6.d0(24);
-                this.f19612b = new SparseIntArray();
+                this.f19616a = new g6.d0(24);
+                this.f19617b = new SparseIntArray();
                 return;
         }
     }

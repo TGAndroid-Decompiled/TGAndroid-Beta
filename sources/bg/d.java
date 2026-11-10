@@ -7,7 +7,7 @@ import org.telegram.messenger.s9;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.x5;
+import org.telegram.ui.Components.w5;
 public final class d implements ToIntFunction {
     public final int f3266a;
 
@@ -47,7 +47,7 @@ public final class d implements ToIntFunction {
             case 10:
                 return ((Integer) ((Object[]) obj)[1]).intValue();
             case 11:
-                return ((s9) obj).f25437e.bid_date;
+                return ((s9) obj).f25441e.bid_date;
             case 12:
                 return Integer.parseInt((String) obj);
             case 13:
@@ -55,13 +55,13 @@ public final class d implements ToIntFunction {
             case 14:
                 return -((TLRPC.TL_forumTopic) obj).top_message;
             case 15:
-                return ((TLRPC.Message) obj).f26977id;
+                return ((TLRPC.Message) obj).f26981id;
             case 16:
-                return ((TLRPC.Message) obj).f26977id;
+                return ((TLRPC.Message) obj).f26981id;
             case 17:
-                return ((x5) obj).d;
+                return ((w5) obj).d;
             case 18:
-                return ((x5) obj).f40299e;
+                return ((w5) obj).f39884e;
             case 19:
                 ad.c cVar = (ad.c) obj;
                 return cVar.d - cVar.f1036b;

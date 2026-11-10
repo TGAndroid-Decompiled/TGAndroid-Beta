@@ -2,7 +2,7 @@ package tb;
 
 import java.util.Comparator;
 public final class c implements Comparator {
-    public static final c f55488a = new Object();
+    public static final c f55487a = new Object();
 
     @Override
     public final int compare(Object obj, Object obj2) {

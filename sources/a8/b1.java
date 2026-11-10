@@ -16,7 +16,7 @@ public abstract class b1 {
             o9.g.c();
             o9.g c10 = o9.g.c();
             c10.a();
-            Context context = c10.f20875a;
+            Context context = c10.f20880a;
             SharedPreferences sharedPreferences = context.getSharedPreferences("com.google.firebase.messaging", 0);
             if (sharedPreferences.contains("export_to_big_query")) {
                 return sharedPreferences.getBoolean("export_to_big_query", false);

@@ -3,11 +3,11 @@ public abstract class ab {
     public static za f324a;
 
     public static gd.c a(rd.a aVar) {
-        gd.d[] dVarArr = gd.d.f13817a;
-        gd.j jVar = gd.j.f13828a;
+        gd.d[] dVarArr = gd.d.f13819a;
+        gd.j jVar = gd.j.f13830a;
         ?? obj = new Object();
-        obj.f13823a = aVar;
-        obj.f13824b = jVar;
+        obj.f13825a = aVar;
+        obj.f13826b = jVar;
         return obj;
     }
 

@@ -8,38 +8,38 @@ import java.util.LinkedHashSet;
 import org.telegram.messenger.i6;
 import org.telegram.messenger.id;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.Components.m41;
-import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.r41;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.x31;
-import org.telegram.ui.Components.y31;
-public final class k5 extends x31 {
-    public static final int f18677b = 0;
+public final class k5 extends w31 {
+    public static final int f18680b = 0;
 
     static {
-        x31.h(new x31());
+        w31.h(new w31());
     }
 
     @Override
-    public final void b(View view, y31 y31Var, boolean z9, m41 m41Var, r41 r41Var) {
+    public final void b(View view, x31 x31Var, boolean z9, m41 m41Var, r41 r41Var) {
         boolean z10;
         m5 m5Var = (m5) view;
-        a aVar = (a) y31Var.G;
-        a3 a3Var = (a3) y31Var.H;
-        o5 o5Var = m5Var.f18711w;
+        a aVar = (a) x31Var.G;
+        a3 a3Var = (a3) x31Var.H;
+        o5 o5Var = m5Var.f18714w;
         boolean z11 = true;
-        if (m5Var.f18989a != aVar) {
+        if (m5Var.f18994a != aVar) {
             z10 = true;
         } else {
             z10 = false;
         }
-        m5Var.f18989a = aVar;
+        m5Var.f18994a = aVar;
         m5Var.E = a3Var;
-        m5Var.D = id.f23157a0;
+        m5Var.D = id.f23161a0;
         m5Var.c(aVar);
-        TL_iv.PageBlock pageBlock = aVar.f18392b;
+        TL_iv.PageBlock pageBlock = aVar.f18395b;
         if (!(pageBlock instanceof TL_iv.pageBlockTable)) {
             return;
         }
@@ -50,10 +50,10 @@ public final class k5 extends x31 {
         Objects.requireNonNull(linkedHashSet);
         o5Var.setSelectionProvider(new l2.x(linkedHashSet, 12));
         m5Var.A();
-        g1 g1Var = m5Var.f18709r;
-        a aVar2 = m5Var.f18989a;
+        g1 g1Var = m5Var.f18712r;
+        a aVar2 = m5Var.f18994a;
         if (aVar2 != null) {
-            TL_iv.PageBlock pageBlock2 = aVar2.f18392b;
+            TL_iv.PageBlock pageBlock2 = aVar2.f18395b;
             if (pageBlock2 instanceof TL_iv.pageBlockTable) {
                 TL_iv.pageBlockTable pageblocktable = (TL_iv.pageBlockTable) pageBlock2;
                 if (pageblocktable.title == null) {
@@ -61,15 +61,15 @@ public final class k5 extends x31 {
                 }
                 String l10 = c6.l(pageblocktable.title);
                 SpannableStringBuilder r10 = c6.r(pageblocktable.title, null, true);
-                a aVar3 = m5Var.f18989a;
-                if (!aVar3.f18407s) {
-                    aVar3.f18407s = true;
+                a aVar3 = m5Var.f18994a;
+                if (!aVar3.f18410s) {
+                    aVar3.f18410s = true;
                     if (r10.length() != 0 && (c6.q(0, r10.length(), r10) & 1) == 0) {
                         z11 = false;
                     }
-                    aVar3.f18406r = z11;
+                    aVar3.f18409r = z11;
                 }
-                g1Var.setAutoBold(m5Var.f18989a.f18406r);
+                g1Var.setAutoBold(m5Var.f18994a.f18409r);
                 if (z10 || !String.valueOf(g1Var.getText()).equals(l10)) {
                     g1Var.setTextSilently(i6.m(r10, g1Var.getPaint().getFontMetricsInt(), false, null, 0));
                     g1Var.f();
@@ -77,13 +77,13 @@ public final class k5 extends x31 {
             }
         }
         m5Var.updateColors();
-        m5Var.f18712x.requestLayout();
+        m5Var.f18715x.requestLayout();
     }
 
     @Override
-    public final View d(Context context, qj0 qj0Var, int i7, g6 g6Var) {
-        m5 m5Var = new m5(context, g6Var);
-        m5Var.setBackground(new y1(l6.w0(l6.f27865d6, g6Var)));
+    public final View d(Context context, pj0 pj0Var, int i7, h6 h6Var) {
+        m5 m5Var = new m5(context, h6Var);
+        m5Var.setBackground(new y1(m6.w0(m6.f27890d6, h6Var)));
         return m5Var;
     }
 

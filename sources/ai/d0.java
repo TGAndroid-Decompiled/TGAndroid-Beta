@@ -55,11 +55,11 @@ public final class d0 implements Runnable {
         j20 j20Var = new j20();
         char c10 = 1;
         j20Var.J = true;
-        j20Var.f23472a0 = e7Var.f11884c1;
-        j20Var.h = e7Var.f11900k0;
-        j20Var.f23479i = e7Var.f11902l0;
-        j20Var.f23481k = e7Var.f11896i0;
-        j20Var.f23482l = e7Var.f11898j0;
+        j20Var.f23476a0 = e7Var.f11888c1;
+        j20Var.h = e7Var.f11904k0;
+        j20Var.f23483i = e7Var.f11906l0;
+        j20Var.f23485k = e7Var.f11900i0;
+        j20Var.f23486l = e7Var.f11902j0;
         File file = e7Var.P0;
         if (file == null) {
             path = null;
@@ -88,46 +88,46 @@ public final class d0 implements Runnable {
             path4 = file4.getPath();
         }
         j20Var.F = path4;
-        int v = MediaController.v(j20Var.f23481k, j20Var.f23482l, j20Var.f23483m, true);
+        int v = MediaController.v(j20Var.f23485k, j20Var.f23486l, j20Var.f23487m, true);
         if (e7Var.K && str != null && !e7Var.v()) {
-            j20Var.f23485o = str;
+            j20Var.f23489o = str;
             j20Var.I = false;
-            j20Var.f23484n = Math.min(59, iArr2[0][7]);
+            j20Var.f23488n = Math.min(59, iArr2[0][7]);
             int E = MediaController.E(str);
             if (E == -1) {
                 E = iArr2[0][3];
             }
-            j20Var.f23480j = E;
+            j20Var.f23484j = E;
             if (E < 1000000 && (arrayList = e7Var.T0) != null && !arrayList.isEmpty()) {
-                j20Var.f23483m = 2000000;
-                j20Var.f23480j = -1;
+                j20Var.f23487m = 2000000;
+                j20Var.f23484j = -1;
             } else {
-                int i12 = j20Var.f23480j;
+                int i12 = j20Var.f23484j;
                 if (i12 < 500000) {
-                    j20Var.f23483m = 2500000;
-                    j20Var.f23480j = -1;
+                    j20Var.f23487m = 2500000;
+                    j20Var.f23484j = -1;
                 } else {
-                    j20Var.f23483m = Utilities.j(i12, 3000000, 500000);
+                    j20Var.f23487m = Utilities.j(i12, 3000000, 500000);
                 }
             }
             StringBuilder sb2 = new StringBuilder("story bitrate, original = ");
-            sb2.append(j20Var.f23480j);
+            sb2.append(j20Var.f23484j);
             sb2.append(" => ");
-            jg.g.s(j20Var.f23483m, sb2);
+            jg.g.s(j20Var.f23487m, sb2);
             long j12 = iArr2[0][4];
-            e7Var.f11894h0 = j12;
+            e7Var.f11898h0 = j12;
             j20Var.v = j12 * 1000;
             float f12 = (float) j12;
             long j13 = e7Var.Z * f12 * 1000;
-            j20Var.f23471a = j13;
-            long j14 = e7Var.f11877a0 * f12 * 1000;
-            j20Var.f23473b = j14;
-            j20Var.f23488r = j14 - j13;
-            j20Var.f23491u = e7Var.P;
-            j20Var.f23490t = e7Var.Y;
-            j20Var.f23487q = a8.p0.f(i11 / 1000.0f, v, 8.0f, iArr[5]);
-            j20Var.f23487q = Math.max(e7Var.L.length(), j20Var.f23487q);
-            j20Var.A = e7Var.f11878a1;
+            j20Var.f23475a = j13;
+            long j14 = e7Var.f11881a0 * f12 * 1000;
+            j20Var.f23477b = j14;
+            j20Var.f23492r = j14 - j13;
+            j20Var.f23495u = e7Var.P;
+            j20Var.f23494t = e7Var.Y;
+            j20Var.f23491q = a8.p0.f(i11 / 1000.0f, v, 8.0f, iArr[5]);
+            j20Var.f23491q = Math.max(e7Var.L.length(), j20Var.f23491q);
+            j20Var.A = e7Var.f11882a1;
             File file5 = e7Var.Q0;
             if (file5 == null) {
                 path5 = null;
@@ -139,9 +139,9 @@ public final class d0 implements Runnable {
         } else {
             File file6 = e7Var.Z0;
             if (file6 != null) {
-                j20Var.f23485o = file6.getAbsolutePath();
+                j20Var.f23489o = file6.getAbsolutePath();
             } else {
-                j20Var.f23485o = str;
+                j20Var.f23489o = str;
             }
             j20Var.I = true;
             j20Var.L = e7Var.S;
@@ -151,10 +151,10 @@ public final class d0 implements Runnable {
                 while (i13 < e7Var.T.size()) {
                     e7 e7Var2 = (e7) e7Var.T.get(i13);
                     if (e7Var2.K) {
-                        e7Var2.f11900k0 = Math.max(e7Var2.f11900k0, iArr2[i13][c10]);
-                        e7Var2.f11902l0 = Math.max(e7Var2.f11902l0, iArr2[i13][2]);
+                        e7Var2.f11904k0 = Math.max(e7Var2.f11904k0, iArr2[i13][c10]);
+                        e7Var2.f11906l0 = Math.max(e7Var2.f11906l0, iArr2[i13][2]);
                         i10 = v;
-                        e7Var2.f11894h0 = Math.max(e7Var2.f11894h0, iArr2[i13][4]);
+                        e7Var2.f11898h0 = Math.max(e7Var2.f11898h0, iArr2[i13][4]);
                         z9 = true;
                     } else {
                         i10 = v;
@@ -168,9 +168,9 @@ public final class d0 implements Runnable {
                 j20Var.M = a10;
                 if (!z9) {
                     long j15 = e7Var.S0;
-                    e7Var.f11894h0 = j15;
+                    e7Var.f11898h0 = j15;
                     j20Var.v = j15;
-                    j20Var.f23488r = j15;
+                    j20Var.f23492r = j15;
                 } else {
                     int size = a10.size();
                     long j16 = 0;
@@ -180,8 +180,8 @@ public final class d0 implements Runnable {
                         Object obj = a10.get(i14);
                         i14++;
                         i20 i20Var2 = (i20) obj;
-                        if (i20Var2.f23021b) {
-                            long j17 = i20Var2.f23030o;
+                        if (i20Var2.f23025b) {
+                            long j17 = i20Var2.f23034o;
                             if (j17 > j16) {
                                 i20Var = i20Var2;
                                 j16 = j17;
@@ -189,12 +189,12 @@ public final class d0 implements Runnable {
                         }
                     }
                     if (i20Var != null) {
-                        long j18 = (i20Var.f23027k - i20Var.f23026j) * ((float) i20Var.f23030o);
-                        e7Var.f11894h0 = j18;
+                        long j18 = (i20Var.f23031k - i20Var.f23030j) * ((float) i20Var.f23034o);
+                        e7Var.f11898h0 = j18;
                         j20Var.v = j18;
-                        j20Var.f23488r = j18;
-                        j3 = -(i20Var.f23024f + (f11 * f10));
-                        i20Var.f23024f = j3;
+                        j20Var.f23492r = j18;
+                        j3 = -(i20Var.f23028f + (f11 * f10));
+                        i20Var.f23028f = j3;
                         ArrayList arrayList2 = j20Var.M;
                         int size2 = arrayList2.size();
                         int i15 = 0;
@@ -202,55 +202,55 @@ public final class d0 implements Runnable {
                             Object obj2 = arrayList2.get(i15);
                             i15++;
                             i20 i20Var3 = (i20) obj2;
-                            if (i20Var3.f23021b && i20Var3 != i20Var) {
-                                i20Var3.f23024f += j3;
+                            if (i20Var3.f23025b && i20Var3 != i20Var) {
+                                i20Var3.f23028f += j3;
                             }
                         }
-                        j20Var.f23471a = -1L;
-                        j20Var.f23473b = -1L;
-                        j20Var.f23490t = true;
-                        j20Var.f23480j = -1;
-                        j20Var.f23491u = 1.0f;
-                        j20Var.f23483m = -1;
-                        j20Var.f23484n = 30;
-                        j20Var.f23487q = ((((float) e7Var.f11894h0) / 1000.0f) * i7) / 8.0f;
+                        j20Var.f23475a = -1L;
+                        j20Var.f23477b = -1L;
+                        j20Var.f23494t = true;
+                        j20Var.f23484j = -1;
+                        j20Var.f23495u = 1.0f;
+                        j20Var.f23487m = -1;
+                        j20Var.f23488n = 30;
+                        j20Var.f23491q = ((((float) e7Var.f11898h0) / 1000.0f) * i7) / 8.0f;
                         j20Var.A = null;
                     }
                 }
             } else {
                 i7 = v;
-                if (e7Var.f11907o0 != null) {
-                    long j19 = (e7Var.f11917t0 - e7Var.f11915s0) * ((float) e7Var.f11911q0);
-                    e7Var.f11894h0 = j19;
+                if (e7Var.f11911o0 != null) {
+                    long j19 = (e7Var.f11921t0 - e7Var.f11919s0) * ((float) e7Var.f11915q0);
+                    e7Var.f11898h0 = j19;
                     j20Var.v = j19;
-                    j20Var.f23488r = j19;
-                } else if (e7Var.f11925y != null) {
+                    j20Var.f23492r = j19;
+                } else if (e7Var.f11929y != null) {
                     long j20 = (e7Var.F - e7Var.E) * ((float) e7Var.C);
-                    e7Var.f11894h0 = j20;
+                    e7Var.f11898h0 = j20;
                     j20Var.v = j20;
-                    j20Var.f23488r = j20;
+                    j20Var.f23492r = j20;
                 } else {
                     long j21 = e7Var.S0;
-                    e7Var.f11894h0 = j21;
+                    e7Var.f11898h0 = j21;
                     j20Var.v = j21;
-                    j20Var.f23488r = j21;
+                    j20Var.f23492r = j21;
                 }
             }
             j3 = 0;
-            j20Var.f23471a = -1L;
-            j20Var.f23473b = -1L;
-            j20Var.f23490t = true;
-            j20Var.f23480j = -1;
-            j20Var.f23491u = 1.0f;
-            j20Var.f23483m = -1;
-            j20Var.f23484n = 30;
-            j20Var.f23487q = ((((float) e7Var.f11894h0) / 1000.0f) * i7) / 8.0f;
+            j20Var.f23475a = -1L;
+            j20Var.f23477b = -1L;
+            j20Var.f23494t = true;
+            j20Var.f23484j = -1;
+            j20Var.f23495u = 1.0f;
+            j20Var.f23487m = -1;
+            j20Var.f23488n = 30;
+            j20Var.f23491q = ((((float) e7Var.f11898h0) / 1000.0f) * i7) / 8.0f;
             j20Var.A = null;
         }
-        j20Var.S = e7Var.f11876a;
-        j20Var.U = e7Var.f11928z0;
-        j20Var.T = e7Var.f11926y0;
-        j20Var.f23475c = -1L;
+        j20Var.S = e7Var.f11880a;
+        j20Var.U = e7Var.f11932z0;
+        j20Var.T = e7Var.f11930y0;
+        j20Var.f23479c = -1L;
         ye yeVar = e7Var.m0;
         if (yeVar != null) {
             j20Var.H = yeVar.clone();
@@ -258,13 +258,13 @@ public final class d0 implements Runnable {
             j20Var.H = new ye();
         }
         j20Var.H.B = new Matrix();
-        j20Var.H.B.set(e7Var.f11905n0);
+        j20Var.H.B.set(e7Var.f11909n0);
         j20Var.G = e7Var.T0;
         j20Var.Q = Integer.valueOf(e7Var.A0);
         j20Var.R = Integer.valueOf(e7Var.B0);
         j20Var.V = true;
-        j20Var.K = e7Var.f11886d1;
-        j20Var.f23474b0.clear();
+        j20Var.K = e7Var.f11890d1;
+        j20Var.f23478b0.clear();
         if (e7Var.v() && !e7Var.Y) {
             ArrayList arrayList3 = j20Var.M;
             int size3 = arrayList3.size();
@@ -273,28 +273,28 @@ public final class d0 implements Runnable {
                 Object obj3 = arrayList3.get(i16);
                 i16++;
                 i20 i20Var4 = (i20) obj3;
-                if (i20Var4.f23021b && i20Var4.f23023e > 0.0f && !i20Var4.f23022c) {
+                if (i20Var4.f23025b && i20Var4.f23027e > 0.0f && !i20Var4.f23026c) {
                     MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo = new MediaCodecVideoConvertor.MixedSoundInfo(i20Var4.d);
-                    mixedSoundInfo.volume = i20Var4.f23023e;
-                    float f13 = i20Var4.f23026j;
-                    float f14 = (float) i20Var4.f23030o;
+                    mixedSoundInfo.volume = i20Var4.f23027e;
+                    float f13 = i20Var4.f23030j;
+                    float f14 = (float) i20Var4.f23034o;
                     mixedSoundInfo.audioOffset = f13 * f14 * 1000;
-                    mixedSoundInfo.startTime = i20Var4.f23024f * 1000;
-                    mixedSoundInfo.duration = (i20Var4.f23027k - f13) * f14 * 1000;
-                    j20Var.f23474b0.add(mixedSoundInfo);
+                    mixedSoundInfo.startTime = i20Var4.f23028f * 1000;
+                    mixedSoundInfo.duration = (i20Var4.f23031k - f13) * f14 * 1000;
+                    j20Var.f23478b0.add(mixedSoundInfo);
                 }
             }
         }
-        File file7 = e7Var.f11907o0;
+        File file7 = e7Var.f11911o0;
         if (file7 != null) {
             MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo2 = new MediaCodecVideoConvertor.MixedSoundInfo(file7.getAbsolutePath());
-            mixedSoundInfo2.volume = e7Var.f11919u0;
-            float f15 = e7Var.f11915s0;
-            float f16 = (float) e7Var.f11911q0;
+            mixedSoundInfo2.volume = e7Var.f11923u0;
+            float f15 = e7Var.f11919s0;
+            float f16 = (float) e7Var.f11915q0;
             long j22 = f15 * f16 * 1000;
             mixedSoundInfo2.audioOffset = j22;
             if (e7Var.K) {
-                mixedSoundInfo2.startTime = (((float) e7Var.f11913r0) - (e7Var.Z * ((float) e7Var.f11894h0))) * 1000;
+                mixedSoundInfo2.startTime = (((float) e7Var.f11917r0) - (e7Var.Z * ((float) e7Var.f11898h0))) * 1000;
                 j11 = 0;
             } else {
                 j11 = 0;
@@ -306,10 +306,10 @@ public final class d0 implements Runnable {
                 mixedSoundInfo2.audioOffset = j22 - j23;
                 mixedSoundInfo2.startTime = j11;
             }
-            mixedSoundInfo2.duration = (e7Var.f11917t0 - f15) * f16 * 1000;
-            j20Var.f23474b0.add(mixedSoundInfo2);
+            mixedSoundInfo2.duration = (e7Var.f11921t0 - f15) * f16 * 1000;
+            j20Var.f23478b0.add(mixedSoundInfo2);
         }
-        String str2 = e7Var.f11925y;
+        String str2 = e7Var.f11929y;
         if (str2 != null) {
             MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo3 = new MediaCodecVideoConvertor.MixedSoundInfo(str2);
             mixedSoundInfo3.volume = e7Var.G;
@@ -318,7 +318,7 @@ public final class d0 implements Runnable {
             long j24 = f17 * f18 * 1000;
             mixedSoundInfo3.audioOffset = j24;
             if (e7Var.K) {
-                mixedSoundInfo3.startTime = (((float) e7Var.D) - (e7Var.Z * ((float) e7Var.f11894h0))) * 1000;
+                mixedSoundInfo3.startTime = (((float) e7Var.D) - (e7Var.Z * ((float) e7Var.f11898h0))) * 1000;
                 j10 = 0;
             } else {
                 j10 = 0;
@@ -331,7 +331,7 @@ public final class d0 implements Runnable {
                 mixedSoundInfo3.startTime = j10;
             }
             mixedSoundInfo3.duration = (e7Var.F - f17) * f18 * 1000;
-            j20Var.f23474b0.add(mixedSoundInfo3);
+            j20Var.f23478b0.add(mixedSoundInfo3);
         }
         c20Var.a(j20Var);
     }

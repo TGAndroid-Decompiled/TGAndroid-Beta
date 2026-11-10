@@ -6,43 +6,43 @@ import org.telegram.messenger.p10;
 import org.telegram.messenger.qs;
 import v4.a1;
 public final class f {
-    public int f14080a;
-    public int f14081b;
-    public int f14082c;
+    public int f14082a;
+    public int f14083b;
+    public int f14084c;
     public int[] d;
 
     public f(int[] iArr) {
-        this.f14080a = p10.f24470s0;
-        this.f14081b = -1;
-        this.f14082c = -1;
+        this.f14082a = p10.f24474s0;
+        this.f14083b = -1;
+        this.f14084c = -1;
         this.d = iArr;
     }
 
     public void a(int i7) {
         int[] iArr = this.d;
-        int i10 = this.f14081b;
+        int i10 = this.f14083b;
         iArr[i10] = i7;
-        int i11 = this.f14082c & (i10 + 1);
-        this.f14081b = i11;
-        int i12 = this.f14080a;
+        int i11 = this.f14084c & (i10 + 1);
+        this.f14083b = i11;
+        int i12 = this.f14082a;
         if (i11 == i12) {
             int length = iArr.length;
             int i13 = length - i12;
             int i14 = length << 1;
             int[] iArr2 = new int[i14];
             System.arraycopy(iArr, i12, iArr2, 0, i13);
-            System.arraycopy(this.d, 0, iArr2, i13, this.f14080a);
+            System.arraycopy(this.d, 0, iArr2, i13, this.f14082a);
             this.d = iArr2;
-            this.f14080a = 0;
-            this.f14081b = length;
-            this.f14082c = i14 - 1;
+            this.f14082a = 0;
+            this.f14083b = length;
+            this.f14084c = i14 - 1;
         }
     }
 
     public void b(int i7, int i10) {
         if (i7 >= 0) {
             if (i10 >= 0) {
-                int i11 = this.f14082c;
+                int i11 = this.f14084c;
                 int i12 = i11 * 2;
                 int[] iArr = this.d;
                 if (iArr == null) {
@@ -57,7 +57,7 @@ public final class f {
                 int[] iArr4 = this.d;
                 iArr4[i12] = i7;
                 iArr4[i12 + 1] = i10;
-                this.f14082c++;
+                this.f14084c++;
                 return;
             }
             throw new IllegalArgumentException("Pixel distance must be non-negative");
@@ -68,7 +68,7 @@ public final class f {
     public void c(RecyclerView recyclerView, boolean z9) {
         boolean z10;
         int i7;
-        this.f14082c = 0;
+        this.f14084c = 0;
         int[] iArr = this.d;
         int i10 = -1;
         if (iArr != null) {
@@ -81,12 +81,12 @@ public final class f {
                     int b10 = recyclerView.f2871x.b();
                     v4.b0 b0Var = (v4.b0) n0Var;
                     v4.a0 a0Var = b0Var.B;
-                    if (a0Var != null && (i7 = a0Var.f57007a) >= 0) {
-                        z10 = a0Var.f57009c;
+                    if (a0Var != null && (i7 = a0Var.f57003a) >= 0) {
+                        z10 = a0Var.f57005c;
                     } else {
                         b0Var.f1();
                         z10 = b0Var.v;
-                        i7 = b0Var.f57034y;
+                        i7 = b0Var.f57030y;
                         if (i7 == -1) {
                             i7 = z10 ? b10 - 1 : 0;
                         }
@@ -100,11 +100,11 @@ public final class f {
                     }
                 }
             } else if (!recyclerView.Z()) {
-                int i12 = this.f14080a;
-                int i13 = this.f14081b;
+                int i12 = this.f14082a;
+                int i13 = this.f14083b;
                 a1 a1Var = recyclerView.f2867u0;
                 v4.b0 b0Var2 = (v4.b0) n0Var;
-                if (b0Var2.f57025o != 0) {
+                if (b0Var2.f57021o != 0) {
                     i12 = i13;
                 }
                 if (b0Var2.r() != 0 && i12 != 0) {
@@ -113,13 +113,13 @@ public final class f {
                         i10 = 1;
                     }
                     b0Var2.m1(i10, Math.abs(i12), true, a1Var);
-                    b0Var2.A0(a1Var, b0Var2.f57026p, this);
+                    b0Var2.A0(a1Var, b0Var2.f57022p, this);
                 }
             }
-            int i14 = this.f14082c;
-            if (i14 > n0Var.f57149i) {
-                n0Var.f57149i = i14;
-                n0Var.f57150j = z9;
+            int i14 = this.f14084c;
+            if (i14 > n0Var.f57145i) {
+                n0Var.f57145i = i14;
+                n0Var.f57146j = z9;
                 recyclerView.f2842b.l();
             }
         }
@@ -127,19 +127,19 @@ public final class f {
 
     public void d() {
         int[] iArr = this.d;
-        int i7 = p10.f24470s0;
-        if (this.f14080a != i7) {
-            qs.f(i7).j(this.f14081b);
-            this.f14081b = -1;
-            this.f14080a = i7;
+        int i7 = p10.f24474s0;
+        if (this.f14082a != i7) {
+            qs.f(i7).j(this.f14083b);
+            this.f14083b = -1;
+            this.f14082a = i7;
         }
-        this.f14081b = qs.f(i7).q(iArr, this.f14081b, true);
-        this.f14082c = qs.e().q(iArr, this.f14082c, true);
+        this.f14083b = qs.f(i7).q(iArr, this.f14083b, true);
+        this.f14084c = qs.e().q(iArr, this.f14084c, true);
     }
 
     public void e() {
-        qs.f(this.f14080a).j(this.f14081b);
-        qs.e().j(this.f14082c);
+        qs.f(this.f14082a).j(this.f14083b);
+        qs.e().j(this.f14084c);
     }
 
     public f(int i7) {
@@ -148,7 +148,7 @@ public final class f {
             case 1:
                 return;
             default:
-                this.f14082c = 7;
+                this.f14084c = 7;
                 this.d = new int[8];
                 return;
         }

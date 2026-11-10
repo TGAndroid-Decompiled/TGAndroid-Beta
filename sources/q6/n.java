@@ -1,21 +1,21 @@
 package q6;
 public final class n implements l {
-    public static n f53929b;
-    public static final o f53930c = new o(0, 0, 0, false, false);
-    public Object f53931a;
+    public static n f53928b;
+    public static final o f53929c = new o(0, 0, 0, false, false);
+    public Object f53930a;
 
     public n(Object obj) {
-        this.f53931a = obj;
+        this.f53930a = obj;
     }
 
     public static synchronized n a() {
         n nVar;
         synchronized (n.class) {
             try {
-                if (f53929b == null) {
-                    f53929b = new Object();
+                if (f53928b == null) {
+                    f53928b = new Object();
                 }
-                nVar = f53929b;
+                nVar = f53928b;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -25,8 +25,8 @@ public final class n implements l {
 
     @Override
     public Object b(com.google.android.gms.common.api.q qVar) {
-        p8.d dVar = (p8.d) this.f53931a;
-        dVar.f3500a = qVar;
+        p8.d dVar = (p8.d) this.f53930a;
+        dVar.f3503a = qVar;
         return dVar;
     }
 }

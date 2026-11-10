@@ -20,24 +20,24 @@ public abstract class c {
                         throw new Exception(String.format("[%s] Bad compression type '11' at the bit index '%d'.", c.class.getSimpleName(), Integer.valueOf(iArr[0])));
                     }
                 } else {
-                    b(uVar, iArr, uVar2, g.f54464e, f.f54463e);
+                    b(uVar, iArr, uVar2, g.f54463e, f.f54462e);
                 }
             } else {
                 int i7 = ((iArr[0] + 7) & (-8)) / 8;
                 int l10 = ((uVar.l(i7 + 1) & 255) * 256) + (uVar.l(i7) & 255);
                 int i10 = i7 + 4;
                 uVar2.getClass();
-                byte[] array = ((ByteBuffer) uVar.f11191c).array();
-                int capacity = ((ByteBuffer) uVar2.f11191c).capacity();
-                int i11 = uVar2.f11190b + l10;
+                byte[] array = ((ByteBuffer) uVar.f11196c).array();
+                int capacity = ((ByteBuffer) uVar2.f11196c).capacity();
+                int i11 = uVar2.f11195b + l10;
                 if (capacity < i11) {
                     uVar2.i(i11 + 1024);
                 }
-                ((ByteBuffer) uVar2.f11191c).put(array, i10, l10);
-                uVar2.f11190b += l10;
+                ((ByteBuffer) uVar2.f11196c).put(array, i10, l10);
+                uVar2.f11195b += l10;
                 iArr[0] = (i10 + l10) * 8;
             }
-            if (uVar.f11190b <= iArr[0] / 8) {
+            if (uVar.f11195b <= iArr[0] / 8) {
                 n10 = true;
                 continue;
             }
@@ -55,7 +55,7 @@ public abstract class c {
             } else {
                 int f10 = d.f(uVar, iArr, m10);
                 int d = d.d(uVar, iArr, j0Var2);
-                int i7 = uVar2.f11190b;
+                int i7 = uVar2.f11195b;
                 byte[] bArr = new byte[f10];
                 int i10 = i7 - d;
                 int i11 = 0;

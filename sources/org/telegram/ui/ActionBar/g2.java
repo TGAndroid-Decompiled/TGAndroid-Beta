@@ -3,40 +3,40 @@ package org.telegram.ui.ActionBar;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.qs;
-import org.telegram.ui.p61;
+import org.telegram.ui.q61;
 public final class g2 implements Runnable {
-    public final int f27492a;
-    public final v2 f27493b;
+    public final int f27498a;
+    public final w2 f27499b;
 
-    public g2(v2 v2Var, int i7) {
-        this.f27492a = i7;
-        this.f27493b = v2Var;
+    public g2(w2 w2Var, int i7) {
+        this.f27498a = i7;
+        this.f27499b = w2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f27492a) {
+        switch (this.f27498a) {
             case 0:
-                v2 v2Var = this.f27493b;
-                l2 l2Var = v2Var.f28627c;
-                org.telegram.messenger.g0.E2(l2Var);
-                v2Var.f28637f1.getLayoutContainer().addView(l2Var);
+                w2 w2Var = this.f27499b;
+                m2 m2Var = w2Var.f28675c;
+                org.telegram.messenger.g0.E2(m2Var);
+                w2Var.f28691i1.getLayoutContainer().addView(m2Var);
                 return;
             case 1:
-                this.f27493b.dismiss();
+                this.f27499b.dismiss();
                 return;
             case 2:
                 try {
-                    this.f27493b.K();
+                    this.f27499b.K();
                     return;
                 } catch (Exception e10) {
                     a8.g(e10, true);
                     return;
                 }
             default:
-                this.f27493b.dismiss();
-                qs.f(p10.f24470s0).k(189, new Object[0]);
-                org.telegram.messenger.g0.i3(new p61(21), 220L);
+                this.f27499b.dismiss();
+                qs.f(p10.f24474s0).k(189, new Object[0]);
+                org.telegram.messenger.g0.i3(new q61(21), 220L);
                 return;
         }
     }

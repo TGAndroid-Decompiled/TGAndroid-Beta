@@ -1,8 +1,8 @@
 package org.telegram.ui;
 public final class gk {
-    public final cn f46028a;
+    public final cn f46108a;
 
     public gk(cn cnVar) {
-        this.f46028a = cnVar;
+        this.f46108a = cnVar;
     }
 }

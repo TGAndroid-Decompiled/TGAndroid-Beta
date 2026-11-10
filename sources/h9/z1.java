@@ -2,29 +2,29 @@ package h9;
 
 import a8.ia;
 public final class z1 extends r0 {
-    public static final z1 f14422n;
-    public final transient q1 f14423e;
-    public final transient int f14424f;
+    public static final z1 f14424n;
+    public final transient q1 f14425e;
+    public final transient int f14426f;
     public transient q0 h;
 
     static {
         ?? obj = new Object();
         obj.d(3);
-        f14422n = new z1(obj);
+        f14424n = new z1(obj);
     }
 
     public z1(q1 q1Var) {
-        this.f14423e = q1Var;
+        this.f14425e = q1Var;
         long j3 = 0;
         int i7 = 0;
         while (true) {
-            int i10 = q1Var.f14373c;
+            int i10 = q1Var.f14375c;
             if (i7 < i10) {
                 ia.j(i7, i10);
-                j3 += q1Var.f14372b[i7];
+                j3 += q1Var.f14374b[i7];
                 i7++;
             } else {
-                this.f14424f = c8.e1.e(j3);
+                this.f14426f = c8.e1.e(j3);
                 return;
             }
         }
@@ -48,6 +48,6 @@ public final class z1 extends r0 {
 
     @Override
     public final int size() {
-        return this.f14424f;
+        return this.f14426f;
     }
 }

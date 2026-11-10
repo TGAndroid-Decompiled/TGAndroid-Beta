@@ -70,7 +70,7 @@ public class c implements g {
                 while (true) {
                     AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f3191f;
                     ee.r rVar = (ee.r) atomicReferenceFieldUpdater.get(cVar);
-                    if (rVar.f10794c >= c10.f10794c) {
+                    if (rVar.f10799c >= c10.f10799c) {
                         break loop0;
                     } else if (!c10.j()) {
                         break;
@@ -95,13 +95,13 @@ public class c implements g {
         AtomicLongFieldUpdater atomicLongFieldUpdater = f3189c;
         if (e10) {
             cVar.i();
-            if (kVar.f10794c * e.f3198b < atomicLongFieldUpdater.get(cVar)) {
+            if (kVar.f10799c * e.f3198b < atomicLongFieldUpdater.get(cVar)) {
                 kVar.b();
                 return null;
             }
         } else {
             k kVar3 = (k) ee.a.c(b10);
-            long j10 = kVar3.f10794c;
+            long j10 = kVar3.f10799c;
             if (j10 > j3) {
                 long j11 = e.f3198b * j10;
                 while (true) {
@@ -177,7 +177,7 @@ public class c implements g {
         if (obj instanceof zd.l) {
             zd.l lVar = (zd.l) obj;
             k kVar = e.f3197a;
-            com.google.android.gms.internal.clearcut.e d2 = lVar.d(gd.k.f13829a, null);
+            com.google.android.gms.internal.clearcut.e d2 = lVar.d(gd.k.f13831a, null);
             if (d2 != null) {
                 lVar.f(d2);
                 return true;
@@ -335,7 +335,7 @@ public class c implements g {
             long j12 = i7;
             long j13 = j11 / j12;
             int i10 = (int) (j11 % j12);
-            if (kVar.f10794c != j13) {
+            if (kVar.f10799c != j13) {
                 k c10 = c(this, j13, kVar);
                 if (c10 == null) {
                     if (r10) {
@@ -348,7 +348,7 @@ public class c implements g {
                 }
             }
             int e10 = e(this, kVar, i10, obj, j11, eVar, r10);
-            gd.k kVar2 = gd.k.f13829a;
+            gd.k kVar2 = gd.k.f13831a;
             if (e10 != 0) {
                 if (e10 != 1) {
                     if (e10 != 2) {
@@ -432,7 +432,7 @@ public class c implements g {
                 long j11 = e.f3198b;
                 long j12 = j10 / j11;
                 int i7 = (int) (j10 % j11);
-                if (kVar.f10794c != j12) {
+                if (kVar.f10799c != j12) {
                     k l10 = l(j12, kVar);
                     if (l10 != null) {
                         kVar = l10;
@@ -462,13 +462,13 @@ public class c implements g {
             long andIncrement = d.getAndIncrement(this);
             long j3 = andIncrement / e.f3198b;
             if (p() <= andIncrement) {
-                if (kVar.f10794c < j3 && kVar.c() != null) {
+                if (kVar.f10799c < j3 && kVar.c() != null) {
                     u(j3, kVar);
                 }
                 q(this);
                 return;
             }
-            if (kVar.f10794c != j3) {
+            if (kVar.f10799c != j3) {
                 d dVar = d.f3196a;
                 while (true) {
                     b10 = ee.a.b(kVar, j3, dVar);
@@ -476,7 +476,7 @@ public class c implements g {
                         ee.r c10 = ee.a.c(b10);
                         while (true) {
                             ee.r rVar = (ee.r) atomicReferenceFieldUpdater.get(this);
-                            if (rVar.f10794c >= c10.f10794c) {
+                            if (rVar.f10799c >= c10.f10799c) {
                                 break;
                             } else if (!c10.j()) {
                                 break;
@@ -504,7 +504,7 @@ public class c implements g {
                     q(this);
                 } else {
                     k kVar3 = (k) ee.a.c(b10);
-                    long j10 = kVar3.f10794c;
+                    long j10 = kVar3.f10799c;
                     if (j10 > j3) {
                         long j11 = j10 * e.f3198b;
                         if (d.compareAndSet(this, 1 + andIncrement, j11)) {
@@ -585,7 +585,7 @@ public class c implements g {
                 while (true) {
                     AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = h;
                     ee.r rVar = (ee.r) atomicReferenceFieldUpdater.get(this);
-                    if (rVar.f10794c >= c10.f10794c) {
+                    if (rVar.f10799c >= c10.f10799c) {
                         break loop0;
                     } else if (!c10.j()) {
                         break;
@@ -608,18 +608,18 @@ public class c implements g {
         }
         if (ee.a.e(b10)) {
             i();
-            if (kVar.f10794c * e.f3198b < p()) {
+            if (kVar.f10799c * e.f3198b < p()) {
                 kVar.b();
                 return null;
             }
         } else {
             k kVar3 = (k) ee.a.c(b10);
-            long j11 = kVar3.f10794c;
+            long j11 = kVar3.f10799c;
             if (!t() && j3 <= d.get(this) / e.f3198b) {
                 while (true) {
                     AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = f3192n;
                     ee.r rVar2 = (ee.r) atomicReferenceFieldUpdater2.get(this);
-                    if (rVar2.f10794c >= j11 || !kVar3.j()) {
+                    if (rVar2.f10799c >= j11 || !kVar3.j()) {
                         break;
                     }
                     while (!atomicReferenceFieldUpdater2.compareAndSet(this, rVar2, kVar3)) {
@@ -708,7 +708,7 @@ public class c implements g {
         if (r10 == jd.a.f16646a) {
             return r10;
         }
-        return gd.k.f13829a;
+        return gd.k.f13831a;
     }
 
     public final void w(c2 c2Var, boolean z9) {

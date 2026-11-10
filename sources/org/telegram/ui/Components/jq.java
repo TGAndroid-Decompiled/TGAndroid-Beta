@@ -1,27 +1,15 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class jq implements TextWatcher {
-    public final fq f35111a;
-    public final hq f35112b;
-
-    public jq(fq fqVar, hq hqVar) {
-        this.f35111a = fqVar;
-        this.f35112b = hqVar;
+import android.widget.LinearLayout;
+import java.util.HashSet;
+public final class jq extends LinearLayout implements org.telegram.ui.ActionBar.c6 {
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.m6.f27834a7));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.m6.H6));
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        this.f35111a.run();
-        this.f35112b.run();
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+    public final void updateColors() {
     }
 }

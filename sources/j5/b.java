@@ -20,7 +20,7 @@ public final class b extends a {
         h5.b.p(this.f16498n, allocate);
         h5.b.p(0, allocate);
         h5.b.p(0, allocate);
-        if (this.f7914e.equals("mlpa")) {
+        if (this.f7919e.equals("mlpa")) {
             allocate.putInt((int) this.f16499r);
         } else {
             allocate.putInt((int) (this.f16499r << 16));
@@ -43,6 +43,6 @@ public final class b extends a {
 
     @Override
     public final String toString() {
-        return "AudioSampleEntry{bytesPerSample=0, bytesPerFrame=0, bytesPerPacket=0, samplesPerPacket=0, packetSize=0, compressionId=0, soundVersion=0, sampleRate=" + this.f16499r + ", sampleSize=" + this.f16498n + ", channelCount=" + this.h + ", boxes=" + this.f7920b + '}';
+        return "AudioSampleEntry{bytesPerSample=0, bytesPerFrame=0, bytesPerPacket=0, samplesPerPacket=0, packetSize=0, compressionId=0, soundVersion=0, sampleRate=" + this.f16499r + ", sampleSize=" + this.f16498n + ", channelCount=" + this.h + ", boxes=" + this.f7925b + '}';
     }
 }

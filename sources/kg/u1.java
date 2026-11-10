@@ -15,22 +15,22 @@ import fi.m3;
 import java.util.HashSet;
 import org.telegram.messenger.id;
 import org.telegram.messenger.p10;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l6;
-public final class u1 extends LinearLayout implements b6 {
-    public final int f17556a = 0;
-    public final g6 f17557b;
-    public final TextView f17558c;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+public final class u1 extends LinearLayout implements c6 {
+    public final int f17559a = 0;
+    public final h6 f17560b;
+    public final TextView f17561c;
     public final View d;
-    public final TextView f17559e;
+    public final TextView f17562e;
 
-    public u1(Activity activity, int i7, long j3, String str, g6 g6Var) {
+    public u1(Activity activity, int i7, long j3, String str, h6 h6Var) {
         super(activity);
         setOrientation(1);
-        this.f17557b = g6Var;
+        this.f17560b = h6Var;
         TextView textView = new TextView(activity);
-        this.f17558c = textView;
+        this.f17561c = textView;
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setTextAlignment(4);
@@ -66,8 +66,8 @@ public final class u1 extends LinearLayout implements b6 {
         } else {
             if (i7 == 5) {
                 imageView.setImageResource(2131231614);
-                s1 c10 = t1.f(p10.f24470s0).c(j3);
-                String str2 = c10 == null ? str : c10.f17533b;
+                s1 c10 = t1.f(p10.f24474s0).c(j3);
+                String str2 = c10 == null ? str : c10.f17536b;
                 textView.setText(id.M0(2131752667, null));
                 mdVar.setMaxWidth(org.telegram.messenger.g0.L(208.0f));
                 mdVar.setTextAlignment(2);
@@ -75,7 +75,7 @@ public final class u1 extends LinearLayout implements b6 {
                 mdVar.setText(org.telegram.messenger.g0.X2(id.a0(null, null, 2131752669, str2)));
                 mdVar.setPadding(org.telegram.messenger.g0.L(28.0f), 0, 0, 0);
                 md mdVar2 = new md(activity, 4);
-                this.f17559e = mdVar2;
+                this.f17562e = mdVar2;
                 mdVar2.setMaxWidth(org.telegram.messenger.g0.L(208.0f));
                 mdVar2.setTextAlignment(2);
                 mdVar2.setGravity(3);
@@ -88,8 +88,8 @@ public final class u1 extends LinearLayout implements b6 {
         int i11 = i10;
         addView(imageView, ha.t(78, 78, 49, 20, 17, 20, 9));
         addView(textView, ha.t(-2, -2, 49, 20, 0, 20, 6));
-        addView(mdVar, ha.t(-2, -2, 49, i11, 0, i11, ((md) this.f17559e) == null ? 19 : 9));
-        View view = (md) this.f17559e;
+        addView(mdVar, ha.t(-2, -2, 49, i11, 0, i11, ((md) this.f17562e) == null ? 19 : 9));
+        View view = (md) this.f17562e;
         if (view != null) {
             addView(view, ha.t(-2, -2, 49, 12, 0, 12, 19));
         }
@@ -98,18 +98,18 @@ public final class u1 extends LinearLayout implements b6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        switch (this.f17556a) {
+        switch (this.f17559a) {
             case 0:
                 return;
             default:
-                hashSet.add(Integer.valueOf(l6.G6));
+                hashSet.add(Integer.valueOf(m6.G6));
                 return;
         }
     }
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f17556a) {
+        switch (this.f17559a) {
             case 1:
                 super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(48.0f), 1073741824));
                 return;
@@ -121,29 +121,29 @@ public final class u1 extends LinearLayout implements b6 {
 
     @Override
     public final void updateColors() {
-        switch (this.f17556a) {
+        switch (this.f17559a) {
             case 0:
                 md mdVar = (md) this.d;
-                TextView textView = this.f17558c;
+                TextView textView = this.f17561c;
                 if (textView != null && mdVar != null) {
-                    int i7 = l6.Wc;
-                    g6 g6Var = this.f17557b;
-                    textView.setTextColor(l6.w0(i7, g6Var));
-                    mdVar.setTextColor(l6.w0(i7, g6Var));
-                    md mdVar2 = (md) this.f17559e;
+                    int i7 = m6.Wc;
+                    h6 h6Var = this.f17560b;
+                    textView.setTextColor(m6.w0(i7, h6Var));
+                    mdVar.setTextColor(m6.w0(i7, h6Var));
+                    md mdVar2 = (md) this.f17562e;
                     if (mdVar2 != null) {
-                        mdVar2.setTextColor(l6.w0(i7, g6Var));
+                        mdVar2.setTextColor(m6.w0(i7, h6Var));
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                int i10 = l6.G6;
-                g6 g6Var2 = this.f17557b;
-                ((ImageView) this.d).setColorFilter(new PorterDuffColorFilter(l6.w0(i10, g6Var2), PorterDuff.Mode.SRC_IN));
-                this.f17558c.setTextColor(l6.w0(i10, g6Var2));
-                this.f17559e.setTextColor(l6.r1(0.75f, l6.w0(i10, g6Var2)));
+                int i10 = m6.G6;
+                h6 h6Var2 = this.f17560b;
+                ((ImageView) this.d).setColorFilter(new PorterDuffColorFilter(m6.w0(i10, h6Var2), PorterDuff.Mode.SRC_IN));
+                this.f17561c.setTextColor(m6.w0(i10, h6Var2));
+                this.f17562e.setTextColor(m6.r1(0.75f, m6.w0(i10, h6Var2)));
                 return;
         }
     }
@@ -151,27 +151,27 @@ public final class u1 extends LinearLayout implements b6 {
     private final void a(HashSet hashSet) {
     }
 
-    public u1(Context context, li.l0 l0Var, g6 g6Var) {
+    public u1(Context context, li.l0 l0Var, h6 h6Var) {
         super(context);
-        this.f17557b = g6Var;
+        this.f17560b = h6Var;
         setOrientation(0);
         ImageView imageView = new ImageView(context);
         this.d = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView, ha.t(42, 42, 19, 0, 0, 0, 0));
         TextView textView = new TextView(context);
-        this.f17558c = textView;
+        this.f17561c = textView;
         textView.setTextSize(1, 16.0f);
         TextView textView2 = new TextView(context);
-        this.f17559e = textView2;
+        this.f17562e = textView2;
         textView2.setTextSize(1, 16.0f);
         textView2.setGravity(5);
         addView(textView, ha.t(-2, -2, 19, 8, 0, 0, 0));
         addView(new Space(context), ha.p(0, -2, 1.0f, 119));
         addView(textView2, ha.t(-2, -2, 21, 8, 0, 0, 0));
-        imageView.setImageResource(l0Var.f18679a);
-        textView.setText(l0Var.f18680b);
-        textView2.setText((CharSequence) l0Var.f18681c.get(0));
+        imageView.setImageResource(l0Var.f18682a);
+        textView.setText(l0Var.f18683b);
+        textView2.setText((CharSequence) l0Var.f18684c.get(0));
         updateColors();
     }
 }

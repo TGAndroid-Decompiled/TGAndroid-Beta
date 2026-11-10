@@ -7,8 +7,8 @@ import android.view.View;
 import java.lang.reflect.Method;
 import java.util.WeakHashMap;
 public abstract class t3 {
-    public static final Method f19259a;
-    public static final boolean f19260b;
+    public static final Method f19264a;
+    public static final boolean f19265b;
 
     static {
         boolean z9;
@@ -17,10 +17,10 @@ public abstract class t3 {
         } else {
             z9 = false;
         }
-        f19260b = z9;
+        f19265b = z9;
         try {
             Method declaredMethod = View.class.getDeclaredMethod("computeFitSystemWindows", Rect.class, Rect.class);
-            f19259a = declaredMethod;
+            f19264a = declaredMethod;
             if (!declaredMethod.isAccessible()) {
                 declaredMethod.setAccessible(true);
             }
@@ -30,7 +30,7 @@ public abstract class t3 {
     }
 
     public static boolean a(View view) {
-        WeakHashMap weakHashMap = r0.i0.f54203a;
+        WeakHashMap weakHashMap = r0.i0.f54202a;
         if (view.getLayoutDirection() == 1) {
             return true;
         }

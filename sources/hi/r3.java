@@ -7,47 +7,47 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.l6;
-public final class r3 extends FrameLayout implements b6 {
-    public Path f14930a;
-    public float f14931b;
-    public int f14932c;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.m6;
+public final class r3 extends FrameLayout implements c6 {
+    public Path f14932a;
+    public float f14933b;
+    public int f14934c;
     public boolean d;
-    public int f14933e;
-    public int f14934f;
+    public int f14935e;
+    public int f14936f;
     public View h;
-    public y f14935n;
+    public y f14937n;
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(l6.Rf));
-        hashSet.add(Integer.valueOf(l6.Ci));
+        hashSet.add(Integer.valueOf(m6.Rf));
+        hashSet.add(Integer.valueOf(m6.Ci));
     }
 
     @Override
     public final void draw(Canvas canvas) {
         canvas.save();
         float height = (getHeight() - org.telegram.messenger.g0.L(32.0f)) / 2.0f;
-        float max = Math.max((getWidth() - this.f14934f) - org.telegram.messenger.g0.L(4.0f), getHeight()) * this.f14931b;
+        float max = Math.max((getWidth() - this.f14936f) - org.telegram.messenger.g0.L(4.0f), getHeight()) * this.f14933b;
         float L = org.telegram.messenger.g0.L(16.0f) + max;
         RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(org.telegram.messenger.g0.L(14.0f) - max, (org.telegram.messenger.g0.L(4.0f) + height) - max, org.telegram.messenger.g0.L(6.0f) + this.f14934f + max, (getHeight() - org.telegram.messenger.g0.L(12.0f)) + max);
-        Path path = this.f14930a;
+        rectF.set(org.telegram.messenger.g0.L(14.0f) - max, (org.telegram.messenger.g0.L(4.0f) + height) - max, org.telegram.messenger.g0.L(6.0f) + this.f14936f + max, (getHeight() - org.telegram.messenger.g0.L(12.0f)) + max);
+        Path path = this.f14932a;
         path.rewind();
         path.addRoundRect(rectF, L, L, Path.Direction.CW);
         canvas.clipPath(path);
-        canvas.drawColor(this.f14933e);
-        canvas.saveLayerAlpha(rectF, (int) ((1.0f - (Math.min(0.5f, this.f14931b) / 0.5f)) * 255.0f), 31);
+        canvas.drawColor(this.f14935e);
+        canvas.saveLayerAlpha(rectF, (int) ((1.0f - (Math.min(0.5f, this.f14933b) / 0.5f)) * 255.0f), 31);
         canvas.translate(org.telegram.messenger.g0.L(10.0f), height);
-        y yVar = this.f14935n;
+        y yVar = this.f14937n;
         if (yVar != null) {
             yVar.setDrawBackgroundDrawable(false);
-            this.f14935n.draw(canvas);
-            this.f14935n.setDrawBackgroundDrawable(true);
+            this.f14937n.draw(canvas);
+            this.f14937n.setDrawBackgroundDrawable(true);
         }
         canvas.restore();
-        canvas.translate((1.0f - this.f14931b) * (-org.telegram.messenger.g0.L(8.0f)), 0.0f);
+        canvas.translate((1.0f - this.f14933b) * (-org.telegram.messenger.g0.L(8.0f)), 0.0f);
         super.draw(canvas);
         canvas.restore();
     }
@@ -68,18 +68,18 @@ public final class r3 extends FrameLayout implements b6 {
     }
 
     public void setBotMenuButton(y yVar) {
-        this.f14935n = yVar;
+        this.f14937n = yVar;
         invalidate();
     }
 
     public void setMeasuredButtonWidth(int i7) {
-        this.f14934f = i7;
+        this.f14936f = i7;
         invalidate();
     }
 
     public void setProgress(float f10) {
-        this.f14931b = f10;
-        this.f14933e = i0.a.f(f10, l6.x0(null, l6.Rf, false), this.f14932c);
+        this.f14933b = f10;
+        this.f14935e = i0.a.f(f10, m6.x0(null, m6.Rf, false), this.f14934c);
         for (int i7 = 0; i7 < getChildCount(); i7++) {
             getChildAt(i7).setAlpha(f10);
         }
@@ -90,10 +90,10 @@ public final class r3 extends FrameLayout implements b6 {
     public final void updateColors() {
         try {
             if (this.d) {
-                this.f14932c = l6.x0(null, l6.Ci, false);
+                this.f14934c = m6.x0(null, m6.Ci, false);
             }
-            if (this.f14933e != 0) {
-                this.f14933e = i0.a.f(this.f14931b, l6.x0(null, l6.Rf, false), this.f14932c);
+            if (this.f14935e != 0) {
+                this.f14935e = i0.a.f(this.f14933b, m6.x0(null, m6.Rf, false), this.f14934c);
                 invalidate();
             }
         } catch (Exception e10) {

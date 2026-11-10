@@ -1,74 +1,77 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.RadialGradient;
-import android.graphics.Shader;
+import android.graphics.Path;
+import java.util.ArrayList;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.TLRPC;
 public final class o00 {
-    public float f36578c;
-    public float d;
-    public float f36579e;
-    public float f36580f;
-    public RadialGradient f36581g;
-    public final int f36582i;
-    public int f36583j;
-    public int f36584k;
-    public int f36585l;
-    public float f36576a = -1.0f;
-    public float f36577b = -1.0f;
-    public final Matrix h = new Matrix();
-    public final int f36586m = org.telegram.ui.ActionBar.l6.Lh;
-    public final int f36587n = org.telegram.ui.ActionBar.l6.Mh;
-    public final int f36588o = org.telegram.ui.ActionBar.l6.Nh;
-    public final int f36589p = org.telegram.ui.ActionBar.l6.Oh;
-    public final int f36590q = org.telegram.ui.ActionBar.l6.Wh;
-    public final int f36591r = org.telegram.ui.ActionBar.l6.Xh;
-    public final int f36592s = org.telegram.ui.ActionBar.l6.Yh;
+    public n00[] f36434a;
+    public n00 f36435b;
+    public n00 f36436c;
+    public n00 d;
+    public float f36437e;
+    public float f36438f;
+    public float f36439g;
+    public float h;
+    public float f36440i;
+    public long f36441j;
+    public float f36442k;
+    public ArrayList f36443l;
+    public Paint f36444m;
+    public Path f36445n;
 
-    public o00(int i7) {
-        this.f36582i = i7;
-        a();
+    public final void a(float f10) {
+        this.f36439g = f10;
+        float f11 = this.f36437e;
+        this.h = (f10 - f11) / 250.0f;
+        this.f36440i = (f10 - f11) / 120.0f;
     }
 
-    public final void a() {
-        int i7 = this.f36582i;
-        if (i7 == 0) {
-            int x02 = org.telegram.ui.ActionBar.l6.x0(null, this.f36586m, false);
-            this.f36583j = x02;
-            int x03 = org.telegram.ui.ActionBar.l6.x0(null, this.f36587n, false);
-            this.f36584k = x03;
-            this.f36581g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{x02, x03}, (float[]) null, Shader.TileMode.CLAMP);
-        } else if (i7 == 1) {
-            int x04 = org.telegram.ui.ActionBar.l6.x0(null, this.f36588o, false);
-            this.f36583j = x04;
-            int x05 = org.telegram.ui.ActionBar.l6.x0(null, this.f36589p, false);
-            this.f36584k = x05;
-            this.f36581g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{x04, x05}, (float[]) null, Shader.TileMode.CLAMP);
-        } else if (i7 == 3) {
-            int x06 = org.telegram.ui.ActionBar.l6.x0(null, this.f36590q, false);
-            this.f36583j = x06;
-            int x07 = org.telegram.ui.ActionBar.l6.x0(null, this.f36592s, false);
-            this.f36585l = x07;
-            int x08 = org.telegram.ui.ActionBar.l6.x0(null, this.f36591r, false);
-            this.f36584k = x08;
-            this.f36581g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{x06, x07, x08}, new float[]{0.0f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
+    public final void b(int i7, boolean z9) {
+        n00 n00Var;
+        n00 n00Var2 = this.f36435b;
+        if (n00Var2 != null && n00Var2.f36174i == i7) {
+            return;
+        }
+        if (VoIPService.getSharedInstance() == null && this.f36435b == null) {
+            this.f36435b = this.d;
+            return;
+        }
+        if (z9) {
+            n00Var = this.f36435b;
+        } else {
+            n00Var = null;
+        }
+        this.f36436c = n00Var;
+        this.f36435b = this.f36434a[i7];
+        if (n00Var != null) {
+            this.f36442k = 0.0f;
+        } else {
+            this.f36442k = 1.0f;
         }
     }
 
-    public final void b(Paint paint) {
-        int i7 = this.f36582i;
-        if (i7 != 0 && i7 != 1 && i7 != 3) {
-            paint.setShader(null);
-            paint.setColor(org.telegram.ui.ActionBar.l6.x0(null, org.telegram.ui.ActionBar.l6.Ph, false));
-        } else if (!org.telegram.messenger.sc.e(512)) {
-            paint.setShader(null);
-            if (i7 == 3) {
-                paint.setColor(i0.a.f(0.5f, i0.a.f(0.5f, this.f36583j, this.f36584k), this.f36585l));
-            } else {
-                paint.setColor(i0.a.f(0.5f, this.f36583j, this.f36584k));
+    public final void c(boolean z9) {
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance != null) {
+            int callState = sharedInstance.getCallState();
+            if (!sharedInstance.isSwitchingStream() && (callState == 1 || callState == 2 || callState == 6 || callState == 5)) {
+                b(2, z9);
+                return;
             }
-        } else {
-            paint.setShader(this.f36581g);
+            org.telegram.messenger.r3 r3Var = sharedInstance.groupCall;
+            if (r3Var != null) {
+                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) r3Var.d.f(sharedInstance.getSelfId());
+                if ((groupCallParticipant != null && !groupCallParticipant.can_self_unmute && groupCallParticipant.muted && !org.telegram.messenger.t3.w(14, sharedInstance.getChat())) || sharedInstance.groupCall.f25226b.rtmp_stream) {
+                    sharedInstance.setMicMute(true, false, false);
+                    b(3, z9);
+                    return;
+                }
+                b(sharedInstance.isMicMute() ? 1 : 0, z9);
+                return;
+            }
+            b(sharedInstance.isMicMute() ? 1 : 0, z9);
         }
     }
 }

@@ -64,7 +64,7 @@ public final class md extends TextView {
     public void onDraw(Canvas canvas) {
         switch (this.f4379a) {
             case 5:
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.g4.f45873s1);
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.g4.f45942s1);
                 super.onDraw(canvas);
                 return;
             default:
@@ -77,7 +77,7 @@ public final class md extends TextView {
     public void onMeasure(int i7, int i10) {
         switch (this.f4379a) {
             case 0:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 1073741824));
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.l.getCurrentActionBarHeight(), 1073741824));
                 return;
             case 10:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(220.0f)), View.MeasureSpec.getMode(i7)), i10);

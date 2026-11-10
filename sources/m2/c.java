@@ -2,12 +2,12 @@ package m2;
 
 import h2.o;
 public final class c implements o {
-    public final int f19526a;
+    public final int f19531a;
 
     @Override
     public final void invoke(Object obj) {
         b bVar = (b) obj;
-        switch (this.f19526a) {
+        switch (this.f19531a) {
             case 0:
                 bVar.getClass();
                 return;
@@ -102,10 +102,10 @@ public final class c implements o {
     }
 
     public c(a aVar, int i7, int i10, char c10) {
-        this.f19526a = i10;
+        this.f19531a = i10;
     }
 
     public c(a aVar, String str, long j3, long j10, int i7) {
-        this.f19526a = i7;
+        this.f19531a = i7;
     }
 }

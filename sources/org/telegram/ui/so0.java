@@ -1,20 +1,21 @@
 package org.telegram.ui;
-public final class so0 extends org.telegram.ui.ActionBar.j {
-    public final org.telegram.ui.ActionBar.g6 f49966a;
-    public final PhotoViewer f49967b;
 
-    public so0(PhotoViewer photoViewer, org.telegram.ui.ActionBar.g6 g6Var) {
-        this.f49967b = photoViewer;
-        this.f49966a = g6Var;
+import android.app.Activity;
+import org.telegram.tgnet.TLObject;
+public final class so0 extends org.telegram.ui.Components.yv0 {
+    public final to0 f49905r2;
+
+    public so0(to0 to0Var, Activity activity, org.telegram.messenger.ij ijVar, TLObject tLObject, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(activity, ijVar, tLObject, h6Var);
+        this.f49905r2 = to0Var;
     }
 
     @Override
-    public final boolean a() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.so0.a():boolean");
-    }
-
-    @Override
-    public final void b(int r41) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.so0.b(int):void");
+    public final void dismiss() {
+        super.dismiss();
+        PhotoViewer photoViewer = this.f49905r2.f50316b;
+        if (photoViewer.T3 == this) {
+            photoViewer.T3 = null;
+        }
     }
 }

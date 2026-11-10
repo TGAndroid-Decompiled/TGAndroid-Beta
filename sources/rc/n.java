@@ -2,10 +2,10 @@ package rc;
 
 import com.google.android.gms.internal.clearcut.z0;
 public final class n extends v {
-    public final z0 f54475b;
+    public final z0 f54474b;
 
     public n(int i7, String str, z0 z0Var) {
         super(i7, str);
-        this.f54475b = z0Var;
+        this.f54474b = z0Var;
     }
 }

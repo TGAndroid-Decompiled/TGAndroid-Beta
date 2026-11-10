@@ -1,31 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class g41 implements View.OnClickListener {
-    public final int f33860a;
-    public final UndoView f33861b;
+import android.text.Selection;
+import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
+import android.text.style.CharacterStyle;
+import android.view.MotionEvent;
+import android.widget.TextView;
+public final class g41 extends LinkMovementMethod {
+    public final UndoView f33798a;
 
-    public g41(UndoView undoView, int i7) {
-        this.f33860a = i7;
-        this.f33861b = undoView;
+    public g41(UndoView undoView) {
+        this.f33798a = undoView;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i7 = this.f33860a;
-        UndoView undoView = this.f33861b;
-        switch (i7) {
-            case 0:
-                int i10 = UndoView.f31601i0;
-                if (undoView.a()) {
-                    undoView.d(1, false);
-                    return;
+    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
+        CharacterStyle[] characterStyleArr;
+        try {
+            if (motionEvent.getAction() != 0 || ((characterStyleArr = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class)) != null && characterStyleArr.length != 0)) {
+                if (motionEvent.getAction() == 1) {
+                    CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
+                    if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
+                        this.f33798a.b(characterStyleArr2[0]);
+                    }
+                    Selection.removeSelection(spannable);
+                    return true;
                 }
-                return;
-            default:
-                int i11 = UndoView.f31601i0;
-                undoView.d(1, false);
-                return;
+                return super.onTouchEvent(textView, spannable, motionEvent);
+            }
+            return false;
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+            return false;
         }
     }
 }

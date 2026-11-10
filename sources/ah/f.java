@@ -7,29 +7,29 @@ import android.widget.TextView;
 import c8.ha;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.ActionBar.s6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
 public final class f extends FrameLayout {
-    public final g6 f1072a;
+    public final h6 f1072a;
     public final TextView f1073b;
 
-    public f(Context context, g6 g6Var) {
+    public f(Context context, h6 h6Var) {
         super(context);
         int i7;
-        this.f1072a = g6Var;
-        s6.h(l6.f27885e7, this, g6Var);
+        this.f1072a = h6Var;
+        t6.h(m6.f27910e7, this, h6Var);
         TextView textView = new TextView(getContext());
         this.f1073b = textView;
         com.google.android.recaptcha.internal.a.q(textView, 1, 14.0f);
-        s6.U(textView, l6.f27904f7, g6Var);
-        if (id.f23157a0) {
+        t6.U(textView, m6.f27929f7, h6Var);
+        if (id.f23161a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7 | 16);
-        addView(textView, ha.d(-1, -1.0f, (id.f23157a0 ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
+        addView(textView, ha.d(-1, -1.0f, (id.f23161a0 ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
     }
 
     @Override
@@ -42,6 +42,6 @@ public final class f extends FrameLayout {
     }
 
     public void setTextColor(int i7) {
-        s6.U(this.f1073b, i7, this.f1072a);
+        t6.U(this.f1073b, i7, this.f1072a);
     }
 }

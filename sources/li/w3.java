@@ -8,17 +8,17 @@ import org.telegram.messenger.iz;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.l60;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.k60;
 public final class w3 implements View.OnClickListener {
-    public final int f18956a;
-    public final y3 f18957b;
-    public final int f18958c;
+    public final int f18961a;
+    public final y3 f18962b;
+    public final int f18963c;
 
     public w3(y3 y3Var, int i7, int i10) {
-        this.f18956a = i10;
-        this.f18957b = y3Var;
-        this.f18958c = i7;
+        this.f18961a = i10;
+        this.f18962b = y3Var;
+        this.f18963c = i7;
     }
 
     @Override
@@ -38,17 +38,17 @@ public final class w3 implements View.OnClickListener {
         m5 U2;
         p5 q10;
         String str;
-        int i7 = this.f18956a;
-        int i10 = this.f18958c;
-        y3 y3Var = this.f18957b;
+        int i7 = this.f18961a;
+        int i10 = this.f18963c;
+        y3 y3Var = this.f18962b;
         switch (i7) {
             case 0:
-                y3Var.f18999a.f18678a.f18760r.b4(i10);
+                y3Var.f19004a.f18681a.f18763r.b4(i10);
                 return;
             default:
-                final p pVar = y3Var.f18999a.f18678a;
-                g6 g6Var = pVar.f39070a;
-                t3 t3Var = pVar.f18760r;
+                final p pVar = y3Var.f19004a.f18681a;
+                h6 h6Var = pVar.f38655a;
+                t3 t3Var = pVar.f18763r;
                 a T2 = t3Var.T2();
                 TL_iv.pageTableCell pagetablecell = null;
                 r9 = null;
@@ -65,7 +65,7 @@ public final class w3 implements View.OnClickListener {
                                 return;
                             }
                             if (T2 != null) {
-                                TL_iv.PageBlock pageBlock = T2.f18392b;
+                                TL_iv.PageBlock pageBlock = T2.f18395b;
                                 if (pageBlock instanceof TL_iv.pageBlockMath) {
                                     pageblockmath = (TL_iv.pageBlockMath) pageBlock;
                                 }
@@ -76,19 +76,19 @@ public final class w3 implements View.OnClickListener {
                             } else {
                                 str = "";
                             }
-                            p.Z(context, str, new ai.f1(26, pVar, pageblockmath), g6Var);
+                            p.Z(context, str, new ai.f1(26, pVar, pageblockmath), h6Var);
                             return;
                         }
-                        m5 m5Var = t3Var.f18892p4;
+                        m5 m5Var = t3Var.f18895p4;
                         if (m5Var == null && (U2 = t3Var.U2()) != null && U2.getModel() != null) {
                             View findFocus = t3Var.findFocus();
                             if ((findFocus instanceof g1) && (q10 = U2.q((g1) findFocus)) != null) {
-                                pagetablecell = q10.f18779b;
+                                pagetablecell = q10.f18782b;
                             }
                             if (pagetablecell != null) {
                                 t3Var.j2(U2);
                                 if (U2.H.add(pagetablecell)) {
-                                    U2.f18711w.invalidate();
+                                    U2.f18714w.invalidate();
                                     U2.v();
                                 }
                                 m5Var = U2;
@@ -102,11 +102,11 @@ public final class w3 implements View.OnClickListener {
                             return;
                         }
                     }
-                    l60 l60Var = pVar.H;
-                    if (l60Var != null) {
-                        l60Var.u();
+                    k60 k60Var = pVar.H;
+                    if (k60Var != null) {
+                        k60Var.u();
                     }
-                    final l60 F = l60.F(pVar, g6Var, view);
+                    final k60 F = k60.F(pVar, h6Var, view);
                     F.Q = true;
                     if (T2 != null && T2.b()) {
                         z16 = false;
@@ -132,7 +132,7 @@ public final class w3 implements View.OnClickListener {
                         z19 = false;
                     }
                     F.j(z19, 2131231597, null, id.M0(2131754001, null), new f(pVar, T2, 4));
-                    if (T2 != null && (T2.f18392b instanceof TL_iv.pageBlockDetails)) {
+                    if (T2 != null && (T2.f18395b instanceof TL_iv.pageBlockDetails)) {
                         z20 = true;
                     } else {
                         z20 = false;
@@ -148,11 +148,11 @@ public final class w3 implements View.OnClickListener {
                                 public final void run() {
                                     switch (r3) {
                                         case 0:
-                                            pVar.f18760r.u3(false);
+                                            pVar.f18763r.u3(false);
                                             F.u();
                                             return;
                                         default:
-                                            pVar.f18760r.u3(true);
+                                            pVar.f18763r.u3(true);
                                             F.u();
                                             return;
                                     }
@@ -165,11 +165,11 @@ public final class w3 implements View.OnClickListener {
                                 public final void run() {
                                     switch (r3) {
                                         case 0:
-                                            pVar.f18760r.u3(false);
+                                            pVar.f18763r.u3(false);
                                             F.u();
                                             return;
                                         default:
-                                            pVar.f18760r.u3(true);
+                                            pVar.f18763r.u3(true);
                                             F.u();
                                             return;
                                     }
@@ -182,14 +182,14 @@ public final class w3 implements View.OnClickListener {
                     pVar.H = F;
                     return;
                 }
-                int i11 = pVar.f18759n;
-                l60 l60Var2 = pVar.H;
-                if (l60Var2 != null) {
-                    l60Var2.u();
+                int i11 = pVar.f18762n;
+                k60 k60Var2 = pVar.H;
+                if (k60Var2 != null) {
+                    k60Var2.u();
                 }
-                l60 G = l60.G(pVar, g6Var, view, true);
+                k60 G = k60.G(pVar, h6Var, view, true);
                 G.Q = true;
-                l60 J = G.J();
+                k60 J = G.J();
                 if (!qp.s1(i11).s4() && !p10.i(i11).q()) {
                     z9 = true;
                 } else {
@@ -203,7 +203,7 @@ public final class w3 implements View.OnClickListener {
                 pVar.T(J, T2, new TL_iv.pageBlockHeading4(), 2131231561, id.M0(2131754027, null), iz.W0 - 1, G);
                 pVar.T(J, T2, new TL_iv.pageBlockHeading5(), 2131231562, id.M0(2131754026, null), iz.W0 - 2, G);
                 pVar.T(J, T2, new TL_iv.pageBlockHeading6(), 2131231563, id.M0(2131754025, null), iz.W0 - 3, G);
-                if (T2 != null && t3.F3(T2.f18392b)) {
+                if (T2 != null && t3.F3(T2.f18395b)) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -211,19 +211,19 @@ public final class w3 implements View.OnClickListener {
                 z1 z1Var = new z1(pVar.getContext(), 2131231558);
                 z1Var.a(z9);
                 G.j(z10, 0, z1Var, id.M0(2131754031, null), new hi.h2(G, J, 1));
-                if (T2 != null && (T2.f18392b instanceof TL_iv.pageBlockParagraph)) {
+                if (T2 != null && (T2.f18395b instanceof TL_iv.pageBlockParagraph)) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
                 G.j(z11, 2131231595, null, id.M0(2131753988, null), new f(pVar, T2, 5));
-                if (T2 != null && (T2.f18392b instanceof TL_iv.pageBlockBlockquote)) {
+                if (T2 != null && (T2.f18395b instanceof TL_iv.pageBlockBlockquote)) {
                     z12 = true;
                 } else {
                     z12 = false;
                 }
                 G.j(z12, 2131231580, null, id.M0(2131753996, null), new f(pVar, T2, 6));
-                if (T2 != null && (T2.f18392b instanceof TL_iv.pageBlockPullquote)) {
+                if (T2 != null && (T2.f18395b instanceof TL_iv.pageBlockPullquote)) {
                     z13 = true;
                 } else {
                     z13 = false;
@@ -231,13 +231,13 @@ public final class w3 implements View.OnClickListener {
                 z1 z1Var2 = new z1(pVar.getContext(), 2131231579);
                 z1Var2.a(z9);
                 G.j(z13, 0, z1Var2, id.M0(2131753997, null), new f(pVar, T2, 7));
-                if (T2 != null && (T2.f18392b instanceof TL_iv.pageBlockPreformatted)) {
+                if (T2 != null && (T2.f18395b instanceof TL_iv.pageBlockPreformatted)) {
                     z14 = true;
                 } else {
                     z14 = false;
                 }
                 G.j(z14, 2131231551, null, id.M0(2131754055, null), new f(pVar, T2, 8));
-                if (T2 != null && (T2.f18392b instanceof TL_iv.pageBlockFooter)) {
+                if (T2 != null && (T2.f18395b instanceof TL_iv.pageBlockFooter)) {
                     z15 = true;
                 } else {
                     z15 = false;

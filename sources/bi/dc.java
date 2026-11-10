@@ -3,20 +3,20 @@ package bi;
 import android.text.TextWatcher;
 import android.widget.TextView;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.mb0;
+import org.telegram.ui.Components.lb0;
 public final class dc implements TextWatcher {
     public boolean f3700a;
     public int f3701b = 2;
     public final EditTextBoldCursor f3702c;
-    public final mb0 d;
+    public final lb0 d;
     public final long f3703e;
     public final boolean f3704f;
     public final fi.d h;
     public final TextView f3705n;
 
-    public dc(EditTextBoldCursor editTextBoldCursor, mb0 mb0Var, long j3, boolean z9, fi.d dVar, TextView textView) {
+    public dc(EditTextBoldCursor editTextBoldCursor, lb0 lb0Var, long j3, boolean z9, fi.d dVar, TextView textView) {
         this.f3702c = editTextBoldCursor;
-        this.d = mb0Var;
+        this.d = lb0Var;
         this.f3703e = j3;
         this.f3704f = z9;
         this.h = dVar;

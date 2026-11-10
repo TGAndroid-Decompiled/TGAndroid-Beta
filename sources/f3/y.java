@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.regex.Pattern;
 public final class y implements c4.m {
-    public final h2.x f11101a;
+    public final h2.x f11106a;
 
     public y(int i7) {
         switch (i7) {
             case 1:
-                this.f11101a = new h2.x();
+                this.f11106a = new h2.x();
                 return;
             default:
-                this.f11101a = new h2.x(10);
+                this.f11106a = new h2.x(10);
                 return;
         }
     }
@@ -40,7 +40,7 @@ public final class y implements c4.m {
         boolean z9;
         g2.b a10;
         boolean z10;
-        h2.x xVar = this.f11101a;
+        h2.x xVar = this.f11106a;
         xVar.L(i7 + i10, bArr);
         xVar.N(i7);
         ArrayList arrayList = new ArrayList();
@@ -66,9 +66,9 @@ public final class y implements c4.m {
                     int m11 = xVar.m();
                     int m12 = xVar.m();
                     int i12 = m11 - 8;
-                    byte[] bArr2 = xVar.f14162a;
-                    int i13 = xVar.f14163b;
-                    String str = m0.f14112a;
+                    byte[] bArr2 = xVar.f14164a;
+                    int i13 = xVar.f14165b;
+                    String str = m0.f14114a;
                     String str2 = new String(bArr2, i13, i12, StandardCharsets.UTF_8);
                     xVar.O(i12);
                     i11 = (i11 - 8) - i12;
@@ -84,13 +84,13 @@ public final class y implements c4.m {
                     charSequence = "";
                 }
                 if (aVar != null) {
-                    aVar.f13414a = charSequence;
-                    aVar.f13415b = null;
+                    aVar.f13416a = charSequence;
+                    aVar.f13417b = null;
                     a10 = aVar.a();
                 } else {
-                    Pattern pattern = l4.h.f18166a;
+                    Pattern pattern = l4.h.f18169a;
                     l4.g gVar2 = new l4.g();
-                    gVar2.f18159c = charSequence;
+                    gVar2.f18162c = charSequence;
                     a10 = gVar2.a().a();
                 }
                 arrayList.add(a10);

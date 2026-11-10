@@ -19,16 +19,15 @@ import org.telegram.messenger.t10;
 import org.telegram.messenger.t3;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l5;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.ActionBar.s6;
-import org.telegram.ui.Components.l9;
-import org.telegram.ui.Components.pu0;
-import org.telegram.ui.Components.w8;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.Components.k9;
+import org.telegram.ui.Components.ou0;
+import org.telegram.ui.Components.v8;
 import org.telegram.ui.Components.wo;
-public final class r extends yg.c implements b6 {
+public final class r extends yg.c implements c6 {
     public final ImageView D;
     public boolean E;
     public final ImageView F;
@@ -36,15 +35,15 @@ public final class r extends yg.c implements b6 {
     public TLRPC.User H;
     public TLRPC.Chat I;
     public TL_stories.TL_myBoost J;
-    public final pu0 K;
+    public final ou0 K;
     public int L;
     public final boolean[] f1110s;
     public final wo f1111w;
     public final ImageView f1112x;
     public boolean f1113y;
 
-    public r(Context context, boolean z9, boolean z10, g6 g6Var, boolean z11) {
-        super(context, g6Var);
+    public r(Context context, boolean z9, boolean z10, h6 h6Var, boolean z11) {
+        super(context, h6Var);
         int i7;
         int i10;
         int i11;
@@ -54,16 +53,16 @@ public final class r extends yg.c implements b6 {
         float f12;
         this.f1110s = new boolean[1];
         this.G = true;
-        this.K = new pu0(this);
+        this.K = new ou0(this);
         this.d.setTypeface(g0.o());
-        this.f59445f.setVisibility(8);
+        this.f59443f.setVisibility(8);
         if (z10) {
-            wo woVar = new wo(21, context, g6Var);
+            wo woVar = new wo(21, context, h6Var);
             this.f1111w = woVar;
-            woVar.b(l6.B5, l6.f27938h5, l6.f27995k7);
+            woVar.b(m6.B5, m6.f27963h5, m6.f28020k7);
             woVar.setDrawUnchecked(false);
             woVar.setDrawBackgroundAsArc(3);
-            boolean z12 = id.f23157a0;
+            boolean z12 = id.f23161a0;
             if (z12) {
                 i12 = 5;
             } else {
@@ -78,18 +77,18 @@ public final class r extends yg.c implements b6 {
             addView(woVar, ha.d(24, 24.0f, i13, f12, 33.0f, z12 ? 39.0f : 0.0f, 0.0f));
             d();
         } else if (z9) {
-            wo woVar2 = new wo(21, context, g6Var);
+            wo woVar2 = new wo(21, context, h6Var);
             this.f1111w = woVar2;
             if (z11) {
-                woVar2.b(l6.i7, l6.f27975j7, l6.C5);
+                woVar2.b(m6.i7, m6.f28000j7, m6.C5);
             } else {
-                woVar2.b(l6.B5, l6.f27975j7, l6.C5);
+                woVar2.b(m6.B5, m6.f28000j7, m6.C5);
             }
             woVar2.setDrawUnchecked(true);
             woVar2.setDrawBackgroundAsArc(10);
             addView(woVar2);
             woVar2.a(false, false);
-            if (id.f23157a0) {
+            if (id.f23161a0) {
                 i7 = 5;
             } else {
                 i7 = 3;
@@ -104,10 +103,10 @@ public final class r extends yg.c implements b6 {
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(2131231244);
-        int i14 = l6.f28072od;
+        int i14 = m6.f28097od;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        s6.s(imageView, i14, g6Var, mode);
-        if (id.f23157a0) {
+        t6.s(imageView, i14, h6Var, mode);
+        if (id.f23161a0) {
             i10 = 3;
         } else {
             i10 = 5;
@@ -117,9 +116,9 @@ public final class r extends yg.c implements b6 {
         this.D = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageResource(2131231846);
-        int i15 = l6.Ci;
-        s6.s(imageView2, i15, g6Var, mode);
-        boolean z13 = id.f23157a0;
+        int i15 = m6.Ci;
+        t6.s(imageView2, i15, h6Var, mode);
+        boolean z13 = id.f23161a0;
         if (z13) {
             i11 = 3;
         } else {
@@ -142,8 +141,8 @@ public final class r extends yg.c implements b6 {
         this.F = imageView3;
         imageView3.setScaleType(scaleType);
         imageView3.setImageResource(2131231915);
-        s6.s(imageView3, i15, g6Var, mode);
-        addView(imageView3, ha.d(32, 32.0f, (id.f23157a0 ? 3 : 5) | 16, 12.0f, 0.0f, 12.0f, 0.0f));
+        t6.s(imageView3, i15, h6Var, mode);
+        addView(imageView3, ha.d(32, 32.0f, (id.f23161a0 ? 3 : 5) | 16, 12.0f, 0.0f, 12.0f, 0.0f));
         imageView3.setVisibility(8);
     }
 
@@ -165,7 +164,7 @@ public final class r extends yg.c implements b6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(l6.z9));
+        hashSet.add(Integer.valueOf(m6.z9));
     }
 
     @Override
@@ -307,17 +306,17 @@ public final class r extends yg.c implements b6 {
         this.f1112x.setVisibility(8);
         this.I = chat;
         this.H = null;
-        w8 w8Var = this.f59442b;
-        w8Var.q(chat);
+        v8 v8Var = this.f59440b;
+        v8Var.q(chat);
         if (t3.c0(chat)) {
             f10 = 12.0f;
         } else {
             f10 = 20.0f;
         }
         int L = g0.L(f10);
-        l9 l9Var = this.f59443c;
-        l9Var.setRoundRadius(L);
-        l9Var.e(chat, w8Var);
+        k9 k9Var = this.f59441c;
+        k9Var.setRoundRadius(L);
+        k9Var.e(chat, v8Var);
         String str2 = chat.title;
         e4 e4Var = this.d;
         e4Var.k(str2);
@@ -342,7 +341,7 @@ public final class r extends yg.c implements b6 {
             M0 = id.M0(i10, null);
         }
         setSubtitle(M0);
-        s6.X(this.f59444e, l6.f28123r5, this.f59441a);
+        t6.X(this.f59442e, m6.f28148r5, this.f59439a);
         if (i7 > 200) {
             f11 = 0.3f;
         } else {
@@ -370,44 +369,44 @@ public final class r extends yg.c implements b6 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.K.f37095a.a();
+        this.K.f36694a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.K.f37095a.b();
+        this.K.f36694a.b();
     }
 
     public void setBoost(TL_stories.TL_myBoost tL_myBoost) {
         this.f1112x.setVisibility(8);
         this.J = tL_myBoost;
-        TLRPC.Chat M0 = qp.s1(p10.f24470s0).M0(Long.valueOf(-m5.o(tL_myBoost.peer)));
+        TLRPC.Chat M0 = qp.s1(p10.f24474s0).M0(Long.valueOf(-m5.o(tL_myBoost.peer)));
         this.I = M0;
-        w8 w8Var = this.f59442b;
-        w8Var.q(M0);
+        v8 v8Var = this.f59440b;
+        v8Var.q(M0);
         int L = g0.L(20.0f);
-        l9 l9Var = this.f59443c;
-        l9Var.setRoundRadius(L);
-        l9Var.e(this.I, w8Var);
+        k9 k9Var = this.f59441c;
+        k9Var.setRoundRadius(L);
+        k9Var.e(this.I, v8Var);
         String str = this.I.title;
         e4 e4Var = this.d;
         e4Var.k(str);
-        int i7 = l6.f28123r5;
-        g6 g6Var = this.f59441a;
-        l5 l5Var = this.f59444e;
-        s6.X(l5Var, i7, g6Var);
+        int i7 = m6.f28148r5;
+        h6 h6Var = this.f59439a;
+        org.telegram.ui.ActionBar.m5 m5Var = this.f59442e;
+        t6.X(m5Var, i7, h6Var);
         setSubtitle(id.a0(null, null, 2131753661, id.E0().o0().format(new Date(tL_myBoost.expires * 1000))));
         int i10 = tL_myBoost.cooldown_until_date;
         if (i10 > 0) {
             setSubtitle(id.a0(null, null, 2131753594, f((i10 * 1000) - System.currentTimeMillis())));
             e4Var.setAlpha(0.65f);
-            l5Var.setAlpha(0.65f);
+            m5Var.setAlpha(0.65f);
             i(false, 0.3f);
             return;
         }
         e4Var.setAlpha(1.0f);
-        l5Var.setAlpha(1.0f);
+        m5Var.setAlpha(1.0f);
         i(false, 1.0f);
     }
 
@@ -426,12 +425,12 @@ public final class r extends yg.c implements b6 {
         this.f1112x.setVisibility(8);
         this.H = user;
         this.I = null;
-        w8 w8Var = this.f59442b;
-        w8Var.r(user);
+        v8 v8Var = this.f59440b;
+        v8Var.r(user);
         int L = g0.L(20.0f);
-        l9 l9Var = this.f59443c;
-        l9Var.setRoundRadius(L);
-        l9Var.e(user, w8Var);
+        k9 k9Var = this.f59441c;
+        k9Var.setRoundRadius(L);
+        k9Var.e(user, v8Var);
         String p10 = t10.p(user);
         e4 e4Var = this.d;
         e4Var.k(p10);
@@ -445,32 +444,32 @@ public final class r extends yg.c implements b6 {
                 setSubtitle(id.M0(2131753156, null));
             }
         } else {
-            setSubtitle(id.d0(p10.f24470s0, user, zArr, null));
+            setSubtitle(id.d0(p10.f24474s0, user, zArr, null));
         }
         if (zArr[0]) {
-            i7 = l6.f28046n5;
+            i7 = m6.f28071n5;
         } else {
-            i7 = l6.f28123r5;
+            i7 = m6.f28148r5;
         }
-        s6.X(this.f59444e, i7, this.f59441a);
+        t6.X(this.f59442e, i7, this.f59439a);
         wo woVar = this.f1111w;
         if (woVar != null) {
             woVar.setAlpha(1.0f);
         }
-        int x02 = l6.x0(null, l6.z9, false);
+        int x02 = m6.x0(null, m6.z9, false);
         this.L = x02;
         e4Var.i(this.K.a(user, x02, false));
     }
 
     @Override
     public final void updateColors() {
-        pu0 pu0Var;
+        ou0 ou0Var;
         e4 e4Var;
         int x02;
         try {
-            if (this.H != null && (pu0Var = this.K) != null && (e4Var = this.d) != null && (x02 = l6.x0(null, l6.z9, false)) != this.L) {
+            if (this.H != null && (ou0Var = this.K) != null && (e4Var = this.d) != null && (x02 = m6.x0(null, m6.z9, false)) != this.L) {
                 this.L = x02;
-                pu0Var.a(this.H, x02, false);
+                ou0Var.a(this.H, x02, false);
                 e4Var.invalidate();
             }
         } catch (Exception e10) {

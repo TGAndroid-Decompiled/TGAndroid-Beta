@@ -1,34 +1,35 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class a11 extends AnimatorListenerAdapter {
-    public final int f43560a;
-    public final c11 f43561b;
+import android.animation.ValueAnimator;
+public final class a11 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f43529a;
+    public final d11 f43530b;
 
-    public a11(c11 c11Var, int i7) {
-        this.f43560a = i7;
-        this.f43561b = c11Var;
+    public a11(d11 d11Var, int i7) {
+        this.f43529a = i7;
+        this.f43530b = d11Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f43560a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f43529a) {
             case 0:
-                super.onAnimationEnd(animator);
-                this.f43561b.I = null;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                d11 d11Var = this.f43530b;
+                d11Var.N = floatValue;
+                d11Var.V.f50036h0.invalidate();
                 return;
             case 1:
-                super.onAnimationEnd(animator);
-                this.f43561b.I = null;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                d11 d11Var2 = this.f43530b;
+                d11Var2.N = floatValue2;
+                d11Var2.V.f50036h0.invalidate();
                 return;
             default:
-                super.onAnimationEnd(animator);
-                c11 c11Var = this.f43561b;
-                c11Var.N = 0.0f;
-                c11Var.I = null;
-                c11Var.M = false;
-                c11Var.d(true, false);
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                d11 d11Var3 = this.f43530b;
+                d11Var3.N = floatValue3;
+                d11Var3.V.f50036h0.invalidate();
                 return;
         }
     }

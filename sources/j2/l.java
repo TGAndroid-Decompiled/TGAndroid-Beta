@@ -22,21 +22,21 @@ public final class l implements n4.b {
         this.f16445e = qVar;
         this.f16446f = j0Var;
         this.f16447g = sVar;
-        int i10 = sVar.f15223a;
-        int i11 = sVar.f15224b;
+        int i10 = sVar.f15225a;
+        int i11 = sVar.f15226b;
         int i12 = (sVar.d * i10) / 8;
-        int i13 = sVar.f15225c;
+        int i13 = sVar.f15227c;
         if (i13 == i12) {
             int i14 = i11 * i12;
             int i15 = i14 * 8;
             int max = Math.max(i12, i14 / 10);
             this.f16442a = max;
             e2.t tVar = new e2.t();
-            tVar.f10562q = s0.n("audio/wav");
-            tVar.f10563r = s0.n(str);
+            tVar.f10567q = s0.n("audio/wav");
+            tVar.f10568r = s0.n(str);
             tVar.h = i15;
-            tVar.f10554i = i15;
-            tVar.f10564s = max;
+            tVar.f10559i = i15;
+            tVar.f10569s = max;
             tVar.J = i10;
             tVar.K = i11;
             tVar.L = i7;
@@ -66,13 +66,13 @@ public final class l implements n4.b {
             }
         }
         i2.s sVar = (i2.s) this.f16447g;
-        int i12 = sVar.f15225c;
+        int i12 = sVar.f15227c;
         int i13 = this.f16444c / i12;
         if (i13 > 0) {
             long j11 = this.f16443b;
             long j12 = this.d;
-            long j13 = sVar.f15224b;
-            String str = m0.f14112a;
+            long j13 = sVar.f15226b;
+            String str = m0.f14114a;
             int i14 = i13 * i12;
             int i15 = this.f16444c - i14;
             ((j0) this.f16446f).c(j11 + m0.a0(j12, 1000000L, j13, RoundingMode.DOWN), 1, i14, i15, null);
@@ -98,7 +98,7 @@ public final class l implements n4.b {
         ((f3.q) this.f16445e).f(eVar);
         j0 j0Var = (j0) this.f16446f;
         j0Var.g((e2.u) this.h);
-        j0Var.d(eVar.f20401e);
+        j0Var.d(eVar.f20406e);
     }
 
     public m d() {

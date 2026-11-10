@@ -2,19 +2,19 @@ package kg;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.ActionBar.q4;
-import org.telegram.ui.Components.tt0;
-public final class l1 extends tt0 {
-    public final int f17427f0;
+import org.telegram.ui.ActionBar.r4;
+import org.telegram.ui.Components.st0;
+public final class l1 extends st0 {
+    public final int f17430f0;
 
-    public l1(Context context, q4 q4Var, int i7) {
-        super(context, q4Var);
-        this.f17427f0 = i7;
+    public l1(Context context, r4 r4Var, int i7) {
+        super(context, r4Var);
+        this.f17430f0 = i7;
     }
 
     @Override
     public boolean O() {
-        switch (this.f17427f0) {
+        switch (this.f17430f0) {
             case 2:
                 return false;
             case 3:
@@ -26,7 +26,7 @@ public final class l1 extends tt0 {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f17427f0) {
+        switch (this.f17430f0) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824));
                 return;

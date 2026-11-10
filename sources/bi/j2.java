@@ -2,14 +2,14 @@ package bi;
 
 import org.telegram.tgnet.RequestDelegate;
 public final class j2 implements RequestDelegate {
-    public final int f4077a;
-    public final int f4078b;
-    public final Object f4079c;
+    public final int f4074a;
+    public final int f4075b;
+    public final Object f4076c;
 
     public j2(int i7, ya yaVar) {
-        this.f4077a = 3;
-        this.f4078b = i7;
-        this.f4079c = yaVar;
+        this.f4074a = 3;
+        this.f4075b = i7;
+        this.f4076c = yaVar;
     }
 
     @Override
@@ -18,8 +18,8 @@ public final class j2 implements RequestDelegate {
     }
 
     public j2(Object obj, int i7, int i10) {
-        this.f4077a = i10;
-        this.f4079c = obj;
-        this.f4078b = i7;
+        this.f4074a = i10;
+        this.f4076c = obj;
+        this.f4075b = i7;
     }
 }

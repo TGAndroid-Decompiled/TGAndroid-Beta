@@ -4,12 +4,12 @@ import android.view.View;
 import android.view.animation.Interpolator;
 import org.telegram.ui.Components.voip.o1;
 public final class a implements b {
-    public final int f55496a;
-    public final b f55497b;
-    public final Interpolator f55498c;
+    public final int f55495a;
+    public final b f55496b;
+    public final Interpolator f55497c;
     public final long d;
-    public float f55499e;
-    public boolean f55500f;
+    public float f55498e;
+    public boolean f55499f;
     public c h;
 
     public a(View view, Interpolator interpolator, long j3) {
@@ -18,22 +18,22 @@ public final class a implements b {
 
     @Override
     public final void F(float f10, int i7) {
-        this.f55497b.F(f10, this.f55496a);
+        this.f55496b.F(f10, this.f55495a);
     }
 
     @Override
     public final void Y(int i7, float f10, float f11, c cVar) {
-        if (this.f55499e != f10) {
-            this.f55499e = f10;
-            this.f55497b.Y(this.f55496a, f10, -1.0f, null);
+        if (this.f55498e != f10) {
+            this.f55498e = f10;
+            this.f55496b.Y(this.f55495a, f10, -1.0f, null);
         }
     }
 
     public final void a(boolean z9, boolean z10) {
         float f10;
         a aVar;
-        if (this.f55500f != z9 || !z10) {
-            this.f55500f = z9;
+        if (this.f55499f != z9 || !z10) {
+            this.f55499f = z9;
             if (z9) {
                 f10 = 1.0f;
             } else {
@@ -42,7 +42,7 @@ public final class a implements b {
             if (z10) {
                 if (this.h == null) {
                     aVar = this;
-                    aVar.h = new c(0, aVar, this.f55498c, this.d, this.f55499e);
+                    aVar.h = new c(0, aVar, this.f55497c, this.d, this.f55498e);
                 } else {
                     aVar = this;
                 }
@@ -53,13 +53,13 @@ public final class a implements b {
             if (cVar != null) {
                 cVar.c(f10);
             }
-            float f11 = this.f55499e;
+            float f11 = this.f55498e;
             if (f11 != f10) {
                 int i7 = (f11 > f10 ? 1 : (f11 == f10 ? 0 : -1));
-                int i10 = this.f55496a;
-                b bVar = this.f55497b;
+                int i10 = this.f55495a;
+                b bVar = this.f55496b;
                 if (i7 != 0) {
-                    this.f55499e = f10;
+                    this.f55498e = f10;
                     bVar.Y(i10, f10, -1.0f, null);
                 }
                 bVar.F(f10, i10);
@@ -72,11 +72,11 @@ public final class a implements b {
     }
 
     public a(int i7, b bVar, Interpolator interpolator, long j3, boolean z9) {
-        this.f55496a = i7;
-        this.f55497b = bVar;
-        this.f55498c = interpolator;
+        this.f55495a = i7;
+        this.f55496b = bVar;
+        this.f55497c = interpolator;
         this.d = j3;
-        this.f55500f = z9;
-        this.f55499e = z9 ? 1.0f : 0.0f;
+        this.f55499f = z9;
+        this.f55498e = z9 ? 1.0f : 0.0f;
     }
 }

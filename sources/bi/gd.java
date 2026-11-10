@@ -3,27 +3,27 @@ package bi;
 import android.content.Context;
 import android.view.View;
 public final class gd implements View.OnClickListener {
-    public final int f3964a;
-    public final Context f3965b;
-    public final org.telegram.ui.ActionBar.g6 f3966c;
+    public final int f3961a;
+    public final Context f3962b;
+    public final org.telegram.ui.ActionBar.h6 f3963c;
 
-    public gd(int i7, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        this.f3964a = i7;
-        this.f3965b = context;
-        this.f3966c = g6Var;
+    public gd(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        this.f3961a = i7;
+        this.f3962b = context;
+        this.f3963c = h6Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f3964a) {
+        switch (this.f3961a) {
             case 0:
-                new uc(this.f3965b, this.f3966c).show();
+                new uc(this.f3962b, this.f3963c).show();
                 return;
             case 1:
-                new uc(this.f3965b, this.f3966c).show();
+                new uc(this.f3962b, this.f3963c).show();
                 return;
             default:
-                new uc(this.f3965b, this.f3966c).show();
+                new uc(this.f3962b, this.f3963c).show();
                 return;
         }
     }

@@ -1,41 +1,31 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.view.View;
-import java.io.Serializable;
-import org.telegram.messenger.a20;
-import org.telegram.messenger.b20;
-import org.telegram.ui.Components.y31;
-public final class g4 implements org.telegram.ui.ActionBar.r1, a20, b20 {
-    public final w5 f42502a;
+import android.content.Context;
+import org.telegram.messenger.id;
+import org.telegram.ui.q61;
+public final class g4 implements Runnable {
+    public final int f42524a;
+    public final Context f42525b;
 
-    public g4(w5 w5Var) {
-        this.f42502a = w5Var;
+    public g4(Context context, int i7) {
+        this.f42524a = i7;
+        this.f42525b = context;
     }
 
     @Override
-    public Boolean a(y31 y31Var, View view, Integer num, Float f10, Float f11) {
-        return Boolean.valueOf(this.f42502a.c0(y31Var, view));
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        w5 w5Var = this.f42502a;
-        try {
-            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25566b.getPackageName()));
-            w5Var.getParentActivity().startActivity(intent);
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+    public final void run() {
+        int i7 = this.f42524a;
+        Context context = this.f42525b;
+        switch (i7) {
+            case 0:
+                vf.c.v(context, id.M0(2131744196, null), false);
+                return;
+            case 1:
+                vf.c.v(context, id.M0(2131744196, null), false);
+                return;
+            default:
+                new a6(context.getApplicationContext(), 2131232810, 46, new q61(5));
+                return;
         }
-    }
-
-    @Override
-    public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        Integer num = (Integer) number;
-        Float f10 = (Float) serializable;
-        Float f11 = (Float) serializable2;
-        this.f42502a.b0((y31) obj, (View) obj2);
     }
 }

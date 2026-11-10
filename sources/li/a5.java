@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.vg0;
+import org.telegram.ui.Components.ug0;
 public abstract class a5 {
     public static Object a(Spanned spanned, int i7, int i10, Class cls) {
         Object[] spans;
@@ -24,8 +24,8 @@ public abstract class a5 {
         Spanned spanned;
         int i7;
         ni.j jVar;
-        vg0 vg0Var;
-        vg0 vg0Var2;
+        ug0 ug0Var;
+        ug0 ug0Var2;
         int i10;
         boolean z9;
         boolean z10;
@@ -71,20 +71,20 @@ public abstract class a5 {
                 jVar = (ni.j) a(spanned, i14, i7, ni.j.class);
             }
             if (spanned != null && jVar == null) {
-                vg0Var = (vg0) a(spanned, i14, i7, vg0.class);
+                ug0Var = (ug0) a(spanned, i14, i7, ug0.class);
             } else {
-                vg0Var = null;
+                ug0Var = null;
             }
-            if (jVar == null && vg0Var == null) {
+            if (jVar == null && ug0Var == null) {
                 CharSequence subSequence = charSequence.subSequence(i14, i7);
                 TL_iv.pageBlockParagraph pageblockparagraph2 = new TL_iv.pageBlockParagraph();
                 pageblockparagraph2.text = c6.f(subSequence);
                 arrayList.add(pageblockparagraph2);
             } else {
                 if (jVar != null) {
-                    vg0Var2 = jVar;
+                    ug0Var2 = jVar;
                 } else {
-                    vg0Var2 = vg0Var;
+                    ug0Var2 = ug0Var;
                 }
                 while (true) {
                     if (i13 < size) {
@@ -100,9 +100,9 @@ public abstract class a5 {
                         if (jVar != null) {
                             a10 = a(spanned, i15, length, ni.j.class);
                         } else {
-                            a10 = a(spanned, i15, length, vg0.class);
+                            a10 = a(spanned, i15, length, ug0.class);
                         }
-                        if (a10 != vg0Var2) {
+                        if (a10 != ug0Var2) {
                             break;
                         }
                         i7 = length;
@@ -119,7 +119,7 @@ public abstract class a5 {
                 if (jVar != null) {
                     TL_iv.pageBlockPreformatted pageblockpreformatted = new TL_iv.pageBlockPreformatted();
                     pageblockpreformatted.text = c6.f(subSequence2);
-                    String str = jVar.f20627a;
+                    String str = jVar.f20632a;
                     if (str == null) {
                         str = "";
                     }
@@ -129,7 +129,7 @@ public abstract class a5 {
                     TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
                     pageblockblockquote.text = c6.f(subSequence2);
                     pageblockblockquote.caption = new TL_iv.textEmpty();
-                    if (vg0Var != null && vg0Var.f39062e) {
+                    if (ug0Var != null && ug0Var.f38647e) {
                         z10 = z9;
                     } else {
                         z10 = false;
@@ -185,9 +185,9 @@ public abstract class a5 {
                     c10 = false;
                     continue;
                 } else {
-                    ArrayList arrayList2 = aVar.f18399k;
-                    if (!aVar.f18397i && aVar.f18393c <= 0) {
-                        TL_iv.PageBlock pageBlock = aVar.f18392b;
+                    ArrayList arrayList2 = aVar.f18402k;
+                    if (!aVar.f18400i && aVar.f18396c <= 0) {
+                        TL_iv.PageBlock pageBlock = aVar.f18395b;
                         if (!(pageBlock instanceof TL_iv.pageBlockPullquote)) {
                             boolean z9 = pageBlock instanceof TL_iv.pageBlockBlockquote;
                             if (arrayList2.size() + (z9 ? 1 : 0) <= 1 && (!z9 || (richText = ((TL_iv.pageBlockBlockquote) pageBlock).caption) == null || (richText instanceof TL_iv.textEmpty) || c6.l(richText).isEmpty())) {
@@ -225,21 +225,21 @@ public abstract class a5 {
         SpannableStringBuilder r10;
         TL_iv.RichText richText = null;
         if (z9) {
-            TL_iv.PageBlock pageBlock = aVar.f18392b;
+            TL_iv.PageBlock pageBlock = aVar.f18395b;
             if (pageBlock != null) {
                 richText = pageBlock.text;
             }
             r10 = c6.r(richText, pageBlock, false);
         } else {
-            TL_iv.PageBlock pageBlock2 = aVar.f18392b;
+            TL_iv.PageBlock pageBlock2 = aVar.f18395b;
             if (pageBlock2 != null) {
                 richText = pageBlock2.text;
             }
             r10 = c6.r(richText, pageBlock2, true);
         }
-        if (aVar.f18392b instanceof TL_iv.pageBlockPreformatted) {
+        if (aVar.f18395b instanceof TL_iv.pageBlockPreformatted) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(r10);
-            spannableStringBuilder.setSpan(new ni.j(((TL_iv.pageBlockPreformatted) aVar.f18392b).language, spannableStringBuilder.toString(), true), 0, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.setSpan(new ni.j(((TL_iv.pageBlockPreformatted) aVar.f18395b).language, spannableStringBuilder.toString(), true), 0, spannableStringBuilder.length(), 33);
             return spannableStringBuilder;
         }
         return r10;
@@ -251,11 +251,11 @@ public abstract class a5 {
         int i7 = 0;
         while (list != null && i7 < list.size()) {
             a aVar = (a) list.get(i7);
-            if (!aVar.f18399k.isEmpty()) {
-                long longValue = ((Long) aVar.f18399k.get(0)).longValue();
+            if (!aVar.f18402k.isEmpty()) {
+                long longValue = ((Long) aVar.f18402k.get(0)).longValue();
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                 int i10 = i7;
-                while (i10 < list.size() && !((a) list.get(i10)).f18399k.isEmpty() && ((Long) ((a) list.get(i10)).f18399k.get(0)).longValue() == longValue) {
+                while (i10 < list.size() && !((a) list.get(i10)).f18402k.isEmpty() && ((Long) ((a) list.get(i10)).f18402k.get(0)).longValue() == longValue) {
                     if (i10 > i7) {
                         spannableStringBuilder.append('\n');
                     }
@@ -263,12 +263,12 @@ public abstract class a5 {
                     i10++;
                 }
                 if (spannableStringBuilder.length() > 0) {
-                    vg0.b(spannableStringBuilder, 0, spannableStringBuilder.length(), false);
+                    ug0.b(spannableStringBuilder, 0, spannableStringBuilder.length(), false);
                 }
                 arrayList.add(spannableStringBuilder);
                 i7 = i10;
             } else {
-                TL_iv.PageBlock pageBlock = aVar.f18392b;
+                TL_iv.PageBlock pageBlock = aVar.f18395b;
                 if (!(pageBlock instanceof TL_iv.pageBlockBlockquote) && !(pageBlock instanceof TL_iv.pageBlockPullquote)) {
                     arrayList.add(e(aVar, z9));
                 } else {
@@ -279,10 +279,10 @@ public abstract class a5 {
                         r10 = c6.r(pageBlock.text, pageBlock, true);
                     }
                     SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(r10);
-                    TL_iv.PageBlock pageBlock2 = aVar.f18392b;
+                    TL_iv.PageBlock pageBlock2 = aVar.f18395b;
                     z10 = ((pageBlock2 instanceof TL_iv.pageBlockBlockquote) && ((TL_iv.pageBlockBlockquote) pageBlock2).collapsed) ? false : false;
                     if (spannableStringBuilder2.length() > 0) {
-                        vg0.b(spannableStringBuilder2, 0, spannableStringBuilder2.length(), z10);
+                        ug0.b(spannableStringBuilder2, 0, spannableStringBuilder2.length(), z10);
                     }
                     arrayList.add(spannableStringBuilder2);
                 }

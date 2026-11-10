@@ -24,7 +24,7 @@ public class j {
         synchronized (this.f24c) {
             d6.i iVar = this.f23b;
             iVar.getClass();
-            Object obj = ((LinkedHashMap) iVar.f8207b).get(key);
+            Object obj = ((LinkedHashMap) iVar.f8212b).get(key);
             if (obj != null) {
                 this.f25e++;
                 return obj;
@@ -41,7 +41,7 @@ public class j {
             this.d++;
             d6.i iVar = this.f23b;
             iVar.getClass();
-            put = ((LinkedHashMap) iVar.f8207b).put(key, obj);
+            put = ((LinkedHashMap) iVar.f8212b).put(key, obj);
             if (put != null) {
                 this.d--;
             }

@@ -5,18 +5,18 @@ import org.telegram.messenger.b20;
 import org.telegram.messenger.k9;
 import org.telegram.ui.ActionBar.r1;
 import org.telegram.ui.ActionBar.u1;
-import org.telegram.ui.Components.y31;
+import org.telegram.ui.Components.x31;
 import zh.l3;
 import zh.m3;
 public final class j implements g9.k, r1, b20, k9 {
-    public final int f59639a;
+    public final int f59637a;
 
     public j(int i7) {
-        this.f59639a = i7;
+        this.f59637a = i7;
     }
 
     @Override
-    public Boolean a(y31 y31Var, View view, Integer num, Float f10, Float f11) {
+    public Boolean a(x31 x31Var, View view, Integer num, Float f10, Float f11) {
         return Boolean.FALSE;
     }
 
@@ -27,7 +27,7 @@ public final class j implements g9.k, r1, b20, k9 {
 
     @Override
     public void g(u1 u1Var, int i7) {
-        switch (this.f59639a) {
+        switch (this.f59637a) {
             case 1:
                 u1Var.dismiss();
                 return;
@@ -40,11 +40,11 @@ public final class j implements g9.k, r1, b20, k9 {
     @Override
     public Object j(Object obj) {
         Integer num = (Integer) obj;
-        int i7 = l3.f60456c2;
+        int i7 = l3.f60461f2;
         return 0;
     }
 
     public j(m3 m3Var) {
-        this.f59639a = 3;
+        this.f59637a = 3;
     }
 }

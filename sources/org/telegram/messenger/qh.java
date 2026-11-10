@@ -1,13 +1,13 @@
 package org.telegram.messenger;
 public final class qh implements Runnable {
-    public final int f24698a;
-    public final ui f24699b;
-    public final boolean f24700c;
+    public final int f24702a;
+    public final ui f24703b;
+    public final boolean f24704c;
 
     public qh(ui uiVar, boolean z9, int i7) {
-        this.f24698a = i7;
-        this.f24699b = uiVar;
-        this.f24700c = z9;
+        this.f24702a = i7;
+        this.f24703b = uiVar;
+        this.f24704c = z9;
     }
 
     @Override

@@ -1,40 +1,73 @@
 package org.telegram.ui.Components;
-public final class ig {
-    public static final ig d;
-    public static final ig f34732e;
-    public static final ig[] f34733f;
-    public final hg f34734a;
-    public final hg f34735b;
-    public final int f34736c;
 
-    static {
-        hg hgVar = hg.f34289a;
-        hg hgVar2 = hg.f34290b;
-        ig igVar = new ig("VOICE_TO_VIDEO", 0, hgVar, hgVar2, 2131624330);
-        d = igVar;
-        hg hgVar3 = hg.f34291c;
-        hg hgVar4 = hg.d;
-        ig igVar2 = new ig("STICKER_TO_KEYBOARD", 1, hgVar3, hgVar4, 2131624229);
-        hg hgVar5 = hg.f34292e;
-        ig igVar3 = new ig("SMILE_TO_KEYBOARD", 2, hgVar5, hgVar4, 2131624196);
-        ig igVar4 = new ig("VIDEO_TO_VOICE", 3, hgVar2, hgVar, 2131624330);
-        f34732e = igVar4;
-        ig igVar5 = new ig("KEYBOARD_TO_STICKER", 4, hgVar4, hgVar3, 2131624075);
-        hg hgVar6 = hg.f34293f;
-        f34733f = new ig[]{igVar, igVar2, igVar3, igVar4, igVar5, new ig("KEYBOARD_TO_GIF", 5, hgVar4, hgVar6, 2131624073), new ig("KEYBOARD_TO_SMILE", 6, hgVar4, hgVar5, 2131624074), new ig("GIF_TO_KEYBOARD", 7, hgVar6, hgVar4, 2131624031), new ig("GIF_TO_SMILE", 8, hgVar6, hgVar5, 2131624032), new ig("SMILE_TO_GIF", 9, hgVar5, hgVar6, 2131624195), new ig("SMILE_TO_STICKER", 10, hgVar5, hgVar3, 2131624197), new ig("STICKER_TO_SMILE", 11, hgVar3, hgVar5, 2131624230)};
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+public class ig extends ch0 {
+    public final v5 D;
+    public final fg E;
+    public gg f34615r;
+    public hg f34616s;
+    public final int f34617w;
+    public boolean f34618x;
+    public Drawable f34619y;
+
+    public ig(Context context, int i7) {
+        super(context);
+        this.D = new v5(this, 0L, 320L, wq.h);
+        this.E = new fg(this, 0);
+        this.f34617w = i7;
     }
 
-    public ig(String str, int i7, hg hgVar, hg hgVar2, int i10) {
-        this.f34734a = hgVar;
-        this.f34735b = hgVar2;
-        this.f34736c = i10;
+    public gg getCurrentState() {
+        return this.f34615r;
     }
 
-    public static ig valueOf(String str) {
-        return (ig) Enum.valueOf(ig.class, str);
+    public final void j(org.telegram.ui.Components.gg r13, boolean r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ig.j(org.telegram.ui.Components.gg, boolean):void");
     }
 
-    public static ig[] values() {
-        return (ig[]) f34733f.clone();
+    @Override
+    public void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        float d = this.D.d(this.f34618x);
+        float width = getWidth() / 2.0f;
+        float height = getHeight() / 2.0f;
+        if (d < 1.0f) {
+            if (d > 0.0f) {
+                canvas2 = canvas;
+                canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - d) * 255.0f), 31);
+            } else {
+                canvas2 = canvas;
+                canvas2.save();
+            }
+            float z9 = com.google.android.recaptcha.internal.a.z(1.0f, d, 0.6f, 0.4f);
+            canvas2.scale(z9, z9, width, height);
+            super.onDraw(canvas);
+            canvas2.restore();
+        } else {
+            canvas2 = canvas;
+        }
+        if (d > 0.0f) {
+            if (this.f34619y == null) {
+                this.f34619y = getContext().getResources().getDrawable(2131232116).mutate();
+            }
+            int intrinsicWidth = this.f34619y.getIntrinsicWidth() / 2;
+            int intrinsicHeight = this.f34619y.getIntrinsicHeight() / 2;
+            int i7 = (int) width;
+            int i10 = (int) height;
+            this.f34619y.setBounds(i7 - intrinsicWidth, i10 - intrinsicHeight, i7 + intrinsicWidth, i10 + intrinsicHeight);
+            this.f34619y.setColorFilter(getColorFilter());
+            this.f34619y.setAlpha((int) (255.0f * d));
+            canvas2.save();
+            float f10 = (d * 0.6f) + 0.4f;
+            canvas2.scale(f10, f10, width, height);
+            this.f34619y.draw(canvas2);
+            canvas2.restore();
+        }
+    }
+
+    public ig(Context context) {
+        this(context, 32);
     }
 }

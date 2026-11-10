@@ -28,20 +28,20 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 public final class a {
-    public static final j6.b f13518l = new j6.b("CastContext", null);
-    public static final Object f13519m = new Object();
-    public static volatile a f13520n;
-    public final Context f13521a;
-    public final n f13522b;
-    public final g f13523c;
+    public static final j6.b f13520l = new j6.b("CastContext", null);
+    public static final Object f13521m = new Object();
+    public static volatile a f13522n;
+    public final Context f13523a;
+    public final n f13524b;
+    public final g f13525c;
     public final k d;
-    public final b f13524e;
-    public final j6.r f13525f;
-    public final com.google.android.gms.internal.cast.c f13526g;
+    public final b f13526e;
+    public final j6.r f13527f;
+    public final com.google.android.gms.internal.cast.c f13528g;
     public final com.google.android.gms.internal.cast.m h;
-    public final List f13527i;
-    public final com.google.android.gms.internal.cast.s f13528j;
-    public final com.google.android.gms.internal.cast.e f13529k;
+    public final List f13529i;
+    public final com.google.android.gms.internal.cast.s f13530j;
+    public final com.google.android.gms.internal.cast.e f13531k;
 
     public a(Context context, b bVar, List list, com.google.android.gms.internal.cast.p pVar, j6.r rVar) {
         r rVar2;
@@ -49,37 +49,37 @@ public final class a {
         i4 j4Var;
         i4 i4Var;
         LinkProperties linkProperties;
-        this.f13521a = context;
-        this.f13524e = bVar;
-        this.f13525f = rVar;
-        this.f13527i = list;
+        this.f13523a = context;
+        this.f13526e = bVar;
+        this.f13527f = rVar;
+        this.f13529i = list;
         this.h = new com.google.android.gms.internal.cast.m(context);
-        this.f13528j = pVar.f6939f;
-        if (!TextUtils.isEmpty(bVar.f13531a)) {
-            this.f13529k = new com.google.android.gms.internal.cast.e(context, bVar, pVar);
+        this.f13530j = pVar.f6944f;
+        if (!TextUtils.isEmpty(bVar.f13533a)) {
+            this.f13531k = new com.google.android.gms.internal.cast.e(context, bVar, pVar);
         } else {
-            this.f13529k = null;
+            this.f13531k = null;
         }
         HashMap hashMap = new HashMap();
-        com.google.android.gms.internal.cast.e eVar = this.f13529k;
+        com.google.android.gms.internal.cast.e eVar = this.f13531k;
         if (eVar != null) {
-            hashMap.put(eVar.f6839b, eVar.f6840c);
+            hashMap.put(eVar.f6844b, eVar.f6845c);
         }
         if (list != null) {
             Iterator it = list.iterator();
             while (it.hasNext()) {
                 com.google.android.gms.internal.cast.e eVar2 = (com.google.android.gms.internal.cast.e) it.next();
                 q6.m.h(eVar2, "Additional SessionProvider must not be null.");
-                String str = eVar2.f6839b;
+                String str = eVar2.f6844b;
                 q6.m.f(str, "Category for SessionProvider must not be null or empty string.");
                 q6.m.a("SessionProvider for category " + str + " already added", !hashMap.containsKey(str));
-                hashMap.put(str, eVar2.f6840c);
+                hashMap.put(str, eVar2.f6845c);
             }
         }
         bVar.F = new b0(1);
         try {
             n a10 = com.google.android.gms.internal.cast.d.a(context, bVar, pVar, hashMap);
-            this.f13522b = a10;
+            this.f13524b = a10;
             try {
                 l lVar = (l) a10;
                 Parcel r12 = lVar.r1(lVar.p1(), 6);
@@ -112,13 +112,13 @@ public final class a {
                     }
                     r13.recycle();
                     g gVar = new g(yVar, context);
-                    this.f13523c = gVar;
+                    this.f13525c = gVar;
                     q6.m.f("PrecacheManager", "The log tag cannot be null or empty.");
                     TextUtils.isEmpty(null);
-                    com.google.android.gms.internal.cast.s sVar = this.f13528j;
+                    com.google.android.gms.internal.cast.s sVar = this.f13530j;
                     if (sVar != null) {
-                        sVar.f6981f = gVar;
-                        com.google.android.gms.internal.cast.y yVar2 = sVar.f6979c;
+                        sVar.f6986f = gVar;
+                        com.google.android.gms.internal.cast.y yVar2 = sVar.f6984c;
                         q6.m.g(yVar2);
                         yVar2.post(new com.google.android.gms.internal.cast.r(sVar, 1));
                     }
@@ -136,51 +136,51 @@ public final class a {
                     com.google.android.gms.internal.cast.w wVar = new com.google.android.gms.internal.cast.w(context, i4Var);
                     q6.m.f("BaseNetUtils", "The log tag cannot be null or empty.");
                     TextUtils.isEmpty(null);
-                    ConnectivityManager connectivityManager = wVar.f7018c;
-                    com.google.android.gms.internal.cast.w.f7015j.b("Start monitoring connectivity changes", new Object[0]);
-                    if (!wVar.f7020f && connectivityManager != null && f0.d.b(wVar.f7021g, "android.permission.ACCESS_NETWORK_STATE") == 0) {
+                    ConnectivityManager connectivityManager = wVar.f7023c;
+                    com.google.android.gms.internal.cast.w.f7020j.b("Start monitoring connectivity changes", new Object[0]);
+                    if (!wVar.f7025f && connectivityManager != null && f0.d.b(wVar.f7026g, "android.permission.ACCESS_NETWORK_STATE") == 0) {
                         Network activeNetwork = connectivityManager.getActiveNetwork();
                         if (activeNetwork != null && (linkProperties = connectivityManager.getLinkProperties(activeNetwork)) != null) {
                             wVar.a(activeNetwork, linkProperties);
                         }
-                        connectivityManager.registerNetworkCallback(new NetworkRequest.Builder().addTransportType(1).build(), wVar.f7017b);
-                        wVar.f7020f = true;
+                        connectivityManager.registerNetworkCallback(new NetworkRequest.Builder().addTransportType(1).build(), wVar.f7022b);
+                        wVar.f7025f = true;
                     }
                     com.google.android.gms.internal.cast.c cVar = new com.google.android.gms.internal.cast.c();
-                    this.f13526g = cVar;
+                    this.f13528g = cVar;
                     try {
                         l lVar3 = (l) a10;
                         Parcel p12 = lVar3.p1();
                         com.google.android.gms.internal.cast.t.d(p12, cVar);
                         lVar3.t1(p12, 3);
-                        cVar.f6823c.add(this.h.f6899a);
-                        if (!DesugarCollections.unmodifiableList(bVar.f13540x).isEmpty()) {
-                            j6.b bVar2 = f13518l;
-                            Log.i(bVar2.f16508a, bVar2.d("Setting Route Discovery for appIds: ".concat(String.valueOf(DesugarCollections.unmodifiableList(this.f13524e.f13540x))), new Object[0]));
+                        cVar.f6828c.add(this.h.f6904a);
+                        if (!DesugarCollections.unmodifiableList(bVar.f13542x).isEmpty()) {
+                            j6.b bVar2 = f13520l;
+                            Log.i(bVar2.f16508a, bVar2.d("Setting Route Discovery for appIds: ".concat(String.valueOf(DesugarCollections.unmodifiableList(this.f13526e.f13542x))), new Object[0]));
                             com.google.android.gms.internal.cast.m mVar = this.h;
-                            List<String> unmodifiableList = DesugarCollections.unmodifiableList(this.f13524e.f13540x);
+                            List<String> unmodifiableList = DesugarCollections.unmodifiableList(this.f13526e.f13542x);
                             mVar.getClass();
-                            com.google.android.gms.internal.cast.m.f6898f.b(jg.g.k(unmodifiableList.size(), "SetRouteDiscovery for ", " IDs"), new Object[0]);
+                            com.google.android.gms.internal.cast.m.f6903f.b(jg.g.k(unmodifiableList.size(), "SetRouteDiscovery for ", " IDs"), new Object[0]);
                             LinkedHashSet<String> linkedHashSet = new LinkedHashSet();
                             for (String str2 : unmodifiableList) {
                                 linkedHashSet.add(m8.a(str2));
                             }
-                            com.google.android.gms.internal.cast.m.f6898f.b("resetting routes. appIdToRouteInfo has these appId route keys: ".concat(String.valueOf(mVar.f6901c.keySet())), new Object[0]);
+                            com.google.android.gms.internal.cast.m.f6903f.b("resetting routes. appIdToRouteInfo has these appId route keys: ".concat(String.valueOf(mVar.f6906c.keySet())), new Object[0]);
                             HashMap hashMap2 = new HashMap();
-                            synchronized (mVar.f6901c) {
+                            synchronized (mVar.f6906c) {
                                 try {
                                     for (String str3 : linkedHashSet) {
-                                        com.google.android.gms.internal.cast.k kVar = (com.google.android.gms.internal.cast.k) mVar.f6901c.get(m8.a(str3));
+                                        com.google.android.gms.internal.cast.k kVar = (com.google.android.gms.internal.cast.k) mVar.f6906c.get(m8.a(str3));
                                         if (kVar != null) {
                                             hashMap2.put(str3, kVar);
                                         }
                                     }
-                                    mVar.f6901c.clear();
-                                    mVar.f6901c.putAll(hashMap2);
+                                    mVar.f6906c.clear();
+                                    mVar.f6906c.putAll(hashMap2);
                                 } finally {
                                 }
                             }
-                            com.google.android.gms.internal.cast.m.f6898f.b("Routes reset. appIdToRouteInfo has these appId route keys: ".concat(String.valueOf(mVar.f6901c.keySet())), new Object[0]);
+                            com.google.android.gms.internal.cast.m.f6903f.b("Routes reset. appIdToRouteInfo has these appId route keys: ".concat(String.valueOf(mVar.f6906c.keySet())), new Object[0]);
                             synchronized (mVar.d) {
                                 mVar.d.clear();
                                 mVar.d.addAll(linkedHashSet);
@@ -189,10 +189,10 @@ public final class a {
                         }
                         rVar.f(new String[]{"com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_ENABLED", "com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_MODE", "com.google.android.gms.cast.FLAG_FIRELOG_UPLOAD_MODE", "com.google.android.gms.cast.FLAG_ANALYTICS_LOGGING_BUCKET_SIZE", "com.google.android.gms.cast.FLAG_CLIENT_FEATURE_USAGE_ANALYTICS_ENABLED"}).addOnSuccessListener(new cb.c(this, 29));
                         com.google.android.gms.common.api.internal.s b10 = com.google.android.gms.common.api.internal.t.b();
-                        b10.f6680c = new l0(rVar, new String[]{"com.google.android.gms.cast.MAP_CAST_STATUS_CODES_TO_CAST_REASON_CODES"});
+                        b10.f6685c = new l0(rVar, new String[]{"com.google.android.gms.cast.MAP_CAST_STATUS_CODES_TO_CAST_REASON_CODES"});
                         b10.d = new n6.c[]{f6.y.d};
-                        b10.f6679b = false;
-                        b10.f6678a = 8427;
+                        b10.f6684b = false;
+                        b10.f6683a = 8427;
                         rVar.e(0, b10.a()).addOnSuccessListener(new d6.i(this, 27));
                     } catch (RemoteException e10) {
                         throw new IllegalStateException("Failed to call addAppVisibilityListener", e10);
@@ -210,22 +210,22 @@ public final class a {
 
     public static a c(Context context) {
         q6.m.d("Must be called from the main thread.");
-        if (f13520n == null) {
-            synchronized (f13519m) {
-                if (f13520n == null) {
+        if (f13522n == null) {
+            synchronized (f13521m) {
+                if (f13522n == null) {
                     Context applicationContext = context.getApplicationContext();
                     e d = d(applicationContext);
                     b castOptions = d.getCastOptions(applicationContext);
-                    ?? jVar = new com.google.android.gms.common.api.j(applicationContext, j6.r.f16546l, com.google.android.gms.common.api.b.f6530j, com.google.android.gms.common.api.i.f6540c);
+                    ?? jVar = new com.google.android.gms.common.api.j(applicationContext, j6.r.f16546l, com.google.android.gms.common.api.b.f6535j, com.google.android.gms.common.api.i.f6545c);
                     try {
-                        f13520n = new a(applicationContext, castOptions, d.getAdditionalSessionProviders(applicationContext), new com.google.android.gms.internal.cast.p(applicationContext, s4.x.d(applicationContext), castOptions, jVar), jVar);
+                        f13522n = new a(applicationContext, castOptions, d.getAdditionalSessionProviders(applicationContext), new com.google.android.gms.internal.cast.p(applicationContext, s4.x.d(applicationContext), castOptions, jVar), jVar);
                     } catch (d e10) {
                         throw new RuntimeException(e10);
                     }
                 }
             }
         }
-        return f13520n;
+        return f13522n;
     }
 
     public static e d(Context context) {
@@ -238,7 +238,7 @@ public final class a {
         try {
             Bundle bundle = a10.f2020a.getPackageManager().getApplicationInfo(context.getPackageName(), 128).metaData;
             if (bundle == null) {
-                f13518l.c(new Object[0]);
+                f13520l.c(new Object[0]);
             }
             String string = bundle.getString("com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME");
             if (string != null) {
@@ -266,18 +266,18 @@ public final class a {
     public final s4.r a() {
         q6.m.d("Must be called from the main thread.");
         try {
-            l lVar = (l) this.f13522b;
+            l lVar = (l) this.f13524b;
             Parcel r12 = lVar.r1(lVar.p1(), 1);
             r12.recycle();
             return s4.r.b((Bundle) com.google.android.gms.internal.cast.t.a(r12, Bundle.CREATOR));
         } catch (RemoteException e10) {
-            f13518l.a(e10, "Unable to call %s on %s.", "getMergedSelectorAsBundle", n.class.getSimpleName());
+            f13520l.a(e10, "Unable to call %s on %s.", "getMergedSelectorAsBundle", n.class.getSimpleName());
             return null;
         }
     }
 
     public final g b() {
         q6.m.d("Must be called from the main thread.");
-        return this.f13523c;
+        return this.f13525c;
     }
 }

@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
-public final class id implements oa1 {
+public final class id implements pa1 {
     public final int f46618a;
     public final zd f46619b;
     public final TwoStepVerificationActivity f46620c;

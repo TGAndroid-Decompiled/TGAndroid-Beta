@@ -5,9 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import java.util.ArrayList;
-public final class c9 extends org.telegram.ui.ActionBar.v2 {
-    public final int f21790i1 = 0;
-    public org.telegram.ui.ActionBar.f2 f21791j1;
+public final class c9 extends org.telegram.ui.ActionBar.w2 {
+    public final int l1 = 0;
+    public org.telegram.ui.ActionBar.f2 f21795m1;
 
     public c9(Context context, boolean z9) {
         super(context, z9);
@@ -15,7 +15,7 @@ public final class c9 extends org.telegram.ui.ActionBar.v2 {
 
     @Override
     public boolean G() {
-        switch (this.f21790i1) {
+        switch (this.l1) {
             case 0:
                 return false;
             default:
@@ -25,7 +25,7 @@ public final class c9 extends org.telegram.ui.ActionBar.v2 {
 
     @Override
     public boolean H() {
-        switch (this.f21790i1) {
+        switch (this.l1) {
             case 0:
                 return false;
             default:
@@ -35,7 +35,7 @@ public final class c9 extends org.telegram.ui.ActionBar.v2 {
 
     public void I0() {
         boolean z9;
-        Activity parentActivity = ((org.telegram.ui.yw) this.f21791j1).getParentActivity();
+        Activity parentActivity = ((org.telegram.ui.zw) this.f21795m1).getParentActivity();
         boolean z10 = false;
         if (parentActivity.checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") == 0) {
             z9 = true;
@@ -47,8 +47,8 @@ public final class c9 extends org.telegram.ui.ActionBar.v2 {
             z10 = true;
         }
         if (z10 && z9) {
-            boolean z11 = FilesMigrationService.f21171c;
-            t0.f25566b.startService(new Intent(t0.f25566b, FilesMigrationService.class));
+            boolean z11 = FilesMigrationService.f21176c;
+            t0.f25570b.startService(new Intent(t0.f25570b, FilesMigrationService.class));
             dismiss();
             return;
         }
@@ -70,12 +70,12 @@ public final class c9 extends org.telegram.ui.ActionBar.v2 {
 
     @Override
     public void K() {
-        switch (this.f21790i1) {
+        switch (this.l1) {
             case 1:
                 super.K();
-                org.telegram.ui.Components.t8 t8Var = (org.telegram.ui.Components.t8) this.f21791j1;
-                g0.a3(t8Var.getParentActivity(), t8Var.getClassGuid());
-                t8Var.S = null;
+                org.telegram.ui.Components.s8 s8Var = (org.telegram.ui.Components.s8) this.f21795m1;
+                g0.a3(s8Var.getParentActivity(), s8Var.getClassGuid());
+                s8Var.S = null;
                 return;
             default:
                 super.K();
@@ -85,24 +85,24 @@ public final class c9 extends org.telegram.ui.ActionBar.v2 {
 
     @Override
     public final void dismiss() {
-        switch (this.f21790i1) {
+        switch (this.l1) {
             case 0:
                 super.dismiss();
-                FilesMigrationService.f21172e = null;
+                FilesMigrationService.f21177e = null;
                 return;
             default:
                 super.dismiss();
-                org.telegram.ui.Components.t8 t8Var = (org.telegram.ui.Components.t8) this.f21791j1;
-                t8Var.J.z1(t8Var.Y);
-                t8Var.f38320f = true;
-                t8Var.fragmentView.invalidate();
-                t8Var.f38319e.animate().setListener(new org.telegram.ui.Components.z5(this, 4)).alpha(0.0f).setDuration(200L).start();
+                org.telegram.ui.Components.s8 s8Var = (org.telegram.ui.Components.s8) this.f21795m1;
+                s8Var.J.z1(s8Var.Y);
+                s8Var.f37893f = true;
+                s8Var.fragmentView.invalidate();
+                s8Var.f37892e.animate().setListener(new org.telegram.ui.Components.y5(this, 4)).alpha(0.0f).setDuration(200L).start();
                 return;
         }
     }
 
-    public c9(org.telegram.ui.Components.t8 t8Var, Activity activity) {
+    public c9(org.telegram.ui.Components.s8 s8Var, Activity activity) {
         super(activity, true);
-        this.f21791j1 = t8Var;
+        this.f21795m1 = s8Var;
     }
 }

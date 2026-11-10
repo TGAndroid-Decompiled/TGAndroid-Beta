@@ -9,9 +9,9 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.gf;
-import org.telegram.ui.Components.tl;
-import org.telegram.ui.Components.xq;
-public final class m5 extends org.telegram.ui.Components.l9 {
+import org.telegram.ui.Components.sl;
+import org.telegram.ui.Components.wq;
+public final class m5 extends org.telegram.ui.Components.k9 {
     public final Paint G;
     public long H;
     public Drawable I;
@@ -31,29 +31,29 @@ public final class m5 extends org.telegram.ui.Components.l9 {
         gf gfVar;
         Drawable drawable;
         float floatValue;
-        org.telegram.ui.Components.i5 i5Var = this.f35650e;
-        if (i5Var != null) {
-            imageReceiver = i5Var.f34568k;
+        org.telegram.ui.Components.h5 h5Var = this.f35252e;
+        if (h5Var != null) {
+            imageReceiver = h5Var.f34176k;
         } else {
-            imageReceiver = this.f35647a;
+            imageReceiver = this.f35249a;
         }
         if (imageReceiver != null) {
-            if (this.f35649c != -1 && this.d != -1) {
+            if (this.f35251c != -1 && this.d != -1) {
                 int height = getHeight();
                 int i7 = this.d;
-                imageReceiver.y0((getWidth() - this.f35649c) / 2, (height - i7) / 2, this.f35649c, i7);
+                imageReceiver.y0((getWidth() - this.f35251c) / 2, (height - i7) / 2, this.f35251c, i7);
                 int height2 = getHeight();
                 int i10 = this.d;
-                this.f35648b.y0((getWidth() - this.f35649c) / 2, (height2 - i10) / 2, this.f35649c, i10);
+                this.f35250b.y0((getWidth() - this.f35251c) / 2, (height2 - i10) / 2, this.f35251c, i10);
             } else {
                 imageReceiver.y0(0.0f, 0.0f, getWidth(), getHeight());
-                this.f35648b.y0(0.0f, 0.0f, getWidth(), getHeight());
+                this.f35250b.y0(0.0f, 0.0f, getWidth(), getHeight());
             }
             imageReceiver.h(canvas, null);
             q5 q5Var = this.K;
             if (q5Var.O) {
-                Rect rect = q5.f30135b0;
-                this.f35648b.h(canvas, null);
+                Rect rect = q5.f30146b0;
+                this.f35250b.h(canvas, null);
                 if (q5Var.N == null) {
                     if (q5Var.M == null) {
                         xh.f fVar = new xh.f();
@@ -69,7 +69,7 @@ public final class m5 extends org.telegram.ui.Components.l9 {
             int i11 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
             if (i11 != 0 && q5Var.S != null) {
                 Paint paint = this.G;
-                paint.setAlpha((int) (xq.f40458f.getInterpolation(1.0f - f10) * 255.0f));
+                paint.setAlpha((int) (wq.f40046f.getInterpolation(1.0f - f10) * 255.0f));
                 canvas.drawBitmap(q5Var.S, 0.0f, 0.0f, paint);
                 long min = Math.min(16L, System.currentTimeMillis() - this.H);
                 Float f11 = q5Var.T;
@@ -82,7 +82,7 @@ public final class m5 extends org.telegram.ui.Components.l9 {
                 this.H = System.currentTimeMillis();
                 invalidate();
                 if (q5Var.N != null) {
-                    q5Var.f30138b.invalidate();
+                    q5Var.f30149b.invalidate();
                 }
             } else if (i11 == 0 && (bitmap = q5Var.S) != null) {
                 bitmap.recycle();
@@ -90,9 +90,9 @@ public final class m5 extends org.telegram.ui.Components.l9 {
                 q5Var.T = null;
                 invalidate();
             }
-            if (q5Var.f30144s) {
+            if (q5Var.f30155s) {
                 o5 o5Var = q5Var.V;
-                if ((o5Var == null || !((tl) ((org.telegram.ui.Components.u) o5Var).f38539b).f38449s) && (gfVar = q5Var.H) != null && gfVar.i() && q5Var.H.d()) {
+                if ((o5Var == null || !((sl) ((org.telegram.ui.Components.t) o5Var).f38111b).f38023s) && (gfVar = q5Var.H) != null && gfVar.i() && q5Var.H.d()) {
                     if (q5Var.H.j()) {
                         if (this.J == null) {
                             this.J = getContext().getResources().getDrawable(2131231746).mutate();

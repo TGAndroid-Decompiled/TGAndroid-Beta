@@ -1,63 +1,29 @@
 package org.telegram.ui.Components;
+public final class pc0 implements org.telegram.messenger.ls {
+    public final int f36886a;
+    public final org.telegram.messenger.c20 f36887b;
+    public final org.telegram.messenger.ls[] f36888c;
 
-import android.app.Activity;
-public final class pc0 implements org.telegram.messenger.c20 {
-    public final int f36986a;
-    public final String[] f36987b;
-    public final Activity f36988c;
-    public final org.telegram.messenger.c20 d;
-
-    public pc0(String[] strArr, Activity activity, org.telegram.messenger.c20 c20Var, int i7) {
-        this.f36986a = i7;
-        this.f36987b = strArr;
-        this.f36988c = activity;
-        this.d = c20Var;
+    public pc0(int i7, org.telegram.messenger.c20 c20Var, org.telegram.messenger.ls[] lsVarArr) {
+        this.f36886a = i7;
+        this.f36887b = c20Var;
+        this.f36888c = lsVarArr;
     }
 
     @Override
-    public final void a(Object obj) {
-        int[] iArr = (int[]) obj;
-        switch (this.f36986a) {
-            case 0:
-                String[] strArr = this.f36987b;
-                int length = strArr.length;
-                boolean z9 = false;
-                int i7 = 0;
-                while (true) {
-                    if (i7 < length) {
-                        if (this.f36988c.checkSelfPermission(strArr[i7]) == 0) {
-                            z9 = true;
-                        } else {
-                            i7++;
-                        }
-                    }
-                }
-                org.telegram.messenger.c20 c20Var = this.d;
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        int i11 = org.telegram.messenger.qs.f25060p5;
+        if (i7 == i11) {
+            int intValue = ((Integer) objArr[0]).intValue();
+            String[] strArr = (String[]) objArr[1];
+            int[] iArr = (int[]) objArr[2];
+            if (intValue == this.f36886a) {
+                org.telegram.messenger.c20 c20Var = this.f36887b;
                 if (c20Var != null) {
-                    c20Var.a(Boolean.valueOf(z9));
-                    return;
+                    c20Var.a(iArr);
                 }
-                return;
-            default:
-                String[] strArr2 = this.f36987b;
-                int length2 = strArr2.length;
-                boolean z10 = false;
-                int i10 = 0;
-                while (true) {
-                    if (i10 < length2) {
-                        if (this.f36988c.checkSelfPermission(strArr2[i10]) == 0) {
-                            i10++;
-                        }
-                    } else {
-                        z10 = true;
-                    }
-                }
-                org.telegram.messenger.c20 c20Var2 = this.d;
-                if (c20Var2 != null) {
-                    c20Var2.a(Boolean.valueOf(z10));
-                    return;
-                }
-                return;
+                org.telegram.messenger.qs.e().n(this.f36888c[0], i11);
+            }
         }
     }
 }

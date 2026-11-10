@@ -12,8 +12,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class q0 extends r6.a {
     public static final Parcelable.Creator<q0> CREATOR = new db.k(12);
-    public static final byte[] f11415b = "WebAuthn PRF\u0000".getBytes(StandardCharsets.UTF_8);
-    public final byte[][] f11416a;
+    public static final byte[] f11420b = "WebAuthn PRF\u0000".getBytes(StandardCharsets.UTF_8);
+    public final byte[][] f11421a;
 
     public q0(byte[][] bArr) {
         boolean z9;
@@ -55,7 +55,7 @@ public final class q0 extends r6.a {
             }
             q6.m.b(z13);
         }
-        this.f11416a = bArr;
+        this.f11421a = bArr;
     }
 
     public static q0 b(JSONObject jSONObject, boolean z9) {
@@ -130,13 +130,13 @@ public final class q0 extends r6.a {
         if (!(obj instanceof q0)) {
             return false;
         }
-        return Arrays.deepEquals(this.f11416a, ((q0) obj).f11416a);
+        return Arrays.deepEquals(this.f11421a, ((q0) obj).f11421a);
     }
 
     public final int hashCode() {
         byte[][] bArr;
         int i7 = 0;
-        for (byte[] bArr2 : this.f11416a) {
+        for (byte[] bArr2 : this.f11421a) {
             if (bArr2 != null) {
                 i7 ^= Arrays.hashCode(new Object[]{bArr2});
             }
@@ -145,7 +145,7 @@ public final class q0 extends r6.a {
     }
 
     public final String toString() {
-        byte[][] bArr = this.f11416a;
+        byte[][] bArr = this.f11421a;
         try {
             JSONObject jSONObject = new JSONObject();
             JSONObject jSONObject2 = null;
@@ -170,7 +170,7 @@ public final class q0 extends r6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = xb.r(parcel, 20293);
-        xb.d(parcel, 1, this.f11416a);
+        xb.d(parcel, 1, this.f11421a);
         xb.s(parcel, r10);
     }
 }

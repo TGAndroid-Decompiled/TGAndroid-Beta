@@ -9,9 +9,9 @@ import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.cn;
-import org.telegram.ui.hj0;
 import org.telegram.ui.ij0;
-import org.telegram.ui.sj0;
+import org.telegram.ui.jj0;
+import org.telegram.ui.tj0;
 public final class r7 implements Runnable {
     public final int f4623a;
     public final Object f4624b;
@@ -22,14 +22,14 @@ public final class r7 implements Runnable {
     public final Object h;
     public final Object f4628n;
 
-    public r7(ea eaVar, TLObject tLObject, ij ijVar, TLRPC.InputInvoice inputInvoice, c20 c20Var, org.telegram.ui.Components.hc hcVar, TLRPC.TL_error tL_error) {
+    public r7(ea eaVar, TLObject tLObject, ij ijVar, TLRPC.InputInvoice inputInvoice, c20 c20Var, org.telegram.ui.Components.gc gcVar, TLRPC.TL_error tL_error) {
         this.f4623a = 2;
         this.f4624b = eaVar;
         this.f4625c = tLObject;
         this.d = ijVar;
         this.f4626e = inputInvoice;
         this.f4628n = c20Var;
-        this.f4627f = hcVar;
+        this.f4627f = gcVar;
         this.h = tL_error;
     }
 
@@ -104,14 +104,14 @@ public final class r7 implements Runnable {
         this.f4628n = bVar;
     }
 
-    public r7(hj0 hj0Var, TLObject tLObject, String str, TLRPC.TL_secureRequiredType tL_secureRequiredType, ij0 ij0Var, TLRPC.TL_error tL_error, sj0 sj0Var) {
+    public r7(ij0 ij0Var, TLObject tLObject, String str, TLRPC.TL_secureRequiredType tL_secureRequiredType, jj0 jj0Var, TLRPC.TL_error tL_error, tj0 tj0Var) {
         this.f4623a = 10;
-        this.f4624b = hj0Var;
+        this.f4624b = ij0Var;
         this.f4625c = tLObject;
         this.f4626e = str;
         this.d = tL_secureRequiredType;
-        this.f4627f = ij0Var;
+        this.f4627f = jj0Var;
         this.h = tL_error;
-        this.f4628n = sj0Var;
+        this.f4628n = tj0Var;
     }
 }

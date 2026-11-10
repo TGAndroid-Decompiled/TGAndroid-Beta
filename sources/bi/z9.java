@@ -5,47 +5,47 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashSet;
 public final class z9 {
-    public final org.telegram.ui.ActionBar.f2 f5169a;
-    public final long f5170b;
-    public final org.telegram.ui.Components.cc f5171c;
-    public final org.telegram.ui.Components.wb d;
-    public final org.telegram.ui.Components.ac f5172e;
-    public final da f5173f;
-    public int f5174g;
+    public final org.telegram.ui.ActionBar.f2 f5174a;
+    public final long f5175b;
+    public final org.telegram.ui.Components.bc f5176c;
+    public final org.telegram.ui.Components.vb d;
+    public final org.telegram.ui.Components.zb f5177e;
+    public final da f5178f;
+    public int f5179g;
     public long h;
-    public b9 f5175i;
-    public final ArrayList f5176j = new ArrayList();
-    public final HashSet f5177k = new HashSet();
-    public final long f5178l = System.currentTimeMillis();
-    public boolean f5179m = true;
-    public boolean f5180n;
-    public boolean f5181o;
-    public final y9 f5182p;
+    public b9 f5180i;
+    public final ArrayList f5181j = new ArrayList();
+    public final HashSet f5182k = new HashSet();
+    public final long f5183l = System.currentTimeMillis();
+    public boolean f5184m = true;
+    public boolean f5185n;
+    public boolean f5186o;
+    public final y9 f5187p;
 
     public z9(org.telegram.ui.ActionBar.f2 f2Var, long j3) {
         ?? r22 = new Runnable(this) {
-            public final z9 f5086b;
+            public final z9 f5091b;
 
             {
-                this.f5086b = this;
+                this.f5091b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f5086b.a();
+                        this.f5091b.a();
                         return;
                     default:
-                        z9 z9Var = this.f5086b;
-                        if (!z9Var.f5180n && !z9Var.f5181o && z9Var.f5179m) {
-                            z9Var.f5180n = true;
-                            b9 b9Var = z9Var.f5175i;
+                        z9 z9Var = this.f5091b;
+                        if (!z9Var.f5185n && !z9Var.f5186o && z9Var.f5184m) {
+                            z9Var.f5185n = true;
+                            b9 b9Var = z9Var.f5180i;
                             if (b9Var != null) {
-                                b9Var.a(z9Var.f5177k);
+                                b9Var.a(z9Var.f5182k);
                             }
-                            if (z9Var.f5172e != null) {
-                                z9Var.f5171c.b();
+                            if (z9Var.f5177e != null) {
+                                z9Var.f5176c.b();
                                 return;
                             }
                             return;
@@ -54,54 +54,54 @@ public final class z9 {
                 }
             }
         };
-        this.f5182p = r22;
-        this.f5169a = f2Var;
-        this.f5170b = j3;
+        this.f5187p = r22;
+        this.f5174a = f2Var;
+        this.f5175b = j3;
         Context t6 = ea.t(f2Var);
-        org.telegram.ui.Components.wb wbVar = new org.telegram.ui.Components.wb(t6, f2Var.getResourceProvider());
-        this.d = wbVar;
-        wbVar.c(2131624226, new String[0]);
-        ?? vbVar = new org.telegram.ui.Components.vb(t6, f2Var.getResourceProvider());
-        this.f5173f = vbVar;
-        vbVar.f39024b = 3000L;
-        int i7 = org.telegram.ui.ActionBar.l6.uj;
-        org.telegram.ui.ActionBar.g6 resourceProvider = f2Var.getResourceProvider();
+        org.telegram.ui.Components.vb vbVar = new org.telegram.ui.Components.vb(t6, f2Var.getResourceProvider());
+        this.d = vbVar;
+        vbVar.c(2131624226, new String[0]);
+        ?? ubVar = new org.telegram.ui.Components.ub(t6, f2Var.getResourceProvider());
+        this.f5178f = ubVar;
+        ubVar.f38609b = 3000L;
+        int i7 = org.telegram.ui.ActionBar.m6.uj;
+        org.telegram.ui.ActionBar.h6 resourceProvider = f2Var.getResourceProvider();
         a3.l lVar = new a3.l(24);
         a3.l lVar2 = new a3.l(25);
-        int P = org.telegram.ui.ActionBar.s6.P(i7, -1, 0, 0.0f, resourceProvider);
-        lVar2.c(P, vbVar);
-        org.telegram.ui.ActionBar.m6 w10 = org.telegram.ui.ActionBar.s6.w(101, vbVar);
+        int P = org.telegram.ui.ActionBar.t6.P(i7, -1, 0, 0.0f, resourceProvider);
+        lVar2.c(P, ubVar);
+        org.telegram.ui.ActionBar.n6 w10 = org.telegram.ui.ActionBar.t6.w(101, ubVar);
         w10.c(i7, -1, 0, 0.0f, resourceProvider);
-        w10.f28312n = lVar;
-        w10.f28313o = lVar2;
-        w10.f28311m = false;
-        w10.f28306g = P;
-        org.telegram.ui.Components.ac acVar = new org.telegram.ui.Components.ac(t6, f2Var.getResourceProvider(), true, false);
-        this.f5172e = acVar;
-        acVar.e(org.telegram.messenger.id.M0(2131745023, null));
-        acVar.f31766b = new Runnable(this) {
-            public final z9 f5086b;
+        w10.f28335n = lVar;
+        w10.f28336o = lVar2;
+        w10.f28334m = false;
+        w10.f28329g = P;
+        org.telegram.ui.Components.zb zbVar = new org.telegram.ui.Components.zb(t6, f2Var.getResourceProvider(), true, false);
+        this.f5177e = zbVar;
+        zbVar.e(org.telegram.messenger.id.M0(2131745023, null));
+        zbVar.f40908b = new Runnable(this) {
+            public final z9 f5091b;
 
             {
-                this.f5086b = this;
+                this.f5091b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f5086b.a();
+                        this.f5091b.a();
                         return;
                     default:
-                        z9 z9Var = this.f5086b;
-                        if (!z9Var.f5180n && !z9Var.f5181o && z9Var.f5179m) {
-                            z9Var.f5180n = true;
-                            b9 b9Var = z9Var.f5175i;
+                        z9 z9Var = this.f5091b;
+                        if (!z9Var.f5185n && !z9Var.f5186o && z9Var.f5184m) {
+                            z9Var.f5185n = true;
+                            b9 b9Var = z9Var.f5180i;
                             if (b9Var != null) {
-                                b9Var.a(z9Var.f5177k);
+                                b9Var.a(z9Var.f5182k);
                             }
-                            if (z9Var.f5172e != null) {
-                                z9Var.f5171c.b();
+                            if (z9Var.f5177e != null) {
+                                z9Var.f5176c.b();
                                 return;
                             }
                             return;
@@ -110,36 +110,36 @@ public final class z9 {
                 }
             }
         };
-        acVar.addView((View) vbVar, c8.ha.d(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
-        acVar.f31768e.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(8.0f));
-        wbVar.setButton(acVar);
-        org.telegram.ui.Components.cc b10 = org.telegram.ui.Components.hc.a0(f2Var).b(wbVar, -1);
-        this.f5171c = b10;
-        b10.f32635r = false;
+        zbVar.addView((View) ubVar, c8.ha.d(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
+        zbVar.f40910e.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(8.0f));
+        vbVar.setButton(zbVar);
+        org.telegram.ui.Components.bc b10 = org.telegram.ui.Components.gc.a0(f2Var).b(vbVar, -1);
+        this.f5176c = b10;
+        b10.f32211r = false;
         b10.k(true);
         b10.v = new Runnable(this) {
-            public final z9 f5086b;
+            public final z9 f5091b;
 
             {
-                this.f5086b = this;
+                this.f5091b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f5086b.a();
+                        this.f5091b.a();
                         return;
                     default:
-                        z9 z9Var = this.f5086b;
-                        if (!z9Var.f5180n && !z9Var.f5181o && z9Var.f5179m) {
-                            z9Var.f5180n = true;
-                            b9 b9Var = z9Var.f5175i;
+                        z9 z9Var = this.f5091b;
+                        if (!z9Var.f5185n && !z9Var.f5186o && z9Var.f5184m) {
+                            z9Var.f5185n = true;
+                            b9 b9Var = z9Var.f5180i;
                             if (b9Var != null) {
-                                b9Var.a(z9Var.f5177k);
+                                b9Var.a(z9Var.f5182k);
                             }
-                            if (z9Var.f5172e != null) {
-                                z9Var.f5171c.b();
+                            if (z9Var.f5177e != null) {
+                                z9Var.f5176c.b();
                                 return;
                             }
                             return;
@@ -153,9 +153,9 @@ public final class z9 {
     }
 
     public final void a() {
-        if (!this.f5180n && !this.f5181o) {
-            this.f5181o = true;
-            ArrayList arrayList = this.f5176j;
+        if (!this.f5185n && !this.f5186o) {
+            this.f5186o = true;
+            ArrayList arrayList = this.f5181j;
             int size = arrayList.size();
             int i7 = 0;
             while (i7 < size) {
@@ -163,8 +163,8 @@ public final class z9 {
                 i7++;
                 ((Runnable) obj).run();
             }
-            if (this.f5172e != null) {
-                this.f5171c.b();
+            if (this.f5177e != null) {
+                this.f5176c.b();
             }
         }
     }

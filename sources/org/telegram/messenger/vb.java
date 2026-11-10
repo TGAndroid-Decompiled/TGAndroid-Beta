@@ -8,18 +8,18 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.GradientDrawable;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ah0;
-import org.telegram.ui.Components.ra0;
+import org.telegram.ui.Components.qa0;
+import org.telegram.ui.Components.zg0;
 public final class vb implements Runnable {
-    public Thread f25960a;
-    public final Object f25961b = new Object();
-    public final ub f25962c;
+    public Thread f25964a;
+    public final Object f25965b = new Object();
+    public final ub f25966c;
     public boolean d;
-    public final gc f25963e;
+    public final gc f25967e;
 
     public vb(gc gcVar, ub ubVar) {
-        this.f25963e = gcVar;
-        this.f25962c = ubVar;
+        this.f25967e = gcVar;
+        this.f25966c = ubVar;
     }
 
     public static Bitmap a(Bitmap bitmap, TLRPC.WallPaper wallPaper) {
@@ -37,7 +37,7 @@ public final class vb implements Runnable {
                 int o10 = i0.a.o(wallPaperSettings.background_color, 255);
                 int o11 = i0.a.o(wallPaper.settings.second_background_color, 255);
                 int w02 = g0.w0(o10, o11);
-                GradientDrawable gradientDrawable = new GradientDrawable(org.telegram.ui.Components.k9.d(wallPaper.settings.rotation), new int[]{o10, o11});
+                GradientDrawable gradientDrawable = new GradientDrawable(org.telegram.ui.Components.j9.d(wallPaper.settings.rotation), new int[]{o10, o11});
                 gradientDrawable.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
                 gradientDrawable.draw(canvas);
                 i7 = w02;
@@ -51,12 +51,12 @@ public final class vb implements Runnable {
                 } else {
                     o4 = i0.a.o(i10, 255);
                 }
-                int g10 = ra0.g(o12, o13, o14, o4);
-                ra0 ra0Var = new ra0();
-                ra0Var.n(o12, o13, o14, o4);
-                ra0Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
-                ra0Var.s(wallPaper.settings.intensity, bitmap);
-                ra0Var.draw(canvas);
+                int g10 = qa0.g(o12, o13, o14, o4);
+                qa0 qa0Var = new qa0();
+                qa0Var.n(o12, o13, o14, o4);
+                qa0Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
+                qa0Var.s(wallPaper.settings.intensity, bitmap);
+                qa0Var.draw(canvas);
                 z9 = false;
                 i7 = g10;
             }
@@ -75,7 +75,7 @@ public final class vb implements Runnable {
         return bitmap;
     }
 
-    public final void b(ah0 ah0Var, int i7, int i10, boolean z9, boolean z10) {
+    public final void b(zg0 zg0Var, int i7, int i10, boolean z9, boolean z10) {
         Bitmap createBitmap;
         Canvas canvas;
         int i11;
@@ -90,16 +90,16 @@ public final class vb implements Runnable {
             createBitmap = Bitmap.createBitmap(i7, i10, Bitmap.Config.ARGB_8888);
             canvas = new Canvas(createBitmap);
         }
-        ah0Var.b();
-        Bitmap createBitmap2 = Bitmap.createBitmap(ah0Var.f31821b, ah0Var.f31823c, Bitmap.Config.ARGB_8888);
+        zg0Var.b();
+        Bitmap createBitmap2 = Bitmap.createBitmap(zg0Var.f40963b, zg0Var.f40965c, Bitmap.Config.ARGB_8888);
         if (z9) {
-            i11 = ah0Var.f31826e[0] - 1;
+            i11 = zg0Var.f40968e[0] - 1;
         } else {
             i11 = 0;
         }
-        ah0Var.C0 = i11;
-        ah0Var.a(createBitmap2);
-        ah0Var.c();
+        zg0Var.C0 = i11;
+        zg0Var.a(createBitmap2);
+        zg0Var.c();
         canvas.save();
         if (!z9 || !z10) {
             canvas.scale(createBitmap2.getWidth() / i7, createBitmap2.getHeight() / i10, i7 / 2.0f, i10 / 2.0f);
@@ -113,7 +113,7 @@ public final class vb implements Runnable {
             canvas.drawBitmap(createBitmap2, 0.0f, 0.0f, paint);
             bitmapDrawable = new BitmapDrawable(createBitmap);
         }
-        ah0Var.C(false);
+        zg0Var.C(false);
         createBitmap2.recycle();
         c(bitmapDrawable);
     }
@@ -130,13 +130,13 @@ public final class vb implements Runnable {
     public final void run() {
         try {
             d();
-            synchronized (this.f25961b) {
-                this.f25960a = null;
+            synchronized (this.f25965b) {
+                this.f25964a = null;
             }
             Thread.interrupted();
         } catch (Throwable th2) {
-            synchronized (this.f25961b) {
-                this.f25960a = null;
+            synchronized (this.f25965b) {
+                this.f25964a = null;
                 Thread.interrupted();
                 throw th2;
             }

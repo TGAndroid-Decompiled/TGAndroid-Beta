@@ -1,102 +1,41 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.ColorFilter;
-import android.util.SparseIntArray;
-public final class p01 extends org.telegram.ui.Components.bv {
-    public final int f48584g0;
-    public final s11 f48585h0;
+import android.graphics.Outline;
+import android.graphics.Rect;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+public final class p01 extends ViewOutlineProvider {
+    public final Rect f48611a = new Rect();
+    public final Integer f48612b;
+    public final t11 f48613c;
 
-    public p01(s11 s11Var, Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z9, boolean z10, int i7, ax0 ax0Var, int i10, int i11) {
-        super(context, g6Var, z9, z10, false, true, i7, ax0Var, i10, false);
-        this.f48585h0 = s11Var;
-        this.f48584g0 = i11;
+    public p01(t11 t11Var, Integer num) {
+        this.f48613c = t11Var;
+        this.f48612b = num;
     }
 
     @Override
-    public final ColorFilter getEmojiColorFilter() {
-        return this.f48585h0.f49687k1;
-    }
-
-    @Override
-    public final boolean h(int i7) {
-        int i10;
-        int i11;
-        h11 h11Var;
-        int i12;
-        int i13;
-        s11 s11Var = this.f48585h0;
-        SparseIntArray sparseIntArray = s11Var.f49714x0;
-        int i14 = 0;
-        if (s11Var.f49715x1) {
-            return false;
-        }
-        int i15 = this.f48584g0;
-        if (i15 == 4 && i7 == 0) {
-            s11Var.Q = !s11Var.Q;
-            s11Var.f49670d0.setVisibility(8);
-            org.telegram.ui.Components.bv bvVar = s11Var.f49668c0[s11Var.Q ? 1 : 0];
-            s11Var.f49670d0 = bvVar;
-            bvVar.setVisibility(0);
-            org.telegram.ui.Components.xu xuVar = s11Var.f49670d0.f32435y;
-            Context context = getContext();
-            if (s11Var.Q) {
-                i12 = 2131232127;
-            } else {
-                i12 = 2131232126;
-            }
-            xuVar.setDrawable(context.getDrawable(i12));
-            org.telegram.ui.Components.xu xuVar2 = s11Var.f49670d0.f32435y;
-            if (s11Var.Q) {
-                i13 = 2131754756;
-            } else {
-                i13 = 2131751196;
-            }
-            xuVar2.setContentDescription(org.telegram.messenger.id.M0(i13, null));
-            s11Var.B(true, false, false);
-            s11Var.f49699r0.h1(0, 0);
-            return true;
-        }
-        org.telegram.ui.Components.xu xuVar3 = this.E;
-        if (xuVar3 != null && this.f32427b0) {
-            i10 = 1;
+    public final void getOutline(View view, Outline outline) {
+        float intValue;
+        Integer num = this.f48612b;
+        if (num == null) {
+            intValue = view.getWidth() / 2.0f;
         } else {
-            i10 = 0;
+            intValue = num.intValue();
         }
-        int i16 = i10 + 1;
-        if (xuVar3 != null && this.f32427b0 && i7 == 1) {
-            i11 = s11Var.f49690n;
+        float L = intValue + org.telegram.messenger.g0.L(20.0f);
+        float width = (view.getWidth() - view.getPaddingLeft()) - view.getPaddingRight();
+        float height = (view.getHeight() - view.getPaddingBottom()) - view.getPaddingTop();
+        t11 t11Var = this.f48613c;
+        boolean n10 = t11Var.n();
+        Rect rect = this.f48611a;
+        if (n10) {
+            int paddingLeft = (int) ((L - (t11Var.f50019a1 * L)) + view.getPaddingLeft());
+            float z9 = com.google.android.recaptcha.internal.a.z(1.0f, t11Var.f50022b1, height, view.getPaddingTop());
+            rect.set(paddingLeft, (int) com.google.android.recaptcha.internal.a.z(1.0f, t11Var.f50022b1, org.telegram.messenger.g0.L(t11Var.f50027d1), z9), (int) (((width - L) * t11Var.f50019a1) + view.getPaddingLeft() + L), (int) com.google.android.recaptcha.internal.a.z(1.0f, t11Var.f50022b1, org.telegram.messenger.g0.L(t11Var.f50027d1), view.getPaddingTop() + height));
         } else {
-            if ((i15 != 4 || i7 != 0) && i7 > 0) {
-                int i17 = i7 - i16;
-                if (sparseIntArray.indexOfKey(i17) >= 0) {
-                    i11 = sparseIntArray.get(i17);
-                }
-            }
-            i11 = 0;
+            rect.set((int) ((L - (t11Var.f50019a1 * L)) + view.getPaddingLeft()), view.getPaddingTop(), (int) (((width - L) * t11Var.f50019a1) + view.getPaddingLeft() + L), (int) ((height * t11Var.f50022b1) + view.getPaddingTop()));
         }
-        if (i15 == 6) {
-            i14 = 7;
-        }
-        s11.a(s11Var, i11, org.telegram.messenger.g0.L(i14 - 2));
-        s11Var.f49670d0.j(i7, true);
-        s11Var.f49680h0.J1 = true;
-        s11Var.v(null, true, true);
-        k01 k01Var = s11Var.f49676f0;
-        if (k01Var != null && (h11Var = k01Var.f47149n) != null) {
-            h11Var.I1(null);
-        }
-        return true;
-    }
-
-    @Override
-    public final void i(org.telegram.ui.Components.xu xuVar) {
-        ValueAnimator valueAnimator = this.f48585h0.V1;
-        if (valueAnimator != null && !valueAnimator.isRunning()) {
-            return;
-        }
-        xuVar.setScaleX(0.0f);
-        xuVar.setScaleY(0.0f);
+        outline.setRoundRect(rect, org.telegram.messenger.g0.L(12.0f));
     }
 }

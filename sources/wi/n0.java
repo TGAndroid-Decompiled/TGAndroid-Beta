@@ -1,17 +1,17 @@
 package wi;
 public final class n0 {
-    public static final n0 f58123a;
-    public static final n0 f58124b;
-    public static final n0 f58125c;
+    public static final n0 f58127a;
+    public static final n0 f58128b;
+    public static final n0 f58129c;
     public static final n0[] d;
 
     static {
         ?? r02 = new Enum("HIGH", 0);
-        f58123a = r02;
+        f58127a = r02;
         ?? r12 = new Enum("MEDIUM", 1);
-        f58124b = r12;
+        f58128b = r12;
         ?? r32 = new Enum("LOW", 2);
-        f58125c = r32;
+        f58129c = r32;
         d = new n0[]{r02, r12, r32};
     }
 

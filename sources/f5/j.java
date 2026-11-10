@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 public final class j implements z2.a {
-    public final ArrayList f11163a;
+    public final ArrayList f11168a;
 
     public j(JSONArray jSONArray) {
         ArrayList arrayList = new ArrayList();
@@ -19,22 +19,22 @@ public final class j implements z2.a {
                 }
             }
         }
-        this.f11163a = arrayList;
+        this.f11168a = arrayList;
     }
 
     @Override
     public long a(long j3) {
-        ArrayList arrayList = this.f11163a;
+        ArrayList arrayList = this.f11168a;
         if (arrayList.isEmpty()) {
             return Long.MIN_VALUE;
         }
-        if (j3 < ((c4.a) arrayList.get(0)).f5268b) {
-            return ((c4.a) arrayList.get(0)).f5268b;
+        if (j3 < ((c4.a) arrayList.get(0)).f5273b) {
+            return ((c4.a) arrayList.get(0)).f5273b;
         }
         for (int i7 = 1; i7 < arrayList.size(); i7++) {
             c4.a aVar = (c4.a) arrayList.get(i7);
-            long j10 = aVar.f5268b;
-            long j11 = aVar.f5268b;
+            long j10 = aVar.f5273b;
+            long j11 = aVar.f5273b;
             if (j3 < j10) {
                 long j12 = ((c4.a) arrayList.get(i7 - 1)).d;
                 if (j12 != -9223372036854775807L && j12 > j3 && j12 < j11) {
@@ -54,16 +54,16 @@ public final class j implements z2.a {
     public i0 b(long j3) {
         int f10 = f(j3);
         if (f10 == 0) {
-            g0 g0Var = i0.f14329b;
-            return t1.f14397e;
+            g0 g0Var = i0.f14331b;
+            return t1.f14399e;
         }
-        c4.a aVar = (c4.a) this.f11163a.get(f10 - 1);
+        c4.a aVar = (c4.a) this.f11168a.get(f10 - 1);
         long j10 = aVar.d;
         if (j10 != -9223372036854775807L && j3 >= j10) {
-            g0 g0Var2 = i0.f14329b;
-            return t1.f14397e;
+            g0 g0Var2 = i0.f14331b;
+            return t1.f14399e;
         }
-        return aVar.f5267a;
+        return aVar.f5272a;
     }
 
     @Override
@@ -73,17 +73,17 @@ public final class j implements z2.a {
 
     @Override
     public void clear() {
-        this.f11163a.clear();
+        this.f11168a.clear();
     }
 
     @Override
     public long d(long j3) {
-        ArrayList arrayList = this.f11163a;
-        if (arrayList.isEmpty() || j3 < ((c4.a) arrayList.get(0)).f5268b) {
+        ArrayList arrayList = this.f11168a;
+        if (arrayList.isEmpty() || j3 < ((c4.a) arrayList.get(0)).f5273b) {
             return -9223372036854775807L;
         }
         for (int i7 = 1; i7 < arrayList.size(); i7++) {
-            long j10 = ((c4.a) arrayList.get(i7)).f5268b;
+            long j10 = ((c4.a) arrayList.get(i7)).f5273b;
             int i10 = (j3 > j10 ? 1 : (j3 == j10 ? 0 : -1));
             if (i10 == 0) {
                 return j10;
@@ -94,7 +94,7 @@ public final class j implements z2.a {
                 if (j11 != -9223372036854775807L && j11 <= j3) {
                     return j11;
                 }
-                return aVar.f5268b;
+                return aVar.f5273b;
             }
         }
         c4.a aVar2 = (c4.a) h9.o.n(arrayList);
@@ -102,7 +102,7 @@ public final class j implements z2.a {
         if (j12 != -9223372036854775807L && j3 >= j12) {
             return j12;
         }
-        return aVar2.f5268b;
+        return aVar2.f5273b;
     }
 
     @Override
@@ -111,7 +111,7 @@ public final class j implements z2.a {
         if (f10 == 0) {
             return;
         }
-        ArrayList arrayList = this.f11163a;
+        ArrayList arrayList = this.f11168a;
         long j10 = ((c4.a) arrayList.get(f10 - 1)).d;
         if (j10 == -9223372036854775807L || j10 >= j3) {
             f10--;
@@ -122,9 +122,9 @@ public final class j implements z2.a {
     public int f(long j3) {
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f11163a;
+            ArrayList arrayList = this.f11168a;
             if (i7 < arrayList.size()) {
-                if (j3 < ((c4.a) arrayList.get(i7)).f5268b) {
+                if (j3 < ((c4.a) arrayList.get(i7)).f5273b) {
                     return i7;
                 }
                 i7++;
@@ -135,6 +135,6 @@ public final class j implements z2.a {
     }
 
     public j() {
-        this.f11163a = new ArrayList();
+        this.f11168a = new ArrayList();
     }
 }

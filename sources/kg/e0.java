@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.ui.Components.pj0;
-public final class e0 extends pj0 {
+import org.telegram.ui.Components.oj0;
+public final class e0 extends oj0 {
     public final Context f17355c;
     public final ArrayList d = new ArrayList();
     public String f17356e;
@@ -18,7 +18,7 @@ public final class e0 extends pj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57060f == 0) {
+        if (d1Var.f57056f == 0) {
             return true;
         }
         return false;
@@ -65,7 +65,7 @@ public final class e0 extends pj0 {
                 p1Var.setTag(-33024);
             }
         } else {
-            p1Var = new p1(context, this.f17357f.f39070a, false);
+            p1Var = new p1(context, this.f17357f.f38655a, false);
         }
         return new v4.d1(p1Var);
     }

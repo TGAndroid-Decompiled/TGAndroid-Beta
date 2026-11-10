@@ -2,385 +2,248 @@ package org.telegram.ui.Components;
 
 import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
-import android.graphics.Color;
+import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.graphics.RectF;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.text.Layout;
-import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
-public class i6 extends Drawable {
-    public static final LinearInterpolator f34584c0 = new LinearInterpolator();
-    public float A;
-    public int B;
-    public final Rect C;
-    public boolean D;
-    public boolean E;
-    public boolean F;
-    public boolean G;
-    public boolean H;
-    public xf I;
-    public boolean J;
-    public boolean K;
-    public boolean L;
-    public int M;
-    public float N;
-    public boolean O;
-    public LinearGradient P;
-    public Matrix Q;
-    public Paint R;
-    public boolean S;
-    public boolean T;
-    public boolean U;
-    public float V;
-    public float W;
-    public int X;
-    public ValueAnimator Y;
-    public int Z;
-    public final TextPaint f34585a;
-    public ColorFilter f34586a0;
-    public int f34587b;
-    public Runnable f34588b0;
-    public boolean f34589c;
-    public float d;
-    public float f34590e;
-    public float f34591f;
-    public float f34592g;
-    public f6[] h;
-    public CharSequence f34593i;
-    public float f34594j;
-    public float f34595k;
-    public float f34596l;
-    public float f34597m;
-    public f6[] f34598n;
-    public CharSequence f34599o;
-    public int f34600p;
-    public float f34601q;
-    public float f34602r;
-    public boolean f34603s;
-    public ValueAnimator f34604t;
-    public CharSequence f34605u;
-    public boolean v;
-    public long f34606w;
-    public TimeInterpolator f34607x;
-    public float f34608y;
-    public float f34609z;
+import android.view.accessibility.AccessibilityNodeInfo;
+public class i6 extends View {
+    public boolean f34541a;
+    public Drawable f34542b;
+    public final h6 f34543c;
+    public int d;
+    public int f34544e;
+    public CharSequence f34545f;
+    public boolean h;
+    public boolean f34546n;
+    public boolean f34547r;
 
-    public i6(boolean z9, boolean z10, boolean z11) {
-        this(z9, z10, z11, false, false);
-    }
-
-    public static boolean l(int r2, int r3, java.lang.CharSequence r4, java.lang.CharSequence r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.i6.l(int, int, java.lang.CharSequence, java.lang.CharSequence):boolean");
+    public i6(Context context, boolean z9, boolean z10, boolean z11) {
+        this(context, z9, z10, z11, false, false);
     }
 
     public final void a() {
-        ValueAnimator valueAnimator = this.f34604t;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
+        this.f34543c.a();
     }
 
-    public final void b() {
-        if (this.f34598n != null) {
-            int i7 = 0;
-            while (true) {
-                f6[] f6VarArr = this.f34598n;
-                if (i7 >= f6VarArr.length) {
-                    break;
-                }
-                f6 f6Var = f6VarArr[i7];
-                i6 i6Var = f6Var.f33593i;
-                if (i6Var.getCallback() instanceof View) {
-                    r5.release((View) i6Var.getCallback(), f6Var.f33587a);
-                }
-                i7++;
-            }
-        }
-        this.f34598n = null;
+    public final void b(float f10, long j3, TimeInterpolator timeInterpolator) {
+        this.f34543c.n(f10, j3, timeInterpolator);
     }
 
-    public final float c() {
-        if (this.h != null && this.f34598n != null) {
-            return org.telegram.messenger.g0.T1(this.f34594j, this.d, this.f34602r);
-        }
-        return this.d;
-    }
-
-    public final float d(org.telegram.ui.Components.f6 r8, float r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.i6.d(org.telegram.ui.Components.f6, float):float");
-    }
-
-    @Override
-    public final void draw(android.graphics.Canvas r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.i6.draw(android.graphics.Canvas):void");
-    }
-
-    public final float e() {
-        return Math.max(this.d, this.f34594j);
-    }
-
-    public final void f(f6 f6Var) {
-        this.f34591f = Math.max(this.f34591f, f6Var.f33592g);
-        float max = Math.max(this.f34592g, f6Var.h);
-        this.f34592g = max;
-        this.f34590e = this.f34591f + max;
-    }
-
-    public final void g(f6 f6Var) {
-        this.f34596l = Math.max(this.f34596l, f6Var.f33592g);
-        float max = Math.max(this.f34597m, f6Var.h);
-        this.f34597m = max;
-        this.f34595k = this.f34596l + max;
-    }
-
-    @Override
-    public final Rect getDirtyBounds() {
-        return this.C;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    public final boolean h() {
-        ValueAnimator valueAnimator = this.f34604t;
-        if (valueAnimator != null && valueAnimator.isRunning()) {
-            return true;
-        }
-        return false;
-    }
-
-    public final float i() {
-        float f10;
-        CharSequence charSequence = this.f34599o;
-        float f11 = 0.0f;
-        float f12 = 1.0f;
-        if (charSequence != null && charSequence.length() > 0) {
-            f10 = 1.0f;
+    public final void c(CharSequence charSequence, boolean z9, boolean z10) {
+        boolean z11;
+        if (!this.f34547r && z9) {
+            z11 = true;
         } else {
-            f10 = 0.0f;
+            z11 = false;
         }
-        CharSequence charSequence2 = this.f34593i;
-        if (charSequence2 != null && charSequence2.length() > 0) {
-            f11 = 1.0f;
-        }
-        if (this.f34599o != null) {
-            f12 = this.f34602r;
-        }
-        return org.telegram.messenger.g0.T1(f10, f11, f12);
-    }
-
-    public final StaticLayout j(int i7, CharSequence charSequence) {
-        if (i7 <= 0) {
-            Point point = org.telegram.messenger.g0.f22563q;
-            i7 = Math.min(point.x, point.y);
-        }
-        return StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), this.f34585a, i7).setMaxLines(1).setLineSpacing(0.0f, 1.0f).setAlignment(Layout.Alignment.ALIGN_NORMAL).setEllipsize(TextUtils.TruncateAt.END).setEllipsizedWidth(i7).setIncludePad(this.S).build();
-    }
-
-    public final void k(g6 g6Var, CharSequence charSequence, int i7, int i10) {
-        if (this.G && charSequence.length() > 1) {
-            int i11 = 0;
-            while (i11 < charSequence.length()) {
-                int i12 = i11 + 1;
-                g6Var.f(charSequence.subSequence(i11, i12));
-                i11 = i12;
+        this.f34547r = false;
+        h6 h6Var = this.f34543c;
+        if (z11 && !TextUtils.equals(charSequence, h6Var.f34193i)) {
+            if (h6Var.J) {
+                ValueAnimator valueAnimator = h6Var.f34204t;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                    h6Var.f34204t = null;
+                }
+            } else if (h6Var.h()) {
+                this.f34545f = charSequence;
+                this.h = z10;
+                return;
             }
+        }
+        h6Var.setBounds(getPaddingLeft(), getPaddingTop(), this.d - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
+        h6Var.t(charSequence, z11, z10);
+        float e10 = (int) h6Var.e();
+        if (e10 >= h6Var.e() && (z11 || e10 == h6Var.e())) {
             return;
         }
-        g6Var.f(charSequence);
+        requestLayout();
     }
 
-    public final void m(float f10, long j3, float f11, TimeInterpolator timeInterpolator) {
-        this.f34609z = f10;
-        this.f34606w = j3;
-        this.f34608y = f11;
-        this.f34607x = timeInterpolator;
+    public final int d() {
+        return getPaddingRight() + getPaddingLeft() + ((int) Math.ceil(this.f34543c.c()));
     }
 
-    public final void n(float f10, long j3, TimeInterpolator timeInterpolator) {
-        m(f10, j3, 1.0f, timeInterpolator);
+    public h6 getDrawable() {
+        return this.f34543c;
     }
 
-    public final void o(float f10, float f11, float f12, float f13) {
-        int i7 = (int) f10;
-        int i10 = (int) f11;
-        int i11 = (int) f12;
-        int i12 = (int) f13;
-        super.setBounds(i7, i10, i11, i12);
-        this.C.set(i7, i10, i11, i12);
+    public TextPaint getPaint() {
+        return this.f34543c.f34185a;
     }
 
-    public final void p(RectF rectF) {
-        setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+    public float getRightPadding() {
+        return this.f34543c.N;
     }
 
-    public final void q(boolean z9) {
-        this.O = z9;
-        invalidateSelf();
+    public Drawable getSizeableBackground() {
+        return this.f34542b;
     }
 
-    public final void r(boolean z9, boolean z10) {
-        this.D = z9;
-        this.E = true;
-        this.F = z10;
-        this.G = false;
-        this.H = false;
+    public CharSequence getText() {
+        return this.f34543c.f34193i;
     }
 
-    public final void s(float f10, float f11, int i7) {
-        this.U = true;
-        this.V = f10;
-        this.W = f11;
-        this.X = i7;
-        this.f34585a.setShadowLayer(f10, 0.0f, f11, i7);
+    public int getTextColor() {
+        return this.f34543c.f34185a.getColor();
+    }
+
+    public int getTextHeight() {
+        return getPaint().getFontMetricsInt().descent - getPaint().getFontMetricsInt().ascent;
     }
 
     @Override
-    public final void setAlpha(int i7) {
-        this.B = i7;
+    public final void invalidateDrawable(Drawable drawable) {
+        super.invalidateDrawable(drawable);
+        invalidate();
     }
 
     @Override
-    public final void setBounds(Rect rect) {
-        super.setBounds(rect);
-        this.C.set(rect);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f34585a.setColorFilter(colorFilter);
-    }
-
-    public final void t(java.lang.CharSequence r21, boolean r22, boolean r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.i6.t(java.lang.CharSequence, boolean, boolean):void");
-    }
-
-    public final void u(int i7) {
-        this.f34585a.setColor(i7);
-        this.B = Color.alpha(i7);
-    }
-
-    public final void v(int i7, boolean z9) {
-        ValueAnimator valueAnimator = this.Y;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.Y = null;
-        }
-        if (!z9) {
-            u(i7);
-            return;
-        }
-        int color = this.f34585a.getColor();
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.Y = ofFloat;
-        ofFloat.addUpdateListener(new fi.k4(this, color, i7, 2));
-        this.Y.addListener(new hi.m2(this, i7, 7));
-        this.Y.setDuration(240L);
-        this.Y.setInterpolator(xq.h);
-        this.Y.start();
-    }
-
-    public final void w(float f10) {
-        TextPaint textPaint = this.f34585a;
-        float textSize = textPaint.getTextSize();
-        textPaint.setTextSize(f10);
-        if (Math.abs(textSize - f10) > 0.5f) {
-            int i7 = this.M;
-            if (i7 <= 0) {
-                i7 = this.C.width();
+    public void onDraw(Canvas canvas) {
+        int i7;
+        Drawable drawable = this.f34542b;
+        h6 h6Var = this.f34543c;
+        if (drawable != null && (!this.f34541a || h6Var.i() > 0.0f)) {
+            int c10 = (int) (h6Var.c() + getPaddingLeft() + getPaddingRight());
+            int i10 = h6Var.f34187b & 7;
+            if (i10 == 5) {
+                i7 = getWidth() - c10;
+            } else if (i10 == 1) {
+                i7 = (getWidth() - c10) / 2;
+            } else {
+                i7 = 0;
             }
-            int i10 = 0;
-            if (this.h != null) {
-                this.d = 0.0f;
-                this.f34592g = 0.0f;
-                this.f34591f = 0.0f;
-                this.f34590e = 0.0f;
-                int i11 = 0;
-                while (true) {
-                    f6[] f6VarArr = this.h;
-                    if (i11 >= f6VarArr.length) {
-                        break;
-                    }
-                    StaticLayout j3 = j(i7 - ((int) Math.ceil(Math.min(this.d, this.f34594j))), f6VarArr[i11].f33588b.getText());
-                    f6[] f6VarArr2 = this.h;
-                    f6 f6Var = f6VarArr2[i11];
-                    f6VarArr2[i11] = new f6(this, j3, f6Var.f33589c, f6Var.d);
-                    float f11 = this.d;
-                    f6 f6Var2 = this.h[i11];
-                    this.d = f11 + f6Var2.f33591f;
-                    f(f6Var2);
-                    i11++;
-                }
-            }
-            if (this.f34598n != null) {
-                this.f34594j = 0.0f;
-                this.f34597m = 0.0f;
-                this.f34596l = 0.0f;
-                this.f34595k = 0.0f;
-                while (true) {
-                    f6[] f6VarArr3 = this.f34598n;
-                    if (i10 >= f6VarArr3.length) {
-                        break;
-                    }
-                    StaticLayout j10 = j(i7 - ((int) Math.ceil(Math.min(this.d, this.f34594j))), f6VarArr3[i10].f33588b.getText());
-                    f6[] f6VarArr4 = this.f34598n;
-                    f6 f6Var3 = f6VarArr4[i10];
-                    f6VarArr4[i10] = new f6(this, j10, f6Var3.f33589c, f6Var3.d);
-                    float f12 = this.f34594j;
-                    f6 f6Var4 = this.f34598n[i10];
-                    this.f34594j = f12 + f6Var4.f33591f;
-                    g(f6Var4);
-                    i10++;
-                }
-            }
-            invalidateSelf();
+            this.f34542b.setBounds(i7, 0, c10 + i7, getHeight());
+            this.f34542b.draw(canvas);
         }
-    }
-
-    public final void x(Typeface typeface) {
-        this.f34585a.setTypeface(typeface);
-    }
-
-    public i6(boolean z9, boolean z10, boolean z11, boolean z12, boolean z13) {
-        this.f34585a = new TextPaint(1);
-        this.f34587b = 0;
-        this.f34589c = false;
-        this.f34600p = 0;
-        this.f34601q = 0.0f;
-        this.f34602r = 0.0f;
-        this.f34603s = true;
-        this.f34606w = 320L;
-        this.f34607x = xq.h;
-        this.f34608y = -1.0f;
-        this.f34609z = 0.3f;
-        this.A = 0.0f;
-        this.B = 255;
-        this.C = new Rect();
-        this.S = true;
-        this.T = true;
-        this.U = false;
-        this.D = z9;
-        this.E = z10;
-        this.F = z11;
-        this.G = z12;
-        this.H = z13;
+        h6Var.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
+        h6Var.draw(canvas);
     }
 
     @Override
-    public final void setBounds(int i7, int i10, int i11, int i12) {
-        super.setBounds(i7, i10, i11, i12);
-        this.C.set(i7, i10, i11, i12);
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.TextView");
+        accessibilityNodeInfo.setText(getText());
+    }
+
+    @Override
+    public void onMeasure(int i7, int i10) {
+        int size = View.MeasureSpec.getSize(i7);
+        int size2 = View.MeasureSpec.getSize(i10);
+        int i11 = this.f34544e;
+        if (i11 > 0) {
+            size = Math.min(size, i11);
+        }
+        int i12 = this.d;
+        h6 h6Var = this.f34543c;
+        if (i12 != size && getLayoutParams().width != 0) {
+            h6Var.setBounds(getPaddingLeft(), getPaddingTop(), size - getPaddingRight(), size2 - getPaddingBottom());
+            h6Var.t(h6Var.f34193i, false, true);
+        }
+        this.d = size;
+        if (this.f34546n && View.MeasureSpec.getMode(i7) == Integer.MIN_VALUE) {
+            size = getPaddingRight() + getPaddingLeft() + ((int) Math.ceil(h6Var.e()));
+        }
+        setMeasuredDimension(size, size2);
+    }
+
+    public void setAllowCancel(boolean z9) {
+        this.f34543c.J = z9;
+    }
+
+    public void setEllipsizeByGradient(boolean z9) {
+        this.f34543c.q(z9);
+    }
+
+    public void setEmojiCacheType(int i7) {
+        this.f34543c.f34200p = i7;
+    }
+
+    public void setEmojiColor(int i7) {
+        h6 h6Var = this.f34543c;
+        if (h6Var.Z != i7) {
+            h6Var.Z = i7;
+            h6Var.f34186a0 = new PorterDuffColorFilter(i7, PorterDuff.Mode.SRC_IN);
+        }
+        invalidate();
+    }
+
+    public void setEmojiColorFilter(ColorFilter colorFilter) {
+        this.f34543c.f34186a0 = colorFilter;
+        invalidate();
+    }
+
+    public void setGravity(int i7) {
+        this.f34543c.f34187b = i7;
+    }
+
+    public void setHideBackgroundIfEmpty(boolean z9) {
+        this.f34541a = z9;
+    }
+
+    public void setIgnoreRTL(boolean z9) {
+        this.f34543c.K = z9;
+    }
+
+    public void setIncludeFontPadding(boolean z9) {
+        this.f34543c.S = z9;
+    }
+
+    public void setMaxWidth(int i7) {
+        this.f34544e = i7;
+    }
+
+    public void setOnWidthUpdatedListener(Runnable runnable) {
+        this.f34543c.f34188b0 = runnable;
+    }
+
+    public void setRightPadding(float f10) {
+        h6 h6Var = this.f34543c;
+        h6Var.N = f10;
+        h6Var.invalidateSelf();
+    }
+
+    public void setScaleProperty(float f10) {
+        this.f34543c.A = f10;
+    }
+
+    public void setSizeableBackground(Drawable drawable) {
+        this.f34542b = drawable;
+        invalidate();
+    }
+
+    public void setText(CharSequence charSequence) {
+        c(charSequence, true, true);
+    }
+
+    public void setTextColor(int i7) {
+        this.f34543c.u(i7);
+        invalidate();
+    }
+
+    public void setTextSize(float f10) {
+        this.f34543c.w(f10);
+    }
+
+    public void setTypeface(Typeface typeface) {
+        this.f34543c.x(typeface);
+    }
+
+    public i6(Context context, boolean z9, boolean z10, boolean z11, boolean z12, boolean z13) {
+        super(context);
+        this.f34546n = true;
+        this.f34547r = true;
+        h6 h6Var = new h6(z9, z10, z11, z12, z13);
+        this.f34543c = h6Var;
+        h6Var.setCallback(this);
+        h6Var.I = new wf(this, 8);
     }
 }

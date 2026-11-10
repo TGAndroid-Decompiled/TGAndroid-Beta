@@ -17,15 +17,15 @@ import org.telegram.messenger.ui;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.ActionBar.s6;
-import org.telegram.ui.Components.di;
-import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.vh;
-import org.telegram.ui.Components.xa;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.Components.ci;
+import org.telegram.ui.Components.gc;
+import org.telegram.ui.Components.uh;
+import org.telegram.ui.Components.wa;
 import org.telegram.ui.cn;
-import org.telegram.ui.ry0;
-public final class c4 extends vh implements ls {
+import org.telegram.ui.sy0;
+public final class c4 extends uh implements ls {
     public int D;
     public long E;
     public int F;
@@ -46,12 +46,12 @@ public final class c4 extends vh implements ls {
     public s3 U;
     public boolean V;
     public int W;
-    public s2 f14592n;
-    public ValueAnimator f14593r;
-    public boolean f14594s;
-    public long f14595w;
-    public long f14596x;
-    public long f14597y;
+    public s2 f14594n;
+    public ValueAnimator f14595r;
+    public boolean f14596s;
+    public long f14597w;
+    public long f14598x;
+    public long f14599y;
 
     @Override
     public final void B(int r4, int r5) {
@@ -59,34 +59,34 @@ public final class c4 extends vh implements ls {
     }
 
     @Override
-    public final void H(vh vhVar) {
-        s2 s2Var = this.f14592n;
-        CharSequence p10 = t10.p(qp.s1(this.F).a2(Long.valueOf(this.f14595w)));
+    public final void H(uh uhVar) {
+        s2 s2Var = this.f14594n;
+        CharSequence p10 = t10.p(qp.s1(this.F).a2(Long.valueOf(this.f14597w)));
         try {
             TextPaint textPaint = new TextPaint();
             textPaint.setTextSize(org.telegram.messenger.g0.L(20.0f));
             p10 = i6.m(p10, textPaint.getFontMetricsInt(), false, null, 0);
         } catch (Exception unused) {
         }
-        di diVar = this.f39071b;
-        diVar.R2.setTitle(p10);
+        ci ciVar = this.f38656b;
+        ciVar.U2.setTitle(p10);
         this.J.setSwipeOffsetY(0.0f);
         if (s2Var.getWebView() != null) {
             s2Var.getWebView().scrollTo(0, 0);
         }
-        org.telegram.ui.ActionBar.f2 f2Var = diVar.W1;
+        org.telegram.ui.ActionBar.f2 f2Var = ciVar.Z1;
         if (f2Var != null) {
             s2Var.setParentActivity(f2Var.getParentActivity());
         }
         this.K.setVisibility(0);
         if (!s2Var.R) {
-            org.telegram.messenger.g0.R3(diVar.R2.getBackButton(), 2131231269);
+            org.telegram.messenger.g0.R3(ciVar.U2.getBackButton(), 2131231269);
         }
     }
 
     @Override
     public final void I() {
-        if (this.f14592n.N) {
+        if (this.f14594n.N) {
             P();
         }
         this.J.setSwipeOffsetAnimationDisallowed(false);
@@ -107,50 +107,50 @@ public final class c4 extends vh implements ls {
     public final boolean O() {
         String str;
         if (this.S) {
-            TLRPC.User a22 = qp.s1(this.F).a2(Long.valueOf(this.f14595w));
+            TLRPC.User a22 = qp.s1(this.F).a2(Long.valueOf(this.f14597w));
             if (a22 != null) {
                 str = g5.m(0, a22.first_name, a22.last_name);
             } else {
                 str = null;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
-            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27300a;
             u1Var.R = str;
             u1Var.T = id.M0(2131752917, null);
             alertDialog$Builder.k(id.M0(2131752916, null), new u3(this));
             alertDialog$Builder.h(id.M0(2131752589, null), null);
             u1Var.show();
-            s6.U((TextView) u1Var.d(-1), l6.f28106q7, this.f39070a);
+            t6.U((TextView) u1Var.d(-1), m6.f28131q7, this.f38655a);
             return false;
         }
-        this.f39071b.dismiss();
+        this.f38656b.dismiss();
         return true;
     }
 
     public final void P() {
-        di diVar = this.f39071b;
-        org.telegram.ui.ActionBar.f2 f2Var = diVar.W1;
+        ci ciVar = this.f38656b;
+        org.telegram.ui.ActionBar.f2 f2Var = ciVar.Z1;
         if ((f2Var instanceof cn) && ((cn) f2Var).l1.Q() > org.telegram.messenger.g0.L(20.0f)) {
-            org.telegram.messenger.g0.v1(diVar.W1.getFragmentView());
+            org.telegram.messenger.g0.v1(ciVar.Z1.getFragmentView());
             org.telegram.messenger.g0.i3(new s3(this, 1), 250L);
             return;
         }
-        diVar.getWindow().setSoftInputMode(20);
+        ciVar.getWindow().setSoftInputMode(20);
         setFocusable(true);
-        diVar.A0(true);
+        ciVar.A0(true);
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        s2 s2Var = this.f14592n;
-        if (i7 == qs.f25119z1) {
-            if (this.f14597y == ((Long) objArr[0]).longValue()) {
+        s2 s2Var = this.f14594n;
+        if (i7 == qs.f25123z1) {
+            if (this.f14599y == ((Long) objArr[0]).longValue()) {
                 s2Var.h();
                 this.H = true;
-                this.f39071b.dismiss();
+                this.f38656b.dismiss();
             }
-        } else if (i7 == qs.f25044n4) {
-            s2Var.f51358n.b(l6.w0(l6.f27938h5, this.f39070a), 153);
+        } else if (i7 == qs.f25048n4) {
+            s2Var.f51312n.b(m6.w0(m6.f27963h5, this.f38655a), 153);
         }
     }
 
@@ -195,7 +195,7 @@ public final class c4 extends vh implements ls {
     }
 
     public org.telegram.ui.web.x0 getWebViewContainer() {
-        return this.f14592n;
+        return this.f14594n;
     }
 
     @Override
@@ -210,7 +210,7 @@ public final class c4 extends vh implements ls {
 
     @Override
     public final boolean k() {
-        if (this.f14592n.D()) {
+        if (this.f14594n.D()) {
             return true;
         }
         O();
@@ -228,23 +228,23 @@ public final class c4 extends vh implements ls {
 
     @Override
     public final void p() {
-        qs.f(this.F).n(this, qs.f25119z1);
-        qs.e().n(this, qs.f25044n4);
-        org.telegram.ui.ActionBar.y r10 = this.f39071b.R2.r();
+        qs.f(this.F).n(this, qs.f25123z1);
+        qs.e().n(this, qs.f25048n4);
+        org.telegram.ui.ActionBar.y s5 = this.f38656b.U2.s();
         org.telegram.ui.ActionBar.r0 r0Var = this.K;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = r0Var.f28425b;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = r0Var.f28430b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
             actionBarPopupWindow$ActionBarPopupWindowLayout.d();
         }
-        r10.removeView(r0Var);
-        this.f14592n.h();
+        s5.removeView(r0Var);
+        this.f14594n.h();
         this.T = true;
         org.telegram.messenger.g0.r(this.U);
     }
 
     @Override
     public final void requestLayout() {
-        if (this.f14594s) {
+        if (this.f14596s) {
             return;
         }
         super.requestLayout();
@@ -271,7 +271,7 @@ public final class c4 extends vh implements ls {
     }
 
     public void setDelegate(org.telegram.ui.web.d0 d0Var) {
-        this.f14592n.setDelegate(d0Var);
+        this.f14594n.setDelegate(d0Var);
     }
 
     public void setMeasureOffsetY(int i7) {
@@ -286,27 +286,27 @@ public final class c4 extends vh implements ls {
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f39071b.f28624b.invalidate();
+        this.f38656b.f28672b.invalidate();
     }
 
     @Override
     public final void t() {
-        di diVar = this.f39071b;
-        diVar.A0(false);
-        diVar.getWindow().setSoftInputMode(48);
+        ci ciVar = this.f38656b;
+        ciVar.A0(false);
+        ciVar.getWindow().setSoftInputMode(48);
     }
 
     @Override
     public final void u() {
         this.K.setVisibility(8);
         this.P = false;
-        s2 s2Var = this.f14592n;
+        s2 s2Var = this.f14594n;
         boolean z9 = s2Var.R;
-        di diVar = this.f39071b;
+        ci ciVar = this.f38656b;
         if (!z9) {
-            org.telegram.messenger.g0.R3(diVar.R2.getBackButton(), 2131231240);
+            org.telegram.messenger.g0.R3(ciVar.U2.getBackButton(), 2131231240);
         }
-        diVar.R2.setBackground(null);
+        ciVar.U2.setBackground(null);
         if (s2Var.T) {
             s2Var.h();
             this.H = true;
@@ -316,7 +316,7 @@ public final class c4 extends vh implements ls {
     @Override
     public final void w(int i7) {
         v3 v3Var = this.I;
-        s2 s2Var = this.f14592n;
+        s2 s2Var = this.f14594n;
         if (i7 == -1) {
             if (!s2Var.D()) {
                 O();
@@ -324,12 +324,12 @@ public final class c4 extends vh implements ls {
             }
             return;
         }
-        di diVar = this.f39071b;
+        ci ciVar = this.f38656b;
         if (i7 == 2131296500) {
             Bundle bundle = new Bundle();
-            bundle.putLong("user_id", this.f14595w);
-            diVar.W1.presentFragment(new cn(bundle));
-            diVar.dismiss();
+            bundle.putLong("user_id", this.f14597w);
+            ciVar.Z1.presentFragment(new cn(bundle));
+            ciVar.dismiss();
             return;
         }
         int i10 = 0;
@@ -341,18 +341,18 @@ public final class c4 extends vh implements ls {
             v3Var.setLoadProgress(0.0f);
             v3Var.setAlpha(1.0f);
             v3Var.setVisibility(0);
-            s2Var.setBotUser(qp.s1(this.F).a2(Long.valueOf(this.f14595w)));
-            s2Var.s(this.F, this.f14595w);
+            s2Var.setBotUser(qp.s1(this.F).a2(Long.valueOf(this.f14597w)));
+            s2Var.s(this.F, this.f14597w);
             qs.f(s2Var.M).d(new org.telegram.ui.web.p(s2Var, 1));
         } else if (i7 == 2131296495) {
-            ArrayList<TLRPC.TL_attachMenuBot> arrayList = ui.b0(this.F).f25802b.bots;
+            ArrayList<TLRPC.TL_attachMenuBot> arrayList = ui.b0(this.F).f25806b.bots;
             int size = arrayList.size();
             while (i10 < size) {
                 TLRPC.TL_attachMenuBot tL_attachMenuBot = arrayList.get(i10);
                 i10++;
                 TLRPC.TL_attachMenuBot tL_attachMenuBot2 = tL_attachMenuBot;
-                if (tL_attachMenuBot2.bot_id == this.f14595w) {
-                    diVar.k1(tL_attachMenuBot2, qp.s1(this.F).a2(Long.valueOf(this.f14595w)));
+                if (tL_attachMenuBot2.bot_id == this.f14597w) {
+                    ciVar.k1(tL_attachMenuBot2, qp.s1(this.F).a2(Long.valueOf(this.f14597w)));
                     return;
                 }
             }
@@ -361,16 +361,16 @@ public final class c4 extends vh implements ls {
             s2Var.P = System.currentTimeMillis();
             s2Var.y("settings_button_pressed", null);
         } else if (i7 == 2131296490) {
-            ui.b0(this.F).y0(this.f14595w, ui.f25797c2, null);
+            ui.b0(this.F).y0(this.f14597w, ui.f25801c2, null);
         } else if (i7 == 2131296510) {
             vf.c.t(getContext(), id.M0(2131752893, null));
         } else if (i7 == 2131296505) {
             int i11 = this.F;
             Context context = getContext();
-            hc hcVar = new hc(xa.a(getContext()), this.f39070a);
-            long j3 = this.f14595w;
-            int i12 = ry0.f49634s1;
-            ry0.J0(i11, context, j3, false, false, new ArrayList(), hcVar, null, new byte[0], null, null);
+            gc gcVar = new gc(wa.a(getContext()), this.f38655a);
+            long j3 = this.f14597w;
+            int i12 = sy0.f49991v1;
+            sy0.J0(i11, context, j3, false, false, new ArrayList(), gcVar, null, new byte[0], null, null);
         }
     }
 
@@ -378,14 +378,14 @@ public final class c4 extends vh implements ls {
     public final void y() {
         this.O = false;
         this.J.setSwipeOffsetAnimationDisallowed(false);
-        this.f14592n.setViewPortByMeasureSuppressed(false);
+        this.f14594n.setViewPortByMeasureSuppressed(false);
         requestLayout();
     }
 
     @Override
     public final void z(int i7, boolean z9) {
         boolean z10;
-        s2 s2Var = this.f14592n;
+        s2 s2Var = this.f14594n;
         r2 r2Var = this.J;
         if (z9) {
             s2Var.setViewPortByMeasureSuppressed(true);
@@ -396,25 +396,25 @@ public final class c4 extends vh implements ls {
             } else {
                 z10 = false;
             }
-            int Q = this.f39071b.f33022l3.Q() + i7;
+            int Q = this.f38656b.f32634o3.Q() + i7;
             setMeasuredDimension(getMeasuredWidth(), i7);
             this.O = true;
             r2Var.setSwipeOffsetAnimationDisallowed(true);
             if (!z10) {
-                ValueAnimator valueAnimator = this.f14593r;
+                ValueAnimator valueAnimator = this.f14595r;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
-                    this.f14593r = null;
+                    this.f14595r = null;
                 }
                 if (s2Var.getWebView() != null) {
                     int scrollY = s2Var.getWebView().getScrollY();
                     int i10 = (Q - i7) + scrollY;
                     ValueAnimator duration = ValueAnimator.ofInt(scrollY, i10).setDuration(250L);
-                    this.f14593r = duration;
+                    this.f14595r = duration;
                     duration.setInterpolator(mi.l.V);
-                    this.f14593r.addUpdateListener(new t3(this, 0));
-                    this.f14593r.addListener(new m2(this, i10, 1));
-                    this.f14593r.start();
+                    this.f14595r.addUpdateListener(new t3(this, 0));
+                    this.f14595r.addListener(new m2(this, i10, 1));
+                    this.f14595r.start();
                 }
             }
         }

@@ -1,12 +1,34 @@
 package org.telegram.ui.Components;
-public final class fw extends org.telegram.ui.cn {
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class fw extends FrameLayout {
+    public final gy f33651a;
+
+    public fw(gy gyVar, Context context) {
+        super(context);
+        this.f33651a = gyVar;
+    }
+
     @Override
-    public final void onTransitionAnimationEnd(boolean z9, boolean z10) {
-        org.telegram.ui.sj sjVar;
-        super.onTransitionAnimationEnd(z9, z10);
-        if (z9 && (sjVar = this.Z) != null) {
-            sjVar.s1();
-            this.Z.postDelayed(new gp(this, 12), 100L);
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        gy gyVar = this.f33651a;
+        kw kwVar = gyVar.I;
+        hv hvVar = gyVar.V;
+        sw swVar = gyVar.P;
+        if (view != swVar && view != hvVar) {
+            return super.drawChild(canvas, view, j3);
         }
+        canvas.save();
+        float y10 = kwVar.getY() + kwVar.getMeasuredHeight() + 1.0f;
+        if (view == swVar && hvVar != null) {
+            y10 = Math.max(y10, hvVar.getY() + hvVar.getMeasuredHeight() + 1.0f);
+        }
+        canvas.clipRect(0.0f, y10 - (org.telegram.messenger.g0.L(16.0f) * gyVar.f34010b.f55498e), getMeasuredWidth(), getMeasuredHeight());
+        boolean drawChild = super.drawChild(canvas, view, j3);
+        canvas.restore();
+        return drawChild;
     }
 }

@@ -20,39 +20,39 @@ import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.dj0;
-import org.telegram.ui.Components.pq;
-import org.telegram.ui.Components.tq;
+import org.telegram.ui.Components.cj0;
+import org.telegram.ui.Components.oq;
+import org.telegram.ui.Components.sq;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.e40;
-import org.telegram.ui.oa1;
-import org.telegram.ui.tv0;
-import org.telegram.ui.yw;
-public final class i implements oa1, org.telegram.ui.ActionBar.r1, org.telegram.messenger.lc, dj0, dp, w5.b, v5.e, ua.a {
-    public final int f4018a;
-    public final long f4019b;
-    public final Object f4020c;
+import org.telegram.ui.f40;
+import org.telegram.ui.pa1;
+import org.telegram.ui.uv0;
+import org.telegram.ui.zw;
+public final class i implements pa1, org.telegram.ui.ActionBar.r1, org.telegram.messenger.lc, cj0, dp, w5.b, v5.e, ua.a {
+    public final int f4015a;
+    public final long f4016b;
+    public final Object f4017c;
     public final Object d;
 
     public i(Object obj, long j3, Object obj2, int i7) {
-        this.f4018a = i7;
-        this.f4020c = obj;
-        this.f4019b = j3;
+        this.f4015a = i7;
+        this.f4017c = obj;
+        this.f4016b = j3;
         this.d = obj2;
     }
 
     @Override
     public void a(boolean z9, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-        org.telegram.messenger.g0.h3(new o((tv0) this.f4020c, this.f4019b, tL_chatAdminRights, str, z9, (yw) this.d));
+        org.telegram.messenger.g0.h3(new o((uv0) this.f4017c, this.f4016b, tL_chatAdminRights, str, z9, (zw) this.d));
     }
 
     @Override
     public Object apply(Object obj) {
         boolean z9;
-        String str = (String) this.f4020c;
+        String str = (String) this.f4017c;
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
-        int i7 = ((r5.c) this.d).f54425a;
+        int i7 = ((r5.c) this.d).f54424a;
         Cursor rawQuery = sQLiteDatabase.rawQuery("SELECT 1 FROM log_event_dropped WHERE log_source = ? AND reason = ?", new String[]{str, Integer.toString(i7)});
         try {
             if (rawQuery.getCount() > 0) {
@@ -61,7 +61,7 @@ public final class i implements oa1, org.telegram.ui.ActionBar.r1, org.telegram.
                 z9 = false;
             }
             rawQuery.close();
-            long j3 = this.f4019b;
+            long j3 = this.f4016b;
             if (!z9) {
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("log_source", str);
@@ -80,22 +80,22 @@ public final class i implements oa1, org.telegram.ui.ActionBar.r1, org.telegram.
 
     @Override
     public void c(ua.b bVar) {
-        ((x9.a) bVar.get()).d((String) this.f4020c, this.f4019b, (da.p1) this.d);
+        ((x9.a) bVar.get()).d((String) this.f4017c, this.f4016b, (da.p1) this.d);
     }
 
     @Override
     public void f(float f10, float f11, int i7, View view) {
-        ProfileActivity.h0((ProfileActivity) this.f4020c, (Context) this.d, this.f4019b, view, i7, f10, f11);
+        ProfileActivity.h0((ProfileActivity) this.f4017c, (Context) this.d, this.f4016b, view, i7, f10, f11);
     }
 
     @Override
     public void f0(ImageReceiver imageReceiver, boolean z9, boolean z10, boolean z11) {
-        ResultCallback resultCallback = (ResultCallback) this.f4020c;
-        long j3 = this.f4019b;
+        ResultCallback resultCallback = (ResultCallback) this.f4017c;
+        long j3 = this.f4016b;
         File file = (File) this.d;
         org.telegram.messenger.jc p10 = imageReceiver.p();
-        if (z9 && p10 != null && !p10.f23535c.isRecycled()) {
-            Bitmap bitmap = p10.f23535c;
+        if (z9 && p10 != null && !p10.f23539c.isRecycled()) {
+            Bitmap bitmap = p10.f23539c;
             if (bitmap == null) {
                 Drawable drawable = p10.d;
                 if (drawable instanceof BitmapDrawable) {
@@ -106,7 +106,7 @@ public final class i implements oa1, org.telegram.ui.ActionBar.r1, org.telegram.
                 if (resultCallback != null) {
                     resultCallback.onComplete(new Pair(Long.valueOf(j3), bitmap));
                 }
-                Utilities.f21336e.c(new fi.z8(file, bitmap));
+                Utilities.f21341e.c(new fi.z8(file, bitmap));
             } else if (resultCallback != null) {
                 resultCallback.onComplete(null);
             }
@@ -120,47 +120,47 @@ public final class i implements oa1, org.telegram.ui.ActionBar.r1, org.telegram.
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f4018a) {
+        switch (this.f4015a) {
             case 1:
-                k7 k7Var = (k7) this.f4020c;
+                k7 k7Var = (k7) this.f4017c;
                 vf.b h = u1Var.h(-1, true, true);
                 h.d();
                 TL_stars.deleteStarGift deletestargift = new TL_stars.deleteStarGift();
                 deletestargift.stargift = (TL_stars.InputSavedStarGift) this.d;
-                ConnectionsManager.getInstance(k7Var.f28621a).sendRequest(deletestargift, new h3(k7Var, h, this.f4019b, 0));
+                ConnectionsManager.getInstance(k7Var.f28669a).sendRequest(deletestargift, new h3(k7Var, h, this.f4016b, 0));
                 return;
             case 2:
-                fi.n8 n8Var = (fi.n8) this.f4020c;
+                fi.n8 n8Var = (fi.n8) this.f4017c;
                 ArrayList arrayList = (ArrayList) this.d;
-                n8Var.d.put(Long.valueOf(this.f4019b), arrayList);
+                n8Var.d.put(Long.valueOf(this.f4016b), arrayList);
                 int size = arrayList.size();
                 int i10 = 0;
                 while (i10 < size) {
                     Object obj = arrayList.get(i10);
                     i10++;
-                    n8Var.f12486b.k(Boolean.TRUE, ((Long) obj).longValue());
+                    n8Var.f12490b.k(Boolean.TRUE, ((Long) obj).longValue());
                 }
                 n8Var.j(true);
                 n8Var.f(true);
                 n8Var.g(true);
                 u1Var.dismiss();
-                n8Var.f12495y.L = true;
+                n8Var.f12499y.L = true;
                 return;
             case 3:
             case 4:
             default:
-                e40 e40Var = (e40) this.f4020c;
-                qp.s1(e40Var.f45228k1.f21765a).n(e40Var.l1(), (TLRPC.User) this.d, null, (org.telegram.ui.ActionBar.f2) e40Var.Z1.M().getFragmentStack().get(e40Var.Z1.M().getFragmentStack().size() - 1), new r3(e40Var, this.f4019b, 26));
+                f40 f40Var = (f40) this.f4017c;
+                qp.s1(f40Var.n1.f21770a).n(f40Var.l1(), (TLRPC.User) this.d, null, (org.telegram.ui.ActionBar.f2) f40Var.f45512c2.M().getFragmentStack().get(f40Var.f45512c2.M().getFragmentStack().size() - 1), new r3(f40Var, this.f4016b, 26));
                 return;
             case 5:
-                tq tqVar = (tq) this.f4020c;
+                sq sqVar = (sq) this.f4017c;
                 fi.d dVar = (fi.d) this.d;
                 if (!dVar.Q) {
                     dVar.setLoading(true);
                     TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl = new TL_phone.getGroupCallStreamRtmpUrl();
-                    getgroupcallstreamrtmpurl.peer = qp.s1(tqVar.f28621a).j1(this.f4019b);
+                    getgroupcallstreamrtmpurl.peer = qp.s1(sqVar.f28669a).j1(this.f4016b);
                     getgroupcallstreamrtmpurl.revoke = true;
-                    ConnectionsManager.getInstance(tqVar.f28621a).sendRequest(getgroupcallstreamrtmpurl, new pq(tqVar, dVar, 0));
+                    ConnectionsManager.getInstance(sqVar.f28669a).sendRequest(getgroupcallstreamrtmpurl, new oq(sqVar, dVar, 0));
                     return;
                 }
                 return;
@@ -169,9 +169,9 @@ public final class i implements oa1, org.telegram.ui.ActionBar.r1, org.telegram.
 
     @Override
     public Object h() {
-        ia.c cVar = (ia.c) this.f4020c;
-        long s5 = ((x5.a) cVar.f15423g).s() + this.f4019b;
-        v5.g gVar = (v5.g) ((v5.d) cVar.f15420c);
+        ia.c cVar = (ia.c) this.f4017c;
+        long s5 = ((x5.a) cVar.f15425g).s() + this.f4016b;
+        v5.g gVar = (v5.g) ((v5.d) cVar.f15422c);
         gVar.getClass();
         gVar.c(new di.c1(s5, (o5.i) this.d));
         return null;
@@ -179,14 +179,14 @@ public final class i implements oa1, org.telegram.ui.ActionBar.r1, org.telegram.
 
     @Override
     public void j(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        ((z) this.f4020c).u0(true, this.f4019b, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.d);
+        ((z) this.f4017c).u0(true, this.f4016b, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.d);
     }
 
     public i(Object obj, Object obj2, long j3, int i7) {
-        this.f4018a = i7;
-        this.f4020c = obj;
+        this.f4015a = i7;
+        this.f4017c = obj;
         this.d = obj2;
-        this.f4019b = j3;
+        this.f4016b = j3;
     }
 
     @Override

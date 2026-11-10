@@ -7,25 +7,25 @@ import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 public class AnimatedArrowDrawable extends Drawable {
-    public final Paint f31008a;
-    public final Path f31009b = new Path();
-    public float f31010c;
+    public final Paint f31019a;
+    public final Path f31020b = new Path();
+    public float f31021c;
     public float d;
-    public long f31011e;
-    public final boolean f31012f;
-    public final float f31013g;
+    public long f31022e;
+    public final boolean f31023f;
+    public final float f31024g;
     public final float h;
-    public final float f31014i;
+    public final float f31025i;
 
     public AnimatedArrowDrawable(int i7, boolean z9) {
         Paint paint = new Paint(1);
-        this.f31008a = paint;
+        this.f31019a = paint;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
         paint.setColor(i7);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        this.f31012f = z9;
+        this.f31023f = z9;
         b();
     }
 
@@ -34,59 +34,59 @@ public class AnimatedArrowDrawable extends Drawable {
             return;
         }
         this.d = f10;
-        this.f31011e = SystemClock.elapsedRealtime();
+        this.f31022e = SystemClock.elapsedRealtime();
         invalidateSelf();
     }
 
     public final void b() {
-        Path path = this.f31009b;
+        Path path = this.f31020b;
         path.reset();
-        float f10 = (this.f31010c * 2.0f) - 1.0f;
-        float f11 = this.f31013g;
+        float f10 = (this.f31021c * 2.0f) - 1.0f;
+        float f11 = this.f31024g;
         if (f11 > 0.0f) {
             float f12 = this.h;
             if (f12 > 0.0f) {
-                float N = org.telegram.messenger.g0.N(this.f31014i) / 2.0f;
+                float N = org.telegram.messenger.g0.N(this.f31025i) / 2.0f;
                 float N2 = org.telegram.messenger.g0.N(f11) - N;
                 float N3 = org.telegram.messenger.g0.N(f12) - N;
                 float f13 = N3 - N;
-                path.moveTo(N, N3 - (this.f31010c * f13));
-                path.lineTo((N + N2) / 2.0f, (this.f31010c * f13) + N);
-                path.lineTo(N2, N3 - (f13 * this.f31010c));
+                path.moveTo(N, N3 - (this.f31021c * f13));
+                path.lineTo((N + N2) / 2.0f, (this.f31021c * f13) + N);
+                path.lineTo(N2, N3 - (f13 * this.f31021c));
                 return;
             }
         }
-        if (this.f31012f) {
+        if (this.f31023f) {
             path.moveTo(org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(6.0f) - (org.telegram.messenger.g0.L(2.0f) * f10));
             path.lineTo(org.telegram.messenger.g0.L(8.0f), (org.telegram.messenger.g0.L(2.0f) * f10) + org.telegram.messenger.g0.L(6.0f));
             path.lineTo(org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(6.0f) - (org.telegram.messenger.g0.L(2.0f) * f10));
             return;
         }
-        path.moveTo(org.telegram.messenger.g0.L(4.5f), (org.telegram.messenger.g0.L(2.0f) * this.f31010c) + (org.telegram.messenger.g0.L(12.0f) - (org.telegram.messenger.g0.L(4.0f) * f10)));
-        path.lineTo(org.telegram.messenger.g0.L(13.0f), (org.telegram.messenger.g0.L(2.0f) * this.f31010c) + (org.telegram.messenger.g0.L(4.0f) * f10) + org.telegram.messenger.g0.L(12.0f));
-        path.lineTo(org.telegram.messenger.g0.L(21.5f), (org.telegram.messenger.g0.L(2.0f) * this.f31010c) + (org.telegram.messenger.g0.L(12.0f) - (org.telegram.messenger.g0.L(4.0f) * f10)));
+        path.moveTo(org.telegram.messenger.g0.L(4.5f), (org.telegram.messenger.g0.L(2.0f) * this.f31021c) + (org.telegram.messenger.g0.L(12.0f) - (org.telegram.messenger.g0.L(4.0f) * f10)));
+        path.lineTo(org.telegram.messenger.g0.L(13.0f), (org.telegram.messenger.g0.L(2.0f) * this.f31021c) + (org.telegram.messenger.g0.L(4.0f) * f10) + org.telegram.messenger.g0.L(12.0f));
+        path.lineTo(org.telegram.messenger.g0.L(21.5f), (org.telegram.messenger.g0.L(2.0f) * this.f31021c) + (org.telegram.messenger.g0.L(12.0f) - (org.telegram.messenger.g0.L(4.0f) * f10)));
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        canvas.drawPath(this.f31009b, this.f31008a);
-        if (this.d != this.f31010c) {
+        canvas.drawPath(this.f31020b, this.f31019a);
+        if (this.d != this.f31021c) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            long j3 = elapsedRealtime - this.f31011e;
-            this.f31011e = elapsedRealtime;
-            float f10 = this.f31010c;
+            long j3 = elapsedRealtime - this.f31022e;
+            this.f31022e = elapsedRealtime;
+            float f10 = this.f31021c;
             float f11 = this.d;
             if (f10 < f11) {
                 float f12 = (((float) j3) / 180.0f) + f10;
-                this.f31010c = f12;
+                this.f31021c = f12;
                 if (f12 > f11) {
-                    this.f31010c = f11;
+                    this.f31021c = f11;
                 }
             } else {
                 float f13 = f10 - (((float) j3) / 180.0f);
-                this.f31010c = f13;
+                this.f31021c = f13;
                 if (f13 < f11) {
-                    this.f31010c = f11;
+                    this.f31021c = f11;
                 }
             }
             b();
@@ -95,7 +95,7 @@ public class AnimatedArrowDrawable extends Drawable {
     }
 
     public float getAnimationProgress() {
-        return this.f31010c;
+        return this.f31021c;
     }
 
     @Override
@@ -109,7 +109,7 @@ public class AnimatedArrowDrawable extends Drawable {
 
     @Override
     public final int getIntrinsicWidth() {
-        float f10 = this.f31013g;
+        float f10 = this.f31024g;
         if (f10 > 0.0f) {
             return org.telegram.messenger.g0.L(f10);
         }
@@ -122,7 +122,7 @@ public class AnimatedArrowDrawable extends Drawable {
     }
 
     public void setAnimationProgress(float f10) {
-        this.f31010c = f10;
+        this.f31021c = f10;
         this.d = f10;
         b();
         invalidateSelf();
@@ -130,21 +130,21 @@ public class AnimatedArrowDrawable extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f31008a.setColorFilter(colorFilter);
+        this.f31019a.setColorFilter(colorFilter);
     }
 
     public AnimatedArrowDrawable(int i7) {
         Paint paint = new Paint(1);
-        this.f31008a = paint;
+        this.f31019a = paint;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.N(1.66f));
         paint.setColor(i7);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        this.f31012f = true;
-        this.f31013g = 12.66f;
+        this.f31023f = true;
+        this.f31024g = 12.66f;
         this.h = 6.16f;
-        this.f31014i = 1.66f;
+        this.f31025i = 1.66f;
         b();
     }
 

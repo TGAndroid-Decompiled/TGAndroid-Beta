@@ -2,11 +2,11 @@ package org.telegram.messenger;
 
 import java.util.HashSet;
 public abstract class ft {
-    public static final HashSet f22468a;
+    public static final HashSet f22472a;
 
     static {
         HashSet hashSet = new HashSet();
-        f22468a = hashSet;
+        f22472a = hashSet;
         hashSet.add("com.google.android.projection.gearhead");
         hashSet.add("com.google.android.mediasimulator");
         hashSet.add("com.android.car.media");

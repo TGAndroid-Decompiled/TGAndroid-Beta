@@ -3,11 +3,11 @@ package oi;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 public abstract class e extends Drawable {
-    public final Rect f21074a = new Rect();
-    public r f21075b = q.f();
-    public int f21076c = 255;
+    public final Rect f21079a = new Rect();
+    public r f21080b = q.f();
+    public int f21081c = 255;
     public float d;
-    public float f21077e;
+    public float f21082e;
 
     public abstract void a();
 
@@ -31,15 +31,15 @@ public abstract class e extends Drawable {
 
     @Override
     public final int getAlpha() {
-        return this.f21076c;
+        return this.f21081c;
     }
 
     public final void i(float f10, float f11) {
-        if (this.d == f10 && this.f21077e == f11) {
+        if (this.d == f10 && this.f21082e == f11) {
             return;
         }
         this.d = f10;
-        this.f21077e = f11;
+        this.f21082e = f11;
         h();
     }
 
@@ -47,8 +47,8 @@ public abstract class e extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        if (this.f21076c != i7) {
-            this.f21076c = i7;
+        if (this.f21081c != i7) {
+            this.f21081c = i7;
             f(i7);
         }
     }

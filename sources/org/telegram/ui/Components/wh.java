@@ -2,65 +2,53 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.widget.TextView;
-import org.telegram.tgnet.TLRPC;
-public final class wh extends yh {
-    public TLRPC.User f40055b;
-    public TLRPC.TL_attachMenuBot f40056c;
-    public final di d;
+public final class wh extends xh {
+    public int f39971b;
+    public final ci f39972c;
 
-    public wh(di diVar, Context context) {
+    public wh(ci ciVar, Context context) {
         super(context);
-        this.d = diVar;
+        this.f39972c = ciVar;
         setWillNotDraw(false);
         setFocusable(true);
-        setFocusableInTouchMode(true);
-        int i7 = di.E4;
-        org.telegram.ui.ActionBar.g6 g6Var = diVar.I0;
+        int i7 = ci.H4;
+        org.telegram.ui.ActionBar.h6 h6Var = ciVar.I0;
         qh.b bVar = new qh.b(context);
-        bVar.d = g6Var;
+        bVar.d = h6Var;
         bVar.Q = true;
-        TextView textView = bVar.f54150a;
+        TextView textView = bVar.f54149a;
         textView.setTextSize(1, 11.0f);
         textView.setPadding(org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f), 0);
-        bVar.f54151b.setVisibility(8);
         bVar.b(false);
-        l9 l9Var = new l9(context);
-        bVar.f54152c = l9Var;
-        bVar.addView(l9Var, c8.ha.d(24, 24.0f, 49, 0.0f, 4.0f, 0.0f, 0.0f));
-        bVar.f54159x = org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.Ql, g6Var);
-        bVar.f54157s = org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.Ol, g6Var);
-        bVar.f54158w = org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.Pl, g6Var);
+        bVar.f54150b.setLayoutParams(c8.ha.d(24, 24.0f, 49, 0.0f, 4.0f, 0.0f, 0.0f));
+        bVar.f54158x = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Ql, h6Var);
+        bVar.f54156s = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Ol, h6Var);
+        bVar.f54157w = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Pl, h6Var);
         bVar.a();
-        this.f40720a = bVar;
-        bVar.getBackupImageView().f35647a.f21195g1 = new k2(13);
-        addView(this.f40720a, c8.ha.c(-1.0f, -1));
+        this.f40307a = bVar;
+        addView(bVar, c8.ha.c(-1.0f, -1));
     }
 
-    public final void a(boolean z9) {
-        boolean z10;
-        if (this.f40056c != null && (-this.f40055b.f27105id) == this.d.Q2) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.f40720a.f(z10, z9);
-        ah0 B = this.f40720a.getBackupImageView().getImageReceiver().B();
-        if (z9) {
-            if (z10 && B != null) {
-                B.K(0);
-                B.P(-1);
-                B.T(false, 0.0f);
-                B.start();
-            }
-        } else if (B != null) {
-            B.stop();
-            B.T(false, 0.0f);
-        }
+    public final void a(int i7, String str, qh.a aVar) {
+        this.f40307a.setText(str);
+        this.f40307a.setTabAnimation(aVar);
+        this.f39971b = i7;
+    }
+
+    @Override
+    public final boolean hasOverlappingRendering() {
+        return false;
     }
 
     @Override
     public final void onAttachedToWindow() {
+        boolean z9;
         super.onAttachedToWindow();
-        a(false);
+        if (this.f39971b == this.f39972c.T2) {
+            z9 = true;
+        } else {
+            z9 = false;
+        }
+        this.f40307a.f(z9, false);
     }
 }

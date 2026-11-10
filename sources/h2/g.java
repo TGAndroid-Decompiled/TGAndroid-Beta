@@ -3,13 +3,13 @@ package h2;
 import java.util.Locale;
 import java.util.regex.Pattern;
 public abstract class g {
-    public static final byte[] f14085a = {0, 0, 0, 1};
-    public static final String[] f14086b = {"", "A", "B", "C"};
-    public static final Pattern f14087c = Pattern.compile("^\\D?(\\d+)$");
+    public static final byte[] f14087a = {0, 0, 0, 1};
+    public static final String[] f14088b = {"", "A", "B", "C"};
+    public static final Pattern f14089c = Pattern.compile("^\\D?(\\d+)$");
 
     public static String a(int i7, int i10, int i11, int i12, boolean z9, int[] iArr) {
         char c10;
-        String str = f14086b[i7];
+        String str = f14088b[i7];
         Integer valueOf = Integer.valueOf(i10);
         Integer valueOf2 = Integer.valueOf(i11);
         if (z9) {
@@ -18,7 +18,7 @@ public abstract class g {
             c10 = 'L';
         }
         Object[] objArr = {str, valueOf, valueOf2, Character.valueOf(c10), Integer.valueOf(i12)};
-        String str2 = m0.f14112a;
+        String str2 = m0.f14114a;
         StringBuilder sb2 = new StringBuilder(String.format(Locale.US, "hvc1.%s%d.%X.%c%d", objArr));
         int length = iArr.length;
         while (length > 0 && iArr[length - 1] == 0) {

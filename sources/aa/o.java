@@ -41,7 +41,7 @@ public final class o implements Callable {
         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
             Log.v("FirebaseCrashlytics", concat, null);
         }
-        f0Var.g(this.f827b, this.f828c, "crash", new ca.c(g10, j10, hd.o.f14475a), true);
+        f0Var.g(this.f827b, this.f828c, "crash", new ca.c(g10, j10, hd.o.f14477a), true);
         try {
             dVar = qVar.f839g;
             str = ".ae" + j3;
@@ -58,6 +58,6 @@ public final class o implements Callable {
         if (!qVar.f835b.a()) {
             return Tasks.forResult(null);
         }
-        return ((TaskCompletionSource) ((AtomicReference) cVar.f15424i).get()).getTask().onSuccessTask(qVar.f837e.f3135a, new cb.c(this, g10));
+        return ((TaskCompletionSource) ((AtomicReference) cVar.f15426i).get()).getTask().onSuccessTask(qVar.f837e.f3135a, new cb.c(this, g10));
     }
 }

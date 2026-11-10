@@ -47,9 +47,9 @@ import m.t3;
 import r0.i0;
 import r0.l0;
 public final class s extends g implements l.i, LayoutInflater.Factory2 {
-    public static final a0.l f13353q0 = new a0.l(0);
-    public static final int[] f13354r0 = {16842836};
-    public static final boolean f13355s0 = !"robolectric".equals(Build.FINGERPRINT);
+    public static final a0.l f13355q0 = new a0.l(0);
+    public static final int[] f13356r0 = {16842836};
+    public static final boolean f13357s0 = !"robolectric".equals(Build.FINGERPRINT);
     public ActionBarContextView D;
     public PopupWindow E;
     public h F;
@@ -73,51 +73,51 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
     public boolean X;
     public boolean Y;
     public boolean Z;
-    public Configuration f13356a0;
-    public final int f13357b0;
-    public int f13358c0;
+    public Configuration f13358a0;
+    public final int f13359b0;
+    public int f13360c0;
     public final u d;
-    public int f13359d0;
-    public final Context f13360e;
-    public boolean f13361e0;
-    public Window f13362f;
-    public o f13363f0;
-    public o f13364g0;
+    public int f13361d0;
+    public final Context f13362e;
+    public boolean f13363e0;
+    public Window f13364f;
+    public o f13365f0;
+    public o f13366g0;
     public n h;
-    public boolean f13365h0;
-    public int f13366i0;
-    public final h f13367j0;
-    public boolean f13368k0;
-    public Rect f13369l0;
+    public boolean f13367h0;
+    public int f13368i0;
+    public final h f13369j0;
+    public boolean f13370k0;
+    public Rect f13371l0;
     public Rect m0;
-    public b0 f13370n;
-    public w f13371n0;
-    public OnBackInvokedDispatcher f13372o0;
-    public OnBackInvokedCallback f13373p0;
-    public CharSequence f13374r;
-    public k1 f13375s;
-    public cb.c f13376w;
-    public i f13377x;
-    public k.a f13378y;
+    public b0 f13372n;
+    public w f13373n0;
+    public OnBackInvokedDispatcher f13374o0;
+    public OnBackInvokedCallback f13375p0;
+    public CharSequence f13376r;
+    public k1 f13377s;
+    public cb.c f13378w;
+    public i f13379x;
+    public k.a f13380y;
 
     public s(u uVar, u uVar2) {
         Context context = uVar.getContext();
         Window window = uVar.getWindow();
         this.G = null;
         this.H = true;
-        this.f13357b0 = -100;
-        this.f13367j0 = new h(this, 0);
-        this.f13360e = context;
+        this.f13359b0 = -100;
+        this.f13369j0 = new h(this, 0);
+        this.f13362e = context;
         this.d = uVar;
         while (context != null && (context instanceof ContextWrapper)) {
             context = ((ContextWrapper) context).getBaseContext();
         }
-        if (this.f13357b0 == -100) {
+        if (this.f13359b0 == -100) {
             String name = this.d.getClass().getName();
-            a0.l lVar = f13353q0;
+            a0.l lVar = f13355q0;
             Integer num = (Integer) lVar.get(name);
             if (num != null) {
-                this.f13357b0 = num.intValue();
+                this.f13359b0 = num.intValue();
                 lVar.remove(this.d.getClass().getName());
             }
         }
@@ -131,7 +131,7 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
     public final boolean F0(l.k kVar, MenuItem menuItem) {
         int i7;
         r rVar;
-        Window.Callback callback = this.f13362f.getCallback();
+        Window.Callback callback = this.f13364f.getCallback();
         if (callback != null && !this.Z) {
             l.k k10 = kVar.k();
             r[] rVarArr = this.U;
@@ -154,7 +154,7 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
                 }
             }
             if (rVar != null) {
-                return callback.onMenuItemSelected(rVar.f13339a, menuItem);
+                return callback.onMenuItemSelected(rVar.f13341a, menuItem);
             }
         }
         return false;
@@ -165,7 +165,7 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
         this.X = true;
         d(false);
         l();
-        this.f13356a0 = new Configuration(this.f13360e.getResources().getConfiguration());
+        this.f13358a0 = new Configuration(this.f13362e.getResources().getConfiguration());
         this.Y = true;
     }
 
@@ -190,7 +190,7 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
                     if (i7 != 10) {
                         if (i7 != 108) {
                             if (i7 != 109) {
-                                return this.f13362f.requestFeature(i7);
+                                return this.f13364f.requestFeature(i7);
                             }
                             v();
                             this.P = true;
@@ -225,21 +225,21 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
         if (this.Z) {
             return false;
         }
-        int i11 = this.f13357b0;
+        int i11 = this.f13359b0;
         if (i11 == -100) {
-            i11 = g.f13322a;
+            i11 = g.f13324a;
         }
-        Context context = this.f13360e;
+        Context context = this.f13362e;
         int i12 = -1;
         if (i11 != -100) {
             if (i11 != -1) {
                 if (i11 != 0) {
                     if (i11 != 1 && i11 != 2) {
                         if (i11 == 3) {
-                            if (this.f13364g0 == null) {
-                                this.f13364g0 = new o(this, context);
+                            if (this.f13366g0 == null) {
+                                this.f13366g0 = new o(this, context);
                             }
-                            i12 = this.f13364g0.e();
+                            i12 = this.f13366g0.e();
                         } else {
                             throw new IllegalStateException("Unknown value set for night mode. Please use one of the MODE_NIGHT values from AppCompatDelegate.");
                         }
@@ -262,9 +262,9 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
         Configuration configuration = new Configuration();
         configuration.fontScale = 0.0f;
         configuration.uiMode = i7 | (configuration.uiMode & (-49));
-        this.f13361e0 = true;
-        int i13 = this.f13359d0;
-        Configuration configuration2 = this.f13356a0;
+        this.f13363e0 = true;
+        int i13 = this.f13361d0;
+        Configuration configuration2 = this.f13358a0;
         if (configuration2 == null) {
             configuration2 = context.getResources().getConfiguration();
         }
@@ -281,7 +281,7 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
         } else {
             i10 = 0;
         }
-        if (((~i13) & i10) != 0 && z9 && this.X && !f13355s0) {
+        if (((~i13) & i10) != 0 && z9 && this.X && !f13357s0) {
             boolean z11 = this.Y;
         }
         if (i10 != 0) {
@@ -358,28 +358,28 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
                     }
                 }
             }
-            int i17 = this.f13358c0;
+            int i17 = this.f13360c0;
             if (i17 != 0) {
                 context.setTheme(i17);
-                context.getTheme().applyStyle(this.f13358c0, true);
+                context.getTheme().applyStyle(this.f13360c0, true);
             }
             z10 = true;
         }
         if (i11 == 0) {
             n(context).l();
         } else {
-            o oVar = this.f13363f0;
+            o oVar = this.f13365f0;
             if (oVar != null) {
                 oVar.c();
             }
         }
         if (i11 == 3) {
-            if (this.f13364g0 == null) {
-                this.f13364g0 = new o(this, context);
+            if (this.f13366g0 == null) {
+                this.f13366g0 = new o(this, context);
             }
-            this.f13364g0.l();
+            this.f13366g0.l();
         } else {
-            o oVar2 = this.f13364g0;
+            o oVar2 = this.f13366g0;
             if (oVar2 != null) {
                 oVar2.c();
             }
@@ -392,18 +392,18 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
         OnBackInvokedDispatcher onBackInvokedDispatcher;
         OnBackInvokedCallback onBackInvokedCallback;
         int resourceId;
-        if (this.f13362f == null) {
+        if (this.f13364f == null) {
             Window.Callback callback = window.getCallback();
             if (!(callback instanceof n)) {
                 n nVar = new n(this, callback);
                 this.h = nVar;
                 window.setCallback(nVar);
-                Context context = this.f13360e;
-                TypedArray obtainStyledAttributes = context.obtainStyledAttributes((AttributeSet) null, f13354r0);
+                Context context = this.f13362e;
+                TypedArray obtainStyledAttributes = context.obtainStyledAttributes((AttributeSet) null, f13356r0);
                 if (obtainStyledAttributes.hasValue(0) && (resourceId = obtainStyledAttributes.getResourceId(0, 0)) != 0) {
                     m.r a10 = m.r.a();
                     synchronized (a10) {
-                        drawable = a10.f19236a.f(resourceId, context, true);
+                        drawable = a10.f19241a.f(resourceId, context, true);
                     }
                 } else {
                     drawable = null;
@@ -412,13 +412,13 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
                     window.setBackgroundDrawable(drawable);
                 }
                 obtainStyledAttributes.recycle();
-                this.f13362f = window;
-                if (Build.VERSION.SDK_INT >= 33 && (onBackInvokedDispatcher = this.f13372o0) == null) {
-                    if (onBackInvokedDispatcher != null && (onBackInvokedCallback = this.f13373p0) != null) {
+                this.f13364f = window;
+                if (Build.VERSION.SDK_INT >= 33 && (onBackInvokedDispatcher = this.f13374o0) == null) {
+                    if (onBackInvokedDispatcher != null && (onBackInvokedCallback = this.f13375p0) != null) {
                         m.c(onBackInvokedDispatcher, onBackInvokedCallback);
-                        this.f13373p0 = null;
+                        this.f13375p0 = null;
                     }
-                    this.f13372o0 = null;
+                    this.f13374o0 = null;
                     w();
                     return;
                 }
@@ -441,9 +441,9 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
                 kVar = rVar.h;
             }
         }
-        if ((rVar == null || rVar.f13349m) && !this.Z) {
+        if ((rVar == null || rVar.f13351m) && !this.Z) {
             n nVar = this.h;
-            Window.Callback callback = this.f13362f.getCallback();
+            Window.Callback callback = this.f13364f.getCallback();
             nVar.getClass();
             try {
                 nVar.d = true;
@@ -460,17 +460,17 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
             return;
         }
         this.T = true;
-        ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) this.f13375s;
+        ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) this.f13377s;
         actionBarOverlayLayout.e();
-        ActionMenuView actionMenuView = ((m3) actionBarOverlayLayout.f1931e).f19162a.f1973a;
+        ActionMenuView actionMenuView = ((m3) actionBarOverlayLayout.f1931e).f19167a.f1973a;
         if (actionMenuView != null && (iVar = actionMenuView.J) != null) {
             iVar.f();
             m.e eVar = iVar.J;
             if (eVar != null && eVar.b()) {
-                eVar.f17734i.dismiss();
+                eVar.f17737i.dismiss();
             }
         }
-        Window.Callback callback = this.f13362f.getCallback();
+        Window.Callback callback = this.f13364f.getCallback();
         if (callback != null && !this.Z) {
             callback.onPanelClosed(108, kVar);
         }
@@ -481,31 +481,31 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
         q qVar;
         k1 k1Var;
         m.i iVar;
-        if (z9 && rVar.f13339a == 0 && (k1Var = this.f13375s) != null) {
+        if (z9 && rVar.f13341a == 0 && (k1Var = this.f13377s) != null) {
             ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) k1Var;
             actionBarOverlayLayout.e();
-            ActionMenuView actionMenuView = ((m3) actionBarOverlayLayout.f1931e).f19162a.f1973a;
+            ActionMenuView actionMenuView = ((m3) actionBarOverlayLayout.f1931e).f19167a.f1973a;
             if (actionMenuView != null && (iVar = actionMenuView.J) != null && iVar.g()) {
                 g(rVar.h);
                 return;
             }
         }
-        WindowManager windowManager = (WindowManager) this.f13360e.getSystemService("window");
-        if (windowManager != null && rVar.f13349m && (qVar = rVar.f13342e) != null) {
+        WindowManager windowManager = (WindowManager) this.f13362e.getSystemService("window");
+        if (windowManager != null && rVar.f13351m && (qVar = rVar.f13344e) != null) {
             windowManager.removeView(qVar);
             if (z9) {
-                f(rVar.f13339a, rVar, null);
+                f(rVar.f13341a, rVar, null);
             }
         }
-        rVar.f13347k = false;
-        rVar.f13348l = false;
-        rVar.f13349m = false;
-        rVar.f13343f = null;
-        rVar.f13350n = true;
+        rVar.f13349k = false;
+        rVar.f13350l = false;
+        rVar.f13351m = false;
+        rVar.f13345f = null;
+        rVar.f13352n = true;
         if (this.V == rVar) {
             this.V = null;
         }
-        if (rVar.f13339a == 0) {
+        if (rVar.f13341a == 0) {
             w();
         }
     }
@@ -520,16 +520,16 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
             Bundle bundle = new Bundle();
             o4.h.t(bundle);
             if (bundle.size() > 0) {
-                o4.f13352p = bundle;
+                o4.f13354p = bundle;
             }
             o4.h.w();
             o4.h.clear();
         }
-        o4.f13351o = true;
-        o4.f13350n = true;
-        if ((i7 == 108 || i7 == 0) && this.f13375s != null) {
+        o4.f13353o = true;
+        o4.f13352n = true;
+        if ((i7 == 108 || i7 == 0) && this.f13377s != null) {
             r o10 = o(0);
-            o10.f13347k = false;
+            o10.f13349k = false;
             u(o10, null);
         }
     }
@@ -543,8 +543,8 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
         ViewGroup viewGroup;
         Context context;
         if (!this.I) {
-            Context context2 = this.f13360e;
-            int[] iArr = f.a.f10862j;
+            Context context2 = this.f13362e;
+            int[] iArr = f.a.f10867j;
             TypedArray obtainStyledAttributes = context2.obtainStyledAttributes(iArr);
             if (obtainStyledAttributes.hasValue(117)) {
                 if (obtainStyledAttributes.getBoolean(126, false)) {
@@ -561,7 +561,7 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
                 this.R = obtainStyledAttributes.getBoolean(0, false);
                 obtainStyledAttributes.recycle();
                 l();
-                this.f13362f.getDecorView();
+                this.f13364f.getDecorView();
                 LayoutInflater from = LayoutInflater.from(context2);
                 if (!this.S) {
                     if (this.R) {
@@ -578,16 +578,16 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
                         }
                         viewGroup = (ViewGroup) LayoutInflater.from(context).inflate(2131492887, (ViewGroup) null);
                         k1 k1Var = (k1) viewGroup.findViewById(2131296411);
-                        this.f13375s = k1Var;
-                        k1Var.setWindowCallback(this.f13362f.getCallback());
+                        this.f13377s = k1Var;
+                        k1Var.setWindowCallback(this.f13364f.getCallback());
                         if (this.P) {
-                            ((ActionBarOverlayLayout) this.f13375s).d(109);
+                            ((ActionBarOverlayLayout) this.f13377s).d(109);
                         }
                         if (this.M) {
-                            ((ActionBarOverlayLayout) this.f13375s).d(2);
+                            ((ActionBarOverlayLayout) this.f13377s).d(2);
                         }
                         if (this.N) {
-                            ((ActionBarOverlayLayout) this.f13375s).d(5);
+                            ((ActionBarOverlayLayout) this.f13377s).d(5);
                         }
                     } else {
                         viewGroup = null;
@@ -597,12 +597,12 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
                 }
                 if (viewGroup != null) {
                     i iVar = new i(this);
-                    WeakHashMap weakHashMap = i0.f54203a;
+                    WeakHashMap weakHashMap = i0.f54202a;
                     r0.a0.i(viewGroup, iVar);
-                    if (this.f13375s == null) {
+                    if (this.f13377s == null) {
                         this.K = (TextView) viewGroup.findViewById(2131296714);
                     }
-                    Method method = t3.f19259a;
+                    Method method = t3.f19264a;
                     try {
                         Method method2 = viewGroup.getClass().getMethod("makeOptionalFitsSystemWindows", null);
                         if (!method2.isAccessible()) {
@@ -617,7 +617,7 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
                         Log.d("ViewUtils", "Could not invoke makeOptionalFitsSystemWindows", e11);
                     }
                     ContentFrameLayout contentFrameLayout = (ContentFrameLayout) viewGroup.findViewById(2131296304);
-                    ViewGroup viewGroup2 = (ViewGroup) this.f13362f.findViewById(16908290);
+                    ViewGroup viewGroup2 = (ViewGroup) this.f13364f.findViewById(16908290);
                     if (viewGroup2 != null) {
                         while (viewGroup2.getChildCount() > 0) {
                             View childAt = viewGroup2.getChildAt(0);
@@ -630,24 +630,24 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
                             ((FrameLayout) viewGroup2).setForeground(null);
                         }
                     }
-                    this.f13362f.setContentView(viewGroup);
+                    this.f13364f.setContentView(viewGroup);
                     contentFrameLayout.setAttachListener(new aa.n(this, 24));
                     this.J = viewGroup;
-                    CharSequence charSequence = this.f13374r;
+                    CharSequence charSequence = this.f13376r;
                     if (!TextUtils.isEmpty(charSequence)) {
-                        k1 k1Var2 = this.f13375s;
+                        k1 k1Var2 = this.f13377s;
                         if (k1Var2 != null) {
                             k1Var2.setWindowTitle(charSequence);
                         } else {
-                            b0 b0Var = this.f13370n;
+                            b0 b0Var = this.f13372n;
                             if (b0Var != null) {
-                                m3 m3Var = (m3) b0Var.f13279e;
-                                if (!m3Var.f19167g) {
-                                    Toolbar toolbar = m3Var.f19162a;
+                                m3 m3Var = (m3) b0Var.f13281e;
+                                if (!m3Var.f19172g) {
+                                    Toolbar toolbar = m3Var.f19167a;
                                     m3Var.h = charSequence;
-                                    if ((m3Var.f19163b & 8) != 0) {
+                                    if ((m3Var.f19168b & 8) != 0) {
                                         toolbar.setTitle(charSequence);
-                                        if (m3Var.f19167g) {
+                                        if (m3Var.f19172g) {
                                             i0.k(toolbar.getRootView(), charSequence);
                                         }
                                     }
@@ -661,9 +661,9 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
                         }
                     }
                     ContentFrameLayout contentFrameLayout2 = (ContentFrameLayout) this.J.findViewById(16908290);
-                    View decorView = this.f13362f.getDecorView();
+                    View decorView = this.f13364f.getDecorView();
                     contentFrameLayout2.h.set(decorView.getPaddingLeft(), decorView.getPaddingTop(), decorView.getPaddingRight(), decorView.getPaddingBottom());
-                    WeakHashMap weakHashMap2 = i0.f54203a;
+                    WeakHashMap weakHashMap2 = i0.f54202a;
                     if (contentFrameLayout2.isLaidOut()) {
                         contentFrameLayout2.requestLayout();
                     }
@@ -700,7 +700,7 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
     }
 
     public final void l() {
-        if (this.f13362f != null) {
+        if (this.f13364f != null) {
             return;
         }
         throw new IllegalStateException("We have not been given a Window");
@@ -710,35 +710,35 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
         Context context;
         b0 p10 = p();
         if (p10 != null) {
-            if (p10.f13277b == null) {
+            if (p10.f13279b == null) {
                 TypedValue typedValue = new TypedValue();
-                p10.f13276a.getTheme().resolveAttribute(2130968586, typedValue, true);
+                p10.f13278a.getTheme().resolveAttribute(2130968586, typedValue, true);
                 int i7 = typedValue.resourceId;
                 if (i7 != 0) {
-                    p10.f13277b = new ContextThemeWrapper(p10.f13276a, i7);
+                    p10.f13279b = new ContextThemeWrapper(p10.f13278a, i7);
                 } else {
-                    p10.f13277b = p10.f13276a;
+                    p10.f13279b = p10.f13278a;
                 }
             }
-            context = p10.f13277b;
+            context = p10.f13279b;
         } else {
             context = null;
         }
         if (context == null) {
-            return this.f13360e;
+            return this.f13362e;
         }
         return context;
     }
 
     public final p n(Context context) {
-        if (this.f13363f0 == null) {
+        if (this.f13365f0 == null) {
             if (android.support.v4.media.session.a0.f1761f == null) {
                 Context applicationContext = context.getApplicationContext();
                 android.support.v4.media.session.a0.f1761f = new android.support.v4.media.session.a0(applicationContext, (LocationManager) applicationContext.getSystemService("location"));
             }
-            this.f13363f0 = new o(this, android.support.v4.media.session.a0.f1761f);
+            this.f13365f0 = new o(this, android.support.v4.media.session.a0.f1761f);
         }
-        return this.f13363f0;
+        return this.f13365f0;
     }
 
     public final r o(int i7) {
@@ -754,8 +754,8 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
         r rVar = objArr[i7];
         if (rVar == 0) {
             ?? obj = new Object();
-            obj.f13339a = i7;
-            obj.f13350n = false;
+            obj.f13341a = i7;
+            obj.f13352n = false;
             objArr[i7] = obj;
             return obj;
         }
@@ -769,26 +769,26 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
 
     public final b0 p() {
         k();
-        if (this.O && this.f13370n == null) {
+        if (this.O && this.f13372n == null) {
             u uVar = this.d;
             if (com.google.android.recaptcha.internal.a.u(uVar)) {
-                this.f13370n = new b0(uVar);
+                this.f13372n = new b0(uVar);
             }
-            b0 b0Var = this.f13370n;
+            b0 b0Var = this.f13372n;
             if (b0Var != null) {
-                b0Var.c(this.f13368k0);
+                b0Var.c(this.f13370k0);
             }
         }
-        return this.f13370n;
+        return this.f13372n;
     }
 
     public final void q(int i7) {
-        this.f13366i0 = (1 << i7) | this.f13366i0;
-        if (!this.f13365h0) {
-            View decorView = this.f13362f.getDecorView();
-            WeakHashMap weakHashMap = i0.f54203a;
-            decorView.postOnAnimation(this.f13367j0);
-            this.f13365h0 = true;
+        this.f13368i0 = (1 << i7) | this.f13368i0;
+        if (!this.f13367h0) {
+            View decorView = this.f13364f.getDecorView();
+            WeakHashMap weakHashMap = i0.f54202a;
+            decorView.postOnAnimation(this.f13369j0);
+            this.f13367h0 = true;
         }
     }
 
@@ -799,26 +799,26 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
         boolean z9 = this.W;
         this.W = false;
         r o4 = o(0);
-        if (o4.f13349m) {
+        if (o4.f13351m) {
             if (!z9) {
                 h(o4, true);
                 return true;
             }
         } else {
-            k.a aVar = this.f13378y;
+            k.a aVar = this.f13380y;
             if (aVar != null) {
                 aVar.b();
                 return true;
             }
             b0 p10 = p();
-            if (p10 == null || (l1Var = p10.f13279e) == null || (h3Var = ((m3) l1Var).f19162a.f1981e0) == null || h3Var.f19120b == null) {
+            if (p10 == null || (l1Var = p10.f13281e) == null || (h3Var = ((m3) l1Var).f19167a.f1981e0) == null || h3Var.f19125b == null) {
                 return false;
             }
-            h3 h3Var2 = ((m3) l1Var).f19162a.f1981e0;
+            h3 h3Var2 = ((m3) l1Var).f19167a.f1981e0;
             if (h3Var2 == null) {
                 mVar = null;
             } else {
-                mVar = h3Var2.f19120b;
+                mVar = h3Var2.f19125b;
             }
             if (mVar != null) {
                 mVar.collapseActionView();
@@ -836,7 +836,7 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
         if (keyEvent.isSystem()) {
             return false;
         }
-        if ((!rVar.f13347k && !u(rVar, keyEvent)) || (kVar = rVar.h) == null) {
+        if ((!rVar.f13349k && !u(rVar, keyEvent)) || (kVar = rVar.h) == null) {
             return false;
         }
         return kVar.performShortcut(i7, keyEvent, 1);
@@ -857,13 +857,13 @@ public final class s extends g implements l.i, LayoutInflater.Factory2 {
         OnBackInvokedCallback onBackInvokedCallback;
         if (Build.VERSION.SDK_INT >= 33) {
             boolean z9 = false;
-            if (this.f13372o0 != null && (o(0).f13349m || this.f13378y != null)) {
+            if (this.f13374o0 != null && (o(0).f13351m || this.f13380y != null)) {
                 z9 = true;
             }
-            if (z9 && this.f13373p0 == null) {
-                this.f13373p0 = m.b(this.f13372o0, this);
-            } else if (!z9 && (onBackInvokedCallback = this.f13373p0) != null) {
-                m.c(this.f13372o0, onBackInvokedCallback);
+            if (z9 && this.f13375p0 == null) {
+                this.f13375p0 = m.b(this.f13374o0, this);
+            } else if (!z9 && (onBackInvokedCallback = this.f13375p0) != null) {
+                m.c(this.f13374o0, onBackInvokedCallback);
             }
         }
     }

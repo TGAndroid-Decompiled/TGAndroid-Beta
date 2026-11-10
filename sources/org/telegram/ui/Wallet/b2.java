@@ -3,25 +3,25 @@ package org.telegram.ui.Wallet;
 import android.util.Base64;
 import org.json.JSONObject;
 public final class b2 {
-    public final String f42210a;
-    public final String f42211b;
-    public final String f42212c;
+    public final String f42167a;
+    public final String f42168b;
+    public final String f42169c;
     public final String d;
-    public final long f42213e;
-    public final boolean f42214f;
+    public final long f42170e;
+    public final boolean f42171f;
 
     public b2(JSONObject jSONObject) {
         String str;
         String string = jSONObject.getString("address");
-        this.f42210a = string;
+        this.f42167a = string;
         if (!string.contains(":") && WalletEngine2.isValidAddress(string)) {
-            this.f42214f = (Base64.decode(string.replace('-', '+').replace('_', '/'), 2)[0] & Byte.MAX_VALUE) == 17;
+            this.f42171f = (Base64.decode(string.replace('-', '+').replace('_', '/'), 2)[0] & Byte.MAX_VALUE) == 17;
             Object obj = jSONObject.get("amount");
             if (obj instanceof String) {
                 String str2 = (String) obj;
                 if (str2.matches("[0-9]+")) {
                     long parseLong = Long.parseLong(str2);
-                    this.f42213e = parseLong;
+                    this.f42170e = parseLong;
                     if (jSONObject.has("extra_currency") && jSONObject.getJSONObject("extra_currency").length() != 0) {
                         throw new IllegalArgumentException("Extra currencies are not supported");
                     }
@@ -31,9 +31,9 @@ public final class b2 {
                         } else {
                             str = null;
                         }
-                        this.f42211b = str;
+                        this.f42168b = str;
                         String string2 = jSONObject.has("stateInit") ? jSONObject.getString("stateInit") : null;
-                        this.f42212c = string2;
+                        this.f42169c = string2;
                         if ((str != null && !WalletEngine2.isValidCellBoc(str)) || (string2 != null && !WalletEngine2.isValidCellBoc(string2))) {
                             throw new IllegalArgumentException("Invalid transaction cell");
                         }

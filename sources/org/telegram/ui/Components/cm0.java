@@ -1,8 +1,10 @@
 package org.telegram.ui.Components;
-public interface cm0 {
-    void A(float f10);
+public final class cm0 extends NumberTextView {
+    public int f32710w;
 
-    void O(org.telegram.ui.Cells.t2 t2Var);
-
-    void finish();
+    @Override
+    public final void setTextColor(int i7) {
+        super.setTextColor(i7);
+        this.f32710w = i7;
+    }
 }

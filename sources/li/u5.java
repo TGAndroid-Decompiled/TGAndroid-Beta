@@ -13,21 +13,21 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.i9;
 import org.telegram.ui.Components.m41;
 public final class u5 implements f1 {
-    public final a6 f18925a;
+    public final a6 f18928a;
 
     public u5(a6 a6Var) {
-        this.f18925a = a6Var;
+        this.f18928a = a6Var;
     }
 
     @Override
     public final boolean E(g1 g1Var) {
         a aVar;
-        a6 a6Var = this.f18925a;
+        a6 a6Var = this.f18928a;
         x5 x5Var = a6Var.D;
-        if (x5Var == null || (aVar = a6Var.f18435y) == null) {
+        if (x5Var == null || (aVar = a6Var.f18438y) == null) {
             return false;
         }
-        return t3.U1(((c3) x5Var).f18504a, aVar, false);
+        return t3.U1(((c3) x5Var).f18507a, aVar, false);
     }
 
     @Override
@@ -39,10 +39,10 @@ public final class u5 implements f1 {
         int i7;
         g1 editText;
         Editable text;
-        a6 a6Var = this.f18925a;
-        if (a6Var.D != null && a6Var.f18435y != null) {
+        a6 a6Var = this.f18928a;
+        if (a6Var.D != null && a6Var.f18438y != null) {
             String obj = g1Var.getText().toString();
-            ((c3) a6Var.D).f18504a.f18890o3.o(a6Var, null);
+            ((c3) a6Var.D).f18507a.f18893o3.o(a6Var, null);
             String b10 = a6.b(obj);
             if (b10 != null) {
                 ArrayList a10 = l0.a(b10);
@@ -53,21 +53,21 @@ public final class u5 implements f1 {
             }
             int q10 = a6.q(g1Var.getText().toString());
             if (q10 != 0) {
-                ((c3) a6Var.D).c(a6Var.f18435y, q10);
+                ((c3) a6Var.D).c(a6Var.f18438y, q10);
                 return;
             }
-            z5 r10 = a6.r(g1Var.getText().toString(), a6Var.f18435y);
+            z5 r10 = a6.r(g1Var.getText().toString(), a6Var.f18438y);
             if (r10 != null) {
-                ((c3) a6Var.D).d(a6Var.f18435y, r10.f19048a, r10.f19049b, r10.f19050c, r10.d, r10.f19051e);
-            } else if ((a6Var.f18435y.f18392b instanceof TL_iv.pageBlockPullquote) && a6Var.f18429f.length() > 0) {
+                ((c3) a6Var.D).d(a6Var.f18438y, r10.f19053a, r10.f19054b, r10.f19055c, r10.d, r10.f19056e);
+            } else if ((a6Var.f18438y.f18395b instanceof TL_iv.pageBlockPullquote) && a6Var.f18432f.length() > 0) {
                 a6Var.h();
             } else {
                 x5 x5Var = a6Var.D;
-                a aVar = a6Var.f18435y;
-                t3 t3Var = ((c3) x5Var).f18504a;
-                ArrayList arrayList = t3Var.f18906w4;
-                m41 m41Var = t3Var.f37556f3;
-                ArrayList arrayList2 = t3Var.f18897s3;
+                a aVar = a6Var.f18438y;
+                t3 t3Var = ((c3) x5Var).f18507a;
+                ArrayList arrayList = t3Var.f18909w4;
+                m41 m41Var = t3Var.f37496f3;
+                ArrayList arrayList2 = t3Var.f18900s3;
                 int indexOf = arrayList2.indexOf(aVar);
                 if (indexOf >= 0) {
                     f2 f2Var = t3Var.Q3;
@@ -82,7 +82,7 @@ public final class u5 implements f1 {
                         length = editText2.getSelectionEnd();
                         spannableStringBuilder = text2;
                     } else {
-                        SpannableStringBuilder A = a6.A(aVar.f18392b);
+                        SpannableStringBuilder A = a6.A(aVar.f18395b);
                         length = A.length();
                         spannableStringBuilder = A;
                     }
@@ -90,8 +90,8 @@ public final class u5 implements f1 {
                         length = spannableStringBuilder.length();
                     }
                     if (spannableStringBuilder.length() == 0) {
-                        if (!aVar.f18399k.isEmpty()) {
-                            ArrayList arrayList3 = aVar.f18399k;
+                        if (!aVar.f18402k.isEmpty()) {
+                            ArrayList arrayList3 = aVar.f18402k;
                             arrayList3.remove(arrayList3.size() - 1);
                             t3Var.v4();
                             m41Var.O(false);
@@ -101,7 +101,7 @@ public final class u5 implements f1 {
                             }
                             t3Var.post(new m2(t3Var, aVar, 27));
                             return;
-                        } else if (aVar.f18393c > 0) {
+                        } else if (aVar.f18396c > 0) {
                             t3Var.w2(indexOf);
                             t3Var.v4();
                             m41Var.O(false);
@@ -115,32 +115,32 @@ public final class u5 implements f1 {
                     }
                     CharSequence subSequence = spannableStringBuilder.subSequence(0, length);
                     CharSequence subSequence2 = spannableStringBuilder.subSequence(length, spannableStringBuilder.length());
-                    TL_iv.PageBlock pageBlock = aVar.f18392b;
-                    ArrayList arrayList4 = aVar.f18399k;
+                    TL_iv.PageBlock pageBlock = aVar.f18395b;
+                    ArrayList arrayList4 = aVar.f18402k;
                     if (pageBlock instanceof TL_iv.pageBlockBlockquote) {
                         long a11 = n0.a();
-                        TL_iv.RichText richText = ((TL_iv.pageBlockBlockquote) aVar.f18392b).caption;
+                        TL_iv.RichText richText = ((TL_iv.pageBlockBlockquote) aVar.f18395b).caption;
                         z9 = true;
                         if (richText != null && !(richText instanceof TL_iv.textEmpty)) {
-                            t3Var.f18899t3.put(Long.valueOf(a11), richText);
+                            t3Var.f18902t3.put(Long.valueOf(a11), richText);
                         }
                         arrayList4.add(Long.valueOf(a11));
-                        aVar.f18392b = new TL_iv.pageBlockParagraph();
+                        aVar.f18395b = new TL_iv.pageBlockParagraph();
                         z10 = true;
                     } else {
                         z9 = true;
                         z10 = false;
                     }
-                    a6.d(aVar.f18392b, subSequence);
+                    a6.d(aVar.f18395b, subSequence);
                     TL_iv.pageBlockParagraph pageblockparagraph = new TL_iv.pageBlockParagraph();
                     a6.d(pageblockparagraph, subSequence2);
                     int i10 = aVar.d;
                     if (i10 > 0) {
                         i10++;
                     }
-                    a aVar2 = new a(pageblockparagraph, aVar.f18393c, i10);
-                    aVar2.f18394e = aVar.f18394e;
-                    aVar2.f18399k.addAll(arrayList4);
+                    a aVar2 = new a(pageblockparagraph, aVar.f18396c, i10);
+                    aVar2.f18397e = aVar.f18397e;
+                    aVar2.f18402k.addAll(arrayList4);
                     int i11 = indexOf + 1;
                     arrayList2.add(i11, aVar2);
                     t3Var.v4();
@@ -154,9 +154,9 @@ public final class u5 implements f1 {
                         return;
                     }
                     if (z11 && (text = (editText = ((a6) C1).getEditText()).getText()) != null && length >= 0 && length < text.length()) {
-                        editText.f18586c2 = z9;
+                        editText.f18589c2 = z9;
                         text.delete(length, text.length());
-                        editText.f18586c2 = false;
+                        editText.f18589c2 = false;
                     }
                     m41Var.T();
                     t3Var.s4(i11);
@@ -184,67 +184,67 @@ public final class u5 implements f1 {
 
     @Override
     public final void T0(CharSequence charSequence) {
-        x5 x5Var = this.f18925a.D;
+        x5 x5Var = this.f18928a.D;
         if (x5Var != null) {
             c3 c3Var = (c3) x5Var;
             if (charSequence != null && charSequence.length() > 0) {
-                c3Var.f18504a.w4(charSequence.toString());
+                c3Var.f18507a.w4(charSequence.toString());
             }
         }
     }
 
     @Override
     public final void b(g1 g1Var) {
-        x5 x5Var = this.f18925a.D;
+        x5 x5Var = this.f18928a.D;
         if (x5Var != null) {
-            t3 t3Var = ((c3) x5Var).f18504a;
+            t3 t3Var = ((c3) x5Var).f18507a;
             t3.Q1(t3Var, g1Var);
-            t3Var.f18890o3.r(g1Var, true);
+            t3Var.f18893o3.r(g1Var, true);
         }
     }
 
     @Override
     public final void f1(Editable editable) {
         a aVar;
-        a6 a6Var = this.f18925a;
-        if (a6Var.f18435y != null) {
+        a6 a6Var = this.f18928a;
+        if (a6Var.f18438y != null) {
             a6Var.E(editable);
             a6Var.K();
-            a6.d(a6Var.f18435y.f18392b, editable);
+            a6.d(a6Var.f18438y.f18395b, editable);
             a6Var.C();
             a6Var.G();
             int i7 = 0;
             if (a6Var.o() && !a6Var.l()) {
-                ((TL_iv.pageBlockBlockquote) a6Var.f18435y.f18392b).collapsed = false;
+                ((TL_iv.pageBlockBlockquote) a6Var.f18438y.f18395b).collapsed = false;
             }
             a6Var.H();
             x5 x5Var = a6Var.D;
             if (x5Var != null) {
-                t3 t3Var = ((c3) x5Var).f18504a;
+                t3 t3Var = ((c3) x5Var).f18507a;
                 f2 f2Var = t3Var.Q3;
                 if (f2Var != null) {
                     f2Var.g();
                 }
-                t3Var.f18890o3.onContentChanged();
+                t3Var.f18893o3.onContentChanged();
             }
             x5 x5Var2 = a6Var.D;
             if (x5Var2 != null) {
-                ((c3) x5Var2).f18504a.f18890o3.o(a6Var, a6.b(editable.toString()));
+                ((c3) x5Var2).f18507a.f18893o3.o(a6Var, a6.b(editable.toString()));
             }
             String obj = editable.toString();
-            a aVar2 = a6Var.f18435y;
-            if (aVar2 != null && obj != null && aVar2.f18393c == 0 && (aVar2.f18392b instanceof TL_iv.pageBlockParagraph) && obj.equals("> ")) {
+            a aVar2 = a6Var.f18438y;
+            if (aVar2 != null && obj != null && aVar2.f18396c == 0 && (aVar2.f18395b instanceof TL_iv.pageBlockParagraph) && obj.equals("> ")) {
                 i7 = 6;
             }
             if (i7 != 0 && a6Var.D != null) {
-                a6Var.post(new ai.e0(this, a6Var.f18435y, i7, 21));
+                a6Var.post(new ai.e0(this, a6Var.f18438y, i7, 21));
             } else {
-                z5 s5 = a6.s(editable.toString(), a6Var.f18435y);
+                z5 s5 = a6.s(editable.toString(), a6Var.f18438y);
                 if (s5 != null && a6Var.D != null) {
-                    a6Var.post(new l2.z0(this, a6Var.f18435y, s5, 6));
+                    a6Var.post(new l2.z0(this, a6Var.f18438y, s5, 6));
                 }
             }
-            if (!a6Var.V && ((aVar = a6Var.f18435y) == null || !(aVar.f18392b instanceof TL_iv.pageBlockPullquote))) {
+            if (!a6Var.V && ((aVar = a6Var.f18438y) == null || !(aVar.f18395b instanceof TL_iv.pageBlockPullquote))) {
                 return;
             }
             a6Var.invalidate();
@@ -255,8 +255,8 @@ public final class u5 implements f1 {
     public final void l0(g1 g1Var, int i7, int i10) {
         x5 x5Var;
         i9 textSelectionHelper;
-        a6 a6Var = this.f18925a;
-        if (!a6Var.F && i7 != i10 && (x5Var = a6Var.D) != null && (textSelectionHelper = ((c3) x5Var).f18504a.getTextSelectionHelper()) != null) {
+        a6 a6Var = this.f18928a;
+        if (!a6Var.F && i7 != i10 && (x5Var = a6Var.D) != null && (textSelectionHelper = ((c3) x5Var).f18507a.getTextSelectionHelper()) != null) {
             a6Var.post(new hi.j4(this, g1Var, i10, textSelectionHelper, i7, 5));
         }
     }
@@ -264,20 +264,20 @@ public final class u5 implements f1 {
     @Override
     public final boolean l1(boolean z9) {
         a aVar;
-        a6 a6Var = this.f18925a;
+        a6 a6Var = this.f18928a;
         x5 x5Var = a6Var.D;
-        if (x5Var != null && (aVar = a6Var.f18435y) != null) {
-            return ((c3) x5Var).f18504a.Z3(aVar, z9);
+        if (x5Var != null && (aVar = a6Var.f18438y) != null) {
+            return ((c3) x5Var).f18507a.Z3(aVar, z9);
         }
         return false;
     }
 
     @Override
     public final boolean m() {
-        a6 a6Var = this.f18925a;
+        a6 a6Var = this.f18928a;
         x5 x5Var = a6Var.D;
-        if (x5Var != null && a6Var.f18435y != null) {
-            return ((c3) x5Var).f18504a.V4();
+        if (x5Var != null && a6Var.f18438y != null) {
+            return ((c3) x5Var).f18507a.V4();
         }
         return false;
     }
@@ -285,10 +285,10 @@ public final class u5 implements f1 {
     @Override
     public final void r0() {
         a aVar;
-        a6 a6Var = this.f18925a;
+        a6 a6Var = this.f18928a;
         x5 x5Var = a6Var.D;
-        if (x5Var != null && (aVar = a6Var.f18435y) != null) {
-            t3.U1(((c3) x5Var).f18504a, aVar, true);
+        if (x5Var != null && (aVar = a6Var.f18438y) != null) {
+            t3.U1(((c3) x5Var).f18507a, aVar, true);
         }
     }
 
@@ -297,10 +297,10 @@ public final class u5 implements f1 {
         a aVar;
         ClipData primaryClip;
         int indexOf;
-        a6 a6Var = this.f18925a;
+        a6 a6Var = this.f18928a;
         x5 x5Var = a6Var.D;
-        if (x5Var != null && (aVar = a6Var.f18435y) != null) {
-            t3 t3Var = ((c3) x5Var).f18504a;
+        if (x5Var != null && (aVar = a6Var.f18438y) != null) {
+            t3 t3Var = ((c3) x5Var).f18507a;
             ClipboardManager clipboardManager = (ClipboardManager) t3Var.getContext().getSystemService("clipboard");
             if (clipboardManager != null && clipboardManager.hasPrimaryClip() && (primaryClip = clipboardManager.getPrimaryClip()) != null && primaryClip.getItemCount() != 0 && primaryClip.getDescription() != null && primaryClip.getDescription().hasMimeType("text/html")) {
                 try {
@@ -309,11 +309,11 @@ public final class u5 implements f1 {
                         HashMap hashMap = new HashMap();
                         try {
                             ArrayList z42 = t3Var.z4(b4.z(htmlText, hashMap));
-                            if (!z42.isEmpty() && ((z42.size() != 1 || !t3.I3((a) z42.get(0))) && (indexOf = t3Var.f18897s3.indexOf(aVar)) >= 0)) {
+                            if (!z42.isEmpty() && ((z42.size() != 1 || !t3.I3((a) z42.get(0))) && (indexOf = t3Var.f18900s3.indexOf(aVar)) >= 0)) {
                                 int max = Math.max(0, Math.min(g1Var.getSelectionStart(), g1Var.getSelectionEnd()));
                                 boolean L4 = t3Var.L4(indexOf, indexOf, max, Math.max(max, Math.max(g1Var.getSelectionStart(), g1Var.getSelectionEnd())), z42);
                                 if (L4 && !hashMap.isEmpty()) {
-                                    t3Var.f18899t3.putAll(hashMap);
+                                    t3Var.f18902t3.putAll(hashMap);
                                 }
                                 return L4;
                             }
@@ -331,9 +331,9 @@ public final class u5 implements f1 {
     @Override
     public final void w(int i7, int i10) {
         f2 f2Var;
-        a6 a6Var = this.f18925a;
+        a6 a6Var = this.f18928a;
         x5 x5Var = a6Var.D;
-        if (x5Var != null && a6Var.f18435y != null && (f2Var = ((c3) x5Var).f18504a.Q3) != null) {
+        if (x5Var != null && a6Var.f18438y != null && (f2Var = ((c3) x5Var).f18507a.Q3) != null) {
             f2Var.f(i7, i10);
         }
     }

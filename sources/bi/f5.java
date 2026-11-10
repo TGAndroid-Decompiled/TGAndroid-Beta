@@ -6,8 +6,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.w61;
-public final class f5 extends w61 {
+import org.telegram.ui.Components.v61;
+public final class f5 extends v61 {
     public final k7 V;
 
     public f5(k7 k7Var, Context context) {
@@ -29,7 +29,7 @@ public final class f5 extends w61 {
         }
         float i7 = Utilities.i(f10 / getMeasuredWidth(), 1.0f, -1.0f);
         k7 k7Var = this.V;
-        view.setTranslationX(((-i7) * 2.0f * k7Var.f28654t0) + f10);
+        view.setTranslationX(((-i7) * 2.0f * k7Var.f28705t0) + f10);
         float f11 = 0.0f;
         if (i7 <= 0.0f) {
             f11 = view.getMeasuredWidth();
@@ -42,15 +42,15 @@ public final class f5 extends w61 {
             FrameLayout frameLayout = (FrameLayout) view;
             if (frameLayout.getChildCount() > 0) {
                 view2 = frameLayout.getChildAt(0);
-                i5Var = k7Var.U1;
-                if (i5Var != null && view2 == i5Var.Q1 && (j5Var3 = i5Var.W1) != null) {
+                i5Var = k7Var.X1;
+                if (i5Var != null && view2 == i5Var.T1 && (j5Var3 = i5Var.Z1) != null) {
                     j5Var3.invalidate();
                 }
-                if (view2 == k7Var.Q1 && (j5Var2 = k7Var.W1) != null) {
+                if (view2 == k7Var.T1 && (j5Var2 = k7Var.Z1) != null) {
                     j5Var2.invalidate();
                 }
-                i5Var2 = k7Var.V1;
-                if (i5Var2 == null && view2 == i5Var2.Q1 && (j5Var = i5Var2.W1) != null) {
+                i5Var2 = k7Var.Y1;
+                if (i5Var2 == null && view2 == i5Var2.T1 && (j5Var = i5Var2.Z1) != null) {
                     j5Var.invalidate();
                     return;
                 }
@@ -58,14 +58,14 @@ public final class f5 extends w61 {
             }
         }
         view2 = null;
-        i5Var = k7Var.U1;
+        i5Var = k7Var.X1;
         if (i5Var != null) {
             j5Var3.invalidate();
         }
-        if (view2 == k7Var.Q1) {
+        if (view2 == k7Var.T1) {
             j5Var2.invalidate();
         }
-        i5Var2 = k7Var.V1;
+        i5Var2 = k7Var.Y1;
         if (i5Var2 == null) {
         }
     }
@@ -73,11 +73,11 @@ public final class f5 extends w61 {
     @Override
     public final void G() {
         super.G();
-        int i7 = this.f39948b;
+        int i7 = this.f38891b;
         k7 k7Var = this.V;
         boolean z9 = false;
         if (i7 != k7Var.H1(false)) {
-            if (this.f39948b > k7Var.H1(false)) {
+            if (this.f38891b > k7Var.H1(false)) {
                 z9 = true;
             }
             org.telegram.messenger.g0.h3(new k1(2, this, z9));
@@ -86,7 +86,7 @@ public final class f5 extends w61 {
 
     @Override
     public final boolean b(MotionEvent motionEvent) {
-        g6 g6Var = this.V.T2;
+        g6 g6Var = this.V.W2;
         if (g6Var != null && !g6Var.c(0)) {
             return false;
         }
@@ -97,13 +97,13 @@ public final class f5 extends w61 {
     public final void dispatchDraw(Canvas canvas) {
         canvas.save();
         k7 k7Var = this.V;
-        canvas.clipRect(k7Var.f28654t0, -getHeight(), getWidth() - k7Var.f28654t0, getHeight() * 2);
+        canvas.clipRect(k7Var.f28705t0, -getHeight(), getWidth() - k7Var.f28705t0, getHeight() * 2);
         super.dispatchDraw(canvas);
         canvas.restore();
     }
 
     @Override
     public final float getAvailableTranslationX() {
-        return Math.max(1, getMeasuredWidth() - (this.V.f28654t0 * 2));
+        return Math.max(1, getMeasuredWidth() - (this.V.f28705t0 * 2));
     }
 }

@@ -1,13 +1,13 @@
 package g9;
 public final class a extends i {
-    public final i f13577a;
-    public final i f13578b;
+    public final i f13579a;
+    public final i f13580b;
 
     public a(i iVar, i iVar2) {
         iVar.getClass();
-        this.f13577a = iVar;
+        this.f13579a = iVar;
         iVar2.getClass();
-        this.f13578b = iVar2;
+        this.f13580b = iVar2;
     }
 
     @Override
@@ -17,13 +17,13 @@ public final class a extends i {
 
     @Override
     public final boolean c(char c10) {
-        if (this.f13577a.c(c10) && this.f13578b.c(c10)) {
+        if (this.f13579a.c(c10) && this.f13580b.c(c10)) {
             return true;
         }
         return false;
     }
 
     public final String toString() {
-        return "CharMatcher.and(" + this.f13577a + ", " + this.f13578b + ")";
+        return "CharMatcher.and(" + this.f13579a + ", " + this.f13580b + ")";
     }
 }

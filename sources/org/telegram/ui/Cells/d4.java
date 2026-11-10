@@ -1,7 +1,7 @@
 package org.telegram.ui.Cells;
 
 import android.graphics.Canvas;
-public final class d4 extends org.telegram.ui.Components.h5 {
+public final class d4 extends org.telegram.ui.Components.g5 {
     @Override
     public final void draw(Canvas canvas) {
         canvas.save();

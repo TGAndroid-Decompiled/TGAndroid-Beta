@@ -15,7 +15,7 @@ public enum g0 extends b2 {
                         return;
                     }
                     lVar.l(this);
-                    lVar.f8653c = b2.f8600a;
+                    lVar.f8658c = b2.f8605a;
                     return;
                 }
                 lVar.f(i7);

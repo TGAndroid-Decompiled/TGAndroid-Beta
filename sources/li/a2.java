@@ -7,34 +7,34 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.m6;
 public final class a2 extends Drawable implements Drawable.Callback {
-    public final Drawable f18413a;
-    public final Paint f18414b;
-    public final Path f18415c;
+    public final Drawable f18416a;
+    public final Paint f18417b;
+    public final Path f18418c;
     public final RectF d;
-    public final Outline f18416e;
-    public boolean f18417f;
+    public final Outline f18419e;
+    public boolean f18420f;
     public final boolean h;
-    public boolean f18418n;
+    public boolean f18421n;
 
     public a2(Drawable drawable) {
         Paint paint = new Paint(1);
-        this.f18414b = paint;
-        this.f18415c = new Path();
+        this.f18417b = paint;
+        this.f18418c = new Path();
         this.d = new RectF();
-        this.f18416e = new Outline();
-        this.f18417f = true;
-        this.f18413a = drawable;
+        this.f18419e = new Outline();
+        this.f18420f = true;
+        this.f18416a = drawable;
         drawable.setCallback(this);
         paint.setColor(0);
         this.h = true;
-        a(l6.I.q());
+        a(m6.I.q());
     }
 
     public final void a(boolean z9) {
         float f10;
-        this.f18418n = z9;
+        this.f18421n = z9;
         float L = org.telegram.messenger.g0.L(12.0f);
         float L2 = org.telegram.messenger.g0.L(4.0f);
         if (z9) {
@@ -42,7 +42,7 @@ public final class a2 extends Drawable implements Drawable.Callback {
         } else {
             f10 = 0.1f;
         }
-        this.f18414b.setShadowLayer(L, 0.0f, L2, l6.r1(f10, -16777216));
+        this.f18417b.setShadowLayer(L, 0.0f, L2, m6.r1(f10, -16777216));
     }
 
     @Override
@@ -62,23 +62,23 @@ public final class a2 extends Drawable implements Drawable.Callback {
 
     @Override
     public final boolean isStateful() {
-        return this.f18413a.isStateful();
+        return this.f18416a.isStateful();
     }
 
     @Override
     public final void jumpToCurrentState() {
-        this.f18413a.jumpToCurrentState();
+        this.f18416a.jumpToCurrentState();
     }
 
     @Override
     public final void onBoundsChange(Rect rect) {
-        this.f18413a.setBounds(rect);
-        this.f18417f = true;
+        this.f18416a.setBounds(rect);
+        this.f18420f = true;
     }
 
     @Override
     public final boolean onStateChange(int[] iArr) {
-        return this.f18413a.setState(iArr);
+        return this.f18416a.setState(iArr);
     }
 
     @Override
@@ -88,22 +88,22 @@ public final class a2 extends Drawable implements Drawable.Callback {
 
     @Override
     public final void setAlpha(int i7) {
-        this.f18413a.setAlpha(i7);
+        this.f18416a.setAlpha(i7);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f18413a.setColorFilter(colorFilter);
+        this.f18416a.setColorFilter(colorFilter);
     }
 
     @Override
     public final void setHotspot(float f10, float f11) {
-        this.f18413a.setHotspot(f10, f11);
+        this.f18416a.setHotspot(f10, f11);
     }
 
     @Override
     public final void setHotspotBounds(int i7, int i10, int i11, int i12) {
-        this.f18413a.setHotspotBounds(i7, i10, i11, i12);
+        this.f18416a.setHotspotBounds(i7, i10, i11, i12);
     }
 
     @Override

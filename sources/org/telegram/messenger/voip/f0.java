@@ -2,27 +2,27 @@ package org.telegram.messenger.voip;
 
 import org.telegram.tgnet.TLRPC;
 public final class f0 implements Runnable {
-    public final int f26117a;
-    public final VoIPService f26118b;
-    public final TLRPC.TL_error f26119c;
+    public final int f26121a;
+    public final VoIPService f26122b;
+    public final TLRPC.TL_error f26123c;
 
     public f0(VoIPService voIPService, TLRPC.TL_error tL_error, int i7) {
-        this.f26117a = i7;
-        this.f26118b = voIPService;
-        this.f26119c = tL_error;
+        this.f26121a = i7;
+        this.f26122b = voIPService;
+        this.f26123c = tL_error;
     }
 
     @Override
     public final void run() {
-        switch (this.f26117a) {
+        switch (this.f26121a) {
             case 0:
-                this.f26118b.lambda$startGroupCall$28(this.f26119c);
+                this.f26122b.lambda$startGroupCall$28(this.f26123c);
                 return;
             case 1:
-                this.f26118b.lambda$startGroupCall$22(this.f26119c);
+                this.f26122b.lambda$startGroupCall$22(this.f26123c);
                 return;
             default:
-                this.f26118b.lambda$startScreenCapture$59(this.f26119c);
+                this.f26122b.lambda$startScreenCapture$59(this.f26123c);
                 return;
         }
     }

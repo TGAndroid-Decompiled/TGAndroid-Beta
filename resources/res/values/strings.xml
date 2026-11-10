@@ -37,8 +37,8 @@
     <string name="cast_skip_next">Skip to next item</string>
     <string name="cast_skip_prev">Skip to previous item</string>
     <string name="cast_stop_live_stream">Stop live stream</string>
-    <string name="res_0x7f0f0055_com_google_firebase_crashlytics_mapping_file_id">8f80d402334b4625bab33773475af7af</string>
-    <string name="res_0x7f0f0056_com_google_firebase_crashlytics_version_control_info">repositories {\n  system: GIT\n  local_root_path: \"$PROJECT_DIR\"\n  revision: \"9a43817036f75b0e6b4835045f20e4ab01056c9f\"\n}\n</string>
+    <string name="res_0x7f0f0055_com_google_firebase_crashlytics_mapping_file_id">dfc071db0cf448a08511e9c7245df9be</string>
+    <string name="res_0x7f0f0056_com_google_firebase_crashlytics_version_control_info">repositories {\n  system: GIT\n  local_root_path: \"$PROJECT_DIR\"\n  revision: \"620880b0b480356b63d4e97698394e3d10666570\"\n}\n</string>
     <string name="common_google_play_services_enable_button">Enable</string>
     <string name="common_google_play_services_enable_text">%1$s won\'t work unless you enable Google Play services.</string>
     <string name="common_google_play_services_enable_title">Enable Google Play services</string>

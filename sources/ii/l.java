@@ -9,139 +9,139 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.ActionBar.u1;
-import org.telegram.ui.Components.ah0;
-import org.telegram.ui.Components.j30;
-import org.telegram.ui.Components.w8;
+import org.telegram.ui.Components.i30;
+import org.telegram.ui.Components.v8;
+import org.telegram.ui.Components.zg0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.bd;
-import org.telegram.ui.e40;
-import org.telegram.ui.f50;
-import org.telegram.ui.jz;
+import org.telegram.ui.f40;
+import org.telegram.ui.g50;
+import org.telegram.ui.kz;
 import org.telegram.ui.ld;
 import org.telegram.ui.ln;
-import org.telegram.ui.n30;
-import org.telegram.ui.n31;
+import org.telegram.ui.o30;
+import org.telegram.ui.o31;
 import org.telegram.ui.rn;
 public final class l implements Runnable {
-    public final int f15554a;
-    public final TLRPC.InputFile f15555b;
-    public final TLRPC.InputFile f15556c;
+    public final int f15553a;
+    public final TLRPC.InputFile f15554b;
+    public final TLRPC.InputFile f15555c;
     public final TLRPC.VideoSize d;
-    public final String f15557e;
-    public final double f15558f;
+    public final String f15556e;
+    public final double f15557f;
     public final TLRPC.PhotoSize h;
-    public final TLRPC.PhotoSize f15559n;
-    public final j30 f15560r;
+    public final TLRPC.PhotoSize f15558n;
+    public final i30 f15559r;
 
     public l(p pVar, TLRPC.PhotoSize photoSize, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, double d, String str, TLRPC.PhotoSize photoSize2) {
-        this.f15554a = 0;
-        this.f15560r = pVar;
+        this.f15553a = 0;
+        this.f15559r = pVar;
         this.h = photoSize;
-        this.f15555b = inputFile;
-        this.f15556c = inputFile2;
+        this.f15554b = inputFile;
+        this.f15555c = inputFile2;
         this.d = videoSize;
-        this.f15558f = d;
-        this.f15557e = str;
-        this.f15559n = photoSize2;
+        this.f15557f = d;
+        this.f15556e = str;
+        this.f15558n = photoSize2;
     }
 
     @Override
     public final void run() {
         long j3;
-        int i7 = this.f15554a;
-        double d = this.f15558f;
-        String str = this.f15557e;
+        int i7 = this.f15553a;
+        double d = this.f15557f;
+        String str = this.f15556e;
         TLRPC.VideoSize videoSize = this.d;
-        TLRPC.InputFile inputFile = this.f15556c;
-        TLRPC.InputFile inputFile2 = this.f15555b;
-        TLRPC.PhotoSize photoSize = this.f15559n;
+        TLRPC.InputFile inputFile = this.f15555c;
+        TLRPC.InputFile inputFile2 = this.f15554b;
+        TLRPC.PhotoSize photoSize = this.f15558n;
         TLRPC.PhotoSize photoSize2 = this.h;
-        j30 j30Var = this.f15560r;
+        i30 i30Var = this.f15559r;
         switch (i7) {
             case 0:
-                p pVar = (p) j30Var;
+                p pVar = (p) i30Var;
                 TLRPC.FileLocation fileLocation = photoSize2.location;
                 pVar.G = fileLocation;
-                TLRPC.InputFile inputFile3 = this.f15555b;
-                TLRPC.InputFile inputFile4 = this.f15556c;
+                TLRPC.InputFile inputFile3 = this.f15554b;
+                TLRPC.InputFile inputFile4 = this.f15555c;
                 TLRPC.VideoSize videoSize2 = this.d;
                 if (inputFile3 == null && inputFile4 == null && videoSize2 == null) {
-                    pVar.f15592x.j(hc.e(fileLocation), "50_50", pVar.E, pVar.I);
+                    pVar.f15591x.j(hc.e(fileLocation), "50_50", pVar.E, pVar.I);
                     pVar.f0(true, false);
                 } else {
-                    pVar.getMessagesController().B(pVar.f15585c, null, inputFile3, inputFile4, videoSize2, this.f15558f, this.f15557e, photoSize2.location, photoSize.location, null);
+                    pVar.getMessagesController().B(pVar.f15584c, null, inputFile3, inputFile4, videoSize2, this.f15557f, this.f15556e, photoSize2.location, photoSize.location, null);
                     pVar.f0(false, true);
                 }
-                pVar.f15586e.f37556f3.O(true);
+                pVar.f15585e.f37496f3.O(true);
                 return;
             case 1:
-                bd bdVar = (bd) j30Var;
+                bd bdVar = (bd) i30Var;
                 if (inputFile2 == null && inputFile == null) {
                     TLRPC.FileLocation fileLocation2 = photoSize2.location;
                     bdVar.D = fileLocation2;
                     bdVar.E = photoSize.location;
-                    bdVar.f43988f.j(hc.e(fileLocation2), "50_50", bdVar.f44008w, null);
+                    bdVar.f44017f.j(hc.e(fileLocation2), "50_50", bdVar.f44037w, null);
                     bdVar.k0(true, false);
                     return;
                 }
                 bdVar.m0 = inputFile2;
-                bdVar.f43997n0 = inputFile;
-                bdVar.f43998o0 = videoSize;
-                bdVar.f43999p0 = str;
-                bdVar.f44000q0 = d;
-                if (bdVar.f44002r0) {
-                    u1 u1Var = bdVar.f44007v0;
+                bdVar.f44026n0 = inputFile;
+                bdVar.f44027o0 = videoSize;
+                bdVar.f44028p0 = str;
+                bdVar.f44029q0 = d;
+                if (bdVar.f44031r0) {
+                    u1 u1Var = bdVar.f44036v0;
                     if (u1Var != null) {
                         try {
                             u1Var.dismiss();
-                            bdVar.f44007v0 = null;
+                            bdVar.f44036v0 = null;
                         } catch (Exception e10) {
                             a8.g(e10, true);
                         }
                     }
                     bdVar.m0(false);
-                    bdVar.f44004s0 = false;
-                    bdVar.f43979a.performClick();
+                    bdVar.f44033s0 = false;
+                    bdVar.f44008a.performClick();
                 }
                 bdVar.k0(false, true);
-                bdVar.f43996n.setImageDrawable(null);
+                bdVar.f44025n.setImageDrawable(null);
                 return;
             case 2:
-                rn rnVar = (rn) j30Var;
+                rn rnVar = (rn) i30Var;
                 TLRPC.FileLocation fileLocation3 = photoSize2.location;
-                rnVar.f49536u0 = fileLocation3;
-                TLRPC.InputFile inputFile5 = this.f15555b;
-                TLRPC.InputFile inputFile6 = this.f15556c;
+                rnVar.f49474u0 = fileLocation3;
+                TLRPC.InputFile inputFile5 = this.f15554b;
+                TLRPC.InputFile inputFile6 = this.f15555c;
                 TLRPC.VideoSize videoSize3 = this.d;
                 if (inputFile5 == null && inputFile6 == null && videoSize3 == null) {
-                    d4 d4Var = rnVar.f49516e;
+                    d4 d4Var = rnVar.f49454e;
                     hc e11 = hc.e(fileLocation3);
-                    w8 w8Var = rnVar.f49531r;
+                    v8 v8Var = rnVar.f49469r;
                     Object obj = rnVar.C0;
                     if (obj == null) {
-                        obj = rnVar.f49539w0;
+                        obj = rnVar.f49477w0;
                     }
-                    d4Var.j(e11, "50_50", w8Var, obj);
-                    rnVar.f49512b0.o(2131232047, id.M0(2131752213, "ChatSetNewPhoto"), true);
+                    d4Var.j(e11, "50_50", v8Var, obj);
+                    rnVar.f49450b0.o(2131232047, id.M0(2131752213, "ChatSetNewPhoto"), true);
                     if (rnVar.R0 == null) {
-                        rnVar.R0 = new ah0(2131623965, org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(50.0f), false, null);
+                        rnVar.R0 = new zg0(2131623965, org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(50.0f), false, null);
                     }
-                    rnVar.f49512b0.f29574e.setTranslationX(-org.telegram.messenger.g0.L(8.0f));
-                    rnVar.f49512b0.f29574e.setAnimation(rnVar.R0);
+                    rnVar.f49450b0.f29585e.setTranslationX(-org.telegram.messenger.g0.L(8.0f));
+                    rnVar.f49450b0.f29585e.setAnimation(rnVar.R0);
                     rnVar.s0(true, false);
                     return;
                 }
                 int i10 = (rnVar.B0 > 0L ? 1 : (rnVar.B0 == 0L ? 0 : -1));
-                double d2 = this.f15558f;
+                double d2 = this.f15557f;
                 if (i10 != 0) {
                     TLRPC.User user = rnVar.C0;
                     if (user != null) {
                         user.photo = new TLRPC.TL_userProfilePhoto();
                         TLRPC.UserProfilePhoto userProfilePhoto = rnVar.C0.photo;
                         if (inputFile5 != null) {
-                            j3 = inputFile5.f26970id;
+                            j3 = inputFile5.f26974id;
                         } else if (inputFile6 != null) {
-                            j3 = inputFile6.f26970id;
+                            j3 = inputFile6.f26974id;
                         } else {
                             j3 = 0;
                         }
@@ -169,44 +169,44 @@ public final class l implements Runnable {
                     tL_photos_uploadProfilePhoto.flags |= 32;
                     rnVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new ln(rnVar, 1));
                 } else {
-                    rnVar.getMessagesController().B(rnVar.f49537v0, null, inputFile5, inputFile6, videoSize3, d2, this.f15557e, photoSize2.location, photoSize.location, null);
+                    rnVar.getMessagesController().B(rnVar.f49475v0, null, inputFile5, inputFile6, videoSize3, d2, this.f15556e, photoSize2.location, photoSize.location, null);
                 }
                 if (rnVar.M0) {
                     try {
-                        u1 u1Var2 = rnVar.f49511b;
+                        u1 u1Var2 = rnVar.f49449b;
                         if (u1Var2 != null && u1Var2.isShowing()) {
-                            rnVar.f49511b.dismiss();
-                            rnVar.f49511b = null;
+                            rnVar.f49449b.dismiss();
+                            rnVar.f49449b = null;
                         }
                     } catch (Exception e12) {
                         a8.g(e12, true);
                     }
                     rnVar.N0 = false;
-                    rnVar.f49509a.performClick();
+                    rnVar.f49447a.performClick();
                 }
                 rnVar.s0(false, true);
                 return;
             case 3:
-                n30 n30Var = (n30) j30Var;
-                long j10 = n30Var.f48072e;
-                e40 e40Var = n30Var.f48073f;
-                org.telegram.messenger.c cVar = e40Var.f45228k1;
-                TLRPC.InputFile inputFile7 = this.f15555b;
-                TLRPC.InputFile inputFile8 = this.f15556c;
+                o30 o30Var = (o30) i30Var;
+                long j10 = o30Var.f48406e;
+                f40 f40Var = o30Var.f48407f;
+                org.telegram.messenger.c cVar = f40Var.n1;
+                TLRPC.InputFile inputFile7 = this.f15554b;
+                TLRPC.InputFile inputFile8 = this.f15555c;
                 TLRPC.VideoSize videoSize4 = this.d;
                 if (inputFile7 == null && inputFile8 == null && videoSize4 == null) {
-                    n30Var.f48071c = photoSize2.location;
+                    o30Var.f48405c = photoSize2.location;
                     TLRPC.FileLocation fileLocation4 = photoSize.location;
-                    n30Var.f48070b = fileLocation4;
+                    o30Var.f48404b = fileLocation4;
                     hc e13 = hc.e(fileLocation4);
-                    n30Var.d = e13;
-                    e40Var.f45219i1.A(e13, hc.e(n30Var.f48071c));
-                    org.telegram.messenger.g0.b4(e40Var.H1);
+                    o30Var.d = e13;
+                    f40Var.l1.A(e13, hc.e(o30Var.f48405c));
+                    org.telegram.messenger.g0.b4(f40Var.K1);
                     return;
                 }
                 int i12 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-                double d10 = this.f15558f;
-                String str2 = this.f15557e;
+                double d10 = this.f15557f;
+                String str2 = this.f15556e;
                 if (i12 > 0) {
                     TLRPC.TL_photos_uploadProfilePhoto tL_photos_uploadProfilePhoto2 = new TLRPC.TL_photos_uploadProfilePhoto();
                     if (inputFile7 != null) {
@@ -223,74 +223,74 @@ public final class l implements Runnable {
                         tL_photos_uploadProfilePhoto2.video_emoji_markup = videoSize4;
                         tL_photos_uploadProfilePhoto2.flags |= 16;
                     }
-                    ConnectionsManager.getInstance(cVar.f21765a).sendRequest(tL_photos_uploadProfilePhoto2, new ld(29, n30Var, str2));
+                    ConnectionsManager.getInstance(cVar.f21770a).sendRequest(tL_photos_uploadProfilePhoto2, new ld(29, o30Var, str2));
                     return;
                 }
-                qp.s1(cVar.f21765a).B(-j10, null, inputFile7, inputFile8, videoSize4, d10, str2, photoSize2.location, photoSize.location, new jz(n30Var, 7));
+                qp.s1(cVar.f21770a).B(-j10, null, inputFile7, inputFile8, videoSize4, d10, str2, photoSize2.location, photoSize.location, new kz(o30Var, 7));
                 return;
             case 4:
-                f50 f50Var = (f50) j30Var;
+                g50 g50Var = (g50) i30Var;
                 if (inputFile2 == null && inputFile == null && videoSize == null) {
                     TLRPC.FileLocation fileLocation5 = photoSize2.location;
-                    f50Var.D = fileLocation5;
-                    f50Var.E = photoSize.location;
-                    f50Var.d.j(hc.e(fileLocation5), "50_50", f50Var.f45590r, null);
-                    f50Var.e0(true, false);
+                    g50Var.D = fileLocation5;
+                    g50Var.E = photoSize.location;
+                    g50Var.d.j(hc.e(fileLocation5), "50_50", g50Var.f45984r, null);
+                    g50Var.e0(true, false);
                     return;
                 }
-                f50Var.F = inputFile2;
-                f50Var.G = inputFile;
-                f50Var.H = videoSize;
-                f50Var.I = str;
-                f50Var.J = d;
-                if (f50Var.L) {
-                    f50Var.getMessagesController().U(f50Var.f45586c.getText().toString(), f50Var.K, null, f50Var.P, f50Var.S, f50Var.U, f50Var.T, f50Var.W, f50Var);
+                g50Var.F = inputFile2;
+                g50Var.G = inputFile;
+                g50Var.H = videoSize;
+                g50Var.I = str;
+                g50Var.J = d;
+                if (g50Var.L) {
+                    g50Var.getMessagesController().U(g50Var.f45980c.getText().toString(), g50Var.K, null, g50Var.P, g50Var.S, g50Var.U, g50Var.T, g50Var.W, g50Var);
                 }
-                f50Var.e0(false, true);
-                f50Var.f45588f.setImageDrawable(null);
+                g50Var.e0(false, true);
+                g50Var.f45982f.setImageDrawable(null);
                 return;
             case 5:
-                ProfileActivity.r0((ProfileActivity) j30Var, this.f15555b, this.f15556c, this.d, this.f15558f, this.f15557e, this.h, this.f15559n);
+                ProfileActivity.r0((ProfileActivity) i30Var, this.f15554b, this.f15555c, this.d, this.f15557f, this.f15556e, this.h, this.f15558n);
                 return;
             default:
-                n31.e0((n31) j30Var, this.f15555b, this.f15556c, this.d, this.f15558f, this.f15557e, this.h, this.f15559n);
+                o31.e0((o31) i30Var, this.f15554b, this.f15555c, this.d, this.f15557f, this.f15556e, this.h, this.f15558n);
                 return;
         }
     }
 
     public l(f2 f2Var, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, String str, double d, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, int i7) {
-        this.f15554a = i7;
-        this.f15560r = (j30) f2Var;
-        this.f15555b = inputFile;
-        this.f15556c = inputFile2;
+        this.f15553a = i7;
+        this.f15559r = (i30) f2Var;
+        this.f15554b = inputFile;
+        this.f15555c = inputFile2;
         this.d = videoSize;
-        this.f15557e = str;
-        this.f15558f = d;
+        this.f15556e = str;
+        this.f15557f = d;
         this.h = photoSize;
-        this.f15559n = photoSize2;
+        this.f15558n = photoSize2;
     }
 
     public l(rn rnVar, TLRPC.PhotoSize photoSize, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, TLRPC.PhotoSize photoSize2, double d, String str) {
-        this.f15554a = 2;
-        this.f15560r = rnVar;
+        this.f15553a = 2;
+        this.f15559r = rnVar;
         this.h = photoSize;
-        this.f15555b = inputFile;
-        this.f15556c = inputFile2;
+        this.f15554b = inputFile;
+        this.f15555c = inputFile2;
         this.d = videoSize;
-        this.f15559n = photoSize2;
-        this.f15558f = d;
-        this.f15557e = str;
+        this.f15558n = photoSize2;
+        this.f15557f = d;
+        this.f15556e = str;
     }
 
-    public l(j30 j30Var, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, int i7) {
-        this.f15554a = i7;
-        this.f15560r = j30Var;
-        this.f15555b = inputFile;
-        this.f15556c = inputFile2;
+    public l(i30 i30Var, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, int i7) {
+        this.f15553a = i7;
+        this.f15559r = i30Var;
+        this.f15554b = inputFile;
+        this.f15555c = inputFile2;
         this.d = videoSize;
-        this.f15558f = d;
-        this.f15557e = str;
+        this.f15557f = d;
+        this.f15556e = str;
         this.h = photoSize;
-        this.f15559n = photoSize2;
+        this.f15558n = photoSize2;
     }
 }

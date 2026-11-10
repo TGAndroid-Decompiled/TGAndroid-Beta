@@ -4,16 +4,16 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.ic;
+import org.telegram.ui.Components.hc;
 public final class m5 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
     public float T;
     public float U;
-    public final ic V;
+    public final hc V;
     public boolean W;
 
     public m5(o5 o5Var, Context context) {
-        super(context, o5Var.f12538p1);
-        this.V = new ic(this);
+        super(context, o5Var.f12542p1);
+        this.V = new hc(this);
         this.W = true;
     }
 
@@ -34,13 +34,13 @@ public final class m5 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         int action = motionEvent.getAction();
-        ic icVar = this.V;
+        hc hcVar = this.V;
         if (action == 0) {
             this.T = motionEvent.getX();
             this.U = motionEvent.getY();
-            icVar.c(this.W);
+            hcVar.c(this.W);
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            icVar.c(false);
+            hcVar.c(false);
         }
         return super.dispatchTouchEvent(motionEvent);
     }

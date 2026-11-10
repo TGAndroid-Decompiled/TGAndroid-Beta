@@ -1,8 +1,8 @@
 package r5;
 public final class b {
-    public final f f54418a;
+    public final f f54417a;
 
     public b(f fVar) {
-        this.f54418a = fVar;
+        this.f54417a = fVar;
     }
 }

@@ -1,53 +1,64 @@
 package org.telegram.ui.Components;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.widget.FrameLayout;
-public final class vv extends FrameLayout {
-    public final Paint f39810a;
-    public final hy f39811b;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
+public final class vv extends c5.k {
+    public final gy f39750w0;
 
-    public vv(hy hyVar, Context context) {
+    public vv(gy gyVar, Context context) {
         super(context);
-        this.f39811b = hyVar;
-        this.f39810a = new Paint();
+        this.f39750w0 = gyVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        hy hyVar = this.f39811b;
-        uv uvVar = hyVar.B0;
-        float L = org.telegram.messenger.g0.L(50.0f) * hyVar.f34467t1.p();
-        if (L > getMeasuredHeight()) {
-            return;
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (this.f39750w0.f34024f) {
+            return false;
         }
-        canvas.save();
-        if (L != 0.0f) {
-            canvas.clipRect(0.0f, L, getMeasuredWidth(), getMeasuredHeight());
+        if (getParent() != null) {
+            getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
         }
-        int z9 = hyVar.z(org.telegram.ui.ActionBar.l6.f28227wf);
-        Paint paint = this.f39810a;
-        paint.setColor(z9);
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), uvVar.getExpandedOffset() + org.telegram.messenger.g0.L(36.0f), paint);
-        super.dispatchDraw(canvas);
-        if (uvVar.f38118s != null) {
-            canvas.save();
-            float f10 = uvVar.f38099c0 - uvVar.f38100d0;
-            float f11 = uvVar.f38120w;
-            if (f11 > 0.0f) {
-                f10 = ((uvVar.f38118s.getX() - uvVar.getScrollX()) * uvVar.f38120w) + ((1.0f - f11) * f10);
+        try {
+            return super.onInterceptTouchEvent(motionEvent);
+        } catch (IllegalArgumentException unused) {
+            return false;
+        }
+    }
+
+    @Override
+    public final void x(int i7, boolean z9) {
+        boolean z10;
+        gy gyVar = this.f39750w0;
+        kw kwVar = gyVar.I;
+        if (i7 == 1) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        gy.a(gyVar, z10);
+        if (i7 == getCurrentItem()) {
+            if (i7 == 0) {
+                gyVar.Q0[1] = 0;
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(kwVar, ViewGroup.TRANSLATION_Y, 0.0f);
+                ofFloat.setDuration(150L);
+                ofFloat.setInterpolator(wq.h);
+                ofFloat.start();
+                gyVar.G(1, 0);
+                if (kwVar != null) {
+                    kwVar.j(0, true);
+                    return;
+                }
+                return;
+            } else if (i7 == 1) {
+                gyVar.f34031h0.y0(0);
+                return;
+            } else {
+                gyVar.D0.y0(1);
+                return;
             }
-            canvas.translate(f10, 0.0f);
-            uvVar.f38118s.draw(canvas);
-            canvas.restore();
         }
-        canvas.restore();
-    }
-
-    @Override
-    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        super.onLayout(z9, i7, i10, i11, i12);
-        this.f39811b.Z();
+        super.x(i7, z9);
     }
 }

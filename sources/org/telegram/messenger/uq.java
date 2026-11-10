@@ -2,21 +2,21 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class uq implements Runnable {
-    public final int f25886a;
-    public final yr f25887b;
-    public final TLRPC.TL_chatFull f25888c;
+    public final int f25890a;
+    public final yr f25891b;
+    public final TLRPC.TL_chatFull f25892c;
 
     public uq(yr yrVar, TLRPC.TL_chatFull tL_chatFull, int i7) {
-        this.f25886a = i7;
-        this.f25887b = yrVar;
-        this.f25888c = tL_chatFull;
+        this.f25890a = i7;
+        this.f25891b = yrVar;
+        this.f25892c = tL_chatFull;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f25886a;
-        TLRPC.TL_chatFull tL_chatFull = this.f25888c;
-        yr yrVar = this.f25887b;
+        int i7 = this.f25890a;
+        TLRPC.TL_chatFull tL_chatFull = this.f25892c;
+        yr yrVar = this.f25891b;
         switch (i7) {
             case 0:
                 qs notificationCenter = yrVar.getNotificationCenter();

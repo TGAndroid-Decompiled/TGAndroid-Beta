@@ -3,12 +3,12 @@ package rc;
 import java.security.SecureRandom;
 import java.util.List;
 public abstract class r {
-    public static final int f54485a = 0;
+    public static final int f54484a = 0;
 
     static {
         try {
             Class<?>[] clsArr = {String.class};
-            SecureRandom secureRandom = k.f54472a;
+            SecureRandom secureRandom = k.f54471a;
             try {
                 Class.forName("javax.net.ssl.SNIHostName").getConstructor(clsArr);
             } catch (Exception unused) {

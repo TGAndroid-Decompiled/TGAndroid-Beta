@@ -1,40 +1,31 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class ur extends jg.e {
-    public final ContactsActivity O;
+import java.util.ArrayList;
+public final class ur extends jg.s1 {
+    public final ContactsActivity K;
 
-    public ur(ContactsActivity contactsActivity, Context context, int i7, boolean z9, a0.h hVar, int i10) {
-        super(context, i7, z9, hVar, i10);
-        this.O = contactsActivity;
+    public ur(ContactsActivity contactsActivity, Context context, a0.h hVar, boolean z9, boolean z10, boolean z11) {
+        this.K = contactsActivity;
+        this.d = new ArrayList();
+        this.f16917e = new ArrayList();
+        this.H = new ArrayList();
+        this.f16916c = context;
+        this.h = hVar;
+        this.f16920r = z9;
+        this.f16921s = z10;
+        this.f16924y = 0;
+        this.f16922w = z11;
+        this.f16923x = true;
+        jg.z1 z1Var = new jg.z1(true);
+        this.f16918f = z1Var;
+        z1Var.f16992a = new jg.p1(this);
     }
 
     @Override
-    public final int R() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ur.R():int");
-    }
-
-    @Override
-    public final void f() {
-        boolean z9 = false;
-        X(false);
-        ContactsActivity contactsActivity = this.O;
-        org.telegram.ui.Components.qj0 qj0Var = contactsActivity.d;
-        if (qj0Var != null && qj0Var.getAdapter() == this) {
-            int b10 = b();
-            if (contactsActivity.F) {
-                org.telegram.ui.Components.qj0 qj0Var2 = contactsActivity.d;
-                if (b10 != 2) {
-                    z9 = true;
-                }
-                qj0Var2.setFastScrollVisible(z9);
-                return;
-            }
-            org.telegram.ui.Components.qj0 qj0Var3 = contactsActivity.d;
-            if (b10 != 0) {
-                z9 = true;
-            }
-            qj0Var3.setFastScrollVisible(z9);
+    public final void F() {
+        if (!this.D && !this.f16918f.e() && b() == 0) {
+            this.K.f41181c.e(false, true);
         }
     }
 }

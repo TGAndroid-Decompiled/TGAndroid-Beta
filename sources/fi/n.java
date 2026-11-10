@@ -1,21 +1,21 @@
 package fi;
 public final class n implements Runnable {
-    public final int f12468a;
-    public final la f12469b;
+    public final int f12472a;
+    public final la f12473b;
 
     public n(la laVar, int i7) {
-        this.f12468a = i7;
-        this.f12469b = laVar;
+        this.f12472a = i7;
+        this.f12473b = laVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f12468a) {
+        switch (this.f12472a) {
             case 0:
-                this.f12469b.n();
+                this.f12473b.n();
                 return;
             case 1:
-                la laVar = this.f12469b;
+                la laVar = this.f12473b;
                 laVar.J0 = false;
                 laVar.K0 = Integer.MIN_VALUE;
                 laVar.invalidate();
@@ -23,7 +23,7 @@ public final class n implements Runnable {
                 laVar.S0.setVisibility(0);
                 return;
             default:
-                va vaVar = this.f12469b.R1;
+                va vaVar = this.f12473b.R1;
                 ja jaVar = vaVar.X0;
                 if (jaVar != null) {
                     jaVar.O = false;

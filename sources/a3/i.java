@@ -46,7 +46,7 @@ public final class i extends q implements Comparable {
         e2.u uVar2 = this.d;
         int i10 = uVar2.K;
         if (i10 != -1 && i10 == uVar.K) {
-            if ((this.D || ((str = uVar2.f10615s) != null && TextUtils.equals(str, uVar.f10615s))) && (i7 = uVar2.L) != -1 && i7 == uVar.L && this.M == iVar.M && this.N == iVar.N) {
+            if ((this.D || ((str = uVar2.f10620s) != null && TextUtils.equals(str, uVar.f10620s))) && (i7 = uVar2.L) != -1 && i7 == uVar.L && this.M == iVar.M && this.N == iVar.N) {
                 return true;
             }
             return false;
@@ -66,10 +66,10 @@ public final class i extends q implements Comparable {
         }
         boolean z11 = iVar.f93r;
         int i7 = iVar.K;
-        h9.w c10 = h9.w.f14407a.c(z9, z11);
+        h9.w c10 = h9.w.f14409a.c(z9, z11);
         Integer valueOf = Integer.valueOf(this.f95w);
         Integer valueOf2 = Integer.valueOf(iVar.f95w);
-        o1 o1Var = o1.f14360c;
+        o1 o1Var = o1.f14362c;
         h9.w b10 = c10.b(valueOf, valueOf2, o1Var).a(this.f94s, iVar.f94s).a(this.f96x, iVar.f96x).b(Integer.valueOf(this.f97y), Integer.valueOf(iVar.f97y), o1Var).c(this.H, iVar.H).c(this.E, iVar.E).b(Integer.valueOf(this.F), Integer.valueOf(iVar.F), o1Var).a(this.G, iVar.G).c(z10, iVar.f91f).b(Integer.valueOf(this.L), Integer.valueOf(iVar.L), o1Var);
         boolean z12 = this.f92n.F;
         int i10 = this.K;

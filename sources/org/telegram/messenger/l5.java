@@ -45,7 +45,7 @@ public abstract class l5 {
         SQLiteCursor sQLiteCursor7;
         SQLiteCursor sQLiteCursor8;
         SQLiteDatabase sQLiteDatabase2 = sQLiteDatabase;
-        p5 p5Var = yrVar.f26719a;
+        p5 p5Var = yrVar.f26723a;
         int i11 = 4;
         int i12 = i7;
         if (i12 < 4) {
@@ -153,7 +153,7 @@ public abstract class l5 {
                     byteBufferValue2.reuse();
                     if (TLdeserialize != null) {
                         TLRPC.TL_chatFull tL_chatFull = new TLRPC.TL_chatFull();
-                        tL_chatFull.f26957id = intValue2;
+                        tL_chatFull.f26961id = intValue2;
                         tL_chatFull.chat_photo = new TLRPC.TL_photoEmpty();
                         tL_chatFull.notify_settings = new TLRPC.TL_peerNotifySettingsEmpty_layer77();
                         tL_chatFull.exported_invite = null;
@@ -679,7 +679,7 @@ public abstract class l5 {
                             TLRPC.Message TLdeserialize2 = TLRPC.Message.TLdeserialize(byteBufferValue6, byteBufferValue6.readInt32(false), false);
                             if (TLdeserialize2 != null) {
                                 i10 = intValue28;
-                                TLdeserialize2.readAttachPath(byteBufferValue6, yrVar.getUserConfig().f24489n);
+                                TLdeserialize2.readAttachPath(byteBufferValue6, yrVar.getUserConfig().f24493n);
                                 if (TLdeserialize2.params == null) {
                                     HashMap<String, String> hashMap = new HashMap<>();
                                     TLdeserialize2.params = hashMap;

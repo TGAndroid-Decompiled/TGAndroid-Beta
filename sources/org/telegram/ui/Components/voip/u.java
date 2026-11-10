@@ -10,81 +10,81 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.r3;
 import org.telegram.messenger.s3;
-import org.telegram.ui.e40;
+import org.telegram.ui.f40;
 import org.telegram.ui.va;
 public final class u extends k2 {
-    public float f39638g0;
-    public final r3 f39639h0;
-    public final k0 f39640i0;
-    public final TextPaint f39641j0;
-    public final StaticLayout f39642k0;
-    public final TextPaint f39643l0;
+    public float f39558g0;
+    public final r3 f39559h0;
+    public final k0 f39560i0;
+    public final TextPaint f39561j0;
+    public final StaticLayout f39562k0;
+    public final TextPaint f39563l0;
     public final String m0;
-    public final float f39644n0;
-    public final StaticLayout f39645o0;
-    public final e40 f39646p0;
-    public final String f39647q0;
-    public final float f39648r0;
-    public final y f39649s0;
+    public final float f39564n0;
+    public final StaticLayout f39565o0;
+    public final f40 f39566p0;
+    public final String f39567q0;
+    public final float f39568r0;
+    public final y f39569s0;
 
-    public u(y yVar, Context context, r3 r3Var, k0 k0Var, TextPaint textPaint, StaticLayout staticLayout, TextPaint textPaint2, String str, float f10, StaticLayout staticLayout2, e40 e40Var, String str2, float f11) {
+    public u(y yVar, Context context, r3 r3Var, k0 k0Var, TextPaint textPaint, StaticLayout staticLayout, TextPaint textPaint2, String str, float f10, StaticLayout staticLayout2, f40 f40Var, String str2, float f11) {
         super(context, false, false, true, true);
-        this.f39649s0 = yVar;
-        this.f39639h0 = r3Var;
-        this.f39640i0 = k0Var;
-        this.f39641j0 = textPaint;
-        this.f39642k0 = staticLayout;
-        this.f39643l0 = textPaint2;
+        this.f39569s0 = yVar;
+        this.f39559h0 = r3Var;
+        this.f39560i0 = k0Var;
+        this.f39561j0 = textPaint;
+        this.f39562k0 = staticLayout;
+        this.f39563l0 = textPaint2;
         this.m0 = str;
-        this.f39644n0 = f10;
-        this.f39645o0 = staticLayout2;
-        this.f39646p0 = e40Var;
-        this.f39647q0 = str2;
-        this.f39648r0 = f11;
+        this.f39564n0 = f10;
+        this.f39565o0 = staticLayout2;
+        this.f39566p0 = f40Var;
+        this.f39567q0 = str2;
+        this.f39568r0 = f11;
     }
 
     @Override
     public final void a() {
         super.a();
-        this.f39638g0 = this.f39649s0.f39744w0;
+        this.f39558g0 = this.f39569s0.f39666w0;
     }
 
     @Override
     public final void b() {
         int i7;
         s3 s3Var;
-        y yVar = this.f39649s0;
+        y yVar = this.f39569s0;
         TextView textView = yVar.O;
-        u uVar = yVar.f39714a;
+        u uVar = yVar.f39636a;
         invalidate();
-        r3 r3Var = this.f39639h0;
-        if (r3Var != null && r3Var.f25222b.rtmp_stream && yVar.f39749z0) {
+        r3 r3Var = this.f39559h0;
+        if (r3Var != null && r3Var.f25226b.rtmp_stream && yVar.f39671z0) {
             org.telegram.messenger.g0.r(yVar.A0);
-            yVar.f39749z0 = false;
+            yVar.f39671z0 = false;
             textView.animate().cancel();
             textView.animate().alpha(0.0f).setDuration(150L).start();
             uVar.animate().cancel();
             uVar.animate().alpha(1.0f).setDuration(150L).start();
         }
-        boolean z9 = yVar.f39739s0;
+        boolean z9 = yVar.f39661s0;
         j2 j2Var = this.d;
         if (!z9 && j2Var.getAlpha() != 1.0f) {
             j2Var.animate().setDuration(300L).alpha(1.0f);
         }
-        TextureView textureView = this.f39426e;
+        TextureView textureView = this.f39346e;
         if (textureView != null && textureView.getAlpha() != 1.0f) {
             textureView.animate().setDuration(300L).alpha(1.0f);
         }
-        ImageView imageView = yVar.f39746x0;
+        ImageView imageView = yVar.f39668x0;
         if (imageView != null && imageView.getParent() != null) {
-            if (yVar.f39746x0.getAlpha() == 1.0f) {
-                yVar.f39746x0.animate().alpha(0.0f).setDuration(300L).setListener(new va(this, 10)).start();
-            } else if (yVar.f39746x0.getParent() != null) {
-                uVar.removeView(yVar.f39746x0);
+            if (yVar.f39668x0.getAlpha() == 1.0f) {
+                yVar.f39668x0.animate().alpha(0.0f).setDuration(300L).setListener(new va(this, 10)).start();
+            } else if (yVar.f39668x0.getParent() != null) {
+                uVar.removeView(yVar.f39668x0);
             }
         }
         int i10 = j2Var.rotatedFrameHeight;
-        if (i10 != 0 && (i7 = j2Var.rotatedFrameWidth) != 0 && (s3Var = yVar.f39745x) != null) {
+        if (i10 != 0 && (i7 = j2Var.rotatedFrameWidth) != 0 && (s3Var = yVar.f39667x) != null) {
             s3Var.a(i7, i10, r3Var);
         }
     }
@@ -96,12 +96,12 @@ public final class u extends k2 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        y yVar = this.f39649s0;
-        if (yVar.f39728j0 && view == yVar.f39714a.d) {
+        y yVar = this.f39569s0;
+        if (yVar.f39650j0 && view == yVar.f39636a.d) {
             canvas.save();
-            float f10 = yVar.f39722e0;
-            canvas.scale(f10, f10, yVar.f39724f0, yVar.f39725g0);
-            canvas.translate(yVar.f39726h0, yVar.f39727i0);
+            float f10 = yVar.f39644e0;
+            canvas.scale(f10, f10, yVar.f39646f0, yVar.f39647g0);
+            canvas.translate(yVar.f39648h0, yVar.f39649i0);
             boolean drawChild = super.drawChild(canvas, view, j3);
             canvas.restore();
             return drawChild;
@@ -112,19 +112,19 @@ public final class u extends k2 {
     @Override
     public final void e() {
         super.e();
-        y yVar = this.f39649s0;
-        u uVar = yVar.f39714a;
-        ImageView imageView = yVar.f39746x0;
+        y yVar = this.f39569s0;
+        u uVar = yVar.f39636a;
+        ImageView imageView = yVar.f39668x0;
         if (imageView != null && imageView.getParent() != null) {
-            yVar.f39746x0.getLayoutParams().width = uVar.d.getMeasuredWidth();
-            yVar.f39746x0.getLayoutParams().height = uVar.d.getMeasuredHeight();
+            yVar.f39668x0.getLayoutParams().width = uVar.d.getMeasuredWidth();
+            yVar.f39668x0.getLayoutParams().height = uVar.d.getMeasuredHeight();
         }
     }
 
     @Override
     public final void invalidate() {
         super.invalidate();
-        y yVar = this.f39649s0;
+        y yVar = this.f39569s0;
         yVar.Q = true;
         yVar.invalidate();
         yVar.Q = false;
@@ -134,34 +134,34 @@ public final class u extends k2 {
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
         int i13;
         s3 s3Var;
-        y yVar = this.f39649s0;
-        u uVar = yVar.f39714a;
-        boolean z10 = yVar.f39743w;
+        y yVar = this.f39569s0;
+        u uVar = yVar.f39636a;
+        boolean z10 = yVar.f39665w;
         j2 j2Var = this.d;
         if (z10 && yVar.R && j2Var.rotatedFrameHeight != 0 && j2Var.rotatedFrameWidth != 0) {
             if (yVar.h) {
-                uVar.f39420a0 = 1;
-            } else if (yVar.f39716b) {
-                uVar.f39420a0 = 1;
-            } else if (this.f39640i0.f39382b) {
-                uVar.f39420a0 = 0;
-            } else if (yVar.f39745x.f25410b) {
-                uVar.f39420a0 = 1;
+                uVar.f39340a0 = 1;
+            } else if (yVar.f39638b) {
+                uVar.f39340a0 = 1;
+            } else if (this.f39560i0.f39302b) {
+                uVar.f39340a0 = 0;
+            } else if (yVar.f39667x.f25414b) {
+                uVar.f39340a0 = 1;
             } else {
-                uVar.f39420a0 = 2;
+                uVar.f39340a0 = 2;
             }
             yVar.R = false;
         }
         super.onLayout(z9, i7, i10, i11, i12);
         int i14 = j2Var.rotatedFrameHeight;
-        if (i14 != 0 && (i13 = j2Var.rotatedFrameWidth) != 0 && (s3Var = yVar.f39745x) != null) {
-            s3Var.a(i13, i14, this.f39639h0);
+        if (i14 != 0 && (i13 = j2Var.rotatedFrameWidth) != 0 && (s3Var = yVar.f39667x) != null) {
+            s3Var.a(i13, i14, this.f39559h0);
         }
     }
 
     @Override
     public final void requestLayout() {
-        this.f39649s0.requestLayout();
+        this.f39569s0.requestLayout();
         super.requestLayout();
     }
 }

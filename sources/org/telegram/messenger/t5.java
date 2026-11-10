@@ -9,10 +9,10 @@ public abstract class t5 {
         try {
             rz rzVar = new rz();
             kz kzVar = new kz(256.0f, 256.0f, 204.8f);
-            rzVar.f25379a.add(kzVar);
-            rzVar.f25380b.put(kzVar, new Paint(1));
-            rzVar.f25382e = 512;
-            rzVar.f25383f = 512;
+            rzVar.f25383a.add(kzVar);
+            rzVar.f25384b.put(kzVar, new Paint(1));
+            rzVar.f25386e = 512;
+            rzVar.f25387f = 512;
             rzVar.f(i7, null, 0.65f, false);
             return rzVar;
         } catch (Exception e10) {
@@ -26,10 +26,10 @@ public abstract class t5 {
         path.addRect(0.0f, 0.0f, 512.0f, 512.0f, Path.Direction.CW);
         path.close();
         rz rzVar = new rz();
-        rzVar.f25379a.add(path);
-        rzVar.f25380b.put(path, new Paint(1));
-        rzVar.f25382e = 512;
-        rzVar.f25383f = 512;
+        rzVar.f25383a.add(path);
+        rzVar.f25384b.put(path, new Paint(1));
+        rzVar.f25386e = 512;
+        rzVar.f25387f = 512;
         rzVar.f(i7, null, 1.0f, false);
         return rzVar;
     }
@@ -52,7 +52,7 @@ public abstract class t5 {
             if (photoSize instanceof TLRPC.TL_photoPathSize) {
                 tL_photoPathSize = (TLRPC.TL_photoPathSize) photoSize;
             } else if ((photoSize instanceof TLRPC.TL_photoSize) && z9) {
-                i10 = photoSize.f26981w;
+                i10 = photoSize.f26985w;
                 i11 = photoSize.h;
             }
         }
@@ -70,7 +70,7 @@ public abstract class t5 {
         return f(document, i7, f10, null);
     }
 
-    public static rz f(TLRPC.Document document, int i7, float f10, org.telegram.ui.ActionBar.g6 g6Var) {
+    public static rz f(TLRPC.Document document, int i7, float f10, org.telegram.ui.ActionBar.h6 h6Var) {
         int i10;
         int i11;
         if (document != null) {
@@ -82,7 +82,7 @@ public abstract class t5 {
                     for (int i13 = 0; i13 < size2; i13++) {
                         TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i13);
                         if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                            i10 = documentAttribute.f26963w;
+                            i10 = documentAttribute.f26967w;
                             i11 = documentAttribute.h;
                             break;
                         }
@@ -92,7 +92,7 @@ public abstract class t5 {
                     if (i10 != 0 && i11 != 0) {
                         rz j3 = sz.j((int) (i10 * 1.0f), (int) (i11 * 1.0f), ((TLRPC.TL_photoPathSize) photoSize).svgPath);
                         if (j3 != null) {
-                            j3.f(i7, g6Var, f10, false);
+                            j3.f(i7, h6Var, f10, false);
                         }
                         return j3;
                     }

@@ -23,11 +23,11 @@ public final class i implements h2.d {
 
     @Override
     public final m9.y A(o0 o0Var) {
-        byte[] bArr = o0Var.f10435k;
+        byte[] bArr = o0Var.f10440k;
         if (bArr != null) {
             return W(bArr);
         }
-        Uri uri = o0Var.f10438n;
+        Uri uri = o0Var.f10443n;
         if (uri != null) {
             return ((m9.a0) this.f16434a).a(new ab.i(2, this, uri));
         }

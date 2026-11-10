@@ -1,157 +1,138 @@
 package org.telegram.ui.Wallet;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.id;
-import org.telegram.ui.Components.xq;
-public final class v5 extends Drawable {
-    public final int f43212a;
-    public final Path f43213b;
-    public final Paint f43214c;
-    public final Object d;
-    public final Object f43215e;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewConfiguration;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.Scroller;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import org.telegram.ui.Components.r41;
+public final class v5 extends v4.q0 {
+    public RecyclerView f43256a;
+    public fi.w3 f43258c;
+    public boolean d;
+    public boolean f43259e;
+    public boolean f43260f;
+    public float f43261g;
+    public float h;
+    public final z5 f43263j;
+    public final fi.h8 f43257b = new fi.h8(this);
+    public final l f43262i = new l(this, 8);
 
-    public v5(org.telegram.ui.l0 l0Var) {
-        this.f43212a = 1;
-        this.f43215e = l0Var;
-        this.f43213b = new Path();
-        Paint paint = new Paint(1);
-        this.f43214c = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        this.d = new org.telegram.ui.Components.w5(new org.telegram.ui.ActionBar.o5(this, 15), 350L, xq.h, 0);
-    }
-
-    public void c() {
-        invalidateSelf();
-        ((org.telegram.ui.l0) this.f43215e).O.setContentDescription(id.M0(2131750587, null));
+    public v5(z5 z5Var) {
+        this.f43263j = z5Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f43212a) {
-            case 0:
-                canvas.drawPath(this.f43213b, this.f43214c);
-                return;
-            default:
-                float d = ((org.telegram.ui.Components.w5) this.d).d(true);
-                float centerX = getBounds().centerX();
-                float centerY = getBounds().centerY();
-                float width = getBounds().width();
-                float f10 = 0.57f * width;
-                Path path = this.f43213b;
-                path.rewind();
-                float f11 = f10 / 2.0f;
-                path.moveTo(centerX - org.telegram.messenger.g0.T1(f11, (-f10) / 2.0f, d), centerY);
-                float f12 = f11 + centerX;
-                path.lineTo(f12, centerY);
-                float f13 = f12 - (0.27f * width);
-                float f14 = (0.54f * width) / 2.0f;
-                path.moveTo(f13, centerY - f14);
-                path.lineTo(f12, centerY);
-                path.lineTo(f13, f14 + centerY);
-                canvas.save();
-                Paint paint = this.f43214c;
-                paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-                canvas.translate(0.0f, (-width) * 0.1f * d);
-                canvas.rotate(d * 90.0f, centerX, centerY);
-                canvas.drawPath(path, paint);
-                canvas.restore();
-                return;
+    public final boolean a(int r7, int r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.v5.a(int, int):boolean");
+    }
+
+    public final void b(fi.w3 w3Var) {
+        fi.w3 w3Var2 = this.f43258c;
+        if (w3Var2 != null) {
+            w3Var2.removeCallbacks(this.f43262i);
+        }
+        this.f43258c = w3Var;
+        RecyclerView recyclerView = this.f43256a;
+        if (recyclerView != w3Var) {
+            fi.h8 h8Var = this.f43257b;
+            if (recyclerView != null) {
+                ArrayList arrayList = recyclerView.f2870w0;
+                if (arrayList != null) {
+                    arrayList.remove(h8Var);
+                }
+                this.f43256a.setOnFlingListener(null);
+            }
+            this.f43256a = w3Var;
+            if (w3Var != null) {
+                if (w3Var.getOnFlingListener() == null) {
+                    this.f43256a.j(h8Var);
+                    this.f43256a.setOnFlingListener(this);
+                    new Scroller(this.f43256a.getContext(), new DecelerateInterpolator());
+                    f();
+                    return;
+                }
+                throw new IllegalStateException("An instance of OnFlingListener already set.");
+            }
         }
     }
 
-    @Override
-    public int getIntrinsicHeight() {
-        switch (this.f43212a) {
-            case 1:
-                return org.telegram.messenger.g0.L(24.0f);
-            default:
-                return super.getIntrinsicHeight();
+    public final void c() {
+        this.f43259e = false;
+        this.f43260f = false;
+        this.d = false;
+        fi.w3 w3Var = this.f43258c;
+        if (w3Var != null) {
+            w3Var.removeCallbacks(this.f43262i);
         }
     }
 
-    @Override
-    public int getIntrinsicWidth() {
-        switch (this.f43212a) {
-            case 1:
-                return org.telegram.messenger.g0.L(24.0f);
-            default:
-                return super.getIntrinsicWidth();
+    public final View d(v4.n0 n0Var) {
+        fi.w3 w3Var;
+        if (!this.f43259e && (w3Var = this.f43258c) != null && w3Var.getScrollState() == 0) {
+            z5 z5Var = this.f43263j;
+            r41 y02 = z5Var.y0();
+            if ((y02 == null || y02.getScrollState() == 0) && this.d) {
+                this.d = false;
+                if (z5Var.z0()) {
+                    View m10 = n0Var.m(0);
+                    View m11 = n0Var.m(n0Var.B() - 1);
+                    if (m10 == null) {
+                        return m11;
+                    }
+                    if (m11 == null || Math.abs(new int[]{0, v4.n0.z(m10) - n0Var.F()}[1]) < Math.abs(new int[]{0, v4.n0.z(m11) - n0Var.F()}[1])) {
+                        return m10;
+                    }
+                    return m11;
+                }
+                return null;
+            }
+            return null;
+        }
+        return null;
+    }
+
+    public final void e(MotionEvent motionEvent) {
+        boolean z9;
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked == 0) {
+            c();
+            this.f43259e = true;
+            this.f43261g = motionEvent.getX();
+            this.h = motionEvent.getY();
+        } else if (actionMasked == 3) {
+            c();
+        } else if (actionMasked == 2 || actionMasked == 1) {
+            float abs = Math.abs(motionEvent.getX() - this.f43261g);
+            float abs2 = Math.abs(motionEvent.getY() - this.h);
+            if (abs2 > ViewConfiguration.get(this.f43258c.getContext()).getScaledTouchSlop() && abs2 > abs * 1.5f) {
+                z9 = true;
+            } else {
+                z9 = false;
+            }
+            this.f43260f = z9;
+            if (!z9) {
+                this.d = false;
+            }
+            if (actionMasked == 1) {
+                this.f43259e = false;
+            }
         }
     }
 
-    @Override
-    public final int getOpacity() {
-        switch (this.f43212a) {
-            case 0:
-                return -3;
-            default:
-                return -2;
+    public final void f() {
+        v4.n0 layoutManager;
+        View d;
+        RecyclerView recyclerView = this.f43256a;
+        if (recyclerView != null && (layoutManager = recyclerView.getLayoutManager()) != null && (d = d(layoutManager)) != null) {
+            int[] iArr = {0, v4.n0.z(d) - layoutManager.F()};
+            int i7 = iArr[0];
+            if (i7 == 0 && iArr[1] == 0) {
+                return;
+            }
+            this.f43256a.w0(i7, iArr[1], null);
         }
-    }
-
-    @Override
-    public void onBoundsChange(Rect rect) {
-        switch (this.f43212a) {
-            case 0:
-                super.onBoundsChange(rect);
-                RectF rectF = (RectF) this.d;
-                rectF.set(rect);
-                Path path = this.f43213b;
-                path.reset();
-                path.addRoundRect(rectF, (float[]) this.f43215e, Path.Direction.CW);
-                this.f43214c.setShader(new LinearGradient(0.0f, rect.top, 0.0f, rect.bottom, new int[]{-16216082, -12207881}, new float[]{0.15f, 0.53f}, Shader.TileMode.CLAMP));
-                return;
-            default:
-                super.onBoundsChange(rect);
-                return;
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-        switch (this.f43212a) {
-            case 0:
-                this.f43214c.setAlpha(i7);
-                invalidateSelf();
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f43212a) {
-            case 0:
-                this.f43214c.setColorFilter(colorFilter);
-                invalidateSelf();
-                return;
-            default:
-                return;
-        }
-    }
-
-    public v5() {
-        this.f43212a = 0;
-        this.f43214c = new Paint(1);
-        this.f43213b = new Path();
-        this.d = new RectF();
-        this.f43215e = new float[]{org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), 0.0f, 0.0f, 0.0f, 0.0f};
-    }
-
-    private final void a(int i7) {
-    }
-
-    private final void b(ColorFilter colorFilter) {
     }
 }

@@ -1,28 +1,28 @@
 package n5;
 public final class i implements na.d {
-    public static final i f20432a = new Object();
-    public static final na.c f20433b = na.c.c("eventTimeMs");
-    public static final na.c f20434c = na.c.c("eventCode");
+    public static final i f20437a = new Object();
+    public static final na.c f20438b = na.c.c("eventTimeMs");
+    public static final na.c f20439c = na.c.c("eventCode");
     public static final na.c d = na.c.c("complianceData");
-    public static final na.c f20435e = na.c.c("eventUptimeMs");
-    public static final na.c f20436f = na.c.c("sourceExtension");
-    public static final na.c f20437g = na.c.c("sourceExtensionJsonProto3");
+    public static final na.c f20440e = na.c.c("eventUptimeMs");
+    public static final na.c f20441f = na.c.c("sourceExtension");
+    public static final na.c f20442g = na.c.c("sourceExtensionJsonProto3");
     public static final na.c h = na.c.c("timezoneOffsetSeconds");
-    public static final na.c f20438i = na.c.c("networkConnectionInfo");
-    public static final na.c f20439j = na.c.c("experimentIds");
+    public static final na.c f20443i = na.c.c("networkConnectionInfo");
+    public static final na.c f20444j = na.c.c("experimentIds");
 
     @Override
     public final void a(Object obj, Object obj2) {
         na.e eVar = (na.e) obj2;
         s sVar = (s) ((e0) obj);
-        eVar.e(f20433b, sVar.f20468a);
-        eVar.a(f20434c, sVar.f20469b);
-        eVar.a(d, sVar.f20470c);
-        eVar.e(f20435e, sVar.d);
-        eVar.a(f20436f, sVar.f20471e);
-        eVar.a(f20437g, sVar.f20472f);
-        eVar.e(h, sVar.f20473g);
-        eVar.a(f20438i, sVar.h);
-        eVar.a(f20439j, sVar.f20474i);
+        eVar.e(f20438b, sVar.f20473a);
+        eVar.a(f20439c, sVar.f20474b);
+        eVar.a(d, sVar.f20475c);
+        eVar.e(f20440e, sVar.d);
+        eVar.a(f20441f, sVar.f20476e);
+        eVar.a(f20442g, sVar.f20477f);
+        eVar.e(h, sVar.f20478g);
+        eVar.a(f20443i, sVar.h);
+        eVar.a(f20444j, sVar.f20479i);
     }
 }

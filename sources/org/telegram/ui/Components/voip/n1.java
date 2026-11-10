@@ -16,8 +16,8 @@ import android.view.WindowInsets;
 import android.widget.FrameLayout;
 import di.n4;
 import fi.v3;
-import org.telegram.ui.Components.xq;
-import org.telegram.ui.sb1;
+import org.telegram.ui.Components.wq;
+import org.telegram.ui.ub1;
 public final class n1 extends FrameLayout {
     public float D;
     public float E;
@@ -39,50 +39,50 @@ public final class n1 extends FrameLayout {
     public float U;
     public float V;
     public float W;
-    public float f39484a;
-    public float f39485a0;
-    public float f39486b;
-    public boolean f39487b0;
-    public float f39488c;
-    public boolean f39489c0;
+    public float f39404a;
+    public float f39405a0;
+    public float f39406b;
+    public boolean f39407b0;
+    public float f39408c;
+    public boolean f39409c0;
     public float d;
-    public ValueAnimator f39490d0;
-    public boolean f39491e;
-    public final n4 f39492e0;
-    public int f39493f;
-    public ValueAnimator f39494f0;
-    public final v3 f39495g0;
+    public ValueAnimator f39410d0;
+    public boolean f39411e;
+    public final n4 f39412e0;
+    public int f39413f;
+    public ValueAnimator f39414f0;
+    public final v3 f39415g0;
     public int h;
-    public View.OnClickListener f39496h0;
-    public m1 f39497i0;
-    public long f39498j0;
-    public WindowInsets f39499n;
-    public final float f39500r;
-    public final Path f39501s;
-    public final RectF f39502w;
-    public final Paint f39503x;
-    public final Drawable f39504y;
+    public View.OnClickListener f39416h0;
+    public m1 f39417i0;
+    public long f39418j0;
+    public WindowInsets f39419n;
+    public final float f39420r;
+    public final Path f39421s;
+    public final RectF f39422w;
+    public final Paint f39423x;
+    public final Drawable f39424y;
 
     public n1(Activity activity) {
         super(activity);
-        this.f39501s = new Path();
-        this.f39502w = new RectF();
+        this.f39421s = new Path();
+        this.f39422w = new RectF();
         new Paint(1);
         Paint paint = new Paint(1);
-        this.f39503x = paint;
+        this.f39423x = paint;
         this.D = -1.0f;
         this.E = -1.0f;
         this.J = 0.0f;
         this.K = 0.0f;
         this.Q = -1.0f;
         this.R = true;
-        this.f39492e0 = new n4(this, 11);
-        this.f39495g0 = new v3(this, 19);
-        this.f39500r = ViewConfiguration.get(activity).getScaledTouchSlop();
+        this.f39412e0 = new n4(this, 11);
+        this.f39415g0 = new v3(this, 19);
+        this.f39420r = ViewConfiguration.get(activity).getScaledTouchSlop();
         setOutlineProvider(new fh.a(this, 7));
         setClipToOutline(true);
         paint.setColor(i0.a.o(-16777216, 102));
-        this.f39504y = activity.getDrawable(2131230922);
+        this.f39424y = activity.getDrawable(2131230922);
     }
 
     public final void a() {
@@ -105,12 +105,12 @@ public final class n1 extends FrameLayout {
             if (parent == null) {
                 return;
             }
-            if (this.f39499n == null) {
+            if (this.f39419n == null) {
                 systemWindowInsetTop = 0.0f;
             } else {
                 systemWindowInsetTop = windowInsets.getSystemWindowInsetTop() + this.H;
             }
-            if (this.f39499n == null) {
+            if (this.f39419n == null) {
                 systemWindowInsetBottom = 0.0f;
             } else {
                 systemWindowInsetBottom = windowInsets2.getSystemWindowInsetBottom() + this.I;
@@ -163,19 +163,19 @@ public final class n1 extends FrameLayout {
             setTranslationX(0.0f);
             setTranslationY(0.0f);
             invalidate();
-            ValueAnimator valueAnimator = n1Var.f39490d0;
+            ValueAnimator valueAnimator = n1Var.f39410d0;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(n1Var.J, 1.0f);
-            n1Var.f39490d0 = ofFloat;
-            ofFloat.addUpdateListener(n1Var.f39492e0);
-            n1Var.f39490d0.setDuration(300L);
-            n1Var.f39490d0.start();
+            n1Var.f39410d0 = ofFloat;
+            ofFloat.addUpdateListener(n1Var.f39412e0);
+            n1Var.f39410d0.setDuration(300L);
+            n1Var.f39410d0.start();
             animate().setListener(null).cancel();
             ViewPropertyAnimator duration = animate().scaleX(0.23f).scaleY(0.23f).translationX(translationX - ((getMeasuredWidth() - (getMeasuredWidth() * 0.23f)) / 2.0f)).translationY(translationY - ((getMeasuredHeight() - (getMeasuredHeight() * 0.23f)) / 2.0f)).alpha(1.0f).setStartDelay(0L).setDuration(300L);
-            xq xqVar = xq.f40458f;
-            duration.setInterpolator(xqVar).setListener(new k1(this, translationX, translationY, 0)).setInterpolator(xqVar).start();
+            wq wqVar = wq.f40046f;
+            duration.setInterpolator(wqVar).setListener(new k1(this, translationX, translationY, 0)).setInterpolator(wqVar).start();
         } else if (!z9 && this.M) {
             this.N = z9;
             float translationX2 = getTranslationX();
@@ -211,18 +211,18 @@ public final class n1 extends FrameLayout {
     public final void dispatchDraw(Canvas canvas) {
         n1 n1Var;
         if (this.W >= 0.0f) {
-            if (!this.f39489c0) {
+            if (!this.f39409c0) {
                 animate().setListener(null).cancel();
             }
             setTranslationX(this.W);
-            setTranslationY(this.f39485a0);
-            if (!this.f39489c0) {
+            setTranslationY(this.f39405a0);
+            if (!this.f39409c0) {
                 setScaleX(1.0f);
                 setScaleY(1.0f);
                 setAlpha(1.0f);
             }
             this.W = -1.0f;
-            this.f39485a0 = -1.0f;
+            this.f39405a0 = -1.0f;
         }
         if (this.D >= 0.0f && this.M && getMeasuredWidth() > 0) {
             n1Var = this;
@@ -246,8 +246,8 @@ public final class n1 extends FrameLayout {
         float f10 = measuredWidth;
         float f11 = measuredHeight;
         canvas.scale((1.0f / getScaleX()) * n1Var.J * n1Var.K, (1.0f / getScaleY()) * n1Var.J * n1Var.K, f10, f11);
-        canvas.drawCircle(f10, f11, org.telegram.messenger.g0.L(14.0f), n1Var.f39503x);
-        Drawable drawable = n1Var.f39504y;
+        canvas.drawCircle(f10, f11, org.telegram.messenger.g0.L(14.0f), n1Var.f39423x);
+        Drawable drawable = n1Var.f39424y;
         drawable.setBounds(org.telegram.ui.Cells.f1.z(2, measuredWidth, drawable), org.telegram.ui.Cells.f1.y(2, measuredHeight, drawable), org.telegram.ui.Cells.f1.w(2, measuredWidth, drawable), org.telegram.ui.Cells.f1.f(2, measuredHeight, drawable));
         drawable.draw(canvas);
         canvas.restore();
@@ -264,12 +264,12 @@ public final class n1 extends FrameLayout {
         ViewParent parent = getParent();
         if (parent != null && this.M && !this.O && this.R) {
             float f12 = 0.0f;
-            if (this.f39499n == null) {
+            if (this.f39419n == null) {
                 systemWindowInsetTop = 0.0f;
             } else {
                 systemWindowInsetTop = windowInsets.getSystemWindowInsetTop() + this.H;
             }
-            if (this.f39499n != null) {
+            if (this.f39419n != null) {
                 f12 = windowInsets2.getSystemWindowInsetBottom() + this.I;
             }
             View view = (View) parent;
@@ -283,7 +283,7 @@ public final class n1 extends FrameLayout {
                 } else {
                     j3 = 150;
                 }
-                alpha.setStartDelay(j3).setDuration(150L).setInterpolator(xq.f40458f).start();
+                alpha.setStartDelay(j3).setDuration(150L).setInterpolator(wq.f40046f).start();
                 return;
             }
             if (!this.S) {
@@ -328,25 +328,25 @@ public final class n1 extends FrameLayout {
             size = (int) (size * 0.23f);
             size2 = (int) (size2 * 0.23f);
             this.P = true;
-        } else if (!this.f39487b0) {
+        } else if (!this.f39407b0) {
             setTranslationX(0.0f);
             setTranslationY(0.0f);
         }
-        m1 m1Var = this.f39497i0;
+        m1 m1Var = this.f39417i0;
         if (m1Var != null) {
             float f10 = this.J;
-            ((sb1) m1Var).f49860b.f46580d0.d(this.P, f10);
+            ((ub1) m1Var).f50456b.f46916d0.d(this.P, f10);
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        if (getMeasuredHeight() != this.f39493f && getMeasuredWidth() != this.h) {
-            Path path = this.f39501s;
+        if (getMeasuredHeight() != this.f39413f && getMeasuredWidth() != this.h) {
+            Path path = this.f39421s;
             path.reset();
-            RectF rectF = this.f39502w;
+            RectF rectF = this.f39422w;
             rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             path.addRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), Path.Direction.CW);
             path.toggleInverseFillType();
         }
-        this.f39493f = getMeasuredHeight();
+        this.f39413f = getMeasuredHeight();
         this.h = getMeasuredWidth();
         f();
     }
@@ -362,11 +362,11 @@ public final class n1 extends FrameLayout {
     }
 
     public void setDelegate(m1 m1Var) {
-        this.f39497i0 = m1Var;
+        this.f39417i0 = m1Var;
     }
 
     public void setInsets(WindowInsets windowInsets) {
-        this.f39499n = windowInsets;
+        this.f39419n = windowInsets;
     }
 
     public void setIsActive(boolean z9) {
@@ -374,7 +374,7 @@ public final class n1 extends FrameLayout {
     }
 
     public void setOnTapListener(View.OnClickListener onClickListener) {
-        this.f39496h0 = onClickListener;
+        this.f39416h0 = onClickListener;
     }
 
     public void setRelativePosition(n1 n1Var) {
@@ -386,12 +386,12 @@ public final class n1 extends FrameLayout {
         if (parent == null) {
             return;
         }
-        if (this.f39499n == null) {
+        if (this.f39419n == null) {
             systemWindowInsetTop = 0.0f;
         } else {
             systemWindowInsetTop = windowInsets.getSystemWindowInsetTop() + this.H;
         }
-        if (this.f39499n == null) {
+        if (this.f39419n == null) {
             systemWindowInsetBottom = 0.0f;
         } else {
             systemWindowInsetBottom = windowInsets2.getSystemWindowInsetBottom() + this.I;

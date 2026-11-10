@@ -3,18 +3,18 @@ package l4;
 import h2.x;
 import java.util.regex.Pattern;
 public final class a {
-    public static final Pattern f18128c = Pattern.compile("\\[voice=\"([^\"]*)\"\\]");
+    public static final Pattern f18131c = Pattern.compile("\\[voice=\"([^\"]*)\"\\]");
     public static final Pattern d = Pattern.compile("^((?:[0-9]*\\.)?[0-9]+)(px|em|%)$");
-    public final x f18129a = new x();
-    public final StringBuilder f18130b = new StringBuilder();
+    public final x f18132a = new x();
+    public final StringBuilder f18133b = new StringBuilder();
 
     public static String a(x xVar, StringBuilder sb2) {
         boolean z9 = false;
         sb2.setLength(0);
-        int i7 = xVar.f14163b;
-        int i10 = xVar.f14164c;
+        int i7 = xVar.f14165b;
+        int i10 = xVar.f14166c;
         while (i7 < i10 && !z9) {
-            char c10 = (char) xVar.f14162a[i7];
+            char c10 = (char) xVar.f14164a[i7];
             if ((c10 < 'A' || c10 > 'Z') && ((c10 < 'a' || c10 > 'z') && ((c10 < '0' || c10 > '9') && c10 != '#' && c10 != '-' && c10 != '.' && c10 != '_'))) {
                 z9 = true;
             } else {
@@ -22,7 +22,7 @@ public final class a {
                 sb2.append(c10);
             }
         }
-        xVar.O(i7 - xVar.f14163b);
+        xVar.O(i7 - xVar.f14165b);
         return sb2.toString();
     }
 
@@ -41,12 +41,12 @@ public final class a {
     public static void c(x xVar) {
         while (true) {
             for (boolean z9 = true; xVar.a() > 0 && z9; z9 = false) {
-                int i7 = xVar.f14163b;
-                byte[] bArr = xVar.f14162a;
+                int i7 = xVar.f14165b;
+                byte[] bArr = xVar.f14164a;
                 byte b10 = bArr[i7];
                 char c10 = (char) b10;
                 if (c10 != '\t' && c10 != '\n' && c10 != '\f' && c10 != '\r' && c10 != ' ') {
-                    int i10 = xVar.f14164c;
+                    int i10 = xVar.f14166c;
                     int i11 = i7 + 2;
                     if (i11 <= i10) {
                         int i12 = i7 + 1;
@@ -62,7 +62,7 @@ public final class a {
                                     i11 = i13;
                                 }
                             }
-                            xVar.O(i10 - xVar.f14163b);
+                            xVar.O(i10 - xVar.f14165b);
                         }
                     }
                 } else {

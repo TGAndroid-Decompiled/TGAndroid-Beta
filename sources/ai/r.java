@@ -1,8 +1,8 @@
 package ai;
 
 import android.graphics.Canvas;
-import org.telegram.ui.Components.qj0;
-public final class r extends qj0 {
+import org.telegram.ui.Components.pj0;
+public final class r extends pj0 {
     public aa.k f1606e3;
     public k0 f1607f3;
 

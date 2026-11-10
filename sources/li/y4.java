@@ -15,54 +15,54 @@ public final class y4 implements ls {
     public String F;
     public TLRPC.InputFile G;
     public boolean H;
-    public final int f19023a;
-    public final String f19024b;
-    public final boolean f19025c;
+    public final int f19028a;
+    public final String f19029b;
+    public final boolean f19030c;
     public final boolean d;
-    public final boolean f19026e;
-    public final int f19027f;
+    public final boolean f19031e;
+    public final int f19032f;
     public final int h;
-    public final int f19028n;
-    public final TLRPC.Document f19029r;
-    public final x4 f19030s;
-    public boolean f19031w;
-    public boolean f19032x;
-    public boolean f19033y;
+    public final int f19033n;
+    public final TLRPC.Document f19034r;
+    public final x4 f19035s;
+    public boolean f19036w;
+    public boolean f19037x;
+    public boolean f19038y;
 
     public y4(int i7, String str, boolean z9, int i10, int i11, int i12, f3 f3Var) {
-        this.f19023a = i7;
-        this.f19024b = str;
-        this.f19025c = z9;
+        this.f19028a = i7;
+        this.f19029b = str;
+        this.f19030c = z9;
         this.d = false;
-        this.f19026e = false;
-        this.f19027f = i10;
+        this.f19031e = false;
+        this.f19032f = i10;
         this.h = i11;
-        this.f19028n = i12;
-        this.f19029r = null;
-        this.f19030s = f3Var;
+        this.f19033n = i12;
+        this.f19034r = null;
+        this.f19035s = f3Var;
     }
 
     public final void a(String str) {
         int i7;
         boolean z9;
-        if (!this.f19032x && !this.f19033y) {
+        if (!this.f19037x && !this.f19038y) {
             this.E = str;
-            qs f10 = qs.f(this.f19023a);
+            qs f10 = qs.f(this.f19028a);
             f10.b(this, qs.U1);
             f10.b(this, qs.V1);
             f10.b(this, qs.W1);
-            if (this.f19025c) {
+            if (this.f19030c) {
                 i7 = 33554432;
             } else if (this.d) {
                 i7 = 50331648;
-            } else if (this.f19026e) {
+            } else if (this.f19031e) {
                 i7 = 67108864;
             } else {
                 i7 = 16777216;
             }
-            w7 G = w7.G(this.f19023a);
+            w7 G = w7.G(this.f19028a);
             String str2 = this.E;
-            if (!this.f19025c && !this.d && !this.f19026e) {
+            if (!this.f19030c && !this.d && !this.f19031e) {
                 z9 = true;
             } else {
                 z9 = false;
@@ -72,16 +72,16 @@ public final class y4 implements ls {
     }
 
     public final void b() {
-        if (!this.f19033y && !this.f19032x) {
-            this.f19032x = true;
+        if (!this.f19038y && !this.f19037x) {
+            this.f19037x = true;
             try {
                 if (this.E != null) {
-                    w7.G(this.f19023a).b(this.E, false);
+                    w7.G(this.f19028a).b(this.E, false);
                 }
             } catch (Throwable unused) {
             }
             if (this.D != 0) {
-                ConnectionsManager.getInstance(this.f19023a).cancelRequest(this.D, true);
+                ConnectionsManager.getInstance(this.f19028a).cancelRequest(this.D, true);
                 this.D = 0;
             }
             e();
@@ -92,20 +92,20 @@ public final class y4 implements ls {
         String str;
         TLRPC.TL_messages_uploadMedia tL_messages_uploadMedia = new TLRPC.TL_messages_uploadMedia();
         tL_messages_uploadMedia.peer = new TLRPC.TL_inputPeerSelf();
-        if (this.f19025c) {
+        if (this.f19030c) {
             TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument = new TLRPC.TL_inputMediaUploadedDocument();
             tL_inputMediaUploadedDocument.file = inputFile;
             tL_inputMediaUploadedDocument.mime_type = "video/mp4";
             TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = new TLRPC.TL_documentAttributeVideo();
             tL_documentAttributeVideo.supports_streaming = true;
-            tL_documentAttributeVideo.duration = this.f19028n;
-            tL_documentAttributeVideo.f26963w = this.f19027f;
+            tL_documentAttributeVideo.duration = this.f19033n;
+            tL_documentAttributeVideo.f26967w = this.f19032f;
             tL_documentAttributeVideo.h = this.h;
             tL_inputMediaUploadedDocument.attributes.add(tL_documentAttributeVideo);
             tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument;
         } else {
             boolean z9 = this.d;
-            boolean z10 = this.f19026e;
+            boolean z10 = this.f19031e;
             if (!z9 && !z10) {
                 TLRPC.TL_inputMediaUploadedPhoto tL_inputMediaUploadedPhoto = new TLRPC.TL_inputMediaUploadedPhoto();
                 tL_inputMediaUploadedPhoto.file = inputFile;
@@ -113,7 +113,7 @@ public final class y4 implements ls {
             } else {
                 TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument2 = new TLRPC.TL_inputMediaUploadedDocument();
                 tL_inputMediaUploadedDocument2.file = inputFile;
-                TLRPC.Document document = this.f19029r;
+                TLRPC.Document document = this.f19034r;
                 if (z10) {
                     str = "application/octet-stream";
                 } else if (document == null || (str = document.mime_type) == null) {
@@ -147,37 +147,37 @@ public final class y4 implements ls {
                 tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument2;
             }
         }
-        this.D = ConnectionsManager.getInstance(this.f19023a).sendRequest(tL_messages_uploadMedia, new bi.j0(this, 21));
+        this.D = ConnectionsManager.getInstance(this.f19028a).sendRequest(tL_messages_uploadMedia, new bi.j0(this, 21));
     }
 
     public final void d() {
         int i7;
         int i10;
-        if (!this.f19031w && !this.f19032x && !this.f19033y) {
-            this.f19031w = true;
-            if (this.f19025c) {
-                x4 x4Var = this.f19030s;
-                int i11 = this.f19027f;
+        if (!this.f19036w && !this.f19037x && !this.f19038y) {
+            this.f19036w = true;
+            if (this.f19030c) {
+                x4 x4Var = this.f19035s;
+                int i11 = this.f19032f;
                 if (i11 > 0 && (i10 = this.h) > 0) {
                     x4Var.b(i11, i10);
                 }
-                a(this.f19024b);
-            } else if (this.f19026e) {
-                Utilities.f21336e.c(new w4(this, 0));
+                a(this.f19029b);
+            } else if (this.f19031e) {
+                Utilities.f21341e.c(new w4(this, 0));
             } else if (this.d) {
-                a(this.f19024b);
+                a(this.f19029b);
             } else {
                 try {
                     BitmapFactory.Options options = new BitmapFactory.Options();
                     options.inJustDecodeBounds = true;
-                    BitmapFactory.decodeFile(this.f19024b, options);
+                    BitmapFactory.decodeFile(this.f19029b, options);
                     int i12 = options.outWidth;
                     if (i12 > 0 && (i7 = options.outHeight) > 0) {
-                        this.f19030s.b(i12, i7);
+                        this.f19035s.b(i12, i7);
                     }
                 } catch (Exception unused) {
                 }
-                Utilities.f21336e.c(new w4(this, 1));
+                Utilities.f21341e.c(new w4(this, 1));
             }
         }
     }
@@ -186,33 +186,33 @@ public final class y4 implements ls {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         float f10;
         TLRPC.InputFile inputFile;
-        if (i10 == this.f19023a && !this.f19032x && !this.f19033y) {
+        if (i10 == this.f19028a && !this.f19037x && !this.f19038y) {
             String str = (String) objArr[0];
             if (this.E != null && this.E.equals(str)) {
                 if (i7 == qs.U1) {
                     TLRPC.InputFile inputFile2 = (TLRPC.InputFile) objArr[1];
-                    if (this.f19026e && !this.H && !TextUtils.isEmpty(this.F)) {
+                    if (this.f19031e && !this.H && !TextUtils.isEmpty(this.F)) {
                         this.G = inputFile2;
                         this.H = true;
                         this.E = this.F;
-                        w7.G(this.f19023a).h0(false, 16777216, this.E, true);
-                    } else if (this.f19026e && this.H) {
+                        w7.G(this.f19028a).h0(false, 16777216, this.E, true);
+                    } else if (this.f19031e && this.H) {
                         c(this.G, inputFile2);
                     } else {
                         c(inputFile2, null);
                     }
                 } else if (i7 == qs.V1) {
-                    if (this.f19026e && this.H && (inputFile = this.G) != null) {
+                    if (this.f19031e && this.H && (inputFile = this.G) != null) {
                         c(inputFile, null);
                         return;
                     }
-                    this.f19033y = true;
+                    this.f19038y = true;
                     e();
-                    this.f19030s.a();
+                    this.f19035s.a();
                 } else if (i7 == qs.W1) {
                     long longValue = ((Long) objArr[1]).longValue();
                     long longValue2 = ((Long) objArr[2]).longValue();
-                    x4 x4Var = this.f19030s;
+                    x4 x4Var = this.f19035s;
                     if (!this.H) {
                         if (longValue2 > 0) {
                             f10 = ((float) longValue) / ((float) longValue2);
@@ -227,35 +227,35 @@ public final class y4 implements ls {
     }
 
     public final void e() {
-        qs f10 = qs.f(this.f19023a);
+        qs f10 = qs.f(this.f19028a);
         f10.n(this, qs.U1);
         f10.n(this, qs.V1);
         f10.n(this, qs.W1);
     }
 
     public y4(int i7, String str, TLRPC.Document document, e3 e3Var) {
-        this.f19023a = i7;
-        this.f19024b = str;
-        this.f19025c = false;
+        this.f19028a = i7;
+        this.f19029b = str;
+        this.f19030c = false;
         this.d = true;
-        this.f19026e = false;
-        this.f19027f = 0;
+        this.f19031e = false;
+        this.f19032f = 0;
         this.h = 0;
-        this.f19028n = 0;
-        this.f19029r = document;
-        this.f19030s = e3Var;
+        this.f19033n = 0;
+        this.f19034r = document;
+        this.f19035s = e3Var;
     }
 
     public y4(int i7, String str, TLRPC.Document document, d3 d3Var) {
-        this.f19023a = i7;
-        this.f19024b = str;
-        this.f19025c = false;
+        this.f19028a = i7;
+        this.f19029b = str;
+        this.f19030c = false;
         this.d = false;
-        this.f19026e = true;
-        this.f19027f = 0;
+        this.f19031e = true;
+        this.f19032f = 0;
         this.h = 0;
-        this.f19028n = 0;
-        this.f19029r = document;
-        this.f19030s = d3Var;
+        this.f19033n = 0;
+        this.f19034r = document;
+        this.f19035s = d3Var;
     }
 }

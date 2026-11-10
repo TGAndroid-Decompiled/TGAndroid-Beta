@@ -1,42 +1,73 @@
 package org.telegram.ui.Components;
-public final class yf implements Runnable {
-    public final int f40708a;
-    public final ag f40709b;
-    public final fi.m3 f40710c;
 
-    public yf(ag agVar, fi.m3 m3Var, int i7) {
-        this.f40708a = i7;
-        this.f40709b = agVar;
-        this.f40710c = m3Var;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import java.util.ArrayList;
+public final class yf extends k1.b {
+    public final zf f40573o;
+
+    public yf(zf zfVar, zf zfVar2) {
+        super(zfVar2);
+        this.f40573o = zfVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40708a) {
-            case 0:
-                ag agVar = this.f40709b;
-                fi.m3 m3Var = this.f40710c;
-                agVar.removeView(m3Var);
-                if (agVar.f31792b == m3Var) {
-                    agVar.f31792b = null;
-                    return;
-                }
-                return;
-            case 1:
-                this.f40709b.removeView(this.f40710c);
-                return;
-            case 2:
-                this.f40709b.removeView(this.f40710c);
-                return;
-            default:
-                ag agVar2 = this.f40709b;
-                fi.m3 m3Var2 = this.f40710c;
-                agVar2.removeView(m3Var2);
-                if (agVar2.f31790a == m3Var2) {
-                    agVar2.f31790a = null;
-                    return;
-                }
-                return;
+    public final int g(float f10, float f11) {
+        zf zfVar = this.f40573o;
+        ChatActivityEnterView chatActivityEnterView = zfVar.f40935b0;
+        if (chatActivityEnterView.f31143s4 && chatActivityEnterView.N1 != null && chatActivityEnterView.S3.contains(f10, f11)) {
+            return 2;
+        }
+        if (chatActivityEnterView.P && chatActivityEnterView.N1 != null && chatActivityEnterView.f31112n4 > 0.1f && zfVar.J.contains(f10, f11)) {
+            return 4;
+        }
+        return -1;
+    }
+
+    @Override
+    public final void h(ArrayList arrayList) {
+        ChatActivityEnterView chatActivityEnterView = this.f40573o.f40935b0;
+        if (chatActivityEnterView.f31143s4) {
+            arrayList.add(2);
+        }
+        if (chatActivityEnterView.P && chatActivityEnterView.N1 != null && chatActivityEnterView.f31112n4 > 0.1f) {
+            arrayList.add(4);
+        }
+    }
+
+    @Override
+    public final boolean k(int i7, int i10) {
+        return true;
+    }
+
+    @Override
+    public final void l(int i7, s0.d dVar) {
+        int i10;
+        int i11;
+        zf zfVar = this.f40573o;
+        ChatActivityEnterView chatActivityEnterView = zfVar.f40935b0;
+        if (i7 == 2) {
+            Rect rect = chatActivityEnterView.U3;
+            RectF rectF = chatActivityEnterView.S3;
+            rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            dVar.h(chatActivityEnterView.U3);
+            if (chatActivityEnterView.f31123p4 > 0.5f) {
+                i11 = 2131754927;
+            } else {
+                i11 = 2131754930;
+            }
+            dVar.o(org.telegram.messenger.id.M0(i11, null));
+        } else if (i7 == 4) {
+            Rect rect2 = chatActivityEnterView.U3;
+            RectF rectF2 = zfVar.J;
+            rect2.set((int) rectF2.left, (int) rectF2.top, (int) rectF2.right, (int) rectF2.bottom);
+            dVar.h(chatActivityEnterView.U3);
+            if (chatActivityEnterView.O) {
+                i10 = 2131754934;
+            } else {
+                i10 = 2131754935;
+            }
+            dVar.o(org.telegram.messenger.id.M0(i10, null));
         }
     }
 }

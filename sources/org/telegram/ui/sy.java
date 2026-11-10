@@ -1,22 +1,28 @@
 package org.telegram.ui;
 
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.text.style.ImageSpan;
-public final class sy extends ImageSpan {
-    public int f50006a;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+public final class sy extends FrameLayout {
+    public ImageView f49987a;
+    public TextView f49988b;
+    public int f49989c;
+    public boolean d;
+    public Boolean f49990e;
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-        if (paint.getColor() != this.f50006a && getDrawable() != null) {
-            Drawable drawable = getDrawable();
-            int color = paint.getColor();
-            this.f50006a = color;
-            drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
+    public final void onDraw(Canvas canvas) {
+        TextView textView = this.f49988b;
+        super.onDraw(canvas);
+        if (this.d) {
+            canvas.drawRect(textView.getLeft(), getMeasuredHeight() - 1, textView.getRight(), getMeasuredHeight(), org.telegram.ui.ActionBar.m6.f28013k0);
         }
-        super.draw(canvas, charSequence, i7, i10, f10, i11, i12, i13, paint);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(48.0f), 1073741824));
     }
 }

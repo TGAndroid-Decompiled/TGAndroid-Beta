@@ -1,101 +1,88 @@
 package org.telegram.ui;
 
 import android.view.View;
+import android.view.WindowInsets;
+import android.widget.FrameLayout;
 import org.telegram.messenger.voip.VoIPService;
-public final class ub1 implements View.OnClickListener {
-    public final int f50361a;
-    public final ic1 f50362b;
+public final class ub1 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.Components.voip.m1, r0.m, org.telegram.ui.Components.voip.z2 {
+    public final int f50455a;
+    public final jc1 f50456b;
 
-    public ub1(ic1 ic1Var, int i7) {
-        this.f50361a = i7;
-        this.f50362b = ic1Var;
+    public ub1(jc1 jc1Var, int i7) {
+        this.f50455a = i7;
+        this.f50456b = jc1Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        VoIPService sharedInstance;
+    public r0.k1 S0(View view, r0.k1 k1Var) {
+        WindowInsets g10 = k1Var.g();
+        jc1 jc1Var = this.f50456b;
+        jc1Var.f46939q0 = g10;
+        ((FrameLayout.LayoutParams) jc1Var.f46928i0.getLayoutParams()).bottomMargin = jc1Var.f46939q0.getSystemWindowInsetBottom();
+        ((FrameLayout.LayoutParams) jc1Var.f46919e0.getLayoutParams()).bottomMargin = jc1Var.f46939q0.getSystemWindowInsetBottom();
+        ((FrameLayout.LayoutParams) jc1Var.H.getLayoutParams()).topMargin = jc1Var.f46939q0.getSystemWindowInsetTop();
+        ((FrameLayout.LayoutParams) jc1Var.I.getLayoutParams()).topMargin = jc1Var.f46939q0.getSystemWindowInsetTop();
+        ((FrameLayout.LayoutParams) jc1Var.K.getLayoutParams()).topMargin = jc1Var.f46939q0.getSystemWindowInsetTop() + org.telegram.messenger.g0.L(56.0f);
+        ((FrameLayout.LayoutParams) jc1Var.X.getLayoutParams()).topMargin = jc1Var.f46939q0.getSystemWindowInsetTop() + org.telegram.messenger.g0.L(135.0f);
+        ((FrameLayout.LayoutParams) jc1Var.N.getLayoutParams()).topMargin = jc1Var.f46939q0.getSystemWindowInsetTop() + org.telegram.messenger.g0.L(17.0f);
+        ((FrameLayout.LayoutParams) jc1Var.D.getLayoutParams()).topMargin = jc1Var.f46939q0.getSystemWindowInsetTop() + org.telegram.messenger.g0.L(93.0f);
+        ((FrameLayout.LayoutParams) jc1Var.O.getLayoutParams()).topMargin = jc1Var.f46939q0.getSystemWindowInsetTop();
+        ((FrameLayout.LayoutParams) jc1Var.R.getLayoutParams()).topMargin = jc1Var.f46939q0.getSystemWindowInsetTop() + org.telegram.messenger.g0.L(118.0f);
+        ((FrameLayout.LayoutParams) jc1Var.Q.getLayoutParams()).topMargin = jc1Var.f46939q0.getSystemWindowInsetTop() + org.telegram.messenger.g0.L(380.0f);
+        ((FrameLayout.LayoutParams) jc1Var.Z.getLayoutParams()).bottomMargin = jc1Var.f46939q0.getSystemWindowInsetBottom();
+        ((FrameLayout.LayoutParams) jc1Var.L0.getLayoutParams()).bottomMargin = jc1Var.f46939q0.getSystemWindowInsetBottom();
+        jc1Var.Y.setInsets(jc1Var.f46939q0);
+        jc1Var.Z.setInsets(jc1Var.f46939q0);
+        jc1Var.f46942s.requestLayout();
+        dc1 dc1Var = jc1Var.f46936n0;
+        if (dc1Var != null) {
+            dc1Var.setBottomPadding(jc1Var.f46939q0.getSystemWindowInsetBottom());
+        }
+        return r0.k1.f54212b;
+    }
+
+    @Override
+    public void d(org.telegram.ui.Components.voip.a3 a3Var) {
         int i7;
-        switch (this.f50361a) {
-            case 0:
-                if (VoIPService.getSharedInstance() != null) {
-                    ic1 ic1Var = this.f50362b;
-                    org.telegram.messenger.g0.r(ic1Var.R0);
-                    ic1Var.Q0 = false;
-                    VoIPService.getSharedInstance().hangUp();
-                    return;
-                }
-                return;
-            case 1:
-                ic1 ic1Var2 = this.f50362b;
-                if (ic1Var2.m0 && ic1Var2.f46598l0 && System.currentTimeMillis() - ic1Var2.J0 > 500) {
-                    org.telegram.messenger.g0.r(ic1Var2.R0);
-                    ic1Var2.Q0 = false;
-                    ic1Var2.J0 = System.currentTimeMillis();
-                    ic1Var2.Z.setRelativePosition(ic1Var2.Y);
-                    ic1Var2.f46572a0 = true;
-                    ic1Var2.G0 = true;
-                    ic1Var2.f46602p0 = ic1Var2.f46601o0;
-                    ic1Var2.y();
-                    return;
-                }
-                return;
-            case 2:
-                ic1 ic1Var3 = this.f50362b;
-                if (ic1Var3.G0 && System.currentTimeMillis() - ic1Var3.J0 > 500) {
-                    org.telegram.messenger.g0.r(ic1Var3.R0);
-                    ic1Var3.Q0 = false;
-                    ic1Var3.J0 = System.currentTimeMillis();
-                    ic1Var3.Y.setRelativePosition(ic1Var3.Z);
-                    ic1Var3.f46572a0 = false;
-                    ic1Var3.G0 = false;
-                    ic1Var3.f46602p0 = ic1Var3.f46601o0;
-                    ic1Var3.y();
-                    return;
-                }
-                return;
-            case 3:
-                long currentTimeMillis = System.currentTimeMillis();
-                ic1 ic1Var4 = this.f50362b;
-                if (currentTimeMillis - ic1Var4.J0 >= 500) {
-                    ic1Var4.J0 = System.currentTimeMillis();
-                    boolean z9 = ic1Var4.B0;
-                    if (!z9 && ic1Var4.A0) {
-                        ic1Var4.d(!z9);
-                        return;
-                    }
-                    return;
-                }
-                return;
+        int i10 = this.f50455a;
+        jc1 jc1Var = this.f50456b;
+        switch (i10) {
             case 4:
-                long currentTimeMillis2 = System.currentTimeMillis();
-                ic1 ic1Var5 = this.f50362b;
-                if (currentTimeMillis2 - ic1Var5.J0 >= 500) {
-                    ic1Var5.J0 = System.currentTimeMillis();
-                    if (ic1Var5.A0) {
-                        ic1Var5.d(!ic1Var5.B0);
-                        return;
+                VoIPService sharedInstance = VoIPService.getSharedInstance();
+                if (sharedInstance != null) {
+                    org.telegram.messenger.g0.r(jc1Var.R0);
+                    jc1Var.Q0 = false;
+                    boolean isMicMute = sharedInstance.isMicMute();
+                    boolean z9 = !isMicMute;
+                    if (jc1Var.f46946v0.isTouchExplorationEnabled()) {
+                        if (!isMicMute) {
+                            i7 = 2131754729;
+                        } else {
+                            i7 = 2131754728;
+                        }
+                        a3Var.announceForAccessibility(org.telegram.messenger.id.M0(i7, null));
                     }
-                    return;
-                }
-                return;
-            case 5:
-                ic1 ic1Var6 = this.f50362b;
-                if (ic1Var6.K.getTag() != null && (sharedInstance = VoIPService.getSharedInstance()) != null) {
-                    ic1Var6.s();
-                    if (sharedInstance.isBluetoothOn()) {
-                        i7 = 2;
-                    } else if (sharedInstance.isSpeakerphoneOn()) {
-                        i7 = 0;
-                    } else {
-                        i7 = 1;
-                    }
-                    sharedInstance.toggleSpeakerphoneOrShowRouteSheet(ic1Var6.f46574b, false, Integer.valueOf(i7));
+                    sharedInstance.setMicMute(z9, false, true);
+                    jc1Var.f46938p0 = jc1Var.f46937o0;
+                    jc1Var.y();
                     return;
                 }
                 return;
             default:
-                this.f50362b.g();
-                return;
+                org.telegram.messenger.g0.r(jc1Var.R0);
+                jc1Var.Q0 = false;
+                if (jc1Var.f46910b.checkSelfPermission("android.permission.CAMERA") != 0) {
+                    jc1Var.f46910b.requestPermissions(new String[]{"android.permission.CAMERA"}, 102);
+                    return;
+                } else {
+                    jc1Var.t();
+                    return;
+                }
         }
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        this.f50456b.f46944t0.b();
     }
 }

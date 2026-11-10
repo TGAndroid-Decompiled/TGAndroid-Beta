@@ -49,7 +49,7 @@ public final class b implements k {
         Context context;
         int i7 = Build.VERSION.SDK_INT;
         if (i7 >= 31 || ((context = this.f17152a) != null && i7 >= 28 && context.getPackageManager().hasSystemFeature("com.amazon.hardware.tv_screen"))) {
-            int h = s0.h(((u) b8Var.f337c).f10615s);
+            int h = s0.h(((u) b8Var.f337c).f10620s);
             h2.a.g("DMCodecAdapterFactory", "Creating an asynchronous MediaCodec adapter for track type " + m0.I(h));
             n nVar = new n(new u2.b(h, 0), new u2.b(h, 1));
             nVar.f1846b = true;
@@ -65,14 +65,14 @@ public final class b implements k {
         if (iVar != null) {
             synchronized (iVar) {
                 try {
-                    if (((CancellationSignal) iVar.f6014c) == null) {
+                    if (((CancellationSignal) iVar.f6019c) == null) {
                         CancellationSignal cancellationSignal3 = new CancellationSignal();
-                        iVar.f6014c = cancellationSignal3;
-                        if (iVar.f6013b) {
+                        iVar.f6019c = cancellationSignal3;
+                        if (iVar.f6018b) {
                             cancellationSignal3.cancel();
                         }
                     }
-                    cancellationSignal2 = (CancellationSignal) iVar.f6014c;
+                    cancellationSignal2 = (CancellationSignal) iVar.f6019c;
                 } finally {
                 }
             }
@@ -84,8 +84,8 @@ public final class b implements k {
         if (d != null) {
             if (mVar != null) {
                 Mac mac = (Mac) mVar.d;
-                Signature signature = (Signature) mVar.f14264b;
-                Cipher cipher = (Cipher) mVar.f14265c;
+                Signature signature = (Signature) mVar.f14266b;
+                Cipher cipher = (Cipher) mVar.f14267c;
                 if (cipher != null) {
                     cryptoObject = new FingerprintManager.CryptoObject(cipher);
                 } else if (signature != null) {

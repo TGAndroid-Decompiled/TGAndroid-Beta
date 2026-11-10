@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 public abstract class j {
-    public static final Object[] f17608a = new Object[0];
+    public static final Object[] f17611a = new Object[0];
 
     public static boolean a(Object obj, Object obj2) {
         if (obj == null) {
@@ -125,7 +125,7 @@ public abstract class j {
                 }
             }
         }
-        return f17608a;
+        return f17611a;
     }
 
     public static final Object[] j(Collection collection, Object[] objArr) {

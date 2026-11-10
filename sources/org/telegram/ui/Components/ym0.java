@@ -1,38 +1,33 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
-import androidx.recyclerview.widget.RecyclerView;
-public final class ym0 extends v4.s0 {
-    public final ne f40765a;
+import android.widget.FrameLayout;
+public final class ym0 extends FrameLayout {
+    public final me f40618a;
 
-    public ym0(ne neVar) {
-        this.f40765a = neVar;
+    public ym0(me meVar, Context context) {
+        super(context);
+        this.f40618a = meVar;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        boolean z9;
-        float f10;
-        ne neVar = this.f40765a;
-        View view = neVar.f32722u;
-        if (neVar.f32723w.I0() != 0) {
-            z9 = true;
-        } else {
-            z9 = false;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        me meVar = this.f40618a;
+        View contentView = meVar.getContentView();
+        contentView.getLocationInWindow(r3);
+        int[] iArr = {iArr[0] + meVar.E, iArr[1] + meVar.F};
+        int[] iArr2 = new int[2];
+        getLocationInWindow(iArr2);
+        if ((motionEvent.getAction() != 0 || motionEvent.getX() > iArr[0]) && motionEvent.getX() < contentView.getWidth() + iArr[0] && motionEvent.getY() > iArr[1] && motionEvent.getY() < contentView.getHeight() + iArr[1]) {
+            motionEvent.offsetLocation(iArr2[0] - iArr[0], (org.telegram.messenger.g0.f22561m + iArr2[1]) - iArr[1]);
+            return contentView.dispatchTouchEvent(motionEvent);
         }
-        Boolean bool = neVar.f32724x;
-        if (bool != null && z9 == bool.booleanValue()) {
-            return;
+        if (!meVar.A && !meVar.D) {
+            meVar.D = true;
+            meVar.l(new r1.g[0]);
         }
-        view.animate().cancel();
-        ViewPropertyAnimator animate = view.animate();
-        if (z9) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        animate.alpha(f10).setDuration(150L).start();
-        neVar.f32724x = Boolean.valueOf(z9);
+        return true;
     }
 }

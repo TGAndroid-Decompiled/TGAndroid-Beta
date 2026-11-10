@@ -8,9 +8,9 @@ import android.view.View;
 import java.lang.reflect.Field;
 import java.util.Iterator;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.ah0;
+import org.telegram.ui.Components.t5;
 import org.telegram.ui.Components.u5;
-import org.telegram.ui.Components.v5;
+import org.telegram.ui.Components.zg0;
 public final class k implements Choreographer.FrameCallback {
     public static final long[] f3333r;
     public static k f3334s;
@@ -136,11 +136,11 @@ public final class k implements Choreographer.FrameCallback {
         e(max).f3329c.add(runnable);
     }
 
-    public final void b(u5 u5Var, int i7) {
+    public final void b(t5 t5Var, int i7) {
         c();
         int max = Math.max(1, Math.min(i7, 60));
-        g(u5Var);
-        e(max).f3328b.add(u5Var);
+        g(t5Var);
+        e(max).f3328b.add(t5Var);
     }
 
     @Override
@@ -174,31 +174,31 @@ public final class k implements Choreographer.FrameCallback {
                         }
                         Iterator it2 = jVar.f3328b.iterator();
                         while (it2.hasNext()) {
-                            u5 u5Var = (u5) it2.next();
-                            int i10 = u5Var.f38595a;
-                            Object obj = u5Var.f38596b;
+                            t5 t5Var = (t5) it2.next();
+                            int i10 = t5Var.f38186a;
+                            Object obj = t5Var.f38187b;
                             switch (i10) {
                                 case 0:
-                                    v5 v5Var = (v5) obj;
-                                    int i11 = v5Var.Q0 + 1;
-                                    v5Var.Q0 = i11;
+                                    u5 u5Var = (u5) obj;
+                                    int i11 = u5Var.Q0 + 1;
+                                    u5Var.Q0 = i11;
                                     if (i11 > 10) {
-                                        v5Var.R0 = true;
+                                        u5Var.R0 = true;
                                     }
-                                    v5Var.i();
-                                    if (!v5Var.U0) {
+                                    u5Var.i();
+                                    if (!u5Var.U0) {
                                         break;
                                     } else {
-                                        v5Var.T0 = true;
-                                        v5Var.t();
+                                        u5Var.T0 = true;
+                                        u5Var.t();
                                         break;
                                     }
                                 case 1:
-                                    Field field = EditTextBoldCursor.f31333y1;
+                                    Field field = EditTextBoldCursor.f31344y1;
                                     ((EditTextBoldCursor) obj).invalidate();
                                     break;
                                 default:
-                                    ah0.g((ah0) obj);
+                                    zg0.g((zg0) obj);
                                     break;
                             }
                         }
@@ -264,13 +264,13 @@ public final class k implements Choreographer.FrameCallback {
         }
     }
 
-    public final void g(u5 u5Var) {
+    public final void g(t5 t5Var) {
         c();
-        if (u5Var != null) {
+        if (t5Var != null) {
             int i7 = 0;
             while (true) {
                 SparseArray sparseArray = this.f3336b;
-                if (i7 < sparseArray.size() && !((j) sparseArray.valueAt(i7)).f3328b.remove(u5Var)) {
+                if (i7 < sparseArray.size() && !((j) sparseArray.valueAt(i7)).f3328b.remove(t5Var)) {
                     i7++;
                 } else {
                     return;

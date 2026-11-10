@@ -37,12 +37,12 @@ import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.zip.Deflater;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.hr;
-import org.telegram.ui.Components.qj0;
-import org.telegram.ui.Components.qp0;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.gr;
+import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.pp0;
+import org.telegram.ui.Components.wq;
 import org.telegram.ui.am;
-import org.telegram.ui.ky0;
+import org.telegram.ui.ly0;
 public class wa implements f3.i, m9.t {
     public final int f699a;
     public int f700b;
@@ -58,10 +58,10 @@ public class wa implements f3.i, m9.t {
     }
 
     public void A(long j3, int i7, long j10) {
-        x2.c0 c0Var = new x2.c0(1, i7, null, 3, null, h2.m0.h0(j3), h2.m0.h0(j10));
-        x2.g0 g0Var = (x2.g0) this.f701c;
-        g0Var.getClass();
-        i(new hr(this, g0Var, c0Var, 16));
+        x2.b0 b0Var = new x2.b0(1, i7, null, 3, null, h2.m0.h0(j3), h2.m0.h0(j10));
+        x2.f0 f0Var = (x2.f0) this.f701c;
+        f0Var.getClass();
+        i(new gr(this, f0Var, b0Var, 16));
     }
 
     public void B(String str, n6.c cVar) {
@@ -159,7 +159,7 @@ public class wa implements f3.i, m9.t {
                 }
             case 1:
             default:
-                y7.h9 h9Var = y7.h9.f59050c;
+                y7.h9 h9Var = y7.h9.f59048c;
                 ab.b0 b0Var = (ab.b0) this.f701c;
                 ((s9) this.d).h = false;
                 s9 s9Var2 = (s9) this.d;
@@ -168,11 +168,11 @@ public class wa implements f3.i, m9.t {
                 try {
                     y7.h9.b();
                     y7.o6 o6Var = new y7.o6(b0Var);
-                    ky0 ky0Var = new ky0(27);
-                    h9Var.a(ky0Var);
-                    HashMap hashMap3 = new HashMap((HashMap) ky0Var.f47422b);
-                    HashMap hashMap4 = new HashMap((HashMap) ky0Var.f47423c);
-                    y7.i iVar = (y7.i) ky0Var.d;
+                    ly0 ly0Var = new ly0(27);
+                    h9Var.a(ly0Var);
+                    HashMap hashMap3 = new HashMap((HashMap) ly0Var.f47746b);
+                    HashMap hashMap4 = new HashMap((HashMap) ly0Var.f47747c);
+                    y7.i iVar = (y7.i) ly0Var.d;
                     ByteArrayOutputStream byteArrayOutputStream2 = new ByteArrayOutputStream();
                     try {
                         jVar = new y7.j(byteArrayOutputStream2, hashMap3, hashMap4, iVar);
@@ -188,12 +188,12 @@ public class wa implements f3.i, m9.t {
                     throw new UnsupportedOperationException("Failed to covert logging to UTF-8 byte array", e11);
                 }
             case 2:
-                xf xfVar = xf.f5956c;
+                xf xfVar = xf.f5961c;
                 ga.d dVar4 = (ga.d) this.f701c;
                 ((s9) this.d).h = false;
                 s9 s9Var3 = (s9) this.d;
                 s9Var3.f640f = Boolean.FALSE;
-                dVar4.f13616b = new ue(s9Var3);
+                dVar4.f13618b = new ue(s9Var3);
                 try {
                     xf.b();
                     c8.gb gbVar = new c8.gb(dVar4);
@@ -236,7 +236,7 @@ public class wa implements f3.i, m9.t {
                 return;
             default:
                 h2.x xVar = (h2.x) this.d;
-                byte[] bArr = h2.m0.f14113b;
+                byte[] bArr = h2.m0.f14115b;
                 xVar.getClass();
                 xVar.L(bArr.length, bArr);
                 return;
@@ -251,7 +251,7 @@ public class wa implements f3.i, m9.t {
                 long position = pVar.getPosition();
                 long k10 = k(pVar);
                 long l10 = pVar.l();
-                pVar.m(Math.max(6, ((f3.u) this.f701c).f11076c));
+                pVar.m(Math.max(6, ((f3.u) this.f701c).f11081c));
                 long k11 = k(pVar);
                 long l11 = pVar.l();
                 if (k10 <= j3 && k11 > j3) {
@@ -266,15 +266,15 @@ public class wa implements f3.i, m9.t {
                 int min = (int) Math.min(112800, pVar.getLength() - position2);
                 h2.x xVar = (h2.x) this.d;
                 xVar.K(min);
-                pVar.b(0, min, xVar.f14162a);
-                int i7 = xVar.f14164c;
+                pVar.b(0, min, xVar.f14164a);
+                int i7 = xVar.f14166c;
                 long j11 = -1;
                 long j12 = -1;
                 long j13 = -9223372036854775807L;
                 while (true) {
                     if (xVar.a() >= 188) {
-                        byte[] bArr = xVar.f14162a;
-                        int i10 = xVar.f14163b;
+                        byte[] bArr = xVar.f14164a;
+                        int i10 = xVar.f14165b;
                         while (true) {
                             if (i10 < i7) {
                                 j10 = -9223372036854775807L;
@@ -329,7 +329,7 @@ public class wa implements f3.i, m9.t {
             if (z9 || ((Bitmap[]) this.d)[i12] == null) {
                 Bitmap bitmap = ((Bitmap[]) this.d)[i12];
                 if (bitmap != null) {
-                    Utilities.f21336e.c(new a3.f(bitmap, 12));
+                    Utilities.f21341e.c(new a3.f(bitmap, 12));
                 }
                 ((Bitmap[]) this.d)[i12] = Bitmap.createBitmap(i10, i7, Bitmap.Config.ARGB_8888);
             }
@@ -400,13 +400,13 @@ public class wa implements f3.i, m9.t {
     public void i(h2.j jVar) {
         Iterator it = ((CopyOnWriteArrayList) this.d).iterator();
         while (it.hasNext()) {
-            x2.j0 j0Var = (x2.j0) it.next();
-            h2.m0.W(j0Var.f58375a, new u9.f(28, jVar, j0Var.f58376b));
+            x2.i0 i0Var = (x2.i0) it.next();
+            h2.m0.W(i0Var.f58375a, new u9.f(28, jVar, i0Var.f58376b));
         }
     }
 
     public void j(int i7, e2.u uVar, int i10, Object obj, long j3) {
-        i(new org.telegram.ui.web.a0(24, this, new x2.c0(1, i7, uVar, i10, obj, h2.m0.h0(j3), -9223372036854775807L)));
+        i(new org.telegram.ui.web.a0(24, this, new x2.b0(1, i7, uVar, i10, obj, h2.m0.h0(j3), -9223372036854775807L)));
     }
 
     public long k(f3.p pVar) {
@@ -419,12 +419,12 @@ public class wa implements f3.i, m9.t {
             h2.x xVar = new h2.x(17);
             int i11 = 0;
             boolean a10 = false;
-            pVar.b(0, 2, xVar.f14162a);
+            pVar.b(0, 2, xVar.f14164a);
             if (xVar.g(0, ByteOrder.BIG_ENDIAN) != i10) {
                 pVar.q();
                 pVar.m((int) (l10 - pVar.getPosition()));
             } else {
-                byte[] bArr = xVar.f14162a;
+                byte[] bArr = xVar.f14164a;
                 while (i11 < 15 && (i7 = pVar.i(2 + i11, 15 - i11, bArr)) != -1) {
                     i11 += i7;
                 }
@@ -440,9 +440,9 @@ public class wa implements f3.i, m9.t {
         }
         if (pVar.l() >= pVar.getLength() - 6) {
             pVar.m((int) (pVar.getLength() - pVar.l()));
-            return uVar.f11081j;
+            return uVar.f11086j;
         }
-        return sVar.f11070a;
+        return sVar.f11075a;
     }
 
     public Object l(int i7) {
@@ -470,7 +470,7 @@ public class wa implements f3.i, m9.t {
             Object obj = ((Object[]) this.f701c)[i10];
             if (obj instanceof me.d) {
                 me.d dVar = (me.d) obj;
-                if (kotlin.jvm.internal.j.a(dVar.e(), me.f.f20014c)) {
+                if (kotlin.jvm.internal.j.a(dVar.e(), me.f.f20019c)) {
                     if (((int[]) this.d)[i10] != -1) {
                         sb2.append("[");
                         sb2.append(((int[]) this.d)[i10]);
@@ -483,7 +483,7 @@ public class wa implements f3.i, m9.t {
                         sb2.append(dVar.g(i11));
                     }
                 }
-            } else if (obj != qe.g.f54108a) {
+            } else if (obj != qe.g.f54107a) {
                 sb2.append("['");
                 sb2.append(obj);
                 sb2.append("']");
@@ -502,39 +502,39 @@ public class wa implements f3.i, m9.t {
         return false;
     }
 
-    public void o(x2.u uVar, int i7, int i10, e2.u uVar2, int i11, Object obj, long j3, long j10) {
-        i(new x2.i0(this, uVar, new x2.c0(i7, i10, uVar2, i11, obj, h2.m0.h0(j3), h2.m0.h0(j10)), 1));
+    public void o(x2.t tVar, int i7, int i10, e2.u uVar, int i11, Object obj, long j3, long j10) {
+        i(new x2.h0(this, tVar, new x2.b0(i7, i10, uVar, i11, obj, h2.m0.h0(j3), h2.m0.h0(j10)), 1));
     }
 
     @Override
     public void onSuccess(Object obj) {
         List list = (List) obj;
         p4.d0 d0Var = ((p4.m0) this.d).h;
-        Handler handler = d0Var.f53222l;
+        Handler handler = d0Var.f53221l;
         p4.v vVar = (p4.v) this.f701c;
-        h2.m0.W(handler, new org.telegram.ui.web.s(d0Var, vVar, new qp0(this, this.f700b, list, vVar, 21)));
+        h2.m0.W(handler, new org.telegram.ui.web.s(d0Var, vVar, new pp0(this, this.f700b, list, vVar, 21)));
     }
 
-    public void p(x2.u uVar, int i7, int i10, e2.u uVar2, int i11, Object obj, long j3, long j10) {
-        i(new x2.i0(this, uVar, new x2.c0(i7, i10, uVar2, i11, obj, h2.m0.h0(j3), h2.m0.h0(j10)), 0));
+    public void p(x2.t tVar, int i7, int i10, e2.u uVar, int i11, Object obj, long j3, long j10) {
+        i(new x2.h0(this, tVar, new x2.b0(i7, i10, uVar, i11, obj, h2.m0.h0(j3), h2.m0.h0(j10)), 0));
     }
 
-    public void q(x2.u uVar, int i7, int i10, e2.u uVar2, int i11, Object obj, long j3, long j10, IOException iOException, boolean z9) {
-        i(new am(this, uVar, new x2.c0(i7, i10, uVar2, i11, obj, h2.m0.h0(j3), h2.m0.h0(j10)), iOException, z9));
+    public void q(x2.t tVar, int i7, int i10, e2.u uVar, int i11, Object obj, long j3, long j10, IOException iOException, boolean z9) {
+        i(new am(this, tVar, new x2.b0(i7, i10, uVar, i11, obj, h2.m0.h0(j3), h2.m0.h0(j10)), iOException, z9));
     }
 
-    public void r(x2.u uVar, int i7, IOException iOException, boolean z9) {
-        q(uVar, i7, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, iOException, z9);
+    public void r(x2.t tVar, int i7, IOException iOException, boolean z9) {
+        q(tVar, i7, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, iOException, z9);
     }
 
     public void s(AttributeSet attributeSet, int i7) {
         int resourceId;
         ImageView imageView = (ImageView) this.f701c;
         Context context = imageView.getContext();
-        int[] iArr = f.a.f10859f;
+        int[] iArr = f.a.f10864f;
         h6.m x10 = h6.m.x(context, attributeSet, iArr, i7);
-        TypedArray typedArray = (TypedArray) x10.f14265c;
-        r0.i0.i(imageView, imageView.getContext(), iArr, attributeSet, (TypedArray) x10.f14265c, i7);
+        TypedArray typedArray = (TypedArray) x10.f14267c;
+        r0.i0.i(imageView, imageView.getContext(), iArr, attributeSet, (TypedArray) x10.f14267c, i7);
         try {
             Drawable drawable = imageView.getDrawable();
             if (drawable == null && (resourceId = typedArray.getResourceId(1, -1)) != -1 && (drawable = b5.a.b(imageView.getContext(), resourceId)) != null) {
@@ -556,8 +556,8 @@ public class wa implements f3.i, m9.t {
         }
     }
 
-    public void t(x2.u uVar, int i7, int i10, e2.u uVar2, int i11, Object obj, long j3, long j10, int i12) {
-        i(new bg.f0(this, uVar, new x2.c0(i7, i10, uVar2, i11, obj, h2.m0.h0(j3), h2.m0.h0(j10)), i12, 11));
+    public void t(x2.t tVar, int i7, int i10, e2.u uVar, int i11, Object obj, long j3, long j10, int i12) {
+        i(new bg.f0(this, tVar, new x2.b0(i7, i10, uVar, i11, obj, h2.m0.h0(j3), h2.m0.h0(j10)), i12, 11));
     }
 
     public String toString() {
@@ -602,7 +602,7 @@ public class wa implements f3.i, m9.t {
     }
 
     public void x(int i7) {
-        y(i7, 200L, xq.f40458f);
+        y(i7, 200L, wq.f40046f);
     }
 
     public void y(int i7, long j3, Interpolator interpolator) {
@@ -685,9 +685,9 @@ public class wa implements f3.i, m9.t {
         this.f700b = i7;
     }
 
-    public wa(qj0 qj0Var) {
+    public wa(pj0 pj0Var) {
         this.f699a = 19;
-        this.d = qj0Var;
+        this.d = pj0Var;
     }
 
     public wa(ByteBuffer byteBuffer, int i7, RectF rectF) {
@@ -695,7 +695,7 @@ public class wa implements f3.i, m9.t {
         this.f701c = rectF;
         this.f700b = i7;
         try {
-            this.d = File.createTempFile("paint", ".bin", org.telegram.messenger.t0.f25566b.getCacheDir());
+            this.d = File.createTempFile("paint", ".bin", org.telegram.messenger.t0.f25570b.getCacheDir());
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
         }
@@ -780,17 +780,17 @@ public class wa implements f3.i, m9.t {
 
     public wa(d6.i iVar) {
         this.f699a = 8;
-        g9.b bVar = g9.b.f13581f;
+        g9.b bVar = g9.b.f13583f;
         this.d = iVar;
         this.f701c = bVar;
         this.f700b = Integer.MAX_VALUE;
     }
 
-    public wa(CopyOnWriteArrayList copyOnWriteArrayList, int i7, x2.g0 g0Var) {
+    public wa(CopyOnWriteArrayList copyOnWriteArrayList, int i7, x2.f0 f0Var) {
         this.f699a = 26;
         this.d = copyOnWriteArrayList;
         this.f700b = i7;
-        this.f701c = g0Var;
+        this.f701c = f0Var;
     }
 
     public wa(int i7, byte b10) {

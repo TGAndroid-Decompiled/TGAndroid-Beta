@@ -19,9 +19,9 @@ public final class d implements Runnable {
         z zVar = this.f3631b;
         switch (i7) {
             case 0:
-                d dVar = zVar.f5131s0;
+                d dVar = zVar.f5136s0;
                 int currentTime = zVar.getConnectionsManager().getCurrentTime();
-                w wVar = zVar.f5107a0;
+                w wVar = zVar.f5112a0;
                 if (zVar.Y <= 0 && zVar.P <= currentTime) {
                     z9 = false;
                 } else {
@@ -29,35 +29,35 @@ public final class d implements Runnable {
                 }
                 wVar.setEnabled(z9);
                 if (currentTime < zVar.P) {
-                    zVar.f5107a0.i(org.telegram.messenger.id.M0(2131752968, null), true, true);
-                    if (zVar.f5129r0 == null) {
-                        zVar.f5129r0 = new SpannableStringBuilder("l");
+                    zVar.f5112a0.i(org.telegram.messenger.id.M0(2131752968, null), true, true);
+                    if (zVar.f5134r0 == null) {
+                        zVar.f5134r0 = new SpannableStringBuilder("l");
                         wp wpVar = new wp(2131231976, 0);
-                        wpVar.f40119n = 1;
-                        zVar.f5129r0.setSpan(wpVar, 0, 1, 33);
+                        wpVar.f40037n = 1;
+                        zVar.f5134r0.setSpan(wpVar, 0, 1, 33);
                     }
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    spannableStringBuilder.append((CharSequence) zVar.f5129r0).append((CharSequence) z.w0(zVar.P - currentTime));
-                    zVar.f5107a0.g(spannableStringBuilder, true);
-                    org.telegram.ui.Components.cc ccVar = zVar.f5120j0;
-                    if (ccVar != null) {
-                        org.telegram.ui.Components.gb gbVar = ccVar.f32623e;
-                        if ((gbVar instanceof org.telegram.ui.Components.kb) && gbVar.isAttachedToWindow()) {
-                            org.telegram.messenger.k5.r(null, null, 2131752952, new Object[]{z.w0(zVar.P - currentTime)}, ((org.telegram.ui.Components.kb) zVar.f5120j0.f32623e).f35292b);
+                    spannableStringBuilder.append((CharSequence) zVar.f5134r0).append((CharSequence) z.w0(zVar.P - currentTime));
+                    zVar.f5112a0.g(spannableStringBuilder, true);
+                    org.telegram.ui.Components.bc bcVar = zVar.f5125j0;
+                    if (bcVar != null) {
+                        org.telegram.ui.Components.fb fbVar = bcVar.f32199e;
+                        if ((fbVar instanceof org.telegram.ui.Components.jb) && fbVar.isAttachedToWindow()) {
+                            org.telegram.messenger.k5.r(null, null, 2131752952, new Object[]{z.w0(zVar.P - currentTime)}, ((org.telegram.ui.Components.jb) zVar.f5125j0.f32199e).f34883b);
                         }
                     }
                     org.telegram.messenger.g0.r(dVar);
                     org.telegram.messenger.g0.i3(dVar, 1000L);
                     return;
                 }
-                zVar.f5107a0.g(null, true);
-                w wVar2 = zVar.f5107a0;
+                zVar.f5112a0.g(null, true);
+                w wVar2 = zVar.f5112a0;
                 if (zVar.X) {
                     H = org.telegram.messenger.id.M0(2131752969, null);
                 } else {
                     H = org.telegram.messenger.id.H(' ', "BotStarsButtonWithdrawShort", (int) zVar.Y);
                 }
-                wVar2.i(dd.Y0(false, H, zVar.f5111c0), true, true);
+                wVar2.i(dd.Y0(false, H, zVar.f5116c0), true, true);
                 return;
             case 1:
                 z.b0(zVar);
@@ -75,7 +75,7 @@ public final class d implements Runnable {
                 vf.c.t(zVar.getParentActivity(), org.telegram.messenger.id.M0(2131753049, null));
                 return;
             default:
-                zVar.f5109b0.setLoading(false);
+                zVar.f5114b0.setLoading(false);
                 return;
         }
     }

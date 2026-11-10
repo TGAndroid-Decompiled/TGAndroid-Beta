@@ -244,7 +244,7 @@ public class Camera2Session {
         float f10;
         boolean z10;
         boolean z11;
-        Context context = t0.f25566b;
+        Context context = t0.f25570b;
         CameraManager cameraManager = (CameraManager) context.getSystemService("camera");
         try {
             size = null;
@@ -460,7 +460,7 @@ public class Camera2Session {
 
     public int getRoundVideoRotationAngle() {
         try {
-            Context context = t0.f25566b;
+            Context context = t0.f25570b;
             if (context != null) {
                 int rotation = ((WindowManager) context.getSystemService("window")).getDefaultDisplay().getRotation();
                 if (rotation != 1) {

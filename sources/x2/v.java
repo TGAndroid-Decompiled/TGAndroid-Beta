@@ -1,63 +1,75 @@
 package x2;
-public final class v extends s {
-    public final int f58493f;
+
+import a8.ia;
+public final class v extends l2.a {
+    public final e2.l1 h;
+    public final int f58493i;
+    public final int f58494j;
+    public final int f58495k;
 
     public v(e2.l1 l1Var, int i7) {
-        super(l1Var);
-        this.f58493f = i7;
-    }
-
-    @Override
-    public int e(int i7, int i10, boolean z9) {
-        switch (this.f58493f) {
-            case 0:
-                e2.l1 l1Var = this.f58465e;
-                int e10 = l1Var.e(i7, i10, z9);
-                if (e10 == -1) {
-                    return l1Var.a(z9);
-                }
-                return e10;
-            default:
-                return super.e(i7, i10, z9);
+        super(new f1(i7));
+        boolean z9;
+        this.h = l1Var;
+        int h = l1Var.h();
+        this.f58493i = h;
+        this.f58494j = l1Var.o();
+        this.f58495k = i7;
+        if (h > 0) {
+            if (i7 <= Integer.MAX_VALUE / h) {
+                z9 = true;
+            } else {
+                z9 = false;
+            }
+            ia.o("LoopingMediaSource contains too many periods", z9);
         }
     }
 
     @Override
-    public e2.i1 f(int i7, e2.i1 i1Var, boolean z9) {
-        switch (this.f58493f) {
-            case 1:
-                super.f(i7, i1Var, z9);
-                i1Var.f10284f = true;
-                return i1Var;
-            default:
-                return super.f(i7, i1Var, z9);
-        }
+    public final int h() {
+        return this.f58493i * this.f58495k;
     }
 
     @Override
-    public int k(int i7, int i10, boolean z9) {
-        switch (this.f58493f) {
-            case 0:
-                e2.l1 l1Var = this.f58465e;
-                int k10 = l1Var.k(i7, i10, z9);
-                if (k10 == -1) {
-                    return l1Var.c(z9);
-                }
-                return k10;
-            default:
-                return super.k(i7, i10, z9);
-        }
+    public final int o() {
+        return this.f58494j * this.f58495k;
     }
 
     @Override
-    public e2.k1 m(int i7, e2.k1 k1Var, long j3) {
-        switch (this.f58493f) {
-            case 1:
-                super.m(i7, k1Var, j3);
-                k1Var.f10332k = true;
-                return k1Var;
-            default:
-                return super.m(i7, k1Var, j3);
+    public final int q(Object obj) {
+        if (!(obj instanceof Integer)) {
+            return -1;
         }
+        return ((Integer) obj).intValue();
+    }
+
+    @Override
+    public final int r(int i7) {
+        return i7 / this.f58493i;
+    }
+
+    @Override
+    public final int s(int i7) {
+        return i7 / this.f58494j;
+    }
+
+    @Override
+    public final Object t(int i7) {
+        return Integer.valueOf(i7);
+    }
+
+    @Override
+    public final int u(int i7) {
+        return i7 * this.f58493i;
+    }
+
+    @Override
+    public final int v(int i7) {
+        return i7 * this.f58494j;
+    }
+
+    @Override
+    public final e2.l1 x(int i7) {
+        return this.h;
     }
 }

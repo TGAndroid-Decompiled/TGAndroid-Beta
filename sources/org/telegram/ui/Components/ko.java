@@ -1,29 +1,28 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.v71;
-public final class ko implements v71 {
-    public final int f35437a;
-    public final di f35438b;
-    public final org.telegram.ui.wb f35439c;
+import android.graphics.Bitmap;
+import org.telegram.ui.x71;
+public final class ko extends x71 {
+    public final int f35379l2;
 
-    public ko(di diVar, org.telegram.ui.wb wbVar, int i7) {
-        this.f35437a = i7;
-        this.f35438b = diVar;
-        this.f35439c = wbVar;
+    public ko(Object obj, Bitmap bitmap, boolean z9, int i7) {
+        super(obj, bitmap, z9);
+        this.f35379l2 = i7;
     }
 
     @Override
-    public final void a(TLRPC.TL_wallPaper tL_wallPaper) {
-        switch (this.f35437a) {
+    public final boolean Z0() {
+        switch (this.f35379l2) {
             case 0:
-                this.f35438b.K();
-                this.f35439c.a(tL_wallPaper);
-                return;
+                return true;
+            case 1:
+                return true;
+            case 2:
+                return true;
+            case 3:
+                return true;
             default:
-                this.f35438b.K();
-                this.f35439c.a(tL_wallPaper);
-                return;
+                return true;
         }
     }
 }

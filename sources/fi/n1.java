@@ -11,25 +11,26 @@ import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.gm;
-import org.telegram.ui.Components.pw0;
-import org.telegram.ui.Components.ru;
+import org.telegram.ui.Components.fm;
+import org.telegram.ui.Components.ow0;
+import org.telegram.ui.Components.qu;
 import org.telegram.ui.FiltersSetupActivity;
-import org.telegram.ui.c00;
-import org.telegram.ui.dk0;
-import org.telegram.ui.dx;
-import org.telegram.ui.g00;
-import org.telegram.ui.gx;
-import org.telegram.ui.ms;
+import org.telegram.ui.d00;
+import org.telegram.ui.ek0;
+import org.telegram.ui.ex;
+import org.telegram.ui.h00;
+import org.telegram.ui.hx;
+import org.telegram.ui.ns;
+import org.telegram.ui.su;
 public final class n1 implements View.OnTouchListener {
-    public final int f12472a;
-    public final Object f12473b;
-    public final Object f12474c;
+    public final int f12476a;
+    public final Object f12477b;
+    public final Object f12478c;
 
     public n1(int i7, Object obj, Object obj2) {
-        this.f12472a = i7;
-        this.f12473b = obj;
-        this.f12474c = obj2;
+        this.f12476a = i7;
+        this.f12477b = obj;
+        this.f12478c = obj2;
     }
 
     @Override
@@ -43,18 +44,18 @@ public final class n1 implements View.OnTouchListener {
         int i13;
         int i14;
         boolean z9;
-        int i15 = this.f12472a;
+        int i15 = this.f12476a;
         boolean z10 = true;
-        Object obj = this.f12474c;
-        Object obj2 = this.f12473b;
+        Object obj = this.f12478c;
+        Object obj2 = this.f12477b;
         switch (i15) {
             case 0:
                 t1 t1Var = (t1) obj2;
-                ms p10 = ms.p();
-                bi.q1 q1Var = t1Var.f12839b;
-                p1 p1Var = t1Var.f12842f;
-                k2 k2Var = t1Var.f12844r;
-                int i16 = k2.f12251y1;
+                ns p10 = ns.p();
+                bi.q1 q1Var = t1Var.f12840b;
+                p1 p1Var = t1Var.f12843f;
+                k2 k2Var = t1Var.f12845r;
+                int i16 = k2.B1;
                 return p10.r(motionEvent, q1Var, (ai.k) obj, p1Var, k2Var.I0);
             case 1:
                 org.telegram.ui.ActionBar.g1 g1Var = (org.telegram.ui.ActionBar.g1) obj2;
@@ -71,39 +72,39 @@ public final class n1 implements View.OnTouchListener {
                 }
                 return false;
             case 2:
-                org.telegram.ui.Components.a8 a8Var = (org.telegram.ui.Components.a8) obj2;
+                org.telegram.ui.Components.z7 z7Var = (org.telegram.ui.Components.z7) obj2;
                 org.telegram.ui.Cells.w wVar = (org.telegram.ui.Cells.w) obj;
                 if (motionEvent.getAction() == 0) {
-                    org.telegram.ui.Components.b8 b8Var = a8Var.f31750n;
-                    b8Var.f32160x1.t(b8Var.f32142o1.T(wVar));
+                    org.telegram.ui.Components.a8 a8Var = z7Var.f40892n;
+                    a8Var.A1.t(a8Var.f31754r1.T(wVar));
                 }
                 return false;
             case 3:
-                ru ruVar = (ru) obj2;
-                return ms.p().r(motionEvent, ruVar.n1, (gm) obj, ruVar.E1, ruVar.I0);
+                qu quVar = (qu) obj2;
+                return ns.p().r(motionEvent, quVar.f37399q1, (fm) obj, quVar.H1, quVar.I0);
             case 4:
-                return pw0.a((pw0) obj2, (org.telegram.ui.Components.k) obj, motionEvent);
+                return ow0.a((ow0) obj2, (org.telegram.ui.Components.j) obj, motionEvent);
             case 5:
-                dx dxVar = (dx) obj2;
+                ex exVar = (ex) obj2;
                 org.telegram.ui.Cells.h4 h4Var = (org.telegram.ui.Cells.h4) obj;
-                dxVar.getClass();
+                exVar.getClass();
                 if (motionEvent.getAction() == 0) {
-                    gx gxVar = dxVar.f45129f;
-                    gxVar.f46083c.t(gxVar.f46082b.T(h4Var));
+                    hx hxVar = exVar.f45457f;
+                    hxVar.f46438c.t(hxVar.f46437b.T(h4Var));
                 }
                 return false;
             case 6:
-                g00 g00Var = (g00) obj2;
-                c00 c00Var = (c00) obj;
+                h00 h00Var = (h00) obj2;
+                d00 d00Var = (d00) obj;
                 if (motionEvent.getAction() == 0) {
-                    FiltersSetupActivity filtersSetupActivity = g00Var.f45835e;
-                    filtersSetupActivity.f41245c.t(filtersSetupActivity.f41243a.T(c00Var));
+                    FiltersSetupActivity filtersSetupActivity = h00Var.f46189e;
+                    filtersSetupActivity.f41236c.t(filtersSetupActivity.f41234a.T(d00Var));
                 }
                 return false;
             default:
-                dk0 dk0Var = (dk0) obj2;
+                ek0 ek0Var = (ek0) obj2;
                 Context context = (Context) obj;
-                if (dk0Var.getParentActivity() == null) {
+                if (ek0Var.getParentActivity() == null) {
                     return false;
                 }
                 if (motionEvent.getAction() != 1) {
@@ -153,11 +154,11 @@ public final class n1 implements View.OnTouchListener {
                     int i17 = i10;
                     int i18 = i13;
                     String str2 = str;
-                    AlertDialog$Builder w10 = org.telegram.ui.Components.v4.w(context, i7, i11, i17, i12, i14, i18, M0, z9, new jg.a2(dk0Var, intValue, editTextBoldCursor, 13));
+                    AlertDialog$Builder w10 = org.telegram.ui.Components.u4.w(context, i7, i11, i17, i12, i14, i18, M0, z9, new jg.a2(ek0Var, intValue, editTextBoldCursor, 13));
                     if (intValue == 8) {
-                        w10.h(id.M0(2131747465, str2), new org.telegram.ui.ru(27, dk0Var, editTextBoldCursor));
+                        w10.h(id.M0(2131747465, str2), new su(27, ek0Var, editTextBoldCursor));
                     }
-                    dk0Var.showDialog(w10.f27296a);
+                    ek0Var.showDialog(w10.f27300a);
                     return true;
                 } catch (Exception e11) {
                     e = e11;

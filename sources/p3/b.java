@@ -10,19 +10,19 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 public final class b extends ca {
-    public final int f53172a;
+    public final int f53171a;
 
     public static q3.a c(x xVar) {
         String v = xVar.v();
         v.getClass();
         String v10 = xVar.v();
         v10.getClass();
-        return new q3.a(v, v10, xVar.u(), xVar.u(), Arrays.copyOfRange(xVar.f14162a, xVar.f14163b, xVar.f14164c));
+        return new q3.a(v, v10, xVar.u(), xVar.u(), Arrays.copyOfRange(xVar.f14164a, xVar.f14165b, xVar.f14166c));
     }
 
     @Override
     public final q0 b(o3.a aVar, ByteBuffer byteBuffer) {
-        switch (this.f53172a) {
+        switch (this.f53171a) {
             case 0:
                 if (byteBuffer.get() != 116) {
                     return null;

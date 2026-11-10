@@ -3,32 +3,32 @@ package org.telegram.messenger;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 public final class jk implements c20 {
-    public final int f23570a = 2;
-    public final qp f23571b;
-    public final Object f23572c;
+    public final int f23574a = 2;
+    public final qp f23575b;
+    public final Object f23576c;
     public final int d;
-    public final Object f23573e;
-    public final Object f23574f;
-    public final Object f23575g;
+    public final Object f23577e;
+    public final Object f23578f;
+    public final Object f23579g;
 
     public jk(qp qpVar, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i7, TLRPC.Chat chat, Runnable runnable) {
-        this.f23571b = qpVar;
-        this.f23573e = tL_messages_invitedUsers;
-        this.f23574f = iArr;
+        this.f23575b = qpVar;
+        this.f23577e = tL_messages_invitedUsers;
+        this.f23578f = iArr;
         this.d = i7;
-        this.f23575g = chat;
-        this.f23572c = runnable;
+        this.f23579g = chat;
+        this.f23576c = runnable;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f23570a;
-        Object obj2 = this.f23572c;
-        Object obj3 = this.f23575g;
+        int i7 = this.f23574a;
+        Object obj2 = this.f23576c;
+        Object obj3 = this.f23579g;
         int i10 = this.d;
-        Object obj4 = this.f23574f;
-        Object obj5 = this.f23573e;
-        qp qpVar = this.f23571b;
+        Object obj4 = this.f23578f;
+        Object obj5 = this.f23577e;
+        qp qpVar = this.f23575b;
         switch (i7) {
             case 0:
                 vf.b bVar = (vf.b) obj5;
@@ -60,7 +60,7 @@ public final class jk implements c20 {
                             if (f2Var instanceof org.telegram.ui.cn) {
                                 ((org.telegram.ui.cn) f2Var).Wb();
                             }
-                            org.telegram.ui.Components.hc.a0(f2Var).t(id.M0(2131748134, null), null).j();
+                            org.telegram.ui.Components.gc.a0(f2Var).t(id.M0(2131748134, null), null).j();
                             return;
                         } catch (Exception e10) {
                             a8.g(e10, true);
@@ -80,7 +80,7 @@ public final class jk implements c20 {
                 if (!zArr2[0]) {
                     botInfoArr[0] = botInfo;
                     if (botInfo == null) {
-                        TLRPC.UserFull b22 = qpVar.b2(user.f27105id);
+                        TLRPC.UserFull b22 = qpVar.b2(user.f27109id);
                         if (b22 == null) {
                             if (!zArr2[0]) {
                                 qpVar.W2(user, i10, true, new d3(zArr2, botInfoArr, wlVar, 5));
@@ -123,20 +123,20 @@ public final class jk implements c20 {
     }
 
     public jk(qp qpVar, vf.b bVar, org.telegram.ui.ActionBar.u1[] u1VarArr, org.telegram.ui.ActionBar.f2 f2Var, boolean[] zArr, int i7) {
-        this.f23571b = qpVar;
-        this.f23573e = bVar;
-        this.f23574f = u1VarArr;
-        this.f23575g = f2Var;
-        this.f23572c = zArr;
+        this.f23575b = qpVar;
+        this.f23577e = bVar;
+        this.f23578f = u1VarArr;
+        this.f23579g = f2Var;
+        this.f23576c = zArr;
         this.d = i7;
     }
 
     public jk(qp qpVar, boolean[] zArr, TL_bots.BotInfo[] botInfoArr, TLRPC.User user, int i7, wl wlVar) {
-        this.f23571b = qpVar;
-        this.f23572c = zArr;
-        this.f23573e = botInfoArr;
-        this.f23574f = user;
+        this.f23575b = qpVar;
+        this.f23576c = zArr;
+        this.f23577e = botInfoArr;
+        this.f23578f = user;
         this.d = i7;
-        this.f23575g = wlVar;
+        this.f23579g = wlVar;
     }
 }

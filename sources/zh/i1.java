@@ -1,26 +1,26 @@
 package zh;
 
 import org.telegram.messenger.w10;
-import org.telegram.ui.Components.vp0;
+import org.telegram.ui.Components.up0;
 public final class i1 implements te.b, w10 {
-    public final vp0 f60398a;
+    public final up0 f60400a;
 
-    public i1(vp0 vp0Var) {
-        this.f60398a = vp0Var;
+    public i1(up0 up0Var) {
+        this.f60400a = up0Var;
     }
 
     @Override
     public void Y(int i7, float f10, float f11, te.c cVar) {
-        this.f60398a.l();
+        this.f60400a.l();
     }
 
     @Override
     public Object d(Number number, Object obj) {
         Integer num = (Integer) obj;
-        vp0 vp0Var = this.f60398a;
-        vp0Var.i();
+        up0 up0Var = this.f60400a;
+        up0Var.i();
         if (((Integer) number).intValue() == -1) {
-            vp0Var.h(null, new j1(vp0Var, 1));
+            up0Var.h(null, new j1(up0Var, 1));
             return Boolean.TRUE;
         }
         return Boolean.FALSE;

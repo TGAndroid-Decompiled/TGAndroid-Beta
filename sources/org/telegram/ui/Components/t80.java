@@ -2,16 +2,16 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class t80 implements or0 {
-    public final v80 f38327a;
+public final class t80 implements nr0 {
+    public final v80 f38233a;
 
     public t80(v80 v80Var) {
-        this.f38327a = v80Var;
+        this.f38233a = v80Var;
     }
 
     @Override
     public final void V() {
-        this.f38327a.g0();
+        this.f38233a.g0();
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class t80 implements or0 {
     }
 
     @Override
-    public final qj0 f() {
+    public final pj0 f() {
         return null;
     }
 

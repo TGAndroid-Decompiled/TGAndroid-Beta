@@ -13,11 +13,11 @@ import java.util.HashSet;
 import java.util.List;
 import org.telegram.messenger.dt;
 import org.telegram.messenger.qp;
-import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.xn;
+import org.telegram.ui.Components.gc;
+import org.telegram.ui.Components.wn;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.kx0;
-public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, xn, wi.w0 {
+import org.telegram.ui.lx0;
+public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, wn, wi.w0 {
     public final int f678a;
     public long f679b;
     public Object f680c;
@@ -154,16 +154,16 @@ public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, xn, wi.w0 
     @Override
     public void L() {
         ProfileActivity profileActivity = (ProfileActivity) this.f680c;
-        SharedPreferences sharedPreferences = qp.s1(ProfileActivity.k1(profileActivity)).f24764d7;
+        SharedPreferences sharedPreferences = qp.s1(ProfileActivity.k1(profileActivity)).f24768d7;
         StringBuilder sb2 = new StringBuilder("sound_enabled_");
         long j3 = this.f679b;
-        sb2.append(dt.v(j3, profileActivity.f41738f1, false));
+        sb2.append(dt.v(j3, profileActivity.f41729f1, false));
         boolean z9 = sharedPreferences.getBoolean(sb2.toString(), true);
         boolean z10 = !z9 ? 1 : 0;
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putBoolean("sound_enabled_" + dt.v(j3, profileActivity.f41738f1, false), z10).apply();
-        if (hc.a(profileActivity)) {
-            hc.S(z9 ? 1 : 0, profileActivity, profileActivity.f41876z0).j();
+        edit.putBoolean("sound_enabled_" + dt.v(j3, profileActivity.f41729f1, false), z10).apply();
+        if (gc.a(profileActivity)) {
+            gc.S(z9 ? 1 : 0, profileActivity, profileActivity.f41867z0).j();
         }
     }
 
@@ -176,19 +176,19 @@ public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, xn, wi.w0 
     public void R(int i7) {
         ProfileActivity profileActivity = (ProfileActivity) this.f680c;
         if (i7 == 0) {
-            if (profileActivity.getMessagesController().r2(this.f679b, profileActivity.f41738f1, null)) {
+            if (profileActivity.getMessagesController().r2(this.f679b, profileActivity.f41729f1, null)) {
                 p();
             }
-            if (hc.a(profileActivity)) {
-                hc.z(profileActivity, 4, i7, profileActivity.f41876z0).j();
+            if (gc.a(profileActivity)) {
+                gc.z(profileActivity, 4, i7, profileActivity.f41867z0).j();
                 return;
             }
             return;
         }
         RectF rectF = ProfileActivity.V6;
-        profileActivity.getNotificationsController().H(this.f679b, i7, profileActivity.f41738f1);
-        if (hc.a(profileActivity)) {
-            hc.z(profileActivity, 5, i7, profileActivity.f41876z0).j();
+        profileActivity.getNotificationsController().H(this.f679b, i7, profileActivity.f41729f1);
+        if (gc.a(profileActivity)) {
+            gc.z(profileActivity, 5, i7, profileActivity.f41867z0).j();
         }
         profileActivity.y5();
         profileActivity.I5(true);
@@ -201,7 +201,7 @@ public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, xn, wi.w0 
 
     @Override
     public long a(long j3) {
-        return ((f3.j) this.f680c).f11041e[(int) j3] - this.f679b;
+        return ((f3.j) this.f680c).f11046e[(int) j3] - this.f679b;
     }
 
     @Override
@@ -248,7 +248,7 @@ public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, xn, wi.w0 
     public p2.j h(long j3) {
         f3.j jVar = (f3.j) this.f680c;
         int i7 = (int) j3;
-        return new p2.j(jVar.f11040c[i7], null, jVar.f11039b[i7]);
+        return new p2.j(jVar.f11045c[i7], null, jVar.f11044b[i7]);
     }
 
     @Override
@@ -282,15 +282,15 @@ public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, xn, wi.w0 
         bundle.putLong("dialog_id", this.f679b);
         ?? f2Var = new org.telegram.ui.ActionBar.f2(bundle);
         f2Var.d = new ArrayList();
-        f2Var.f45350e = new HashSet();
+        f2Var.f45672e = new HashSet();
         ProfileActivity profileActivity = (ProfileActivity) this.f680c;
-        f2Var.f45350e = profileActivity.f41769j5;
+        f2Var.f45672e = profileActivity.f41760j5;
         profileActivity.presentFragment((org.telegram.ui.ActionBar.f2) f2Var);
     }
 
     @Override
     public long o(long j3, long j10) {
-        return h2.m0.f(((f3.j) this.f680c).f11041e, j3 + this.f679b, true);
+        return h2.m0.f(((f3.j) this.f680c).f11046e, j3 + this.f679b, true);
     }
 
     @Override
@@ -315,7 +315,7 @@ public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, xn, wi.w0 
                     i7 = 13;
                 }
                 long j3 = this.f679b;
-                for (j6.o oVar : ((h6.h) ((h6.m) this.f680c).d).f14249c.d) {
+                for (j6.o oVar : ((h6.h) ((h6.m) this.f680c).d).f14251c.d) {
                     oVar.b(j3, i7, null);
                 }
                 return;
@@ -325,10 +325,10 @@ public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, xn, wi.w0 
     @Override
     public void p() {
         ProfileActivity profileActivity = (ProfileActivity) this.f680c;
-        boolean z9 = !profileActivity.getMessagesController().r2(this.f679b, profileActivity.f41738f1, null);
-        profileActivity.getNotificationsController().G(this.f679b, profileActivity.f41738f1, z9);
+        boolean z9 = !profileActivity.getMessagesController().r2(this.f679b, profileActivity.f41729f1, null);
+        profileActivity.getNotificationsController().G(this.f679b, profileActivity.f41729f1, z9);
         if (profileActivity.fragmentView != null) {
-            hc.A(profileActivity, z9, null).j();
+            gc.A(profileActivity, z9, null).j();
         }
         profileActivity.y5();
         profileActivity.I5(true);
@@ -398,7 +398,7 @@ public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, xn, wi.w0 
 
     @Override
     public long x(long j3) {
-        return ((f3.j) this.f680c).f11038a;
+        return ((f3.j) this.f680c).f11043a;
     }
 
     @Override
@@ -408,14 +408,14 @@ public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, xn, wi.w0 
         if (j3 != 0) {
             Bundle bundle = new Bundle();
             bundle.putLong("dialog_id", j3);
-            bundle.putLong("topic_id", profileActivity.f41738f1);
-            profileActivity.presentFragment(new kx0(bundle, profileActivity.f41876z0));
+            bundle.putLong("topic_id", profileActivity.f41729f1);
+            profileActivity.presentFragment(new lx0(bundle, profileActivity.f41867z0));
         }
     }
 
     @Override
     public long z(long j3, long j10) {
-        return ((f3.j) this.f680c).f11038a;
+        return ((f3.j) this.f680c).f11043a;
     }
 
     public ua(Object obj, long j3, int i7) {

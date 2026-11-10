@@ -1,41 +1,33 @@
 package org.telegram.ui;
-public final class h10 extends g.p {
-    public final e40 f46126c;
+public final class h10 implements Runnable {
+    public final int f46202a;
+    public final int f46203b;
+    public final Object f46204c;
+    public final Object d;
 
-    public h10(e40 e40Var) {
-        this.f46126c = e40Var;
+    public h10(int i7, org.telegram.messenger.c20 c20Var, org.telegram.ui.Wallet.l0 l0Var) {
+        this.f46202a = 14;
+        this.f46203b = i7;
+        this.f46204c = c20Var;
+        this.d = l0Var;
     }
 
     @Override
-    public final int i(int i7) {
-        int i10;
-        y30 y30Var;
-        int i11;
-        int i12;
-        int i13;
-        if (e40.f45184w5) {
-            i10 = 6;
-        } else {
-            i10 = 2;
-        }
-        if (!e40.f45185x5 && i7 >= (i11 = (y30Var = this.f46126c.G1).G) && i7 < (i12 = y30Var.H)) {
-            int i14 = i12 - i11;
-            if (i7 == i12 - 1 && (e40.f45184w5 || i14 % 2 != 0)) {
-                i13 = 2;
-            } else {
-                i13 = 1;
-            }
-            if (e40.f45184w5) {
-                if (i14 == 1) {
-                    return 6;
-                }
-                if (i14 != 2) {
-                    return 2;
-                }
-                return 3;
-            }
-            return i13;
-        }
-        return i10;
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.h10.run():void");
+    }
+
+    public h10(Object obj, int i7, Object obj2, int i10) {
+        this.f46202a = i10;
+        this.f46204c = obj;
+        this.f46203b = i7;
+        this.d = obj2;
+    }
+
+    public h10(Object obj, Object obj2, int i7, int i10) {
+        this.f46202a = i10;
+        this.f46204c = obj;
+        this.d = obj2;
+        this.f46203b = i7;
     }
 }

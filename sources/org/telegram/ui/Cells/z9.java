@@ -10,43 +10,43 @@ import android.graphics.drawable.GradientDrawable;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
 import org.telegram.messenger.iz;
-import org.telegram.ui.Components.qj0;
-import org.telegram.ui.Components.ra0;
+import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.qa0;
 import org.telegram.ui.fn;
 public class z9 extends LinearLayout {
     public final f D;
     public Drawable E;
     public boolean F;
-    public final org.telegram.ui.Components.w5 G;
-    public org.telegram.ui.Components.j9 f30997a;
-    public org.telegram.ui.Components.j9 f30998b;
-    public Drawable f30999c;
+    public final org.telegram.ui.Components.v5 G;
+    public org.telegram.ui.Components.i9 f31008a;
+    public org.telegram.ui.Components.i9 f31009b;
+    public Drawable f31010c;
     public Drawable d;
-    public ColorDrawable f31000e;
-    public boolean f31001f;
+    public ColorDrawable f31011e;
+    public boolean f31012f;
     public boolean h;
-    public final q1[] f31002n;
-    public final Drawable f31003r;
-    public final org.telegram.ui.ActionBar.q4 f31004s;
-    public final int f31005w;
-    public org.telegram.ui.ActionBar.f2 f31006x;
-    public int f31007y;
+    public final q1[] f31013n;
+    public final Drawable f31014r;
+    public final org.telegram.ui.ActionBar.r4 f31015s;
+    public final int f31016w;
+    public org.telegram.ui.ActionBar.f2 f31017x;
+    public int f31018y;
 
-    public z9(Context context, org.telegram.ui.ActionBar.q4 q4Var, int i7) {
-        this(context, q4Var, i7, 0L, null);
+    public z9(Context context, org.telegram.ui.ActionBar.r4 r4Var, int i7) {
+        this(context, r4Var, i7, 0L, null);
     }
 
     private Drawable getCompactBackground() {
-        int x02 = org.telegram.ui.ActionBar.l6.x0(null, org.telegram.ui.ActionBar.l6.f28185ua, false);
-        ColorDrawable colorDrawable = this.f31000e;
+        int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f28210ua, false);
+        ColorDrawable colorDrawable = this.f31011e;
         if (colorDrawable == null || colorDrawable.getColor() != x02) {
-            this.f31000e = new ColorDrawable(x02);
+            this.f31011e = new ColorDrawable(x02);
         }
-        return this.f31000e;
+        return this.f31011e;
     }
 
     public final boolean a() {
-        int i7 = this.f31005w;
+        int i7 = this.f31016w;
         if (i7 != 3 && i7 != 0) {
             return false;
         }
@@ -55,14 +55,14 @@ public class z9 extends LinearLayout {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.f31005w != 2 && !a()) {
+        if (this.f31016w != 2 && !a()) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
     }
 
     public q1[] getCells() {
-        return this.f31002n;
+        return this.f31013n;
     }
 
     @Override
@@ -70,7 +70,7 @@ public class z9 extends LinearLayout {
         super.invalidate();
         int i7 = 0;
         while (true) {
-            q1[] q1VarArr = this.f31002n;
+            q1[] q1VarArr = this.f31013n;
             if (i7 < q1VarArr.length) {
                 q1VarArr[i7].invalidate();
                 i7++;
@@ -92,15 +92,15 @@ public class z9 extends LinearLayout {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.ui.Components.j9 j9Var = this.f30997a;
-        if (j9Var != null) {
-            j9Var.dispose();
-            this.f30997a = null;
+        org.telegram.ui.Components.i9 i9Var = this.f31008a;
+        if (i9Var != null) {
+            i9Var.dispose();
+            this.f31008a = null;
         }
-        org.telegram.ui.Components.j9 j9Var2 = this.f30998b;
-        if (j9Var2 != null) {
-            j9Var2.dispose();
-            this.f30998b = null;
+        org.telegram.ui.Components.i9 i9Var2 = this.f31009b;
+        if (i9Var2 != null) {
+            i9Var2.dispose();
+            this.f31009b = null;
         }
         Drawable drawable = this.E;
         if (drawable instanceof fn) {
@@ -117,9 +117,9 @@ public class z9 extends LinearLayout {
         boolean z10;
         Drawable drawable2 = this.E;
         if (drawable2 == null) {
-            drawable2 = org.telegram.ui.ActionBar.l6.t0();
+            drawable2 = org.telegram.ui.ActionBar.m6.t0();
         }
-        if (org.telegram.ui.ActionBar.l6.d != null) {
+        if (org.telegram.ui.ActionBar.m6.d != null) {
             invalidate();
         }
         if (this.E == null && iz.H0) {
@@ -130,59 +130,59 @@ public class z9 extends LinearLayout {
         if (z9) {
             drawable2 = getCompactBackground();
         }
-        if (this.f31001f != z9) {
-            this.f31001f = z9;
-            if (this.f30999c != null) {
+        if (this.f31012f != z9) {
+            this.f31012f = z9;
+            if (this.f31010c != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             this.h = z10;
         }
-        Drawable drawable3 = this.f30999c;
-        org.telegram.ui.Components.w5 w5Var = this.G;
+        Drawable drawable3 = this.f31010c;
+        org.telegram.ui.Components.v5 v5Var = this.G;
         if (drawable2 != drawable3 && drawable2 != null) {
-            if (!org.telegram.ui.ActionBar.l6.h1() && !this.F && !this.h) {
-                org.telegram.ui.Components.j9 j9Var = this.f30997a;
-                if (j9Var != null) {
-                    j9Var.dispose();
-                    this.f30997a = null;
+            if (!org.telegram.ui.ActionBar.m6.h1() && !this.F && !this.h) {
+                org.telegram.ui.Components.i9 i9Var = this.f31008a;
+                if (i9Var != null) {
+                    i9Var.dispose();
+                    this.f31008a = null;
                 }
             } else {
-                this.d = this.f30999c;
-                this.f30998b = this.f30997a;
+                this.d = this.f31010c;
+                this.f31009b = this.f31008a;
             }
-            this.f30999c = drawable2;
-            w5Var.e(true, 0.0f);
+            this.f31010c = drawable2;
+            v5Var.e(true, 0.0f);
         }
         boolean z11 = this.F;
-        org.telegram.ui.ActionBar.q4 q4Var = this.f31004s;
+        org.telegram.ui.ActionBar.r4 r4Var = this.f31015s;
         if (!z11 && !this.h) {
-            e10 = q4Var.getThemeAnimationValue();
+            e10 = r4Var.getThemeAnimationValue();
         } else {
-            e10 = w5Var.e(false, 1.0f);
+            e10 = v5Var.e(false, 1.0f);
         }
         for (int i10 = 0; i10 < 2; i10++) {
             if (i10 == 0) {
                 drawable = this.d;
             } else {
-                drawable = this.f30999c;
+                drawable = this.f31010c;
             }
             if (drawable != null) {
-                if (i10 == 1 && this.d != null && (q4Var != null || this.F)) {
+                if (i10 == 1 && this.d != null && (r4Var != null || this.F)) {
                     i7 = (int) (255.0f * e10);
                 } else {
                     i7 = 255;
                 }
                 if (i7 > 0) {
                     drawable.setAlpha(i7);
-                    if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof ra0)) {
+                    if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof qa0)) {
                         if (drawable instanceof BitmapDrawable) {
                             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
                             bitmapDrawable.setFilterBitmap(true);
                             if (bitmapDrawable.getTileModeX() == Shader.TileMode.REPEAT) {
                                 canvas.save();
-                                float f10 = 2.0f / org.telegram.messenger.g0.f22562p;
+                                float f10 = 2.0f / org.telegram.messenger.g0.f22566p;
                                 canvas.scale(f10, f10);
                                 drawable.setBounds(0, 0, (int) Math.ceil(getMeasuredWidth() / f10), (int) Math.ceil(getMeasuredHeight() / f10));
                             } else {
@@ -203,17 +203,17 @@ public class z9 extends LinearLayout {
                         }
                     } else {
                         drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-                        if (drawable instanceof org.telegram.ui.Components.k9) {
-                            this.f30997a = ((org.telegram.ui.Components.k9) drawable).c(canvas, this);
+                        if (drawable instanceof org.telegram.ui.Components.j9) {
+                            this.f31008a = ((org.telegram.ui.Components.j9) drawable).c(canvas, this);
                         } else {
                             drawable.draw(canvas);
                         }
                     }
                     if (i10 == 0 && this.d != null && e10 >= 1.0f) {
-                        org.telegram.ui.Components.j9 j9Var2 = this.f30998b;
-                        if (j9Var2 != null) {
-                            j9Var2.dispose();
-                            this.f30998b = null;
+                        org.telegram.ui.Components.i9 i9Var2 = this.f31009b;
+                        if (i9Var2 != null) {
+                            i9Var2.dispose();
+                            this.f31009b = null;
                         }
                         this.d = null;
                         this.h = false;
@@ -222,19 +222,19 @@ public class z9 extends LinearLayout {
                 }
             }
         }
-        if ((getParent() instanceof qj0) && ((qj0) getParent()).b1()) {
+        if ((getParent() instanceof pj0) && ((pj0) getParent()).b1()) {
             return;
         }
         int measuredWidth2 = getMeasuredWidth();
         int measuredHeight2 = getMeasuredHeight();
-        Drawable drawable4 = this.f31003r;
+        Drawable drawable4 = this.f31014r;
         drawable4.setBounds(0, 0, measuredWidth2, measuredHeight2);
         drawable4.draw(canvas);
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f31005w != 2 && !a()) {
+        if (this.f31016w != 2 && !a()) {
             return false;
         }
         return super.onInterceptTouchEvent(motionEvent);
@@ -242,7 +242,7 @@ public class z9 extends LinearLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.f31005w != 2 && !a()) {
+        if (this.f31016w != 2 && !a()) {
             return false;
         }
         return super.onTouchEvent(motionEvent);
@@ -267,8 +267,8 @@ public class z9 extends LinearLayout {
         return true;
     }
 
-    public z9(android.content.Context r25, org.telegram.ui.ActionBar.q4 r26, int r27, long r28, org.telegram.ui.ActionBar.g6 r30) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.z9.<init>(android.content.Context, org.telegram.ui.ActionBar.q4, int, long, org.telegram.ui.ActionBar.g6):void");
+    public z9(android.content.Context r25, org.telegram.ui.ActionBar.r4 r26, int r27, long r28, org.telegram.ui.ActionBar.h6 r30) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.z9.<init>(android.content.Context, org.telegram.ui.ActionBar.r4, int, long, org.telegram.ui.ActionBar.h6):void");
     }
 
     @Override

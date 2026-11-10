@@ -6,14 +6,14 @@ import i2.q;
 import i2.r;
 import java.nio.ByteBuffer;
 public final class a {
-    public boolean f6414a;
+    public boolean f6419a;
 
     public a(r rVar, q qVar) {
         boolean z9;
         boolean z10;
         int i7;
-        int i10 = qVar.f15208a;
-        ByteBuffer byteBuffer = qVar.f15209b;
+        int i10 = qVar.f15210a;
+        ByteBuffer byteBuffer = qVar.f15211b;
         if (i10 != 6 && i10 != 3) {
             z9 = false;
         } else {
@@ -24,16 +24,16 @@ public final class a {
         byte[] bArr = new byte[min];
         byteBuffer.asReadOnlyBuffer().get(bArr);
         f fVar = new f(bArr, min);
-        if (!rVar.f15210a) {
+        if (!rVar.f15212a) {
             if (fVar.i()) {
-                this.f6414a = false;
+                this.f6419a = false;
                 return;
             }
             int j3 = fVar.j(2);
             boolean i11 = fVar.i();
-            if (!rVar.f15211b) {
+            if (!rVar.f15213b) {
                 if (!i11) {
-                    this.f6414a = true;
+                    this.f6419a = true;
                     return;
                 }
                 if (j3 != 3 && j3 != 0) {
@@ -44,17 +44,17 @@ public final class a {
                 fVar.K();
                 if (rVar.d) {
                     if (fVar.i()) {
-                        if (rVar.f15213e) {
+                        if (rVar.f15215e) {
                             fVar.K();
                         } else {
                             throw new Exception();
                         }
                     }
-                    if (!rVar.f15212c) {
+                    if (!rVar.f15214c) {
                         if (j3 != 3) {
                             fVar.K();
                         }
-                        fVar.L(rVar.f15214f);
+                        fVar.L(rVar.f15216f);
                         if (j3 != 2 && j3 != 0 && !z10) {
                             fVar.L(3);
                         }
@@ -63,7 +63,7 @@ public final class a {
                         } else {
                             i7 = 255;
                         }
-                        this.f6414a = i7 != 0;
+                        this.f6419a = i7 != 0;
                         return;
                     }
                     throw new Exception();
@@ -76,9 +76,9 @@ public final class a {
     }
 
     public void a(boolean z9) {
-        if (this.f6414a == z9) {
+        if (this.f6419a == z9) {
             return;
         }
-        this.f6414a = z9;
+        this.f6419a = z9;
     }
 }

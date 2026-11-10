@@ -51,7 +51,7 @@ public final class q extends h {
         int next;
         if (Build.VERSION.SDK_INT >= 24) {
             q qVar = new q();
-            ThreadLocal threadLocal = h0.j.f14027a;
+            ThreadLocal threadLocal = h0.j.f14029a;
             qVar.f220b = resources.getDrawable(i7, theme);
             new p(((Drawable) qVar.f220b).getConstantState());
             return qVar;
@@ -525,7 +525,7 @@ public final class q extends h {
             } else {
                 Resources resources2 = f10.getResources();
                 int resourceId = f10.getResourceId(1, 0);
-                ThreadLocal threadLocal = h0.c.f14011a;
+                ThreadLocal threadLocal = h0.c.f14013a;
                 try {
                     colorStateList = h0.c.a(resources2, resources2.getXml(resourceId), theme);
                 } catch (Exception e10) {

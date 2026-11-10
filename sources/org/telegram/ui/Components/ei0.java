@@ -1,33 +1,32 @@
 package org.telegram.ui.Components;
-public final class ei0 implements Runnable {
-    public final int f33414a;
-    public final hi0 f33415b;
 
-    public ei0(hi0 hi0Var, int i7) {
-        this.f33414a = i7;
-        this.f33415b = hi0Var;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+public final class ei0 extends ImageReceiver {
+    public final int J1;
+
+    public ei0(int i7, View view) {
+        super(view);
+        this.J1 = i7;
     }
 
     @Override
-    public final void run() {
-        switch (this.f33414a) {
+    public final boolean x0(Drawable drawable, String str, int i7, boolean z9, int i10) {
+        switch (this.J1) {
             case 0:
-                if (this.f33415b.f34303a.getImageReceiver().B() != null && !this.f33415b.f34303a.getImageReceiver().B().f31834k0 && !this.f33415b.f34303a.getImageReceiver().B().y()) {
-                    this.f33415b.f34303a.getImageReceiver().B().start();
+                if (drawable instanceof zg0) {
+                    ((zg0) drawable).N(0, false, true);
                 }
-                this.f33415b.E = false;
-                return;
+                return super.x0(drawable, str, i7, z9, i10);
             default:
-                hi0 hi0Var = this.f33415b;
-                ji0 ji0Var = hi0Var.P;
-                try {
-                    hi0Var.performHapticFeedback(0);
-                } catch (Exception unused) {
+                boolean x02 = super.x0(drawable, str, i7, z9, i10);
+                if (x02 && (drawable instanceof zg0)) {
+                    zg0 zg0Var = (zg0) drawable;
+                    zg0Var.N(0, false, true);
+                    zg0Var.stop();
                 }
-                ji0Var.m0 = ji0Var.T.indexOf(hi0Var.f34306e);
-                ji0Var.f35052l0 = hi0Var.f34306e;
-                ji0Var.invalidate();
-                return;
+                return x02;
         }
     }
 }

@@ -1,8 +1,8 @@
 package wi;
 public final class w {
-    public long f58245a = Long.MIN_VALUE;
-    public long f58246b = Long.MIN_VALUE;
-    public long f58247c = Long.MIN_VALUE;
+    public long f58249a = Long.MIN_VALUE;
+    public long f58250b = Long.MIN_VALUE;
+    public long f58251c = Long.MIN_VALUE;
     public long d;
 
     public w(long j3) {
@@ -10,7 +10,7 @@ public final class w {
     }
 
     public final long a() {
-        long j3 = this.f58247c;
+        long j3 = this.f58251c;
         if (j3 == Long.MIN_VALUE) {
             return 0L;
         }

@@ -8,9 +8,9 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public abstract class h {
-    public static final Pattern f14089a = Pattern.compile("^rgb\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3})\\)$");
-    public static final Pattern f14090b = Pattern.compile("^rgba\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3}),(\\d{1,3})\\)$");
-    public static final Pattern f14091c = Pattern.compile("^rgba\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3}),(\\d*\\.?\\d*?)\\)$");
+    public static final Pattern f14091a = Pattern.compile("^rgb\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3})\\)$");
+    public static final Pattern f14092b = Pattern.compile("^rgba\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3}),(\\d{1,3})\\)$");
+    public static final Pattern f14093c = Pattern.compile("^rgba\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3}),(\\d*\\.?\\d*?)\\)$");
     public static final HashMap d;
 
     static {
@@ -128,9 +128,9 @@ public abstract class h {
         }
         if (replace.startsWith("rgba")) {
             if (z9) {
-                pattern = f14091c;
+                pattern = f14093c;
             } else {
-                pattern = f14090b;
+                pattern = f14092b;
             }
             Matcher matcher = pattern.matcher(replace);
             if (matcher.matches()) {
@@ -154,7 +154,7 @@ public abstract class h {
                 return Color.argb(parseInt, parseInt2, parseInt3, Integer.parseInt(group5, 10));
             }
         } else if (replace.startsWith("rgb")) {
-            Matcher matcher2 = f14089a.matcher(replace);
+            Matcher matcher2 = f14091a.matcher(replace);
             if (matcher2.matches()) {
                 String group6 = matcher2.group(1);
                 group6.getClass();

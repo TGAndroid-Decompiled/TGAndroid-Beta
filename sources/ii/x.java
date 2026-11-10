@@ -3,41 +3,41 @@ package ii;
 import android.view.View;
 import bi.nc;
 import org.telegram.messenger.id;
-import org.telegram.ui.Components.n61;
+import org.telegram.ui.Components.m61;
 import org.telegram.ui.Wallet.v2;
 import org.telegram.ui.Wallet.x2;
-import org.telegram.ui.jm0;
-import org.telegram.ui.jt;
-import org.telegram.ui.mt;
-public final class x extends n61 {
-    public final int f15615a;
-    public final Object f15616b;
+import org.telegram.ui.km0;
+import org.telegram.ui.kt;
+import org.telegram.ui.nt;
+public final class x extends m61 {
+    public final int f15614a;
+    public final Object f15615b;
 
     public x(Object obj, int i7) {
-        this.f15615a = i7;
-        this.f15616b = obj;
+        this.f15614a = i7;
+        this.f15615b = obj;
     }
 
     @Override
     public final void b(View view, int i7, int i10) {
         boolean z9;
-        switch (this.f15615a) {
+        switch (this.f15614a) {
             case 0:
                 ((b0) view).getClass();
                 return;
             case 1:
-                jt jtVar = (jt) view;
-                jtVar.f47081f3 = i7;
-                jtVar.f47087m3.clear();
-                if (jtVar.z1(6) + jtVar.B1(6) <= 0) {
+                kt ktVar = (kt) view;
+                ktVar.f47415f3 = i7;
+                ktVar.f47421m3.clear();
+                if (ktVar.z1(6) + ktVar.B1(6) <= 0) {
                     z9 = true;
                 } else {
                     z9 = false;
                 }
-                jtVar.f47094t3 = z9;
-                jtVar.C1();
-                jtVar.D1(false);
-                jtVar.v0(0);
+                ktVar.f47428t3 = z9;
+                ktVar.C1();
+                ktVar.D1(false);
+                ktVar.v0(0);
                 return;
             case 2:
                 return;
@@ -54,34 +54,34 @@ public final class x extends n61 {
 
     @Override
     public final View d(int i7) {
-        switch (this.f15615a) {
+        switch (this.f15614a) {
             case 0:
-                d0 d0Var = (d0) this.f15616b;
+                d0 d0Var = (d0) this.f15615b;
                 if (i7 == 2) {
-                    return d0Var.f15512t1;
+                    return d0Var.f15514w1;
                 }
                 if (i7 == 0) {
-                    return d0Var.f15510r1;
+                    return d0Var.f15512u1;
                 }
-                return d0Var.f15511s1;
+                return d0Var.f15513v1;
             case 1:
-                mt mtVar = (mt) this.f15616b;
-                jt jtVar = new jt(mtVar, mtVar.getParentActivity());
-                mtVar.f47994e.add(jtVar);
-                return jtVar;
+                nt ntVar = (nt) this.f15615b;
+                kt ktVar = new kt(ntVar, ntVar.getParentActivity());
+                ntVar.f48291e.add(ktVar);
+                return ktVar;
             case 2:
-                jm0 jm0Var = (jm0) this.f15616b;
+                km0 km0Var = (km0) this.f15615b;
                 if (i7 == 1) {
-                    return jm0Var.h;
+                    return km0Var.h;
                 }
                 if (i7 == 0) {
-                    return jm0Var.f47045n;
+                    return km0Var.f47376n;
                 }
                 return null;
             case 3:
-                return (View) ((x2) this.f15616b).f43304j1.get(i7);
+                return (View) ((x2) this.f15615b).f43321m1.get(i7);
             default:
-                nc ncVar = (nc) this.f15616b;
+                nc ncVar = (nc) this.f15615b;
                 if (i7 != 1) {
                     if (i7 != 2) {
                         return (sg.o) ncVar.f4435b;
@@ -94,9 +94,9 @@ public final class x extends n61 {
 
     @Override
     public final int e() {
-        switch (this.f15615a) {
+        switch (this.f15614a) {
             case 0:
-                if (((d0) this.f15616b).E1) {
+                if (((d0) this.f15615b).H1) {
                     return 1;
                 }
                 return 3;
@@ -105,7 +105,7 @@ public final class x extends n61 {
             case 2:
                 return 2;
             case 3:
-                return ((x2) this.f15616b).f43304j1.size();
+                return ((x2) this.f15615b).f43321m1.size();
             default:
                 return 3;
         }
@@ -113,7 +113,7 @@ public final class x extends n61 {
 
     @Override
     public CharSequence g(int i7) {
-        switch (this.f15615a) {
+        switch (this.f15614a) {
             case 1:
                 if (i7 != 0) {
                     if (i7 != 1) {
@@ -143,9 +143,9 @@ public final class x extends n61 {
 
     @Override
     public int h(int i7) {
-        switch (this.f15615a) {
+        switch (this.f15614a) {
             case 0:
-                if (((d0) this.f15616b).E1 || i7 == 2) {
+                if (((d0) this.f15615b).H1 || i7 == 2) {
                     return 2;
                 }
                 if (i7 == 0) {

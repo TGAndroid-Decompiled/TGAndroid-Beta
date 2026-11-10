@@ -1,48 +1,50 @@
 package org.telegram.ui;
 
-import android.graphics.Point;
-public final class f71 extends c8.ea {
-    public final int f45641a;
-    public final org.telegram.messenger.ls f45642b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.FrameLayout;
+public final class f71 extends AnimatorListenerAdapter {
+    public final boolean f45634a;
+    public final int f45635b;
+    public final int f45636c;
+    public final boolean d;
+    public final x71 f45637e;
 
-    public f71(org.telegram.messenger.ls lsVar, int i7) {
-        this.f45641a = i7;
-        this.f45642b = lsVar;
+    public f71(x71 x71Var, boolean z9, int i7, int i10, boolean z10) {
+        this.f45637e = x71Var;
+        this.f45634a = z9;
+        this.f45635b = i7;
+        this.f45636c = i10;
+        this.d = z10;
     }
 
     @Override
-    public void a() {
-        switch (this.f45641a) {
-            case 1:
-                ((ic1) this.f45642b).f46611w.invalidate();
-                return;
-            default:
-                return;
+    public final void onAnimationEnd(Animator animator) {
+        x71 x71Var = this.f45637e;
+        FrameLayout[] frameLayoutArr = x71Var.M0;
+        x71Var.f51613s1 = null;
+        int i7 = this.f45636c;
+        int i10 = this.f45635b;
+        boolean z9 = this.f45634a;
+        if (z9 && frameLayoutArr[i10].getVisibility() == 0) {
+            frameLayoutArr[i10].setAlpha(1.0f);
+            frameLayoutArr[i10].setVisibility(4);
+        } else if (!z9) {
+            frameLayoutArr[i7].setVisibility(4);
         }
-    }
-
-    @Override
-    public void b(int i7, int i10) {
-        boolean z9;
-        switch (this.f45641a) {
-            case 0:
-                Point point = org.telegram.messenger.g0.f22563q;
-                boolean z10 = false;
-                if (point.x <= point.y) {
-                    z9 = true;
-                } else {
-                    z9 = false;
-                }
-                if (i7 <= i10) {
-                    z10 = true;
-                }
-                if (z9 == z10) {
-                    ((w71) this.f45642b).f50968y0.invalidate();
-                    return;
-                }
+        int i11 = x71Var.f51565b;
+        char c10 = 2;
+        if (i11 != 1 && i11 != 2) {
+            if (i7 == 1) {
+                frameLayoutArr[i10].setAlpha(0.0f);
                 return;
-            default:
-                return;
+            }
+            return;
         }
+        org.telegram.ui.Components.w61[] w61VarArr = x71Var.K0;
+        if (this.d) {
+            c10 = 0;
+        }
+        w61VarArr[c10].setVisibility(4);
     }
 }

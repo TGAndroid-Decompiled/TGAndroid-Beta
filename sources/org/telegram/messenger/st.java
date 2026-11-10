@@ -1,25 +1,25 @@
 package org.telegram.messenger;
 public final class st implements Runnable {
-    public final int f25519a;
-    public final String f25520b;
-    public final String f25521c;
+    public final int f25523a;
+    public final String f25524b;
+    public final String f25525c;
     public final long d;
 
     public st(int i7, long j3, String str, String str2) {
-        this.f25519a = i7;
-        this.f25520b = str;
-        this.f25521c = str2;
+        this.f25523a = i7;
+        this.f25524b = str;
+        this.f25525c = str2;
         this.d = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f25519a) {
+        switch (this.f25523a) {
             case 0:
-                PushListenerController.c(this.d, this.f25520b, this.f25521c);
+                PushListenerController.c(this.d, this.f25524b, this.f25525c);
                 return;
             default:
-                PushListenerController.h(this.d, this.f25520b, this.f25521c);
+                PushListenerController.h(this.d, this.f25524b, this.f25525c);
                 return;
         }
     }

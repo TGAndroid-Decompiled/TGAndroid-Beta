@@ -1,70 +1,38 @@
 package org.telegram.ui.Components;
-public final class ta implements r1.c {
-    public final int f38333a;
-    public final Object f38334b;
 
-    public ta(Object obj, int i7) {
-        this.f38333a = i7;
-        this.f38334b = obj;
+import android.graphics.Rect;
+import android.view.GestureDetector;
+import android.widget.FrameLayout;
+public final class ta extends FrameLayout {
+    public final bc D;
+    public final fb f38250a;
+    public final Rect f38251b;
+    public final GestureDetector f38252c;
+    public boolean d;
+    public boolean f38253e;
+    public float f38254f;
+    public float h;
+    public float f38255n;
+    public boolean f38256r;
+    public boolean f38257s;
+    public boolean f38258w;
+    public boolean f38259x;
+    public final FrameLayout f38260y;
+
+    public ta(bc bcVar, fb fbVar, FrameLayout frameLayout) {
+        super(fbVar.getContext());
+        this.D = bcVar;
+        this.f38260y = frameLayout;
+        this.f38251b = new Rect();
+        this.f38250a = fbVar;
+        GestureDetector gestureDetector = new GestureDetector(fbVar.getContext(), new qb(this, fbVar));
+        this.f38252c = gestureDetector;
+        gestureDetector.setIsLongpressEnabled(false);
+        addView(fbVar);
     }
 
     @Override
-    public final void a(r1.g gVar, boolean z9, float f10, float f11) {
-        switch (this.f38333a) {
-            case 0:
-                cc ccVar = (cc) this.f38334b;
-                if (ccVar.d == gVar) {
-                    ccVar.d = null;
-                    return;
-                }
-                return;
-            case 1:
-                pa paVar = (pa) this.f38334b;
-                if (!z9) {
-                    paVar.run();
-                    return;
-                }
-                return;
-            case 2:
-                ik ikVar = (ik) this.f38334b;
-                ikVar.f34779l0 = null;
-                ikVar.m0 = 1.0f;
-                ikVar.m0();
-                return;
-            case 3:
-                cn0 cn0Var = (cn0) this.f38334b;
-                cn0Var.f32718q = false;
-                cn0Var.dismiss();
-                return;
-            case 4:
-                dn0 dn0Var = (dn0) this.f38334b;
-                dn0Var.f33120s = false;
-                dn0Var.f33119r = false;
-                if (!z9) {
-                    gVar.d();
-                }
-                if (gVar == dn0Var.f33117f) {
-                    dn0Var.f33117f = null;
-                    return;
-                }
-                return;
-            case 5:
-                no0 no0Var = (no0) this.f38334b;
-                no0Var.f36463w1.setVisibility(8);
-                no0Var.f36454r2.setVisibility(8);
-                lo0 lo0Var = no0Var.D1;
-                lo0Var.f35780f = null;
-                lo0Var.f();
-                no0Var.f36458t2 = null;
-                no0Var.E2 = false;
-                return;
-            default:
-                no0 no0Var2 = ((wn0) this.f38334b).d;
-                no0Var2.f36465x1.setVisibility(8);
-                no0Var2.f36467y1.setVisibility(8);
-                no0Var2.f36452q2.setVisibility(8);
-                no0Var2.f36458t2 = null;
-                return;
-        }
+    public final boolean onTouchEvent(android.view.MotionEvent r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ta.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

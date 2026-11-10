@@ -4,21 +4,21 @@ import android.app.Activity;
 import android.net.Uri;
 import android.text.TextUtils;
 public final class he implements Runnable {
-    public final int f46298a;
-    public final cn f46299b;
-    public final String f46300c;
+    public final int f46325a;
+    public final cn f46326b;
+    public final String f46327c;
 
     public he(cn cnVar, String str, int i7) {
-        this.f46298a = i7;
-        this.f46299b = cnVar;
-        this.f46300c = str;
+        this.f46325a = i7;
+        this.f46326b = cnVar;
+        this.f46327c = str;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f46298a;
-        String str = this.f46300c;
-        cn cnVar = this.f46299b;
+        int i7 = this.f46325a;
+        String str = this.f46327c;
+        cn cnVar = this.f46326b;
         switch (i7) {
             case 0:
                 cn.t1(cnVar, str);
@@ -27,24 +27,24 @@ public final class he implements Runnable {
                 cn.B1(cnVar, str);
                 return;
             case 2:
-                g4.d(str, cnVar.currentAccount, cnVar.l1, null, cnVar.f44709za);
+                g4.d(str, cnVar.currentAccount, cnVar.l1, null, cnVar.f44750za);
                 return;
             case 3:
                 if (str != null) {
                     cnVar.getClass();
                     if (str.length() != 0) {
-                        cnVar.getMessagesController().A4(str, cnVar.f44446f);
+                        cnVar.getMessagesController().A4(str, cnVar.f44487f);
                         return;
                     }
                 }
-                cnVar.getSendMessagesHelper().r0(org.telegram.messenger.ez.b("/start", cnVar.f44504j6, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                cnVar.getSendMessagesHelper().r0(org.telegram.messenger.ez.b("/start", cnVar.f44545j6, null, null, null, false, null, null, null, true, 0, 0, null, false));
                 return;
             case 4:
                 cnVar.Na(str);
                 return;
             case 5:
                 cnVar.getClass();
-                cnVar.presentFragment(new org.telegram.ui.Wallet.l9(str));
+                cnVar.presentFragment(new org.telegram.ui.Wallet.o9(str));
                 return;
             case 6:
                 String str2 = cnVar.getMessagesController().H6;
@@ -67,7 +67,7 @@ public final class he implements Runnable {
                 return;
             case 9:
                 org.telegram.messenger.g0.g(str);
-                org.telegram.messenger.camera.q.r(null, 2131747295, org.telegram.ui.Components.hc.a0(cnVar));
+                org.telegram.messenger.camera.q.r(null, 2131747295, org.telegram.ui.Components.gc.a0(cnVar));
                 return;
             case 10:
                 cn.a0(cnVar, str);
@@ -78,7 +78,7 @@ public final class he implements Runnable {
                 return;
             case 12:
                 org.telegram.messenger.g0.g(str);
-                org.telegram.messenger.camera.q.r(null, 2131747295, org.telegram.ui.Components.hc.a0(cnVar));
+                org.telegram.messenger.camera.q.r(null, 2131747295, org.telegram.ui.Components.gc.a0(cnVar));
                 return;
             default:
                 Activity parentActivity4 = cnVar.getParentActivity();

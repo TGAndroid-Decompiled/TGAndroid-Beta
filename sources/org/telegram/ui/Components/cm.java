@@ -1,25 +1,26 @@
 package org.telegram.ui.Components;
-public final class cm implements org.telegram.messenger.c20 {
-    public final int f32708a;
-    public final bn f32709b;
-    public final int f32710c;
+public final class cm implements Runnable {
+    public final int f32707a;
+    public final an f32708b;
+    public final int f32709c;
 
-    public cm(bn bnVar, int i7, int i10) {
-        this.f32708a = i10;
-        this.f32709b = bnVar;
-        this.f32710c = i7;
+    public cm(an anVar, int i7, int i10) {
+        this.f32707a = i10;
+        this.f32708b = anVar;
+        this.f32709c = i7;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f32708a) {
+    public final void run() {
+        switch (this.f32707a) {
             case 0:
-                this.f32709b.j0(this.f32710c, (sh.d) obj);
+                this.f32708b.j0(this.f32709c, null);
+                return;
+            case 1:
+                this.f32708b.g0(this.f32709c);
                 return;
             default:
-                bn bnVar = this.f32709b;
-                bnVar.getClass();
-                bnVar.j0(this.f32710c, new th.e((String) obj));
+                this.f32708b.j0(this.f32709c, null);
                 return;
         }
     }

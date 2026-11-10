@@ -51,7 +51,7 @@ public final class a {
         s b10 = s.b();
         c0 c0Var = (c0) b10.get("charset");
         if (c0Var == null) {
-            g0 g0Var = i0.f14329b;
+            g0 g0Var = i0.f14331b;
             o.g(4, "expectedSize");
             c0Var = new b0(4);
             b10.put("charset", c0Var);
@@ -62,7 +62,7 @@ public final class a {
             j0Var = y.h;
         } else {
             q qVar = (q) entrySet;
-            wa waVar = new wa(qVar.f14369b.size(), 10);
+            wa waVar = new wa(qVar.f14371b.size(), 10);
             Iterator it = qVar.iterator();
             int i7 = 0;
             while (it.hasNext()) {
@@ -76,7 +76,7 @@ public final class a {
         }
         f17235f = j0Var;
         b bVar = b.d;
-        b bVar2 = b.f13580e;
+        b bVar2 = b.f13582e;
         bVar2.getClass();
         c cVar = new c(bVar2);
         bVar.getClass();
@@ -257,7 +257,7 @@ public final class a {
             sb2.append('/');
             sb2.append(this.f17240b);
             j0 j0Var = this.f17241c;
-            if (j0Var.f14334f != 0) {
+            if (j0Var.f14336f != 0) {
                 sb2.append("; ");
                 Collection a10 = new m1(j0Var, new d0(new x3(13), 4)).a();
                 n nVar = f17238j;

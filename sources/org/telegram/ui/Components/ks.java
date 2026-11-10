@@ -1,8 +1,31 @@
 package org.telegram.ui.Components;
-public abstract class ks {
-    public static final xq f35466a = new xq(0.39d, 0.575d, 0.565d, 1.0d);
-    public static final xq f35467b = new xq(0.445d, 0.05d, 0.55d, 0.95d);
-    public static final xq f35468c = new xq(0.55d, 0.085d, 0.68d, 0.53d);
-    public static final xq d = new xq(0.25d, 0.46d, 0.45d, 0.94d);
-    public static final xq f35469e = new xq(0.455d, 0.03d, 0.515d, 0.955d);
+
+import java.util.ArrayList;
+public final class ks implements ls {
+    public final int f35422a;
+    public final Object f35423b;
+
+    public ks(Object obj, int i7) {
+        this.f35422a = i7;
+        this.f35423b = obj;
+    }
+
+    @Override
+    public final void a(int i7, boolean z9) {
+        switch (this.f35422a) {
+            case 0:
+                ArrayList arrayList = ((ns) this.f35423b).f36368b;
+                int size = arrayList.size();
+                int i10 = 0;
+                while (i10 < size) {
+                    Object obj = arrayList.get(i10);
+                    i10++;
+                    ((ls) obj).a(i7, z9);
+                }
+                return;
+            default:
+                ((Runnable) this.f35423b).run();
+                return;
+        }
+    }
 }

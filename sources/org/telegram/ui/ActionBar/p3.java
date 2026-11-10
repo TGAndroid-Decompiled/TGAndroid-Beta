@@ -1,43 +1,25 @@
 package org.telegram.ui.ActionBar;
+public final class p3 {
+    public static final p3 f28376a;
+    public static final p3 f28377b;
+    public static final p3 f28378c;
+    public static final p3[] d;
 
-import android.graphics.Point;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.c20;
-import org.telegram.messenger.gc;
-import org.telegram.messenger.hc;
-import org.telegram.tgnet.TLRPC;
-public final class p3 implements c20 {
-    public final c20 f28370a;
-    public final TLRPC.WallPaper f28371b;
-    public final int f28372c;
-    public final int d;
-    public final long f28373e;
-
-    public p3(c20 c20Var, TLRPC.WallPaper wallPaper, int i7, int i10, long j3) {
-        this.f28370a = c20Var;
-        this.f28371b = wallPaper;
-        this.f28372c = i7;
-        this.d = i10;
-        this.f28373e = j3;
+    static {
+        ?? r02 = new Enum("NONE", 0);
+        f28376a = r02;
+        ?? r12 = new Enum("VERTICAL", 1);
+        f28377b = r12;
+        ?? r32 = new Enum("FULL", 2);
+        f28378c = r32;
+        d = new p3[]{r02, r12, r32};
     }
 
-    @Override
-    public final void a(Object obj) {
-        gg.a aVar = (gg.a) obj;
-        c20 c20Var = this.f28370a;
-        if (aVar != null) {
-            c20Var.a(aVar);
-            return;
-        }
-        TLRPC.WallPaper wallPaper = this.f28371b;
-        hc b10 = hc.b(wallPaper.document);
-        ImageReceiver imageReceiver = new ImageReceiver(null);
-        imageReceiver.f21236z1 = false;
-        Point point = org.telegram.messenger.g0.f22563q;
-        int min = Math.min(point.x, point.y);
-        int max = Math.max(point.x, point.y);
-        imageReceiver.q0(b10, (min / org.telegram.messenger.g0.f22562p) + "_" + (max / org.telegram.messenger.g0.f22562p) + "_f", null, ".jpg", wallPaper, 1);
-        imageReceiver.f21195g1 = new org.telegram.tgnet.f(this.f28372c, this.d, this.f28373e, c20Var);
-        gc.D().M(imageReceiver, null);
+    public static p3 valueOf(String str) {
+        return (p3) Enum.valueOf(p3.class, str);
+    }
+
+    public static p3[] values() {
+        return (p3[]) d.clone();
     }
 }

@@ -7,8 +7,8 @@ import org.telegram.messenger.ls;
 import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.m8;
-import org.telegram.ui.Components.hc;
-import org.telegram.ui.qq;
+import org.telegram.ui.Components.gc;
+import org.telegram.ui.rq;
 public final class u0 implements v10 {
     public final int f1649a;
     public final boolean f1650b;
@@ -96,18 +96,18 @@ public final class u0 implements v10 {
                 }
                 return;
             default:
-                qq qqVar = (qq) lsVar;
+                rq rqVar = (rq) lsVar;
                 m8 m8Var = (m8) obj3;
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 if (updates != null) {
-                    qqVar.getMessagesController().O3(updates, false);
+                    rqVar.getMessagesController().O3(updates, false);
                     return;
                 }
-                qqVar.getClass();
+                rqVar.getClass();
                 if (tL_error2 != null) {
                     m8Var.setChecked(z10);
-                    hc.a0(qqVar).f0(tL_error2, false);
+                    gc.a0(rqVar).f0(tL_error2, false);
                     return;
                 }
                 return;

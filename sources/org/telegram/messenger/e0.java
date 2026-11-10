@@ -2,7 +2,7 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class e0 {
-    public String f22160a;
-    public ArrayList f22161b;
-    public StringBuilder f22162c;
+    public String f22164a;
+    public ArrayList f22165b;
+    public StringBuilder f22166c;
 }

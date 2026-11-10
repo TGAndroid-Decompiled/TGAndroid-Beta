@@ -1,11 +1,11 @@
 package org.telegram.ui;
 public final class db extends mi.l {
     public int W;
-    public iq0 X;
+    public jq0 X;
     public final mb Y;
 
-    public db(mb mbVar, org.telegram.ui.Components.qj0 qj0Var, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(null, qj0Var, g6Var);
+    public db(mb mbVar, org.telegram.ui.Components.pj0 pj0Var, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(null, pj0Var, h6Var);
         this.Y = mbVar;
         this.W = -1;
     }
@@ -13,13 +13,13 @@ public final class db extends mi.l {
     @Override
     public final void N() {
         super.N();
-        iq0 iq0Var = this.X;
-        if (iq0Var != null) {
-            org.telegram.messenger.g0.r(iq0Var);
+        jq0 jq0Var = this.X;
+        if (jq0Var != null) {
+            org.telegram.messenger.g0.r(jq0Var);
         }
-        iq0 iq0Var2 = new iq0(this, 20);
-        this.X = iq0Var2;
-        org.telegram.messenger.g0.h3(iq0Var2);
+        jq0 jq0Var2 = new jq0(this, 20);
+        this.X = jq0Var2;
+        org.telegram.messenger.g0.h3(jq0Var2);
     }
 
     @Override
@@ -27,12 +27,12 @@ public final class db extends mi.l {
         if (this.W == -1) {
             this.W = this.Y.getNotificationCenter().q(mb.R0, this.W, false);
         }
-        iq0 iq0Var = this.X;
-        if (iq0Var != null) {
-            org.telegram.messenger.g0.r(iq0Var);
+        jq0 jq0Var = this.X;
+        if (jq0Var != null) {
+            org.telegram.messenger.g0.r(jq0Var);
             this.X = null;
         }
-        if (org.telegram.messenger.r2.f25212a) {
+        if (org.telegram.messenger.r2.f25216a) {
             org.telegram.messenger.a8.b("admin logs chatItemAnimator disable notifications");
         }
     }

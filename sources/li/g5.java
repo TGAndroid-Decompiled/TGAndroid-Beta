@@ -4,12 +4,12 @@ import android.text.Editable;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.i9;
 public final class g5 implements f1 {
-    public final p5 f18613a;
-    public final m5 f18614b;
+    public final p5 f18616a;
+    public final m5 f18617b;
 
     public g5(m5 m5Var, p5 p5Var) {
-        this.f18614b = m5Var;
-        this.f18613a = p5Var;
+        this.f18617b = m5Var;
+        this.f18616a = p5Var;
     }
 
     @Override
@@ -19,32 +19,32 @@ public final class g5 implements f1 {
 
     @Override
     public final void T0(CharSequence charSequence) {
-        a3 a3Var = this.f18614b.E;
+        a3 a3Var = this.f18617b.E;
         if (a3Var != null && charSequence != null && charSequence.length() > 0) {
-            a3Var.f18419a.w4(charSequence.toString());
+            a3Var.f18422a.w4(charSequence.toString());
         }
     }
 
     @Override
     public final void b(g1 g1Var) {
-        a3 a3Var = this.f18614b.E;
+        a3 a3Var = this.f18617b.E;
         if (a3Var != null) {
-            t3 t3Var = a3Var.f18419a;
+            t3 t3Var = a3Var.f18422a;
             t3.Q1(t3Var, g1Var);
-            t3Var.f18890o3.r(g1Var, true);
+            t3Var.f18893o3.r(g1Var, true);
         }
     }
 
     @Override
     public final void f1(Editable editable) {
-        TL_iv.pageTableCell pagetablecell = this.f18613a.f18779b;
+        TL_iv.pageTableCell pagetablecell = this.f18616a.f18782b;
         if (pagetablecell != null) {
             e6.d(pagetablecell, editable);
         }
-        m5 m5Var = this.f18614b;
-        m5Var.f18711w.requestLayout();
+        m5 m5Var = this.f18617b;
+        m5Var.f18714w.requestLayout();
         a3 a3Var = m5Var.E;
-        if (a3Var != null && m5Var.f18989a != null) {
+        if (a3Var != null && m5Var.f18994a != null) {
             a3Var.a();
         }
     }
@@ -54,13 +54,13 @@ public final class g5 implements f1 {
         a3 a3Var;
         final i9 textSelectionHelper;
         final int l10;
-        m5 m5Var = this.f18614b;
-        if (!m5Var.G && i7 != i10 && (a3Var = m5Var.E) != null && (textSelectionHelper = a3Var.f18419a.getTextSelectionHelper()) != null) {
-            if ((!textSelectionHelper.x() || textSelectionHelper.W != m5Var) && (l10 = m5Var.l(this.f18613a.f18779b)) >= 0) {
+        m5 m5Var = this.f18617b;
+        if (!m5Var.G && i7 != i10 && (a3Var = m5Var.E) != null && (textSelectionHelper = a3Var.f18422a.getTextSelectionHelper()) != null) {
+            if ((!textSelectionHelper.x() || textSelectionHelper.W != m5Var) && (l10 = m5Var.l(this.f18616a.f18782b)) >= 0) {
                 m5Var.post(new Runnable() {
                     @Override
                     public final void run() {
-                        m5 m5Var2 = g5.this.f18614b;
+                        m5 m5Var2 = g5.this.f18617b;
                         g1 g1Var2 = g1Var;
                         int length = g1Var2.length();
                         int i11 = i10;
@@ -77,15 +77,15 @@ public final class g5 implements f1 {
 
     @Override
     public final boolean l1(boolean z9) {
-        return this.f18614b.u(this.f18613a, z9);
+        return this.f18617b.u(this.f18616a, z9);
     }
 
     @Override
     public final boolean m() {
-        m5 m5Var = this.f18614b;
+        m5 m5Var = this.f18617b;
         a3 a3Var = m5Var.E;
-        if (a3Var != null && m5Var.f18989a != null) {
-            return a3Var.f18419a.V4();
+        if (a3Var != null && m5Var.f18994a != null) {
+            return a3Var.f18422a.V4();
         }
         return false;
     }
@@ -98,9 +98,9 @@ public final class g5 implements f1 {
     @Override
     public final void w(int i7, int i10) {
         f2 f2Var;
-        m5 m5Var = this.f18614b;
+        m5 m5Var = this.f18617b;
         a3 a3Var = m5Var.E;
-        if (a3Var != null && m5Var.f18989a != null && (f2Var = a3Var.f18419a.Q3) != null) {
+        if (a3Var != null && m5Var.f18994a != null && (f2Var = a3Var.f18422a.Q3) != null) {
             f2Var.f(i7, i10);
         }
     }

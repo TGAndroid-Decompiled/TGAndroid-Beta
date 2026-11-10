@@ -6,20 +6,20 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.a8;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.Cells.z8;
 import org.telegram.ui.Components.xp;
 public final class d0 extends z8 {
     public Drawable D;
     public int E;
     public boolean F;
-    public final g6 f59461x;
-    public ColorDrawable f59462y;
+    public final h6 f59459x;
+    public ColorDrawable f59460y;
 
-    public d0(Context context, g6 g6Var) {
-        super(context, g6Var);
-        this.f59461x = g6Var;
+    public d0(Context context, h6 h6Var) {
+        super(context, h6Var);
+        this.f59459x = h6Var;
     }
 
     public void setBackground(boolean z9) {
@@ -30,14 +30,14 @@ public final class d0 extends z8 {
         } else {
             i7 = 2131231229;
         }
-        int i10 = l6.f27829b7;
-        g6 g6Var = this.f59461x;
-        Drawable X0 = l6.X0(context, i7, l6.w0(i10, g6Var));
-        ColorDrawable colorDrawable = new ColorDrawable(l6.w0(l6.f27809a7, g6Var));
-        this.f59462y = colorDrawable;
+        int i10 = m6.f27854b7;
+        h6 h6Var = this.f59459x;
+        Drawable X0 = m6.X0(context, i7, m6.w0(i10, h6Var));
+        ColorDrawable colorDrawable = new ColorDrawable(m6.w0(m6.f27834a7, h6Var));
+        this.f59460y = colorDrawable;
         this.D = X0;
         xp xpVar = new xp(colorDrawable, X0, 0, 0);
-        xpVar.f40453x = true;
+        xpVar.f40383x = true;
         setBackground(xpVar);
     }
 
@@ -45,13 +45,13 @@ public final class d0 extends z8 {
     public final void updateColors() {
         super.updateColors();
         try {
-            ColorDrawable colorDrawable = this.f59462y;
-            g6 g6Var = this.f59461x;
+            ColorDrawable colorDrawable = this.f59460y;
+            h6 h6Var = this.f59459x;
             if (colorDrawable != null) {
-                colorDrawable.setColor(l6.w0(l6.f27809a7, g6Var));
+                colorDrawable.setColor(m6.w0(m6.f27834a7, h6Var));
             }
             if (this.D != null) {
-                int w02 = l6.w0(l6.f27829b7, g6Var);
+                int w02 = m6.w0(m6.f27854b7, h6Var);
                 if (w02 != this.E || !this.F) {
                     this.E = w02;
                     this.F = true;

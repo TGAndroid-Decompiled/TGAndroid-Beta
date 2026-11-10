@@ -1,57 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RectShape;
-public final class ss extends ShapeDrawable {
-    public final int f38147a = 1;
-    public final EditTextBoldCursor f38148b;
+import android.text.Editable;
+public final class ss implements org.telegram.messenger.c20 {
+    public final ys f38053a;
+    public final int f38054b;
+    public final int f38055c;
 
-    public ss(EditTextBoldCursor editTextBoldCursor, RectShape rectShape) {
-        super(rectShape);
-        this.f38148b = editTextBoldCursor;
+    public ss(ys ysVar, int i7, int i10) {
+        this.f38053a = ysVar;
+        this.f38054b = i7;
+        this.f38055c = i10;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f38147a) {
-            case 0:
-                super.draw(canvas);
-                this.f38148b.G0 = true;
-                return;
-            default:
-                EditTextBoldCursor editTextBoldCursor = this.f38148b;
-                if (editTextBoldCursor.f31342d1) {
-                    editTextBoldCursor.G0 = true;
-                    return;
-                } else {
-                    super.draw(canvas);
-                    return;
-                }
-        }
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        switch (this.f38147a) {
-            case 1:
-                return org.telegram.messenger.g0.L(this.f38148b.f31351i0 + 20);
-            default:
-                return super.getIntrinsicHeight();
-        }
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        switch (this.f38147a) {
-            case 1:
-                return org.telegram.messenger.g0.L(this.f38148b.E0);
-            default:
-                return super.getIntrinsicWidth();
-        }
-    }
-
-    public ss(EditTextBoldCursor editTextBoldCursor) {
-        this.f38148b = editTextBoldCursor;
+    public final void a(Object obj) {
+        CharSequence charSequence = (CharSequence) obj;
+        ys ysVar = this.f38053a;
+        Editable text = ysVar.getText();
+        int i7 = this.f38054b;
+        text.replace(i7, this.f38055c, charSequence);
+        ysVar.setSelection(i7, charSequence.length() + i7);
     }
 }

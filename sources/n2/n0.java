@@ -13,66 +13,66 @@ import java.net.IDN;
 import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.ui.Cells.c1;
-import org.telegram.ui.Components.b80;
-import org.telegram.ui.Components.fq;
-import org.telegram.ui.Components.s70;
-import org.telegram.ui.Components.u70;
-import org.telegram.ui.Components.y70;
+import org.telegram.ui.Components.a80;
+import org.telegram.ui.Components.r70;
+import org.telegram.ui.Components.ro;
+import org.telegram.ui.Components.t70;
+import org.telegram.ui.Components.x70;
 import org.telegram.ui.z2;
 public final class n0 {
-    public int f20254a;
-    public int f20255b;
-    public Object f20256c;
+    public int f20259a;
+    public int f20260b;
+    public Object f20261c;
     public Object d;
-    public Object f20257e;
-    public Object f20258f;
+    public Object f20262e;
+    public Object f20263f;
 
     public n0() {
-        this.f20257e = new ArrayList();
-        this.f20254a = 0;
-        this.f20258f = new ArrayList();
-        this.f20255b = 0;
+        this.f20262e = new ArrayList();
+        this.f20259a = 0;
+        this.f20263f = new ArrayList();
+        this.f20260b = 0;
     }
 
     public static boolean a(n0 n0Var) {
-        return Objects.equals(((e2.u) n0Var.f20256c).f10615s, "audio/raw");
+        return Objects.equals(((e2.u) n0Var.f20261c).f10620s, "audio/raw");
     }
 
-    public static b80 k(Layout layout, CharacterStyle characterStyle, float f10) {
+    public static a80 k(Layout layout, CharacterStyle characterStyle, float f10) {
         if (layout != null && characterStyle != null && (layout.getText() instanceof Spanned)) {
             Spanned spanned = (Spanned) layout.getText();
-            s70 s70Var = new s70(0);
+            r70 r70Var = new r70(0);
             int spanStart = spanned.getSpanStart(characterStyle);
             int spanEnd = spanned.getSpanEnd(characterStyle);
-            s70Var.d(layout, spanStart, f10);
-            layout.getSelectionPath(spanStart, spanEnd, s70Var);
-            b80 b80Var = new b80();
-            b80Var.f32187y = s70Var;
-            b80Var.D = true;
-            b80Var.k(4.0f);
-            b80Var.l();
-            return b80Var;
+            r70Var.d(layout, spanStart, f10);
+            layout.getSelectionPath(spanStart, spanEnd, r70Var);
+            a80 a80Var = new a80();
+            a80Var.f31793y = r70Var;
+            a80Var.D = true;
+            a80Var.k(4.0f);
+            a80Var.l();
+            return a80Var;
         }
         return null;
     }
 
-    public void b(y70 y70Var, Object obj) {
-        ((ArrayList) this.f20257e).add(new Pair(y70Var, obj));
-        this.f20254a++;
+    public void b(x70 x70Var, Object obj) {
+        ((ArrayList) this.f20262e).add(new Pair(x70Var, obj));
+        this.f20259a++;
         j(obj, true);
     }
 
-    public void c(b80 b80Var, Object obj) {
-        ((ArrayList) this.f20258f).add(new Pair(b80Var, obj));
-        this.f20255b++;
+    public void c(a80 a80Var, Object obj) {
+        ((ArrayList) this.f20263f).add(new Pair(a80Var, obj));
+        this.f20260b++;
         j(obj, true);
     }
 
     public ui.a d() {
         String str;
         String str2;
-        if (this.f20254a == 3) {
-            String str3 = (String) this.f20256c;
+        if (this.f20259a == 3) {
+            String str3 = (String) this.f20261c;
             if (TextUtils.isEmpty(str3)) {
                 str3 = "";
             } else {
@@ -87,7 +87,7 @@ public final class n0 {
                 } else {
                     str2 = null;
                 }
-                if (!TextUtils.isEmpty(str) && str.indexOf(58) < 0 && str.indexOf(63) < 0 && str.indexOf(35) < 0 && (str2 == null || (str2.length() <= 128 && ui.a.f56926g.matcher(str2).matches()))) {
+                if (!TextUtils.isEmpty(str) && str.indexOf(58) < 0 && str.indexOf(63) < 0 && str.indexOf(35) < 0 && (str2 == null || (str2.length() <= 128 && ui.a.f56922g.matcher(str2).matches()))) {
                     try {
                         String lowerCase = IDN.toASCII(str, 3).toLowerCase(Locale.US);
                         if (str2 == null) {
@@ -99,15 +99,15 @@ public final class n0 {
                     }
                 }
             }
-            this.f20256c = str3;
+            this.f20261c = str3;
             if (str3 != null && str3.indexOf(47) >= 0) {
-                String b10 = ui.a.b((String) this.f20258f);
+                String b10 = ui.a.b((String) this.f20263f);
                 if (b10 == null) {
-                    b10 = ((String) this.f20258f).toLowerCase(Locale.US);
+                    b10 = ((String) this.f20263f).toLowerCase(Locale.US);
                 }
-                this.f20258f = b10;
+                this.f20263f = b10;
             } else {
-                this.f20258f = ((String) this.f20258f).toLowerCase(Locale.US);
+                this.f20263f = ((String) this.f20263f).toLowerCase(Locale.US);
             }
         }
         return new ui.a(this);
@@ -118,24 +118,24 @@ public final class n0 {
     }
 
     public void f(boolean z9) {
-        ArrayList arrayList = (ArrayList) this.f20257e;
+        ArrayList arrayList = (ArrayList) this.f20262e;
         if (z9) {
-            for (int i7 = 0; i7 < this.f20254a; i7++) {
+            for (int i7 = 0; i7 < this.f20259a; i7++) {
                 l(i7);
             }
-        } else if (this.f20254a > 0) {
-            for (int i10 = 0; i10 < this.f20254a; i10++) {
-                ((y70) ((Pair) arrayList.get(i10)).first).c();
+        } else if (this.f20259a > 0) {
+            for (int i10 = 0; i10 < this.f20259a; i10++) {
+                ((x70) ((Pair) arrayList.get(i10)).first).c();
                 j(((Pair) arrayList.get(i10)).second, false);
             }
             arrayList.clear();
-            this.f20254a = 0;
+            this.f20259a = 0;
             j(null, true);
         }
     }
 
     public void g() {
-        for (int i7 = 0; i7 < this.f20255b; i7++) {
+        for (int i7 = 0; i7 < this.f20260b; i7++) {
             o(i7, true);
         }
     }
@@ -143,13 +143,13 @@ public final class n0 {
     public boolean h(Canvas canvas) {
         int i7 = 0;
         boolean z9 = false;
-        while (i7 < this.f20255b) {
-            ((b80) ((Pair) ((ArrayList) this.f20258f).get(i7)).first).draw(canvas);
+        while (i7 < this.f20260b) {
+            ((a80) ((Pair) ((ArrayList) this.f20263f).get(i7)).first).draw(canvas);
             i7++;
             z9 = true;
         }
-        for (int i10 = 0; i10 < this.f20254a; i10++) {
-            if (!((y70) ((Pair) ((ArrayList) this.f20257e).get(i10)).first).a(canvas) && !z9) {
+        for (int i10 = 0; i10 < this.f20259a; i10++) {
+            if (!((x70) ((Pair) ((ArrayList) this.f20262e).get(i10)).first).a(canvas) && !z9) {
                 z9 = false;
             } else {
                 z9 = true;
@@ -160,18 +160,18 @@ public final class n0 {
 
     public boolean i(Canvas canvas, Object obj) {
         boolean z9;
-        ArrayList arrayList = (ArrayList) this.f20257e;
-        ArrayList arrayList2 = (ArrayList) this.f20258f;
+        ArrayList arrayList = (ArrayList) this.f20262e;
+        ArrayList arrayList2 = (ArrayList) this.f20263f;
         boolean z10 = false;
-        for (int i7 = 0; i7 < this.f20255b; i7++) {
+        for (int i7 = 0; i7 < this.f20260b; i7++) {
             if (((Pair) arrayList2.get(i7)).second == obj) {
-                ((b80) ((Pair) arrayList2.get(i7)).first).draw(canvas);
+                ((a80) ((Pair) arrayList2.get(i7)).first).draw(canvas);
                 z10 = true;
             }
         }
-        for (int i10 = 0; i10 < this.f20254a; i10++) {
+        for (int i10 = 0; i10 < this.f20259a; i10++) {
             if (((Pair) arrayList.get(i10)).second == obj) {
-                if (!((y70) ((Pair) arrayList.get(i10)).first).a(canvas) && !z10) {
+                if (!((x70) ((Pair) arrayList.get(i10)).first).a(canvas) && !z10) {
                     z9 = false;
                 } else {
                     z9 = true;
@@ -190,10 +190,10 @@ public final class n0 {
             ((View) obj).invalidate();
         } else if (obj instanceof z2) {
             z2 z2Var = (z2) obj;
-            if (!z2Var.f52392c && (view2 = z2Var.f52391b) != null) {
+            if (!z2Var.f52178c && (view2 = z2Var.f52177b) != null) {
                 view2.invalidate();
             }
-        } else if (z9 && (view = (View) this.f20256c) != null) {
+        } else if (z9 && (view = (View) this.f20261c) != null) {
             view.invalidate();
         }
         c1 c1Var = (c1) this.d;
@@ -203,26 +203,26 @@ public final class n0 {
     }
 
     public void l(int i7) {
-        ArrayList arrayList = (ArrayList) this.f20257e;
-        if (i7 >= 0 && i7 < this.f20254a) {
+        ArrayList arrayList = (ArrayList) this.f20262e;
+        if (i7 >= 0 && i7 < this.f20259a) {
             Pair pair = (Pair) arrayList.get(i7);
-            y70 y70Var = (y70) pair.first;
-            if (y70Var.f40641p < 0) {
-                y70Var.f40641p = Math.max(y70Var.f40640o + y70Var.f40642q, SystemClock.elapsedRealtime());
+            x70 x70Var = (x70) pair.first;
+            if (x70Var.f40228p < 0) {
+                x70Var.f40228p = Math.max(x70Var.f40227o + x70Var.f40229q, SystemClock.elapsedRealtime());
                 j(pair.second, true);
-                org.telegram.messenger.g0.i3(new u70(this, y70Var, 1), Math.max(0L, (y70Var.f40641p - SystemClock.elapsedRealtime()) + 175));
+                org.telegram.messenger.g0.i3(new t70(this, x70Var, 1), Math.max(0L, (x70Var.f40228p - SystemClock.elapsedRealtime()) + 175));
             }
         }
     }
 
-    public void m(y70 y70Var, boolean z9) {
+    public void m(x70 x70Var, boolean z9) {
         Pair pair;
-        ArrayList arrayList = (ArrayList) this.f20257e;
-        if (y70Var != null) {
+        ArrayList arrayList = (ArrayList) this.f20262e;
+        if (x70Var != null) {
             int i7 = 0;
             while (true) {
-                if (i7 < this.f20254a) {
-                    if (((Pair) arrayList.get(i7)).first == y70Var) {
+                if (i7 < this.f20259a) {
+                    if (((Pair) arrayList.get(i7)).first == x70Var) {
                         pair = (Pair) arrayList.get(i7);
                         break;
                     }
@@ -234,26 +234,26 @@ public final class n0 {
             }
             if (pair != null) {
                 if (z9) {
-                    if (y70Var.f40641p < 0) {
-                        y70Var.f40641p = Math.max(y70Var.f40640o + y70Var.f40642q, SystemClock.elapsedRealtime());
+                    if (x70Var.f40228p < 0) {
+                        x70Var.f40228p = Math.max(x70Var.f40227o + x70Var.f40229q, SystemClock.elapsedRealtime());
                         j(pair.second, true);
-                        org.telegram.messenger.g0.i3(new u70(this, y70Var, 0), Math.max(0L, (y70Var.f40641p - SystemClock.elapsedRealtime()) + 175));
+                        org.telegram.messenger.g0.i3(new t70(this, x70Var, 0), Math.max(0L, (x70Var.f40228p - SystemClock.elapsedRealtime()) + 175));
                         return;
                     }
                     return;
                 }
                 arrayList.remove(pair);
-                y70Var.c();
-                this.f20254a = arrayList.size();
+                x70Var.c();
+                this.f20259a = arrayList.size();
                 j(pair.second, true);
             }
         }
     }
 
-    public void n(b80 b80Var, boolean z9) {
-        if (b80Var != null) {
-            for (int i7 = 0; i7 < this.f20255b; i7++) {
-                if (((Pair) ((ArrayList) this.f20258f).get(i7)).first == b80Var) {
+    public void n(a80 a80Var, boolean z9) {
+        if (a80Var != null) {
+            for (int i7 = 0; i7 < this.f20260b; i7++) {
+                if (((Pair) ((ArrayList) this.f20263f).get(i7)).first == a80Var) {
                     o(i7, z9);
                     return;
                 }
@@ -263,29 +263,29 @@ public final class n0 {
 
     public void o(int i7, boolean z9) {
         Pair pair;
-        ArrayList arrayList = (ArrayList) this.f20258f;
-        if (i7 >= 0 && i7 < this.f20255b && (pair = (Pair) arrayList.get(i7)) != null) {
-            b80 b80Var = (b80) pair.first;
+        ArrayList arrayList = (ArrayList) this.f20263f;
+        if (i7 >= 0 && i7 < this.f20260b && (pair = (Pair) arrayList.get(i7)) != null) {
+            a80 a80Var = (a80) pair.first;
             if (z9) {
-                if (!b80Var.c()) {
-                    if (!b80Var.d()) {
-                        b80Var.a();
+                if (!a80Var.c()) {
+                    if (!a80Var.d()) {
+                        a80Var.a();
                     }
-                    fq fqVar = new fq(28, this, b80Var);
+                    ro roVar = new ro(29, this, a80Var);
                     long j3 = 0;
-                    if (b80Var.f32168c > 0) {
-                        j3 = 320 - (SystemClock.elapsedRealtime() - b80Var.f32168c);
+                    if (a80Var.f31774c > 0) {
+                        j3 = 320 - (SystemClock.elapsedRealtime() - a80Var.f31774c);
                     }
-                    org.telegram.messenger.g0.i3(fqVar, j3);
+                    org.telegram.messenger.g0.i3(roVar, j3);
                     return;
                 }
-                n(b80Var, false);
+                n(a80Var, false);
                 return;
             }
             arrayList.remove(pair);
-            b80Var.f32167b = -1L;
-            b80Var.f32168c = -1L;
-            this.f20255b = arrayList.size();
+            a80Var.f31773b = -1L;
+            a80Var.f31774c = -1L;
+            this.f20260b = arrayList.size();
             j(pair.second, true);
         }
     }
@@ -294,23 +294,23 @@ public final class n0 {
         if (i7 == 0) {
             i7 = 1;
         }
-        this.f20254a = i7;
+        this.f20259a = i7;
     }
 
     public n0(View view) {
-        this.f20257e = new ArrayList();
-        this.f20254a = 0;
-        this.f20258f = new ArrayList();
-        this.f20255b = 0;
-        this.f20256c = view;
+        this.f20262e = new ArrayList();
+        this.f20259a = 0;
+        this.f20263f = new ArrayList();
+        this.f20260b = 0;
+        this.f20261c = view;
     }
 
     public n0(e2.u uVar, e2.u uVar2, int i7, int i10, n nVar, f2.j jVar) {
-        this.f20256c = uVar;
+        this.f20261c = uVar;
         this.d = uVar2;
-        this.f20254a = i7;
-        this.f20255b = i10;
-        this.f20257e = nVar;
-        this.f20258f = jVar;
+        this.f20259a = i7;
+        this.f20260b = i10;
+        this.f20262e = nVar;
+        this.f20263f = jVar;
     }
 }

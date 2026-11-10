@@ -5,14 +5,14 @@ import android.graphics.Canvas;
 import android.graphics.Path;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qs;
-import org.telegram.ui.Components.qj0;
-public final class j1 extends qj0 implements ls {
-    public final Path f55808e3;
-    public q0.a f55809f3;
+import org.telegram.ui.Components.pj0;
+public final class j1 extends pj0 implements ls {
+    public final Path f55807e3;
+    public q0.a f55808f3;
 
     public j1(Context context) {
         super(context, null);
-        this.f55808e3 = new Path();
+        this.f55807e3 = new Path();
         setWillNotDraw(false);
         setLayoutManager(new v4.b0());
         setAdapter(new v4.g0());
@@ -34,15 +34,15 @@ public final class j1 extends qj0 implements ls {
 
     @Override
     public final void draw(Canvas canvas) {
-        q0.a aVar = this.f55809f3;
+        q0.a aVar = this.f55808f3;
         if (aVar != null) {
-            Path path = this.f55808e3;
+            Path path = this.f55807e3;
             aVar.accept(path);
             canvas.save();
             canvas.clipPath(path);
         }
         super.draw(canvas);
-        if (this.f55809f3 != null) {
+        if (this.f55808f3 != null) {
             canvas.restore();
         }
     }
@@ -65,7 +65,7 @@ public final class j1 extends qj0 implements ls {
     }
 
     public void setMaskProvider(q0.a aVar) {
-        this.f55809f3 = aVar;
+        this.f55808f3 = aVar;
         invalidate();
     }
 }

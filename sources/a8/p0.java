@@ -38,7 +38,7 @@ public abstract class p0 {
 
     public static c4.b a(c4.m mVar, byte[] bArr, int i7) {
         h9.f0 p10 = h9.i0.p();
-        mVar.z(bArr, 0, i7, c4.l.f5288c, new a1.c(p10, 22));
+        mVar.z(bArr, 0, i7, c4.l.f5293c, new a1.c(p10, 22));
         return new c4.b(p10.f());
     }
 
@@ -788,15 +788,15 @@ public abstract class p0 {
     public static na.c y(int i7, m4.d0 d0Var) {
         Map unmodifiableMap;
         c8.s sVar = new c8.s(i7);
-        if (((HashMap) d0Var.f19612b) == null) {
-            d0Var.f19612b = new HashMap();
+        if (((HashMap) d0Var.f19617b) == null) {
+            d0Var.f19617b = new HashMap();
         }
-        ((HashMap) d0Var.f19612b).put(c8.w.class, sVar);
-        String str = (String) d0Var.f19611a;
-        if (((HashMap) d0Var.f19612b) == null) {
+        ((HashMap) d0Var.f19617b).put(c8.w.class, sVar);
+        String str = (String) d0Var.f19616a;
+        if (((HashMap) d0Var.f19617b) == null) {
             unmodifiableMap = Collections.EMPTY_MAP;
         } else {
-            unmodifiableMap = DesugarCollections.unmodifiableMap(new HashMap((HashMap) d0Var.f19612b));
+            unmodifiableMap = DesugarCollections.unmodifiableMap(new HashMap((HashMap) d0Var.f19617b));
         }
         return new na.c(str, unmodifiableMap);
     }

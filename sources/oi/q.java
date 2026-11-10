@@ -6,39 +6,39 @@ import android.view.View;
 import c8.ud;
 import java.util.ArrayList;
 import org.telegram.messenger.sc;
-import org.telegram.ui.Components.ms;
-import org.telegram.ui.Components.qj0;
-import org.telegram.ui.Components.w61;
+import org.telegram.ui.Components.ls;
+import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.v61;
 public final class q {
     public static r F;
     public static int G;
     public int A;
-    public m f21099a;
-    public boolean f21103f;
-    public long f21104g;
+    public m f21104a;
+    public boolean f21108f;
+    public long f21109g;
     public long h;
-    public long f21105i;
-    public int f21106j;
-    public int f21107k;
-    public int f21108l;
-    public View f21109m;
-    public long f21112p;
-    public long f21113q;
-    public long f21114r;
-    public long f21115s;
-    public long f21116t;
-    public int f21117u;
-    public boolean f21120y;
-    public int f21121z;
-    public final h f21100b = new h(this);
-    public final ArrayList f21101c = new ArrayList();
-    public qi.b d = qi.b.f54167c;
-    public final RectF f21102e = new RectF();
-    public final xe.b f21110n = new xe.b();
-    public final ArrayList f21111o = new ArrayList();
+    public long f21110i;
+    public int f21111j;
+    public int f21112k;
+    public int f21113l;
+    public View f21114m;
+    public long f21117p;
+    public long f21118q;
+    public long f21119r;
+    public long f21120s;
+    public long f21121t;
+    public int f21122u;
+    public boolean f21125y;
+    public int f21126z;
+    public final h f21105b = new h(this);
+    public final ArrayList f21106c = new ArrayList();
+    public qi.b d = qi.b.f54166c;
+    public final RectF f21107e = new RectF();
+    public final xe.b f21115n = new xe.b();
+    public final ArrayList f21116o = new ArrayList();
     public final RectF v = new RectF();
-    public final Rect f21118w = new Rect();
-    public final Rect f21119x = new Rect();
+    public final Rect f21123w = new Rect();
+    public final Rect f21124x = new Rect();
     public final qi.a B = new qi.a();
     public final qi.a C = new qi.a();
     public final qi.a D = new qi.a();
@@ -48,7 +48,7 @@ public final class q {
         boolean e10 = sc.e(256);
         boolean e11 = sc.e(262144);
         r rVar = F;
-        if (rVar == null || rVar.f21122a != e10 || rVar.f21123b != e11) {
+        if (rVar == null || rVar.f21127a != e10 || rVar.f21128b != e11) {
             F = new r(e10, e11);
             G++;
         }
@@ -56,41 +56,41 @@ public final class q {
     }
 
     public final void a(dh.g gVar) {
-        this.f21111o.add(gVar);
+        this.f21116o.add(gVar);
     }
 
-    public final void b(qj0 qj0Var) {
-        if (qj0Var == null) {
+    public final void b(pj0 pj0Var) {
+        if (pj0Var == null) {
             return;
         }
-        this.f21110n.add(qj0Var);
-        qj0Var.D2.f36777b.add(new ms() {
+        this.f21115n.add(pj0Var);
+        pj0Var.D2.f36368b.add(new ls() {
             @Override
             public final void a(int i7, boolean z9) {
                 int i10;
                 q qVar = q.this;
                 qVar.h++;
-                int i11 = qVar.f21106j;
+                int i11 = qVar.f21111j;
                 if (z9) {
                     i10 = 1;
                 } else {
                     i10 = -1;
                 }
-                qVar.f21106j = i11 + i10;
+                qVar.f21111j = i11 + i10;
             }
         });
         j jVar = new j(this);
-        if (qj0Var.P == null) {
-            qj0Var.P = new ArrayList();
+        if (pj0Var.P == null) {
+            pj0Var.P = new ArrayList();
         }
-        qj0Var.P.add(jVar);
-        qj0Var.j(new ai.b(this, 23));
+        pj0Var.P.add(jVar);
+        pj0Var.j(new ai.b(this, 23));
     }
 
-    public final void c(w61 w61Var) {
-        if (w61Var != null) {
+    public final void c(v61 v61Var) {
+        if (v61Var != null) {
             g gVar = new g(this);
-            ArrayList arrayList = w61Var.R;
+            ArrayList arrayList = v61Var.R;
             if (!arrayList.contains(gVar)) {
                 arrayList.add(gVar);
             }
@@ -111,44 +111,44 @@ public final class q {
             aVar.getClass();
             return aVar;
         }
-        aVar.f54166b = 0;
-        int i7 = aVar2.f54166b;
+        aVar.f54165b = 0;
+        int i7 = aVar2.f54165b;
         for (int i10 = 0; i10 < i7; i10++) {
-            RectF rectF = (RectF) aVar2.f54165a.get(i10);
+            RectF rectF = (RectF) aVar2.f54164a.get(i10);
             aVar.a(rectF.left, rectF.top, rectF.right, rectF.bottom);
         }
         return aVar;
     }
 
     public final void g() {
-        this.f21105i++;
+        this.f21110i++;
     }
 
     public final void h(int i7, int i10) {
         if (i7 == 0 && i10 == 0) {
             return;
         }
-        this.f21104g++;
-        this.f21107k += i7;
-        this.f21108l += i10;
+        this.f21109g++;
+        this.f21112k += i7;
+        this.f21113l += i10;
     }
 
     public final void i(View view) {
         xf.a a10;
         xf.c cVar;
-        View view2 = this.f21109m;
+        View view2 = this.f21114m;
         if (view2 != view) {
-            h hVar = this.f21100b;
+            h hVar = this.f21105b;
             if (view2 != null && (cVar = (xf.c) view2.getTag(2131296697)) != null) {
-                ArrayList arrayList = cVar.f58709a;
+                ArrayList arrayList = cVar.f58707a;
                 if (arrayList.remove(hVar)) {
-                    xf.a aVar = cVar.f58710b;
+                    xf.a aVar = cVar.f58708b;
                     if (aVar != null) {
-                        ((xe.b) aVar.f58708a.f8835b).remove(hVar);
+                        ((xe.b) aVar.f58706a.f8840b).remove(hVar);
                     }
                     if (arrayList.isEmpty()) {
-                        cVar.f58710b = null;
-                        view2.removeOnAttachStateChangeListener(cVar.f58711c);
+                        cVar.f58708b = null;
+                        view2.removeOnAttachStateChangeListener(cVar.f58709c);
                         view2.setTag(2131296697, null);
                     }
                 }
@@ -161,17 +161,17 @@ public final class q {
                 if (cVar2 == null) {
                     cVar2 = new xf.c();
                     view.setTag(2131296697, cVar2);
-                    view.addOnAttachStateChangeListener(cVar2.f58711c);
+                    view.addOnAttachStateChangeListener(cVar2.f58709c);
                 }
-                ArrayList arrayList2 = cVar2.f58709a;
+                ArrayList arrayList2 = cVar2.f58707a;
                 if (!arrayList2.contains(hVar)) {
                     arrayList2.add(hVar);
                     if (view.isAttachedToWindow() && (a10 = ud.a(view, cVar2)) != null) {
-                        ((xe.b) a10.f58708a.f8835b).add(hVar);
+                        ((xe.b) a10.f58706a.f8840b).add(hVar);
                     }
                 }
             }
-            this.f21109m = view;
+            this.f21114m = view;
         }
     }
 }

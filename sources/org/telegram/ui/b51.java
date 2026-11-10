@@ -1,31 +1,51 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class b51 extends m41 {
-    public gh D;
-    public final int f43903w;
-    public final int f43904x;
-    public int f43905y;
+import org.telegram.tgnet.tl.TL_stats;
+public final class b51 {
+    public TL_stats.PostInteractionCounters f43930a;
+    public org.telegram.messenger.ij f43931b;
 
-    public b51(Context context, int i7, int i10, lg.f fVar, int i11) {
-        super(context, i10, fVar, null);
-        this.f43903w = i7;
-        this.f43904x = i11;
-    }
-
-    @Override
-    public final void b(p41 p41Var) {
-        int i7;
-        if (p41Var != null && (i7 = this.f43905y) >= 0) {
-            p41Var.a(this.f43903w, this.f43904x, i7, this.D);
+    public final int a() {
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f43930a;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
+            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).forwards;
         }
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
+            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).forwards;
+        }
+        return 0;
     }
 
-    @Override
-    public final void c() {
+    public final int b() {
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f43930a;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
+            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).msg_id;
+        }
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
+            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).story_id;
+        }
+        return 0;
     }
 
-    @Override
-    public final void f() {
+    public final int c() {
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f43930a;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
+            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).reactions;
+        }
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
+            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).reactions;
+        }
+        return 0;
+    }
+
+    public final int d() {
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f43930a;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
+            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).views;
+        }
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
+            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).views;
+        }
+        return 0;
     }
 }

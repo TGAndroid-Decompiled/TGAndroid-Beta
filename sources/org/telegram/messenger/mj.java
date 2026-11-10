@@ -11,45 +11,45 @@ import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.da0;
+import org.telegram.ui.Components.ca0;
+import org.telegram.ui.Components.ha0;
 import org.telegram.ui.Components.ia0;
-import org.telegram.ui.Components.ja0;
 public final class mj {
-    public kj f24030a;
-    public kj f24031b;
-    public kj f24032c;
+    public kj f24034a;
+    public kj f24035b;
+    public kj f24036c;
     public org.telegram.ui.sm d;
-    public int f24033e;
-    public int f24034f;
-    public boolean f24035g;
+    public int f24037e;
+    public int f24038f;
+    public boolean f24039g;
     public boolean h;
-    public boolean f24036i;
-    public boolean f24037j;
-    public boolean f24038k;
-    public boolean f24039l;
-    public boolean f24040m;
-    public boolean f24041n;
-    public boolean f24042o;
-    public boolean f24043p;
-    public boolean f24044q;
-    public boolean f24045r;
-    public final boolean f24046s;
-    public final boolean f24047t;
-    public boolean f24048u;
+    public boolean f24040i;
+    public boolean f24041j;
+    public boolean f24042k;
+    public boolean f24043l;
+    public boolean f24044m;
+    public boolean f24045n;
+    public boolean f24046o;
+    public boolean f24047p;
+    public boolean f24048q;
+    public boolean f24049r;
+    public final boolean f24050s;
+    public final boolean f24051t;
+    public boolean f24052u;
     public TLRPC.WebPage v;
-    public URLSpan f24049w;
-    public ja0 f24050x;
+    public URLSpan f24053w;
+    public ia0 f24054x;
 
     public mj(boolean z9, boolean z10, boolean z11) {
         boolean z12;
-        this.f24036i = z9;
+        this.f24040i = z9;
         if (!z9 && !z10) {
             z12 = false;
         } else {
             z12 = true;
         }
-        this.f24046s = z12;
-        this.f24047t = z11;
+        this.f24050s = z12;
+        this.f24051t = z11;
     }
 
     public static boolean a(String str, String str2) {
@@ -95,7 +95,7 @@ public final class mj {
 
     public final void b(ij ijVar) {
         TLRPC.WebPage webPage;
-        this.f24049w = null;
+        this.f24053w = null;
         if (ijVar != null) {
             CharSequence charSequence = ijVar.v;
             if ((charSequence instanceof Spanned) && (webPage = this.v) != null && webPage.url != null) {
@@ -103,7 +103,7 @@ public final class mj {
                 URLSpan[] uRLSpanArr = (URLSpan[]) spanned.getSpans(0, spanned.length(), URLSpan.class);
                 for (int i7 = 0; i7 < uRLSpanArr.length; i7++) {
                     if (a(uRLSpanArr[i7].getURL(), this.v.url)) {
-                        this.f24049w = uRLSpanArr[i7];
+                        this.f24053w = uRLSpanArr[i7];
                         return;
                     }
                 }
@@ -115,12 +115,12 @@ public final class mj {
         ArrayList arrayList;
         ArrayList arrayList2;
         ArrayList arrayList3;
-        kj kjVar = this.f24031b;
-        if (kjVar == null || (arrayList3 = kjVar.f23700e) == null || arrayList3.isEmpty()) {
-            kj kjVar2 = this.f24030a;
-            if (kjVar2 == null || (arrayList2 = kjVar2.f23700e) == null || arrayList2.isEmpty()) {
-                kj kjVar3 = this.f24032c;
-                if (kjVar3 != null && (arrayList = kjVar3.f23700e) != null && !arrayList.isEmpty()) {
+        kj kjVar = this.f24035b;
+        if (kjVar == null || (arrayList3 = kjVar.f23704e) == null || arrayList3.isEmpty()) {
+            kj kjVar2 = this.f24034a;
+            if (kjVar2 == null || (arrayList2 = kjVar2.f23704e) == null || arrayList2.isEmpty()) {
+                kj kjVar3 = this.f24036c;
+                if (kjVar3 != null && (arrayList = kjVar3.f23704e) != null && !arrayList.isEmpty()) {
                     return false;
                 }
                 return true;
@@ -135,44 +135,44 @@ public final class mj {
         long j10;
         long j11;
         TLRPC.MessageFwdHeader messageFwdHeader;
-        this.f24035g = false;
+        this.f24039g = false;
         this.h = false;
-        this.f24036i = m5.C(j3);
-        this.f24037j = false;
+        this.f24040i = m5.C(j3);
+        this.f24041j = false;
         if (arrayList != null) {
             ArrayList arrayList2 = new ArrayList();
             for (int i7 = 0; i7 < arrayList.size(); i7++) {
                 ij ijVar = (ij) arrayList.get(i7);
-                if (!TextUtils.isEmpty(ijVar.f23318z)) {
-                    this.f24035g = true;
+                if (!TextUtils.isEmpty(ijVar.f23322z)) {
+                    this.f24039g = true;
                 }
-                if (!this.f24036i && (messageFwdHeader = ijVar.f23262k.fwd_from) != null && messageFwdHeader.from_id == null && !arrayList2.contains(messageFwdHeader.from_name)) {
+                if (!this.f24040i && (messageFwdHeader = ijVar.f23266k.fwd_from) != null && messageFwdHeader.from_id == null && !arrayList2.contains(messageFwdHeader.from_name)) {
                     arrayList2.add(messageFwdHeader.from_name);
                 }
             }
             Boolean bool = Boolean.TRUE;
-            kj kjVar = this.f24031b;
+            kj kjVar = this.f24035b;
             if (kjVar != null) {
-                sparseBooleanArray = kjVar.f23702g;
+                sparseBooleanArray = kjVar.f23706g;
             } else {
                 sparseBooleanArray = null;
             }
             kj kjVar2 = new kj(this, bool, 0, arrayList, j3, sparseBooleanArray);
-            this.f24031b = kjVar2;
-            if (kjVar2.f23700e.isEmpty()) {
-                this.f24031b = null;
+            this.f24035b = kjVar2;
+            if (kjVar2.f23704e.isEmpty()) {
+                this.f24035b = null;
             }
             ArrayList arrayList3 = new ArrayList();
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 ij ijVar2 = (ij) arrayList.get(i10);
                 if (ijVar2.p3()) {
-                    j11 = ijVar2.f23262k.from_id.user_id;
+                    j11 = ijVar2.f23266k.from_id.user_id;
                 } else {
-                    TLRPC.Chat M0 = qp.s1(ijVar2.I1).M0(Long.valueOf(ijVar2.f23262k.peer_id.channel_id));
+                    TLRPC.Chat M0 = qp.s1(ijVar2.I1).M0(Long.valueOf(ijVar2.f23266k.peer_id.channel_id));
                     if (t3.T(M0) && M0.megagroup && ijVar2.k3()) {
-                        j10 = ijVar2.f23262k.fwd_from.from_id.channel_id;
+                        j10 = ijVar2.f23266k.fwd_from.from_id.channel_id;
                     } else {
-                        j10 = ijVar2.f23262k.peer_id.channel_id;
+                        j10 = ijVar2.f23266k.peer_id.channel_id;
                     }
                     j11 = -j10;
                 }
@@ -181,12 +181,12 @@ public final class mj {
                 }
             }
             if (arrayList2.size() + arrayList3.size() > 1) {
-                this.f24037j = true;
+                this.f24041j = true;
                 return;
             }
             return;
         }
-        this.f24031b = null;
+        this.f24035b = null;
     }
 
     public final void e(int i7, TLRPC.WebPage webPage, CharSequence charSequence, ij ijVar, org.telegram.ui.sm smVar, ij ijVar2) {
@@ -207,9 +207,9 @@ public final class mj {
         int i10;
         int i11;
         float f10;
-        this.f24042o = false;
-        this.f24043p = false;
-        this.f24041n = true;
+        this.f24046o = false;
+        this.f24047p = false;
+        this.f24045n = true;
         if (this.v != webPage) {
             z9 = true;
         } else {
@@ -218,24 +218,24 @@ public final class mj {
         this.v = webPage;
         String str = null;
         if (TextUtils.isEmpty(charSequence) && this.v == null) {
-            this.f24032c = null;
+            this.f24036c = null;
         } else {
             if (charSequence == null) {
                 charSequence2 = "";
             } else {
                 charSequence2 = charSequence;
             }
-            kj kjVar = this.f24032c;
+            kj kjVar = this.f24036c;
             if (kjVar != null && !z9) {
                 z10 = false;
             } else {
                 z10 = true;
             }
-            if (kjVar == null && ijVar2 != null && (message2 = ijVar2.f23262k) != null) {
-                this.f24045r = message2.invert_media;
+            if (kjVar == null && ijVar2 != null && (message2 = ijVar2.f23266k) != null) {
+                this.f24049r = message2.invert_media;
                 TLRPC.MessageMedia messageMedia3 = message2.media;
                 if (messageMedia3 != null && messageMedia3.force_small_media) {
-                    this.f24044q = true;
+                    this.f24048q = true;
                 }
             }
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
@@ -248,13 +248,13 @@ public final class mj {
             tL_peerUser2.user_id = p10.i(i7).e();
             tL_message.entities = ui.b0(i7).W(charSequenceArr, true, true);
             tL_message.message = charSequenceArr[0].toString();
-            tL_message.invert_media = this.f24045r;
+            tL_message.invert_media = this.f24049r;
             if (webPage != null) {
                 tL_message.flags |= 512;
                 TLRPC.TL_messageMediaWebPage tL_messageMediaWebPage = new TLRPC.TL_messageMediaWebPage();
                 tL_message.media = tL_messageMediaWebPage;
                 tL_messageMediaWebPage.webpage = webPage;
-                boolean z17 = this.f24044q;
+                boolean z17 = this.f24048q;
                 tL_messageMediaWebPage.force_large_media = !z17;
                 tL_messageMediaWebPage.force_small_media = z17;
                 if (webPage.photo != null) {
@@ -262,22 +262,22 @@ public final class mj {
                 } else {
                     z16 = false;
                 }
-                this.f24042o = z16;
-                this.f24043p = ij.K4(webPage.document);
+                this.f24046o = z16;
+                this.f24047p = ij.K4(webPage.document);
             } else {
-                this.f24042o = false;
+                this.f24046o = false;
             }
             tL_message.out = true;
             tL_message.unread = false;
             if (ijVar != null) {
-                tL_message.replyMessage = ijVar.f23262k;
+                tL_message.replyMessage = ijVar.f23266k;
                 TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
                 tL_message.reply_to = tL_messageReplyHeader;
                 if (smVar != null) {
-                    tL_messageReplyHeader.quote_text = smVar.f49949i;
+                    tL_messageReplyHeader.quote_text = smVar.f49885i;
                     int i12 = tL_messageReplyHeader.flags;
                     tL_messageReplyHeader.flags = i12 | 64;
-                    ArrayList<TLRPC.MessageEntity> arrayList = smVar.f49950j;
+                    ArrayList<TLRPC.MessageEntity> arrayList = smVar.f49886j;
                     tL_messageReplyHeader.quote_entities = arrayList;
                     if (arrayList != null) {
                         tL_messageReplyHeader.flags = i12 | 192;
@@ -286,12 +286,12 @@ public final class mj {
             }
             Boolean bool = Boolean.TRUE;
             ij ijVar3 = new ij(i7, tL_message, true, false);
-            kj kjVar2 = new kj(this, bool, 2, k5.k(ijVar3), ij.B0(ijVar3.f23262k), null);
-            this.f24032c = kjVar2;
-            if (kjVar2.f23700e.isEmpty()) {
-                this.f24032c = null;
+            kj kjVar2 = new kj(this, bool, 2, k5.k(ijVar3), ij.B0(ijVar3.f23266k), null);
+            this.f24036c = kjVar2;
+            if (kjVar2.f23704e.isEmpty()) {
+                this.f24036c = null;
             } else {
-                ij ijVar4 = (ij) this.f24032c.f23700e.get(0);
+                ij ijVar4 = (ij) this.f24036c.f23704e.get(0);
                 CharSequence charSequence3 = ijVar4.v;
                 if ((charSequence3 instanceof Spanned) && !TextUtils.isEmpty(charSequence3)) {
                     CharSequence charSequence4 = ijVar4.v;
@@ -301,26 +301,26 @@ public final class mj {
                     } else {
                         z15 = true;
                     }
-                    this.f24041n = z15;
+                    this.f24045n = z15;
                 } else {
-                    CharSequence charSequence5 = ijVar4.f23318z;
+                    CharSequence charSequence5 = ijVar4.f23322z;
                     if ((charSequence5 instanceof Spanned) && !TextUtils.isEmpty(charSequence5)) {
-                        URLSpan[] uRLSpanArr2 = (URLSpan[]) ((Spanned) ijVar4.v).getSpans(0, ijVar4.f23318z.length(), URLSpan.class);
+                        URLSpan[] uRLSpanArr2 = (URLSpan[]) ((Spanned) ijVar4.v).getSpans(0, ijVar4.f23322z.length(), URLSpan.class);
                         if (uRLSpanArr2 != null && uRLSpanArr2.length > 1) {
                             z11 = false;
                         } else {
                             z11 = true;
                         }
-                        this.f24041n = z11;
+                        this.f24045n = z11;
                     }
                 }
-                if (!ijVar4.E0 && !ijVar4.L2 && (ij.n1(ijVar4.f23262k) instanceof TLRPC.TL_messageMediaWebPage) && (ij.n1(ijVar4.f23262k).webpage instanceof TLRPC.TL_webPage)) {
+                if (!ijVar4.E0 && !ijVar4.L2 && (ij.n1(ijVar4.f23266k) instanceof TLRPC.TL_messageMediaWebPage) && (ij.n1(ijVar4.f23266k).webpage instanceof TLRPC.TL_webPage)) {
                     z12 = true;
                 } else {
                     z12 = false;
                 }
                 if (z12) {
-                    webPage2 = ij.n1(ijVar4.f23262k).webpage;
+                    webPage2 = ij.n1(ijVar4.f23266k).webpage;
                 } else {
                     webPage2 = null;
                 }
@@ -332,67 +332,67 @@ public final class mj {
                 } else {
                     z13 = false;
                 }
-                this.f24042o = z13;
-                if (z10 && ijVar2 != null && (message = ijVar2.f23262k) != null && (messageMedia2 = message.media) != null) {
-                    if (!messageMedia2.force_small_media && (!ijVar4.A3() || ijVar2.f23262k.media.force_large_media)) {
+                this.f24046o = z13;
+                if (z10 && ijVar2 != null && (message = ijVar2.f23266k) != null && (messageMedia2 = message.media) != null) {
+                    if (!messageMedia2.force_small_media && (!ijVar4.A3() || ijVar2.f23266k.media.force_large_media)) {
                         z14 = false;
                     } else {
                         z14 = true;
                     }
-                    this.f24044q = z14;
+                    this.f24048q = z14;
                 } else if (z10) {
-                    this.f24044q = ijVar4.A3();
+                    this.f24048q = ijVar4.A3();
                 }
-                TLRPC.Message message3 = ijVar4.f23262k;
+                TLRPC.Message message3 = ijVar4.f23266k;
                 if (message3 != null && (messageMedia = message3.media) != null) {
-                    boolean z18 = this.f24044q;
+                    boolean z18 = this.f24048q;
                     messageMedia.force_large_media = !z18;
                     messageMedia.force_small_media = z18;
                 }
             }
         }
-        ja0 ja0Var = this.f24050x;
-        if (ja0Var != null) {
-            mj mjVar = ja0Var.d;
+        ia0 ia0Var = this.f24054x;
+        if (ia0Var != null) {
+            mj mjVar = ia0Var.d;
             int i13 = 0;
             while (true) {
-                View[] viewArr = ja0Var.f34974f.f39950e;
+                View[] viewArr = ia0Var.f34583f.f38893e;
                 if (i13 < viewArr.length) {
                     View view = viewArr[i13];
                     if (view != null) {
-                        da0 da0Var = (da0) view;
-                        FrameLayout frameLayout = da0Var.F;
-                        if (da0Var.f32915a == 2) {
-                            ia0 ia0Var = da0Var.H;
-                            ia0 ia0Var2 = da0Var.G;
-                            if (mjVar.f24041n && !mjVar.f24042o) {
+                        ca0 ca0Var = (ca0) view;
+                        FrameLayout frameLayout = ca0Var.F;
+                        if (ca0Var.f32519a == 2) {
+                            ha0 ha0Var = ca0Var.H;
+                            ha0 ha0Var2 = ca0Var.G;
+                            if (mjVar.f24045n && !mjVar.f24046o) {
                                 i10 = 8;
                             } else {
                                 i10 = 0;
                             }
                             frameLayout.setVisibility(i10);
                             int i14 = 4;
-                            if (mjVar.f24043p) {
+                            if (mjVar.f24047p) {
                                 i11 = 4;
                             } else {
                                 i11 = 0;
                             }
-                            ia0Var2.setVisibility(i11);
-                            if (mjVar.f24043p) {
+                            ha0Var2.setVisibility(i11);
+                            if (mjVar.f24047p) {
                                 i14 = 0;
                             }
-                            ia0Var.setVisibility(i14);
+                            ha0Var.setVisibility(i14);
                             ViewPropertyAnimator animate = frameLayout.animate();
-                            if (mjVar.f24042o) {
+                            if (mjVar.f24046o) {
                                 f10 = 1.0f;
                             } else {
                                 f10 = 0.5f;
                             }
                             animate.alpha(f10).start();
-                            ia0Var2.a(mjVar.f24044q, true);
-                            ia0Var.a(mjVar.f24044q, true);
-                            da0Var.E.a(!mjVar.f24045r, true);
-                            da0Var.i();
+                            ha0Var2.a(mjVar.f24048q, true);
+                            ha0Var.a(mjVar.f24048q, true);
+                            ca0Var.E.a(!mjVar.f24049r, true);
+                            ca0Var.i();
                         }
                     }
                     i13++;
@@ -408,7 +408,7 @@ public final class mj {
         org.telegram.ui.sm smVar2;
         boolean z9;
         int i7;
-        if (!this.f24036i && ijVar != null && (i7 = ijVar.D) != 10 && i7 != 11 && i7 != 22 && i7 != 21 && i7 != 18 && i7 != 25 && i7 != 16) {
+        if (!this.f24040i && ijVar != null && (i7 = ijVar.D) != 10 && i7 != 11 && i7 != 22 && i7 != 21 && i7 != 18 && i7 != 25 && i7 != 16) {
             ijVar2 = ijVar;
             smVar2 = smVar;
         } else {
@@ -420,30 +420,30 @@ public final class mj {
         } else {
             z9 = false;
         }
-        this.f24048u = z9;
+        this.f24052u = z9;
         if (ijVar2 == null && smVar2 == null) {
-            this.f24030a = null;
+            this.f24034a = null;
             this.d = null;
             return;
         }
         if (djVar != null) {
-            this.f24030a = new kj(this, null, 1, djVar.d, j3, null);
+            this.f24034a = new kj(this, null, 1, djVar.d, j3, null);
         } else {
             ij ijVar3 = ijVar2;
             if (ijVar3 == null) {
-                ijVar3 = smVar2.f49943a;
+                ijVar3 = smVar2.f49879a;
             }
-            this.f24030a = new kj(this, null, 1, k5.k(ijVar3), j3, null);
+            this.f24034a = new kj(this, null, 1, k5.k(ijVar3), j3, null);
         }
-        if (!this.f24030a.f23700e.isEmpty()) {
+        if (!this.f24034a.f23704e.isEmpty()) {
             this.d = smVar2;
             if (smVar2 != null) {
-                this.f24033e = smVar2.f49944b;
-                this.f24034f = smVar2.f49945c;
+                this.f24037e = smVar2.f49880b;
+                this.f24038f = smVar2.f49881c;
                 return;
             }
             return;
         }
-        this.f24030a = null;
+        this.f24034a = null;
     }
 }

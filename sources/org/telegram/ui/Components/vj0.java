@@ -1,45 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewParent;
-import android.widget.FrameLayout;
-import androidx.recyclerview.widget.RecyclerView;
-public final class vj0 extends FrameLayout {
-    public View f39118a;
+import android.app.Activity;
+import android.widget.ImageView;
+public final class vj0 extends tb {
+    public final wj0 f39015c;
 
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        View view = this.f39118a;
-        if (view == null) {
-            ViewParent parent = getParent();
-            while (true) {
-                if (parent instanceof View) {
-                    if (parent instanceof RecyclerView) {
-                        view = (RecyclerView) parent;
-                        break;
-                    }
-                    parent = parent.getParent();
-                } else {
-                    view = null;
-                    break;
-                }
-            }
-        }
-        int i11 = 0;
-        if (view != null) {
-            i11 = Math.max(0, (view.getMeasuredHeight() - view.getPaddingTop()) - view.getPaddingBottom());
-        }
-        if (i11 > 0) {
-            i10 = View.MeasureSpec.makeMeasureSpec(i11, 1073741824);
-        }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
+    public vj0(Activity activity, String str) {
+        super(activity, null);
+        this.f38269b.setText(str);
+        this.f38269b.setTranslationY(-1.0f);
+        ImageView imageView = this.f38268a;
+        wj0 wj0Var = new wj0();
+        this.f39015c = wj0Var;
+        imageView.setImageDrawable(wj0Var);
     }
 
-    public void setViewportView(View view) {
-        if (this.f39118a == view) {
-            return;
-        }
-        this.f39118a = view;
-        requestLayout();
+    @Override
+    public final void onEnterTransitionEnd() {
+        super.onEnterTransitionEnd();
+        wj0 wj0Var = this.f39015c;
+        wj0Var.getClass();
+        wj0Var.f39987g = System.currentTimeMillis();
+        wj0Var.invalidateSelf();
+    }
+
+    @Override
+    public final void onExitTransitionEnd() {
+        super.onExitTransitionEnd();
+        wj0 wj0Var = this.f39015c;
+        wj0Var.f39987g = -1L;
+        wj0Var.invalidateSelf();
     }
 }

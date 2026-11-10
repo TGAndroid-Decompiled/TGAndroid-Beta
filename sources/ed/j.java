@@ -5,18 +5,18 @@ import java.util.regex.Pattern;
 import kf.p;
 import kf.s;
 public final class j extends h {
-    public static final Pattern f10759e = Pattern.compile(" *$");
+    public static final Pattern f10764e = Pattern.compile(" *$");
 
     @Override
     public final p b() {
         int i7;
         this.d++;
-        p pVar = (p) this.f10745b.d;
+        p pVar = (p) this.f10750b.d;
         if (pVar instanceof s) {
             s sVar = (s) pVar;
             if (sVar.f17286g.endsWith(" ")) {
                 String str = sVar.f17286g;
-                Matcher matcher = f10759e.matcher(str);
+                Matcher matcher = f10764e.matcher(str);
                 if (matcher.find()) {
                     i7 = matcher.end() - matcher.start();
                 } else {

@@ -6,7 +6,7 @@ import org.telegram.messenger.qp;
 import org.telegram.messenger.v10;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.kr;
 public final class b implements v10 {
     public final int f17013a;
 
@@ -39,7 +39,7 @@ public final class b implements v10 {
             case 4:
                 TLRPC.Bool bool4 = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error5 = (TLRPC.TL_error) obj2;
-                int i11 = lr.f35802z2;
+                int i11 = kr.C2;
                 return;
             default:
                 Boolean bool5 = (Boolean) obj;

@@ -1,53 +1,276 @@
 package org.telegram.ui;
-public final class pe implements org.telegram.messenger.u10 {
-    public final int f48703a;
-    public final org.telegram.ui.ActionBar.f2 f48704b;
 
-    public pe(int i7, org.telegram.ui.ActionBar.f2 f2Var) {
-        this.f48703a = i7;
-        this.f48704b = f2Var;
+import android.util.Pair;
+import java.util.Comparator;
+import org.telegram.messenger.camera.Size;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class pe implements Comparator {
+    public final int f48757a;
+
+    public pe(int i7) {
+        this.f48757a = i7;
     }
 
     @Override
-    public final Object run() {
-        org.telegram.ui.ActionBar.f2 f2Var;
-        boolean z9;
-        switch (this.f48703a) {
+    public final int compare(Object obj, Object obj2) {
+        int e12;
+        int e13;
+        long[] jArr;
+        long[] jArr2;
+        long j3;
+        long j10;
+        long j11;
+        switch (this.f48757a) {
             case 0:
-                f2Var = (cn) this.f48704b;
-                break;
+                return ((org.telegram.messenger.ij) obj).e1() - ((org.telegram.messenger.ij) obj2).e1();
             case 1:
-                cn cnVar = (cn) this.f48704b;
-                if (org.telegram.messenger.sc.e(65536) && org.telegram.ui.Components.ez0.c()) {
-                    org.telegram.ui.Components.ez0 ez0Var = cnVar.f44675x0;
-                    if (ez0Var == null || ez0Var.f33528e) {
-                        if (cnVar.getParentActivity() != null && org.telegram.ui.Components.ez0.c() && cnVar.f44700z0 != null && cnVar.l1 != null) {
-                            org.telegram.ui.Components.ez0 ez0Var2 = cnVar.f44675x0;
-                            if (ez0Var2 != null) {
-                                org.telegram.messenger.g0.E2(ez0Var2);
-                            }
-                            org.telegram.ui.Components.ez0 ez0Var3 = new org.telegram.ui.Components.ez0(cnVar.getParentActivity(), new org.telegram.ui.ActionBar.p(29, cnVar, r2));
-                            cnVar.f44675x0 = ez0Var3;
-                            org.telegram.ui.Components.ez0[] ez0VarArr = {ez0Var3};
-                            ql qlVar = cnVar.l1;
-                            qlVar.addView(ez0Var3, qlVar.indexOfChild(cnVar.f44700z0) + 1, c8.ha.c(-1.0f, -1));
+                e12 = ((org.telegram.messenger.ij) obj2).e1();
+                e13 = ((org.telegram.messenger.ij) obj).e1();
+                break;
+            case 2:
+                return ((Integer) obj2).compareTo((Integer) obj);
+            case 3:
+                e12 = ((org.telegram.messenger.ij) obj2).e1();
+                e13 = ((org.telegram.messenger.ij) obj).e1();
+                break;
+            case 4:
+                TLObject tLObject = (TLObject) obj;
+                TLObject tLObject2 = (TLObject) obj2;
+                int o02 = rq.o0(tLObject);
+                int o03 = rq.o0(tLObject2);
+                if (o02 > o03) {
+                    return 1;
+                }
+                if (o02 < o03) {
+                    return -1;
+                }
+                if ((tLObject instanceof TLRPC.ChannelParticipant) && (tLObject2 instanceof TLRPC.ChannelParticipant)) {
+                    return (int) (org.telegram.messenger.ij.B1(((TLRPC.ChannelParticipant) tLObject).peer) - org.telegram.messenger.ij.B1(((TLRPC.ChannelParticipant) tLObject2).peer));
+                }
+                return 0;
+            case 5:
+                int o04 = rq.o0((TLObject) obj);
+                int o05 = rq.o0((TLObject) obj2);
+                if (o04 > o05) {
+                    return 1;
+                }
+                if (o04 < o05) {
+                    return -1;
+                }
+                return 0;
+            case 6:
+                e12 = ((org.telegram.ui.Components.b9) obj2).f32167b;
+                e13 = ((org.telegram.ui.Components.b9) obj).f32167b;
+                break;
+            case 7:
+                e12 = ((org.telegram.ui.Components.b9) obj2).f32167b;
+                e13 = ((org.telegram.ui.Components.b9) obj).f32167b;
+                break;
+            case 8:
+                return Long.compare(((org.telegram.ui.Components.lc) obj).f35644c, ((org.telegram.ui.Components.lc) obj2).f35644c);
+            case 9:
+                Size size = (Size) obj;
+                Size size2 = (Size) obj2;
+                float abs = Math.abs(1.0f - (Math.min(size.mHeight, size.mWidth) / Math.max(size.mHeight, size.mWidth)));
+                float abs2 = Math.abs(1.0f - (Math.min(size2.mHeight, size2.mWidth) / Math.max(size2.mHeight, size2.mWidth)));
+                if (abs < abs2) {
+                    return -1;
+                }
+                if (abs > abs2) {
+                    return 1;
+                }
+                return 0;
+            case 10:
+                ad.a aVar = (ad.a) obj;
+                ad.a aVar2 = (ad.a) obj2;
+                int compare = Integer.compare(aVar.f1036b, aVar2.f1036b);
+                if (compare == 0) {
+                    return Integer.compare(aVar2.d, aVar.d);
+                }
+                return compare;
+            case 11:
+                e12 = ((Integer) obj2).intValue();
+                e13 = ((Integer) obj).intValue();
+                break;
+            case 12:
+                float f10 = ((org.telegram.ui.Components.ne0) obj).f36302a;
+                float f11 = ((org.telegram.ui.Components.ne0) obj2).f36302a;
+                if (f10 > f11) {
+                    return -1;
+                }
+                if (f10 < f11) {
+                    return 1;
+                }
+                return 0;
+            case 13:
+                return Float.compare(((org.telegram.ui.Components.lj0) obj).f35681a, ((org.telegram.ui.Components.lj0) obj2).f35681a);
+            case 14:
+                Pair pair = (Pair) obj;
+                Pair pair2 = (Pair) obj2;
+                if (((Float) pair.first).floatValue() > ((Float) pair2.first).floatValue()) {
+                    return 1;
+                }
+                if (((Float) pair2.first).floatValue() > ((Float) pair.first).floatValue()) {
+                    return -1;
+                }
+                return 0;
+            case 15:
+                Pair pair3 = (Pair) obj;
+                Pair pair4 = (Pair) obj2;
+                if (((Float) pair3.first).floatValue() > ((Float) pair4.first).floatValue()) {
+                    return 1;
+                }
+                if (((Float) pair4.first).floatValue() > ((Float) pair3.first).floatValue()) {
+                    return -1;
+                }
+                return 0;
+            case 16:
+                int i7 = ((org.telegram.ui.Components.bo0) obj).f32308c;
+                int i10 = ((org.telegram.ui.Components.bo0) obj2).f32308c;
+                if (i7 < i10) {
+                    return 1;
+                }
+                if (i7 > i10) {
+                    return -1;
+                }
+                return 0;
+            case 17:
+                e12 = ((org.telegram.ui.Components.yr0) obj2).f40643c;
+                e13 = ((org.telegram.ui.Components.yr0) obj).f40643c;
+                break;
+            case 18:
+                return String.valueOf(org.telegram.ui.ActionBar.v4.c(((Integer) obj).intValue())).compareTo(String.valueOf(org.telegram.ui.ActionBar.v4.c(((Integer) obj2).intValue())));
+            case 19:
+                ((org.telegram.ui.Components.o01) obj2).getClass();
+                ((org.telegram.ui.Components.o01) obj).getClass();
+                return Integer.compare(0, 0);
+            case 20:
+                Pair pair5 = (Pair) obj;
+                Pair pair6 = (Pair) obj2;
+                if (((Float) pair5.first).floatValue() > ((Float) pair6.first).floatValue()) {
+                    return 1;
+                }
+                if (((Float) pair6.first).floatValue() > ((Float) pair5.first).floatValue()) {
+                    return -1;
+                }
+                return 0;
+            case 21:
+                return Integer.compare(((org.telegram.ui.Components.voip.f) obj2).f39193b, ((org.telegram.ui.Components.voip.f) obj).f39193b);
+            case 22:
+                return Integer.compare(((org.telegram.ui.Components.voip.f) obj).f39194c, ((org.telegram.ui.Components.voip.f) obj2).f39194c);
+            case 23:
+                org.telegram.messenger.y5 y5Var = (org.telegram.messenger.y5) obj;
+                org.telegram.messenger.y5 y5Var2 = (org.telegram.messenger.y5) obj2;
+                int x10 = org.telegram.messenger.z5.x(8);
+                int i11 = 0;
+                boolean z9 = false;
+                boolean z10 = false;
+                while (true) {
+                    int[] iArr = y5Var.f26593a;
+                    jArr = y5Var.f26594b;
+                    if (i11 < iArr.length) {
+                        int i12 = iArr[i11];
+                        if ((i12 & 4) != 0) {
+                            z9 = true;
+                        }
+                        if ((i12 & 8) != 0) {
+                            z10 = true;
+                        }
+                        if (!z9 || !z10) {
+                            i11++;
                         }
                     }
-                    return cnVar.f44675x0;
                 }
-                return null;
-            case 2:
-                ((cn) this.f48704b).getClass();
-                if (org.telegram.ui.Components.ez0.c() && org.telegram.messenger.sc.e(65536)) {
-                    z9 = true;
+                int i13 = 0;
+                boolean z11 = false;
+                boolean z12 = false;
+                while (true) {
+                    int[] iArr2 = y5Var2.f26593a;
+                    jArr2 = y5Var2.f26594b;
+                    if (i13 < iArr2.length) {
+                        int i14 = iArr2[i13];
+                        if ((i14 & 4) != 0) {
+                            z11 = true;
+                        }
+                        if ((i14 & 8) != 0) {
+                            z12 = true;
+                        }
+                        if (!z11 || !z12) {
+                            i13++;
+                        }
+                    }
+                }
+                long j12 = 0;
+                if (z9) {
+                    j3 = jArr[1];
                 } else {
-                    z9 = false;
+                    j3 = 0;
                 }
-                return Boolean.valueOf(z9);
+                if (z10) {
+                    j10 = jArr[x10];
+                } else {
+                    j10 = 0;
+                }
+                long j13 = j3 + j10 + (y5Var.f26596e ? 1L : 0L);
+                if (z11) {
+                    j11 = jArr2[1];
+                } else {
+                    j11 = 0;
+                }
+                if (z12) {
+                    j12 = jArr2[x10];
+                }
+                int i15 = (j13 > (j11 + j12 + (y5Var2.f26596e ? 1L : 0L)) ? 1 : (j13 == (j11 + j12 + (y5Var2.f26596e ? 1L : 0L)) ? 0 : -1));
+                if (i15 > 0) {
+                    return 1;
+                }
+                if (i15 < 0) {
+                    return -1;
+                }
+                return 0;
+            case 24:
+                return Long.compare(((jt) obj2).f35644c, ((jt) obj).f35644c);
+            case 25:
+                int i16 = (org.telegram.messenger.p10.i(((Integer) obj).intValue()).Y > org.telegram.messenger.p10.i(((Integer) obj2).intValue()).Y ? 1 : (org.telegram.messenger.p10.i(((Integer) obj).intValue()).Y == org.telegram.messenger.p10.i(((Integer) obj2).intValue()).Y ? 0 : -1));
+                if (i16 > 0) {
+                    return 1;
+                }
+                if (i16 < 0) {
+                    return -1;
+                }
+                return 0;
+            case 26:
+                int i17 = ((org.telegram.messenger.d5) obj).f21999l;
+                int i18 = ((org.telegram.messenger.d5) obj2).f21999l;
+                if (i17 > i18) {
+                    return -1;
+                }
+                if (i17 < i18) {
+                    return 1;
+                }
+                return 0;
+            case 27:
+                int i19 = (org.telegram.messenger.p10.i(((Integer) obj).intValue()).Y > org.telegram.messenger.p10.i(((Integer) obj2).intValue()).Y ? 1 : (org.telegram.messenger.p10.i(((Integer) obj).intValue()).Y == org.telegram.messenger.p10.i(((Integer) obj2).intValue()).Y ? 0 : -1));
+                if (i19 > 0) {
+                    return 1;
+                }
+                if (i19 < 0) {
+                    return -1;
+                }
+                return 0;
+            case 28:
+                int i20 = (org.telegram.messenger.p10.i(((Integer) obj).intValue()).Y > org.telegram.messenger.p10.i(((Integer) obj2).intValue()).Y ? 1 : (org.telegram.messenger.p10.i(((Integer) obj).intValue()).Y == org.telegram.messenger.p10.i(((Integer) obj2).intValue()).Y ? 0 : -1));
+                if (i20 > 0) {
+                    return 1;
+                }
+                if (i20 < 0) {
+                    return -1;
+                }
+                return 0;
             default:
-                f2Var = (ProfileActivity) this.f48704b;
-                break;
+                return ((String) obj).compareTo((String) obj2);
         }
-        return f2Var.getSimpleMenuOverlay();
+        return e12 - e13;
     }
 }

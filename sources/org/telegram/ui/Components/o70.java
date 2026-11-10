@@ -1,17 +1,24 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class o70 extends mg0 {
-    public final r70 f36663q1;
+import android.view.View;
+public final class o70 extends y8 {
+    public final bi.s1 f36532e;
 
-    public o70(r70 r70Var, Context context, String str, String str2, String str3) {
-        super(context, str, str2, str3, false);
-        this.f36663q1 = r70Var;
+    public o70(bi.s1 s1Var, Context context) {
+        super(context, false);
+        this.f36532e = s1Var;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.f36663q1.E = null;
+    public final void onMeasure(int i7, int i10) {
+        int e10;
+        int min = Math.min(3, ((q70) this.f36532e.d).f37164x);
+        if (min == 0) {
+            e10 = 0;
+        } else {
+            e10 = com.google.android.recaptcha.internal.a.e(min, 1, 20, 32);
+        }
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(e10), 1073741824), i10);
     }
 }

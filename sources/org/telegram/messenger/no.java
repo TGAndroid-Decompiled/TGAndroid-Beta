@@ -2,16 +2,16 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class no extends x2 {
-    public final qp f24213e;
+    public final qp f24217e;
 
     public no(qp qpVar) {
-        this.f24213e = qpVar;
+        this.f24217e = qpVar;
     }
 
     @Override
     public final void e(int i7, Object obj, v10 v10Var) {
         Integer num = (Integer) obj;
-        this.f24213e.getMessagesStorage().f26719a.c(new lo(i7, (v2) v10Var, 0));
+        this.f24217e.getMessagesStorage().f26723a.c(new lo(i7, (v2) v10Var, 0));
     }
 
     @Override
@@ -19,13 +19,13 @@ public final class no extends x2 {
         Integer num = (Integer) obj;
         TLRPC.TL_help_getAppConfig tL_help_getAppConfig = new TLRPC.TL_help_getAppConfig();
         tL_help_getAppConfig.hash = (int) j3;
-        this.f24213e.getConnectionsManager().sendRequest(tL_help_getAppConfig, new mo(w2Var, 0));
+        this.f24217e.getConnectionsManager().sendRequest(tL_help_getAppConfig, new mo(w2Var, 0));
     }
 
     @Override
     public final void g(int i7, Object obj, Object obj2) {
         Integer num = (Integer) obj;
-        yr.a0(i7).f26719a.c(new x0(i7, (TLRPC.TL_help_appConfig) obj2, 5));
+        yr.a0(i7).f26723a.c(new x0(i7, (TLRPC.TL_help_appConfig) obj2, 5));
     }
 
     @Override

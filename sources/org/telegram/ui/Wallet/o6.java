@@ -1,24 +1,33 @@
 package org.telegram.ui.Wallet;
-public final class o6 implements r1.d {
-    public final int f42942a;
-    public final u6 f42943b;
 
-    public o6(u6 u6Var, int i7) {
-        this.f42942a = i7;
-        this.f42943b = u6Var;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.ui.Components.ci;
+public final class o6 extends AnimatorListenerAdapter {
+    public final ci f42909a;
+    public final x6 f42910b;
+    public final p6 f42911c;
+
+    public o6(p6 p6Var, ci ciVar, x6 x6Var) {
+        this.f42911c = p6Var;
+        this.f42909a = ciVar;
+        this.f42910b = x6Var;
     }
 
     @Override
-    public final void a(r1.g gVar, float f10, float f11) {
-        switch (this.f42942a) {
-            case 0:
-                u6 u6Var = this.f42943b;
-                u6Var.f43178c.setScaleX(f10);
-                u6Var.f43178c.setScaleY(f10);
-                return;
-            default:
-                this.f42943b.P = f11;
-                return;
+    public final void onAnimationCancel(Animator animator) {
+        this.f42911c.a(false);
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        this.f42911c.a(true);
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        if (this.f42909a != null) {
+            org.telegram.messenger.g0.v1(this.f42910b);
         }
     }
 }

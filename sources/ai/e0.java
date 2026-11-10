@@ -53,10 +53,10 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.ActionBar.v2;
-import org.telegram.ui.Components.r5;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.w2;
+import org.telegram.ui.Components.q5;
+import org.telegram.ui.Components.wq;
 import org.telegram.ui.Stories.recorder.FfmpegAudioWaveformLoader;
 import org.telegram.ui.e4;
 import org.telegram.ui.g4;
@@ -99,14 +99,14 @@ public final class e0 implements Runnable {
                     b6Var.setScaleY(0.5f);
                     b6Var.setAlpha(0.0f);
                     ViewPropertyAnimator duration = b6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(520L);
-                    xq xqVar = xq.h;
-                    ViewPropertyAnimator interpolator = duration.setInterpolator(xqVar);
+                    wq wqVar = wq.h;
+                    ViewPropertyAnimator interpolator = duration.setInterpolator(wqVar);
                     interpolator.setUpdateListener(new ah.h(d6Var, 4));
                     interpolator.start();
-                    w5Var.f4961a[i10].setVisibility(8);
+                    w5Var.f4965a[i10].setVisibility(8);
                     z5Var.setVisibility(0);
                     z5Var.setAlpha(0.0f);
-                    z5Var.animate().alpha(0.5f).setDuration(820L).setInterpolator(xqVar).start();
+                    z5Var.animate().alpha(0.5f).setDuration(820L).setInterpolator(wqVar).start();
                     return;
                 }
                 FrameLayout frameLayout = new FrameLayout(d6Var.getContext());
@@ -118,8 +118,8 @@ public final class e0 implements Runnable {
                 imageView.setAlpha(0.0f);
                 imageView.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).start();
                 d6Var.f3670l0 = imageView;
-                frameLayout.setBackground(new t6(org.telegram.messenger.g0.L(12.0f), l6.r1(0.075f, -1)));
-                w5Var.f4961a[i10].setVisibility(8);
+                frameLayout.setBackground(new t6(org.telegram.messenger.g0.L(12.0f), m6.r1(0.075f, -1)));
+                w5Var.f4965a[i10].setVisibility(8);
                 frameLayout.setRotation(180.0f);
                 w5Var.f(i10, frameLayout);
                 d6Var.F.a(iArr[2], iArr[3]);
@@ -135,10 +135,10 @@ public final class e0 implements Runnable {
                 ea eaVar = (ea) this.f1165c;
                 int i11 = this.f1164b;
                 TLObject tLObject = (TLObject) this.d;
-                boolean[] zArr = eaVar.f3822r;
-                ArrayList[] arrayListArr = eaVar.f3821q;
-                int i12 = eaVar.f3807a;
-                eaVar.f3824t[i11] = false;
+                boolean[] zArr = eaVar.f3819r;
+                ArrayList[] arrayListArr = eaVar.f3818q;
+                int i12 = eaVar.f3804a;
+                eaVar.f3821t[i11] = false;
                 if (tLObject instanceof TL_stars.StarsStatus) {
                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject;
                     qp.s1(i12).Y3(starsStatus.users, false);
@@ -150,12 +150,12 @@ public final class e0 implements Runnable {
                         z9 = true;
                     }
                     zArr[i11] = z9;
-                    boolean[] zArr2 = eaVar.f3825u;
+                    boolean[] zArr2 = eaVar.f3822u;
                     if ((starsStatus.flags & 1) != 0) {
                         z10 = false;
                     }
                     zArr2[i11] = z10;
-                    String[] strArr = eaVar.f3823s;
+                    String[] strArr = eaVar.f3820s;
                     if (!z10) {
                         str = starsStatus.next_offset;
                     }
@@ -171,11 +171,11 @@ public final class e0 implements Runnable {
                 return;
             case 5:
                 ch.o oVar = (ch.o) this.f1165c;
-                r5 r5Var = (r5) this.d;
+                q5 q5Var = (q5) this.d;
                 int i14 = this.f1164b;
                 Editable text = oVar.h.getText();
-                int spanStart = text.getSpanStart(r5Var);
-                int spanEnd = text.getSpanEnd(r5Var);
+                int spanStart = text.getSpanStart(q5Var);
+                int spanEnd = text.getSpanEnd(q5Var);
                 int i15 = spanEnd - spanStart;
                 if (spanStart != -1 && spanEnd != -1) {
                     oVar.h.getText().delete(spanStart, spanEnd);
@@ -209,12 +209,12 @@ public final class e0 implements Runnable {
             case 8:
                 int i17 = this.f1164b;
                 q9 q9Var = ((h9) this.f1165c).d;
-                g9 g9Var = q9Var.f9624n0;
+                g9 g9Var = q9Var.f9629n0;
                 int i18 = q9Var.h;
                 g9Var.A0 = (ArrayList) this.d;
-                g9Var.f9937y0 = i18;
+                g9Var.f9942y0 = i18;
                 g9Var.setAdapter(null);
-                g9Var.setAdapter(g9Var.f9938z0);
+                g9Var.setAdapter(g9Var.f9943z0);
                 g9Var.setCurrentItem(i17);
                 g9Var.C0 = true;
                 return;
@@ -228,15 +228,15 @@ public final class e0 implements Runnable {
                 o5 o5Var = (o5) this.f1165c;
                 sg.g gVar = (sg.g) this.d;
                 int i19 = this.f1164b;
-                if (o5Var.f12553x0.getCurrentBrush() instanceof sg.g) {
+                if (o5Var.f12557x0.getCurrentBrush() instanceof sg.g) {
                     o5Var.L0 = true;
                 }
                 o5Var.w(gVar);
                 tg.h1 h1Var = o5Var.T0;
                 int i20 = h1Var.d + 1;
                 h1Var.a(i20);
-                org.telegram.messenger.g0.R3(h1Var.f55726a[i20], i19);
-                h1Var.f55729e = true;
+                org.telegram.messenger.g0.R3(h1Var.f55725a[i20], i19);
+                h1Var.f55728e = true;
                 return;
             case 12:
                 org.telegram.messenger.g0.h3(new bg.m0(this.f1164b, ((yr) this.f1165c).l0(new ArrayList((HashSet) this.d)), 8));
@@ -252,10 +252,10 @@ public final class e0 implements Runnable {
                     h2.q qVar = (h2.q) it.next();
                     if (!qVar.d) {
                         if (i21 != -1) {
-                            qVar.f14137b.b(i21);
+                            qVar.f14139b.b(i21);
                         }
-                        qVar.f14138c = true;
-                        oVar2.invoke(qVar.f14136a);
+                        qVar.f14140c = true;
+                        oVar2.invoke(qVar.f14138a);
                     }
                 }
                 return;
@@ -279,8 +279,8 @@ public final class e0 implements Runnable {
                 int i23 = this.f1164b;
                 if (tLObject3 instanceof TLRPC.TL_webViewResultUrl) {
                     TLRPC.TL_webViewResultUrl tL_webViewResultUrl = (TLRPC.TL_webViewResultUrl) tLObject3;
-                    c4Var.f14597y = tL_webViewResultUrl.query_id;
-                    c4Var.f14592n.t(i23, tL_webViewResultUrl.url, tL_webViewResultUrl.same_origin);
+                    c4Var.f14599y = tL_webViewResultUrl.query_id;
+                    c4Var.f14594n.t(i23, tL_webViewResultUrl.url, tL_webViewResultUrl.same_origin);
                     org.telegram.messenger.g0.h3(c4Var.U);
                     return;
                 }
@@ -306,18 +306,18 @@ public final class e0 implements Runnable {
                 return;
             case 18:
                 kg.y yVar = (kg.y) this.f1165c;
-                yVar.f17586b.add(this.f1164b, (TL_account.TL_businessChatLink) this.d);
-                qs.f(yVar.f17585a).k(125, new Object[0]);
+                yVar.f17589b.add(this.f1164b, (TL_account.TL_businessChatLink) this.d);
+                qs.f(yVar.f17588a).k(125, new Object[0]);
                 return;
             case 19:
                 Pair pair = (Pair) this.d;
-                ((l2.g1) this.f1165c).f17822b.h.N(((Integer) pair.first).intValue(), (x2.g0) pair.second, this.f1164b);
+                ((l2.g1) this.f1165c).f17825b.h.N(((Integer) pair.first).intValue(), (x2.f0) pair.second, this.f1164b);
                 return;
             case 20:
                 int i26 = this.f1164b;
                 p5 m10 = ((m5) this.f1165c).getGrid().m((TL_iv.pageTableCell) this.d);
                 if (m10 != null) {
-                    li.g1 g1Var = m10.f18778a;
+                    li.g1 g1Var = m10.f18781a;
                     g1Var.N();
                     g1Var.setSelection(Math.max(0, Math.min(i26, g1Var.length())));
                     return;
@@ -326,9 +326,9 @@ public final class e0 implements Runnable {
             case 21:
                 li.a aVar = (li.a) this.d;
                 int i27 = this.f1164b;
-                a6 a6Var = ((u5) this.f1165c).f18925a;
+                a6 a6Var = ((u5) this.f1165c).f18928a;
                 if (a6Var.D != null) {
-                    a6.e(aVar.f18392b, "");
+                    a6.e(aVar.f18395b, "");
                     ((c3) a6Var.D).c(aVar, i27);
                     return;
                 }
@@ -345,22 +345,22 @@ public final class e0 implements Runnable {
             case 25:
                 int i28 = this.f1164b;
                 Context context = (Context) this.f1165c;
-                v2[] v2VarArr = (v2[]) this.d;
+                w2[] w2VarArr = (w2[]) this.d;
                 String str3 = qp.s1(i28).O6;
                 if (!str3.startsWith("http://") && !str3.startsWith("https://")) {
                     str3 = "https://".concat(str3);
                 }
                 vf.c.t(context, str3);
-                v2VarArr[0].dismiss();
+                w2VarArr[0].dismiss();
                 return;
             case 26:
                 g4 g4Var = (g4) this.f1165c;
                 String str4 = (String) this.d;
                 int i29 = this.f1164b;
-                HashMap hashMap = new HashMap(g4Var.f45902u0[0].f47168c.f45180x);
-                ArrayList arrayList2 = new ArrayList(g4Var.f45902u0[0].f47168c.f45181y);
+                HashMap hashMap = new HashMap(g4Var.f45971u0[0].f47143c.f45124x);
+                ArrayList arrayList2 = new ArrayList(g4Var.f45971u0[0].f47143c.f45125y);
                 g4Var.W0 = null;
-                Utilities.f21338g.c(new ub(g4Var, arrayList2, hashMap, str4, i29, 8));
+                Utilities.f21343g.c(new ub(g4Var, arrayList2, hashMap, str4, i29, 8));
                 return;
             case 27:
                 g4 g4Var2 = (g4) this.f1165c;
@@ -379,7 +379,7 @@ public final class e0 implements Runnable {
                 int i31 = this.f1164b;
                 TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = (TLRPC.TL_chatInviteJoinResultWebView) this.f1165c;
                 qp.s1(i31).Y3(tL_chatInviteJoinResultWebView.users, false);
-                k2.b(i31).c(-((TLRPC.Chat) this.d).f26956id, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id, false);
+                k2.b(i31).c(-((TLRPC.Chat) this.d).f26960id, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id, false);
                 return;
             default:
                 e4 e4Var = (e4) this.f1165c;

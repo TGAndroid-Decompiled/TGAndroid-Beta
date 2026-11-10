@@ -1,5 +1,5 @@
 package y7;
 
-import org.telegram.ui.ky0;
-public final class r0 extends ky0 {
+import org.telegram.ui.ly0;
+public final class r0 extends ly0 {
 }

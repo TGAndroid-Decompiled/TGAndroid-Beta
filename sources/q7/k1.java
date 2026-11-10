@@ -1,13 +1,13 @@
 package q7;
 
-import org.telegram.ui.Components.vy;
+import org.telegram.ui.Components.uy;
 public final class k1 implements j1 {
-    public static final vy f54010a;
+    public static final uy f54009a;
 
     static {
-        int i7 = o.f54022c;
-        Object[] objArr = y.f54049r;
+        int i7 = o.f54021c;
+        Object[] objArr = y.f54048r;
         new b0("FIDO");
-        f54010a = new vy(Boolean.FALSE, 10);
+        f54009a = new uy(Boolean.FALSE, 10);
     }
 }

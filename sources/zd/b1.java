@@ -2,11 +2,11 @@ package zd;
 
 import java.util.concurrent.CancellationException;
 public final class b1 extends CancellationException {
-    public final transient a1 f60061a;
+    public final transient a1 f60059a;
 
     public b1(String str, Throwable th2, a1 a1Var) {
         super(str);
-        this.f60061a = a1Var;
+        this.f60059a = a1Var;
         if (th2 != null) {
             initCause(th2);
         }
@@ -16,7 +16,7 @@ public final class b1 extends CancellationException {
         if (obj != this) {
             if (obj instanceof b1) {
                 b1 b1Var = (b1) obj;
-                if (!kotlin.jvm.internal.j.a(b1Var.getMessage(), getMessage()) || !kotlin.jvm.internal.j.a(b1Var.f60061a, this.f60061a) || !kotlin.jvm.internal.j.a(b1Var.getCause(), getCause())) {
+                if (!kotlin.jvm.internal.j.a(b1Var.getMessage(), getMessage()) || !kotlin.jvm.internal.j.a(b1Var.f60059a, this.f60059a) || !kotlin.jvm.internal.j.a(b1Var.getCause(), getCause())) {
                     return false;
                 }
                 return true;
@@ -36,7 +36,7 @@ public final class b1 extends CancellationException {
         int i7;
         String message = getMessage();
         kotlin.jvm.internal.j.b(message);
-        int hashCode = (this.f60061a.hashCode() + (message.hashCode() * 31)) * 31;
+        int hashCode = (this.f60059a.hashCode() + (message.hashCode() * 31)) * 31;
         Throwable cause = getCause();
         if (cause != null) {
             i7 = cause.hashCode();
@@ -48,6 +48,6 @@ public final class b1 extends CancellationException {
 
     @Override
     public final String toString() {
-        return super.toString() + "; job=" + this.f60061a;
+        return super.toString() + "; job=" + this.f60059a;
     }
 }

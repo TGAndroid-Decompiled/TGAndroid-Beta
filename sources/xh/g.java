@@ -6,45 +6,45 @@ import android.graphics.Canvas;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.g0;
 public final class g implements Runnable {
-    public final int f58822a;
-    public final h f58823b;
-    public final int f58824c;
+    public final int f58820a;
+    public final h f58821b;
+    public final int f58822c;
 
     public g(h hVar, int i7, int i10) {
-        this.f58822a = i10;
-        this.f58823b = hVar;
-        this.f58824c = i7;
+        this.f58820a = i10;
+        this.f58821b = hVar;
+        this.f58822c = i7;
     }
 
     @Override
     public final void run() {
-        switch (this.f58822a) {
+        switch (this.f58820a) {
             case 0:
-                h hVar = this.f58823b;
-                int i7 = hVar.f58834k;
-                v6.e[] eVarArr = hVar.f58828c;
-                int i10 = this.f58824c;
+                h hVar = this.f58821b;
+                int i7 = hVar.f58832k;
+                v6.e[] eVarArr = hVar.f58826c;
+                int i10 = this.f58822c;
                 if (eVarArr[i10] == null) {
                     eVarArr[i10] = new v6.e(i7);
                 }
-                Bitmap bitmap = hVar.f58829e;
+                Bitmap bitmap = hVar.f58827e;
                 if (bitmap == null) {
-                    hVar.f58829e = Bitmap.createBitmap(i7, i7, Bitmap.Config.ALPHA_8);
-                    hVar.f58830f = new Canvas(hVar.f58829e);
+                    hVar.f58827e = Bitmap.createBitmap(i7, i7, Bitmap.Config.ALPHA_8);
+                    hVar.f58828f = new Canvas(hVar.f58827e);
                 } else {
                     bitmap.eraseColor(0);
                 }
-                hVar.a(hVar.f58830f, hVar.f58838o);
-                Utilities.copyBitmaps(hVar.f58829e, (Bitmap) eVarArr[i10].f57256a);
+                hVar.a(hVar.f58828f, hVar.f58836o);
+                Utilities.copyBitmaps(hVar.f58827e, (Bitmap) eVarArr[i10].f57252a);
                 g0.h3(new g(hVar, i10, 1));
                 return;
             default:
-                h hVar2 = this.f58823b;
-                int i11 = this.f58824c;
+                h hVar2 = this.f58821b;
+                int i11 = this.f58822c;
                 hVar2.d = i11;
-                hVar2.f58831g.setShader((BitmapShader) hVar2.f58828c[i11].f57257b);
-                hVar2.f58833j = false;
-                hVar2.f58839p = true;
+                hVar2.f58829g.setShader((BitmapShader) hVar2.f58826c[i11].f57253b);
+                hVar2.f58831j = false;
+                hVar2.f58837p = true;
                 return;
         }
     }

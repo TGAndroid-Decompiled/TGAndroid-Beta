@@ -1,32 +1,40 @@
 package org.telegram.ui;
 
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-public final class jx {
-    public float f47106a;
-    public float f47107b;
-    public boolean f47108c;
-    public float d;
-    public float f47109e;
-    public float f47110f;
-    public float f47111g;
-    public boolean h;
-    public boolean f47112i;
-    public ch.d f47113j;
-    public long f47114k;
-    public boolean f47115l;
-    public boolean f47116m;
-    public boolean f47117n;
-    public float f47118o;
-    public int f47119p;
-    public TLRPC.Document f47120q;
-    public final ImageReceiver f47121r;
-    public String f47122s;
+public final class jx implements org.telegram.messenger.lc {
+    public final kx f47089a;
+    public final boolean f47090b;
+    public final org.telegram.messenger.ij f47091c;
+    public final lx d;
 
-    public jx() {
-        ImageReceiver imageReceiver = new ImageReceiver(null);
-        this.f47121r = imageReceiver;
-        imageReceiver.f21236z1 = true;
-        imageReceiver.f21180b = true;
+    public jx(lx lxVar, kx kxVar, boolean z9, org.telegram.messenger.ij ijVar) {
+        this.d = lxVar;
+        this.f47089a = kxVar;
+        this.f47090b = z9;
+        this.f47091c = ijVar;
+    }
+
+    @Override
+    public final void O(ImageReceiver imageReceiver) {
+        org.telegram.messenger.ij ijVar;
+        if (this.f47090b && (ijVar = this.f47091c) != null && ijVar.F2() && imageReceiver.B() != null && imageReceiver.B().f40994y == null) {
+            try {
+                this.d.G.performHapticFeedback(3, 1);
+            } catch (Exception unused) {
+            }
+        }
+    }
+
+    @Override
+    public final void f0(ImageReceiver imageReceiver, boolean z9, boolean z10, boolean z11) {
+        ImageReceiver imageReceiver2 = this.f47089a.f47455r;
+        if (imageReceiver2.B() != null) {
+            imageReceiver2.B().N(0, false, true);
+        }
+    }
+
+    @Override
+    public final void t0(int i7, Drawable drawable) {
     }
 }

@@ -4,23 +4,23 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class pj implements RequestDelegate {
-    public final int f24574a;
-    public final qp f24575b;
-    public final long f24576c;
+    public final int f24578a;
+    public final qp f24579b;
+    public final long f24580c;
 
     public pj(qp qpVar, long j3, int i7) {
-        this.f24574a = i7;
-        this.f24575b = qpVar;
-        this.f24576c = j3;
+        this.f24578a = i7;
+        this.f24579b = qpVar;
+        this.f24580c = j3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f24574a) {
+        switch (this.f24578a) {
             case 0:
-                long j3 = this.f24576c;
+                long j3 = this.f24580c;
                 int i7 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-                qp qpVar = this.f24575b;
+                qp qpVar = this.f24579b;
                 if (i7 != 0) {
                     qpVar.getMessagesStorage().q1(j3);
                     return;
@@ -29,57 +29,57 @@ public final class pj implements RequestDelegate {
                     return;
                 }
             case 1:
-                g0.h3(new bm(this.f24575b, this.f24576c, tLObject));
+                g0.h3(new bm(this.f24579b, this.f24580c, tLObject));
                 return;
             case 2:
                 boolean z9 = tLObject instanceof TLRPC.TL_channels_channelParticipants;
-                qp qpVar2 = this.f24575b;
+                qp qpVar2 = this.f24579b;
                 if (z9) {
-                    qpVar2.I3(this.f24576c, (TLRPC.TL_channels_channelParticipants) tLObject);
+                    qpVar2.I3(this.f24580c, (TLRPC.TL_channels_channelParticipants) tLObject);
                     return;
                 }
                 qpVar2.getClass();
                 return;
             case 3:
-                qp qpVar3 = this.f24575b;
+                qp qpVar3 = this.f24579b;
                 qpVar3.getClass();
                 if (tL_error == null) {
                     qpVar3.O3((TLRPC.Updates) tLObject, false);
                 }
-                long j10 = this.f24576c;
+                long j10 = this.f24580c;
                 if (j10 != 0) {
                     qpVar3.getMessagesStorage().q1(j10);
                     return;
                 }
                 return;
             case 4:
-                qp qpVar4 = this.f24575b;
+                qp qpVar4 = this.f24579b;
                 qpVar4.getClass();
                 if (tL_error == null) {
                     qpVar4.O3((TLRPC.Updates) tLObject, false);
                 }
-                long j11 = this.f24576c;
+                long j11 = this.f24580c;
                 if (j11 != 0) {
                     qpVar4.getMessagesStorage().q1(j11);
                     return;
                 }
                 return;
             case 5:
-                qp qpVar5 = this.f24575b;
+                qp qpVar5 = this.f24579b;
                 if (tL_error == null) {
                     TLRPC.TL_messages_affectedMessages tL_messages_affectedMessages = (TLRPC.TL_messages_affectedMessages) tLObject;
                     qpVar5.M3(tL_messages_affectedMessages.pts, -1, tL_messages_affectedMessages.pts_count);
                 }
-                long j12 = this.f24576c;
+                long j12 = this.f24580c;
                 if (j12 != 0) {
                     qpVar5.getMessagesStorage().q1(j12);
                     return;
                 }
                 return;
             case 6:
-                long j13 = this.f24576c;
+                long j13 = this.f24580c;
                 int i10 = (j13 > 0L ? 1 : (j13 == 0L ? 0 : -1));
-                qp qpVar6 = this.f24575b;
+                qp qpVar6 = this.f24579b;
                 if (i10 != 0) {
                     qpVar6.getMessagesStorage().q1(j13);
                     return;
@@ -88,30 +88,30 @@ public final class pj implements RequestDelegate {
                     return;
                 }
             case 7:
-                qp qpVar7 = this.f24575b;
+                qp qpVar7 = this.f24579b;
                 if (tL_error == null) {
                     TLRPC.TL_messages_affectedMessages tL_messages_affectedMessages2 = (TLRPC.TL_messages_affectedMessages) tLObject;
                     qpVar7.M3(tL_messages_affectedMessages2.pts, -1, tL_messages_affectedMessages2.pts_count);
                 }
-                long j14 = this.f24576c;
+                long j14 = this.f24580c;
                 if (j14 != 0) {
                     qpVar7.getMessagesStorage().q1(j14);
                     return;
                 }
                 return;
             case 8:
-                this.f24575b.getMessagesStorage().q1(this.f24576c);
+                this.f24579b.getMessagesStorage().q1(this.f24580c);
                 return;
             case 9:
                 if (tL_error == null) {
-                    g0.h3(new bm(this.f24575b, tLObject, this.f24576c));
+                    g0.h3(new bm(this.f24579b, tLObject, this.f24580c));
                     return;
                 }
                 return;
             case 10:
-                long j15 = this.f24576c;
+                long j15 = this.f24580c;
                 int i11 = (j15 > 0L ? 1 : (j15 == 0L ? 0 : -1));
-                qp qpVar8 = this.f24575b;
+                qp qpVar8 = this.f24579b;
                 if (i11 != 0) {
                     qpVar8.getMessagesStorage().q1(j15);
                     return;
@@ -120,9 +120,9 @@ public final class pj implements RequestDelegate {
                     return;
                 }
             case 11:
-                long j16 = this.f24576c;
+                long j16 = this.f24580c;
                 int i12 = (j16 > 0L ? 1 : (j16 == 0L ? 0 : -1));
-                qp qpVar9 = this.f24575b;
+                qp qpVar9 = this.f24579b;
                 if (i12 != 0) {
                     qpVar9.getMessagesStorage().q1(j16);
                     return;
@@ -133,23 +133,23 @@ public final class pj implements RequestDelegate {
             case 12:
                 if (tLObject != null) {
                     TLRPC.TL_chatOnlines tL_chatOnlines = (TLRPC.TL_chatOnlines) tLObject;
-                    qp qpVar10 = this.f24575b;
+                    qp qpVar10 = this.f24579b;
                     yr messagesStorage = qpVar10.getMessagesStorage();
                     int i13 = tL_chatOnlines.onlines;
-                    p5 p5Var = messagesStorage.f26719a;
-                    long j17 = this.f24576c;
+                    p5 p5Var = messagesStorage.f26723a;
+                    long j17 = this.f24580c;
                     p5Var.c(new aq(messagesStorage, i13, j17, 7));
                     g0.h3(new a4(qpVar10, j17, tL_chatOnlines, 16));
                     return;
                 }
                 return;
             case 13:
-                qp qpVar11 = this.f24575b;
+                qp qpVar11 = this.f24579b;
                 qpVar11.getClass();
                 if (tL_error == null) {
                     qpVar11.O3((TLRPC.Updates) tLObject, false);
                 }
-                long j18 = this.f24576c;
+                long j18 = this.f24580c;
                 if (j18 != 0) {
                     qpVar11.getMessagesStorage().q1(j18);
                     return;
@@ -157,25 +157,25 @@ public final class pj implements RequestDelegate {
                 return;
             case 14:
                 if (tL_error == null) {
-                    qp qpVar12 = this.f24575b;
+                    qp qpVar12 = this.f24579b;
                     qpVar12.getMessagesController().O3((TLRPC.Updates) tLObject, false);
-                    g0.i3(new mk(qpVar12, this.f24576c, 18), 1000L);
+                    g0.i3(new mk(qpVar12, this.f24580c, 18), 1000L);
                     return;
                 }
                 return;
             case 15:
-                qp qpVar13 = this.f24575b;
+                qp qpVar13 = this.f24579b;
                 if (tL_error == null) {
                     qpVar13.getMessagesController().O3((TLRPC.Updates) tLObject, false);
-                    g0.i3(new mk(qpVar13, this.f24576c, 20), 1000L);
+                    g0.i3(new mk(qpVar13, this.f24580c, 20), 1000L);
                     return;
                 }
                 qpVar13.getClass();
                 return;
             case 16:
-                long j19 = this.f24576c;
+                long j19 = this.f24580c;
                 int i14 = (j19 > 0L ? 1 : (j19 == 0L ? 0 : -1));
-                qp qpVar14 = this.f24575b;
+                qp qpVar14 = this.f24579b;
                 if (i14 != 0) {
                     qpVar14.getMessagesStorage().q1(j19);
                 } else {
@@ -188,8 +188,8 @@ public final class pj implements RequestDelegate {
                 return;
             default:
                 boolean z10 = tLObject instanceof TLRPC.TL_boolTrue;
-                qp qpVar15 = this.f24575b;
-                long j20 = this.f24576c;
+                qp qpVar15 = this.f24579b;
+                long j20 = this.f24580c;
                 if (z10) {
                     long j21 = -j20;
                     if (qpVar15.N0(j21) == null) {

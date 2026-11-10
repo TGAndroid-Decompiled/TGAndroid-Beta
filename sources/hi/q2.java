@@ -2,33 +2,33 @@ package hi;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.m6;
 public final class q2 extends AnimatorListenerAdapter {
-    public final int f14886a;
-    public final int f14887b;
-    public final t1 f14888c;
+    public final int f14888a;
+    public final int f14889b;
+    public final t1 f14890c;
     public final a3 d;
 
     public q2(a3 a3Var, int i7, int i10, t1 t1Var) {
         this.d = a3Var;
-        this.f14886a = i7;
-        this.f14887b = i10;
-        this.f14888c = t1Var;
+        this.f14888a = i7;
+        this.f14889b = i10;
+        this.f14890c = t1Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        int f10 = i0.a.f(1.0f, this.f14886a, this.f14887b);
+        int f10 = i0.a.f(1.0f, this.f14888a, this.f14889b);
         a3 a3Var = this.d;
         a3Var.R = f10;
         a3Var.l();
-        z2 z2Var = a3Var.f14519f;
+        z2 z2Var = a3Var.f14521f;
         z2Var.invalidate();
         x2 x2Var = a3Var.X;
         x2Var.setBackgroundColor(a3Var.R);
-        t1 t1Var = this.f14888c;
+        t1 t1Var = this.f14890c;
         t1Var.b(x2Var, 1.0f);
-        a3Var.f14510a = t1Var.a(l6.wj);
+        a3Var.f14512a = t1Var.a(m6.wj);
         z2Var.invalidate();
     }
 }

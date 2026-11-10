@@ -5,19 +5,19 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 public final class r2 extends HorizontalScrollView {
-    public final q50 f49248a;
-    public final s2 f49249b;
+    public final r50 f49213a;
+    public final s2 f49214b;
 
-    public r2(s2 s2Var, Context context, q50 q50Var) {
+    public r2(s2 s2Var, Context context, r50 r50Var) {
         super(context);
-        this.f49249b = s2Var;
-        this.f49248a = q50Var;
+        this.f49214b = s2Var;
+        this.f49213a = r50Var;
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         boolean onInterceptTouchEvent = super.onInterceptTouchEvent(motionEvent);
-        this.f49249b.f49724e.getMeasuredWidth();
+        this.f49214b.f49622e.getMeasuredWidth();
         getMeasuredWidth();
         org.telegram.messenger.g0.L(36.0f);
         return onInterceptTouchEvent;
@@ -25,21 +25,21 @@ public final class r2 extends HorizontalScrollView {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        s2 s2Var = this.f49249b;
-        s2Var.f49724e.measure(View.MeasureSpec.makeMeasureSpec((View.MeasureSpec.getSize(i7) - getPaddingLeft()) - getPaddingRight(), 0), i10);
-        setMeasuredDimension(View.MeasureSpec.getSize(i7), s2Var.f49724e.getMeasuredHeight());
+        s2 s2Var = this.f49214b;
+        s2Var.f49622e.measure(View.MeasureSpec.makeMeasureSpec((View.MeasureSpec.getSize(i7) - getPaddingLeft()) - getPaddingRight(), 0), i10);
+        setMeasuredDimension(View.MeasureSpec.getSize(i7), s2Var.f49622e.getMeasuredHeight());
     }
 
     @Override
     public final void onScrollChanged(int i7, int i10, int i11, int i12) {
         super.onScrollChanged(i7, i10, i11, i12);
-        q50 q50Var = this.f49248a;
-        if (q50Var.d != null) {
-            q50Var.d = null;
-            q50Var.f48921f = null;
+        r50 r50Var = this.f49213a;
+        if (r50Var.d != null) {
+            r50Var.d = null;
+            r50Var.f49253f = null;
         }
-        this.f49249b.a();
-        org.telegram.ui.Cells.i9 i9Var = ((g4) q50Var).P0;
+        this.f49214b.a();
+        org.telegram.ui.Cells.i9 i9Var = ((g4) r50Var).P0;
         if (i9Var != null && i9Var.x()) {
             i9Var.w();
         }
@@ -47,7 +47,7 @@ public final class r2 extends HorizontalScrollView {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.f49249b.f49724e.getMeasuredWidth() <= getMeasuredWidth() - org.telegram.messenger.g0.L(36.0f)) {
+        if (this.f49214b.f49622e.getMeasuredWidth() <= getMeasuredWidth() - org.telegram.messenger.g0.L(36.0f)) {
             return false;
         }
         return super.onTouchEvent(motionEvent);
@@ -55,7 +55,7 @@ public final class r2 extends HorizontalScrollView {
 
     @Override
     public final boolean overScrollBy(int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16, boolean z9) {
-        g4.R(this.f49248a);
+        g4.R(this.f49213a);
         return super.overScrollBy(i7, i10, i11, i12, i13, i14, i15, i16, z9);
     }
 }

@@ -8,16 +8,16 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class el implements RequestDelegate {
-    public final int f22254a = 0;
-    public final qp f22255b;
-    public final boolean f22256c;
+    public final int f22258a = 0;
+    public final qp f22259b;
+    public final boolean f22260c;
     public final long d;
-    public final TLObject f22257e;
+    public final TLObject f22261e;
 
     public el(qp qpVar, TLRPC.Chat chat, boolean z9, long j3) {
-        this.f22255b = qpVar;
-        this.f22257e = chat;
-        this.f22256c = z9;
+        this.f22259b = qpVar;
+        this.f22261e = chat;
+        this.f22260c = z9;
         this.d = j3;
     }
 
@@ -25,23 +25,23 @@ public final class el implements RequestDelegate {
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         long j3;
         ArrayList arrayList;
-        switch (this.f22254a) {
+        switch (this.f22258a) {
             case 0:
-                TLRPC.Chat chat = (TLRPC.Chat) this.f22257e;
+                TLRPC.Chat chat = (TLRPC.Chat) this.f22261e;
                 TLRPC.TL_channels_channelParticipant tL_channels_channelParticipant = (TLRPC.TL_channels_channelParticipant) tLObject;
                 if (tL_channels_channelParticipant != null) {
                     TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipant.participant;
                     if (channelParticipant instanceof TLRPC.TL_channelParticipantSelf) {
                         TLRPC.TL_channelParticipantSelf tL_channelParticipantSelf = (TLRPC.TL_channelParticipantSelf) channelParticipant;
                         boolean z9 = chat.megagroup;
-                        qp qpVar = this.f22255b;
+                        qp qpVar = this.f22259b;
                         if (z9) {
                             yr messagesStorage = qpVar.getMessagesStorage();
-                            long j10 = chat.f26956id;
+                            long j10 = chat.f26960id;
                             messagesStorage.getClass();
                             CountDownLatch countDownLatch = new CountDownLatch(1);
                             boolean[] zArr = new boolean[1];
-                            messagesStorage.f26719a.c(new fq(messagesStorage, j10, zArr, countDownLatch, 0));
+                            messagesStorage.f26723a.c(new fq(messagesStorage, j10, zArr, countDownLatch, 0));
                             try {
                                 countDownLatch.await();
                             } catch (Exception e10) {
@@ -53,7 +53,7 @@ public final class el implements RequestDelegate {
                         }
                         g0.h3(new hi(12, qpVar, tL_channels_channelParticipant));
                         qpVar.getMessagesStorage().m1(tL_channels_channelParticipant.users, tL_channels_channelParticipant.chats, true, true);
-                        boolean z10 = this.f22256c;
+                        boolean z10 = this.f22260c;
                         long j11 = this.d;
                         if (z10 && Math.abs(qpVar.getConnectionsManager().getCurrentTime() - tL_channels_channelParticipant.participant.date) < 86400) {
                             yr messagesStorage2 = qpVar.getMessagesStorage();
@@ -61,7 +61,7 @@ public final class el implements RequestDelegate {
                             j3 = j11;
                             CountDownLatch countDownLatch2 = new CountDownLatch(1);
                             boolean[] zArr2 = new boolean[1];
-                            messagesStorage2.f26719a.c(new fq(messagesStorage2, j3, zArr2, countDownLatch2, 1));
+                            messagesStorage2.f26723a.c(new fq(messagesStorage2, j3, zArr2, countDownLatch2, 1));
                             try {
                                 countDownLatch2.await();
                             } catch (Exception e11) {
@@ -71,7 +71,7 @@ public final class el implements RequestDelegate {
                                 TLRPC.TL_messageService tL_messageService = new TLRPC.TL_messageService();
                                 tL_messageService.flags = 256;
                                 int j12 = qpVar.getUserConfig().j();
-                                tL_messageService.f26977id = j12;
+                                tL_messageService.f26981id = j12;
                                 tL_messageService.local_id = j12;
                                 tL_messageService.date = tL_channels_channelParticipant.participant.date;
                                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
@@ -96,18 +96,18 @@ public final class el implements RequestDelegate {
                                 ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
                                 for (int i7 = 0; i7 < tL_channels_channelParticipant.users.size(); i7++) {
                                     TLRPC.User user = tL_channels_channelParticipant.users.get(i7);
-                                    concurrentHashMap.put(Long.valueOf(user.f27105id), user);
+                                    concurrentHashMap.put(Long.valueOf(user.f27109id), user);
                                 }
                                 arrayList2.add(tL_messageService);
                                 arrayList.add(new ij(qpVar.currentAccount, (TLRPC.Message) tL_messageService, (AbstractMap) concurrentHashMap, (AbstractMap) null, true, false));
                                 if (tL_messageService.from_id.user_id != qpVar.getUserConfig().e()) {
-                                    qpVar.getMessagesStorage().f26719a.c(new qj(qpVar, arrayList, 2));
+                                    qpVar.getMessagesStorage().f26723a.c(new qj(qpVar, arrayList, 2));
                                 }
                                 qpVar.getMessagesStorage().j1(arrayList2, true, true, false, 0, false, 0, 0L);
                                 ArrayList arrayList3 = arrayList;
                                 yr messagesStorage3 = qpVar.getMessagesStorage();
                                 long j13 = j3;
-                                messagesStorage3.f26719a.c(new vp(2, tL_channels_channelParticipant.participant.inviter_id, j13, messagesStorage3));
+                                messagesStorage3.f26723a.c(new vp(2, tL_channels_channelParticipant.participant.inviter_id, j13, messagesStorage3));
                                 g0.h3(new jm(qpVar, j13, arrayList3, tL_channels_channelParticipant, 5));
                                 return;
                             }
@@ -118,7 +118,7 @@ public final class el implements RequestDelegate {
                         ArrayList arrayList32 = arrayList;
                         yr messagesStorage32 = qpVar.getMessagesStorage();
                         long j132 = j3;
-                        messagesStorage32.f26719a.c(new vp(2, tL_channels_channelParticipant.participant.inviter_id, j132, messagesStorage32));
+                        messagesStorage32.f26723a.c(new vp(2, tL_channels_channelParticipant.participant.inviter_id, j132, messagesStorage32));
                         g0.h3(new jm(qpVar, j132, arrayList32, tL_channels_channelParticipant, 5));
                         return;
                     }
@@ -126,14 +126,14 @@ public final class el implements RequestDelegate {
                 }
                 return;
             default:
-                TLRPC.User user2 = (TLRPC.User) this.f22257e;
+                TLRPC.User user2 = (TLRPC.User) this.f22261e;
                 if (tL_error == null) {
                     boolean z11 = tLObject instanceof TLRPC.Updates;
-                    qp qpVar2 = this.f22255b;
+                    qp qpVar2 = this.f22259b;
                     if (z11) {
                         qpVar2.O3((TLRPC.Updates) tLObject, false);
                     }
-                    if (this.f22256c && !t10.B(user2)) {
+                    if (this.f22260c && !t10.B(user2)) {
                         g0.i3(new mk(qpVar2, this.d, 10), 1000L);
                         return;
                     }
@@ -144,9 +144,9 @@ public final class el implements RequestDelegate {
     }
 
     public el(qp qpVar, boolean z9, TLRPC.User user, long j3) {
-        this.f22255b = qpVar;
-        this.f22256c = z9;
-        this.f22257e = user;
+        this.f22259b = qpVar;
+        this.f22260c = z9;
+        this.f22261e = user;
         this.d = j3;
     }
 }

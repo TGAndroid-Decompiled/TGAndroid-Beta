@@ -25,22 +25,22 @@ import org.telegram.messenger.a8;
 import org.telegram.messenger.m5;
 import org.telegram.messenger.p10;
 public final class m1 {
-    public final int f14791a;
-    public final long f14792b;
-    public final long f14793c;
+    public final int f14793a;
+    public final long f14794b;
+    public final long f14795c;
     public final boolean d;
-    public String f14794e;
+    public String f14796e;
 
     public m1(int i7, long j3, long j10, boolean z9) {
-        this.f14791a = i7;
-        this.f14792b = j10;
-        this.f14793c = j3;
+        this.f14793a = i7;
+        this.f14794b = j10;
+        this.f14795c = j3;
         this.d = z9;
     }
 
     public static File b() {
         try {
-            File filesDir = org.telegram.messenger.t0.f25566b.getFilesDir();
+            File filesDir = org.telegram.messenger.t0.f25570b.getFilesDir();
             if (filesDir != null) {
                 File file = new File(filesDir, "apps_storage/");
                 file.mkdirs();
@@ -81,11 +81,11 @@ public final class m1 {
                     String next = keys.next();
                     JSONObject jSONObject2 = jSONObject.getJSONObject(next);
                     ?? obj = new Object();
-                    obj.f14778a = next;
-                    obj.f14779b = jSONObject2.getLong("user_id");
-                    obj.f14780c = jSONObject2.getString("user_name");
+                    obj.f14780a = next;
+                    obj.f14781b = jSONObject2.getLong("user_id");
+                    obj.f14782c = jSONObject2.getString("user_name");
                     obj.d = jSONObject2.getLong("created_at");
-                    obj.f14781e = jSONObject2.getLong("edited_at");
+                    obj.f14783e = jSONObject2.getLong("edited_at");
                     hashMap.put(next, obj);
                 }
                 return hashMap;
@@ -104,10 +104,10 @@ public final class m1 {
             JSONObject jSONObject = new JSONObject();
             for (Map.Entry entry : hashMap.entrySet()) {
                 JSONObject jSONObject2 = new JSONObject();
-                jSONObject2.put("user_id", ((l1) entry.getValue()).f14779b);
-                jSONObject2.put("user_name", ((l1) entry.getValue()).f14780c);
+                jSONObject2.put("user_id", ((l1) entry.getValue()).f14781b);
+                jSONObject2.put("user_name", ((l1) entry.getValue()).f14782c);
                 jSONObject2.put("created_at", ((l1) entry.getValue()).d);
-                jSONObject2.put("edited_at", ((l1) entry.getValue()).f14781e);
+                jSONObject2.put("edited_at", ((l1) entry.getValue()).f14783e);
                 jSONObject.put((String) entry.getKey(), jSONObject2);
             }
             File file = new File(b(), "secure_config.json");
@@ -157,43 +157,43 @@ public final class m1 {
 
     public final File c() {
         long j3;
-        if (this.d && TextUtils.isEmpty(this.f14794e)) {
+        if (this.d && TextUtils.isEmpty(this.f14796e)) {
             HashMap i7 = i();
             Iterator it = i7.entrySet().iterator();
             while (true) {
                 boolean hasNext = it.hasNext();
-                j3 = this.f14793c;
+                j3 = this.f14795c;
                 if (!hasNext) {
                     break;
                 }
                 Map.Entry entry = (Map.Entry) it.next();
-                if (((l1) entry.getValue()).f14779b == j3) {
-                    this.f14794e = (String) entry.getKey();
+                if (((l1) entry.getValue()).f14781b == j3) {
+                    this.f14796e = (String) entry.getKey();
                     break;
                 }
             }
-            if (TextUtils.isEmpty(this.f14794e)) {
+            if (TextUtils.isEmpty(this.f14796e)) {
                 String uuid = UUID.randomUUID().toString();
-                this.f14794e = uuid;
+                this.f14796e = uuid;
                 ?? obj = new Object();
-                obj.f14778a = uuid;
-                obj.f14779b = j3;
-                obj.f14780c = m5.m(p10.i(this.f14791a).f());
+                obj.f14780a = uuid;
+                obj.f14781b = j3;
+                obj.f14782c = m5.m(p10.i(this.f14793a).f());
                 long currentTimeMillis = System.currentTimeMillis();
-                obj.f14781e = currentTimeMillis;
+                obj.f14783e = currentTimeMillis;
                 obj.d = currentTimeMillis;
-                i7.put(this.f14794e, obj);
+                i7.put(this.f14796e, obj);
                 k(i7);
             }
         }
-        return d(this.f14794e);
+        return d(this.f14796e);
     }
 
     public final File d(String str) {
         String str2;
         File b10 = b();
         StringBuilder sb2 = new StringBuilder();
-        long j3 = this.f14793c;
+        long j3 = this.f14795c;
         boolean z9 = this.d;
         Object obj = str;
         if (!z9) {
@@ -201,7 +201,7 @@ public final class m1 {
         }
         sb2.append(obj);
         sb2.append("_");
-        long j10 = this.f14792b;
+        long j10 = this.f14794b;
         sb2.append(j10);
         String str3 = "";
         if (!z9) {
@@ -263,7 +263,7 @@ public final class m1 {
                     break;
                 }
                 try {
-                    File d = d(((l1) it.next()).f14778a);
+                    File d = d(((l1) it.next()).f14780a);
                     if (d.exists() && e(d).has(str)) {
                         z9 = true;
                         break;
@@ -288,7 +288,7 @@ public final class m1 {
             }
             for (l1 l1Var : (Set) Collection.EL.stream(i().values()).filter(new j1(hashSet, 1)).collect(Collectors.toSet())) {
                 try {
-                    File d = d(l1Var.f14778a);
+                    File d = d(l1Var.f14780a);
                     if (d.exists() && e(d).has(str)) {
                         arrayList.add(l1Var);
                     }
@@ -313,11 +313,11 @@ public final class m1 {
             HashMap i11 = i();
             l1 l1Var = (l1) i11.get(str);
             if (l1Var != null) {
-                l1Var.f14779b = this.f14793c;
-                l1Var.f14780c = m5.m(p10.i(this.f14791a).f());
-                l1Var.f14781e = System.currentTimeMillis();
+                l1Var.f14781b = this.f14795c;
+                l1Var.f14782c = m5.m(p10.i(this.f14793a).f());
+                l1Var.f14783e = System.currentTimeMillis();
                 k(i11);
-                this.f14794e = l1Var.f14778a;
+                this.f14796e = l1Var.f14780a;
                 return;
             }
             throw new RuntimeException("STORAGE_NOT_FOUND");
@@ -380,9 +380,9 @@ public final class m1 {
                 if (z9) {
                     try {
                         HashMap i7 = i();
-                        l1 l1Var = (l1) i7.get(this.f14794e);
+                        l1 l1Var = (l1) i7.get(this.f14796e);
                         if (l1Var != null) {
-                            l1Var.f14781e = System.currentTimeMillis();
+                            l1Var.f14783e = System.currentTimeMillis();
                             k(i7);
                             return;
                         }

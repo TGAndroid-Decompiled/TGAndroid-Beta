@@ -1,35 +1,36 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class x60 implements Runnable {
-    public final int f40309a;
-    public final c70 f40310b;
-    public final TLRPC.TL_chatInviteJoinResultWebView f40311c;
-    public final long d;
+import android.content.DialogInterface;
+public final class x60 implements DialogInterface.OnDismissListener {
+    public final int f40208a;
+    public final Object f40209b;
+    public final boolean f40210c;
 
-    public x60(c70 c70Var, TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, long j3, int i7) {
-        this.f40309a = i7;
-        this.f40310b = c70Var;
-        this.f40311c = tL_chatInviteJoinResultWebView;
-        this.d = j3;
+    public x60(int i7, Object obj, boolean z9) {
+        this.f40208a = i7;
+        this.f40209b = obj;
+        this.f40210c = z9;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40309a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f40208a) {
             case 0:
-                c70 c70Var = this.f40310b;
-                org.telegram.messenger.qp s12 = org.telegram.messenger.qp.s1(c70Var.f28621a);
-                TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = this.f40311c;
-                s12.Y3(tL_chatInviteJoinResultWebView.users, false);
-                org.telegram.messenger.k2.b(c70Var.f28621a).c(this.d, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id, false);
+                b70 b70Var = (b70) this.f40209b;
+                b70.J0(b70Var.getContext(), b70Var.n1, b70Var.f32137s1, this.f40210c);
+                return;
+            case 1:
+                b70 b70Var2 = (b70) this.f40209b;
+                b70.J0(b70Var2.getContext(), b70Var2.n1, b70Var2.f32137s1, this.f40210c);
                 return;
             default:
-                c70 c70Var2 = this.f40310b;
-                org.telegram.messenger.qp s13 = org.telegram.messenger.qp.s1(c70Var2.f28621a);
-                TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView2 = this.f40311c;
-                s13.Y3(tL_chatInviteJoinResultWebView2.users, false);
-                org.telegram.messenger.k2.b(c70Var2.f28621a).c(this.d, tL_chatInviteJoinResultWebView2.bot_id, tL_chatInviteJoinResultWebView2.query_id, false);
+                fi.va vaVar = (fi.va) this.f40209b;
+                vaVar.f13020z2 = false;
+                vaVar.X0.x(7, true);
+                if (this.f40210c) {
+                    vaVar.p(true);
+                    return;
+                }
                 return;
         }
     }

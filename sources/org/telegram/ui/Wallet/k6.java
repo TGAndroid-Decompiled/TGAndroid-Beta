@@ -1,16 +1,13 @@
 package org.telegram.ui.Wallet;
-
-import android.content.Context;
-public final class k6 extends vg.r {
-    public final m6 D;
-
-    public k6(m6 m6Var, Context context, i6 i6Var) {
-        super(context, i6Var, 2);
-        this.D = m6Var;
-    }
-
-    @Override
-    public final void a() {
-        this.D.f42811s = true;
-    }
+public final class k6 {
+    public boolean f42721a;
+    public float f42722b;
+    public float f42723c;
+    public float d;
+    public float f42724e;
+    public float f42725f;
+    public float f42726g;
+    public long h;
+    public long f42727i;
+    public long f42728j;
 }

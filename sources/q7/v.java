@@ -2,27 +2,27 @@ package q7;
 
 import java.io.Serializable;
 public final class v extends w implements Serializable {
-    public static final v f54042b = new v(0);
-    public static final v f54043c = new v(1);
-    public final int f54044a;
+    public static final v f54041b = new v(0);
+    public static final v f54042c = new v(1);
+    public final int f54043a;
 
     public v(int i7) {
-        this.f54044a = i7;
+        this.f54043a = i7;
     }
 
     @Override
     public final w a() {
-        switch (this.f54044a) {
+        switch (this.f54043a) {
             case 0:
-                return f54043c;
+                return f54042c;
             default:
-                return f54042b;
+                return f54041b;
         }
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        switch (this.f54044a) {
+        switch (this.f54043a) {
             case 0:
                 Comparable comparable = (Comparable) obj;
                 Comparable comparable2 = (Comparable) obj2;
@@ -41,7 +41,7 @@ public final class v extends w implements Serializable {
     }
 
     public final String toString() {
-        switch (this.f54044a) {
+        switch (this.f54043a) {
             case 0:
                 return "Ordering.natural()";
             default:

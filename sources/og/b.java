@@ -10,22 +10,22 @@ import org.telegram.messenger.g0;
 import org.telegram.messenger.k5;
 import org.telegram.ui.Components.Crop.CropAreaView;
 public final class b implements ScaleGestureDetector.OnScaleGestureListener {
-    public final int f20941a;
-    public final Object f20942b;
+    public final int f20946a;
+    public final Object f20947b;
 
     public b(Object obj, int i7) {
-        this.f20941a = i7;
-        this.f20942b = obj;
+        this.f20946a = i7;
+        this.f20947b = obj;
     }
 
     public void b() {
         float f10;
-        ti.i iVar = (ti.i) this.f20942b;
-        WindowManager.LayoutParams layoutParams = iVar.f56097e;
-        int h = (int) (iVar.h() * iVar.f56116z);
+        ti.i iVar = (ti.i) this.f20947b;
+        WindowManager.LayoutParams layoutParams = iVar.f56096e;
+        int h = (int) (iVar.h() * iVar.f56115z);
         layoutParams.width = h;
-        iVar.f56114x = h;
-        ti.m mVar = iVar.f56095b;
+        iVar.f56113x = h;
+        ti.m mVar = iVar.f56094b;
         int I = mVar.I();
         int U = mVar.U();
         if (I > 0 && U > 0) {
@@ -33,11 +33,11 @@ public final class b implements ScaleGestureDetector.OnScaleGestureListener {
         } else {
             f10 = 0.5625f;
         }
-        int i7 = (int) (((int) (ti.i.i(f10) * f10)) * iVar.f56116z);
+        int i7 = (int) (((int) (ti.i.i(f10) * f10)) * iVar.f56115z);
         layoutParams.height = i7;
-        iVar.f56115y = i7;
+        iVar.f56114y = i7;
         iVar.r();
-        iVar.f56094a.f56136b.f();
+        iVar.f56093a.f56135b.f();
     }
 
     @Override
@@ -46,24 +46,24 @@ public final class b implements ScaleGestureDetector.OnScaleGestureListener {
         float f10;
         int i10;
         float m10;
-        switch (this.f20941a) {
+        switch (this.f20946a) {
             case 0:
                 float scaleFactor = scaleGestureDetector.getScaleFactor();
                 if (Float.isNaN(scaleFactor) || Float.isInfinite(scaleFactor)) {
                     return false;
                 }
-                o oVar = ((c) this.f20942b).f20944b;
+                o oVar = ((c) this.f20947b).f20949b;
                 float focusX = scaleGestureDetector.getFocusX();
                 float focusY = scaleGestureDetector.getFocusY();
-                CropAreaView cropAreaView = oVar.f21007a;
-                ImageView imageView = oVar.f21008b;
+                CropAreaView cropAreaView = oVar.f21012a;
+                ImageView imageView = oVar.f21013b;
                 if (!oVar.F) {
-                    float f11 = oVar.L.f21000e;
+                    float f11 = oVar.L.f21005e;
                     if (f11 * scaleFactor > 30.0f) {
                         scaleFactor = 30.0f / f11;
                     }
-                    if (!oVar.f21013r) {
-                        i7 = g0.f22557m;
+                    if (!oVar.f21018r) {
+                        i7 = g0.f22561m;
                     } else {
                         i7 = 0;
                     }
@@ -72,10 +72,10 @@ public final class b implements ScaleGestureDetector.OnScaleGestureListener {
                 }
                 return true;
             default:
-                ti.i iVar = (ti.i) this.f20942b;
-                iVar.f56116z = j9.a(scaleGestureDetector.getScaleFactor() * iVar.f56116z, 0.75f, iVar.A);
-                iVar.f56114x = (int) (iVar.h() * iVar.f56116z);
-                ti.m mVar = iVar.f56095b;
+                ti.i iVar = (ti.i) this.f20947b;
+                iVar.f56115z = j9.a(scaleGestureDetector.getScaleFactor() * iVar.f56115z, 0.75f, iVar.A);
+                iVar.f56113x = (int) (iVar.h() * iVar.f56115z);
+                ti.m mVar = iVar.f56094b;
                 int I = mVar.I();
                 int U = mVar.U();
                 if (I > 0 && U > 0) {
@@ -83,32 +83,32 @@ public final class b implements ScaleGestureDetector.OnScaleGestureListener {
                 } else {
                     f10 = 0.5625f;
                 }
-                iVar.f56115y = (int) (((int) (ti.i.i(f10) * f10)) * iVar.f56116z);
+                iVar.f56114y = (int) (((int) (ti.i.i(f10) * f10)) * iVar.f56115z);
                 g0.h3(new sh.b(this, 8));
-                if (scaleGestureDetector.getFocusX() >= g0.f22563q.x / 2.0f) {
-                    m10 = (i10 - iVar.f56114x) - ti.i.m();
+                if (scaleGestureDetector.getFocusX() >= g0.f22567q.x / 2.0f) {
+                    m10 = (i10 - iVar.f56113x) - ti.i.m();
                 } else {
                     m10 = ti.i.m();
                 }
                 r1.g gVar = iVar.D;
-                if (!gVar.f54274f) {
-                    gVar.f54271b = iVar.B;
-                    gVar.f54272c = true;
-                    gVar.f54280m.f54288i = m10;
+                if (!gVar.f54273f) {
+                    gVar.f54270b = iVar.B;
+                    gVar.f54271c = true;
+                    gVar.f54279m.f54287i = m10;
                 } else {
-                    gVar.f54280m.f54288i = m10;
+                    gVar.f54279m.f54287i = m10;
                 }
                 gVar.h();
                 float focusY2 = scaleGestureDetector.getFocusY();
-                float f12 = iVar.f56115y;
+                float f12 = iVar.f56114y;
                 float e10 = ti.i.e(focusY2 - (f12 / 2.0f), f12);
                 r1.g gVar2 = iVar.E;
-                if (!gVar2.f54274f) {
-                    gVar2.f54271b = iVar.C;
-                    gVar2.f54272c = true;
-                    gVar2.f54280m.f54288i = e10;
+                if (!gVar2.f54273f) {
+                    gVar2.f54270b = iVar.C;
+                    gVar2.f54271c = true;
+                    gVar2.f54279m.f54287i = e10;
                 } else {
-                    gVar2.f54280m.f54288i = e10;
+                    gVar2.f54279m.f54287i = e10;
                 }
                 gVar2.h();
                 return true;
@@ -118,20 +118,20 @@ public final class b implements ScaleGestureDetector.OnScaleGestureListener {
     @Override
     public final boolean onScaleBegin(ScaleGestureDetector scaleGestureDetector) {
         float f10;
-        switch (this.f20941a) {
+        switch (this.f20946a) {
             case 0:
                 return true;
             default:
-                ti.i iVar = (ti.i) this.f20942b;
-                WindowManager.LayoutParams layoutParams = iVar.f56097e;
-                ti.m mVar = iVar.f56095b;
-                if (iVar.f56109r) {
-                    iVar.f56109r = false;
+                ti.i iVar = (ti.i) this.f20947b;
+                WindowManager.LayoutParams layoutParams = iVar.f56096e;
+                ti.m mVar = iVar.f56094b;
+                if (iVar.f56108r) {
+                    iVar.f56108r = false;
                     iVar.L = false;
                     mVar.F();
                     g0.r(iVar.N);
                 }
-                iVar.f56110s = true;
+                iVar.f56109s = true;
                 layoutParams.width = (int) (iVar.h() * iVar.A);
                 int I = mVar.I();
                 int U = mVar.U();
@@ -148,27 +148,27 @@ public final class b implements ScaleGestureDetector.OnScaleGestureListener {
 
     @Override
     public final void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
-        switch (this.f20941a) {
+        switch (this.f20946a) {
             case 0:
                 return;
             default:
                 d0 b10 = d0.b();
-                ti.i iVar = (ti.i) this.f20942b;
-                b10.f918a.edit().putFloat("scale_factor", iVar.f56116z).apply();
-                if (!iVar.D.f54274f && !iVar.E.f54274f) {
+                ti.i iVar = (ti.i) this.f20947b;
+                b10.f918a.edit().putFloat("scale_factor", iVar.f56115z).apply();
+                if (!iVar.D.f54273f && !iVar.E.f54273f) {
                     b();
                     return;
                 }
                 ArrayList arrayList = new ArrayList();
                 ti.g gVar = new ti.g(this, arrayList);
                 r1.g gVar2 = iVar.D;
-                if (!gVar2.f54274f) {
+                if (!gVar2.f54273f) {
                     arrayList.add(gVar2);
                 } else {
                     gVar2.a(gVar);
                 }
                 r1.g gVar3 = iVar.E;
-                if (!gVar3.f54274f) {
+                if (!gVar3.f54273f) {
                     arrayList.add(gVar3);
                     return;
                 } else {

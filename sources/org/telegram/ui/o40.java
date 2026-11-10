@@ -1,32 +1,43 @@
 package org.telegram.ui;
-public final class o40 implements Runnable {
-    public final int f48335a;
-    public final y40 f48336b;
 
-    public o40(y40 y40Var, int i7) {
-        this.f48335a = i7;
-        this.f48336b = y40Var;
+import android.view.View;
+public final class o40 implements View.OnClickListener {
+    public final int f48426a;
+    public final z40 f48427b;
+
+    public o40(z40 z40Var, int i7) {
+        this.f48426a = i7;
+        this.f48427b = z40Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f48335a) {
+    public final void onClick(View view) {
+        switch (this.f48426a) {
             case 0:
-                this.f48336b.finishFragment();
+                z40 z40Var = this.f48427b;
+                z40Var.X = null;
+                z40Var.Z.b();
+                z40Var.h.b();
+                z40Var.p0();
+                z40Var.w0();
+                z40Var.x0();
                 return;
             case 1:
-                y40 y40Var = this.f48336b;
-                y40Var.n0();
-                y40Var.j0();
+                z40 z40Var2 = this.f48427b;
+                z40Var2.f52219f.f37446r.clearFocus();
+                z40Var2.f52219f.f37446r.requestFocus();
+                org.telegram.messenger.g0.K3(z40Var2.f52219f.f37446r);
                 return;
             case 2:
-                y40 y40Var2 = this.f48336b;
-                y40Var2.getClass();
-                y40Var2.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
+                this.f48427b.t0();
+                return;
+            case 3:
+                z40 z40Var3 = this.f48427b;
+                z40Var3.s0(z40Var3.q0());
                 return;
             default:
-                y40 y40Var3 = this.f48336b;
-                y40Var3.f51872n.postOnAnimation(new o40(y40Var3, 1));
+                z40 z40Var4 = this.f48427b;
+                z40Var4.s0(z40Var4.q0());
                 return;
         }
     }

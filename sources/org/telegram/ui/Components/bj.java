@@ -1,112 +1,29 @@
 package org.telegram.ui.Components;
+public final class bj implements Runnable {
+    public final int f32276a;
+    public final dj f32277b;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class bj extends pj0 {
-    public final Context f32264c;
-    public ArrayList d = new ArrayList();
-    public ArrayList f32265e = new ArrayList();
-    public aj f32266f;
-    public int h;
-    public final fj f32267n;
-
-    public bj(fj fjVar, Context context) {
-        this.f32267n = fjVar;
-        this.f32264c = context;
+    public bj(dj djVar, int i7) {
+        this.f32276a = i7;
+        this.f32277b = djVar;
     }
 
     @Override
-    public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57060f == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final Object E(int i7) {
-        int i10 = i7 - 1;
-        if (i10 >= 0 && i10 < this.d.size()) {
-            return this.d.get(i10);
-        }
-        return null;
-    }
-
-    @Override
-    public final int b() {
-        return this.d.size() + 2;
-    }
-
-    @Override
-    public final int d(int i7) {
-        if (i7 == 0) {
-            return 1;
-        }
-        if (i7 == b() - 1) {
-            return 2;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void f() {
-        super.f();
-        this.f32267n.R();
-    }
-
-    @Override
-    public final void t(v4.d1 d1Var, int i7) {
-        boolean z9;
-        TLRPC.User user;
-        if (d1Var.f57060f == 0) {
-            ej ejVar = (ej) d1Var.f57056a;
-            if (i7 != b() - 2) {
-                z9 = true;
-            } else {
-                z9 = false;
-            }
-            Object E = E(i7);
-            if (E instanceof org.telegram.messenger.d5) {
-                org.telegram.messenger.d5 d5Var = (org.telegram.messenger.d5) E;
-                user = d5Var.f21996m;
-                if (user == null) {
-                    ejVar.setCurrentId(d5Var.f21986a);
-                    ejVar.a(null, (CharSequence) this.f32265e.get(i7 - 1), new xi(d5Var, 1), z9);
-                    user = null;
+    public final void run() {
+        switch (this.f32276a) {
+            case 0:
+                dj djVar = this.f32277b;
+                if (djVar.f33005f != null) {
+                    djVar.f33009w = org.telegram.messenger.k5.i(new StringBuilder("+"), djVar.f33005f.phone, pf.b.c());
+                    djVar.f33008s = djVar.f33005f;
+                    org.telegram.messenger.g0.h3(new bj(djVar, 1));
+                    return;
                 }
-            } else {
-                user = (TLRPC.User) E;
-            }
-            if (user != null) {
-                ejVar.a(user, (CharSequence) this.f32265e.get(i7 - 1), new yi(1, user), z9);
-            }
-            boolean containsKey = this.f32267n.f33686x.containsKey(vi.a(E));
-            wo woVar = ejVar.d;
-            if (woVar.getVisibility() != 0) {
-                woVar.setVisibility(0);
-            }
-            woVar.a(containsKey, false);
+                return;
+            default:
+                dj djVar2 = this.f32277b;
+                djVar2.f33003c.l(djVar2.f33009w, false);
+                return;
         }
-    }
-
-    @Override
-    public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        View ejVar;
-        Context context = this.f32264c;
-        if (i7 != 0) {
-            if (i7 != 1) {
-                ejVar = new View(context);
-                ejVar.setTag(-33024);
-            } else {
-                ejVar = new View(context);
-                ejVar.setLayoutParams(new v4.o0(-1, org.telegram.messenger.g0.L(56.0f)));
-                ejVar.setTag(-33024);
-            }
-        } else {
-            ejVar = new ej(context, this.f32267n.f39070a);
-        }
-        return new v4.d1(ejVar);
     }
 }

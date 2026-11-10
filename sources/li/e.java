@@ -4,42 +4,42 @@ import java.util.ArrayList;
 import org.telegram.messenger.ij;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.di;
-import org.telegram.ui.Components.ki;
-import org.telegram.ui.Components.vk;
-public final class e implements vk, ki {
-    public final p f18528a;
-    public final di f18529b;
+import org.telegram.ui.Components.ci;
+import org.telegram.ui.Components.ji;
+import org.telegram.ui.Components.uk;
+public final class e implements uk, ji {
+    public final p f18531a;
+    public final ci f18532b;
 
-    public e(p pVar, di diVar) {
-        this.f18528a = pVar;
-        this.f18529b = diVar;
+    public e(p pVar, ci ciVar) {
+        this.f18531a = pVar;
+        this.f18532b = ciVar;
     }
 
     @Override
     public void d(TLRPC.MessageMedia messageMedia, int i7, boolean z9, int i10, long j3) {
-        p pVar = this.f18528a;
+        p pVar = this.f18531a;
         pVar.getClass();
-        di diVar = this.f18529b;
+        ci ciVar = this.f18532b;
         if (messageMedia != null && messageMedia.geo != null) {
             TL_iv.pageBlockMap pageblockmap = new TL_iv.pageBlockMap();
             pageblockmap.geo = messageMedia.geo;
             pageblockmap.zoom = 15;
-            pageblockmap.f27181w = 600;
+            pageblockmap.f27185w = 600;
             pageblockmap.h = 400;
-            pVar.f18760r.V1(pageblockmap);
+            pVar.f18763r.V1(pageblockmap);
             pVar.a0(true);
-            diVar.a(true);
+            ciVar.a(true);
             return;
         }
-        diVar.a(true);
+        ciVar.a(true);
     }
 
     @Override
     public void e(ArrayList arrayList, CharSequence charSequence, boolean z9, int i7, int i10, long j3, boolean z10, long j10) {
         if (!arrayList.isEmpty()) {
-            this.f18528a.f18760r.e2((ij) arrayList.get(0));
+            this.f18531a.f18763r.e2((ij) arrayList.get(0));
         }
-        this.f18529b.a(true);
+        this.f18532b.a(true);
     }
 }

@@ -1,68 +1,54 @@
 package org.telegram.ui;
 
+import android.text.Editable;
 import android.text.TextWatcher;
-import java.util.regex.Pattern;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class cj0 implements TextWatcher {
-    public final int f44349a;
-    public final Object f44350b;
-    public String f44351c;
-    public final Object d;
+    public boolean f44388a;
+    public final EditTextBoldCursor f44389b;
+    public final String f44390c;
+    public final ek0 d;
 
-    public cj0(dk0 dk0Var, EditTextBoldCursor editTextBoldCursor, String str, int i7) {
-        this.f44349a = i7;
-        this.d = dk0Var;
-        this.f44350b = editTextBoldCursor;
-        this.f44351c = str;
+    public cj0(ek0 ek0Var, EditTextBoldCursor editTextBoldCursor, String str) {
+        this.d = ek0Var;
+        this.f44389b = editTextBoldCursor;
+        this.f44390c = str;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.cj0.afterTextChanged(android.text.Editable):void");
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        switch (this.f44349a) {
-            case 0:
-            case 1:
-            case 2:
-                return;
-            default:
-                this.f44351c = charSequence.toString();
-                return;
+    public final void afterTextChanged(Editable editable) {
+        if (this.f44388a) {
+            return;
+        }
+        boolean z9 = true;
+        this.f44388a = true;
+        int i7 = 0;
+        while (true) {
+            if (i7 < editable.length()) {
+                char charAt = editable.charAt(i7);
+                if ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && !((charAt >= '0' && charAt <= '9') || charAt == '-' || charAt == ' '))) {
+                    break;
+                }
+                i7++;
+            } else {
+                z9 = false;
+                break;
+            }
+        }
+        this.f44388a = false;
+        EditTextBoldCursor editTextBoldCursor = this.f44389b;
+        if (z9) {
+            editTextBoldCursor.setErrorText(org.telegram.messenger.id.M0(2131747449, null));
+        } else {
+            ek0.N0(this.d, editTextBoldCursor, this.f44390c, editable, false);
         }
     }
 
     @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+    }
+
+    @Override
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f44349a;
-    }
-
-    public cj0(sg.p pVar) {
-        this.f44349a = 3;
-        this.d = pVar;
-        this.f44350b = Pattern.compile("^[0-9a-fA-F]*$");
-    }
-
-    private final void a(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void b(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void e(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void f(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void g(int i7, int i10, int i11, CharSequence charSequence) {
     }
 }

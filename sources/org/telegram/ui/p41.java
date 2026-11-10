@@ -1,35 +1,19 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stats;
-public final class p41 {
-    public boolean f48620a;
-    public String f48621b;
-    public long f48622c;
-    public mg.b d;
-    public mg.b f48623e;
-    public String f48624f;
-    public String f48625g;
-    public boolean h;
-    public final int f48626i;
-    public final String f48627j;
-    public boolean f48628k;
-    public boolean f48629l;
-    public boolean f48630m;
-    public boolean f48631n;
-    public boolean f48632o;
+import org.telegram.tgnet.RequestDelegate;
+public final class p41 implements RequestDelegate {
+    public final int f48652a;
+    public final Object f48653b;
+    public final Object f48654c;
 
-    public p41(String str, int i7) {
-        this.f48627j = str;
-        this.f48626i = i7;
+    public p41(int i7, Object obj, Object obj2) {
+        this.f48652a = i7;
+        this.f48653b = obj;
+        this.f48654c = obj2;
     }
 
-    public final void a(int i7, int i10, int i11, org.telegram.messenger.u10 u10Var) {
-        if (!this.f48628k) {
-            this.f48628k = true;
-            TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
-            tL_loadAsyncGraph.token = this.f48624f;
-            ConnectionsManager.getInstance(i7).bindRequestToGuid(ConnectionsManager.getInstance(i7).sendRequest(tL_loadAsyncGraph, new o41(0, this, u10Var), null, null, 0, i11, 1, true), i10);
-        }
+    @Override
+    public final void run(org.telegram.tgnet.TLObject r9, org.telegram.tgnet.TLRPC.TL_error r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.p41.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 }

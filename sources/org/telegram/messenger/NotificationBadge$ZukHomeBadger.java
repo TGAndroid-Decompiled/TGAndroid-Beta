@@ -4,7 +4,7 @@ import android.net.Uri;
 import java.util.Collections;
 import java.util.List;
 public class NotificationBadge$ZukHomeBadger implements cs {
-    public final Uri f21324a = Uri.parse("content://com.android.badge/badge");
+    public final Uri f21329a = Uri.parse("content://com.android.badge/badge");
 
     @Override
     public final void a(int i7) {

@@ -3,16 +3,16 @@ package li;
 import android.animation.ValueAnimator;
 import bi.de;
 import java.net.URL;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.wq;
 public final class z {
-    public int f19035a;
-    public long f19036b;
-    public Object f19037c;
+    public int f19040a;
+    public long f19041b;
+    public Object f19042c;
 
     public z(int i7, URL url, long j3) {
-        this.f19035a = i7;
-        this.f19037c = url;
-        this.f19036b = j3;
+        this.f19040a = i7;
+        this.f19042c = url;
+        this.f19041b = j3;
     }
 
     public void a(a aVar, l2.x xVar) {
@@ -21,31 +21,31 @@ public final class z {
         int i7;
         int b10 = c8.l1.b(aVar);
         if (aVar != null) {
-            j3 = aVar.f18391a;
+            j3 = aVar.f18394a;
         } else {
             j3 = Long.MIN_VALUE;
         }
-        if (j3 == this.f19036b && this.f19035a >= 0) {
+        if (j3 == this.f19041b && this.f19040a >= 0) {
             z9 = true;
         } else {
             z9 = false;
         }
-        this.f19036b = j3;
-        ValueAnimator valueAnimator = (ValueAnimator) this.f19037c;
+        this.f19041b = j3;
+        ValueAnimator valueAnimator = (ValueAnimator) this.f19042c;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f19037c = null;
+            this.f19042c = null;
         }
-        if (z9 && (i7 = this.f19035a) != b10) {
+        if (z9 && (i7 = this.f19040a) != b10) {
             ValueAnimator ofInt = ValueAnimator.ofInt(i7, b10);
             ofInt.addUpdateListener(new de(8, this, xVar));
-            ofInt.setInterpolator(xq.f40458f);
+            ofInt.setInterpolator(wq.f40046f);
             ofInt.setDuration(200L);
-            this.f19037c = ofInt;
+            this.f19042c = ofInt;
             ofInt.start();
             return;
         }
-        this.f19035a = b10;
+        this.f19040a = b10;
         xVar.d(b10);
     }
 }

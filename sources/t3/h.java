@@ -16,11 +16,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 public final class h extends ca {
-    public static final s0.b f55413b = new s0.b(18);
-    public final g f55414a;
+    public static final s0.b f55412b = new s0.b(18);
+    public final g f55413a;
 
     public h(g gVar) {
-        this.f55414a = gVar;
+        this.f55413a = gVar;
     }
 
     public static a d(x xVar, int i7, int i10) {
@@ -53,7 +53,7 @@ public final class h extends ca {
         String str2 = new String(bArr, i13, u10 - i13, s5);
         int r10 = r(A) + u10;
         if (i11 <= r10) {
-            copyOfRange = m0.f14113b;
+            copyOfRange = m0.f14115b;
         } else {
             copyOfRange = Arrays.copyOfRange(bArr, r10, i11);
         }
@@ -62,9 +62,9 @@ public final class h extends ca {
 
     public static c e(x xVar, int i7, int i10, boolean z9, int i11, g gVar) {
         long j3;
-        int i12 = xVar.f14163b;
-        int v = v(i12, xVar.f14162a);
-        String str = new String(xVar.f14162a, i12, v - i12, StandardCharsets.ISO_8859_1);
+        int i12 = xVar.f14165b;
+        int v = v(i12, xVar.f14164a);
+        String str = new String(xVar.f14164a, i12, v - i12, StandardCharsets.ISO_8859_1);
         xVar.N(v + 1);
         int m10 = xVar.m();
         int m11 = xVar.m();
@@ -80,7 +80,7 @@ public final class h extends ca {
         }
         ArrayList arrayList = new ArrayList();
         int i13 = i12 + i7;
-        while (xVar.f14163b < i13) {
+        while (xVar.f14165b < i13) {
             i h = h(i10, xVar, z9, i11, gVar);
             if (h != null) {
                 arrayList.add(h);
@@ -92,9 +92,9 @@ public final class h extends ca {
     public static d f(x xVar, int i7, int i10, boolean z9, int i11, g gVar) {
         boolean z10;
         boolean z11;
-        int i12 = xVar.f14163b;
-        int v = v(i12, xVar.f14162a);
-        String str = new String(xVar.f14162a, i12, v - i12, StandardCharsets.ISO_8859_1);
+        int i12 = xVar.f14165b;
+        int v = v(i12, xVar.f14164a);
+        String str = new String(xVar.f14164a, i12, v - i12, StandardCharsets.ISO_8859_1);
         xVar.N(v + 1);
         int A = xVar.A();
         if ((A & 2) != 0) {
@@ -110,14 +110,14 @@ public final class h extends ca {
         int A2 = xVar.A();
         String[] strArr = new String[A2];
         for (int i13 = 0; i13 < A2; i13++) {
-            int i14 = xVar.f14163b;
-            int v10 = v(i14, xVar.f14162a);
-            strArr[i13] = new String(xVar.f14162a, i14, v10 - i14, StandardCharsets.ISO_8859_1);
+            int i14 = xVar.f14165b;
+            int v10 = v(i14, xVar.f14164a);
+            strArr[i13] = new String(xVar.f14164a, i14, v10 - i14, StandardCharsets.ISO_8859_1);
             xVar.N(v10 + 1);
         }
         ArrayList arrayList = new ArrayList();
         int i15 = i12 + i7;
-        while (xVar.f14163b < i15) {
+        while (xVar.f14165b < i15) {
             i h = h(i10, xVar, z9, i11, gVar);
             if (h != null) {
                 arrayList.add(h);
@@ -165,7 +165,7 @@ public final class h extends ca {
         String l11 = l(bArr, r10, u11, s5);
         int r11 = r(A) + u11;
         if (i10 <= r11) {
-            copyOfRange = m0.f14113b;
+            copyOfRange = m0.f14115b;
         } else {
             copyOfRange = Arrays.copyOfRange(bArr, r11, i10);
         }
@@ -200,7 +200,7 @@ public final class h extends ca {
         String str = new String(bArr, 0, v, StandardCharsets.ISO_8859_1);
         int i10 = v + 1;
         if (i7 <= i10) {
-            copyOfRange = m0.f14113b;
+            copyOfRange = m0.f14115b;
         } else {
             copyOfRange = Arrays.copyOfRange(bArr, i10, i7);
         }
@@ -327,8 +327,8 @@ public final class h extends ca {
     }
 
     public static int w(int i7, x xVar) {
-        byte[] bArr = xVar.f14162a;
-        int i10 = xVar.f14163b;
+        byte[] bArr = xVar.f14164a;
+        int i10 = xVar.f14165b;
         int i11 = i10;
         while (true) {
             int i12 = i11 + 1;

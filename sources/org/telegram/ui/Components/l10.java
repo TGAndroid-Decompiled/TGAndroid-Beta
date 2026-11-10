@@ -1,39 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class l10 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f35551a;
-    public final q10 f35552b;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.TLRPC;
+public final class l10 implements Runnable {
+    public final m10 f35485a;
 
-    public l10(q10 q10Var, int i7) {
-        this.f35551a = i7;
-        this.f35552b = q10Var;
+    public l10(m10 m10Var) {
+        this.f35485a = m10Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f35551a) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                q10 q10Var = this.f35552b;
-                q10Var.f37175s.x = (int) floatValue;
-                q10Var.i();
-                n10 n10Var = q10Var.f37164a;
-                if (n10Var.getParent() != null) {
-                    q10Var.f37173n.updateViewLayout(n10Var, q10Var.f37175s);
-                    return;
+    public final void run() {
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance != null && sharedInstance.isMicMute()) {
+            TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) sharedInstance.groupCall.d.f(sharedInstance.getSelfId());
+            if (groupCallParticipant == null || groupCallParticipant.can_self_unmute || !groupCallParticipant.muted || org.telegram.messenger.t3.w(14, sharedInstance.getChat())) {
+                m10 m10Var = this.f35485a;
+                org.telegram.messenger.g0.i3(m10Var.f35791f, 90L);
+                try {
+                    m10Var.performHapticFeedback(3, 2);
+                } catch (Exception unused) {
                 }
-                return;
-            default:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                q10 q10Var2 = this.f35552b;
-                q10Var2.f37175s.y = (int) floatValue2;
-                n10 n10Var2 = q10Var2.f37164a;
-                if (n10Var2.getParent() != null) {
-                    q10Var2.f37173n.updateViewLayout(n10Var2, q10Var2.f37175s);
-                    return;
-                }
-                return;
+                m10Var.f35789c = true;
+            }
         }
     }
 }

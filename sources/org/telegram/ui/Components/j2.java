@@ -1,148 +1,258 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.net.Uri;
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class j2 implements Runnable {
-    public final int f34909a = 0;
-    public final long f34910b;
-    public final boolean f34911c;
-    public final Object d;
-    public final Object f34912e;
-    public final Object f34913f;
+import android.graphics.Bitmap;
+import android.graphics.BlendMode;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import java.util.regex.Pattern;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MediaController;
+public final class j2 implements org.telegram.ui.ActionBar.r1, db0, org.telegram.ui.ActionBar.q6, org.telegram.ui.ActionBar.r6, s4, org.telegram.messenger.lc, org.telegram.messenger.eb, org.telegram.messenger.k9, p.a, ih.b, kt0, lt0, gh.d, r0.m {
+    public final int f34819a;
 
-    public j2(Context context, String str, long j3, boolean z9, vf.b bVar) {
-        this.d = context;
-        this.f34912e = str;
-        this.f34910b = j3;
-        this.f34911c = z9;
-        this.f34913f = bVar;
+    public j2(int i7) {
+        this.f34819a = i7;
+    }
+
+    public static BlendMode l() {
+        return BlendMode.DST_IN;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Wallet.i0 i0Var;
-        org.telegram.ui.Wallet.i0 i0Var2;
-        Object obj;
-        fw0 r10;
-        boolean z9 = false;
-        switch (this.f34909a) {
-            case 0:
-                Context context = (Context) this.d;
-                long j3 = this.f34910b;
-                boolean z10 = this.f34911c;
-                vf.b bVar = (vf.b) this.f34913f;
-                Uri parse = Uri.parse((String) this.f34912e);
-                if (j3 == 0) {
-                    z9 = true;
-                }
-                vf.c.r(context, parse, z9, z10, bVar);
-                return;
-            case 1:
-                b8 b8Var = (b8) this.d;
-                long j10 = this.f34910b;
-                boolean z11 = this.f34911c;
-                TLRPC.Document document = (TLRPC.Document) this.f34912e;
-                Runnable runnable = (Runnable) this.f34913f;
-                HashSet hashSet = org.telegram.messenger.qp.s1(b8Var.f28621a).H1().f23589b;
-                if (z11) {
-                    hashSet.add(Long.valueOf(j10));
-                } else {
-                    hashSet.remove(Long.valueOf(j10));
-                }
-                long e10 = org.telegram.messenger.p10.i(b8Var.f28621a).e();
-                TLRPC.UserFull b22 = org.telegram.messenger.qp.s1(b8Var.f28621a).b2(e10);
-                if (b22 != null) {
-                    if (z11) {
-                        b22.flags2 |= 2097152;
-                        b22.saved_music = document;
-                    } else {
-                        TLRPC.Document document2 = b22.saved_music;
-                        if (document2 != null && document2.f26962id == j10) {
-                            b22.flags2 &= -2097153;
-                            b22.saved_music = null;
-                        }
-                    }
-                    org.telegram.messenger.yr.a0(b8Var.f28621a).j2(b22, true);
-                    org.telegram.messenger.qs.f(b8Var.f28621a).k(246, Long.valueOf(e10));
-                }
-                runnable.run();
+    public void L(int i7, int i10, boolean z9) {
+        switch (this.f34819a) {
+            case 11:
+                MediaController.B().B0(1, i7, z9, false);
                 return;
             default:
-                org.telegram.ui.Wallet.p0 p0Var = (org.telegram.ui.Wallet.p0) this.d;
-                long j11 = this.f34910b;
-                String str = (String) this.f34912e;
-                boolean z12 = this.f34911c;
-                org.telegram.messenger.c20 c20Var = (org.telegram.messenger.c20) this.f34913f;
-                try {
-                    obj = org.telegram.ui.Wallet.p0.f42965f;
-                    synchronized (obj) {
-                        p0Var.c(j11);
-                        r10 = p0Var.r();
-                    }
-                } catch (Exception e11) {
-                    e = e11;
-                    i0Var = null;
-                }
-                if (((LinkedHashMap) r10.f33749e).containsKey(str)) {
-                    i0Var = p0Var.h(r10, str, j11);
-                    try {
-                        synchronized (obj) {
-                            p0Var.c(j11);
-                            if (z12) {
-                                try {
-                                    r10.f33747b = ConnectionsManager.getInstance(p0Var.f42969b).getCurrentTime();
-                                    if (!p0Var.d.exists()) {
-                                        if (p0Var.q().edit().putInt("lastUsageDate", r10.f33747b).commit()) {
-                                            org.telegram.messenger.g0.h3(new org.telegram.ui.p61(4));
-                                        } else {
-                                            throw new IOException("usage write");
-                                        }
-                                    } else {
-                                        p0Var.v(r10, new LinkedHashMap());
-                                    }
-                                } catch (Exception e12) {
-                                    org.telegram.messenger.a8.g(e12, true);
-                                }
-                            }
-                        }
-                        i0Var2 = i0Var;
-                    } catch (Exception e13) {
-                        e = e13;
-                        org.telegram.messenger.a8.g(e, true);
-                        if (i0Var != null) {
-                            i0Var.close();
-                        }
-                        i0Var2 = null;
-                        org.telegram.messenger.g0.h3(new bi.w2(p0Var, i0Var2, c20Var, j11, 26));
-                        return;
-                    }
-                    org.telegram.messenger.g0.h3(new bi.w2(p0Var, i0Var2, c20Var, j11, 26));
-                    return;
-                }
-                i0Var2 = null;
-                org.telegram.messenger.g0.h3(new bi.w2(p0Var, i0Var2, c20Var, j11, 26));
+                MediaController.B().B0(1, i7, z9, false);
                 return;
         }
     }
 
-    public j2(b8 b8Var, long j3, boolean z9, TLRPC.Document document, Runnable runnable) {
-        this.d = b8Var;
-        this.f34910b = j3;
-        this.f34911c = z9;
-        this.f34912e = document;
-        this.f34913f = runnable;
+    @Override
+    public void O(ImageReceiver imageReceiver) {
+        int i7 = this.f34819a;
     }
 
-    public j2(org.telegram.ui.Wallet.p0 p0Var, long j3, String str, boolean z9, org.telegram.messenger.c20 c20Var) {
-        this.d = p0Var;
-        this.f34910b = j3;
-        this.f34912e = str;
-        this.f34911c = z9;
-        this.f34913f = c20Var;
+    @Override
+    public r0.k1 S0(View view, r0.k1 k1Var) {
+        return r0.k1.f54212b;
+    }
+
+    @Override
+    public bc a(gc gcVar) {
+        return gcVar.k(false);
+    }
+
+    @Override
+    public Object b(Bitmap bitmap) {
+        if (bitmap.getConfig() == Bitmap.Config.ALPHA_8) {
+            return bitmap;
+        }
+        return bitmap.extractAlpha();
+    }
+
+    @Override
+    public void c(int i7, View view) {
+        ((org.telegram.ui.ActionBar.z0) view).d(i7, i7);
+    }
+
+    @Override
+    public void f(Object obj, float f10) {
+        lb0 lb0Var = (lb0) obj;
+        switch (this.f34819a) {
+            case 21:
+                lb0Var.f35635f = f10;
+                if (!lb0Var.D || lb0Var.F) {
+                    lb0Var.f35633c.setStrokeWidth(org.telegram.messenger.g0.T1(lb0Var.f35639w, lb0Var.f35640x, f10));
+                    lb0Var.f();
+                }
+                lb0Var.invalidate();
+                return;
+            case 22:
+            default:
+                lb0Var.f35638s = f10;
+                lb0Var.f();
+                return;
+            case 23:
+                lb0Var.f35636n = f10;
+                if (!lb0Var.D || lb0Var.F) {
+                    lb0Var.f();
+                }
+                lb0Var.invalidate();
+                return;
+        }
+    }
+
+    @Override
+    public void f0(ImageReceiver imageReceiver, boolean z9, boolean z10, boolean z11) {
+        zg0 B;
+        switch (this.f34819a) {
+            case 13:
+                Drawable t6 = imageReceiver.t();
+                if (t6 instanceof zg0) {
+                    zg0 zg0Var = (zg0) t6;
+                    zg0Var.P(0);
+                    zg0Var.stop();
+                    zg0Var.T(false, 0.0f);
+                    return;
+                }
+                return;
+            default:
+                if (z9 && !z10 && (B = imageReceiver.B()) != null) {
+                    B.start();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        switch (this.f34819a) {
+            case 0:
+                Pattern pattern = u4.f38507a;
+                return;
+            default:
+                u1Var.dismiss();
+                return;
+        }
+    }
+
+    @Override
+    public float get(Object obj) {
+        lb0 lb0Var = (lb0) obj;
+        switch (this.f34819a) {
+            case 20:
+                return lb0Var.f35635f;
+            case 21:
+            default:
+                return lb0Var.f35638s;
+            case 22:
+                return lb0Var.f35636n;
+        }
+    }
+
+    @Override
+    public String h(int i7) {
+        switch (this.f34819a) {
+            case 1:
+                return jg.g.j(i7, "");
+            case 2:
+                switch (i7) {
+                    case 0:
+                        return org.telegram.messenger.id.M0(2131749086, null);
+                    case 1:
+                        return org.telegram.messenger.id.M0(2131750829, null);
+                    case 2:
+                        return org.telegram.messenger.id.M0(2131748683, null);
+                    case 3:
+                        return org.telegram.messenger.id.M0(2131754173, null);
+                    case 4:
+                        return org.telegram.messenger.id.M0(2131748662, null);
+                    case 5:
+                        return org.telegram.messenger.id.M0(2131749064, null);
+                    case 6:
+                        return org.telegram.messenger.id.M0(2131749066, null);
+                    case 7:
+                        return org.telegram.messenger.id.M0(2131753895, null);
+                    case 8:
+                        return org.telegram.messenger.id.M0(2131745565, null);
+                    case 9:
+                        return org.telegram.messenger.id.M0(2131747830, null);
+                    case 10:
+                        return org.telegram.messenger.id.M0(2131747835, null);
+                    default:
+                        return org.telegram.messenger.id.M0(2131751605, null);
+                }
+            case 3:
+                return jg.g.j(i7, "");
+            case 4:
+                switch (i7) {
+                    case 0:
+                        return org.telegram.messenger.id.M0(2131749086, null);
+                    case 1:
+                        return org.telegram.messenger.id.M0(2131750829, null);
+                    case 2:
+                        return org.telegram.messenger.id.M0(2131748683, null);
+                    case 3:
+                        return org.telegram.messenger.id.M0(2131754173, null);
+                    case 4:
+                        return org.telegram.messenger.id.M0(2131748662, null);
+                    case 5:
+                        return org.telegram.messenger.id.M0(2131749064, null);
+                    case 6:
+                        return org.telegram.messenger.id.M0(2131749066, null);
+                    case 7:
+                        return org.telegram.messenger.id.M0(2131753895, null);
+                    case 8:
+                        return org.telegram.messenger.id.M0(2131745565, null);
+                    case 9:
+                        return org.telegram.messenger.id.M0(2131747830, null);
+                    case 10:
+                        return org.telegram.messenger.id.M0(2131747835, null);
+                    default:
+                        return org.telegram.messenger.id.M0(2131751605, null);
+                }
+            case 5:
+                return String.format("%02d", Integer.valueOf(i7));
+            case 6:
+                return jg.g.j(i7, "");
+            case 7:
+                return String.format("%02d", Integer.valueOf(i7));
+            default:
+                return String.format("%02d", Integer.valueOf(i7));
+        }
+    }
+
+    @Override
+    public int i(View view) {
+        org.telegram.ui.ActionBar.z0 z0Var = (org.telegram.ui.ActionBar.z0) view;
+        if (z0Var.getTextView() != null) {
+            return z0Var.getTextView().getCurrentTextColor();
+        }
+        return 0;
+    }
+
+    @Override
+    public Object j(Object obj) {
+        switch (this.f34819a) {
+            case 16:
+                Void r22 = (Void) obj;
+                return CheckBoxBase.I;
+            default:
+                Integer num = (Integer) obj;
+                int i7 = gy.U2;
+                return 0;
+        }
+    }
+
+    @Override
+    public int k(org.telegram.ui.ActionBar.h6 h6Var, boolean z9) {
+        Bitmap bitmap = ai.z.f1700a;
+        return (((int) a8.p0.f(ai.o1.f1596b[3], 255.0f, 100.0f, 0.5f)) << 24) | 16777215;
+    }
+
+    @Override
+    public void onClick() {
+        int i7 = vk.F0;
+    }
+
+    @Override
+    public void t0(int i7, Drawable drawable) {
+        int i10 = this.f34819a;
+    }
+
+    private final void m(ImageReceiver imageReceiver) {
+    }
+
+    private final void n(ImageReceiver imageReceiver) {
+    }
+
+    private final void d(int i7, Drawable drawable) {
+    }
+
+    private final void e(int i7, Drawable drawable) {
     }
 }

@@ -10,7 +10,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.hr0;
+import org.telegram.ui.ir0;
 public interface l1 {
     void A0(q1 q1Var, TLObject tLObject, boolean z9);
 
@@ -62,7 +62,7 @@ public interface l1 {
 
     void N0(q1 q1Var, CharacterStyle characterStyle, boolean z9);
 
-    hr0 N1();
+    ir0 N1();
 
     boolean O0(q1 q1Var, boolean z9);
 
@@ -156,7 +156,7 @@ public interface l1 {
 
     void n(q1 q1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i7);
 
-    boolean n0(org.telegram.ui.Components.r5 r5Var);
+    boolean n0(org.telegram.ui.Components.q5 q5Var);
 
     boolean n1();
 

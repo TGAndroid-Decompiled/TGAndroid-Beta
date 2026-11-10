@@ -1,45 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class vl {
-    public float f39119a;
-    public int f39120b;
-    public int f39121c;
-    public int d;
-    public final Object f39122e;
-    public final Object f39123f;
-    public Object f39124g;
-    public final Object h;
+import android.animation.ValueAnimator;
+public final class vl implements ValueAnimator.AnimatorUpdateListener {
+    public final int f39052a;
+    public final zl f39053b;
 
-    public vl(Context context, n nVar) {
-        this.f39120b = -1;
-        this.f39121c = -1;
-        this.d = -1;
-        this.h = new int[]{Integer.MAX_VALUE, 0};
-        this.f39122e = context;
-        this.f39123f = nVar;
+    public vl(zl zlVar, int i7) {
+        this.f39052a = i7;
+        this.f39053b = zlVar;
     }
 
-    public static float b(int i7, int i10, float[] fArr) {
-        float f10 = 0.0f;
-        while (i7 < i10) {
-            f10 += fArr[i7];
-            i7++;
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f39052a) {
+            case 0:
+                zl zlVar = this.f39053b;
+                zlVar.getClass();
+                zlVar.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                zlVar.invalidate();
+                return;
+            default:
+                zl zlVar2 = this.f39053b;
+                zlVar2.getClass();
+                zlVar2.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                zlVar2.invalidate();
+                return;
         }
-        return 1000.0f / f10;
-    }
-
-    public void a() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.vl.a():void");
-    }
-
-    public vl(bm bmVar, ArrayList arrayList) {
-        this.h = bmVar;
-        this.f39122e = new ArrayList();
-        this.f39124g = new HashMap();
-        this.f39123f = arrayList;
-        a();
     }
 }

@@ -2,11 +2,11 @@ package o2;
 
 import java.io.IOException;
 public final class d implements b3.p {
-    public final h f20728a;
+    public final h f20733a;
 
     @Override
     public void a() {
-        h hVar = this.f20728a;
+        h hVar = this.f20733a;
         hVar.A.a();
         IOException iOException = hVar.C;
         if (iOException == null) {
@@ -17,10 +17,10 @@ public final class d implements b3.p {
 
     public void b() {
         long j3;
-        h hVar = this.f20728a;
-        synchronized (c3.b.f5261b) {
+        h hVar = this.f20733a;
+        synchronized (c3.b.f5266b) {
             try {
-                if (c3.b.f5262c) {
+                if (c3.b.f5267c) {
                     j3 = c3.b.d;
                 } else {
                     j3 = -9223372036854775807L;

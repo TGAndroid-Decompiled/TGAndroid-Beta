@@ -6,33 +6,33 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Shader;
 public final class me implements org.telegram.messenger.v10 {
-    public final int f47860a;
-    public final cn f47861b;
+    public final int f47933a;
+    public final cn f47934b;
 
     public me(cn cnVar, int i7) {
-        this.f47860a = i7;
-        this.f47861b = cnVar;
+        this.f47933a = i7;
+        this.f47934b = cnVar;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        switch (this.f47860a) {
+        switch (this.f47933a) {
             case 0:
-                cn.l1(this.f47861b, (Integer) obj, (Boolean) obj2);
+                cn.l1(this.f47934b, (Integer) obj, (Boolean) obj2);
                 return;
             case 1:
-                cn.x1(this.f47861b, (Long) obj, (Boolean) obj2);
+                cn.x1(this.f47934b, (Long) obj, (Boolean) obj2);
                 return;
             case 2:
                 Bitmap bitmap = (Bitmap) obj;
-                cn cnVar = this.f47861b;
+                cn cnVar = this.f47934b;
                 ri.b bVar = cnVar.N8;
                 bVar.a((Bitmap) obj2);
                 ih.d.c(bVar, cnVar.fragmentView);
                 cnVar.O8.d();
                 return;
             default:
-                cn cnVar2 = this.f47861b;
+                cn cnVar2 = this.f47934b;
                 cnVar2.P8 = (Bitmap) obj;
                 Paint paint = new Paint(1);
                 cnVar2.R8 = paint;

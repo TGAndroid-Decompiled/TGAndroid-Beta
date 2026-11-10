@@ -4,15 +4,15 @@ import ai.n1;
 import android.os.Handler;
 import java.nio.ByteBuffer;
 import li.b6;
+import org.telegram.ui.Components.h41;
 import org.telegram.ui.Components.m51;
-import org.telegram.ui.Components.n51;
+import org.telegram.ui.Components.s51;
 import org.telegram.ui.Components.t51;
-import org.telegram.ui.Components.u51;
 public final class x0 extends f2.o {
-    public final b6 f20340i;
+    public final b6 f20345i;
 
     public x0(b6 b6Var) {
-        this.f20340i = b6Var;
+        this.f20345i = b6Var;
     }
 
     @Override
@@ -24,34 +24,34 @@ public final class x0 extends f2.o {
         if (remaining == 0) {
             return;
         }
-        String str = h2.m0.f14112a;
+        String str = h2.m0.f14114a;
         ByteBuffer order = byteBuffer.asReadOnlyBuffer().order(byteBuffer.order());
-        b6 b6Var = this.f20340i;
+        b6 b6Var = this.f20345i;
         float[] fArr2 = (float[]) b6Var.d;
-        n1 n1Var = (n1) b6Var.f18483c;
-        ByteBuffer byteBuffer2 = (ByteBuffer) b6Var.f18484e;
-        u51 u51Var = (u51) b6Var.f18485f;
-        n51 n51Var = u51Var.K;
-        Handler handler = u51Var.f38604a0;
-        if (n51Var != null) {
+        n1 n1Var = (n1) b6Var.f18486c;
+        ByteBuffer byteBuffer2 = (ByteBuffer) b6Var.f18487e;
+        t51 t51Var = (t51) b6Var.f18488f;
+        m51 m51Var = t51Var.K;
+        Handler handler = t51Var.f38195a0;
+        if (m51Var != null) {
             int i7 = 0;
-            if (order != f2.n.f10922a && u51Var.I) {
-                if (n51Var.s()) {
+            if (order != f2.n.f10927a && t51Var.I) {
+                if (m51Var.s()) {
                     int limit = order.limit();
                     if (limit > 8192) {
                         handler.removeCallbacksAndMessages(null);
-                        u51Var.K.F(false, null);
+                        t51Var.K.F(false, null);
                     } else {
                         byteBuffer2.put(order);
-                        int i10 = b6Var.f18481a + limit;
-                        b6Var.f18481a = i10;
+                        int i10 = b6Var.f18484a + limit;
+                        b6Var.f18484a = i10;
                         if (i10 >= 1024) {
                             byteBuffer2.position(0);
                             for (int i11 = 0; i11 < 1024; i11++) {
                                 fArr2[i11] = byteBuffer2.getShort() / 32768.0f;
                             }
                             byteBuffer2.rewind();
-                            b6Var.f18481a = 0;
+                            b6Var.f18484a = 0;
                             n1Var.getClass();
                             float f12 = 0.0f;
                             if (fArr2.length != 1024) {
@@ -159,15 +159,15 @@ public final class x0 extends f2.o {
                                     }
                                 }
                             }
-                            if (System.currentTimeMillis() - b6Var.f18482b >= 64) {
-                                b6Var.f18482b = System.currentTimeMillis();
-                                handler.postDelayed(new m51(1, b6Var, fArr6), 130L);
+                            if (System.currentTimeMillis() - b6Var.f18485b >= 64) {
+                                b6Var.f18485b = System.currentTimeMillis();
+                                handler.postDelayed(new h41(2, b6Var, fArr6), 130L);
                             }
                         }
                     }
                 }
             } else {
-                handler.postDelayed(new t51(b6Var, 0), 80L);
+                handler.postDelayed(new s51(b6Var, 0), 80L);
             }
         }
         l(remaining).put(byteBuffer).flip();
@@ -190,11 +190,11 @@ public final class x0 extends f2.o {
 
     public final void m() {
         if (isActive()) {
-            f2.k kVar = this.f10923b;
-            int i7 = kVar.f10917a;
-            int i10 = kVar.f10918b;
-            int i11 = kVar.f10919c;
-            this.f20340i.getClass();
+            f2.k kVar = this.f10928b;
+            int i7 = kVar.f10922a;
+            int i10 = kVar.f10923b;
+            int i11 = kVar.f10924c;
+            this.f20345i.getClass();
         }
     }
 

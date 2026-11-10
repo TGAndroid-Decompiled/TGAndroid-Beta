@@ -5,25 +5,25 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.d80;
+import org.telegram.ui.e80;
 public final class nh implements ri, tr {
-    public final c1 f24193a;
-    public final Object f24194b;
-    public final Object f24195c;
+    public final c1 f24197a;
+    public final Object f24198b;
+    public final Object f24199c;
     public final Object d;
 
     public nh(c1 c1Var, Object obj, Object obj2, Object obj3) {
-        this.f24193a = c1Var;
-        this.f24194b = obj;
-        this.f24195c = obj2;
+        this.f24197a = c1Var;
+        this.f24198b = obj;
+        this.f24199c = obj2;
         this.d = obj3;
     }
 
     @Override
     public void e(String str, ArrayList arrayList) {
-        ui uiVar = (ui) this.f24193a;
-        si siVar = (si) this.f24194b;
-        ti tiVar = (ti) this.f24195c;
+        ui uiVar = (ui) this.f24197a;
+        si siVar = (si) this.f24198b;
+        ti tiVar = (ti) this.f24199c;
         c20 c20Var = (c20) this.d;
         HashMap hashMap = uiVar.P1;
         if (!hashMap.containsKey(siVar)) {
@@ -37,22 +37,22 @@ public final class nh implements ri, tr {
             Object obj = arrayList.get(i10);
             i10++;
             qi qiVar = (qi) obj;
-            if (!TextUtils.isEmpty(qiVar.f24701a) && !qiVar.f24701a.startsWith("animated_")) {
-                sb2.append(qiVar.f24701a);
+            if (!TextUtils.isEmpty(qiVar.f24705a) && !qiVar.f24705a.startsWith("animated_")) {
+                sb2.append(qiVar.f24705a);
             }
         }
         TLRPC.TL_messages_searchStickers tL_messages_searchStickers = new TLRPC.TL_messages_searchStickers();
-        boolean z9 = siVar.f25480a;
-        String str2 = siVar.f25481b;
+        boolean z9 = siVar.f25484a;
+        String str2 = siVar.f25485b;
         tL_messages_searchStickers.emojis = z9;
         if (!TextUtils.isEmpty(str2)) {
             tL_messages_searchStickers.lang_code.add(str2);
         }
         tL_messages_searchStickers.emoticon = sb2.toString();
-        tL_messages_searchStickers.f27071q = siVar.f25482c;
+        tL_messages_searchStickers.f27075q = siVar.f25486c;
         tL_messages_searchStickers.limit = 100;
         if (tiVar != null) {
-            i7 = tiVar.f25630b.intValue();
+            i7 = tiVar.f25634b.intValue();
         }
         tL_messages_searchStickers.offset = i7;
         hashMap.put(siVar, Integer.valueOf(uiVar.getConnectionsManager().sendRequestTyped(tL_messages_searchStickers, new d3.b(1), new m9(uiVar, siVar, tiVar, c20Var, 1))));
@@ -60,14 +60,14 @@ public final class nh implements ri, tr {
 
     @Override
     public void run(long j3) {
-        gz gzVar = (gz) this.f24193a;
-        Uri uri = (Uri) this.f24194b;
-        ArrayList arrayList = (ArrayList) this.f24195c;
-        d80 d80Var = (d80) this.d;
+        gz gzVar = (gz) this.f24197a;
+        Uri uri = (Uri) this.f24198b;
+        ArrayList arrayList = (ArrayList) this.f24199c;
+        e80 e80Var = (e80) this.d;
         if (j3 != 0) {
-            gzVar.Q(-j3, uri, arrayList, d80Var);
+            gzVar.Q(-j3, uri, arrayList, e80Var);
         } else {
-            d80Var.run(0L);
+            e80Var.run(0L);
         }
     }
 }

@@ -1,76 +1,42 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-public final class qi extends vh {
-    public bi.q1 f37337n;
-    public int f37338r;
-    public ei.h f37339s;
-    public la f37340w;
-    public int f37341x;
-    public q0.a f37342y;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class qi implements dj0, vi {
+    public final ej f37299a;
 
-    @Override
-    public final void B(int r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qi.B(int, int):void");
+    public qi(ej ejVar) {
+        this.f37299a = ejVar;
     }
 
     @Override
-    public final void H(vh vhVar) {
-        di diVar = this.f39071b;
-        try {
-            diVar.R2.getTitleTextView().setBuildFullLayout(true);
-        } catch (Exception unused) {
+    public void a(TLRPC.User user, boolean z9, int i7, long j3) {
+        ej ejVar = this.f37299a;
+        ejVar.f38656b.a(true);
+        ejVar.J.a(user, z9, i7, j3);
+    }
+
+    @Override
+    public boolean c(int i7, View view) {
+        Object O;
+        ej ejVar = this.f37299a;
+        v4.g0 adapter = ejVar.f33270s.getAdapter();
+        aj ajVar = ejVar.F;
+        if (adapter == ajVar) {
+            O = ajVar.E(i7);
+        } else {
+            yi yiVar = ejVar.E;
+            O = yiVar.O(yiVar.S(i7), yiVar.Q(i7));
         }
-        diVar.R2.setTitle(org.telegram.messenger.id.M0(2131745663, null));
-        this.f37339s.h1(0, 0);
-    }
-
-    @Override
-    public final void J() {
-        this.f37337n.y0(0);
-    }
-
-    @Override
-    public int getCurrentItemTop() {
-        bi.q1 q1Var = this.f37337n;
-        if (q1Var.getChildCount() <= 0) {
-            q1Var.setTopGlowOffset(q1Var.getPaddingTop());
-            return Integer.MAX_VALUE;
+        if (O != null) {
+            ejVar.P((dj) view, O);
+            return true;
         }
-        View childAt = q1Var.getChildAt(0);
-        yi0 yi0Var = (yi0) q1Var.G(childAt);
-        int top = childAt.getTop();
-        int L = org.telegram.messenger.g0.L(7.0f);
-        if (top < org.telegram.messenger.g0.L(7.0f) || yi0Var == null || yi0Var.b() != 0) {
-            top = L;
-        }
-        q1Var.setTopGlowOffset(top);
-        return top;
+        return false;
     }
 
     @Override
-    public int getFirstOffset() {
-        return org.telegram.messenger.g0.L(56.0f) + getListTopPadding();
-    }
-
-    @Override
-    public int getListTopPadding() {
-        return this.f37337n.getPaddingTop();
-    }
-
-    @Override
-    public final int j() {
-        return 1;
-    }
-
-    public void setDelegate(q0.a aVar) {
-        this.f37342y = aVar;
-    }
-
-    @Override
-    public void setTranslationY(float f10) {
-        super.setTranslationY(f10);
-        this.f39071b.f28624b.invalidate();
-        invalidate();
+    public void b(ArrayList arrayList, String str, boolean z9, int i7, long j3, boolean z10) {
     }
 }

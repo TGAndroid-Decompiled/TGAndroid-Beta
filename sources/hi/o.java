@@ -2,6 +2,6 @@ package hi;
 
 import org.telegram.tgnet.TLRPC;
 public final class o {
-    public TLRPC.User f14834a;
-    public boolean f14835b;
+    public TLRPC.User f14836a;
+    public boolean f14837b;
 }

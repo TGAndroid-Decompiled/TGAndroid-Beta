@@ -1,111 +1,89 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.c20;
-import org.telegram.messenger.x10;
-import org.telegram.tgnet.TLRPC;
-public final class a9 implements x10 {
-    public final int f42196a;
-    public final l9 f42197b;
-    public final l0 f42198c;
-    public final long d;
+import android.text.TextUtils;
+import android.widget.TextView;
+import org.telegram.messenger.v10;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class a9 implements v10 {
+    public final int f42155a;
+    public final o9 f42156b;
 
-    public a9(l9 l9Var, l0 l0Var, long j3, int i7) {
-        this.f42196a = i7;
-        this.f42197b = l9Var;
-        this.f42198c = l0Var;
-        this.d = j3;
+    public a9(o9 o9Var, int i7) {
+        this.f42155a = i7;
+        this.f42156b = o9Var;
     }
 
     @Override
-    public final void a(Object obj, Object obj2, Object obj3) {
-        byte[] bArr;
-        byte[] bArr2;
-        switch (this.f42196a) {
+    public final void a(Object obj, Object obj2) {
+        int i7;
+        int i10;
+        switch (this.f42155a) {
             case 0:
-                String str = (String) obj;
-                final c20 c20Var = (c20) obj3;
-                final l9 l9Var = this.f42197b;
-                TLRPC.User user = l9Var.f42738f;
-                String str2 = l9Var.h;
-                if (((Boolean) obj2).booleanValue()) {
-                    bArr = l9Var.r0();
-                } else {
-                    bArr = null;
+                String str = (String) obj2;
+                o9.g0(this.f42156b, (TL_wallet.walletUserAddress) obj);
+                return;
+            case 1:
+                TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
+                String str2 = (String) obj2;
+                o9 o9Var = this.f42156b;
+                o9Var.getClass();
+                if (wallettransaction != null) {
+                    o9Var.f42921e0 = wallettransaction.fee;
+                    o9Var.D0();
+                    return;
                 }
-                byte[] bArr3 = bArr;
-                this.f42198c.d0(user, str2, this.d, str, bArr3, null, l9Var.f42746n, new c20() {
-                    @Override
-                    public final void a(Object obj4) {
-                        String str3 = (String) obj4;
-                        switch (r3) {
-                            case 0:
-                                if (!"PASSCODE_FAILED".equalsIgnoreCase(str3)) {
-                                    c20Var.a(str3);
-                                    if (str3 == null) {
-                                        l9 l9Var2 = l9Var;
-                                        l9Var2.fragmentView.postDelayed(new v8(l9Var2, 4), 220L);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                            default:
-                                if (!"PASSCODE_FAILED".equalsIgnoreCase(str3)) {
-                                    c20Var.a(str3);
-                                    if (str3 == null) {
-                                        l9 l9Var3 = l9Var;
-                                        l9Var3.fragmentView.postDelayed(new v8(l9Var3, 4), 220L);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                }, new z8(l9Var, 2), null);
+                return;
+            case 2:
+                TL_wallet.walletUserAddress walletuseraddress = (TL_wallet.walletUserAddress) obj;
+                o9 o9Var2 = this.f42156b;
+                o9Var2.f42935r = false;
+                if (TextUtils.equals((String) obj2, "WALLET_USER_UNAVAILABLE")) {
+                    o9Var2.finishFragment();
+                    return;
+                }
+                o9Var2.f42920e = walletuseraddress;
+                if (walletuseraddress != null) {
+                    o9Var2.h = walletuseraddress.address;
+                }
+                fi.w3 w3Var = o9Var2.f36518a;
+                if (w3Var != null) {
+                    w3Var.f37496f3.O(true);
+                }
+                o9Var2.C0();
+                o9Var2.t0();
+                s8 s8Var = o9Var2.f42942w;
+                if (s8Var != null) {
+                    s8Var.a(o9Var2.h, o9Var2.f42922f);
+                    return;
+                }
+                return;
+            case 3:
+                o9 o9Var3 = this.f42156b;
+                o9Var3.f42924g0 = (String) obj;
+                o9Var3.f42925h0 = ((Boolean) obj2).booleanValue();
+                o9Var3.P.setText(o9Var3.f42924g0);
+                TextView textView = o9Var3.P;
+                if (TextUtils.isEmpty(o9Var3.f42924g0)) {
+                    i7 = 8;
+                } else {
+                    i7 = 0;
+                }
+                textView.setVisibility(i7);
+                o9Var3.E0();
                 return;
             default:
-                String str3 = (String) obj;
-                final c20 c20Var2 = (c20) obj3;
-                final l9 l9Var2 = this.f42197b;
-                TLRPC.User user2 = l9Var2.f42738f;
-                String str4 = l9Var2.h;
-                if (((Boolean) obj2).booleanValue()) {
-                    bArr2 = l9Var2.r0();
+                o9 o9Var4 = this.f42156b;
+                o9Var4.f42924g0 = (String) obj;
+                o9Var4.f42925h0 = ((Boolean) obj2).booleanValue();
+                o9Var4.P.setText(o9Var4.f42924g0);
+                TextView textView2 = o9Var4.P;
+                if (TextUtils.isEmpty(o9Var4.f42924g0)) {
+                    i10 = 8;
                 } else {
-                    bArr2 = null;
+                    i10 = 0;
                 }
-                byte[] bArr4 = bArr2;
-                this.f42198c.d0(user2, str4, this.d, str3, bArr4, null, l9Var2.f42746n, new c20() {
-                    @Override
-                    public final void a(Object obj4) {
-                        String str32 = (String) obj4;
-                        switch (r3) {
-                            case 0:
-                                if (!"PASSCODE_FAILED".equalsIgnoreCase(str32)) {
-                                    c20Var2.a(str32);
-                                    if (str32 == null) {
-                                        l9 l9Var22 = l9Var2;
-                                        l9Var22.fragmentView.postDelayed(new v8(l9Var22, 4), 220L);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                            default:
-                                if (!"PASSCODE_FAILED".equalsIgnoreCase(str32)) {
-                                    c20Var2.a(str32);
-                                    if (str32 == null) {
-                                        l9 l9Var3 = l9Var2;
-                                        l9Var3.fragmentView.postDelayed(new v8(l9Var3, 4), 220L);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                }, new z8(l9Var2, 3), null);
+                textView2.setVisibility(i10);
+                o9Var4.E0();
                 return;
         }
     }

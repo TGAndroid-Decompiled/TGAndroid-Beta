@@ -29,23 +29,23 @@ public final class f implements Runnable {
                 }
                 try {
                     o0.h d = qVar.d();
-                    int i7 = d.f20694e;
+                    int i7 = d.f20699e;
                     if (i7 == 2) {
                         synchronized (qVar.d) {
                         }
                     }
                     if (i7 == 0) {
-                        int i10 = n0.g.f20125a;
+                        int i10 = n0.g.f20130a;
                         Trace.beginSection("EmojiCompat.FontRequestEmojiCompatConfig.buildTypeface");
                         pb.b bVar = qVar.f2330c;
                         Context context = qVar.f2328a;
                         bVar.getClass();
                         o0.h[] hVarArr = {d};
-                        j0 j0Var = i0.e.f15126a;
+                        j0 j0Var = i0.e.f15128a;
                         he.a("TypefaceCompat.createFromFontInfo");
-                        Typeface b10 = i0.e.f15126a.b(context, hVarArr, 0);
+                        Typeface b10 = i0.e.f15128a.b(context, hVarArr, 0);
                         Trace.endSection();
-                        MappedByteBuffer e10 = k0.e(qVar.f2328a, d.f20691a);
+                        MappedByteBuffer e10 = k0.e(qVar.f2328a, d.f20696a);
                         if (e10 != null && b10 != null) {
                             Trace.beginSection("EmojiCompat.MetadataRepo.create");
                             b0 b0Var = new b0(b10, u6.a(e10));

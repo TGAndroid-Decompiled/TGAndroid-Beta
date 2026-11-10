@@ -1,24 +1,24 @@
 package h0;
 public final class k {
-    public static final k f14030k;
-    public final float f14031a;
-    public final float f14032b;
-    public final float f14033c;
+    public static final k f14032k;
+    public final float f14033a;
+    public final float f14034b;
+    public final float f14035c;
     public final float d;
-    public final float f14034e;
-    public final float f14035f;
-    public final float[] f14036g;
+    public final float f14036e;
+    public final float f14037f;
+    public final float[] f14038g;
     public final float h;
-    public final float f14037i;
-    public final float f14038j;
+    public final float f14039i;
+    public final float f14040j;
 
     static {
         float f10;
         float[] fArr;
         float j3 = (float) ((b.j() * 63.66197723675813d) / 100.0d);
-        float[] fArr2 = b.f14010c;
+        float[] fArr2 = b.f14012c;
         float f11 = fArr2[0];
-        float[][] fArr3 = b.f14008a;
+        float[][] fArr3 = b.f14010a;
         float[] fArr4 = fArr3[0];
         float f12 = fArr2[1];
         float f13 = fArr4[1] * f12;
@@ -56,19 +56,19 @@ public final class k {
         float f24 = (f23 * 400.0f) / (f23 + 27.13f);
         float f25 = fArr7[2];
         float[] fArr8 = {f22, f24, (400.0f * f25) / (f25 + 27.13f)};
-        f14030k = new k(j10, com.google.android.recaptcha.internal.a.B(fArr8[2], 0.05f, (fArr8[0] * 2.0f) + fArr8[1], pow), pow, pow, f18, 1.0f, new float[]{(((100.0f / f15) * C) + 1.0f) - C, (((100.0f / f16) * C) + 1.0f) - C, (((100.0f / f17) * C) + 1.0f) - C}, cbrt, (float) Math.pow(cbrt, 0.25d), sqrt);
+        f14032k = new k(j10, com.google.android.recaptcha.internal.a.B(fArr8[2], 0.05f, (fArr8[0] * 2.0f) + fArr8[1], pow), pow, pow, f18, 1.0f, new float[]{(((100.0f / f15) * C) + 1.0f) - C, (((100.0f / f16) * C) + 1.0f) - C, (((100.0f / f17) * C) + 1.0f) - C}, cbrt, (float) Math.pow(cbrt, 0.25d), sqrt);
     }
 
     public k(float f10, float f11, float f12, float f13, float f14, float f15, float[] fArr, float f16, float f17, float f18) {
-        this.f14035f = f10;
-        this.f14031a = f11;
-        this.f14032b = f12;
-        this.f14033c = f13;
+        this.f14037f = f10;
+        this.f14033a = f11;
+        this.f14034b = f12;
+        this.f14035c = f13;
         this.d = f14;
-        this.f14034e = f15;
-        this.f14036g = fArr;
+        this.f14036e = f15;
+        this.f14038g = fArr;
         this.h = f16;
-        this.f14037i = f17;
-        this.f14038j = f18;
+        this.f14039i = f17;
+        this.f14040j = f18;
     }
 }

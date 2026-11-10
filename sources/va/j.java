@@ -4,21 +4,21 @@ import android.text.TextUtils;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 public final class j {
-    public static final long f57316b = TimeUnit.HOURS.toSeconds(1);
-    public static final Pattern f57317c = Pattern.compile("\\AA[\\w-]{38}\\z");
+    public static final long f57312b = TimeUnit.HOURS.toSeconds(1);
+    public static final Pattern f57313c = Pattern.compile("\\AA[\\w-]{38}\\z");
     public static j d;
-    public final sa.d f57318a;
+    public final sa.d f57314a;
 
     public j(sa.d dVar) {
-        this.f57318a = dVar;
+        this.f57314a = dVar;
     }
 
     public final boolean a(wa.b bVar) {
-        if (!TextUtils.isEmpty(bVar.f57642c)) {
-            long j3 = bVar.f57644f + bVar.f57643e;
+        if (!TextUtils.isEmpty(bVar.f57641c)) {
+            long j3 = bVar.f57643f + bVar.f57642e;
             TimeUnit timeUnit = TimeUnit.MILLISECONDS;
-            this.f57318a.getClass();
-            if (j3 < timeUnit.toSeconds(System.currentTimeMillis()) + f57316b) {
+            this.f57314a.getClass();
+            if (j3 < timeUnit.toSeconds(System.currentTimeMillis()) + f57312b) {
                 return true;
             }
             return false;

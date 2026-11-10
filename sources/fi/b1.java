@@ -18,7 +18,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public abstract class b1 extends CameraView {
-    public static final int[] f11635a0 = {1893745684, -215458996, -862041025, -1258375037, -1320049076, -215749424, 1901578030, -215451421, 1908491424, -1321491332, -1155551678, 1908524435, 976847578, -1489198134, 1910814392, -713271737, -2010722764, 1407170066, -821405251, -1394190955, -1394190055, 1407170066, 1407159934, 1407172057, 1231389747, -2076538925, 41497626, 846150482, -1198092731, -251277614, -2073158771, 1273004781};
+    public static final int[] f11640a0 = {1893745684, -215458996, -862041025, -1258375037, -1320049076, -215749424, 1901578030, -215451421, 1908491424, -1321491332, -1155551678, 1908524435, 976847578, -1489198134, 1910814392, -713271737, -2010722764, 1407170066, -821405251, -1394190955, -1394190055, 1407170066, 1407159934, 1407172057, 1231389747, -2076538925, 41497626, 846150482, -1198092731, -251277614, -2073158771, 1273004781};
     public final Matrix D;
     public boolean E;
     public boolean F;
@@ -39,34 +39,34 @@ public abstract class b1 extends CameraView {
     public final float[] U;
     public float[] V;
     public float[] W;
-    public boolean f11636a;
-    public final PointF f11637b;
-    public final PointF f11638c;
+    public boolean f11641a;
+    public final PointF f11642b;
+    public final PointF f11643c;
     public float d;
-    public double f11639e;
-    public boolean f11640f;
+    public double f11644e;
+    public boolean f11645f;
     public boolean h;
-    public final Matrix f11641n;
-    public final Matrix f11642r;
-    public boolean f11643s;
-    public float f11644w;
-    public boolean f11645x;
-    public final Matrix f11646y;
+    public final Matrix f11646n;
+    public final Matrix f11647r;
+    public boolean f11648s;
+    public float f11649w;
+    public boolean f11650x;
+    public final Matrix f11651y;
 
     public b1(Context context, boolean z9) {
         super(context, z9, false);
-        this.f11637b = new PointF();
-        this.f11638c = new PointF();
-        this.f11641n = new Matrix();
-        this.f11642r = new Matrix();
-        this.f11646y = new Matrix();
+        this.f11642b = new PointF();
+        this.f11643c = new PointF();
+        this.f11646n = new Matrix();
+        this.f11647r = new Matrix();
+        this.f11651y = new Matrix();
         this.D = new Matrix();
         this.E = true;
         this.L = new Matrix();
         this.O = new float[2];
         new Matrix();
         this.U = new float[2];
-        this.f11636a = q(context);
+        this.f11641a = q(context);
     }
 
     private Matrix getSavedDualMatrix() {
@@ -111,7 +111,7 @@ public abstract class b1 extends CameraView {
                 int hashCode = (Build.MANUFACTURER + " " + Build.DEVICE).toUpperCase().hashCode();
                 while (true) {
                     if (i7 < 32) {
-                        if (f11635a0[i7] == hashCode) {
+                        if (f11640a0[i7] == hashCode) {
                             break;
                         }
                         i7++;
@@ -136,12 +136,12 @@ public abstract class b1 extends CameraView {
 
     public static void t(boolean z9) {
         int i7 = 0;
-        boolean p10 = p(org.telegram.messenger.t0.f25566b, false);
-        if (qp.s1(p10.f24470s0).I3) {
+        boolean p10 = p(org.telegram.messenger.t0.f25570b, false);
+        if (qp.s1(p10.f24474s0).I3) {
             try {
                 TLRPC.TL_help_saveAppLog tL_help_saveAppLog = new TLRPC.TL_help_saveAppLog();
                 TLRPC.TL_inputAppEvent tL_inputAppEvent = new TLRPC.TL_inputAppEvent();
-                tL_inputAppEvent.time = ConnectionsManager.getInstance(p10.f24470s0).getCurrentTime();
+                tL_inputAppEvent.time = ConnectionsManager.getInstance(p10.f24474s0).getCurrentTime();
                 tL_inputAppEvent.type = "android_dual_camera";
                 TLRPC.TL_jsonObject tL_jsonObject = new TLRPC.TL_jsonObject();
                 TLRPC.TL_jsonObjectValue tL_jsonObjectValue = new TLRPC.TL_jsonObjectValue();
@@ -156,11 +156,11 @@ public abstract class b1 extends CameraView {
                 }
                 tL_inputAppEvent.peer = (z9 ? 1 : 0) | i7;
                 tL_help_saveAppLog.events.add(tL_inputAppEvent);
-                ConnectionsManager.getInstance(p10.f24470s0).sendRequest(tL_help_saveAppLog, new di.v5(4));
+                ConnectionsManager.getInstance(p10.f24474s0).sendRequest(tL_help_saveAppLog, new di.v5(4));
             } catch (Exception unused) {
             }
         }
-        org.telegram.messenger.t0.f25565a.getClass();
+        org.telegram.messenger.t0.f25569a.getClass();
     }
 
     @Override
@@ -178,7 +178,7 @@ public abstract class b1 extends CameraView {
             if (qp.e1().getInt("storysvddualhint", 0) < 2) {
                 org.telegram.messenger.g0.i3(new v9(y9Var, 2), 340L);
             }
-            va vaVar = y9Var.f13218b0;
+            va vaVar = y9Var.f13220b0;
             vaVar.F0.setValue(y9Var.isDual());
             hb hbVar = vaVar.F0;
             if (y9Var.isDual()) {
@@ -196,11 +196,11 @@ public abstract class b1 extends CameraView {
         if (isDual()) {
             if (!p(getContext(), false)) {
                 SharedPreferences.Editor edit = qp.e1().edit();
-                this.f11636a = false;
+                this.f11641a = false;
                 edit.putBoolean("dual_available", false).apply();
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
                 String M0 = id.M0(2131751340, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27300a;
                 u1Var.R = M0;
                 u1Var.T = id.M0(2131751341, null);
                 jg.g.C(null, 2131747831, alertDialog$Builder, null);
@@ -225,7 +225,7 @@ public abstract class b1 extends CameraView {
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        Matrix matrix = this.f11646y;
+        Matrix matrix = this.f11651y;
         matrix.reset();
         matrix.postTranslate(1.0f, -1.0f);
         matrix.postScale(getMeasuredWidth() / 2.0f, (-getMeasuredHeight()) / 2.0f);
@@ -235,7 +235,7 @@ public abstract class b1 extends CameraView {
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
         if (this.E) {
-            if (q(getContext()) && qp.e1().getBoolean("dualcam", p(org.telegram.messenger.t0.f25566b, false))) {
+            if (q(getContext()) && qp.e1().getBoolean("dualcam", p(org.telegram.messenger.t0.f25570b, false))) {
                 this.H = true;
                 w();
                 this.dual = true;
@@ -303,7 +303,7 @@ public abstract class b1 extends CameraView {
 
     @Override
     public void toggleDual() {
-        if (!isDual() && !this.f11636a) {
+        if (!isDual() && !this.f11641a) {
             return;
         }
         if (!isDual()) {
@@ -342,7 +342,7 @@ public abstract class b1 extends CameraView {
         if (savedDualMatrix != null) {
             dualPosition.set(savedDualMatrix);
         } else {
-            dualPosition.postConcat(this.f11646y);
+            dualPosition.postConcat(this.f11651y);
             float measuredWidth = getMeasuredWidth() * 0.43f;
             float min = Math.min(getMeasuredWidth(), getMeasuredWidth()) * 0.025f;
             dualPosition.postScale(measuredWidth / getMeasuredWidth(), (getMeasuredHeight() * 0.43f) / getMeasuredHeight());

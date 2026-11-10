@@ -5,36 +5,36 @@ import java.nio.ByteBuffer;
 import y7.i6;
 public final class t extends c {
     public static final i6 h;
-    public static final i6 f15332n;
-    public long[] f15333f;
+    public static final i6 f15334n;
+    public long[] f15335f;
 
     static {
         ze.a aVar = new ze.a(t.class, "StaticChunkOffsetBox.java");
         h = aVar.e(aVar.d("getChunkOffsets", "com.coremedia.iso.boxes.StaticChunkOffsetBox", "", "", "[J"));
-        f15332n = aVar.e(aVar.d("setChunkOffsets", "com.coremedia.iso.boxes.StaticChunkOffsetBox", "[J", "chunkOffsets", "void"));
+        f15334n = aVar.e(aVar.d("setChunkOffsets", "com.coremedia.iso.boxes.StaticChunkOffsetBox", "[J", "chunkOffsets", "void"));
     }
 
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
         int a10 = jb.a(h5.b.i(byteBuffer));
-        this.f15333f = new long[a10];
+        this.f15335f = new long[a10];
         for (int i7 = 0; i7 < a10; i7++) {
-            this.f15333f[i7] = h5.b.i(byteBuffer);
+            this.f15335f[i7] = h5.b.i(byteBuffer);
         }
     }
 
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
         i(byteBuffer);
-        byteBuffer.putInt(this.f15333f.length);
-        for (long j3 : this.f15333f) {
+        byteBuffer.putInt(this.f15335f.length);
+        for (long j3 : this.f15335f) {
             byteBuffer.putInt((int) j3);
         }
     }
 
     @Override
     public final long getContentSize() {
-        return (this.f15333f.length * 4) + 8;
+        return (this.f15335f.length * 4) + 8;
     }
 }

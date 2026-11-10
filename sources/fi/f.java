@@ -1,15 +1,15 @@
 package fi;
 public final class f extends gh.b {
-    public final int f11946s;
+    public final int f11950s;
 
-    public f(int i7, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(i7, g6Var);
-        this.f11946s = 2;
+    public f(int i7, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(i7, h6Var);
+        this.f11950s = 2;
     }
 
     @Override
     public int A() {
-        switch (this.f11946s) {
+        switch (this.f11950s) {
             case 2:
                 if (c()) {
                     return 117440511;
@@ -22,7 +22,7 @@ public final class f extends gh.b {
 
     @Override
     public int O() {
-        switch (this.f11946s) {
+        switch (this.f11950s) {
             case 2:
                 if (c()) {
                     return 301989887;
@@ -35,7 +35,7 @@ public final class f extends gh.b {
 
     @Override
     public int R0() {
-        switch (this.f11946s) {
+        switch (this.f11950s) {
             case 2:
                 if (c()) {
                     return 83886079;
@@ -48,7 +48,7 @@ public final class f extends gh.b {
 
     @Override
     public boolean c() {
-        switch (this.f11946s) {
+        switch (this.f11950s) {
             case 0:
                 return true;
             case 1:
@@ -58,8 +58,8 @@ public final class f extends gh.b {
         }
     }
 
-    public f(org.telegram.ui.ActionBar.g6 g6Var, int i7, float f10, int i10) {
-        super(g6Var, i7, f10);
-        this.f11946s = i10;
+    public f(org.telegram.ui.ActionBar.h6 h6Var, int i7, float f10, int i10) {
+        super(h6Var, i7, f10);
+        this.f11950s = i10;
     }
 }

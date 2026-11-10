@@ -1,58 +1,137 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class ha0 extends v4.s0 {
-    public final int f46268a;
-    public final ra0 f46269b;
+import android.os.Bundle;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ha0 implements Runnable {
+    public final int f46282a;
+    public final long f46283b;
+    public final Object f46284c;
+    public final Object d;
 
-    public ha0(ra0 ra0Var, int i7) {
-        this.f46268a = i7;
-        this.f46269b = ra0Var;
+    public ha0(Object obj, long j3, Object obj2, int i7) {
+        this.f46282a = i7;
+        this.f46284c = obj;
+        this.f46283b = j3;
+        this.d = obj2;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i7) {
-        boolean z9;
-        switch (this.f46268a) {
+    public final void run() {
+        switch (this.f46282a) {
             case 0:
-                if (i7 == 1) {
-                    ra0 ra0Var = this.f46269b;
-                    if (ra0Var.f49384t0 && ra0Var.f49385u0) {
-                        org.telegram.messenger.g0.v1(ra0Var.getParentActivity().getCurrentFocus());
+                sa0 sa0Var = (sa0) this.f46284c;
+                TLObject tLObject = (TLObject) this.d;
+                long j3 = this.f46283b;
+                if (sa0Var.E != null) {
+                    TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
+                    int i7 = 0;
+                    while (i7 < messages_messages.messages.size()) {
+                        if (!(messages_messages.messages.get(i7).media instanceof TLRPC.TL_messageMediaGeoLive)) {
+                            messages_messages.messages.remove(i7);
+                            i7--;
+                        }
+                        i7++;
+                    }
+                    sa0Var.getMessagesStorage().m1(messages_messages.users, messages_messages.chats, true, true);
+                    sa0Var.getMessagesController().Y3(messages_messages.users, false);
+                    sa0Var.getMessagesController().S3(messages_messages.chats, false);
+                    sa0Var.getLocationController().f25461c.k(messages_messages.messages, j3);
+                    sa0Var.getNotificationCenter().k(282, Long.valueOf(j3));
+                    sa0Var.p0(messages_messages.messages);
+                    sa0Var.getLocationController().j(sa0Var.f49783l0);
+                    if (sa0Var.K0 == null) {
+                        aa0 aa0Var = new aa0(sa0Var, 0);
+                        sa0Var.K0 = aa0Var;
+                        org.telegram.messenger.g0.i3(aa0Var, 5000L);
                         return;
                     }
                     return;
                 }
                 return;
-            default:
-                if (i7 != 0) {
-                    z9 = true;
+            case 1:
+                cs0 cs0Var = (cs0) this.f46284c;
+                long j10 = this.f46283b;
+                org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.d;
+                cs0Var.getClass();
+                Bundle bundle = new Bundle();
+                if (j10 > 0) {
+                    bundle.putLong("user_id", j10);
                 } else {
-                    z9 = false;
+                    bundle.putLong("chat_id", -j10);
                 }
-                ra0 ra0Var2 = this.f46269b;
-                ra0Var2.M = z9;
-                if (!z9 && ra0Var2.H != null) {
-                    ra0Var2.H = null;
+                f2Var.presentFragment(new ProfileActivity(bundle, null));
+                cs0Var.c(false);
+                return;
+            case 2:
+                ui.e eVar = (ui.e) this.f46284c;
+                ui.d dVar = (ui.d) this.d;
+                long j11 = this.f46283b;
+                if (((ui.d) eVar.f56940c) == dVar) {
+                    ui.b bVar = (ui.b) eVar.f56941e;
+                    if (bVar != null) {
+                        org.telegram.messenger.g0.r(bVar);
+                        eVar.f56941e = null;
+                    }
+                    synchronized (ui.i.f56948y) {
+                        try {
+                            ui.i iVar = ui.i.A;
+                            if (iVar != null) {
+                                iVar.q();
+                                ui.i.A = null;
+                            }
+                        } catch (Throwable th2) {
+                            throw th2;
+                        }
+                    }
+                    eVar.f56940c = null;
+                    dVar.f56936c.run(j11);
+                    eVar.S();
+                    return;
+                }
+                return;
+            case 3:
+                long j12 = this.f46283b;
+                Exception exc = (Exception) this.d;
+                vi.h hVar = (vi.h) ((ac.e) this.f46284c).f1025c;
+                if (j12 == hVar.f57564o) {
+                    hVar.f57563n = null;
+                    int i10 = hVar.G;
+                    if (i10 != 10 && i10 != 9) {
+                        hVar.g(exc);
+                        return;
+                    }
+                    hVar.h.a("capture error after session end", exc);
+                    hVar.c();
+                    hVar.t();
+                    return;
+                }
+                return;
+            default:
+                zh.g1 g1Var = (zh.g1) this.f46284c;
+                org.telegram.messenger.c20 c20Var = (org.telegram.messenger.c20) this.d;
+                long j13 = this.f46283b;
+                g1Var.getClass();
+                org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
+                if (T != null) {
+                    g1Var.dismiss();
+                    if (c20Var != null) {
+                        c20Var.a(Boolean.FALSE);
+                    }
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putLong("user_id", j13);
+                    bundle2.putBoolean("open_gifts", true);
+                    T.presentFragment(new ProfileActivity(bundle2, null));
                     return;
                 }
                 return;
         }
     }
 
-    @Override
-    public void b(RecyclerView recyclerView, int i7, int i10) {
-        switch (this.f46268a) {
-            case 1:
-                ra0 ra0Var = this.f46269b;
-                ra0Var.K0(false);
-                if (ra0Var.H != null) {
-                    ra0Var.J += i10;
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
+    public ha0(Object obj, Object obj2, long j3, int i7) {
+        this.f46282a = i7;
+        this.f46284c = obj;
+        this.d = obj2;
+        this.f46283b = j3;
     }
 }

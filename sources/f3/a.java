@@ -1,20 +1,20 @@
 package f3;
 public final class a {
-    public String f10961a;
-    public int f10962b;
-    public int f10963c;
+    public String f10966a;
+    public int f10967b;
+    public int f10968c;
 
     public a(String str, int i7, int i10, int i11, long j3) {
-        this.f10961a = str;
-        this.f10963c = i7;
-        this.f10962b = i10;
+        this.f10966a = str;
+        this.f10968c = i7;
+        this.f10967b = i10;
     }
 
     public f5.f a() {
         ?? obj = new Object();
-        obj.f11151a = this.f10962b;
-        obj.f11152b = this.f10963c;
-        obj.f11153c = this.f10961a;
+        obj.f11156a = this.f10967b;
+        obj.f11157b = this.f10968c;
+        obj.f11158c = this.f10966a;
         return obj;
     }
 }

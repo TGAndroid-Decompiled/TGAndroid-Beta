@@ -3,14 +3,14 @@ package org.telegram.messenger;
 import j$.util.Objects;
 import org.telegram.tgnet.TLRPC;
 public final class ma {
-    public final long f24003a;
-    public final int f24004b;
+    public final long f24007a;
+    public final int f24008b;
 
     public ma(TLRPC.Message message) {
         long B0 = ij.B0(message);
-        int i7 = message.f26977id;
-        this.f24003a = B0;
-        this.f24004b = i7;
+        int i7 = message.f26981id;
+        this.f24007a = B0;
+        this.f24008b = i7;
     }
 
     public final boolean equals(Object obj) {
@@ -19,7 +19,7 @@ public final class ma {
         }
         if (obj != null && ma.class == obj.getClass()) {
             ma maVar = (ma) obj;
-            if (this.f24003a == maVar.f24003a && this.f24004b == maVar.f24004b) {
+            if (this.f24007a == maVar.f24007a && this.f24008b == maVar.f24008b) {
                 return true;
             }
         }
@@ -27,6 +27,6 @@ public final class ma {
     }
 
     public final int hashCode() {
-        return Objects.hash(Long.valueOf(this.f24003a), Integer.valueOf(this.f24004b));
+        return Objects.hash(Long.valueOf(this.f24007a), Integer.valueOf(this.f24008b));
     }
 }

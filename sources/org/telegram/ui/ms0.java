@@ -1,34 +1,26 @@
 package org.telegram.ui;
+public final class ms0 implements Runnable {
+    public final int f48049a;
+    public final PremiumPreviewFragment f48050b;
 
-import android.util.SparseIntArray;
-import java.util.Comparator;
-public final class ms0 implements Comparator {
-    public final int f47984a;
-    public final org.telegram.messenger.qp f47985b;
-
-    public ms0(org.telegram.messenger.qp qpVar, int i7) {
-        this.f47984a = i7;
-        this.f47985b = qpVar;
+    public ms0(PremiumPreviewFragment premiumPreviewFragment, int i7) {
+        this.f48049a = i7;
+        this.f48050b = premiumPreviewFragment;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int i7;
-        int i10;
-        xs0 xs0Var = (xs0) obj;
-        xs0 xs0Var2 = (xs0) obj2;
-        switch (this.f47984a) {
+    public final void run() {
+        switch (this.f48049a) {
             case 0:
-                SparseIntArray sparseIntArray = this.f47985b.O0;
-                i7 = sparseIntArray.get(xs0Var.f51756a, Integer.MAX_VALUE);
-                i10 = sparseIntArray.get(xs0Var2.f51756a, Integer.MAX_VALUE);
-                break;
+                this.f48050b.o0();
+                return;
+            case 1:
+                PremiumPreviewFragment premiumPreviewFragment = this.f48050b;
+                premiumPreviewFragment.f41603a.postOnAnimation(new ms0(premiumPreviewFragment, 0));
+                return;
             default:
-                SparseIntArray sparseIntArray2 = this.f47985b.N0;
-                i7 = sparseIntArray2.get(xs0Var.f51756a, Integer.MAX_VALUE);
-                i10 = sparseIntArray2.get(xs0Var2.f51756a, Integer.MAX_VALUE);
-                break;
+                this.f48050b.getMediaDataController().R0(false);
+                return;
         }
-        return i7 - i10;
     }
 }

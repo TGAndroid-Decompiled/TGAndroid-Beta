@@ -1,15 +1,54 @@
 package org.telegram.ui;
-public final class c91 extends v4.s0 {
-    public int f44254a;
-    public int f44255b;
-    public final y91 f44256c;
 
-    public c91(y91 y91Var) {
-        this.f44256c = y91Var;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class c91 extends v4.b0 {
+    public boolean I;
+    public final z91 J;
+
+    public c91(z91 z91Var) {
+        this.J = z91Var;
     }
 
     @Override
-    public final void b(androidx.recyclerview.widget.RecyclerView r5, int r6, int r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.c91.b(androidx.recyclerview.widget.RecyclerView, int, int):void");
+    public final void b0(v4.v0 v0Var, v4.a1 a1Var) {
+        boolean z9 = org.telegram.messenger.r2.f25216a;
+        try {
+            super.b0(v0Var, a1Var);
+        } catch (IndexOutOfBoundsException e10) {
+            org.telegram.messenger.a8.g(e10, true);
+            org.telegram.messenger.g0.h3(new uu0(this, 21));
+        }
+    }
+
+    @Override
+    public final void b1(View view, View view2, int i7, int i10) {
+        this.I = true;
+        super.b1(view, view2, i7, i10);
+        this.I = false;
+    }
+
+    @Override
+    public final void h1(int i7, int i10) {
+        if (this.I) {
+            i10 -= this.J.N.getPaddingTop();
+        }
+        super.h1(i7, i10);
+    }
+
+    @Override
+    public final int o0(int r19, v4.v0 r20, v4.a1 r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.c91.o0(int, v4.v0, v4.a1):int");
+    }
+
+    @Override
+    public final void v0(RecyclerView recyclerView, v4.a1 a1Var, int i7) {
+        if (this.J.f52390y > 0 && i7 == 1) {
+            super.v0(recyclerView, a1Var, i7);
+            return;
+        }
+        mi.m mVar = new mi.m(recyclerView.getContext(), 0);
+        mVar.f57221a = i7;
+        w0(mVar);
     }
 }

@@ -1,41 +1,68 @@
 package org.telegram.ui;
 
-import android.graphics.Outline;
-import android.graphics.Rect;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-public final class o01 extends ViewOutlineProvider {
-    public final Rect f48275a = new Rect();
-    public final Integer f48276b;
-    public final s11 f48277c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.widget.FrameLayout;
+public final class o01 extends FrameLayout {
+    public final Path f48352a;
+    public final Paint f48353b;
+    public final boolean f48354c;
+    public final boolean d;
+    public final org.telegram.ui.ActionBar.h6 f48355e;
+    public final Integer f48356f;
+    public final t11 h;
 
-    public o01(s11 s11Var, Integer num) {
-        this.f48277c = s11Var;
-        this.f48276b = num;
+    public o01(t11 t11Var, Context context, boolean z9, boolean z10, org.telegram.ui.ActionBar.h6 h6Var, Integer num) {
+        super(context);
+        this.h = t11Var;
+        this.f48354c = z9;
+        this.d = z10;
+        this.f48355e = h6Var;
+        this.f48356f = num;
+        this.f48352a = new Path();
+        this.f48353b = new Paint(1);
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
+    public final void dispatchDraw(Canvas canvas) {
         float intValue;
-        Integer num = this.f48276b;
-        if (num == null) {
-            intValue = view.getWidth() / 2.0f;
+        t11 t11Var = this.h;
+        if (!t11Var.Q0) {
+            super.dispatchDraw(canvas);
+        } else if (this.f48354c) {
+            canvas.save();
+            boolean z9 = this.d;
+            Paint paint = this.f48353b;
+            if (z9) {
+                org.telegram.ui.ActionBar.m6.n(paint);
+            }
+            paint.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.G8, this.f48355e));
+            paint.setAlpha((int) (getAlpha() * 255.0f));
+            Integer num = this.f48356f;
+            if (num == null) {
+                intValue = getWidth() / 2.0f;
+            } else {
+                intValue = num.intValue();
+            }
+            float L = intValue + org.telegram.messenger.g0.L(20.0f);
+            float width = (getWidth() - getPaddingLeft()) - getPaddingRight();
+            float height = (getHeight() - getPaddingBottom()) - getPaddingTop();
+            if (t11Var.n()) {
+                org.telegram.messenger.g0.P.set((L - (t11Var.f50019a1 * L)) + getPaddingLeft(), com.google.android.recaptcha.internal.a.z(1.0f, t11Var.f50022b1, height, getPaddingTop()), ((width - L) * t11Var.f50019a1) + getPaddingLeft() + L, getPaddingTop() + height);
+            } else {
+                org.telegram.messenger.g0.P.set((L - (t11Var.f50019a1 * L)) + getPaddingLeft(), getPaddingTop(), ((width - L) * t11Var.f50019a1) + getPaddingLeft() + L, (height * t11Var.f50022b1) + getPaddingTop());
+            }
+            Path path = this.f48352a;
+            path.rewind();
+            path.addRoundRect(org.telegram.messenger.g0.P, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), Path.Direction.CW);
+            canvas.drawPath(path, paint);
+            canvas.clipPath(path);
+            super.dispatchDraw(canvas);
+            canvas.restore();
         } else {
-            intValue = num.intValue();
+            super.dispatchDraw(canvas);
         }
-        float L = intValue + org.telegram.messenger.g0.L(20.0f);
-        float width = (view.getWidth() - view.getPaddingLeft()) - view.getPaddingRight();
-        float height = (view.getHeight() - view.getPaddingBottom()) - view.getPaddingTop();
-        s11 s11Var = this.f48277c;
-        boolean n10 = s11Var.n();
-        Rect rect = this.f48275a;
-        if (n10) {
-            int paddingLeft = (int) ((L - (s11Var.f49663a1 * L)) + view.getPaddingLeft());
-            float z9 = com.google.android.recaptcha.internal.a.z(1.0f, s11Var.f49666b1, height, view.getPaddingTop());
-            rect.set(paddingLeft, (int) com.google.android.recaptcha.internal.a.z(1.0f, s11Var.f49666b1, org.telegram.messenger.g0.L(s11Var.f49671d1), z9), (int) (((width - L) * s11Var.f49663a1) + view.getPaddingLeft() + L), (int) com.google.android.recaptcha.internal.a.z(1.0f, s11Var.f49666b1, org.telegram.messenger.g0.L(s11Var.f49671d1), view.getPaddingTop() + height));
-        } else {
-            rect.set((int) ((L - (s11Var.f49663a1 * L)) + view.getPaddingLeft()), view.getPaddingTop(), (int) (((width - L) * s11Var.f49663a1) + view.getPaddingLeft() + L), (int) ((height * s11Var.f49666b1) + view.getPaddingTop()));
-        }
-        outline.setRoundRect(rect, org.telegram.messenger.g0.L(12.0f));
     }
 }

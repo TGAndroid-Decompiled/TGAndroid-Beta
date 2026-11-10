@@ -31,14 +31,14 @@ public final class k extends Thread {
             default:
                 FilesMigrationService filesMigrationService = (FilesMigrationService) this.f17180b;
                 File externalStorageDirectory = Environment.getExternalStorageDirectory();
-                if (!TextUtils.isEmpty(iz.f23405h0)) {
+                if (!TextUtils.isEmpty(iz.f23409h0)) {
                     ArrayList d12 = g0.d1();
                     int size = d12.size();
                     int i7 = 0;
                     while (true) {
                         if (i7 < size) {
                             File file = (File) d12.get(i7);
-                            if (file.getAbsolutePath().startsWith(iz.f23405h0)) {
+                            if (file.getAbsolutePath().startsWith(iz.f23409h0)) {
                                 externalStorageDirectory = file;
                             } else {
                                 i7++;
@@ -46,15 +46,15 @@ public final class k extends Thread {
                         }
                     }
                 }
-                File file2 = new File(t0.f25566b.getExternalFilesDir(null), "Telegram");
+                File file2 = new File(t0.f25570b.getExternalFilesDir(null), "Telegram");
                 File file3 = new File(externalStorageDirectory, "Telegram");
-                filesMigrationService.f21174a = FilesMigrationService.b(file3);
+                filesMigrationService.f21179a = FilesMigrationService.b(file3);
                 long currentTimeMillis = System.currentTimeMillis();
                 if (file3.canRead() && file3.canWrite()) {
                     filesMigrationService.c(file3, file2);
                 }
                 a8.b("move time = " + (System.currentTimeMillis() - currentTimeMillis));
-                t0.f25566b.getSharedPreferences("systemConfig", 0).edit().putBoolean("migration_to_scoped_storage_finished", true).apply();
+                t0.f25570b.getSharedPreferences("systemConfig", 0).edit().putBoolean("migration_to_scoped_storage_finished", true).apply();
                 g0.h3(new org.telegram.messenger.a(this, 10));
                 return;
         }

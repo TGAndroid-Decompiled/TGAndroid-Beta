@@ -7,24 +7,24 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.Components.tp0;
+import org.telegram.ui.Components.sp0;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.up0;
 import org.telegram.ui.Components.v61;
-import org.telegram.ui.Components.vp0;
-import org.telegram.ui.Components.w61;
 import org.telegram.ui.Components.wp;
+import org.telegram.ui.Components.xp0;
 import org.telegram.ui.Components.yp0;
-import org.telegram.ui.Components.zp0;
-import org.telegram.ui.Components.zs0;
+import org.telegram.ui.Components.ys0;
 import org.telegram.ui.ProfileActivity;
-public final class a extends w61 {
+public final class a extends v61 {
     public final int V;
     public Object W;
-    public final FrameLayout f10809a0;
+    public final FrameLayout f10814a0;
 
     public a(FrameLayout frameLayout, Context context, Object obj, int i7) {
         super(context, null);
         this.V = i7;
-        this.f10809a0 = frameLayout;
+        this.f10814a0 = frameLayout;
         this.W = obj;
     }
 
@@ -32,20 +32,20 @@ public final class a extends w61 {
     public final void A(int i7) {
         switch (this.V) {
             case 0:
-                tp0 tp0Var = (tp0) this.f10809a0;
-                String currentLang = tp0Var.getCurrentLang();
+                sp0 sp0Var = (sp0) this.f10814a0;
+                String currentLang = sp0Var.getCurrentLang();
                 if (!TextUtils.equals((String) this.W, currentLang)) {
                     this.W = currentLang;
-                    tp0Var.G.Y0();
+                    sp0Var.G.Y0();
                     return;
                 }
                 return;
             case 1:
-                ((zp0) this.f10809a0).f48546b.f38964b0.get(i7, -1);
-                ((yp0) this.W).d.V0(1.0f);
+                ((yp0) this.f10814a0).f48862b.f38559b0.get(i7, -1);
+                ((xp0) this.W).d.V0(1.0f);
                 return;
             default:
-                ((vp0) this.f10809a0).l();
+                ((up0) this.f10814a0).l();
                 f2 f2Var = (f2) this.W;
                 if (f2Var instanceof ProfileActivity) {
                     ((ProfileActivity) f2Var).V();
@@ -59,17 +59,17 @@ public final class a extends w61 {
     public void a() {
         switch (this.V) {
             case 2:
-                vp0 vp0Var = (vp0) this.f10809a0;
-                v61 v61Var = vp0Var.f60297n;
-                if (vp0Var.b() && v61Var != null) {
-                    if (vp0Var.J == null) {
+                up0 up0Var = (up0) this.f10814a0;
+                u61 u61Var = up0Var.f60299n;
+                if (up0Var.b() && u61Var != null) {
+                    if (up0Var.J == null) {
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(jg.g.l(2131750098, null, new StringBuilder("+ ")));
                         wp wpVar = new wp(2131232560, 0);
                         wpVar.G = 0.8f;
                         spannableStringBuilder.setSpan(wpVar, 0, 1, 33);
-                        vp0Var.J = spannableStringBuilder;
+                        up0Var.J = spannableStringBuilder;
                     }
-                    v61Var.a(-1, vp0Var.J);
+                    u61Var.a(-1, up0Var.J);
                     return;
                 }
                 return;
@@ -83,13 +83,13 @@ public final class a extends w61 {
         boolean z9;
         switch (this.V) {
             case 0:
-                z9 = ((tp0) this.f10809a0).G.E1;
+                z9 = ((sp0) this.f10814a0).G.E1;
                 break;
             case 1:
             default:
                 return super.b(motionEvent);
             case 2:
-                z9 = ((vp0) this.f10809a0).g();
+                z9 = ((up0) this.f10814a0).g();
                 break;
         }
         return !z9;
@@ -99,20 +99,20 @@ public final class a extends w61 {
     public final void w(boolean z9) {
         switch (this.V) {
             case 0:
-                tp0 tp0Var = (tp0) this.f10809a0;
-                String currentLang = tp0Var.getCurrentLang();
+                sp0 sp0Var = (sp0) this.f10814a0;
+                String currentLang = sp0Var.getCurrentLang();
                 if (!TextUtils.equals((String) this.W, currentLang)) {
                     this.W = currentLang;
-                    tp0Var.G.Y0();
+                    sp0Var.G.Y0();
                     return;
                 }
                 return;
             case 1:
-                ((yp0) this.W).d.V0(((zp0) this.f10809a0).f48546b.getAnimatingIndicatorProgress());
+                ((xp0) this.W).d.V0(((yp0) this.f10814a0).f48862b.getAnimatingIndicatorProgress());
                 return;
             default:
-                vp0 vp0Var = (vp0) this.f10809a0;
-                vp0Var.l();
+                up0 up0Var = (up0) this.f10814a0;
+                up0Var.l();
                 f2 f2Var = (f2) this.W;
                 if (f2Var instanceof ProfileActivity) {
                     ((ProfileActivity) f2Var).V();
@@ -121,7 +121,7 @@ public final class a extends w61 {
                         fragmentView.invalidate();
                     }
                 }
-                vp0Var.p();
+                up0Var.p();
                 return;
         }
     }
@@ -130,11 +130,11 @@ public final class a extends w61 {
     public void y(int i7) {
         switch (this.V) {
             case 0:
-                tp0 tp0Var = (tp0) this.f10809a0;
-                String currentLang = tp0Var.getCurrentLang();
+                sp0 sp0Var = (sp0) this.f10814a0;
+                String currentLang = sp0Var.getCurrentLang();
                 if (!TextUtils.equals((String) this.W, currentLang)) {
                     this.W = currentLang;
-                    tp0Var.G.Y0();
+                    sp0Var.G.Y0();
                     return;
                 }
                 return;
@@ -147,13 +147,13 @@ public final class a extends w61 {
     public void z(int i7, boolean z9) {
         switch (this.V) {
             case 1:
-                int i10 = ((zp0) this.f10809a0).f48546b.f38964b0.get(i7, -1);
-                zs0 zs0Var = ((yp0) this.W).d;
+                int i10 = ((yp0) this.f10814a0).f48862b.f38559b0.get(i7, -1);
+                ys0 ys0Var = ((xp0) this.W).d;
                 if (i10 <= 0) {
-                    zs0.t(zs0Var, 8, z9);
+                    ys0.t(ys0Var, 8, z9);
                     return;
                 } else {
-                    zs0.t(zs0Var, zs0Var.x1(i10).f40800a, z9);
+                    ys0.t(ys0Var, ys0Var.x1(i10).f40395a, z9);
                     return;
                 }
             default:
@@ -162,9 +162,9 @@ public final class a extends w61 {
         }
     }
 
-    public a(tp0 tp0Var, Context context) {
+    public a(sp0 sp0Var, Context context) {
         super(context, null);
         this.V = 0;
-        this.f10809a0 = tp0Var;
+        this.f10814a0 = sp0Var;
     }
 }

@@ -11,32 +11,32 @@ public enum n extends b2 {
         String str;
         if (aVar.m('/')) {
             lVar.e();
-            lVar.a(b2.f8629w);
+            lVar.a(b2.f8634w);
             return;
         }
-        if (aVar.o() && lVar.f8663o != null) {
-            String str2 = "</" + lVar.f8663o;
+        if (aVar.o() && lVar.f8668o != null) {
+            String str2 = "</" + lVar.f8668o;
             Locale locale = Locale.ENGLISH;
             String lowerCase = str2.toLowerCase(locale);
             String upperCase = str2.toUpperCase(locale);
             if (aVar.p(lowerCase) <= -1 && aVar.p(upperCase) <= -1) {
                 j d = lVar.d(false);
-                String str3 = lVar.f8663o;
-                d.f8640c = str3;
+                String str3 = lVar.f8668o;
+                d.f8645c = str3;
                 if (str3 != null) {
                     str = str3.toLowerCase(locale);
                 } else {
                     str = "";
                 }
                 d.d = str;
-                lVar.f8657i = d;
+                lVar.f8662i = d;
                 lVar.k();
                 aVar.q();
-                lVar.f8653c = b2.f8600a;
+                lVar.f8658c = b2.f8605a;
                 return;
             }
         }
         lVar.h("<");
-        lVar.f8653c = b2.f8604c;
+        lVar.f8658c = b2.f8609c;
     }
 }

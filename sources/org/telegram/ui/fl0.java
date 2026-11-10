@@ -1,79 +1,45 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-public final class fl0 extends FrameLayout {
-    public final Paint f45740a;
-    public float f45741b;
-    public r1.g f45742c;
-    public final jl0 d;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+public final class fl0 implements TextWatcher {
+    public int f45793a = -1;
+    public boolean f45794b;
+    public int f45795c;
+    public final kl0 d;
 
-    public fl0(jl0 jl0Var, Context context) {
-        super(context);
-        this.d = jl0Var;
-        this.f45740a = new Paint(1);
-        setWillNotDraw(false);
-    }
-
-    public final void a(boolean z9, boolean z10) {
-        float f10;
-        float f11;
-        r1.g gVar = this.f45742c;
-        if (gVar != null) {
-            gVar.d();
-        }
-        if (z9) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        if (z10) {
-            float f12 = this.f45741b;
-            if (f12 == f10) {
-                return;
-            }
-            r1.g gVar2 = new r1.g(new r1.f(f12 * 100.0f));
-            r1.h hVar = new r1.h(f10 * 100.0f);
-            if (z9) {
-                f11 = 500.0f;
-            } else {
-                f11 = 650.0f;
-            }
-            hVar.b(f11);
-            hVar.a(1.0f);
-            gVar2.f54280m = hVar;
-            this.f45742c = gVar2;
-            gVar2.b(new cb0(this, 1));
-            this.f45742c.a(new l9(this, 1));
-            this.f45742c.h();
-            return;
-        }
-        this.f45741b = f10;
-        TextView textView = this.d.U;
-        if (textView != null) {
-            textView.setAlpha((f10 * 0.2f) + 0.8f);
-        }
-        invalidate();
+    public fl0(kl0 kl0Var) {
+        this.d = kl0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int L;
-        super.onDraw(canvas);
-        int i7 = org.telegram.ui.ActionBar.l6.O6;
-        jl0 jl0Var = this.d;
-        canvas.drawColor(jl0Var.getThemedColor(i7));
-        int themedColor = jl0Var.getThemedColor(org.telegram.ui.ActionBar.l6.Si);
-        Paint paint = this.f45740a;
-        paint.setColor(themedColor);
-        if (org.telegram.messenger.id.f23157a0) {
-            L = getWidth() - org.telegram.messenger.g0.L(28.0f);
+    public final void afterTextChanged(android.text.Editable r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.fl0.afterTextChanged(android.text.Editable):void");
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        boolean z9 = false;
+        if (i10 == 0 && i11 == 1) {
+            if (TextUtils.indexOf((CharSequence) this.d.f47339f[1].getText(), '/') != -1) {
+                z9 = true;
+            }
+            this.f45794b = z9;
+            this.f45793a = 1;
+        } else if (i10 == 1 && i11 == 0) {
+            if (charSequence.charAt(i7) == '/' && i7 > 0) {
+                this.f45794b = false;
+                this.f45793a = 3;
+                this.f45795c = i7 - 1;
+                return;
+            }
+            this.f45793a = 2;
         } else {
-            L = org.telegram.messenger.g0.L(28.0f);
+            this.f45793a = -1;
         }
-        canvas.drawCircle(L, -org.telegram.messenger.g0.L(28.0f), Math.max(getWidth(), getHeight()) * this.f45741b, paint);
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 }

@@ -48,8 +48,8 @@ public final class k implements Consumer {
                 if (((byte) 1) == 1) {
                     k0 k0Var = new k0(new l0(intValue));
                     try {
-                        ga.b.f13609g.getClass();
-                        ga.b.g(bVar.f13612b.b(str, "profiling-manager-info"), ea.a.f10726a.u(k0Var));
+                        ga.b.f13611g.getClass();
+                        ga.b.g(bVar.f13614b.b(str, "profiling-manager-info"), ea.a.f10731a.u(k0Var));
                         return;
                     } catch (IOException e10) {
                         Log.w("FirebaseCrashlytics", "Could not persist Profiling Manager info " + str, e10);

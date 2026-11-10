@@ -22,11 +22,11 @@ public final class a extends FingerprintManager.AuthenticationCallback {
     public final void onAuthenticationError(int i7, CharSequence charSequence) {
         switch (this.f17150a) {
             case 0:
-                ((x) ((a0) ((i) this.f17151b).f8207b).d).a(i7, charSequence);
+                ((x) ((a0) ((i) this.f17151b).f8212b).d).a(i7, charSequence);
                 return;
             default:
                 u0 u0Var = (u0) this.f17151b;
-                if (u0Var.f() && !u0Var.f43139f) {
+                if (u0Var.f() && !u0Var.f43206f) {
                     if (i7 == 5) {
                         u0Var.c("AUTH_CANCELED");
                         return;
@@ -46,7 +46,7 @@ public final class a extends FingerprintManager.AuthenticationCallback {
         Object obj = this.f17151b;
         switch (i7) {
             case 0:
-                WeakReference weakReference = ((x) ((a0) ((i) obj).f8207b).d).f2026a;
+                WeakReference weakReference = ((x) ((a0) ((i) obj).f8212b).d).f2026a;
                 if (weakReference.get() != null && ((z) weakReference.get()).f2037n) {
                     z zVar = (z) weakReference.get();
                     if (zVar.f2044u == null) {
@@ -58,7 +58,7 @@ public final class a extends FingerprintManager.AuthenticationCallback {
                 return;
             default:
                 u0 u0Var = (u0) obj;
-                if (u0Var.f() && (alertDialog = u0Var.f43141i) != null) {
+                if (u0Var.f() && (alertDialog = u0Var.f43208i) != null) {
                     alertDialog.setMessage(id.M0(2131743117, null));
                     return;
                 }
@@ -71,7 +71,7 @@ public final class a extends FingerprintManager.AuthenticationCallback {
         AlertDialog alertDialog;
         switch (this.f17150a) {
             case 0:
-                WeakReference weakReference = ((x) ((a0) ((i) this.f17151b).f8207b).d).f2026a;
+                WeakReference weakReference = ((x) ((a0) ((i) this.f17151b).f8212b).d).f2026a;
                 if (weakReference.get() != null) {
                     z zVar = (z) weakReference.get();
                     if (zVar.f2043t == null) {
@@ -83,7 +83,7 @@ public final class a extends FingerprintManager.AuthenticationCallback {
                 return;
             default:
                 u0 u0Var = (u0) this.f17151b;
-                if (u0Var.f() && (alertDialog = u0Var.f43141i) != null) {
+                if (u0Var.f() && (alertDialog = u0Var.f43208i) != null) {
                     alertDialog.setMessage(charSequence);
                     return;
                 }

@@ -1,41 +1,35 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import java.util.Iterator;
-import java.util.Map;
-import org.telegram.tgnet.ConnectionsManager;
-public final class j60 implements DialogInterface.OnCancelListener {
-    public final int f46844a;
-    public final int f46845b;
+import android.app.Activity;
+public final class j60 implements Runnable {
+    public final int f46828a;
+    public final boolean f46829b;
+    public final Object f46830c;
+    public final Object d;
 
-    public j60(int i7, int i10) {
-        this.f46844a = i10;
-        this.f46845b = i7;
+    public j60(Object obj, Object obj2, boolean z9, int i7) {
+        this.f46828a = i7;
+        this.f46830c = obj;
+        this.d = obj2;
+        this.f46829b = z9;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f46844a) {
-            case 0:
-                org.telegram.messenger.id E0 = org.telegram.messenger.id.E0();
-                int i7 = this.f46845b;
-                if (i7 != 0) {
-                    Iterator it = E0.T.entrySet().iterator();
-                    while (it.hasNext()) {
-                        org.telegram.messenger.ed edVar = (org.telegram.messenger.ed) ((Map.Entry) it.next()).getValue();
-                        if (edVar.f22207c == i7) {
-                            ConnectionsManager.getInstance(edVar.d).cancelRequest(i7, true);
-                            it.remove();
-                            edVar.a();
-                            return;
-                        }
-                    }
-                    return;
-                }
-                return;
-            default:
-                ConnectionsManager.getInstance(org.telegram.messenger.p10.f24470s0).cancelRequest(this.f46845b, true);
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.j60.run():void");
+    }
+
+    public j60(Object obj, boolean z9, Object obj2, int i7) {
+        this.f46828a = i7;
+        this.f46830c = obj;
+        this.f46829b = z9;
+        this.d = obj2;
+    }
+
+    public j60(org.telegram.ui.ActionBar.u1 u1Var, boolean z9, Activity activity) {
+        this.f46828a = 9;
+        this.d = u1Var;
+        this.f46829b = z9;
+        this.f46830c = activity;
     }
 }

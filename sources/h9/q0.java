@@ -1,11 +1,11 @@
 package h9;
 public final class q0 extends t0 {
     public final int d;
-    public final r0 f14370e;
+    public final r0 f14372e;
 
     public q0(r0 r0Var, int i7) {
         this.d = i7;
-        this.f14370e = r0Var;
+        this.f14372e = r0Var;
     }
 
     @Override
@@ -19,12 +19,12 @@ public final class q0 extends t0 {
                 if (p1Var.a() <= 0) {
                     return false;
                 }
-                if (((z1) this.f14370e).f14423e.b(p1Var.f14365a) != p1Var.a()) {
+                if (((z1) this.f14372e).f14425e.b(p1Var.f14367a) != p1Var.a()) {
                     return false;
                 }
                 return true;
             default:
-                return ((z1) this.f14370e).contains(obj);
+                return ((z1) this.f14372e).contains(obj);
         }
     }
 
@@ -32,7 +32,7 @@ public final class q0 extends t0 {
     public int hashCode() {
         switch (this.d) {
             case 0:
-                return this.f14370e.hashCode();
+                return this.f14372e.hashCode();
             default:
                 return super.hashCode();
         }
@@ -47,7 +47,7 @@ public final class q0 extends t0 {
     public final boolean m() {
         switch (this.d) {
             case 0:
-                this.f14370e.getClass();
+                this.f14372e.getClass();
                 return false;
             default:
                 return true;
@@ -68,9 +68,9 @@ public final class q0 extends t0 {
     public final int size() {
         switch (this.d) {
             case 0:
-                return this.f14370e.o().size();
+                return this.f14372e.o().size();
             default:
-                return ((z1) this.f14370e).f14423e.f14373c;
+                return ((z1) this.f14372e).f14425e.f14375c;
         }
     }
 }

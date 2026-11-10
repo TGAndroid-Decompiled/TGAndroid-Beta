@@ -1,113 +1,53 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.widget.FrameLayout;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class nz0 extends FrameLayout {
-    public final Paint f48253a;
-    public final Paint f48254b;
-    public final RectF f48255c;
-    public final org.telegram.ui.Components.d01 d;
-    public boolean f48256e;
-    public long f48257f;
-    public long h;
-    public final org.telegram.ui.Components.ah0 f48258n;
-    public final TextPaint f48259r;
-    public StaticLayout f48260s;
-    public float f48261w;
-    public float f48262x;
-    public final SecretMediaViewer f48263y;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class nz0 extends AnimatorListenerAdapter {
+    public final int f48337a;
+    public final SecretMediaViewer f48338b;
 
-    public nz0(SecretMediaViewer secretMediaViewer, Activity activity) {
-        super(activity);
-        this.f48263y = secretMediaViewer;
-        this.f48255c = new RectF();
-        this.d = new org.telegram.ui.Components.d01();
-        this.f48259r = new TextPaint(1);
-        setWillNotDraw(false);
-        Paint paint = new Paint(1);
-        this.f48254b = paint;
-        paint.setStrokeWidth(org.telegram.messenger.g0.L(1.5f));
-        paint.setColor(-1644826);
-        Paint.Cap cap = Paint.Cap.ROUND;
-        paint.setStrokeCap(cap);
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        Paint paint2 = new Paint(1);
-        this.f48253a = paint2;
-        paint2.setStyle(style);
-        paint2.setStrokeCap(cap);
-        paint2.setColor(-1644826);
-        paint2.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-        new Paint(1).setColor(2130706432);
-        org.telegram.ui.Components.ah0 ah0Var = new org.telegram.ui.Components.ah0(2131624020, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f));
-        this.f48258n = ah0Var;
-        ah0Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        ah0Var.R(this);
-        ah0Var.start();
+    public nz0(SecretMediaViewer secretMediaViewer, int i7) {
+        this.f48337a = i7;
+        this.f48338b = secretMediaViewer;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        SecretMediaViewer secretMediaViewer;
-        float max;
-        org.telegram.messenger.ij ijVar = this.f48263y.f41919f0;
-        if (ijVar != null) {
-            TLRPC.Message message = ijVar.f23262k;
-            if (message.destroyTime != 0 || message.ttl == Integer.MAX_VALUE) {
-                if (this.f48257f == 0) {
-                    max = 1.0f;
-                } else {
-                    max = ((float) Math.max(0L, this.f48257f - (System.currentTimeMillis() + (ConnectionsManager.getInstance(secretMediaViewer.f41904a).getTimeDifference() * 1000)))) / (((float) this.h) * 1000.0f);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f48337a) {
+            case 0:
+                SecretMediaViewer secretMediaViewer = this.f48338b;
+                Runnable runnable = secretMediaViewer.m0;
+                if (runnable != null) {
+                    runnable.run();
+                    secretMediaViewer.m0 = null;
+                    return;
                 }
-                boolean z9 = this.f48256e;
-                Paint paint = this.f48254b;
-                Paint paint2 = this.f48253a;
-                RectF rectF = this.f48255c;
-                if (z9) {
-                    canvas.save();
-                    canvas.translate(rectF.centerX() - (this.f48261w / 2.0f), rectF.centerY() - (this.f48262x / 2.0f));
-                    this.f48260s.draw(canvas);
-                    canvas.restore();
-                    canvas.drawArc(rectF, 90.0f, 180.0f, false, paint2);
-                    float f10 = 19.285715f;
-                    for (int i7 = 0; i7 < 5; i7++) {
-                        canvas.drawArc(rectF, f10 + 270.0f, 12.857143f, false, paint2);
-                        f10 += 32.14286f;
-                    }
-                    this.d.a(0.0f, 1.0f, canvas, paint, rectF);
-                } else {
-                    float centerX = rectF.centerX();
-                    float centerY = rectF.centerY() - org.telegram.messenger.g0.L(1.0f);
-                    float L = org.telegram.messenger.g0.L(8.0f);
-                    org.telegram.ui.Components.ah0 ah0Var = this.f48258n;
-                    ah0Var.setBounds((int) (centerX - L), (int) (centerY - L), (int) (centerX + L), (int) (centerY + L));
-                    ah0Var.draw(canvas);
-                    float f11 = max * (-360.0f);
-                    canvas.drawArc(rectF, -90.0f, f11, false, paint2);
-                    this.d.a(f11, 1.0f, canvas, paint, rectF);
+                return;
+            case 1:
+                SecretMediaViewer secretMediaViewer2 = this.f48338b;
+                AnimatorSet animatorSet = secretMediaViewer2.G;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    secretMediaViewer2.F.setVisibility(8);
+                    secretMediaViewer2.G = null;
+                    secretMediaViewer2.Y.scrollTo(0, 0);
+                    return;
                 }
-                invalidate();
-            }
+                return;
+            case 2:
+                SecretMediaViewer secretMediaViewer3 = this.f48338b;
+                Runnable runnable2 = secretMediaViewer3.m0;
+                if (runnable2 != null) {
+                    runnable2.run();
+                    secretMediaViewer3.m0 = null;
+                    return;
+                }
+                return;
+            default:
+                SecretMediaViewer secretMediaViewer4 = this.f48338b;
+                secretMediaViewer4.I0 = null;
+                secretMediaViewer4.f41906e.invalidate();
+                return;
         }
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, i10);
-        float measuredWidth = getMeasuredWidth() - org.telegram.messenger.g0.L(35.0f);
-        float measuredHeight = getMeasuredHeight() / 2.0f;
-        float N = org.telegram.messenger.g0.N(10.5f);
-        this.f48255c.set(measuredWidth - N, measuredHeight - N, measuredWidth + N, N + measuredHeight);
-        setPivotX(measuredWidth);
-        setPivotY(measuredHeight);
     }
 }

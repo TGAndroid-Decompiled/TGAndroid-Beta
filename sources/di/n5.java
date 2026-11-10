@@ -3,21 +3,21 @@ package di;
 import android.content.Context;
 import android.view.MotionEvent;
 public final class n5 extends c5.k {
-    public boolean f9392w0;
-    public final t5 f9393x0;
-    public final t5 f9394y0;
+    public boolean f9397w0;
+    public final t5 f9398x0;
+    public final t5 f9399y0;
 
     public n5(t5 t5Var, Context context) {
         super(context);
-        this.f9394y0 = t5Var;
-        this.f9393x0 = t5Var;
+        this.f9399y0 = t5Var;
+        this.f9398x0 = t5Var;
     }
 
     public final boolean A(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            this.f9392w0 = true;
+            this.f9397w0 = true;
         }
-        if (this.f9392w0 && this.f9393x0.f9794y <= 0) {
+        if (this.f9397w0 && this.f9398x0.f9799y <= 0) {
             try {
                 return super.onInterceptTouchEvent(motionEvent);
             } catch (Exception unused) {
@@ -28,9 +28,9 @@ public final class n5 extends c5.k {
 
     public final boolean B(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            this.f9392w0 = true;
+            this.f9397w0 = true;
         }
-        if (this.f9392w0 && this.f9393x0.f9794y <= 0) {
+        if (this.f9397w0 && this.f9398x0.f9799y <= 0) {
             return super.onTouchEvent(motionEvent);
         }
         return false;
@@ -40,7 +40,7 @@ public final class n5 extends c5.k {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         float currentTopOffset;
         float y10 = motionEvent.getY();
-        currentTopOffset = this.f9394y0.getCurrentTopOffset();
+        currentTopOffset = this.f9399y0.getCurrentTopOffset();
         if (y10 < currentTopOffset && motionEvent.getAction() == 0) {
             return false;
         }
@@ -52,7 +52,7 @@ public final class n5 extends c5.k {
         float currentTopOffset;
         float currentTopOffset2;
         float y10 = motionEvent.getY();
-        t5 t5Var = this.f9394y0;
+        t5 t5Var = this.f9399y0;
         currentTopOffset = t5Var.getCurrentTopOffset();
         if (y10 >= currentTopOffset) {
             currentTopOffset2 = t5Var.getCurrentTopOffset();
@@ -69,7 +69,7 @@ public final class n5 extends c5.k {
         float currentTopOffset;
         float currentTopOffset2;
         float y10 = motionEvent.getY();
-        t5 t5Var = this.f9394y0;
+        t5 t5Var = this.f9399y0;
         currentTopOffset = t5Var.getCurrentTopOffset();
         if (y10 >= currentTopOffset) {
             currentTopOffset2 = t5Var.getCurrentTopOffset();

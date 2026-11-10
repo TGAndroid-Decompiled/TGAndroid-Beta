@@ -5,31 +5,31 @@ import java.util.List;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 public final class c4 implements ResultCallback {
-    public final ig.b f21778a;
-    public final org.telegram.ui.fe f21779b;
+    public final ig.b f21783a;
+    public final org.telegram.ui.fe f21784b;
 
     public c4(ig.b bVar, org.telegram.ui.fe feVar) {
-        this.f21778a = bVar;
-        this.f21779b = feVar;
+        this.f21783a = bVar;
+        this.f21784b = feVar;
     }
 
     @Override
     public final void onComplete(Object obj) {
         org.telegram.ui.fe feVar;
-        org.telegram.ui.ActionBar.r3 r3Var;
+        org.telegram.ui.ActionBar.s3 s3Var;
         Iterator it = ((List) obj).iterator();
         do {
             boolean hasNext = it.hasNext();
-            feVar = this.f21779b;
+            feVar = this.f21784b;
             if (hasNext) {
-                r3Var = (org.telegram.ui.ActionBar.r3) it.next();
+                s3Var = (org.telegram.ui.ActionBar.s3) it.next();
             } else {
                 feVar.onComplete(null);
                 return;
             }
-        } while (!this.f21778a.equals(r3Var.f28462c));
-        r3Var.k();
-        feVar.onComplete(r3Var);
+        } while (!this.f21783a.equals(s3Var.f28487c));
+        s3Var.k();
+        feVar.onComplete(s3Var);
     }
 
     @Override
@@ -39,6 +39,6 @@ public final class c4 implements ResultCallback {
 
     @Override
     public final void onError(TLRPC.TL_error tL_error) {
-        this.f21779b.onComplete(null);
+        this.f21784b.onComplete(null);
     }
 }

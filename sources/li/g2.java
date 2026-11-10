@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class g2 {
-    public int f18609a;
-    public int f18610b;
-    public int f18611c;
+    public int f18612a;
+    public int f18613b;
+    public int f18614c;
     public int d;
-    public int f18612e;
+    public int f18615e;
 
     public static void a(TL_iv.RichText richText, int i7, g2 g2Var) {
         if (richText != null) {
-            g2Var.f18609a = c6.l(richText).length() + g2Var.f18609a;
+            g2Var.f18612a = c6.l(richText).length() + g2Var.f18612a;
             int c10 = c(richText) + i7;
-            if (c10 > g2Var.f18611c) {
-                g2Var.f18611c = c10;
+            if (c10 > g2Var.f18614c) {
+                g2Var.f18614c = c10;
             }
         }
     }
@@ -23,8 +23,8 @@ public final class g2 {
     public static void b(TL_iv.PageBlock pageBlock, int i7, g2 g2Var) {
         int i10;
         if (pageBlock != null) {
-            if (i7 > g2Var.f18611c) {
-                g2Var.f18611c = i7;
+            if (i7 > g2Var.f18614c) {
+                g2Var.f18614c = i7;
             }
             a(pageBlock.text, i7, g2Var);
             if (pageBlock instanceof TL_iv.pageBlockBlockquote) {
@@ -36,7 +36,7 @@ public final class g2 {
                 if (pageBlock instanceof TL_iv.pageBlockBlockquoteBlocks) {
                     TL_iv.pageBlockBlockquoteBlocks pageblockblockquoteblocks = (TL_iv.pageBlockBlockquoteBlocks) pageBlock;
                     a(pageblockblockquoteblocks.caption, i7, g2Var);
-                    g2Var.f18610b = pageblockblockquoteblocks.blocks.size() + g2Var.f18610b;
+                    g2Var.f18613b = pageblockblockquoteblocks.blocks.size() + g2Var.f18613b;
                     while (i11 < pageblockblockquoteblocks.blocks.size()) {
                         b(pageblockblockquoteblocks.blocks.get(i11), i7 + 1, g2Var);
                         i11++;
@@ -44,14 +44,14 @@ public final class g2 {
                 } else if (pageBlock instanceof TL_iv.pageBlockDetails) {
                     TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) pageBlock;
                     a(pageblockdetails.title, i7, g2Var);
-                    g2Var.f18610b = pageblockdetails.blocks.size() + g2Var.f18610b;
+                    g2Var.f18613b = pageblockdetails.blocks.size() + g2Var.f18613b;
                     while (i11 < pageblockdetails.blocks.size()) {
                         b(pageblockdetails.blocks.get(i11), i7 + 1, g2Var);
                         i11++;
                     }
                 } else if (pageBlock instanceof TL_iv.pageBlockList) {
                     TL_iv.pageBlockList pageblocklist = (TL_iv.pageBlockList) pageBlock;
-                    g2Var.f18610b = pageblocklist.items.size() + g2Var.f18610b;
+                    g2Var.f18613b = pageblocklist.items.size() + g2Var.f18613b;
                     for (int i12 = 0; i12 < pageblocklist.items.size(); i12++) {
                         TL_iv.PageListItem pageListItem = pageblocklist.items.get(i12);
                         int i13 = i7 + 1;
@@ -66,7 +66,7 @@ public final class g2 {
                     }
                 } else if (pageBlock instanceof TL_iv.pageBlockOrderedList) {
                     TL_iv.pageBlockOrderedList pageblockorderedlist = (TL_iv.pageBlockOrderedList) pageBlock;
-                    g2Var.f18610b = pageblockorderedlist.items.size() + g2Var.f18610b;
+                    g2Var.f18613b = pageblockorderedlist.items.size() + g2Var.f18613b;
                     for (int i15 = 0; i15 < pageblockorderedlist.items.size(); i15++) {
                         TL_iv.PageListOrderedItem pageListOrderedItem = pageblockorderedlist.items.get(i15);
                         int i16 = i7 + 1;
@@ -84,7 +84,7 @@ public final class g2 {
                     a(pageblocktable.title, i7, g2Var);
                     ArrayList<TL_iv.pageTableRow> arrayList3 = pageblocktable.rows;
                     if (arrayList3 != null) {
-                        g2Var.f18610b = arrayList3.size() + g2Var.f18610b;
+                        g2Var.f18613b = arrayList3.size() + g2Var.f18613b;
                         for (int i18 = 0; i18 < pageblocktable.rows.size(); i18++) {
                             TL_iv.pageTableRow pagetablerow = pageblocktable.rows.get(i18);
                             if (pagetablerow.cells != null) {
@@ -97,8 +97,8 @@ public final class g2 {
                             } else {
                                 i10 = 0;
                             }
-                            if (i10 > g2Var.f18612e) {
-                                g2Var.f18612e = i10;
+                            if (i10 > g2Var.f18615e) {
+                                g2Var.f18615e = i10;
                             }
                         }
                     }
@@ -140,7 +140,7 @@ public final class g2 {
                 } else if (pageBlock instanceof TL_iv.pageBlockMath) {
                     String str = ((TL_iv.pageBlockMath) pageBlock).source;
                     if (str != null) {
-                        g2Var.f18609a = str.length() + g2Var.f18609a;
+                        g2Var.f18612a = str.length() + g2Var.f18612a;
                     }
                 } else {
                     TL_iv.PageCaption pageCaption3 = pageBlock.caption;

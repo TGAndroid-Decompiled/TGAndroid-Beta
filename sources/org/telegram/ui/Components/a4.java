@@ -1,7 +1,12 @@
 package org.telegram.ui.Components;
-public final class a4 extends ib0 {
+
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+public final class a4 extends t4 {
     @Override
-    public final CharSequence d(int i7) {
-        return org.telegram.messenger.id.G(i7, "Minutes", new Object[0]);
+    public final InputConnection onCreateInputConnection(EditorInfo editorInfo) {
+        InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
+        editorInfo.imeOptions &= -1073741825;
+        return onCreateInputConnection;
     }
 }

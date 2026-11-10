@@ -2,26 +2,26 @@ package di;
 
 import android.content.Context;
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.cc;
+import org.telegram.ui.Components.bc;
 public final class w5 extends FrameLayout {
-    public final float f9897a;
-    public final x5 f9898b;
+    public final float f9902a;
+    public final x5 f9903b;
 
     public w5(x5 x5Var, Context context, float f10) {
         super(context);
-        this.f9898b = x5Var;
-        this.f9897a = f10;
+        this.f9903b = x5Var;
+        this.f9902a = f10;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        cc.a(this.f9898b.f28627c, new ch.v(this, 3));
+        bc.a(this.f9903b.f28675c, new ch.v(this, 3));
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        cc.h(this.f9898b.f28627c);
+        bc.h(this.f9903b.f28675c);
     }
 }

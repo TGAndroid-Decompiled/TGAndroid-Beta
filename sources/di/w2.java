@@ -4,12 +4,12 @@ import android.content.Intent;
 import java.util.ArrayList;
 import org.telegram.messenger.gz;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.mj;
-public final class w2 implements mj {
-    public final j4 f9892a;
+import org.telegram.ui.Components.lj;
+public final class w2 implements lj {
+    public final j4 f9897a;
 
     public w2(j4 j4Var) {
-        this.f9892a = j4Var;
+        this.f9897a = j4Var;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class w2 implements mj {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
             intent.setType("*/*");
-            org.telegram.ui.ActionBar.f2 f2Var = this.f9892a.f9224s0.f9608f;
+            org.telegram.ui.ActionBar.f2 f2Var = this.f9897a.f9229s0.f9613f;
             if (f2Var.getParentActivity() == null) {
                 return;
             }
@@ -32,11 +32,11 @@ public final class w2 implements mj {
     public final void n(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z9, int i7, long j3, boolean z10, long j10) {
         org.telegram.messenger.c accountInstance;
         boolean z11;
-        j4 j4Var = this.f9892a;
-        TL_stories.StoryItem storyItem = j4Var.f9245x1.f9064a;
+        j4 j4Var = this.f9897a;
+        TL_stories.StoryItem storyItem = j4Var.f9250x1.f9069a;
         if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
             accountInstance = j4Var.getAccountInstance();
-            gz.V(i7, j4Var.f9196k1, 0L, j10, 0L, str, null, arrayList, arrayList, null, null, null, null, accountInstance, null, null, null, null, null, storyItem, null, null, null, z9, false);
+            gz.V(i7, j4Var.f9201k1, 0L, j10, 0L, str, null, arrayList, arrayList, null, null, null, null, accountInstance, null, null, null, null, null, storyItem, null, null, null, z9, false);
             if (j10 <= 0) {
                 z11 = true;
             } else {

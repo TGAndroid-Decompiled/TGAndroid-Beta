@@ -23,7 +23,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.Cells.t2;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.cn;
@@ -31,23 +31,23 @@ import org.telegram.ui.gl;
 import org.telegram.ui.ll;
 import org.telegram.ui.nm;
 import org.telegram.ui.q8;
-import org.telegram.ui.uw;
-import org.telegram.ui.ww;
+import org.telegram.ui.vw;
 import org.telegram.ui.xw;
 import org.telegram.ui.yw;
+import org.telegram.ui.zw;
 public final class z implements Runnable {
-    public final int f18097a;
-    public final int f18098b;
-    public final int f18099c;
+    public final int f18100a;
+    public final int f18101b;
+    public final int f18102c;
     public final Object d;
-    public final Object f18100e;
+    public final Object f18103e;
 
     public z(int i7, int i10, String str, String str2) {
-        this.f18097a = 9;
-        this.f18098b = i7;
+        this.f18100a = 9;
+        this.f18101b = i7;
         this.d = str;
-        this.f18100e = str2;
-        this.f18099c = i10;
+        this.f18103e = str2;
+        this.f18102c = i10;
     }
 
     @Override
@@ -60,15 +60,15 @@ public final class z implements Runnable {
         int i12;
         float f10;
         int i13;
-        int i14 = this.f18097a;
+        int i14 = this.f18100a;
         int i15 = 0;
-        int i16 = this.f18098b;
-        int i17 = this.f18099c;
-        Object obj = this.f18100e;
+        int i16 = this.f18101b;
+        int i17 = this.f18102c;
+        Object obj = this.f18103e;
         Object obj2 = this.d;
         switch (i14) {
             case 0:
-                i0 i0Var = ((c0) obj2).f17772a;
+                i0 i0Var = ((c0) obj2).f17775a;
                 Surface surface = new Surface((SurfaceTexture) obj);
                 i0Var.x1(surface);
                 i0Var.U = surface;
@@ -76,9 +76,9 @@ public final class z implements Runnable {
                 return;
             case 1:
                 String str = (String) obj;
-                gc gcVar = ((qb) obj2).f24687b;
+                gc gcVar = ((qb) obj2).f24691b;
                 if (i16 != 1) {
-                    gcVar.f22651s.c(new ib(gcVar, str, 1));
+                    gcVar.f22655s.c(new ib(gcVar, str, 1));
                 }
                 qs.f(i17).k(143, str, Integer.valueOf(i16));
                 return;
@@ -90,8 +90,8 @@ public final class z implements Runnable {
                 ArrayList arrayList = (ArrayList) obj;
                 try {
                     if (arrayList != null) {
-                        uiVar.getMessagesStorage().f26721b.executeFast("DELETE FROM reactions").stepThis().dispose();
-                        SQLitePreparedStatement executeFast = uiVar.getMessagesStorage().f26721b.executeFast("REPLACE INTO reactions VALUES(?, ?, ?)");
+                        uiVar.getMessagesStorage().f26725b.executeFast("DELETE FROM reactions").stepThis().dispose();
+                        SQLitePreparedStatement executeFast = uiVar.getMessagesStorage().f26725b.executeFast("REPLACE INTO reactions VALUES(?, ?, ?)");
                         executeFast.requery();
                         int i18 = 4;
                         for (int i19 = 0; i19 < arrayList.size(); i19++) {
@@ -111,7 +111,7 @@ public final class z implements Runnable {
                         executeFast.dispose();
                         return;
                     }
-                    SQLitePreparedStatement executeFast2 = uiVar.getMessagesStorage().f26721b.executeFast("UPDATE reactions SET date = ?");
+                    SQLitePreparedStatement executeFast2 = uiVar.getMessagesStorage().f26725b.executeFast("UPDATE reactions SET date = ?");
                     executeFast2.requery();
                     executeFast2.bindLong(1, i17);
                     executeFast2.step();
@@ -123,11 +123,11 @@ public final class z implements Runnable {
                 }
             case 4:
                 qp qpVar = (qp) obj2;
-                qpVar.f24881r1.clear();
-                qpVar.f24926w1.clear();
+                qpVar.f24885r1.clear();
+                qpVar.f24930w1.clear();
                 yr messagesStorage = qpVar.getMessagesStorage();
                 messagesStorage.H();
-                qpVar.q4(true, messagesStorage.f26731w, ((TLRPC.updates_Difference) obj).pts, this.f18098b, this.f18099c);
+                qpVar.q4(true, messagesStorage.f26735w, ((TLRPC.updates_Difference) obj).pts, this.f18101b, this.f18102c);
                 qpVar.P1().q();
                 return;
             case 5:
@@ -167,7 +167,7 @@ public final class z implements Runnable {
                 byte[] bArr = (byte[]) obj;
                 yrVar.getClass();
                 try {
-                    SQLitePreparedStatement executeFast3 = yrVar.f26721b.executeFast("UPDATE params SET lsv = ?, sg = ?, pbytes = ? WHERE id = 1");
+                    SQLitePreparedStatement executeFast3 = yrVar.f26725b.executeFast("UPDATE params SET lsv = ?, sg = ?, pbytes = ? WHERE id = 1");
                     executeFast3.bindInteger(1, i16);
                     executeFast3.bindInteger(2, i17);
                     if (bArr != null) {
@@ -191,7 +191,7 @@ public final class z implements Runnable {
             case 8:
                 qs qsVar = (qs) obj2;
                 qsVar.l((Object[]) obj, i16, false);
-                qsVar.f25138q.remove(i17);
+                qsVar.f25142q.remove(i17);
                 return;
             case 9:
                 ConnectionsManager.lambda$onIntegrityCheckClassic$27(i16, (String) obj2, (String) obj, i17);
@@ -203,19 +203,19 @@ public final class z implements Runnable {
                 gl glVar = (gl) obj2;
                 glVar.getClass();
                 ij messageObject = ((org.telegram.ui.Cells.t0) obj).getMessageObject();
-                ll llVar = glVar.f46031a;
+                ll llVar = glVar.f46111a;
                 cn cnVar = llVar.Q;
                 int e12 = messageObject.e1();
-                if (ij.B0(messageObject.f23262k) == llVar.Q.f44399b7) {
+                if (ij.B0(messageObject.f23266k) == llVar.Q.f44440b7) {
                     i10 = 1;
                 } else {
                     i10 = 0;
                 }
-                cnVar.Ab(this.f18098b, e12, true, i10, true, 0, Integer.valueOf(i17), null, null);
+                cnVar.Ab(this.f18101b, e12, true, i10, true, 0, Integer.valueOf(i17), null, null);
                 return;
             case 12:
                 org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) obj;
-                cn cnVar2 = ((nm) obj2).f48207a;
+                cn cnVar2 = ((nm) obj2).f48227a;
                 if (cnVar2.O1 != null) {
                     q1Var.getLocationInWindow(new int[2]);
                     cnVar2.O1.setTranslationY(org.telegram.messenger.camera.q.D(520.0f, iArr[1] - m3Var.getTop(), i16));
@@ -225,92 +225,92 @@ public final class z implements Runnable {
                 }
                 return;
             default:
-                final ww wwVar = (ww) obj2;
+                final xw xwVar = (xw) obj2;
                 TLRPC.Dialog dialog = (TLRPC.Dialog) obj;
-                xw xwVar = wwVar.f51489g;
-                yw ywVar = wwVar.h;
-                ArrayList arrayList2 = ywVar.S1;
+                yw ywVar = xwVar.f51830g;
+                zw zwVar = xwVar.h;
+                ArrayList arrayList2 = zwVar.S1;
                 if (arrayList2 != null) {
                     arrayList2.remove(dialog);
                     int i21 = dialog.pinnedNum;
-                    ywVar.X0 = null;
-                    xwVar.f51772a.invalidate();
-                    int N0 = xwVar.f51774c.N0();
+                    zwVar.X0 = null;
+                    ywVar.f52125a.invalidate();
+                    int N0 = ywVar.f52127c.N0();
                     if (N0 == i16 - 1) {
-                        xwVar.f51774c.m(N0).requestLayout();
+                        ywVar.f52127c.m(N0).requestLayout();
                     }
-                    if (ywVar.getMessagesController().C2(dialog.f26960id, false)) {
-                        ywVar.getMessagesController().j2();
-                        xwVar.f51782y.D();
-                        xwVar.q(true);
+                    if (zwVar.getMessagesController().C2(dialog.f26964id, false)) {
+                        zwVar.getMessagesController().j2();
+                        ywVar.f52135y.D();
+                        ywVar.q(true);
                         return;
                     }
-                    qp messagesController = ywVar.getMessagesController();
-                    long j3 = dialog.f26960id;
-                    if (ywVar.X2 == 0) {
+                    qp messagesController = zwVar.getMessagesController();
+                    long j3 = dialog.f26964id;
+                    if (zwVar.X2 == 0) {
                         i11 = 1;
                     } else {
                         i11 = 0;
                     }
                     int d = messagesController.d(i11, -1, j3);
                     if (d != 2 || i17 != 0) {
-                        xwVar.f51782y.D();
-                        xwVar.q(true);
+                        ywVar.f52135y.D();
+                        ywVar.q(true);
                     }
-                    if (ywVar.X2 == 0) {
+                    if (zwVar.X2 == 0) {
                         if (d == 2) {
-                            boolean z9 = iz.f23430q1;
+                            boolean z9 = iz.f23434q1;
                             if (z9) {
-                                iz.f23430q1 = !z9;
+                                iz.f23434q1 = !z9;
                                 SharedPreferences.Editor edit = qp.e1().edit();
-                                edit.putBoolean("archiveHidden", iz.f23430q1);
+                                edit.putBoolean("archiveHidden", iz.f23434q1);
                                 edit.apply();
                             }
-                            xwVar.f51782y.D();
+                            ywVar.f52135y.D();
                             if (i17 == 0) {
-                                ywVar.M4(true, true);
-                                xwVar.q(true);
-                                ywVar.z3();
+                                zwVar.M4(true, true);
+                                ywVar.q(true);
+                                zwVar.z3();
                             } else {
-                                xwVar.q(true);
-                                if (!iz.f23430q1 && xwVar.f51774c.L0() == 0) {
-                                    ywVar.f52239f2 = true;
-                                    uw uwVar = xwVar.f51772a;
-                                    if (iz.f23427p1) {
+                                ywVar.q(true);
+                                if (!iz.f23434q1 && ywVar.f52127c.L0() == 0) {
+                                    zwVar.f52585f2 = true;
+                                    vw vwVar = ywVar.f52125a;
+                                    if (iz.f23431p1) {
                                         f10 = 76.0f;
                                     } else {
                                         f10 = 70.0f;
                                     }
-                                    uwVar.w0(0, -org.telegram.messenger.g0.L(f10), null);
+                                    vwVar.w0(0, -org.telegram.messenger.g0.L(f10), null);
                                 }
                             }
-                            i13 = ((f2) ywVar).currentAccount;
-                            ywVar.S1.add(0, (TLRPC.Dialog) ywVar.d4(i13, xwVar.f51779s, ywVar.X2, false).get(0));
-                            xwVar.q(true);
+                            i13 = ((f2) zwVar).currentAccount;
+                            zwVar.S1.add(0, (TLRPC.Dialog) zwVar.d4(i13, ywVar.f52132s, zwVar.X2, false).get(0));
+                            ywVar.q(true);
                             org.telegram.messenger.g0.i3(new Runnable() {
                                 @Override
                                 public final void run() {
                                     switch (r2) {
                                         case 0:
-                                            wwVar.h.M4(false, true);
+                                            xwVar.h.M4(false, true);
                                             return;
                                         default:
-                                            wwVar.h.M4(false, true);
+                                            xwVar.h.M4(false, true);
                                             return;
                                     }
                                 }
                             }, 300L);
                         } else if (d == 1) {
-                            v4.d1 K = xwVar.f51772a.K(0);
+                            v4.d1 K = ywVar.f52125a.K(0);
                             if (K != null) {
-                                View view = K.f57056a;
+                                View view = K.f57052a;
                                 if (view instanceof t2) {
                                     t2 t2Var = (t2) view;
-                                    if (t2Var.f30396a2.f39980n == 2) {
-                                        t2Var.f30401b2 = true;
-                                        t2Var.f30406c2 = 0.0f;
-                                        l6.f28176u1.T(true, 0.0f);
-                                        l6.f28176u1.start();
+                                    if (t2Var.f30407a2.f38923n == 2) {
+                                        t2Var.f30412b2 = true;
+                                        t2Var.f30417c2 = 0.0f;
+                                        m6.f28201u1.T(true, 0.0f);
+                                        m6.f28201u1.start();
                                         t2Var.invalidate();
                                     }
                                 }
@@ -320,34 +320,34 @@ public final class z implements Runnable {
                                 public final void run() {
                                     switch (r2) {
                                         case 0:
-                                            wwVar.h.M4(false, true);
+                                            xwVar.h.M4(false, true);
                                             return;
                                         default:
-                                            wwVar.h.M4(false, true);
+                                            xwVar.h.M4(false, true);
                                             return;
                                     }
                                 }
                             }, 300L);
                         }
                         SharedPreferences e13 = qp.e1();
-                        i15 = (e13.getBoolean("archivehint_l", false) || iz.f23430q1) ? 1 : 1;
+                        i15 = (e13.getBoolean("archivehint_l", false) || iz.f23434q1) ? 1 : 1;
                         if (i15 == 0) {
                             e13.edit().putBoolean("archivehint_l", true).commit();
                         }
-                        UndoView k42 = ywVar.k4();
+                        UndoView k42 = zwVar.k4();
                         if (k42 != null) {
-                            long j10 = dialog.f26960id;
+                            long j10 = dialog.f26964id;
                             if (i15 != 0) {
                                 i12 = 2;
                             } else {
                                 i12 = 3;
                             }
-                            k42.l(j10, i12, null, new q8(wwVar, dialog, i21, 29));
+                            k42.l(j10, i12, null, new q8(xwVar, dialog, i21, 29));
                         }
                     }
-                    if (ywVar.X2 != 0 && ywVar.S1.isEmpty()) {
-                        xwVar.f51772a.setEmptyView(null);
-                        xwVar.f51781x.setVisibility(4);
+                    if (zwVar.X2 != 0 && zwVar.S1.isEmpty()) {
+                        ywVar.f52125a.setEmptyView(null);
+                        ywVar.f52134x.setVisibility(4);
                         return;
                     }
                     return;
@@ -357,26 +357,26 @@ public final class z implements Runnable {
     }
 
     public z(Object obj, int i7, int i10, Object obj2, int i11) {
-        this.f18097a = i11;
+        this.f18100a = i11;
         this.d = obj;
-        this.f18098b = i7;
-        this.f18099c = i10;
-        this.f18100e = obj2;
+        this.f18101b = i7;
+        this.f18102c = i10;
+        this.f18103e = obj2;
     }
 
     public z(Object obj, Object obj2, int i7, int i10, int i11) {
-        this.f18097a = i11;
+        this.f18100a = i11;
         this.d = obj;
-        this.f18100e = obj2;
-        this.f18098b = i7;
-        this.f18099c = i10;
+        this.f18103e = obj2;
+        this.f18101b = i7;
+        this.f18102c = i10;
     }
 
     public z(qs qsVar, int i7, Object[] objArr, int i10) {
-        this.f18097a = 8;
+        this.f18100a = 8;
         this.d = qsVar;
-        this.f18098b = i7;
-        this.f18100e = objArr;
-        this.f18099c = i10;
+        this.f18101b = i7;
+        this.f18103e = objArr;
+        this.f18102c = i10;
     }
 }

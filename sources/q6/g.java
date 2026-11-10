@@ -15,19 +15,19 @@ public final class g extends r6.a {
     public static final Scope[] E = new Scope[0];
     public static final n6.c[] F = new n6.c[0];
     public final String D;
-    public final int f53885a;
-    public final int f53886b;
-    public final int f53887c;
+    public final int f53884a;
+    public final int f53885b;
+    public final int f53886c;
     public String d;
-    public IBinder f53888e;
-    public Scope[] f53889f;
+    public IBinder f53887e;
+    public Scope[] f53888f;
     public Bundle h;
-    public Account f53890n;
-    public n6.c[] f53891r;
-    public n6.c[] f53892s;
-    public final boolean f53893w;
-    public final int f53894x;
-    public boolean f53895y;
+    public Account f53889n;
+    public n6.c[] f53890r;
+    public n6.c[] f53891s;
+    public final boolean f53892w;
+    public final int f53893x;
+    public boolean f53894y;
 
     public g(int i7, int i10, int i11, String str, IBinder iBinder, Scope[] scopeArr, Bundle bundle, Account account, n6.c[] cVarArr, n6.c[] cVarArr2, boolean z9, int i12, boolean z10, String str2) {
         Scope[] scopeArr2;
@@ -51,9 +51,9 @@ public final class g extends r6.a {
             cVarArr3 = cVarArr;
         }
         cVarArr4 = cVarArr2 != null ? cVarArr2 : cVarArr4;
-        this.f53885a = i7;
-        this.f53886b = i10;
-        this.f53887c = i11;
+        this.f53884a = i7;
+        this.f53885b = i10;
+        this.f53886c = i11;
         if ("com.google.android.gms".equals(str)) {
             this.d = "com.google.android.gms";
         } else {
@@ -62,7 +62,7 @@ public final class g extends r6.a {
         if (i7 < 2) {
             Account account2 = null;
             if (iBinder != null) {
-                int i13 = a.f53845b;
+                int i13 = a.f53844b;
                 IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.IAccountAccessor");
                 if (queryLocalInterface instanceof i) {
                     aVar = (i) queryLocalInterface;
@@ -87,18 +87,18 @@ public final class g extends r6.a {
                     throw th2;
                 }
             }
-            this.f53890n = account2;
+            this.f53889n = account2;
         } else {
-            this.f53888e = iBinder;
-            this.f53890n = account;
+            this.f53887e = iBinder;
+            this.f53889n = account;
         }
-        this.f53889f = scopeArr2;
+        this.f53888f = scopeArr2;
         this.h = bundle2;
-        this.f53891r = cVarArr3;
-        this.f53892s = cVarArr4;
-        this.f53893w = z9;
-        this.f53894x = i12;
-        this.f53895y = z10;
+        this.f53890r = cVarArr3;
+        this.f53891s = cVarArr4;
+        this.f53892w = z9;
+        this.f53893x = i12;
+        this.f53894y = z10;
         this.D = str2;
     }
 

@@ -4,7 +4,7 @@ import android.view.KeyEvent;
 import org.telegram.messenger.c20;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLObject;
-import org.telegram.ui.af;
+import org.telegram.ui.bf;
 import org.telegram.ui.cn;
 public final class q3 implements c20 {
     public final int f4559a;
@@ -30,12 +30,12 @@ public final class q3 implements c20 {
         throw new UnsupportedOperationException("Method not decompiled: bi.q3.a(java.lang.Object):void");
     }
 
-    public q3(qp qpVar, org.telegram.ui.ActionBar.u1 u1Var, cn cnVar, af afVar, long j3, org.telegram.ui.ae aeVar) {
+    public q3(qp qpVar, org.telegram.ui.ActionBar.u1 u1Var, cn cnVar, bf bfVar, long j3, org.telegram.ui.ae aeVar) {
         this.f4559a = 1;
         this.f4561c = qpVar;
         this.d = u1Var;
         this.f4562e = cnVar;
-        this.f4563f = afVar;
+        this.f4563f = bfVar;
         this.f4560b = j3;
         this.f4564g = aeVar;
     }

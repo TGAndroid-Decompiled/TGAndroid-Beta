@@ -1,32 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class i40 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f34550a;
-    public final o40 f34551b;
+import android.os.SystemClock;
+public final class i40 implements Runnable {
+    public final int f34526a;
+    public final n40 f34527b;
 
-    public i40(o40 o40Var, int i7) {
-        this.f34550a = i7;
-        this.f34551b = o40Var;
+    public i40(n40 n40Var, int i7) {
+        this.f34526a = i7;
+        this.f34527b = n40Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f34550a) {
+    public final void run() {
+        wi.s0 s0Var;
+        int i7 = this.f34526a;
+        n40 n40Var = this.f34527b;
+        switch (i7) {
             case 0:
-                o40 o40Var = this.f34551b;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue() * o40Var.getMeasuredHeight() * 0.5f;
-                o40Var.f36645x0 = floatValue;
-                o40Var.f36637s.setTranslationY(floatValue + o40Var.f36643w0);
+                wi.s0 s0Var2 = n40Var.Q;
+                if (s0Var2 != null && s0Var2.f58152a == 3) {
+                    long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos();
+                    long j3 = n40Var.G0;
+                    if (j3 == 0 || elapsedRealtimeNanos - j3 >= 70000000) {
+                        n40Var.F();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                int i10 = n40.L0;
+                n40Var.u();
                 return;
             default:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o40 o40Var2 = this.f34551b;
-                o40Var2.f36648z0 = floatValue2;
-                wi.t0 t0Var = o40Var2.O;
-                if (t0Var != null) {
-                    t0Var.y(floatValue2);
-                    return;
+                int i11 = n40.L0;
+                wi.t0 t0Var = n40Var.O;
+                if (t0Var != null && (s0Var = n40Var.Q) != null) {
+                    if (s0Var.f58152a == 3) {
+                        n40Var.y();
+                        return;
+                    } else if (s0Var.f58155e) {
+                        t0Var.p();
+                        return;
+                    } else {
+                        return;
+                    }
                 }
                 return;
         }

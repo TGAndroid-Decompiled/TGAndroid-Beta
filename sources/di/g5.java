@@ -3,36 +3,36 @@ package di;
 import android.content.Context;
 import android.view.ViewPropertyAnimator;
 import android.widget.TextView;
-import org.telegram.ui.Components.cv0;
-import org.telegram.ui.Components.mz;
-import org.telegram.ui.Components.vj;
-import org.telegram.ui.y91;
-public final class g5 extends cv0 {
+import org.telegram.ui.Components.bv0;
+import org.telegram.ui.Components.lz;
+import org.telegram.ui.Components.uj;
+import org.telegram.ui.z91;
+public final class g5 extends bv0 {
     public final int K = 0;
     public final Object L;
 
-    public g5(vj vjVar, Context context, mz mzVar, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, mzVar, 1, g6Var);
-        this.L = vjVar;
+    public g5(uj ujVar, Context context, lz lzVar, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, lzVar, 1, h6Var);
+        this.L = ujVar;
     }
 
     @Override
     public void e(boolean z9, boolean z10) {
         switch (this.K) {
             case 2:
-                y91 y91Var = (y91) this.L;
+                z91 z91Var = (z91) this.L;
                 super.e(z9, z10);
                 float f10 = 1.0f;
                 if (z10) {
-                    ViewPropertyAnimator animate = ((TextView) y91Var.f52042n.d).animate();
+                    ViewPropertyAnimator animate = ((TextView) z91Var.f52372n.d).animate();
                     if (z9) {
                         f10 = 0.0f;
                     }
                     animate.alpha(f10).start();
                     return;
                 }
-                ((TextView) y91Var.f52042n.d).animate().cancel();
-                TextView textView = (TextView) y91Var.f52042n.d;
+                ((TextView) z91Var.f52372n.d).animate().cancel();
+                TextView textView = (TextView) z91Var.f52372n.d;
                 if (z9) {
                     f10 = 0.0f;
                 }
@@ -48,7 +48,7 @@ public final class g5 extends cv0 {
     public float getTranslationY() {
         switch (this.K) {
             case 1:
-                return super.getTranslationY() - ((vj) this.L).M;
+                return super.getTranslationY() - ((uj) this.L).M;
             default:
                 return super.getTranslationY();
         }
@@ -59,7 +59,7 @@ public final class g5 extends cv0 {
         switch (this.K) {
             case 0:
                 l5 l5Var = ((h5) this.L).d;
-                super.onMeasure(i7, org.telegram.messenger.camera.q.c(l5Var.f9326e, l5Var.f9328n - l5Var.f9329r.getPaddingTop(), 1073741824));
+                super.onMeasure(i7, org.telegram.messenger.camera.q.c(l5Var.f9331e, l5Var.f9333n - l5Var.f9334r.getPaddingTop(), 1073741824));
                 return;
             default:
                 super.onMeasure(i7, i10);
@@ -71,7 +71,7 @@ public final class g5 extends cv0 {
     public void setTranslationY(float f10) {
         switch (this.K) {
             case 1:
-                super.setTranslationY(f10 + ((vj) this.L).M);
+                super.setTranslationY(f10 + ((uj) this.L).M);
                 return;
             default:
                 super.setTranslationY(f10);
@@ -84,8 +84,8 @@ public final class g5 extends cv0 {
         this.L = h5Var;
     }
 
-    public g5(y91 y91Var, Context context, mz mzVar) {
-        super(context, mzVar, 0, null);
-        this.L = y91Var;
+    public g5(z91 z91Var, Context context, lz lzVar) {
+        super(context, lzVar, 0, null);
+        this.L = z91Var;
     }
 }

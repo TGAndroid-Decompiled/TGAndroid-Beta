@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.ui;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.e41;
-import org.telegram.ui.Components.r5;
-import org.telegram.ui.Components.vg0;
+import org.telegram.ui.Components.d41;
+import org.telegram.ui.Components.q5;
+import org.telegram.ui.Components.ug0;
 public abstract class o {
     public static SpannableStringBuilder a(String str) {
         Spanned fromHtml;
@@ -80,11 +80,11 @@ public abstract class o {
                     } else if (i7 == 2 || i7 == 3) {
                         arrayList3.add(nVar);
                     }
-                } else if (obj instanceof r5) {
+                } else if (obj instanceof q5) {
                     TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
-                    r5 r5Var = (r5) obj;
-                    tL_messageEntityCustomEmoji.document_id = r5Var.documentId;
-                    tL_messageEntityCustomEmoji.document = r5Var.document;
+                    q5 q5Var = (q5) obj;
+                    tL_messageEntityCustomEmoji.document_id = q5Var.documentId;
+                    tL_messageEntityCustomEmoji.document = q5Var.document;
                     tL_messageEntityCustomEmoji.offset = spanStart;
                     tL_messageEntityCustomEmoji.length = spanEnd - spanStart;
                     arrayList.add(tL_messageEntityCustomEmoji);
@@ -101,7 +101,7 @@ public abstract class o {
                     if (charSequence.equals(url)) {
                         spannableStringBuilder.setSpan(new URLSpan(url), spanStart2, spanEnd2, 33);
                     } else {
-                        spannableStringBuilder.setSpan(new e41(url, null), spanStart2, spanEnd2, 33);
+                        spannableStringBuilder.setSpan(new d41(url, null), spanStart2, spanEnd2, 33);
                     }
                 }
             }
@@ -121,7 +121,7 @@ public abstract class o {
                 } else {
                     z9 = false;
                 }
-                vg0.c(spannableStringBuilder, spanStart4, spanEnd4, z9);
+                ug0.c(spannableStringBuilder, spanStart4, spanEnd4, z9);
             }
             return spannableStringBuilder;
         } catch (Exception e10) {

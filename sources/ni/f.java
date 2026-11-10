@@ -3,19 +3,19 @@ package ni;
 import android.text.TextPaint;
 import android.text.style.CharacterStyle;
 import java.util.HashMap;
-import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.m6;
 public final class f extends CharacterStyle {
-    public final int f20622a;
+    public final int f20627a;
 
     public f(int i7) {
-        this.f20622a = i7;
+        this.f20627a = i7;
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
         int i7;
-        HashMap hashMap = t.f20658b;
-        int i10 = this.f20622a & 255;
+        HashMap hashMap = t.f20663b;
+        int i10 = this.f20627a & 255;
         switch (i10) {
             case 8:
             case 18:
@@ -46,32 +46,32 @@ public final class f extends CharacterStyle {
         }
         switch (i10) {
             case 1:
-                i7 = l6.wl;
+                i7 = m6.wl;
                 break;
             case 2:
-                i7 = l6.xl;
+                i7 = m6.xl;
                 break;
             case 3:
-                i7 = l6.yl;
+                i7 = m6.yl;
                 break;
             case 4:
-                i7 = l6.zl;
+                i7 = m6.zl;
                 break;
             case 5:
-                i7 = l6.Al;
+                i7 = m6.Al;
                 break;
             case 6:
-                i7 = l6.Bl;
+                i7 = m6.Bl;
                 break;
             case 7:
-                i7 = l6.Cl;
+                i7 = m6.Cl;
                 break;
             default:
                 i7 = -1;
                 break;
         }
         if (i7 >= 0) {
-            textPaint.setColor(l6.x0(null, i7, false));
+            textPaint.setColor(m6.x0(null, i7, false));
         }
     }
 }

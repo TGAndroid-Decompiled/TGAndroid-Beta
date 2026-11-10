@@ -1,68 +1,60 @@
 package org.telegram.ui;
 
-import android.view.View;
+import java.util.ArrayList;
+import java.util.Collections;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-public final class gq implements q0.a {
-    public final int f46052a;
+public final class gq implements kq {
+    public final rq f46144a;
 
-    public gq(int i7) {
-        this.f46052a = i7;
+    public gq(rq rqVar) {
+        this.f46144a = rqVar;
     }
 
     @Override
-    public final void accept(Object obj) {
-        boolean z9;
-        boolean z10;
-        long j3;
-        boolean z11 = true;
-        switch (this.f46052a) {
-            case 0:
-                TLRPC.User user = (TLRPC.User) obj;
-                return;
-            case 1:
-                View view = (View) obj;
-                boolean z12 = ChatAttachAlertPhotoLayout.f31193q1;
-                if (view instanceof org.telegram.ui.Cells.q5) {
-                    org.telegram.ui.Cells.q5 q5Var = (org.telegram.ui.Cells.q5) view;
-                    if (q5Var.getPhotoEntry() != null && q5Var.getPhotoEntry().M) {
-                        z9 = true;
-                    } else {
-                        z9 = false;
-                    }
-                    q5Var.c(z9, Float.valueOf(250.0f));
-                    if (q5Var.getPhotoEntry() != null && q5Var.getPhotoEntry().c()) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    q5Var.setHighQuality(z10);
-                    if (q5Var.getPhotoEntry() != null) {
-                        j3 = q5Var.getPhotoEntry().N;
-                    } else {
-                        j3 = 0;
-                    }
-                    if (ChatAttachAlertPhotoLayout.f31195s1.size() <= 1) {
-                        z11 = false;
-                    }
-                    q5Var.f(j3, z11);
-                    return;
-                }
-                return;
-            case 2:
-                View view2 = (View) obj;
-                if (view2 instanceof org.telegram.ui.Components.ql0) {
-                    ((org.telegram.ui.Components.ql0) view2).a(false, true);
-                    return;
-                }
-                return;
-            default:
-                View view3 = (View) obj;
-                if (view3 instanceof org.telegram.ui.Components.ql0) {
-                    ((org.telegram.ui.Components.ql0) view3).a(false, true);
-                    return;
-                }
-                return;
+    public final void a(TLRPC.User user) {
+        rq.h0(this.f46144a, user);
+    }
+
+    @Override
+    public final void b(long j3) {
+        rq rqVar = this.f46144a;
+        ArrayList arrayList = rqVar.E;
+        a0.h hVar = rqVar.J;
+        TLRPC.User a22 = rqVar.getMessagesController().a2(Long.valueOf(j3));
+        if (a22 != null) {
+            org.telegram.messenger.g0.i3(new fq(0, this, a22), 200L);
         }
+        if (hVar.f(j3) == null) {
+            lq B0 = rqVar.B0();
+            TLRPC.TL_channelParticipantAdmin tL_channelParticipantAdmin = new TLRPC.TL_channelParticipantAdmin();
+            TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+            tL_channelParticipantAdmin.peer = tL_peerUser;
+            tL_peerUser.user_id = a22.f27109id;
+            tL_channelParticipantAdmin.date = rqVar.getConnectionsManager().getCurrentTime();
+            tL_channelParticipantAdmin.promoted_by = org.telegram.messenger.p10.i(rqVar.getAccountInstance().f21770a).f24493n;
+            arrayList.add(tL_channelParticipantAdmin);
+            hVar.k(tL_channelParticipantAdmin, a22.f27109id);
+            Collections.sort(arrayList, new pe(4));
+            rqVar.F0(B0);
+        }
+    }
+
+    @Override
+    public final void c(long j3, TLObject tLObject) {
+        rq rqVar = this.f46144a;
+        ArrayList arrayList = rqVar.E;
+        a0.h hVar = rqVar.J;
+        if (tLObject != null && hVar.f(j3) == null) {
+            lq B0 = rqVar.B0();
+            arrayList.add(tLObject);
+            hVar.k(tLObject, j3);
+            Collections.sort(arrayList, new pe(4));
+            rqVar.F0(B0);
+        }
+    }
+
+    @Override
+    public final void d(long j3) {
     }
 }

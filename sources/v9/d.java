@@ -1,27 +1,27 @@
 package v9;
 
 import java.util.concurrent.ExecutorService;
-import org.telegram.ui.Components.rt;
+import org.telegram.ui.Components.qt;
 public final class d implements Runnable {
-    public final int f57278a;
-    public final f f57279b;
-    public final Runnable f57280c;
-    public final rt d;
+    public final int f57274a;
+    public final f f57275b;
+    public final Runnable f57276c;
+    public final qt d;
 
-    public d(f fVar, Runnable runnable, rt rtVar, int i7) {
-        this.f57278a = i7;
-        this.f57279b = fVar;
-        this.f57280c = runnable;
-        this.d = rtVar;
+    public d(f fVar, Runnable runnable, qt qtVar, int i7) {
+        this.f57274a = i7;
+        this.f57275b = fVar;
+        this.f57276c = runnable;
+        this.d = qtVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f57278a) {
+        switch (this.f57274a) {
             case 0:
-                ExecutorService executorService = this.f57279b.f57284a;
-                final Runnable runnable = this.f57280c;
-                final rt rtVar = this.d;
+                ExecutorService executorService = this.f57275b.f57280a;
+                final Runnable runnable = this.f57276c;
+                final qt qtVar = this.d;
                 executorService.execute(new Runnable() {
                     @Override
                     public final void run() {
@@ -31,7 +31,7 @@ public final class d implements Runnable {
                                     runnable.run();
                                     return;
                                 } catch (Exception e10) {
-                                    ((h) rtVar.f37805b).l(e10);
+                                    ((h) qtVar.f37395b).l(e10);
                                     throw e10;
                                 }
                             case 1:
@@ -39,12 +39,12 @@ public final class d implements Runnable {
                                     runnable.run();
                                     return;
                                 } catch (Exception e11) {
-                                    ((h) rtVar.f37805b).l(e11);
+                                    ((h) qtVar.f37395b).l(e11);
                                     return;
                                 }
                             default:
                                 Runnable runnable2 = runnable;
-                                h hVar = (h) rtVar.f37805b;
+                                h hVar = (h) qtVar.f37395b;
                                 try {
                                     runnable2.run();
                                     hVar.k(null);
@@ -58,9 +58,9 @@ public final class d implements Runnable {
                 });
                 return;
             case 1:
-                ExecutorService executorService2 = this.f57279b.f57284a;
-                final Runnable runnable2 = this.f57280c;
-                final rt rtVar2 = this.d;
+                ExecutorService executorService2 = this.f57275b.f57280a;
+                final Runnable runnable2 = this.f57276c;
+                final qt qtVar2 = this.d;
                 executorService2.execute(new Runnable() {
                     @Override
                     public final void run() {
@@ -70,7 +70,7 @@ public final class d implements Runnable {
                                     runnable2.run();
                                     return;
                                 } catch (Exception e10) {
-                                    ((h) rtVar2.f37805b).l(e10);
+                                    ((h) qtVar2.f37395b).l(e10);
                                     throw e10;
                                 }
                             case 1:
@@ -78,12 +78,12 @@ public final class d implements Runnable {
                                     runnable2.run();
                                     return;
                                 } catch (Exception e11) {
-                                    ((h) rtVar2.f37805b).l(e11);
+                                    ((h) qtVar2.f37395b).l(e11);
                                     return;
                                 }
                             default:
                                 Runnable runnable22 = runnable2;
-                                h hVar = (h) rtVar2.f37805b;
+                                h hVar = (h) qtVar2.f37395b;
                                 try {
                                     runnable22.run();
                                     hVar.k(null);
@@ -97,9 +97,9 @@ public final class d implements Runnable {
                 });
                 return;
             default:
-                ExecutorService executorService3 = this.f57279b.f57284a;
-                final Runnable runnable3 = this.f57280c;
-                final rt rtVar3 = this.d;
+                ExecutorService executorService3 = this.f57275b.f57280a;
+                final Runnable runnable3 = this.f57276c;
+                final qt qtVar3 = this.d;
                 executorService3.execute(new Runnable() {
                     @Override
                     public final void run() {
@@ -109,7 +109,7 @@ public final class d implements Runnable {
                                     runnable3.run();
                                     return;
                                 } catch (Exception e10) {
-                                    ((h) rtVar3.f37805b).l(e10);
+                                    ((h) qtVar3.f37395b).l(e10);
                                     throw e10;
                                 }
                             case 1:
@@ -117,12 +117,12 @@ public final class d implements Runnable {
                                     runnable3.run();
                                     return;
                                 } catch (Exception e11) {
-                                    ((h) rtVar3.f37805b).l(e11);
+                                    ((h) qtVar3.f37395b).l(e11);
                                     return;
                                 }
                             default:
                                 Runnable runnable22 = runnable3;
-                                h hVar = (h) rtVar3.f37805b;
+                                h hVar = (h) qtVar3.f37395b;
                                 try {
                                     runnable22.run();
                                     hVar.k(null);

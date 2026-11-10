@@ -3,33 +3,33 @@ package tg;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class g extends AnimatorListenerAdapter {
-    public final int f55676a;
-    public final j f55677b;
+    public final int f55675a;
+    public final j f55676b;
 
     public g(j jVar, int i7) {
-        this.f55676a = i7;
-        this.f55677b = jVar;
+        this.f55675a = i7;
+        this.f55676b = jVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f55676a) {
+        switch (this.f55675a) {
             case 0:
-                j jVar = this.f55677b;
-                if (animator == jVar.f55781a0) {
-                    jVar.f55781a0 = null;
+                j jVar = this.f55676b;
+                if (animator == jVar.f55780a0) {
+                    jVar.f55780a0 = null;
                     return;
                 }
                 return;
             case 1:
-                j jVar2 = this.f55677b;
-                if (animator == jVar2.f55783b0) {
-                    jVar2.f55783b0 = null;
+                j jVar2 = this.f55676b;
+                if (animator == jVar2.f55782b0) {
+                    jVar2.f55782b0 = null;
                     return;
                 }
                 return;
             case 2:
-                j jVar3 = this.f55677b;
+                j jVar3 = this.f55676b;
                 if (animator == jVar3.P) {
                     jVar3.P = null;
                     jVar3.O = 0.0f;
@@ -37,15 +37,15 @@ public final class g extends AnimatorListenerAdapter {
                 }
                 return;
             case 3:
-                j jVar4 = this.f55677b;
+                j jVar4 = this.f55676b;
                 if (animator == jVar4.Q) {
                     jVar4.Q = null;
                     return;
                 }
                 return;
             default:
-                j jVar5 = this.f55677b;
-                if (!jVar5.f55796l0) {
+                j jVar5 = this.f55676b;
+                if (!jVar5.f55795l0) {
                     org.telegram.messenger.g0.E2(jVar5.H);
                     jVar5.H = null;
                     return;

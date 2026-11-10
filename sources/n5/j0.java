@@ -2,18 +2,18 @@ package n5;
 
 import android.util.SparseArray;
 public final class j0 {
-    public static final j0 f20446a;
-    public static final j0[] f20447b;
+    public static final j0 f20451a;
+    public static final j0[] f20452b;
 
     static {
         ?? r02 = new Enum("DEFAULT", 0);
-        f20446a = r02;
+        f20451a = r02;
         Enum r12 = new Enum("UNMETERED_ONLY", 1);
         Enum r32 = new Enum("UNMETERED_OR_DAILY", 2);
         Enum r52 = new Enum("FAST_IF_RADIO_AWAKE", 3);
         Enum r72 = new Enum("NEVER", 4);
         Enum r92 = new Enum("UNRECOGNIZED", 5);
-        f20447b = new j0[]{r02, r12, r32, r52, r72, r92};
+        f20452b = new j0[]{r02, r12, r32, r52, r72, r92};
         SparseArray sparseArray = new SparseArray();
         sparseArray.put(0, r02);
         sparseArray.put(1, r12);
@@ -28,6 +28,6 @@ public final class j0 {
     }
 
     public static j0[] values() {
-        return (j0[]) f20447b.clone();
+        return (j0[]) f20452b.clone();
     }
 }

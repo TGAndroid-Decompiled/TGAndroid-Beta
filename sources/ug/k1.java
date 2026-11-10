@@ -15,11 +15,11 @@ import android.widget.TextView;
 import c8.ha;
 import org.telegram.messenger.id;
 import org.telegram.messenger.k9;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.ActionBar.s6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Components.wo;
 import org.telegram.ui.Components.xo;
-import org.telegram.ui.ys0;
+import org.telegram.ui.zs0;
 public class k1 extends ViewGroup {
     public final Paint D;
     public k1 E;
@@ -31,56 +31,56 @@ public class k1 extends ViewGroup {
     public float K;
     public boolean L;
     public boolean M;
-    public final wo f56693a;
-    public final TextView f56694b;
-    public final TextView f56695c;
+    public final wo f56692a;
+    public final TextView f56693b;
+    public final TextView f56694c;
     public final TextView d;
-    public final TextView f56696e;
-    public final int f56697f;
+    public final TextView f56695e;
+    public final int f56696f;
     public final int h;
-    public ys0 f56698n;
-    public final TextView f56699r;
-    public final int f56700s;
-    public final int f56701w;
-    public int f56702x;
-    public LinearGradient f56703y;
+    public zs0 f56697n;
+    public final TextView f56698r;
+    public final int f56699s;
+    public final int f56700w;
+    public int f56701x;
+    public LinearGradient f56702y;
 
     public k1(Context context) {
         super(context);
         int i7;
         int i10;
         int i11;
-        this.f56697f = 12;
+        this.f56696f = 12;
         this.h = 8;
-        this.f56700s = l6.f27865d6;
-        this.f56701w = l6.f27809a7;
+        this.f56699s = m6.f27890d6;
+        this.f56700w = m6.f27834a7;
         this.D = new Paint();
         this.H = new Matrix();
         wo woVar = new wo(24, context, null);
-        this.f56693a = woVar;
+        this.f56692a = woVar;
         woVar.setDrawBackgroundAsArc(10);
-        int i12 = l6.f27921g7;
-        woVar.b(i12, i12, l6.f27995k7);
+        int i12 = m6.f27946g7;
+        woVar.b(i12, i12, m6.f28020k7);
         addView(woVar);
         TextView textView = new TextView(context);
-        this.f56694b = textView;
+        this.f56693b = textView;
         textView.setTextSize(1, 16.0f);
-        s6.U(textView, l6.G6, null);
+        t6.U(textView, m6.G6, null);
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setSingleLine();
-        if (id.f23157a0) {
+        if (id.f23161a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         addView(textView, ha.d(-2, -2.0f, i7 | 48, 0.0f, 8.0f, 0.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f56699r = textView2;
+        this.f56698r = textView2;
         textView2.setTextSize(1, 14.0f);
         textView2.setTextColor(-1);
         textView2.setPadding(org.telegram.messenger.g0.L(3.0f), 0, org.telegram.messenger.g0.L(3.0f), 0);
         textView2.setTypeface(org.telegram.messenger.g0.o());
-        if (id.f23157a0) {
+        if (id.f23161a0) {
             i10 = 5;
         } else {
             i10 = 3;
@@ -89,26 +89,26 @@ public class k1 extends ViewGroup {
         TextView textView3 = new TextView(context);
         this.d = textView3;
         textView3.setTextSize(1, 14.0f);
-        int i13 = l6.f28257y6;
-        s6.U(textView3, i13, null);
+        int i13 = m6.f28282y6;
+        t6.U(textView3, i13, null);
         textView3.getPaint().setStrikeThruText(true);
         textView3.setSingleLine();
-        if (id.f23157a0) {
+        if (id.f23161a0) {
             i11 = 5;
         } else {
             i11 = 3;
         }
         addView(textView3, ha.d(-2, -2.0f, i11 | 80, 0.0f, 0.0f, 0.0f, 8.0f));
         TextView textView4 = new TextView(context);
-        this.f56696e = textView4;
+        this.f56695e = textView4;
         textView4.setTextSize(1, 14.0f);
-        s6.U(textView4, i13, null);
+        t6.U(textView4, i13, null);
         textView4.setSingleLine();
-        addView(textView4, ha.d(-2, -2.0f, (id.f23157a0 ? 5 : 3) | 80, 0.0f, 0.0f, 0.0f, 8.0f));
+        addView(textView4, ha.d(-2, -2.0f, (id.f23161a0 ? 5 : 3) | 80, 0.0f, 0.0f, 0.0f, 8.0f));
         TextView textView5 = new TextView(context);
-        this.f56695c = textView5;
+        this.f56694c = textView5;
         textView5.setTextSize(1, 15.0f);
-        s6.U(textView5, i13, null);
+        t6.U(textView5, i13, null);
         textView5.setSingleLine();
         addView(textView5, ha.e(-2, -2, 8388613));
         setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(8.0f));
@@ -116,15 +116,15 @@ public class k1 extends ViewGroup {
         setWillNotDraw(false);
     }
 
-    public final void a(org.telegram.ui.ys0 r17, boolean r18) {
-        throw new UnsupportedOperationException("Method not decompiled: ug.k1.a(org.telegram.ui.ys0, boolean):void");
+    public final void a(org.telegram.ui.zs0 r17, boolean r18) {
+        throw new UnsupportedOperationException("Method not decompiled: ug.k1.a(org.telegram.ui.zs0, boolean):void");
     }
 
     public final void b(View view) {
         Rect rect = org.telegram.messenger.g0.Q;
         rect.right = view.getMeasuredWidth() + rect.left;
         rect.bottom = view.getMeasuredHeight() + rect.top;
-        if (id.f23157a0) {
+        if (id.f23161a0) {
             int i7 = rect.right;
             rect.right = getWidth() - rect.left;
             rect.left = getWidth() - i7;
@@ -133,7 +133,7 @@ public class k1 extends ViewGroup {
     }
 
     public final void c(boolean z9, boolean z10) {
-        this.f56693a.a(z9, z10);
+        this.f56692a.a(z9, z10);
     }
 
     public final void d() {
@@ -142,17 +142,17 @@ public class k1 extends ViewGroup {
             k1Var.d();
             return;
         }
-        int x02 = l6.x0(null, this.f56700s, false);
-        int x03 = l6.x0(null, this.f56701w, false);
+        int x02 = m6.x0(null, this.f56699s, false);
+        int x03 = m6.x0(null, this.f56700w, false);
         if (this.G == x03 && this.F == x02) {
             return;
         }
         this.F = x02;
         this.G = x03;
         int L = org.telegram.messenger.g0.L(200.0f);
-        this.f56702x = L;
+        this.f56701x = L;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, L, 0.0f, new int[]{x03, x02, x02, x03}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
-        this.f56703y = linearGradient;
+        this.f56702y = linearGradient;
         this.D.setShader(linearGradient);
     }
 
@@ -166,17 +166,17 @@ public class k1 extends ViewGroup {
             } else {
                 paint = this.D;
             }
-            drawChild(canvas, this.f56693a, getDrawingTime());
+            drawChild(canvas, this.f56692a, getDrawingTime());
             d();
             e();
             RectF rectF = org.telegram.messenger.g0.P;
-            TextView textView = this.f56695c;
+            TextView textView = this.f56694c;
             rectF.set(textView.getLeft(), org.telegram.messenger.g0.L(4.0f) + textView.getTop(), textView.getRight(), textView.getBottom() - org.telegram.messenger.g0.L(4.0f));
             canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), paint);
             TextView textView2 = this.d;
             rectF.set(textView2.getLeft(), org.telegram.messenger.g0.L(3.0f) + textView2.getTop(), textView2.getRight(), textView2.getBottom() - org.telegram.messenger.g0.L(3.0f));
             canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), paint);
-            TextView textView3 = this.f56694b;
+            TextView textView3 = this.f56693b;
             rectF.set(textView3.getLeft(), org.telegram.messenger.g0.L(4.0f) + textView3.getTop(), textView3.getRight(), textView3.getBottom() - org.telegram.messenger.g0.L(4.0f));
             canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), paint);
             invalidate();
@@ -204,30 +204,30 @@ public class k1 extends ViewGroup {
         int i7 = (int) ((((float) (abs * measuredWidth)) / 400.0f) + this.J);
         this.J = i7;
         if (i7 >= measuredWidth * 4) {
-            this.J = (-this.f56702x) * 2;
+            this.J = (-this.f56701x) * 2;
         }
         Matrix matrix = this.H;
         matrix.setTranslate(this.J + this.K, 0.0f);
-        LinearGradient linearGradient = this.f56703y;
+        LinearGradient linearGradient = this.f56702y;
         if (linearGradient != null) {
             linearGradient.setLocalMatrix(matrix);
         }
     }
 
-    public ys0 getTier() {
-        return this.f56698n;
+    public zs0 getTier() {
+        return this.f56697n;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.M) {
-            boolean z9 = id.f23157a0;
-            TextView textView = this.f56694b;
+            boolean z9 = id.f23161a0;
+            TextView textView = this.f56693b;
             if (z9) {
-                canvas.drawLine(0.0f, getHeight() - 1, textView.getRight(), getHeight() - 1, l6.f27988k0);
+                canvas.drawLine(0.0f, getHeight() - 1, textView.getRight(), getHeight() - 1, m6.f28013k0);
             } else {
-                canvas.drawLine(textView.getLeft(), getHeight() - 1, getWidth(), getHeight() - 1, l6.f27988k0);
+                canvas.drawLine(textView.getLeft(), getHeight() - 1, getWidth(), getHeight() - 1, m6.f28013k0);
             }
         }
     }
@@ -241,13 +241,13 @@ public class k1 extends ViewGroup {
         int i15 = this.h;
         int paddingLeft = getPaddingLeft() + org.telegram.messenger.g0.L(i15);
         int measuredHeight = getMeasuredHeight();
-        wo woVar = this.f56693a;
+        wo woVar = this.f56692a;
         rect.set(paddingLeft, (int) ((measuredHeight - woVar.getMeasuredHeight()) / 2.0f), 0, 0);
         b(woVar);
         int measuredHeight2 = getMeasuredHeight();
-        TextView textView = this.f56695c;
+        TextView textView = this.f56694c;
         int measuredHeight3 = (int) ((measuredHeight2 - textView.getMeasuredHeight()) / 2.0f);
-        int i16 = i15 + this.f56697f;
+        int i16 = i15 + this.f56696f;
         int measuredWidth = woVar.getMeasuredWidth() + org.telegram.messenger.g0.L(i16 + 24);
         TextView textView2 = this.d;
         if (textView2.getVisibility() == 0) {
@@ -256,10 +256,10 @@ public class k1 extends ViewGroup {
             i13 = 0;
         }
         int i17 = measuredWidth + i13;
-        TextView textView3 = this.f56696e;
+        TextView textView3 = this.f56695e;
         int paddingLeft2 = getPaddingLeft() + textView3.getMeasuredWidth() + i17;
         int measuredWidth2 = getMeasuredWidth() - textView.getMeasuredWidth();
-        TextView textView4 = this.f56699r;
+        TextView textView4 = this.f56698r;
         if (paddingLeft2 > measuredWidth2 && textView4.getVisibility() == 0) {
             measuredHeight3 = getPaddingTop() + org.telegram.messenger.g0.L(2.0f);
         }
@@ -268,7 +268,7 @@ public class k1 extends ViewGroup {
         float f10 = i16;
         int paddingLeft3 = getPaddingLeft() + woVar.getMeasuredWidth() + org.telegram.messenger.g0.L(f10);
         int visibility = textView3.getVisibility();
-        TextView textView5 = this.f56694b;
+        TextView textView5 = this.f56693b;
         if (visibility == 8) {
             paddingTop = (int) ((getMeasuredHeight() - textView5.getMeasuredHeight()) / 2.0f);
         } else {
@@ -297,14 +297,14 @@ public class k1 extends ViewGroup {
         int size = View.MeasureSpec.getSize(i7);
         int L = org.telegram.messenger.g0.L(58.0f);
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(28.0f), 1073741824);
-        wo woVar = this.f56693a;
+        wo woVar = this.f56692a;
         woVar.measure(makeMeasureSpec, makeMeasureSpec);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(size - woVar.getMeasuredWidth(), Integer.MIN_VALUE);
         int makeMeasureSpec3 = View.MeasureSpec.makeMeasureSpec(L, Integer.MIN_VALUE);
-        TextView textView = this.f56695c;
+        TextView textView = this.f56694c;
         textView.measure(makeMeasureSpec2, makeMeasureSpec3);
-        this.f56694b.measure(View.MeasureSpec.makeMeasureSpec((size - woVar.getMeasuredWidth()) - textView.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(L, Integer.MIN_VALUE));
-        TextView textView2 = this.f56699r;
+        this.f56693b.measure(View.MeasureSpec.makeMeasureSpec((size - woVar.getMeasuredWidth()) - textView.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(L, Integer.MIN_VALUE));
+        TextView textView2 = this.f56698r;
         int i11 = 0;
         if (textView2.getVisibility() == 0) {
             textView2.measure(View.MeasureSpec.makeMeasureSpec((size - woVar.getMeasuredWidth()) - textView.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(L, Integer.MIN_VALUE));
@@ -321,7 +321,7 @@ public class k1 extends ViewGroup {
         }
         int c10 = org.telegram.messenger.camera.q.c(6.0f, measuredWidth - i11, Integer.MIN_VALUE);
         int makeMeasureSpec6 = View.MeasureSpec.makeMeasureSpec(L, Integer.MIN_VALUE);
-        TextView textView4 = this.f56696e;
+        TextView textView4 = this.f56695e;
         textView4.measure(c10, makeMeasureSpec6);
         if (textView4.getVisibility() != 0) {
             L -= org.telegram.messenger.g0.L(8.0f);
@@ -330,7 +330,7 @@ public class k1 extends ViewGroup {
     }
 
     public void setCirclePaintProvider(k9 k9Var) {
-        this.f56693a.setCirclePaintProvider(k9Var);
+        this.f56692a.setCirclePaintProvider(k9Var);
     }
 
     @Override
@@ -344,17 +344,17 @@ public class k1 extends ViewGroup {
         } else {
             f10 = 0.6f;
         }
-        this.f56694b.setAlpha(f10);
+        this.f56693b.setAlpha(f10);
         if (z9) {
             f11 = 1.0f;
         } else {
             f11 = 0.6f;
         }
-        this.f56695c.setAlpha(f11);
+        this.f56694c.setAlpha(f11);
         if (z9) {
             f12 = 1.0f;
         }
-        this.f56693a.setAlpha(f12);
+        this.f56692a.setAlpha(f12);
     }
 
     public void setGlobalGradientView(k1 k1Var) {
@@ -366,6 +366,6 @@ public class k1 extends ViewGroup {
     }
 
     public void setProgressDelegate(xo xoVar) {
-        this.f56693a.setProgressDelegate(xoVar);
+        this.f56692a.setProgressDelegate(xoVar);
     }
 }

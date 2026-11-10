@@ -3,21 +3,21 @@ package di;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.Components.cc;
+import org.telegram.ui.Components.bc;
 public final class a0 implements Runnable {
-    public final int f8793a;
-    public final g2 f8794b;
+    public final int f8798a;
+    public final g2 f8799b;
 
     public a0(g2 g2Var, int i7) {
-        this.f8793a = i7;
-        this.f8794b = g2Var;
+        this.f8798a = i7;
+        this.f8799b = g2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f8793a) {
+        switch (this.f8798a) {
             case 0:
-                g2 g2Var = this.f8794b;
+                g2 g2Var = this.f8799b;
                 if (g2Var.O != null && !g2Var.U) {
                     org.telegram.messenger.g0.r(g2Var.V);
                     g2Var.U = true;
@@ -28,11 +28,11 @@ public final class a0 implements Runnable {
                 }
                 return;
             case 1:
-                g2 g2Var2 = this.f8794b;
-                org.telegram.messenger.g0.r(g2Var2.f9807d0);
-                cc ccVar = g2Var2.W;
-                if (ccVar != null) {
-                    ccVar.b();
+                g2 g2Var2 = this.f8799b;
+                org.telegram.messenger.g0.r(g2Var2.f9812d0);
+                bc bcVar = g2Var2.W;
+                if (bcVar != null) {
+                    bcVar.b();
                     g2Var2.W = null;
                 }
                 long j3 = g2Var2.R;
@@ -45,9 +45,9 @@ public final class a0 implements Runnable {
                 g2Var2.j();
                 return;
             default:
-                g2 g2Var3 = this.f8794b;
-                g2Var3.f9808e.O(true);
-                g2Var3.f9813n.O(true);
+                g2 g2Var3 = this.f8799b;
+                g2Var3.f9813e.O(true);
+                g2Var3.f9818n.O(true);
                 return;
         }
     }

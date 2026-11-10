@@ -1,13 +1,13 @@
 package y3;
 public final class e {
-    public final int f58958a;
-    public final int f58959b;
-    public final float f58960c;
+    public final int f58956a;
+    public final int f58957b;
+    public final float f58958c;
 
     public e(float f10, int i7, int i10) {
-        this.f58958a = i7;
-        this.f58959b = i10;
-        this.f58960c = f10;
+        this.f58956a = i7;
+        this.f58957b = i10;
+        this.f58958c = f10;
     }
 
     public static e a(int i7) {
@@ -31,17 +31,17 @@ public final class e {
             return false;
         }
         e eVar = (e) obj;
-        if (this.f58958a != eVar.f58958a || this.f58959b != eVar.f58959b || Float.compare(this.f58960c, eVar.f58960c) != 0) {
+        if (this.f58956a != eVar.f58956a || this.f58957b != eVar.f58957b || Float.compare(this.f58958c, eVar.f58958c) != 0) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Float.floatToIntBits(this.f58960c) + (((this.f58958a * 31) + this.f58959b) * 31);
+        return Float.floatToIntBits(this.f58958c) + (((this.f58956a * 31) + this.f58957b) * 31);
     }
 
     public final String toString() {
-        return "GainField{name=" + this.f58958a + ", originator=" + this.f58959b + ", gain=" + this.f58960c + '}';
+        return "GainField{name=" + this.f58956a + ", originator=" + this.f58957b + ", gain=" + this.f58958c + '}';
     }
 }

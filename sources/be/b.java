@@ -35,7 +35,7 @@ public final class b implements c2 {
                 long j3 = e.f3198b;
                 long j10 = andIncrement / j3;
                 int i7 = (int) (andIncrement % j3);
-                if (kVar3.f10794c != j10) {
+                if (kVar3.f10799c != j10) {
                     k l10 = cVar.l(j10, kVar3);
                     if (l10 == null) {
                         continue;
@@ -85,7 +85,7 @@ public final class b implements c2 {
                                                 long j11 = e.f3198b;
                                                 long j12 = andIncrement2 / j11;
                                                 int i10 = (int) (andIncrement2 % j11);
-                                                if (kVar4.f10794c != j12) {
+                                                if (kVar4.f10799c != j12) {
                                                     kVar2 = cVar.l(j12, kVar4);
                                                     if (kVar2 == null) {
                                                     }
@@ -142,7 +142,7 @@ public final class b implements c2 {
             if (m11 == null) {
                 z9 = false;
             } else {
-                int i11 = ee.s.f10795a;
+                int i11 = ee.s.f10800a;
                 throw m11;
             }
         }

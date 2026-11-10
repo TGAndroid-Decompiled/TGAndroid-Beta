@@ -3,26 +3,26 @@ package c8;
 import java.util.Map;
 import java.util.Set;
 public abstract class ig implements k {
-    public transient cd f5721a;
-    public transient a8.kb f5722b;
+    public transient cd f5726a;
+    public transient a8.kb f5727b;
 
     public final Map a() {
-        a8.kb kbVar = this.f5722b;
+        a8.kb kbVar = this.f5727b;
         if (kbVar == null) {
             jg jgVar = (jg) this;
-            a8.kb kbVar2 = new a8.kb(jgVar, jgVar.f5736c, 1);
-            this.f5722b = kbVar2;
+            a8.kb kbVar2 = new a8.kb(jgVar, jgVar.f5741c, 1);
+            this.f5727b = kbVar2;
             return kbVar2;
         }
         return kbVar;
     }
 
     public final Set b() {
-        cd cdVar = this.f5721a;
+        cd cdVar = this.f5726a;
         if (cdVar == null) {
             jg jgVar = (jg) this;
-            cd cdVar2 = new cd(jgVar, jgVar.f5736c);
-            this.f5721a = cdVar2;
+            cd cdVar2 = new cd(jgVar, jgVar.f5741c);
+            this.f5726a = cdVar2;
             return cdVar2;
         }
         return cdVar;

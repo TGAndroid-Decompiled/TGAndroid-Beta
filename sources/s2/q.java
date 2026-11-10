@@ -3,13 +3,13 @@ package s2;
 import j$.util.DesugarCollections;
 import java.util.List;
 public abstract class q implements w2.a {
-    public final String f54736a;
-    public final List f54737b;
-    public final boolean f54738c;
+    public final String f54735a;
+    public final List f54736b;
+    public final boolean f54737c;
 
     public q(String str, List list, boolean z9) {
-        this.f54736a = str;
-        this.f54737b = DesugarCollections.unmodifiableList(list);
-        this.f54738c = z9;
+        this.f54735a = str;
+        this.f54736b = DesugarCollections.unmodifiableList(list);
+        this.f54737c = z9;
     }
 }

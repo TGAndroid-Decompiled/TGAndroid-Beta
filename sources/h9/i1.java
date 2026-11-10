@@ -5,23 +5,23 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 public final class i1 extends AbstractMap {
-    public final Map f14330a;
-    public final h1 f14331b;
+    public final Map f14332a;
+    public final h1 f14333b;
 
     public i1(Map map, h1 h1Var) {
         map.getClass();
-        this.f14330a = map;
-        this.f14331b = h1Var;
+        this.f14332a = map;
+        this.f14333b = h1Var;
     }
 
     @Override
     public final void clear() {
-        this.f14330a.clear();
+        this.f14332a.clear();
     }
 
     @Override
     public final boolean containsKey(Object obj) {
-        return this.f14330a.containsKey(obj);
+        return this.f14332a.containsKey(obj);
     }
 
     @Override
@@ -31,31 +31,31 @@ public final class i1 extends AbstractMap {
 
     @Override
     public final Object get(Object obj) {
-        Map map = this.f14330a;
+        Map map = this.f14332a;
         Object obj2 = map.get(obj);
         if (obj2 == null && !map.containsKey(obj)) {
             return null;
         }
-        return this.f14331b.j(obj, obj2);
+        return this.f14333b.j(obj, obj2);
     }
 
     @Override
     public final Set keySet() {
-        return this.f14330a.keySet();
+        return this.f14332a.keySet();
     }
 
     @Override
     public final Object remove(Object obj) {
-        Map map = this.f14330a;
+        Map map = this.f14332a;
         if (map.containsKey(obj)) {
-            return this.f14331b.j(obj, map.remove(obj));
+            return this.f14333b.j(obj, map.remove(obj));
         }
         return null;
     }
 
     @Override
     public final int size() {
-        return this.f14330a.size();
+        return this.f14332a.size();
     }
 
     @Override

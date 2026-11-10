@@ -13,35 +13,35 @@ import java.util.HashSet;
 import org.telegram.messenger.id;
 import org.telegram.messenger.iz;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.Cells.h9;
 import org.telegram.ui.Cells.i9;
 import org.telegram.ui.Components.AnimatedArrowDrawable;
-public final class r0 extends FrameLayout implements org.telegram.ui.ActionBar.b6, h9 {
-    public final g6 f18802a;
-    public final ec f18803b;
-    public final AnimatedArrowDrawable f18804c;
+public final class r0 extends FrameLayout implements org.telegram.ui.ActionBar.c6, h9 {
+    public final h6 f18805a;
+    public final ec f18806b;
+    public final AnimatedArrowDrawable f18807c;
     public final g1 d;
-    public final Paint f18805e;
-    public a f18806f;
+    public final Paint f18808e;
+    public a f18809f;
     public b3 h;
-    public boolean f18807n;
+    public boolean f18810n;
 
-    public r0(Context context, g6 g6Var) {
+    public r0(Context context, h6 h6Var) {
         super(context);
-        this.f18805e = new Paint();
-        this.f18802a = g6Var;
+        this.f18808e = new Paint();
+        this.f18805a = h6Var;
         setClipToPadding(false);
         setWillNotDraw(false);
-        AnimatedArrowDrawable animatedArrowDrawable = new AnimatedArrowDrawable(l6.w0(l6.rl, g6Var));
-        this.f18804c = animatedArrowDrawable;
+        AnimatedArrowDrawable animatedArrowDrawable = new AnimatedArrowDrawable(m6.w0(m6.rl, h6Var));
+        this.f18807c = animatedArrowDrawable;
         animatedArrowDrawable.setCallback(new a5.b(this, 5));
         ec ecVar = new ec(8, context, this);
-        this.f18803b = ecVar;
+        this.f18806b = ecVar;
         ecVar.setOnClickListener(new ii.g(this, 11));
         addView(ecVar, ha.e(53, -1, 51));
-        g1 g1Var = new g1(context, g6Var);
+        g1 g1Var = new g1(context, h6Var);
         this.d = g1Var;
         g1Var.setAllowNewlines(false);
         g1Var.setTextSize(1, iz.W0);
@@ -55,8 +55,8 @@ public final class r0 extends FrameLayout implements org.telegram.ui.ActionBar.b
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(l6.rl));
-        hashSet.add(Integer.valueOf(l6.tl));
+        hashSet.add(Integer.valueOf(m6.rl));
+        hashSet.add(Integer.valueOf(m6.tl));
     }
 
     @Override
@@ -64,7 +64,7 @@ public final class r0 extends FrameLayout implements org.telegram.ui.ActionBar.b
         i9 i9Var;
         b3 b3Var = this.h;
         if (b3Var != null) {
-            i9Var = b3Var.f18477a.getTextSelectionHelper();
+            i9Var = b3Var.f18480a.getTextSelectionHelper();
         } else {
             i9Var = null;
         }
@@ -85,7 +85,7 @@ public final class r0 extends FrameLayout implements org.telegram.ui.ActionBar.b
     }
 
     public a getRow() {
-        return this.f18806f;
+        return this.f18809f;
     }
 
     @Override
@@ -100,15 +100,15 @@ public final class r0 extends FrameLayout implements org.telegram.ui.ActionBar.b
 
     @Override
     public final void onDraw(Canvas canvas) {
-        a aVar = this.f18806f;
+        a aVar = this.f18809f;
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f18392b;
+            TL_iv.PageBlock pageBlock = aVar.f18395b;
             if ((pageBlock instanceof TL_iv.pageBlockDetails) && ((TL_iv.pageBlockDetails) pageBlock).open) {
                 return;
             }
         }
         int measuredHeight = getMeasuredHeight();
-        canvas.drawRect(0.0f, measuredHeight - 1, getMeasuredWidth(), measuredHeight, this.f18805e);
+        canvas.drawRect(0.0f, measuredHeight - 1, getMeasuredWidth(), measuredHeight, this.f18808e);
     }
 
     @Override
@@ -123,12 +123,12 @@ public final class r0 extends FrameLayout implements org.telegram.ui.ActionBar.b
     @Override
     public final void updateColors() {
         this.d.updateColors();
-        int i7 = l6.rl;
-        g6 g6Var = this.f18802a;
-        int w02 = l6.w0(i7, g6Var);
-        AnimatedArrowDrawable animatedArrowDrawable = this.f18804c;
-        animatedArrowDrawable.f31008a.setColor(w02);
+        int i7 = m6.rl;
+        h6 h6Var = this.f18805a;
+        int w02 = m6.w0(i7, h6Var);
+        AnimatedArrowDrawable animatedArrowDrawable = this.f18807c;
+        animatedArrowDrawable.f31019a.setColor(w02);
         animatedArrowDrawable.invalidateSelf();
-        this.f18805e.setColor(l6.w0(l6.tl, g6Var));
+        this.f18808e.setColor(m6.w0(m6.tl, h6Var));
     }
 }

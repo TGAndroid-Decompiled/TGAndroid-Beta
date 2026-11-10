@@ -24,8 +24,8 @@ import org.telegram.messenger.i6;
 import org.telegram.messenger.qs;
 import org.telegram.messenger.ui;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.w5;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.v5;
+import org.telegram.ui.Components.wq;
 public class m0 extends View {
     public final float D;
     public float E;
@@ -39,36 +39,36 @@ public class m0 extends View {
     public float M;
     public float N;
     public final RectF O;
-    public final w5 P;
-    public int f55842a;
-    public String f55843b;
-    public boolean f55844c;
+    public final v5 P;
+    public int f55841a;
+    public String f55842b;
+    public boolean f55843c;
     public final RectF d;
-    public final TextPaint f55845e;
-    public final Paint f55846f;
+    public final TextPaint f55844e;
+    public final Paint f55845f;
     public final Drawable h;
-    public boolean f55847n;
-    public final ImageReceiver f55848r;
-    public final ImageReceiver f55849s;
-    public TLRPC.Document f55850w;
-    public TLRPC.Document f55851x;
-    public boolean f55852y;
+    public boolean f55846n;
+    public final ImageReceiver f55847r;
+    public final ImageReceiver f55848s;
+    public TLRPC.Document f55849w;
+    public TLRPC.Document f55850x;
+    public boolean f55851y;
 
     public m0(Context context, float f10) {
         super(context);
-        this.f55843b = "";
+        this.f55842b = "";
         this.d = new RectF(4.0f, 4.33f, 7.66f, 3.0f);
         TextPaint textPaint = new TextPaint(1);
-        this.f55845e = textPaint;
-        this.f55846f = new Paint(1);
+        this.f55844e = textPaint;
+        this.f55845f = new Paint(1);
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f55848r = imageReceiver;
+        this.f55847r = imageReceiver;
         ImageReceiver imageReceiver2 = new ImageReceiver(this);
-        this.f55849s = imageReceiver2;
+        this.f55848s = imageReceiver2;
         this.E = 1.0f;
         this.O = new RectF();
         new Path();
-        this.P = new w5(this, 350L, xq.h);
+        this.P = new v5(this, 350L, wq.h);
         this.D = f10;
         imageReceiver.A0 = true;
         imageReceiver.J0 = true;
@@ -92,7 +92,7 @@ public class m0 extends View {
     public static l3 c(String str) {
         e6 f10 = i6.f(str);
         if (f10 instanceof h6) {
-            ((h6) f10).f22191a = false;
+            ((h6) f10).f22195a = false;
         }
         if (f10 == null) {
             return null;
@@ -113,8 +113,8 @@ public class m0 extends View {
         RectF rectF = this.O;
         rectF.set(f11, f12, this.M + f11, this.N + f12);
         float f13 = this.N * 0.2f;
-        canvas.drawRoundRect(rectF, f13, f13, this.f55846f);
-        boolean z9 = this.f55847n;
+        canvas.drawRoundRect(rectF, f13, f13, this.f55845f);
+        boolean z9 = this.f55846n;
         float f14 = this.D;
         RectF rectF2 = this.d;
         if (z9) {
@@ -123,7 +123,7 @@ public class m0 extends View {
                 float b10 = org.telegram.messenger.camera.q.b(rectF2.left, 2.25f, f14, f11);
                 float f15 = f14 * 21.33f;
                 float A = com.google.android.recaptcha.internal.a.A(this.N, f15, 2.0f, f12);
-                ImageReceiver imageReceiver = this.f55849s;
+                ImageReceiver imageReceiver = this.f55848s;
                 imageReceiver.y0(b10, A, f15, f15);
                 canvas.save();
                 canvas.scale(1.2f, 1.2f, imageReceiver.r(), imageReceiver.s());
@@ -135,7 +135,7 @@ public class m0 extends View {
                 float b11 = org.telegram.messenger.camera.q.b(rectF2.left, 2.25f, f14, f11);
                 float f16 = f14 * 21.33f;
                 float A2 = com.google.android.recaptcha.internal.a.A(this.N, f16, 2.0f, f12);
-                ImageReceiver imageReceiver2 = this.f55848r;
+                ImageReceiver imageReceiver2 = this.f55847r;
                 imageReceiver2.y0(b11, A2, f16, f16);
                 canvas.save();
                 canvas.scale(1.2f, 1.2f, imageReceiver2.r(), imageReceiver2.s());
@@ -143,7 +143,7 @@ public class m0 extends View {
                 imageReceiver2.h(canvas, null);
                 canvas.restore();
             }
-        } else if (!this.f55852y) {
+        } else if (!this.f55851y) {
             float f17 = rectF2.left;
             float f18 = this.N;
             float f19 = f14 * 21.33f;
@@ -153,7 +153,7 @@ public class m0 extends View {
         }
         canvas.save();
         float f20 = rectF2.left;
-        if (!this.f55847n && !this.f55852y) {
+        if (!this.f55846n && !this.f55851y) {
             f10 = 0.0f;
         } else {
             f10 = 2.25f;
@@ -169,48 +169,48 @@ public class m0 extends View {
     public final void d(int i7, final String str) {
         boolean z9;
         boolean isEmpty = TextUtils.isEmpty(str);
-        ImageReceiver imageReceiver = this.f55849s;
-        ImageReceiver imageReceiver2 = this.f55848r;
+        ImageReceiver imageReceiver = this.f55848s;
+        ImageReceiver imageReceiver2 = this.f55847r;
         if (isEmpty) {
-            this.f55847n = false;
-            this.f55850w = null;
-            this.f55851x = null;
+            this.f55846n = false;
+            this.f55849w = null;
+            this.f55850x = null;
             imageReceiver2.f();
             imageReceiver.f();
             z9 = true;
         } else {
-            this.f55847n = true;
-            this.f55850w = null;
-            this.f55851x = null;
+            this.f55846n = true;
+            this.f55849w = null;
+            this.f55850x = null;
             TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
             tL_inputStickerSetShortName.short_name = "StaticEmoji";
             ui.b0(i7).l0(tL_inputStickerSetShortName, 0, false, false, new c20(this) {
-                public final m0 f55833b;
+                public final m0 f55832b;
 
                 {
-                    this.f55833b = this;
+                    this.f55832b = this;
                 }
 
                 @Override
                 public final void a(Object obj) {
                     switch (r3) {
                         case 0:
-                            m0 m0Var = this.f55833b;
+                            m0 m0Var = this.f55832b;
                             m0Var.getClass();
                             String str2 = str;
                             TLRPC.Document b10 = m0.b((TLRPC.TL_messages_stickerSet) obj, str2);
-                            m0Var.f55850w = b10;
-                            m0Var.f55848r.q0(hc.b(b10), "80_80", m0.c(str2), null, null, 0);
-                            m0Var.f55849s.u0(hc.b(m0Var.f55851x), "80_80", hc.b(m0Var.f55850w), "80_80", null, null, m0.c(str2), 0L, null, null, 0);
+                            m0Var.f55849w = b10;
+                            m0Var.f55847r.q0(hc.b(b10), "80_80", m0.c(str2), null, null, 0);
+                            m0Var.f55848s.u0(hc.b(m0Var.f55850x), "80_80", hc.b(m0Var.f55849w), "80_80", null, null, m0.c(str2), 0L, null, null, 0);
                             return;
                         default:
-                            m0 m0Var2 = this.f55833b;
+                            m0 m0Var2 = this.f55832b;
                             m0Var2.getClass();
                             String str3 = str;
                             TLRPC.Document b11 = m0.b((TLRPC.TL_messages_stickerSet) obj, str3);
-                            m0Var2.f55851x = b11;
+                            m0Var2.f55850x = b11;
                             if (b11 != null) {
-                                m0Var2.f55849s.u0(hc.b(b11), "80_80", hc.b(m0Var2.f55850w), "80_80", null, null, m0.c(str3), 0L, null, null, 0);
+                                m0Var2.f55848s.u0(hc.b(b11), "80_80", hc.b(m0Var2.f55849w), "80_80", null, null, m0.c(str3), 0L, null, null, 0);
                                 return;
                             }
                             return;
@@ -220,32 +220,32 @@ public class m0 extends View {
             TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();
             tL_inputStickerSetShortName2.short_name = "RestrictedEmoji";
             ui.b0(i7).l0(tL_inputStickerSetShortName2, 0, false, false, new c20(this) {
-                public final m0 f55833b;
+                public final m0 f55832b;
 
                 {
-                    this.f55833b = this;
+                    this.f55832b = this;
                 }
 
                 @Override
                 public final void a(Object obj) {
                     switch (r3) {
                         case 0:
-                            m0 m0Var = this.f55833b;
+                            m0 m0Var = this.f55832b;
                             m0Var.getClass();
                             String str2 = str;
                             TLRPC.Document b10 = m0.b((TLRPC.TL_messages_stickerSet) obj, str2);
-                            m0Var.f55850w = b10;
-                            m0Var.f55848r.q0(hc.b(b10), "80_80", m0.c(str2), null, null, 0);
-                            m0Var.f55849s.u0(hc.b(m0Var.f55851x), "80_80", hc.b(m0Var.f55850w), "80_80", null, null, m0.c(str2), 0L, null, null, 0);
+                            m0Var.f55849w = b10;
+                            m0Var.f55847r.q0(hc.b(b10), "80_80", m0.c(str2), null, null, 0);
+                            m0Var.f55848s.u0(hc.b(m0Var.f55850x), "80_80", hc.b(m0Var.f55849w), "80_80", null, null, m0.c(str2), 0L, null, null, 0);
                             return;
                         default:
-                            m0 m0Var2 = this.f55833b;
+                            m0 m0Var2 = this.f55832b;
                             m0Var2.getClass();
                             String str3 = str;
                             TLRPC.Document b11 = m0.b((TLRPC.TL_messages_stickerSet) obj, str3);
-                            m0Var2.f55851x = b11;
+                            m0Var2.f55850x = b11;
                             if (b11 != null) {
-                                m0Var2.f55849s.u0(hc.b(b11), "80_80", hc.b(m0Var2.f55850w), "80_80", null, null, m0.c(str3), 0L, null, null, 0);
+                                m0Var2.f55848s.u0(hc.b(b11), "80_80", hc.b(m0Var2.f55849w), "80_80", null, null, m0.c(str3), 0L, null, null, 0);
                                 return;
                             }
                             return;
@@ -253,10 +253,10 @@ public class m0 extends View {
                 }
             });
             z9 = true;
-            imageReceiver2.q0(hc.b(this.f55850w), "80_80", c(str), null, null, 0);
-            imageReceiver.u0(hc.b(this.f55851x), "80_80", hc.b(this.f55850w), "80_80", null, null, c(str), 0L, null, null, 0);
+            imageReceiver2.q0(hc.b(this.f55849w), "80_80", c(str), null, null, 0);
+            imageReceiver.u0(hc.b(this.f55850x), "80_80", hc.b(this.f55849w), "80_80", null, null, c(str), 0L, null, null, 0);
         }
-        this.f55844c = z9;
+        this.f55843c = z9;
         requestLayout();
     }
 
@@ -268,8 +268,8 @@ public class m0 extends View {
     public final void e(int i7, int i10) {
         int i11 = -16777216;
         Drawable drawable = this.h;
-        TextPaint textPaint = this.f55845e;
-        Paint paint = this.f55846f;
+        TextPaint textPaint = this.f55844e;
+        Paint paint = this.f55845f;
         if (i7 == 0) {
             paint.setColor(-16777216);
             textPaint.setColor(-1);
@@ -296,19 +296,19 @@ public class m0 extends View {
     public final void f() {
         float f10;
         float f11;
-        if (!this.f55844c) {
+        if (!this.f55843c) {
             return;
         }
-        String str = this.f55843b;
-        TextPaint textPaint = this.f55845e;
+        String str = this.f55842b;
+        TextPaint textPaint = this.f55844e;
         float measureText = textPaint.measureText(str);
-        int i7 = this.f55842a;
+        int i7 = this.f55841a;
         int i10 = this.I;
         float f12 = (i7 - i10) - i10;
         RectF rectF = this.d;
         float f13 = rectF.left;
         float f14 = 2.25f;
-        if (!this.f55847n && !this.f55852y) {
+        if (!this.f55846n && !this.f55851y) {
             f10 = 0.0f;
         } else {
             f10 = 2.25f;
@@ -319,11 +319,11 @@ public class m0 extends View {
         this.E = min;
         if (min < 0.4f) {
             f11 = 1.0f;
-            String str2 = this.f55843b;
+            String str2 = this.f55842b;
             this.F = new StaticLayout(str2, textPaint, m3.a(str2, textPaint), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         } else {
             f11 = 1.0f;
-            this.F = new StaticLayout(this.f55843b, textPaint, (int) Math.ceil(measureText), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.F = new StaticLayout(this.f55842b, textPaint, (int) Math.ceil(measureText), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         }
         this.G = 0.0f;
         this.H = Float.MAX_VALUE;
@@ -337,20 +337,20 @@ public class m0 extends View {
             this.E = Math.min(f11, f16 / this.G);
         }
         float f17 = rectF.left;
-        if (!this.f55847n && !this.f55852y) {
+        if (!this.f55846n && !this.f55851y) {
             f14 = 0.0f;
         }
         this.M = (this.G * this.E) + ((f17 + f14 + 21.33f + 3.25f + rectF.right) * f15);
         this.N = Math.max(f15 * 21.33f, this.F.getHeight() * this.E) + ((rectF.top + rectF.bottom) * f15);
-        this.f55844c = false;
+        this.f55843c = false;
     }
 
     public TLRPC.Document getCodeEmojiDocument() {
         TLRPC.Document document;
-        if (this.L && (document = this.f55851x) != null) {
+        if (this.L && (document = this.f55850x) != null) {
             return document;
         }
-        return this.f55850w;
+        return this.f55849w;
     }
 
     public int getHeightInternal() {
@@ -364,7 +364,7 @@ public class m0 extends View {
     }
 
     public String getText() {
-        return this.f55843b;
+        return this.f55842b;
     }
 
     public int getTypesCount() {
@@ -382,9 +382,9 @@ public class m0 extends View {
         super.onAttachedToWindow();
         this.K = true;
         if (this.L) {
-            this.f55849s.P();
+            this.f55848s.P();
         } else {
-            this.f55848r.P();
+            this.f55847r.P();
         }
     }
 
@@ -392,8 +392,8 @@ public class m0 extends View {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.K = false;
-        this.f55848r.R();
-        this.f55849s.R();
+        this.f55847r.R();
+        this.f55848s.R();
     }
 
     @Override
@@ -404,8 +404,8 @@ public class m0 extends View {
 
     public void setIsVideo(boolean z9) {
         if (this.L != z9 && this.K) {
-            ImageReceiver imageReceiver = this.f55849s;
-            ImageReceiver imageReceiver2 = this.f55848r;
+            ImageReceiver imageReceiver = this.f55848s;
+            ImageReceiver imageReceiver2 = this.f55847r;
             if (z9) {
                 imageReceiver2.R();
                 imageReceiver.P();
@@ -419,13 +419,13 @@ public class m0 extends View {
     }
 
     public void setMaxWidth(int i7) {
-        this.f55842a = i7;
-        this.f55844c = true;
+        this.f55841a = i7;
+        this.f55843c = true;
     }
 
     public void setText(String str) {
-        this.f55843b = str;
-        this.f55844c = true;
+        this.f55842b = str;
+        this.f55843c = true;
         requestLayout();
     }
 }

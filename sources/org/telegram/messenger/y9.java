@@ -4,25 +4,25 @@ import android.location.Location;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 public final class y9 implements OnCompleteListener {
-    public final int f26622a;
-    public final q0.a f26623b;
+    public final int f26626a;
+    public final q0.a f26627b;
 
     public y9(q0.a aVar, int i7) {
-        this.f26622a = i7;
-        this.f26623b = aVar;
+        this.f26626a = i7;
+        this.f26627b = aVar;
     }
 
     @Override
     public void onComplete(Task task) {
-        switch (this.f26622a) {
+        switch (this.f26626a) {
             case 0:
                 if (task.getException() == null) {
-                    this.f26623b.accept((Location) task.getResult());
+                    this.f26627b.accept((Location) task.getResult());
                     return;
                 }
                 return;
             default:
-                q0.a aVar = this.f26623b;
+                q0.a aVar = this.f26627b;
                 try {
                     task.getResult(com.google.android.gms.common.api.f.class);
                     aVar.accept(0);

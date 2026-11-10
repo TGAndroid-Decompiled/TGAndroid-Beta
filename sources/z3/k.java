@@ -4,14 +4,14 @@ import f3.b0;
 import f3.c0;
 import f3.d0;
 public final class k implements c0 {
-    public final long f59640a;
-    public final l[] f59641b;
-    public final int f59642c;
+    public final long f59638a;
+    public final l[] f59639b;
+    public final int f59640c;
 
     public k(long j3, l[] lVarArr, int i7) {
-        this.f59640a = j3;
-        this.f59641b = lVarArr;
-        this.f59642c = i7;
+        this.f59638a = j3;
+        this.f59639b = lVarArr;
+        this.f59640c = i7;
     }
 
     @Override
@@ -33,28 +33,28 @@ public final class k implements c0 {
         long j14;
         int b10;
         long j15 = j3;
-        l[] lVarArr = this.f59641b;
+        l[] lVarArr = this.f59639b;
         int length = lVarArr.length;
-        d0 d0Var = d0.f11010c;
+        d0 d0Var = d0.f11015c;
         if (length == 0) {
             return new b0(d0Var, d0Var);
         }
-        int i7 = this.f59642c;
+        int i7 = this.f59640c;
         int i10 = -1;
         if (i7 != -1) {
-            u uVar = lVarArr[i7].f59644b;
+            u uVar = lVarArr[i7].f59642b;
             int a10 = uVar.a(j15);
             if (a10 == -1) {
                 a10 = uVar.b(j15);
             }
-            long[] jArr = uVar.f59710c;
-            long[] jArr2 = uVar.f59712f;
+            long[] jArr = uVar.f59708c;
+            long[] jArr2 = uVar.f59710f;
             if (a10 == -1) {
                 return new b0(d0Var, d0Var);
             }
             long j16 = jArr2[a10];
             j10 = jArr[a10];
-            if (j16 < j15 && a10 < uVar.f59709b - 1 && (b10 = uVar.b(j15)) != -1 && b10 != a10) {
+            if (j16 < j15 && a10 < uVar.f59707b - 1 && (b10 = uVar.b(j15)) != -1 && b10 != a10) {
                 j12 = jArr2[b10];
                 j14 = jArr[b10];
             } else {
@@ -72,8 +72,8 @@ public final class k implements c0 {
         long j17 = j10;
         while (i11 < lVarArr.length) {
             if (i11 != i7) {
-                u uVar2 = lVarArr[i11].f59644b;
-                long[] jArr3 = uVar2.f59710c;
+                u uVar2 = lVarArr[i11].f59642b;
+                long[] jArr3 = uVar2.f59708c;
                 int a11 = uVar2.a(j15);
                 if (a11 == i10) {
                     a11 = uVar2.b(j15);
@@ -114,6 +114,6 @@ public final class k implements c0 {
 
     @Override
     public final long h() {
-        return this.f59640a;
+        return this.f59638a;
     }
 }

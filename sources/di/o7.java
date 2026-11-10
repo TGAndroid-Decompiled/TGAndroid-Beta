@@ -11,16 +11,16 @@ import org.telegram.messenger.p10;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ic;
-import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.hc;
+import org.telegram.ui.Components.pj0;
 import org.telegram.ui.LaunchActivity;
 public class o7 {
     public int A;
     public boolean D;
     public final boolean E;
     public float G;
-    public ic H;
-    public org.telegram.ui.ActionBar.g6 J;
+    public hc H;
+    public org.telegram.ui.ActionBar.h6 J;
     public float K;
     public boolean L;
     public float M;
@@ -29,40 +29,40 @@ public class o7 {
     public float P;
     public z0 Q;
     public View R;
-    public int f9443c;
+    public int f9448c;
     public TL_stories.StoryItem d;
-    public boolean f9450l;
-    public boolean f9451m;
-    public int f9452n;
-    public boolean f9453o;
-    public boolean f9454p;
-    public int f9455q;
-    public boolean f9456r;
-    public long f9457s;
-    public float f9458t;
+    public boolean f9455l;
+    public boolean f9456m;
+    public int f9457n;
+    public boolean f9458o;
+    public boolean f9459p;
+    public int f9460q;
+    public boolean f9461r;
+    public long f9462s;
+    public float f9463t;
     public boolean v;
-    public boolean f9460w;
-    public long f9461x;
-    public int f9462y;
-    public int f9463z;
-    public boolean f9441a = true;
-    public boolean f9442b = true;
-    public float f9444e = 1.0f;
-    public float f9445f = 0.0f;
-    public float f9446g = 0.0f;
+    public boolean f9465w;
+    public long f9466x;
+    public int f9467y;
+    public int f9468z;
+    public boolean f9446a = true;
+    public boolean f9447b = true;
+    public float f9449e = 1.0f;
+    public float f9450f = 0.0f;
+    public float f9451g = 0.0f;
     public float h = 0.0f;
-    public float f9447i = 0.0f;
-    public float f9448j = 0.0f;
-    public boolean f9449k = true;
-    public float f9459u = 1.0f;
+    public float f9452i = 0.0f;
+    public float f9453j = 0.0f;
+    public boolean f9454k = true;
+    public float f9464u = 1.0f;
     public float B = 1.0f;
     public boolean C = false;
     public final RectF F = new RectF();
     public boolean I = false;
 
-    public o7(org.telegram.ui.ActionBar.g6 g6Var, boolean z9) {
+    public o7(org.telegram.ui.ActionBar.h6 h6Var, boolean z9) {
         this.E = z9;
-        this.J = g6Var;
+        this.J = h6Var;
     }
 
     public final boolean a(View view, MotionEvent motionEvent) {
@@ -73,33 +73,33 @@ public class o7 {
         boolean z9;
         TLRPC.TL_recentStory tL_recentStory4;
         this.R = view;
-        z6 P1 = qp.s1(p10.f24470s0).P1();
+        z6 P1 = qp.s1(p10.f24474s0).P1();
         boolean z10 = false;
         if (motionEvent.getAction() == 0) {
             if (this.F.contains(motionEvent.getX(), motionEvent.getY())) {
                 TLRPC.Chat chat = null;
-                if (this.f9461x > 0) {
-                    user = qp.s1(p10.f24470s0).a2(Long.valueOf(this.f9461x));
+                if (this.f9466x > 0) {
+                    user = qp.s1(p10.f24474s0).a2(Long.valueOf(this.f9466x));
                 } else {
-                    chat = qp.s1(p10.f24470s0).M0(Long.valueOf(-this.f9461x));
+                    chat = qp.s1(p10.f24474s0).M0(Long.valueOf(-this.f9466x));
                     user = null;
                 }
                 if (c(chat, user)) {
                     z9 = true;
-                } else if (this.f9456r) {
+                } else if (this.f9461r) {
                     z9 = !P1.h.isEmpty();
                 } else {
-                    if (this.f9461x <= 0 ? qp.s1(p10.f24470s0).P1().K(this.f9461x) || (chat != null && !chat.stories_unavailable && (tL_recentStory3 = chat.stories_max_id) != null && tL_recentStory3.max_id > 0) : qp.s1(p10.f24470s0).P1().K(this.f9461x) || (user != null && !user.stories_unavailable && (tL_recentStory4 = user.stories_max_id) != null && tL_recentStory4.max_id > 0)) {
+                    if (this.f9466x <= 0 ? qp.s1(p10.f24474s0).P1().K(this.f9466x) || (chat != null && !chat.stories_unavailable && (tL_recentStory3 = chat.stories_max_id) != null && tL_recentStory3.max_id > 0) : qp.s1(p10.f24474s0).P1().K(this.f9466x) || (user != null && !user.stories_unavailable && (tL_recentStory4 = user.stories_max_id) != null && tL_recentStory4.max_id > 0)) {
                         z10 = true;
                     }
                     z9 = z10;
                 }
-                if (this.f9461x != p10.i(p10.f24470s0).f24489n && z9) {
-                    ic icVar = this.H;
-                    if (icVar == null) {
-                        this.H = new ic(view, 1.5f, 5.0f);
+                if (this.f9466x != p10.i(p10.f24474s0).f24493n && z9) {
+                    hc hcVar = this.H;
+                    if (hcVar == null) {
+                        this.H = new hc(view, 1.5f, 5.0f);
                     } else {
-                        icVar.f34696a = view;
+                        hcVar.f34296a = view;
                     }
                     view.getParent().requestDisallowInterceptTouchEvent(true);
                     this.H.c(true);
@@ -120,11 +120,11 @@ public class o7 {
             }
         }
         if (motionEvent.getAction() == 2 && this.N) {
-            if (Math.abs(this.O - motionEvent.getX()) > org.telegram.messenger.g0.f22542e || Math.abs(this.P - motionEvent.getY()) > org.telegram.messenger.g0.f22542e) {
-                ic icVar2 = this.H;
-                if (icVar2 != null) {
-                    icVar2.f34696a = view;
-                    icVar2.c(false);
+            if (Math.abs(this.O - motionEvent.getX()) > org.telegram.messenger.g0.f22546e || Math.abs(this.P - motionEvent.getY()) > org.telegram.messenger.g0.f22546e) {
+                hc hcVar2 = this.H;
+                if (hcVar2 != null) {
+                    hcVar2.f34296a = view;
+                    hcVar2.c(false);
                 }
                 z0 z0Var3 = this.Q;
                 if (z0Var3 != null) {
@@ -134,30 +134,30 @@ public class o7 {
                 this.N = false;
             }
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            ic icVar3 = this.H;
-            if (icVar3 != null) {
-                icVar3.f34696a = view;
-                icVar3.c(false);
+            hc hcVar3 = this.H;
+            if (hcVar3 != null) {
+                hcVar3.f34296a = view;
+                hcVar3.c(false);
             }
-            if (this.N && motionEvent.getAction() == 1 && !d(this.f9461x)) {
-                qp s12 = qp.s1(p10.f24470s0);
+            if (this.N && motionEvent.getAction() == 1 && !d(this.f9466x)) {
+                qp s12 = qp.s1(p10.f24474s0);
                 z6 P12 = s12.P1();
-                if (this.f9456r) {
+                if (this.f9461r) {
                     f(0L);
-                } else if (this.f9461x != p10.i(p10.f24470s0).e()) {
-                    if (P12.K(this.f9461x)) {
-                        f(this.f9461x);
+                } else if (this.f9466x != p10.i(p10.f24474s0).e()) {
+                    if (P12.K(this.f9466x)) {
+                        f(this.f9466x);
                     } else {
-                        long j3 = this.f9461x;
+                        long j3 = this.f9466x;
                         if (j3 > 0) {
                             TLRPC.User a22 = s12.a2(Long.valueOf(j3));
                             if (a22 != null && !a22.stories_unavailable && (tL_recentStory2 = a22.stories_max_id) != null && tL_recentStory2.max_id > 0) {
-                                new r7().a(this.f9461x, view, this);
+                                new r7().a(this.f9466x, view, this);
                             }
                         } else {
                             TLRPC.Chat M0 = s12.M0(Long.valueOf(-j3));
                             if (M0 != null && !M0.stories_unavailable && (tL_recentStory = M0.stories_max_id) != null && tL_recentStory.max_id > 0) {
-                                new r7().a(this.f9461x, view, this);
+                                new r7().a(this.f9466x, view, this);
                             }
                         }
                     }
@@ -177,11 +177,11 @@ public class o7 {
     }
 
     public final float b() {
-        ic icVar = this.H;
-        if (icVar == null) {
+        hc hcVar = this.H;
+        if (hcVar == null) {
             return 1.0f;
         }
-        return icVar.a(0.08f);
+        return hcVar.a(0.08f);
     }
 
     public boolean c(TLRPC.Chat chat, TLRPC.User user) {
@@ -199,7 +199,7 @@ public class o7 {
             Q.getOrCreateStoryViewer().getClass();
             ViewParent parent = this.R.getParent();
             if (parent instanceof RecyclerView) {
-                i7Var = i7.a((qj0) parent);
+                i7Var = i7.a((pj0) parent);
             } else {
                 i7Var = null;
             }

@@ -2,8 +2,8 @@ package n5;
 
 import android.util.SparseArray;
 public final class h0 {
-    public static final SparseArray f20430a;
-    public static final h0[] f20431b;
+    public static final SparseArray f20435a;
+    public static final h0[] f20436b;
     h0 EF0;
 
     static {
@@ -26,9 +26,9 @@ public final class h0 {
         Enum r63 = new Enum("PROXY", 16);
         Enum r43 = new Enum("VPN", 17);
         Enum r23 = new Enum("NONE", 18);
-        f20431b = new h0[]{r02, r12, r32, r52, r72, r92, r11, r13, r15, r14, r122, r10, r82, r62, r42, r22, r63, r43, r23};
+        f20436b = new h0[]{r02, r12, r32, r52, r72, r92, r11, r13, r15, r14, r122, r10, r82, r62, r42, r22, r63, r43, r23};
         SparseArray sparseArray = new SparseArray();
-        f20430a = sparseArray;
+        f20435a = sparseArray;
         sparseArray.put(0, r02);
         sparseArray.put(1, r12);
         sparseArray.put(2, r32);
@@ -55,6 +55,6 @@ public final class h0 {
     }
 
     public static h0[] values() {
-        return (h0[]) f20431b.clone();
+        return (h0[]) f20436b.clone();
     }
 }

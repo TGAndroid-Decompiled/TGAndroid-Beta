@@ -2,22 +2,22 @@ package l2;
 
 import a8.ia;
 public final class r1 {
-    public final b f18034a;
-    public final int f18035b;
-    public final b f18036c;
+    public final b f18037a;
+    public final int f18038b;
+    public final b f18039c;
     public int d = 0;
-    public boolean f18037e = false;
-    public boolean f18038f = false;
+    public boolean f18040e = false;
+    public boolean f18041f = false;
 
     public r1(b bVar, b bVar2, int i7) {
-        this.f18034a = bVar;
-        this.f18035b = i7;
-        this.f18036c = bVar2;
+        this.f18037a = bVar;
+        this.f18038b = i7;
+        this.f18039c = bVar2;
     }
 
     public static void b(b bVar) {
         boolean z9;
-        int i7 = bVar.f17762n;
+        int i7 = bVar.f17765n;
         if (i7 == 2) {
             if (i7 == 2) {
                 z9 = true;
@@ -25,13 +25,13 @@ public final class r1 {
                 z9 = false;
             }
             ia.p(z9);
-            bVar.f17762n = 1;
+            bVar.f17765n = 1;
             bVar.t();
         }
     }
 
     public static boolean h(b bVar) {
-        if (bVar.f17762n != 0) {
+        if (bVar.f17765n != 0) {
             return true;
         }
         return false;
@@ -42,14 +42,14 @@ public final class r1 {
         if (bVar instanceof z2.f) {
             z2.f fVar = (z2.f) bVar;
             ia.p(fVar.D);
-            fVar.f59586a0 = j3;
+            fVar.f59584a0 = j3;
         }
     }
 
     public final void a(b bVar, i iVar) {
         boolean z9;
         boolean z10 = true;
-        if (this.f18034a != bVar && this.f18036c != bVar) {
+        if (this.f18037a != bVar && this.f18039c != bVar) {
             z9 = false;
         } else {
             z9 = true;
@@ -58,20 +58,20 @@ public final class r1 {
         if (!h(bVar)) {
             return;
         }
-        if (bVar == ((b) iVar.f17848e)) {
-            iVar.f17849f = null;
-            iVar.f17848e = null;
-            iVar.f17845a = true;
+        if (bVar == ((b) iVar.f17851e)) {
+            iVar.f17852f = null;
+            iVar.f17851e = null;
+            iVar.f17848a = true;
         }
         b(bVar);
-        if (bVar.f17762n != 1) {
+        if (bVar.f17765n != 1) {
             z10 = false;
         }
         ia.p(z10);
-        bVar.f17759c.A();
-        bVar.f17762n = 0;
-        bVar.f17763r = null;
-        bVar.f17764s = null;
+        bVar.f17762c.A();
+        bVar.f17765n = 0;
+        bVar.f17766r = null;
+        bVar.f17767s = null;
         bVar.D = false;
         bVar.n();
         bVar.G = null;
@@ -79,8 +79,8 @@ public final class r1 {
 
     public final int c() {
         int i7;
-        boolean h = h(this.f18034a);
-        b bVar = this.f18036c;
+        boolean h = h(this.f18037a);
+        b bVar = this.f18039c;
         if (bVar != null && h(bVar)) {
             i7 = 1;
         } else {
@@ -90,14 +90,14 @@ public final class r1 {
     }
 
     public final b d(x0 x0Var) {
-        x2.c1 c1Var;
-        if (x0Var != null && (c1Var = x0Var.f18074c[this.f18035b]) != null) {
-            b bVar = this.f18034a;
-            if (bVar.f17763r == c1Var) {
+        x2.b1 b1Var;
+        if (x0Var != null && (b1Var = x0Var.f18077c[this.f18038b]) != null) {
+            b bVar = this.f18037a;
+            if (bVar.f17766r == b1Var) {
                 return bVar;
             }
-            b bVar2 = this.f18036c;
-            if (bVar2 != null && bVar2.f17763r == c1Var) {
+            b bVar2 = this.f18039c;
+            if (bVar2 != null && bVar2.f17766r == b1Var) {
                 return bVar2;
             }
         }
@@ -119,39 +119,39 @@ public final class r1 {
     public final boolean g() {
         int i7 = this.d;
         if (i7 != 0 && i7 != 2 && i7 != 4) {
-            b bVar = this.f18036c;
+            b bVar = this.f18039c;
             bVar.getClass();
-            if (bVar.f17762n != 0) {
+            if (bVar.f17765n != 0) {
                 return true;
             }
             return false;
         }
-        return h(this.f18034a);
+        return h(this.f18037a);
     }
 
     public final void i(boolean z9) {
         boolean z10 = true;
         if (z9) {
-            if (this.f18037e) {
-                b bVar = this.f18034a;
-                if (bVar.f17762n != 0) {
+            if (this.f18040e) {
+                b bVar = this.f18037a;
+                if (bVar.f17765n != 0) {
                     z10 = false;
                 }
                 ia.p(z10);
-                bVar.f17759c.A();
+                bVar.f17762c.A();
                 bVar.r();
-                this.f18037e = false;
+                this.f18040e = false;
             }
-        } else if (this.f18038f) {
-            b bVar2 = this.f18036c;
+        } else if (this.f18041f) {
+            b bVar2 = this.f18039c;
             bVar2.getClass();
-            if (bVar2.f17762n != 0) {
+            if (bVar2.f17765n != 0) {
                 z10 = false;
             }
             ia.p(z10);
-            bVar2.f17759c.A();
+            bVar2.f17762c.A();
             bVar2.r();
-            this.f18038f = false;
+            this.f18041f = false;
         }
     }
 
@@ -160,17 +160,17 @@ public final class r1 {
         Object[] objArr;
         int i7;
         int i10;
-        if (bVar == null || bVar.f17762n == 0 || (bVar == (bVar2 = this.f18034a) && ((i10 = this.d) == 2 || i10 == 4))) {
+        if (bVar == null || bVar.f17765n == 0 || (bVar == (bVar2 = this.f18037a) && ((i10 = this.d) == 2 || i10 == 4))) {
             return 1;
         }
-        if (bVar == this.f18036c && this.d == 3) {
+        if (bVar == this.f18039c && this.d == 3) {
             return 1;
         }
-        x2.c1 c1Var = bVar.f17763r;
-        x2.c1[] c1VarArr = x0Var.f18074c;
-        int i11 = this.f18035b;
+        x2.b1 b1Var = bVar.f17766r;
+        x2.b1[] b1VarArr = x0Var.f18077c;
+        int i11 = this.f18038b;
         boolean z9 = false;
-        if (c1Var != c1VarArr[i11]) {
+        if (b1Var != b1VarArr[i11]) {
             objArr = 1;
         } else {
             objArr = null;
@@ -189,9 +189,9 @@ public final class r1 {
                     uVar.getClass();
                     uVarArr[i12] = uVar.g(i12);
                 }
-                x2.c1 c1Var2 = x0Var.f18074c[i11];
-                c1Var2.getClass();
-                bVar.y(uVarArr, c1Var2, x0Var.e(), x0Var.f18085p, x0Var.f18077g.f18088a);
+                x2.b1 b1Var2 = x0Var.f18077c[i11];
+                b1Var2.getClass();
+                bVar.y(uVarArr, b1Var2, x0Var.e(), x0Var.f18088p, x0Var.f18080g.f18091a);
                 return 3;
             } else if (!bVar.l()) {
                 return 0;
@@ -210,11 +210,11 @@ public final class r1 {
     }
 
     public final void k() {
-        if (!h(this.f18034a)) {
+        if (!h(this.f18037a)) {
             i(true);
         }
-        b bVar = this.f18036c;
-        if (bVar == null || bVar.f17762n != 0) {
+        b bVar = this.f18039c;
+        if (bVar == null || bVar.f17765n != 0) {
             return;
         }
         i(false);
@@ -222,25 +222,25 @@ public final class r1 {
 
     public final void m() {
         int i7;
-        b bVar = this.f18034a;
-        int i10 = bVar.f17762n;
+        b bVar = this.f18037a;
+        int i10 = bVar.f17765n;
         boolean z9 = false;
         if (i10 == 1 && this.d != 4) {
             if (i10 == 1) {
                 z9 = true;
             }
             ia.p(z9);
-            bVar.f17762n = 2;
+            bVar.f17765n = 2;
             bVar.s();
             return;
         }
-        b bVar2 = this.f18036c;
-        if (bVar2 != null && (i7 = bVar2.f17762n) == 1 && this.d != 3) {
+        b bVar2 = this.f18039c;
+        if (bVar2 != null && (i7 = bVar2.f17765n) == 1 && this.d != 3) {
             if (i7 == 1) {
                 z9 = true;
             }
             ia.p(z9);
-            bVar2.f17762n = 2;
+            bVar2.f17765n = 2;
             bVar2.s();
         }
     }

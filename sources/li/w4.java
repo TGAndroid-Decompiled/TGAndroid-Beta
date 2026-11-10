@@ -1,11 +1,11 @@
 package li;
 public final class w4 implements Runnable {
-    public final int f18959a;
-    public final y4 f18960b;
+    public final int f18964a;
+    public final y4 f18965b;
 
     public w4(y4 y4Var, int i7) {
-        this.f18959a = i7;
-        this.f18960b = y4Var;
+        this.f18964a = i7;
+        this.f18965b = y4Var;
     }
 
     @Override

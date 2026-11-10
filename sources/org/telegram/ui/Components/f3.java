@@ -1,9 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.widget.TextView;
-public final class f3 extends TextView {
+import android.app.Activity;
+import android.widget.FrameLayout;
+public final class f3 extends FrameLayout {
+    public final org.telegram.ui.Cells.c2[] f33451a;
+
+    public f3(Activity activity, org.telegram.ui.Cells.c2[] c2VarArr) {
+        super(activity);
+        this.f33451a = c2VarArr;
+    }
+
     @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(org.telegram.messenger.i6.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, i10);
+        org.telegram.ui.Cells.c2[] c2VarArr = this.f33451a;
+        if (c2VarArr[0] != null) {
+            int measuredWidth = getMeasuredWidth();
+            int measuredHeight = getMeasuredHeight();
+            setMeasuredDimension(measuredWidth, org.telegram.messenger.g0.L(7.0f) + c2VarArr[0].getMeasuredHeight() + measuredHeight);
+        }
     }
 }

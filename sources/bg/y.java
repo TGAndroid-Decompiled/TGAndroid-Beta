@@ -37,16 +37,16 @@ public final class y implements Choreographer.FrameCallback {
                 return;
             default:
                 xh.h hVar = (xh.h) this.f3396b;
-                Rect rect = hVar.f58836m;
+                Rect rect = hVar.f58834m;
                 long currentTimeMillis = System.currentTimeMillis();
-                if (currentTimeMillis - hVar.h > 32 && !hVar.f58833j && !rect.isEmpty()) {
+                if (currentTimeMillis - hVar.h > 32 && !hVar.f58831j && !rect.isEmpty()) {
                     hVar.h = currentTimeMillis;
-                    hVar.f58833j = true;
-                    hVar.f58838o.set(rect);
-                    hVar.f58826a.postRunnable(new xh.g(hVar, (hVar.d + 1) % 2, 0));
+                    hVar.f58831j = true;
+                    hVar.f58836o.set(rect);
+                    hVar.f58824a.postRunnable(new xh.g(hVar, (hVar.d + 1) % 2, 0));
                 }
                 rect.set(0, 0, 0, 0);
-                hVar.f58835l = false;
+                hVar.f58833l = false;
                 return;
         }
     }

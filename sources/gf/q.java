@@ -1,7 +1,7 @@
 package gf;
 public final class q extends mf.a {
-    public final kf.r f13948a = new kf.p();
-    public final m f13949b = new m();
+    public final kf.r f13950a = new kf.p();
+    public final m f13951b = new m();
 
     @Override
     public final void a(java.lang.CharSequence r12) {
@@ -15,28 +15,28 @@ public final class q extends mf.a {
 
     @Override
     public final void d() {
-        if (this.f13949b.f13934b.length() == 0) {
-            this.f13948a.g();
+        if (this.f13951b.f13936b.length() == 0) {
+            this.f13950a.g();
         }
     }
 
     @Override
     public final kf.a e() {
-        return this.f13948a;
+        return this.f13950a;
     }
 
     @Override
     public final void g(lf.a aVar) {
-        StringBuilder sb2 = this.f13949b.f13934b;
+        StringBuilder sb2 = this.f13951b.f13936b;
         if (sb2.length() > 0) {
-            aVar.a(sb2.toString(), this.f13948a);
+            aVar.a(sb2.toString(), this.f13950a);
         }
     }
 
     @Override
     public final a h(h hVar) {
         if (!hVar.h) {
-            return a.a(hVar.f13893b);
+            return a.a(hVar.f13895b);
         }
         return null;
     }

@@ -1,21 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.app.Activity;
 import org.telegram.tgnet.TLRPC;
-public final class c21 extends l21 {
-    public final Runnable Q1;
+import org.telegram.tgnet.tl.TL_iv;
+public final class c21 extends k21 {
+    public final org.telegram.ui.xf T1;
 
-    public c21(Context context, String str, String str2, CharSequence charSequence, TLRPC.InputPeer inputPeer, int i7, boolean z9, Runnable runnable) {
-        super(context, str, str2, charSequence, inputPeer, i7, z9, null);
-        this.Q1 = runnable;
+    public c21(Activity activity, String str, String str2, TLRPC.InputPeer inputPeer, int i7, TL_iv.RichMessage richMessage, org.telegram.ui.xf xfVar) {
+        super(activity, str, str2, null, inputPeer, i7, false, richMessage);
+        this.T1 = xfVar;
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        Runnable runnable = this.Q1;
-        if (runnable != null) {
-            runnable.run();
-        }
+        this.T1.run();
     }
 }

@@ -1,25 +1,25 @@
 package org.telegram.messenger;
 public final class yd implements Runnable {
-    public final int f26632a;
-    public final MediaController f26633b;
-    public final int f26634c;
+    public final int f26636a;
+    public final MediaController f26637b;
+    public final int f26638c;
 
     public yd(MediaController mediaController, int i7, int i10) {
-        this.f26632a = i10;
-        this.f26633b = mediaController;
-        this.f26634c = i7;
+        this.f26636a = i10;
+        this.f26637b = mediaController;
+        this.f26638c = i7;
     }
 
     @Override
     public final void run() {
         int i7;
-        int i10 = this.f26632a;
-        int i11 = this.f26634c;
-        MediaController mediaController = this.f26633b;
+        int i10 = this.f26636a;
+        int i11 = this.f26638c;
+        MediaController mediaController = this.f26637b;
         switch (i10) {
             case 0:
-                qs f10 = qs.f(mediaController.f21270h1);
-                Integer valueOf = Integer.valueOf(mediaController.f21268g1);
+                qs f10 = qs.f(mediaController.f21275h1);
+                Integer valueOf = Integer.valueOf(mediaController.f21273g1);
                 if (i11 == 2) {
                     i7 = 1;
                 } else {
@@ -29,8 +29,8 @@ public final class yd implements Runnable {
                 return;
             default:
                 if (i11 == -1) {
-                    if (mediaController.I(mediaController.f21295u0) && !mediaController.H()) {
-                        mediaController.R(mediaController.f21295u0, true);
+                    if (mediaController.I(mediaController.f21300u0) && !mediaController.H()) {
+                        mediaController.R(mediaController.f21300u0, true);
                     }
                     mediaController.U = 0;
                     mediaController.X = 0;
@@ -38,16 +38,16 @@ public final class yd implements Runnable {
                     mediaController.X = 2;
                     if (mediaController.Y) {
                         mediaController.Y = false;
-                        if (mediaController.I(mediaController.f21295u0) && mediaController.H()) {
-                            mediaController.S(mediaController.f21295u0);
+                        if (mediaController.I(mediaController.f21300u0) && mediaController.H()) {
+                            mediaController.S(mediaController.f21300u0);
                         }
                     }
                 } else if (i11 == -3) {
                     mediaController.X = 1;
                 } else if (i11 == -2) {
                     mediaController.X = 0;
-                    if (mediaController.I(mediaController.f21295u0) && !mediaController.H()) {
-                        mediaController.R(mediaController.f21295u0, true);
+                    if (mediaController.I(mediaController.f21300u0) && !mediaController.H()) {
+                        mediaController.R(mediaController.f21300u0, true);
                         mediaController.Y = true;
                     }
                 } else {

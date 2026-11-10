@@ -1,28 +1,188 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.ColorFilter;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-public interface g6 {
-    boolean a();
+import android.text.TextUtils;
+import android.util.SparseIntArray;
+import bi.u7;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.p10;
+import org.telegram.messenger.qs;
+import org.telegram.messenger.sz;
+import org.telegram.ui.Components.j9;
+import org.telegram.ui.Components.qa0;
+public final class g6 implements ls {
+    public static g6 f27506c;
+    public int f27507a;
+    public HashMap f27508b;
 
-    void b(float f10, float f11, int i7, int i10);
+    public static void a(boolean z9) {
+        String str;
+        ArrayList arrayList;
+        if (f27506c != null && !z9) {
+            return;
+        }
+        ArrayList arrayList2 = null;
+        for (int i7 = 0; i7 < 5; i7++) {
+            if (i7 != 0) {
+                if (i7 != 1) {
+                    if (i7 != 2) {
+                        if (i7 != 3) {
+                            str = "Night";
+                        } else {
+                            str = "Day";
+                        }
+                    } else {
+                        str = "Arctic Blue";
+                    }
+                } else {
+                    str = "Dark Blue";
+                }
+            } else {
+                str = "Blue";
+            }
+            l6 l6Var = (l6) m6.H.get(str);
+            if (l6Var != null && (arrayList = l6Var.f27768b0) != null && !arrayList.isEmpty()) {
+                int size = l6Var.f27768b0.size();
+                for (int i10 = 0; i10 < size; i10++) {
+                    j6 j6Var = (j6) l6Var.f27768b0.get(i10);
+                    if (j6Var.f27609a != m6.f28066n && !TextUtils.isEmpty(j6Var.f27621o)) {
+                        if (arrayList2 == null) {
+                            arrayList2 = new ArrayList();
+                        }
+                        arrayList2.add(j6Var);
+                    }
+                }
+            }
+        }
+        ?? obj = new Object();
+        obj.f27507a = p10.f24474s0;
+        if (arrayList2 != null) {
+            Utilities.f21341e.c(new c(3, obj, arrayList2));
+        }
+        f27506c = obj;
+    }
 
-    ColorFilter c();
+    public static Bitmap b(Bitmap bitmap, boolean z9, File file, j6 j6Var) {
+        Bitmap bitmap2;
+        int V0;
+        Bitmap n1;
+        int i7;
+        int i10;
+        int i11;
+        try {
+            File e10 = j6Var.e();
+            Drawable drawable = null;
+            if (e10 == null) {
+                return null;
+            }
+            l6 l6Var = j6Var.f27610b;
+            SparseIntArray T0 = m6.T0(null, l6Var.d, null);
+            m6.H(T0, l6Var);
+            int i12 = j6Var.f27611c;
+            int i13 = (int) j6Var.f27616j;
+            long j3 = j6Var.f27617k;
+            int i14 = (int) j3;
+            if (i14 == 0 && j3 == 0) {
+                if (i13 != 0) {
+                    i12 = i13;
+                }
+                int i15 = T0.get(m6.Ce);
+                if (i15 != 0) {
+                    i14 = m6.C(l6Var, i12, i15);
+                }
+            } else {
+                i12 = 0;
+            }
+            long j10 = j6Var.f27618l;
+            int i16 = (int) j10;
+            if (i16 == 0 && j10 == 0 && (i11 = T0.get(m6.De)) != 0) {
+                i16 = m6.C(l6Var, i12, i11);
+            }
+            long j11 = j6Var.f27619m;
+            int i17 = (int) j11;
+            if (i17 == 0 && j11 == 0 && (i10 = T0.get(m6.Ee)) != 0) {
+                i17 = m6.C(l6Var, i12, i10);
+            }
+            if (i13 == 0 && (i7 = T0.get(m6.Be)) != 0) {
+                i13 = m6.C(l6Var, i12, i7);
+            }
+            if (i16 != 0) {
+                V0 = qa0.g(i13, i14, i16, i17);
+            } else if (i14 != 0) {
+                Drawable j9Var = new j9(j9.d(j6Var.f27620n), new int[]{i13, i14});
+                V0 = org.telegram.messenger.g0.V0(org.telegram.messenger.g0.w0(i13, i14), false);
+                drawable = j9Var;
+            } else {
+                drawable = new ColorDrawable(i13);
+                V0 = org.telegram.messenger.g0.V0(i13, false);
+            }
+            if (bitmap == null) {
+                Point point = org.telegram.messenger.g0.f22567q;
+                int min = Math.min(point.x, point.y);
+                int max = Math.max(point.x, point.y);
+                if (z9) {
+                    n1 = sz.f(file, min, max, 2);
+                } else {
+                    n1 = m6.n1(new FileInputStream(file), 0);
+                }
+                bitmap2 = n1;
+            } else {
+                bitmap2 = bitmap;
+            }
+            try {
+                if (drawable != null) {
+                    Bitmap createBitmap = Bitmap.createBitmap(bitmap2.getWidth(), bitmap2.getHeight(), Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(createBitmap);
+                    drawable.setBounds(0, 0, bitmap2.getWidth(), bitmap2.getHeight());
+                    drawable.draw(canvas);
+                    Paint paint = new Paint(2);
+                    paint.setColorFilter(new PorterDuffColorFilter(V0, PorterDuff.Mode.SRC_IN));
+                    paint.setAlpha((int) (Math.abs(j6Var.f27622p) * 255.0f));
+                    canvas.drawBitmap(bitmap2, 0.0f, 0.0f, paint);
+                    createBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(e10));
+                    return bitmap2;
+                }
+                FileOutputStream fileOutputStream = new FileOutputStream(e10);
+                bitmap2.compress(Bitmap.CompressFormat.PNG, 87, fileOutputStream);
+                fileOutputStream.close();
+                return bitmap2;
+            } catch (Throwable th2) {
+                th = th2;
+                a8.g(th, true);
+                return bitmap2;
+            }
+        } catch (Throwable th3) {
+            th = th3;
+            bitmap2 = bitmap;
+        }
+    }
 
-    Paint d(String str);
-
-    boolean e();
-
-    int f(int i7);
-
-    boolean g();
-
-    Drawable getDrawable(String str);
-
-    int h(int i7);
-
-    void i(int i7, int i10);
-
-    int j(int i7);
+    @Override
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        HashMap hashMap = this.f27508b;
+        if (hashMap != null) {
+            if (i7 == qs.Y1) {
+                f6 f6Var = (f6) hashMap.remove((String) objArr[0]);
+                if (f6Var != null) {
+                    Utilities.f21341e.c(new c(4, this, f6Var));
+                }
+            } else if (i7 == qs.Z1 && hashMap.remove((String) objArr[0]) != null) {
+                org.telegram.messenger.g0.h3(new u7((Object) this, (Object) null, false, 13));
+            }
+        }
+    }
 }

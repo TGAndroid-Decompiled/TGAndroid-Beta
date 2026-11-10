@@ -1,30 +1,41 @@
 package org.telegram.ui;
+public final class lu implements org.telegram.messenger.sr {
+    public final int f47693a;
+    public final zw f47694b;
 
-import android.animation.ValueAnimator;
-public final class lu implements ValueAnimator.AnimatorUpdateListener {
-    public final int f47678a;
-    public final yw f47679b;
-
-    public lu(yw ywVar, int i7) {
-        this.f47678a = i7;
-        this.f47679b = ywVar;
+    public lu(zw zwVar, int i7) {
+        this.f47693a = i7;
+        this.f47694b = zwVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f47678a) {
+    public final void a(int i7) {
+        boolean z9;
+        boolean z10;
+        switch (this.f47693a) {
             case 0:
-                this.f47679b.P4(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 1:
-                yw ywVar = this.f47679b;
-                ywVar.getClass();
-                ywVar.R4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                zw zwVar = this.f47694b;
+                zwVar.getClass();
+                if (i7 != 0) {
+                    z9 = true;
+                } else {
+                    z9 = false;
+                }
+                zwVar.V1 = z9;
+                org.telegram.messenger.qp.f1().edit().putBoolean("askAboutContacts", zwVar.V1).apply();
+                zwVar.u3(false);
                 return;
             default:
-                yw ywVar2 = this.f47679b;
-                ywVar2.getClass();
-                ywVar2.L4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                zw zwVar2 = this.f47694b;
+                zwVar2.getClass();
+                if (i7 != 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                zwVar2.V1 = z10;
+                org.telegram.messenger.qp.f1().edit().putBoolean("askAboutContacts", zwVar2.V1).commit();
+                zwVar2.u3(false);
                 return;
         }
     }

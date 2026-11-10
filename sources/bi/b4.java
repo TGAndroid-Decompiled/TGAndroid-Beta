@@ -7,25 +7,25 @@ import org.telegram.messenger.qs;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.cn;
 public final class b4 implements Runnable {
-    public final int f3507a;
-    public final k7 f3508b;
-    public final String f3509c;
+    public final int f3510a;
+    public final k7 f3511b;
+    public final String f3512c;
 
     public b4(k7 k7Var, String str, int i7) {
-        this.f3507a = i7;
-        this.f3508b = k7Var;
-        this.f3509c = str;
+        this.f3510a = i7;
+        this.f3511b = k7Var;
+        this.f3512c = str;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f3507a;
-        String str = this.f3509c;
-        k7 k7Var = this.f3508b;
+        int i7 = this.f3510a;
+        String str = this.f3512c;
+        k7 k7Var = this.f3511b;
         switch (i7) {
             case 0:
-                long j3 = k7Var.P1;
-                k7Var.f4168c2.setLoading(false);
+                long j3 = k7Var.S1;
+                k7Var.f4170f2.setLoading(false);
                 if (!TextUtils.isEmpty(str)) {
                     k7Var.dismiss();
                     org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
@@ -33,15 +33,15 @@ public final class b4 implements Runnable {
                         if (Q instanceof cn) {
                             cn cnVar = (cn) Q;
                             if (cnVar.a() == j3) {
-                                org.telegram.ui.Components.hc.a0(cnVar).I(2131624033, org.telegram.messenger.id.M0(2131745096, null), org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131745094, org.telegram.messenger.m5.t(j3)))).k(true);
+                                org.telegram.ui.Components.gc.a0(cnVar).I(2131624033, org.telegram.messenger.id.M0(2131745096, null), org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131745094, org.telegram.messenger.m5.t(j3)))).k(true);
                                 return;
                             }
                         }
-                        qs f10 = qs.f(k7Var.f28621a);
+                        qs f10 = qs.f(k7Var.f28669a);
                         Long valueOf = Long.valueOf(j3);
                         Boolean bool = Boolean.FALSE;
                         f10.k(6, valueOf, bool);
-                        qs.f(k7Var.f28621a).k(5, Long.valueOf(j3), bool);
+                        qs.f(k7Var.f28669a).k(5, Long.valueOf(j3), bool);
                         cn ta2 = cn.ta(j3);
                         ta2.whenFullyVisible(new a4(1, k7Var, ta2));
                         Q.presentFragment(ta2);
@@ -53,38 +53,38 @@ public final class b4 implements Runnable {
                 return;
             case 1:
                 Context context = k7Var.getContext();
-                vf.c.v(context, qp.s1(k7Var.f28621a).H6 + str, false);
+                vf.c.v(context, qp.s1(k7Var.f28669a).H6 + str, false);
                 return;
             case 2:
                 Context context2 = k7Var.getContext();
-                vf.c.v(context2, qp.s1(k7Var.f28621a).H6 + str, false);
+                vf.c.v(context2, qp.s1(k7Var.f28669a).H6 + str, false);
                 return;
             case 3:
                 Context context3 = k7Var.getContext();
-                vf.c.v(context3, qp.s1(k7Var.f28621a).H6 + str, false);
+                vf.c.v(context3, qp.s1(k7Var.f28669a).H6 + str, false);
                 return;
             case 4:
                 Context context4 = k7Var.getContext();
-                vf.c.v(context4, qp.s1(k7Var.f28621a).H6 + str, false);
+                vf.c.v(context4, qp.s1(k7Var.f28669a).H6 + str, false);
                 return;
             case 5:
                 Context context5 = k7Var.getContext();
-                vf.c.v(context5, qp.s1(k7Var.f28621a).H6 + str, false);
+                vf.c.v(context5, qp.s1(k7Var.f28669a).H6 + str, false);
                 return;
             case 6:
                 Context context6 = k7Var.getContext();
-                vf.c.v(context6, qp.s1(k7Var.f28621a).H6 + str, false);
+                vf.c.v(context6, qp.s1(k7Var.f28669a).H6 + str, false);
                 return;
             case 7:
                 org.telegram.messenger.g0.g(str);
-                org.telegram.ui.Components.cc k10 = k7Var.k().k(false);
-                k10.f32637t = true;
+                org.telegram.ui.Components.bc k10 = k7Var.k().k(false);
+                k10.f32213t = true;
                 k10.j();
                 return;
             default:
                 k7Var.dismiss();
                 Context context7 = k7Var.getContext();
-                vf.c.t(context7, "https://" + qp.s1(k7Var.f28621a).U2 + "/" + str);
+                vf.c.t(context7, "https://" + qp.s1(k7Var.f28669a).U2 + "/" + str);
                 return;
         }
     }

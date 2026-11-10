@@ -1,16 +1,17 @@
 package org.telegram.ui;
 
-import android.graphics.Rect;
-import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-public final class a20 extends v4.m0 {
+public final class a20 extends v4.s0 {
+    public final f40 f43542a;
+
+    public a20(f40 f40Var) {
+        this.f43542a = f40Var;
+    }
+
     @Override
-    public final void e(Rect rect, View view, RecyclerView recyclerView, v4.a1 a1Var) {
-        RecyclerView.R(view);
-        if (!e40.f45184w5) {
-            rect.set(org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f), 0);
-        } else {
-            rect.set(0, org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f));
-        }
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
+        f40 f40Var = this.f43542a;
+        f40Var.f28672b.invalidate();
+        f40Var.U3.invalidate();
     }
 }

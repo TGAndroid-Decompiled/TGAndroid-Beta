@@ -1,37 +1,42 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-public final class d4 extends ArrayAdapter {
-    public final i4 f27423a;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
+public final class d4 extends Animation {
+    public final int f27415a;
+    public final float f27416b;
+    public final float f27417c;
+    public final int d;
+    public final j4 f27418e;
 
-    public d4(i4 i4Var, Context context) {
-        super(context, 0);
-        this.f27423a = i4Var;
+    public d4(j4 j4Var, float f10, float f11, int i7, int i10) {
+        this.f27415a = i10;
+        this.f27418e = j4Var;
+        this.f27416b = f10;
+        this.f27417c = f11;
+        this.d = i7;
     }
 
     @Override
-    public final View getView(int i7, View view, ViewGroup viewGroup) {
-        i4 i4Var = this.f27423a;
-        ab.v vVar = i4Var.f27556q;
-        MenuItem menuItem = (MenuItem) getItem(i7);
-        int width = i4Var.I.getWidth();
-        boolean z9 = false;
-        if (view != null) {
-            int i10 = vVar.f1002a;
-            if (((i4) vVar.f1005e).Q.f27730j != null) {
-                z9 = true;
-            }
-            k4.e(view, menuItem, z9);
-        } else {
-            view = k4.b(((i4) vVar.f1005e).Q, (Context) vVar.f1004c, menuItem, true, false, false);
-            int i11 = vVar.f1003b;
-            view.setPadding(i11, 0, i11, 0);
+    public final void applyTransformation(float f10, Transformation transformation) {
+        switch (this.f27415a) {
+            case 0:
+                float f11 = this.f27416b;
+                float z9 = com.google.android.recaptcha.internal.a.z(this.f27417c, f11, f10, f11);
+                j4 j4Var = this.f27418e;
+                j4Var.f27576i.setX(z9 + (j4Var.f27574f.getWidth() - this.d));
+                float f12 = 1.0f - f10;
+                j4Var.f27579l.setAlpha(f12);
+                j4Var.f27577j.setAlpha(f12);
+                return;
+            default:
+                float f13 = this.f27416b;
+                float z10 = com.google.android.recaptcha.internal.a.z(this.f27417c, f13, f10, f13);
+                j4 j4Var2 = this.f27418e;
+                j4Var2.f27576i.setX(z10 + (j4Var2.f27574f.getWidth() - this.d));
+                j4Var2.f27579l.setAlpha(f10);
+                j4Var2.f27577j.setAlpha(f10);
+                return;
         }
-        view.setMinimumWidth(width);
-        return view;
     }
 }

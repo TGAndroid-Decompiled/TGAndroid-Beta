@@ -14,24 +14,24 @@ import org.telegram.messenger.p10;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.cj0;
-import org.telegram.ui.Components.gb0;
-import org.telegram.ui.Components.ib0;
-import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.bj0;
+import org.telegram.ui.Components.fb0;
+import org.telegram.ui.Components.hb0;
+import org.telegram.ui.Components.pj0;
 import org.telegram.ui.PrivacySettingsActivity;
 import org.telegram.ui.UsersSelectActivity;
-import org.telegram.ui.ob0;
-import org.telegram.ui.uh0;
-import org.telegram.ui.v00;
-public final class q4 implements cj0 {
-    public final int f9574a;
-    public final Object f9575b;
-    public final Object f9576c;
+import org.telegram.ui.pb0;
+import org.telegram.ui.vh0;
+import org.telegram.ui.w00;
+public final class q4 implements bj0 {
+    public final int f9579a;
+    public final Object f9580b;
+    public final Object f9581c;
 
     public q4(int i7, Object obj, Object obj2) {
-        this.f9574a = i7;
-        this.f9575b = obj;
-        this.f9576c = obj2;
+        this.f9579a = i7;
+        this.f9580b = obj;
+        this.f9581c = obj2;
     }
 
     private final void a(int r9, android.view.View r10) {
@@ -39,49 +39,49 @@ public final class q4 implements cj0 {
     }
 
     private final void b(int i7, View view) {
-        uh0.Z((uh0) this.f9575b, (Context) this.f9576c, view, i7);
+        vh0.Z((vh0) this.f9580b, (Context) this.f9581c, view, i7);
     }
 
     private final void d(int i7, View view) {
-        PrivacySettingsActivity.a0((PrivacySettingsActivity) this.f9575b, (Context) this.f9576c, view, i7);
+        PrivacySettingsActivity.a0((PrivacySettingsActivity) this.f9580b, (Context) this.f9581c, view, i7);
     }
 
     private final void e(int i7, View view) {
-        UsersSelectActivity.Z((UsersSelectActivity) this.f9575b, (Context) this.f9576c, view, i7);
+        UsersSelectActivity.Z((UsersSelectActivity) this.f9580b, (Context) this.f9581c, view, i7);
     }
 
     private final void f(int i7, View view) {
-        org.telegram.ui.Components.y3 y3Var;
+        org.telegram.ui.Components.x3 x3Var;
         boolean z9;
         sg.i0 i0Var;
         boolean z10;
-        wg.z zVar = (wg.z) this.f9575b;
-        org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.f9576c;
-        ArrayList arrayList = zVar.V1;
-        wg.s sVar = zVar.f57855q2;
+        wg.z zVar = (wg.z) this.f9580b;
+        org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.f9581c;
+        ArrayList arrayList = zVar.Y1;
+        wg.s sVar = zVar.f57859t2;
         if (view instanceof yg.y) {
             yg.y yVar = (yg.y) view;
             int type = yVar.getType();
-            boolean z11 = yVar.f30214e.h;
+            boolean z11 = yVar.f30225e.h;
             boolean z12 = !z11;
             yVar.setChecked(z12);
             int i10 = yg.y.L;
             if (type == 0) {
-                zVar.f57854p2 = z12;
+                zVar.f57858s2 = z12;
                 zVar.k1(false, false);
             } else if (type == 1) {
                 yVar.setDivider(z12);
-                zVar.f57853o2 = z12;
+                zVar.f57857r2 = z12;
                 zVar.k1(false, false);
-                xg.c cVar = zVar.Y1;
+                xg.c cVar = zVar.f57842b2;
                 int i11 = 0;
                 while (true) {
-                    if (i11 >= cVar.f58723e.size()) {
+                    if (i11 >= cVar.f58721e.size()) {
                         break;
                     }
-                    xg.b bVar = (xg.b) cVar.f58723e.get(i11);
-                    if (bVar.f54544a == 15) {
-                        int i12 = bVar.f58721l;
+                    xg.b bVar = (xg.b) cVar.f58721e.get(i11);
+                    if (bVar.f54543a == 15) {
+                        int i12 = bVar.f58719l;
                         int i13 = yg.y.L;
                         if (i12 == 1) {
                             if (!z11) {
@@ -93,8 +93,8 @@ public final class q4 implements cj0 {
                     }
                     i11++;
                 }
-                zVar.Y1.G();
-                if (!zVar.f57853o2) {
+                zVar.f57842b2.G();
+                if (!zVar.f57857r2) {
                     org.telegram.messenger.g0.i3(sVar, 250L);
                 } else {
                     org.telegram.messenger.g0.r(sVar);
@@ -104,40 +104,40 @@ public final class q4 implements cj0 {
         if (view instanceof yg.c) {
             if (view instanceof yg.d) {
                 int selectedType = ((yg.d) view).getSelectedType();
-                int i14 = yg.d.f59459w;
+                int i14 = yg.d.f59457w;
                 if (selectedType != 2 && selectedType != 3) {
                     if (selectedType == 1) {
-                        sg.i0 i0Var2 = zVar.f57848j2;
+                        sg.i0 i0Var2 = zVar.f57852m2;
                         if (i0Var2 != null) {
-                            ((wg.w0) i0Var2.f55092b).h1(1, arrayList);
-                            ((wg.l) i0Var2.f55093c).f57770i1.E(1);
+                            ((wg.w0) i0Var2.f55091b).h1(1, arrayList);
+                            ((wg.l) i0Var2.f55092c).l1.E(1);
                         }
                     } else {
-                        zVar.f57840a2 = selectedType;
+                        zVar.d2 = selectedType;
                         zVar.k1(true, true);
                         zVar.j1(true);
                         zVar.b1();
                     }
-                } else if (selectedType == 2 && zVar.Z1 == selectedType) {
-                    sg.i0 i0Var3 = zVar.f57848j2;
+                } else if (selectedType == 2 && zVar.f57843c2 == selectedType) {
+                    sg.i0 i0Var3 = zVar.f57852m2;
                     if (i0Var3 != null) {
-                        ((wg.w0) i0Var3.f55092b).h1(1, arrayList);
-                        ((wg.l) i0Var3.f55093c).f57770i1.E(1);
+                        ((wg.w0) i0Var3.f55091b).h1(1, arrayList);
+                        ((wg.l) i0Var3.f55092c).l1.E(1);
                         return;
                     }
                     return;
                 } else {
-                    zVar.Z1 = selectedType;
+                    zVar.f57843c2 = selectedType;
                     zVar.k1(true, true);
                     zVar.j1(true);
                     zVar.b1();
                 }
             } else {
                 yg.c cVar2 = (yg.c) view;
-                qj0 qj0Var = zVar.f36303k1;
+                pj0 pj0Var = zVar.n1;
                 if (cVar2.b()) {
-                    for (int i15 = 0; i15 < qj0Var.getChildCount(); i15++) {
-                        View childAt = qj0Var.getChildAt(i15);
+                    for (int i15 = 0; i15 < pj0Var.getChildCount(); i15++) {
+                        View childAt = pj0Var.getChildAt(i15);
                         if (childAt.getClass().isInstance(cVar2)) {
                             yg.c cVar3 = (yg.c) childAt;
                             if (childAt == cVar2) {
@@ -153,46 +153,46 @@ public final class q4 implements cj0 {
         }
         if (view instanceof yg.u) {
             int selectedType2 = ((yg.u) view).getSelectedType();
-            if (zVar.f57841b2 == selectedType2 && (i0Var = zVar.f57848j2) != null) {
-                ((wg.w0) i0Var.f55092b).h1(3, zVar.W1);
-                ((wg.l) i0Var.f55093c).f57770i1.E(1);
+            if (zVar.f57844e2 == selectedType2 && (i0Var = zVar.f57852m2) != null) {
+                ((wg.w0) i0Var.f55091b).h1(3, zVar.Z1);
+                ((wg.l) i0Var.f55092c).l1.E(1);
             }
-            zVar.f57841b2 = selectedType2;
+            zVar.f57844e2 = selectedType2;
             zVar.k1(false, false);
         } else if (view instanceof yg.i) {
-            zVar.d2 = ((TLRPC.TL_premiumGiftCodeOption) ((yg.i) view).getGifCode()).months;
+            zVar.f57846g2 = ((TLRPC.TL_premiumGiftCodeOption) ((yg.i) view).getGifCode()).months;
             zVar.k1(false, false);
-            zVar.Y1.G();
+            zVar.f57842b2.G();
         } else if (view instanceof yg.h) {
             Context context = f2Var.getContext();
-            long j3 = zVar.f57843e2;
+            long j3 = zVar.f57847h2;
             wg.t tVar = new wg.t(zVar);
-            org.telegram.ui.ActionBar.g6 g6Var = zVar.I0;
-            org.telegram.ui.Components.s4 s4Var = new org.telegram.ui.Components.s4(g6Var);
-            h9.f1 f1Var = new h9.f1(context, g6Var);
-            ((org.telegram.ui.ActionBar.v2) f1Var.f14323b).f28656v0 = false;
-            ib0 ib0Var = new ib0(context, g6Var);
-            int i16 = s4Var.f37900a;
-            ib0Var.setTextColor(i16);
-            ib0Var.setTextOffset(org.telegram.messenger.g0.L(10.0f));
-            ib0Var.setItemCount(5);
-            ?? ib0Var2 = new ib0(context, g6Var);
-            ib0Var2.setWrapSelectorWheel(true);
-            ib0Var2.setAllItemsCount(24);
-            ib0Var2.setItemCount(5);
-            ib0Var2.setTextColor(i16);
-            ib0Var2.setTextOffset(-org.telegram.messenger.g0.L(10.0f));
-            ib0Var2.setTag("HOUR");
-            ?? ib0Var3 = new ib0(context, g6Var);
-            ib0Var3.setWrapSelectorWheel(true);
-            ib0Var3.setAllItemsCount(60);
-            ib0Var3.setItemCount(5);
-            ib0Var3.setTextColor(i16);
-            ib0Var3.setTextOffset(-org.telegram.messenger.g0.L(34.0f));
-            org.telegram.ui.Components.y3 y3Var2 = new org.telegram.ui.Components.y3(context, s4Var, ib0Var, (wg.f) ib0Var2, (wg.g) ib0Var3);
-            y3Var2.setOrientation(1);
+            org.telegram.ui.ActionBar.h6 h6Var = zVar.I0;
+            org.telegram.ui.Components.r4 r4Var = new org.telegram.ui.Components.r4(h6Var);
+            h9.f1 f1Var = new h9.f1(context, h6Var);
+            ((org.telegram.ui.ActionBar.w2) f1Var.f14325b).f28707v0 = false;
+            hb0 hb0Var = new hb0(context, h6Var);
+            int i16 = r4Var.f37489a;
+            hb0Var.setTextColor(i16);
+            hb0Var.setTextOffset(org.telegram.messenger.g0.L(10.0f));
+            hb0Var.setItemCount(5);
+            ?? hb0Var2 = new hb0(context, h6Var);
+            hb0Var2.setWrapSelectorWheel(true);
+            hb0Var2.setAllItemsCount(24);
+            hb0Var2.setItemCount(5);
+            hb0Var2.setTextColor(i16);
+            hb0Var2.setTextOffset(-org.telegram.messenger.g0.L(10.0f));
+            hb0Var2.setTag("HOUR");
+            ?? hb0Var3 = new hb0(context, h6Var);
+            hb0Var3.setWrapSelectorWheel(true);
+            hb0Var3.setAllItemsCount(60);
+            hb0Var3.setItemCount(5);
+            hb0Var3.setTextColor(i16);
+            hb0Var3.setTextOffset(-org.telegram.messenger.g0.L(34.0f));
+            org.telegram.ui.Components.x3 x3Var2 = new org.telegram.ui.Components.x3(context, r4Var, hb0Var, (wg.f) hb0Var2, (wg.g) hb0Var3);
+            x3Var2.setOrientation(1);
             FrameLayout frameLayout = new FrameLayout(context);
-            y3Var2.addView(frameLayout, ha.t(-1, -2, 51, 22, 0, 0, 4));
+            x3Var2.addView(frameLayout, ha.t(-1, -2, 51, 22, 0, 0, 4));
             TextView textView = new TextView(context);
             textView.setText(id.M0(2131753287, "BoostingSelectDateTime"));
             textView.setTextColor(i16);
@@ -202,13 +202,13 @@ public final class q4 implements cj0 {
             LinearLayout linearLayout = new LinearLayout(context);
             linearLayout.setOrientation(0);
             linearLayout.setWeightSum(1.0f);
-            y3Var2.addView(linearLayout, ha.q(-1, -2, 1.0f, 0, 0, 12, 0, 12));
+            x3Var2.addView(linearLayout, ha.q(-1, -2, 1.0f, 0, 0, 12, 0, 12));
             long currentTimeMillis = System.currentTimeMillis();
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(currentTimeMillis);
             int i17 = calendar.get(1);
-            ob0 ob0Var = new ob0(context, 5);
-            long j10 = qp.s1(p10.f24470s0).f24853o0 * 1000;
+            pb0 pb0Var = new pb0(context, 5);
+            long j10 = qp.s1(p10.f24474s0).f24857o0 * 1000;
             Calendar calendar2 = Calendar.getInstance();
             calendar2.setTimeInMillis(j10);
             int i18 = calendar2.get(6);
@@ -216,80 +216,80 @@ public final class q4 implements cj0 {
             calendar2.add(14, (int) j10);
             int i19 = calendar2.get(11);
             int i20 = calendar.get(12);
-            linearLayout.addView(ib0Var, ha.l(0.5f, 0, 270));
-            ib0Var.setMinValue(0);
-            ib0Var.setMaxValue(i18 - 1);
-            ib0Var.setWrapSelectorWheel(false);
-            ib0Var.setTag("DAY");
-            ib0Var.setFormatter(new v00(currentTimeMillis, calendar, i17, 1));
-            gb0 g4Var = new hi.g4(y3Var2, (wg.f) ib0Var2, (wg.g) ib0Var3, i19, i20, ib0Var);
-            ib0Var.setOnValueChangedListener(g4Var);
-            ib0Var2.setMinValue(0);
-            ib0Var2.setMaxValue(23);
-            linearLayout.addView((View) ib0Var2, ha.l(0.2f, 0, 270));
-            ib0Var2.setFormatter(new v0.j(16));
-            ib0Var2.setOnValueChangedListener(g4Var);
-            ib0Var3.setMinValue(0);
-            ib0Var3.setMaxValue(11);
-            ib0Var3.setValue(0);
-            ib0Var3.setFormatter(new v0.j(17));
-            linearLayout.addView((View) ib0Var3, ha.l(0.3f, 0, 270));
-            ib0Var3.setOnValueChangedListener(g4Var);
+            linearLayout.addView(hb0Var, ha.l(0.5f, 0, 270));
+            hb0Var.setMinValue(0);
+            hb0Var.setMaxValue(i18 - 1);
+            hb0Var.setWrapSelectorWheel(false);
+            hb0Var.setTag("DAY");
+            hb0Var.setFormatter(new w00(currentTimeMillis, calendar, i17, 1));
+            fb0 g4Var = new hi.g4(x3Var2, (wg.f) hb0Var2, (wg.g) hb0Var3, i19, i20, hb0Var);
+            hb0Var.setOnValueChangedListener(g4Var);
+            hb0Var2.setMinValue(0);
+            hb0Var2.setMaxValue(23);
+            linearLayout.addView((View) hb0Var2, ha.l(0.2f, 0, 270));
+            hb0Var2.setFormatter(new v0.j(16));
+            hb0Var2.setOnValueChangedListener(g4Var);
+            hb0Var3.setMinValue(0);
+            hb0Var3.setMaxValue(11);
+            hb0Var3.setValue(0);
+            hb0Var3.setFormatter(new v0.j(17));
+            linearLayout.addView((View) hb0Var3, ha.l(0.3f, 0, 270));
+            hb0Var3.setOnValueChangedListener(g4Var);
             if (j3 > 0) {
-                y3Var = y3Var2;
+                x3Var = x3Var2;
                 calendar.setTimeInMillis(System.currentTimeMillis());
                 calendar.set(12, 0);
                 calendar.set(13, 0);
                 calendar.set(14, 0);
                 calendar.set(11, 0);
                 calendar.setTimeInMillis(j3);
-                ib0Var3.setValue(calendar.get(12) / 5);
-                ib0Var2.setValue(calendar.get(11));
-                ib0Var.setValue((int) ((j3 - calendar.getTimeInMillis()) / 86400000));
-                ib0Var.getValue();
-                g4Var.n(ib0Var, ib0Var.getValue());
-                ib0Var2.getValue();
-                g4Var.n(ib0Var2, ib0Var2.getValue());
+                hb0Var3.setValue(calendar.get(12) / 5);
+                hb0Var2.setValue(calendar.get(11));
+                hb0Var.setValue((int) ((j3 - calendar.getTimeInMillis()) / 86400000));
+                hb0Var.getValue();
+                g4Var.n(hb0Var, hb0Var.getValue());
+                hb0Var2.getValue();
+                g4Var.n(hb0Var2, hb0Var2.getValue());
             } else {
-                y3Var = y3Var2;
+                x3Var = x3Var2;
             }
-            ob0Var.setPadding(org.telegram.messenger.g0.L(34.0f), 0, org.telegram.messenger.g0.L(34.0f), 0);
-            ob0Var.setGravity(17);
-            ob0Var.setTextColor(s4Var.f37905g);
-            ob0Var.setTextSize(1, 14.0f);
-            ob0Var.setTypeface(org.telegram.messenger.g0.o());
-            ob0Var.setBackground(org.telegram.ui.ActionBar.a6.e(s4Var.h, 8.0f));
-            ob0Var.setText(id.M0(2131753543, "BoostingConfirm"));
-            y3Var.addView(ob0Var, ha.t(-1, 48, 83, 16, 15, 16, 16));
-            ob0Var.setOnClickListener(new org.telegram.ui.Components.n1(calendar, ib0Var, ib0Var2, ib0Var3, tVar, f1Var));
-            org.telegram.ui.ActionBar.v2 v2Var = (org.telegram.ui.ActionBar.v2) f1Var.f14323b;
-            v2Var.N = y3Var;
-            v2Var.show();
-            int i21 = s4Var.f37901b;
-            v2Var.v0(i21);
-            v2Var.O(i21);
+            pb0Var.setPadding(org.telegram.messenger.g0.L(34.0f), 0, org.telegram.messenger.g0.L(34.0f), 0);
+            pb0Var.setGravity(17);
+            pb0Var.setTextColor(r4Var.f37494g);
+            pb0Var.setTextSize(1, 14.0f);
+            pb0Var.setTypeface(org.telegram.messenger.g0.o());
+            pb0Var.setBackground(org.telegram.ui.ActionBar.b6.e(r4Var.h, 8.0f));
+            pb0Var.setText(id.M0(2131753543, "BoostingConfirm"));
+            x3Var.addView(pb0Var, ha.t(-1, 48, 83, 16, 15, 16, 16));
+            pb0Var.setOnClickListener(new org.telegram.ui.Components.m1(calendar, hb0Var, hb0Var2, hb0Var3, tVar, f1Var));
+            org.telegram.ui.ActionBar.w2 w2Var = (org.telegram.ui.ActionBar.w2) f1Var.f14325b;
+            w2Var.N = x3Var;
+            w2Var.show();
+            int i21 = r4Var.f37490b;
+            w2Var.v0(i21);
+            w2Var.O(i21);
             if (i0.a.h(i21) > 0.699999988079071d) {
                 z9 = true;
             } else {
                 z9 = false;
             }
-            org.telegram.messenger.g0.q3(v2Var, z9);
+            org.telegram.messenger.g0.q3(w2Var, z9);
         } else if (view instanceof yg.b) {
-            sg.i0 i0Var4 = zVar.f57848j2;
+            sg.i0 i0Var4 = zVar.f57852m2;
             if (i0Var4 != null) {
-                ((wg.w0) i0Var4.f55092b).h1(2, zVar.U1);
-                ((wg.l) i0Var4.f55093c).f57770i1.E(1);
+                ((wg.w0) i0Var4.f55091b).h1(2, zVar.X1);
+                ((wg.l) i0Var4.f55092c).l1.E(1);
             }
         } else if (view instanceof yg.w) {
             TL_stars.TL_starsGiveawayOption option = ((yg.w) view).getOption();
             if (option != null) {
-                zVar.f57846h2 = option.stars;
+                zVar.f57850k2 = option.stars;
                 zVar.k1(true, true);
                 zVar.j1(true);
                 zVar.b1();
             }
         } else if (view instanceof kc) {
-            zVar.f57842c2 = true;
+            zVar.f57845f2 = true;
             zVar.k1(true, true);
         }
     }

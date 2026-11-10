@@ -9,15 +9,15 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.tgnet.tl.TL_toncenter;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class d implements Vector.TLDeserializer {
-    public final int f27222a;
+    public final int f27226a;
 
     public d(int i7) {
-        this.f27222a = i7;
+        this.f27226a = i7;
     }
 
     @Override
     public final TLObject deserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
-        switch (this.f27222a) {
+        switch (this.f27226a) {
             case 0:
                 return TL_stats.TL_statsGroupTopInviter.TLdeserialize(inputSerializedData, i7, z9);
             case 1:

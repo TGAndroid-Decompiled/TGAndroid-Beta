@@ -1,40 +1,258 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class au0 implements Runnable {
-    public final int f31977a;
-    public final TLRPC.Document f31978b;
-    public final int f31979c;
-    public final org.telegram.messenger.ij d;
-    public final org.telegram.ui.Cells.q1 f31980e;
-    public final TLRPC.TL_messages_stickerSet f31981f;
+import android.graphics.Bitmap;
+import java.lang.ref.WeakReference;
+import org.telegram.messenger.Utilities;
+public final class au0 extends xg0 {
+    public int f31997b1;
+    public int f31998c1;
+    public int f31999d1;
+    public Bitmap f32000e1;
+    public final RLottieNative[] f32001f1;
+    public final int[] f32002g1;
+    public final int[] f32003h1;
+    public final RLottieNative[] f32004i1;
+    public final int[] f32005j1;
+    public final int[] f32006k1;
+    public boolean l1;
 
-    public au0(TLRPC.Document document, int i7, org.telegram.messenger.ij ijVar, org.telegram.ui.Cells.q1 q1Var, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i10) {
-        this.f31977a = i10;
-        this.f31978b = document;
-        this.f31979c = i7;
-        this.d = ijVar;
-        this.f31980e = q1Var;
-        this.f31981f = tL_messages_stickerSet;
+    public au0(String str, int i7, int i10) {
+        super(str, i7, i10);
+        this.f32001f1 = new RLottieNative[5];
+        this.f32002g1 = new int[5];
+        this.f32003h1 = new int[5];
+        this.f32004i1 = new RLottieNative[3];
+        this.f32005j1 = new int[3];
+        this.f32006k1 = new int[3];
+    }
+
+    public static int X(int i7) {
+        if (i7 == 0) {
+            return 1;
+        }
+        if (i7 == 1) {
+            return 2;
+        }
+        if (i7 != 2) {
+            return 4;
+        }
+        return 3;
     }
 
     @Override
-    public final void run() {
-        switch (this.f31977a) {
-            case 0:
-                TLRPC.Document document = this.f31978b;
-                String r10 = org.telegram.messenger.w7.r(null, document);
-                int i7 = this.f31979c;
-                org.telegram.messenger.z5.q(i7).a(r10, this.d, this.f31980e);
-                org.telegram.messenger.w7.G(i7).W(document, this.f31981f, 1, 1);
-                return;
-            default:
-                TLRPC.Document document2 = this.f31978b;
-                String r11 = org.telegram.messenger.w7.r(null, document2);
-                int i10 = this.f31979c;
-                org.telegram.messenger.z5.q(i10).a(r11, this.d, this.f31980e);
-                org.telegram.messenger.w7.G(i10).W(document2, this.f31981f, 1, 1);
-                return;
+    public final int B(Bitmap bitmap, boolean z9) {
+        Runnable runnable;
+        boolean z10;
+        if (this.f32000e1 == null) {
+            try {
+                this.f32000e1 = Bitmap.createBitmap(this.f40963b, this.f40965c, Bitmap.Config.ARGB_8888);
+            } catch (Throwable th2) {
+                org.telegram.messenger.a8.g(th2, true);
+                return 2;
+            }
         }
+        int i7 = -1;
+        if (this.J == 1) {
+            int i10 = 0;
+            while (true) {
+                RLottieNative[] rLottieNativeArr = this.f32001f1;
+                if (i10 >= rLottieNativeArr.length) {
+                    break;
+                }
+                RLottieNative rLottieNative = rLottieNativeArr[i10];
+                int i11 = this.f32003h1[i10];
+                Bitmap bitmap2 = this.f32000e1;
+                if (i10 == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                i7 = rLottieNative.c(i11, bitmap2, z10);
+                if (i10 != 0) {
+                    int[] iArr = this.f32003h1;
+                    int i12 = iArr[i10] + 1;
+                    if (i12 < this.f32002g1[i10]) {
+                        iArr[i10] = i12;
+                    } else if (i10 != 4) {
+                        iArr[i10] = 0;
+                        this.N = false;
+                        if (this.U0 != null) {
+                            this.J = 2;
+                        }
+                    }
+                }
+                i10++;
+            }
+        } else {
+            if (this.X0) {
+                int i13 = 0;
+                while (true) {
+                    int[] iArr2 = this.f32006k1;
+                    if (i13 >= iArr2.length) {
+                        break;
+                    }
+                    iArr2[i13] = this.f32005j1[i13] - 1;
+                    i13++;
+                }
+            }
+            if (this.l1) {
+                int[] iArr3 = this.f32003h1;
+                int i14 = iArr3[0] + 1;
+                if (i14 < this.f32002g1[0]) {
+                    iArr3[0] = i14;
+                } else {
+                    iArr3[0] = -1;
+                }
+            }
+            this.f32001f1[0].c(Math.max(this.f32003h1[0], 0), this.f32000e1, true);
+            int i15 = 0;
+            while (true) {
+                RLottieNative[] rLottieNativeArr2 = this.f32004i1;
+                if (i15 >= rLottieNativeArr2.length) {
+                    break;
+                }
+                RLottieNative rLottieNative2 = rLottieNativeArr2[i15];
+                int i16 = this.f32006k1[i15];
+                if (i16 < 0) {
+                    i16 = this.f32005j1[i15] - 1;
+                }
+                rLottieNative2.c(i16, this.f32000e1, false);
+                if (!this.N) {
+                    int[] iArr4 = this.f32006k1;
+                    int i17 = iArr4[i15] + 1;
+                    if (i17 < this.f32005j1[i15]) {
+                        iArr4[i15] = i17;
+                    } else {
+                        iArr4[i15] = -1;
+                    }
+                }
+                i15++;
+            }
+            int c10 = this.f32001f1[4].c(this.f32003h1[4], this.f32000e1, false);
+            int[] iArr5 = this.f32003h1;
+            int i18 = iArr5[4] + 1;
+            if (i18 < this.f32002g1[4]) {
+                iArr5[4] = i18;
+            }
+            int[] iArr6 = this.f32006k1;
+            if (iArr6[0] == -1 && iArr6[1] == -1 && iArr6[2] == -1) {
+                this.N = true;
+                this.M++;
+            }
+            int i19 = this.f31997b1;
+            int i20 = this.f31999d1;
+            if (i19 == i20 && i20 == this.f31998c1) {
+                if (this.f32006k1[0] == this.f32005j1[0] - 100) {
+                    this.l1 = true;
+                    if (i19 == 5) {
+                        WeakReference weakReference = this.H;
+                        if (weakReference == null) {
+                            runnable = null;
+                        } else {
+                            runnable = (Runnable) weakReference.get();
+                        }
+                        if (runnable != null) {
+                            org.telegram.messenger.g0.h3(runnable);
+                        }
+                    }
+                }
+            } else {
+                this.f32003h1[0] = -1;
+            }
+            i7 = c10;
+        }
+        if (i7 < 0) {
+            return 2;
+        }
+        Utilities.copyBitmaps(this.f32000e1, bitmap);
+        return 1;
+    }
+
+    @Override
+    public final void C(boolean z9) {
+        this.f40976k0 = false;
+        this.f40977l0 = true;
+        n();
+        l();
+        if (!this.Y0 && !this.V0) {
+            if (this.P == null) {
+                W(true);
+                E();
+                return;
+            }
+            this.V = true;
+            return;
+        }
+        this.W0 = true;
+    }
+
+    public final void W(boolean z9) {
+        int i7 = 0;
+        int i10 = 0;
+        while (true) {
+            RLottieNative[] rLottieNativeArr = this.f32001f1;
+            if (i10 >= rLottieNativeArr.length) {
+                break;
+            }
+            RLottieNative rLottieNative = rLottieNativeArr[i10];
+            if (rLottieNative != null) {
+                if (z9 && rLottieNative == this.m0) {
+                    this.m0 = null;
+                }
+                this.f32001f1[i10].d();
+                this.f32001f1[i10] = null;
+            }
+            i10++;
+        }
+        while (true) {
+            RLottieNative[] rLottieNativeArr2 = this.f32004i1;
+            if (i7 < rLottieNativeArr2.length) {
+                RLottieNative rLottieNative2 = rLottieNativeArr2[i7];
+                if (rLottieNative2 != null) {
+                    if (z9 && rLottieNative2 == this.U0) {
+                        this.U0 = null;
+                    }
+                    this.f32004i1[i7].d();
+                    this.f32004i1[i7] = null;
+                }
+                i7++;
+            } else {
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final int j() {
+        if (this.f40977l0) {
+            return 3;
+        }
+        if (this.m0 == null || (this.J == 2 && this.U0 == null)) {
+            return 2;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void p() {
+        if (this.V) {
+            n();
+            if (this.P == null) {
+                W(false);
+            }
+        }
+        if (this.m0 == null && this.U0 == null) {
+            E();
+            return;
+        }
+        this.T = true;
+        if (!v()) {
+            stop();
+        }
+        I();
+    }
+
+    @Override
+    public final void i() {
     }
 }

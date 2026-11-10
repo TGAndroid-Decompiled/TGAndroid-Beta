@@ -1,16 +1,16 @@
 package gb;
 public final class c1 {
-    public static final c1 f13642a;
-    public static final c1 f13643b;
-    public static final c1[] f13644c;
+    public static final c1 f13644a;
+    public static final c1 f13645b;
+    public static final c1[] f13646c;
 
     static {
         ?? r02 = new Enum("GENERAL", 0);
-        f13642a = r02;
+        f13644a = r02;
         ?? r12 = new Enum("FALLBACK", 1);
-        f13643b = r12;
+        f13645b = r12;
         c1[] c1VarArr = {r02, r12};
-        f13644c = c1VarArr;
+        f13646c = c1VarArr;
         c8.j1.a(c1VarArr);
     }
 
@@ -19,6 +19,6 @@ public final class c1 {
     }
 
     public static c1[] values() {
-        return (c1[]) f13644c.clone();
+        return (c1[]) f13646c.clone();
     }
 }

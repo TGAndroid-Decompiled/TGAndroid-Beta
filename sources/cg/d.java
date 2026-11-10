@@ -14,7 +14,7 @@ public abstract class d {
             TLRPC.TL_groupCall tL_groupCall = (TLRPC.TL_groupCall) groupCall2;
             TLRPC.TL_groupCall tL_groupCall2 = (TLRPC.TL_groupCall) groupCall;
             int i7 = tL_groupCall.flags;
-            if ((i7 & 16) == 0 && (tL_groupCall2.flags & 16) != 0 && tL_groupCall.f26966id == tL_groupCall2.f26966id) {
+            if ((i7 & 16) == 0 && (tL_groupCall2.flags & 16) != 0 && tL_groupCall.f26970id == tL_groupCall2.f26970id) {
                 tL_groupCall.stream_dc_id = tL_groupCall2.stream_dc_id;
                 tL_groupCall.flags = i7 | 16;
             }
@@ -44,7 +44,7 @@ public abstract class d {
                         Charset charset = StandardCharsets.UTF_8;
                         crc32.update(l10.getBytes(charset));
                         crc32.update(pollAnswer.option);
-                        crc32.update(Long.toString(poll.f26982id).getBytes(charset));
+                        crc32.update(Long.toString(poll.f26986id).getBytes(charset));
                         pollAnswer.shuffle_hash = crc32.getValue();
                     }
                 }

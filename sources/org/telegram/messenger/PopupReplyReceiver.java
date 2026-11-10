@@ -8,11 +8,11 @@ public class PopupReplyReceiver extends BroadcastReceiver {
     public final void onReceive(Context context, Intent intent) {
         if (intent != null) {
             t0.w();
-            int intExtra = intent.getIntExtra("currentAccount", p10.f24470s0);
+            int intExtra = intent.getIntExtra("currentAccount", p10.f24474s0);
             if (!p10.r(intExtra)) {
                 return;
             }
-            dt.f22076k0.c(new rs(dt.t(intExtra), 0));
+            dt.f22080k0.c(new rs(dt.t(intExtra), 0));
         }
     }
 }

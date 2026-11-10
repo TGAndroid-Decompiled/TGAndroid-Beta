@@ -28,21 +28,21 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.gb;
-import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.ib0;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.u4;
+import org.telegram.ui.Components.bc;
+import org.telegram.ui.Components.fb;
+import org.telegram.ui.Components.gc;
+import org.telegram.ui.Components.hb0;
+import org.telegram.ui.Components.kl0;
+import org.telegram.ui.Components.t4;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PasscodeActivity;
 import org.telegram.ui.SessionsActivity;
 import org.telegram.ui.StickersActivity;
 import org.telegram.ui.cn;
-import org.telegram.ui.e30;
-import org.telegram.ui.j30;
-import org.telegram.ui.ky0;
-import org.telegram.ui.ra0;
+import org.telegram.ui.f30;
+import org.telegram.ui.k30;
+import org.telegram.ui.ly0;
+import org.telegram.ui.sa0;
 import org.telegram.ui.wg;
 public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeInstance.PayloadCallback, y10, p4.l0, h2.j, w5.b {
     public final int f16667a;
@@ -74,7 +74,7 @@ public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeI
             int size = arrayList.size();
             boolean z9 = false;
             for (int i10 = 0; i10 < size; i10++) {
-                String str2 = ((qi) arrayList.get(i10)).f24701a;
+                String str2 = ((qi) arrayList.get(i10)).f24705a;
                 if (hashMap != null) {
                     arrayList2 = (ArrayList) hashMap.get(str2);
                 } else {
@@ -100,15 +100,15 @@ public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeI
         byte[] bArr;
         p4.m0 m0Var = (p4.m0) this.f16669c;
         q4.h hVar = (q4.h) this.d;
-        if (TextUtils.isEmpty(hVar.f53785a)) {
+        if (TextUtils.isEmpty(hVar.f53784a)) {
             h2.a.l("MediaSessionLegacyStub", "onAddQueueItem(): Media ID shouldn't be empty");
             return;
         }
-        int i7 = p4.n.f53399a;
-        String str = hVar.f53785a;
+        int i7 = p4.n.f53398a;
+        String str = hVar.f53784a;
         e2.z zVar = new e2.z();
-        h9.g0 g0Var = h9.i0.f14329b;
-        h9.t1 t1Var = h9.t1.f14397e;
+        h9.g0 g0Var = h9.i0.f14331b;
+        h9.t1 t1Var = h9.t1.f14399e;
         List list = Collections.EMPTY_LIST;
         e2.e0 e0Var = new e2.e0();
         e2.h0 h0Var = e2.h0.d;
@@ -117,36 +117,36 @@ public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeI
         }
         String str2 = str;
         android.support.v4.media.session.a0 a0Var = new android.support.v4.media.session.a0(20, false);
-        a0Var.f1763b = hVar.f53791r;
+        a0Var.f1763b = hVar.f53790r;
         e2.h0 h0Var2 = new e2.h0(a0Var);
-        CharSequence charSequence = hVar.f53786b;
+        CharSequence charSequence = hVar.f53785b;
         e2.n0 n0Var = new e2.n0();
-        n0Var.f10381f = hVar.f53787c;
-        n0Var.f10382g = hVar.d;
-        n0Var.f10388n = hVar.h;
+        n0Var.f10386f = hVar.f53786c;
+        n0Var.f10387g = hVar.d;
+        n0Var.f10393n = hVar.h;
         Bundle bundle = null;
-        n0Var.f10383i = p4.n.c(null);
-        Bitmap bitmap = hVar.f53788e;
+        n0Var.f10388i = p4.n.c(null);
+        Bitmap bitmap = hVar.f53787e;
         if (bitmap == null) {
             bArr = null;
         } else {
-            if (hVar.f53789f == null) {
+            if (hVar.f53788f == null) {
                 try {
                     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream);
-                    hVar.f53789f = byteArrayOutputStream.toByteArray();
+                    hVar.f53788f = byteArrayOutputStream.toByteArray();
                     byteArrayOutputStream.close();
                 } catch (IOException e10) {
                     h2.a.m("MediaDescriptionCompat", "Failed to compress MediaDescriptionCompat artwork", e10);
                 }
             }
-            bArr = hVar.f53789f;
+            bArr = hVar.f53788f;
         }
         int i10 = 3;
         if (bArr != null) {
             n0Var.b(bArr, 3);
         }
-        Bundle bundle2 = hVar.f53790n;
+        Bundle bundle2 = hVar.f53789n;
         if (bundle2 != null) {
             bundle = new Bundle(bundle2);
         }
@@ -166,14 +166,14 @@ public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeI
                         i10 = 6;
                     }
                 }
-                n0Var.f10391q = Integer.valueOf(i10);
+                n0Var.f10396q = Integer.valueOf(i10);
                 bundle.remove("android.media.extra.BT_FOLDER_TYPE");
             }
             i10 = 0;
-            n0Var.f10391q = Integer.valueOf(i10);
+            n0Var.f10396q = Integer.valueOf(i10);
             bundle.remove("android.media.extra.BT_FOLDER_TYPE");
         }
-        n0Var.f10392r = Boolean.FALSE;
+        n0Var.f10397r = Boolean.FALSE;
         if (bundle != null && bundle.containsKey("androidx.media3.session.EXTRAS_KEY_MEDIA_TYPE_COMPAT")) {
             n0Var.H = Integer.valueOf((int) bundle.getLong("androidx.media3.session.EXTRAS_KEY_MEDIA_TYPE_COMPAT"));
             bundle.remove("androidx.media3.session.EXTRAS_KEY_MEDIA_TYPE_COMPAT");
@@ -184,18 +184,18 @@ public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeI
             n0Var.J = h9.i0.q(h9.i0.q(stringArrayList));
         }
         if (bundle != null && bundle.containsKey("androidx.media3.mediadescriptioncompat.title")) {
-            n0Var.f10377a = bundle.getCharSequence("androidx.media3.mediadescriptioncompat.title");
-            n0Var.f10380e = charSequence;
+            n0Var.f10382a = bundle.getCharSequence("androidx.media3.mediadescriptioncompat.title");
+            n0Var.f10385e = charSequence;
             bundle.remove("androidx.media3.mediadescriptioncompat.title");
         } else {
-            n0Var.f10377a = charSequence;
+            n0Var.f10382a = charSequence;
         }
         if (bundle != null && !bundle.isEmpty()) {
             n0Var.I = bundle;
         }
-        n0Var.f10393s = Boolean.TRUE;
+        n0Var.f10398s = Boolean.TRUE;
         m9.y l10 = m0Var.h.l(vVar, h9.i0.u(new e2.l0(str2, new e2.a0(zVar), null, new e2.f0(e0Var), new e2.o0(n0Var), h0Var2)));
-        l10.b(new m9.u(0, l10, new wa(m0Var, vVar, this.f16668b)), m9.r.f19994a);
+        l10.b(new m9.u(0, l10, new wa(m0Var, vVar, this.f16668b)), m9.r.f19999a);
     }
 
     @Override
@@ -231,32 +231,32 @@ public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeI
             case 4:
                 cn cnVar = (cn) this.f16669c;
                 boolean[] zArr = (boolean[]) this.d;
-                cnVar.getMessagesController().C3(cnVar.f44432e, cnVar.f44446f, this.f16668b, false, !zArr[1], zArr[0]);
-                cc B = hc.B(cnVar, true, null, null, cnVar.f44709za);
+                cnVar.getMessagesController().C3(cnVar.f44473e, cnVar.f44487f, this.f16668b, false, !zArr[1], zArr[0]);
+                bc B = gc.B(cnVar, true, null, null, cnVar.f44750za);
                 B.j();
-                gb gbVar = B.f32623e;
-                gbVar.postDelayed(new wg(0, gbVar), 550L);
+                fb fbVar = B.f32199e;
+                fbVar.postDelayed(new wg(0, fbVar), 550L);
                 return;
             case 5:
                 cn.M0((cn) this.f16669c, this.f16668b, (ij) this.d);
                 return;
             case 6:
-                u4 u4Var = (u4) this.f16669c;
+                t4 t4Var = (t4) this.f16669c;
                 wr wrVar = (wr) this.d;
-                String trim = u4Var.getText().toString().trim();
+                String trim = t4Var.getText().toString().trim();
                 if (trim.length() <= this.f16668b && !trim.isEmpty()) {
                     wrVar.a(trim);
                     u1Var.dismiss();
                     return;
                 }
-                org.telegram.messenger.g0.F3(u4Var);
+                org.telegram.messenger.g0.F3(t4Var);
                 return;
             case 7:
-                ll0 ll0Var = (ll0) this.f16669c;
+                kl0 kl0Var = (kl0) this.f16669c;
                 TLRPC.Reaction reaction = (TLRPC.Reaction) this.d;
-                String obj2 = ll0Var.getText().toString();
+                String obj2 = kl0Var.getText().toString();
                 if (obj2.length() > 12) {
-                    org.telegram.messenger.g0.F3(ll0Var);
+                    org.telegram.messenger.g0.F3(kl0Var);
                     return;
                 }
                 qp.s1(this.f16668b).l4(ch.o0.d(reaction), obj2);
@@ -264,13 +264,13 @@ public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeI
                 return;
             case 9:
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.d;
-                j30 j30Var = ((e30) this.f16669c).f45171o1;
-                r3 r3Var = j30Var.f46823b.R2;
+                k30 k30Var = ((f30) this.f16669c).f45497r1;
+                r3 r3Var = k30Var.f47153b.U2;
                 String obj3 = editTextBoldCursor.getText().toString();
                 int i11 = this.f16668b;
                 r3Var.A(i11, obj3);
                 org.telegram.messenger.g0.v1(editTextBoldCursor);
-                UndoView n1 = j30Var.f46823b.n1();
+                UndoView n1 = k30Var.f47153b.n1();
                 if (i11 == 0) {
                     i10 = 39;
                 } else {
@@ -285,19 +285,19 @@ public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeI
             case 10:
                 LaunchActivity launchActivity = (LaunchActivity) this.f16669c;
                 HashMap hashMap = (HashMap) this.d;
-                ArrayList arrayList = launchActivity.f41267d0;
+                ArrayList arrayList = launchActivity.f41258d0;
                 if (!arrayList.isEmpty() && org.telegram.messenger.g0.J1((f2) g.i(1, arrayList))) {
-                    ra0 ra0Var = new ra0(0);
-                    ra0Var.G0 = new l2.q(hashMap, this.f16668b, 11);
-                    launchActivity.t0(ra0Var);
+                    sa0 sa0Var = new sa0(0);
+                    sa0Var.G0 = new l2.q(hashMap, this.f16668b, 11);
+                    launchActivity.t0(sa0Var);
                     return;
                 }
                 return;
             case 11:
-                ((ra0) this.f16669c).I0(900, this.f16668b, (TLRPC.User) this.d);
+                ((sa0) this.f16669c).I0(900, this.f16668b, (TLRPC.User) this.d);
                 return;
             case 12:
-                PasscodeActivity.Z((PasscodeActivity) this.f16669c, (ib0) this.d, this.f16668b);
+                PasscodeActivity.Z((PasscodeActivity) this.f16669c, (hb0) this.d, this.f16668b);
                 return;
             case 14:
                 SessionsActivity.c0((SessionsActivity) this.f16669c, this.f16668b, (boolean[]) this.d);
@@ -307,7 +307,7 @@ public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeI
 
     @Override
     public Object h() {
-        ((ky0) ((ia.c) this.f16669c).d).J((o5.i) this.d, this.f16668b + 1, false);
+        ((ly0) ((ia.c) this.f16669c).d).J((o5.i) this.d, this.f16668b + 1, false);
         return null;
     }
 
@@ -333,7 +333,7 @@ public final class a2 implements ri, org.telegram.ui.ActionBar.r1, h2.o, NativeI
         TLRPC.TL_stickers_addStickerToSet tL_stickers_addStickerToSet = new TLRPC.TL_stickers_addStickerToSet();
         tL_stickers_addStickerToSet.stickerset = ui.Z(tL_messages_stickerSet.set);
         tL_stickers_addStickerToSet.sticker = ui.a0(document, str);
-        ConnectionsManager.getInstance(p10.f24470s0).sendRequest(tL_stickers_addStickerToSet, new bg.k0(u1Var, i7, document, obj, tL_stickers_addStickerToSet, 8));
+        ConnectionsManager.getInstance(p10.f24474s0).sendRequest(tL_stickers_addStickerToSet, new bg.k0(u1Var, i7, document, obj, tL_stickers_addStickerToSet, 8));
         try {
             u1Var.r(350L);
         } catch (Exception unused) {

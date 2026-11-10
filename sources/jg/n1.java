@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
 import org.telegram.messenger.r2;
-import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.pj0;
 public final class n1 extends v4.i0 {
     public final int f16864a;
     public final Object f16865b;
@@ -24,21 +24,21 @@ public final class n1 extends v4.i0 {
                 ((o1) obj).f();
                 return;
             case 1:
-                qj0 qj0Var = (qj0) obj;
-                qj0Var.K0(true);
-                if (qj0Var.f37387q2) {
-                    qj0Var.f37386q1 = -1;
-                    if (qj0Var.T1 == null) {
-                        qj0Var.E1.setEmpty();
+                pj0 pj0Var = (pj0) obj;
+                pj0Var.K0(true);
+                if (pj0Var.f36986q2) {
+                    pj0Var.f36985q1 = -1;
+                    if (pj0Var.T1 == null) {
+                        pj0Var.E1.setEmpty();
                     }
                 }
-                qj0Var.invalidate();
+                pj0Var.invalidate();
                 return;
             default:
                 RecyclerView recyclerView = (RecyclerView) obj;
                 recyclerView.l(null);
-                recyclerView.f2867u0.f57014f = true;
-                boolean z9 = r2.f25212a;
+                recyclerView.f2867u0.f57010f = true;
+                boolean z9 = r2.f25216a;
                 recyclerView.d.h("notifyDataSetChanged()");
                 recyclerView.n0(true);
                 if (!recyclerView.d.g()) {
@@ -69,13 +69,13 @@ public final class n1 extends v4.i0 {
                 ug.k0 k0Var = recyclerView.d;
                 ArrayList arrayList = (ArrayList) k0Var.d;
                 if (i10 >= 1) {
-                    boolean z9 = r2.f25212a;
+                    boolean z9 = r2.f25216a;
                     StringBuilder o4 = g.o("onItemRangeChanged(", i7, ", ", i10, ", ");
                     o4.append(obj);
                     o4.append(")");
                     k0Var.h(o4.toString());
                     arrayList.add(k0Var.i(4, i7, obj, i10));
-                    k0Var.f56688b |= 4;
+                    k0Var.f56687b |= 4;
                     if (arrayList.size() == 1) {
                         g();
                         return;
@@ -98,12 +98,12 @@ public final class n1 extends v4.i0 {
                 ((o1) obj).o(i7 + 1, i10);
                 return;
             case 1:
-                qj0 qj0Var = (qj0) obj;
-                qj0Var.K0(true);
-                View view = qj0Var.f37384p1;
+                pj0 pj0Var = (pj0) obj;
+                pj0Var.K0(true);
+                View view = pj0Var.f36983p1;
                 if (view != null && view.getAlpha() == 0.0f) {
-                    qj0Var.f37386q1 = -1;
-                    qj0Var.g1();
+                    pj0Var.f36985q1 = -1;
+                    pj0Var.g1();
                     return;
                 }
                 return;
@@ -113,10 +113,10 @@ public final class n1 extends v4.i0 {
                 ug.k0 k0Var = recyclerView.d;
                 ArrayList arrayList = (ArrayList) k0Var.d;
                 if (i10 >= 1) {
-                    boolean z9 = r2.f25212a;
+                    boolean z9 = r2.f25216a;
                     k0Var.h("onItemRangeInserted(" + i7 + ", " + i10 + ")");
                     arrayList.add(k0Var.i(1, i7, null, i10));
-                    k0Var.f56688b = k0Var.f56688b | 1;
+                    k0Var.f56687b = k0Var.f56687b | 1;
                     if (arrayList.size() == 1) {
                         g();
                         return;
@@ -144,10 +144,10 @@ public final class n1 extends v4.i0 {
                 ug.k0 k0Var = recyclerView.d;
                 ArrayList arrayList = (ArrayList) k0Var.d;
                 if (i7 != i10) {
-                    boolean z9 = r2.f25212a;
+                    boolean z9 = r2.f25216a;
                     k0Var.h("onItemRangeMoved(" + i7 + ", " + i10 + ", 1)");
                     arrayList.add(k0Var.i(8, i7, null, i10));
-                    k0Var.f56688b = k0Var.f56688b | 8;
+                    k0Var.f56687b = k0Var.f56687b | 8;
                     if (arrayList.size() == 1) {
                         g();
                         return;
@@ -167,7 +167,7 @@ public final class n1 extends v4.i0 {
                 ((o1) obj).p(i7 + 1, i10);
                 return;
             case 1:
-                ((qj0) obj).K0(true);
+                ((pj0) obj).K0(true);
                 return;
             default:
                 RecyclerView recyclerView = (RecyclerView) obj;
@@ -175,10 +175,10 @@ public final class n1 extends v4.i0 {
                 ug.k0 k0Var = recyclerView.d;
                 ArrayList arrayList = (ArrayList) k0Var.d;
                 if (i10 >= 1) {
-                    boolean z9 = r2.f25212a;
+                    boolean z9 = r2.f25216a;
                     k0Var.h("onItemRangeRemoved(" + i7 + ", " + i10 + ")");
                     arrayList.add(k0Var.i(2, i7, null, i10));
-                    k0Var.f56688b = k0Var.f56688b | 2;
+                    k0Var.f56687b = k0Var.f56687b | 2;
                     if (arrayList.size() == 1) {
                         g();
                         return;
@@ -194,7 +194,7 @@ public final class n1 extends v4.i0 {
         RecyclerView recyclerView = (RecyclerView) this.f16865b;
         if (recyclerView.H && recyclerView.G) {
             v4.f0 f0Var = recyclerView.f2857n;
-            WeakHashMap weakHashMap = r0.i0.f54203a;
+            WeakHashMap weakHashMap = r0.i0.f54202a;
             recyclerView.postOnAnimation(f0Var);
             return;
         }

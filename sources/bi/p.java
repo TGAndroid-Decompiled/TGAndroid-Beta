@@ -29,13 +29,13 @@ public final class p implements TextView.OnEditorActionListener {
                 kg.k0 k0Var = q0Var.F;
                 boolean z9 = false;
                 if (i7 == 6) {
-                    q0Var.f17510y = false;
+                    q0Var.f17513y = false;
                     org.telegram.messenger.g0.r(k0Var);
                     z9 = true;
-                    if (TextUtils.isEmpty(q0Var.f17504f.getText())) {
+                    if (TextUtils.isEmpty(q0Var.f17507f.getText())) {
                         q0Var.D = null;
                         q0Var.d.b();
-                        q0Var.f17502c.f37556f3.O(true);
+                        q0Var.f17505c.f37496f3.O(true);
                     } else {
                         org.telegram.messenger.g0.h3(k0Var);
                     }
@@ -44,8 +44,8 @@ public final class p implements TextView.OnEditorActionListener {
                 return z9;
             case 2:
                 li.g1 g1Var = (li.g1) this.f4498b;
-                if (i7 == 5 && (f1Var = g1Var.Y1) != null && !g1Var.f18590h2) {
-                    if (g1Var.f18587e2) {
+                if (i7 == 5 && (f1Var = g1Var.Y1) != null && !g1Var.f18593h2) {
+                    if (g1Var.f18590e2) {
                         g1Var.L();
                     } else {
                         f1Var.F(g1Var);
@@ -57,10 +57,10 @@ public final class p implements TextView.OnEditorActionListener {
                 org.telegram.ui.ActionBar.r0 r0Var = (org.telegram.ui.ActionBar.r0) this.f4498b;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        org.telegram.messenger.g0.v1(r0Var.f28430e);
+                        org.telegram.messenger.g0.v1(r0Var.f28435e);
                         org.telegram.ui.ActionBar.n0 n0Var = r0Var.H;
                         if (n0Var != null) {
-                            n0Var.k(r0Var.f28430e);
+                            n0Var.k(r0Var.f28435e);
                             return false;
                         }
                         return false;
@@ -69,7 +69,7 @@ public final class p implements TextView.OnEditorActionListener {
                 }
                 return false;
             default:
-                org.telegram.ui.ActionBar.y4.c((org.telegram.ui.ActionBar.y4) this.f4498b, i7, keyEvent);
+                org.telegram.ui.ActionBar.z4.c((org.telegram.ui.ActionBar.z4) this.f4498b, i7, keyEvent);
                 return false;
         }
     }

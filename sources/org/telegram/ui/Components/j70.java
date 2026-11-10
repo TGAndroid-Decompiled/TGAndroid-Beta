@@ -1,41 +1,91 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-public final class j70 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.ActionBar.e1 {
-    public final int f34954a;
-    public final r70 f34955b;
+import android.content.Context;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class j70 implements View.OnClickListener {
+    public final int f34858a;
+    public final q70 f34859b;
 
-    public j70(r70 r70Var, int i7) {
-        this.f34954a = i7;
-        this.f34955b = r70Var;
+    public j70(q70 q70Var, int i7) {
+        this.f34858a = i7;
+        this.f34859b = q70Var;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f34954a) {
+    public final void onClick(View view) {
+        boolean z9;
+        int i7;
+        int i10 = this.f34858a;
+        q70 q70Var = this.f34859b;
+        switch (i10) {
             case 0:
-                q70 q70Var = this.f34955b.f37570r;
-                if (q70Var != null) {
-                    q70Var.k();
+                q70Var.f37161r.f();
+                return;
+            case 1:
+                org.telegram.ui.ActionBar.g1 g1Var = q70Var.f37162s;
+                if (g1Var != null) {
+                    g1Var.d(true);
+                }
+                q70Var.f37161r.d();
+                return;
+            case 2:
+                q70 q70Var2 = this.f34859b;
+                String str = q70Var2.f37156b;
+                if (str != null && str.endsWith("?direct")) {
+                    z9 = true;
+                } else {
+                    z9 = false;
+                }
+                Context context = q70Var2.getContext();
+                String M0 = org.telegram.messenger.id.M0(2131749170, null);
+                String str2 = q70Var2.f37156b;
+                String str3 = q70Var2.J;
+                if (str3 == null) {
+                    if (q70Var2.H) {
+                        if (z9) {
+                            i7 = 2131746507;
+                        } else {
+                            i7 = 2131746508;
+                        }
+                    } else {
+                        i7 = 2131746505;
+                    }
+                    str3 = org.telegram.messenger.id.M0(i7, null);
+                }
+                n70 n70Var = new n70(q70Var2, context, M0, str2, str3);
+                q70Var2.E = n70Var;
+                n70Var.I0();
+                q70Var2.E.show();
+                org.telegram.ui.ActionBar.g1 g1Var2 = q70Var2.f37162s;
+                if (g1Var2 != null) {
+                    g1Var2.d(true);
                     return;
                 }
                 return;
             default:
-                q70 q70Var2 = this.f34955b.f37570r;
-                if (q70Var2 != null) {
-                    q70Var2.e();
+                org.telegram.ui.ActionBar.g1 g1Var3 = q70Var.f37162s;
+                if (g1Var3 != null) {
+                    g1Var3.d(true);
+                }
+                org.telegram.ui.ActionBar.f2 f2Var = q70Var.f37157c;
+                if (f2Var.getParentActivity() != null) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(f2Var.getParentActivity());
+                    String M02 = org.telegram.messenger.id.M0(2131746023, null);
+                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27300a;
+                    u1Var.R = M02;
+                    u1Var.T = org.telegram.messenger.id.M0(2131746026, null);
+                    alertDialog$Builder.k(org.telegram.messenger.id.M0(2131746024, null), new i70(q70Var, 1));
+                    alertDialog$Builder.h(org.telegram.messenger.id.M0(2131752589, null), null);
+                    TextView textView = (TextView) u1Var.d(-1);
+                    if (textView != null) {
+                        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f28131q7, null);
+                    }
+                    alertDialog$Builder.p();
                     return;
                 }
                 return;
-        }
-    }
-
-    @Override
-    public void j(KeyEvent keyEvent) {
-        r70 r70Var = this.f34955b;
-        r70Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && r70Var.f37571s.isShowing()) {
-            r70Var.f37571s.d(true);
         }
     }
 }

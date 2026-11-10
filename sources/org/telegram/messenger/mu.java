@@ -13,13 +13,13 @@ public final class mu extends fu {
 
     @Override
     public final int I() {
-        Rect rect = this.f22470b;
+        Rect rect = this.f22474b;
         return k5.C(6.0f, rect.top, 1) + rect.bottom;
     }
 
     @Override
     public final int K() {
-        Rect rect = this.f22470b;
+        Rect rect = this.f22474b;
         return g0.L(32.0f) + rect.left + rect.right;
     }
 
@@ -28,21 +28,21 @@ public final class mu extends fu {
         int i7;
         int i10;
         float f10;
-        kv kvVar = this.f22469a;
+        kv kvVar = this.f22473a;
         if (kvVar.E()) {
-            i7 = org.telegram.ui.ActionBar.l6.ul;
+            i7 = org.telegram.ui.ActionBar.m6.ul;
         } else {
-            i7 = org.telegram.ui.ActionBar.l6.tl;
+            i7 = org.telegram.ui.ActionBar.m6.tl;
         }
-        int w02 = org.telegram.ui.ActionBar.l6.w0(i7, kvVar.D);
+        int w02 = org.telegram.ui.ActionBar.m6.w0(i7, kvVar.D);
         Paint paint = this.W;
         paint.setColor(w02);
         float f11 = -kvVar.S;
         int i11 = kvVar.C + kvVar.T;
-        Rect rect = this.f22470b;
+        Rect rect = this.f22474b;
         float f12 = (i11 - rect.left) - rect.right;
         float f13 = 0.0f;
-        if (kvVar.f23779s) {
+        if (kvVar.f23783s) {
             if (this.R) {
                 f10 = 1.0f;
             } else {
@@ -51,13 +51,13 @@ public final class mu extends fu {
             if (this.Q) {
                 f13 = 1.0f;
             }
-            f13 = g0.T1(f10, f13, kvVar.f23780t);
+            f13 = g0.T1(f10, f13, kvVar.f23784t);
         } else if (this.Q) {
             f13 = 1.0f;
         }
         lu luVar = this.L;
         if (luVar != null) {
-            i10 = luVar.f22470b.bottom;
+            i10 = luVar.f22474b.bottom;
         } else {
             i10 = 0;
         }

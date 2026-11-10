@@ -9,10 +9,10 @@ import fi.v9;
 import java.util.ArrayList;
 import org.telegram.messenger.a8;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.ActionBar.s6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Cells.r8;
-import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.r41;
 public final class e1 extends f2 {
     public final CharSequence f17358a;
@@ -71,7 +71,7 @@ public final class e1 extends f2 {
     }
 
     @Override
-    public final qj0 getListViewForSimpleGlass() {
+    public final pj0 getListViewForSimpleGlass() {
         return this.f17363n;
     }
 
@@ -112,13 +112,13 @@ public final class e1 extends f2 {
             if (this.f17363n != null) {
                 for (int i10 = 0; i10 < this.f17363n.getChildCount(); i10++) {
                     View childAt = this.f17363n.getChildAt(i10);
-                    if ((childAt instanceof r8) && ((r8) childAt).f30212b == -1) {
+                    if ((childAt instanceof r8) && ((r8) childAt).f30223b == -1) {
                         if (this.f17364r) {
-                            i7 = l6.f27903f6;
+                            i7 = m6.f27928f6;
                         } else {
-                            i7 = l6.f27884e6;
+                            i7 = m6.f27909e6;
                         }
-                        s6.h(i7, childAt, null);
+                        t6.h(i7, childAt, null);
                     }
                 }
             }

@@ -5,23 +5,23 @@ import android.text.Layout;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.t9;
 public final class i5 implements t9 {
-    public final Layout f18645a;
-    public final int f18646b;
-    public final int f18647c;
+    public final Layout f18648a;
+    public final int f18649b;
+    public final int f18650c;
     public final int d;
-    public final TL_iv.pageTableCell f18648e;
+    public final TL_iv.pageTableCell f18651e;
 
     public i5(Layout layout, int i7, int i10, int i11, TL_iv.pageTableCell pagetablecell) {
-        this.f18645a = layout;
-        this.f18646b = i7;
-        this.f18647c = i10;
+        this.f18648a = layout;
+        this.f18649b = i7;
+        this.f18650c = i10;
         this.d = i11;
-        this.f18648e = pagetablecell;
+        this.f18651e = pagetablecell;
     }
 
     @Override
     public final Layout a() {
-        return this.f18645a;
+        return this.f18648a;
     }
 
     @Override
@@ -41,16 +41,16 @@ public final class i5 implements t9 {
 
     @Override
     public final CharSequence getText() {
-        return e6.h(this.f18648e);
+        return e6.h(this.f18651e);
     }
 
     @Override
     public final int getX() {
-        return this.f18646b;
+        return this.f18649b;
     }
 
     @Override
     public final int getY() {
-        return this.f18647c;
+        return this.f18650c;
     }
 }

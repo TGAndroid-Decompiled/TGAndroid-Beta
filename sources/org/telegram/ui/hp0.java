@@ -1,29 +1,42 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-public final class hp0 extends ViewOutlineProvider {
-    public final int f46367a;
-    public final float f46368b;
-    public final Object f46369c;
+import android.content.Context;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class hp0 extends org.telegram.ui.Components.mo0 {
+    public final FrameLayout U2;
+    public final boolean V2;
+    public final PhotoViewer W2;
 
-    public hp0(Object obj, float f10, int i7) {
-        this.f46367a = i7;
-        this.f46369c = obj;
-        this.f46368b = f10;
+    public hp0(PhotoViewer photoViewer, Context context, cn cnVar, ArrayList arrayList, String str, Integer num, FrameLayout frameLayout, boolean z9) {
+        super(context, cnVar, arrayList, null, null, false, str, null, false, true, false, num, null);
+        this.W2 = photoViewer;
+        this.U2 = frameLayout;
+        this.V2 = z9;
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        switch (this.f46367a) {
-            case 0:
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / this.f46368b) * org.telegram.messenger.g0.L(10.0f) * ((Float) ((ValueAnimator) this.f46369c).getAnimatedValue()).floatValue());
-                return;
-            default:
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / this.f46368b) * org.telegram.messenger.g0.L(10.0f) * (1.0f - ((PhotoViewer) this.f46369c).W));
-                return;
+    public final void K() {
+        super.K();
+        if (this.V2) {
+            org.telegram.messenger.g0.i3(new hf0(this, 20), 50L);
         }
+        PhotoViewer photoViewer = this.W2;
+        photoViewer.f41373d0.softInputMode = 272;
+        try {
+            ((WindowManager) photoViewer.D.getSystemService("window")).updateViewLayout(photoViewer.f41401g0, photoViewer.f41373d0);
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+        }
+    }
+
+    @Override
+    public final void R0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z9) {
+        if (!z9) {
+            return;
+        }
+        org.telegram.messenger.g0.i3(new org.telegram.ui.Components.pp0(this, this.U2, hVar, i7, 14), 250L);
     }
 }

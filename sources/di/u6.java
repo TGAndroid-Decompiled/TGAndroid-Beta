@@ -16,13 +16,13 @@ public final class u6 extends r6 {
 
     public final void F(ArrayList arrayList) {
         int i7;
-        ArrayList arrayList2 = this.f9694i;
+        ArrayList arrayList2 = this.f9699i;
         arrayList2.size();
         int i10 = 0;
         int i11 = 0;
         while (true) {
             int size = arrayList.size();
-            i7 = this.f9690c;
+            i7 = this.f9695c;
             if (i10 >= size) {
                 break;
             }
@@ -40,14 +40,14 @@ public final class u6 extends r6 {
             i10++;
         }
         if (i11 > 0) {
-            qs.f(i7).k(qs.f25109x5, this);
+            qs.f(i7).k(qs.f25113x5, this);
         }
     }
 
     @Override
     public final ij f(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f9694i;
+            ArrayList arrayList = this.f9699i;
             if (i7 < arrayList.size()) {
                 return (ij) arrayList.get(i7);
             }
@@ -58,7 +58,7 @@ public final class u6 extends r6 {
 
     @Override
     public final int g() {
-        return this.f9694i.size();
+        return this.f9699i.size();
     }
 
     @Override
@@ -68,7 +68,7 @@ public final class u6 extends r6 {
 
     @Override
     public final int i() {
-        return this.f9694i.size();
+        return this.f9699i.size();
     }
 
     @Override

@@ -9,23 +9,23 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 public final class ux implements Runnable {
-    public final int f25913a = 0;
-    public final gz f25914b;
-    public final TLRPC.TL_error f25915c;
+    public final int f25917a = 0;
+    public final gz f25918b;
+    public final TLRPC.TL_error f25919c;
     public final TLObject d;
-    public final boolean f25916e;
-    public final TLObject f25917f;
+    public final boolean f25920e;
+    public final TLObject f25921f;
     public final Object h;
-    public final Object f25918n;
+    public final Object f25922n;
 
     public ux(gz gzVar, TLRPC.TL_error tL_error, TLObject tLObject, boolean z9, ArrayList arrayList, ArrayList arrayList2, TLObject tLObject2) {
-        this.f25914b = gzVar;
-        this.f25915c = tL_error;
+        this.f25918b = gzVar;
+        this.f25919c = tL_error;
         this.d = tLObject;
-        this.f25916e = z9;
+        this.f25920e = z9;
         this.h = arrayList;
-        this.f25918n = arrayList2;
-        this.f25917f = tLObject2;
+        this.f25922n = arrayList2;
+        this.f25921f = tLObject2;
     }
 
     @Override
@@ -67,15 +67,15 @@ public final class ux implements Runnable {
         int i16;
         a0.h hVar4;
         a0.h hVar5 = null;
-        switch (this.f25913a) {
+        switch (this.f25917a) {
             case 0:
-                gz gzVar = this.f25914b;
-                TLRPC.TL_error tL_error3 = this.f25915c;
+                gz gzVar = this.f25918b;
+                TLRPC.TL_error tL_error3 = this.f25919c;
                 TLObject tLObject = this.d;
-                boolean z13 = this.f25916e;
+                boolean z13 = this.f25920e;
                 ArrayList arrayList6 = (ArrayList) this.h;
-                ArrayList arrayList7 = (ArrayList) this.f25918n;
-                TLObject tLObject2 = this.f25917f;
+                ArrayList arrayList7 = (ArrayList) this.f25922n;
+                TLObject tLObject2 = this.f25921f;
                 if (tL_error3 == null) {
                     SparseArray sparseArray3 = new SparseArray();
                     a0.h hVar6 = new a0.h();
@@ -88,7 +88,7 @@ public final class ux implements Runnable {
                         TLRPC.Update update = arrayList8.get(i17);
                         if (update instanceof TL_update.TL_updateMessageID) {
                             TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) update;
-                            hVar6.k(Integer.valueOf(tL_updateMessageID.f27214id), tL_updateMessageID.random_id);
+                            hVar6.k(Integer.valueOf(tL_updateMessageID.f27218id), tL_updateMessageID.random_id);
                             arrayList8.remove(i17);
                             i17--;
                             tL_error2 = tL_error3;
@@ -97,7 +97,7 @@ public final class ux implements Runnable {
                             if (update instanceof TL_update.TL_updateNewMessage) {
                                 TL_update.TL_updateNewMessage tL_updateNewMessage = (TL_update.TL_updateNewMessage) update;
                                 TLRPC.Message message4 = tL_updateNewMessage.message;
-                                sparseArray3.put(message4.f26977id, message4);
+                                sparseArray3.put(message4.f26981id, message4);
                                 tL_error2 = tL_error4;
                                 Utilities.d.c(new iy(gzVar, tL_updateNewMessage, 0));
                                 arrayList8.remove(i17);
@@ -112,7 +112,7 @@ public final class ux implements Runnable {
                                 if (update instanceof TL_update.TL_updateNewEphemeralMessage) {
                                     TL_update.TL_updateNewEphemeralMessage tL_updateNewEphemeralMessage = (TL_update.TL_updateNewEphemeralMessage) update;
                                     TLRPC.TL_message b10 = bg.w.b(tL_updateNewEphemeralMessage.message);
-                                    sparseArray3.put(b10.f26977id, b10);
+                                    sparseArray3.put(b10.f26981id, b10);
                                     arrayList9.add(tL_updateNewEphemeralMessage.message);
                                     arrayList8.remove(i17);
                                     i17--;
@@ -152,7 +152,7 @@ public final class ux implements Runnable {
                                             hVar5 = hVar3;
                                         }
                                         TLRPC.Message message5 = tL_updateNewChannelMessage.message;
-                                        sparseArray3.put(message5.f26977id, message5);
+                                        sparseArray3.put(message5.f26981id, message5);
                                         Utilities.d.c(new jy(gzVar, tL_updateNewChannelMessage, 0));
                                         arrayList8.remove(i17);
                                         int i19 = i17 - 1;
@@ -184,7 +184,7 @@ public final class ux implements Runnable {
                                         arrayList5 = arrayList9;
                                         if (update instanceof TL_update.TL_updateNewScheduledMessage) {
                                             TLRPC.Message message6 = ((TL_update.TL_updateNewScheduledMessage) update).message;
-                                            sparseArray2.put(message6.f26977id, message6);
+                                            sparseArray2.put(message6.f26981id, message6);
                                             arrayList4.remove(i17);
                                             i17--;
                                             z14 = true;
@@ -195,16 +195,16 @@ public final class ux implements Runnable {
                                                 J1 = null;
                                             } else {
                                                 i15 = 0;
-                                                J1 = ij.J1(((ij) arrayList6.get(0)).f23262k);
+                                                J1 = ij.J1(((ij) arrayList6.get(0)).f23266k);
                                             }
                                             if (arrayList6.isEmpty()) {
                                                 valueOf = null;
                                             } else {
-                                                valueOf = Integer.valueOf(ij.I1(((ij) arrayList6.get(i15)).f23262k));
+                                                valueOf = Integer.valueOf(ij.I1(((ij) arrayList6.get(i15)).f23266k));
                                             }
                                             f10.j(update, J1, valueOf.intValue());
                                             TLRPC.Message message7 = ((TL_update.TL_updateQuickReplyMessage) update).message;
-                                            sparseArray2.put(message7.f26977id, message7);
+                                            sparseArray2.put(message7.f26981id, message7);
                                             arrayList4.remove(i17);
                                             i17--;
                                         }
@@ -275,8 +275,8 @@ public final class ux implements Runnable {
                     while (i21 < arrayList6.size()) {
                         ij ijVar2 = (ij) arrayList6.get(i21);
                         String str2 = (String) arrayList7.get(i21);
-                        TLRPC.Message message8 = ijVar2.f23262k;
-                        int i22 = message8.f26977id;
+                        TLRPC.Message message8 = ijVar2.f23266k;
+                        int i22 = message8.f26981id;
                         char c13 = c11;
                         ArrayList arrayList12 = new ArrayList();
                         i7 = i20;
@@ -286,7 +286,7 @@ public final class ux implements Runnable {
                             ij.B0(message);
                             arrayList12.add(message);
                             if ((message.flags & 33554432) != 0) {
-                                TLRPC.Message message9 = ijVar2.f23262k;
+                                TLRPC.Message message9 = ijVar2.f23266k;
                                 c10 = c12;
                                 message9.ttl_period = message.ttl_period;
                                 message9.flags |= 33554432;
@@ -297,7 +297,7 @@ public final class ux implements Runnable {
                                 arrayList6 = arrayList13;
                                 ij ijVar3 = (ij) arrayList6.get(0);
                                 i12 = i21;
-                                int i23 = message.f26977id;
+                                int i23 = message.f26981id;
                                 arrayList = arrayList12;
                                 HashMap<String, String> hashMap = message.params;
                                 arrayList2 = arrayList11;
@@ -318,10 +318,10 @@ public final class ux implements Runnable {
                                 arrayList3 = arrayList7;
                                 message3 = message8;
                                 i13 = i22;
-                                gzVar.z0(ijVar, message2, message2.f26977id, Collections.singletonList(str2), false, -1, message2.params);
+                                gzVar.z0(ijVar, message2, message2.f26981id, Collections.singletonList(str2), false, -1, message2.params);
                             }
                             final int o12 = ijVar.o1();
-                            message3.f26977id = message2.f26977id;
+                            message3.f26981id = message2.f26981id;
                             int i24 = message2.quick_reply_shortcut_id;
                             message3.quick_reply_shortcut_id = i24;
                             if (i24 != 0) {
@@ -341,7 +341,7 @@ public final class ux implements Runnable {
                                     i14 = i12;
                                     sparseArray = sparseArray5;
                                 }
-                                if (num2.intValue() < message2.f26977id) {
+                                if (num2.intValue() < message2.f26981id) {
                                     z11 = true;
                                 } else {
                                     z11 = false;
@@ -361,7 +361,7 @@ public final class ux implements Runnable {
                             message3.errorNewPriceStars = 0L;
                             qs notificationCenter2 = gzVar.getNotificationCenter();
                             Integer valueOf2 = Integer.valueOf(i13);
-                            Integer valueOf3 = Integer.valueOf(message3.f26977id);
+                            Integer valueOf3 = Integer.valueOf(message3.f26981id);
                             Long valueOf4 = Long.valueOf(message3.dialog_id);
                             Long valueOf5 = Long.valueOf(j3);
                             Integer valueOf6 = Integer.valueOf(o12);
@@ -378,7 +378,7 @@ public final class ux implements Runnable {
                             notificationCenter2.k(21, objArr2);
                             qs notificationCenter3 = gzVar.getNotificationCenter();
                             Integer valueOf8 = Integer.valueOf(i13);
-                            Integer valueOf9 = Integer.valueOf(message3.f26977id);
+                            Integer valueOf9 = Integer.valueOf(message3.f26981id);
                             Long valueOf10 = Long.valueOf(message3.dialog_id);
                             Long valueOf11 = Long.valueOf(j3);
                             Integer valueOf12 = Integer.valueOf(o12);
@@ -403,7 +403,7 @@ public final class ux implements Runnable {
                             final int i25 = i13;
                             arrayList11 = arrayList15;
                             gzVar = gzVar3;
-                            gzVar.getMessagesStorage().f26719a.c(new Runnable() {
+                            gzVar.getMessagesStorage().f26723a.c(new Runnable() {
                                 @Override
                                 public final void run() {
                                     throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ky.run():void");
@@ -438,14 +438,14 @@ public final class ux implements Runnable {
                     r12 = z13;
                     i7 = 2;
                     tL_error = tL_error3;
-                    org.telegram.ui.Components.v4.c0(gzVar.currentAccount, tL_error, null, tLObject2, new Object[0]);
+                    org.telegram.ui.Components.u4.c0(gzVar.currentAccount, tL_error, null, tLObject2, new Object[0]);
                     z9 = true;
                 }
                 if (z9) {
                     int i26 = 0;
                     while (i26 < arrayList6.size()) {
                         ij ijVar5 = (ij) arrayList6.get(i26);
-                        TLRPC.Message message11 = ijVar5.f23262k;
+                        TLRPC.Message message11 = ijVar5.f23266k;
                         gzVar.getMessagesStorage().N0(r12, message11);
                         int i27 = i7;
                         message11.send_state = i27;
@@ -456,9 +456,9 @@ public final class ux implements Runnable {
                             bi.ea.y(gzVar.currentAccount, false).d0(Arrays.asList(ijVar5));
                             gzVar.getMessagesStorage().X1(ij.B0(message11), message11);
                         }
-                        gzVar.getNotificationCenter().k(23, Integer.valueOf(message11.f26977id));
-                        gzVar.d0(message11.f26977id);
-                        gzVar.i0(message11.f26977id, r12);
+                        gzVar.getNotificationCenter().k(23, Integer.valueOf(message11.f26981id));
+                        gzVar.d0(message11.f26981id);
+                        gzVar.i0(message11.f26981id, r12);
                         i26++;
                         i7 = i27;
                     }
@@ -466,13 +466,13 @@ public final class ux implements Runnable {
                 }
                 return;
             default:
-                gz gzVar4 = this.f25914b;
-                TLRPC.TL_error tL_error6 = this.f25915c;
+                gz gzVar4 = this.f25918b;
+                TLRPC.TL_error tL_error6 = this.f25919c;
                 TLRPC.Message message12 = (TLRPC.Message) this.h;
                 TLObject tLObject3 = this.d;
-                ij ijVar6 = (ij) this.f25918n;
-                boolean z18 = this.f25916e;
-                TLObject tLObject4 = this.f25917f;
+                ij ijVar6 = (ij) this.f25922n;
+                boolean z18 = this.f25920e;
+                TLObject tLObject4 = this.f25921f;
                 if (tL_error6 == null) {
                     String str3 = message12.attachPath;
                     TLRPC.Updates updates2 = (TLRPC.Updates) tLObject3;
@@ -481,8 +481,8 @@ public final class ux implements Runnable {
                     ArrayList arrayList18 = new ArrayList();
                     arrayList18.add(message12);
                     gzVar4.getMessagesStorage().j1(arrayList18, false, true, false, 0, false, 0, 0L);
-                    k00 k00Var = gzVar4.getMessagesController().f24877q7;
-                    TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) k00Var.f23643e.f(k00.p(message12.f26977id, -message12.dialog_id));
+                    k00 k00Var = gzVar4.getMessagesController().f24881q7;
+                    TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) k00Var.f23647e.f(k00.p(message12.f26981id, -message12.dialog_id));
                     if (tL_forumTopic != null) {
                         tL_forumTopic.topMessage = message12;
                         k00Var.y(-message12.dialog_id, true);
@@ -490,20 +490,20 @@ public final class ux implements Runnable {
                     Utilities.d.c(new ly(gzVar4, updates2, message12, z18, 1));
                     return;
                 }
-                org.telegram.ui.Components.v4.c0(gzVar4.currentAccount, tL_error6, null, tLObject4, new Object[0]);
-                gzVar4.i0(message12.f26977id, z18);
+                org.telegram.ui.Components.u4.c0(gzVar4.currentAccount, tL_error6, null, tLObject4, new Object[0]);
+                gzVar4.i0(message12.f26981id, z18);
                 gzVar4.l0(ijVar6);
                 return;
         }
     }
 
     public ux(gz gzVar, TLRPC.TL_error tL_error, TLRPC.Message message, TLObject tLObject, ij ijVar, String str, HashMap hashMap, boolean z9, TLObject tLObject2) {
-        this.f25914b = gzVar;
-        this.f25915c = tL_error;
+        this.f25918b = gzVar;
+        this.f25919c = tL_error;
         this.h = message;
         this.d = tLObject;
-        this.f25918n = ijVar;
-        this.f25916e = z9;
-        this.f25917f = tLObject2;
+        this.f25922n = ijVar;
+        this.f25920e = z9;
+        this.f25921f = tLObject2;
     }
 }

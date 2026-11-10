@@ -1,30 +1,23 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import org.telegram.messenger.id;
-import org.telegram.ui.p61;
-public final class e4 implements Runnable {
-    public final int f42417a;
-    public final Context f42418b;
+import android.view.View;
+public final class e4 implements View.OnClickListener {
+    public final int f42460a;
+    public final org.telegram.ui.ActionBar.w2 f42461b;
 
-    public e4(Context context, int i7) {
-        this.f42417a = i7;
-        this.f42418b = context;
+    public e4(org.telegram.ui.ActionBar.w2 w2Var, int i7) {
+        this.f42460a = i7;
+        this.f42461b = w2Var;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f42417a;
-        Context context = this.f42418b;
-        switch (i7) {
+    public final void onClick(View view) {
+        switch (this.f42460a) {
             case 0:
-                vf.c.v(context, id.M0(2131744196, null), false);
-                return;
-            case 1:
-                vf.c.v(context, id.M0(2131744196, null), false);
+                this.f42461b.dismiss();
                 return;
             default:
-                new x5(context.getApplicationContext(), 2131232810, 46, new p61(5));
+                this.f42461b.dismiss();
                 return;
         }
     }

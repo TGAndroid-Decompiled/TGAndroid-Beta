@@ -1,9 +1,9 @@
 package zh;
 
-import org.telegram.ui.Components.hc;
+import org.telegram.ui.Components.gc;
 public final class r extends b4 {
     @Override
-    public final hc e1() {
-        return new hc(this.f28627c, this.I0);
+    public final gc e1() {
+        return new gc(this.f28675c, this.I0);
     }
 }

@@ -9,12 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import bg.s;
 import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.Components.w31;
-import org.telegram.ui.Components.w61;
-import org.telegram.ui.Components.xq;
-import org.telegram.ui.Wallet.y4;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.v61;
+import org.telegram.ui.Components.wq;
+import org.telegram.ui.Wallet.b5;
 public final class h extends View {
     public final int f17050a = 0;
     public final Paint f17051b;
@@ -22,16 +22,16 @@ public final class h extends View {
     public final Object d;
     public final Object f17053e;
 
-    public h(Activity activity, g6 g6Var) {
+    public h(Activity activity, h6 h6Var) {
         super(activity);
-        this.f17052c = new te.a(this, xq.h, 380L);
+        this.f17052c = new te.a(this, wq.h, 380L);
         this.f17051b = new Paint(1);
-        this.d = g6Var;
-        w31 w31Var = new w31(true);
-        this.f17053e = w31Var;
-        w31Var.setCallback(this);
-        w31Var.b(-1);
-        w31Var.f39897i = true;
+        this.d = h6Var;
+        v31 v31Var = new v31(true);
+        this.f17053e = v31Var;
+        v31Var.setCallback(this);
+        v31Var.b(-1);
+        v31Var.f38841i = true;
     }
 
     @Override
@@ -39,7 +39,7 @@ public final class h extends View {
         switch (this.f17050a) {
             case 0:
                 super.onAttachedToWindow();
-                ((w31) this.f17053e).d();
+                ((v31) this.f17053e).d();
                 return;
             default:
                 super.onAttachedToWindow();
@@ -52,7 +52,7 @@ public final class h extends View {
         switch (this.f17050a) {
             case 0:
                 super.onDetachedFromWindow();
-                ((w31) this.f17053e).e();
+                ((v31) this.f17053e).e();
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -70,35 +70,35 @@ public final class h extends View {
                 float width = getWidth() / 2.0f;
                 float height = getHeight() / 2.0f;
                 super.onDraw(canvas);
-                int w02 = l6.w0(l6.Me, (g6) this.d);
+                int w02 = m6.w0(m6.Me, (h6) this.d);
                 Paint paint = this.f17051b;
                 paint.setColor(w02);
                 canvas.drawCircle(width, height, g0.L(19.0f), paint);
-                float f10 = ((te.a) this.f17052c).f55499e;
+                float f10 = ((te.a) this.f17052c).f55498e;
                 float f11 = 1.0f - f10;
                 if (f11 > 0.0f) {
-                    s.b(canvas, (w31) this.f17053e, f11 * 1.35f);
+                    s.b(canvas, (v31) this.f17053e, f11 * 1.35f);
                     invalidate();
                 }
                 if (f10 > 0.0f) {
                     float L = g0.L(6.666f) * f10;
                     float L2 = g0.L(2.666f) * f10;
-                    canvas.drawRoundRect(width - L, height - L, width + L, L + height, L2, L2, l6.n0(-1));
+                    canvas.drawRoundRect(width - L, height - L, width + L, L + height, L2, L2, m6.n0(-1));
                     return;
                 }
                 return;
             default:
-                y4 y4Var = (y4) this.f17053e;
-                int d12 = y4Var.d1();
+                b5 b5Var = (b5) this.f17053e;
+                int d12 = b5Var.d1();
                 Paint paint2 = this.f17051b;
                 paint2.setColor(d12);
-                ViewGroup viewGroup = y4Var.T1;
+                ViewGroup viewGroup = b5Var.W1;
                 int[] iArr = (int[]) this.f17052c;
                 viewGroup.getLocationInWindow(iArr);
                 int[] iArr2 = (int[]) this.d;
                 getLocationInWindow(iArr2);
                 float f12 = iArr[0] - iArr2[0];
-                View view = ((w61) y4Var.T1).getViewPages()[0];
+                View view = ((v61) b5Var.W1).getViewPages()[0];
                 if (view != null) {
                     i7 = view.getPaddingLeft();
                 } else {
@@ -110,8 +110,8 @@ public final class h extends View {
                     i10 = 0;
                 }
                 canvas.save();
-                canvas.clipRect(i7 + f12, 0.0f, (f12 + y4Var.T1.getWidth()) - i10, getHeight());
-                for (View view2 : ((w61) y4Var.T1).getViewPages()) {
+                canvas.clipRect(i7 + f12, 0.0f, (f12 + b5Var.W1.getWidth()) - i10, getHeight());
+                for (View view2 : ((v61) b5Var.W1).getViewPages()) {
                     if (view2 != null && view2.getVisibility() == 0) {
                         canvas.save();
                         canvas.translate(view2.getLeft() + (iArr[0] - iArr2[0]), view2.getTop() + (iArr[1] - iArr2[1]));
@@ -130,7 +130,7 @@ public final class h extends View {
         switch (this.f17050a) {
             case 0:
                 super.onSizeChanged(i7, i10, i11, i12);
-                s.d((w31) this.f17053e, i7 / 2.0f, i10 / 2.0f, 17);
+                s.d((v31) this.f17053e, i7 / 2.0f, i10 / 2.0f, 17);
                 return;
             default:
                 super.onSizeChanged(i7, i10, i11, i12);
@@ -142,7 +142,7 @@ public final class h extends View {
     public boolean verifyDrawable(Drawable drawable) {
         switch (this.f17050a) {
             case 0:
-                if (!super.verifyDrawable(drawable) && (drawable != ((w31) this.f17053e) || ((te.a) this.f17052c).f55500f)) {
+                if (!super.verifyDrawable(drawable) && (drawable != ((v31) this.f17053e) || ((te.a) this.f17052c).f55499f)) {
                     return false;
                 }
                 return true;
@@ -151,9 +151,9 @@ public final class h extends View {
         }
     }
 
-    public h(y4 y4Var, Context context) {
+    public h(b5 b5Var, Context context) {
         super(context);
-        this.f17053e = y4Var;
+        this.f17053e = b5Var;
         this.f17051b = new Paint(1);
         this.f17052c = new int[2];
         this.d = new int[2];

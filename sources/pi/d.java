@@ -9,28 +9,28 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.RenderNode;
 import c8.ob;
-import org.telegram.ui.Components.k2;
+import org.telegram.ui.Components.j2;
 public final class d extends ob {
-    public final RenderNode f53666a = new RenderNode("glass-fade-content");
-    public final RenderNode f53667b = new RenderNode("glass-fade-overlay");
-    public final Paint f53668c;
+    public final RenderNode f53665a = new RenderNode("glass-fade-content");
+    public final RenderNode f53666b = new RenderNode("glass-fade-overlay");
+    public final Paint f53667c;
     public final Paint d;
-    public final Matrix f53669e;
-    public LinearGradient f53670f;
-    public int f53671g;
+    public final Matrix f53668e;
+    public LinearGradient f53669f;
+    public int f53670g;
     public int h;
-    public int f53672i;
-    public final f f53673j;
+    public int f53671i;
+    public final f f53672j;
 
     public d(f fVar) {
-        this.f53673j = fVar;
+        this.f53672j = fVar;
         Paint paint = new Paint();
-        this.f53668c = paint;
+        this.f53667c = paint;
         this.d = new Paint(1);
-        this.f53669e = new Matrix();
-        this.f53671g = -1;
+        this.f53668e = new Matrix();
+        this.f53670g = -1;
         this.h = -1;
-        paint.setBlendMode(k2.l());
+        paint.setBlendMode(j2.l());
     }
 
     @Override
@@ -45,7 +45,7 @@ public final class d extends ob {
         int i11;
         int i12;
         int i13;
-        f fVar = this.f53673j;
+        f fVar = this.f53672j;
         a aVar = fVar.h;
         if (aVar != null && aVar.h() && aVar.f() > 0) {
             i7 = 1;
@@ -74,16 +74,16 @@ public final class d extends ob {
         int ceil2 = ((int) Math.ceil((rectF.bottom - f11) / f16)) + i7;
         int ceil3 = (int) Math.ceil(rect.width() / f16);
         int ceil4 = (int) Math.ceil(rect.height() / f16);
-        boolean z9 = fVar.f53685w;
-        Paint paint = this.f53668c;
-        if (!z9 && this.f53671g == rect.width() && this.h == rect.height() && this.f53672i == i10) {
+        boolean z9 = fVar.f53684w;
+        Paint paint = this.f53667c;
+        if (!z9 && this.f53670g == rect.width() && this.h == rect.height() && this.f53671i == i10) {
             f13 = f11;
             i13 = i7;
             f12 = f10;
             i12 = ceil;
             i11 = ceil2;
         } else {
-            int i14 = fVar.f53687y;
+            int i14 = fVar.f53686y;
             if (i14 != 1 && i14 != 4) {
                 height = rect.width();
             } else {
@@ -99,36 +99,36 @@ public final class d extends ob {
             i12 = ceil;
             i13 = i7;
             LinearGradient k10 = f.k(fVar, gVar, f17, f18, -1, i10);
-            this.f53670f = k10;
+            this.f53669f = k10;
             paint.setShader(k10);
             g gVar2 = fVar.E;
             gVar2.getClass();
             LinearGradient k11 = f.k(fVar, gVar2, f17, f18, fVar.H, i10);
-            this.f53667b.setPosition(0, 0, ceil3, ceil4);
-            this.f53667b.setPivotX(0.0f);
-            this.f53667b.setPivotY(0.0f);
-            this.f53667b.setScaleX(f16);
-            this.f53667b.setScaleY(f16);
+            this.f53666b.setPosition(0, 0, ceil3, ceil4);
+            this.f53666b.setPivotX(0.0f);
+            this.f53666b.setPivotY(0.0f);
+            this.f53666b.setScaleX(f16);
+            this.f53666b.setScaleY(f16);
             Paint paint2 = this.d;
             paint2.setShader(k11);
-            this.f53667b.beginRecording().drawRect(0.0f, 0.0f, ceil3, ceil4, paint2);
-            this.f53667b.endRecording();
+            this.f53666b.beginRecording().drawRect(0.0f, 0.0f, ceil3, ceil4, paint2);
+            this.f53666b.endRecording();
             paint2.setShader(null);
-            this.f53671g = rect.width();
+            this.f53670g = rect.width();
             this.h = rect.height();
-            this.f53672i = i10;
+            this.f53671i = i10;
         }
-        Matrix matrix = this.f53669e;
+        Matrix matrix = this.f53668e;
         matrix.setTranslate((-f14) / f16, (-f15) / f16);
-        this.f53670f.setLocalMatrix(matrix);
-        this.f53666a.setPosition(0, 0, i12, i11);
-        this.f53666a.setPivotX(0.0f);
-        this.f53666a.setPivotY(0.0f);
-        this.f53666a.setScaleX(f16);
-        this.f53666a.setScaleY(f16);
-        this.f53666a.setTranslationX(f14);
-        this.f53666a.setTranslationY(f15);
-        RecordingCanvas beginRecording = this.f53666a.beginRecording();
+        this.f53669f.setLocalMatrix(matrix);
+        this.f53665a.setPosition(0, 0, i12, i11);
+        this.f53665a.setPivotX(0.0f);
+        this.f53665a.setPivotY(0.0f);
+        this.f53665a.setScaleX(f16);
+        this.f53665a.setScaleY(f16);
+        this.f53665a.setTranslationX(f14);
+        this.f53665a.setTranslationY(f15);
+        RecordingCanvas beginRecording = this.f53665a.beginRecording();
         float f19 = i12;
         float f20 = i11;
         beginRecording.saveLayer(0.0f, 0.0f, f19, f20, null);
@@ -138,31 +138,31 @@ public final class d extends ob {
         } else {
             beginRecording.save();
             beginRecording.translate(-rectF.left, -rectF.top);
-            fVar.f53681f.e(beginRecording, rectF.left, rectF.top, rectF.right, rectF.bottom);
+            fVar.f53680f.e(beginRecording, rectF.left, rectF.top, rectF.right, rectF.bottom);
             beginRecording.restore();
         }
         beginRecording.drawRect(0.0f, 0.0f, f19, f20, paint);
         beginRecording.restore();
-        this.f53666a.endRecording();
-        fVar.f53685w = false;
+        this.f53665a.endRecording();
+        fVar.f53684w = false;
     }
 
     @Override
     public final void b() {
-        this.f53666a.discardDisplayList();
-        this.f53667b.discardDisplayList();
-        this.f53671g = -1;
+        this.f53665a.discardDisplayList();
+        this.f53666b.discardDisplayList();
+        this.f53670g = -1;
     }
 
     @Override
     public final void c(Canvas canvas) {
-        canvas.drawRenderNode(this.f53666a);
-        canvas.drawRenderNode(this.f53667b);
+        canvas.drawRenderNode(this.f53665a);
+        canvas.drawRenderNode(this.f53666b);
     }
 
     @Override
     public final boolean d() {
-        if (this.f53666a.hasDisplayList() && this.f53667b.hasDisplayList()) {
+        if (this.f53665a.hasDisplayList() && this.f53666b.hasDisplayList()) {
             return true;
         }
         return false;
@@ -170,7 +170,7 @@ public final class d extends ob {
 
     @Override
     public final void e(float f10) {
-        this.f53666a.setAlpha(f10);
-        this.f53667b.setAlpha(f10);
+        this.f53665a.setAlpha(f10);
+        this.f53666b.setAlpha(f10);
     }
 }

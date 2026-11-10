@@ -1,8 +1,8 @@
 package li;
 public final class l {
-    public final p f18678a;
+    public final p f18681a;
 
     public l(p pVar) {
-        this.f18678a = pVar;
+        this.f18681a = pVar;
     }
 }

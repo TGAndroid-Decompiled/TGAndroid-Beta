@@ -1,15 +1,15 @@
 package y7;
 public final class g {
-    public static final g f59037a;
-    public static final g[] f59038b;
+    public static final g f59035a;
+    public static final g[] f59036b;
 
     static {
         ?? r02 = new Enum("DEFAULT", 0);
-        f59037a = r02;
-        f59038b = new g[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
+        f59035a = r02;
+        f59036b = new g[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
     }
 
     public static g[] values() {
-        return (g[]) f59038b.clone();
+        return (g[]) f59036b.clone();
     }
 }

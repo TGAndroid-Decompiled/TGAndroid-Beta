@@ -2,37 +2,37 @@ package org.telegram.ui.Cells;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import org.telegram.ui.Components.zs;
+import org.telegram.ui.Components.ys;
 public final class g3 implements TextWatcher {
-    public final int f29145a;
-    public final zs f29146b;
-    public final boolean f29147c;
+    public final int f29156a;
+    public final ys f29157b;
+    public final boolean f29158c;
     public final h3 d;
 
-    public g3(h3 h3Var, int i7, zs zsVar, boolean z9) {
+    public g3(h3 h3Var, int i7, ys ysVar, boolean z9) {
         this.d = h3Var;
-        this.f29145a = i7;
-        this.f29146b = zsVar;
-        this.f29147c = z9;
+        this.f29156a = i7;
+        this.f29157b = ysVar;
+        this.f29158c = z9;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         h3 h3Var = this.d;
-        boolean z9 = h3Var.f29255a;
-        int i7 = this.f29145a;
+        boolean z9 = h3Var.f29266a;
+        int i7 = this.f29156a;
         if (!z9) {
             if (i7 > 0 && editable != null && editable.length() > i7) {
-                h3Var.f29255a = true;
+                h3Var.f29266a = true;
                 CharSequence subSequence = editable.subSequence(0, i7);
-                zs zsVar = this.f29146b;
-                zsVar.setText(subSequence);
-                zsVar.setSelection(zsVar.length());
-                h3Var.f29255a = false;
+                ys ysVar = this.f29157b;
+                ysVar.setText(subSequence);
+                ysVar.setSelection(ysVar.length());
+                h3Var.f29266a = false;
             }
             h3Var.b(editable);
         }
-        if (this.f29147c) {
+        if (this.f29158c) {
             while (true) {
                 int indexOf = editable.toString().indexOf("\n");
                 if (indexOf < 0) {
@@ -41,9 +41,9 @@ public final class g3 implements TextWatcher {
                 editable.delete(indexOf, indexOf + 1);
             }
         }
-        org.telegram.ui.Components.i6 i6Var = h3Var.f29265y;
-        if (i6Var != null && i7 > 0) {
-            i6Var.a();
+        org.telegram.ui.Components.h6 h6Var = h3Var.f29276y;
+        if (h6Var != null && i7 > 0) {
+            h6Var.a();
             h3Var.c();
         }
     }

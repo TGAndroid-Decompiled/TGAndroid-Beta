@@ -1,80 +1,108 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_account;
-public final class qj0 implements Runnable {
-    public final int f49069a;
-    public final rj0 f49070b;
-    public final TLRPC.TL_error f49071c;
-    public final TLObject d;
+public final class qj0 implements RequestDelegate {
+    public final int f49060a;
+    public final sj0 f49061b;
 
-    public qj0(rj0 rj0Var, TLObject tLObject, TLRPC.TL_error tL_error) {
-        this.f49069a = 0;
-        this.f49070b = rj0Var;
-        this.d = tLObject;
-        this.f49071c = tL_error;
+    public qj0(sj0 sj0Var, int i7) {
+        this.f49060a = i7;
+        this.f49061b = sj0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f49069a) {
+    public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f49060a) {
             case 0:
-                rj0 rj0Var = this.f49070b;
-                TLObject tLObject = this.d;
-                TLRPC.TL_error tL_error = this.f49071c;
-                dk0 dk0Var = rj0Var.f49497e;
-                if (tLObject instanceof Vector) {
-                    dk0Var.D = new TL_account.authorizationForm();
-                    Vector vector = (Vector) tLObject;
-                    int size = vector.objects.size();
-                    for (int i7 = 0; i7 < size; i7++) {
-                        dk0Var.D.values.add((TLRPC.TL_secureValue) vector.objects.get(i7));
-                    }
-                    rj0Var.a();
-                    return;
-                }
-                if ("APP_VERSION_OUTDATED".equals(tL_error.text)) {
-                    org.telegram.ui.Components.v4.u0(dk0Var.getParentActivity(), org.telegram.messenger.id.M0(2131743820, null), true);
-                } else {
-                    dk0Var.Q1(org.telegram.messenger.id.M0(2131689472, null), tL_error.text);
-                }
-                dk0Var.R1(true, false);
+                org.telegram.messenger.g0.h3(new rj0(this.f49061b, tLObject, tL_error));
                 return;
             case 1:
-                rj0 rj0Var2 = this.f49070b;
-                TLRPC.TL_error tL_error2 = this.f49071c;
-                TLObject tLObject2 = this.d;
-                if (tL_error2 == null) {
-                    TL_account.Password password = (TL_account.Password) tLObject2;
-                    rj0Var2.f49497e.J = password;
-                    TwoStepVerificationActivity.r0(password);
-                    rj0Var2.b();
-                    return;
-                }
-                rj0Var2.getClass();
+                final sj0 sj0Var = this.f49061b;
+                org.telegram.messenger.g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i7;
+                        int i10;
+                        switch (r3) {
+                            case 0:
+                                sj0 sj0Var2 = sj0Var;
+                                TLRPC.TL_error tL_error2 = tL_error;
+                                ek0 ek0Var = sj0Var2.f49868e;
+                                if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
+                                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                                    i7 = ((org.telegram.ui.ActionBar.f2) ek0Var).currentAccount;
+                                    ConnectionsManager.getInstance(i7).sendRequest(getpassword, new qj0(sj0Var2, 4), 8);
+                                    return;
+                                }
+                                if (ek0Var.D == null) {
+                                    ek0Var.D = new TL_account.authorizationForm();
+                                }
+                                sj0Var2.a();
+                                return;
+                            default:
+                                sj0 sj0Var3 = sj0Var;
+                                TLRPC.TL_error tL_error3 = tL_error;
+                                if (tL_error3 != null && "SRP_ID_INVALID".equals(tL_error3.text)) {
+                                    TL_account.getPassword getpassword2 = new TL_account.getPassword();
+                                    i10 = ((org.telegram.ui.ActionBar.f2) sj0Var3.f49868e).currentAccount;
+                                    ConnectionsManager.getInstance(i10).sendRequest(getpassword2, new qj0(sj0Var3, 3), 8);
+                                    return;
+                                }
+                                Utilities.f21341e.c(new pc0(sj0Var3, sj0Var3.f49866b, sj0Var3.d, 14));
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 2:
+                final sj0 sj0Var2 = this.f49061b;
+                org.telegram.messenger.g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i7;
+                        int i10;
+                        switch (r3) {
+                            case 0:
+                                sj0 sj0Var22 = sj0Var2;
+                                TLRPC.TL_error tL_error2 = tL_error;
+                                ek0 ek0Var = sj0Var22.f49868e;
+                                if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
+                                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                                    i7 = ((org.telegram.ui.ActionBar.f2) ek0Var).currentAccount;
+                                    ConnectionsManager.getInstance(i7).sendRequest(getpassword, new qj0(sj0Var22, 4), 8);
+                                    return;
+                                }
+                                if (ek0Var.D == null) {
+                                    ek0Var.D = new TL_account.authorizationForm();
+                                }
+                                sj0Var22.a();
+                                return;
+                            default:
+                                sj0 sj0Var3 = sj0Var2;
+                                TLRPC.TL_error tL_error3 = tL_error;
+                                if (tL_error3 != null && "SRP_ID_INVALID".equals(tL_error3.text)) {
+                                    TL_account.getPassword getpassword2 = new TL_account.getPassword();
+                                    i10 = ((org.telegram.ui.ActionBar.f2) sj0Var3.f49868e).currentAccount;
+                                    ConnectionsManager.getInstance(i10).sendRequest(getpassword2, new qj0(sj0Var3, 3), 8);
+                                    return;
+                                }
+                                Utilities.f21341e.c(new pc0(sj0Var3, sj0Var3.f49866b, sj0Var3.d, 14));
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 3:
+                org.telegram.messenger.g0.h3(new rj0(this.f49061b, tL_error, tLObject, 1));
                 return;
             default:
-                rj0 rj0Var3 = this.f49070b;
-                TLRPC.TL_error tL_error3 = this.f49071c;
-                TLObject tLObject3 = this.d;
-                if (tL_error3 == null) {
-                    TL_account.Password password2 = (TL_account.Password) tLObject3;
-                    rj0Var3.f49497e.J = password2;
-                    TwoStepVerificationActivity.r0(password2);
-                    Utilities.f21336e.c(new oc0(rj0Var3, rj0Var3.f49495b, rj0Var3.d, 14));
-                    return;
-                }
+                org.telegram.messenger.g0.h3(new rj0(this.f49061b, tL_error, tLObject, 2));
                 return;
         }
-    }
-
-    public qj0(rj0 rj0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i7) {
-        this.f49069a = i7;
-        this.f49070b = rj0Var;
-        this.f49071c = tL_error;
-        this.d = tLObject;
     }
 }

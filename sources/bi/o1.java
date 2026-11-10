@@ -12,8 +12,8 @@ public final class o1 extends e7 {
     public final float[] F0;
     public final w1 G0;
 
-    public o1(w1 w1Var, Context context, org.telegram.ui.ActionBar.g6 g6Var, a3.f fVar, l1 l1Var, l1 l1Var2, l1 l1Var3, l1 l1Var4, l1 l1Var5, l1 l1Var6) {
-        super(context, g6Var, fVar, l1Var, null, l1Var2, l1Var3, l1Var4, l1Var5, l1Var6);
+    public o1(w1 w1Var, Context context, org.telegram.ui.ActionBar.h6 h6Var, a3.f fVar, l1 l1Var, l1 l1Var2, l1 l1Var3, l1 l1Var4, l1 l1Var5, l1 l1Var6) {
+        super(context, h6Var, fVar, l1Var, null, l1Var2, l1Var3, l1Var4, l1Var5, l1Var6);
         this.G0 = w1Var;
         this.D0 = new float[3];
         this.E0 = new Path();
@@ -48,18 +48,18 @@ public final class o1 extends e7 {
     public final void k(int i7) {
         s1[] s1VarArr;
         w1 w1Var = this.G0;
-        ImageView imageView = w1Var.f4936e2;
-        if (imageView != null && org.telegram.ui.ActionBar.l6.H1(imageView.getBackground(), i7, false)) {
-            w1Var.f4936e2.invalidate();
+        ImageView imageView = w1Var.f4940h2;
+        if (imageView != null && org.telegram.ui.ActionBar.m6.H1(imageView.getBackground(), i7, false)) {
+            w1Var.f4940h2.invalidate();
         }
-        ImageView imageView2 = w1Var.f4937f2;
-        if (imageView2 != null && org.telegram.ui.ActionBar.l6.H1(imageView2.getBackground(), i7, false)) {
-            w1Var.f4937f2.invalidate();
+        ImageView imageView2 = w1Var.f4941i2;
+        if (imageView2 != null && org.telegram.ui.ActionBar.m6.H1(imageView2.getBackground(), i7, false)) {
+            w1Var.f4941i2.invalidate();
         }
-        for (s1 s1Var : w1Var.R1) {
+        for (s1 s1Var : w1Var.U1) {
             Drawable background = s1Var.getBackground();
-            org.telegram.ui.Components.j6 j6Var = (org.telegram.ui.Components.j6) s1Var.d;
-            if (org.telegram.ui.ActionBar.l6.H1(background, i7, false)) {
+            org.telegram.ui.Components.i6 i6Var = (org.telegram.ui.Components.i6) s1Var.d;
+            if (org.telegram.ui.ActionBar.m6.H1(background, i7, false)) {
                 s1Var.invalidate();
             }
             int f10 = i0.a.f(0.33f, i7, -1);
@@ -68,11 +68,11 @@ public final class o1 extends e7 {
             fArr[1] = Math.min(1.0f, fArr[1] * 1.1f);
             fArr[2] = Math.min(1.0f, fArr[2] * 1.1f);
             int HSVToColor = Color.HSVToColor(fArr);
-            if (j6Var.getSizeableBackground() instanceof t6) {
-                ((t6) j6Var.getSizeableBackground()).f4748b.setColor(HSVToColor);
-                j6Var.invalidate();
-            } else if (org.telegram.ui.ActionBar.l6.H1(j6Var.getSizeableBackground(), HSVToColor, false)) {
-                j6Var.invalidate();
+            if (i6Var.getSizeableBackground() instanceof t6) {
+                ((t6) i6Var.getSizeableBackground()).f4748b.setColor(HSVToColor);
+                i6Var.invalidate();
+            } else if (org.telegram.ui.ActionBar.m6.H1(i6Var.getSizeableBackground(), HSVToColor, false)) {
+                i6Var.invalidate();
             }
         }
     }

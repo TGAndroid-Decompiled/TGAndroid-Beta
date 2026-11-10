@@ -10,124 +10,124 @@ import e2.x1;
 import java.util.IdentityHashMap;
 import java.util.List;
 public final class g1 implements e2.c1 {
-    public final e2.c1 f53292a;
-    public final IdentityHashMap f53293b = new IdentityHashMap();
+    public final e2.c1 f53291a;
+    public final IdentityHashMap f53292b = new IdentityHashMap();
 
     public g1(e2.c1 c1Var) {
-        this.f53292a = c1Var;
+        this.f53291a = c1Var;
     }
 
     @Override
     public final long A() {
         V0();
-        return this.f53292a.A();
+        return this.f53291a.A();
     }
 
     @Override
     public final Looper A0() {
-        return this.f53292a.A0();
+        return this.f53291a.A0();
     }
 
     @Override
     public final int B() {
         V0();
-        return this.f53292a.B();
+        return this.f53291a.B();
     }
 
     @Override
     public final void B0() {
         V0();
-        this.f53292a.B0();
+        this.f53291a.B0();
     }
 
     @Override
     public final x1 C() {
         V0();
-        return this.f53292a.C();
+        return this.f53291a.C();
     }
 
     @Override
     public final void C0() {
         V0();
-        this.f53292a.C0();
+        this.f53291a.C0();
     }
 
     @Override
     public final void D(e2.e eVar, boolean z9) {
-        this.f53292a.D(eVar, z9);
+        this.f53291a.D(eVar, z9);
     }
 
     @Override
     public final boolean D0() {
         V0();
-        return this.f53292a.D0();
+        return this.f53291a.D0();
     }
 
     @Override
     public final void E() {
         V0();
-        this.f53292a.E();
+        this.f53291a.E();
     }
 
     @Override
     public final q1 E0() {
         V0();
-        return this.f53292a.E0();
+        return this.f53291a.E0();
     }
 
     @Override
     public final float F() {
         V0();
-        return this.f53292a.F();
+        return this.f53291a.F();
     }
 
     @Override
     public final long F0() {
         V0();
-        return this.f53292a.F0();
+        return this.f53291a.F0();
     }
 
     @Override
     public final void G() {
         V0();
-        this.f53292a.G();
+        this.f53291a.G();
     }
 
     @Override
     public final void G0(int i7) {
         V0();
-        this.f53292a.G0(i7);
+        this.f53291a.G0(i7);
     }
 
     @Override
     public final e2.e H() {
         V0();
-        return this.f53292a.H();
+        return this.f53291a.H();
     }
 
     @Override
     public final void H0() {
         V0();
-        this.f53292a.H0();
+        this.f53291a.H0();
     }
 
     @Override
     public final void I(e2.l0 l0Var) {
         V0();
-        this.f53292a.I(l0Var);
+        this.f53291a.I(l0Var);
     }
 
     @Override
     public final void I0(e2.a1 a1Var) {
         V0();
-        synchronized (this.f53293b) {
+        synchronized (this.f53292b) {
             try {
-                e2.v vVar = (e2.v) this.f53293b.get(a1Var);
+                e2.v vVar = (e2.v) this.f53292b.get(a1Var);
                 if (vVar == null) {
                     vVar = new e2.v(this, a1Var);
                 }
-                this.f53292a.I0(vVar);
-                this.f53293b.put(a1Var, vVar);
+                this.f53291a.I0(vVar);
+                this.f53292b.put(a1Var, vVar);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -137,90 +137,90 @@ public final class g1 implements e2.c1 {
     @Override
     public final void J(int i7, boolean z9) {
         V0();
-        this.f53292a.J(i7, z9);
+        this.f53291a.J(i7, z9);
     }
 
     @Override
     public final void J0() {
         V0();
-        this.f53292a.J0();
+        this.f53291a.J0();
     }
 
     @Override
     public final e2.o K() {
         V0();
-        return this.f53292a.K();
+        return this.f53291a.K();
     }
 
     @Override
     public final void K0(e2.o0 o0Var) {
         V0();
-        this.f53292a.K0(o0Var);
+        this.f53291a.K0(o0Var);
     }
 
     @Override
     public final void L() {
         V0();
-        this.f53292a.L();
+        this.f53291a.L();
     }
 
     @Override
     public final void L0() {
         V0();
-        this.f53292a.L0();
+        this.f53291a.L0();
     }
 
     @Override
     public final void M(int i7, int i10) {
         V0();
-        this.f53292a.M(i7, i10);
+        this.f53291a.M(i7, i10);
     }
 
     @Override
     public final e2.o0 M0() {
         V0();
-        return this.f53292a.M0();
+        return this.f53291a.M0();
     }
 
     @Override
     public final void N(int i7) {
         V0();
-        this.f53292a.N(i7);
+        this.f53291a.N(i7);
     }
 
     @Override
     public final void N0(List list) {
         V0();
-        this.f53292a.N0(list);
+        this.f53291a.N0(list);
     }
 
     @Override
     public final int O() {
         V0();
-        return this.f53292a.O();
+        return this.f53291a.O();
     }
 
     @Override
     public final long O0() {
         V0();
-        return this.f53292a.O0();
+        return this.f53291a.O0();
     }
 
     @Override
     public final boolean P() {
-        return this.f53292a.P();
+        return this.f53291a.P();
     }
 
     @Override
     public final boolean P0() {
         V0();
-        return this.f53292a.P0();
+        return this.f53291a.P0();
     }
 
     @Override
     public final void Q(int i7) {
         V0();
-        this.f53292a.Q(i7);
+        this.f53291a.Q(i7);
     }
 
     public final e2.b1 Q0() {
@@ -267,7 +267,7 @@ public final class g1 implements e2.c1 {
                 }
                 ia.p(z11);
                 e2.k1 m10 = y02.m(i7, new e2.k1(), 0L);
-                if (i10 == h2.m0.i(i10, m10.f10335n, m10.f10336o)) {
+                if (i10 == h2.m0.i(i10, m10.f10340n, m10.f10341o)) {
                     z12 = true;
                 }
                 ia.p(z12);
@@ -304,7 +304,7 @@ public final class g1 implements e2.c1 {
     @Override
     public final void R(int i7, int i10) {
         V0();
-        this.f53292a.R(i7, i10);
+        this.f53291a.R(i7, i10);
     }
 
     public final l1 R0() {
@@ -359,7 +359,7 @@ public final class g1 implements e2.c1 {
     @Override
     public final void S(SurfaceHolder surfaceHolder) {
         V0();
-        this.f53292a.S(surfaceHolder);
+        this.f53291a.S(surfaceHolder);
     }
 
     public final e2.l0 S0() {
@@ -372,7 +372,7 @@ public final class g1 implements e2.c1 {
     @Override
     public final void T(float f10) {
         V0();
-        this.f53292a.T(f10);
+        this.f53291a.T(f10);
     }
 
     public final e2.l1 T0() {
@@ -382,13 +382,13 @@ public final class g1 implements e2.c1 {
         if (S0() != null) {
             return new f1(this);
         }
-        return e2.l1.f10354a;
+        return e2.l1.f10359a;
     }
 
     @Override
     public final void U() {
         V0();
-        this.f53292a.U();
+        this.f53291a.U();
     }
 
     public final e2.o0 U0() {
@@ -401,12 +401,12 @@ public final class g1 implements e2.c1 {
     @Override
     public final void V(List list, int i7, long j3) {
         V0();
-        this.f53292a.V(list, i7, j3);
+        this.f53291a.V(list, i7, j3);
     }
 
     public final void V0() {
         boolean z9;
-        if (Looper.myLooper() == this.f53292a.A0()) {
+        if (Looper.myLooper() == this.f53291a.A0()) {
             z9 = true;
         } else {
             z9 = false;
@@ -417,129 +417,129 @@ public final class g1 implements e2.c1 {
     @Override
     public final e2.v0 W() {
         V0();
-        return this.f53292a.W();
+        return this.f53291a.W();
     }
 
     @Override
     public final void X(boolean z9) {
         V0();
-        this.f53292a.X(z9);
+        this.f53291a.X(z9);
     }
 
     @Override
     public final void Y(int i7) {
         V0();
-        this.f53292a.Y(i7);
+        this.f53291a.Y(i7);
     }
 
     @Override
     public final long Z() {
         V0();
-        return this.f53292a.Z();
+        return this.f53291a.Z();
     }
 
     @Override
     public final void a() {
         V0();
-        this.f53292a.a();
+        this.f53291a.a();
     }
 
     @Override
     public final long a0() {
         V0();
-        return this.f53292a.a0();
+        return this.f53291a.a0();
     }
 
     @Override
     public final void b() {
         V0();
-        this.f53292a.b();
+        this.f53291a.b();
     }
 
     @Override
     public final void b0(int i7, List list) {
         V0();
-        this.f53292a.b0(i7, list);
+        this.f53291a.b0(i7, list);
     }
 
     @Override
     public final void c(long j3) {
         V0();
-        this.f53292a.c(j3);
+        this.f53291a.c(j3);
     }
 
     @Override
     public final void c0() {
         V0();
-        this.f53292a.c0();
+        this.f53291a.c0();
     }
 
     @Override
     public final void d(float f10) {
         V0();
-        this.f53292a.d(f10);
+        this.f53291a.d(f10);
     }
 
     @Override
     public final long d0() {
         V0();
-        return this.f53292a.d0();
+        return this.f53291a.d0();
     }
 
     @Override
     public final void e(e2.w0 w0Var) {
         V0();
-        this.f53292a.e(w0Var);
+        this.f53291a.e(w0Var);
     }
 
     @Override
     public final boolean e0() {
         V0();
-        return this.f53292a.e0();
+        return this.f53291a.e0();
     }
 
     @Override
     public final void f() {
         V0();
-        this.f53292a.f();
+        this.f53291a.f();
     }
 
     @Override
     public final void f0(e2.l0 l0Var, long j3) {
         V0();
-        this.f53292a.f0(l0Var, j3);
+        this.f53291a.f0(l0Var, j3);
     }
 
     @Override
     public final boolean g() {
         V0();
-        return this.f53292a.g();
+        return this.f53291a.g();
     }
 
     @Override
     public final void g0() {
         V0();
-        this.f53292a.g0();
+        this.f53291a.g0();
     }
 
     @Override
     public final long getDuration() {
         V0();
-        return this.f53292a.getDuration();
+        return this.f53291a.getDuration();
     }
 
     @Override
     public final boolean h() {
         V0();
-        return this.f53292a.h();
+        return this.f53291a.h();
     }
 
     @Override
     public final void h0(e2.a1 a1Var) {
         V0();
-        synchronized (this.f53293b) {
-            e2.a1 a1Var2 = (e2.a1) this.f53293b.remove(a1Var);
-            e2.c1 c1Var = this.f53292a;
+        synchronized (this.f53292b) {
+            e2.a1 a1Var2 = (e2.a1) this.f53292b.remove(a1Var);
+            e2.c1 c1Var = this.f53291a;
             if (a1Var2 != null) {
                 a1Var = a1Var2;
             }
@@ -550,222 +550,222 @@ public final class g1 implements e2.c1 {
     @Override
     public final int i() {
         V0();
-        return this.f53292a.i();
+        return this.f53291a.i();
     }
 
     @Override
     public final void i0(int i7) {
         V0();
-        this.f53292a.i0(i7);
+        this.f53291a.i0(i7);
     }
 
     @Override
     public final e2.w0 j() {
         V0();
-        return this.f53292a.j();
+        return this.f53291a.j();
     }
 
     @Override
     public final s1 j0() {
         V0();
-        return this.f53292a.j0();
+        return this.f53291a.j0();
     }
 
     @Override
     public final void k(int i7) {
         V0();
-        this.f53292a.k(i7);
+        this.f53291a.k(i7);
     }
 
     @Override
     public final e2.o0 k0() {
         V0();
-        return this.f53292a.k0();
+        return this.f53291a.k0();
     }
 
     @Override
     public final long l() {
         V0();
-        return this.f53292a.l();
+        return this.f53291a.l();
     }
 
     @Override
     public final g2.d l0() {
         V0();
-        return this.f53292a.l0();
+        return this.f53291a.l0();
     }
 
     @Override
     public final int m() {
         V0();
-        return this.f53292a.m();
+        return this.f53291a.m();
     }
 
     @Override
     public final void m0(e2.l0 l0Var) {
         V0();
-        this.f53292a.m0(l0Var);
+        this.f53291a.m0(l0Var);
     }
 
     @Override
     public final int n() {
         V0();
-        return this.f53292a.n();
+        return this.f53291a.n();
     }
 
     @Override
     public final int n0() {
         V0();
-        return this.f53292a.n0();
+        return this.f53291a.n0();
     }
 
     @Override
     public final void o(int i7, e2.l0 l0Var) {
         V0();
-        this.f53292a.o(i7, l0Var);
+        this.f53291a.o(i7, l0Var);
     }
 
     @Override
     public final int o0() {
         V0();
-        return this.f53292a.o0();
+        return this.f53291a.o0();
     }
 
     @Override
     public final boolean p() {
         V0();
-        return this.f53292a.p();
+        return this.f53291a.p();
     }
 
     @Override
     public final boolean p0(int i7) {
         V0();
-        return this.f53292a.p0(i7);
+        return this.f53291a.p0(i7);
     }
 
     @Override
     public final long q() {
         V0();
-        return this.f53292a.q();
+        return this.f53291a.q();
     }
 
     @Override
     public final void q0(q1 q1Var) {
         V0();
-        this.f53292a.q0(q1Var);
+        this.f53291a.q0(q1Var);
     }
 
     @Override
     public final long r() {
         V0();
-        return this.f53292a.r();
+        return this.f53291a.r();
     }
 
     @Override
     public final void r0(boolean z9) {
         V0();
-        this.f53292a.r0(z9);
+        this.f53291a.r0(z9);
     }
 
     @Override
     public final void s(int i7, long j3) {
         V0();
-        this.f53292a.s(i7, j3);
+        this.f53291a.s(i7, j3);
     }
 
     @Override
     public final void s0(List list, int i7, int i10) {
         V0();
-        this.f53292a.s0(list, i7, i10);
+        this.f53291a.s0(list, i7, i10);
     }
 
     @Override
     public final void stop() {
         V0();
-        this.f53292a.stop();
+        this.f53291a.stop();
     }
 
     @Override
     public final e2.y0 t() {
         V0();
-        return this.f53292a.t();
+        return this.f53291a.t();
     }
 
     @Override
     public final void t0(int i7, int i10) {
         V0();
-        this.f53292a.t0(i7, i10);
+        this.f53291a.t0(i7, i10);
     }
 
     @Override
     public final boolean u() {
         V0();
-        return this.f53292a.u();
+        return this.f53291a.u();
     }
 
     @Override
     public final void u0(int i7, int i10, int i11) {
         V0();
-        this.f53292a.u0(i7, i10, i11);
+        this.f53291a.u0(i7, i10, i11);
     }
 
     @Override
     public final void v() {
         V0();
-        this.f53292a.v();
+        this.f53291a.v();
     }
 
     @Override
     public final boolean v0() {
         V0();
-        return this.f53292a.v0();
+        return this.f53291a.v0();
     }
 
     @Override
     public final e2.l0 w() {
         V0();
-        return this.f53292a.w();
+        return this.f53291a.w();
     }
 
     @Override
     public final int w0() {
         V0();
-        return this.f53292a.w0();
+        return this.f53291a.w0();
     }
 
     @Override
     public final void x(boolean z9) {
         V0();
-        this.f53292a.x(z9);
+        this.f53291a.x(z9);
     }
 
     @Override
     public final void x0(List list) {
         V0();
-        this.f53292a.x0(list);
+        this.f53291a.x0(list);
     }
 
     @Override
     public final int y() {
         V0();
-        return this.f53292a.y();
+        return this.f53291a.y();
     }
 
     @Override
     public final e2.l1 y0() {
         V0();
-        return this.f53292a.y0();
+        return this.f53291a.y0();
     }
 
     @Override
     public final long z() {
         V0();
-        return this.f53292a.z();
+        return this.f53291a.z();
     }
 
     @Override
     public final boolean z0() {
         V0();
-        return this.f53292a.z0();
+        return this.f53291a.z0();
     }
 }

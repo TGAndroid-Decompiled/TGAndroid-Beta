@@ -1,15 +1,15 @@
 package org.telegram.ui.Components;
 public final class dp implements c5.g {
-    public int f33122a;
-    public final tf0 f33123b;
+    public int f33043a;
+    public final sf0 f33044b;
 
-    public dp(tf0 tf0Var) {
-        this.f33123b = tf0Var;
+    public dp(sf0 sf0Var) {
+        this.f33044b = sf0Var;
     }
 
     @Override
     public final void b(float f10, int i7, int i10) {
-        if (i7 == this.f33123b.getCurrentItem() && f10 == 0.0f && this.f33122a == 1) {
+        if (i7 == this.f33044b.getCurrentItem() && f10 == 0.0f && this.f33043a == 1) {
             d();
         }
     }
@@ -19,16 +19,16 @@ public final class dp implements c5.g {
         if (i7 == 0) {
             d();
         }
-        this.f33122a = i7;
+        this.f33043a = i7;
     }
 
     public final void d() {
-        tf0 tf0Var = this.f33123b;
-        if (tf0Var.f33720w0 != null) {
-            int currentItem = tf0Var.getCurrentItem();
-            int k10 = tf0Var.f33720w0.k(currentItem) + tf0Var.f33720w0.j();
+        sf0 sf0Var = this.f33044b;
+        if (sf0Var.f33620w0 != null) {
+            int currentItem = sf0Var.getCurrentItem();
+            int k10 = sf0Var.f33620w0.k(currentItem) + sf0Var.f33620w0.j();
             if (currentItem != k10) {
-                tf0Var.x(k10, false);
+                sf0Var.x(k10, false);
             }
         }
     }

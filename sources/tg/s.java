@@ -6,24 +6,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import c8.ha;
 import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.ActionBar.s6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
 public final class s implements Runnable {
-    public final int f55950a;
-    public final g0 f55951b;
-    public final j f55952c;
+    public final int f55949a;
+    public final g0 f55950b;
+    public final j f55951c;
 
     public s(g0 g0Var, j jVar, int i7) {
-        this.f55950a = i7;
-        this.f55951b = g0Var;
-        this.f55952c = jVar;
+        this.f55949a = i7;
+        this.f55950b = g0Var;
+        this.f55951c = jVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f55950a;
-        final j jVar = this.f55952c;
-        final g0 g0Var = this.f55951b;
+        int i7 = this.f55949a;
+        final j jVar = this.f55951c;
+        final g0 g0Var = this.f55950b;
         switch (i7) {
             case 0:
                 g0Var.q0(jVar);
@@ -32,10 +32,10 @@ public final class s implements Runnable {
                 LinearLayout linearLayout = new LinearLayout(g0Var.getContext());
                 linearLayout.setOrientation(0);
                 TextView textView = new TextView(g0Var.getContext());
-                int i10 = l6.E8;
-                u uVar = g0Var.f55717z1;
-                s6.U(textView, i10, uVar);
-                textView.setBackground(l6.N0(false));
+                int i10 = m6.E8;
+                u uVar = g0Var.f55716z1;
+                t6.U(textView, i10, uVar);
+                textView.setBackground(m6.N0(false));
                 textView.setGravity(16);
                 textView.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(14.0f), 0);
                 textView.setTextSize(1, 14.0f);
@@ -73,8 +73,8 @@ public final class s implements Runnable {
                 linearLayout.addView(textView, ha.o(-2, 48));
                 if (jVar instanceof k2) {
                     TextView textView2 = new TextView(g0Var.getContext());
-                    s6.U(textView2, i10, uVar);
-                    textView2.setBackground(l6.N0(false));
+                    t6.U(textView2, i10, uVar);
+                    textView2.setBackground(m6.N0(false));
                     textView2.setGravity(16);
                     textView2.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), 0);
                     textView2.setTextSize(1, 14.0f);
@@ -86,8 +86,8 @@ public final class s implements Runnable {
                 }
                 if (jVar instanceof d2) {
                     TextView textView3 = new TextView(g0Var.getContext());
-                    s6.U(textView3, i10, uVar);
-                    textView3.setBackgroundDrawable(l6.N0(false));
+                    t6.U(textView3, i10, uVar);
+                    textView3.setBackgroundDrawable(m6.N0(false));
                     textView3.setGravity(16);
                     textView3.setEllipsize(truncateAt);
                     textView3.setPadding(org.telegram.messenger.g0.L(14.0f), 0, org.telegram.messenger.g0.L(16.0f), 0);
@@ -125,8 +125,8 @@ public final class s implements Runnable {
                 }
                 if (!(jVar instanceof n1)) {
                     TextView textView4 = new TextView(g0Var.getContext());
-                    s6.U(textView4, i10, uVar);
-                    textView4.setBackgroundDrawable(l6.N0(false));
+                    t6.U(textView4, i10, uVar);
+                    textView4.setBackgroundDrawable(m6.N0(false));
                     textView4.setGravity(16);
                     textView4.setEllipsize(truncateAt);
                     textView4.setPadding(org.telegram.messenger.g0.L(14.0f), 0, org.telegram.messenger.g0.L(16.0f), 0);

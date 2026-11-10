@@ -21,6 +21,6 @@ public abstract class b {
         if (!(obj instanceof f)) {
             return;
         }
-        throw ((f) obj).f13820a;
+        throw ((f) obj).f13822a;
     }
 }

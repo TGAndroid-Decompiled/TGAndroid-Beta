@@ -6,25 +6,25 @@ import org.telegram.messenger.c20;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.fw0;
+import org.telegram.ui.Components.ew0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.cn;
 public final class i3 implements Runnable {
-    public final int f4034a = 0;
-    public final long f4035b;
-    public final long f4036c;
+    public final int f4031a = 0;
+    public final long f4032b;
+    public final long f4033c;
     public final c20 d;
-    public final Object f4037e;
-    public final Object f4038f;
+    public final Object f4034e;
+    public final Object f4035f;
     public final Object h;
 
     public i3(k7 k7Var, c20 c20Var, TLRPC.TL_error tL_error, TLObject tLObject, long j3, long j10) {
-        this.f4037e = k7Var;
+        this.f4034e = k7Var;
         this.d = c20Var;
-        this.f4038f = tL_error;
+        this.f4035f = tL_error;
         this.h = tLObject;
-        this.f4035b = j3;
-        this.f4036c = j10;
+        this.f4032b = j3;
+        this.f4033c = j10;
     }
 
     @Override
@@ -33,14 +33,14 @@ public final class i3 implements Runnable {
         LinkedHashMap linkedHashMap;
         String str;
         String str2;
-        switch (this.f4034a) {
+        switch (this.f4031a) {
             case 0:
-                k7 k7Var = (k7) this.f4037e;
+                k7 k7Var = (k7) this.f4034e;
                 c20 c20Var = this.d;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f4038f;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f4035f;
                 TLObject tLObject = (TLObject) this.h;
-                long j3 = this.f4035b;
-                long j10 = this.f4036c;
+                long j3 = this.f4032b;
+                long j10 = this.f4033c;
                 c20Var.a(tL_error);
                 org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
                 if (T != null) {
@@ -50,23 +50,23 @@ public final class i3 implements Runnable {
                             ta2.whenFullyVisible(new s3(k7Var, ta2, j3, 0));
                             T.presentFragment(ta2);
                         } else {
-                            org.telegram.ui.Components.cc I = org.telegram.ui.Components.hc.a0(T).I(2131624028, org.telegram.messenger.id.M0(2131749897, null), org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131749898, k7Var.y1(), org.telegram.messenger.m5.t(j3))));
-                            I.f32637t = true;
+                            org.telegram.ui.Components.bc I = org.telegram.ui.Components.gc.a0(T).I(2131624028, org.telegram.messenger.id.M0(2131749897, null), org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131749898, k7Var.y1(), org.telegram.messenger.m5.t(j3))));
+                            I.f32213t = true;
                             I.j();
                         }
                     } else {
-                        org.telegram.ui.Components.hc.a0(T).f0(tL_error, false);
+                        org.telegram.ui.Components.gc.a0(T).f0(tL_error, false);
                     }
                 }
-                ea.y(k7Var.f28621a, false).P(j3);
-                ea.y(k7Var.f28621a, false).P(j10);
+                ea.y(k7Var.f28669a, false).P(j3);
+                ea.y(k7Var.f28669a, false).P(j10);
                 return;
             default:
-                org.telegram.ui.Wallet.p0 p0Var = (org.telegram.ui.Wallet.p0) this.f4037e;
-                String str3 = (String) this.f4038f;
+                org.telegram.ui.Wallet.p0 p0Var = (org.telegram.ui.Wallet.p0) this.f4034e;
+                String str3 = (String) this.f4035f;
                 org.telegram.ui.Wallet.i0 i0Var = (org.telegram.ui.Wallet.i0) this.h;
-                long j11 = this.f4035b;
-                ?? r72 = this.f4036c;
+                long j11 = this.f4032b;
+                ?? r72 = this.f4033c;
                 c20 c20Var2 = this.d;
                 ArrayList arrayList2 = new ArrayList();
                 LinkedHashMap linkedHashMap2 = new LinkedHashMap();
@@ -91,25 +91,25 @@ public final class i3 implements Runnable {
                     linkedHashMap = linkedHashMap2;
                 }
                 if (!str3.isEmpty() && i0Var != null && !i0Var.d()) {
-                    Object obj = org.telegram.ui.Wallet.p0.f42965f;
+                    Object obj = org.telegram.ui.Wallet.p0.f42952f;
                     synchronized (obj) {
                         try {
                             p0Var.c(j11);
                             try {
-                                fw0 r10 = p0Var.r();
+                                ew0 r10 = p0Var.r();
                                 try {
-                                    if (!((LinkedHashMap) r10.f33749e).isEmpty() && r10.f33746a != r72) {
+                                    if (!((LinkedHashMap) r10.f33347e).isEmpty() && r10.f33344a != r72) {
                                         throw new Exception("USER_MISMATCH");
                                     }
-                                    r10.f33746a = r72;
+                                    r10.f33344a = r72;
                                     arrayList = arrayList2;
                                     try {
                                         p0Var.s(r10, str3, linkedHashMap2, arrayList, j11);
                                         linkedHashMap = linkedHashMap2;
                                         try {
-                                            ((LinkedHashMap) r10.f33749e).put(str3, p0Var.j(r10, str3, i0Var, arrayList, j11));
+                                            ((LinkedHashMap) r10.f33347e).put(str3, p0Var.j(r10, str3, i0Var, arrayList, j11));
                                             linkedHashMap.put(str3, i0Var);
-                                            r10.f33747b = ConnectionsManager.getInstance(p0Var.f42969b).getCurrentTime();
+                                            r10.f33345b = ConnectionsManager.getInstance(p0Var.f42956b).getCurrentTime();
                                             synchronized (obj) {
                                                 p0Var.c(j11);
                                                 p0Var.v(r10, linkedHashMap);
@@ -194,11 +194,11 @@ public final class i3 implements Runnable {
     }
 
     public i3(org.telegram.ui.Wallet.p0 p0Var, String str, org.telegram.ui.Wallet.i0 i0Var, long j3, long j10, c20 c20Var) {
-        this.f4037e = p0Var;
-        this.f4038f = str;
+        this.f4034e = p0Var;
+        this.f4035f = str;
         this.h = i0Var;
-        this.f4035b = j3;
-        this.f4036c = j10;
+        this.f4032b = j3;
+        this.f4033c = j10;
         this.d = c20Var;
     }
 }

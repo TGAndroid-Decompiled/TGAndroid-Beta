@@ -12,67 +12,67 @@ import org.telegram.messenger.u9;
 import org.telegram.messenger.w9;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.Components.m41;
-import org.telegram.ui.Components.na;
+import org.telegram.ui.Components.ma;
+import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.qj0;
-import org.telegram.ui.Components.ud0;
-import org.telegram.ui.Components.y31;
-public final class f extends na implements u9 {
-    public final y31 P1;
-    public final LongSparseArray Q1;
-    public ArrayList R1;
-    public boolean S1;
-    public m41 T1;
-    public int U1;
+import org.telegram.ui.Components.td0;
+import org.telegram.ui.Components.x31;
+public final class f extends ma implements u9 {
+    public final x31 S1;
+    public final LongSparseArray T1;
+    public ArrayList U1;
+    public boolean V1;
+    public m41 W1;
+    public int X1;
 
     public f(Context context) {
         super(context, null, false, false, 2, null);
         int i7 = 0;
-        this.Q1 = new LongSparseArray();
-        this.R1 = new ArrayList();
-        int x02 = l6.x0(null, l6.f27809a7, false);
-        this.U1 = x02;
+        this.T1 = new LongSparseArray();
+        this.U1 = new ArrayList();
+        int x02 = m6.x0(null, m6.f27834a7, false);
+        this.X1 = x02;
         v0(x02);
-        w9.c(this.f28621a).f26281f.add(this);
-        this.C1 = false;
-        this.B1 = org.telegram.messenger.g0.L(12.0f);
+        w9.c(this.f28669a).f26285f.add(this);
+        this.F1 = false;
+        this.E1 = org.telegram.messenger.g0.L(12.0f);
         N();
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setClipChildren(false);
         linearLayout.setClipToPadding(false);
         linearLayout.setClickable(true);
-        this.P1 = y31.j(-1, linearLayout);
-        this.f36303k1.setPadding(this.f28654t0, org.telegram.messenger.g0.L(9.0f), this.f28654t0, org.telegram.messenger.g0.L(9.0f));
-        this.f36303k1.setOverScrollMode(2);
-        this.T1.O(false);
-        ArrayList arrayList = w9.c(this.f28621a).f26279c;
+        this.S1 = x31.j(-1, linearLayout);
+        this.n1.setPadding(this.f28705t0, org.telegram.messenger.g0.L(9.0f), this.f28705t0, org.telegram.messenger.g0.L(9.0f));
+        this.n1.setOverScrollMode(2);
+        this.W1.O(false);
+        ArrayList arrayList = w9.c(this.f28669a).f26283c;
         int size = arrayList.size();
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
             s9 s9Var = (s9) obj;
             e eVar = new e(context, s9Var);
-            eVar.f60306a.setOnClickListener(new ud0(this, context, s9Var, 4));
+            eVar.f60308a.setOnClickListener(new td0(this, context, s9Var, 4));
             linearLayout.addView(eVar, ha.o(-1, -2));
-            this.Q1.put(s9Var.f25435b, eVar);
+            this.T1.put(s9Var.f25439b, eVar);
         }
         g(arrayList);
     }
 
     @Override
-    public final pj0 L0(qj0 qj0Var) {
-        m41 m41Var = new m41(this.f36303k1, getContext(), this.f28621a, 0, true, new hi.u1(this, 26), this.I0);
-        this.T1 = m41Var;
-        m41Var.f35945r = false;
+    public final oj0 L0(pj0 pj0Var) {
+        m41 m41Var = new m41(this.n1, getContext(), this.f28669a, 0, true, new hi.u1(this, 26), this.I0);
+        this.W1 = m41Var;
+        m41Var.f35845r = false;
         return m41Var;
     }
 
     @Override
     public final CharSequence O0() {
-        ArrayList arrayList = this.R1;
+        ArrayList arrayList = this.U1;
         if (arrayList == null) {
             return null;
         }
@@ -81,33 +81,33 @@ public final class f extends na implements u9 {
 
     @Override
     public final void dismiss() {
-        w9.c(this.f28621a).f26281f.remove(this);
+        w9.c(this.f28669a).f26285f.remove(this);
         super.dismiss();
     }
 
     @Override
     public final void g(ArrayList arrayList) {
         int i7;
-        this.R1 = new ArrayList(arrayList);
-        this.l1.setTitle(O0());
+        this.U1 = new ArrayList(arrayList);
+        this.f35902o1.setTitle(O0());
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
             s9 s9Var = (s9) obj;
-            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = s9Var.f25438f;
+            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = s9Var.f25442f;
             if (tL_starGiftAuctionState != null) {
                 i7 = tL_starGiftAuctionState.next_round_at;
             } else {
                 i7 = 0;
             }
-            e eVar = (e) this.Q1.get(s9Var.f25435b);
+            e eVar = (e) this.T1.get(s9Var.f25439b);
             if (eVar != null) {
-                eVar.b(this.S1);
-                long max = Math.max(0, i7 - ConnectionsManager.getInstance(this.f28621a).getCurrentTime());
-                eVar.a(max, this.S1);
-                eVar.f60310f.a(max);
+                eVar.b(this.V1);
+                long max = Math.max(0, i7 - ConnectionsManager.getInstance(this.f28669a).getCurrentTime());
+                eVar.a(max, this.V1);
+                eVar.f60312f.a(max);
             }
         }
     }
@@ -116,9 +116,9 @@ public final class f extends na implements u9 {
     public final void s0() {
         try {
             super.s0();
-            int x02 = l6.x0(null, l6.f27809a7, false);
-            if (x02 != this.U1) {
-                this.U1 = x02;
+            int x02 = m6.x0(null, m6.f27834a7, false);
+            if (x02 != this.X1) {
+                this.X1 = x02;
                 v0(x02);
             }
         } catch (Exception e10) {
@@ -128,6 +128,6 @@ public final class f extends na implements u9 {
 
     @Override
     public final void v() {
-        this.S1 = true;
+        this.V1 = true;
     }
 }

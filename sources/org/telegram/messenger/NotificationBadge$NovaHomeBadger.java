@@ -10,7 +10,7 @@ public class NotificationBadge$NovaHomeBadger implements cs {
         ContentValues contentValues = new ContentValues();
         contentValues.put("tag", fs.d.getPackageName() + "/" + fs.d.getClassName());
         contentValues.put("count", Integer.valueOf(i7));
-        t0.f25566b.getContentResolver().insert(Uri.parse("content://com.teslacoilsw.notifier/unread_count"), contentValues);
+        t0.f25570b.getContentResolver().insert(Uri.parse("content://com.teslacoilsw.notifier/unread_count"), contentValues);
     }
 
     @Override

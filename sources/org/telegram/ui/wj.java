@@ -4,8 +4,8 @@ import android.content.Context;
 public final class wj extends lh.e {
     public final cn L;
 
-    public wj(cn cnVar, Context context, org.telegram.ui.ActionBar.g6 g6Var, qi qiVar, dh.c cVar) {
-        super(context, cVar, qiVar, g6Var);
+    public wj(cn cnVar, Context context, org.telegram.ui.ActionBar.h6 h6Var, qi qiVar, dh.c cVar) {
+        super(context, cVar, qiVar, h6Var);
         this.L = cnVar;
     }
 
@@ -13,7 +13,7 @@ public final class wj extends lh.e {
     public final void setVisibility(int i7) {
         boolean z9;
         super.setVisibility(i7);
-        m6.n nVar = this.L.f44485hd;
+        m6.n nVar = this.L.f44526hd;
         boolean z10 = false;
         if (i7 == 0) {
             z9 = true;

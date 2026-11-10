@@ -13,11 +13,11 @@ public abstract class e1 extends ee.j implements l0, x0 {
     public final void dispose() {
         n1 h = h();
         while (true) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = n1.f60109a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = n1.f60107a;
             Object obj = atomicReferenceFieldUpdater.get(h);
             if (obj instanceof e1) {
                 if (obj == this) {
-                    n0 n0Var = b0.f60060j;
+                    n0 n0Var = b0.f60058j;
                     while (!atomicReferenceFieldUpdater.compareAndSet(h, obj, n0Var)) {
                         if (atomicReferenceFieldUpdater.get(h) != obj) {
                             break;
@@ -30,7 +30,7 @@ public abstract class e1 extends ee.j implements l0, x0 {
                 return;
             } else {
                 while (true) {
-                    AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = ee.j.f10781a;
+                    AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = ee.j.f10786a;
                     Object obj2 = atomicReferenceFieldUpdater2.get(this);
                     if (!(obj2 instanceof ee.o)) {
                         if (obj2 == this) {
@@ -39,7 +39,7 @@ public abstract class e1 extends ee.j implements l0, x0 {
                         }
                         kotlin.jvm.internal.j.c(obj2, "null cannot be cast to non-null type kotlinx.coroutines.internal.LockFreeLinkedListNode");
                         ee.j jVar2 = (ee.j) obj2;
-                        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater3 = ee.j.f10783c;
+                        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater3 = ee.j.f10788c;
                         ee.o oVar = (ee.o) atomicReferenceFieldUpdater3.get(jVar2);
                         if (oVar == null) {
                             oVar = new ee.o(jVar2);

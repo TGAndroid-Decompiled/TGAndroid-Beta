@@ -1,12 +1,12 @@
 package h2;
 public final class q {
-    public final Object f14136a;
-    public ca.i f14137b = new ca.i();
-    public boolean f14138c;
+    public final Object f14138a;
+    public ca.i f14139b = new ca.i();
+    public boolean f14140c;
     public boolean d;
 
     public q(Object obj) {
-        this.f14136a = obj;
+        this.f14138a = obj;
     }
 
     public final boolean equals(Object obj) {
@@ -14,12 +14,12 @@ public final class q {
             return true;
         }
         if (obj != null && q.class == obj.getClass()) {
-            return this.f14136a.equals(((q) obj).f14136a);
+            return this.f14138a.equals(((q) obj).f14138a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f14136a.hashCode();
+        return this.f14138a.hashCode();
     }
 }

@@ -2,26 +2,26 @@ package d9;
 
 import java.util.Iterator;
 public final class l extends j {
-    public static final Object[] f8246f;
+    public static final Object[] f8251f;
     public static final l h;
     public final transient Object[] d;
-    public final transient Object[] f8247e;
+    public final transient Object[] f8252e;
 
     static {
         Object[] objArr = new Object[0];
-        f8246f = objArr;
+        f8251f = objArr;
         h = new l(objArr, objArr);
     }
 
     public l(Object[] objArr, Object[] objArr2) {
         this.d = objArr;
-        this.f8247e = objArr2;
+        this.f8252e = objArr2;
     }
 
     @Override
     public final boolean contains(Object obj) {
         if (obj != null) {
-            int length = this.f8247e.length;
+            int length = this.f8252e.length;
             return false;
         }
         return false;
@@ -45,11 +45,11 @@ public final class l extends j {
 
     @Override
     public final Iterator iterator() {
-        k kVar = this.f8242b;
+        k kVar = this.f8247b;
         if (kVar == null) {
-            g gVar = i.f8239b;
+            g gVar = i.f8244b;
             kVar = k.d;
-            this.f8242b = kVar;
+            this.f8247b = kVar;
         }
         return kVar.listIterator(0);
     }

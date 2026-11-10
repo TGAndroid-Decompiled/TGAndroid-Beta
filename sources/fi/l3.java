@@ -11,34 +11,34 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import androidx.appcompat.widget.ActionBarContainer;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.ny0;
+import org.telegram.ui.Components.my0;
 public final class l3 extends Drawable {
-    public final int f12315a;
-    public Object f12316b;
+    public final int f12316a;
+    public Object f12317b;
 
     public l3() {
-        this.f12315a = 3;
+        this.f12316a = 3;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f12315a) {
+        switch (this.f12316a) {
             case 0:
                 canvas.save();
-                m3 m3Var = (m3) this.f12316b;
-                canvas.drawPath(m3Var.E0, m3Var.f12419b0);
+                m3 m3Var = (m3) this.f12317b;
+                canvas.drawPath(m3Var.E0, m3Var.f12420b0);
                 canvas.restore();
                 return;
             case 1:
                 canvas.save();
                 canvas.translate(0.0f, org.telegram.messenger.g0.L(1.0f));
-                hi.a3 a3Var = (hi.a3) this.f12316b;
+                hi.a3 a3Var = (hi.a3) this.f12317b;
                 a3Var.M0.setBounds(getBounds());
                 a3Var.M0.draw(canvas);
                 canvas.restore();
                 return;
             case 2:
-                ActionBarContainer actionBarContainer = (ActionBarContainer) this.f12316b;
+                ActionBarContainer actionBarContainer = (ActionBarContainer) this.f12317b;
                 if (actionBarContainer.h) {
                     Drawable drawable = actionBarContainer.f1914f;
                     if (drawable != null) {
@@ -58,33 +58,33 @@ public final class l3 extends Drawable {
                 }
                 return;
             case 3:
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY() - org.telegram.messenger.g0.L(1.0f), (getBounds().width() - org.telegram.messenger.g0.L(8.0f)) / 2.0f, (Paint) this.f12316b);
+                canvas.drawCircle(getBounds().centerX(), getBounds().centerY() - org.telegram.messenger.g0.L(1.0f), (getBounds().width() - org.telegram.messenger.g0.L(8.0f)) / 2.0f, (Paint) this.f12317b);
                 return;
             case 4:
-                Drawable[] drawableArr = (Drawable[]) this.f12316b;
+                Drawable[] drawableArr = (Drawable[]) this.f12317b;
                 for (int i7 = 0; i7 < drawableArr.length; i7++) {
                     drawableArr[i7].setBounds(getBounds());
                     drawableArr[i7].draw(canvas);
                 }
                 return;
             case 5:
-                ug.y0 y0Var = (ug.y0) this.f12316b;
+                ug.y0 y0Var = (ug.y0) this.f12317b;
                 Rect bounds = getBounds();
                 y0Var.getClass();
                 y0Var.d(bounds.left, 0.0f, bounds.top, bounds.right, 0.0f, bounds.bottom);
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, y0Var.f56881f);
+                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, y0Var.f56877f);
                 return;
             case 6:
-                ImageReceiver imageReceiver = (ImageReceiver) this.f12316b;
+                ImageReceiver imageReceiver = (ImageReceiver) this.f12317b;
                 imageReceiver.z0(getBounds());
                 imageReceiver.h(canvas, null);
                 return;
             case 7:
-                ((ny0) this.f12316b).c(getBounds().centerX() - (((ny0) this.f12316b).f36541c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.l6.x0(null, org.telegram.ui.ActionBar.l6.G6, false), canvas);
+                ((my0) this.f12317b).c(getBounds().centerX() - (((my0) this.f12317b).f36133c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.G6, false), canvas);
                 return;
             case 8:
                 canvas.save();
-                org.telegram.messenger.e6 e6Var = (org.telegram.messenger.e6) this.f12316b;
+                org.telegram.messenger.e6 e6Var = (org.telegram.messenger.e6) this.f12317b;
                 if (e6Var.getBounds() != null) {
                     canvas.scale(0.8333333f, 0.8333333f, e6Var.getBounds().centerX(), e6Var.getBounds().centerY());
                 }
@@ -94,7 +94,7 @@ public final class l3 extends Drawable {
             default:
                 canvas.save();
                 canvas.translate(getBounds().left, getBounds().top);
-                ((y5) this.f12316b).draw(canvas);
+                ((y5) this.f12317b).draw(canvas);
                 canvas.restore();
                 return;
         }
@@ -102,15 +102,15 @@ public final class l3 extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f12315a) {
+        switch (this.f12316a) {
             case 1:
                 return org.telegram.messenger.g0.L(20.0f);
             case 4:
-                return ((Drawable[]) this.f12316b)[0].getIntrinsicHeight();
+                return ((Drawable[]) this.f12317b)[0].getIntrinsicHeight();
             case 6:
                 return org.telegram.messenger.g0.L(30.0f);
             case 9:
-                return ((y5) this.f12316b).getHeight();
+                return ((y5) this.f12317b).getHeight();
             default:
                 return super.getIntrinsicHeight();
         }
@@ -118,15 +118,15 @@ public final class l3 extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f12315a) {
+        switch (this.f12316a) {
             case 1:
                 return org.telegram.messenger.g0.L(20.0f);
             case 4:
-                return ((Drawable[]) this.f12316b)[0].getIntrinsicWidth();
+                return ((Drawable[]) this.f12317b)[0].getIntrinsicWidth();
             case 6:
                 return org.telegram.messenger.g0.L(30.0f);
             case 9:
-                return ((y5) this.f12316b).getWidth();
+                return ((y5) this.f12317b).getWidth();
             default:
                 return super.getIntrinsicWidth();
         }
@@ -134,7 +134,7 @@ public final class l3 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f12315a) {
+        switch (this.f12316a) {
             case 0:
                 return -2;
             case 1:
@@ -152,7 +152,7 @@ public final class l3 extends Drawable {
             case 7:
                 return -2;
             case 8:
-                return ((org.telegram.messenger.e6) this.f12316b).getOpacity();
+                return ((org.telegram.messenger.e6) this.f12317b).getOpacity();
             default:
                 return -2;
         }
@@ -160,9 +160,9 @@ public final class l3 extends Drawable {
 
     @Override
     public void getOutline(Outline outline) {
-        switch (this.f12315a) {
+        switch (this.f12316a) {
             case 2:
-                ActionBarContainer actionBarContainer = (ActionBarContainer) this.f12316b;
+                ActionBarContainer actionBarContainer = (ActionBarContainer) this.f12317b;
                 if (actionBarContainer.h) {
                     if (actionBarContainer.f1914f != null) {
                         actionBarContainer.d.getOutline(outline);
@@ -184,21 +184,21 @@ public final class l3 extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        switch (this.f12315a) {
+        switch (this.f12316a) {
             case 0:
                 return;
             case 1:
-                ((hi.a3) this.f12316b).M0.setAlpha(i7);
+                ((hi.a3) this.f12317b).M0.setAlpha(i7);
                 return;
             case 2:
                 return;
             case 3:
-                ((Paint) this.f12316b).setAlpha(i7);
+                ((Paint) this.f12317b).setAlpha(i7);
                 return;
             case 4:
                 int i10 = 0;
                 while (true) {
-                    Drawable[] drawableArr = (Drawable[]) this.f12316b;
+                    Drawable[] drawableArr = (Drawable[]) this.f12317b;
                     if (i10 < drawableArr.length) {
                         drawableArr[i10].setAlpha(i7);
                         i10++;
@@ -209,12 +209,12 @@ public final class l3 extends Drawable {
             case 5:
                 return;
             case 6:
-                ((ImageReceiver) this.f12316b).setAlpha(i7 / 255.0f);
+                ((ImageReceiver) this.f12317b).setAlpha(i7 / 255.0f);
                 return;
             case 7:
                 return;
             case 8:
-                ((org.telegram.messenger.e6) this.f12316b).setAlpha(i7);
+                ((org.telegram.messenger.e6) this.f12317b).setAlpha(i7);
                 return;
             default:
                 return;
@@ -223,9 +223,9 @@ public final class l3 extends Drawable {
 
     @Override
     public void setBounds(Rect rect) {
-        switch (this.f12315a) {
+        switch (this.f12316a) {
             case 8:
-                ((org.telegram.messenger.e6) this.f12316b).setBounds(rect);
+                ((org.telegram.messenger.e6) this.f12317b).setBounds(rect);
                 return;
             default:
                 super.setBounds(rect);
@@ -235,11 +235,11 @@ public final class l3 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f12315a) {
+        switch (this.f12316a) {
             case 0:
                 return;
             case 1:
-                ((hi.a3) this.f12316b).M0.setColorFilter(colorFilter);
+                ((hi.a3) this.f12317b).M0.setColorFilter(colorFilter);
                 return;
             case 2:
             case 3:
@@ -247,12 +247,12 @@ public final class l3 extends Drawable {
             case 5:
                 return;
             case 6:
-                ((ImageReceiver) this.f12316b).f21209o1 = colorFilter;
+                ((ImageReceiver) this.f12317b).f21214o1 = colorFilter;
                 return;
             case 7:
                 return;
             case 8:
-                ((org.telegram.messenger.e6) this.f12316b).setColorFilter(colorFilter);
+                ((org.telegram.messenger.e6) this.f12317b).setColorFilter(colorFilter);
                 return;
             default:
                 return;
@@ -260,15 +260,15 @@ public final class l3 extends Drawable {
     }
 
     public l3(Object obj, int i7) {
-        this.f12315a = i7;
-        this.f12316b = obj;
+        this.f12316a = i7;
+        this.f12317b = obj;
     }
 
     @Override
     public void setBounds(int i7, int i10, int i11, int i12) {
-        switch (this.f12315a) {
+        switch (this.f12316a) {
             case 8:
-                ((org.telegram.messenger.e6) this.f12316b).setBounds(i7, i10, i11, i12);
+                ((org.telegram.messenger.e6) this.f12317b).setBounds(i7, i10, i11, i12);
                 return;
             default:
                 super.setBounds(i7, i10, i11, i12);
@@ -277,21 +277,21 @@ public final class l3 extends Drawable {
     }
 
     public l3(ActionBarContainer actionBarContainer) {
-        this.f12315a = 2;
-        this.f12316b = actionBarContainer;
+        this.f12316a = 2;
+        this.f12317b = actionBarContainer;
     }
 
     public l3(Context context) {
-        this.f12315a = 4;
-        this.f12316b = r0;
+        this.f12316a = 4;
+        this.f12317b = r0;
         Drawable h = jg.g.h(context, 2131232791);
         h.setColorFilter(new PorterDuffColorFilter(-9063442, PorterDuff.Mode.MULTIPLY));
         Drawable[] drawableArr = {h, context.getResources().getDrawable(2131232792).mutate()};
     }
 
     public l3(String str) {
-        this.f12315a = 7;
-        this.f12316b = new ny0(str.substring(0, !str.isEmpty()), 14.0f, org.telegram.messenger.g0.o());
+        this.f12316a = 7;
+        this.f12317b = new my0(str.substring(0, !str.isEmpty()), 14.0f, org.telegram.messenger.g0.o());
     }
 
     private final void a(int i7) {

@@ -5,16 +5,16 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 public final class j5 extends tg.d {
     public final Paint h;
-    public long f12227n;
-    public float f12228r;
-    public float f12229s;
-    public int f12230w;
-    public int f12231x;
-    public final x9 f12232y;
+    public long f12230n;
+    public float f12231r;
+    public float f12232s;
+    public int f12233w;
+    public int f12234x;
+    public final x9 f12235y;
 
     public j5(x9 x9Var, Context context, aa.n nVar) {
         super(context, nVar);
-        this.f12232y = x9Var;
+        this.f12235y = x9Var;
         Paint paint = new Paint();
         this.h = paint;
         setWillNotDraw(false);
@@ -25,7 +25,7 @@ public final class j5 extends tg.d {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.f12232y.V1) {
+        if (this.f12235y.V1) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -39,7 +39,7 @@ public final class j5 extends tg.d {
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        x9 x9Var = this.f12232y;
+        x9 x9Var = this.f12235y;
         j5 j5Var = x9Var.A0;
         if (x9Var.A1 <= 0) {
             x9Var.A1 = j5Var.getMeasuredWidth();

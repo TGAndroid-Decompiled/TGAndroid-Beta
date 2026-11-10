@@ -1,45 +1,44 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class eb0 extends AnimatorListenerAdapter {
-    public final int f45352a;
-    public final ee0 f45353b;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class eb0 implements Runnable {
+    public final int f45224a;
+    public final sc0 f45225b;
 
-    public eb0(ee0 ee0Var, int i7) {
-        this.f45352a = i7;
-        this.f45353b = ee0Var;
+    public eb0(sc0 sc0Var, int i7) {
+        this.f45224a = i7;
+        this.f45225b = sc0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f45352a) {
+    public final void run() {
+        switch (this.f45224a) {
             case 0:
-                ee0 ee0Var = this.f45353b;
-                if (ee0Var.d == animator) {
-                    ee0Var.d = null;
-                    return;
-                }
+                this.f45225b.M.m();
+                return;
+            case 1:
+                sc0 sc0Var = this.f45225b;
+                sc0Var.N = null;
+                sc0Var.O = null;
+                sc0Var.o(true);
+                sc0Var.f49822e.j(null, null, sc0Var.f49823f, null);
+                yc ycVar = sc0Var.f49824n;
+                org.telegram.ui.Components.zg0 zg0Var = sc0Var.J;
+                ycVar.setAnimation(zg0Var);
+                zg0Var.M(0);
+                sc0Var.L = true;
+                return;
+            case 2:
+                this.f45225b.L = true;
                 return;
             default:
-                ee0 ee0Var2 = this.f45353b;
-                ee0Var2.f45372c.setVisibility(8);
-                if (ee0Var2.d == animator) {
-                    ee0Var2.d = null;
+                EditTextBoldCursor editTextBoldCursor = this.f45225b.f49821c;
+                if (editTextBoldCursor != null) {
+                    editTextBoldCursor.requestFocus();
+                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                    org.telegram.messenger.g0.K3(editTextBoldCursor);
                     return;
                 }
-                return;
-        }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f45352a) {
-            case 0:
-                this.f45353b.f45372c.setVisibility(0);
-                return;
-            default:
-                super.onAnimationStart(animator);
                 return;
         }
     }

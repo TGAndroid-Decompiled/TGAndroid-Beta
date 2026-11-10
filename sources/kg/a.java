@@ -7,9 +7,9 @@ import org.telegram.messenger.a20;
 import org.telegram.messenger.id;
 import org.telegram.ui.Cells.m8;
 import org.telegram.ui.Cells.r8;
-import org.telegram.ui.Components.t4;
-import org.telegram.ui.Components.v4;
-import org.telegram.ui.Components.y31;
+import org.telegram.ui.Components.s4;
+import org.telegram.ui.Components.u4;
+import org.telegram.ui.Components.x31;
 import org.telegram.ui.cn;
 public final class a implements a20, org.telegram.ui.ActionBar.r1 {
     public final int f17287a;
@@ -34,51 +34,51 @@ public final class a implements a20, org.telegram.ui.ActionBar.r1 {
 
     @Override
     public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        y31 y31Var = (y31) obj;
+        x31 x31Var = (x31) obj;
         final View view = (View) obj2;
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
         final c cVar = this.f17288b;
-        if (!cVar.f17320c.h(y31Var)) {
-            int i7 = y31Var.d;
-            if (i7 != 2 && y31Var.f54544a != 17) {
+        if (!cVar.f17320c.h(x31Var)) {
+            int i7 = x31Var.d;
+            if (i7 != 2 && x31Var.f54543a != 17) {
                 if (i7 == 1) {
                     cVar.f17324r = !cVar.f17324r;
-                    cVar.f17319b.f37556f3.O(true);
+                    cVar.f17319b.f37496f3.O(true);
                     cVar.a0(true);
                     return;
                 } else if (i7 == 6) {
                     a0 a0Var = cVar.f17320c;
                     cVar.f17325s = true;
                     a0Var.h = true;
-                    cVar.f17319b.f37556f3.O(true);
+                    cVar.f17319b.f37496f3.O(true);
                     cVar.a0(true);
                     return;
                 } else if (i7 == 7) {
                     a0 a0Var2 = cVar.f17320c;
                     cVar.f17325s = false;
                     a0Var2.h = false;
-                    cVar.f17319b.f37556f3.O(true);
+                    cVar.f17319b.f37496f3.O(true);
                     cVar.a0(true);
                     return;
                 } else if (i7 == 3) {
                     cVar.f17327x = 0;
-                    cVar.f17319b.f37556f3.O(true);
+                    cVar.f17319b.f37496f3.O(true);
                     cVar.a0(true);
                     return;
                 } else if (i7 == 4) {
                     cVar.f17327x = 1;
-                    cVar.f17319b.f37556f3.O(true);
+                    cVar.f17319b.f37496f3.O(true);
                     cVar.a0(true);
                     return;
                 } else if (i7 == 5) {
                     cVar.f17327x = 2;
-                    cVar.f17319b.f37556f3.O(true);
+                    cVar.f17319b.f37496f3.O(true);
                     cVar.a0(true);
                     return;
                 } else if (i7 == 8) {
-                    v4.x(cVar.getParentActivity(), id.M0(2131752823, null), id.M0(2131752825, null), cVar.E, new t4() {
+                    u4.x(cVar.getParentActivity(), id.M0(2131752823, null), id.M0(2131752825, null), cVar.E, new s4() {
                         @Override
                         public final void L(int i10, int i11, boolean z9) {
                             switch (r3) {
@@ -101,7 +101,7 @@ public final class a implements a20, org.telegram.ui.ActionBar.r1 {
                     });
                     return;
                 } else if (i7 == 9) {
-                    v4.x(cVar.getParentActivity(), id.M0(2131752826, null), id.M0(2131752825, null), cVar.F, new t4() {
+                    u4.x(cVar.getParentActivity(), id.M0(2131752826, null), id.M0(2131752825, null), cVar.F, new s4() {
                         @Override
                         public final void L(int i10, int i11, boolean z9) {
                             switch (r3) {

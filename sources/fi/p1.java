@@ -4,10 +4,10 @@ import org.telegram.messenger.ij;
 import org.telegram.messenger.zy;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.fx;
-import org.telegram.ui.Components.l60;
-import org.telegram.ui.ks;
-public final class p1 implements ks {
+import org.telegram.ui.Components.ex;
+import org.telegram.ui.Components.k60;
+import org.telegram.ui.ls;
+public final class p1 implements ls {
     @Override
     public final ij A() {
         return null;
@@ -109,7 +109,7 @@ public final class p1 implements ks {
     }
 
     @Override
-    public final l60 m(bi.x5 x5Var) {
+    public final k60 m(bi.x5 x5Var) {
         return null;
     }
 
@@ -192,7 +192,7 @@ public final class p1 implements ks {
     }
 
     @Override
-    public final void u(CharSequence charSequence, String str, fx fxVar) {
+    public final void u(CharSequence charSequence, String str, ex exVar) {
     }
 
     @Override

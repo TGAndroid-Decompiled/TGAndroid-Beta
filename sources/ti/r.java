@@ -7,27 +7,27 @@ import android.view.ViewGroup;
 import org.telegram.messenger.g0;
 import org.telegram.ui.LaunchActivity;
 public final class r extends ViewGroup {
-    public final LaunchActivity f56163a;
-    public final Rect f56164b;
-    public View f56165c;
+    public final LaunchActivity f56162a;
+    public final Rect f56163b;
+    public View f56164c;
     public int d;
-    public int f56166e;
-    public boolean f56167f;
+    public int f56165e;
+    public boolean f56166f;
 
     public r(LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f56164b = new Rect();
-        this.f56163a = launchActivity;
+        this.f56163b = new Rect();
+        this.f56162a = launchActivity;
         setWillNotDraw(false);
     }
 
     public final void a(View view, Rect rect) {
-        View view2 = this.f56165c;
+        View view2 = this.f56164c;
         if (view2 != null && view2 != view) {
             removeView(view2);
         }
-        this.f56165c = view;
-        Rect rect2 = this.f56164b;
+        this.f56164c = view;
+        Rect rect2 = this.f56163b;
         if (rect != null) {
             rect2.set(rect);
         } else {
@@ -43,24 +43,24 @@ public final class r extends ViewGroup {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f56165c != null && this.f56167f) {
+        if (this.f56164c != null && this.f56166f) {
             canvas.drawColor(-16777216);
         }
     }
 
     @Override
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        if (this.f56165c == null) {
+        if (this.f56164c == null) {
             return;
         }
-        if (!this.f56167f) {
-            Rect rect = this.f56164b;
+        if (!this.f56166f) {
+            Rect rect = this.f56163b;
             if (!rect.isEmpty()) {
-                this.f56165c.layout(rect.left, rect.top, rect.right, rect.bottom);
+                this.f56164c.layout(rect.left, rect.top, rect.right, rect.bottom);
                 return;
             }
         }
-        this.f56165c.layout(0, 0, i11 - i7, i12 - i10);
+        this.f56164c.layout(0, 0, i11 - i7, i12 - i10);
     }
 
     @Override
@@ -68,26 +68,26 @@ public final class r extends ViewGroup {
         boolean z9;
         int size = View.MeasureSpec.getSize(i7);
         int size2 = View.MeasureSpec.getSize(i10);
-        boolean H1 = g0.H1(this.f56163a);
+        boolean H1 = g0.H1(this.f56162a);
         if (!H1) {
             this.d = size;
-            this.f56166e = size2;
+            this.f56165e = size2;
         }
         boolean z10 = false;
-        if (H1 && (size < this.d || size2 < this.f56166e)) {
+        if (H1 && (size < this.d || size2 < this.f56165e)) {
             z9 = true;
         } else {
             z9 = false;
         }
-        this.f56167f = z9;
+        this.f56166f = z9;
         setMeasuredDimension(size, size2);
-        if (this.f56165c != null) {
-            boolean z11 = this.f56167f;
-            Rect rect = this.f56164b;
+        if (this.f56164c != null) {
+            boolean z11 = this.f56166f;
+            Rect rect = this.f56163b;
             if (z11 || rect.isEmpty()) {
                 z10 = true;
             }
-            View view = this.f56165c;
+            View view = this.f56164c;
             if (!z10) {
                 size = rect.width();
             }

@@ -1,52 +1,43 @@
 package org.telegram.ui.ActionBar;
 
-import android.util.SparseIntArray;
-import java.util.ArrayList;
+import android.graphics.Point;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.c20;
+import org.telegram.messenger.gc;
+import org.telegram.messenger.hc;
 import org.telegram.tgnet.TLRPC;
-public final class q3 implements ig.a {
-    public k6 f28408a;
-    public TLRPC.TL_theme f28409b;
-    public TLRPC.TL_chatThemeUniqueGift f28410c;
-    public int d;
-    public int f28411e = -1;
-    public SparseIntArray f28412f;
-    public String f28413g;
-    public int h;
-    public int f28414i;
-    public int f28415j;
-    public int f28416k;
-    public int f28417l;
-    public int f28418m;
-    public int f28419n;
-    public int f28420o;
+public final class q3 implements c20 {
+    public final c20 f28409a;
+    public final TLRPC.WallPaper f28410b;
+    public final int f28411c;
+    public final int d;
+    public final long f28412e;
 
-    public final long a() {
-        TLRPC.TL_theme tL_theme = this.f28409b;
-        if (tL_theme != null) {
-            return tL_theme.f27095id;
-        }
-        TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f28410c;
-        if (tL_chatThemeUniqueGift != null) {
-            return tL_chatThemeUniqueGift.gift.gift_id;
-        }
-        return 0L;
+    public q3(c20 c20Var, TLRPC.WallPaper wallPaper, int i7, int i10, long j3) {
+        this.f28409a = c20Var;
+        this.f28410b = wallPaper;
+        this.f28411c = i7;
+        this.d = i10;
+        this.f28412e = j3;
     }
 
-    public final TLRPC.ThemeSettings b(int i7) {
-        ArrayList<TLRPC.ThemeSettings> arrayList;
-        TLRPC.TL_theme tL_theme = this.f28409b;
-        if (tL_theme != null) {
-            arrayList = tL_theme.settings;
-        } else {
-            TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f28410c;
-            if (tL_chatThemeUniqueGift != null) {
-                arrayList = tL_chatThemeUniqueGift.theme_settings;
-            }
-            return null;
+    @Override
+    public final void a(Object obj) {
+        gg.a aVar = (gg.a) obj;
+        c20 c20Var = this.f28409a;
+        if (aVar != null) {
+            c20Var.a(aVar);
+            return;
         }
-        if (arrayList != null && i7 >= 0 && arrayList.size() > i7) {
-            return arrayList.get(i7);
-        }
-        return null;
+        TLRPC.WallPaper wallPaper = this.f28410b;
+        hc b10 = hc.b(wallPaper.document);
+        ImageReceiver imageReceiver = new ImageReceiver(null);
+        imageReceiver.f21241z1 = false;
+        Point point = org.telegram.messenger.g0.f22567q;
+        int min = Math.min(point.x, point.y);
+        int max = Math.max(point.x, point.y);
+        imageReceiver.q0(b10, (min / org.telegram.messenger.g0.f22566p) + "_" + (max / org.telegram.messenger.g0.f22566p) + "_f", null, ".jpg", wallPaper, 1);
+        imageReceiver.f21200g1 = new org.telegram.tgnet.f(this.f28411c, this.d, this.f28412e, c20Var);
+        gc.D().M(imageReceiver, null);
     }
 }

@@ -7,15 +7,15 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 public final class p implements rd.l {
-    public final int f13739a;
+    public final int f13741a;
 
     public p(int i7) {
-        this.f13739a = i7;
+        this.f13741a = i7;
     }
 
     @Override
     public final Object invoke(Object obj) {
-        switch (this.f13739a) {
+        switch (this.f13741a) {
             case 0:
                 m1.b ex = (m1.b) obj;
                 kotlin.jvm.internal.j.e(ex, "ex");
@@ -23,7 +23,7 @@ public final class p implements rd.l {
                 return jb.j.f16628b;
             case 1:
                 q1.b bVar = (q1.b) obj;
-                q1.e eVar = sa.h.f55008c;
+                q1.e eVar = sa.h.f55007c;
                 long j3 = 0;
                 for (Map.Entry entry : bVar.a().entrySet()) {
                     if (entry.getValue() instanceof Set) {
@@ -61,6 +61,6 @@ public final class p implements rd.l {
     }
 
     public p(sa.h hVar) {
-        this.f13739a = 1;
+        this.f13741a = 1;
     }
 }

@@ -1,33 +1,49 @@
 package org.telegram.ui.Components;
+public final class b90 {
+    public final org.telegram.ui.ActionBar.f2 f32172a;
+    public final g90 f32173b;
 
-import org.telegram.tgnet.TLRPC;
-public final class b90 extends g.p {
-    public final h90 f32196c;
-
-    public b90(h90 h90Var) {
-        this.f32196c = h90Var;
+    public b90(g90 g90Var, org.telegram.ui.ActionBar.f2 f2Var) {
+        this.f32173b = g90Var;
+        this.f32172a = f2Var;
     }
 
-    @Override
-    public final int i(int i7) {
-        h90 h90Var = this.f32196c;
-        jg.i1 i1Var = h90Var.f34250f;
-        if (i7 != 0) {
-            int i10 = i7 - 1;
-            Object J = i1Var.J(i10);
-            if (J instanceof TLRPC.TL_inlineBotSwitchPM) {
-                return 100;
+    public final void a(boolean z9) {
+        g90 g90Var = this.f32173b;
+        boolean z10 = false;
+        if (g90Var.getNeededLayoutManager() != g90Var.getCurrentLayoutManager() && g90Var.a()) {
+            if (g90Var.f33850f.M0 > 0) {
+                g90Var.N = true;
+                g90Var.o(false);
+                return;
             }
-            if (J instanceof TLRPC.Document) {
-                return 20;
-            }
-            if (i1Var.I() != null || i1Var.U != null) {
-                i7 = i10;
-            }
-            a90 a90Var = h90Var.d;
-            a90Var.B1();
-            return a90Var.R.get(i7);
+            g90Var.f33847b.setLayoutManager(g90Var.getNeededLayoutManager());
         }
-        return 100;
+        if (z9 && !g90Var.a()) {
+            z9 = false;
+        }
+        if (!z9 || g90Var.f33850f.K() > 0) {
+            z10 = z9;
+        }
+        g90Var.o(z10);
+    }
+
+    public final void b(boolean z9) {
+        this.f32173b.l(z9);
+    }
+
+    public final void c() {
+        long j3;
+        g90 g90Var = this.f32173b;
+        gp gpVar = g90Var.J;
+        if (g90Var.f33847b.getLayoutManager() != g90Var.d && g90Var.I) {
+            org.telegram.messenger.g0.r(gpVar);
+            if (this.f32172a.getFragmentBeginToShow()) {
+                j3 = 0;
+            } else {
+                j3 = 100;
+            }
+            org.telegram.messenger.g0.i3(gpVar, j3);
+        }
     }
 }

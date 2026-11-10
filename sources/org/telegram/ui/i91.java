@@ -1,50 +1,23 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.app.Activity;
-public final class i91 extends AnimatorListenerAdapter {
-    public final int f46533a;
-    public final boolean f46534b;
-    public final y91 f46535c;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+public final class i91 extends org.telegram.ui.Components.x50 {
+    public final long f46585u2;
+    public final k91 f46586v2;
 
-    public i91(y91 y91Var, boolean z9, int i7) {
-        this.f46533a = i7;
-        this.f46535c = y91Var;
-        this.f46534b = z9;
+    public i91(k91 k91Var, Context context, int i7, a0.h hVar, long j3, org.telegram.ui.ActionBar.f2 f2Var, long j10) {
+        super(context, i7, hVar, j3, f2Var, null);
+        this.f46586v2 = k91Var;
+        this.f46585u2 = j10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f10;
-        int i7;
-        switch (this.f46533a) {
-            case 0:
-                super.onAnimationEnd(animator);
-                boolean z9 = this.f46534b;
-                if (z9) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
-                }
-                y91 y91Var = this.f46535c;
-                y91Var.W0(f10);
-                if (z9) {
-                    y91Var.f52048q0.setVisibility(8);
-                    return;
-                }
-                Activity parentActivity = y91Var.getParentActivity();
-                i7 = ((org.telegram.ui.ActionBar.f2) y91Var).classGuid;
-                org.telegram.messenger.g0.l3(parentActivity, i7);
-                y91Var.f52050r0.setVisibility(8);
-                y91Var.U0(true);
-                return;
-            default:
-                if (!this.f46534b) {
-                    this.f46535c.f52044o0.setVisibility(8);
-                    return;
-                }
-                return;
+    public final boolean R0() {
+        TLRPC.Chat M0 = this.f46586v2.f47236b.getMessagesController().M0(Long.valueOf(this.f46585u2));
+        if (M0 != null && org.telegram.messenger.t3.y(3, M0)) {
+            return true;
         }
+        return false;
     }
 }

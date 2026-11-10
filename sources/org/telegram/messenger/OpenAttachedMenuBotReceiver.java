@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import org.telegram.ui.LaunchActivity;
 public class OpenAttachedMenuBotReceiver extends Activity {
-    public static final int f21330a = 0;
+    public static final int f21335a = 0;
 
     @Override
     public final void onCreate(Bundle bundle) {

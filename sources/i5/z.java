@@ -5,16 +5,16 @@ import java.nio.ByteBuffer;
 import y7.i6;
 public final class z extends a {
     public static final i6 h;
-    public static final i6 f15350n;
-    public static final i6 f15351r;
-    public int f15352e;
-    public int[] f15353f;
+    public static final i6 f15352n;
+    public static final i6 f15353r;
+    public int f15354e;
+    public int[] f15355f;
 
     static {
         ze.a aVar = new ze.a(z.class, "VideoMediaHeaderBox.java");
         h = aVar.e(aVar.d("getGraphicsmode", "com.coremedia.iso.boxes.VideoMediaHeaderBox", "", "", "int"));
-        f15350n = aVar.e(aVar.d("getOpcolor", "com.coremedia.iso.boxes.VideoMediaHeaderBox", "", "", "[I"));
-        f15351r = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.VideoMediaHeaderBox", "", "", "java.lang.String"));
+        f15352n = aVar.e(aVar.d("getOpcolor", "com.coremedia.iso.boxes.VideoMediaHeaderBox", "", "", "[I"));
+        f15353r = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.VideoMediaHeaderBox", "", "", "java.lang.String"));
         aVar.e(aVar.d("setOpcolor", "com.coremedia.iso.boxes.VideoMediaHeaderBox", "[I", "opcolor", "void"));
         aVar.e(aVar.d("setGraphicsmode", "com.coremedia.iso.boxes.VideoMediaHeaderBox", "int", "graphicsmode", "void"));
     }
@@ -22,18 +22,18 @@ public final class z extends a {
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
-        this.f15352e = h5.b.h(byteBuffer);
-        this.f15353f = new int[3];
+        this.f15354e = h5.b.h(byteBuffer);
+        this.f15355f = new int[3];
         for (int i7 = 0; i7 < 3; i7++) {
-            this.f15353f[i7] = h5.b.h(byteBuffer);
+            this.f15355f[i7] = h5.b.h(byteBuffer);
         }
     }
 
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
         i(byteBuffer);
-        h5.b.p(this.f15352e, byteBuffer);
-        for (int i7 : this.f15353f) {
+        h5.b.p(this.f15354e, byteBuffer);
+        for (int i7 : this.f15355f) {
             h5.b.p(i7, byteBuffer);
         }
     }
@@ -44,21 +44,21 @@ public final class z extends a {
     }
 
     public final String toString() {
-        ui.e b10 = ze.a.b(f15351r, this, this);
+        ui.e b10 = ze.a.b(f15353r, this, this);
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(b10);
         StringBuilder sb2 = new StringBuilder("VideoMediaHeaderBox[graphicsmode=");
         com.google.android.recaptcha.internal.a.t(ze.a.b(h, this, this));
-        sb2.append(this.f15352e);
+        sb2.append(this.f15354e);
         sb2.append(";opcolor0=");
-        i6 i6Var = f15350n;
+        i6 i6Var = f15352n;
         com.google.android.recaptcha.internal.a.t(ze.a.b(i6Var, this, this));
-        sb2.append(this.f15353f[0]);
+        sb2.append(this.f15355f[0]);
         sb2.append(";opcolor1=");
         com.google.android.recaptcha.internal.a.t(ze.a.b(i6Var, this, this));
-        sb2.append(this.f15353f[1]);
+        sb2.append(this.f15355f[1]);
         sb2.append(";opcolor2=");
         com.google.android.recaptcha.internal.a.t(ze.a.b(i6Var, this, this));
-        return p0.n(this.f15353f[2], "]", sb2);
+        return p0.n(this.f15355f[2], "]", sb2);
     }
 }

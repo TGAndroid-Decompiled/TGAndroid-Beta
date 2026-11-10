@@ -1,40 +1,26 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-public final class qq0 extends org.telegram.ui.Cells.g7 {
-    public final zs0 f37467l0;
+import android.widget.FrameLayout;
+public final class qq0 extends FragmentContextView {
+    public final ys0 X0;
 
-    public qq0(zs0 zs0Var, Context context) {
-        super(context);
-        this.f37467l0 = zs0Var;
+    public qq0(ys0 ys0Var, Context context, org.telegram.ui.ActionBar.f2 f2Var, ys0 ys0Var2, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, f2Var, ys0Var2, false, h6Var);
+        this.X0 = ys0Var;
     }
 
     @Override
-    public final boolean d(org.telegram.messenger.ij ijVar) {
-        ArrayList arrayList;
-        long playlistTopicId;
-        zs0 zs0Var = this.f37467l0;
-        os0[] os0VarArr = zs0Var.f41121v1;
-        if (!org.telegram.messenger.ij.R4(ijVar.f23262k) && !ijVar.h4()) {
-            if (!ijVar.I3()) {
-                return false;
-            }
-            MediaController B = MediaController.B();
-            ArrayList arrayList2 = os0VarArr[4].f36778a;
-            long j3 = zs0Var.f41072e1;
-            playlistTopicId = zs0Var.getPlaylistTopicId();
-            return B.o0(arrayList2, ijVar, j3, true, null, playlistTopicId);
-        }
-        boolean S = MediaController.B().S(ijVar);
-        MediaController B2 = MediaController.B();
-        if (S) {
-            arrayList = os0VarArr[4].f36778a;
+    public final void setVisibility(int i7) {
+        boolean z9;
+        ys0 ys0Var = this.X0;
+        or orVar = ys0Var.R0;
+        FrameLayout frameLayout = ys0Var.S0;
+        if (i7 == 0) {
+            z9 = true;
         } else {
-            arrayList = null;
+            z9 = false;
         }
-        B2.r0(arrayList, false);
-        return S;
+        orVar.i(frameLayout, z9, true);
     }
 }

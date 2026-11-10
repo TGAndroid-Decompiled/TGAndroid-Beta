@@ -7,13 +7,13 @@ import android.os.ResultReceiver;
 import android.text.TextUtils;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputConnectionWrapper;
-import org.telegram.ui.Components.rt;
+import org.telegram.ui.Components.qt;
 public final class d extends InputConnectionWrapper {
-    public final e f55362a;
+    public final e f55361a;
 
     public d(InputConnection inputConnection, e eVar) {
         super(inputConnection, false);
-        this.f55362a = eVar;
+        this.f55361a = eVar;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class d extends InputConnectionWrapper {
         String str5;
         String str6;
         String str7;
-        e eVar = this.f55362a;
+        e eVar = this.f55361a;
         boolean z9 = false;
         z9 = false;
         z9 = false;
@@ -76,7 +76,7 @@ public final class d extends InputConnectionWrapper {
                     }
                     Bundle bundle2 = (Bundle) bundle.getParcelable(str7);
                     if (uri != null && clipDescription != null) {
-                        z9 = eVar.k(new rt(uri, clipDescription, uri2), i7, bundle2);
+                        z9 = eVar.k(new qt(uri, clipDescription, uri2), i7, bundle2);
                     }
                     if (resultReceiver != null) {
                         resultReceiver.send(z9 ? 1 : 0, null);

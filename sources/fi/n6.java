@@ -8,11 +8,11 @@ import org.telegram.messenger.t10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ProfileActivity;
 public final class n6 extends p6 {
-    public final TLRPC.User f12482b;
+    public final TLRPC.User f12486b;
 
     public n6(String str, TLRPC.User user) {
         super(str);
-        this.f12482b = user;
+        this.f12486b = user;
     }
 
     @Override
@@ -22,27 +22,27 @@ public final class n6 extends p6 {
 
     @Override
     public final String b() {
-        return t10.p(this.f12482b);
+        return t10.p(this.f12486b);
     }
 
     @Override
     public final void c(org.telegram.ui.ActionBar.f2 f2Var) {
-        TLRPC.User user = this.f12482b;
-        if (user.f27105id == p10.i(p10.f24470s0).e()) {
+        TLRPC.User user = this.f12486b;
+        if (user.f27109id == p10.i(p10.f24474s0).e()) {
             Bundle bundle = new Bundle();
-            bundle.putLong("user_id", user.f27105id);
+            bundle.putLong("user_id", user.f27109id);
             bundle.putBoolean("my_profile", true);
             f2Var.presentFragment(new ProfileActivity(bundle, null));
             return;
         }
-        f2Var.presentFragment(ProfileActivity.D4(user.f27105id));
+        f2Var.presentFragment(ProfileActivity.D4(user.f27109id));
     }
 
     @Override
     public final void d(ImageReceiver imageReceiver) {
-        org.telegram.ui.Components.w8 w8Var = new org.telegram.ui.Components.w8((org.telegram.ui.ActionBar.g6) null);
-        TLRPC.User user = this.f12482b;
-        w8Var.r(user);
-        imageReceiver.i0(user, w8Var, null);
+        org.telegram.ui.Components.v8 v8Var = new org.telegram.ui.Components.v8((org.telegram.ui.ActionBar.h6) null);
+        TLRPC.User user = this.f12486b;
+        v8Var.r(user);
+        imageReceiver.i0(user, v8Var, null);
     }
 }

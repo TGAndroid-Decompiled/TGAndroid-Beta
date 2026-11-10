@@ -1,34 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.app.Activity;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PhotoViewer;
 public final class d1 implements Runnable {
-    public final int f32822a;
-    public final org.telegram.ui.ActionBar.u1 f32823b;
-    public final Context f32824c;
+    public final int f32847a;
+    public final int f32848b;
+    public final long f32849c;
+    public final long d;
+    public final org.telegram.messenger.c20 f32850e;
+    public final long f32851f;
 
-    public d1(int i7, Context context, org.telegram.ui.ActionBar.u1 u1Var) {
-        this.f32822a = i7;
-        this.f32823b = u1Var;
-        this.f32824c = context;
+    public d1(int i7, long j3, long j10, org.telegram.messenger.c20 c20Var, long j11, int i10) {
+        this.f32847a = i10;
+        this.f32848b = i7;
+        this.f32849c = j3;
+        this.d = j10;
+        this.f32850e = c20Var;
+        this.f32851f = j11;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f32822a;
-        Context context = this.f32824c;
-        org.telegram.ui.ActionBar.u1 u1Var = this.f32823b;
-        switch (i7) {
+        org.telegram.ui.ActionBar.h6 bVar;
+        switch (this.f32847a) {
             case 0:
-                if (u1Var != null) {
-                    u1Var.dismiss();
+                int i7 = this.f32848b;
+                long j3 = bi.ea.y(i7, false).p().amount;
+                long j10 = this.f32849c;
+                int i10 = (j3 > j10 ? 1 : (j3 == j10 ? 0 : -1));
+                org.telegram.messenger.c20 c20Var = this.f32850e;
+                long j11 = this.f32851f;
+                if (i10 < 0) {
+                    Activity u02 = org.telegram.messenger.g0.u0();
+                    org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
+                    if (!PhotoViewer.p1().P1() && (T == null || !T.hasShownSheet())) {
+                        if (T != null) {
+                            bVar = T.getResourceProvider();
+                        } else {
+                            bVar = null;
+                        }
+                    } else {
+                        bVar = new di.b();
+                    }
+                    org.telegram.ui.ActionBar.h6 h6Var = bVar;
+                    if (u02 != null) {
+                        long j12 = this.d;
+                        new bi.tc(u02, h6Var, j10, 13, org.telegram.messenger.m5.s(i7, j12), new org.telegram.ui.a6(1, j11, c20Var), j12).show();
+                        return;
+                    }
+                    return;
                 }
-                vf.c.t(context, org.telegram.messenger.id.M0(2131752895, null));
+                c20Var.a(Long.valueOf(j11));
                 return;
             default:
-                if (u1Var != null) {
-                    u1Var.dismiss();
+                int i11 = this.f32848b;
+                d1 d1Var = new d1(i11, this.f32849c, this.d, this.f32850e, this.f32851f, 0);
+                if (!bi.ea.y(i11, false).f3807e) {
+                    bi.ea y10 = bi.ea.y(i11, false);
+                    y10.f3807e = false;
+                    y10.q(d1Var, false, true);
+                    y10.f3807e = true;
+                    return;
                 }
-                vf.c.t(context, org.telegram.messenger.id.M0(2131752895, null));
+                d1Var.run();
                 return;
         }
     }

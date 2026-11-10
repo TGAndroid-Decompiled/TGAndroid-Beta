@@ -1,49 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class e11 extends Drawable {
-    public final Drawable f33257a;
-    public final Paint f33258b = new Paint(1);
-    public final RectF f33259c = new RectF();
+import android.animation.ValueAnimator;
+public final class e11 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f33138a;
+    public final h11 f33139b;
 
-    public e11(Context context) {
-        this.f33257a = jg.g.h(context, 2131231904);
+    public e11(h11 h11Var, int i7) {
+        this.f33138a = i7;
+        this.f33139b = h11Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Paint paint = this.f33258b;
-        canvas.drawRoundRect(this.f33259c, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), paint);
-        this.f33257a.draw(canvas);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        this.f33259c.set(rect);
-        int centerX = rect.centerX() - org.telegram.messenger.g0.L(12.0f);
-        int centerY = rect.centerY() - org.telegram.messenger.g0.L(12.0f);
-        this.f33257a.setBounds(centerX, centerY, org.telegram.messenger.g0.L(24.0f) + centerX, org.telegram.messenger.g0.L(24.0f) + centerY);
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-        this.f33258b.setAlpha(i7);
-        this.f33257a.setAlpha(i7);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f33138a) {
+            case 0:
+                di.b3 b3Var = this.f33139b.f34128f;
+                b3Var.setScaleX(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                b3Var.setScaleY(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                b3Var.invalidate();
+                return;
+            default:
+                h11 h11Var = this.f33139b;
+                h11Var.getClass();
+                h11Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                h11Var.h();
+                return;
+        }
     }
 }

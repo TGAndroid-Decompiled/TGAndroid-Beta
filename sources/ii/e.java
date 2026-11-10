@@ -8,25 +8,25 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import c8.ha;
 import java.util.HashSet;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.Components.l9;
-public final class e extends FrameLayout implements b6 {
-    public final l9 f15519a;
-    public final g6 f15520b;
-    public final TextView f15521c;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.Components.k9;
+public final class e extends FrameLayout implements c6 {
+    public final k9 f15518a;
+    public final h6 f15519b;
+    public final TextView f15520c;
     public final TextView d;
 
-    public e(Context context, g6 g6Var) {
+    public e(Context context, h6 h6Var) {
         super(context);
-        this.f15520b = g6Var;
-        l9 l9Var = new l9(context);
-        this.f15519a = l9Var;
-        l9Var.setRoundRadius(org.telegram.messenger.g0.L(20.0f));
-        addView(l9Var, ha.d(72, 72.0f, 49, 0.0f, 36.0f, 0.0f, 0.0f));
+        this.f15519b = h6Var;
+        k9 k9Var = new k9(context);
+        this.f15518a = k9Var;
+        k9Var.setRoundRadius(org.telegram.messenger.g0.L(20.0f));
+        addView(k9Var, ha.d(72, 72.0f, 49, 0.0f, 36.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f15521c = textView;
+        this.f15520c = textView;
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setTextSize(1, 20.0f);
         textView.setGravity(17);
@@ -42,16 +42,16 @@ public final class e extends FrameLayout implements b6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(l6.G6));
-        hashSet.add(Integer.valueOf(l6.f28275z6));
+        hashSet.add(Integer.valueOf(m6.G6));
+        hashSet.add(Integer.valueOf(m6.f28300z6));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        Drawable drawable = l6.S0;
-        l9 l9Var = this.f15519a;
-        bg.s.a(canvas, drawable, (l9Var.getWidth() / 2.0f) + l9Var.getLeft(), (l9Var.getHeight() / 2.0f) + l9Var.getTop(), l9Var.getHeight());
+        Drawable drawable = m6.S0;
+        k9 k9Var = this.f15518a;
+        bg.s.a(canvas, drawable, (k9Var.getWidth() / 2.0f) + k9Var.getLeft(), (k9Var.getHeight() / 2.0f) + k9Var.getTop(), k9Var.getHeight());
     }
 
     @Override
@@ -64,14 +64,14 @@ public final class e extends FrameLayout implements b6 {
     }
 
     public void setTitle(CharSequence charSequence) {
-        this.f15521c.setText(charSequence);
+        this.f15520c.setText(charSequence);
     }
 
     @Override
     public final void updateColors() {
-        int i7 = l6.G6;
-        g6 g6Var = this.f15520b;
-        this.f15521c.setTextColor(l6.w0(i7, g6Var));
-        this.d.setTextColor(l6.w0(l6.f28275z6, g6Var));
+        int i7 = m6.G6;
+        h6 h6Var = this.f15519b;
+        this.f15520c.setTextColor(m6.w0(i7, h6Var));
+        this.d.setTextColor(m6.w0(m6.f28300z6, h6Var));
     }
 }

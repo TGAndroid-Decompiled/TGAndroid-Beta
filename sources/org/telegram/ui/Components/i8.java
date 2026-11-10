@@ -1,34 +1,9 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class i8 extends AnimatorListenerAdapter {
-    public final int f34645a;
-    public final t8 f34646b;
-
-    public i8(t8 t8Var, int i7) {
-        this.f34645a = i7;
-        this.f34646b = t8Var;
-    }
-
+import android.view.View;
+public final class i8 extends vp {
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f10;
-        switch (this.f34645a) {
-            case 0:
-                super.onAnimationEnd(animator);
-                this.f34646b.f38320f = false;
-                return;
-            default:
-                t8 t8Var = this.f34646b;
-                if (t8Var.F) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
-                }
-                t8Var.n0(false, f10);
-                t8Var.F = false;
-                return;
-        }
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(300.0f), 1073741824));
     }
 }

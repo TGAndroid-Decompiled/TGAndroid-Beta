@@ -1,39 +1,31 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class rv extends v4.s {
-    public final hy Q;
+import org.telegram.tgnet.TLRPC;
+public final class rv extends g.p {
+    public final gy f37741c;
 
-    public rv(hy hyVar) {
-        super(5);
-        this.Q = hyVar;
+    public rv(gy gyVar) {
+        this.f37741c = gyVar;
     }
 
     @Override
-    public final int o0(int i7, v4.v0 v0Var, v4.a1 a1Var) {
-        int o02 = super.o0(i7, v0Var, a1Var);
-        hy hyVar = this.Q;
-        if (o02 != 0 && hyVar.D0.getScrollState() == 1) {
-            hyVar.X1 = false;
-            hyVar.Z();
-        }
-        if (hyVar.T0 == null) {
-            jg.e1 e1Var = new jg.e1(hyVar, hyVar.f34415c1, hyVar.f34467t1.a(), hyVar.f34467t1.f(), 1);
-            hyVar.T0 = e1Var;
-            e1Var.a();
-        }
-        hyVar.T0.b();
-        return o02;
-    }
-
-    @Override
-    public final void v0(RecyclerView recyclerView, v4.a1 a1Var, int i7) {
-        try {
-            mi.m mVar = new mi.m(recyclerView.getContext(), 2);
-            mVar.f57225a = i7;
-            w0(mVar);
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+    public final int i(int i7) {
+        gy gyVar = this.f37741c;
+        ay ayVar = gyVar.f34088z0;
+        v4.g0 adapter = gyVar.D0.getAdapter();
+        xx xxVar = gyVar.f34085y0;
+        if (adapter == xxVar) {
+            if (i7 == 0) {
+                return xxVar.d;
+            }
+            if (i7 == xxVar.f40430s || (xxVar.h.get(i7) != null && !(xxVar.h.get(i7) instanceof TLRPC.Document))) {
+                return xxVar.d;
+            }
+            return 1;
+        } else if (i7 != ayVar.f32037y && (ayVar.f32033r.get(i7) == null || (ayVar.f32033r.get(i7) instanceof TLRPC.Document))) {
+            return 1;
+        } else {
+            return xxVar.d;
         }
     }
 }

@@ -19,44 +19,44 @@ public final class ou extends fu implements x5 {
     public final RadialProgress2 X;
     public final ImageReceiver Y;
     public final Paint Z;
-    public final TextPaint f24386a0;
-    public final TextPaint f24387b0;
-    public StaticLayout f24388c0;
-    public StaticLayout f24389d0;
-    public final int f24390e0;
-    public final int f24391f0;
-    public final int f24392g0;
-    public final int f24393h0;
-    public final RectF f24394i0;
-    public final boolean f24395j0;
-    public int f24396k0;
-    public boolean f24397l0;
+    public final TextPaint f24390a0;
+    public final TextPaint f24391b0;
+    public StaticLayout f24392c0;
+    public StaticLayout f24393d0;
+    public final int f24394e0;
+    public final int f24395f0;
+    public final int f24396g0;
+    public final int f24397h0;
+    public final RectF f24398i0;
+    public final boolean f24399j0;
+    public int f24400k0;
+    public boolean f24401l0;
     public boolean m0;
-    public int f24398n0;
-    public final int f24399o0;
+    public int f24402n0;
+    public final int f24403o0;
 
     public ou(kv kvVar, Rect rect, int i7, TL_iv.pageBlockDocument pageblockdocument) {
         super(kvVar, rect, i7);
         ImageReceiver imageReceiver = new ImageReceiver(null);
         this.Y = imageReceiver;
         this.Z = new Paint(1);
-        this.f24386a0 = new TextPaint(1);
-        this.f24387b0 = new TextPaint(1);
+        this.f24390a0 = new TextPaint(1);
+        this.f24391b0 = new TextPaint(1);
         int L = g0.L(16.0f);
-        this.f24390e0 = L;
+        this.f24394e0 = L;
         int L2 = g0.L(9.0f);
         int L3 = g0.L(42.0f);
-        this.f24392g0 = L3;
-        this.f24393h0 = g0.L(14.0f);
-        this.f24394i0 = new RectF();
-        this.f24398n0 = -1;
+        this.f24396g0 = L3;
+        this.f24397h0 = g0.L(14.0f);
+        this.f24398i0 = new RectF();
+        this.f24402n0 = -1;
         TLRPC.Document s5 = kvVar.s(pageblockdocument.document_id);
         this.W = s5;
         int L4 = g0.L(10.0f) + kvVar.S;
-        this.f24391f0 = L4;
+        this.f24395f0 = L4;
         boolean W2 = ij.W2(s5);
-        this.f24395j0 = W2;
-        this.f24399o0 = z5.q(kvVar.f23763a).k();
+        this.f24399j0 = W2;
+        this.f24403o0 = z5.q(kvVar.f23767a).k();
         RadialProgress2 radialProgress2 = new RadialProgress2(null, null);
         this.X = radialProgress2;
         radialProgress2.setCircleRadius(L3 / 2);
@@ -64,11 +64,11 @@ public final class ou extends fu implements x5 {
         L2 = W2 ? g0.L(10.0f) + ((g0.L(86.0f) - L3) / 2) : L2;
         radialProgress2.r(L, L2, L + L3, L3 + L2);
         imageReceiver.J0(g0.L(6.0f));
-        imageReceiver.f21236z1 = true;
+        imageReceiver.f21241z1 = true;
         if (W2) {
             TLRPC.PhotoSize w10 = w7.w(s5.thumbs, 320, false, null, true);
             imageReceiver.y0(L4, g0.L(10.0f), g0.L(86.0f), g0.L(86.0f));
-            imageReceiver.q0(w10 != null ? hc.c(w10, s5) : null, "86_86", gc.m(s5.thumbs), null, kvVar.f23764b, 1);
+            imageReceiver.q0(w10 != null ? hc.c(w10, s5) : null, "86_86", gc.m(s5.thumbs), null, kvVar.f23768b, 1);
         }
         k0();
         l0(false);
@@ -82,9 +82,9 @@ public final class ou extends fu implements x5 {
     @Override
     public final int I() {
         float f10;
-        Rect rect = this.f22470b;
+        Rect rect = this.f22474b;
         int i7 = rect.top;
-        if (this.f24395j0) {
+        if (this.f24399j0) {
             f10 = 106.0f;
         } else {
             f10 = 60.0f;
@@ -96,21 +96,21 @@ public final class ou extends fu implements x5 {
     public final int J() {
         int i7;
         int i10;
-        boolean z9 = this.f24395j0;
-        kv kvVar = this.f22469a;
+        boolean z9 = this.f24399j0;
+        kv kvVar = this.f22473a;
         if (z9) {
-            i10 = g0.L(86.0f) + (this.f24391f0 - kvVar.S);
+            i10 = g0.L(86.0f) + (this.f24395f0 - kvVar.S);
         } else {
-            StaticLayout staticLayout = this.f24389d0;
+            StaticLayout staticLayout = this.f24393d0;
             if (staticLayout != null && staticLayout.getLineCount() > 0) {
-                StaticLayout staticLayout2 = this.f24389d0;
+                StaticLayout staticLayout2 = this.f24393d0;
                 i7 = (int) Math.ceil(staticLayout2.getLineWidth(staticLayout2.getLineCount() - 1));
             } else {
                 i7 = 0;
             }
-            i10 = (this.f24390e0 - kvVar.S) + this.f24392g0 + this.f24393h0 + i7;
+            i10 = (this.f24394e0 - kvVar.S) + this.f24396g0 + this.f24397h0 + i7;
         }
-        Rect rect = this.f22470b;
+        Rect rect = this.f22474b;
         return rect.left + i10 + rect.right;
     }
 
@@ -128,14 +128,14 @@ public final class ou extends fu implements x5 {
         if (document != null) {
             str = g0.i0(document.size, false, false);
         }
-        int ceil = (int) Math.ceil(Math.max(this.f24386a0.measureText(B), this.f24387b0.measureText(str)));
-        if (this.f24395j0) {
+        int ceil = (int) Math.ceil(Math.max(this.f24390a0.measureText(B), this.f24391b0.measureText(str)));
+        if (this.f24399j0) {
             i7 = g0.L(107.0f);
         } else {
-            i7 = this.f24390e0 + this.f24392g0 + this.f24393h0;
+            i7 = this.f24394e0 + this.f24396g0 + this.f24397h0;
         }
-        int min = Math.min(this.f22471c, Math.max(g0.L(220.0f), g0.L(48.0f) + i7 + ceil));
-        Rect rect = this.f22470b;
+        int min = Math.min(this.f22475c, Math.max(g0.L(220.0f), g0.L(48.0f) + i7 + ceil));
+        Rect rect = this.f22474b;
         return rect.left + min + rect.right;
     }
 
@@ -160,7 +160,7 @@ public final class ou extends fu implements x5 {
     @Override
     public final void V() {
         this.Y.R();
-        z5.q(this.f22469a.f23763a).v(this);
+        z5.q(this.f22473a.f23767a).v(this);
     }
 
     @Override
@@ -175,69 +175,69 @@ public final class ou extends fu implements x5 {
         if (document == null) {
             return;
         }
-        if (this.f24398n0 != i0()) {
+        if (this.f24402n0 != i0()) {
             k0();
         }
         canvas.save();
-        kv kvVar = this.f22469a;
+        kv kvVar = this.f22473a;
         canvas.translate(-kvVar.S, 0.0f);
         Drawable drawable = null;
-        boolean z9 = this.f24395j0;
-        int i13 = this.f24391f0;
+        boolean z9 = this.f24399j0;
+        int i13 = this.f24395f0;
         if (z9 && !this.Y.h(canvas, null)) {
             if (kvVar.E()) {
-                i12 = org.telegram.ui.ActionBar.l6.wc;
+                i12 = org.telegram.ui.ActionBar.m6.wc;
             } else {
-                i12 = org.telegram.ui.ActionBar.l6.f28189ue;
+                i12 = org.telegram.ui.ActionBar.m6.f28214ue;
             }
-            int w02 = org.telegram.ui.ActionBar.l6.w0(i12, kvVar.D);
+            int w02 = org.telegram.ui.ActionBar.m6.w0(i12, kvVar.D);
             Paint paint = this.Z;
             paint.setColor(w02);
             canvas.drawRoundRect(i13, g0.L(10.0f), g0.L(86.0f) + i13, g0.L(96.0f), g0.L(6.0f), g0.L(6.0f), paint);
         }
         this.X.draw(canvas);
         if (kvVar.E()) {
-            i7 = org.telegram.ui.ActionBar.l6.f28167tc;
+            i7 = org.telegram.ui.ActionBar.m6.f28192tc;
         } else {
-            i7 = org.telegram.ui.ActionBar.l6.f28132re;
+            i7 = org.telegram.ui.ActionBar.m6.f28157re;
         }
-        this.f24386a0.setColor(org.telegram.ui.ActionBar.l6.w0(i7, kvVar.D));
+        this.f24390a0.setColor(org.telegram.ui.ActionBar.m6.w0(i7, kvVar.D));
         if (kvVar.E()) {
-            i10 = org.telegram.ui.ActionBar.l6.f27926gc;
+            i10 = org.telegram.ui.ActionBar.m6.f27951gc;
         } else {
-            i10 = org.telegram.ui.ActionBar.l6.f27835be;
+            i10 = org.telegram.ui.ActionBar.m6.f27860be;
         }
-        this.f24387b0.setColor(org.telegram.ui.ActionBar.l6.w0(i10, kvVar.D));
+        this.f24391b0.setColor(org.telegram.ui.ActionBar.m6.w0(i10, kvVar.D));
         if (z9) {
             i11 = g0.L(97.0f) + i13;
         } else {
-            i11 = this.f24390e0 + this.f24392g0 + this.f24393h0;
+            i11 = this.f24394e0 + this.f24396g0 + this.f24397h0;
         }
         int L = g0.L(11.0f);
         int L2 = g0.L(2.0f);
         canvas.save();
         float f10 = i11;
         canvas.translate(f10, L);
-        this.f24388c0.draw(canvas);
+        this.f24392c0.draw(canvas);
         canvas.restore();
         canvas.save();
-        canvas.translate(f10, L2 + this.f24388c0.getHeight() + L);
-        this.f24389d0.draw(canvas);
+        canvas.translate(f10, L2 + this.f24392c0.getHeight() + L);
+        this.f24393d0.draw(canvas);
         canvas.restore();
-        RectF rectF = this.f24394i0;
+        RectF rectF = this.f24398i0;
         if (document != null && (q1Var = kvVar.E) != null && (l1Var = kvVar.F) != null && l1Var.a0(q1Var)) {
             if (kvVar.E()) {
-                org.telegram.ui.ActionBar.g6 g6Var = kvVar.D;
-                if (g6Var != null) {
-                    drawable = g6Var.getDrawable("drawableMsgOutMenu");
+                org.telegram.ui.ActionBar.h6 h6Var = kvVar.D;
+                if (h6Var != null) {
+                    drawable = h6Var.getDrawable("drawableMsgOutMenu");
                 }
                 if (drawable == null) {
-                    drawable = org.telegram.ui.ActionBar.l6.R0("drawableMsgOutMenu");
+                    drawable = org.telegram.ui.ActionBar.m6.R0("drawableMsgOutMenu");
                 }
             } else {
-                drawable = org.telegram.ui.ActionBar.l6.f27845c4;
+                drawable = org.telegram.ui.ActionBar.m6.f27870c4;
             }
-            int L3 = (this.f24398n0 + this.f22470b.right) - g0.L(32.0f);
+            int L3 = (this.f24402n0 + this.f22474b.right) - g0.L(32.0f);
             int L4 = g0.L(7.0f);
             drawable.setBounds(L3, L4, drawable.getIntrinsicWidth() + L3, drawable.getIntrinsicHeight() + L4);
             drawable.draw(canvas);
@@ -255,7 +255,7 @@ public final class ou extends fu implements x5 {
 
     @Override
     public final int getObserverTag() {
-        return this.f24399o0;
+        return this.f24403o0;
     }
 
     @Override
@@ -267,17 +267,17 @@ public final class ou extends fu implements x5 {
             min = Math.min(1.0f, ((float) j3) / ((float) j10));
         }
         this.X.p(true, min);
-        if (this.f24396k0 != 2) {
+        if (this.f24400k0 != 2) {
             l0(true);
         }
     }
 
     public final int i0() {
-        kv kvVar = this.f22469a;
+        kv kvVar = this.f22473a;
         int i7 = kvVar.C;
-        int i10 = this.f22471c;
+        int i10 = this.f22475c;
         if (i7 > 0) {
-            Rect rect = this.f22470b;
+            Rect rect = this.f22474b;
             i10 = Math.min(i10, Math.max(0, (i7 - rect.left) - rect.right));
         }
         return i10 + kvVar.S + kvVar.T;
@@ -288,13 +288,13 @@ public final class ou extends fu implements x5 {
         if (document == null) {
             return null;
         }
-        kv kvVar = this.f22469a;
-        w7.G(kvVar.f23763a);
+        kv kvVar = this.f22473a;
+        w7.G(kvVar.f23767a);
         File J = w7.J(document, null, false, true);
         if (J != null && J.exists()) {
             return J;
         }
-        w7.G(kvVar.f23763a);
+        w7.G(kvVar.f23767a);
         return w7.J(document, null, true, true);
     }
 
@@ -302,21 +302,21 @@ public final class ou extends fu implements x5 {
         int i7;
         int i10;
         String B;
-        this.f24398n0 = i0();
-        if (this.f24395j0) {
+        this.f24402n0 = i0();
+        if (this.f24399j0) {
             i7 = g0.L(97.0f);
-            i10 = this.f24391f0;
+            i10 = this.f24395f0;
         } else {
-            i7 = this.f24390e0 + this.f24392g0;
-            i10 = this.f24393h0;
+            i7 = this.f24394e0 + this.f24396g0;
+            i10 = this.f24397h0;
         }
         int i11 = i7 + i10;
-        int e10 = jg.g.e(48.0f, this.f24398n0 - i11, g0.L(40.0f));
-        kv kvVar = this.f22469a;
-        TextPaint textPaint = this.f24386a0;
+        int e10 = jg.g.e(48.0f, this.f24402n0 - i11, g0.L(40.0f));
+        kv kvVar = this.f22473a;
+        TextPaint textPaint = this.f24390a0;
         textPaint.setTextSize(g0.L(kvVar.M - 1));
         textPaint.setTypeface(g0.o());
-        this.f24387b0.setTextSize(g0.L(kvVar.M - 3));
+        this.f24391b0.setTextSize(g0.L(kvVar.M - 3));
         String str = "";
         TLRPC.Document document = this.W;
         if (document == null) {
@@ -326,11 +326,11 @@ public final class ou extends fu implements x5 {
         }
         CharSequence ellipsize = TextUtils.ellipsize(B, textPaint, e10, TextUtils.TruncateAt.END);
         Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-        this.f24388c0 = new StaticLayout(ellipsize, this.f24386a0, e10, alignment, 1.0f, 0.0f, false);
+        this.f24392c0 = new StaticLayout(ellipsize, this.f24390a0, e10, alignment, 1.0f, 0.0f, false);
         if (document != null) {
             str = g0.i0(document.size, false, false);
         }
-        this.f24389d0 = new StaticLayout(str, this.f24387b0, e10, alignment, 1.0f, 0.0f, false);
+        this.f24393d0 = new StaticLayout(str, this.f24391b0, e10, alignment, 1.0f, 0.0f, false);
     }
 
     public final void l0(boolean z9) {
@@ -339,56 +339,56 @@ public final class ou extends fu implements x5 {
         int i11;
         int i12;
         int i13;
-        kv kvVar = this.f22469a;
+        kv kvVar = this.f22473a;
         RadialProgress2 radialProgress2 = this.X;
-        boolean z10 = this.f24395j0;
+        boolean z10 = this.f24399j0;
         if (z10) {
-            radialProgress2.g(org.telegram.ui.ActionBar.l6.Ze, org.telegram.ui.ActionBar.l6.f27817af, org.telegram.ui.ActionBar.l6.f27836bf, org.telegram.ui.ActionBar.l6.f27856cf);
-            radialProgress2.d = org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.Vd, kvVar.D);
+            radialProgress2.g(org.telegram.ui.ActionBar.m6.Ze, org.telegram.ui.ActionBar.m6.f27842af, org.telegram.ui.ActionBar.m6.f27861bf, org.telegram.ui.ActionBar.m6.f27881cf);
+            radialProgress2.d = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Vd, kvVar.D);
         } else {
             if (kvVar.E()) {
-                i7 = org.telegram.ui.ActionBar.l6.Bc;
+                i7 = org.telegram.ui.ActionBar.m6.Bc;
             } else {
-                i7 = org.telegram.ui.ActionBar.l6.We;
+                i7 = org.telegram.ui.ActionBar.m6.We;
             }
             if (kvVar.E()) {
-                i10 = org.telegram.ui.ActionBar.l6.Cc;
+                i10 = org.telegram.ui.ActionBar.m6.Cc;
             } else {
-                i10 = org.telegram.ui.ActionBar.l6.Xe;
+                i10 = org.telegram.ui.ActionBar.m6.Xe;
             }
             if (kvVar.E()) {
-                i11 = org.telegram.ui.ActionBar.l6.Db;
+                i11 = org.telegram.ui.ActionBar.m6.Db;
             } else {
-                i11 = org.telegram.ui.ActionBar.l6.f27963id;
+                i11 = org.telegram.ui.ActionBar.m6.f27988id;
             }
             if (kvVar.E()) {
-                i12 = org.telegram.ui.ActionBar.l6.Eb;
+                i12 = org.telegram.ui.ActionBar.m6.Eb;
             } else {
-                i12 = org.telegram.ui.ActionBar.l6.f27981jd;
+                i12 = org.telegram.ui.ActionBar.m6.f28006jd;
             }
             radialProgress2.g(i7, i10, i11, i12);
             if (kvVar.E()) {
-                i13 = org.telegram.ui.ActionBar.l6.f28130rc;
+                i13 = org.telegram.ui.ActionBar.m6.f28155rc;
             } else {
-                i13 = org.telegram.ui.ActionBar.l6.f28093pe;
+                i13 = org.telegram.ui.ActionBar.m6.f28118pe;
             }
-            radialProgress2.d = org.telegram.ui.ActionBar.l6.w0(i13, kvVar.D);
+            radialProgress2.d = org.telegram.ui.ActionBar.m6.w0(i13, kvVar.D);
         }
         String r10 = w7.r(null, this.W);
         File j02 = j0();
         int i14 = 4;
         if (j02 != null && j02.exists()) {
-            z5.q(kvVar.f23763a).v(this);
-            this.f24396k0 = 0;
+            z5.q(kvVar.f23767a).v(this);
+            this.f24400k0 = 0;
             if (!z10) {
                 i14 = 5;
             }
             radialProgress2.setIcon(i14, false, z9);
         } else if (!TextUtils.isEmpty(r10)) {
-            z5.q(kvVar.f23763a).a(r10, null, this);
+            z5.q(kvVar.f23767a).a(r10, null, this);
             float f10 = 0.0f;
-            if (w7.G(kvVar.f23763a).S(r10)) {
-                this.f24396k0 = 2;
+            if (w7.G(kvVar.f23767a).S(r10)) {
+                this.f24400k0 = 2;
                 Float w10 = gc.D().w(r10);
                 if (w10 != null) {
                     f10 = w10.floatValue();
@@ -396,7 +396,7 @@ public final class ou extends fu implements x5 {
                 radialProgress2.p(z9, f10);
                 radialProgress2.setIcon(3, true, z9);
             } else {
-                this.f24396k0 = 1;
+                this.f24400k0 = 1;
                 radialProgress2.p(z9, 0.0f);
                 radialProgress2.setIcon(2, false, z9);
             }

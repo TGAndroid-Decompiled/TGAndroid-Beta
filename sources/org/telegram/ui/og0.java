@@ -1,27 +1,43 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class og0 extends ah.e {
-    public final int f48447n;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.tgnet.TLRPC;
+public final class og0 implements View.OnClickListener {
+    public final int f48525a;
+    public final tg0 f48526b;
 
-    public og0(int i7, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, g6Var);
-        this.f48447n = i7;
+    public og0(tg0 tg0Var, int i7) {
+        this.f48525a = i7;
+        this.f48526b = tg0Var;
     }
 
     @Override
-    public final int getHeaderHeight() {
-        switch (this.f48447n) {
+    public final void onClick(View view) {
+        switch (this.f48525a) {
             case 0:
-                if (getResources().getConfiguration().orientation == 2) {
-                    return org.telegram.messenger.g0.L(48.0f);
+                tg0 tg0Var = this.f48526b;
+                sg0 sg0Var = tg0Var.f50276l2;
+                HashSet hashSet = tg0Var.Y1;
+                if (hashSet.size() != 0 && sg0Var != null) {
+                    ArrayList arrayList = new ArrayList();
+                    for (TLRPC.User user : tg0Var.d2.values()) {
+                        if (hashSet.contains(Long.valueOf(user.f27109id))) {
+                            arrayList.add(Long.valueOf(user.f27109id));
+                        }
+                    }
+                    sg0Var.a(arrayList);
+                    tg0Var.dismiss();
+                    return;
                 }
-                return org.telegram.messenger.g0.L(54.0f);
+                return;
             default:
-                if (getResources().getConfiguration().orientation == 2) {
-                    return org.telegram.messenger.g0.L(48.0f);
-                }
-                return org.telegram.messenger.g0.L(54.0f);
+                tg0 tg0Var2 = this.f48526b;
+                tg0Var2.Y1.clear();
+                tg0Var2.T1.d.b(true);
+                tg0Var2.g1(true, false);
+                return;
         }
     }
 }

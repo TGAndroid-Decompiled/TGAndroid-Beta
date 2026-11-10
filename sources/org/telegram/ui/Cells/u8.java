@@ -9,33 +9,33 @@ import android.widget.TextView;
 import org.telegram.messenger.id;
 public final class u8 extends FrameLayout {
     public static Paint d;
-    public final TextView f30587a;
-    public int f30588b;
-    public float f30589c;
+    public final TextView f30598a;
+    public int f30599b;
+    public float f30600c;
 
     public u8(Context context) {
         super(context);
         int i7;
         int i10;
-        this.f30589c = 1.0f;
+        this.f30600c = 1.0f;
         if (d == null) {
             d = new Paint(1);
         }
         TextView textView = new TextView(context);
-        this.f30587a = textView;
+        this.f30598a = textView;
         textView.setTextColor(-14606047);
         textView.setTextSize(1, 16.0f);
         textView.setLines(1);
         textView.setMaxLines(1);
         textView.setSingleLine(true);
-        if (id.f23157a0) {
+        if (id.f23161a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7 | 16);
         textView.setPadding(0, 0, 0, org.telegram.messenger.g0.L(3.0f));
-        boolean z9 = id.f23157a0;
+        boolean z9 = id.f23161a0;
         int i11 = (z9 ? 5 : 3) | 48;
         if (z9) {
             i10 = 21;
@@ -47,17 +47,17 @@ public final class u8 extends FrameLayout {
 
     @Override
     public float getAlpha() {
-        return this.f30589c;
+        return this.f30600c;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int measuredWidth;
-        int i7 = this.f30588b;
+        int i7 = this.f30599b;
         if (i7 != 0) {
             d.setColor(i7);
-            d.setAlpha((int) (this.f30589c * 255.0f));
-            if (!id.f23157a0) {
+            d.setAlpha((int) (this.f30600c * 255.0f));
+            if (!id.f23161a0) {
                 measuredWidth = org.telegram.messenger.g0.L(28.0f);
             } else {
                 measuredWidth = getMeasuredWidth() - org.telegram.messenger.g0.L(28.0f);
@@ -73,7 +73,7 @@ public final class u8 extends FrameLayout {
 
     @Override
     public void setAlpha(float f10) {
-        this.f30589c = f10;
+        this.f30600c = f10;
         invalidate();
     }
 }

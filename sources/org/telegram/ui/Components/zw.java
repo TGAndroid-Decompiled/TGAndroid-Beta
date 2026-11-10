@@ -1,31 +1,50 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class zw {
-    public final TLRPC.StickerSetCovered f41172a;
-    public final TLRPC.TL_messages_stickerSet f41173b;
-    public final TLRPC.StickerSet f41174c;
-    public final ArrayList d;
-    public final TLRPC.Document f41175e;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class zw extends c5.a {
+    public final gy f41144c;
 
-    public zw(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, ArrayList arrayList) {
-        TLRPC.Document document = null;
-        this.f41172a = null;
-        this.f41173b = tL_messages_stickerSet;
-        this.f41174c = tL_messages_stickerSet.set;
-        this.d = arrayList;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            document = (TLRPC.Document) arrayList.get(0);
-        }
-        this.f41175e = document;
+    public zw(gy gyVar) {
+        this.f41144c = gyVar;
     }
 
-    public zw(TLRPC.StickerSetCovered stickerSetCovered, ArrayList arrayList) {
-        this.f41172a = stickerSetCovered;
-        this.f41173b = null;
-        this.f41174c = stickerSetCovered.set;
-        this.d = arrayList;
-        this.f41175e = arrayList.isEmpty() ? null : (TLRPC.Document) arrayList.get(0);
+    @Override
+    public final void a(c5.k kVar, Object obj) {
+        kVar.removeView((View) obj);
+    }
+
+    @Override
+    public final int b() {
+        return this.f41144c.f34020e.size();
+    }
+
+    @Override
+    public final CharSequence d(int i7) {
+        if (i7 != 0) {
+            if (i7 != 1) {
+                if (i7 != 2) {
+                    return null;
+                }
+                return org.telegram.messenger.id.M0(2131754756, null);
+            }
+            return org.telegram.messenger.id.M0(2131754879, null);
+        }
+        return org.telegram.messenger.id.M0(2131751196, null);
+    }
+
+    @Override
+    public final Object e(c5.k kVar, int i7) {
+        FrameLayout frameLayout = ((cy) this.f41144c.f34020e.get(i7)).f32800b;
+        kVar.addView(frameLayout);
+        return frameLayout;
+    }
+
+    @Override
+    public final boolean f(View view, Object obj) {
+        if (view == obj) {
+            return true;
+        }
+        return false;
     }
 }

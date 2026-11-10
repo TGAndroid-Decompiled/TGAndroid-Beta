@@ -16,28 +16,28 @@ import org.telegram.messenger.qs;
 import org.telegram.messenger.t3;
 import org.telegram.messenger.ui;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.t2;
-import org.telegram.ui.Components.mz;
-import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.lz;
+import org.telegram.ui.Components.oj0;
 import org.telegram.ui.cn;
-public final class m1 extends pj0 implements ls {
+public final class m1 extends oj0 implements ls {
     public l6 D;
     public final Context f16841c;
     public final cn f16843f;
     public int h;
     public int f16844n;
-    public final g6 f16846s;
+    public final h6 f16846s;
     public final int f16847w;
     public final boolean f16848x;
     public String f16849y;
     public final HashSet d = new HashSet();
     public final ArrayList f16842e = new ArrayList();
-    public final int f16845r = p10.f24470s0;
+    public final int f16845r = p10.f24474s0;
     public final v9 E = new v9(this, 20);
 
-    public m1(Context context, cn cnVar, g6 g6Var, int i7, boolean z9) {
-        this.f16846s = g6Var;
+    public m1(Context context, cn cnVar, h6 h6Var, int i7, boolean z9) {
+        this.f16846s = h6Var;
         this.f16841c = context;
         this.f16843f = cnVar;
         this.f16847w = i7;
@@ -46,7 +46,7 @@ public final class m1 extends pj0 implements ls {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57060f;
+        int i7 = d1Var.f57056f;
         if (i7 != 0 && i7 != 2) {
             return false;
         }
@@ -79,7 +79,7 @@ public final class m1 extends pj0 implements ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == qs.f25109x5 && objArr[0] == this.D) {
+        if (i7 == qs.f25113x5 && objArr[0] == this.D) {
             f();
         }
     }
@@ -97,7 +97,7 @@ public final class m1 extends pj0 implements ls {
         if (i10 == 0) {
             arrayList = ui.b0(i7).Y0;
         } else {
-            arrayList = oa.a(i7).b(i10).f24159a;
+            arrayList = oa.a(i7).b(i10).f24163a;
         }
         int i11 = 0;
         for (int i12 = 0; i12 < arrayList.size(); i12++) {
@@ -110,8 +110,8 @@ public final class m1 extends pj0 implements ls {
         int i13 = this.f16844n;
         this.h = arrayList2.size();
         if (i10 != 0) {
-            if (!oa.a(i7).b(i10).f24170n && this.h != 0) {
-                i11 = Utilities.j(oa.a(i7).b(i10).f24169m - this.h, 3, 0);
+            if (!oa.a(i7).b(i10).f24174n && this.h != 0) {
+                i11 = Utilities.j(oa.a(i7).b(i10).f24173m - this.h, 3, 0);
             }
             this.f16844n = i11;
         } else {
@@ -136,18 +136,18 @@ public final class m1 extends pj0 implements ls {
         boolean z9;
         int i10;
         int i11;
-        int i12 = d1Var.f57060f;
-        View view = d1Var.f57056a;
+        int i12 = d1Var.f57056f;
+        View view = d1Var.f57052a;
         if (i12 == 0) {
             t2 t2Var = (t2) view;
-            t2Var.f30484s2 = true;
+            t2Var.f30495s2 = true;
             ij ijVar = (ij) E(i7);
-            long B0 = ij.B0(ijVar.f23262k);
-            int i13 = ijVar.f23262k.date;
+            long B0 = ij.B0(ijVar.f23266k);
+            int i13 = ijVar.f23266k.date;
             if (this.f16848x) {
-                t2Var.f30476r0 = true;
+                t2Var.f30487r0 = true;
                 long P1 = ijVar.P1();
-                TLRPC.Message message = ijVar.f23262k;
+                TLRPC.Message message = ijVar.f23266k;
                 TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
                 if (messageFwdHeader != null && ((i10 = messageFwdHeader.date) != 0 || messageFwdHeader.saved_date != 0)) {
                     if (i10 == 0) {
@@ -178,23 +178,23 @@ public final class m1 extends pj0 implements ls {
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View t2Var;
-        mz mzVar;
+        lz lzVar;
         if (i7 != 0) {
-            g6 g6Var = this.f16846s;
+            h6 h6Var = this.f16846s;
             Context context = this.f16841c;
             if (i7 != 1) {
                 if (i7 != 2) {
                     t2Var = null;
                 } else {
-                    mzVar = new l1(context, g6Var);
+                    lzVar = new l1(context, h6Var);
                 }
             } else {
-                mz mzVar2 = new mz(context, g6Var);
-                mzVar2.setIsSingleCell(true);
-                mzVar2.setViewType(7);
-                mzVar = mzVar2;
+                lz lzVar2 = new lz(context, h6Var);
+                lzVar2.setIsSingleCell(true);
+                lzVar2.setViewType(7);
+                lzVar = lzVar2;
             }
-            t2Var = mzVar;
+            t2Var = lzVar;
         } else {
             t2Var = new t2(null, this.f16841c, true, this.f16845r, this.f16846s);
         }

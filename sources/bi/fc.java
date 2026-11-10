@@ -5,46 +5,46 @@ import android.view.KeyEvent;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.d20;
 import org.telegram.messenger.ij;
-import org.telegram.ui.Components.di;
+import org.telegram.ui.Components.ci;
 public final class fc implements d20 {
-    public final int f3890a;
-    public final KeyEvent.Callback f3891b;
+    public final int f3887a;
+    public final KeyEvent.Callback f3888b;
 
     public fc(KeyEvent.Callback callback, int i7) {
-        this.f3890a = i7;
-        this.f3891b = callback;
+        this.f3887a = i7;
+        this.f3888b = callback;
     }
 
     @Override
     public final Object a(Object obj) {
-        int i7 = this.f3890a;
-        KeyEvent.Callback callback = this.f3891b;
+        int i7 = this.f3887a;
+        KeyEvent.Callback callback = this.f3888b;
         switch (i7) {
             case 0:
                 gc gcVar = (gc) callback;
-                return gcVar.f3961s[((Integer) obj).intValue() % gcVar.f3961s.length];
+                return gcVar.f3958s[((Integer) obj).intValue() % gcVar.f3958s.length];
             case 1:
                 ij ijVar = (ij) obj;
-                ((fi.w6) callback).f13040i2 = ijVar;
+                ((fi.w6) callback).f13045l2 = ijVar;
                 return Boolean.valueOf(MediaController.B().o0(org.telegram.messenger.k5.k(ijVar), ijVar, 0L, true, null, 0L));
             case 2:
                 gc gcVar2 = (gc) callback;
-                return gcVar2.f3961s[((Integer) obj).intValue() % gcVar2.f3961s.length];
+                return gcVar2.f3958s[((Integer) obj).intValue() % gcVar2.f3958s.length];
             case 3:
                 return new org.telegram.ui.web.s(5, (org.telegram.ui.l0) callback, (Integer) obj);
             case 4:
                 tg.g0 g0Var = (tg.g0) callback;
                 if (((Integer) obj).intValue() == 2) {
-                    di diVar = new di(g0Var.getContext(), new tg.w(g0Var), false, false, false, g0Var.f55717z1);
-                    diVar.f28645n = true;
-                    diVar.A1(org.telegram.messenger.id.M0(2131754428, null));
-                    diVar.T3 = new m4.d0(g0Var, diVar, false);
-                    diVar.setOnDismissListener(new fi.d1(8));
-                    diVar.y1(1, false);
-                    diVar.e1();
-                    MediaController.f21249g2 = true;
-                    diVar.f32987a2.i0();
-                    diVar.show();
+                    ci ciVar = new ci(g0Var.getContext(), new tg.w(g0Var), false, false, false, g0Var.f55716z1);
+                    ciVar.f28696n = true;
+                    ciVar.A1(org.telegram.messenger.id.M0(2131754428, null));
+                    ciVar.W3 = new m4.d0(g0Var, ciVar, false);
+                    ciVar.setOnDismissListener(new fi.d1(8));
+                    ciVar.y1(1, false);
+                    ciVar.e1();
+                    MediaController.f21254g2 = true;
+                    ciVar.d2.i0();
+                    ciVar.show();
                 }
                 return Boolean.TRUE;
             default:

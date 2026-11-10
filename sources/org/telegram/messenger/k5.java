@@ -60,8 +60,8 @@ public abstract class k5 {
         return textView;
     }
 
-    public static fi.d h(int i7, Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z9) {
-        fi.d dVar = new fi.d(context, g6Var, z9);
+    public static fi.d h(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z9) {
+        fi.d dVar = new fi.d(context, h6Var, z9);
         dVar.setRoundRadius(i7);
         return dVar;
     }
@@ -83,10 +83,10 @@ public abstract class k5 {
         return arrayList;
     }
 
-    public static org.telegram.ui.ActionBar.v2 l(int i7, Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z9) {
-        org.telegram.ui.ActionBar.v2 v2Var = new org.telegram.ui.ActionBar.v2(i7, context, g6Var, z9);
-        v2Var.N();
-        return v2Var;
+    public static org.telegram.ui.ActionBar.w2 l(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z9) {
+        org.telegram.ui.ActionBar.w2 w2Var = new org.telegram.ui.ActionBar.w2(i7, context, h6Var, z9);
+        w2Var.N();
+        return w2Var;
     }
 
     public static void m(TextView textView, int i7, String str, int i10) {
@@ -94,18 +94,18 @@ public abstract class k5 {
         textView.setText(id.M0(i10, str));
     }
 
-    public static void n(TextView textView, int i7, org.telegram.ui.ActionBar.g6 g6Var, int i10, float f10) {
-        org.telegram.ui.ActionBar.s6.U(textView, i7, g6Var);
+    public static void n(TextView textView, int i7, org.telegram.ui.ActionBar.h6 h6Var, int i10, float f10) {
+        org.telegram.ui.ActionBar.t6.U(textView, i7, h6Var);
         textView.setTextSize(i10, f10);
         textView.setTypeface(g0.o());
     }
 
-    public static void o(String str, int i7, org.telegram.ui.Components.hc hcVar, int i10, int i11) {
-        hcVar.Q(i10, i11, id.M0(i7, str)).j();
+    public static void o(String str, int i7, org.telegram.ui.Components.gc gcVar, int i10, int i11) {
+        gcVar.Q(i10, i11, id.M0(i7, str)).j();
     }
 
-    public static void p(String str, int i7, org.telegram.ui.Components.hc hcVar, org.telegram.ui.ActionBar.g6 g6Var) {
-        hcVar.t(id.M0(i7, str), g6Var).j();
+    public static void p(String str, int i7, org.telegram.ui.Components.gc gcVar, org.telegram.ui.ActionBar.h6 h6Var) {
+        gcVar.t(id.M0(i7, str), h6Var).j();
     }
 
     public static void q(String str, String str2, int i7, Object[] objArr, SpannableStringBuilder spannableStringBuilder) {

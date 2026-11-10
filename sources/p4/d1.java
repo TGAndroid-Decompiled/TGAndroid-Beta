@@ -1,12 +1,12 @@
 package p4;
 public final class d1 {
-    public static final String f53236a;
-    public static final String f53237b;
+    public static final String f53235a;
+    public static final String f53236b;
 
     static {
-        String str = h2.m0.f14112a;
-        f53236a = Integer.toString(0, 36);
-        f53237b = Integer.toString(1, 36);
+        String str = h2.m0.f14114a;
+        f53235a = Integer.toString(0, 36);
+        f53236b = Integer.toString(1, 36);
     }
 
     public final boolean equals(Object obj) {

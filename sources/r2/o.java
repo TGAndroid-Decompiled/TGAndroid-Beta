@@ -5,8 +5,8 @@ import e2.q0;
 import e2.t;
 import e2.u;
 import java.util.Map;
-import x2.b1;
-public final class o extends b1 {
+import x2.a1;
+public final class o extends a1 {
     public final Map J;
     public e2.r K;
 
@@ -20,21 +20,21 @@ public final class o extends b1 {
         e2.r rVar;
         e2.r rVar2 = this.K;
         if (rVar2 == null) {
-            rVar2 = uVar.f10618w;
+            rVar2 = uVar.f10623w;
         }
-        if (rVar2 != null && (rVar = (e2.r) this.J.get(rVar2.f10532c)) != null) {
+        if (rVar2 != null && (rVar = (e2.r) this.J.get(rVar2.f10537c)) != null) {
             rVar2 = rVar;
         }
-        q0 q0Var = uVar.f10608l;
+        q0 q0Var = uVar.f10613l;
         q0 q0Var2 = null;
         if (q0Var != null) {
-            p0[] p0VarArr = q0Var.f10484a;
+            p0[] p0VarArr = q0Var.f10489a;
             int length = p0VarArr.length;
             int i7 = 0;
             while (true) {
                 if (i7 < length) {
                     p0 p0Var = p0VarArr[i7];
-                    if ((p0Var instanceof t3.m) && "com.apple.streaming.transportStreamTimestamp".equals(((t3.m) p0Var).f55423b)) {
+                    if ((p0Var instanceof t3.m) && "com.apple.streaming.transportStreamTimestamp".equals(((t3.m) p0Var).f55422b)) {
                         break;
                     }
                     i7++;
@@ -54,20 +54,20 @@ public final class o extends b1 {
                     q0Var2 = new q0(p0VarArr2);
                 }
             }
-            if (rVar2 == uVar.f10618w || q0Var != uVar.f10608l) {
+            if (rVar2 == uVar.f10623w || q0Var != uVar.f10613l) {
                 t a10 = uVar.a();
                 a10.v = rVar2;
-                a10.f10556k = q0Var;
+                a10.f10561k = q0Var;
                 uVar = new u(a10);
             }
             return super.r(uVar);
         }
         q0Var = q0Var2;
-        if (rVar2 == uVar.f10618w) {
+        if (rVar2 == uVar.f10623w) {
         }
         t a102 = uVar.a();
         a102.v = rVar2;
-        a102.f10556k = q0Var;
+        a102.f10561k = q0Var;
         uVar = new u(a102);
         return super.r(uVar);
     }

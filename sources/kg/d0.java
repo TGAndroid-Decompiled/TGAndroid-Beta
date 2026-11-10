@@ -5,9 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.p10;
-import org.telegram.ui.Components.lj0;
-import org.telegram.ui.Components.qj0;
-public final class d0 extends lj0 {
+import org.telegram.ui.Components.kj0;
+import org.telegram.ui.Components.pj0;
+public final class d0 extends kj0 {
     public final ArrayList f17337r;
     public final int f17338s;
     public final Context f17339w;
@@ -17,7 +17,7 @@ public final class d0 extends lj0 {
         this.f17340x = g0Var;
         ArrayList arrayList = new ArrayList();
         this.f17337r = arrayList;
-        int i7 = p10.f24470s0;
+        int i7 = p10.f24474s0;
         this.f17338s = i7;
         this.f17339w = context;
         arrayList.addAll(t1.f(i7).e());
@@ -29,7 +29,7 @@ public final class d0 extends lj0 {
     }
 
     @Override
-    public final void G(qj0 qj0Var, float f10, int[] iArr) {
+    public final void G(pj0 pj0Var, float f10, int[] iArr) {
         iArr[0] = 0;
         iArr[1] = 0;
     }
@@ -84,8 +84,8 @@ public final class d0 extends lj0 {
 
     @Override
     public final void W(int i7, int i10, v4.d1 d1Var) {
-        if (d1Var.f57060f == 0) {
-            p1 p1Var = (p1) d1Var.f57056a;
+        if (d1Var.f57056f == 0) {
+            p1 p1Var = (p1) d1Var.f57052a;
             Object O = O(i7, i10);
             boolean z9 = true;
             if (i7 == 1 && i10 == M(i7) - 1) {
@@ -94,7 +94,7 @@ public final class d0 extends lj0 {
             if (O instanceof s1) {
                 s1 s1Var = (s1) O;
                 p1Var.a(s1Var, null, z9);
-                p1Var.d.a(this.f17340x.f17388x.contains(Integer.valueOf(s1Var.f17532a)), false);
+                p1Var.d.a(this.f17340x.f17388x.contains(Integer.valueOf(s1Var.f17535a)), false);
             }
         }
     }
@@ -122,7 +122,7 @@ public final class d0 extends lj0 {
                 p1Var.setTag(-33024);
             }
         } else {
-            p1Var = new p1(context, this.f17340x.f39070a, false);
+            p1Var = new p1(context, this.f17340x.f38655a, false);
         }
         return new v4.d1(p1Var);
     }

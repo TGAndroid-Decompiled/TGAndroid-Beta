@@ -1,144 +1,148 @@
 package org.telegram.ui;
 
-import android.graphics.Point;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.KeyEvent;
 import android.view.View;
-import java.util.HashSet;
-public final class yr0 implements r0.m, org.telegram.ui.Components.v51, org.telegram.ui.Components.do0, org.telegram.ui.Components.mm0, org.telegram.ui.Components.cm0 {
-    public final int f52178a;
-    public final Object f52179b;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+public final class yr0 extends FrameLayout {
+    public final int f52103a;
+    public final cs0 f52104b;
 
-    public yr0(Object obj, int i7) {
-        this.f52178a = i7;
-        this.f52179b = obj;
+    public yr0(cs0 cs0Var, Context context, int i7) {
+        super(context);
+        this.f52103a = i7;
+        this.f52104b = cs0Var;
     }
 
     @Override
-    public void A(float f10) {
-        Point point = org.telegram.messenger.g0.f22563q;
-        if (point.x > point.y) {
-            ((u91) this.f52179b).f50344v0.movePreviewFragment(f10);
-        }
-    }
-
-    @Override
-    public void C0() {
-        ((StickersActivity) this.f52179b).o0();
-    }
-
-    @Override
-    public void D() {
-        int i7 = this.f52178a;
-    }
-
-    @Override
-    public void O(org.telegram.ui.Cells.t2 t2Var) {
-        y91 y91Var = ((u91) this.f52179b).f50344v0;
-        HashSet hashSet = y91.f52012q1;
-        y91Var.Q0(t2Var);
-    }
-
-    @Override
-    public r0.k1 S0(View view, r0.k1 k1Var) {
-        switch (this.f52178a) {
+    public void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        org.telegram.ui.Cells.q1 q1Var;
+        switch (this.f52103a) {
             case 0:
-                bs0 bs0Var = (bs0) this.f52179b;
-                i0.b g10 = k1Var.f54214a.g(519);
-                bs0Var.f44124r = g10;
-                bs0Var.d.setPadding(g10.f15120a, g10.f15121b, g10.f15122c, g10.d);
-                bs0Var.f44115c.requestLayout();
-                return r0.k1.f54213b;
-            default:
-                h81 h81Var = (h81) this.f52179b;
-                i0.b g11 = k1Var.f54214a.g(519);
-                h81Var.f46255n = g11;
-                h81Var.f46249c.setPadding(g11.f15120a, g11.f15121b, g11.f15122c, g11.d);
-                h81Var.f46247b.requestLayout();
-                return r0.k1.f54213b;
-        }
-    }
-
-    @Override
-    public void W() {
-        ((StickersActivity) this.f52179b).o0();
-    }
-
-    @Override
-    public void a(float f10) {
-        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f52179b;
-        mp0 mp0Var = secretMediaViewer.D;
-        if (mp0Var != null) {
-            long U = mp0Var.U();
-            if (U != -9223372036854775807L) {
-                secretMediaViewer.D.q0(f10 * ((float) U), false);
-            }
-            secretMediaViewer.D.h0();
-        }
-    }
-
-    @Override
-    public void d(float f10) {
-        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f52179b;
-        mp0 mp0Var = secretMediaViewer.D;
-        if (mp0Var != null) {
-            mp0Var.g0();
-            long U = secretMediaViewer.D.U();
-            if (U != -9223372036854775807L) {
-                secretMediaViewer.D.q0(f10 * ((float) U), false);
-            }
-        }
-    }
-
-    @Override
-    public void finish() {
-        Point point = org.telegram.messenger.g0.f22563q;
-        if (point.x > point.y) {
-            ((u91) this.f52179b).f50344v0.finishPreviewFragment();
-        }
-    }
-
-    @Override
-    public CharSequence getContentDescription() {
-        switch (this.f52178a) {
-            case 3:
-                x51 x51Var = (x51) this.f52179b;
-                return String.valueOf(Math.round((x51Var.f51554a.getProgress() * x51Var.f51555b) + 0));
-            default:
-                h61 h61Var = (h61) this.f52179b;
-                int i7 = h61Var.d;
-                return String.valueOf(Math.round((h61Var.f46175b.getProgress() * (h61Var.f46177e - i7)) + i7));
-        }
-    }
-
-    @Override
-    public void l(boolean z9, float f10) {
-        switch (this.f52178a) {
-            case 3:
-                x51 x51Var = (x51) this.f52179b;
-                ThemeActivity.d0(x51Var.f51557e, Math.round((x51Var.f51555b * f10) + 0), false);
+                cs0 cs0Var = this.f52104b;
+                if (cs0Var.D > 0.0f && cs0Var.f44799x != null) {
+                    cs0Var.f44800y.reset();
+                    float width = getWidth() / cs0Var.f44797s.getWidth();
+                    cs0Var.f44800y.postScale(width, width);
+                    cs0Var.f44798w.setLocalMatrix(cs0Var.f44800y);
+                    cs0Var.f44799x.setAlpha((int) (cs0Var.D * 255.0f));
+                    canvas2 = canvas;
+                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), cs0Var.f44799x);
+                } else {
+                    canvas2 = canvas;
+                }
+                if (cs0Var.O && (q1Var = cs0Var.L) != null) {
+                    q1Var.f29817c6 = cs0Var.P;
+                    q1Var.invalidate();
+                    cs0Var.O = false;
+                }
+                super.dispatchDraw(canvas2);
                 return;
             default:
-                h61 h61Var = (h61) this.f52179b;
-                ThemeActivity themeActivity = h61Var.f46180r;
-                int i7 = h61Var.d;
-                ThemeActivity.p0(themeActivity, Math.round(((h61Var.f46177e - i7) * f10) + i7));
+                super.dispatchDraw(canvas);
                 return;
         }
     }
 
     @Override
-    public int q0() {
-        switch (this.f52178a) {
-            case 3:
-                return ((x51) this.f52179b).f51555b;
+    public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
+        switch (this.f52103a) {
+            case 0:
+                if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
+                    this.f52104b.c(true);
+                    return true;
+                }
+                return super.dispatchKeyEventPreIme(keyEvent);
             default:
-                h61 h61Var = (h61) this.f52179b;
-                return h61Var.f46177e - h61Var.d;
+                return super.dispatchKeyEventPreIme(keyEvent);
         }
     }
 
-    private final void b() {
+    @Override
+    public boolean drawChild(Canvas canvas, View view, long j3) {
+        switch (this.f52103a) {
+            case 1:
+                cs0 cs0Var = this.f52104b;
+                if (view != cs0Var.K && view != cs0Var.J) {
+                    return super.drawChild(canvas, view, j3);
+                }
+                canvas.save();
+                canvas.clipRect(0.0f, org.telegram.messenger.g0.T1(cs0Var.M, 0.0f, cs0Var.D), getWidth(), org.telegram.messenger.g0.T1(cs0Var.N, getHeight(), cs0Var.D));
+                boolean drawChild = super.drawChild(canvas, view, j3);
+                canvas.restore();
+                return drawChild;
+            default:
+                return super.drawChild(canvas, view, j3);
+        }
     }
 
-    private final void c() {
+    @Override
+    public void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
+        switch (this.f52103a) {
+            case 0:
+                super.onLayout(z9, i7, i10, i11, i12);
+                this.f52104b.d();
+                return;
+            default:
+                super.onLayout(z9, i7, i10, i11, i12);
+                return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i7, int i10) {
+        switch (this.f52103a) {
+            case 2:
+                int size = View.MeasureSpec.getSize(i7);
+                int size2 = View.MeasureSpec.getSize(i10);
+                cs0 cs0Var = this.f52104b;
+                cs0Var.e();
+                for (int i11 = 0; i11 < getChildCount(); i11++) {
+                    View childAt = getChildAt(i11);
+                    ViewGroup viewGroup = cs0Var.T;
+                    if (childAt == viewGroup) {
+                        float f10 = cs0Var.U;
+                        if (f10 > 0.0f) {
+                            viewGroup.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f10), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                        }
+                    }
+                    ViewGroup viewGroup2 = cs0Var.R;
+                    if (childAt == viewGroup2) {
+                        float f11 = cs0Var.S;
+                        if (f11 > 0.0f) {
+                            viewGroup2.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f11), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                        }
+                    }
+                    org.telegram.ui.Components.ii0 ii0Var = cs0Var.Q;
+                    if (childAt == ii0Var) {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(ii0Var.getTotalWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                    } else {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                    }
+                }
+                setMeasuredDimension(size, size2);
+                return;
+            default:
+                super.onMeasure(i7, i10);
+                return;
+        }
+    }
+
+    @Override
+    public void onSizeChanged(int i7, int i10, int i11, int i12) {
+        switch (this.f52103a) {
+            case 0:
+                super.onSizeChanged(i7, i10, i11, i12);
+                cs0 cs0Var = this.f52104b;
+                ih.d.c(cs0Var.F, cs0Var.f44787c);
+                cs0Var.G.d();
+                return;
+            default:
+                super.onSizeChanged(i7, i10, i11, i12);
+                return;
+        }
     }
 }

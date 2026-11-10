@@ -14,7 +14,7 @@ public final class g3 extends i9 {
     @Override
     public final boolean C() {
         t3 t3Var = this.G0;
-        CharSequence r10 = t3Var.f18901u3.r();
+        CharSequence r10 = t3Var.f18904u3.r();
         if (r10 != null && r10.length() != 0) {
             t3Var.f5(r10);
             return true;
@@ -25,7 +25,7 @@ public final class g3 extends i9 {
     @Override
     public final void D() {
         t3 t3Var = this.G0;
-        CharSequence r10 = t3Var.f18901u3.r();
+        CharSequence r10 = t3Var.f18904u3.r();
         if (r10 != null && r10.length() > 0) {
             t3Var.f5(r10);
         }
@@ -54,7 +54,7 @@ public final class g3 extends i9 {
     @Override
     public final void K(float f10, float f11) {
         t3 t3Var = this.G0;
-        t3Var.f18911z3 = true;
+        t3Var.f18914z3 = true;
         t3Var.A3 = f10;
         t3Var.B3 = f11;
     }
@@ -66,23 +66,23 @@ public final class g3 extends i9 {
         String str;
         int length;
         t3 t3Var = this.G0;
-        g3 g3Var = t3Var.f18901u3;
-        ArrayList arrayList = t3Var.f18897s3;
-        if (!arrayList.isEmpty() && g3Var.x() && g3Var.f29321p0 == 0 && g3Var.f29322q0 == 0 && g3Var.f29323r0 <= 0 && g3Var.f29324s0 == (size = arrayList.size() - 1)) {
+        g3 g3Var = t3Var.f18904u3;
+        ArrayList arrayList = t3Var.f18900s3;
+        if (!arrayList.isEmpty() && g3Var.x() && g3Var.f29332p0 == 0 && g3Var.f29333q0 == 0 && g3Var.f29334r0 <= 0 && g3Var.f29335s0 == (size = arrayList.size() - 1)) {
             a aVar = (a) arrayList.get(size);
-            if (a6.p(aVar.f18392b)) {
-                str = c6.l(a6.j(aVar.f18392b));
+            if (a6.p(aVar.f18395b)) {
+                str = c6.l(a6.j(aVar.f18395b));
             } else {
                 str = "";
             }
             int i7 = !str.isEmpty();
-            if (g3Var.f29325t0 == i7) {
+            if (g3Var.f29336t0 == i7) {
                 if (i7 == 1) {
                     length = str.length();
                 } else {
-                    length = a6.z(aVar.f18392b).length();
+                    length = a6.z(aVar.f18395b).length();
                 }
-                if (g3Var.f29326u0 >= length) {
+                if (g3Var.f29337u0 >= length) {
                     z9 = true;
                     return !z9;
                 }

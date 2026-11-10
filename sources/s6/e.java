@@ -37,7 +37,7 @@ public final class e extends h {
 
     @Override
     public final n6.c[] k() {
-        return n7.b.f20523c;
+        return n7.b.f20528c;
     }
 
     @Override
@@ -45,7 +45,7 @@ public final class e extends h {
         q qVar = this.F;
         qVar.getClass();
         Bundle bundle = new Bundle();
-        String str = qVar.f53939a;
+        String str = qVar.f53938a;
         if (str != null) {
             bundle.putString("api", str);
         }

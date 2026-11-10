@@ -4,12 +4,12 @@ import j$.util.Objects;
 import java.util.ArrayList;
 import org.telegram.messenger.s3;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.lj0;
-import org.telegram.ui.Components.o01;
-import org.telegram.ui.Components.q01;
-import org.telegram.ui.Components.qw;
-import org.telegram.ui.h40;
-import org.telegram.ui.s11;
+import org.telegram.ui.Components.kj0;
+import org.telegram.ui.Components.n01;
+import org.telegram.ui.Components.p01;
+import org.telegram.ui.Components.pw;
+import org.telegram.ui.i40;
+import org.telegram.ui.t11;
 public final class h extends v4.o {
     public final int f16735b;
     public final ArrayList f16736c;
@@ -25,7 +25,7 @@ public final class h extends v4.o {
     public final boolean a(int i7, int i10) {
         switch (this.f16735b) {
             case 0:
-                if (((l) ((n) this.d).N.get(i7)).f54544a == ((l) this.f16736c.get(i10)).f54544a) {
+                if (((l) ((n) this.d).N.get(i7)).f54543a == ((l) this.f16736c.get(i10)).f54543a) {
                     return true;
                 }
                 return false;
@@ -53,31 +53,31 @@ public final class h extends v4.o {
                 l lVar = (l) ((n) this.d).N.get(i7);
                 l lVar2 = (l) this.f16736c.get(i10);
                 TLRPC.Dialog dialog = lVar.f16820c;
-                int i11 = lVar.f54544a;
-                int i12 = lVar2.f54544a;
+                int i11 = lVar.f54543a;
+                int i12 = lVar2.f54543a;
                 TLRPC.Dialog dialog2 = lVar2.f16820c;
-                if (i11 != i12 || (i11 != 0 ? !(i11 != 14 ? i11 != 4 ? i11 != 6 ? i11 != 5 ? i11 != 10 : lVar.f16825j == lVar2.f16825j : (tL_contact = lVar.f16821e) != null && (tL_contact2 = lVar2.f16821e) != null && tL_contact.user_id == tL_contact2.user_id : (recentMeUrl = lVar.d) != null && lVar2.d != null && (str = recentMeUrl.url) != null && str.equals(str) : dialog != null && dialog2 != null && dialog.f26960id == dialog2.f26960id && dialog.isFolder == dialog2.isFolder) : !(dialog != null && dialog2 != null && dialog.f26960id == dialog2.f26960id && lVar.h == lVar2.h && lVar.f16822f == lVar2.f16822f && lVar.f16823g == lVar2.f16823g))) {
+                if (i11 != i12 || (i11 != 0 ? !(i11 != 14 ? i11 != 4 ? i11 != 6 ? i11 != 5 ? i11 != 10 : lVar.f16825j == lVar2.f16825j : (tL_contact = lVar.f16821e) != null && (tL_contact2 = lVar2.f16821e) != null && tL_contact.user_id == tL_contact2.user_id : (recentMeUrl = lVar.d) != null && lVar2.d != null && (str = recentMeUrl.url) != null && str.equals(str) : dialog != null && dialog2 != null && dialog.f26964id == dialog2.f26964id && dialog.isFolder == dialog2.isFolder) : !(dialog != null && dialog2 != null && dialog.f26964id == dialog2.f26964id && lVar.h == lVar2.h && lVar.f16822f == lVar2.f16822f && lVar.f16823g == lVar2.f16823g))) {
                     return false;
                 }
                 return true;
             case 1:
-                return ((Integer) this.f16736c.get(i7)).equals(((qw) this.d).f37481n.get(i10));
+                return ((Integer) this.f16736c.get(i7)).equals(((pw) this.d).f37079n.get(i10));
             case 2:
-                return Objects.equals(this.f16736c.get(i7), ((lj0) this.d).f35758n.get(i10));
+                return Objects.equals(this.f16736c.get(i7), ((kj0) this.d).f35360n.get(i10));
             case 3:
-                if (((q01) this.f16736c.get(i7)).a() == ((q01) ((o01) this.d).f36593c.get(i10)).a()) {
+                if (((p01) this.f16736c.get(i7)).a() == ((p01) ((n01) this.d).f36185c.get(i10)).a()) {
                     return true;
                 }
                 return false;
             case 4:
-                h40 h40Var = (h40) this.d;
+                i40 i40Var = (i40) this.d;
                 ArrayList arrayList = this.f16736c;
-                if (i7 < arrayList.size() && i10 < h40Var.f46140e.size()) {
-                    return ((s3) arrayList.get(i7)).equals(h40Var.f46140e.get(i10));
+                if (i7 < arrayList.size() && i10 < i40Var.f46480e.size()) {
+                    return ((s3) arrayList.get(i7)).equals(i40Var.f46480e.get(i10));
                 }
                 return false;
             default:
-                return ((Long) this.f16736c.get(i7)).equals(((s11) this.d).f49708v0.get(i10));
+                return ((Long) this.f16736c.get(i7)).equals(((t11) this.d).f50064v0.get(i10));
         }
     }
 
@@ -87,15 +87,15 @@ public final class h extends v4.o {
             case 0:
                 return this.f16736c.size();
             case 1:
-                return ((qw) this.d).f37481n.size();
+                return ((pw) this.d).f37079n.size();
             case 2:
-                return ((lj0) this.d).f35758n.size();
+                return ((kj0) this.d).f35360n.size();
             case 3:
-                return ((o01) this.d).f36593c.size();
+                return ((n01) this.d).f36185c.size();
             case 4:
-                return ((h40) this.d).f46140e.size();
+                return ((i40) this.d).f46480e.size();
             default:
-                return ((s11) this.d).f49708v0.size();
+                return ((t11) this.d).f50064v0.size();
         }
     }
 

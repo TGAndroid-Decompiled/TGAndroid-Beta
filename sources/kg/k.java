@@ -9,18 +9,18 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.Components.lt;
+import org.telegram.ui.Components.kt;
 public final class k extends ImageView {
-    public final int f17417a;
+    public final int f17420a;
 
     public k(Context context, int i7) {
         super(context);
-        this.f17417a = i7;
+        this.f17420a = i7;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f17417a) {
+        switch (this.f17420a) {
             case 2:
                 super.dispatchDraw(canvas);
                 return;
@@ -32,7 +32,7 @@ public final class k extends ImageView {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f17417a) {
+        switch (this.f17420a) {
             case 1:
                 if (getAlpha() < 0.5f) {
                     return false;
@@ -45,7 +45,7 @@ public final class k extends ImageView {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f17417a) {
+        switch (this.f17420a) {
             case 5:
                 super.onDraw(canvas);
                 invalidate();
@@ -58,7 +58,7 @@ public final class k extends ImageView {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f17417a) {
+        switch (this.f17420a) {
             case 6:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 accessibilityNodeInfo.setClassName(ToggleButton.class.getName());
@@ -79,7 +79,7 @@ public final class k extends ImageView {
     public void onMeasure(int i7, int i10) {
         float f10;
         float f11;
-        switch (this.f17417a) {
+        switch (this.f17420a) {
             case 0:
                 super.onMeasure(i7, i10);
                 Matrix imageMatrix = getImageMatrix();
@@ -108,13 +108,13 @@ public final class k extends ImageView {
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size, 1073741824));
                 return;
             case 4:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 1073741824));
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.l.getCurrentActionBarHeight(), 1073741824));
                 return;
         }
     }
 
-    public k(lt ltVar, Context context) {
+    public k(kt ktVar, Context context) {
         super(context);
-        this.f17417a = 2;
+        this.f17420a = 2;
     }
 }

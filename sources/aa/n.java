@@ -47,25 +47,25 @@ import m.j1;
 import org.chromium.support_lib_boundary.WebMessageListenerBoundaryInterface;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.lc;
-import org.telegram.ui.Components.ah0;
-import org.telegram.ui.Components.gt0;
-import org.telegram.ui.Components.r51;
-import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.ft0;
+import org.telegram.ui.Components.q51;
+import org.telegram.ui.Components.t51;
+import org.telegram.ui.Components.zg0;
 import org.telegram.ui.Stories.ProfileStoriesView;
-import org.telegram.ui.ev0;
-import org.telegram.ui.p00;
-import org.telegram.ui.q11;
-import org.telegram.ui.yv0;
+import org.telegram.ui.fv0;
+import org.telegram.ui.q00;
+import org.telegram.ui.r11;
+import org.telegram.ui.zv0;
 import q7.l1;
 import q7.m1;
 import tg.r1;
-public final class n implements androidx.lifecycle.a0, androidx.activity.result.b, gt0, lc, q11, o0, m9, WebMessageListenerBoundaryInterface, com.google.android.gms.common.api.internal.p, og.n, tg.c, r51, j1, OnCompleteListener, ib.b {
+public final class n implements androidx.lifecycle.a0, androidx.activity.result.b, ft0, lc, r11, o0, m9, WebMessageListenerBoundaryInterface, com.google.android.gms.common.api.internal.p, og.n, tg.c, q51, j1, OnCompleteListener, ib.b {
     public final int f824a;
     public final Object f825b;
 
     public n(d6.i iVar) {
         this.f824a = 18;
-        this.f825b = (com.google.android.gms.internal.play_billing.r) iVar.f8207b;
+        this.f825b = (com.google.android.gms.internal.play_billing.r) iVar.f8212b;
     }
 
     public static int A(long j3) {
@@ -303,7 +303,7 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
     public void F(boolean z9) {
         switch (this.f824a) {
             case 6:
-                te.a aVar = ((bi.z) this.f825b).f5130s;
+                te.a aVar = ((bi.z) this.f825b).f5135s;
                 if (aVar != null) {
                     aVar.a(z9, true);
                     return;
@@ -315,9 +315,9 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
                 if (aVar2 != null) {
                     aVar2.a(z9, true);
                 }
-                p00 p00Var = fVar.f48847s;
-                if (p00Var != null) {
-                    p00Var.invalidate();
+                q00 q00Var = fVar.f49194s;
+                if (q00Var != null) {
+                    q00Var.invalidate();
                     return;
                 }
                 return;
@@ -343,10 +343,10 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
         int d;
         switch (this.f824a) {
             case 6:
-                d = oi.a.d(bi.z.f0((bi.z) this.f825b).f15121b);
+                d = oi.a.d(bi.z.f0((bi.z) this.f825b).f15123b);
                 break;
             default:
-                d = oi.a.d(((gi.f) this.f825b).f13985b0);
+                d = oi.a.d(((gi.f) this.f825b).f13987b0);
                 break;
         }
         return jg.g.e(9.66f, d, 0);
@@ -354,9 +354,9 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
 
     public void a(f3.j jVar) {
         LinkedHashMap linkedHashMap = (LinkedHashMap) this.f825b;
-        long[] jArr = jVar.f11041e;
+        long[] jArr = jVar.f11046e;
         if (jArr.length > 0 && !linkedHashMap.containsKey(Long.valueOf(jArr[0]))) {
-            linkedHashMap.put(Long.valueOf(jVar.f11041e[0]), jVar);
+            linkedHashMap.put(Long.valueOf(jVar.f11046e[0]), jVar);
         }
     }
 
@@ -365,14 +365,14 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
         e7.b bVar = new e7.b(0, (TaskCompletionSource) obj2);
         m1 m1Var = (m1) ((l1) obj).n();
         Parcel obtain = Parcel.obtain();
-        obtain.writeInterfaceToken(m1Var.f54018b);
-        int i7 = q7.j.f54001a;
+        obtain.writeInterfaceToken(m1Var.f54017b);
+        int i7 = q7.j.f54000a;
         obtain.writeStrongBinder(bVar);
         obtain.writeInt(1);
         ((f7.v) this.f825b).writeToParcel(obtain, 0);
         Parcel obtain2 = Parcel.obtain();
         try {
-            m1Var.f54017a.transact(1, obtain, obtain2, 0);
+            m1Var.f54016a.transact(1, obtain, obtain2, 0);
             obtain2.readException();
         } finally {
             obtain.recycle();
@@ -388,7 +388,7 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
             sb2.append("=");
             sb2.append(g9.l.f(entry.getValue()));
             while (it.hasNext()) {
-                sb2.append((CharSequence) lVar.f13591a);
+                sb2.append((CharSequence) lVar.f13593a);
                 Map.Entry entry2 = (Map.Entry) it.next();
                 sb2.append(g9.l.f(entry2.getKey()));
                 sb2.append("=");
@@ -400,19 +400,19 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
     @Override
     public void d(n6.a aVar) {
         f1 f1Var = (f1) this.f825b;
-        f1Var.f6608o.lock();
+        f1Var.f6613o.lock();
         try {
-            f1Var.f6605l = aVar;
+            f1Var.f6610l = aVar;
             f1Var.j();
         } finally {
-            f1Var.f6608o.unlock();
+            f1Var.f6613o.unlock();
         }
     }
 
     @Override
     public void e(long j3, int i7, l3 l3Var) {
-        int i10 = ProfileStoriesView.f41986s0;
-        ((ev0) this.f825b).f(true, false);
+        int i10 = ProfileStoriesView.f41977s0;
+        ((fv0) this.f825b).f(true, false);
         l3Var.run();
     }
 
@@ -422,7 +422,7 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
             case 6:
                 return bi.z.g0((bi.z) this.f825b).d;
             default:
-                return ((gi.f) this.f825b).f13986c0;
+                return ((gi.f) this.f825b).f13988c0;
         }
     }
 
@@ -466,7 +466,7 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
                     extras.putInt("INTERNAL_LOG_ERROR_REASON", 134);
                     extras.putString("INTERNAL_LOG_ERROR_ADDITIONAL_DETAILS", "External offer flow finished with error resultCode: " + i10);
                 }
-                int i11 = com.google.android.gms.internal.play_billing.u.e("ProxyBillingActivityV2", intent).f11151a;
+                int i11 = com.google.android.gms.internal.play_billing.u.e("ProxyBillingActivityV2", intent).f11156a;
                 ResultReceiver resultReceiver = proxyBillingActivityV2.O;
                 if (resultReceiver != null) {
                     resultReceiver.send(i11, extras);
@@ -483,7 +483,7 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
 
     @Override
     public void f0(ImageReceiver imageReceiver, boolean z9, boolean z10, boolean z11) {
-        ah0 B;
+        zg0 B;
         boolean[] zArr = (boolean[]) this.f825b;
         if (z9 && (B = imageReceiver.B()) != null && !zArr[0]) {
             B.N(0, false, false);
@@ -496,11 +496,11 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
     public void g() {
         x9 x9Var = (x9) this.f825b;
         x9Var.A0(null, true);
-        if (x9Var.f12549v0) {
-            va vaVar = x9Var.f13102j2;
-            vaVar.f12944c1.f12366f.d();
+        if (x9Var.f12553v0) {
+            va vaVar = x9Var.f13104j2;
+            vaVar.f12946c1.f12367f.d();
             vaVar.k0(-1, false, true);
-            x9Var.f12549v0 = false;
+            x9Var.f12553v0 = false;
         }
         x9Var.L0(false);
     }
@@ -523,19 +523,19 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
     public void i(int i7) {
         n6.a aVar;
         f1 f1Var = (f1) this.f825b;
-        Lock lock = f1Var.f6608o;
-        Lock lock2 = f1Var.f6608o;
+        Lock lock = f1Var.f6613o;
+        Lock lock2 = f1Var.f6613o;
         lock.lock();
         try {
-            if (!f1Var.f6607n && (aVar = f1Var.f6606m) != null && aVar.c()) {
-                f1Var.f6607n = true;
-                f1Var.f6600e.onConnectionSuspended(i7);
+            if (!f1Var.f6612n && (aVar = f1Var.f6611m) != null && aVar.c()) {
+                f1Var.f6612n = true;
+                f1Var.f6605e.onConnectionSuspended(i7);
                 return;
             }
-            f1Var.f6607n = false;
-            f1Var.f6598b.i(i7);
-            f1Var.f6606m = null;
-            f1Var.f6605l = null;
+            f1Var.f6612n = false;
+            f1Var.f6603b.i(i7);
+            f1Var.f6611m = null;
+            f1Var.f6610l = null;
         } finally {
             lock2.unlock();
         }
@@ -552,24 +552,24 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
     @Override
     public void k(Bundle bundle) {
         f1 f1Var = (f1) this.f825b;
-        f1Var.f6608o.lock();
+        f1Var.f6613o.lock();
         try {
-            Bundle bundle2 = f1Var.f6604k;
+            Bundle bundle2 = f1Var.f6609k;
             if (bundle2 == null) {
-                f1Var.f6604k = bundle;
+                f1Var.f6609k = bundle;
             } else if (bundle != null) {
                 bundle2.putAll(bundle);
             }
-            f1Var.f6605l = n6.a.f20487f;
+            f1Var.f6610l = n6.a.f20492f;
             f1Var.j();
         } finally {
-            f1Var.f6608o.unlock();
+            f1Var.f6613o.unlock();
         }
     }
 
     @Override
     public tg.j l() {
-        return ((x9) this.f825b).f12543s0;
+        return ((x9) this.f825b).f12547s0;
     }
 
     public f3.j m() {
@@ -579,10 +579,10 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
         ArrayList arrayList3 = new ArrayList();
         ArrayList arrayList4 = new ArrayList();
         for (f3.j jVar : ((LinkedHashMap) this.f825b).values()) {
-            arrayList.add(jVar.f11039b);
-            arrayList2.add(jVar.f11040c);
+            arrayList.add(jVar.f11044b);
+            arrayList2.add(jVar.f11045c);
             arrayList3.add(jVar.d);
-            arrayList4.add(jVar.f11041e);
+            arrayList4.add(jVar.f11046e);
         }
         int[][] iArr = (int[][]) arrayList.toArray(new int[arrayList.size()]);
         long j3 = 0;
@@ -616,27 +616,27 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
         l4 l4Var2;
         l4 l4Var3;
         l4 l4Var4;
-        n9Var.f9404b = null;
-        n9Var.f9405c = null;
-        ev0 ev0Var = (ev0) this.f825b;
-        yv0 yv0Var = ev0Var.h;
-        ArrayList arrayList = ev0Var.f42013x;
-        if (ev0Var.N < 0.2f) {
-            n9Var.f9404b = yv0Var.getImageReceiver();
-            n9Var.f9405c = null;
-            n9Var.f9403a = yv0Var;
+        n9Var.f9409b = null;
+        n9Var.f9410c = null;
+        fv0 fv0Var = (fv0) this.f825b;
+        zv0 zv0Var = fv0Var.h;
+        ArrayList arrayList = fv0Var.f42004x;
+        if (fv0Var.N < 0.2f) {
+            n9Var.f9409b = zv0Var.getImageReceiver();
+            n9Var.f9410c = null;
+            n9Var.f9408a = zv0Var;
             n9Var.h = 0.0f;
-            n9Var.f9409i = org.telegram.messenger.g0.f22563q.y;
-            n9Var.f9408g = (View) ev0Var.getParent();
-            n9Var.d = ev0Var.D;
-            n9Var.f9414n = true;
+            n9Var.f9414i = org.telegram.messenger.g0.f22567q.y;
+            n9Var.f9413g = (View) fv0Var.getParent();
+            n9Var.d = fv0Var.D;
+            n9Var.f9419n = true;
             return true;
         }
         int i12 = 0;
         while (true) {
             if (i12 < arrayList.size()) {
                 l4 l4Var5 = (l4) arrayList.get(i12);
-                if (l4Var5.f9313e >= 1.0f && l4Var5.f9310a == i10) {
+                if (l4Var5.f9318e >= 1.0f && l4Var5.f9315a == i10) {
                     int i13 = i12 - 1;
                     if (i13 >= 0) {
                         l4Var3 = (l4) arrayList.get(i13);
@@ -650,7 +650,7 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
                         l4Var4 = null;
                     }
                     l4 d = ProfileStoriesView.d(l4Var3, l4Var4, l4Var5);
-                    imageReceiver = l4Var5.f9311b;
+                    imageReceiver = l4Var5.f9316b;
                     l4Var2 = d;
                     l4Var = l4Var5;
                 } else {
@@ -666,23 +666,23 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
         if (imageReceiver == null) {
             return false;
         }
-        n9Var.f9405c = imageReceiver;
-        n9Var.f9404b = null;
-        n9Var.f9403a = ev0Var;
+        n9Var.f9410c = imageReceiver;
+        n9Var.f9409b = null;
+        n9Var.f9408a = fv0Var;
         n9Var.h = 0.0f;
-        n9Var.f9409i = org.telegram.messenger.g0.f22563q.y;
-        n9Var.f9408g = (View) ev0Var.getParent();
+        n9Var.f9414i = org.telegram.messenger.g0.f22567q.y;
+        n9Var.f9413g = (View) fv0Var.getParent();
         if (l4Var != null && l4Var2 != null) {
-            n9Var.f9407f = new q7(this, new RectF(l4Var.f9320m), l4Var, new RectF(l4Var2.f9320m), l4Var2);
+            n9Var.f9412f = new q7(this, new RectF(l4Var.f9325m), l4Var, new RectF(l4Var2.f9325m), l4Var2);
             return true;
         }
-        n9Var.f9407f = null;
+        n9Var.f9412f = null;
         return true;
     }
 
     @Override
     public void onComplete(Task task) {
-        g6.c.h((g6.c) ((g6.j) this.f825b).f13564c, "launchApplication", task);
+        g6.c.h((g6.c) ((g6.j) this.f825b).f13566c, "launchApplication", task);
     }
 
     @Override
@@ -698,11 +698,11 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
     public void onStateChanged(boolean z9, int i7) {
         y5 y5Var = (y5) this.f825b;
         w5 w5Var = y5Var.M;
-        u51 u51Var = y5Var.f13195y;
-        if (u51Var == null) {
+        t51 t51Var = y5Var.f13197y;
+        if (t51Var == null) {
             return;
         }
-        if (u51Var.d0()) {
+        if (t51Var.d0()) {
             org.telegram.messenger.g0.h3(w5Var);
         } else {
             org.telegram.messenger.g0.r(w5Var);
@@ -716,11 +716,11 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
 
     @Override
     public void onVideoSizeChanged(int i7, int i10, int i11, float f10) {
-        r1 r1Var = ((y5) this.f825b).f13193x;
+        r1 r1Var = ((y5) this.f825b).f13195x;
         if (r1Var != null) {
             float f11 = i7 / i10;
-            if (Math.abs(r1Var.f55948y0 - f11) >= 1.0E-4f) {
-                r1Var.f55948y0 = f11;
+            if (Math.abs(r1Var.f55947y0 - f11) >= 1.0E-4f) {
+                r1Var.f55947y0 = f11;
                 r1Var.requestLayout();
             }
         }
@@ -803,7 +803,7 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
 
     @Override
     public void w() {
-        ((m0) this.f825b).f12396e.invalidate();
+        ((m0) this.f825b).f12397e.invalidate();
     }
 
     public void x(int i7, int i10) {
@@ -890,7 +890,7 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
     }
 
     @Override
-    public void onError(u51 u51Var, Exception exc) {
+    public void onError(t51 t51Var, Exception exc) {
     }
 
     @Override

@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import org.telegram.messenger.ej;
 import org.telegram.messenger.i6;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ix;
-import org.telegram.ui.Components.u31;
+import org.telegram.ui.Components.hx;
+import org.telegram.ui.Components.t31;
 import org.telegram.ui.StickersActivity;
-public final class s1 implements ix {
-    public final b2 f18827a;
+public final class s1 implements hx {
+    public final b2 f18830a;
 
     public s1(b2 b2Var) {
-        this.f18827a = b2Var;
+        this.f18830a = b2Var;
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class s1 implements ix {
     public final void i(int i7) {
         g1 focusedEditTextOrNull;
         boolean z9 = false;
-        b2 b2Var = this.f18827a;
+        b2 b2Var = this.f18830a;
         if (i7 != 0 && (focusedEditTextOrNull = b2Var.P.getFocusedEditTextOrNull()) != null) {
             b2Var.R0 = focusedEditTextOrNull;
             b2Var.S0 = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
@@ -70,7 +70,7 @@ public final class s1 implements ix {
 
     @Override
     public final boolean k() {
-        g1 f02 = b2.f0(this.f18827a);
+        g1 f02 = b2.f0(this.f18830a);
         if (f02 == null || f02.length() == 0) {
             return false;
         }
@@ -80,7 +80,7 @@ public final class s1 implements ix {
 
     @Override
     public final void l(String str) {
-        b2 b2Var = this.f18827a;
+        b2 b2Var = this.f18830a;
         g1 f02 = b2.f0(b2Var);
         if (f02 != null) {
             int g02 = b2.g0(b2Var, f02);
@@ -104,18 +104,18 @@ public final class s1 implements ix {
 
     @Override
     public final void t(ArrayList arrayList) {
-        this.f18827a.presentFragment(new StickersActivity(5, arrayList));
+        this.f18830a.presentFragment(new StickersActivity(5, arrayList));
     }
 
     @Override
     public final void w() {
-        this.f18827a.presentFragment(new StickersActivity(0, null));
+        this.f18830a.presentFragment(new StickersActivity(0, null));
     }
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z9) {
-        org.telegram.ui.Components.r5 r5Var;
-        b2 b2Var = this.f18827a;
+        org.telegram.ui.Components.q5 q5Var;
+        b2 b2Var = this.f18830a;
         g1 f02 = b2.f0(b2Var);
         if (f02 != null) {
             int g02 = b2.g0(b2Var, f02);
@@ -125,12 +125,12 @@ public final class s1 implements ix {
                 }
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    r5Var = new org.telegram.ui.Components.r5(document, f02.getPaint().getFontMetricsInt());
+                    q5Var = new org.telegram.ui.Components.q5(document, f02.getPaint().getFontMetricsInt());
                 } else {
-                    r5Var = new org.telegram.ui.Components.r5(j3, f02.getPaint().getFontMetricsInt());
+                    q5Var = new org.telegram.ui.Components.q5(j3, f02.getPaint().getFontMetricsInt());
                 }
-                r5Var.cacheType = org.telegram.ui.Components.i5.f();
-                spannableString.setSpan(r5Var, 0, spannableString.length(), 33);
+                q5Var.cacheType = org.telegram.ui.Components.h5.f();
+                spannableString.setSpan(q5Var, 0, spannableString.length(), 33);
                 f02.setText(f02.getText().insert(g02, spannableString));
                 int length = g02 + spannableString.length();
                 f02.setSelection(length, length);
@@ -144,7 +144,7 @@ public final class s1 implements ix {
 
     @Override
     public final boolean z() {
-        return this.f18827a.C0;
+        return this.f18830a.C0;
     }
 
     @Override
@@ -164,7 +164,7 @@ public final class s1 implements ix {
     }
 
     @Override
-    public final void o(u31 u31Var) {
+    public final void o(t31 t31Var) {
     }
 
     @Override

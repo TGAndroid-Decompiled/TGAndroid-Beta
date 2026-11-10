@@ -9,7 +9,7 @@ public final class u extends g {
 
     public u(v vVar) {
         this.f16551b = new AtomicReference(vVar);
-        this.f16552c = new y(vVar.f53856i, 0);
+        this.f16552c = new y(vVar.f53855i, 0);
     }
 
     @Override
@@ -39,7 +39,7 @@ public final class u extends g {
             return;
         }
         vVar.F = dVar;
-        vVar.U = dVar.f11239a;
+        vVar.U = dVar.f11244a;
         vVar.V = str2;
         vVar.M = str;
         synchronized (v.Z) {
@@ -65,7 +65,7 @@ public final class u extends g {
             v.Y.b("ICastDeviceControllerListener.onDisconnected: %d", Integer.valueOf(i7));
             if (i7 != 0) {
                 int i10 = vVar.C.get();
-                c0 c0Var = vVar.f53858k;
+                c0 c0Var = vVar.f53857k;
                 c0Var.sendMessage(c0Var.obtainMessage(6, i10, 2));
             }
         }

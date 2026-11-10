@@ -7,17 +7,17 @@ import rd.p;
 import rd.q;
 import zd.b0;
 public final class h extends kd.c implements ce.d {
-    public final ce.d f8678a;
-    public final id.h f8679b;
-    public final int f8680c;
+    public final ce.d f8683a;
+    public final id.h f8684b;
+    public final int f8685c;
     public id.h d;
-    public id.c f8681e;
+    public id.c f8686e;
 
     public h(ce.d dVar, id.h hVar) {
-        super(f.f8676a, id.i.f15456a);
-        this.f8678a = dVar;
-        this.f8679b = hVar;
-        this.f8680c = ((Number) hVar.fold(0, new b1.e(3))).intValue();
+        super(f.f8681a, id.i.f15458a);
+        this.f8683a = dVar;
+        this.f8684b = hVar;
+        this.f8685c = ((Number) hVar.fold(0, new b1.e(3))).intValue();
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class h extends kd.c implements ce.d {
             if (c10 == jd.a.f16646a) {
                 return c10;
             }
-            return gd.k.f13829a;
+            return gd.k.f13831a;
         } catch (Throwable th2) {
             this.d = new d(cVar.getContext(), th2);
             throw th2;
@@ -48,13 +48,13 @@ public final class h extends kd.c implements ce.d {
                     public final java.lang.Object invoke(java.lang.Object r4, java.lang.Object r5) {
                         throw new UnsupportedOperationException("Method not decompiled: de.k.invoke(java.lang.Object, java.lang.Object):java.lang.Object");
                     }
-                })).intValue() == this.f8680c) {
+                })).intValue() == this.f8685c) {
                     this.d = context;
                 } else {
-                    throw new IllegalStateException(("Flow invariant is violated:\n\t\tFlow was collected in " + this.f8679b + ",\n\t\tbut emission happened in " + context + ".\n\t\tPlease refer to 'flow' documentation or use 'flowOn' instead").toString());
+                    throw new IllegalStateException(("Flow invariant is violated:\n\t\tFlow was collected in " + this.f8684b + ",\n\t\tbut emission happened in " + context + ".\n\t\tPlease refer to 'flow' documentation or use 'flowOn' instead").toString());
                 }
             } else {
-                String str2 = "\n            Flow exception transparency is violated:\n                Previous 'emit' call has thrown exception " + ((d) hVar).f8675b + ", but then emission attempt of value '" + obj + "' has been detected.\n                Emissions from 'catch' blocks are prohibited in order to avoid unspecified behaviour, 'Flow.catch' operator can be used instead.\n                For a more detailed explanation, please refer to Flow documentation.\n            ";
+                String str2 = "\n            Flow exception transparency is violated:\n                Previous 'emit' call has thrown exception " + ((d) hVar).f8680b + ", but then emission attempt of value '" + obj + "' has been detected.\n                Emissions from 'catch' blocks are prohibited in order to avoid unspecified behaviour, 'Flow.catch' operator can be used instead.\n                For a more detailed explanation, please refer to Flow documentation.\n            ";
                 kotlin.jvm.internal.j.e(str2, "<this>");
                 List a10 = wd.d.a(new wd.e(str2, 2));
                 List list = a10;
@@ -145,20 +145,20 @@ public final class h extends kd.c implements ce.d {
                 throw new IllegalStateException(sb2.toString().toString());
             }
         }
-        this.f8681e = cVar;
-        q qVar = j.f8683a;
-        ce.d dVar = this.f8678a;
+        this.f8686e = cVar;
+        q qVar = j.f8688a;
+        ce.d dVar = this.f8683a;
         kotlin.jvm.internal.j.c(dVar, "null cannot be cast to non-null type kotlinx.coroutines.flow.FlowCollector<kotlin.Any?>");
         Object b11 = qVar.b(dVar, obj, this);
         if (!kotlin.jvm.internal.j.a(b11, jd.a.f16646a)) {
-            this.f8681e = null;
+            this.f8686e = null;
         }
         return b11;
     }
 
     @Override
     public final kd.d getCallerFrame() {
-        id.c cVar = this.f8681e;
+        id.c cVar = this.f8686e;
         if (cVar instanceof kd.d) {
             return (kd.d) cVar;
         }
@@ -169,7 +169,7 @@ public final class h extends kd.c implements ce.d {
     public final id.h getContext() {
         id.h hVar = this.d;
         if (hVar == null) {
-            return id.i.f15456a;
+            return id.i.f15458a;
         }
         return hVar;
     }
@@ -185,7 +185,7 @@ public final class h extends kd.c implements ce.d {
         if (a10 != null) {
             this.d = new d(getContext(), a10);
         }
-        id.c cVar = this.f8681e;
+        id.c cVar = this.f8686e;
         if (cVar != null) {
             cVar.resumeWith(obj);
         }

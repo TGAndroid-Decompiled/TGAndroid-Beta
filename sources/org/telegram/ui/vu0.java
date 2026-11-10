@@ -1,54 +1,44 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class vu0 extends v4.b0 {
-    public final ProfileActivity I;
+import android.animation.ValueAnimator;
+import android.graphics.RectF;
+public final class vu0 extends v4.k {
+    public int F = -1;
+    public final ProfileActivity G;
 
     public vu0(ProfileActivity profileActivity) {
-        this.I = profileActivity;
+        this.G = profileActivity;
     }
 
     @Override
-    public final int o0(int i7, v4.v0 v0Var, v4.a1 a1Var) {
-        ProfileActivity profileActivity = this.I;
-        View m10 = profileActivity.f41714c.m(0);
-        if (m10 != null && !profileActivity.F0) {
-            int top = m10.getTop() - profileActivity.j4();
-            boolean z9 = profileActivity.f41792n2;
-            boolean z10 = true;
-            if (!z9 && top > i7) {
-                if (!profileActivity.f41791n0.X0.isEmpty() && profileActivity.f41729e0.getImageReceiver().L() && !org.telegram.messenger.g0.C1() && ((!profileActivity.f41785m2 && !org.telegram.messenger.g0.Q1()) || profileActivity.I0)) {
-                    if (profileActivity.I2 != null) {
-                        z10 = false;
-                    }
-                    profileActivity.f41792n2 = z10;
-                }
-            } else if (z9) {
-                if (i7 >= top) {
-                    profileActivity.f41792n2 = false;
-                } else if (profileActivity.f41698a.getScrollState() == 1 && !profileActivity.f41799o2) {
-                    i7 /= 2;
-                }
-            }
-            i7 = top;
-        }
-        if (profileActivity.N1 && !profileActivity.f41698a.P0) {
-            return 0;
-        }
-        return super.o0(i7, v0Var, a1Var);
+    public final long K(long j3, long j10, long j11) {
+        return 0L;
     }
 
     @Override
-    public final boolean y0() {
-        if (this.I.f41810q0 != null) {
-            return true;
-        }
-        return false;
+    public final void N() {
+        org.telegram.messenger.g0.h3(new uu0(this, 0));
     }
 
     @Override
-    public final void z0(v4.a1 a1Var, int[] iArr) {
-        super.z0(a1Var, iArr);
-        iArr[0] = Math.max(iArr[0], ProfileActivity.J0(this.I));
+    public final void P(v4.d1 d1Var) {
+        RectF rectF = ProfileActivity.V6;
+        this.G.s5();
+    }
+
+    @Override
+    public final void m() {
+        boolean isEmpty = this.f57109p.isEmpty();
+        boolean isEmpty2 = this.f57111r.isEmpty();
+        boolean isEmpty3 = this.f57112s.isEmpty();
+        boolean isEmpty4 = this.f57110q.isEmpty();
+        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            ofFloat.addUpdateListener(new a3(this, 24));
+            ofFloat.setDuration(this.f57125e);
+            ofFloat.start();
+            this.F = this.G.getNotificationCenter().q(null, this.F, true);
+        }
+        super.m();
     }
 }

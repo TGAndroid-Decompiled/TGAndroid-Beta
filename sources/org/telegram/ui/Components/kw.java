@@ -1,39 +1,60 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-import j$.util.Objects;
-public final class kw extends gy {
-    public final hy d;
+import android.content.Context;
+import android.graphics.ColorFilter;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class kw extends av {
+    public final gy f35453g0;
 
-    public kw(hy hyVar) {
-        super(hyVar, 1);
-        this.d = hyVar;
+    public kw(gy gyVar, Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z9, bv bvVar, boolean z10) {
+        super(context, h6Var, true, false, true, z9, 0, bvVar, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f28225v6, h6Var), z10);
+        this.f35453g0 = gyVar;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i7) {
-        if (i7 == 0) {
-            this.d.f34424f0 = false;
+    public final boolean d() {
+        return this.f35453g0.U0;
+    }
+
+    @Override
+    public final void e() {
+        gy gyVar = this.f35453g0;
+        ArrayList arrayList = gyVar.n1;
+        if (arrayList.size() > 0 && ((TLRPC.StickerSetCovered) arrayList.get(0)).set != null && org.telegram.messenger.qp.s1(gyVar.f34016c1).f24788f7.getLong("emoji_featured_hidden", 0L) != ((TLRPC.StickerSetCovered) arrayList.get(0)).set.f26987id) {
+            org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24474s0);
         }
-        super.a(recyclerView, i7);
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        hy hyVar = this.d;
-        hw hwVar = hyVar.Q;
-        hyVar.U(hwVar.I0());
-        super.b(recyclerView, i7, i10);
-        hx hxVar = hyVar.S;
-        if (hxVar != null && hyVar.P.getAdapter() == hxVar) {
-            hx hxVar2 = hxVar.f34402y.f34069a;
-            if (!hxVar2.F.V.F && !hxVar2.E) {
-                if (hwVar.N0() + 20 > hxVar.b()) {
-                    gx gxVar = hxVar.f34402y;
-                    Objects.requireNonNull(gxVar);
-                    org.telegram.messenger.g0.h3(new pv(gxVar, 1));
-                }
+    public final boolean g(tw twVar) {
+        if (!twVar.f38407f && !this.f35453g0.f34054p1.contains(Long.valueOf(twVar.f38404b.f26987id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final ColorFilter getEmojiColorFilter() {
+        return this.f35453g0.f34023e2;
+    }
+
+    @Override
+    public final boolean h(int r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.kw.h(int):boolean");
+    }
+
+    @Override
+    public final void setTranslationY(float f10) {
+        if (getTranslationY() != f10) {
+            super.setTranslationY(f10);
+            gy gyVar = this.f35453g0;
+            View view = gyVar.O;
+            if (view != null) {
+                view.setTranslationY(f10);
             }
+            gyVar.J.invalidate();
         }
     }
 }

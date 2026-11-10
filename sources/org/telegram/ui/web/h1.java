@@ -1,18 +1,18 @@
 package org.telegram.ui.web;
 public final class h1 implements Runnable {
-    public final int f51136a;
-    public final org.telegram.ui.l0 f51137b;
+    public final int f51090a;
+    public final org.telegram.ui.l0 f51091b;
 
     public h1(org.telegram.ui.l0 l0Var, int i7) {
-        this.f51136a = i7;
-        this.f51137b = l0Var;
+        this.f51090a = i7;
+        this.f51091b = l0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f51136a) {
+        switch (this.f51090a) {
             case 0:
-                org.telegram.ui.l0 l0Var = this.f51137b;
+                org.telegram.ui.l0 l0Var = this.f51091b;
                 l0Var.A0 = true;
                 if (l0Var.getParent() != null) {
                     l0Var.getParent().requestDisallowInterceptTouchEvent(true);
@@ -24,8 +24,8 @@ public final class h1 implements Runnable {
                     return;
                 }
             default:
-                org.telegram.ui.l0 l0Var2 = this.f51137b;
-                bi.v vVar = l0Var2.f51170b0;
+                org.telegram.ui.l0 l0Var2 = this.f51091b;
+                bi.v vVar = l0Var2.f51124b0;
                 if (l0Var2.W) {
                     vVar.requestFocus();
                     org.telegram.messenger.g0.K3(vVar);

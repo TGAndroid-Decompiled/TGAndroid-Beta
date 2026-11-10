@@ -20,7 +20,7 @@ public final class w extends c1 {
         int i10;
         TLRPC.TL_message tL_message = new TLRPC.TL_message();
         tL_message.out = ephemeralMessage.out;
-        tL_message.f26977id = (ephemeralMessage.f27171id & (-1879048193)) | 1610612736;
+        tL_message.f26981id = (ephemeralMessage.f27175id & (-1879048193)) | 1610612736;
         TLRPC.Peer peer = ephemeralMessage.from_id;
         if (peer != null) {
             tL_message.from_id = peer;
@@ -99,7 +99,7 @@ public final class w extends c1 {
         tL_ephemeralMessage.out = message.out;
         tL_ephemeralMessage.invert_media = message.invert_media;
         tL_ephemeralMessage.noforwards = message.noforwards;
-        tL_ephemeralMessage.f27171id = ij.S(message.f26977id);
+        tL_ephemeralMessage.f27175id = ij.S(message.f26981id);
         tL_ephemeralMessage.from_id = message.from_id;
         tL_ephemeralMessage.peer_id = message.peer_id;
         tL_ephemeralMessage.receiver_id = message.ephemeralReceiverBotId;
@@ -173,7 +173,7 @@ public final class w extends c1 {
                     tL_inputReplyToEphemeralMessage = inputReplyTo;
                     if (ij.f3(tL_inputReplyToMessage.reply_to_msg_id)) {
                         TLRPC.TL_inputReplyToEphemeralMessage tL_inputReplyToEphemeralMessage2 = new TLRPC.TL_inputReplyToEphemeralMessage();
-                        tL_inputReplyToEphemeralMessage2.f27022id = ij.S(tL_inputReplyToMessage.reply_to_msg_id);
+                        tL_inputReplyToEphemeralMessage2.f27026id = ij.S(tL_inputReplyToMessage.reply_to_msg_id);
                         tL_inputReplyToEphemeralMessage = tL_inputReplyToEphemeralMessage2;
                     }
                 }
@@ -218,7 +218,7 @@ public final class w extends c1 {
                     tL_inputReplyToEphemeralMessage3 = inputReplyTo2;
                     if (ij.f3(tL_inputReplyToMessage2.reply_to_msg_id)) {
                         TLRPC.TL_inputReplyToEphemeralMessage tL_inputReplyToEphemeralMessage4 = new TLRPC.TL_inputReplyToEphemeralMessage();
-                        tL_inputReplyToEphemeralMessage4.f27022id = ij.S(tL_inputReplyToMessage2.reply_to_msg_id);
+                        tL_inputReplyToEphemeralMessage4.f27026id = ij.S(tL_inputReplyToMessage2.reply_to_msg_id);
                         tL_inputReplyToEphemeralMessage3 = tL_inputReplyToEphemeralMessage4;
                     }
                 }

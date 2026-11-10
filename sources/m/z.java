@@ -23,16 +23,16 @@ import c8.pb;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 public class z {
     public static final int[] d = {16843067, 16843068};
-    public final int f19315a = 2;
-    public View f19316b;
-    public Object f19317c;
+    public final int f19320a = 2;
+    public View f19321b;
+    public Object f19322c;
 
     public z() {
     }
 
     public KeyListener a(KeyListener keyListener) {
         if (!(keyListener instanceof NumberKeyListener)) {
-            ((m4.d0) ((org.telegram.ui.Components.n) this.f19317c).f36185a).getClass();
+            ((m4.d0) ((org.telegram.ui.Components.m) this.f19322c).f35778a).getClass();
             if (keyListener instanceof t1.e) {
                 return keyListener;
             }
@@ -49,9 +49,9 @@ public class z {
 
     public void b(AttributeSet attributeSet, int i7) {
         boolean z9 = true;
-        switch (this.f19315a) {
+        switch (this.f19320a) {
             case 0:
-                AbsSeekBar absSeekBar = (AbsSeekBar) this.f19316b;
+                AbsSeekBar absSeekBar = (AbsSeekBar) this.f19321b;
                 h6.m x10 = h6.m.x(absSeekBar.getContext(), attributeSet, d, i7);
                 Drawable q10 = x10.q(0);
                 if (q10 != null) {
@@ -77,7 +77,7 @@ public class z {
                 x10.C();
                 return;
             default:
-                TypedArray obtainStyledAttributes = ((EditText) this.f19316b).getContext().obtainStyledAttributes(attributeSet, f.a.f10861i, i7, 0);
+                TypedArray obtainStyledAttributes = ((EditText) this.f19321b).getContext().obtainStyledAttributes(attributeSet, f.a.f10866i, i7, 0);
                 try {
                     if (obtainStyledAttributes.hasValue(14)) {
                         z9 = obtainStyledAttributes.getBoolean(14, true);
@@ -93,26 +93,26 @@ public class z {
     }
 
     public t1.b c(InputConnection inputConnection, EditorInfo editorInfo) {
-        org.telegram.ui.Components.n nVar = (org.telegram.ui.Components.n) this.f19317c;
+        org.telegram.ui.Components.m mVar = (org.telegram.ui.Components.m) this.f19322c;
         if (inputConnection == null) {
-            nVar.getClass();
+            mVar.getClass();
             inputConnection = null;
         } else {
-            m4.d0 d0Var = (m4.d0) nVar.f36185a;
+            m4.d0 d0Var = (m4.d0) mVar.f35778a;
             d0Var.getClass();
             if (!(inputConnection instanceof t1.b)) {
-                inputConnection = new t1.b((EditText) d0Var.f19611a, inputConnection, editorInfo);
+                inputConnection = new t1.b((EditText) d0Var.f19616a, inputConnection, editorInfo);
             }
         }
         return (t1.b) inputConnection;
     }
 
     public void d(boolean z9) {
-        t1.i iVar = (t1.i) ((m4.d0) ((org.telegram.ui.Components.n) this.f19317c).f36185a).f19612b;
-        if (iVar.f55382c != z9) {
-            if (iVar.f55381b != null) {
+        t1.i iVar = (t1.i) ((m4.d0) ((org.telegram.ui.Components.m) this.f19322c).f35778a).f19617b;
+        if (iVar.f55381c != z9) {
+            if (iVar.f55380b != null) {
                 androidx.emoji2.text.l a10 = androidx.emoji2.text.l.a();
-                t1.h hVar = iVar.f55381b;
+                t1.h hVar = iVar.f55380b;
                 a10.getClass();
                 pb.a(hVar, "initCallback cannot be null");
                 ReentrantReadWriteLock reentrantReadWriteLock = a10.f2310a;
@@ -123,9 +123,9 @@ public class z {
                     reentrantReadWriteLock.writeLock().unlock();
                 }
             }
-            iVar.f55382c = z9;
+            iVar.f55381c = z9;
             if (z9) {
-                t1.i.a(iVar.f55380a, androidx.emoji2.text.l.a().b());
+                t1.i.a(iVar.f55379a, androidx.emoji2.text.l.a().b());
             }
         }
     }
@@ -165,8 +165,8 @@ public class z {
         } else if (drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
             Bitmap bitmap = bitmapDrawable.getBitmap();
-            if (((Bitmap) this.f19317c) == null) {
-                this.f19317c = bitmap;
+            if (((Bitmap) this.f19322c) == null) {
+                this.f19322c = bitmap;
             }
             ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(new float[]{5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f}, null, null));
             shapeDrawable.getPaint().setShader(new BitmapShader(bitmap, Shader.TileMode.REPEAT, Shader.TileMode.CLAMP));
@@ -180,11 +180,11 @@ public class z {
     }
 
     public z(AbsSeekBar absSeekBar) {
-        this.f19316b = absSeekBar;
+        this.f19321b = absSeekBar;
     }
 
     public z(EditText editText) {
-        this.f19316b = editText;
-        this.f19317c = new org.telegram.ui.Components.n(editText);
+        this.f19321b = editText;
+        this.f19322c = new org.telegram.ui.Components.m(editText);
     }
 }

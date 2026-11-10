@@ -6,14 +6,14 @@ import java.util.List;
 import org.telegram.messenger.id;
 public final class l0 {
     public static ArrayList d;
-    public final int f18679a;
-    public final String f18680b;
-    public final List f18681c;
+    public final int f18682a;
+    public final String f18683b;
+    public final List f18684c;
 
     public l0(int i7, String str, String... strArr) {
-        this.f18679a = i7;
-        this.f18680b = str;
-        this.f18681c = Arrays.asList(strArr);
+        this.f18682a = i7;
+        this.f18683b = str;
+        this.f18684c = Arrays.asList(strArr);
     }
 
     public static ArrayList a(String str) {
@@ -63,7 +63,7 @@ public final class l0 {
             i7++;
             l0 l0Var = (l0) obj;
             if (!lowerCase.isEmpty()) {
-                String[] split = l0Var.f18680b.toLowerCase().split(" ");
+                String[] split = l0Var.f18683b.toLowerCase().split(" ");
                 int length = split.length;
                 int i10 = 0;
                 while (true) {
@@ -73,7 +73,7 @@ public final class l0 {
                         }
                         i10++;
                     } else {
-                        for (String str2 : l0Var.f18681c) {
+                        for (String str2 : l0Var.f18684c) {
                             String lowerCase2 = str2.toLowerCase();
                             if (lowerCase2.startsWith("/")) {
                                 lowerCase2 = lowerCase2.substring(1);

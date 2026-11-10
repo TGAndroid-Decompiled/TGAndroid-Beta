@@ -1,93 +1,89 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-import java.util.ArrayList;
-public final class p91 extends rg.b {
-    public final y91 d;
+import android.app.Activity;
+import android.view.View;
+import java.util.HashMap;
+public final class p91 extends View {
+    public final HashMap f48728a;
+    public final q91 f48729b;
 
-    public p91(y91 y91Var) {
-        this.d = y91Var;
+    public p91(q91 q91Var, Activity activity) {
+        super(activity);
+        this.f48729b = q91Var;
+        this.f48728a = new HashMap();
     }
 
     @Override
-    public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57060f;
-        if (i7 != 0 && i7 != 3) {
-            return false;
-        }
-        return true;
-    }
-
-    public final ArrayList F() {
-        y91 y91Var = this.d;
-        y91Var.getClass();
-        return y91Var.f52016b;
-    }
-
-    @Override
-    public final int b() {
-        return F().size() + 1;
-    }
-
-    @Override
-    public final int d(int i7) {
-        if (i7 == b() - 1) {
-            return 2;
-        }
-        return ((q91) this.d.f52016b.get(i7)).f54544a;
-    }
-
-    @Override
-    public final void f() {
-        this.d.f52019c = b();
-        super.f();
-    }
-
-    @Override
-    public final void t(v4.d1 r21, int r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.p91.t(v4.d1, int):void");
-    }
-
-    @Override
-    public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        boolean z9;
-        int i10;
+    public final void onMeasure(int i7, int i10) {
         int i11;
         int i12;
-        y91 y91Var = this.d;
-        if (i7 != 0 && i7 != 3) {
-            if (i7 == 2) {
-                o91 o91Var = new o91(this, y91Var.getParentActivity());
-                y91Var.E0 = o91Var;
-                return new v4.d1(o91Var);
+        float f10;
+        int i13;
+        int L;
+        boolean z9;
+        int i14;
+        q91 q91Var = this.f48729b;
+        z91 z91Var = q91Var.d;
+        int size = View.MeasureSpec.getSize(i7);
+        int L2 = org.telegram.messenger.g0.L(64.0f);
+        int i15 = 0;
+        int i16 = 0;
+        for (int i17 = 0; i17 < q91Var.F().size(); i17++) {
+            if (q91Var.F().get(i17) != null && ((r91) q91Var.F().get(i17)).f49322c != null) {
+                String str = ((r91) q91Var.F().get(i17)).f49322c.title;
+                HashMap hashMap = this.f48728a;
+                Boolean bool = (Boolean) hashMap.get(str);
+                if (bool == null) {
+                    int i18 = 50;
+                    if (!org.telegram.messenger.id.f23161a0) {
+                        if (z91Var.isInPreviewMode()) {
+                            i14 = 11;
+                        } else {
+                            i14 = 50;
+                        }
+                        f10 = i14 + 4;
+                    } else {
+                        f10 = 18.0f;
+                    }
+                    int L3 = org.telegram.messenger.g0.L(f10);
+                    if (!org.telegram.messenger.id.f23161a0) {
+                        i13 = size - L3;
+                        L = org.telegram.messenger.g0.L(22.0f);
+                    } else {
+                        i13 = size - L3;
+                        if (z91Var.isInPreviewMode()) {
+                            i18 = 11;
+                        }
+                        L = org.telegram.messenger.g0.L(i18 + 13);
+                    }
+                    if (org.telegram.ui.ActionBar.m6.B0[0].measureText(str) <= (i13 - L) - ((int) Math.ceil(org.telegram.ui.ActionBar.m6.I0.measureText("00:00")))) {
+                        z9 = true;
+                    } else {
+                        z9 = false;
+                    }
+                    bool = Boolean.valueOf(z9);
+                    hashMap.put(str, bool);
+                }
+                if (!bool.booleanValue()) {
+                    i12 = 20;
+                } else {
+                    i12 = 0;
+                }
+                int L4 = org.telegram.messenger.g0.L(i12 + 64);
+                if (((r91) q91Var.F().get(i17)).f49322c.f27012id == 1) {
+                    L2 = L4;
+                }
+                if (((r91) q91Var.F().get(i17)).f49322c.hidden) {
+                    i15++;
+                }
+                i16 += L4;
             }
-            org.telegram.ui.Components.mz mzVar = new org.telegram.ui.Components.mz(viewGroup.getContext(), null);
-            mzVar.setViewType(24);
-            mzVar.setIsSingleCell(true);
-            mzVar.f36181x = true;
-            return new v4.d1(mzVar);
         }
-        v91 v91Var = new v91(y91Var, viewGroup.getContext(), false);
-        if (i7 == 3) {
-            i10 = ((org.telegram.ui.ActionBar.f2) y91Var).currentAccount;
-            boolean v = org.telegram.messenger.t10.v(org.telegram.messenger.qp.s1(i10).a2(Long.valueOf(-y91Var.f52013a)));
-            v91Var.setForumIcon(qg.d.d(qg.a.f54124k[0], ""));
-            if (!v) {
-                i11 = 2131753066;
-            } else {
-                i11 = 2131753068;
-            }
-            v91Var.setTitleOverride(org.telegram.messenger.id.M0(i11, null));
-            if (!v) {
-                i12 = 2131753067;
-            } else {
-                i12 = 2131753069;
-            }
-            v91Var.setCustomMessage(org.telegram.messenger.id.M0(i12, null));
+        if (i15 > 0) {
+            i11 = (((z91Var.N.getMeasuredHeight() - z91Var.N.getPaddingTop()) - z91Var.N.getPaddingBottom()) - i16) + L2;
+        } else {
+            i11 = 0;
         }
-        z9 = ((org.telegram.ui.ActionBar.f2) y91Var).inPreviewMode;
-        v91Var.f30443k0 = z9;
-        v91Var.setArchivedPullAnimation(y91Var.f52058x);
-        return new v4.d1(v91Var);
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.max(0, i11), 1073741824));
     }
 }

@@ -1,15 +1,15 @@
 package c8;
 
-import org.telegram.ui.Components.ak0;
+import org.telegram.ui.Components.zj0;
 public abstract class l1 {
-    public static void a(ak0 ak0Var, org.telegram.ui.ActionBar.g6 g6Var) {
+    public static void a(zj0 zj0Var, org.telegram.ui.ActionBar.h6 h6Var) {
         boolean q10;
-        if (g6Var != null) {
-            q10 = g6Var.a();
+        if (h6Var != null) {
+            q10 = h6Var.a();
         } else {
-            q10 = org.telegram.ui.ActionBar.l6.I.q();
+            q10 = org.telegram.ui.ActionBar.m6.I.q();
         }
-        ak0Var.r(org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.Ci, g6Var), q10);
+        zj0Var.r(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Ci, h6Var), q10);
     }
 
     public static int b(li.a aVar) {
@@ -18,7 +18,7 @@ public abstract class l1 {
             return 0;
         }
         int c10 = c(aVar);
-        int max = Math.max(0, aVar.f18393c);
+        int max = Math.max(0, aVar.f18396c);
         if (max > 0) {
             i7 = org.telegram.messenger.g0.L(com.google.android.recaptcha.internal.a.e(max, 1, 24, 28));
         }
@@ -30,7 +30,7 @@ public abstract class l1 {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f18399k.size();
+            size = aVar.f18402k.size();
         }
         if (size <= 0) {
             return 0;
@@ -43,7 +43,7 @@ public abstract class l1 {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f18399k.size();
+            size = aVar.f18402k.size();
         }
         if (size <= 0) {
             return 0;

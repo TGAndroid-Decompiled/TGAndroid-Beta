@@ -33,7 +33,7 @@ public final class p {
     public final boolean b() {
         Long l10 = a().f16626e;
         Integer num = a().d;
-        if (l10 != null && num != null && this.f16641a.a().f13713c - l10.longValue() < num.intValue()) {
+        if (l10 != null && num != null && this.f16641a.a().f13715c - l10.longValue() < num.intValue()) {
             return false;
         }
         return true;

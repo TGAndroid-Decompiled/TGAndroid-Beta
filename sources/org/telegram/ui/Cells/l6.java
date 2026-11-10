@@ -3,8 +3,8 @@ package org.telegram.ui.Cells;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
-import org.telegram.ui.Components.pa0;
-public final class l6 extends org.telegram.ui.Components.l9 {
+import org.telegram.ui.Components.oa0;
+public final class l6 extends org.telegram.ui.Components.k9 {
     public final int G;
     public final m6 H;
 
@@ -18,7 +18,7 @@ public final class l6 extends org.telegram.ui.Components.l9 {
     public final void onDraw(Canvas canvas) {
         m6 m6Var = this.H;
         k6 k6Var = m6Var.E;
-        pa0 pa0Var = m6.H;
+        oa0 oa0Var = m6.H;
         if (this.G == 1) {
             k6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             di.s7.h(m6Var.D, canvas, getImageReceiver(), k6Var);

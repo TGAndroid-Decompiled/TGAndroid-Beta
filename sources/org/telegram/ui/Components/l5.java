@@ -1,35 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class l5 extends AnimatorListenerAdapter {
-    public final int f35579a;
-    public final r5 f35580b;
+import android.graphics.Rect;
+import android.text.Layout;
+import android.view.View;
+import java.lang.ref.WeakReference;
+public final class l5 implements n5 {
+    public final WeakReference f35536a;
+    public final boolean f35537b;
+    public Layout f35538c;
+    public q5 d;
+    public Rect f35539e;
+    public h5 f35540f;
+    public org.telegram.messenger.e6 h;
+    public boolean f35541n;
+    public float f35542r;
+    public float f35543s;
+    public boolean f35544w;
 
-    public l5(r5 r5Var, int i7) {
-        this.f35579a = i7;
-        this.f35580b = r5Var;
+    public l5(View view, boolean z9) {
+        this.f35536a = new WeakReference(view);
+        this.f35537b = z9;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f35579a) {
-            case 0:
-                r5.access$002(this.f35580b, null);
-                r5.access$102(false);
-                return;
-            case 1:
-                r5 r5Var = this.f35580b;
-                r5.access$002(r5Var, null);
-                if (r5.access$200(r5Var) != null) {
-                    r5.access$200(r5Var).run();
-                    r5.access$202(r5Var, null);
-                    return;
-                }
-                return;
-            default:
-                r5.access$302(this.f35580b, null);
-                return;
+    public final void invalidate() {
+        View view = (View) this.f35536a.get();
+        if (view == null) {
+            return;
+        }
+        if (this.f35537b && view.getParent() != null) {
+            ((View) view.getParent()).invalidate();
+        } else {
+            view.invalidate();
         }
     }
 }

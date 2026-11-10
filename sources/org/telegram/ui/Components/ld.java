@@ -1,33 +1,55 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
 import org.telegram.tgnet.tl.TL_iv;
-public final class ld implements org.telegram.messenger.c20 {
-    public final int f35691a;
-    public final ChatActivityEnterView f35692b;
+public final class ld implements org.telegram.messenger.z10 {
+    public final int f35651a;
+    public final ChatActivityEnterView f35652b;
+    public final long f35653c;
+    public final org.telegram.ui.ActionBar.h6 d;
 
-    public ld(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f35691a = i7;
-        this.f35692b = chatActivityEnterView;
+    public ld(ChatActivityEnterView chatActivityEnterView, long j3, org.telegram.ui.ActionBar.h6 h6Var, int i7) {
+        this.f35651a = i7;
+        this.f35652b = chatActivityEnterView;
+        this.f35653c = j3;
+        this.d = h6Var;
     }
 
     @Override
-    public final void a(Object obj) {
-        int i7 = this.f35691a;
-        ChatActivityEnterView chatActivityEnterView = this.f35692b;
+    public final void a(Object obj, Object obj2, Object obj3, Object obj4) {
+        int i7 = this.f35651a;
+        org.telegram.ui.ActionBar.h6 h6Var = this.d;
+        long j3 = this.f35653c;
         switch (i7) {
             case 0:
-                chatActivityEnterView.Q0((TL_iv.RichMessage) obj);
-                return;
-            case 1:
-                CharSequence charSequence = (CharSequence) obj;
-                chatActivityEnterView.E0.setText(charSequence);
-                chatActivityEnterView.E0.setSelection(charSequence.length(), charSequence.length());
-                return;
-            default:
+                Integer num = (Integer) obj2;
+                Integer num2 = (Integer) obj3;
+                Boolean bool = (Boolean) obj4;
                 int i10 = ChatActivityEnterView.s5;
-                chatActivityEnterView.b0((Canvas) obj, false);
-                return;
+                ChatActivityEnterView chatActivityEnterView = this.f35652b;
+                chatActivityEnterView.Q0((TL_iv.RichMessage) obj);
+                if (chatActivityEnterView.c() && num.intValue() == 0) {
+                    u4.J(chatActivityEnterView.O2, j3, new yd(chatActivityEnterView, 0), h6Var);
+                    return;
+                } else {
+                    chatActivityEnterView.T0(bool.booleanValue(), num.intValue(), num2.intValue(), 0L, true);
+                    return;
+                }
+            default:
+                Integer num3 = (Integer) obj2;
+                Integer num4 = (Integer) obj3;
+                Boolean bool2 = (Boolean) obj4;
+                ChatActivityEnterView chatActivityEnterView2 = this.f35652b;
+                chatActivityEnterView2.E0.setText((CharSequence) obj);
+                if (chatActivityEnterView2.Z1 != null) {
+                    chatActivityEnterView2.a0();
+                    return;
+                } else if (chatActivityEnterView2.c() && num3.intValue() == 0) {
+                    u4.J(chatActivityEnterView2.O2, j3, new zd(chatActivityEnterView2, 0), h6Var);
+                    return;
+                } else {
+                    chatActivityEnterView2.T0(bool2.booleanValue(), num3.intValue(), num4.intValue(), 0L, true);
+                    return;
+                }
         }
     }
 }

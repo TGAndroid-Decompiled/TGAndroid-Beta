@@ -1,27 +1,23 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLObject;
-public final class jh0 implements Runnable {
-    public final int f35022a;
-    public final sh0 f35023b;
-    public final TLObject f35024c;
+import android.content.Context;
+import android.view.View;
+public final class jh0 extends pj0 {
+    public final rh0 f34935e3;
 
-    public jh0(sh0 sh0Var, TLObject tLObject, int i7) {
-        this.f35022a = i7;
-        this.f35023b = sh0Var;
-        this.f35024c = tLObject;
+    public jh0(rh0 rh0Var, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, h6Var);
+        this.f34935e3 = rh0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35022a) {
-            case 0:
-                sh0 sh0Var = this.f35023b;
-                org.telegram.messenger.qs.f(sh0Var.f38064b).d(new jh0(sh0Var, this.f35024c, 1));
-                return;
-            default:
-                sh0.a(this.f35023b, this.f35024c);
-                return;
+    public final void onMeasure(int i7, int i10) {
+        rh0 rh0Var = this.f34935e3;
+        l90 l90Var = rh0Var.J;
+        if (l90Var != null) {
+            l90Var.measure(i7, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 0));
         }
+        super.onMeasure(i7, i10);
+        rh0Var.j();
     }
 }

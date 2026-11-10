@@ -1,23 +1,23 @@
 package org.telegram.messenger;
 public final class td implements Runnable {
-    public final int f25609a;
-    public final LocationSharingService f25610b;
+    public final int f25613a;
+    public final LocationSharingService f25614b;
 
     public td(LocationSharingService locationSharingService, int i7) {
-        this.f25609a = i7;
-        this.f25610b = locationSharingService;
+        this.f25613a = i7;
+        this.f25614b = locationSharingService;
     }
 
     @Override
     public final void run() {
-        switch (this.f25609a) {
+        switch (this.f25613a) {
             case 0:
-                LocationSharingService locationSharingService = this.f25610b;
-                locationSharingService.f21242b.postDelayed(locationSharingService.f21243c, 1000L);
+                LocationSharingService locationSharingService = this.f25614b;
+                locationSharingService.f21247b.postDelayed(locationSharingService.f21248c, 1000L);
                 Utilities.d.c(new rc(3));
                 return;
             default:
-                LocationSharingService locationSharingService2 = this.f25610b;
+                LocationSharingService locationSharingService2 = this.f25614b;
                 if (LocationSharingService.a().isEmpty()) {
                     locationSharingService2.stopSelf();
                     return;

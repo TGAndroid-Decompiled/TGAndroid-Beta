@@ -1,68 +1,43 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import org.telegram.ui.Components.tt0;
-public final class d extends y {
-    public final k h;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class d extends AnimatorListenerAdapter {
+    public final int f27381a;
+    public final boolean f27382b;
+    public final l f27383c;
 
-    public d(k kVar, Context context, k kVar2) {
-        super(context, kVar2);
-        this.h = kVar;
+    public d(l lVar, boolean z9, int i7) {
+        this.f27381a = i7;
+        this.f27383c = lVar;
+        this.f27382b = z9;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        k kVar = this.h;
-        Paint paint = kVar.M0;
-        if (kVar.L0 && this.f28758a && kVar.f27686x != 0) {
-            kVar.N0.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            paint.setColor(kVar.f27686x);
-            canvas2 = canvas;
-            kVar.K0.H(canvas2, 0.0f, kVar.N0, paint, true);
-        } else {
-            canvas2 = canvas;
-        }
-        super.dispatchDraw(canvas2);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        tt0 tt0Var = this.h.K0;
-        if (tt0Var != null) {
-            tt0Var.O.add(this);
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        tt0 tt0Var = this.h.K0;
-        if (tt0Var != null) {
-            tt0Var.O.remove(this);
-        }
-    }
-
-    @Override
-    public final void setAlpha(float f10) {
-        super.setAlpha(f10);
-        k kVar = this.h;
-        kVar.invalidate();
-        Runnable runnable = kVar.f27644d1;
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    @Override
-    public final void setBackgroundColor(int i7) {
-        k kVar = this.h;
-        kVar.f27686x = i7;
-        if (!kVar.L0) {
-            super.setBackgroundColor(i7);
+    public final void onAnimationEnd(Animator animator) {
+        float f10;
+        float f11;
+        switch (this.f27381a) {
+            case 0:
+                if (this.f27382b) {
+                    f10 = 1.0f;
+                } else {
+                    f10 = 0.0f;
+                }
+                l lVar = this.f27383c;
+                lVar.D1 = f10;
+                lVar.h();
+                return;
+            default:
+                if (this.f27382b) {
+                    f11 = 1.0f;
+                } else {
+                    f11 = 0.0f;
+                }
+                l lVar2 = this.f27383c;
+                lVar2.D1 = f11;
+                lVar2.h();
+                return;
         }
     }
 }

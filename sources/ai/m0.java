@@ -36,10 +36,10 @@ import org.telegram.messenger.support.JobIntentService;
 import org.telegram.messenger.tt;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.hc;
+import org.telegram.ui.Components.bc;
+import org.telegram.ui.Components.gc;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.qb1;
+import org.telegram.ui.rb1;
 public final class m0 implements Runnable {
     public final int f1578a;
 
@@ -49,11 +49,11 @@ public final class m0 implements Runnable {
 
     @Override
     public final void run() {
-        hc X;
+        gc X;
         f2 c02;
         switch (this.f1578a) {
             case 0:
-                hc.X().N(id.M0(2131745861, null), id.M0(2131751105, null)).j();
+                gc.X().N(id.M0(2131745861, null), id.M0(2131751105, null)).j();
                 return;
             case 1:
                 wa waVar = bg.i.B;
@@ -70,7 +70,7 @@ public final class m0 implements Runnable {
                         ((bg.d0[]) waVar.f701c)[i7] = null;
                     }
                     if (!arrayList.isEmpty()) {
-                        Utilities.f21336e.c(new bg.e(0, arrayList));
+                        Utilities.f21341e.c(new bg.e(0, arrayList));
                     }
                     bg.i.B = null;
                     return;
@@ -78,16 +78,16 @@ public final class m0 implements Runnable {
                 return;
             case 2:
                 f2 T = LaunchActivity.T();
-                if ((T instanceof qb1) && (c02 = ((qb1) T).c0()) != null) {
+                if ((T instanceof rb1) && (c02 = ((rb1) T).c0()) != null) {
                     T = c02;
                 }
                 if (T != null) {
-                    X = hc.a0(T);
+                    X = gc.a0(T);
                 } else {
-                    X = hc.X();
+                    X = gc.X();
                 }
-                cc Q = X.Q(2131624051, 36, id.M0(2131750216, null));
-                Q.f32637t = true;
+                bc Q = X.Q(2131624051, 36, id.M0(2131750216, null));
+                Q.f32213t = true;
                 Q.j();
                 return;
             case 3:
@@ -109,13 +109,13 @@ public final class m0 implements Runnable {
             case 7:
                 return;
             case 8:
-                int i10 = x5.n1;
+                int i10 = x5.f9934q1;
                 return;
             case 9:
                 Comparator comparator = z6.X;
                 return;
             case 10:
-                int i11 = fi.e0.f11821x0;
+                int i11 = fi.e0.f11825x0;
                 return;
             case 11:
                 Looper myLooper = Looper.myLooper();
@@ -130,7 +130,7 @@ public final class m0 implements Runnable {
                 qp.e1().edit().putInt("storydualhint", qp.e1().getInt("storydualhint", 0) + 1).apply();
                 return;
             case 14:
-                HashSet hashSet = a3.f14507a1;
+                HashSet hashSet = a3.f14509a1;
                 return;
             case 15:
                 return;
@@ -138,22 +138,22 @@ public final class m0 implements Runnable {
                 int i12 = ji.h.H;
                 return;
             case 17:
-                t1[] t1VarArr = t1.f17546g;
+                t1[] t1VarArr = t1.f17549g;
                 return;
             case 18:
-                int i13 = AppStartReceiver.f21165a;
+                int i13 = AppStartReceiver.f21170a;
                 iz.t();
-                if (iz.f23434s.length() > 0) {
-                    iz.f23448x = true;
+                if (iz.f23438s.length() > 0) {
+                    iz.f23452x = true;
                     iz.y();
                 }
                 org.telegram.messenger.t0.x();
                 return;
             case 19:
-                Utilities.f21336e.c(new m0(22));
+                Utilities.f21341e.c(new m0(22));
                 return;
             case 20:
-                boolean z9 = a8.f21395j;
+                boolean z9 = a8.f21400j;
                 StringBuilder sb2 = new StringBuilder();
                 for (Map.Entry<Thread, StackTraceElement[]> entry : Thread.getAllStackTraces().entrySet()) {
                     StackTraceElement[] value = entry.getValue();
@@ -175,14 +175,14 @@ public final class m0 implements Runnable {
                 org.telegram.messenger.t0.x();
                 return;
             case 22:
-                org.telegram.utils.twidget.i1.c(org.telegram.messenger.t0.f25566b);
+                org.telegram.utils.twidget.i1.c(org.telegram.messenger.t0.f25570b);
                 return;
             case 23:
                 if (((tt) org.telegram.messenger.t0.l()).hasServices()) {
                     ((tt) org.telegram.messenger.t0.l()).onRequestPushToken();
                     return;
                 }
-                if (r2.f25212a) {
+                if (r2.f25216a) {
                     ((tt) org.telegram.messenger.t0.l()).getClass();
                     a8.b("No valid Google Play Services APK found.");
                 }
@@ -201,15 +201,15 @@ public final class m0 implements Runnable {
                 KeepAliveJob.a();
                 return;
             case 28:
-                if (!KeepAliveJob.f21239b && KeepAliveJob.f21238a == null) {
+                if (!KeepAliveJob.f21244b && KeepAliveJob.f21243a == null) {
                     try {
-                        if (r2.f25212a) {
+                        if (r2.f25216a) {
                             a8.b("starting keep-alive job");
                         }
-                        synchronized (KeepAliveJob.f21240c) {
-                            KeepAliveJob.f21239b = true;
+                        synchronized (KeepAliveJob.f21245c) {
+                            KeepAliveJob.f21244b = true;
                         }
-                        JobIntentService.enqueueWork(org.telegram.messenger.t0.f25566b, KeepAliveJob.class, 1000, new Intent());
+                        JobIntentService.enqueueWork(org.telegram.messenger.t0.f25570b, KeepAliveJob.class, 1000, new Intent());
                         return;
                     } catch (Exception unused) {
                         return;
@@ -219,19 +219,19 @@ public final class m0 implements Runnable {
             default:
                 int i14 = -1;
                 try {
-                    BatteryManager batteryManager = (BatteryManager) org.telegram.messenger.t0.f25566b.getSystemService("batterymanager");
+                    BatteryManager batteryManager = (BatteryManager) org.telegram.messenger.t0.f25570b.getSystemService("batterymanager");
                     if (batteryManager != null) {
                         i14 = batteryManager.getIntProperty(4);
                     }
                 } catch (Throwable th2) {
                     a8.g(th2, true);
                 }
-                sc.f25452l = SystemClock.elapsedRealtime();
-                sc.f25453m = false;
+                sc.f25456l = SystemClock.elapsedRealtime();
+                sc.f25457m = false;
                 if (i14 >= 0 && i14 <= 100) {
-                    sc.f25452l = SystemClock.elapsedRealtime();
-                    if (sc.f25451k != i14) {
-                        sc.f25451k = i14;
+                    sc.f25456l = SystemClock.elapsedRealtime();
+                    if (sc.f25455k != i14) {
+                        sc.f25455k = i14;
                         org.telegram.messenger.g0.h3(new rc(0));
                         return;
                     }
@@ -242,7 +242,7 @@ public final class m0 implements Runnable {
         for (int i15 = 0; i15 < 4; i15++) {
             if (p10.i(i15).p()) {
                 ConnectionsManager.getInstance(i15).resumeNetworkMaybe();
-                Utilities.f21336e.c(new k4(g5.r(i15), 3));
+                Utilities.f21341e.c(new k4(g5.r(i15), 3));
             }
         }
     }

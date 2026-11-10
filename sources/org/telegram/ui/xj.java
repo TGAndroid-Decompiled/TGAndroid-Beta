@@ -10,7 +10,7 @@ public final class xj extends org.telegram.ui.Components.s41 {
     }
 
     @Override
-    public final org.telegram.ui.ActionBar.g6 getResourceProvider() {
-        return this.N.f44709za;
+    public final org.telegram.ui.ActionBar.h6 getResourceProvider() {
+        return this.N.f44750za;
     }
 }

@@ -18,14 +18,14 @@ import org.telegram.ui.ActionBar.r1;
 import org.telegram.ui.ActionBar.u1;
 import org.telegram.utils.code.highlight.PrismaHighlighter;
 public final class a implements g9.k, l5.g, k9, OnSuccessListener, r1 {
-    public final int f20610a;
+    public final int f20615a;
 
     public a(int i7) {
-        this.f20610a = i7;
+        this.f20615a = i7;
     }
 
     public static d a() {
-        InputStream open = t0.f25566b.getAssets().open("grammars.dat");
+        InputStream open = t0.f25570b.getAssets().open("grammars.dat");
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             byte[] bArr = new byte[8192];
@@ -66,7 +66,7 @@ public final class a implements g9.k, l5.g, k9, OnSuccessListener, r1 {
 
     @Override
     public Object apply(Object obj) {
-        return i0.u(Integer.valueOf(((y2.i) obj).f58915a));
+        return i0.u(Integer.valueOf(((y2.i) obj).f58913a));
     }
 
     @Override
@@ -76,10 +76,10 @@ public final class a implements g9.k, l5.g, k9, OnSuccessListener, r1 {
 
     @Override
     public Object j(Object obj) {
-        switch (this.f20610a) {
+        switch (this.f20615a) {
             case 10:
                 Integer num = (Integer) obj;
-                Typeface typeface = g0.f22535a;
+                Typeface typeface = g0.f22539a;
                 return "%s";
             case 12:
                 return "%" + (((Integer) obj).intValue() + 1) + "$s";
@@ -95,7 +95,7 @@ public final class a implements g9.k, l5.g, k9, OnSuccessListener, r1 {
     @Override
     public void onSuccess(Object obj) {
         Void r12 = (Void) obj;
-        boolean z9 = r2.f25212a;
+        boolean z9 = r2.f25216a;
         a8.b("sms listener registered");
     }
 

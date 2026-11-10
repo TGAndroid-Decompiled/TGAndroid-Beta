@@ -1,71 +1,33 @@
 package org.telegram.ui;
+public final class as implements Runnable {
+    public final int f43806a;
+    public final ns f43807b;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-public final class as implements r0.m, org.telegram.ui.Components.ii0 {
-    public final ms f43772a;
-
-    public as(ms msVar) {
-        this.f43772a = msVar;
+    public as(ns nsVar, int i7) {
+        this.f43806a = i7;
+        this.f43807b = nsVar;
     }
 
     @Override
-    public boolean E() {
-        return false;
-    }
-
-    @Override
-    public r0.k1 S0(View view, r0.k1 k1Var) {
-        this.f43772a.f47975q = org.telegram.messenger.g0.I0(k1Var, false);
-        return k1Var;
-    }
-
-    @Override
-    public boolean U() {
-        return false;
-    }
-
-    @Override
-    public void i(View view, ch.o0 o0Var, boolean z9, boolean z10) {
-        if (o0Var != null) {
-            ms msVar = this.f43772a;
-            ch.b0 reactionsWindow = msVar.P.getReactionsWindow();
-            if (msVar.f47973o.contains(o0Var.f6354f)) {
-                if (msVar.f47973o.size() > 1) {
-                    msVar.f47973o.remove(o0Var.f6354f);
-                } else {
+    public final void run() {
+        switch (this.f43806a) {
+            case 0:
+                this.f43807b.f48258c0 = null;
+                return;
+            case 1:
+                ns nsVar = this.f43807b;
+                nsVar.A.w0(null);
+                org.telegram.ui.Components.sb0 sb0Var = nsVar.C;
+                if (sb0Var != null) {
+                    sb0Var.a();
+                    nsVar.f48280z.removeView(nsVar.C);
+                    nsVar.C = null;
                     return;
                 }
-            } else {
-                msVar.f47973o.add(o0Var.f6354f);
-                if (msVar.f47973o.size() > 7) {
-                    msVar.f47973o.remove(0);
-                }
-            }
-            msVar.P.setSelectedEmojis(msVar.f47973o);
-            if (reactionsWindow != null) {
-                ch.w wVar = reactionsWindow.f6191m;
-                msVar.P.p(null, null, false);
-                if (wVar != null) {
-                    wVar.setSelectedReactions(msVar.f47973o);
-                    wVar.setRecentReactions(msVar.P.V);
-                }
-                reactionsWindow.d();
-            }
+                return;
+            default:
+                this.f43807b.Q.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(420L).setInterpolator(org.telegram.ui.Components.wq.h).start();
+                return;
         }
-    }
-
-    @Override
-    public boolean v() {
-        return true;
-    }
-
-    @Override
-    public void M() {
-    }
-
-    @Override
-    public void L(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i7, boolean z9) {
     }
 }

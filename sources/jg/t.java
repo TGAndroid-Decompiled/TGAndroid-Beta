@@ -9,12 +9,12 @@ import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.ActionBar.s6;
-import org.telegram.ui.Components.ej0;
-import org.telegram.ui.jw;
-import org.telegram.ui.yw;
-public final class t implements f0, ej0 {
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.Components.dj0;
+import org.telegram.ui.kw;
+import org.telegram.ui.zw;
+public final class t implements f0, dj0 {
     public final h0 f16925a;
 
     public t(h0 h0Var) {
@@ -45,23 +45,23 @@ public final class t implements f0, ej0 {
     @Override
     public boolean c(int i7, View view) {
         TLRPC.User a22;
-        jw jwVar = this.f16925a.U;
-        if (jwVar != null) {
+        kw kwVar = this.f16925a.U;
+        if (kwVar != null) {
             Long l10 = (Long) view.getTag();
             long longValue = l10.longValue();
-            yw ywVar = jwVar.f47105a;
-            if (ywVar.getParentActivity() != null && (a22 = ywVar.getMessagesController().a2(l10)) != null) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ywVar.getParentActivity());
+            zw zwVar = kwVar.f47439a;
+            if (zwVar.getParentActivity() != null && (a22 = zwVar.getMessagesController().a2(l10)) != null) {
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(zwVar.getParentActivity());
                 String M0 = id.M0(2131752234, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27300a;
                 u1Var.R = M0;
                 u1Var.T = org.telegram.messenger.g0.X2(id.a0("ChatHintsDeleteAlert", null, 2131752235, g5.m(0, a22.first_name, a22.last_name)));
-                alertDialog$Builder.k(id.M0(2131744855, null), new di.c1(jwVar, longValue, 8));
+                alertDialog$Builder.k(id.M0(2131744855, null), new di.c1(kwVar, longValue, 8));
                 alertDialog$Builder.h(id.M0(2131752589, null), null);
-                ywVar.showDialog(u1Var);
+                zwVar.showDialog(u1Var);
                 TextView textView = (TextView) u1Var.d(-1);
                 if (textView != null) {
-                    s6.U(textView, l6.f28106q7, ywVar.getResourceProvider());
+                    t6.U(textView, m6.f28131q7, zwVar.getResourceProvider());
                 }
             }
         }

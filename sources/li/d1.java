@@ -1,36 +1,36 @@
 package li;
 
 import android.os.SystemClock;
-import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.m6;
 public final class d1 implements Runnable {
-    public final int f18510a;
-    public final g1 f18511b;
+    public final int f18513a;
+    public final g1 f18514b;
 
     public d1(g1 g1Var, int i7) {
-        this.f18510a = i7;
-        this.f18511b = g1Var;
+        this.f18513a = i7;
+        this.f18514b = g1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f18510a) {
+        switch (this.f18513a) {
             case 0:
-                g1 g1Var = this.f18511b;
-                if (g1Var.f18602t2 >= 0) {
-                    long uptimeMillis = (g1Var.f18601s2 + 500) - SystemClock.uptimeMillis();
+                g1 g1Var = this.f18514b;
+                if (g1Var.f18605t2 >= 0) {
+                    long uptimeMillis = (g1Var.f18604s2 + 500) - SystemClock.uptimeMillis();
                     if (uptimeMillis > 0 && g1Var.isFocused()) {
                         g1Var.postDelayed(this, uptimeMillis);
                         return;
                     }
-                    int i7 = g1Var.f18602t2;
-                    g1Var.f18602t2 = -1;
+                    int i7 = g1Var.f18605t2;
+                    g1Var.f18605t2 = -1;
                     g1Var.setInputType(i7);
                     return;
                 }
                 return;
             default:
-                boolean h12 = l6.h1();
-                g1 g1Var2 = this.f18511b;
+                boolean h12 = m6.h1();
+                g1 g1Var2 = this.f18514b;
                 if (h12) {
                     g1Var2.postDelayed(this, 100L);
                     return;

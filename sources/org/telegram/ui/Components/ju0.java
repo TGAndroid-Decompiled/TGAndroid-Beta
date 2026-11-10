@@ -1,32 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class ju0 extends na {
-    public vr P1;
+import org.telegram.ui.ProfileActivity;
+public final class ju0 implements Runnable {
+    public final int f35079a;
+    public final mu0 f35080b;
 
-    public ju0(Context context) {
-        super(context, null, true, false, null);
-        N();
-        this.f36312v1 = true;
-        this.f36311u1 = true;
-        Y0();
-        qj0 qj0Var = this.f36303k1;
-        int i7 = this.f28654t0;
-        qj0Var.setPadding(i7, 0, i7, 0);
-        this.f36303k1.j(new ui(this, 17));
-        this.f36303k1.setOnItemClickListener(new k(this, 14));
+    public ju0(mu0 mu0Var, int i7) {
+        this.f35079a = i7;
+        this.f35080b = mu0Var;
     }
 
     @Override
-    public final pj0 L0(qj0 qj0Var) {
-        vr vrVar = new vr(qj0Var, getContext(), this.f28621a, 0, true, this.I0);
-        this.P1 = vrVar;
-        vrVar.f35945r = false;
-        return vrVar;
-    }
-
-    @Override
-    public final CharSequence O0() {
-        return org.telegram.messenger.id.M0(2131745821, null);
+    public final void run() {
+        switch (this.f35079a) {
+            case 0:
+                mu0 mu0Var = this.f35080b;
+                mu0Var.invalidate();
+                org.telegram.messenger.g0.h3(new ju0(mu0Var, 1));
+                return;
+            default:
+                mu0 mu0Var2 = this.f35080b;
+                lu0 lu0Var = mu0Var2.f36107e;
+                if (lu0Var != null) {
+                    mu0Var2.getVisibilityFactor();
+                    ProfileActivity profileActivity = ((org.telegram.ui.wt0) lu0Var).f51444b;
+                    profileActivity.f41808r.setTranslationX(profileActivity.m4(profileActivity.f41858x6, profileActivity.f41873z6));
+                    profileActivity.f41808r.setTranslationY(profileActivity.n4(profileActivity.A6));
+                    return;
+                }
+                return;
+        }
     }
 }

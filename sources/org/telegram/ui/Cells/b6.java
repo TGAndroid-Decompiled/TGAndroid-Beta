@@ -3,16 +3,16 @@ package org.telegram.ui.Cells;
 import android.content.Context;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.cw0;
+import org.telegram.ui.dw0;
 public final class b6 implements p2 {
-    public final org.telegram.ui.ActionBar.f2 f28940a;
-    public final Context f28941b;
-    public final cw0 f28942c;
+    public final org.telegram.ui.ActionBar.f2 f28951a;
+    public final Context f28952b;
+    public final dw0 f28953c;
 
-    public b6(cw0 cw0Var, org.telegram.ui.ActionBar.f2 f2Var, Context context) {
-        this.f28942c = cw0Var;
-        this.f28940a = f2Var;
-        this.f28941b = context;
+    public b6(dw0 dw0Var, org.telegram.ui.ActionBar.f2 f2Var, Context context) {
+        this.f28953c = dw0Var;
+        this.f28951a = f2Var;
+        this.f28952b = context;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class b6 implements p2 {
     @Override
     public final void q() {
         boolean z9;
-        org.telegram.ui.ActionBar.f2 f2Var = this.f28940a;
+        org.telegram.ui.ActionBar.f2 f2Var = this.f28951a;
         di.z6 P1 = f2Var.getMessagesController().P1();
         ArrayList arrayList = P1.h;
         if (arrayList.isEmpty()) {
@@ -41,15 +41,15 @@ public final class b6 implements p2 {
                 arrayList2.add(Long.valueOf(o4));
             }
         }
-        f2Var.getOrCreateStoryViewer().M(this.f28941b, null, arrayList2, 0, null, null, new di.i7(this.f28942c), false);
+        f2Var.getOrCreateStoryViewer().M(this.f28952b, null, arrayList2, 0, null, null, new di.i7(this.f28953c), false);
     }
 
     @Override
     public final void u(t2 t2Var) {
-        org.telegram.ui.ActionBar.f2 f2Var = this.f28940a;
+        org.telegram.ui.ActionBar.f2 f2Var = this.f28951a;
         if (f2Var.getMessagesController().P1().K(t2Var.getDialogId())) {
             f2Var.getOrCreateStoryViewer().getClass();
-            f2Var.getOrCreateStoryViewer().J(f2Var.getContext(), t2Var.getDialogId(), new di.i7(this.f28942c));
+            f2Var.getOrCreateStoryViewer().J(f2Var.getContext(), t2Var.getDialogId(), new di.i7(this.f28953c));
         }
     }
 

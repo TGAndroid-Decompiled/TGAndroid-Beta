@@ -1,16 +1,16 @@
 package fi;
 
-import org.telegram.ui.Components.cc;
-public final class r7 implements org.telegram.ui.Components.ab {
-    public final int f12746a;
+import org.telegram.ui.Components.bc;
+public final class r7 implements org.telegram.ui.Components.za {
+    public final int f12750a;
 
     public r7(int i7) {
-        this.f12746a = i7;
+        this.f12750a = i7;
     }
 
     @Override
     public final boolean a() {
-        switch (this.f12746a) {
+        switch (this.f12750a) {
             case 0:
                 return true;
             case 1:
@@ -49,23 +49,23 @@ public final class r7 implements org.telegram.ui.Components.ab {
     }
 
     @Override
-    public final void b(cc ccVar) {
-        int i7 = this.f12746a;
+    public final void b(bc bcVar) {
+        int i7 = this.f12750a;
     }
 
     @Override
     public final void c(float f10) {
-        int i7 = this.f12746a;
+        int i7 = this.f12750a;
     }
 
     @Override
-    public final void d(cc ccVar) {
-        int i7 = this.f12746a;
+    public final void d(bc bcVar) {
+        int i7 = this.f12750a;
     }
 
     @Override
     public final boolean e() {
-        switch (this.f12746a) {
+        switch (this.f12750a) {
             case 0:
                 return true;
             case 1:
@@ -107,7 +107,7 @@ public final class r7 implements org.telegram.ui.Components.ab {
     public final int f(int i7) {
         int i10;
         int L;
-        switch (this.f12746a) {
+        switch (this.f12750a) {
             case 0:
                 return 0;
             case 1:
@@ -117,11 +117,11 @@ public final class r7 implements org.telegram.ui.Components.ab {
             case 3:
                 return 0;
             case 4:
-                i10 = org.telegram.messenger.g0.f22558n;
+                i10 = org.telegram.messenger.g0.f22562n;
                 L = org.telegram.messenger.g0.L(64.0f);
                 break;
             case 5:
-                i10 = org.telegram.messenger.g0.f22558n;
+                i10 = org.telegram.messenger.g0.f22562n;
                 L = org.telegram.messenger.g0.L(60.0f);
                 break;
             case 6:
@@ -133,7 +133,7 @@ public final class r7 implements org.telegram.ui.Components.ab {
             case 9:
                 return org.telegram.messenger.g0.L(80.0f);
             case 10:
-                i10 = org.telegram.messenger.g0.f22558n;
+                i10 = org.telegram.messenger.g0.f22562n;
                 L = org.telegram.messenger.g0.L(16.0f);
                 break;
             case 11:
@@ -154,7 +154,7 @@ public final class r7 implements org.telegram.ui.Components.ab {
 
     @Override
     public final boolean g(int i7) {
-        switch (this.f12746a) {
+        switch (this.f12750a) {
             case 0:
                 return false;
             case 1:
@@ -194,21 +194,21 @@ public final class r7 implements org.telegram.ui.Components.ab {
 
     @Override
     public final int h(int i7) {
-        switch (this.f12746a) {
+        switch (this.f12750a) {
             case 0:
-                return org.telegram.messenger.g0.f22557m;
+                return org.telegram.messenger.g0.f22561m;
             case 1:
                 return 0;
             case 2:
                 return org.telegram.messenger.g0.L(56.0f);
             case 3:
-                return org.telegram.messenger.g0.f22557m;
+                return org.telegram.messenger.g0.f22561m;
             case 4:
                 return 0;
             case 5:
                 return 0;
             case 6:
-                return org.telegram.messenger.g0.f22557m;
+                return org.telegram.messenger.g0.f22561m;
             case 7:
                 return 0;
             case 8:
@@ -222,9 +222,9 @@ public final class r7 implements org.telegram.ui.Components.ab {
             case 12:
                 return 0;
             case 13:
-                return org.telegram.messenger.g0.f22557m;
+                return org.telegram.messenger.g0.f22561m;
             case 14:
-                return org.telegram.messenger.g0.f22557m;
+                return org.telegram.messenger.g0.f22561m;
             case 15:
                 return 0;
             default:
@@ -232,103 +232,103 @@ public final class r7 implements org.telegram.ui.Components.ab {
         }
     }
 
-    private final void A(cc ccVar) {
+    private final void A(bc bcVar) {
     }
 
-    private final void B(cc ccVar) {
+    private final void B(bc bcVar) {
     }
 
-    private final void C(cc ccVar) {
+    private final void C(bc bcVar) {
     }
 
-    private final void D(cc ccVar) {
+    private final void D(bc bcVar) {
     }
 
-    private final void E(cc ccVar) {
+    private final void E(bc bcVar) {
     }
 
-    private final void F(cc ccVar) {
+    private final void F(bc bcVar) {
     }
 
-    private final void G(cc ccVar) {
+    private final void G(bc bcVar) {
     }
 
-    private final void H(cc ccVar) {
+    private final void H(bc bcVar) {
     }
 
-    private final void I(cc ccVar) {
+    private final void I(bc bcVar) {
     }
 
-    private final void J(cc ccVar) {
+    private final void J(bc bcVar) {
     }
 
-    private final void K(cc ccVar) {
+    private final void K(bc bcVar) {
     }
 
-    private final void L(cc ccVar) {
+    private final void L(bc bcVar) {
     }
 
-    private final void M(cc ccVar) {
+    private final void M(bc bcVar) {
     }
 
-    private final void N(cc ccVar) {
+    private final void N(bc bcVar) {
     }
 
-    private final void O(cc ccVar) {
+    private final void O(bc bcVar) {
     }
 
-    private final void P(cc ccVar) {
+    private final void P(bc bcVar) {
     }
 
-    private final void Q(cc ccVar) {
+    private final void Q(bc bcVar) {
     }
 
-    private final void R(cc ccVar) {
+    private final void R(bc bcVar) {
     }
 
-    private final void S(cc ccVar) {
+    private final void S(bc bcVar) {
     }
 
-    private final void T(cc ccVar) {
+    private final void T(bc bcVar) {
     }
 
-    private final void U(cc ccVar) {
+    private final void U(bc bcVar) {
     }
 
-    private final void V(cc ccVar) {
+    private final void V(bc bcVar) {
     }
 
-    private final void W(cc ccVar) {
+    private final void W(bc bcVar) {
     }
 
-    private final void X(cc ccVar) {
+    private final void X(bc bcVar) {
     }
 
-    private final void Y(cc ccVar) {
+    private final void Y(bc bcVar) {
     }
 
-    private final void Z(cc ccVar) {
+    private final void Z(bc bcVar) {
     }
 
-    private final void a0(cc ccVar) {
+    private final void a0(bc bcVar) {
     }
 
-    private final void b0(cc ccVar) {
+    private final void b0(bc bcVar) {
     }
 
-    private final void c0(cc ccVar) {
+    private final void c0(bc bcVar) {
     }
 
-    private final void d0(cc ccVar) {
+    private final void d0(bc bcVar) {
     }
 
-    private final void e0(cc ccVar) {
+    private final void e0(bc bcVar) {
     }
 
-    private final void f0(cc ccVar) {
+    private final void f0(bc bcVar) {
     }
 
-    private final void g0(cc ccVar) {
+    private final void g0(bc bcVar) {
     }
 
     private final void i(float f10) {
@@ -382,6 +382,6 @@ public final class r7 implements org.telegram.ui.Components.ab {
     private final void y(float f10) {
     }
 
-    private final void z(cc ccVar) {
+    private final void z(bc bcVar) {
     }
 }

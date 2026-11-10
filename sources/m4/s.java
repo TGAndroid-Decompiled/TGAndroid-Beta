@@ -7,98 +7,98 @@ import h2.m0;
 import java.util.Collections;
 import l2.o0;
 public final class s implements i {
-    public final c0 f19777a;
-    public String f19778b;
-    public j0 f19779c;
+    public final c0 f19782a;
+    public String f19783b;
+    public j0 f19784c;
     public r d;
-    public boolean f19780e;
-    public long f19786l;
-    public final boolean[] f19781f = new boolean[3];
-    public final o0 f19782g = new o0(32);
+    public boolean f19785e;
+    public long f19791l;
+    public final boolean[] f19786f = new boolean[3];
+    public final o0 f19787g = new o0(32);
     public final o0 h = new o0(33);
-    public final o0 f19783i = new o0(34);
-    public final o0 f19784j = new o0(39);
-    public final o0 f19785k = new o0(40);
-    public long f19787m = -9223372036854775807L;
-    public final h2.x f19788n = new h2.x();
+    public final o0 f19788i = new o0(34);
+    public final o0 f19789j = new o0(39);
+    public final o0 f19790k = new o0(40);
+    public long f19792m = -9223372036854775807L;
+    public final h2.x f19793n = new h2.x();
 
     public s(c0 c0Var) {
-        this.f19777a = c0Var;
+        this.f19782a = c0Var;
     }
 
     public final void a(long j3, long j10, int i7, int i10) {
-        h2.c cVar = this.f19777a.d;
+        h2.c cVar = this.f19782a.d;
         r rVar = this.d;
-        boolean z9 = this.f19780e;
+        boolean z9 = this.f19785e;
         boolean z10 = false;
-        if (rVar.f19773j && rVar.f19771g) {
-            rVar.f19776m = rVar.f19768c;
-            rVar.f19773j = false;
-        } else if (rVar.h || rVar.f19771g) {
-            if (z9 && rVar.f19772i) {
-                rVar.a(i7 + ((int) (j3 - rVar.f19767b)));
+        if (rVar.f19778j && rVar.f19776g) {
+            rVar.f19781m = rVar.f19773c;
+            rVar.f19778j = false;
+        } else if (rVar.h || rVar.f19776g) {
+            if (z9 && rVar.f19777i) {
+                rVar.a(i7 + ((int) (j3 - rVar.f19772b)));
             }
-            rVar.f19774k = rVar.f19767b;
-            rVar.f19775l = rVar.f19769e;
-            rVar.f19776m = rVar.f19768c;
-            rVar.f19772i = true;
+            rVar.f19779k = rVar.f19772b;
+            rVar.f19780l = rVar.f19774e;
+            rVar.f19781m = rVar.f19773c;
+            rVar.f19777i = true;
         }
-        if (!this.f19780e) {
-            o0 o0Var = this.f19782g;
+        if (!this.f19785e) {
+            o0 o0Var = this.f19787g;
             o0Var.e(i10);
             o0 o0Var2 = this.h;
             o0Var2.e(i10);
-            o0 o0Var3 = this.f19783i;
+            o0 o0Var3 = this.f19788i;
             o0Var3.e(i10);
             if (o0Var.d && o0Var2.d && o0Var3.d) {
-                String str = this.f19778b;
-                int i11 = o0Var.f17975e;
-                byte[] bArr = new byte[o0Var2.f17975e + i11 + o0Var3.f17975e];
-                System.arraycopy((byte[]) o0Var.f17976f, 0, bArr, 0, i11);
-                System.arraycopy((byte[]) o0Var2.f17976f, 0, bArr, o0Var.f17975e, o0Var2.f17975e);
-                System.arraycopy((byte[]) o0Var3.f17976f, 0, bArr, o0Var.f17975e + o0Var2.f17975e, o0Var3.f17975e);
+                String str = this.f19783b;
+                int i11 = o0Var.f17978e;
+                byte[] bArr = new byte[o0Var2.f17978e + i11 + o0Var3.f17978e];
+                System.arraycopy((byte[]) o0Var.f17979f, 0, bArr, 0, i11);
+                System.arraycopy((byte[]) o0Var2.f17979f, 0, bArr, o0Var.f17978e, o0Var2.f17978e);
+                System.arraycopy((byte[]) o0Var3.f17979f, 0, bArr, o0Var.f17978e + o0Var2.f17978e, o0Var3.f17978e);
                 String str2 = null;
-                i2.k k10 = i2.o.k((byte[]) o0Var2.f17976f, 3, o0Var2.f17975e, null);
-                i2.h hVar = k10.f15173b;
+                i2.k k10 = i2.o.k((byte[]) o0Var2.f17979f, 3, o0Var2.f17978e, null);
+                i2.h hVar = k10.f15175b;
                 if (hVar != null) {
-                    str2 = h2.g.a(hVar.f15161a, hVar.f15163c, hVar.d, hVar.f15165f, hVar.f15162b, hVar.f15164e);
+                    str2 = h2.g.a(hVar.f15163a, hVar.f15165c, hVar.d, hVar.f15167f, hVar.f15164b, hVar.f15166e);
                 }
                 e2.t tVar = new e2.t();
-                tVar.f10548a = str;
-                tVar.f10562q = s0.n("video/mp2t");
-                tVar.f10563r = s0.n("video/hevc");
-                tVar.f10555j = str2;
-                tVar.f10569y = k10.f15175e;
-                tVar.f10570z = k10.f15176f;
-                tVar.A = k10.f15177g;
+                tVar.f10553a = str;
+                tVar.f10567q = s0.n("video/mp2t");
+                tVar.f10568r = s0.n("video/hevc");
+                tVar.f10560j = str2;
+                tVar.f10574y = k10.f15177e;
+                tVar.f10575z = k10.f15178f;
+                tVar.A = k10.f15179g;
                 tVar.B = k10.h;
-                tVar.H = new e2.m(k10.f15180k, k10.f15181l, k10.f15182m, null, k10.f15174c + 8, k10.d + 8);
-                tVar.E = k10.f15178i;
-                tVar.f10565t = k10.f15179j;
-                tVar.I = k10.f15172a + 1;
-                tVar.f10566u = Collections.singletonList(bArr);
+                tVar.H = new e2.m(k10.f15182k, k10.f15183l, k10.f15184m, null, k10.f15176c + 8, k10.d + 8);
+                tVar.E = k10.f15180i;
+                tVar.f10570t = k10.f15181j;
+                tVar.I = k10.f15174a + 1;
+                tVar.f10571u = Collections.singletonList(bArr);
                 e2.u uVar = new e2.u(tVar);
-                this.f19779c.g(uVar);
-                int i12 = uVar.f10617u;
+                this.f19784c.g(uVar);
+                int i12 = uVar.f10622u;
                 if (i12 != -1) {
                     z10 = true;
                 }
                 ia.p(z10);
                 cVar.C(i12);
-                this.f19780e = true;
+                this.f19785e = true;
             }
         }
-        o0 o0Var4 = this.f19784j;
+        o0 o0Var4 = this.f19789j;
         boolean e10 = o0Var4.e(i10);
-        h2.x xVar = this.f19788n;
+        h2.x xVar = this.f19793n;
         if (e10) {
-            xVar.L(i2.o.p(o0Var4.f17975e, (byte[]) o0Var4.f17976f), (byte[]) o0Var4.f17976f);
+            xVar.L(i2.o.p(o0Var4.f17978e, (byte[]) o0Var4.f17979f), (byte[]) o0Var4.f17979f);
             xVar.O(5);
             cVar.a(j10, xVar);
         }
-        o0 o0Var5 = this.f19785k;
+        o0 o0Var5 = this.f19790k;
         if (o0Var5.e(i10)) {
-            xVar.L(i2.o.p(o0Var5.f17975e, (byte[]) o0Var5.f17976f), (byte[]) o0Var5.f17976f);
+            xVar.L(i2.o.p(o0Var5.f17978e, (byte[]) o0Var5.f17979f), (byte[]) o0Var5.f17979f);
             xVar.O(5);
             cVar.a(j10, xVar);
         }
@@ -107,7 +107,7 @@ public final class s implements i {
     public final void b(int i7, int i10, byte[] bArr) {
         boolean z9;
         r rVar = this.d;
-        if (rVar.f19770f) {
+        if (rVar.f19775f) {
             int i11 = rVar.d;
             int i12 = (i7 + 2) - i11;
             if (i12 < i10) {
@@ -116,35 +116,35 @@ public final class s implements i {
                 } else {
                     z9 = false;
                 }
-                rVar.f19771g = z9;
-                rVar.f19770f = false;
+                rVar.f19776g = z9;
+                rVar.f19775f = false;
             } else {
                 rVar.d = (i10 - i7) + i11;
             }
         }
-        if (!this.f19780e) {
-            this.f19782g.a(i7, i10, bArr);
+        if (!this.f19785e) {
+            this.f19787g.a(i7, i10, bArr);
             this.h.a(i7, i10, bArr);
-            this.f19783i.a(i7, i10, bArr);
+            this.f19788i.a(i7, i10, bArr);
         }
-        this.f19784j.a(i7, i10, bArr);
-        this.f19785k.a(i7, i10, bArr);
+        this.f19789j.a(i7, i10, bArr);
+        this.f19790k.a(i7, i10, bArr);
     }
 
     @Override
     public final void c(h2.x xVar) {
         int i7;
         int i10;
-        this.f19779c.getClass();
-        String str = m0.f14112a;
+        this.f19784c.getClass();
+        String str = m0.f14114a;
         while (xVar.a() > 0) {
-            int i11 = xVar.f14163b;
-            int i12 = xVar.f14164c;
-            byte[] bArr = xVar.f14162a;
-            this.f19786l += xVar.a();
-            this.f19779c.b(xVar.a(), xVar);
+            int i11 = xVar.f14165b;
+            int i12 = xVar.f14166c;
+            byte[] bArr = xVar.f14164a;
+            this.f19791l += xVar.a();
+            this.f19784c.b(xVar.a(), xVar);
             while (i11 < i12) {
-                int c10 = i2.o.c(bArr, i11, i12, this.f19781f);
+                int c10 = i2.o.c(bArr, i11, i12, this.f19786f);
                 if (c10 == i12) {
                     b(i11, i12, bArr);
                     return;
@@ -163,14 +163,14 @@ public final class s implements i {
                     b(i11, i14, bArr);
                 }
                 int i17 = i12 - i14;
-                long j3 = this.f19786l - i17;
+                long j3 = this.f19791l - i17;
                 if (i16 < 0) {
                     i10 = -i16;
                 } else {
                     i10 = 0;
                 }
-                a(j3, this.f19787m, i17, i10);
-                h(j3, this.f19787m, i17, i13);
+                a(j3, this.f19792m, i17, i10);
+                h(j3, this.f19792m, i17, i13);
                 i11 = i14 + i15;
             }
         }
@@ -178,73 +178,73 @@ public final class s implements i {
 
     @Override
     public final void d() {
-        this.f19786l = 0L;
-        this.f19787m = -9223372036854775807L;
-        i2.o.b(this.f19781f);
-        this.f19782g.g();
+        this.f19791l = 0L;
+        this.f19792m = -9223372036854775807L;
+        i2.o.b(this.f19786f);
+        this.f19787g.g();
         this.h.g();
-        this.f19783i.g();
-        this.f19784j.g();
-        this.f19785k.g();
-        this.f19777a.d.r(0);
+        this.f19788i.g();
+        this.f19789j.g();
+        this.f19790k.g();
+        this.f19782a.d.r(0);
         r rVar = this.d;
         if (rVar != null) {
-            rVar.f19770f = false;
-            rVar.f19771g = false;
+            rVar.f19775f = false;
+            rVar.f19776g = false;
             rVar.h = false;
-            rVar.f19772i = false;
-            rVar.f19773j = false;
+            rVar.f19777i = false;
+            rVar.f19778j = false;
         }
     }
 
     @Override
     public final void e(boolean z9) {
-        this.f19779c.getClass();
-        String str = m0.f14112a;
+        this.f19784c.getClass();
+        String str = m0.f14114a;
         if (z9) {
-            this.f19777a.d.r(0);
-            a(this.f19786l, this.f19787m, 0, 0);
-            h(this.f19786l, this.f19787m, 0, 48);
+            this.f19782a.d.r(0);
+            a(this.f19791l, this.f19792m, 0, 0);
+            h(this.f19791l, this.f19792m, 0, 48);
         }
     }
 
     @Override
     public final void f(int i7, long j3) {
-        this.f19787m = j3;
+        this.f19792m = j3;
     }
 
     @Override
     public final void g(f3.q qVar, g0 g0Var) {
         g0Var.b();
         g0Var.c();
-        this.f19778b = (String) g0Var.f19674e;
+        this.f19783b = (String) g0Var.f19679e;
         g0Var.c();
-        j0 O1 = qVar.O1(g0Var.f19673c, 2);
-        this.f19779c = O1;
+        j0 O1 = qVar.O1(g0Var.f19678c, 2);
+        this.f19784c = O1;
         this.d = new r(O1);
-        this.f19777a.b(qVar, g0Var);
+        this.f19782a.b(qVar, g0Var);
     }
 
     public final void h(long j3, long j10, int i7, int i10) {
         boolean z9;
         r rVar = this.d;
-        boolean z10 = this.f19780e;
+        boolean z10 = this.f19785e;
         boolean z11 = false;
-        rVar.f19771g = false;
+        rVar.f19776g = false;
         rVar.h = false;
-        rVar.f19769e = j10;
+        rVar.f19774e = j10;
         rVar.d = 0;
-        rVar.f19767b = j3;
+        rVar.f19772b = j3;
         if (i10 >= 32 && i10 != 40) {
-            if (rVar.f19772i && !rVar.f19773j) {
+            if (rVar.f19777i && !rVar.f19778j) {
                 if (z10) {
                     rVar.a(i7);
                 }
-                rVar.f19772i = false;
+                rVar.f19777i = false;
             }
             if ((32 <= i10 && i10 <= 35) || i10 == 39) {
-                rVar.h = !rVar.f19773j;
-                rVar.f19773j = true;
+                rVar.h = !rVar.f19778j;
+                rVar.f19778j = true;
             }
         }
         if (i10 >= 16 && i10 <= 21) {
@@ -252,17 +252,17 @@ public final class s implements i {
         } else {
             z9 = false;
         }
-        rVar.f19768c = z9;
+        rVar.f19773c = z9;
         if (z9 || i10 <= 9) {
             z11 = true;
         }
-        rVar.f19770f = z11;
-        if (!this.f19780e) {
-            this.f19782g.h(i10);
+        rVar.f19775f = z11;
+        if (!this.f19785e) {
+            this.f19787g.h(i10);
             this.h.h(i10);
-            this.f19783i.h(i10);
+            this.f19788i.h(i10);
         }
-        this.f19784j.h(i10);
-        this.f19785k.h(i10);
+        this.f19789j.h(i10);
+        this.f19790k.h(i10);
     }
 }

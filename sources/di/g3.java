@@ -4,17 +4,17 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import fi.gb;
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.wq;
 public final class g3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f9010a;
-    public final Object f9011b;
-    public final Object f9012c;
+    public final int f9015a;
+    public final Object f9016b;
+    public final Object f9017c;
     public final Object d;
 
     public g3(Object obj, Object obj2, Object obj3, int i7) {
-        this.f9010a = i7;
-        this.f9011b = obj;
-        this.f9012c = obj2;
+        this.f9015a = i7;
+        this.f9016b = obj;
+        this.f9017c = obj2;
         this.d = obj3;
     }
 
@@ -22,13 +22,13 @@ public final class g3 implements ValueAnimator.AnimatorUpdateListener {
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         float f10;
         float f11;
-        switch (this.f9010a) {
+        switch (this.f9015a) {
             case 0:
                 boolean[] zArr = (boolean[]) this.d;
-                j4 j4Var = ((i3) this.f9011b).f9103a;
-                j4Var.f9175e3 = ((Float) ((ValueAnimator) this.f9012c).getAnimatedValue()).floatValue();
+                j4 j4Var = ((i3) this.f9016b).f9108a;
+                j4Var.f9180e3 = ((Float) ((ValueAnimator) this.f9017c).getAnimatedValue()).floatValue();
                 j4Var.invalidate();
-                if (j4Var.f9175e3 > 0.8f && !zArr[0]) {
+                if (j4Var.f9180e3 > 0.8f && !zArr[0]) {
                     zArr[0] = true;
                     j4Var.Z2 = true;
                     try {
@@ -40,8 +40,8 @@ public final class g3 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 1:
-                fi.o5 o5Var = (fi.o5) this.f9011b;
-                View view = (View) this.f9012c;
+                fi.o5 o5Var = (fi.o5) this.f9016b;
+                View view = (View) this.f9017c;
                 View view2 = (View) this.d;
                 o5Var.J0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 o5Var.F0.invalidate();
@@ -58,7 +58,7 @@ public final class g3 implements ValueAnimator.AnimatorUpdateListener {
                     }
                     childAt.setAlpha((f10 * 0.4f) + 0.6f);
                 }
-                float interpolation = xq.f40458f.getInterpolation(o5Var.J0);
+                float interpolation = wq.f40046f.getInterpolation(o5Var.J0);
                 if (view != null && view2 != null) {
                     float f12 = 1.0f - interpolation;
                     float f13 = (f12 * 0.4f) + 0.6f;
@@ -75,8 +75,8 @@ public final class g3 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 2:
-                gb gbVar = (gb) this.f9011b;
-                AtomicBoolean atomicBoolean = (AtomicBoolean) this.f9012c;
+                gb gbVar = (gb) this.f9016b;
+                AtomicBoolean atomicBoolean = (AtomicBoolean) this.f9017c;
                 fi.u uVar = (fi.u) this.d;
                 gbVar.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
@@ -88,26 +88,26 @@ public final class g3 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 3:
-                mi.k kVar = (mi.k) this.f9011b;
-                org.telegram.ui.Cells.x1 x1Var = (org.telegram.ui.Cells.x1) this.f9012c;
+                mi.k kVar = (mi.k) this.f9016b;
+                org.telegram.ui.Cells.x1 x1Var = (org.telegram.ui.Cells.x1) this.f9017c;
                 org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) this.d;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (kVar.f20093l) {
-                    x1Var.f30802h0 = (-kVar.f20100s) * floatValue2;
-                    x1Var.f30807i0 = (-kVar.f20101t) * floatValue2;
-                    x1Var.f30816k0 = (-kVar.f20102u) * floatValue2;
-                    x1Var.f30812j0 = (-kVar.v) * floatValue2;
+                if (kVar.f20098l) {
+                    x1Var.f30813h0 = (-kVar.f20105s) * floatValue2;
+                    x1Var.f30818i0 = (-kVar.f20106t) * floatValue2;
+                    x1Var.f30827k0 = (-kVar.f20107u) * floatValue2;
+                    x1Var.f30823j0 = (-kVar.v) * floatValue2;
                 } else {
-                    x1Var.f30802h0 = ((-kVar.f20100s) * floatValue2) - q1Var.getAnimationOffsetX();
-                    x1Var.f30807i0 = ((-kVar.f20101t) * floatValue2) - q1Var.getAnimationOffsetX();
-                    x1Var.f30816k0 = ((-kVar.f20102u) * floatValue2) - q1Var.getTranslationY();
-                    x1Var.f30812j0 = ((-kVar.v) * floatValue2) - q1Var.getTranslationY();
+                    x1Var.f30813h0 = ((-kVar.f20105s) * floatValue2) - q1Var.getAnimationOffsetX();
+                    x1Var.f30818i0 = ((-kVar.f20106t) * floatValue2) - q1Var.getAnimationOffsetX();
+                    x1Var.f30827k0 = ((-kVar.f20107u) * floatValue2) - q1Var.getTranslationY();
+                    x1Var.f30823j0 = ((-kVar.v) * floatValue2) - q1Var.getTranslationY();
                 }
                 q1Var.invalidate();
                 return;
             default:
-                tg.g0 g0Var = (tg.g0) this.f9011b;
-                View view3 = (View) this.f9012c;
+                tg.g0 g0Var = (tg.g0) this.f9016b;
+                View view3 = (View) this.f9017c;
                 View view4 = (View) this.d;
                 g0Var.R0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 g0Var.O0.invalidate();
@@ -124,7 +124,7 @@ public final class g3 implements ValueAnimator.AnimatorUpdateListener {
                     }
                     childAt2.setAlpha((f11 * 0.4f) + 0.6f);
                 }
-                float interpolation2 = xq.f40458f.getInterpolation(g0Var.R0);
+                float interpolation2 = wq.f40046f.getInterpolation(g0Var.R0);
                 if (view3 != null && view4 != null) {
                     float f15 = 1.0f - interpolation2;
                     float f16 = (f15 * 0.4f) + 0.6f;

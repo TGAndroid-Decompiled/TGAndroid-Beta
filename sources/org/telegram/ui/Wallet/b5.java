@@ -1,42 +1,52 @@
 package org.telegram.ui.Wallet;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.ee;
-import org.telegram.ui.wb1;
-public final class b5 implements TextWatcher {
-    public final String[] f42269a;
-    public final wb1 f42270b;
-    public final Runnable[] f42271c;
-    public final ee d;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import org.telegram.ui.Components.v61;
+public final class b5 extends y2 {
+    public final ViewGroup W1;
+    public final View[] X1;
+    public final Context Y1;
 
-    public b5(String[] strArr, wb1 wb1Var, Runnable[] runnableArr, ee eeVar) {
-        this.f42269a = strArr;
-        this.f42270b = wb1Var;
-        this.f42271c = runnableArr;
-        this.d = eeVar;
+    public b5(Context context, ViewGroup viewGroup, org.telegram.ui.ActionBar.h6 h6Var, ViewGroup viewGroup2, View[] viewArr, Context context2) {
+        super(context, viewGroup, h6Var);
+        this.W1 = viewGroup2;
+        this.X1 = viewArr;
+        this.Y1 = context2;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        this.f42269a[0] = editable.toString();
-        this.f42270b.run();
-        Runnable[] runnableArr = this.f42271c;
-        Runnable runnable = runnableArr[0];
-        if (runnable != null) {
-            runnable.run();
-            runnableArr[0] = null;
+    public final void T0(float f10) {
+        super.T0(f10);
+        if (this.W1 instanceof v61) {
+            this.f28702r0.setBounds(0, (int) f10, this.f28672b.getWidth(), this.f28672b.getHeight());
         }
-        ee eeVar = this.d;
-        org.telegram.messenger.g0.r(eeVar);
-        org.telegram.messenger.g0.i3(eeVar, 1000L);
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+    public final boolean Z0() {
+        return !(this.W1 instanceof v61);
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+    public final int d1() {
+        return org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f27890d6, this.I0);
+    }
+
+    @Override
+    public final void show() {
+        super.show();
+        if (this.W1 instanceof v61) {
+            View[] viewArr = this.X1;
+            if (viewArr[0] == null) {
+                jh.h hVar = new jh.h(this, this.Y1);
+                viewArr[0] = hVar;
+                this.f28672b.addView(hVar, 0, c8.ha.e(-1, 50, 80));
+            }
+            this.f28672b.setBackground(null);
+            this.f28672b.setPadding(0, 0, 0, 0);
+            this.n1.setPadding(0, 0, 0, 0);
+        }
     }
 }

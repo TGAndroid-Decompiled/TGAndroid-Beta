@@ -208,7 +208,7 @@ public class d implements Iterator {
                 if (z12) {
                     Collection collection2 = (Collection) entry2.getValue();
                     this.f358b.remove();
-                    ((cd) this.d).f5406c.getClass();
+                    ((cd) this.d).f5411c.getClass();
                     collection2.size();
                     collection2.clear();
                     this.f359c = null;
@@ -227,7 +227,7 @@ public class d implements Iterator {
                 }
                 ia.o("no calls to next() since the last call to remove()", z13);
                 this.f358b.remove();
-                ((h9.l1) ((kb) this.d).f515e).f14346f -= ((Collection) this.f359c).size();
+                ((h9.l1) ((kb) this.d).f515e).f14348f -= ((Collection) this.f359c).size();
                 ((Collection) this.f359c).clear();
                 this.f359c = null;
                 return;
@@ -240,7 +240,7 @@ public class d implements Iterator {
                 ia.o("no calls to next() since the last call to remove()", z14);
                 Collection collection3 = (Collection) ((Map.Entry) this.f359c).getValue();
                 this.f358b.remove();
-                ((h9.d) this.d).f14310c.f14346f -= collection3.size();
+                ((h9.d) this.d).f14312c.f14348f -= collection3.size();
                 collection3.clear();
                 this.f359c = null;
                 return;
@@ -248,7 +248,7 @@ public class d implements Iterator {
                 this.f358b.remove();
                 f fVar2 = (f) this.d;
                 h9.l1 l1Var = (h9.l1) fVar2.f390f;
-                l1Var.f14346f--;
+                l1Var.f14348f--;
                 fVar2.j();
                 return;
         }

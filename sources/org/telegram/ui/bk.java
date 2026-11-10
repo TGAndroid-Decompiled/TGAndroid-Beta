@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import android.widget.FrameLayout;
-public final class bk extends kx {
+public final class bk extends lx {
     public final cn N;
 
     public bk(cn cnVar, cn cnVar2, FrameLayout frameLayout, cj cjVar, int i7, long j3, long j10) {

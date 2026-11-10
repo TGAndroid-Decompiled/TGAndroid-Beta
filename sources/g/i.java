@@ -14,18 +14,18 @@ import m.t3;
 import r0.i0;
 import r0.k1;
 public final class i implements r0.m, l.w {
-    public final s f13327a;
+    public final s f13329a;
 
     public i(s sVar) {
-        this.f13327a = sVar;
+        this.f13329a = sVar;
     }
 
     @Override
     public boolean A(l.k kVar) {
         Window.Callback callback;
         if (kVar == kVar.k()) {
-            s sVar = this.f13327a;
-            if (sVar.O && (callback = sVar.f13362f.getCallback()) != null && !sVar.Z) {
+            s sVar = this.f13329a;
+            if (sVar.O && (callback = sVar.f13364f.getCallback()) != null && !sVar.Z) {
                 callback.onMenuOpened(108, kVar);
                 return true;
             }
@@ -43,8 +43,8 @@ public final class i implements r0.m, l.w {
         boolean z10;
         int color;
         int d = k1Var.d();
-        s sVar = this.f13327a;
-        Context context = sVar.f13360e;
+        s sVar = this.f13329a;
+        Context context = sVar.f13362e;
         int d2 = k1Var.d();
         ActionBarContextView actionBarContextView = sVar.D;
         int i7 = 8;
@@ -52,15 +52,15 @@ public final class i implements r0.m, l.w {
             ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) sVar.D.getLayoutParams();
             boolean z11 = true;
             if (sVar.D.isShown()) {
-                if (sVar.f13369l0 == null) {
-                    sVar.f13369l0 = new Rect();
+                if (sVar.f13371l0 == null) {
+                    sVar.f13371l0 = new Rect();
                     sVar.m0 = new Rect();
                 }
-                Rect rect = sVar.f13369l0;
+                Rect rect = sVar.f13371l0;
                 Rect rect2 = sVar.m0;
                 rect.set(k1Var.b(), k1Var.d(), k1Var.c(), k1Var.a());
                 ViewGroup viewGroup = sVar.J;
-                Method method = t3.f19259a;
+                Method method = t3.f19264a;
                 if (method != null) {
                     try {
                         method.invoke(viewGroup, rect, rect2);
@@ -72,7 +72,7 @@ public final class i implements r0.m, l.w {
                 int i11 = rect.left;
                 int i12 = rect.right;
                 ViewGroup viewGroup2 = sVar.J;
-                WeakHashMap weakHashMap = i0.f54203a;
+                WeakHashMap weakHashMap = i0.f54202a;
                 k1 a10 = r0.b0.a(viewGroup2);
                 if (a10 == null) {
                     b10 = 0;
@@ -175,7 +175,7 @@ public final class i implements r0.m, l.w {
         if (z10) {
             kVar = k10;
         }
-        s sVar = this.f13327a;
+        s sVar = this.f13329a;
         r[] rVarArr = sVar.U;
         if (rVarArr != null) {
             i7 = rVarArr.length;
@@ -196,7 +196,7 @@ public final class i implements r0.m, l.w {
         }
         if (rVar != null) {
             if (z10) {
-                sVar.f(rVar.f13339a, rVar, k10);
+                sVar.f(rVar.f13341a, rVar, k10);
                 sVar.h(rVar, true);
                 return;
             }

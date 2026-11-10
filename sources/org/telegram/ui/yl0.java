@@ -1,50 +1,35 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-public final class yl0 extends org.telegram.ui.Cells.z9 {
-    public final int H = 1;
+import androidx.recyclerview.widget.RecyclerView;
+public final class yl0 extends v4.s0 {
+    public final int f52066a;
+    public final em0 f52067b;
 
-    public yl0(Context context, org.telegram.ui.ActionBar.q4 q4Var, int i7) {
-        super(context, q4Var, i7);
-    }
-
-    public static void b(yl0 yl0Var, Canvas canvas) {
-        super.draw(canvas);
+    public yl0(em0 em0Var, int i7) {
+        this.f52067b = em0Var;
+        this.f52066a = i7;
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        switch (this.H) {
-            case 0:
-                if (canvas.isHardwareAccelerated()) {
-                    super.draw(canvas);
-                    return;
-                } else {
-                    bg.u0.a(canvas, this, new r3(this, 17));
-                    return;
-                }
-            default:
-                super.draw(canvas);
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
+        bi.v9 v9Var;
+        em0 em0Var = this.f52067b;
+        km0 km0Var = em0Var.f45401p0;
+        em0Var.h();
+        if (em0Var.K != null) {
+            if (em0Var.J != null && em0Var.c()) {
+                em0Var.J.g(false);
                 return;
+            }
+            return;
         }
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.H) {
-            case 1:
-                if (getParent() != null && getParent().getParent() != null) {
-                    getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            default:
-                return super.onInterceptTouchEvent(motionEvent);
+        if (this.f52066a == 1) {
+            v9Var = km0Var.f47371c;
+        } else {
+            v9Var = km0Var.f47369b;
         }
-    }
-
-    public yl0(Context context, org.telegram.ui.ActionBar.q4 q4Var, int i7, long j3, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, q4Var, i7, j3, g6Var);
+        if (v9Var != null && em0Var.c()) {
+            v9Var.a();
+        }
     }
 }

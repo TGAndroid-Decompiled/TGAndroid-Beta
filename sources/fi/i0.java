@@ -9,39 +9,39 @@ import android.graphics.RectF;
 import android.view.View;
 import org.telegram.ui.BubbleActivity;
 public final class i0 extends View {
-    public final Paint f12156a;
-    public final Path f12157b;
-    public final RectF f12158c;
+    public final Paint f12160a;
+    public final Path f12161b;
+    public final RectF f12162c;
     public final Matrix d;
-    public final Matrix f12159e;
-    public final Matrix f12160f;
+    public final Matrix f12163e;
+    public final Matrix f12164f;
     public final Matrix h;
-    public final Matrix f12161n;
-    public final Matrix f12162r;
-    public final j0 f12163s;
+    public final Matrix f12165n;
+    public final Matrix f12166r;
+    public final j0 f12167s;
 
     public i0(j0 j0Var, Context context) {
         super(context);
-        this.f12163s = j0Var;
-        this.f12156a = new Paint(1);
-        this.f12157b = new Path();
-        this.f12158c = new RectF();
+        this.f12167s = j0Var;
+        this.f12160a = new Paint(1);
+        this.f12161b = new Path();
+        this.f12162c = new RectF();
         this.d = new Matrix();
-        this.f12159e = new Matrix();
-        this.f12160f = new Matrix();
+        this.f12163e = new Matrix();
+        this.f12164f = new Matrix();
         this.h = new Matrix();
-        this.f12161n = new Matrix();
-        this.f12162r = new Matrix();
+        this.f12165n = new Matrix();
+        this.f12166r = new Matrix();
     }
 
     private float getContainerHeight() {
         float f10;
         if (!(getContext() instanceof BubbleActivity)) {
-            f10 = org.telegram.messenger.g0.f22557m;
+            f10 = org.telegram.messenger.g0.f22561m;
         } else {
             f10 = 0.0f;
         }
-        return ((getHeight() - f10) - this.f12163s.f12201f.D) - org.telegram.messenger.g0.L(32.0f);
+        return ((getHeight() - f10) - this.f12167s.f12205f.D) - org.telegram.messenger.g0.L(32.0f);
     }
 
     private float getContainerWidth() {
@@ -58,7 +58,7 @@ public final class i0 extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        if (this.f12163s.f12207y == null) {
+        if (this.f12167s.f12211y == null) {
             return;
         }
         b(canvas, false);

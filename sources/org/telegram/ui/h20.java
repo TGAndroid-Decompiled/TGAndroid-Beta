@@ -1,8 +1,19 @@
 package org.telegram.ui;
-public final class h20 implements nh.g {
-    public final e40 f46132a;
 
-    public h20(e40 e40Var) {
-        this.f46132a = e40Var;
+import android.view.View;
+public final class h20 extends View {
+    public final f40 f46212a;
+
+    public h20(f40 f40Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f46212a = f40Var;
+    }
+
+    @Override
+    public final void setAlpha(float f10) {
+        if (getAlpha() != f10) {
+            super.setAlpha(f10);
+            this.f46212a.U0();
+        }
     }
 }

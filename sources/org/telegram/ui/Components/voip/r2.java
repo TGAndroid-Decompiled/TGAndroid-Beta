@@ -10,8 +10,8 @@ import android.graphics.Rect;
 import android.view.View;
 import org.telegram.messenger.sc;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.g5;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.f5;
+import org.telegram.ui.Components.wq;
 public final class r2 extends View {
     public boolean D;
     public boolean E;
@@ -21,19 +21,19 @@ public final class r2 extends View {
     public final Paint I;
     public final Rect J;
     public final boolean K;
-    public final f3[] f39594a;
-    public final f3[] f39595b;
-    public ValueAnimator f39596c;
+    public final f3[] f39514a;
+    public final f3[] f39515b;
+    public ValueAnimator f39516c;
     public int d;
-    public int f39597e;
-    public int f39598f;
+    public int f39517e;
+    public int f39518f;
     public int h;
-    public int f39599n;
-    public int f39600r;
-    public int f39601s;
-    public int f39602w;
-    public int f39603x;
-    public int f39604y;
+    public int f39519n;
+    public int f39520r;
+    public int f39521s;
+    public int f39522w;
+    public int f39523x;
+    public int f39524y;
 
     public r2(Activity activity, TLRPC.User user, i1 i1Var) {
         super(activity);
@@ -46,8 +46,8 @@ public final class r2 extends View {
         if (!e10) {
             return;
         }
-        this.f39594a = new f3[]{new f3(user, this, org.telegram.messenger.g0.L(32.0f)), new f3(user, this, org.telegram.messenger.g0.L(28.0f)), new f3(user, this, org.telegram.messenger.g0.L(35.0f)), new f3(user, this, org.telegram.messenger.g0.L(28.0f)), new f3(user, this, org.telegram.messenger.g0.L(26.0f))};
-        this.f39595b = new f3[]{new f3(user, this, org.telegram.messenger.g0.L(32.0f)), new f3(user, this, org.telegram.messenger.g0.L(28.0f)), new f3(user, this, org.telegram.messenger.g0.L(35.0f)), new f3(user, this, org.telegram.messenger.g0.L(28.0f)), new f3(user, this, org.telegram.messenger.g0.L(26.0f))};
+        this.f39514a = new f3[]{new f3(user, this, org.telegram.messenger.g0.L(32.0f)), new f3(user, this, org.telegram.messenger.g0.L(28.0f)), new f3(user, this, org.telegram.messenger.g0.L(35.0f)), new f3(user, this, org.telegram.messenger.g0.L(28.0f)), new f3(user, this, org.telegram.messenger.g0.L(26.0f))};
+        this.f39515b = new f3[]{new f3(user, this, org.telegram.messenger.g0.L(32.0f)), new f3(user, this, org.telegram.messenger.g0.L(28.0f)), new f3(user, this, org.telegram.messenger.g0.L(35.0f)), new f3(user, this, org.telegram.messenger.g0.L(28.0f)), new f3(user, this, org.telegram.messenger.g0.L(26.0f))};
         i1Var.a(this);
         setLayerType(2, null);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
@@ -61,11 +61,11 @@ public final class r2 extends View {
         int L = org.telegram.messenger.g0.L(12.0f);
         this.F = L;
         ValueAnimator ofInt = ValueAnimator.ofInt(0, L);
-        this.f39596c = ofInt;
+        this.f39516c = ofInt;
         ofInt.addUpdateListener(new q2(this, 0));
-        this.f39596c.setInterpolator(xq.f40459g);
-        this.f39596c.setDuration(200L);
-        this.f39596c.start();
+        this.f39516c.setInterpolator(wq.f40047g);
+        this.f39516c.setDuration(200L);
+        this.f39516c.start();
     }
 
     @Override
@@ -74,21 +74,21 @@ public final class r2 extends View {
         f3[] f3VarArr2;
         super.onAttachedToWindow();
         if (this.K) {
-            for (f3 f3Var : this.f39594a) {
-                g5 g5Var = f3Var.f39287a;
-                if (g5Var != null) {
-                    g5Var.a();
-                    ValueAnimator valueAnimator = f3Var.f39288b;
+            for (f3 f3Var : this.f39514a) {
+                f5 f5Var = f3Var.f39207a;
+                if (f5Var != null) {
+                    f5Var.a();
+                    ValueAnimator valueAnimator = f3Var.f39208b;
                     if (valueAnimator != null) {
                         valueAnimator.start();
                     }
                 }
             }
-            for (f3 f3Var2 : this.f39595b) {
-                g5 g5Var2 = f3Var2.f39287a;
-                if (g5Var2 != null) {
-                    g5Var2.a();
-                    ValueAnimator valueAnimator2 = f3Var2.f39288b;
+            for (f3 f3Var2 : this.f39515b) {
+                f5 f5Var2 = f3Var2.f39207a;
+                if (f5Var2 != null) {
+                    f5Var2.a();
+                    ValueAnimator valueAnimator2 = f3Var2.f39208b;
                     if (valueAnimator2 != null) {
                         valueAnimator2.start();
                     }
@@ -103,29 +103,29 @@ public final class r2 extends View {
         f3[] f3VarArr2;
         super.onDetachedFromWindow();
         if (this.K) {
-            for (f3 f3Var : this.f39594a) {
-                g5 g5Var = f3Var.f39287a;
-                if (g5Var != null) {
-                    ValueAnimator valueAnimator = f3Var.f39288b;
+            for (f3 f3Var : this.f39514a) {
+                f5 f5Var = f3Var.f39207a;
+                if (f5Var != null) {
+                    ValueAnimator valueAnimator = f3Var.f39208b;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
-                        f3Var.f39288b = null;
+                        f3Var.f39208b = null;
                     }
-                    g5Var.b();
+                    f5Var.b();
                 }
             }
-            for (f3 f3Var2 : this.f39595b) {
-                g5 g5Var2 = f3Var2.f39287a;
-                if (g5Var2 != null) {
-                    ValueAnimator valueAnimator2 = f3Var2.f39288b;
+            for (f3 f3Var2 : this.f39515b) {
+                f5 f5Var2 = f3Var2.f39207a;
+                if (f5Var2 != null) {
+                    ValueAnimator valueAnimator2 = f3Var2.f39208b;
                     if (valueAnimator2 != null) {
                         valueAnimator2.cancel();
-                        f3Var2.f39288b = null;
+                        f3Var2.f39208b = null;
                     }
-                    g5Var2.b();
+                    f5Var2.b();
                 }
             }
-            ValueAnimator valueAnimator3 = this.f39596c;
+            ValueAnimator valueAnimator3 = this.f39516c;
             if (valueAnimator3 != null) {
                 valueAnimator3.cancel();
             }
@@ -146,21 +146,21 @@ public final class r2 extends View {
         i1 i1Var = this.H;
         i1Var.d(x10, y10);
         int measuredWidth = getMeasuredWidth() / 2;
-        f3[] f3VarArr = this.f39594a;
-        f3VarArr[0].b((measuredWidth - org.telegram.messenger.g0.L(120.0f)) - this.d, org.telegram.messenger.g0.L(120.0f) - this.f39600r);
-        f3VarArr[1].b((measuredWidth - org.telegram.messenger.g0.L(180.0f)) - this.f39597e, org.telegram.messenger.g0.L(150.0f) - this.f39601s);
-        f3VarArr[2].b((measuredWidth - org.telegram.messenger.g0.L(150.0f)) - this.f39598f, org.telegram.messenger.g0.L(185.0f) - this.f39602w);
-        f3VarArr[3].b((measuredWidth - org.telegram.messenger.g0.L(176.0f)) - this.h, org.telegram.messenger.g0.L(240.0f) - this.f39603x);
-        f3VarArr[4].b((measuredWidth - org.telegram.messenger.g0.L(130.0f)) - this.f39599n, org.telegram.messenger.g0.L(265.0f) - this.f39604y);
+        f3[] f3VarArr = this.f39514a;
+        f3VarArr[0].b((measuredWidth - org.telegram.messenger.g0.L(120.0f)) - this.d, org.telegram.messenger.g0.L(120.0f) - this.f39520r);
+        f3VarArr[1].b((measuredWidth - org.telegram.messenger.g0.L(180.0f)) - this.f39517e, org.telegram.messenger.g0.L(150.0f) - this.f39521s);
+        f3VarArr[2].b((measuredWidth - org.telegram.messenger.g0.L(150.0f)) - this.f39518f, org.telegram.messenger.g0.L(185.0f) - this.f39522w);
+        f3VarArr[3].b((measuredWidth - org.telegram.messenger.g0.L(176.0f)) - this.h, org.telegram.messenger.g0.L(240.0f) - this.f39523x);
+        f3VarArr[4].b((measuredWidth - org.telegram.messenger.g0.L(130.0f)) - this.f39519n, org.telegram.messenger.g0.L(265.0f) - this.f39524y);
         for (f3 f3Var : f3VarArr) {
             f3Var.a(canvas);
         }
-        f3[] f3VarArr2 = this.f39595b;
-        f3VarArr2[0].b(org.telegram.messenger.g0.L(50.0f) + measuredWidth + this.d, org.telegram.messenger.g0.L(120.0f) - this.f39600r);
-        f3VarArr2[1].b(org.telegram.messenger.g0.L(110.0f) + measuredWidth + this.f39597e, org.telegram.messenger.g0.L(150.0f) - this.f39601s);
-        f3VarArr2[2].b(org.telegram.messenger.g0.L(80.0f) + measuredWidth + this.f39598f, org.telegram.messenger.g0.L(185.0f) - this.f39602w);
-        f3VarArr2[3].b(org.telegram.messenger.g0.L(106.0f) + measuredWidth + this.h, org.telegram.messenger.g0.L(240.0f) - this.f39603x);
-        f3VarArr2[4].b(org.telegram.messenger.g0.L(60.0f) + measuredWidth + this.f39599n, org.telegram.messenger.g0.L(265.0f) - this.f39604y);
+        f3[] f3VarArr2 = this.f39515b;
+        f3VarArr2[0].b(org.telegram.messenger.g0.L(50.0f) + measuredWidth + this.d, org.telegram.messenger.g0.L(120.0f) - this.f39520r);
+        f3VarArr2[1].b(org.telegram.messenger.g0.L(110.0f) + measuredWidth + this.f39517e, org.telegram.messenger.g0.L(150.0f) - this.f39521s);
+        f3VarArr2[2].b(org.telegram.messenger.g0.L(80.0f) + measuredWidth + this.f39518f, org.telegram.messenger.g0.L(185.0f) - this.f39522w);
+        f3VarArr2[3].b(org.telegram.messenger.g0.L(106.0f) + measuredWidth + this.h, org.telegram.messenger.g0.L(240.0f) - this.f39523x);
+        f3VarArr2[4].b(org.telegram.messenger.g0.L(60.0f) + measuredWidth + this.f39519n, org.telegram.messenger.g0.L(265.0f) - this.f39524y);
         for (f3 f3Var2 : f3VarArr2) {
             f3Var2.a(canvas);
         }
@@ -171,7 +171,7 @@ public final class r2 extends View {
         i1Var.b().setAlpha(255);
         canvas.drawRect(rect, i1Var.b());
         i1Var.b().setAlpha(alpha);
-        if (i1Var.f39347e) {
+        if (i1Var.f39267e) {
             int alpha2 = ((Paint) i1Var.d.f335a).getAlpha();
             ((Paint) i1Var.d.f335a).setAlpha(255);
             canvas.drawRect(rect, (Paint) i1Var.d.f335a);
@@ -186,17 +186,17 @@ public final class r2 extends View {
         f3[] f3VarArr2;
         super.onLayout(z9, i7, i10, i11, i12);
         if (this.K) {
-            for (f3 f3Var : this.f39594a) {
+            for (f3 f3Var : this.f39514a) {
                 int measuredWidth = getMeasuredWidth();
                 getMeasuredHeight();
-                f3Var.f39299o = measuredWidth;
-                f3Var.f39295k.invalidate();
+                f3Var.f39219o = measuredWidth;
+                f3Var.f39215k.invalidate();
             }
-            for (f3 f3Var2 : this.f39595b) {
+            for (f3 f3Var2 : this.f39515b) {
                 int measuredWidth2 = getMeasuredWidth();
                 getMeasuredHeight();
-                f3Var2.f39299o = measuredWidth2;
-                f3Var2.f39295k.invalidate();
+                f3Var2.f39219o = measuredWidth2;
+                f3Var2.f39215k.invalidate();
             }
         }
     }

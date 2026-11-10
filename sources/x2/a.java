@@ -8,38 +8,38 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 public abstract class a {
-    public final ArrayList f58274a = new ArrayList(1);
-    public final HashSet f58275b = new HashSet(1);
-    public final wa f58276c = new wa(new CopyOnWriteArrayList(), 0, (g0) null);
+    public final ArrayList f58278a = new ArrayList(1);
+    public final HashSet f58279b = new HashSet(1);
+    public final wa f58280c = new wa(new CopyOnWriteArrayList(), 0, (f0) null);
     public final q2.j d = new q2.j(new CopyOnWriteArrayList(), 0, null);
-    public Looper f58277e;
-    public e2.l1 f58278f;
-    public m2.j f58279g;
+    public Looper f58281e;
+    public e2.l1 f58282f;
+    public m2.j f58283g;
 
     public boolean a(e2.l0 l0Var) {
         return false;
     }
 
-    public final wa b(g0 g0Var) {
-        return new wa((CopyOnWriteArrayList) this.f58276c.d, 0, g0Var);
+    public final wa b(f0 f0Var) {
+        return new wa((CopyOnWriteArrayList) this.f58280c.d, 0, f0Var);
     }
 
-    public abstract e0 c(g0 g0Var, h6.m mVar, long j3);
+    public abstract d0 c(f0 f0Var, h6.m mVar, long j3);
 
-    public final void d(h0 h0Var) {
-        HashSet hashSet = this.f58275b;
+    public final void d(g0 g0Var) {
+        HashSet hashSet = this.f58279b;
         boolean isEmpty = hashSet.isEmpty();
-        hashSet.remove(h0Var);
+        hashSet.remove(g0Var);
         if (!isEmpty && hashSet.isEmpty()) {
             e();
         }
     }
 
-    public final void f(h0 h0Var) {
-        this.f58277e.getClass();
-        HashSet hashSet = this.f58275b;
+    public final void f(g0 g0Var) {
+        this.f58281e.getClass();
+        HashSet hashSet = this.f58279b;
         boolean isEmpty = hashSet.isEmpty();
-        hashSet.add(h0Var);
+        hashSet.add(g0Var);
         if (isEmpty) {
             g();
         }
@@ -57,79 +57,79 @@ public abstract class a {
 
     public abstract void k();
 
-    public final void l(h0 h0Var, j2.d0 d0Var, m2.j jVar) {
+    public final void l(g0 g0Var, j2.d0 d0Var, m2.j jVar) {
         boolean z9;
         Looper myLooper = Looper.myLooper();
-        Looper looper = this.f58277e;
+        Looper looper = this.f58281e;
         if (looper != null && looper != myLooper) {
             z9 = false;
         } else {
             z9 = true;
         }
         ia.f(z9);
-        this.f58279g = jVar;
-        e2.l1 l1Var = this.f58278f;
-        this.f58274a.add(h0Var);
-        if (this.f58277e == null) {
-            this.f58277e = myLooper;
-            this.f58275b.add(h0Var);
+        this.f58283g = jVar;
+        e2.l1 l1Var = this.f58282f;
+        this.f58278a.add(g0Var);
+        if (this.f58281e == null) {
+            this.f58281e = myLooper;
+            this.f58279b.add(g0Var);
             m(d0Var);
         } else if (l1Var != null) {
-            f(h0Var);
-            h0Var.a(this, l1Var);
+            f(g0Var);
+            g0Var.a(this, l1Var);
         }
     }
 
     public abstract void m(j2.d0 d0Var);
 
     public final void n(e2.l1 l1Var) {
-        this.f58278f = l1Var;
-        ArrayList arrayList = this.f58274a;
+        this.f58282f = l1Var;
+        ArrayList arrayList = this.f58278a;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
-            ((h0) obj).a(this, l1Var);
+            ((g0) obj).a(this, l1Var);
         }
     }
 
-    public abstract void o(e0 e0Var);
+    public abstract void o(d0 d0Var);
 
-    public final void p(h0 h0Var) {
-        ArrayList arrayList = this.f58274a;
-        arrayList.remove(h0Var);
+    public final void p(g0 g0Var) {
+        ArrayList arrayList = this.f58278a;
+        arrayList.remove(g0Var);
         if (arrayList.isEmpty()) {
-            this.f58277e = null;
-            this.f58278f = null;
-            this.f58279g = null;
-            this.f58275b.clear();
+            this.f58281e = null;
+            this.f58282f = null;
+            this.f58283g = null;
+            this.f58279b.clear();
             q();
             return;
         }
-        d(h0Var);
+        d(g0Var);
     }
 
     public abstract void q();
 
     public final void r(q2.k kVar) {
-        CopyOnWriteArrayList copyOnWriteArrayList = this.d.f53751c;
+        CopyOnWriteArrayList copyOnWriteArrayList = this.d.f53750c;
         Iterator it = copyOnWriteArrayList.iterator();
         while (it.hasNext()) {
             q2.i iVar = (q2.i) it.next();
-            if (iVar.f53748b == kVar) {
+            if (iVar.f53747b == kVar) {
                 copyOnWriteArrayList.remove(iVar);
             }
         }
     }
 
-    public final void s(k0 k0Var) {
-        CopyOnWriteArrayList copyOnWriteArrayList = (CopyOnWriteArrayList) this.f58276c.d;
+    public final void s(j0 j0Var) {
+        CopyOnWriteArrayList copyOnWriteArrayList = (CopyOnWriteArrayList) this.f58280c.d;
         Iterator it = copyOnWriteArrayList.iterator();
         while (it.hasNext()) {
-            j0 j0Var = (j0) it.next();
-            if (j0Var.f58376b == k0Var) {
-                copyOnWriteArrayList.remove(j0Var);
+            i0 i0Var = (i0) it.next();
+            if (i0Var.f58376b == j0Var) {
+                copyOnWriteArrayList.remove(i0Var);
             }
         }
     }

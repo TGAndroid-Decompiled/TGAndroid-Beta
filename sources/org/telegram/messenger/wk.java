@@ -2,26 +2,26 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class wk implements Runnable {
-    public final int f26330a;
-    public final qp f26331b;
-    public final TLRPC.Updates f26332c;
+    public final int f26334a;
+    public final qp f26335b;
+    public final TLRPC.Updates f26336c;
     public final boolean d;
 
     public wk(qp qpVar, TLRPC.Updates updates, boolean z9, int i7) {
-        this.f26330a = i7;
-        this.f26331b = qpVar;
-        this.f26332c = updates;
+        this.f26334a = i7;
+        this.f26335b = qpVar;
+        this.f26336c = updates;
         this.d = z9;
     }
 
     @Override
     public final void run() {
-        switch (this.f26330a) {
+        switch (this.f26334a) {
             case 0:
-                this.f26331b.O3(this.f26332c, this.d);
+                this.f26335b.O3(this.f26336c, this.d);
                 return;
             default:
-                Utilities.d.c(new wk(this.f26331b, this.f26332c, this.d, 0));
+                Utilities.d.c(new wk(this.f26335b, this.f26336c, this.d, 0));
                 return;
         }
     }

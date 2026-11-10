@@ -1,14 +1,14 @@
 package wg;
 
-import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.h6;
 public final class k {
-    public final z f57767a;
-    public final g6 f57768b;
-    public final l f57769c;
+    public final z f57766a;
+    public final h6 f57767b;
+    public final l f57768c;
 
-    public k(l lVar, z zVar, g6 g6Var) {
-        this.f57769c = lVar;
-        this.f57767a = zVar;
-        this.f57768b = g6Var;
+    public k(l lVar, z zVar, h6 h6Var) {
+        this.f57768c = lVar;
+        this.f57766a = zVar;
+        this.f57767b = h6Var;
     }
 }

@@ -1,28 +1,18 @@
 package org.telegram.ui;
-public final class h71 implements o71 {
-    public boolean f46187a;
-    public final cn f46188b;
+public final class h71 extends x71 {
+    public final cn f46242l2;
+    public final boolean f46243m2;
 
-    public h71(cn cnVar, boolean z9) {
-        this.f46188b = cnVar;
-        this.f46187a = z9;
+    public h71(Object obj, cn cnVar, boolean z9) {
+        super(obj, null, true);
+        this.f46242l2 = cnVar;
+        this.f46243m2 = z9;
     }
 
     @Override
-    public final boolean a() {
-        return this.f46187a;
-    }
-
-    @Override
-    public final boolean a1() {
-        return true;
-    }
-
-    @Override
-    public final void t1(boolean z9) {
-        boolean z10 = !this.f46187a;
-        this.f46187a = z10;
-        an anVar = this.f46188b.f44709za;
-        anVar.r(anVar.f43729f, anVar.f43730g, z9, Boolean.valueOf(z10), false);
+    public final void onFragmentClosed() {
+        super.onFragmentClosed();
+        an anVar = this.f46242l2.f44750za;
+        anVar.r(anVar.f43729f, anVar.f43730g, false, Boolean.valueOf(this.f46243m2), false);
     }
 }

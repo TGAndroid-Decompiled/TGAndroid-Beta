@@ -4,35 +4,35 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class hl implements Runnable {
-    public final int f22926a;
-    public final ls f22927b;
-    public final long f22928c;
+    public final int f22930a;
+    public final ls f22931b;
+    public final long f22932c;
     public final int d;
-    public final int f22929e;
-    public final boolean f22930f;
+    public final int f22933e;
+    public final boolean f22934f;
 
     public hl(qp qpVar, long j3, int i7, int i10, boolean z9, int i11) {
-        this.f22926a = i11;
-        this.f22927b = qpVar;
-        this.f22928c = j3;
+        this.f22930a = i11;
+        this.f22931b = qpVar;
+        this.f22932c = j3;
         this.d = i7;
-        this.f22929e = i10;
-        this.f22930f = z9;
+        this.f22933e = i10;
+        this.f22934f = z9;
     }
 
     @Override
     public final void run() {
         long j3;
         int i7;
-        int i10 = this.f22926a;
-        ls lsVar = this.f22927b;
+        int i10 = this.f22930a;
+        ls lsVar = this.f22931b;
         switch (i10) {
             case 0:
                 qp qpVar = (qp) lsVar;
                 a0.h hVar = qpVar.Q;
-                long j10 = this.f22928c;
+                long j10 = this.f22932c;
                 TLRPC.Dialog dialog = (TLRPC.Dialog) hVar.f(j10);
-                int i11 = this.f22929e;
+                int i11 = this.f22933e;
                 if (dialog != null) {
                     int i12 = dialog.unread_count;
                     int i13 = this.d;
@@ -48,7 +48,7 @@ public final class hl implements Runnable {
                     boolean z9 = dialog.unread_mark;
                     if (z9) {
                         dialog.unread_mark = false;
-                        qpVar.getMessagesStorage().F1(dialog.f26960id, false);
+                        qpVar.getMessagesStorage().F1(dialog.f26964id, false);
                     }
                     if ((i12 == 0 && !z9) || dialog.unread_count != 0) {
                         j3 = j10;
@@ -60,7 +60,7 @@ public final class hl implements Runnable {
                             vo[] voVarArr = qpVar.M;
                             if (i14 < voVarArr.length) {
                                 vo voVar = voVarArr[i14];
-                                if (voVar != null && (voVar.f26075g & 64) != 0) {
+                                if (voVar != null && (voVar.f26079g & 64) != 0) {
                                     qpVar.T4(null);
                                     qpVar.getNotificationCenter().k(3, new Object[0]);
                                 } else {
@@ -73,7 +73,7 @@ public final class hl implements Runnable {
                 } else {
                     j3 = j10;
                 }
-                if (!this.f22930f) {
+                if (!this.f22934f) {
                     long j11 = j3;
                     qpVar.getNotificationsController().L(null, j11, 0, i11, false);
                     LongSparseIntArray longSparseIntArray = new LongSparseIntArray(1);
@@ -88,21 +88,21 @@ public final class hl implements Runnable {
                 qpVar.getNotificationsController().J(longSparseIntArray2);
                 return;
             case 1:
-                g0.h3(new hl((qp) lsVar, this.f22928c, this.d, this.f22929e, this.f22930f, 0));
+                g0.h3(new hl((qp) lsVar, this.f22932c, this.d, this.f22933e, this.f22934f, 0));
                 return;
             default:
                 int i15 = ChatActivityEnterView.s5;
-                ((ChatActivityEnterView) lsVar).T0(this.f22930f, this.d, this.f22929e, this.f22928c, false);
+                ((ChatActivityEnterView) lsVar).T0(this.f22934f, this.d, this.f22933e, this.f22932c, false);
                 return;
         }
     }
 
     public hl(ChatActivityEnterView chatActivityEnterView, boolean z9, int i7, int i10, long j3) {
-        this.f22926a = 2;
-        this.f22927b = chatActivityEnterView;
-        this.f22930f = z9;
+        this.f22930a = 2;
+        this.f22931b = chatActivityEnterView;
+        this.f22934f = z9;
         this.d = i7;
-        this.f22929e = i10;
-        this.f22928c = j3;
+        this.f22933e = i10;
+        this.f22932c = j3;
     }
 }

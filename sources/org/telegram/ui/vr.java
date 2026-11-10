@@ -1,43 +1,40 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class vr extends v4.s0 {
-    public boolean f50756a;
-    public boolean f50757b;
-    public final ContactsActivity f50758c;
+import android.content.Context;
+public final class vr extends jg.e {
+    public final ContactsActivity O;
 
-    public vr(ContactsActivity contactsActivity) {
-        this.f50758c = contactsActivity;
+    public vr(ContactsActivity contactsActivity, Context context, int i7, boolean z9, a0.h hVar, int i10) {
+        super(context, i7, z9, hVar, i10);
+        this.O = contactsActivity;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i7) {
-        if (i7 == 1) {
-            ContactsActivity contactsActivity = this.f50758c;
-            if (contactsActivity.D && contactsActivity.f41209y) {
-                org.telegram.messenger.g0.v1(contactsActivity.getParentActivity().getCurrentFocus());
+    public final int R() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.vr.R():int");
+    }
+
+    @Override
+    public final void f() {
+        boolean z9 = false;
+        X(false);
+        ContactsActivity contactsActivity = this.O;
+        org.telegram.ui.Components.pj0 pj0Var = contactsActivity.d;
+        if (pj0Var != null && pj0Var.getAdapter() == this) {
+            int b10 = b();
+            if (contactsActivity.F) {
+                org.telegram.ui.Components.pj0 pj0Var2 = contactsActivity.d;
+                if (b10 != 2) {
+                    z9 = true;
+                }
+                pj0Var2.setFastScrollVisible(z9);
+                return;
             }
-            this.f50757b = true;
-            return;
-        }
-        this.f50757b = false;
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        boolean z9;
-        ContactsActivity contactsActivity = this.f50758c;
-        if (contactsActivity.f41206s != null && !contactsActivity.D) {
-            if (i10 > 0) {
+            org.telegram.ui.Components.pj0 pj0Var3 = contactsActivity.d;
+            if (b10 != 0) {
                 z9 = true;
-            } else {
-                z9 = false;
             }
-            if (i10 != 0 && this.f50756a && (z9 || this.f50757b)) {
-                contactsActivity.f41207w = !z9;
-                ContactsActivity.g0(contactsActivity);
-            }
-            this.f50756a = true;
+            pj0Var3.setFastScrollVisible(z9);
         }
     }
 }

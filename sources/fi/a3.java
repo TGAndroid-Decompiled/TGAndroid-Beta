@@ -5,12 +5,12 @@ import android.view.ViewGroup;
 import org.telegram.ui.Components.wo;
 public final class a3 extends wo {
     public final int d;
-    public final ViewGroup f11591e;
+    public final ViewGroup f11596e;
 
-    public a3(ViewGroup viewGroup, Context context, org.telegram.ui.ActionBar.g6 g6Var, int i7) {
-        super(21, context, g6Var);
+    public a3(ViewGroup viewGroup, Context context, org.telegram.ui.ActionBar.h6 h6Var, int i7) {
+        super(21, context, h6Var);
         this.d = i7;
-        this.f11591e = viewGroup;
+        this.f11596e = viewGroup;
     }
 
     @Override
@@ -18,22 +18,22 @@ public final class a3 extends wo {
         switch (this.d) {
             case 0:
                 super.invalidate();
-                ((b3) this.f11591e).invalidate();
+                ((b3) this.f11596e).invalidate();
                 return;
             case 1:
                 super.invalidate();
-                ((org.telegram.ui.Cells.t2) this.f11591e).invalidate();
+                ((org.telegram.ui.Cells.t2) this.f11596e).invalidate();
                 return;
             default:
                 super.invalidate();
-                ((org.telegram.ui.web.g) this.f11591e).invalidate();
+                ((org.telegram.ui.web.g) this.f11596e).invalidate();
                 return;
         }
     }
 
-    public a3(b3 b3Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(24, context, g6Var);
+    public a3(b3 b3Var, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(24, context, h6Var);
         this.d = 0;
-        this.f11591e = b3Var;
+        this.f11596e = b3Var;
     }
 }

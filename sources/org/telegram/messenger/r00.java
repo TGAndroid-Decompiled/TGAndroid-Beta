@@ -2,34 +2,34 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class r00 implements v10 {
-    public final int f25191a;
-    public final f10 f25192b;
-    public final z10 f25193c;
+    public final int f25195a;
+    public final f10 f25196b;
+    public final z10 f25197c;
     public final boolean d;
-    public final int f25194e;
-    public final String f25195f;
-    public final long f25196g;
+    public final int f25198e;
+    public final String f25199f;
+    public final long f25200g;
 
     public r00(f10 f10Var, z10 z10Var, boolean z9, int i7, String str, long j3, int i10) {
-        this.f25191a = i10;
-        this.f25192b = f10Var;
-        this.f25193c = z10Var;
+        this.f25195a = i10;
+        this.f25196b = f10Var;
+        this.f25197c = z10Var;
         this.d = z9;
-        this.f25194e = i7;
-        this.f25195f = str;
-        this.f25196g = j3;
+        this.f25198e = i7;
+        this.f25199f = str;
+        this.f25200g = j3;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        int i7 = this.f25191a;
+        int i7 = this.f25195a;
         int i10 = 2131743946;
-        long j3 = this.f25196g;
-        String str = this.f25195f;
-        int i11 = this.f25194e;
+        long j3 = this.f25200g;
+        String str = this.f25199f;
+        int i11 = this.f25198e;
         boolean z9 = this.d;
-        z10 z10Var = this.f25193c;
-        f10 f10Var = this.f25192b;
+        z10 z10Var = this.f25197c;
+        f10 f10Var = this.f25196b;
         switch (i7) {
             case 0:
                 String str2 = (String) obj;

@@ -4,11 +4,11 @@ import android.webkit.WebView;
 import org.chromium.support_lib_boundary.StaticsBoundaryInterface;
 import org.chromium.support_lib_boundary.WebViewProviderBoundaryInterface;
 public final class e implements n {
-    public static final String[] f10705a = new String[0];
+    public static final String[] f10710a = new String[0];
 
     @Override
     public final String[] D() {
-        return f10705a;
+        return f10710a;
     }
 
     @Override

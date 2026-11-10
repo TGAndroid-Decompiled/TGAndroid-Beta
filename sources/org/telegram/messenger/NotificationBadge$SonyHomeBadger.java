@@ -7,18 +7,18 @@ import android.net.Uri;
 import java.util.Arrays;
 import java.util.List;
 public class NotificationBadge$SonyHomeBadger implements cs {
-    public static es f21322b;
-    public final Uri f21323a = Uri.parse("content://com.sonymobile.home.resourceprovider/badge");
+    public static es f21327b;
+    public final Uri f21328a = Uri.parse("content://com.sonymobile.home.resourceprovider/badge");
 
     @Override
     public final void a(int i7) {
         boolean z9 = false;
-        if (t0.f25566b.getPackageManager().resolveContentProvider("com.sonymobile.home.resourceprovider", 0) != null) {
+        if (t0.f25570b.getPackageManager().resolveContentProvider("com.sonymobile.home.resourceprovider", 0) != null) {
             if (i7 < 0) {
                 return;
             }
-            if (f21322b == null) {
-                f21322b = new AsyncQueryHandler(t0.f25566b.getApplicationContext().getContentResolver());
+            if (f21327b == null) {
+                f21327b = new AsyncQueryHandler(t0.f25570b.getApplicationContext().getContentResolver());
             }
             String packageName = fs.d.getPackageName();
             String className = fs.d.getClassName();
@@ -26,7 +26,7 @@ public class NotificationBadge$SonyHomeBadger implements cs {
             contentValues.put("badge_count", Integer.valueOf(i7));
             contentValues.put("package_name", packageName);
             contentValues.put("activity_name", className);
-            f21322b.startInsert(0, null, this.f21323a, contentValues);
+            f21327b.startInsert(0, null, this.f21328a, contentValues);
             return;
         }
         Intent intent = new Intent("com.sonyericsson.home.action.UPDATE_BADGE");

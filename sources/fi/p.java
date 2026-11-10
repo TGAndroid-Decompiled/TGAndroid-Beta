@@ -13,10 +13,10 @@ public final class p extends l6 {
     @Override
     public final void c() {
         org.telegram.messenger.g0.r(this.h);
-        if (this.f12329c <= 0) {
+        if (this.f12330c <= 0) {
             a(true);
         } else {
-            CameraController.getInstance().stopVideoRecording(this.f12327a.getCameraSessionRecording(), false, false);
+            CameraController.getInstance().stopVideoRecording(this.f12328a.getCameraSessionRecording(), false, false);
         }
         r rVar = this.F;
         if (rVar.N1) {

@@ -2,35 +2,35 @@ package org.telegram.ui.Wallet;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.m41;
-import org.telegram.ui.Components.qj0;
-import org.telegram.ui.Components.r41;
-import org.telegram.ui.Components.x31;
-import org.telegram.ui.Components.y31;
-public final class o5 extends x31 {
-    public static final int f42941b = 0;
+import android.widget.FrameLayout;
+public final class o5 extends FrameLayout {
+    public View f42905a;
+    public float f42906b;
+    public int f42907c;
+    public final m5 d;
+    public final z5 f42908e;
 
-    static {
-        x31.h(new x31());
+    public o5(z5 z5Var, Context context) {
+        super(context);
+        this.f42908e = z5Var;
+        this.d = new m5(1, this);
     }
 
     @Override
-    public final void b(View view, y31 y31Var, boolean z9, m41 m41Var, r41 r41Var) {
-        ((p5) view).a(y31Var.f40567k, y31Var.f40568l, y31Var.f40569m);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        getViewTreeObserver().addOnPreDrawListener(this.d);
     }
 
     @Override
-    public final View d(Context context, qj0 qj0Var, int i7, org.telegram.ui.ActionBar.g6 g6Var) {
-        return new p5(context, g6Var);
+    public final void onDetachedFromWindow() {
+        getViewTreeObserver().removeOnPreDrawListener(this.d);
+        super.onDetachedFromWindow();
     }
 
     @Override
-    public final boolean f() {
-        return false;
-    }
-
-    @Override
-    public final boolean g() {
-        return true;
+    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
+        super.onLayout(z9, i7, i10, i11, i12);
+        this.f42908e.U0();
     }
 }

@@ -1,65 +1,79 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MediaController;
-public final class pz0 implements Runnable {
-    public final int f48835a;
-    public final uz0 f48836b;
+import android.app.Activity;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+public final class pz0 extends FrameLayout {
+    public float f48884a;
+    public final boolean f48885b;
+    public final boolean f48886c;
+    public boolean d;
+    public int f48887e;
+    public final r1.f f48888f;
+    public final r1.g h;
+    public final q0 f48889n;
+    public final SecretMediaViewer f48890r;
 
-    public pz0(uz0 uz0Var, int i7) {
-        this.f48835a = i7;
-        this.f48836b = uz0Var;
+    public pz0(SecretMediaViewer secretMediaViewer, Activity activity) {
+        super(activity);
+        this.f48890r = secretMediaViewer;
+        this.f48884a = 1.0f;
+        this.f48885b = true;
+        this.f48886c = true;
+        r1.f fVar = new r1.f(0.0f);
+        this.f48888f = fVar;
+        r1.g gVar = new r1.g(fVar);
+        gVar.f54279m = org.telegram.ui.Cells.f1.o(0.0f, 750.0f, 1.0f);
+        gVar.b(new db0(this, 5));
+        this.h = gVar;
+        this.f48889n = new q0("progress", 7);
+        setWillNotDraw(false);
     }
 
     @Override
-    public final void run() {
-        switch (this.f48835a) {
-            case 0:
-                uz0 uz0Var = this.f48836b;
-                pz0 pz0Var = uz0Var.Z;
-                org.telegram.ui.Components.u51 u51Var = uz0Var.f50514x;
-                if (u51Var != null) {
-                    uz0Var.f50501a0 = ((float) u51Var.S()) / ((float) uz0Var.f50514x.U());
-                    sz0 sz0Var = uz0Var.N;
-                    if (sz0Var != null) {
-                        sz0Var.f29961oc = (uz0Var.f50514x.U() - uz0Var.f50514x.S()) / 1000;
-                        uz0Var.N.S3();
-                        org.telegram.ui.Components.qm0 seekBarWaveform = uz0Var.N.getSeekBarWaveform();
-                        if (seekBarWaveform != null) {
-                            float f10 = uz0Var.f50501a0;
-                            seekBarWaveform.J = true;
-                            seekBarWaveform.K = f10;
-                            org.telegram.ui.Cells.q1 q1Var = seekBarWaveform.f37429n;
-                            if (q1Var != null) {
-                                q1Var.invalidate();
-                            }
-                        }
-                    }
-                    if (uz0Var.f50514x.d0()) {
-                        org.telegram.messenger.g0.r(pz0Var);
-                        org.telegram.messenger.g0.i3(pz0Var, 16L);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                super/*android.app.Dialog*/.dismiss();
-                return;
-            case 2:
-                super/*android.app.Dialog*/.dismiss();
-                return;
-            default:
-                uz0 uz0Var2 = this.f48836b;
-                if (uz0Var2.d == null) {
-                    org.telegram.messenger.g0.h3(new pz0(uz0Var2, 2));
-                    org.telegram.ui.Cells.q1 q1Var2 = uz0Var2.O;
-                    if (q1Var2 != null) {
-                        q1Var2.setVisibility(0);
-                        uz0Var2.O.invalidate();
-                    }
-                }
-                MediaController.B().F0();
-                return;
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f48888f.f54261a = 0.0f;
+        this.f48887e = 0;
+    }
+
+    @Override
+    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
+        float f10;
+        super.onLayout(z9, i7, i10, i11, i12);
+        SecretMediaViewer secretMediaViewer = this.f48890r;
+        np0 np0Var = secretMediaViewer.D;
+        if (np0Var != null) {
+            f10 = ((float) np0Var.S()) / ((float) secretMediaViewer.D.U());
+        } else {
+            f10 = 0.0f;
         }
+        secretMediaViewer.O.h(false, f10);
+    }
+
+    @Override
+    public final void onMeasure(int r12, int r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.pz0.onMeasure(int, int):void");
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.f48884a < 1.0f) {
+            return false;
+        }
+        SecretMediaViewer secretMediaViewer = this.f48890r;
+        if (secretMediaViewer.O.e(motionEvent.getX() - org.telegram.messenger.g0.L(2.0f), motionEvent.getY(), motionEvent.getAction())) {
+            getParent().requestDisallowInterceptTouchEvent(true);
+            secretMediaViewer.P.invalidate();
+        }
+        return true;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.d) {
+            return;
+        }
+        super.requestLayout();
     }
 }

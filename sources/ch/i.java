@@ -7,24 +7,24 @@ import org.telegram.messenger.c20;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Cells.r8;
-import org.telegram.ui.Components.r5;
+import org.telegram.ui.Components.q5;
 public final class i implements c20 {
-    public final int f6265a;
-    public final o f6266b;
+    public final int f6270a;
+    public final o f6271b;
 
     public i(o oVar, int i7) {
-        this.f6265a = i7;
-        this.f6266b = oVar;
+        this.f6270a = i7;
+        this.f6271b = oVar;
     }
 
     @Override
     public final void a(Object obj) {
-        r5[] r5VarArr;
+        q5[] q5VarArr;
         r8 r8Var;
         long j3;
-        switch (this.f6265a) {
+        switch (this.f6270a) {
             case 0:
-                o oVar = this.f6266b;
+                o oVar = this.f6271b;
                 oVar.W = (TL_stories.TL_premium_boostsStatus) obj;
                 if (!oVar.H.keySet().equals(oVar.J.keySet())) {
                     oVar.e0(false);
@@ -33,17 +33,17 @@ public final class i implements c20 {
                 return;
             case 1:
                 Boolean bool = (Boolean) obj;
-                o oVar2 = this.f6266b;
-                h hVar = oVar2.f6339a0;
+                o oVar2 = this.f6271b;
+                h hVar = oVar2.f6344a0;
                 if (!oVar2.g0()) {
                     int editTextSelectionEnd = oVar2.h.getEditTextSelectionEnd();
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(oVar2.h.getText());
-                    for (r5 r5Var : (r5[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), r5.class)) {
-                        if (spannableStringBuilder.getSpanEnd(r5Var) == editTextSelectionEnd) {
-                            oVar2.H.remove(Long.valueOf(r5Var.documentId));
-                            oVar2.I.remove(Long.valueOf(r5Var.documentId));
-                            oVar2.f6340b.A(Long.valueOf(r5Var.documentId));
-                            if (r5Var.documentId == -1 && (r8Var = oVar2.f6345r) != null) {
+                    for (q5 q5Var : (q5[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), q5.class)) {
+                        if (spannableStringBuilder.getSpanEnd(q5Var) == editTextSelectionEnd) {
+                            oVar2.H.remove(Long.valueOf(q5Var.documentId));
+                            oVar2.I.remove(Long.valueOf(q5Var.documentId));
+                            oVar2.f6345b.A(Long.valueOf(q5Var.documentId));
+                            if (q5Var.documentId == -1 && (r8Var = oVar2.f6350r) != null) {
                                 r8Var.setChecked(false);
                                 oVar2.h.setMaxLength(oVar2.N);
                             }
@@ -53,8 +53,8 @@ public final class i implements c20 {
                                 org.telegram.messenger.g0.i3(hVar, 350L);
                                 return;
                             }
-                            r5Var.setRemoved(new ai.e0(oVar2, r5Var, editTextSelectionEnd, 5));
-                            oVar2.c0(r5Var);
+                            q5Var.setRemoved(new ai.e0(oVar2, q5Var, editTextSelectionEnd, 5));
+                            oVar2.c0(q5Var);
                             oVar2.e0(false);
                             return;
                         }
@@ -64,9 +64,9 @@ public final class i implements c20 {
                 return;
             case 2:
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                o oVar3 = this.f6266b;
+                o oVar3 = this.f6271b;
                 if (!oVar3.isFinishing()) {
-                    oVar3.f6346s.setLoading(false);
+                    oVar3.f6351s.setLoading(false);
                     if (tL_error.text.equals("CHAT_NOT_MODIFIED")) {
                         oVar3.finishFragment();
                         return;
@@ -82,7 +82,7 @@ public final class i implements c20 {
                 }
                 return;
             default:
-                o oVar4 = this.f6266b;
+                o oVar4 = this.f6271b;
                 oVar4.getClass();
                 oVar4.U = ((Integer) obj).intValue();
                 return;

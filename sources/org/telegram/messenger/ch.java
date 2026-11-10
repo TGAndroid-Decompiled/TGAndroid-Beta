@@ -15,17 +15,17 @@ import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_ephemeral;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.bj0;
-import org.telegram.ui.Components.ht0;
+import org.telegram.ui.Components.aj0;
+import org.telegram.ui.Components.gt0;
+import org.telegram.ui.Components.kt0;
 import org.telegram.ui.Components.lt0;
-import org.telegram.ui.Components.mt0;
-import org.telegram.ui.Components.wt0;
-import org.telegram.ui.Components.y31;
-public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, org.telegram.ui.ActionBar.r1, wt0, w10, ht0, b20, jh.i, bj0, lt0, mt0 {
-    public final int f21854a;
+import org.telegram.ui.Components.vt0;
+import org.telegram.ui.Components.x31;
+public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, org.telegram.ui.ActionBar.r1, vt0, w10, gt0, b20, jh.i, aj0, kt0, lt0 {
+    public final int f21858a;
 
     public ch(int i7) {
-        this.f21854a = i7;
+        this.f21858a = i7;
     }
 
     public static Shader.TileMode e() {
@@ -33,7 +33,7 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
     }
 
     @Override
-    public Boolean a(y31 y31Var, View view, Integer num, Float f10, Float f11) {
+    public Boolean a(x31 x31Var, View view, Integer num, Float f10, Float f11) {
         return Boolean.FALSE;
     }
 
@@ -46,7 +46,7 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
     public Object d(Number number, Object obj) {
         Integer num = (Integer) number;
         Integer num2 = (Integer) obj;
-        switch (this.f21854a) {
+        switch (this.f21858a) {
             case 17:
                 if (num.intValue() == 0) {
                     return id.G(num2.intValue(), "MaximumReactionsValue", new Object[0]);
@@ -62,7 +62,7 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
 
     @Override
     public TLObject deserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
-        switch (this.f21854a) {
+        switch (this.f21858a) {
             case 2:
                 return TLRPC.Peer.TLdeserialize(inputSerializedData, i7, z9);
             case 3:
@@ -83,19 +83,19 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
 
     @Override
     public void f(Object obj, float f10) {
-        org.telegram.ui.dr drVar = (org.telegram.ui.dr) obj;
-        switch (this.f21854a) {
+        org.telegram.ui.er erVar = (org.telegram.ui.er) obj;
+        switch (this.f21858a) {
             case 26:
-                drVar.G1 = f10;
-                if (drVar.getParent() != null) {
-                    ((View) drVar.getParent()).invalidate();
+                erVar.G1 = f10;
+                if (erVar.getParent() != null) {
+                    ((View) erVar.getParent()).invalidate();
                     return;
                 }
                 return;
             default:
-                drVar.H1 = f10;
-                if (drVar.getParent() != null) {
-                    ((View) drVar.getParent()).invalidate();
+                erVar.H1 = f10;
+                if (erVar.getParent() != null) {
+                    ((View) erVar.getParent()).invalidate();
                     return;
                 }
                 return;
@@ -104,9 +104,9 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f21854a) {
+        switch (this.f21858a) {
             case 11:
-                int i10 = iz.f23385a;
+                int i10 = iz.f23389a;
                 return;
             case 14:
                 u1Var.dismiss();
@@ -122,15 +122,15 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
 
     @Override
     public float get(Object obj) {
-        org.telegram.ui.dr drVar = (org.telegram.ui.dr) obj;
-        switch (this.f21854a) {
+        org.telegram.ui.er erVar = (org.telegram.ui.er) obj;
+        switch (this.f21858a) {
             case 25:
-                return drVar.G1;
+                return erVar.G1;
             case 26:
             default:
-                return drVar.I1;
+                return erVar.I1;
             case 27:
-                return drVar.H1;
+                return erVar.H1;
         }
     }
 
@@ -142,7 +142,7 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
     @Override
     public Object j(Object obj) {
         Void r22 = (Void) obj;
-        switch (this.f21854a) {
+        switch (this.f21858a) {
             case 0:
                 return new TLRPC.TL_messageEntitySpoiler();
             default:
@@ -152,7 +152,7 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
 
     @Override
     public RecyclerView l(View view) {
-        return ((org.telegram.ui.td) view).f50162a;
+        return ((org.telegram.ui.td) view).f50245a;
     }
 
     @Override
@@ -170,9 +170,9 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
 
     @Override
     public void onComplete(Task task) {
-        iz.f23410j = SystemClock.elapsedRealtime();
+        iz.f23414j = SystemClock.elapsedRealtime();
         if (!task.isSuccessful()) {
-            if (r2.f25212a) {
+            if (r2.f25216a) {
                 a8.b("Failed to get regid");
             }
             iz.h = "__FIREBASE_FAILED__";
@@ -191,7 +191,7 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
     }
 
     public ch(Object obj, int i7) {
-        this.f21854a = i7;
+        this.f21858a = i7;
     }
 
     @Override

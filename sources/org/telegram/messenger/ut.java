@@ -4,11 +4,11 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import org.telegram.tgnet.SerializedData;
 public abstract class ut {
-    public static final long[] f25895a;
+    public static final long[] f25899a;
 
     static {
         try {
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(t0.f25566b.getResources().getAssets().open("lottie_meta.bin"));
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(t0.f25570b.getResources().getAssets().open("lottie_meta.bin"));
             try {
                 int available = bufferedInputStream.available();
                 if (available % 8 == 0) {
@@ -19,7 +19,7 @@ public abstract class ut {
                         jArr[i10] = serializedData.readInt64(true);
                     }
                     bufferedInputStream.close();
-                    f25895a = jArr;
+                    f25899a = jArr;
                     return;
                 }
                 throw new IllegalStateException("lottie_meta.bin has invalid size: " + available);
@@ -34,7 +34,7 @@ public abstract class ut {
         } catch (IOException e10) {
             throw new RuntimeException("Unable to load lottie_meta.bin", e10);
         } catch (RuntimeException e11) {
-            if (r2.f25212a) {
+            if (r2.f25216a) {
                 a8.e("Unable to load lottie_meta.bin", e11);
             }
             throw e11;

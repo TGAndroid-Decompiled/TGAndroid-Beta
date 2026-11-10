@@ -16,12 +16,12 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
                         if (keyCode != 88) {
                             if (keyCode != 126) {
                                 if (keyCode == 127) {
-                                    MediaController.B().R(MediaController.B().f21295u0, true);
+                                    MediaController.B().R(MediaController.B().f21300u0, true);
                                     return;
                                 }
                                 return;
                             }
-                            MediaController.B().S(MediaController.B().f21295u0);
+                            MediaController.B().S(MediaController.B().f21300u0);
                             return;
                         }
                         MediaController.B().V();
@@ -30,10 +30,10 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
                     MediaController.B().U(false);
                     return;
                 } else if (MediaController.B().H()) {
-                    MediaController.B().S(MediaController.B().f21295u0);
+                    MediaController.B().S(MediaController.B().f21300u0);
                     return;
                 } else {
-                    MediaController.B().R(MediaController.B().f21295u0, true);
+                    MediaController.B().R(MediaController.B().f21300u0, true);
                     return;
                 }
             }
@@ -101,13 +101,13 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
                 return;
             case 2:
             case 5:
-                MediaController.B().R(MediaController.B().f21295u0, true);
+                MediaController.B().R(MediaController.B().f21300u0, true);
                 return;
             case 3:
                 MediaController.B().U(false);
                 return;
             case 4:
-                MediaController.B().S(MediaController.B().f21295u0);
+                MediaController.B().S(MediaController.B().f21300u0);
                 return;
             case 6:
                 MediaController.B().V();

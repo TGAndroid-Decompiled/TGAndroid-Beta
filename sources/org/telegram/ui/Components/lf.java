@@ -1,26 +1,22 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
+import android.content.Context;
+import android.view.ViewGroup;
 import org.telegram.tgnet.TLRPC;
-public final class lf extends org.telegram.ui.cn {
-    public boolean f35699td;
-    public final TLRPC.User f35700ud;
-    public final TLRPC.User f35701vd;
-    public final long f35702wd;
+public final class lf extends gy {
+    public final ChatActivityEnterView V2;
 
-    public lf(Bundle bundle, TLRPC.User user, TLRPC.User user2, long j3) {
-        super(bundle);
-        this.f35700ud = user;
-        this.f35701vd = user2;
-        this.f35702wd = j3;
+    public lf(ChatActivityEnterView chatActivityEnterView, org.telegram.ui.ActionBar.f2 f2Var, boolean z9, Context context, TLRPC.ChatFull chatFull, ViewGroup viewGroup, boolean z10, org.telegram.ui.ActionBar.h6 h6Var, boolean z11, boolean z12) {
+        super(f2Var, z9, true, true, context, true, chatFull, viewGroup, z10, h6Var, z11, z12);
+        this.V2 = chatActivityEnterView;
     }
 
     @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.f35699td) {
-            this.f35699td = true;
-            hc.a0(this).I(2131623989, org.telegram.messenger.id.a0(null, null, 2131751739, org.telegram.messenger.t10.p(this.f35700ud)), org.telegram.messenger.g0.U2(org.telegram.messenger.id.a0(null, null, 2131751740, org.telegram.messenger.t10.p(this.f35701vd)), new bi.r3(this, this.f35702wd, 21))).j();
+    public final void setTranslationY(float f10) {
+        super.setTranslationY(f10);
+        ChatActivityEnterView chatActivityEnterView = this.V2;
+        if (chatActivityEnterView.V0 != null && chatActivityEnterView.f31117o3 == 0) {
+            chatActivityEnterView.Z2.w(f10);
         }
     }
 }

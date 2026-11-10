@@ -1,25 +1,25 @@
 package cc;
 public final class i {
-    public final float f6065a;
-    public final float f6066b;
-    public final float f6067c;
+    public final float f6070a;
+    public final float f6071b;
+    public final float f6072c;
     public final float d;
-    public final float f6068e;
-    public final float f6069f;
-    public final float f6070g;
+    public final float f6073e;
+    public final float f6074f;
+    public final float f6075g;
     public final float h;
-    public final float f6071i;
+    public final float f6076i;
 
     public i(float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17, float f18) {
-        this.f6065a = f10;
-        this.f6066b = f13;
-        this.f6067c = f16;
+        this.f6070a = f10;
+        this.f6071b = f13;
+        this.f6072c = f16;
         this.d = f11;
-        this.f6068e = f14;
-        this.f6069f = f17;
-        this.f6070g = f12;
+        this.f6073e = f14;
+        this.f6074f = f17;
+        this.f6075g = f12;
         this.h = f15;
-        this.f6071i = f18;
+        this.f6076i = f18;
     }
 
     public static i a(float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17) {

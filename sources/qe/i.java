@@ -1,7 +1,7 @@
 package qe;
 public abstract class i {
-    public static final String[] f54115a;
-    public static final byte[] f54116b;
+    public static final String[] f54114a;
+    public static final byte[] f54115b;
 
     static {
         String[] strArr = new String[93];
@@ -15,7 +15,7 @@ public abstract class i {
         strArr[10] = "\\n";
         strArr[13] = "\\r";
         strArr[12] = "\\f";
-        f54115a = strArr;
+        f54114a = strArr;
         byte[] bArr = new byte[93];
         for (int i10 = 0; i10 < 32; i10++) {
             bArr[i10] = 1;
@@ -27,7 +27,7 @@ public abstract class i {
         bArr[10] = 110;
         bArr[13] = 114;
         bArr[12] = 102;
-        f54116b = bArr;
+        f54115b = bArr;
     }
 
     public static final char a(int i7) {

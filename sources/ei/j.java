@@ -3,9 +3,9 @@ package ei;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.Components.mz;
-public final class j extends mz {
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.Components.lz;
+public final class j extends lz {
     public final Paint U;
     public final n V;
 
@@ -28,7 +28,7 @@ public final class j extends mz {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        int w02 = l6.w0(l6.f27865d6, this.V.W.f10846c);
+        int w02 = m6.w0(m6.f27890d6, this.V.W.f10851c);
         Paint paint = this.U;
         paint.setColor(w02);
         canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), paint);

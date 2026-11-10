@@ -275,15 +275,15 @@ public class ConferenceCall {
         VoIPService sharedInstance;
         r3 r3Var;
         TLRPC.GroupCall groupCall;
-        if (this.groupCall != null && (sharedInstance = VoIPService.getSharedInstance()) != null && (r3Var = sharedInstance.groupCall) != null && (groupCall = r3Var.f25222b) != null && groupCall.f26966id == this.groupCall.f26966id) {
-            updateParticipants(r3Var.f25224e, false);
-            sharedInstance.groupCall.f25230l.clear();
+        if (this.groupCall != null && (sharedInstance = VoIPService.getSharedInstance()) != null && (r3Var = sharedInstance.groupCall) != null && (groupCall = r3Var.f25226b) != null && groupCall.f26970id == this.groupCall.f26970id) {
+            updateParticipants(r3Var.f25228e, false);
+            sharedInstance.groupCall.f25234l.clear();
             r3 r3Var2 = sharedInstance.groupCall;
-            r3Var2.f25230l.addAll(sharedInstance.conference.getShadyLeftParticipants(r3Var2.f25224e));
-            sharedInstance.groupCall.f25231m.clear();
+            r3Var2.f25234l.addAll(sharedInstance.conference.getShadyLeftParticipants(r3Var2.f25228e));
+            sharedInstance.groupCall.f25235m.clear();
             r3 r3Var3 = sharedInstance.groupCall;
-            r3Var3.f25231m.addAll(sharedInstance.conference.getShadyJoiningParticipants(r3Var3.f25224e));
-            qs.f(this.currentAccount).k(qs.f25099w2, 0L, Long.valueOf(this.groupCall.f26966id), Boolean.FALSE);
+            r3Var3.f25235m.addAll(sharedInstance.conference.getShadyJoiningParticipants(r3Var3.f25228e));
+            qs.f(this.currentAccount).k(qs.f25103w2, 0L, Long.valueOf(this.groupCall.f26970id), Boolean.FALSE);
         }
     }
 
@@ -315,7 +315,7 @@ public class ConferenceCall {
     }
 
     public static String lambda$poll$9(CallParticipant callParticipant) {
-        return "[" + callParticipant.user_id + "]: " + m5.l(p10.f24470s0, callParticipant.user_id);
+        return "[" + callParticipant.user_id + "]: " + m5.l(p10.f24474s0, callParticipant.user_id);
     }
 
     public void lambda$processUpdates$4(TLObject tLObject) {
@@ -481,11 +481,11 @@ public class ConferenceCall {
             if (groupCall == null) {
                 a8.b("[tde2e] received updateGroupCallChainBlocks but we dont have groupcall yet!");
                 return false;
-            } else if (tL_updateGroupCallChainBlocks.call.f26973id != groupCall.f26966id) {
+            } else if (tL_updateGroupCallChainBlocks.call.f26977id != groupCall.f26970id) {
                 StringBuilder sb2 = new StringBuilder("[tde2e] received updateGroupCallChainBlocks for ");
-                sb2.append(tL_updateGroupCallChainBlocks.call.f26973id);
+                sb2.append(tL_updateGroupCallChainBlocks.call.f26977id);
                 sb2.append(" but we have ");
-                jg.g.u(this.groupCall.f26966id, sb2);
+                jg.g.u(this.groupCall.f26970id, sb2);
                 return false;
             } else {
                 StringBuilder sb3 = new StringBuilder("[tde2e] received update with ");

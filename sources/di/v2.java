@@ -9,18 +9,18 @@ import org.telegram.messenger.ow;
 import org.telegram.messenger.qs;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.bi;
-import org.telegram.ui.Components.qg;
-public final class v2 implements bi {
-    public final j4 f9857a;
+import org.telegram.ui.Components.ai;
+import org.telegram.ui.Components.pg;
+public final class v2 implements ai {
+    public final j4 f9862a;
 
     public v2(j4 j4Var) {
-        this.f9857a = j4Var;
+        this.f9862a = j4Var;
     }
 
     @Override
     public final void F0() {
-        this.f9857a.K1.L();
+        this.f9862a.K1.L();
     }
 
     @Override
@@ -33,8 +33,8 @@ public final class v2 implements bi {
         org.telegram.messenger.c accountInstance;
         CharSequence charSequence2;
         boolean z11;
-        j4 j4Var = this.f9857a;
-        TL_stories.StoryItem storyItem = j4Var.f9245x1.f9064a;
+        j4 j4Var = this.f9862a;
+        TL_stories.StoryItem storyItem = j4Var.f9250x1.f9069a;
         if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
             accountInstance = j4Var.getAccountInstance();
             if (charSequence != null) {
@@ -42,7 +42,7 @@ public final class v2 implements bi {
             } else {
                 charSequence2 = null;
             }
-            long j11 = j4Var.f9196k1;
+            long j11 = j4Var.f9201k1;
             org.telegram.messenger.p5 p5Var = gz.I;
             new Thread(new ow(null, arrayList, j11, accountInstance, charSequence2, false, null, null, null, null, z9, i7, i10, storyItem, null, j3, z10, j10, null)).start();
             if (j10 <= 0) {
@@ -55,13 +55,13 @@ public final class v2 implements bi {
     }
 
     @Override
-    public final void c0(qg qgVar) {
-        qs.f(this.f9857a.f9200l2).d(qgVar);
+    public final void c0(pg pgVar) {
+        qs.f(this.f9862a.f9205l2).d(pgVar);
     }
 
     @Override
     public final boolean f0() {
-        return this.f9857a.L0();
+        return this.f9862a.L0();
     }
 
     @Override
@@ -74,10 +74,10 @@ public final class v2 implements bi {
         boolean z16;
         String str;
         String str2;
-        j4 j4Var = this.f9857a;
-        if (j4Var.f9224s0.m0 && (storyItem = j4Var.f9245x1.f9064a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i7 != 8 && i7 != 7 && (i7 != 4 || j4Var.f9222r2.f32987a2.getSelectedPhotos().isEmpty())) {
-                u2 u2Var = j4Var.f9222r2;
+        j4 j4Var = this.f9862a;
+        if (j4Var.f9229s0.m0 && (storyItem = j4Var.f9250x1.f9069a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
+            if (i7 != 8 && i7 != 7 && (i7 != 4 || j4Var.f9227r2.d2.getSelectedPhotos().isEmpty())) {
+                u2 u2Var = j4Var.f9227r2;
                 if (u2Var != null) {
                     u2Var.L(i7);
                     return;
@@ -86,10 +86,10 @@ public final class v2 implements bi {
             }
             boolean z17 = true;
             if (i7 != 8) {
-                j4Var.f9222r2.a(true);
+                j4Var.f9227r2.a(true);
             }
-            HashMap<Object, Object> selectedPhotos = j4Var.f9222r2.f32987a2.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = j4Var.f9222r2.f32987a2.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = j4Var.f9227r2.d2.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = j4Var.f9227r2.d2.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i12 = 0;
                 int i13 = 0;
@@ -102,38 +102,38 @@ public final class v2 implements bi {
                         if (i16 < selectedPhotosOrder.size()) {
                             gf gfVar = (gf) selectedPhotos.get(selectedPhotosOrder.get(i16));
                             ?? obj = new Object();
-                            boolean z18 = gfVar.f26845b;
+                            boolean z18 = gfVar.f26849b;
                             if (!z18 && (str2 = gfVar.h) != null) {
-                                obj.f22512c = str2;
+                                obj.f22516c = str2;
                             } else {
                                 String str3 = gfVar.I;
                                 if (str3 != null) {
-                                    obj.f22512c = str3;
+                                    obj.f22516c = str3;
                                 }
                             }
-                            obj.f22513e = gfVar.f26846c;
-                            obj.f22514f = gfVar.f26849g;
-                            obj.f22522o = z18;
-                            CharSequence charSequence = gfVar.f26844a;
+                            obj.f22517e = gfVar.f26850c;
+                            obj.f22518f = gfVar.f26853g;
+                            obj.f22526o = z18;
+                            CharSequence charSequence = gfVar.f26848a;
                             if (charSequence != null) {
                                 str = charSequence.toString();
                             } else {
                                 str = null;
                             }
                             obj.d = str;
-                            obj.f22516i = gfVar.f26855n;
-                            obj.f22517j = gfVar.f26859r;
-                            obj.h = gfVar.f26864x;
-                            obj.f22518k = gfVar.f26860s;
-                            obj.f22525r = gfVar.L;
-                            obj.f22527t = gz.h(gfVar.f26844a);
-                            obj.f22528u = gfVar.M;
+                            obj.f22520i = gfVar.f26859n;
+                            obj.f22521j = gfVar.f26863r;
+                            obj.h = gfVar.f26868x;
+                            obj.f22522k = gfVar.f26864s;
+                            obj.f22529r = gfVar.L;
+                            obj.f22531t = gz.h(gfVar.f26848a);
+                            obj.f22532u = gfVar.M;
                             arrayList.add(obj);
                             gfVar.e();
                         }
                     }
                     if (i13 == 0) {
-                        z14 = ((fz) arrayList.get(i12)).f22527t;
+                        z14 = ((fz) arrayList.get(i12)).f22531t;
                     } else {
                         z14 = i12;
                     }
@@ -141,7 +141,7 @@ public final class v2 implements bi {
                     accountInstance = j4Var.getAccountInstance();
                     ArrayList<Object> arrayList2 = selectedPhotosOrder;
                     int i17 = i12;
-                    long j11 = j4Var.f9196k1;
+                    long j11 = j4Var.f9201k1;
                     if (i7 != 4 && !z12) {
                         z15 = true;
                         z16 = i17;

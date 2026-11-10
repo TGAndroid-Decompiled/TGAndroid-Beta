@@ -9,6 +9,7 @@ import c8.e1;
 import e2.m1;
 import e2.n1;
 import e2.o1;
+import e2.q1;
 import h2.m0;
 import h9.i0;
 import h9.r1;
@@ -21,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.RandomAccess;
 import l2.r0;
-import x2.q1;
+import x2.p1;
 public final class s extends x {
     public static final r1 f126l = new h9.t(new c(1));
     public final Object d;
@@ -52,7 +53,7 @@ public final class s extends x {
             mVar.d(nVar);
             this.f129g = new n(mVar);
         }
-        this.f131j = e2.e.f10215i;
+        this.f131j = e2.e.f10220i;
         if (this.f129g.A0 && context == null) {
             h2.a.l("DefaultTrackSelector", "Audio channel count constraints cannot be applied without reference to Context. Build the track selector instance with one of the non-deprecated constructors that take a Context argument.");
         }
@@ -60,8 +61,8 @@ public final class s extends x {
 
     public static int c(e2.u uVar, i0 i0Var) {
         for (int i7 = 0; i7 < i0Var.size(); i7++) {
-            for (int i10 = 0; i10 < uVar.f10601c.size(); i10++) {
-                if (((e2.x) uVar.f10601c.get(i10)).f10643b.equals(i0Var.get(i7))) {
+            for (int i10 = 0; i10 < uVar.f10606c.size(); i10++) {
+                if (((e2.x) uVar.f10606c.get(i10)).f10648b.equals(i0Var.get(i7))) {
                     return i7;
                 }
             }
@@ -72,11 +73,11 @@ public final class s extends x {
     public static void d(w wVar, n nVar, t[] tVarArr) {
         int i7 = wVar.f135a;
         for (int i10 = 0; i10 < i7; i10++) {
-            q1 q1Var = wVar.f137c[i10];
+            p1 p1Var = wVar.f137c[i10];
             Map map = (Map) nVar.D0.get(i10);
-            if (map != null && map.containsKey(q1Var)) {
+            if (map != null && map.containsKey(p1Var)) {
                 Map map2 = (Map) nVar.D0.get(i10);
-                if (map2 != null && map2.get(q1Var) != null) {
+                if (map2 != null && map2.get(p1Var) != null) {
                     throw new ClassCastException();
                 }
                 tVarArr[i10] = null;
@@ -96,18 +97,18 @@ public final class s extends x {
     public static void f(w wVar, n nVar, t[] tVarArr) {
         t tVar;
         int i7 = wVar.f135a;
-        q1[] q1VarArr = wVar.f137c;
+        p1[] p1VarArr = wVar.f137c;
         HashMap hashMap = new HashMap();
         for (int i10 = 0; i10 < i7; i10++) {
-            g(q1VarArr[i10], nVar, hashMap);
+            g(p1VarArr[i10], nVar, hashMap);
         }
         g(wVar.f139f, nVar, hashMap);
         for (int i11 = 0; i11 < i7; i11++) {
             n1 n1Var = (n1) hashMap.get(Integer.valueOf(wVar.f136b[i11]));
             if (n1Var != null) {
-                m1 m1Var = n1Var.f10401a;
-                i0 i0Var = n1Var.f10402b;
-                if (!i0Var.isEmpty() && q1VarArr[i11].b(m1Var) != -1) {
+                m1 m1Var = n1Var.f10406a;
+                i0 i0Var = n1Var.f10407b;
+                if (!i0Var.isEmpty() && p1VarArr[i11].b(m1Var) != -1) {
                     tVar = new t(m1Var, e1.f(i0Var));
                 } else {
                     tVar = null;
@@ -117,14 +118,14 @@ public final class s extends x {
         }
     }
 
-    public static void g(q1 q1Var, e2.q1 q1Var2, HashMap hashMap) {
-        for (int i7 = 0; i7 < q1Var.f58458a; i7++) {
-            n1 n1Var = (n1) q1Var2.H.get(q1Var.a(i7));
+    public static void g(p1 p1Var, q1 q1Var, HashMap hashMap) {
+        for (int i7 = 0; i7 < p1Var.f58455a; i7++) {
+            n1 n1Var = (n1) q1Var.H.get(p1Var.a(i7));
             if (n1Var != null) {
-                m1 m1Var = n1Var.f10401a;
-                n1 n1Var2 = (n1) hashMap.get(Integer.valueOf(m1Var.f10375c));
-                if (n1Var2 == null || (n1Var2.f10402b.isEmpty() && !n1Var.f10402b.isEmpty())) {
-                    hashMap.put(Integer.valueOf(m1Var.f10375c), n1Var);
+                m1 m1Var = n1Var.f10406a;
+                n1 n1Var2 = (n1) hashMap.get(Integer.valueOf(m1Var.f10380c));
+                if (n1Var2 == null || (n1Var2.f10407b.isEmpty() && !n1Var.f10407b.isEmpty())) {
+                    hashMap.put(Integer.valueOf(m1Var.f10380c), n1Var);
                 }
             }
         }
@@ -133,7 +134,7 @@ public final class s extends x {
     public static Pair h(t[] tVarArr, int i7) {
         for (int i10 = 0; i10 < tVarArr.length; i10++) {
             t tVar = tVarArr[i10];
-            if (tVar != null && tVar.f133a.f10375c == i7) {
+            if (tVar != null && tVar.f133a.f10380c == i7) {
                 return Pair.create(tVar, Integer.valueOf(i10));
             }
         }
@@ -148,7 +149,7 @@ public final class s extends x {
         String l11 = l(uVar.d);
         if (l11 != null && l10 != null) {
             if (!l11.startsWith(l10) && !l10.startsWith(l11)) {
-                String str2 = m0.f14112a;
+                String str2 = m0.f14114a;
                 if (!l11.split("-", 2)[0].equals(l10.split("-", 2)[0])) {
                     return 0;
                 }
@@ -175,11 +176,11 @@ public final class s extends x {
         if ((i7 & 3584) == 0) {
             return false;
         }
-        o1 o1Var = nVar.f10526w;
-        if (o1Var.f10455c && (i7 & 2048) == 0) {
+        o1 o1Var = nVar.f10531w;
+        if (o1Var.f10460c && (i7 & 2048) == 0) {
             return false;
         }
-        if (o1Var.f10454b) {
+        if (o1Var.f10459b) {
             if (uVar.N == 0 && uVar.O == 0) {
                 z9 = false;
             } else {
@@ -197,19 +198,19 @@ public final class s extends x {
         return true;
     }
 
-    public static t o(q1 q1Var, int[][] iArr, n nVar) {
-        if (nVar.f10526w.f10453a != 2) {
+    public static t o(p1 p1Var, int[][] iArr, n nVar) {
+        if (nVar.f10531w.f10458a != 2) {
             int i7 = 0;
             m1 m1Var = null;
             k kVar = null;
-            for (int i10 = 0; i10 < q1Var.f58458a; i10++) {
-                m1 a10 = q1Var.a(i10);
+            for (int i10 = 0; i10 < p1Var.f58455a; i10++) {
+                m1 a10 = p1Var.a(i10);
                 int[] iArr2 = iArr[i10];
-                for (int i11 = 0; i11 < a10.f10373a; i11++) {
+                for (int i11 = 0; i11 < a10.f10378a; i11++) {
                     if (jg.g.c(iArr2[i11], nVar.B0)) {
                         k kVar2 = new k(a10.d[i11], iArr2[i11]);
                         if (kVar != null) {
-                            if (h9.w.f14407a.c(kVar2.f101b, kVar.f101b).c(kVar2.f100a, kVar.f100a).e() <= 0) {
+                            if (h9.w.f14409a.c(kVar2.f101b, kVar.f101b).c(kVar2.f100a, kVar.f100a).e() <= 0) {
                             }
                         }
                         m1Var = a10;
@@ -234,11 +235,11 @@ public final class s extends x {
         int i12 = 0;
         while (i12 < i11) {
             if (i7 == wVar2.f136b[i12]) {
-                q1 q1Var = wVar2.f137c[i12];
-                for (int i13 = 0; i13 < q1Var.f58458a; i13++) {
-                    m1 a10 = q1Var.a(i13);
+                p1 p1Var = wVar2.f137c[i12];
+                for (int i13 = 0; i13 < p1Var.f58455a; i13++) {
+                    m1 a10 = p1Var.a(i13);
                     t1 h = pVar.h(i12, a10, iArr[i12][i13]);
-                    int i14 = a10.f10373a;
+                    int i14 = a10.f10378a;
                     boolean[] zArr = new boolean[i14];
                     int i15 = 0;
                     while (i15 < i14) {
@@ -317,7 +318,7 @@ public final class s extends x {
     }
 
     @Override
-    public final void b(e2.q1 q1Var) {
+    public final void b(q1 q1Var) {
         if (q1Var instanceof n) {
             q((n) q1Var);
         }
@@ -340,7 +341,7 @@ public final class s extends x {
         c3.d dVar;
         synchronized (this.d) {
             try {
-                if (this.f129g.A0 && Build.VERSION.SDK_INT >= 32 && (dVar = this.f130i) != null && dVar.f5265b) {
+                if (this.f129g.A0 && Build.VERSION.SDK_INT >= 32 && (dVar = this.f130i) != null && dVar.f5270b) {
                     z9 = true;
                 } else {
                     z9 = false;
@@ -350,7 +351,7 @@ public final class s extends x {
             }
         }
         if (z9 && (r0Var = this.f140a) != null) {
-            r0Var.f18019n.f(10);
+            r0Var.f18022n.f(10);
         }
     }
 
@@ -373,7 +374,7 @@ public final class s extends x {
             }
             r0 r0Var = this.f140a;
             if (r0Var != null) {
-                r0Var.f18019n.f(10);
+                r0Var.f18022n.f(10);
             }
         }
     }

@@ -71,23 +71,23 @@ import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l2;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.ActionBar.r1;
 import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.Cells.m8;
-import org.telegram.ui.Components.cc;
+import org.telegram.ui.Components.bc;
+import org.telegram.ui.Components.cj0;
 import org.telegram.ui.Components.dj0;
-import org.telegram.ui.Components.ej0;
-import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.l60;
-import org.telegram.ui.Components.xs;
+import org.telegram.ui.Components.gc;
+import org.telegram.ui.Components.k60;
+import org.telegram.ui.Components.ws;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.f10;
-import org.telegram.ui.oa0;
-import org.telegram.ui.oa1;
-import org.telegram.ui.t01;
-public final class g implements OnCompleteListener, Continuation, CameraView.CameraViewDelegate, oa1, r1, OnFailureListener, u9.d, t01, jh.i, y7, dj0, ej0, y10, oa0, li.m0, xs, g4, h2.p, h2.o {
+import org.telegram.ui.h10;
+import org.telegram.ui.pa0;
+import org.telegram.ui.pa1;
+import org.telegram.ui.u01;
+public final class g implements OnCompleteListener, Continuation, CameraView.CameraViewDelegate, pa1, r1, OnFailureListener, u9.d, u01, jh.i, y7, cj0, dj0, y10, pa0, li.m0, ws, g4, h2.p, h2.o {
     public final int f927a;
     public final Object f928b;
     public final Object f929c;
@@ -99,11 +99,11 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
     }
 
     @Override
-    public l60 a(g1 g1Var) {
-        li.p pVar = (li.p) ((wf.b) this.f928b).f57668c;
-        l60 l60Var = new l60(pVar, (g6) this.f929c, g1Var, false, false, true);
-        pVar.H = l60Var;
-        return l60Var;
+    public k60 a(g1 g1Var) {
+        li.p pVar = (li.p) ((wf.b) this.f928b).f57667c;
+        k60 k60Var = new k60(pVar, (h6) this.f929c, g1Var, false, false, true);
+        pVar.H = k60Var;
+        return k60Var;
     }
 
     @Override
@@ -132,7 +132,7 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
             case 7:
                 String str = (String) this.f928b;
                 Context context = (Context) r7Var.a(Context.class);
-                switch (((ni.a) this.f929c).f20610a) {
+                switch (((ni.a) this.f929c).f20615a) {
                     case 4:
                         ApplicationInfo applicationInfo = context.getApplicationInfo();
                         if (applicationInfo != null) {
@@ -178,7 +178,7 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
                 u9.a aVar = (u9.a) this.f929c;
                 try {
                     Trace.beginSection(str2);
-                    return aVar.f56468f.e(r7Var);
+                    return aVar.f56467f.e(r7Var);
                 } finally {
                     Trace.endSection();
                 }
@@ -199,60 +199,60 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
         n8 n8Var = (n8) this.f928b;
         Context context = (Context) this.f929c;
         ArrayList arrayList2 = n8Var.L;
-        a0.h hVar = n8Var.f12486b;
-        g8 g8Var = n8Var.f12495y;
-        ArrayList arrayList3 = n8Var.f12487c;
+        a0.h hVar = n8Var.f12490b;
+        g8 g8Var = n8Var.f12499y;
+        ArrayList arrayList3 = n8Var.f12491c;
         HashMap hashMap = n8Var.d;
         s8 s8Var = n8Var.W;
-        l2 l2Var = s8Var.f28627c;
+        m2 m2Var = s8Var.f28675c;
         if (i7 >= 0 && i7 < arrayList2.size()) {
             b8 b8Var = (b8) arrayList2.get(i7);
-            int i14 = b8Var.f54544a;
+            int i14 = b8Var.f54543a;
             int i15 = 0;
             if (i14 == 3) {
-                if (b8Var.f11700n && s8Var.f12814w1) {
-                    new w7(context, s8Var.f28621a, s8Var.B1, s8Var.f12803j1, new e8(n8Var, 0), s8Var.I0).show();
+                if (b8Var.f11705n && s8Var.f12818z1) {
+                    new w7(context, s8Var.f28669a, s8Var.E1, s8Var.f12806m1, new e8(n8Var, 0), s8Var.I0).show();
                     return;
                 }
-                int i16 = b8Var.f11695i;
+                int i16 = b8Var.f11700i;
                 if (i16 == 1) {
-                    if (s8Var.E1 == 1 || s8.J0(s8Var).isEmpty()) {
-                        s8Var.D1 = 1;
-                        s8Var.f12802i1.E(1);
+                    if (s8Var.H1 == 1 || s8.J0(s8Var).isEmpty()) {
+                        s8Var.G1 = 1;
+                        s8Var.l1.E(1);
                     }
-                    s8Var.E1 = 1;
+                    s8Var.H1 = 1;
                     n8Var.g(true);
                 } else if (i16 == 3) {
-                    if (s8Var.E1 == 3 || (s8Var.f12806o1.isEmpty() && s8Var.f12807p1.isEmpty())) {
-                        s8Var.D1 = 3;
-                        s8Var.f12802i1.E(1);
+                    if (s8Var.H1 == 3 || (s8Var.f12810r1.isEmpty() && s8Var.f12811s1.isEmpty())) {
+                        s8Var.G1 = 3;
+                        s8Var.l1.E(1);
                     }
-                    s8Var.E1 = 3;
+                    s8Var.H1 = 3;
                     n8Var.g(true);
                 } else if (i16 == 2) {
-                    if (s8Var.E1 == 2) {
-                        s8Var.D1 = 2;
-                        s8Var.f12802i1.E(1);
+                    if (s8Var.H1 == 2) {
+                        s8Var.G1 = 2;
+                        s8Var.l1.E(1);
                     }
-                    s8Var.E1 = 2;
+                    s8Var.H1 = 2;
                     n8Var.g(true);
                 } else if (i16 == 4) {
-                    if (s8Var.E1 == 4) {
-                        s8Var.D1 = 4;
-                        s8Var.f12802i1.E(1);
+                    if (s8Var.H1 == 4) {
+                        s8Var.G1 = 4;
+                        s8Var.l1.E(1);
                     }
-                    s8Var.E1 = 4;
+                    s8Var.H1 = 4;
                     n8Var.g(true);
                 } else {
                     if (i16 > 0) {
                         arrayList3.clear();
                         hashMap.clear();
-                        s8Var.E1 = b8Var.f11695i;
+                        s8Var.H1 = b8Var.f11700i;
                         g8Var.d.a();
                     } else {
                         TLRPC.Chat chat = b8Var.h;
                         if (chat != null) {
-                            long j3 = chat.f26956id;
+                            long j3 = chat.f26960id;
                             if (s8.K0(s8Var, chat) > 200) {
                                 try {
                                     n8Var.performHapticFeedback(3, 1);
@@ -260,7 +260,7 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
                                 }
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, n8Var.getContext(), s8Var.I0);
                                 String M0 = id.M0(2131749394, null);
-                                u1 u1Var = alertDialog$Builder.f27296a;
+                                u1 u1Var = alertDialog$Builder.f27300a;
                                 u1Var.R = M0;
                                 u1Var.T = id.M0(2131749393, null);
                                 jg.g.C(null, 2131747831, alertDialog$Builder, null);
@@ -277,8 +277,8 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
                                 hashMap.remove(Long.valueOf(j3));
                                 n8Var.j(true);
                             } else {
-                                TLRPC.Chat M02 = qp.s1(s8Var.f28621a).M0(Long.valueOf(j3));
-                                TLRPC.ChatFull N0 = qp.s1(s8Var.f28621a).N0(j3);
+                                TLRPC.Chat M02 = qp.s1(s8Var.f28669a).M0(Long.valueOf(j3));
+                                TLRPC.ChatFull N0 = qp.s1(s8Var.f28669a).N0(j3);
                                 if (N0 != null && (chatParticipants = N0.participants) != null && (arrayList = chatParticipants.participants) != null && !arrayList.isEmpty() && N0.participants.participants.size() >= N0.participants_count - 1) {
                                     n8Var.e(j3, N0.participants);
                                     z9 = true;
@@ -296,9 +296,9 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
                                     u1 u1Var3 = new u1(3, n8Var.getContext(), s8Var.I0);
                                     n8Var.G = u1Var3;
                                     u1Var3.r(50L);
-                                    yr a02 = yr.a0(s8Var.f28621a);
+                                    yr a02 = yr.a0(s8Var.f28669a);
                                     z9 = true;
-                                    a02.f26719a.c(new w2(n8Var, M02, a02, j3, 12));
+                                    a02.f26723a.c(new w2(n8Var, M02, a02, j3, 12));
                                 }
                                 if (!TextUtils.isEmpty(n8Var.I)) {
                                     g8Var.setText("");
@@ -308,12 +308,12 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
                             }
                         } else {
                             z9 = true;
-                            TLRPC.User user = b8Var.f11694g;
+                            TLRPC.User user = b8Var.f11699g;
                             if (user != null) {
-                                if (n8Var.f12485a == 0) {
-                                    s8Var.E1 = 0;
+                                if (n8Var.f12489a == 0) {
+                                    s8Var.H1 = 0;
                                 }
-                                long j10 = user.f27105id;
+                                long j10 = user.f27109id;
                                 HashSet hashSet = new HashSet(arrayList3);
                                 if (arrayList3.contains(Long.valueOf(j10))) {
                                     Iterator it = hashMap.entrySet().iterator();
@@ -361,100 +361,100 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
                 if (view instanceof m8) {
                     m8 m8Var = (m8) view;
                     m8Var.setChecked(!m8Var.d());
-                    b8Var.f11697k = m8Var.d();
-                    int i17 = b8Var.f11691c;
+                    b8Var.f11702k = m8Var.d();
+                    int i17 = b8Var.f11696c;
                     if (i17 == 0) {
                         boolean d = m8Var.d();
-                        s8Var.f12811t1 = d;
-                        if (s8Var.E1 == 4) {
+                        s8Var.f12815w1 = d;
+                        if (s8Var.H1 == 4) {
                             i15 = 1;
                         }
                         if (d) {
-                            hc hcVar = new hc(l2Var, s8Var.I0);
+                            gc gcVar = new gc(m2Var, s8Var.I0);
                             if (i15 != 0) {
                                 i13 = 2131744669;
                             } else {
                                 i13 = 2131744670;
                             }
-                            cc G = hcVar.G(2131624055, 4, id.M0(i13, null));
-                            G.f32627j = 5000;
+                            bc G = gcVar.G(2131624055, 4, id.M0(i13, null));
+                            G.f32203j = 5000;
                             G.k(true);
                             return;
                         }
-                        hc hcVar2 = new hc(l2Var, s8Var.I0);
+                        gc gcVar2 = new gc(m2Var, s8Var.I0);
                         if (i15 != 0) {
                             i12 = 2131744683;
                         } else {
                             i12 = 2131744684;
                         }
-                        cc G2 = hcVar2.G(2131624112, 4, id.M0(i12, null));
-                        G2.f32627j = 5000;
+                        bc G2 = gcVar2.G(2131624112, 4, id.M0(i12, null));
+                        G2.f32203j = 5000;
                         G2.k(true);
                     } else if (i17 == 1) {
                         boolean d2 = m8Var.d();
-                        s8Var.f12812u1 = d2;
-                        boolean z10 = s8Var.f12803j1 instanceof TLRPC.TL_inputPeerChannel;
+                        s8Var.f12816x1 = d2;
+                        boolean z10 = s8Var.f12806m1 instanceof TLRPC.TL_inputPeerChannel;
                         if (d2) {
-                            hc hcVar3 = new hc(l2Var, s8Var.I0);
+                            gc gcVar3 = new gc(m2Var, s8Var.I0);
                             if (z10) {
                                 i11 = 2131744707;
                             } else {
                                 i11 = 2131744671;
                             }
-                            cc G3 = hcVar3.G(2131624102, 4, id.M0(i11, null));
-                            G3.f32627j = 5000;
+                            bc G3 = gcVar3.G(2131624102, 4, id.M0(i11, null));
+                            G3.f32203j = 5000;
                             G3.k(true);
                         } else {
-                            hc hcVar4 = new hc(l2Var, s8Var.I0);
+                            gc gcVar4 = new gc(m2Var, s8Var.I0);
                             if (z10) {
                                 i10 = 2131744708;
                             } else {
                                 i10 = 2131744685;
                             }
-                            cc G4 = hcVar4.G(2131624020, 4, id.M0(i10, null));
-                            G4.f32627j = 5000;
+                            bc G4 = gcVar4.G(2131624020, 4, id.M0(i10, null));
+                            G4.f32203j = 5000;
                             G4.k(true);
                         }
                         n8Var.h(true);
                     } else if (i17 == 2) {
-                        s8Var.f12810s1 = m8Var.d();
+                        s8Var.f12814v1 = m8Var.d();
                         n8Var.h(true);
                     }
                 }
             } else if (i14 == 9) {
-                int i18 = b8Var.f11703q;
+                int i18 = b8Var.f11708q;
                 if (i18 == 0) {
-                    u8 u8Var = s8Var.T1;
+                    u8 u8Var = s8Var.W1;
                     if (u8Var != null) {
                         u8Var.run();
                     }
                 } else if (i18 == 1) {
-                    TLRPC.InputPeer inputPeer = s8Var.f12803j1;
+                    TLRPC.InputPeer inputPeer = s8Var.f12806m1;
                     if (inputPeer != null) {
                         e10 = m5.n(inputPeer);
                     } else {
-                        e10 = p10.i(s8Var.f28621a).e();
+                        e10 = p10.i(s8Var.f28669a).e();
                     }
-                    l60 F = l60.F(n8Var, s8Var.I0, view);
+                    k60 F = k60.F(n8Var, s8Var.I0, view);
                     F.c(2131232046, id.M0(2131744785, null), new r3(n8Var, e10, 7), false);
                     F.k();
-                    l60.f(F, qp.s1(s8Var.f28621a).P1().B(e10, true), s8Var.f12809r1, false, null, new f1(12, n8Var, F));
+                    k60.f(F, qp.s1(s8Var.f28669a).P1().B(e10, true), s8Var.f12813u1, false, null, new f1(12, n8Var, F));
                     F.Z();
                 } else if (i18 == 5) {
                     Context context2 = n8Var.getContext();
-                    int i19 = s8.U1;
+                    int i19 = s8.X1;
                     u1 u1Var4 = new u1(3, context2, s8Var.I0);
                     u1Var4.r(500L);
                     TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl = new TL_phone.getGroupCallStreamRtmpUrl();
                     getgroupcallstreamrtmpurl.live_story = true;
-                    TLRPC.InputPeer inputPeer2 = s8Var.f12803j1;
+                    TLRPC.InputPeer inputPeer2 = s8Var.f12806m1;
                     if (inputPeer2 == null) {
                         inputPeer2 = new TLRPC.TL_inputPeerSelf();
                     }
                     getgroupcallstreamrtmpurl.peer = inputPeer2;
-                    ConnectionsManager.getInstance(s8Var.f28621a).sendRequest(getgroupcallstreamrtmpurl, new f2(n8Var, u1Var4, getgroupcallstreamrtmpurl));
+                    ConnectionsManager.getInstance(s8Var.f28669a).sendRequest(getgroupcallstreamrtmpurl, new f2(n8Var, u1Var4, getgroupcallstreamrtmpurl));
                 } else if (i18 == 6) {
-                    s8Var.f12815x1 = false;
+                    s8Var.A1 = false;
                     n8Var.h(true);
                 }
             }
@@ -473,25 +473,25 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
                 k7 k7Var = (k7) this.f928b;
                 vf.b h = u1Var.h(i7, true, true);
                 h.d();
-                int i10 = k7Var.f28621a;
+                int i10 = k7Var.f28669a;
                 e4 e4Var = new e4(k7Var, h, (wg.f1) this.f929c, 1);
                 org.telegram.ui.Wallet.l0 x10 = org.telegram.ui.Wallet.l0.x(i10);
-                x10.m0(new f10(i10, e4Var, x10));
+                x10.m0(new h10(i10, e4Var, x10));
                 return;
             case 13:
                 a4 a4Var = (a4) this.f928b;
                 di.g1 g1Var = ((q9) this.f929c).A0;
                 if (g1Var != null) {
-                    if (!g1Var.f9006x) {
+                    if (!g1Var.f9011x) {
                         TL_phone.discardGroupCall discardgroupcall = new TL_phone.discardGroupCall();
-                        discardgroupcall.call = g1Var.f9001f;
-                        ConnectionsManager.getInstance(g1Var.f9000e).sendRequest(discardgroupcall, new y0(g1Var, 4));
+                        discardgroupcall.call = g1Var.f9006f;
+                        ConnectionsManager.getInstance(g1Var.f9005e).sendRequest(discardgroupcall, new y0(g1Var, 4));
                         g1Var.e();
                         return;
                     }
                     return;
                 }
-                j4.d0(a4Var.f8808x);
+                j4.d0(a4Var.f8813x);
                 return;
             case 15:
                 q3.B0((q3) this.f928b, (TL_payments.connectedBotStarRef) this.f929c);
@@ -510,7 +510,7 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
 
     @Override
     public void h(Object obj, e2.s sVar) {
-        ((m2.b) obj).E((c1) this.f929c, new wf.b(sVar, ((m2.e) this.f928b).f19531e));
+        ((m2.b) obj).E((c1) this.f929c, new wf.b(sVar, ((m2.e) this.f928b).f19536e));
     }
 
     @Override
@@ -521,27 +521,27 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
                 j4 j4Var = (j4) this.f928b;
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) this.f929c;
                 TL_stories.TL_stories_editStory tL_stories_editStory = new TL_stories.TL_stories_editStory();
-                tL_stories_editStory.peer = qp.s1(j4Var.f9200l2).j1(storyItem.dialogId);
-                tL_stories_editStory.f27199id = storyItem.f27195id;
+                tL_stories_editStory.peer = qp.s1(j4Var.f9205l2).j1(storyItem.dialogId);
+                tL_stories_editStory.f27203id = storyItem.f27199id;
                 tL_stories_editStory.flags |= 4;
-                tL_stories_editStory.privacy_rules = q8Var.f12679b;
-                ConnectionsManager.getInstance(j4Var.f9200l2).sendRequest(tL_stories_editStory, new g2(j4Var, hVar, storyItem, q8Var, 5));
+                tL_stories_editStory.privacy_rules = q8Var.f12683b;
+                ConnectionsManager.getInstance(j4Var.f9205l2).sendRequest(tL_stories_editStory, new g2(j4Var, hVar, storyItem, q8Var, 5));
                 return;
             default:
                 a4 a4Var = (a4) this.f928b;
                 s8 s8Var = (s8) this.f929c;
-                j4 j4Var2 = a4Var.f8808x;
-                h4 h4Var = j4Var2.f9245x1;
-                TL_stories.StoryItem storyItem2 = h4Var.f9064a;
+                j4 j4Var2 = a4Var.f8813x;
+                h4 h4Var = j4Var2.f9250x1;
+                TL_stories.StoryItem storyItem2 = h4Var.f9069a;
                 if (storyItem2 != null && storyItem2.pinned) {
                     z13 = true;
                 } else {
                     z13 = false;
                 }
                 if (z13 != z11) {
-                    qp.s1(j4Var2.f9200l2).P1().r0(j4Var2.f9196k1, j4Var2.f9173e1, z11, null);
+                    qp.s1(j4Var2.f9205l2).P1().r0(j4Var2.f9201k1, j4Var2.f9178e1, z11, null);
                 }
-                TL_stories.StoryItem storyItem3 = h4Var.f9064a;
+                TL_stories.StoryItem storyItem3 = h4Var.f9069a;
                 if (storyItem3 != null) {
                     TLRPC.MessageMedia messageMedia = storyItem3.media;
                     if (messageMedia instanceof TLRPC.TL_messageMediaVideoStream) {
@@ -550,7 +550,7 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
                         togglegroupcallsettings.call = inputGroupCall;
                         togglegroupcallsettings.messages_enabled = Boolean.valueOf(z9);
                         togglegroupcallsettings.send_paid_messages_stars = Long.valueOf(i7);
-                        ConnectionsManager.getInstance(j4Var2.f9200l2).sendRequest(togglegroupcallsettings, new bi.j(8, a4Var, s8Var));
+                        ConnectionsManager.getInstance(j4Var2.f9205l2).sendRequest(togglegroupcallsettings, new bi.j(8, a4Var, s8Var));
                         return;
                     }
                     return;
@@ -563,7 +563,7 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
     public void invoke(Object obj) {
         switch (this.f927a) {
             case 27:
-                ((m2.b) obj).r((m2.a) this.f928b, (x2.c0) this.f929c);
+                ((m2.b) obj).r((m2.a) this.f928b, (x2.b0) this.f929c);
                 return;
             default:
                 ((m2.b) obj).onRenderedFirstFrame((m2.a) this.f928b);
@@ -579,10 +579,10 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
     @Override
     public void k(Object obj, TLRPC.Document document, Boolean bool) {
         kg.m mVar = (kg.m) this.f928b;
-        mVar.f17434x = false;
-        org.telegram.messenger.g0.r(mVar.f17428e);
-        kg.i iVar = mVar.f17430n;
-        mVar.f17435y = document;
+        mVar.f17437x = false;
+        org.telegram.messenger.g0.r(mVar.f17431e);
+        kg.i iVar = mVar.f17433n;
+        mVar.f17438y = document;
         iVar.setSticker(document);
         ((m8) ((View) this.f929c)).setValueSticker(document);
         mVar.j0(true);
@@ -598,13 +598,13 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
             default:
                 li.m5 m5Var = (li.m5) this.f928b;
                 p5 p5Var = (p5) this.f929c;
-                TL_iv.pageTableCell pagetablecell = p5Var.f18779b;
+                TL_iv.pageTableCell pagetablecell = p5Var.f18782b;
                 if (pagetablecell != null) {
-                    e6.d(pagetablecell, p5Var.f18778a.getText());
+                    e6.d(pagetablecell, p5Var.f18781a.getText());
                 }
                 a3 a3Var = m5Var.E;
-                if (a3Var != null && m5Var.f18989a != null) {
-                    t3.S1(a3Var.f18419a);
+                if (a3Var != null && m5Var.f18994a != null) {
+                    t3.S1(a3Var.f18422a);
                     return;
                 }
                 return;
@@ -687,7 +687,7 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
                 }
                 CredentialProviderPlayServicesImpl.Companion.getClass();
                 if (!a1.g.a(cancellationSignal2)) {
-                    Executor executor = eVar2.f7940g;
+                    Executor executor = eVar2.f7945g;
                     if (executor != null) {
                         executor.execute(new d1.a(eVar2, cVar, 1));
                         return;

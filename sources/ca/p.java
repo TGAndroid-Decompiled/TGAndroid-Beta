@@ -2,14 +2,14 @@ package ca;
 
 import org.json.JSONObject;
 public abstract class p {
-    public static final org.telegram.ui.Components.n f6031a;
+    public static final org.telegram.ui.Components.m f6036a;
 
     static {
         pa.d dVar = new pa.d();
-        a aVar = a.f5992a;
+        a aVar = a.f5997a;
         dVar.b(p.class, aVar);
         dVar.b(b.class, aVar);
-        f6031a = new org.telegram.ui.Components.n(dVar);
+        f6036a = new org.telegram.ui.Components.m(dVar);
     }
 
     public static b a(String str) {

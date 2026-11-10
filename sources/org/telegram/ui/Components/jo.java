@@ -1,31 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class jo implements ValueAnimator.AnimatorUpdateListener {
-    public boolean f35101a = false;
-    public final yz0 f35102b;
-    public final float f35103c;
-    public final boolean d;
-    public final vo f35104e;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.w71;
+public final class jo implements w71 {
+    public final int f35028a;
+    public final ci f35029b;
+    public final org.telegram.ui.wb f35030c;
 
-    public jo(vo voVar, yz0 yz0Var, float f10, boolean z9) {
-        this.f35104e = voVar;
-        this.f35102b = yz0Var;
-        this.f35103c = f10;
-        this.d = z9;
+    public jo(ci ciVar, org.telegram.ui.wb wbVar, int i7) {
+        this.f35028a = i7;
+        this.f35029b = ciVar;
+        this.f35030c = wbVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        vo voVar = this.f35104e;
-        voVar.I1 = floatValue;
-        if (!this.d) {
-            floatValue = 1.0f - floatValue;
-        }
-        this.f35102b.setRadius(this.f35103c * floatValue);
-        if (!this.f35101a && voVar.I1 > 0.5f) {
-            this.f35101a = true;
+    public final void a(TLRPC.TL_wallPaper tL_wallPaper) {
+        switch (this.f35028a) {
+            case 0:
+                this.f35029b.K();
+                this.f35030c.a(tL_wallPaper);
+                return;
+            default:
+                this.f35029b.K();
+                this.f35030c.a(tL_wallPaper);
+                return;
         }
     }
 }

@@ -3,12 +3,15 @@ package org.telegram.messenger.voip;
 import android.util.LongSparseArray;
 import bi.h4;
 import bi.r3;
+import bi.x2;
+import j$.util.concurrent.ConcurrentHashMap;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import li.j3;
 import org.json.JSONObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.c1;
@@ -23,6 +26,7 @@ public class GroupCallMessagesController extends c1 {
     private static volatile GroupCallMessagesController[] Instance = new GroupCallMessagesController[4];
     private final LongSparseArray<MessagesList> callMessagesList;
     private final LongSparseArray<List<CallMessageListener>> callMessagesListeners;
+    private final Set<String> sentMessageIds;
 
     public interface CallMessageListener {
         void onNewGroupCallMessage(long j3, GroupCallMessage groupCallMessage);
@@ -67,9 +71,10 @@ public class GroupCallMessagesController extends c1 {
         super(i7);
         this.callMessagesListeners = new LongSparseArray<>();
         this.callMessagesList = new LongSparseArray<>();
+        this.sentMessageIds = ConcurrentHashMap.newKeySet();
     }
 
-    public static void d(GroupCallMessagesController groupCallMessagesController, long j3, long j10, byte[] bArr) {
+    public static void c(GroupCallMessagesController groupCallMessagesController, long j3, long j10, byte[] bArr) {
         groupCallMessagesController.lambda$processUpdate$3(j3, j10, bArr);
     }
 
@@ -99,7 +104,7 @@ public class GroupCallMessagesController extends c1 {
         ConferenceCall conferenceCall;
         TLRPC.GroupCall groupCall;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance == null || sharedInstance.getAccount() != this.currentAccount || (conferenceCall = sharedInstance.conference) == null || (groupCall = conferenceCall.groupCall) == null || groupCall.f26966id != j3) {
+        if (sharedInstance == null || sharedInstance.getAccount() != this.currentAccount || (conferenceCall = sharedInstance.conference) == null || (groupCall = conferenceCall.groupCall) == null || groupCall.f26970id != j3) {
             return null;
         }
         long callId = conferenceCall.getCallId();
@@ -122,7 +127,14 @@ public class GroupCallMessagesController extends c1 {
         groupCallMessage.notifyStateUpdate();
     }
 
-    public void lambda$sendCallMessage$5(Runnable runnable, GroupCallMessage groupCallMessage, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$sendCallMessage$5(String str) {
+        this.sentMessageIds.remove(str);
+    }
+
+    public void lambda$sendCallMessage$6(Runnable runnable, GroupCallMessage groupCallMessage, long j3, long j10, TLObject tLObject, TLRPC.TL_error tL_error) {
+        TL_update.TL_updateGroupCallMessage tL_updateGroupCallMessage;
+        TLRPC.InputGroupCall inputGroupCall;
+        TLRPC.GroupCallMessage groupCallMessage2;
         org.telegram.messenger.g0.r(runnable);
         groupCallMessage.setIsSendDelayed(false);
         if (tLObject instanceof TLRPC.Bool) {
@@ -133,12 +145,31 @@ public class GroupCallMessagesController extends c1 {
             }
         } else if (tLObject instanceof TLRPC.Updates) {
             groupCallMessage.setIsSendConfirmed(true);
-            getMessagesController().O3((TLRPC.Updates) tLObject, false);
+            TLRPC.Updates updates = (TLRPC.Updates) tLObject;
+            ArrayList arrayList = new ArrayList(updates.updates);
+            TLRPC.Update update = updates.update;
+            if (update != null) {
+                arrayList.add(update);
+            }
+            int size = arrayList.size();
+            int i7 = 0;
+            while (i7 < size) {
+                Object obj = arrayList.get(i7);
+                i7++;
+                TLRPC.Update update2 = (TLRPC.Update) obj;
+                if ((update2 instanceof TL_update.TL_updateGroupCallMessage) && (inputGroupCall = (tL_updateGroupCallMessage = (TL_update.TL_updateGroupCallMessage) update2).call) != null && inputGroupCall.f26977id == j3 && (groupCallMessage2 = tL_updateGroupCallMessage.message) != null && m5.o(groupCallMessage2.from_id) == j10) {
+                    String str = j3 + "_" + tL_updateGroupCallMessage.message.f26971id;
+                    if (this.sentMessageIds.add(str)) {
+                        org.telegram.messenger.g0.i3(new j3(20, this, str), 60000L);
+                    }
+                }
+            }
+            getMessagesController().O3(updates, false);
         }
-        org.telegram.messenger.g0.h3(new e(groupCallMessage, 0));
+        org.telegram.messenger.g0.h3(new f(groupCallMessage, 0));
     }
 
-    public void lambda$pushMessageToList$6(long j3) {
+    public void lambda$pushMessageToList$7(long j3) {
         MessagesList messagesList = this.callMessagesList.get(j3);
         if (messagesList != null) {
             messagesList.pop();
@@ -181,7 +212,7 @@ public class GroupCallMessagesController extends c1 {
                 callMessageListener2.onNewGroupCallMessage(j3, groupCallMessage);
             }
         }
-        org.telegram.messenger.g0.i3(new r3(this, j3, 16), getAppGlobalConfig().f24462w.M1(TimeUnit.MILLISECONDS));
+        org.telegram.messenger.g0.i3(new r3(this, j3, 16), getAppGlobalConfig().f24466w.M1(TimeUnit.MILLISECONDS));
     }
 
     public List<GroupCallMessage> getCallMessages(long j3) {
@@ -193,13 +224,16 @@ public class GroupCallMessagesController extends c1 {
     }
 
     public void processUpdate(TL_update.TL_updateGroupCallMessage tL_updateGroupCallMessage) {
-        long j3 = tL_updateGroupCallMessage.call.f26973id;
+        long j3 = tL_updateGroupCallMessage.call.f26977id;
         long o4 = m5.o(tL_updateGroupCallMessage.message.from_id);
-        long j10 = tL_updateGroupCallMessage.message.f26967id;
-        if (getUserConfig().f24489n == o4) {
+        long j10 = tL_updateGroupCallMessage.message.f26971id;
+        if (getUserConfig().f24493n == o4) {
             return;
         }
-        org.telegram.messenger.g0.h3(new f(this, j3, new GroupCallMessage(this.currentAccount, o4, j10, tL_updateGroupCallMessage.message.message), 0));
+        if (this.sentMessageIds.contains(j3 + "_" + j10)) {
+            return;
+        }
+        org.telegram.messenger.g0.h3(new e(this, j3, new GroupCallMessage(this.currentAccount, o4, j10, tL_updateGroupCallMessage.message.message), 0));
     }
 
     public boolean sendCallMessage(long j3, TLRPC.TL_textWithEntities tL_textWithEntities, long j10, TLRPC.InputGroupCall inputGroupCall) {
@@ -212,7 +246,7 @@ public class GroupCallMessagesController extends c1 {
             long E = gz.E();
             if (sharedInstance.isConference()) {
                 ConferenceCall conferenceCall = sharedInstance.conference;
-                if (conferenceCall != null && (groupCall = conferenceCall.groupCall) != null && groupCall.f26966id == j10) {
+                if (conferenceCall != null && (groupCall = conferenceCall.groupCall) != null && groupCall.f26970id == j10) {
                     long callId = conferenceCall.getCallId();
                     if (callId != -1) {
                         TLRPC.TL_groupCallMessage tL_groupCallMessage = new TLRPC.TL_groupCallMessage();
@@ -240,12 +274,13 @@ public class GroupCallMessagesController extends c1 {
                 sendgroupcallmessage2.random_id = E;
                 sendgroupcallmessage = sendgroupcallmessage2;
             }
+            TL_phone.sendGroupCallMessage sendgroupcallmessage3 = sendgroupcallmessage;
             GroupCallMessage groupCallMessage = new GroupCallMessage(this.currentAccount, j3, E, tL_textWithEntities);
             groupCallMessage.setIsOut(true);
             lambda$processUpdate$2(j10, groupCallMessage);
-            e eVar = new e(groupCallMessage, 1);
-            org.telegram.messenger.g0.i3(eVar, 1000L);
-            getConnectionsManager().sendRequest(sendgroupcallmessage, new n(this, eVar, groupCallMessage, 1));
+            f fVar = new f(groupCallMessage, 1);
+            org.telegram.messenger.g0.i3(fVar, 1000L);
+            getConnectionsManager().sendRequest(sendgroupcallmessage3, new x2(this, fVar, groupCallMessage, j10, j3));
             return true;
         }
         return false;
@@ -271,12 +306,12 @@ public class GroupCallMessagesController extends c1 {
     }
 
     public void processUpdate(TL_update.TL_updateGroupCallEncryptedMessage tL_updateGroupCallEncryptedMessage) {
-        long j3 = tL_updateGroupCallEncryptedMessage.call.f26973id;
+        long j3 = tL_updateGroupCallEncryptedMessage.call.f26977id;
         long o4 = m5.o(tL_updateGroupCallEncryptedMessage.from_id);
         byte[] bArr = tL_updateGroupCallEncryptedMessage.encrypted_message;
-        if (getUserConfig().f24489n == o4) {
+        if (getUserConfig().f24493n == o4) {
             return;
         }
-        Utilities.f21336e.c(new h4(this, j3, o4, bArr, 4));
+        Utilities.f21341e.c(new h4(this, j3, o4, bArr, 4));
     }
 }

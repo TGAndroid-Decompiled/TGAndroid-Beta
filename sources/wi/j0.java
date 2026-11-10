@@ -1,24 +1,24 @@
 package wi;
 
-import org.telegram.ui.Components.rt;
+import org.telegram.ui.Components.qt;
 public final class j0 implements Runnable {
-    public final int f58008a;
-    public final rt f58009b;
-    public final Exception f58010c;
+    public final int f58012a;
+    public final qt f58013b;
+    public final Exception f58014c;
 
-    public j0(rt rtVar, Exception exc, int i7) {
-        this.f58008a = i7;
-        this.f58009b = rtVar;
-        this.f58010c = exc;
+    public j0(qt qtVar, Exception exc, int i7) {
+        this.f58012a = i7;
+        this.f58013b = qtVar;
+        this.f58014c = exc;
     }
 
     @Override
     public final void run() {
-        switch (this.f58008a) {
+        switch (this.f58012a) {
             case 0:
-                t0 t0Var = (t0) this.f58009b.f37805b;
-                t0Var.f58213m.a("recording segment interrupted in state=".concat(rf.b.u(t0Var.f58202a0)), this.f58010c);
-                int i7 = t0Var.f58202a0;
+                t0 t0Var = (t0) this.f58013b.f37395b;
+                t0Var.f58217m.a("recording segment interrupted in state=".concat(rf.b.u(t0Var.f58206a0)), this.f58014c);
+                int i7 = t0Var.f58206a0;
                 if (i7 == 3) {
                     t0Var.q();
                     return;
@@ -29,7 +29,7 @@ public final class j0 implements Runnable {
                     return;
                 }
             default:
-                ((t0) this.f58009b.f37805b).h(this.f58010c);
+                ((t0) this.f58013b.f37395b).h(this.f58014c);
                 return;
         }
     }

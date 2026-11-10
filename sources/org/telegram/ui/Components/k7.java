@@ -2,25 +2,19 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.accessibility.AccessibilityNodeInfo;
-public final class k7 extends dh0 {
-    public final j7 D;
-    public final j7 E;
-    public long F;
-    public final float G;
-    public final b8 H;
-    public float f35262r;
-    public float f35263s;
-    public int f35264w;
-    public long f35265x;
-    public long f35266y;
+public final class k7 extends ch0 {
+    public final a8 D;
+    public float f35227r;
+    public float f35228s;
+    public boolean f35229w;
+    public final m.f3 f35230x;
+    public final float f35231y;
 
-    public k7(b8 b8Var, Context context, float f10) {
+    public k7(a8 a8Var, Context context, float f10) {
         super(context);
-        this.H = b8Var;
-        this.G = f10;
-        this.f35264w = 0;
-        this.D = new j7(this, 0);
-        this.E = new j7(this, 1);
+        this.D = a8Var;
+        this.f35231y = f10;
+        this.f35230x = new m.f3(this, 24);
     }
 
     @Override
@@ -30,7 +24,7 @@ public final class k7 extends dh0 {
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r12) {
+    public final boolean onTouchEvent(android.view.MotionEvent r10) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.k7.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

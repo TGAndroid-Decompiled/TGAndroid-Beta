@@ -2,27 +2,27 @@ package li;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.m41;
-import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.r41;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.x31;
-import org.telegram.ui.Components.y31;
-public final class n4 extends x31 {
-    public static final int f18732b = 0;
+public final class n4 extends w31 {
+    public static final int f18735b = 0;
 
     static {
-        x31.h(new x31());
+        w31.h(new w31());
     }
 
     @Override
-    public final void b(View view, y31 y31Var, boolean z9, m41 m41Var, r41 r41Var) {
-        ((o4) view).g((a) y31Var.G, (y2) y31Var.H);
+    public final void b(View view, x31 x31Var, boolean z9, m41 m41Var, r41 r41Var) {
+        ((o4) view).g((a) x31Var.G, (y2) x31Var.H);
     }
 
     @Override
-    public final View d(Context context, qj0 qj0Var, int i7, g6 g6Var) {
-        return new o4(context, g6Var);
+    public final View d(Context context, pj0 pj0Var, int i7, h6 h6Var) {
+        return new o4(context, h6Var);
     }
 
     @Override

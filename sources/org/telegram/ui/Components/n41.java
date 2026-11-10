@@ -3,11 +3,11 @@ package org.telegram.ui.Components;
 import android.view.View;
 import java.io.Serializable;
 public final class n41 implements org.telegram.messenger.a20, org.telegram.messenger.b20 {
-    public final o41 f36249a;
+    public final o41 f36241a;
 
     @Override
-    public Boolean a(y31 y31Var, View view, Integer num, Float f10, Float f11) {
-        return Boolean.valueOf(this.f36249a.c0(y31Var, view));
+    public Boolean a(x31 x31Var, View view, Integer num, Float f10, Float f11) {
+        return Boolean.valueOf(this.f36241a.c0(x31Var, view));
     }
 
     @Override
@@ -15,6 +15,6 @@ public final class n41 implements org.telegram.messenger.a20, org.telegram.messe
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        this.f36249a.b0((y31) obj, (View) obj2);
+        this.f36241a.b0((x31) obj, (View) obj2);
     }
 }

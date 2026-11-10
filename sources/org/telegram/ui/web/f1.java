@@ -6,14 +6,14 @@ import org.telegram.messenger.id;
 import org.telegram.messenger.iz;
 public final class f1 {
     public static ArrayList d;
-    public final String f51110a;
-    public final String f51111b;
-    public final String f51112c;
+    public final String f51064a;
+    public final String f51065b;
+    public final String f51066c;
 
     public f1(String str, String str2, String str3) {
-        this.f51110a = str;
-        this.f51111b = str2;
-        this.f51112c = str3;
+        this.f51064a = str;
+        this.f51065b = str2;
+        this.f51066c = str3;
     }
 
     public static f1 a() {
@@ -21,7 +21,7 @@ public final class f1 {
         if (b10.isEmpty()) {
             return new f1("Google", "https://www.google.com/search?q=", "https://suggestqueries.google.com/complete/search?client=chrome&amp;q=");
         }
-        return (f1) b10.get(Utilities.j(iz.f23426p0, b10.size() - 1, 0));
+        return (f1) b10.get(Utilities.j(iz.f23430p0, b10.size() - 1, 0));
     }
 
     public static ArrayList b() {

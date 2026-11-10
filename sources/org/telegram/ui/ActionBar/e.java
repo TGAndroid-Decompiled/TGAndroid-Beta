@@ -1,59 +1,68 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.view.ViewGroup;
-public final class e extends AnimatorListenerAdapter {
-    public final int f27446a;
-    public final k f27447b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import org.telegram.ui.Components.st0;
+public final class e extends y {
+    public final l h;
 
-    public e(k kVar, int i7) {
-        this.f27446a = i7;
-        this.f27447b = kVar;
+    public e(l lVar, Context context, l lVar2) {
+        super(context, lVar2);
+        this.h = lVar;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f27446a) {
-            case 0:
-                k kVar = this.f27447b;
-                AnimatorSet animatorSet = kVar.P;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    kVar.P = null;
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        l lVar = this.h;
+        Paint paint = lVar.M0;
+        if (lVar.L0 && this.f28770a && lVar.f27713x != 0) {
+            lVar.N0.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            paint.setColor(lVar.f27713x);
+            canvas2 = canvas;
+            lVar.K0.H(canvas2, 0.0f, lVar.N0, paint, true);
+        } else {
+            canvas2 = canvas;
+        }
+        super.dispatchDraw(canvas2);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        st0 st0Var = this.h.K0;
+        if (st0Var != null) {
+            st0Var.O.add(this);
         }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f27446a) {
-            case 0:
-                k kVar = this.f27447b;
-                AnimatorSet animatorSet = kVar.P;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    kVar.P = null;
-                    kVar.F.setVisibility(4);
-                    return;
-                }
-                return;
-            default:
-                k kVar2 = this.f27447b;
-                l5 l5Var = kVar2.f27663n[1];
-                if (l5Var != null && l5Var.getParent() != null) {
-                    ((ViewGroup) kVar2.f27663n[1].getParent()).removeView(kVar2.f27663n[1]);
-                }
-                kVar2.O0.x(kVar2.f27663n[1]);
-                kVar2.f27663n[1] = null;
-                kVar2.f27656i1 = false;
-                Object[] objArr = kVar2.f27651g0;
-                kVar2.M((String) objArr[0], ((Integer) objArr[1]).intValue(), (Runnable) kVar2.f27651g0[2]);
-                return;
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        st0 st0Var = this.h.K0;
+        if (st0Var != null) {
+            st0Var.O.remove(this);
+        }
+    }
+
+    @Override
+    public final void setAlpha(float f10) {
+        super.setAlpha(f10);
+        l lVar = this.h;
+        lVar.invalidate();
+        Runnable runnable = lVar.f27671d1;
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    @Override
+    public final void setBackgroundColor(int i7) {
+        l lVar = this.h;
+        lVar.f27713x = i7;
+        if (!lVar.L0) {
+            super.setBackgroundColor(i7);
         }
     }
 }

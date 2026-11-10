@@ -42,9 +42,9 @@ public final class b0 implements Runnable {
             case 2:
                 i0 i0Var3 = this.f1128b;
                 try {
-                    Context context = org.telegram.messenger.t0.f25566b;
+                    Context context = org.telegram.messenger.t0.f25570b;
                     ?? obj = new Object();
-                    obj.f7658a = 256;
+                    obj.f7663a = 256;
                     i0Var3.f1252i0 = new u8.n(new t2(context, (x1) obj));
                 } catch (Throwable th2) {
                     a8.g(th2, true);

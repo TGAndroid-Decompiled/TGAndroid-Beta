@@ -15,68 +15,68 @@ import org.telegram.messenger.ij;
 import org.telegram.messenger.p10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.s70;
+import org.telegram.ui.Components.r70;
 public final class j5 extends View {
-    public final TextPaint f4084a;
-    public final s70 f4085b;
-    public final Paint f4086c;
+    public final TextPaint f4081a;
+    public final r70 f4082b;
+    public final Paint f4083c;
     public final Paint d;
-    public StaticLayout f4087e;
-    public boolean f4088f;
+    public StaticLayout f4084e;
+    public boolean f4085f;
     public int h;
-    public int f4089n;
-    public BitmapShader f4090r;
-    public Matrix f4091s;
-    public Matrix f4092w;
-    public CharSequence f4093x;
+    public int f4086n;
+    public BitmapShader f4087r;
+    public Matrix f4088s;
+    public Matrix f4089w;
+    public CharSequence f4090x;
 
     public j5(Context context) {
         super(context);
         this.h = org.telegram.messenger.g0.L(6.0f);
-        this.f4089n = org.telegram.messenger.g0.L(2.0f);
+        this.f4086n = org.telegram.messenger.g0.L(2.0f);
         TextPaint textPaint = new TextPaint(1);
-        this.f4084a = textPaint;
+        this.f4081a = textPaint;
         textPaint.setColor(-1);
         textPaint.setTextSize(org.telegram.messenger.g0.L(13.0f));
         Paint paint = new Paint(1);
-        this.f4086c = paint;
+        this.f4083c = paint;
         paint.setPathEffect(new CornerPathEffect(org.telegram.messenger.g0.L(9.66f)));
         Paint paint2 = new Paint(1);
         this.d = paint2;
         paint2.setPathEffect(new CornerPathEffect(org.telegram.messenger.g0.L(9.66f)));
-        this.f4085b = new s70(0);
+        this.f4082b = new r70(0);
     }
 
     public final void a(int i7, CharSequence charSequence) {
         if (i7 <= 0) {
-            this.f4093x = charSequence;
+            this.f4090x = charSequence;
             return;
         }
-        this.f4087e = new StaticLayout(charSequence, this.f4084a, i7 - org.telegram.messenger.g0.L(18.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-        s70 s70Var = this.f4085b;
-        s70Var.rewind();
+        this.f4084e = new StaticLayout(charSequence, this.f4081a, i7 - org.telegram.messenger.g0.L(18.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        r70 r70Var = this.f4082b;
+        r70Var.rewind();
         int i10 = this.h;
-        int i11 = this.f4089n;
-        s70Var.f31951e = i10;
-        s70Var.f31952f = i11;
-        if (this.f4088f) {
-            s70Var.e(null, 0, 0.0f, 0.0f);
+        int i11 = this.f4086n;
+        r70Var.f31966e = i10;
+        r70Var.f31967f = i11;
+        if (this.f4085f) {
+            r70Var.e(null, 0, 0.0f, 0.0f);
             float f10 = Float.MAX_VALUE;
-            float width = this.f4087e.getWidth();
+            float width = this.f4084e.getWidth();
             float f11 = Float.MIN_VALUE;
             float f12 = 0.0f;
-            for (int i12 = 0; i12 < this.f4087e.getLineCount(); i12++) {
-                width = Math.min(width, this.f4087e.getLineLeft(i12));
-                f11 = Math.min(f11, this.f4087e.getLineTop(i12));
-                f12 = Math.max(f12, this.f4087e.getLineRight(i12));
-                f10 = Math.max(f10, this.f4087e.getLineBottom(i12));
+            for (int i12 = 0; i12 < this.f4084e.getLineCount(); i12++) {
+                width = Math.min(width, this.f4084e.getLineLeft(i12));
+                f11 = Math.min(f11, this.f4084e.getLineTop(i12));
+                f12 = Math.max(f12, this.f4084e.getLineRight(i12));
+                f10 = Math.max(f10, this.f4084e.getLineBottom(i12));
             }
-            this.f4085b.addRect(width, f11, f12, this.f4087e.getHeight(), Path.Direction.CW);
+            this.f4082b.addRect(width, f11, f12, this.f4084e.getHeight(), Path.Direction.CW);
         } else {
-            s70Var.e(this.f4087e, 0, 0.0f, 0.0f);
-            StaticLayout staticLayout = this.f4087e;
-            staticLayout.getSelectionPath(0, staticLayout.getText().length(), s70Var);
-            s70Var.a();
+            r70Var.e(this.f4084e, 0, 0.0f, 0.0f);
+            StaticLayout staticLayout = this.f4084e;
+            staticLayout.getSelectionPath(0, staticLayout.getText().length(), r70Var);
+            r70Var.a();
         }
         invalidate();
     }
@@ -110,35 +110,35 @@ public final class j5 extends View {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f4087e != null) {
+        if (this.f4084e != null) {
             canvas.save();
-            canvas.translate((getWidth() - this.f4087e.getWidth()) / 2.0f, org.telegram.messenger.g0.L(16.0f));
-            Matrix matrix = this.f4091s;
+            canvas.translate((getWidth() - this.f4084e.getWidth()) / 2.0f, org.telegram.messenger.g0.L(16.0f));
+            Matrix matrix = this.f4088s;
             if (matrix != null) {
                 matrix.reset();
-                this.f4092w.reset();
+                this.f4089w.reset();
                 j5 j5Var = this;
                 while (j5Var != 0) {
-                    this.f4092w.postConcat(j5Var.getMatrix());
+                    this.f4089w.postConcat(j5Var.getMatrix());
                     if (j5Var.getParent() instanceof View) {
                         j5Var = (View) j5Var.getParent();
                     } else {
                         j5Var = 0;
                     }
                 }
-                this.f4092w.invert(this.f4091s);
-                this.f4091s.preTranslate((-this.h) / 2, -org.telegram.messenger.g0.L(16.0f));
-                this.f4091s.preScale(12.0f, 12.0f);
-                this.f4090r.setLocalMatrix(this.f4091s);
+                this.f4089w.invert(this.f4088s);
+                this.f4088s.preTranslate((-this.h) / 2, -org.telegram.messenger.g0.L(16.0f));
+                this.f4088s.preScale(12.0f, 12.0f);
+                this.f4087r.setLocalMatrix(this.f4088s);
             }
-            Paint paint = this.f4086c;
-            s70 s70Var = this.f4085b;
-            canvas.drawPath(s70Var, paint);
-            int r12 = org.telegram.ui.ActionBar.l6.r1(0.35f, -16777216);
+            Paint paint = this.f4083c;
+            r70 r70Var = this.f4082b;
+            canvas.drawPath(r70Var, paint);
+            int r12 = org.telegram.ui.ActionBar.m6.r1(0.35f, -16777216);
             Paint paint2 = this.d;
             paint2.setColor(r12);
-            canvas.drawPath(s70Var, paint2);
-            this.f4087e.draw(canvas);
+            canvas.drawPath(r70Var, paint2);
+            this.f4084e.draw(canvas);
             canvas.restore();
         }
     }
@@ -147,12 +147,12 @@ public final class j5 extends View {
     public final void onMeasure(int i7, int i10) {
         int height;
         int size = View.MeasureSpec.getSize(i7);
-        CharSequence charSequence = this.f4093x;
+        CharSequence charSequence = this.f4090x;
         if (charSequence != null) {
             a(size, charSequence);
         }
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
-        StaticLayout staticLayout = this.f4087e;
+        StaticLayout staticLayout = this.f4084e;
         if (staticLayout == null) {
             height = 0;
         } else {
@@ -165,10 +165,10 @@ public final class j5 extends View {
 
     public void set(ij ijVar) {
         TLRPC.Message message;
-        if (ijVar != null && (message = ijVar.f23262k) != null && message.action != null) {
+        if (ijVar != null && (message = ijVar.f23266k) != null && message.action != null) {
             int i7 = ijVar.I1;
             long e10 = p10.i(i7).e();
-            TLRPC.MessageAction messageAction = ijVar.f23262k.action;
+            TLRPC.MessageAction messageAction = ijVar.f23266k.action;
             if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
                 TLRPC.TL_messageActionStarGift tL_messageActionStarGift = (TLRPC.TL_messageActionStarGift) messageAction;
                 setVisibility(8);
@@ -183,11 +183,11 @@ public final class j5 extends View {
                 long o4 = org.telegram.messenger.m5.o(peer);
                 long o10 = org.telegram.messenger.m5.o(tL_messageActionStarGiftUnique.peer);
                 if (e10 == o4) {
-                    set(org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, (tL_messageActionStarGiftUnique.craft || tL_messageActionStarGiftUnique.gift.crafted) ? 2131749611 : 2131749612, org.telegram.messenger.id.r(ijVar.f23262k.date, false))));
+                    set(org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, (tL_messageActionStarGiftUnique.craft || tL_messageActionStarGiftUnique.gift.crafted) ? 2131749611 : 2131749612, org.telegram.messenger.id.r(ijVar.f23266k.date, false))));
                 } else if (e10 == o10) {
-                    set(org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131749593, org.telegram.messenger.m5.s(i7, o4), org.telegram.messenger.id.r(ijVar.f23262k.date, false))));
+                    set(org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131749593, org.telegram.messenger.m5.s(i7, o4), org.telegram.messenger.id.r(ijVar.f23266k.date, false))));
                 } else {
-                    set(org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131749592, org.telegram.messenger.m5.s(i7, o4), org.telegram.messenger.m5.s(i7, o10), org.telegram.messenger.id.r(ijVar.f23262k.date, false))));
+                    set(org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131749592, org.telegram.messenger.m5.s(i7, o4), org.telegram.messenger.m5.s(i7, o10), org.telegram.messenger.id.r(ijVar.f23266k.date, false))));
                 }
                 setVisibility(0);
                 return;
@@ -200,11 +200,11 @@ public final class j5 extends View {
     }
 
     public void setFullRect(boolean z9) {
-        this.f4088f = z9;
+        this.f4085f = z9;
     }
 
     public void setRoundRadius(float f10) {
-        this.f4086c.setPathEffect(new CornerPathEffect(f10));
+        this.f4083c.setPathEffect(new CornerPathEffect(f10));
         this.d.setPathEffect(new CornerPathEffect(f10));
     }
 

@@ -74,50 +74,50 @@ import org.telegram.messenger.xa;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.j5;
-import org.telegram.ui.ActionBar.s4;
+import org.telegram.ui.ActionBar.t4;
 import org.telegram.ui.Cells.h9;
 import org.telegram.ui.Cells.i9;
 import org.telegram.ui.Cells.r8;
-import org.telegram.ui.Components.bi;
-import org.telegram.ui.Components.di;
-import org.telegram.ui.Components.l60;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.qg;
-import org.telegram.ui.Components.t4;
+import org.telegram.ui.Components.ai;
+import org.telegram.ui.Components.ci;
+import org.telegram.ui.Components.k60;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.pg;
+import org.telegram.ui.Components.s4;
 import org.telegram.ui.DataAutoDownloadActivity;
 import org.telegram.ui.cn;
-import org.telegram.ui.dg0;
+import org.telegram.ui.eg0;
 import org.telegram.ui.va;
-import org.telegram.ui.xs;
-public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.google.android.gms.common.api.internal.p, bi, t4, i0, r3, f1, y0, n2.v, xa, ra, cz, gh.a, mm0 {
-    public final int f13554a;
-    public Object f13555b;
+import org.telegram.ui.ys;
+public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.google.android.gms.common.api.internal.p, ai, s4, i0, r3, f1, y0, n2.v, xa, ra, cz, gh.a, lm0 {
+    public final int f13556a;
+    public Object f13557b;
 
     public d0(int i7, boolean z9) {
-        this.f13554a = i7;
+        this.f13556a = i7;
     }
 
     @Override
     public int A() {
         int i7;
-        j5 j5Var = (j5) this.f13555b;
+        j5 j5Var = (j5) this.f13557b;
         gh.a Q = Q();
-        if (Q != null && j5Var.d.d()) {
+        if (Q != null && j5Var.d.e()) {
             i7 = Q.A();
         } else {
             i7 = 0;
         }
         gh.a S = S();
         if (S != null) {
-            return i0.a.f(j5Var.f27616a, S.A(), i7);
+            return i0.a.f(j5Var.f27593a, S.A(), i7);
         }
         return i7;
     }
 
     @Override
     public void C() {
-        gz gzVar = (gz) this.f13555b;
-        HashMap hashMap = gzVar.f22769n;
+        gz gzVar = (gz) this.f13557b;
+        HashMap hashMap = gzVar.f22773n;
         gzVar.getNotificationCenter().k(qs.R0, new HashMap(hashMap));
         hashMap.clear();
     }
@@ -133,7 +133,7 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
             i7 = 0;
         }
         if (S != null) {
-            return i0.a.f(((j5) this.f13555b).f27616a, S.C0(), i7);
+            return i0.a.f(((j5) this.f13557b).f27593a, S.C0(), i7);
         }
         return i7;
     }
@@ -145,7 +145,7 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
 
     @Override
     public void G() {
-        b2 b2Var = (b2) this.f13555b;
+        b2 b2Var = (b2) this.f13557b;
         int i7 = 0;
         b2.e0(b2Var, false, true);
         int i10 = b2Var.I0;
@@ -168,8 +168,8 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
     @Override
     public void H0() {
         a3.s sVar;
-        t0 t0Var = (t0) this.f13555b;
-        synchronized (t0Var.f17757a) {
+        t0 t0Var = (t0) this.f13557b;
+        synchronized (t0Var.f17760a) {
             sVar = t0Var.H;
         }
         if (sVar != null) {
@@ -179,30 +179,30 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
 
     @Override
     public void I() {
-        ((t0) this.f13555b).l1 = true;
+        ((t0) this.f13557b).l1 = true;
     }
 
     @Override
     public void I0(CharSequence charSequence) {
-        switch (this.f13554a) {
+        switch (this.f13556a) {
             case 12:
-                o3 o3Var = ((x0) this.f13555b).S;
+                o3 o3Var = ((x0) this.f13557b).S;
                 if (o3Var != null) {
                     o3Var.getClass();
                     if (charSequence != null && charSequence.length() > 0) {
-                        o3Var.f18741a.w4(charSequence.toString());
+                        o3Var.f18744a.w4(charSequence.toString());
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                k4 k4Var = ((m4) this.f13555b).G;
+                k4 k4Var = ((m4) this.f13557b).G;
                 if (k4Var != null) {
                     p3 p3Var = (p3) k4Var;
                     p3Var.getClass();
                     if (charSequence != null && charSequence.length() > 0) {
-                        p3Var.f18775a.w4(charSequence.toString());
+                        p3Var.f18778a.w4(charSequence.toString());
                         return;
                     }
                     return;
@@ -212,55 +212,55 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
     }
 
     @Override
-    public l60 J(View view) {
-        return l60.H((b2) this.f13555b, view);
+    public k60 J(View view) {
+        return k60.H((b2) this.f13557b, view);
     }
 
     @Override
     public void K(Location location) {
-        gz gzVar = (gz) this.f13555b;
+        gz gzVar = (gz) this.f13557b;
         TLRPC.TL_messageMediaGeo tL_messageMediaGeo = new TLRPC.TL_messageMediaGeo();
         TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
         tL_messageMediaGeo.geo = tL_geoPoint;
         tL_geoPoint.lat = g0.b0(location.getLatitude());
         tL_messageMediaGeo.geo._long = g0.b0(location.getLongitude());
-        HashMap hashMap = gzVar.f22769n;
+        HashMap hashMap = gzVar.f22773n;
         for (Map.Entry entry : hashMap.entrySet()) {
             ij ijVar = (ij) entry.getValue();
-            gzVar.r0(ez.d(tL_messageMediaGeo, ij.B0(ijVar.f23262k), ijVar, null, null, null, true, 0));
+            gzVar.r0(ez.d(tL_messageMediaGeo, ij.B0(ijVar.f23266k), ijVar, null, null, null, true, 0));
         }
         hashMap.clear();
     }
 
     @Override
     public void L(int i7, int i10, boolean z9) {
-        ((li.p) this.f13555b).L(z9, i7, i10, 0L, false);
-        li.p pVar = (li.p) this.f13555b;
-        dg0 dg0Var = pVar.O;
-        if (dg0Var != null) {
-            dg0Var.h();
+        ((li.p) this.f13557b).L(z9, i7, i10, 0L, false);
+        li.p pVar = (li.p) this.f13557b;
+        eg0 eg0Var = pVar.O;
+        if (eg0Var != null) {
+            eg0Var.h();
             pVar.O = null;
         }
     }
 
     @Override
     public void L1() {
-        switch (this.f13554a) {
+        switch (this.f13556a) {
             case 12:
-                x0 x0Var = (x0) this.f13555b;
+                x0 x0Var = (x0) this.f13557b;
                 o3 o3Var = x0Var.S;
                 if (o3Var != null) {
-                    li.a aVar = x0Var.f18989a;
-                    t3.S1(o3Var.f18741a);
+                    li.a aVar = x0Var.f18994a;
+                    t3.S1(o3Var.f18744a);
                     return;
                 }
                 return;
             default:
-                m4 m4Var = (m4) this.f13555b;
+                m4 m4Var = (m4) this.f13557b;
                 k4 k4Var = m4Var.G;
                 if (k4Var != null) {
-                    li.a aVar2 = m4Var.f18989a;
-                    t3.S1(((p3) k4Var).f18775a);
+                    li.a aVar2 = m4Var.f18994a;
+                    t3.S1(((p3) k4Var).f18778a);
                     return;
                 }
                 return;
@@ -278,14 +278,14 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
             i7 = 0;
         }
         if (S != null) {
-            return i0.a.f(((j5) this.f13555b).f27616a, S.M(), i7);
+            return i0.a.f(((j5) this.f13557b).f27593a, S.M(), i7);
         }
         return i7;
     }
 
     @Override
     public void N() {
-        b2 b2Var = (b2) this.f13555b;
+        b2 b2Var = (b2) this.f13557b;
         b2Var.E0();
         b2Var.H0();
     }
@@ -293,23 +293,23 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
     @Override
     public int O() {
         int i7;
-        j5 j5Var = (j5) this.f13555b;
+        j5 j5Var = (j5) this.f13557b;
         gh.a Q = Q();
-        if (Q != null && j5Var.d.d()) {
+        if (Q != null && j5Var.d.e()) {
             i7 = Q.O();
         } else {
             i7 = 0;
         }
         gh.a S = S();
         if (S != null) {
-            return i0.a.f(j5Var.f27616a, S.O(), i7);
+            return i0.a.f(j5Var.f27593a, S.O(), i7);
         }
         return i7;
     }
 
     @Override
     public void O1(long j3, int i7, long j10) {
-        j2.n nVar = ((t0) this.f13555b).f20303a1;
+        j2.n nVar = ((t0) this.f13557b).f20308a1;
         Handler handler = (Handler) nVar.f16456b;
         if (handler != null) {
             handler.post(new b3.b(nVar, i7, j3, j10, 1));
@@ -317,19 +317,19 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
     }
 
     public gh.a Q() {
-        s4 s4Var = ((j5) this.f13555b).d;
-        if (s4Var != null) {
-            return s4Var.getMenuGlassColorProvider();
+        t4 t4Var = ((j5) this.f13557b).d;
+        if (t4Var != null) {
+            return t4Var.getMenuGlassColorProvider();
         }
         return null;
     }
 
     public da R() {
-        m8.d dVar = (m8.d) this.f13555b;
+        m8.d dVar = (m8.d) this.f13557b;
         q6.m.i("no included points", !Double.isNaN(dVar.d));
-        LatLngBounds latLngBounds = new LatLngBounds(new LatLng(dVar.f19938b, dVar.d), new LatLng(dVar.f19939c, dVar.f19940e));
+        LatLngBounds latLngBounds = new LatLngBounds(new LatLng(dVar.f19943b, dVar.d), new LatLng(dVar.f19944c, dVar.f19945e));
         ?? obj = new Object();
-        obj.f22009a = latLngBounds;
+        obj.f22013a = latLngBounds;
         return obj;
     }
 
@@ -344,27 +344,27 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
             i7 = 0;
         }
         if (S != null) {
-            return i0.a.f(((j5) this.f13555b).f27616a, S.R0(), i7);
+            return i0.a.f(((j5) this.f13557b).f27593a, S.R0(), i7);
         }
         return i7;
     }
 
     public gh.a S() {
-        s4 s4Var;
-        j5 j5Var = (j5) this.f13555b;
-        if (j5Var.f27616a < 1.0f && (s4Var = j5Var.d) != null) {
-            return s4Var.getButtonsGlassColorProvider();
+        t4 t4Var;
+        j5 j5Var = (j5) this.f13557b;
+        if (j5Var.f27593a < 1.0f && (t4Var = j5Var.d) != null) {
+            return t4Var.getButtonsGlassColorProvider();
         }
         return null;
     }
 
     @Override
     public h9 S0() {
-        switch (this.f13554a) {
+        switch (this.f13556a) {
             case 12:
-                return (x0) this.f13555b;
+                return (x0) this.f13557b;
             default:
-                return (m4) this.f13555b;
+                return (m4) this.f13557b;
         }
     }
 
@@ -374,20 +374,20 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
 
     @Override
     public void T0(CharSequence charSequence) {
-        a3 a3Var = ((m5) this.f13555b).E;
+        a3 a3Var = ((m5) this.f13557b).E;
         if (a3Var != null && charSequence != null && charSequence.length() > 0) {
-            a3Var.f18419a.w4(charSequence.toString());
+            a3Var.f18422a.w4(charSequence.toString());
         }
     }
 
     public int U() {
-        return ((j0) this.f13555b).f23460c;
+        return ((j0) this.f13557b).f23464c;
     }
 
     @Override
     public void U0(Exception exc) {
         h2.a.d("MediaCodecAudioRenderer", "Audio sink error", exc);
-        j2.n nVar = ((t0) this.f13555b).f20303a1;
+        j2.n nVar = ((t0) this.f13557b).f20308a1;
         Handler handler = (Handler) nVar.f16456b;
         if (handler != null) {
             handler.post(new n2.p(nVar, exc, 1));
@@ -395,7 +395,7 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
     }
 
     public LongSparseArray V(long j3, long j10) {
-        LongSparseArray longSparseArray = (LongSparseArray) ((LongSparseArray) this.f13555b).get(j3);
+        LongSparseArray longSparseArray = (LongSparseArray) ((LongSparseArray) this.f13557b).get(j3);
         if (longSparseArray == null) {
             return null;
         }
@@ -404,52 +404,52 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
 
     @Override
     public li.a V0() {
-        switch (this.f13554a) {
+        switch (this.f13556a) {
             case 12:
-                return ((x0) this.f13555b).f18989a;
+                return ((x0) this.f13557b).f18994a;
             default:
-                return ((m4) this.f13555b).f18989a;
+                return ((m4) this.f13557b).f18994a;
         }
     }
 
     @Override
     public void W() {
-        l0 l0Var = ((t0) this.f13555b).Y;
+        l0 l0Var = ((t0) this.f13557b).Y;
         if (l0Var != null) {
-            l0Var.f17934a.f18015i0 = true;
+            l0Var.f17937a.f18018i0 = true;
         }
     }
 
     public d0 X(cb cbVar) {
-        m8.d dVar = (m8.d) this.f13555b;
-        LatLng latLng = new LatLng(cbVar.f21833a, cbVar.f21834b);
+        m8.d dVar = (m8.d) this.f13557b;
+        LatLng latLng = new LatLng(cbVar.f21837a, cbVar.f21838b);
         dVar.getClass();
-        double d = dVar.f19938b;
-        double d2 = latLng.f7694a;
-        dVar.f19938b = Math.min(d, d2);
-        dVar.f19939c = Math.max(dVar.f19939c, d2);
+        double d = dVar.f19943b;
+        double d2 = latLng.f7699a;
+        dVar.f19943b = Math.min(d, d2);
+        dVar.f19944c = Math.max(dVar.f19944c, d2);
         boolean isNaN = Double.isNaN(dVar.d);
-        double d10 = latLng.f7695b;
+        double d10 = latLng.f7700b;
         if (isNaN) {
             dVar.d = d10;
-            dVar.f19940e = d10;
+            dVar.f19945e = d10;
             return this;
         }
         double d11 = dVar.d;
-        double d12 = dVar.f19940e;
+        double d12 = dVar.f19945e;
         if (d11 > d12 ? !(d11 <= d10 || d10 <= d12) : !(d11 <= d10 && d10 <= d12)) {
             if (((d11 - d10) + 360.0d) % 360.0d < ((d10 - d12) + 360.0d) % 360.0d) {
                 dVar.d = d10;
                 return this;
             }
-            dVar.f19940e = d10;
+            dVar.f19945e = d10;
         }
         return this;
     }
 
     @Override
     public void Y(r0 r0Var) {
-        j2.n nVar = ((t0) this.f13555b).f20303a1;
+        j2.n nVar = ((t0) this.f13557b).f20308a1;
         Handler handler = (Handler) nVar.f16456b;
         if (handler != null) {
             handler.post(new n2.r(nVar, r0Var, 1));
@@ -457,7 +457,7 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
     }
 
     public void Z(long j3, long j10, long j11, Object obj) {
-        LongSparseArray longSparseArray = (LongSparseArray) this.f13555b;
+        LongSparseArray longSparseArray = (LongSparseArray) this.f13557b;
         LongSparseArray longSparseArray2 = (LongSparseArray) longSparseArray.get(j3);
         if (longSparseArray2 == null) {
             longSparseArray2 = new LongSparseArray();
@@ -476,8 +476,8 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
     public boolean a(float f10) {
         boolean z9;
         int[] iArr;
-        b2 b2Var = (b2) this.f13555b;
-        FrameLayout frameLayout = b2Var.f18469v0;
+        b2 b2Var = (b2) this.f13557b;
+        FrameLayout frameLayout = b2Var.f18472v0;
         if (frameLayout != null) {
             frameLayout.getLocationOnScreen(new int[2]);
             if (f10 >= iArr[1]) {
@@ -493,7 +493,7 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
 
     public Object a0(long j3, long j10, long j11) {
         LongSparseArray longSparseArray;
-        LongSparseArray longSparseArray2 = (LongSparseArray) ((LongSparseArray) this.f13555b).get(j3);
+        LongSparseArray longSparseArray2 = (LongSparseArray) ((LongSparseArray) this.f13557b).get(j3);
         if (longSparseArray2 == null || (longSparseArray = (LongSparseArray) longSparseArray2.get(j10)) == null) {
             return null;
         }
@@ -504,23 +504,23 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
 
     @Override
     public boolean a1() {
-        switch (this.f13554a) {
+        switch (this.f13556a) {
             case 12:
-                x0 x0Var = (x0) this.f13555b;
+                x0 x0Var = (x0) this.f13557b;
                 o3 o3Var = x0Var.S;
                 if (o3Var != null) {
-                    li.a aVar = x0Var.f18989a;
-                    if (o3Var.f18741a.V4()) {
+                    li.a aVar = x0Var.f18994a;
+                    if (o3Var.f18744a.V4()) {
                         return true;
                     }
                 }
                 return false;
             default:
-                m4 m4Var = (m4) this.f13555b;
+                m4 m4Var = (m4) this.f13557b;
                 k4 k4Var = m4Var.G;
                 if (k4Var != null) {
-                    li.a aVar2 = m4Var.f18989a;
-                    if (((p3) k4Var).f18775a.V4()) {
+                    li.a aVar2 = m4Var.f18994a;
+                    if (((p3) k4Var).f18778a.V4()) {
                         return true;
                     }
                 }
@@ -530,24 +530,24 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
 
     @Override
     public void accept(Object obj, Object obj2) {
-        switch (this.f13554a) {
+        switch (this.f13556a) {
             case 7:
                 j6.q qVar = new j6.q(0, (TaskCompletionSource) obj2);
                 j6.i iVar = (j6.i) ((j6.s) obj).n();
                 Parcel p12 = iVar.p1();
                 com.google.android.gms.internal.cast.t.d(p12, qVar);
-                p12.writeStringArray((String[]) this.f13555b);
+                p12.writeStringArray((String[]) this.f13557b);
                 iVar.u1(p12, 5);
                 return;
             default:
                 k7.f fVar = new k7.f(1, (TaskCompletionSource) obj2);
                 com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new com.google.android.gms.common.api.h(-1, -1, 0, true), false);
-                gVar.f6536c = false;
+                gVar.f6541c = false;
                 Parcel obtain = Parcel.obtain();
                 obtain.writeInterfaceToken("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
-                int i7 = t7.a.f55462a;
+                int i7 = t7.a.f55461a;
                 obtain.writeStrongBinder(fVar);
-                t7.a.b(obtain, (GetCredentialRequest) this.f13555b);
+                t7.a.b(obtain, (GetCredentialRequest) this.f13557b);
                 t7.a.b(obtain, gVar);
                 ((k7.b) ((k7.d) ((k7.e) obj).n())).h1(obtain, 1);
                 return;
@@ -556,32 +556,32 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
 
     @Override
     public void b(g1 g1Var) {
-        switch (this.f13554a) {
+        switch (this.f13556a) {
             case 12:
-                o3 o3Var = ((x0) this.f13555b).S;
+                o3 o3Var = ((x0) this.f13557b).S;
                 if (o3Var != null) {
-                    t3 t3Var = o3Var.f18741a;
+                    t3 t3Var = o3Var.f18744a;
                     t3.Q1(t3Var, g1Var);
-                    t3Var.f18890o3.r(g1Var, true);
+                    t3Var.f18893o3.r(g1Var, true);
                     return;
                 }
                 return;
             case 13:
             default:
-                a3 a3Var = ((m5) this.f13555b).E;
+                a3 a3Var = ((m5) this.f13557b).E;
                 if (a3Var != null) {
-                    t3 t3Var2 = a3Var.f18419a;
+                    t3 t3Var2 = a3Var.f18422a;
                     t3.Q1(t3Var2, g1Var);
-                    t3Var2.f18890o3.r(g1Var, true);
+                    t3Var2.f18893o3.r(g1Var, true);
                     return;
                 }
                 return;
             case 14:
-                k4 k4Var = ((m4) this.f13555b).G;
+                k4 k4Var = ((m4) this.f13557b).G;
                 if (k4Var != null) {
-                    t3 t3Var3 = ((p3) k4Var).f18775a;
+                    t3 t3Var3 = ((p3) k4Var).f18778a;
                     t3.Q1(t3Var3, g1Var);
-                    t3Var3.f18890o3.r(g1Var, true);
+                    t3Var3.f18893o3.r(g1Var, true);
                     return;
                 }
                 return;
@@ -591,11 +591,11 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
     @Override
     public void c(int i7) {
         u2.j jVar;
-        t0 t0Var = (t0) this.f13555b;
-        if (Build.VERSION.SDK_INT >= 35 && (jVar = t0Var.f20305c1) != null) {
+        t0 t0Var = (t0) this.f13557b;
+        if (Build.VERSION.SDK_INT >= 35 && (jVar = t0Var.f20310c1) != null) {
             jVar.d(i7);
         }
-        j2.n nVar = t0Var.f20303a1;
+        j2.n nVar = t0Var.f20308a1;
         Handler handler = (Handler) nVar.f16456b;
         if (handler != null) {
             handler.post(new m0(nVar, i7, 15));
@@ -603,39 +603,39 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
     }
 
     @Override
-    public void c0(qg qgVar) {
-        qs.f(kg.m.f0((kg.m) this.f13555b)).d(qgVar);
+    public void c0(pg pgVar) {
+        qs.f(kg.m.f0((kg.m) this.f13557b)).d(pgVar);
     }
 
     @Override
     public void c1() {
-        ((t0) this.f13555b).f20312j1 = true;
+        ((t0) this.f13557b).f20317j1 = true;
     }
 
     @Override
     public void close() {
-        ((ii.s) this.f13555b).finishFragment();
+        ((ii.s) this.f13557b).finishFragment();
     }
 
     @Override
     public void d(s3 s3Var, View view) {
-        b2 b2Var = (b2) this.f13555b;
-        l60 H = l60.H(b2Var, view);
+        b2 b2Var = (b2) this.f13557b;
+        k60 H = k60.H(b2Var, view);
         H.Q = true;
         b2Var.getParentActivity();
         b2Var.getResourceProvider();
-        b2Var.f18473x0 = h4.b(H, b2Var, s3Var, false);
+        b2Var.f18476x0 = h4.b(H, b2Var, s3Var, false);
     }
 
     @Override
     public void d1(int i7, int i10) {
-        switch (this.f13554a) {
+        switch (this.f13556a) {
             case 12:
-                x0 x0Var = (x0) this.f13555b;
+                x0 x0Var = (x0) this.f13557b;
                 o3 o3Var = x0Var.S;
                 if (o3Var != null) {
-                    li.a aVar = x0Var.f18989a;
-                    f2 f2Var = o3Var.f18741a.Q3;
+                    li.a aVar = x0Var.f18994a;
+                    f2 f2Var = o3Var.f18744a.Q3;
                     if (f2Var != null) {
                         f2Var.f(i7, i10);
                         return;
@@ -644,11 +644,11 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
                 }
                 return;
             default:
-                m4 m4Var = (m4) this.f13555b;
+                m4 m4Var = (m4) this.f13557b;
                 k4 k4Var = m4Var.G;
                 if (k4Var != null) {
-                    li.a aVar2 = m4Var.f18989a;
-                    f2 f2Var2 = ((p3) k4Var).f18775a.Q3;
+                    li.a aVar2 = m4Var.f18994a;
+                    f2 f2Var2 = ((p3) k4Var).f18778a.Q3;
                     if (f2Var2 != null) {
                         f2Var2.f(i7, i10);
                         return;
@@ -661,9 +661,9 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
 
     @Override
     public void e(long j3) {
-        t0 t0Var = (t0) this.f13555b;
-        t0Var.f20314m1 = true;
-        j2.n nVar = t0Var.f20303a1;
+        t0 t0Var = (t0) this.f13557b;
+        t0Var.f20319m1 = true;
+        j2.n nVar = t0Var.f20308a1;
         Handler handler = (Handler) nVar.f16456b;
         if (handler != null) {
             handler.post(new bi.r3(nVar, j3, 15));
@@ -673,23 +673,23 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
     @Override
     public int e1() {
         int i7;
-        s4 s4Var;
-        j5 j5Var = (j5) this.f13555b;
+        t4 t4Var;
+        j5 j5Var = (j5) this.f13557b;
         gh.a Q = Q();
         if (Q != null) {
             i7 = Q.e1();
         } else {
             i7 = 0;
         }
-        if (j5Var.f27616a < 1.0f && (s4Var = j5Var.d) != null) {
-            return i0.a.f(j5Var.f27616a, s4Var.getButtonsGlassBackgroundColor(), i7);
+        if (j5Var.f27593a < 1.0f && (t4Var = j5Var.d) != null) {
+            return i0.a.f(j5Var.f27593a, t4Var.getButtonsGlassBackgroundColor(), i7);
         }
         return i7;
     }
 
     @Override
     public void f(boolean z9) {
-        j2.n nVar = ((t0) this.f13555b).f20303a1;
+        j2.n nVar = ((t0) this.f13557b).f20308a1;
         Handler handler = (Handler) nVar.f16456b;
         if (handler != null) {
             handler.post(new k1(12, nVar, z9));
@@ -703,47 +703,47 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
 
     @Override
     public void f1(Editable editable) {
-        m5 m5Var = (m5) this.f13555b;
-        li.a aVar = m5Var.f18989a;
+        m5 m5Var = (m5) this.f13557b;
+        li.a aVar = m5Var.f18994a;
         if (aVar != null) {
-            aVar.f18407s = true;
-            aVar.f18406r = m5Var.f18709r.f18593k2;
+            aVar.f18410s = true;
+            aVar.f18409r = m5Var.f18712r.f18596k2;
         }
         m5Var.w();
         a3 a3Var = m5Var.E;
-        if (a3Var != null && m5Var.f18989a != null) {
+        if (a3Var != null && m5Var.f18994a != null) {
             a3Var.a();
         }
     }
 
     @Override
     public void g(int i7) {
-        ((b2) this.f13555b).t0(74, i7);
+        ((b2) this.f13557b).t0(74, i7);
     }
 
     @Override
     public Object mo24get() {
-        o9.g firebaseApp = (o9.g) ((d9.o) this.f13555b).f8251a;
+        o9.g firebaseApp = (o9.g) ((d9.o) this.f13557b).f8256a;
         kotlin.jvm.internal.j.e(firebaseApp, "firebaseApp");
-        q0 q0Var = q0.f13744a;
+        q0 q0Var = q0.f13746a;
         return q0.a(firebaseApp);
     }
 
     @Override
     public CharSequence getContentDescription() {
         StringBuilder sb2 = new StringBuilder();
-        xs xsVar = (xs) this.f13555b;
-        sb2.append((Object) xsVar.f28937a.getText());
+        ys ysVar = (ys) this.f13557b;
+        sb2.append((Object) ysVar.f28948a.getText());
         sb2.append(" ");
-        sb2.append((Object) xsVar.f28938b.getText());
+        sb2.append((Object) ysVar.f28949b.getText());
         return sb2.toString();
     }
 
     @Override
     public void h() {
         int i7;
-        b2 b2Var = (b2) this.f13555b;
-        g3 g3Var = b2Var.P.f18901u3;
+        b2 b2Var = (b2) this.f13557b;
+        g3 g3Var = b2Var.P.f18904u3;
         if (g3Var != null && g3Var.x() && b2Var.P.F4()) {
             i7 = 1;
         } else {
@@ -756,7 +756,7 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
 
     @Override
     public void i(r0 r0Var) {
-        j2.n nVar = ((t0) this.f13555b).f20303a1;
+        j2.n nVar = ((t0) this.f13557b).f20308a1;
         Handler handler = (Handler) nVar.f16456b;
         if (handler != null) {
             handler.post(new n2.r(nVar, r0Var, 0));
@@ -765,32 +765,32 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
 
     @Override
     public void i1() {
-        switch (this.f13554a) {
+        switch (this.f13556a) {
             case 12:
-                x0 x0Var = (x0) this.f13555b;
+                x0 x0Var = (x0) this.f13557b;
                 o3 o3Var = x0Var.S;
                 if (o3Var != null) {
-                    li.a aVar = x0Var.f18989a;
-                    t3 t3Var = o3Var.f18741a;
+                    li.a aVar = x0Var.f18994a;
+                    t3 t3Var = o3Var.f18744a;
                     f2 f2Var = t3Var.Q3;
                     if (f2Var != null) {
                         f2Var.g();
                     }
-                    t3Var.f18890o3.onContentChanged();
+                    t3Var.f18893o3.onContentChanged();
                     return;
                 }
                 return;
             default:
-                m4 m4Var = (m4) this.f13555b;
+                m4 m4Var = (m4) this.f13557b;
                 k4 k4Var = m4Var.G;
                 if (k4Var != null) {
-                    li.a aVar2 = m4Var.f18989a;
-                    t3 t3Var2 = ((p3) k4Var).f18775a;
+                    li.a aVar2 = m4Var.f18994a;
+                    t3 t3Var2 = ((p3) k4Var).f18778a;
                     f2 f2Var2 = t3Var2.Q3;
                     if (f2Var2 != null) {
                         f2Var2.g();
                     }
-                    t3Var2.f18890o3.onContentChanged();
+                    t3Var2.f18893o3.onContentChanged();
                     return;
                 }
                 return;
@@ -799,14 +799,14 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
 
     @Override
     public Object j(Object obj, Object obj2) {
-        return ((g9.k) this.f13555b).apply(obj2);
+        return ((g9.k) this.f13557b).apply(obj2);
     }
 
     @Override
     public float j0() {
         float f10;
         float f11;
-        j5 j5Var = (j5) this.f13555b;
+        j5 j5Var = (j5) this.f13557b;
         gh.a Q = Q();
         gh.a S = S();
         if (Q != null) {
@@ -820,9 +820,9 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
             f11 = f10;
         }
         if (f11 >= 0.0f && f10 >= 0.0f) {
-            return g0.T1(f11, f10, j5Var.f27616a);
+            return g0.T1(f11, f10, j5Var.f27593a);
         }
-        if (j5Var.f27616a < 0.5f) {
+        if (j5Var.f27593a < 0.5f) {
             return f11;
         }
         return f10;
@@ -830,13 +830,13 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
 
     @Override
     public void k(long j3) {
-        ((ii.s) this.f13555b).presentFragment(cn.ta(j3));
+        ((ii.s) this.f13557b).presentFragment(cn.ta(j3));
     }
 
     @Override
     public void l(boolean z9, float f10) {
         float c10;
-        xs xsVar = (xs) this.f13555b;
+        ys ysVar = (ys) this.f13557b;
         if (f10 <= 0.25f) {
             c10 = com.google.android.recaptcha.internal.a.c(f10, 0.25f, 536576.0f, 512000);
         } else {
@@ -855,12 +855,12 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
         int i7 = (int) c10;
         long j3 = i7;
         boolean z10 = true;
-        xsVar.f28938b.setText(id.a0("AutodownloadSizeLimitUpTo", null, 2131753772, g0.i0(j3, false, false)));
-        xsVar.d = j3;
-        r8[] r8VarArr = xsVar.h;
-        AnimatorSet[] animatorSetArr = xsVar.f51754n;
-        if (xsVar.f51752e == DataAutoDownloadActivity.o0(xsVar.f51755r)) {
-            xsVar.f51753f.setText(id.a0("AutoDownloadPreloadVideoInfo", null, 2131753810, g0.i0(j3, false, false)));
+        ysVar.f28949b.setText(id.a0("AutodownloadSizeLimitUpTo", null, 2131753772, g0.i0(j3, false, false)));
+        ysVar.d = j3;
+        r8[] r8VarArr = ysVar.h;
+        AnimatorSet[] animatorSetArr = ysVar.f52107n;
+        if (ysVar.f52105e == DataAutoDownloadActivity.o0(ysVar.f52108r)) {
+            ysVar.f52106f.setText(id.a0("AutoDownloadPreloadVideoInfo", null, 2131753810, g0.i0(j3, false, false)));
             if (i7 <= 2097152) {
                 z10 = false;
             }
@@ -875,7 +875,7 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 animatorSetArr[0] = animatorSet2;
                 animatorSet2.playTogether(arrayList);
-                animatorSetArr[0].addListener(new va(xsVar, 22));
+                animatorSetArr[0].addListener(new va(ysVar, 22));
                 animatorSetArr[0].setDuration(150L);
                 animatorSetArr[0].start();
             }
@@ -886,8 +886,8 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
     public void l0(g1 g1Var, int i7, int i10) {
         a3 a3Var;
         i9 textSelectionHelper;
-        m5 m5Var = (m5) this.f13555b;
-        if (!m5Var.G && i7 != i10 && (a3Var = m5Var.E) != null && (textSelectionHelper = a3Var.f18419a.getTextSelectionHelper()) != null) {
+        m5 m5Var = (m5) this.f13557b;
+        if (!m5Var.G && i7 != i10 && (a3Var = m5Var.E) != null && (textSelectionHelper = a3Var.f18422a.getTextSelectionHelper()) != null) {
             if (!textSelectionHelper.x() || textSelectionHelper.W != m5Var) {
                 m5Var.post(new j4(this, g1Var, i10, textSelectionHelper, i7, 4));
             }
@@ -901,42 +901,42 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
 
     @Override
     public boolean m() {
-        m5 m5Var = (m5) this.f13555b;
+        m5 m5Var = (m5) this.f13557b;
         a3 a3Var = m5Var.E;
-        if (a3Var != null && m5Var.f18989a != null) {
-            return a3Var.f18419a.V4();
+        if (a3Var != null && m5Var.f18994a != null) {
+            return a3Var.f18422a.V4();
         }
         return false;
     }
 
     @Override
     public void n(li.a aVar) {
-        b2 b2Var = (b2) this.f13555b;
-        if (aVar != null && (aVar.f18392b instanceof TL_iv.pageBlockMap) && g0.J1(b2Var)) {
-            di diVar = new di(b2Var.getParentActivity(), b2Var, false, false, false, b2Var.getResourceProvider());
-            diVar.T3 = new qb.a(13);
-            diVar.G1 = true;
-            diVar.f33044r3.setVisibility(8);
-            diVar.f33041q4 = new a3.h(b2Var, aVar, diVar, 15);
-            diVar.e1();
-            diVar.show();
+        b2 b2Var = (b2) this.f13557b;
+        if (aVar != null && (aVar.f18395b instanceof TL_iv.pageBlockMap) && g0.J1(b2Var)) {
+            ci ciVar = new ci(b2Var.getParentActivity(), b2Var, false, false, false, b2Var.getResourceProvider());
+            ciVar.W3 = new qb.a(13);
+            ciVar.J1 = true;
+            ciVar.f32657u3.setVisibility(8);
+            ciVar.f32654t4 = new a3.h(b2Var, aVar, ciVar, 15);
+            ciVar.e1();
+            ciVar.show();
         }
     }
 
     @Override
     public void o(a6 a6Var, String str) {
-        b2 b2Var = (b2) this.f13555b;
-        if (b2Var.f18476z0 == null) {
-            b2Var.f18476z0 = new ga.d(new l2.x(this, 6), b2Var.getResourceProvider());
+        b2 b2Var = (b2) this.f13557b;
+        if (b2Var.f18479z0 == null) {
+            b2Var.f18479z0 = new ga.d(new l2.x(this, 6), b2Var.getResourceProvider());
         }
-        b2Var.f18476z0.k(a6Var, str);
+        b2Var.f18479z0.k(a6Var, str);
     }
 
     @Override
     public float o0() {
         float f10;
         float f11;
-        j5 j5Var = (j5) this.f13555b;
+        j5 j5Var = (j5) this.f13557b;
         gh.a Q = Q();
         gh.a S = S();
         if (Q != null) {
@@ -950,9 +950,9 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
             f11 = f10;
         }
         if (f11 >= 0.0f && f10 >= 0.0f) {
-            return g0.T1(f11, f10, j5Var.f27616a);
+            return g0.T1(f11, f10, j5Var.f27593a);
         }
-        if (j5Var.f27616a < 0.5f) {
+        if (j5Var.f27593a < 0.5f) {
             return f11;
         }
         return f10;
@@ -960,24 +960,24 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
 
     @Override
     public void onComplete(Task task) {
-        switch (this.f13554a) {
+        switch (this.f13556a) {
             case 0:
-                c.h((c) ((j) this.f13555b).f13564c, "joinApplication", task);
+                c.h((c) ((j) this.f13557b).f13566c, "joinApplication", task);
                 return;
             default:
-                ((CountDownLatch) this.f13555b).countDown();
+                ((CountDownLatch) this.f13557b).countDown();
                 return;
         }
     }
 
     @Override
     public void onContentChanged() {
-        b2 b2Var = (b2) this.f13555b;
-        if (b2Var.f18475y0 != null) {
+        b2 b2Var = (b2) this.f13557b;
+        if (b2Var.f18478y0 != null) {
             boolean p32 = b2Var.P.p3();
             b2Var.L0 = p32;
-            b2Var.f18475y0.f(p32);
-            b2Var.f18475y0.invalidate();
+            b2Var.f18478y0.f(p32);
+            b2Var.f18478y0.invalidate();
         }
         b2Var.H0();
         Runnable runnable = b2Var.M0;
@@ -1004,12 +1004,12 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
             new Canvas(createBitmap).drawBitmap(bitmap, (Rect) null, rectF, (Paint) null);
             bitmap2 = createBitmap;
         }
-        ((i6.h) this.f13555b).e(0, bitmap2);
+        ((i6.h) this.f13557b).e(0, bitmap2);
     }
 
     @Override
     public void q() {
-        b2 b2Var = (b2) this.f13555b;
+        b2 b2Var = (b2) this.f13557b;
         b2Var.I0 = b2Var.K0;
         b2.e0(b2Var, false, false);
         b2Var.C0(2, true);
@@ -1027,20 +1027,20 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
 
     @Override
     public void t() {
-        switch (this.f13554a) {
+        switch (this.f13556a) {
             case 12:
-                x0 x0Var = (x0) this.f13555b;
+                x0 x0Var = (x0) this.f13557b;
                 o3 o3Var = x0Var.S;
                 if (o3Var != null) {
-                    t3.T1(o3Var.f18741a, x0Var.f18989a);
+                    t3.T1(o3Var.f18744a, x0Var.f18994a);
                     return;
                 }
                 return;
             default:
-                m4 m4Var = (m4) this.f13555b;
+                m4 m4Var = (m4) this.f13557b;
                 k4 k4Var = m4Var.G;
                 if (k4Var != null) {
-                    t3.T1(((p3) k4Var).f18775a, m4Var.f18989a);
+                    t3.T1(((p3) k4Var).f18778a, m4Var.f18994a);
                     return;
                 }
                 return;
@@ -1049,7 +1049,7 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
 
     @Override
     public void t1() {
-        l0 l0Var = ((t0) this.f13555b).Y;
+        l0 l0Var = ((t0) this.f13557b).Y;
         if (l0Var != null) {
             l0Var.a();
         }
@@ -1058,28 +1058,28 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
     @Override
     public void u() {
         boolean z9;
-        ii.s sVar = (ii.s) this.f13555b;
-        te.a aVar = sVar.f15597a;
-        ii.l0 l0Var = sVar.f15605w;
-        if (l0Var.f15572n && l0Var.f15570l == 0) {
+        ii.s sVar = (ii.s) this.f13557b;
+        te.a aVar = sVar.f15596a;
+        ii.l0 l0Var = sVar.f15604w;
+        if (l0Var.f15571n && l0Var.f15569l == 0) {
             z9 = true;
         } else {
             z9 = false;
         }
         aVar.a(z9, true);
-        sVar.d.f37556f3.O(true);
+        sVar.d.f37496f3.O(true);
     }
 
     @Override
     public void v(String str, long j3, long j10, long j11) {
-        h6.o oVar = (h6.o) this.f13555b;
+        h6.o oVar = (h6.o) this.f13557b;
         try {
             oVar.a(new h6.n(new Status(2103, null, null, null), 1));
         } catch (IllegalStateException e10) {
-            j6.b bVar = h6.h.f14246k;
+            j6.b bVar = h6.h.f14248k;
             Log.e(bVar.f16508a, bVar.d("Result already set when calling onRequestReplaced", new Object[0]), e10);
         }
-        Iterator it = oVar.f14270q.f14253i.iterator();
+        Iterator it = oVar.f14272q.f14255i.iterator();
         while (it.hasNext()) {
             ((h6.g) it.next()).h(str, j3, 2103, j10, j11);
         }
@@ -1096,7 +1096,7 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
             f10 = 0.0f;
         }
         if (S != null) {
-            return g0.T1(S.v0(), f10, ((j5) this.f13555b).f27616a);
+            return g0.T1(S.v0(), f10, ((j5) this.f13557b).f27593a);
         }
         return f10;
     }
@@ -1104,26 +1104,26 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
     @Override
     public void w(int i7, int i10) {
         f2 f2Var;
-        m5 m5Var = (m5) this.f13555b;
+        m5 m5Var = (m5) this.f13557b;
         a3 a3Var = m5Var.E;
-        if (a3Var != null && m5Var.f18989a != null && (f2Var = a3Var.f18419a.Q3) != null) {
+        if (a3Var != null && m5Var.f18994a != null && (f2Var = a3Var.f18422a.Q3) != null) {
             f2Var.f(i7, i10);
         }
     }
 
     @Override
     public i9 w0() {
-        switch (this.f13554a) {
+        switch (this.f13556a) {
             case 12:
-                o3 o3Var = ((x0) this.f13555b).S;
+                o3 o3Var = ((x0) this.f13557b).S;
                 if (o3Var == null) {
                     return null;
                 }
-                return o3Var.f18741a.getTextSelectionHelper();
+                return o3Var.f18744a.getTextSelectionHelper();
             default:
-                k4 k4Var = ((m4) this.f13555b).G;
+                k4 k4Var = ((m4) this.f13557b).G;
                 if (k4Var != null) {
-                    return ((p3) k4Var).f18775a.getTextSelectionHelper();
+                    return ((p3) k4Var).f18778a.getTextSelectionHelper();
                 }
                 return null;
         }
@@ -1131,45 +1131,45 @@ public class d0 implements OnCompleteListener, ib.b, j6.n, h1, i6.a, k0, com.goo
 
     @Override
     public void z(q3 q3Var, View view) {
-        b2 b2Var = (b2) this.f13555b;
-        l60 H = l60.H(b2Var, view);
+        b2 b2Var = (b2) this.f13557b;
+        k60 H = k60.H(b2Var, view);
         H.Q = true;
-        b2Var.f18473x0 = h4.c(H, b2Var, b2Var.getParentActivity(), b2Var.getResourceProvider(), q3Var, false);
+        b2Var.f18476x0 = h4.c(H, b2Var, b2Var.getParentActivity(), b2Var.getResourceProvider(), q3Var, false);
     }
 
     public d0(j6.r rVar, String[] strArr) {
-        this.f13554a = 7;
-        this.f13555b = strArr;
+        this.f13556a = 7;
+        this.f13557b = strArr;
     }
 
     public d0(Object obj, int i7) {
-        this.f13554a = i7;
-        this.f13555b = obj;
+        this.f13556a = i7;
+        this.f13557b = obj;
     }
 
     public d0(int i7) {
-        this.f13554a = i7;
+        this.f13556a = i7;
         switch (i7) {
             case 17:
-                this.f13555b = new AtomicInteger(0);
+                this.f13557b = new AtomicInteger(0);
                 return;
             case 24:
-                this.f13555b = new LongSparseArray();
+                this.f13557b = new LongSparseArray();
                 return;
             default:
-                this.f13555b = new cb.c(ec.a.h, 21);
+                this.f13557b = new cb.c(ec.a.h, 21);
                 return;
         }
     }
 
     public d0(String str, int i7) {
-        this.f13554a = 22;
-        this.f13555b = new j0(str, i7);
+        this.f13556a = 22;
+        this.f13557b = new j0(str, i7);
     }
 
     public d0(String str, String str2) {
-        this.f13554a = 23;
-        this.f13555b = new n0(str, str2);
+        this.f13556a = 23;
+        this.f13557b = new n0(str, str2);
     }
 
     @Override

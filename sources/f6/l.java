@@ -16,10 +16,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class l extends r6.a {
-    public static final android.support.v4.media.session.a0 f11285e;
-    public final List f11286a;
-    public final Bundle f11287b;
-    public int f11288c;
+    public static final android.support.v4.media.session.a0 f11290e;
+    public final List f11291a;
+    public final Bundle f11292b;
+    public int f11293c;
     public static final String[] d = {"none", "String", "int", "double", "ISO-8601 date String", "Time in milliseconds as long"};
     public static final Parcelable.Creator<l> CREATOR = new v(11);
 
@@ -53,19 +53,19 @@ public final class l extends r6.a {
         a0Var.z(1, "com.google.android.gms.cast.metadata.BOOK_TITLE", "bookTitle");
         a0Var.z(2, "com.google.android.gms.cast.metadata.CHAPTER_NUMBER", "chapterNumber");
         a0Var.z(1, "com.google.android.gms.cast.metadata.CHAPTER_TITLE", "chapterTitle");
-        f11285e = a0Var;
+        f11290e = a0Var;
     }
 
     public l(ArrayList arrayList, Bundle bundle, int i7) {
-        this.f11286a = arrayList;
-        this.f11287b = bundle;
-        this.f11288c = i7;
+        this.f11291a = arrayList;
+        this.f11292b = bundle;
+        this.f11293c = i7;
     }
 
     public static void c(int i7, String str) {
         int i10;
         if (!TextUtils.isEmpty(str)) {
-            Integer num = (Integer) ((HashMap) f11285e.d).get(str);
+            Integer num = (Integer) ((HashMap) f11290e.d).get(str);
             if (num != null) {
                 i10 = num.intValue();
             } else {
@@ -103,7 +103,7 @@ public final class l extends r6.a {
 
     public final void b(String str, String str2) {
         c(1, str);
-        this.f11287b.putString(str, str2);
+        this.f11292b.putString(str, str2);
     }
 
     public final JSONObject d() {
@@ -111,10 +111,10 @@ public final class l extends r6.a {
         int i7;
         JSONObject jSONObject = new JSONObject();
         try {
-            jSONObject.put("metadataType", this.f11288c);
+            jSONObject.put("metadataType", this.f11293c);
         } catch (JSONException unused) {
         }
-        JSONArray b10 = k6.a.b(this.f11286a);
+        JSONArray b10 = k6.a.b(this.f11291a);
         if (b10.length() != 0) {
             try {
                 jSONObject.put("images", b10);
@@ -122,7 +122,7 @@ public final class l extends r6.a {
             }
         }
         ArrayList arrayList = new ArrayList();
-        int i10 = this.f11288c;
+        int i10 = this.f11293c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -151,7 +151,7 @@ public final class l extends r6.a {
             int size = arrayList.size();
             int i11 = 0;
             while (true) {
-                bundle = this.f11287b;
+                bundle = this.f11292b;
                 if (i11 >= size) {
                     break;
                 }
@@ -159,7 +159,7 @@ public final class l extends r6.a {
                 i11++;
                 String str = (String) obj;
                 if (str != null && bundle.containsKey(str)) {
-                    android.support.v4.media.session.a0 a0Var = f11285e;
+                    android.support.v4.media.session.a0 a0Var = f11290e;
                     String str2 = (String) ((HashMap) a0Var.f1763b).get(str);
                     if (str2 != null) {
                         Integer num = (Integer) ((HashMap) a0Var.d).get(str);
@@ -209,14 +209,14 @@ public final class l extends r6.a {
     public final void e(JSONObject jSONObject) {
         HashSet hashSet;
         int i7;
-        Bundle bundle = this.f11287b;
+        Bundle bundle = this.f11292b;
         bundle.clear();
-        List list = this.f11286a;
+        List list = this.f11291a;
         list.clear();
         int i10 = 0;
-        this.f11288c = 0;
+        this.f11293c = 0;
         try {
-            this.f11288c = jSONObject.getInt("metadataType");
+            this.f11293c = jSONObject.getInt("metadataType");
         } catch (JSONException unused) {
         }
         JSONArray optJSONArray = jSONObject.optJSONArray("images");
@@ -224,7 +224,7 @@ public final class l extends r6.a {
             k6.a.c(list, optJSONArray);
         }
         ArrayList arrayList = new ArrayList();
-        int i11 = this.f11288c;
+        int i11 = this.f11293c;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 != 2) {
@@ -255,7 +255,7 @@ public final class l extends r6.a {
             while (keys.hasNext()) {
                 String next = keys.next();
                 if (next != null && !"metadataType".equals(next)) {
-                    android.support.v4.media.session.a0 a0Var = f11285e;
+                    android.support.v4.media.session.a0 a0Var = f11290e;
                     String str = (String) ((HashMap) a0Var.f1764c).get(next);
                     if (str != null) {
                         if (hashSet2.contains(str)) {
@@ -337,7 +337,7 @@ public final class l extends r6.a {
         if (this != obj) {
             if (obj instanceof l) {
                 l lVar = (l) obj;
-                if (f(this.f11287b, lVar.f11287b) && this.f11286a.equals(lVar.f11286a)) {
+                if (f(this.f11292b, lVar.f11292b) && this.f11291a.equals(lVar.f11291a)) {
                     return true;
                 }
                 return false;
@@ -350,7 +350,7 @@ public final class l extends r6.a {
     public final int hashCode() {
         int i7;
         int i10 = 17;
-        Bundle bundle = this.f11287b;
+        Bundle bundle = this.f11292b;
         if (bundle != null) {
             for (String str : bundle.keySet()) {
                 Object obj = bundle.get(str);
@@ -363,15 +363,15 @@ public final class l extends r6.a {
                 i10 = i11 + i7;
             }
         }
-        return this.f11286a.hashCode() + (i10 * 31);
+        return this.f11291a.hashCode() + (i10 * 31);
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = xb.r(parcel, 20293);
-        xb.p(parcel, 2, this.f11286a);
-        xb.b(parcel, 3, this.f11287b);
-        int i10 = this.f11288c;
+        xb.p(parcel, 2, this.f11291a);
+        xb.b(parcel, 3, this.f11292b);
+        int i10 = this.f11293c;
         xb.q(parcel, 4, 4);
         parcel.writeInt(i10);
         xb.s(parcel, r10);

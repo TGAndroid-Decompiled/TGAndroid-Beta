@@ -1,7 +1,7 @@
 package org.telegram.ui.ActionBar;
 
 import android.content.Context;
-public final class n1 extends m5 {
+public final class n1 extends n5 {
     public final int d;
 
     public n1(Context context, int i7) {
@@ -60,19 +60,19 @@ public final class n1 extends m5 {
         switch (this.d) {
             case 0:
                 super.setTextColor(i7);
-                setBackground(l6.J0(org.telegram.messenger.g0.L(20.0f), i7));
+                setBackground(m6.J0(org.telegram.messenger.g0.L(20.0f), i7));
                 return;
             case 1:
                 super.setTextColor(i7);
-                setBackground(l6.J0(org.telegram.messenger.g0.L(20.0f), i7));
+                setBackground(m6.J0(org.telegram.messenger.g0.L(20.0f), i7));
                 return;
             case 2:
                 super.setTextColor(i7);
-                setBackground(l6.J0(org.telegram.messenger.g0.L(20.0f), i7));
+                setBackground(m6.J0(org.telegram.messenger.g0.L(20.0f), i7));
                 return;
             default:
                 super.setTextColor(i7);
-                setBackgroundDrawable(l6.J0(org.telegram.messenger.g0.L(20.0f), i7));
+                setBackgroundDrawable(m6.J0(org.telegram.messenger.g0.L(20.0f), i7));
                 return;
         }
     }

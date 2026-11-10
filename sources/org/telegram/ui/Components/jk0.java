@@ -1,95 +1,156 @@
 package org.telegram.ui.Components;
 
+import android.animation.ValueAnimator;
+import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.CornerPathEffect;
+import android.graphics.BitmapShader;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.text.StaticLayout;
-public final class jk0 extends Drawable {
-    public int f35083a = 255;
-    public final s70 f35084b;
-    public final int[] f35085c;
-    public final org.telegram.ui.Cells.q1 d;
-    public final int[] f35086e;
-    public final Bitmap f35087f;
-    public final RectF f35088g;
-    public final Paint h;
-    public final Paint f35089i;
-    public final StaticLayout f35090j;
+import android.os.Bundle;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import java.util.WeakHashMap;
+public final class jk0 extends Dialog {
+    public static final int O = 0;
+    public ViewGroup D;
+    public Drawable E;
+    public fh.g F;
+    public float G;
+    public float H;
+    public float I;
+    public float J;
+    public float K;
+    public boolean L;
+    public boolean M;
+    public ValueAnimator N;
+    public final Context f34951a;
+    public final org.telegram.ui.ActionBar.h6 f34952b;
+    public Bitmap f34953c;
+    public BitmapShader d;
+    public Paint f34954e;
+    public Matrix f34955f;
+    public final ri.b h;
+    public final dh.c f34956n;
+    public float f34957r;
+    public final bi.e5 f34958s;
+    public final st0 f34959w;
+    public k60 f34960x;
+    public FrameLayout f34961y;
 
-    public jk0(s70 s70Var, int[] iArr, org.telegram.ui.Cells.q1 q1Var, int[] iArr2, Bitmap bitmap, RectF rectF, Paint paint, Paint paint2, StaticLayout staticLayout) {
-        this.f35084b = s70Var;
-        this.f35085c = iArr;
-        this.d = q1Var;
-        this.f35086e = iArr2;
-        this.f35087f = bitmap;
-        this.f35088g = rectF;
-        this.h = paint;
-        this.f35089i = paint2;
-        this.f35090j = staticLayout;
+    public jk0(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, 2131755352);
+        this.J = 1.0f;
+        this.K = 1.0f;
+        this.M = false;
+        this.f34951a = context;
+        this.f34952b = h6Var;
+        bi.e5 e5Var = new bi.e5(23, context, this);
+        this.f34958s = e5Var;
+        e5Var.setOnClickListener(new la0(this, 6));
+        st0 st0Var = new st0(context, null);
+        this.f34959w = st0Var;
+        st0Var.setClipToPadding(false);
+        e5Var.addView(st0Var, c8.ha.e(-1, -1, 119));
+        ri.b bVar = new ri.b();
+        this.h = bVar;
+        dh.c cVar = new dh.c(bVar, bVar, bVar);
+        this.f34956n = cVar;
+        cVar.h = new jh.k(e5Var);
+        cVar.f8711i = e5Var;
+        qt qtVar = new qt(this, 3);
+        WeakHashMap weakHashMap = r0.i0.f54202a;
+        r0.a0.i(e5Var, qtVar);
+    }
+
+    public static void d(org.telegram.messenger.v10 v10Var) {
+        org.telegram.messenger.g0.l2(new r2(v10Var, 10), 15.0f);
+    }
+
+    public final void c(Runnable runnable, boolean z9) {
+        float f10;
+        ValueAnimator valueAnimator = this.N;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        float f11 = this.f34957r;
+        if (z9) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
+        this.N = ofFloat;
+        ofFloat.addUpdateListener(new c60(this, 10));
+        this.N.addListener(new ai.g0(this, z9, runnable, 8));
+        this.N.setInterpolator(wq.h);
+        this.N.setDuration(350L);
+        this.N.start();
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        if (this.f35083a <= 0) {
+    public final void dismiss() {
+        if (this.M) {
             return;
         }
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(getBounds());
-        float f10 = rectF.left;
-        CornerPathEffect cornerPathEffect = s70.f37945w;
-        rectF.left = f10 - (org.telegram.messenger.g0.L(5.0f) / 2.0f);
-        canvas.save();
-        canvas.saveLayerAlpha(rectF, this.f35083a, 31);
-        int[] iArr = this.f35085c;
-        canvas.translate(iArr[0], iArr[1]);
-        s70 s70Var = this.f35084b;
-        org.telegram.ui.Cells.q1 q1Var = this.d;
-        if (q1Var != null && q1Var.L0()) {
-            org.telegram.ui.ActionBar.t4 t4Var = q1Var.K6;
-            if (t4Var != null && t4Var.f28517c != null) {
-                canvas.save();
-                q1Var.setBackgroundTopY(true);
-                canvas.translate(0.0f, -q1Var.K6.f28530r);
-                canvas.drawPaint(q1Var.K6.f28517c);
-                canvas.restore();
-            } else {
-                canvas.translate(-iArr[0], -iArr[1]);
-                int[] iArr2 = this.f35086e;
-                canvas.translate(iArr2[0], q1Var.getPaddingTop() + iArr2[1]);
-                q1Var.M0(canvas, true, false);
-                canvas.translate(-iArr2[0], (-iArr2[1]) - q1Var.getPaddingTop());
-                canvas.translate(iArr[0], iArr[1]);
-            }
-            Bitmap bitmap = this.f35087f;
-            if (bitmap != null) {
-                canvas.save();
-                RectF rectF2 = this.f35088g;
-                canvas.drawBitmap(bitmap, rectF2.left, rectF2.top, this.h);
-                canvas.restore();
-            }
-        } else {
-            canvas.drawPath(s70Var, this.f35089i);
+        this.M = true;
+        c(new hk0(this, 1), false);
+        this.f34958s.invalidate();
+    }
+
+    public final void e(k60 k60Var) {
+        int i7 = org.telegram.ui.ActionBar.m6.E8;
+        org.telegram.ui.ActionBar.h6 h6Var = this.f34952b;
+        k60Var.T(org.telegram.ui.ActionBar.m6.r1(0.06f, org.telegram.ui.ActionBar.m6.w0(i7, h6Var)));
+        k60Var.Q(this.f34956n, c8.g0.k(h6Var), false);
+        this.f34960x = k60Var;
+        this.D = k60Var.A;
+        FrameLayout frameLayout = new FrameLayout(this.f34951a);
+        this.f34961y = frameLayout;
+        frameLayout.addView(this.D, c8.ha.c(-2.0f, -2));
+        this.f34959w.addView(this.f34961y, c8.ha.c(-2.0f, -2));
+    }
+
+    public final void f(org.telegram.ui.Cells.q1 r28, android.text.style.CharacterStyle r29, java.lang.CharSequence r30, boolean r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.jk0.f(org.telegram.ui.Cells.q1, android.text.style.CharacterStyle, java.lang.CharSequence, boolean):void");
+    }
+
+    @Override
+    public final boolean isShowing() {
+        return !this.M;
+    }
+
+    @Override
+    public final void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        Window window = getWindow();
+        window.setWindowAnimations(2131755178);
+        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
+        bi.e5 e5Var = this.f34958s;
+        setContentView(e5Var, layoutParams);
+        WindowManager.LayoutParams attributes = window.getAttributes();
+        attributes.width = -1;
+        attributes.height = -1;
+        attributes.gravity = 119;
+        attributes.dimAmount = 0.0f;
+        attributes.softInputMode = 16;
+        attributes.flags = (attributes.flags & (-3)) | (-1945959040);
+        org.telegram.messenger.g0.m(attributes);
+        window.setAttributes(attributes);
+        e5Var.setSystemUiVisibility(256);
+        org.telegram.messenger.g0.o3(e5Var, !org.telegram.ui.ActionBar.m6.I.q());
+    }
+
+    @Override
+    public final void show() {
+        if (!org.telegram.messenger.g0.M1(getContext())) {
+            return;
         }
-        canvas.clipPath(s70Var);
-        this.f35090j.draw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-        this.f35083a = i7;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+        super.show();
+        d(new d(this, 19));
+        c(null, true);
     }
 }

@@ -1,17 +1,28 @@
 package org.telegram.ui.Components;
 
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class te extends org.telegram.ui.ActionBar.g1 {
-    public final ChatActivityEnterView f38390o;
+import android.content.Context;
+public final class te extends org.telegram.ui.eg0 {
+    public final Object A0;
+    public final int f38294z0;
 
-    public te(ChatActivityEnterView chatActivityEnterView, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f38390o = chatActivityEnterView;
+    public te(Object obj, Context context, org.telegram.ui.ActionBar.h6 h6Var, int i7) {
+        super(context, h6Var);
+        this.f38294z0 = i7;
+        this.A0 = obj;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        this.f38390o.J0.invalidate();
+    public final void l(long j3) {
+        switch (this.f38294z0) {
+            case 0:
+                ((ChatActivityEnterView) this.A0).setEffectId(j3);
+                return;
+            default:
+                ci ciVar = (ci) this.A0;
+                kh khVar = ciVar.F2;
+                ciVar.K2 = j3;
+                khVar.setEffect(j3);
+                return;
+        }
     }
 }

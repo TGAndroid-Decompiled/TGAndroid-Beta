@@ -1,22 +1,286 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.ViewGroup;
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
-public final class mf extends hy {
-    public final ChatActivityEnterView V2;
+import org.telegram.ui.PhotoViewer;
+public final class mf implements org.telegram.ui.xq0 {
+    public boolean f35949a;
+    public final Object f35950b;
+    public final Object f35951c;
+    public final org.telegram.messenger.gf d;
+    public final of f35952e;
 
-    public mf(ChatActivityEnterView chatActivityEnterView, org.telegram.ui.ActionBar.f2 f2Var, boolean z9, Context context, TLRPC.ChatFull chatFull, ViewGroup viewGroup, boolean z10, org.telegram.ui.ActionBar.g6 g6Var, boolean z11, boolean z12) {
-        super(f2Var, z9, true, true, context, true, chatFull, viewGroup, z10, g6Var, z11, z12);
-        this.V2 = chatActivityEnterView;
+    public mf(of ofVar, Object obj, Object obj2, org.telegram.messenger.gf gfVar) {
+        this.f35952e = ofVar;
+        this.f35950b = obj;
+        this.f35951c = obj2;
+        this.d = gfVar;
     }
 
     @Override
-    public final void setTranslationY(float f10) {
-        super.setTranslationY(f10);
-        ChatActivityEnterView chatActivityEnterView = this.V2;
-        if (chatActivityEnterView.V0 != null && chatActivityEnterView.f31106o3 == 0) {
-            chatActivityEnterView.Z2.w(f10);
+    public final boolean A() {
+        return this.f35949a;
+    }
+
+    @Override
+    public final CharSequence C(int i7) {
+        return null;
+    }
+
+    @Override
+    public final org.telegram.ui.zq0 E(org.telegram.messenger.ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
+        return null;
+    }
+
+    @Override
+    public final void F(boolean z9) {
+        this.f35949a = z9;
+    }
+
+    @Override
+    public final int H() {
+        return 0;
+    }
+
+    @Override
+    public final boolean I() {
+        return true;
+    }
+
+    @Override
+    public final boolean K() {
+        return false;
+    }
+
+    @Override
+    public final boolean L() {
+        return false;
+    }
+
+    @Override
+    public final boolean N() {
+        return true;
+    }
+
+    @Override
+    public final boolean O() {
+        return false;
+    }
+
+    @Override
+    public final boolean P() {
+        return false;
+    }
+
+    @Override
+    public final boolean Q() {
+        return false;
+    }
+
+    @Override
+    public final int R(Object obj) {
+        return 0;
+    }
+
+    @Override
+    public final int S(int i7) {
+        return 0;
+    }
+
+    @Override
+    public final boolean T() {
+        return false;
+    }
+
+    @Override
+    public final boolean U() {
+        return true;
+    }
+
+    @Override
+    public final org.telegram.messenger.ij V() {
+        return null;
+    }
+
+    @Override
+    public final boolean Z() {
+        return false;
+    }
+
+    @Override
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final String b0() {
+        return "";
+    }
+
+    @Override
+    public final ArrayList c() {
+        return null;
+    }
+
+    @Override
+    public final CharSequence c0(int i7) {
+        return null;
+    }
+
+    @Override
+    public final void d() {
+        fi.g gVar;
+        tc a12 = PhotoViewer.p1().a1();
+        if (a12 != null && (gVar = a12.f12367f) != null) {
+            et etVar = gVar.f35433a;
+            etVar.requestFocus();
+            org.telegram.messenger.g0.K3(etVar);
         }
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final boolean h() {
+        return false;
+    }
+
+    @Override
+    public final org.telegram.messenger.jc j(int i7) {
+        return null;
+    }
+
+    @Override
+    public final int k(int i7, org.telegram.messenger.j20 j20Var) {
+        return 0;
+    }
+
+    @Override
+    public final boolean l() {
+        return true;
+    }
+
+    @Override
+    public final void o(int i7, org.telegram.messenger.j20 j20Var, boolean z9, int i10, int i11, boolean z10) {
+        this.f35952e.B(null, this.f35950b, null, this.f35951c, z9, i10, i11, this.d, this.f35949a);
+    }
+
+    @Override
+    public final boolean p() {
+        return false;
+    }
+
+    @Override
+    public final boolean q() {
+        return false;
+    }
+
+    @Override
+    public final boolean r() {
+        return false;
+    }
+
+    @Override
+    public final boolean t() {
+        return true;
+    }
+
+    @Override
+    public final boolean u() {
+        return false;
+    }
+
+    @Override
+    public final HashMap v() {
+        return null;
+    }
+
+    @Override
+    public final boolean w() {
+        return false;
+    }
+
+    @Override
+    public final boolean x(int i7) {
+        return false;
+    }
+
+    @Override
+    public final int y() {
+        return 0;
+    }
+
+    @Override
+    public final boolean z() {
+        return true;
+    }
+
+    @Override
+    public final void B(int i7) {
+    }
+
+    @Override
+    public final void M(org.telegram.messenger.j20 j20Var) {
+    }
+
+    @Override
+    public final void X(int i7) {
+    }
+
+    @Override
+    public final void Y(int i7) {
+    }
+
+    @Override
+    public final void a0(int i7) {
+    }
+
+    @Override
+    public final void e(CharSequence charSequence) {
+    }
+
+    @Override
+    public final void D() {
+    }
+
+    @Override
+    public final void G() {
+    }
+
+    @Override
+    public final void J() {
+    }
+
+    @Override
+    public final void W() {
+    }
+
+    @Override
+    public final void i() {
+    }
+
+    @Override
+    public final void m() {
+    }
+
+    @Override
+    public final void n() {
+    }
+
+    @Override
+    public final void s() {
+    }
+
+    @Override
+    public final void f(String str, String str2, boolean z9) {
     }
 }

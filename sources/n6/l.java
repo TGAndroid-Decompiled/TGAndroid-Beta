@@ -8,7 +8,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import q6.n0;
 public abstract class l extends q implements n0 {
-    public final int f20513b;
+    public final int f20518b;
 
     public l(byte[] bArr) {
         super("com.google.android.gms.common.internal.ICertData", 9);
@@ -19,7 +19,7 @@ public abstract class l extends q implements n0 {
             z9 = false;
         }
         q6.m.b(z9);
-        this.f20513b = Arrays.hashCode(bArr);
+        this.f20518b = Arrays.hashCode(bArr);
     }
 
     public static byte[] n1(String str) {
@@ -34,7 +34,7 @@ public abstract class l extends q implements n0 {
         if (obj instanceof n0) {
             try {
                 n0 n0Var = (n0) obj;
-                if (((l) n0Var).f20513b == this.f20513b) {
+                if (((l) n0Var).f20518b == this.f20518b) {
                     return Arrays.equals(m1(), (byte[]) a7.b.n1(new a7.b(((l) n0Var).m1())));
                 }
             } catch (RemoteException e10) {
@@ -46,7 +46,7 @@ public abstract class l extends q implements n0 {
     }
 
     public final int hashCode() {
-        return this.f20513b;
+        return this.f20518b;
     }
 
     @Override
@@ -56,7 +56,7 @@ public abstract class l extends q implements n0 {
                 return false;
             }
             parcel2.writeNoException();
-            parcel2.writeInt(this.f20513b);
+            parcel2.writeInt(this.f20518b);
             return true;
         }
         a7.b bVar = new a7.b(m1());

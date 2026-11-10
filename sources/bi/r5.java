@@ -9,12 +9,12 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.wq;
 public final class r5 extends Drawable {
     public final Paint f4616a;
     public final LinearGradient[] f4617b;
     public final Matrix f4618c;
-    public final org.telegram.ui.Components.w5 d;
+    public final org.telegram.ui.Components.v5 d;
     public final Path f4619e;
     public final ud f4620f;
     public int f4621g;
@@ -26,7 +26,7 @@ public final class r5 extends Drawable {
         this.f4616a = new Paint(1);
         this.f4617b = new LinearGradient[2];
         this.f4618c = new Matrix();
-        this.d = new org.telegram.ui.Components.w5(1.0f, new a3.f(this, 24), 0L, 420L, xq.h);
+        this.d = new org.telegram.ui.Components.v5(1.0f, new a3.f(this, 24), 0L, 420L, wq.h);
         this.f4619e = new Path();
         this.f4620f = new ud(1, 45);
         Paint.Style style = Paint.Style.STROKE;
@@ -87,7 +87,7 @@ public final class r5 extends Drawable {
                 udVar.g(rectF2);
                 udVar.h = 30.0f;
                 udVar.d();
-                udVar.a(canvas, org.telegram.ui.ActionBar.l6.r1(0.6f, -1));
+                udVar.a(canvas, org.telegram.ui.ActionBar.m6.r1(0.6f, -1));
                 invalidateSelf();
                 canvas.restore();
                 org.telegram.messenger.g0.P(canvas, rectF2, L);

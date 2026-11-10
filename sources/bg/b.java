@@ -14,9 +14,9 @@ public abstract class b {
             return;
         }
         try {
-            InputStream open = org.telegram.messenger.t0.f25566b.getAssets().open("currencies.json");
-            String str = h2.m0.f14112a;
-            JSONObject jSONObject = new JSONObject(new String(i9.f.b(open), g9.j.f13590a));
+            InputStream open = org.telegram.messenger.t0.f25570b.getAssets().open("currencies.json");
+            String str = h2.m0.f14114a;
+            JSONObject jSONObject = new JSONObject(new String(i9.f.b(open), g9.j.f13592a));
             Iterator<String> keys = jSONObject.keys();
             while (keys.hasNext()) {
                 String next = keys.next();
@@ -42,7 +42,7 @@ public abstract class b {
         String f10 = Utilities.f(serializedData2.toByteArray());
         serializedData2.cleanup();
         a8.b("BillingUtilities.getPurpose: searching purpose under ".concat(f10));
-        String string = org.telegram.messenger.t0.f25566b.getSharedPreferences("purchases", 0).getString(f10, null);
+        String string = org.telegram.messenger.t0.f25570b.getSharedPreferences("purchases", 0).getString(f10, null);
         if (string != null) {
             a8.b("BillingUtilities.getPurpose: got {" + string + "} under " + f10);
             SerializedData serializedData3 = new SerializedData(Utilities.v(string));

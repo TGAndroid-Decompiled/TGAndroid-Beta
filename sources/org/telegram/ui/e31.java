@@ -1,45 +1,57 @@
 package org.telegram.ui;
 
 import android.view.View;
-import android.view.ViewGroup;
-import java.io.Serializable;
-public final class e31 implements org.telegram.messenger.a20, org.telegram.messenger.b20, r0.m {
-    public final n31 f45172a;
+import android.widget.Toast;
+public final class e31 implements View.OnClickListener {
+    public final int f45115a;
+    public final o31 f45116b;
 
-    public e31(n31 n31Var) {
-        this.f45172a = n31Var;
+    public e31(o31 o31Var, int i7) {
+        this.f45115a = i7;
+        this.f45116b = o31Var;
     }
 
     @Override
-    public r0.k1 S0(View view, r0.k1 k1Var) {
-        i0.b I0 = org.telegram.messenger.g0.I0(k1Var, false);
-        int i7 = I0.d;
-        n31 n31Var = this.f45172a;
-        n31Var.f48079c0 = i7;
-        int i10 = I0.f15121b;
-        if (n31Var.P != null) {
-            int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i10;
-            ViewGroup.LayoutParams layoutParams = n31Var.P.getLayoutParams();
-            if (layoutParams.height != currentActionBarHeight) {
-                layoutParams.height = currentActionBarHeight;
-                n31Var.P.setLayoutParams(layoutParams);
-            }
+    public final void onClick(View view) {
+        int i7 = this.f45115a;
+        o31 o31Var = this.f45116b;
+        switch (i7) {
+            case 0:
+                vf.c.t(o31Var.getParentActivity(), o31Var.getMessagesController().L5);
+                o31Var.getMessagesController().k4(0L, "PREMIUM_GRACE");
+                return;
+            case 1:
+                o31Var.getClass();
+                o31Var.presentFragment(new g(3));
+                return;
+            case 2:
+                o31Var.getMessagesController().k4(0L, "VALIDATE_PHONE_NUMBER");
+                return;
+            case 3:
+                o31Var.getClass();
+                o31Var.presentFragment(new cb1(8, null));
+                return;
+            case 4:
+                o31Var.getMessagesController().k4(0L, "VALIDATE_PASSWORD");
+                return;
+            case 5:
+                o31.a0(o31Var);
+                return;
+            default:
+                int i10 = o31Var.Q + 1;
+                o31Var.Q = i10;
+                if (i10 < 2) {
+                    boolean z9 = org.telegram.messenger.r2.f25216a;
+                    try {
+                        Toast.makeText(o31Var.getParentActivity(), org.telegram.messenger.id.M0(2131751625, null), 0).show();
+                        return;
+                    } catch (Exception e10) {
+                        org.telegram.messenger.a8.g(e10, true);
+                        return;
+                    }
+                }
+                o31Var.presentFragment(new org.telegram.ui.Components.o41());
+                return;
         }
-        oi.a.e(n31Var.f48078c, i10, i7, org.telegram.messenger.g0.L(12.0f), n31Var.f48080d0);
-        return r0.k1.f54213b;
-    }
-
-    @Override
-    public Boolean a(org.telegram.ui.Components.y31 y31Var, View view, Integer num, Float f10, Float f11) {
-        return Boolean.valueOf(n31.Z(this.f45172a, y31Var, view));
-    }
-
-    @Override
-    public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        View view = (View) obj2;
-        Integer num = (Integer) number;
-        Float f10 = (Float) serializable;
-        Float f11 = (Float) serializable2;
-        n31.h0(this.f45172a, (org.telegram.ui.Components.y31) obj);
     }
 }

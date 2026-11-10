@@ -57,7 +57,7 @@ public abstract class f extends l {
         Object next;
         kotlin.jvm.internal.j.e(iterable, "<this>");
         if (i7 >= 0) {
-            n nVar = n.f14474a;
+            n nVar = n.f14476a;
             if (i7 == 0) {
                 return nVar;
             }
@@ -145,7 +145,7 @@ public abstract class f extends l {
         Object next;
         kotlin.jvm.internal.j.e(iterable, "<this>");
         boolean z9 = iterable instanceof Collection;
-        n nVar = n.f14474a;
+        n nVar = n.f14476a;
         if (z9) {
             Collection collection = (Collection) iterable;
             int size = collection.size();
@@ -230,6 +230,6 @@ public abstract class f extends l {
                 return singleton2;
             }
         }
-        return p.f14476a;
+        return p.f14478a;
     }
 }

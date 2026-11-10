@@ -1,14 +1,25 @@
 package x2;
-public final class q0 extends f3.v {
-    public final w0 f58456b;
+public final class q0 {
+    public static final q0 f58458a;
+    public static final q0 f58459b;
+    public static final q0 f58460c;
+    public static final q0[] d;
 
-    public q0(w0 w0Var, f3.c0 c0Var) {
-        super(c0Var);
-        this.f58456b = w0Var;
+    static {
+        ?? r02 = new Enum("PASS_THROUGH", 0);
+        f58458a = r02;
+        ?? r12 = new Enum("DISCARD_AFTER_NEXT_SAMPLE_METADATA", 1);
+        f58459b = r12;
+        ?? r32 = new Enum("DISCARDING", 2);
+        f58460c = r32;
+        d = new q0[]{r02, r12, r32};
     }
 
-    @Override
-    public final long h() {
-        return this.f58456b.T;
+    public static q0 valueOf(String str) {
+        return (q0) Enum.valueOf(q0.class, str);
+    }
+
+    public static q0[] values() {
+        return (q0[]) d.clone();
     }
 }

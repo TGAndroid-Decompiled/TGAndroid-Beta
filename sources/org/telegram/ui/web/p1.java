@@ -17,38 +17,38 @@ import org.telegram.messenger.c20;
 import org.telegram.messenger.zz;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.uq0;
+import org.telegram.ui.vq0;
 public final class p1 implements c20 {
-    public final int f51253a;
-    public final zz f51254b;
-    public final boolean[] f51255c;
+    public final int f51207a;
+    public final zz f51208b;
+    public final boolean[] f51209c;
     public final a00 d;
-    public final w1 f51256e;
-    public final c20 f51257f;
+    public final w1 f51210e;
+    public final c20 f51211f;
 
     public p1(zz zzVar, boolean[] zArr, a00 a00Var, w1 w1Var, c20 c20Var, int i7) {
-        this.f51253a = i7;
-        this.f51254b = zzVar;
-        this.f51255c = zArr;
+        this.f51207a = i7;
+        this.f51208b = zzVar;
+        this.f51209c = zArr;
         this.d = a00Var;
-        this.f51256e = w1Var;
-        this.f51257f = c20Var;
+        this.f51210e = w1Var;
+        this.f51211f = c20Var;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f51253a) {
+        switch (this.f51207a) {
             case 0:
-                zz zzVar = this.f51254b;
-                boolean[] zArr = this.f51255c;
+                zz zzVar = this.f51208b;
+                boolean[] zArr = this.f51209c;
                 a00 a00Var = this.d;
-                w1 w1Var = this.f51256e;
-                c20 c20Var = this.f51257f;
+                w1 w1Var = this.f51210e;
+                c20 c20Var = this.f51211f;
                 InputStream inputStream = (InputStream) obj;
                 a00.a(zzVar);
                 if (!zArr[0]) {
                     zz d = a00.d(a00Var, "readHTML");
-                    String str = w1Var.f51333a;
+                    String str = w1Var.f51287a;
                     final p1 p1Var = new p1(d, zArr, a00Var, w1Var, c20Var, 1);
                     if (inputStream == null) {
                         p1Var.a(null);
@@ -56,7 +56,7 @@ public final class p1 implements c20 {
                     }
                     Context context = LaunchActivity.G1;
                     if (context == null) {
-                        context = org.telegram.messenger.t0.f25566b;
+                        context = org.telegram.messenger.t0.f25570b;
                     }
                     Activity W = org.telegram.messenger.g0.W(context);
                     if (W == null) {
@@ -68,8 +68,8 @@ public final class p1 implements c20 {
                         p1Var.a(null);
                         return;
                     }
-                    final uq0 uq0Var = new uq0(context, 14);
-                    ((ViewGroup) rootView).addView(uq0Var);
+                    final vq0 vq0Var = new vq0(context, 14);
+                    ((ViewGroup) rootView).addView(vq0Var);
                     final WebView webView = new WebView(context);
                     WebSettings settings = webView.getSettings();
                     settings.setAllowContentAccess(false);
@@ -83,12 +83,12 @@ public final class p1 implements c20 {
                     settings.setAllowUniversalAccessFromFileURLs(false);
                     webView.setWebViewClient(new r1(w1Var, inputStream));
                     webView.setWebChromeClient(new WebChromeClient());
-                    uq0Var.addView(webView, ha.c(-1.0f, -1));
+                    vq0Var.addView(webView, ha.c(-1.0f, -1));
                     final boolean[] zArr2 = {false};
                     webView.addJavascriptInterface(new Object() {
                         @JavascriptInterface
                         public void done(String str2) {
-                            org.telegram.messenger.g0.h3(new x(zArr2, webView, uq0Var, str2, p1Var, 6));
+                            org.telegram.messenger.g0.h3(new x(zArr2, webView, vq0Var, str2, p1Var, 6));
                         }
                     }, "Instant");
                     webView.loadUrl(str);
@@ -96,26 +96,26 @@ public final class p1 implements c20 {
                 }
                 return;
             default:
-                zz zzVar2 = this.f51254b;
-                boolean[] zArr3 = this.f51255c;
+                zz zzVar2 = this.f51208b;
+                boolean[] zArr3 = this.f51209c;
                 a00 a00Var2 = this.d;
-                w1 w1Var2 = this.f51256e;
-                c20 c20Var2 = this.f51257f;
+                w1 w1Var2 = this.f51210e;
+                c20 c20Var2 = this.f51211f;
                 JSONObject jSONObject = (JSONObject) obj;
                 a00.a(zzVar2);
                 if (!zArr3[0]) {
                     zz d2 = a00.d(a00Var2, "parseJSON");
                     try {
-                        w1Var2.f51335c = w1Var2.i(w1Var2.f51333a, jSONObject);
+                        w1Var2.f51289c = w1Var2.i(w1Var2.f51287a, jSONObject);
                     } catch (Exception e10) {
                         a00.c(a00Var2, "error: " + e10);
                         a8.g(e10, true);
                     }
                     a00.a(d2);
                     c20Var2.a(w1Var2);
-                    TLRPC.TL_webPage tL_webPage = w1Var2.f51335c;
+                    TLRPC.TL_webPage tL_webPage = w1Var2.f51289c;
                     if (tL_webPage != null) {
-                        w1.f51331e.put(tL_webPage, w1Var2);
+                        w1.f51285e.put(tL_webPage, w1Var2);
                     }
                     a00.b(a00Var2);
                     return;

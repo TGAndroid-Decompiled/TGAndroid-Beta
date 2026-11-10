@@ -6,15 +6,15 @@ import android.text.Editable;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.ui;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.tt0;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.st0;
 public final class w3 extends org.telegram.ui.Cells.h3 {
     public final fh.g E;
     public final int F;
     public final b4 G;
 
-    public w3(b4 b4Var, Context context, tt0 tt0Var, String str, int i7, g6 g6Var, fh.g gVar, int i10) {
-        super(context, tt0Var, str, true, i7, g6Var);
+    public w3(b4 b4Var, Context context, st0 st0Var, String str, int i7, h6 h6Var, fh.g gVar, int i10) {
+        super(context, st0Var, str, true, i7, h6Var);
         this.G = b4Var;
         this.E = gVar;
         this.F = i10;
@@ -24,8 +24,8 @@ public final class w3 extends org.telegram.ui.Cells.h3 {
     public final void b(Editable editable) {
         TLRPC.TL_textWithEntities tL_textWithEntities;
         b4 b4Var = this.G;
-        ij ijVar = b4Var.f60233e2;
-        TLRPC.MessageAction messageAction = b4Var.d2;
+        ij ijVar = b4Var.f60236h2;
+        TLRPC.MessageAction messageAction = b4Var.f60235g2;
         if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
             tL_textWithEntities = new TLRPC.TL_textWithEntities();
             ((TLRPC.TL_messageActionStarGift) messageAction).message = tL_textWithEntities;
@@ -42,12 +42,12 @@ public final class w3 extends org.telegram.ui.Cells.h3 {
         } else {
             return;
         }
-        CharSequence[] charSequenceArr = {b4Var.f60240l2.getText()};
+        CharSequence[] charSequenceArr = {b4Var.f60243o2.getText()};
         tL_textWithEntities.entities = ui.b0(this.F).W(charSequenceArr, true, true);
         tL_textWithEntities.text = charSequenceArr[0].toString();
         ijVar.L5();
-        b4Var.f60232c2.g0(ijVar, true);
-        b4Var.f60241m2.O(true);
+        b4Var.f60234f2.g0(ijVar, true);
+        b4Var.f60244p2.O(true);
         b4Var.g1(true);
     }
 

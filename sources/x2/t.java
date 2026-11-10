@@ -1,104 +1,28 @@
 package x2;
 
-import a8.ia;
 import android.net.Uri;
+import java.util.Collections;
 import java.util.Map;
-public final class t implements j2.h {
-    public final j2.h f58470a;
-    public final int f58471b;
-    public final t0 f58472c;
-    public final byte[] d;
-    public int f58473e;
+import java.util.concurrent.atomic.AtomicLong;
+public final class t {
+    public static final AtomicLong f58482g = new AtomicLong();
+    public final j2.m f58483a;
+    public final Uri f58484b;
+    public final Map f58485c;
+    public final long d;
+    public final long f58486e;
+    public final long f58487f;
 
-    public t(j2.h hVar, int i7, t0 t0Var) {
-        boolean z9;
-        if (i7 > 0) {
-            z9 = true;
-        } else {
-            z9 = false;
-        }
-        ia.f(z9);
-        this.f58470a = hVar;
-        this.f58471b = i7;
-        this.f58472c = t0Var;
-        this.d = new byte[1];
-        this.f58473e = i7;
+    public t(j2.m mVar, long j3) {
+        this(mVar, mVar.f16449a, Collections.EMPTY_MAP, j3, 0L, 0L);
     }
 
-    @Override
-    public final void addTransferListener(j2.d0 d0Var) {
-        d0Var.getClass();
-        this.f58470a.addTransferListener(d0Var);
-    }
-
-    @Override
-    public final void close() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final Map getResponseHeaders() {
-        return this.f58470a.getResponseHeaders();
-    }
-
-    @Override
-    public final Uri getUri() {
-        return this.f58470a.getUri();
-    }
-
-    @Override
-    public final long open(j2.m mVar) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final int read(byte[] bArr, int i7, int i10) {
-        long max;
-        int i11 = this.f58473e;
-        j2.h hVar = this.f58470a;
-        if (i11 == 0) {
-            byte[] bArr2 = this.d;
-            int i12 = 0;
-            if (hVar.read(bArr2, 0, 1) != -1) {
-                int i13 = (bArr2[0] & 255) << 4;
-                if (i13 != 0) {
-                    byte[] bArr3 = new byte[i13];
-                    int i14 = i13;
-                    while (i14 > 0) {
-                        int read = hVar.read(bArr3, i12, i14);
-                        if (read != -1) {
-                            i12 += read;
-                            i14 -= read;
-                        }
-                    }
-                    while (i13 > 0 && bArr3[i13 - 1] == 0) {
-                        i13--;
-                    }
-                    if (i13 > 0) {
-                        h2.x xVar = new h2.x(bArr3, i13);
-                        t0 t0Var = this.f58472c;
-                        if (!t0Var.f58483x) {
-                            max = t0Var.f58480r;
-                        } else {
-                            max = Math.max(t0Var.f58484y.s(true), t0Var.f58480r);
-                        }
-                        long j3 = max;
-                        int a10 = xVar.a();
-                        f3.j0 j0Var = t0Var.f58482w;
-                        j0Var.getClass();
-                        j0Var.b(a10, xVar);
-                        j0Var.c(j3, 1, a10, 0, null);
-                        t0Var.f58483x = true;
-                    }
-                }
-                this.f58473e = this.f58471b;
-            }
-            return -1;
-        }
-        int read2 = hVar.read(bArr, i7, Math.min(this.f58473e, i10));
-        if (read2 != -1) {
-            this.f58473e -= read2;
-        }
-        return read2;
+    public t(j2.m mVar, Uri uri, Map map, long j3, long j10, long j11) {
+        this.f58483a = mVar;
+        this.f58484b = uri;
+        this.f58485c = map;
+        this.d = j3;
+        this.f58486e = j10;
+        this.f58487f = j11;
     }
 }

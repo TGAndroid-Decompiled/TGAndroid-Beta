@@ -9,14 +9,14 @@ import android.text.TextUtils;
 import android.util.TypedValue;
 import j$.util.Objects;
 import java.util.ArrayList;
-public class AnimatedPhoneNumberEditText extends w20 {
+public class AnimatedPhoneNumberEditText extends v20 {
     public final ArrayList J1;
     public final ArrayList K1;
     public final TextPaint L1;
     public ObjectAnimator M1;
     public float N1;
     public String O1;
-    public final c6 P1;
+    public final b6 P1;
     public final ArrayList Q1;
     public final ArrayList R1;
     public Boolean S1;
@@ -29,7 +29,7 @@ public class AnimatedPhoneNumberEditText extends w20 {
         this.K1 = new ArrayList();
         this.L1 = new TextPaint(1);
         this.O1 = "";
-        this.P1 = new c6(this, 0);
+        this.P1 = new b6(this, 0);
         this.Q1 = new ArrayList();
         this.R1 = new ArrayList();
     }
@@ -117,13 +117,13 @@ public class AnimatedPhoneNumberEditText extends w20 {
                 r1.h hVar = new r1.h(f12);
                 hVar.b(500.0f);
                 hVar.a(1.0f);
-                hVar.f54288i = f12;
-                gVar.f54280m = hVar;
-                gVar.f54271b = 100.0f * f10;
-                gVar.f54272c = true;
+                hVar.f54287i = f12;
+                gVar.f54279m = hVar;
+                gVar.f54270b = 100.0f * f10;
+                gVar.f54271c = true;
                 arrayList2.add(gVar);
                 arrayList.add(Float.valueOf(f10));
-                postDelayed(new xf(gVar, 7), i10 * 5);
+                postDelayed(new wf(gVar, 7), i10 * 5);
             }
             this.U1 = u7Var;
             postDelayed(u7Var, (length * 5) + 150);
@@ -179,7 +179,7 @@ public class AnimatedPhoneNumberEditText extends w20 {
                 ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", -1.0f, 0.0f);
                 this.M1 = ofFloat;
                 ofFloat.setDuration(150L);
-                this.M1.addListener(new z5(this, 1));
+                this.M1.addListener(new y5(this, 1));
                 this.M1.start();
             }
             this.O1 = str;

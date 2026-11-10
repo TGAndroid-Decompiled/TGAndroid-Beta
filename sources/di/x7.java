@@ -24,12 +24,12 @@ public abstract class x7 extends c5.k {
     public int O0;
     public final ArrayList P0;
     public float Q0;
-    public long f9935w0;
-    public ArrayList f9936x0;
-    public int f9937y0;
-    public final u7 f9938z0;
+    public long f9940w0;
+    public ArrayList f9941x0;
+    public int f9942y0;
+    public final u7 f9943z0;
 
-    public x7(int i7, Context context, q9 q9Var, org.telegram.ui.ActionBar.g6 g6Var) {
+    public x7(int i7, Context context, q9 q9Var, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
         boolean z9;
         this.A0 = new ArrayList();
@@ -38,11 +38,11 @@ public abstract class x7 extends c5.k {
         this.M0 = new ra(wVar, 21);
         this.O0 = -1;
         this.P0 = new ArrayList();
-        this.f9937y0 = i7;
+        this.f9942y0 = i7;
         this.H0 = new g4(context);
         this.N0 = q9Var;
-        u7 u7Var = new u7(wVar, context, q9Var, g6Var);
-        this.f9938z0 = u7Var;
+        u7 u7Var = new u7(wVar, context, q9Var, h6Var);
+        this.f9943z0 = u7Var;
         setAdapter(u7Var);
         r4 r4Var = new r4(wVar, 2);
         if (this.m0 != null) {
@@ -52,8 +52,8 @@ public abstract class x7 extends c5.k {
         }
         this.m0 = r4Var;
         setChildrenDrawingOrderEnabled(true);
-        this.f5344o0 = 1;
-        this.f5343n0 = 2;
+        this.f5349o0 = 1;
+        this.f5348n0 = 2;
         if (z9) {
             s();
         }
@@ -83,7 +83,7 @@ public abstract class x7 extends c5.k {
         while (true) {
             if (i7 < getChildCount()) {
                 w7 w7Var = (w7) getChildAt(i7);
-                if (w7Var.d && !w7Var.f9901a.f9245x1.d()) {
+                if (w7Var.d && !w7Var.f9906a.f9250x1.d()) {
                     break;
                 }
                 i7++;
@@ -103,15 +103,15 @@ public abstract class x7 extends c5.k {
                     if (!w7Var.d) {
                         this.O0 = -1;
                         w7Var.a(true);
-                        if (this.f9936x0 != null) {
-                            j4 j4Var = w7Var.f9901a;
-                            long j3 = w7Var.f9902b;
-                            ArrayList arrayList = w7Var.f9903c;
-                            j4Var.f9196k1 = j3;
-                            j4Var.f9189i1 = arrayList;
+                        if (this.f9941x0 != null) {
+                            j4 j4Var = w7Var.f9906a;
+                            long j3 = w7Var.f9907b;
+                            ArrayList arrayList = w7Var.f9908c;
+                            j4Var.f9201k1 = j3;
+                            j4Var.f9194i1 = arrayList;
                             j4Var.m0(0);
                         } else {
-                            w7Var.f9901a.S0(0, w7Var.f9902b);
+                            w7Var.f9906a.S0(0, w7Var.f9907b);
                         }
                     }
                 }
@@ -128,13 +128,13 @@ public abstract class x7 extends c5.k {
         boolean z10 = false;
         if (z9) {
             int currentItem = getCurrentItem();
-            ArrayList arrayList = this.f9936x0;
+            ArrayList arrayList = this.f9941x0;
             if (arrayList == null) {
                 arrayList = this.A0;
             }
             if (currentItem < arrayList.size() - 1) {
                 int currentItem2 = getCurrentItem() + 1;
-                if (q9Var.f9594a && Build.VERSION.SDK_INT < 33) {
+                if (q9Var.f9599a && Build.VERSION.SDK_INT < 33) {
                     z10 = true;
                 }
                 x(currentItem2, !z10);
@@ -145,7 +145,7 @@ public abstract class x7 extends c5.k {
             return false;
         }
         int currentItem3 = getCurrentItem() - 1;
-        if (q9Var.f9594a && Build.VERSION.SDK_INT < 33) {
+        if (q9Var.f9599a && Build.VERSION.SDK_INT < 33) {
             z10 = true;
         }
         x(currentItem3, !z10);
@@ -166,8 +166,8 @@ public abstract class x7 extends c5.k {
     }
 
     public long getCurrentDialogId() {
-        if (this.f9936x0 != null) {
-            return this.f9935w0;
+        if (this.f9941x0 != null) {
+            return this.f9940w0;
         }
         if (getCurrentItem() < this.A0.size()) {
             return ((Long) this.A0.get(getCurrentItem())).longValue();

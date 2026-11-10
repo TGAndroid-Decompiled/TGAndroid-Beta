@@ -1,5 +1,5 @@
 package org.telegram.messenger;
 public final class d6 {
-    public byte f21997a;
-    public short f21998b;
+    public byte f22001a;
+    public short f22002b;
 }

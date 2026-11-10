@@ -1,13 +1,13 @@
 package li;
 public final class j3 implements Runnable {
-    public final int f18659a;
-    public final Object f18660b;
-    public final Object f18661c;
+    public final int f18662a;
+    public final Object f18663b;
+    public final Object f18664c;
 
     public j3(int i7, Object obj, Object obj2) {
-        this.f18659a = i7;
-        this.f18660b = obj;
-        this.f18661c = obj2;
+        this.f18662a = i7;
+        this.f18663b = obj;
+        this.f18664c = obj2;
     }
 
     @Override

@@ -1,13 +1,13 @@
 package di;
 public final class z0 implements Runnable {
-    public final int f9983a;
-    public final Object f9984b;
-    public final Object f9985c;
+    public final int f9988a;
+    public final Object f9989b;
+    public final Object f9990c;
 
     public z0(int i7, Object obj, Object obj2) {
-        this.f9983a = i7;
-        this.f9984b = obj;
-        this.f9985c = obj2;
+        this.f9988a = i7;
+        this.f9989b = obj;
+        this.f9990c = obj2;
     }
 
     @Override

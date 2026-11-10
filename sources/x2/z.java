@@ -1,50 +1,54 @@
 package x2;
+public final class z extends e2.l1 {
+    public final e2.l0 f58545e;
 
-import j$.util.Objects;
-public final class z extends s {
-    public static final Object h = new Object();
-    public final Object f58544f;
-    public final Object f58545g;
-
-    public z(e2.l1 l1Var, Object obj, Object obj2) {
-        super(l1Var);
-        this.f58544f = obj;
-        this.f58545g = obj2;
+    public z(e2.l0 l0Var) {
+        this.f58545e = l0Var;
     }
 
     @Override
     public final int b(Object obj) {
-        Object obj2;
-        if (h.equals(obj) && (obj2 = this.f58545g) != null) {
-            obj = obj2;
+        if (obj == y.h) {
+            return 0;
         }
-        return this.f58465e.b(obj);
+        return -1;
     }
 
     @Override
     public final e2.i1 f(int i7, e2.i1 i1Var, boolean z9) {
-        this.f58465e.f(i7, i1Var, z9);
-        if (Objects.equals(i1Var.f10281b, this.f58545g) && z9) {
-            i1Var.f10281b = h;
+        Integer num;
+        Object obj = null;
+        if (z9) {
+            num = 0;
+        } else {
+            num = null;
         }
+        if (z9) {
+            obj = y.h;
+        }
+        i1Var.h(num, obj, 0, -9223372036854775807L, 0L, e2.c.f10195c, true);
         return i1Var;
     }
 
     @Override
+    public final int h() {
+        return 1;
+    }
+
+    @Override
     public final Object l(int i7) {
-        Object l10 = this.f58465e.l(i7);
-        if (Objects.equals(l10, this.f58545g)) {
-            return h;
-        }
-        return l10;
+        return y.h;
     }
 
     @Override
     public final e2.k1 m(int i7, e2.k1 k1Var, long j3) {
-        this.f58465e.m(i7, k1Var, j3);
-        if (Objects.equals(k1Var.f10324a, this.f58544f)) {
-            k1Var.f10324a = e2.k1.f10315q;
-        }
+        k1Var.b(e2.k1.f10320q, this.f58545e, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, false, true, null, 0L, -9223372036854775807L, 0, 0, 0L);
+        k1Var.f10337k = true;
         return k1Var;
+    }
+
+    @Override
+    public final int o() {
+        return 1;
     }
 }

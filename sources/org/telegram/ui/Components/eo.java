@@ -1,51 +1,82 @@
 package org.telegram.ui.Components;
-public final class eo implements Runnable {
-    public final int f33458a;
-    public final vo f33459b;
+
+import android.content.Context;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.ui.WallpapersListActivity;
+public final class eo implements View.OnClickListener {
+    public final int f33304a;
+    public final vo f33305b;
 
     public eo(vo voVar, int i7) {
-        this.f33458a = i7;
-        this.f33459b = voVar;
+        this.f33304a = i7;
+        this.f33305b = voVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f33458a) {
+    public final void onClick(View view) {
+        int i7 = this.f33304a;
+        vo voVar = this.f33305b;
+        switch (i7) {
             case 0:
-                this.f33459b.n1.f();
+                ci ciVar = voVar.R1;
+                if (ciVar.f32660v2 == ciVar.d2) {
+                    voVar.T1.setText(org.telegram.messenger.id.M0(2131752138, null));
+                    ci ciVar2 = voVar.R1;
+                    if (ciVar2.f32622l2 == null) {
+                        Context context = ciVar2.getContext();
+                        org.telegram.ui.ActionBar.h6 h6Var = ciVar2.I0;
+                        ?? uhVar = new uh(context, h6Var, ciVar2);
+                        uhVar.f36937r = org.telegram.messenger.g0.L(80.0f);
+                        uhVar.f36940x = 3;
+                        bi.q1 q1Var = new bi.q1(uhVar, context, h6Var, 14);
+                        uhVar.f36936n = q1Var;
+                        ka kaVar = new ka(uhVar, context);
+                        uhVar.f36939w = kaVar;
+                        q1Var.setAdapter(kaVar);
+                        q1Var.setClipToPadding(false);
+                        q1Var.setItemAnimator(null);
+                        q1Var.setLayoutAnimation(null);
+                        q1Var.setVerticalScrollBarEnabled(false);
+                        org.telegram.ui.ActionBar.t6.l(q1Var, 21, org.telegram.ui.ActionBar.m6.A5, h6Var);
+                        uhVar.addView(q1Var, c8.ha.c(-1.0f, -1));
+                        q1Var.setOnScrollListener(new ai.b(uhVar, 29));
+                        ei.h hVar = new ei.h(uhVar, uhVar.f36937r, 2);
+                        uhVar.f36938s = hVar;
+                        hVar.O = new ai.l(uhVar, 6);
+                        q1Var.setLayoutManager(hVar);
+                        ciVar2.f32622l2 = uhVar;
+                        uhVar.setDelegate(new ra(ciVar2, 1));
+                    }
+                    ciVar2.F1(ciVar2.f32622l2);
+                    pi piVar = voVar.R1.f32622l2;
+                    boolean z9 = voVar.G1;
+                    ka kaVar2 = piVar.f36939w;
+                    ((ArrayList) kaVar2.f35262e).clear();
+                    WallpapersListActivity.E0((ArrayList) kaVar2.f35262e, z9);
+                    kaVar2.f();
+                    return;
+                }
+                voVar.T1.setText(org.telegram.messenger.id.M0(2131745537, null));
+                ci ciVar3 = voVar.R1;
+                ciVar3.F1(ciVar3.d2);
                 return;
             case 1:
-                this.f33459b.K0(true);
+                if (voVar.P0()) {
+                    voVar.T0(true);
+                    voVar.Z0(true);
+                    return;
+                }
+                voVar.dismiss();
                 return;
             case 2:
-                vo voVar = this.f33459b;
-                org.telegram.ui.cn cnVar = voVar.f39150r1;
-                org.telegram.ui.ActionBar.f2 g02 = org.telegram.ui.d51.g0(cnVar.getMessagesController().M0(Long.valueOf(-cnVar.a())), true);
-                ?? obj = new Object();
-                obj.f27408a = true;
-                g02.setResourceProvider(cnVar.getResourceProvider());
-                obj.f27410c = new org.telegram.messenger.rc(28);
-                obj.d = new eo(voVar, 3);
-                obj.f27409b = new eo(voVar, 4);
-                obj.f27411e = true;
-                voVar.N1 = g02;
-                cnVar.showAsSheet(g02, obj);
-                return;
-            case 3:
-                this.f33459b.O0();
-                return;
-            case 4:
-                this.f33459b.N1 = null;
-                return;
-            case 5:
-                this.f33459b.O0();
-                return;
-            case 6:
-                this.f33459b.N1 = null;
+                if (voVar.M1 == null) {
+                    voVar.V0(!voVar.G1);
+                    return;
+                }
                 return;
             default:
-                vo voVar2 = this.f33459b;
-                voVar2.K1.c(voVar2.f39155w1);
+                voVar.K0(false);
                 return;
         }
     }

@@ -52,16 +52,16 @@ public final class rp extends EditTextBoldCursor {
         rp rpVar;
         int i7;
         int i10;
-        ux uxVar;
+        tx txVar;
         View view;
         v4.b0 b0Var;
-        qj0 qj0Var;
+        pj0 pj0Var;
         ?? r16;
         rp rpVar2;
         int i11;
         boolean z9;
         boolean z10;
-        ix ixVar;
+        hx hxVar;
         float f10;
         int i12 = this.G1;
         int i13 = this.H1;
@@ -91,58 +91,58 @@ public final class rp extends EditTextBoldCursor {
                 }
                 return false;
             default:
-                ux uxVar2 = (ux) frameLayout;
-                hy hyVar = uxVar2.G;
-                rp rpVar3 = uxVar2.d;
+                tx txVar2 = (tx) frameLayout;
+                gy gyVar = txVar2.G;
+                rp rpVar3 = txVar2.d;
                 if (!rpVar3.isEnabled()) {
                     return super.onTouchEvent(motionEvent);
                 }
                 if (motionEvent.getAction() == 0) {
                     int i15 = 2;
-                    if (!hyVar.f34467t1.z()) {
-                        qj0 qj0Var2 = hyVar.D0;
-                        qj0 qj0Var3 = hyVar.P;
-                        mx mxVar = hyVar.f34436j0;
-                        qj0 qj0Var4 = hyVar.f34430h0;
-                        AnimatorSet animatorSet = hyVar.M0;
+                    if (!gyVar.f34068t1.z()) {
+                        pj0 pj0Var2 = gyVar.D0;
+                        pj0 pj0Var3 = gyVar.P;
+                        lx lxVar = gyVar.f34037j0;
+                        pj0 pj0Var4 = gyVar.f34031h0;
+                        AnimatorSet animatorSet = gyVar.M0;
                         if (animatorSet != null) {
                             animatorSet.cancel();
-                            hyVar.M0 = null;
+                            gyVar.M0 = null;
                         }
-                        hyVar.I0 = false;
-                        hyVar.f34455q0 = false;
-                        hyVar.f34414c0 = false;
+                        gyVar.I0 = false;
+                        gyVar.f34056q0 = false;
+                        gyVar.f34015c0 = false;
                         int i16 = 0;
                         while (i16 < 3) {
                             if (i16 == 0) {
-                                uxVar = hyVar.V;
-                                view = hyVar.I;
+                                txVar = gyVar.V;
+                                view = gyVar.I;
                                 r16 = z11;
-                                b0Var = hyVar.Q;
-                                qj0Var = qj0Var3;
+                                b0Var = gyVar.Q;
+                                pj0Var = pj0Var3;
                             } else {
                                 boolean z12 = z11;
                                 if (i16 == i14) {
-                                    uxVar = hyVar.f34449o0;
-                                    view = hyVar.f34452p0;
-                                    b0Var = hyVar.f34433i0;
-                                    qj0Var = qj0Var4;
+                                    txVar = gyVar.f34050o0;
+                                    view = gyVar.f34053p0;
+                                    b0Var = gyVar.f34034i0;
+                                    pj0Var = pj0Var4;
                                     r16 = z12;
                                 } else {
-                                    uxVar = hyVar.G0;
-                                    view = hyVar.B0;
-                                    b0Var = hyVar.E0;
-                                    qj0Var = qj0Var2;
+                                    txVar = gyVar.G0;
+                                    view = gyVar.B0;
+                                    b0Var = gyVar.E0;
+                                    pj0Var = pj0Var2;
                                     r16 = z12;
                                 }
                             }
-                            if (uxVar == null) {
+                            if (txVar == null) {
                                 rpVar2 = rpVar3;
                                 i11 = i15;
                                 z9 = r16;
-                            } else if (uxVar2 == uxVar && (ixVar = hyVar.f34467t1) != null && ixVar.A()) {
+                            } else if (txVar2 == txVar && (hxVar = gyVar.f34068t1) != null && hxVar.A()) {
                                 AnimatorSet animatorSet2 = new AnimatorSet();
-                                hyVar.M0 = animatorSet2;
+                                gyVar.M0 = animatorSet2;
                                 Property property = View.TRANSLATION_Y;
                                 if (view != null && i16 != i15) {
                                     int i17 = i15;
@@ -152,10 +152,10 @@ public final class rp extends EditTextBoldCursor {
                                     ObjectAnimator ofFloat = ObjectAnimator.ofFloat(view, property, fArr);
                                     float[] fArr2 = new float[1];
                                     fArr2[r16] = -org.telegram.messenger.g0.L(36.0f);
-                                    ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(qj0Var, property, fArr2);
+                                    ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(pj0Var, property, fArr2);
                                     float[] fArr3 = new float[1];
                                     fArr3[r16] = org.telegram.messenger.g0.L(0.0f);
-                                    ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(uxVar, property, fArr3);
+                                    ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(txVar, property, fArr3);
                                     Animator[] animatorArr = new Animator[3];
                                     animatorArr[r16] = ofFloat;
                                     animatorArr[1] = ofFloat2;
@@ -170,50 +170,50 @@ public final class rp extends EditTextBoldCursor {
                                     }
                                     float[] fArr4 = new float[1];
                                     fArr4[r16] = f10;
-                                    ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(qj0Var, property, fArr4);
+                                    ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(pj0Var, property, fArr4);
                                     float[] fArr5 = new float[1];
                                     fArr5[r16] = org.telegram.messenger.g0.L(0.0f);
-                                    ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(uxVar, property, fArr5);
+                                    ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(txVar, property, fArr5);
                                     Animator[] animatorArr2 = new Animator[2];
                                     animatorArr2[r16] = ofFloat4;
                                     animatorArr2[1] = ofFloat5;
                                     animatorSet2.playTogether(animatorArr2);
                                 }
-                                hyVar.M0.setDuration(220L);
-                                hyVar.M0.setInterpolator(xq.f40458f);
-                                hyVar.M0.addListener(new ah.l(27, hyVar, qj0Var));
-                                hyVar.M0.start();
+                                gyVar.M0.setDuration(220L);
+                                gyVar.M0.setInterpolator(wq.f40046f);
+                                gyVar.M0.addListener(new ah.l(27, gyVar, pj0Var));
+                                gyVar.M0.start();
                                 z9 = r16;
                                 i11 = 2;
                             } else {
                                 rpVar2 = rpVar3;
-                                uxVar.setTranslationY(org.telegram.messenger.g0.L(0.0f));
+                                txVar.setTranslationY(org.telegram.messenger.g0.L(0.0f));
                                 i11 = 2;
                                 if (view != null && i16 != 2) {
                                     view.setTranslationY(-org.telegram.messenger.g0.L(40.0f));
                                 }
-                                if (qj0Var == qj0Var2) {
+                                if (pj0Var == pj0Var2) {
                                     int i18 = r16;
-                                    qj0Var.setPadding(i18, i18, i18, hyVar.f34457q2);
+                                    pj0Var.setPadding(i18, i18, i18, gyVar.f34058q2);
                                 } else {
                                     int i19 = r16;
-                                    if (qj0Var == qj0Var3) {
-                                        qj0Var.setPadding(org.telegram.messenger.g0.L(5.0f), i19, org.telegram.messenger.g0.L(5.0f), hyVar.f34457q2);
-                                    } else if (qj0Var == qj0Var4) {
-                                        qj0Var.setPadding(i19, hyVar.f34411b1, i19, hyVar.f34457q2);
+                                    if (pj0Var == pj0Var3) {
+                                        pj0Var.setPadding(org.telegram.messenger.g0.L(5.0f), i19, org.telegram.messenger.g0.L(5.0f), gyVar.f34058q2);
+                                    } else if (pj0Var == pj0Var4) {
+                                        pj0Var.setPadding(i19, gyVar.f34012b1, i19, gyVar.f34058q2);
                                     }
                                 }
-                                if (qj0Var == qj0Var4) {
-                                    if (hyVar.f34447n0.f36167y.size() > 0) {
+                                if (pj0Var == pj0Var4) {
+                                    if (gyVar.f34048n0.f35760y.size() > 0) {
                                         z10 = true;
                                     } else {
                                         z10 = false;
                                     }
-                                    mxVar.K = z10;
+                                    lxVar.K = z10;
                                     if (z10) {
-                                        mxVar.G("", true);
-                                        if (qj0Var4.getAdapter() != mxVar) {
-                                            qj0Var4.setAdapter(mxVar);
+                                        lxVar.G("", true);
+                                        if (pj0Var4.getAdapter() != lxVar) {
+                                            pj0Var4.setAdapter(lxVar);
                                         }
                                     }
                                 }
@@ -228,18 +228,18 @@ public final class rp extends EditTextBoldCursor {
                         }
                         rpVar = rpVar3;
                         i7 = i15;
-                        hyVar.M(z11);
+                        gyVar.M(z11);
                     } else {
                         rpVar = rpVar3;
                         i7 = 2;
                     }
-                    ix ixVar2 = hyVar.f34467t1;
+                    hx hxVar2 = gyVar.f34068t1;
                     if (i13 == 1) {
                         i10 = i7;
                     } else {
                         i10 = 1;
                     }
-                    ixVar2.i(i10);
+                    hxVar2.i(i10);
                     rpVar.requestFocus();
                     org.telegram.messenger.g0.K3(rpVar);
                 }

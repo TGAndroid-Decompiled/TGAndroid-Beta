@@ -10,9 +10,9 @@ import org.telegram.messenger.hc;
 import org.telegram.messenger.kf;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RadialProgress2;
-import org.telegram.ui.Components.ra0;
-import org.telegram.ui.t71;
-public final class i5 extends org.telegram.ui.Components.l9 implements org.telegram.messenger.x5 {
+import org.telegram.ui.Components.qa0;
+import org.telegram.ui.u71;
+public final class i5 extends org.telegram.ui.Components.k9 implements org.telegram.messenger.x5 {
     public RectF G;
     public RadialProgress2 H;
     public TLRPC.TL_wallPaper I;
@@ -24,16 +24,16 @@ public final class i5 extends org.telegram.ui.Components.l9 implements org.teleg
     public int O;
     public int P;
     public Paint Q;
-    public ra0 R;
+    public qa0 R;
     public int S;
-    public t71 T;
+    public u71 T;
     public int U;
 
     @Override
     public final void C(boolean z9) {
-        TLRPC.TL_wallPaper tL_wallPaper = this.T.f50119a.d.X0;
+        TLRPC.TL_wallPaper tL_wallPaper = this.T.f50433a.d.X0;
         TLRPC.TL_wallPaper tL_wallPaper2 = this.I;
-        if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f27110id == tL_wallPaper.f27110id)) {
+        if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f27114id == tL_wallPaper.f27114id)) {
             if (z9) {
                 this.H.setIcon(4, false, true);
             } else {
@@ -45,9 +45,9 @@ public final class i5 extends org.telegram.ui.Components.l9 implements org.teleg
     @Override
     public final void M(String str) {
         this.H.p(true, 1.0f);
-        TLRPC.TL_wallPaper tL_wallPaper = this.T.f50119a.d.X0;
+        TLRPC.TL_wallPaper tL_wallPaper = this.T.f50433a.d.X0;
         TLRPC.TL_wallPaper tL_wallPaper2 = this.I;
-        if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f27110id == tL_wallPaper.f27110id)) {
+        if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f27114id == tL_wallPaper.f27114id)) {
             v(tL_wallPaper2, false, true);
         }
     }
@@ -61,9 +61,9 @@ public final class i5 extends org.telegram.ui.Components.l9 implements org.teleg
     public final void i(long j3, long j10) {
         RadialProgress2 radialProgress2 = this.H;
         radialProgress2.p(true, Math.min(1.0f, ((float) j3) / ((float) j10)));
-        TLRPC.TL_wallPaper tL_wallPaper = this.T.f50119a.d.X0;
+        TLRPC.TL_wallPaper tL_wallPaper = this.T.f50433a.d.X0;
         TLRPC.TL_wallPaper tL_wallPaper2 = this.I;
-        if (((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f27110id == tL_wallPaper.f27110id)) && radialProgress2.f31487i.f37253q != 10) {
+        if (((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f27114id == tL_wallPaper.f27114id)) && radialProgress2.f31498i.f36852q != 10) {
             v(tL_wallPaper2, false, true);
         }
     }
@@ -148,9 +148,9 @@ public final class i5 extends org.telegram.ui.Components.l9 implements org.teleg
     }
 
     public final void w(boolean z9) {
-        TLRPC.TL_wallPaper tL_wallPaper = this.T.f50119a.d.X0;
+        TLRPC.TL_wallPaper tL_wallPaper = this.T.f50433a.d.X0;
         TLRPC.TL_wallPaper tL_wallPaper2 = this.I;
-        if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f27110id == tL_wallPaper.f27110id)) {
+        if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f27114id == tL_wallPaper.f27114id)) {
             v(tL_wallPaper, false, z9);
         } else {
             this.H.setIcon(4, false, z9);

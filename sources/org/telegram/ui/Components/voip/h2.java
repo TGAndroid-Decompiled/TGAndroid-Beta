@@ -8,35 +8,35 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import bi.de;
-import org.telegram.ui.ActionBar.o5;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.ActionBar.p5;
+import org.telegram.ui.Components.wq;
 public final class h2 extends FrameLayout {
-    public TextView[] f39333a;
-    public TextView f39334b;
-    public FrameLayout f39335c;
+    public TextView[] f39253a;
+    public TextView f39254b;
+    public FrameLayout f39255c;
     public l2 d;
-    public CharSequence f39336e;
-    public boolean f39337f;
+    public CharSequence f39256e;
+    public boolean f39257f;
     public ValueAnimator h;
-    public boolean f39338n;
+    public boolean f39258n;
 
     public final void a(View view, View view2, Runnable runnable) {
         view.setVisibility(0);
         view2.setVisibility(0);
         view2.setTranslationY(org.telegram.messenger.g0.L(15.0f));
         view2.setAlpha(0.0f);
-        this.f39337f = true;
+        this.f39257f = true;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.h = ofFloat;
         ofFloat.addUpdateListener(new de(19, view2, view));
         this.h.addListener(new jg.j0((FrameLayout) this, view, view2, (Object) runnable, 4));
-        this.h.setDuration(250L).setInterpolator(xq.f40458f);
+        this.h.setDuration(250L).setInterpolator(wq.f40046f);
         this.h.start();
     }
 
     public final void b(String str, boolean z9, boolean z10) {
         View view = this.d;
-        View[] viewArr = this.f39333a;
+        View[] viewArr = this.f39253a;
         if (z9) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
             SpannableString spannableString = new SpannableString(".");
@@ -52,24 +52,24 @@ public final class h2 extends FrameLayout {
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            this.f39337f = false;
+            this.f39257f = false;
             viewArr[0].setText(str);
             viewArr[0].setVisibility(0);
             viewArr[1].setVisibility(8);
             view.setVisibility(8);
-        } else if (this.f39337f) {
-            this.f39336e = str;
-        } else if (this.f39338n) {
+        } else if (this.f39257f) {
+            this.f39256e = str;
+        } else if (this.f39258n) {
             viewArr[0].setText(str);
             a(view, viewArr[0], null);
         } else if (!viewArr[0].getText().equals(str)) {
             viewArr[1].setText(str);
-            a(viewArr[0], viewArr[1], new o5(this, 5));
+            a(viewArr[0], viewArr[1], new p5(this, 5));
         }
     }
 
     public final void c(boolean z9) {
-        FrameLayout frameLayout = this.f39335c;
+        FrameLayout frameLayout = this.f39255c;
         if (z9) {
             if (frameLayout.getVisibility() != 0) {
                 frameLayout.setVisibility(0);
@@ -77,16 +77,16 @@ public final class h2 extends FrameLayout {
                 frameLayout.setScaleY(0.6f);
                 frameLayout.setScaleX(0.6f);
                 frameLayout.animate().setListener(null).cancel();
-                org.telegram.messenger.camera.q.l(frameLayout.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f), xq.f40462k, 300L);
+                org.telegram.messenger.camera.q.l(frameLayout.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f), wq.f40050k, 300L);
             }
         } else if (frameLayout.getVisibility() == 8) {
         } else {
-            frameLayout.animate().alpha(0.0f).scaleX(0.6f).scaleY(0.6f).setInterpolator(xq.f40458f).setListener(new g2(this, 1)).setDuration(300L).start();
+            frameLayout.animate().alpha(0.0f).scaleX(0.6f).scaleY(0.6f).setInterpolator(wq.f40046f).setListener(new g2(this, 1)).setDuration(300L).start();
         }
     }
 
     public final void d(boolean z9, boolean z10) {
-        TextView textView = this.f39334b;
+        TextView textView = this.f39254b;
         int i7 = 0;
         if (!z10) {
             textView.animate().setListener(null).cancel();
@@ -108,11 +108,11 @@ public final class h2 extends FrameLayout {
 
     public final void e(boolean z9) {
         l2 l2Var = this.d;
-        View[] viewArr = this.f39333a;
+        View[] viewArr = this.f39253a;
         if (TextUtils.isEmpty(viewArr[0].getText())) {
             z9 = false;
         }
-        if (this.f39338n) {
+        if (this.f39258n) {
             return;
         }
         l2Var.a();
@@ -121,15 +121,15 @@ public final class h2 extends FrameLayout {
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            this.f39338n = true;
-            this.f39337f = false;
+            this.f39258n = true;
+            this.f39257f = false;
             viewArr[0].setVisibility(8);
             viewArr[1].setVisibility(8);
             l2Var.setVisibility(0);
-        } else if (this.f39337f) {
-            this.f39336e = "timer";
+        } else if (this.f39257f) {
+            this.f39256e = "timer";
         } else {
-            this.f39338n = true;
+            this.f39258n = true;
             a(viewArr[0], l2Var, null);
         }
     }

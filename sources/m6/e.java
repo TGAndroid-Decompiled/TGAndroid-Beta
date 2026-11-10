@@ -9,10 +9,10 @@ import q4.p;
 import q4.v;
 import q4.w;
 public final class e implements Parcelable.Creator {
-    public final int f19899a;
+    public final int f19904a;
 
     public e(int i7) {
-        this.f19899a = i7;
+        this.f19904a = i7;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class e implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i7) {
-        switch (this.f19899a) {
+        switch (this.f19904a) {
             case 0:
                 return new g[i7];
             case 1:

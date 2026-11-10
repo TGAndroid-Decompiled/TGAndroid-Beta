@@ -3,30 +3,30 @@ package hi;
 import android.animation.AnimatorSet;
 import bi.y4;
 import java.util.LinkedList;
-import org.telegram.ui.Components.di;
-import org.telegram.ui.Components.fc0;
-import org.telegram.ui.Components.gb;
-import org.telegram.ui.Components.ng;
-import org.telegram.ui.Components.qg;
-import org.telegram.ui.Components.ra0;
-import org.telegram.ui.Components.xf;
+import org.telegram.ui.Components.ci;
+import org.telegram.ui.Components.ec0;
+import org.telegram.ui.Components.fb;
+import org.telegram.ui.Components.mg;
+import org.telegram.ui.Components.pg;
+import org.telegram.ui.Components.qa0;
+import org.telegram.ui.Components.wf;
 public final class y3 implements r1.c {
-    public final int f15055a;
-    public final Object f15056b;
-    public final Object f15057c;
+    public final int f15057a;
+    public final Object f15058b;
+    public final Object f15059c;
 
     public y3(int i7, Object obj, Object obj2) {
-        this.f15055a = i7;
-        this.f15056b = obj;
-        this.f15057c = obj2;
+        this.f15057a = i7;
+        this.f15058b = obj;
+        this.f15059c = obj2;
     }
 
     @Override
     public final void a(r1.g gVar, boolean z9, float f10, float f11) {
-        switch (this.f15055a) {
+        switch (this.f15057a) {
             case 0:
-                b4 b4Var = (b4) this.f15056b;
-                Runnable runnable = (Runnable) this.f15057c;
+                b4 b4Var = (b4) this.f15058b;
+                Runnable runnable = (Runnable) this.f15059c;
                 if (gVar == b4Var.G) {
                     b4Var.G = null;
                     if (runnable != null) {
@@ -38,54 +38,54 @@ public final class y3 implements r1.c {
                     }
                     float f12 = b4Var.h;
                     if (f12 != -1.0f) {
-                        boolean z10 = b4Var.f14568s;
-                        b4Var.f14568s = true;
+                        boolean z10 = b4Var.f14570s;
+                        b4Var.f14570s = true;
                         b4Var.setOffsetY(f12);
                         b4Var.h = -1.0f;
-                        b4Var.f14568s = z10;
+                        b4Var.f14570s = z10;
                     }
-                    b4Var.f14566n = -2.1474836E9f;
+                    b4Var.f14568n = -2.1474836E9f;
                     return;
                 }
                 return;
             case 1:
-                xf xfVar = (xf) this.f15057c;
-                ((gb) this.f15056b).setInOutOffset(0.0f);
+                wf wfVar = (wf) this.f15059c;
+                ((fb) this.f15058b).setInOutOffset(0.0f);
                 if (!z9) {
-                    xfVar.run();
+                    wfVar.run();
                     return;
                 }
                 return;
             case 2:
-                ng ngVar = (ng) this.f15057c;
-                AnimatorSet animatorSet = ((di) this.f15056b).f28663z0;
+                mg mgVar = (mg) this.f15059c;
+                AnimatorSet animatorSet = ((ci) this.f15058b).f28714z0;
                 if (animatorSet != null && !animatorSet.isRunning()) {
-                    ngVar.run();
+                    mgVar.run();
                     return;
                 }
                 return;
             case 3:
-                di diVar = (di) ((y4) this.f15056b).d;
-                diVar.f33051t2.setTranslationY(0.0f);
-                diVar.f33051t2.m(diVar.f33003f4);
-                diVar.X0.g();
-                diVar.f28624b.invalidate();
-                ((qg) this.f15057c).run();
-                diVar.P1(0);
+                ci ciVar = (ci) ((y4) this.f15058b).d;
+                ciVar.f32664w2.setTranslationY(0.0f);
+                ciVar.f32664w2.m(ciVar.f32616i4);
+                ciVar.X0.g();
+                ciVar.f28672b.invalidate();
+                ((pg) this.f15059c).run();
+                ciVar.P1(0);
                 return;
             default:
-                fc0 fc0Var = (fc0) this.f15056b;
-                ra0 ra0Var = (ra0) this.f15057c;
-                LinkedList linkedList = fc0Var.U;
-                fc0Var.T = null;
-                ra0Var.D = null;
-                ra0Var.y();
+                ec0 ec0Var = (ec0) this.f15058b;
+                qa0 qa0Var = (qa0) this.f15059c;
+                LinkedList linkedList = ec0Var.U;
+                ec0Var.T = null;
+                qa0Var.D = null;
+                qa0Var.y();
                 if (!z9) {
-                    ra0Var.h = 1.0f;
-                    ra0Var.y();
+                    qa0Var.h = 1.0f;
+                    qa0Var.y();
                     if (!linkedList.isEmpty()) {
                         ((Runnable) linkedList.poll()).run();
-                        fc0Var.V.poll();
+                        ec0Var.V.poll();
                         return;
                     }
                     return;

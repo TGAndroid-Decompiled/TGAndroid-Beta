@@ -1,11 +1,11 @@
 package li;
 
 import android.view.View;
-import org.telegram.ui.Components.l60;
+import org.telegram.ui.Components.k60;
 public interface r3 {
     void G();
 
-    l60 J(View view);
+    k60 J(View view);
 
     void N();
 

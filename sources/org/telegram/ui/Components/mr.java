@@ -1,60 +1,71 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.text.SpannableStringBuilder;
-public final class mr {
-    public int f36134a;
-    public int f36135b;
-    public ny0 f36136c;
-    public int d;
-    public boolean f36137e;
-    public int f36138f;
-    public int f36139g;
+import android.view.View;
+import java.util.HashSet;
+public final class mr extends View implements org.telegram.ui.ActionBar.c6 {
+    public final te.a f36072a;
+    public final Paint f36073b;
+    public final RectF f36074c;
+    public final RectF d;
+    public final RectF f36075e;
+    public final gp f36076f;
 
-    public static mr b(org.telegram.ui.Cells.t2 t2Var, org.telegram.messenger.vo voVar) {
-        ?? obj = new Object();
-        obj.f36134a = voVar.f26070a;
-        obj.f36135b = voVar.f26080m;
-        String str = voVar.f26071b;
-        if (str == null) {
-            str = "";
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str.toUpperCase());
-        ny0 ny0Var = new ny0(spannableStringBuilder, 10.0f, org.telegram.messenger.g0.o());
-        ny0Var.r(t2Var);
-        obj.f36136c = ny0Var;
-        obj.f36136c.q(org.telegram.messenger.ij.B5(org.telegram.messenger.i6.m(spannableStringBuilder, ny0Var.f36539a.getFontMetricsInt(), false, null, 0), voVar.f26072c, obj.f36136c.f36539a.getFontMetricsInt(), false));
-        obj.f36136c.o(26);
-        int L = org.telegram.messenger.g0.L(9.32f);
-        ny0 ny0Var2 = obj.f36136c;
-        obj.f36139g = L + ((int) ny0Var2.f36541c);
-        ny0Var2.i();
-        int[] iArr = org.telegram.ui.ActionBar.l6.f28126r8;
-        int i7 = iArr[voVar.f26080m % iArr.length];
-        obj.f36138f = i7;
-        obj.f36137e = true;
-        obj.d = org.telegram.ui.ActionBar.l6.x0(null, i7, false);
-        return obj;
+    public mr(Context context) {
+        super(context);
+        this.f36072a = new te.a(this, wq.h, 380L);
+        this.f36073b = new Paint(1);
+        this.f36074c = new RectF();
+        this.d = new RectF();
+        this.f36075e = new RectF();
+        this.f36076f = new gp(this, 5);
+        updateColors();
     }
 
-    public final void a(Canvas canvas) {
-        float f10;
-        if (this.f36137e) {
-            this.d = org.telegram.ui.ActionBar.l6.x0(null, this.f36138f, false);
-        }
-        Paint paint = org.telegram.ui.ActionBar.l6.A0;
-        int i7 = this.d;
-        if (org.telegram.ui.ActionBar.l6.I.q()) {
-            f10 = 0.2f;
-        } else {
-            f10 = 0.1f;
-        }
-        paint.setColor(org.telegram.ui.ActionBar.l6.r1(f10, i7));
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(0.0f, 0.0f, this.f36139g, org.telegram.messenger.g0.L(14.66f));
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.ui.ActionBar.l6.A0);
-        this.f36136c.c(org.telegram.messenger.g0.L(4.66f), org.telegram.messenger.g0.L(14.66f) / 2.0f, 1.0f, this.d, canvas);
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        org.telegram.messenger.g0.i3(this.f36076f, 3000L);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        org.telegram.messenger.g0.r(this.f36076f);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f10 = this.f36072a.f55498e;
+        RectF rectF = this.d;
+        RectF rectF2 = this.f36074c;
+        RectF rectF3 = this.f36075e;
+        org.telegram.messenger.g0.Z1(rectF, rectF2, f10, rectF3);
+        float W1 = org.telegram.messenger.g0.W1(f10, org.telegram.messenger.g0.L(15.0f), 0);
+        canvas.drawRoundRect(rectF3, W1, W1, this.f36073b);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        int currentActionBarHeight = org.telegram.ui.ActionBar.l.getCurrentActionBarHeight();
+        int paddingTop = getPaddingTop();
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(paddingTop + currentActionBarHeight, 1073741824));
+        this.f36074c.set(0.0f, 0.0f, getMeasuredWidth(), paddingTop);
+        int L = ((currentActionBarHeight / 2) + paddingTop) - org.telegram.messenger.g0.L(15.0f);
+        int L2 = org.telegram.messenger.g0.L(12.0f);
+        this.d.set(org.telegram.messenger.g0.L(12.0f), L, org.telegram.messenger.g0.L(30.0f) + L2, org.telegram.messenger.g0.L(30.0f) + L);
+    }
+
+    @Override
+    public final void updateColors() {
+        this.f36073b.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Vl, false));
+        invalidate();
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

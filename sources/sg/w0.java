@@ -6,8 +6,8 @@ import java.util.HashMap;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.r2;
 public final class w0 {
-    public int f55268a;
-    public HashMap f55269b;
+    public int f55267a;
+    public HashMap f55268b;
 
     public static void a(int i7, int i10) {
         GLES20.glUniform4f(i7, Color.red(i10) / 255.0f, Color.green(i10) / 255.0f, Color.blue(i10) / 255.0f, Color.alpha(i10) / 255.0f);
@@ -19,13 +19,13 @@ public final class w0 {
         GLES20.glCompileShader(glCreateShader);
         int[] iArr = new int[1];
         GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
-        if (iArr[0] == 0 && r2.f25212a) {
+        if (iArr[0] == 0 && r2.f25216a) {
             a8.d(GLES20.glGetShaderInfoLog(glCreateShader));
         }
         int i10 = iArr[0];
         ?? obj = new Object();
-        obj.f10533a = glCreateShader;
-        obj.f10534b = i10;
+        obj.f10538a = glCreateShader;
+        obj.f10539b = i10;
         return obj;
     }
 
@@ -42,6 +42,6 @@ public final class w0 {
     }
 
     public final int d(String str) {
-        return ((Integer) this.f55269b.get(str)).intValue();
+        return ((Integer) this.f55268b.get(str)).intValue();
     }
 }

@@ -98,26 +98,26 @@ import org.telegram.messenger.ij;
 import org.telegram.messenger.qs;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.do0;
-import org.telegram.ui.Components.e90;
-import org.telegram.ui.Components.r51;
-import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.bc;
+import org.telegram.ui.Components.co0;
+import org.telegram.ui.Components.d90;
+import org.telegram.ui.Components.q51;
+import org.telegram.ui.Components.t51;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.fr0;
+import org.telegram.ui.gr0;
 import q6.m;
 import sg.h;
 import sg.i1;
 import sg.l0;
 import tg.l1;
-public final class c implements SuccessContinuation, k, androidx.activity.result.b, do0, j, te.b, o0, i0, p, fr0, e90, l1, r51, za, w, OnSuccessListener {
-    public static volatile c f6036c;
-    public final int f6037a;
-    public Object f6038b;
+public final class c implements SuccessContinuation, k, androidx.activity.result.b, co0, j, te.b, o0, i0, p, gr0, d90, l1, q51, za, w, OnSuccessListener {
+    public static volatile c f6041c;
+    public final int f6042a;
+    public Object f6043b;
 
     public c(d0 d0Var) {
-        this.f6037a = 15;
-        this.f6038b = new WeakReference(d0Var);
+        this.f6042a = 15;
+        this.f6043b = new WeakReference(d0Var);
     }
 
     public static o o(Looper looper, Object obj, String str) {
@@ -128,7 +128,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
 
     @Override
     public boolean A(l.k kVar) {
-        Window.Callback callback = ((s) this.f6038b).f13362f.getCallback();
+        Window.Callback callback = ((s) this.f6043b).f13364f.getCallback();
         if (callback != null) {
             callback.onMenuOpened(108, kVar);
             return true;
@@ -141,18 +141,18 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
         if (fVar.containsKey(str) && ((Integer) fVar.get(str)).intValue() != 1) {
             throw new IllegalArgumentException(p0.p("The ", str, " key cannot be used to put a String"));
         }
-        ((Bundle) this.f6038b).putCharSequence(str, str2);
+        ((Bundle) this.f6043b).putCharSequence(str, str2);
     }
 
     @Override
     public void C0() {
-        cc k10 = ((k7) this.f6038b).k().k(false);
-        k10.f32637t = true;
+        bc k10 = ((k7) this.f6043b).k().k(false);
+        k10.f32213t = true;
         k10.j();
     }
 
     public void D() {
-        d0 d0Var = (d0) ((WeakReference) this.f6038b).get();
+        d0 d0Var = (d0) ((WeakReference) this.f6043b).get();
         if (d0Var == null) {
             return;
         }
@@ -160,7 +160,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
     }
 
     public void E(IBinder iBinder) {
-        synchronized (((HashMap) this.f6038b)) {
+        synchronized (((HashMap) this.f6043b)) {
             if (iBinder != null) {
                 try {
                     iBinder.queryLocalInterface("com.google.android.gms.wearable.internal.IWearableService");
@@ -169,7 +169,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
                 }
             }
             new b9.a();
-            for (Map.Entry entry : ((HashMap) this.f6038b).entrySet()) {
+            for (Map.Entry entry : ((HashMap) this.f6043b).entrySet()) {
                 if (entry.getValue() == null) {
                     try {
                         throw null;
@@ -187,44 +187,44 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
 
     @Override
     public void F(float f10, int i7) {
-        ch.o oVar = (ch.o) this.f6038b;
-        oVar.f6341c.setLayerType(0, null);
+        ch.o oVar = (ch.o) this.f6043b;
+        oVar.f6346c.setLayerType(0, null);
         if (f10 == 0.0f && !oVar.O) {
-            oVar.f6341c.setVisibility(4);
+            oVar.f6346c.setVisibility(4);
             if (Build.MODEL.toLowerCase().startsWith("zte") && Build.VERSION.SDK_INT <= 28) {
                 oVar.E.setFocusableInTouchMode(false);
             }
         }
-        qs.e().k(qs.f25026k1, 512);
+        qs.e().k(qs.f25030k1, 512);
     }
 
     @Override
     public void I(ij ijVar) {
-        ((h9) ((j4) this.f6038b).f9253z1).f(false);
+        ((h9) ((j4) this.f6043b).f9258z1).f(false);
     }
 
     @Override
     public void I0(ij ijVar) {
-        ((h9) ((j4) this.f6038b).f9253z1).f(true);
+        ((h9) ((j4) this.f6043b).f9258z1).f(true);
     }
 
     @Override
     public Paint.FontMetricsInt R0() {
-        return ((fi.m) this.f6038b).f12366f.getEditText().getPaint().getFontMetricsInt();
+        return ((fi.m) this.f6043b).f12367f.getEditText().getPaint().getFontMetricsInt();
     }
 
     @Override
     public void X(float f10) {
-        x9 x9Var = (x9) this.f6038b;
-        l0.e(x9Var.f12536o1).k(String.valueOf(h.f55074a.indexOf(x9Var.f12553x0.getCurrentBrush())), f10);
-        i1 i1Var = x9Var.f12529j1;
-        i1Var.f55096c = f10;
+        x9 x9Var = (x9) this.f6043b;
+        l0.e(x9Var.f12540o1).k(String.valueOf(h.f55073a.indexOf(x9Var.f12557x0.getCurrentBrush())), f10);
+        i1 i1Var = x9Var.f12533j1;
+        i1Var.f55095c = f10;
         x9Var.B0(i1Var, null, false);
     }
 
     @Override
     public void Y(int i7, float f10, float f11, te.c cVar) {
-        ((ch.o) this.f6038b).j0(f10);
+        ((ch.o) this.f6043b).j0(f10);
     }
 
     @Override
@@ -232,10 +232,10 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
         d dVar = new d(0, (TaskCompletionSource) obj2);
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken("com.google.android.gms.recaptchabase.internal.IRecaptchaBaseService");
-        int i7 = d8.a.f8210a;
+        int i7 = d8.a.f8215a;
         obtain.writeStrongBinder(dVar);
         obtain.writeInt(1);
-        ((o8.a) this.f6038b).writeToParcel(obtain, 0);
+        ((o8.a) this.f6043b).writeToParcel(obtain, 0);
         ((d8.c) ((d8.f) obj).n()).h1(obtain, 2);
     }
 
@@ -248,18 +248,18 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
 
     @Override
     public void c(l.k kVar, boolean z9) {
-        ((s) this.f6038b).g(kVar);
+        ((s) this.f6043b).g(kVar);
     }
 
     @Override
     public void d(n6.a aVar) {
-        f1 f1Var = (f1) this.f6038b;
-        f1Var.f6608o.lock();
+        f1 f1Var = (f1) this.f6043b;
+        f1Var.f6613o.lock();
         try {
-            f1Var.f6606m = aVar;
+            f1Var.f6611m = aVar;
             f1Var.j();
         } finally {
-            f1Var.f6608o.unlock();
+            f1Var.f6613o.unlock();
         }
     }
 
@@ -267,10 +267,10 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
     public void f(Object obj) {
         int i7;
         Bundle extras;
-        switch (this.f6037a) {
+        switch (this.f6042a) {
             case 8:
                 Map map = (Map) obj;
-                androidx.fragment.app.i0 i0Var = (androidx.fragment.app.i0) this.f6038b;
+                androidx.fragment.app.i0 i0Var = (androidx.fragment.app.i0) this.f6043b;
                 String[] strArr = (String[]) map.keySet().toArray(new String[0]);
                 ArrayList arrayList = new ArrayList(map.values());
                 int[] iArr = new int[arrayList.size()];
@@ -294,11 +294,11 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
                 }
                 return;
             default:
-                ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f6038b;
+                ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f6043b;
                 androidx.activity.result.a aVar = (androidx.activity.result.a) obj;
                 proxyBillingActivityV2.getClass();
                 Intent intent = aVar.f1859b;
-                int i11 = u.e("ProxyBillingActivityV2", intent).f11151a;
+                int i11 = u.e("ProxyBillingActivityV2", intent).f11156a;
                 ResultReceiver resultReceiver = proxyBillingActivityV2.M;
                 if (resultReceiver != null) {
                     if (intent == null) {
@@ -319,29 +319,29 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
 
     @Override
     public float get() {
-        x9 x9Var = (x9) this.f6038b;
-        int i7 = x9Var.f12536o1;
-        h currentBrush = x9Var.f12553x0.getCurrentBrush();
+        x9 x9Var = (x9) this.f6043b;
+        int i7 = x9Var.f12540o1;
+        h currentBrush = x9Var.f12557x0.getCurrentBrush();
         if (currentBrush == null) {
-            return l0.e(i7).f55143i;
+            return l0.e(i7).f55142i;
         }
-        return l0.e(i7).f(String.valueOf(h.f55074a.indexOf(currentBrush)), currentBrush.d());
+        return l0.e(i7).f(String.valueOf(h.f55073a.indexOf(currentBrush)), currentBrush.d());
     }
 
     @Override
     public void i(int i7) {
-        f1 f1Var = (f1) this.f6038b;
-        Lock lock = f1Var.f6608o;
-        Lock lock2 = f1Var.f6608o;
+        f1 f1Var = (f1) this.f6043b;
+        Lock lock = f1Var.f6613o;
+        Lock lock2 = f1Var.f6613o;
         lock.lock();
         try {
-            if (f1Var.f6607n) {
-                f1Var.f6607n = false;
-                f1Var.f6598b.i(i7);
-                f1Var.f6606m = null;
-                f1Var.f6605l = null;
+            if (f1Var.f6612n) {
+                f1Var.f6612n = false;
+                f1Var.f6603b.i(i7);
+                f1Var.f6611m = null;
+                f1Var.f6610l = null;
             } else {
-                f1Var.f6607n = true;
+                f1Var.f6612n = true;
                 f1Var.d.onConnectionSuspended(i7);
             }
             lock2.unlock();
@@ -353,24 +353,24 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
 
     @Override
     public void k(Bundle bundle) {
-        f1 f1Var = (f1) this.f6038b;
-        f1Var.f6608o.lock();
+        f1 f1Var = (f1) this.f6043b;
+        f1Var.f6613o.lock();
         try {
-            f1Var.f6606m = n6.a.f20487f;
+            f1Var.f6611m = n6.a.f20492f;
             f1Var.j();
         } finally {
-            f1Var.f6608o.unlock();
+            f1Var.f6613o.unlock();
         }
     }
 
     public void l(n nVar, v vVar) {
-        j0 j0Var = (j0) this.f6038b;
+        j0 j0Var = (j0) this.f6043b;
         if (j0Var == null) {
             Log.e("BiometricPromptCompat", "Unable to start authentication. Client fragment manager was null.");
         } else if (j0Var.P()) {
             Log.e("BiometricPromptCompat", "Unable to start authentication. Called after onSaveInstanceState().");
         } else {
-            j0 j0Var2 = (j0) this.f6038b;
+            j0 j0Var2 = (j0) this.f6043b;
             q qVar = (q) j0Var2.D("androidx.biometric.BiometricFragment");
             if (qVar == null) {
                 qVar = new q();
@@ -387,7 +387,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
             }
             z zVar = qVar.f2019l0;
             zVar.f2030f = nVar;
-            int i7 = nVar.f19920a;
+            int i7 = nVar.f19925a;
             if (i7 == 0) {
                 if (vVar != null) {
                     i7 = 15;
@@ -423,20 +423,20 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
 
     @Override
     public void m() {
-        l lVar = (l) this.f6038b;
-        if (lVar.f8045r1 != null) {
+        l lVar = (l) this.f6043b;
+        if (lVar.f8050r1 != null) {
             lVar.R0(0, 1);
         }
     }
 
     public f6.o n() {
-        f6.o oVar = (f6.o) this.f6038b;
-        if (oVar.f11301a != null) {
+        f6.o oVar = (f6.o) this.f6043b;
+        if (oVar.f11306a != null) {
             if (!Double.isNaN(oVar.d) && oVar.d < 0.0d) {
                 throw new IllegalArgumentException("startTime cannot be negative or NaN.");
             }
-            if (!Double.isNaN(oVar.f11304e)) {
-                if (!Double.isNaN(oVar.f11305f) && oVar.f11305f >= 0.0d) {
+            if (!Double.isNaN(oVar.f11309e)) {
+                if (!Double.isNaN(oVar.f11310f) && oVar.f11310f >= 0.0d) {
                     return oVar;
                 }
                 throw new IllegalArgumentException("preloadTime cannot be negative or Nan.");
@@ -448,19 +448,19 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
 
     @Override
     public i o0(b3.l lVar, long j3, long j10, IOException iOException, int i7) {
-        ((o2.d) this.f6038b).f20728a.y(iOException);
+        ((o2.d) this.f6043b).f20733a.y(iOException);
         return b3.o.f2960e;
     }
 
     @Override
     public void o1(b3.l lVar, long j3, long j10) {
         boolean z9;
-        o2.d dVar = (o2.d) this.f6038b;
-        synchronized (c3.b.f5261b) {
-            z9 = c3.b.f5262c;
+        o2.d dVar = (o2.d) this.f6043b;
+        synchronized (c3.b.f5266b) {
+            z9 = c3.b.f5267c;
         }
         if (!z9) {
-            dVar.f20728a.y(new IOException(new ConcurrentModificationException()));
+            dVar.f20733a.y(new IOException(new ConcurrentModificationException()));
             return;
         }
         dVar.b();
@@ -468,11 +468,11 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
 
     @Override
     public void onFirstFrameRendered() {
-        l lVar = (l) this.f6038b;
-        Surface surface = lVar.f8045r1;
+        l lVar = (l) this.f6043b;
+        Surface surface = lVar.f8050r1;
         if (surface != null) {
-            lVar.f8031b1.g0(surface);
-            lVar.f8048u1 = true;
+            lVar.f8036b1.g0(surface);
+            lVar.f8053u1 = true;
         }
     }
 
@@ -482,11 +482,11 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
 
     @Override
     public void onStateChanged(boolean z9, int i7) {
-        y5 y5Var = (y5) this.f6038b;
+        y5 y5Var = (y5) this.f6043b;
         w5 w5Var = y5Var.L;
         g0.r(w5Var);
-        u51 u51Var = y5Var.D;
-        if (u51Var != null && u51Var.d0()) {
+        t51 t51Var = y5Var.D;
+        if (t51Var != null && t51Var.d0()) {
             g0.h3(w5Var);
         }
     }
@@ -497,12 +497,12 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
         int i10;
         a2 a2Var;
         a1 b10;
-        g6.a aVar = (g6.a) this.f6038b;
+        g6.a aVar = (g6.a) this.f6043b;
         Bundle bundle = (Bundle) obj;
-        if (m0.f6904j) {
-            Context context = aVar.f13521a;
-            r rVar = aVar.f13525f;
-            m0 m0Var = new m0(context, rVar, aVar.f13523c, aVar.f13528j, aVar.f13526g);
+        if (m0.f6909j) {
+            Context context = aVar.f13523a;
+            r rVar = aVar.f13527f;
+            m0 m0Var = new m0(context, rVar, aVar.f13525c, aVar.f13530j, aVar.f13528g);
             if (bundle.containsKey("com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_MODE")) {
                 i7 = bundle.getInt("com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_MODE", 0);
             } else if (bundle.containsKey("com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_ENABLED") && bundle.getBoolean("com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_ENABLED", false)) {
@@ -529,48 +529,48 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
             }
             m0Var.h = i10;
             o5.s.b(context);
-            m0Var.f6910g = o5.s.a().c(m5.a.f19872e).a("CAST_SENDER_SDK", new l5.c("proto"), x.f7052a);
+            m0Var.f6915g = o5.s.a().c(m5.a.f19877e).a("CAST_SENDER_SDK", new l5.c("proto"), x.f7057a);
             if (bundle.containsKey("com.google.android.gms.cast.FLAG_ANALYTICS_LOGGING_BUCKET_SIZE")) {
-                m0Var.f6908e = Long.valueOf(bundle.getLong("com.google.android.gms.cast.FLAG_ANALYTICS_LOGGING_BUCKET_SIZE"));
+                m0Var.f6913e = Long.valueOf(bundle.getLong("com.google.android.gms.cast.FLAG_ANALYTICS_LOGGING_BUCKET_SIZE"));
             }
             SharedPreferences sharedPreferences = context.getApplicationContext().getSharedPreferences(r10, 0);
             if (i7 != 0) {
                 com.google.android.gms.common.api.internal.s b11 = com.google.android.gms.common.api.internal.t.b();
-                b11.f6680c = new h9.f1(rVar, new String[]{"com.google.android.gms.cast.DICTIONARY_CAST_STATUS_CODES_TO_APP_SESSION_ERROR", "com.google.android.gms.cast.DICTIONARY_CAST_STATUS_CODES_TO_APP_SESSION_CHANGE_REASON"}, 2);
-                b11.d = new n6.c[]{y.f11347c};
-                b11.f6679b = false;
-                b11.f6678a = 8426;
+                b11.f6685c = new h9.f1(rVar, new String[]{"com.google.android.gms.cast.DICTIONARY_CAST_STATUS_CODES_TO_APP_SESSION_ERROR", "com.google.android.gms.cast.DICTIONARY_CAST_STATUS_CODES_TO_APP_SESSION_CHANGE_REASON"}, 2);
+                b11.d = new n6.c[]{y.f11352c};
+                b11.f6684b = false;
+                b11.f6683a = 8426;
                 Task e10 = rVar.e(0, b11.a());
                 ?? obj2 = new Object();
-                obj2.f19921b = m0Var;
-                obj2.f19922c = packageName;
-                obj2.f19920a = i7;
+                obj2.f19926b = m0Var;
+                obj2.f19927c = packageName;
+                obj2.f19925a = i7;
                 obj2.d = sharedPreferences;
                 e10.addOnSuccessListener(obj2);
             }
             if (z9) {
                 m.g(sharedPreferences);
-                j6.b bVar = a2.f6788i;
+                j6.b bVar = a2.f6793i;
                 synchronized (a2.class) {
                     try {
-                        if (a2.f6790k == null) {
-                            a2.f6790k = new a2(sharedPreferences, m0Var, packageName);
+                        if (a2.f6795k == null) {
+                            a2.f6795k = new a2(sharedPreferences, m0Var, packageName);
                         }
-                        a2Var = a2.f6790k;
+                        a2Var = a2.f6795k;
                     } catch (Throwable th2) {
                         throw th2;
                     }
                 }
-                String str = a2Var.f6793c;
-                SharedPreferences sharedPreferences2 = a2Var.f6792b;
-                HashSet hashSet = a2Var.f6795f;
+                String str = a2Var.f6798c;
+                SharedPreferences sharedPreferences2 = a2Var.f6797b;
+                HashSet hashSet = a2Var.f6800f;
                 String string = sharedPreferences2.getString("feature_usage_sdk_version", null);
                 String string2 = sharedPreferences2.getString("feature_usage_package_name", null);
                 hashSet.clear();
-                HashSet hashSet2 = a2Var.f6796g;
+                HashSet hashSet2 = a2Var.f6801g;
                 hashSet2.clear();
                 a2Var.h = 0L;
-                String str2 = a2.f6789j;
+                String str2 = a2.f6794j;
                 if (str2.equals(string) && str.equals(string2)) {
                     a2Var.h = sharedPreferences2.getLong("feature_usage_last_report_time", 0L);
                     long currentTimeMillis = System.currentTimeMillis();
@@ -592,9 +592,9 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
                         }
                     }
                     a2Var.c(hashSet3);
-                    m.g(a2Var.f6794e);
+                    m.g(a2Var.f6799e);
                     m.g(a2Var.d);
-                    a2Var.f6794e.post(a2Var.d);
+                    a2Var.f6799e.post(a2Var.d);
                 } else {
                     HashSet hashSet4 = new HashSet();
                     for (String str4 : sharedPreferences2.getAll().keySet()) {
@@ -618,7 +618,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
 
     @Override
     public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        ((y5) this.f6038b).i();
+        ((y5) this.f6043b).i();
     }
 
     public int p(int[] iArr, int i7) {
@@ -627,7 +627,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
         int i10;
         int i11;
         int i12;
-        ec.a aVar = (ec.a) this.f6038b;
+        ec.a aVar = (ec.a) this.f6043b;
         if (iArr.length != 0) {
             int length = iArr.length;
             if (length > 1 && iArr[0] == 0) {
@@ -649,7 +649,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
             int[] iArr5 = new int[i7];
             boolean z9 = true;
             for (int i15 = 0; i15 < i7; i15++) {
-                int i16 = aVar.f10727a[aVar.f10732g + i15];
+                int i16 = aVar.f10732a[aVar.f10737g + i15];
                 if (i16 == 0) {
                     i12 = iArr2[iArr2.length - 1];
                 } else {
@@ -678,7 +678,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
             }
             ec.b bVar = new ec.b(aVar, iArr5);
             ec.b a10 = aVar.a(i7, 1);
-            ec.b bVar2 = aVar.f10729c;
+            ec.b bVar2 = aVar.f10734c;
             if (a10.d() >= bVar.d()) {
                 a10 = bVar;
                 bVar = a10;
@@ -724,7 +724,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
                 } else {
                     int[] iArr6 = new int[d2];
                     int i19 = 0;
-                    for (int i20 = 1; i20 < aVar.f10730e && i19 < d2; i20++) {
+                    for (int i20 = 1; i20 < aVar.f10735e && i19 < d2; i20++) {
                         if (bVar10.b(i20) == 0) {
                             iArr6[i19] = aVar.b(i20);
                             i19++;
@@ -754,7 +754,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
                     }
                     int c13 = aVar.c(bVar11.b(b12), aVar.b(i22));
                     iArr7[i21] = c13;
-                    if (aVar.f10732g != 0) {
+                    if (aVar.f10737g != 0) {
                         iArr7[i21] = aVar.c(c13, b12);
                     }
                 }
@@ -762,7 +762,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
                     int length4 = iArr.length - 1;
                     int i25 = iArr3[i24];
                     if (i25 != 0) {
-                        int i26 = length4 - aVar.f10728b[i25];
+                        int i26 = length4 - aVar.f10733b[i25];
                         if (i26 >= 0) {
                             iArr[i26] = iArr[i26] ^ iArr7[i24];
                         } else {
@@ -781,7 +781,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
 
     @Override
     public void q() {
-        l2.l0 l0Var = ((l) this.f6038b).Y;
+        l2.l0 l0Var = ((l) this.f6043b).Y;
         if (l0Var != null) {
             l0Var.a();
         }
@@ -789,21 +789,21 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
 
     public Set s() {
         Set unmodifiableSet;
-        synchronized (((HashSet) this.f6038b)) {
-            unmodifiableSet = DesugarCollections.unmodifiableSet((HashSet) this.f6038b);
+        synchronized (((HashSet) this.f6043b)) {
+            unmodifiableSet = DesugarCollections.unmodifiableSet((HashSet) this.f6043b);
         }
         return unmodifiableSet;
     }
 
     @Override
     public void t(boolean z9, float f10) {
-        ((e) this.f6038b).a(Boolean.FALSE, Float.valueOf(f10));
+        ((e) this.f6043b).a(Boolean.FALSE, Float.valueOf(f10));
     }
 
     @Override
     public Task then(Object obj) {
         ia.b bVar = (ia.b) obj;
-        aa.q qVar = ((aa.o) this.f6038b).f829e;
+        aa.q qVar = ((aa.o) this.f6043b).f829e;
         if (bVar == null) {
             Log.w("FirebaseCrashlytics", "Received null app settings, cannot send reports at crash time.", null);
             return Tasks.forResult(null);
@@ -812,19 +812,19 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
     }
 
     public void v(h6.m mVar) {
-        q3 q3Var = (q3) this.f6038b;
-        q3Var.f19229b = mVar;
-        Iterator it = ((LinkedList) q3Var.f19230c).iterator();
+        q3 q3Var = (q3) this.f6043b;
+        q3Var.f19234b = mVar;
+        Iterator it = ((LinkedList) q3Var.f19235c).iterator();
         while (it.hasNext()) {
             ((a7.c) it.next()).b();
         }
-        ((LinkedList) q3Var.f19230c).clear();
+        ((LinkedList) q3Var.f19235c).clear();
     }
 
     public void w(int i7) {
         boolean z9;
         TLRPC.TL_exportedNoPaidMessagesToken c10;
-        y0 y0Var = ((s0) this.f6038b).f1620e;
+        y0 y0Var = ((s0) this.f6043b).f1620e;
         if (y0Var != null && y0Var.d != i7) {
             boolean z10 = true;
             if (y0Var.f1691c.d && i7 == 2) {
@@ -863,7 +863,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
         if (fVar.containsKey(str) && ((Integer) fVar.get(str)).intValue() != 2) {
             throw new IllegalArgumentException(p0.p("The ", str, " key cannot be used to put a Bitmap"));
         }
-        ((Bundle) this.f6038b).putParcelable(str, bitmap);
+        ((Bundle) this.f6043b).putParcelable(str, bitmap);
     }
 
     public void z(long j3) {
@@ -871,12 +871,12 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
         if (fVar.containsKey("android.media.metadata.DURATION") && ((Integer) fVar.get("android.media.metadata.DURATION")).intValue() != 0) {
             throw new IllegalArgumentException("The android.media.metadata.DURATION key cannot be used to put a long");
         }
-        ((Bundle) this.f6038b).putLong("android.media.metadata.DURATION", j3);
+        ((Bundle) this.f6043b).putLong("android.media.metadata.DURATION", j3);
     }
 
     @Override
     public void z1(int i7, int i10, CharSequence charSequence, boolean z9) {
-        g gVar = ((fi.m) this.f6038b).f12366f;
+        g gVar = ((fi.m) this.f6043b).f12367f;
         if (gVar == null) {
             return;
         }
@@ -898,59 +898,59 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
     }
 
     public c(Object obj, int i7) {
-        this.f6037a = i7;
-        this.f6038b = obj;
+        this.f6042a = i7;
+        this.f6043b = obj;
     }
 
     public c(MediaInfo mediaInfo) {
-        this.f6037a = 23;
+        this.f6042a = 23;
         f6.o oVar = new f6.o(mediaInfo, 0, true, Double.NaN, Double.POSITIVE_INFINITY, 0.0d, null, null);
         if (mediaInfo != null) {
-            this.f6038b = oVar;
+            this.f6043b = oVar;
             return;
         }
         throw new IllegalArgumentException("media cannot be null.");
     }
 
     public c(JSONObject jSONObject) {
-        this.f6037a = 23;
-        this.f6038b = new f6.o(jSONObject);
+        this.f6042a = 23;
+        this.f6043b = new f6.o(jSONObject);
     }
 
     public c(int i7) {
-        this.f6037a = i7;
+        this.f6042a = i7;
         switch (i7) {
             case 5:
-                this.f6038b = new Bundle();
+                this.f6043b = new Bundle();
                 return;
             case 10:
-                this.f6038b = new HashMap();
+                this.f6043b = new HashMap();
                 return;
             case 14:
-                this.f6038b = Collections.newSetFromMap(new WeakHashMap());
+                this.f6043b = Collections.newSetFromMap(new WeakHashMap());
                 return;
             case 20:
                 return;
             default:
-                this.f6038b = new HashSet();
+                this.f6043b = new HashSet();
                 return;
         }
     }
 
     public c(Context context) {
-        this.f6037a = 7;
-        this.f6038b = context.getApplicationContext();
+        this.f6042a = 7;
+        this.f6043b = context.getApplicationContext();
     }
 
     public c(aa.o oVar, String str) {
-        this.f6037a = 2;
-        this.f6038b = oVar;
+        this.f6042a = 2;
+        this.f6043b = oVar;
     }
 
     public c(MediaMetadataCompat mediaMetadataCompat) {
-        this.f6037a = 5;
+        this.f6042a = 5;
         Bundle bundle = new Bundle(mediaMetadataCompat.f1728a);
-        this.f6038b = bundle;
+        this.f6043b = bundle;
         a0.g(bundle);
     }
 
@@ -967,14 +967,14 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
     }
 
     public c(LaunchActivity launchActivity, Executor executor, a8.l1 l1Var) {
-        this.f6037a = 6;
+        this.f6042a = 6;
         if (launchActivity == null) {
             throw new IllegalArgumentException("FragmentActivity must not be null.");
         }
         if (executor != null) {
             j0 s5 = launchActivity.s();
             z zVar = (z) new a0(launchActivity).i(z.class);
-            this.f6038b = s5;
+            this.f6043b = s5;
             zVar.d = executor;
             zVar.f2029e = l1Var;
             return;
@@ -1071,7 +1071,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
     }
 
     @Override
-    public void onError(u51 u51Var, Exception exc) {
+    public void onError(t51 t51Var, Exception exc) {
     }
 
     @Override

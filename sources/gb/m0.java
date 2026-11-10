@@ -1,11 +1,11 @@
 package gb;
 public final class m0 implements oe.e {
-    public static final m0 f13730a;
+    public static final m0 f13732a;
     private static final me.d descriptor;
 
     static {
         ?? obj = new Object();
-        f13730a = obj;
+        f13732a = obj;
         oe.m mVar = new oe.m("com.google.firebase.sessions.SessionDetails", obj, 4);
         mVar.k("sessionId", false);
         mVar.k("firstSessionId", false);
@@ -20,9 +20,9 @@ public final class m0 implements oe.e {
         kotlin.jvm.internal.j.e(value, "value");
         me.d dVar = descriptor;
         qe.h a10 = hVar.a(dVar);
-        a10.k(dVar, 0, value.f13736a);
-        a10.k(dVar, 1, value.f13737b);
-        int i7 = value.f13738c;
+        a10.k(dVar, 0, value.f13738a);
+        a10.k(dVar, 1, value.f13739b);
+        int i7 = value.f13740c;
         a10.b(dVar, 2);
         a10.c(i7);
         a10.e(dVar, 3, value.d);
@@ -74,8 +74,8 @@ public final class m0 implements oe.e {
 
     @Override
     public final ke.a[] c() {
-        oe.p pVar = oe.p.f20936a;
-        return new ke.a[]{pVar, pVar, oe.f.f20909a, oe.i.f20915a};
+        oe.p pVar = oe.p.f20941a;
+        return new ke.a[]{pVar, pVar, oe.f.f20914a, oe.i.f20920a};
     }
 
     @Override

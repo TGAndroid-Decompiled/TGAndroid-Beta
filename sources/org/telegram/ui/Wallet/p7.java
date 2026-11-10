@@ -1,50 +1,64 @@
 package org.telegram.ui.Wallet;
 
-import android.graphics.Rect;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
-import java.util.ArrayList;
-public final class p7 implements View.OnLayoutChangeListener {
-    public final int f42988a;
-    public final Object f42989b;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.r41;
+import org.telegram.ui.Components.w31;
+import org.telegram.ui.Components.x31;
+public final class p7 extends w31 {
+    public static final int f43011b = 0;
 
-    public p7(Object obj, int i7) {
-        this.f42988a = i7;
-        this.f42989b = obj;
+    static {
+        w31.h(new w31());
     }
 
     @Override
-    public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
-        switch (this.f42988a) {
-            case 0:
-                a8 a8Var = (a8) this.f42989b;
-                a8Var.getClass();
-                if (i11 - i7 != i15 - i13 || i12 - i10 != i16 - i14) {
-                    for (z7 z7Var : a8Var.f42150f.values()) {
-                        z7Var.K = false;
-                    }
-                    a8Var.f0();
-                    return;
-                }
-                return;
-            default:
-                d8 d8Var = (d8) this.f42989b;
-                if (i12 - i10 < i16 - i14) {
-                    ArrayList arrayList = d8Var.f42382w;
-                    int size = arrayList.size();
-                    int i17 = 0;
-                    while (i17 < size) {
-                        Object obj = arrayList.get(i17);
-                        i17++;
-                        ma maVar = (ma) obj;
-                        if (maVar.hasFocus()) {
-                            maVar.requestRectangleOnScreen(new Rect(0, 0, maVar.getWidth(), maVar.getHeight()), true);
-                            return;
-                        }
-                    }
-                    return;
-                }
-                d8Var.getClass();
-                return;
+    public final void b(View view, x31 x31Var, boolean z9, m41 m41Var, r41 r41Var) {
+        q7 q7Var = (q7) view;
+        d8 d8Var = q7Var.f43071x0;
+        if (d8Var != null) {
+            d8Var.h.remove(q7Var);
         }
+        ValueAnimator valueAnimator = q7Var.A0;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        q7Var.f43072y0 = 1.0f;
+        q7Var.D.setAlpha(1.0f);
+        q7Var.f43070w0 = (TL_wallet.nftItem) x31Var.G;
+        q7Var.f43071x0 = (d8) x31Var.H;
+        TL_stars.SavedStarGift savedStarGift = new TL_stars.SavedStarGift();
+        savedStarGift.gift = q7Var.f43070w0.gift;
+        q7Var.k(false, true, 0.0f);
+        q7Var.i(savedStarGift, true, false);
+        d8 d8Var2 = q7Var.f43071x0;
+        if (d8Var2 != null) {
+            d8Var2.i(q7Var);
+        }
+    }
+
+    @Override
+    public final View d(Context context, pj0 pj0Var, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
+        ?? y0Var = new zh.y0(i7, context, h6Var);
+        y0Var.f43072y0 = 1.0f;
+        y0Var.setStateListAnimator(null);
+        y0Var.setWillNotDraw(false);
+        return y0Var;
+    }
+
+    @Override
+    public final boolean e(x31 x31Var, x31 x31Var2) {
+        return TextUtils.equals(((TL_wallet.nftItem) x31Var.G).address, ((TL_wallet.nftItem) x31Var2.G).address);
+    }
+
+    @Override
+    public final boolean f() {
+        return true;
     }
 }

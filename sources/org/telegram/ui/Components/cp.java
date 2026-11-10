@@ -8,25 +8,25 @@ import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 public class cp extends Drawable {
     public static final x1.a h = new x1.a();
-    public float f32734a;
-    public final float f32735b;
-    public long f32736c;
+    public float f32725a;
+    public final float f32726b;
+    public long f32727c;
     public final float[] d;
-    public final Paint f32737e;
-    public float f32738f;
-    public final RectF f32739g;
+    public final Paint f32728e;
+    public float f32729f;
+    public final RectF f32730g;
 
     public cp(int i7) {
-        this.f32734a = org.telegram.messenger.g0.L(18.0f);
-        this.f32735b = org.telegram.messenger.g0.L(2.25f);
-        this.f32736c = -1L;
+        this.f32725a = org.telegram.messenger.g0.L(18.0f);
+        this.f32726b = org.telegram.messenger.g0.L(2.25f);
+        this.f32727c = -1L;
         this.d = new float[2];
         Paint paint = new Paint();
-        this.f32737e = paint;
+        this.f32728e = paint;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        this.f32739g = new RectF();
+        this.f32730g = new RectF();
         b(i7);
     }
 
@@ -43,31 +43,31 @@ public class cp extends Drawable {
     }
 
     public final void b(int i7) {
-        this.f32737e.setColor(i7);
+        this.f32728e.setColor(i7);
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        if (this.f32736c < 0) {
-            this.f32736c = SystemClock.elapsedRealtime();
+        if (this.f32727c < 0) {
+            this.f32727c = SystemClock.elapsedRealtime();
         }
         float[] fArr = this.d;
-        a((float) ((SystemClock.elapsedRealtime() - this.f32736c) % 5400), fArr);
-        float f10 = this.f32738f;
+        a((float) ((SystemClock.elapsedRealtime() - this.f32727c) % 5400), fArr);
+        float f10 = this.f32729f;
         float f11 = fArr[0];
-        Paint paint = this.f32737e;
-        canvas.drawArc(this.f32739g, f10 + f11, fArr[1] - f11, false, paint);
+        Paint paint = this.f32728e;
+        canvas.drawArc(this.f32730g, f10 + f11, fArr[1] - f11, false, paint);
         invalidateSelf();
     }
 
     @Override
     public int getIntrinsicHeight() {
-        return (int) (this.f32734a + this.f32735b);
+        return (int) (this.f32725a + this.f32726b);
     }
 
     @Override
     public int getIntrinsicWidth() {
-        return (int) (this.f32734a + this.f32735b);
+        return (int) (this.f32725a + this.f32726b);
     }
 
     @Override
@@ -77,35 +77,35 @@ public class cp extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        this.f32737e.setAlpha(i7);
+        this.f32728e.setAlpha(i7);
     }
 
     @Override
     public final void setBounds(int i7, int i10, int i11, int i12) {
         float f10 = i7;
         float f11 = i11 - i7;
-        float f12 = this.f32735b;
-        float f13 = this.f32734a;
+        float f12 = this.f32726b;
+        float f13 = this.f32725a;
         float f14 = i10;
         float f15 = i12 - i10;
-        this.f32739g.set(com.google.android.recaptcha.internal.a.A(f11 - (f12 / 2.0f), f13, 2.0f, f10), (((f15 - (f12 / 2.0f)) - f13) / 2.0f) + f14, ((((f12 / 2.0f) + f11) + f13) / 2.0f) + f10, ((((f12 / 2.0f) + f15) + f13) / 2.0f) + f14);
+        this.f32730g.set(com.google.android.recaptcha.internal.a.A(f11 - (f12 / 2.0f), f13, 2.0f, f10), (((f15 - (f12 / 2.0f)) - f13) / 2.0f) + f14, ((((f12 / 2.0f) + f11) + f13) / 2.0f) + f10, ((((f12 / 2.0f) + f15) + f13) / 2.0f) + f14);
         super.setBounds(i7, i10, i11, i12);
-        this.f32737e.setStrokeWidth(f12);
+        this.f32728e.setStrokeWidth(f12);
     }
 
     public cp(float f10, float f11, int i7) {
-        this.f32734a = org.telegram.messenger.g0.L(18.0f);
-        this.f32735b = org.telegram.messenger.g0.L(2.25f);
-        this.f32736c = -1L;
+        this.f32725a = org.telegram.messenger.g0.L(18.0f);
+        this.f32726b = org.telegram.messenger.g0.L(2.25f);
+        this.f32727c = -1L;
         this.d = new float[2];
         Paint paint = new Paint();
-        this.f32737e = paint;
+        this.f32728e = paint;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        this.f32739g = new RectF();
-        this.f32734a = f10;
-        this.f32735b = f11;
+        this.f32730g = new RectF();
+        this.f32725a = f10;
+        this.f32726b = f11;
         b(i7);
     }
 

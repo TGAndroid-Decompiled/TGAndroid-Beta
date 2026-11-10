@@ -33,10 +33,10 @@ import j$.util.Objects;
 import java.util.ArrayList;
 import kotlin.jvm.internal.j;
 public final class a implements Parcelable.Creator {
-    public final int f57576a;
+    public final int f57575a;
 
     public a(int i7) {
-        this.f57576a = i7;
+        this.f57575a = i7;
     }
 
     @Override
@@ -54,7 +54,7 @@ public final class a implements Parcelable.Creator {
         Bundle bundle = null;
         byte[] bArr = null;
         String str3 = null;
-        switch (this.f57576a) {
+        switch (this.f57575a) {
             case 0:
                 Bundle readBundle = inParcel.readBundle(a.class.getClassLoader());
                 Objects.requireNonNull(readBundle);
@@ -395,18 +395,18 @@ public final class a implements Parcelable.Creator {
             case 22:
                 ?? obj3 = new Object();
                 IBinder readStrongBinder = inParcel.readStrongBinder();
-                int i14 = c.c.f5215b;
+                int i14 = c.c.f5220b;
                 if (readStrongBinder != null) {
                     IInterface queryLocalInterface = readStrongBinder.queryLocalInterface(c.b.h);
                     if (queryLocalInterface != null && (queryLocalInterface instanceof c.b)) {
                         bVar = (c.b) queryLocalInterface;
                     } else {
                         ?? obj4 = new Object();
-                        obj4.f5214a = readStrongBinder;
+                        obj4.f5219a = readStrongBinder;
                         bVar = obj4;
                     }
                 }
-                obj3.f5217a = bVar;
+                obj3.f5222a = bVar;
                 return obj3;
             case 23:
                 int z29 = wb.z(inParcel);
@@ -602,7 +602,7 @@ public final class a implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i7) {
-        switch (this.f57576a) {
+        switch (this.f57575a) {
             case 0:
                 return new b[i7];
             case 1:

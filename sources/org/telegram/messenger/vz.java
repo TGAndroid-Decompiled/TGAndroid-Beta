@@ -5,11 +5,11 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class vz extends android.support.v4.media.session.s {
-    public final wz f26238g;
+    public final wz f26242g;
 
     public vz(wz wzVar) {
         super(0);
-        this.f26238g = wzVar;
+        this.f26242g = wzVar;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class vz extends android.support.v4.media.session.s {
 
     @Override
     public final void G(long j3) {
-        ij ijVar = MediaController.B().f21295u0;
+        ij ijVar = MediaController.B().f21300u0;
         if (ijVar != null) {
             MediaController.B().i0(ijVar, (float) ((j3 / 1000.0d) / ijVar.L0()));
         }
@@ -36,7 +36,7 @@ public final class vz extends android.support.v4.media.session.s {
             }
         }
         iz.E(i10);
-        this.f26238g.f();
+        this.f26242g.f();
         g0.h3(new ds(this, 16));
     }
 
@@ -54,13 +54,13 @@ public final class vz extends android.support.v4.media.session.s {
             }
             B.l0(i10);
         }
-        this.f26238g.f26410b.x(iz.N0 ? 1 : 0);
+        this.f26242g.f26414b.x(iz.N0 ? 1 : 0);
         g0.h3(new ds(this, 16));
     }
 
     @Override
     public final void S() {
-        ij ijVar = MediaController.B().f21295u0;
+        ij ijVar = MediaController.B().f21300u0;
         if (ijVar != null && ijVar.I3()) {
             MediaController.B().U(false);
         }
@@ -68,7 +68,7 @@ public final class vz extends android.support.v4.media.session.s {
 
     @Override
     public final void V() {
-        ij ijVar = MediaController.B().f21295u0;
+        ij ijVar = MediaController.B().f21300u0;
         if (ijVar != null && ijVar.I3()) {
             MediaController.B().V();
         }
@@ -83,7 +83,7 @@ public final class vz extends android.support.v4.media.session.s {
     public final void f(String str) {
         int i7;
         boolean equals = "org.telegram.android.musicplayer.repeat".equals(str);
-        wz wzVar = this.f26238g;
+        wz wzVar = this.f26242g;
         if (equals) {
             iz.E((iz.S0 + 1) % 3);
             wzVar.f();
@@ -95,20 +95,20 @@ public final class vz extends android.support.v4.media.session.s {
                 i7 = 2;
             }
             B.l0(i7);
-            wzVar.f26410b.x(iz.N0 ? 1 : 0);
+            wzVar.f26414b.x(iz.N0 ? 1 : 0);
         }
     }
 
     @Override
     public final void k() {
-        MediaController.B().R(MediaController.B().f21295u0, true);
+        MediaController.B().R(MediaController.B().f21300u0, true);
     }
 
     @Override
     public final void n() {
-        ij ijVar = MediaController.B().f21295u0;
+        ij ijVar = MediaController.B().f21300u0;
         if (ijVar == null) {
-            wz wzVar = this.f26238g;
+            wz wzVar = this.f26242g;
             if (wzVar.d != 0) {
                 q(a8.p0.r(new StringBuilder(), wzVar.d, "_0"), null);
                 return;
@@ -122,23 +122,23 @@ public final class vz extends android.support.v4.media.session.s {
     public final void q(String str, Bundle bundle) {
         String str2;
         String str3;
-        wz wzVar = this.f26238g;
-        android.support.v4.media.session.a0 a0Var = wzVar.f26410b;
+        wz wzVar = this.f26242g;
+        android.support.v4.media.session.a0 a0Var = wzVar.f26414b;
         if (!TextUtils.isEmpty(str)) {
             String[] split = str.split("_");
             if (split.length == 2) {
                 try {
                     long parseLong = Long.parseLong(split[0]);
                     int parseInt = Integer.parseInt(split[1]);
-                    ArrayList arrayList = (ArrayList) wzVar.f26416j.f(parseLong);
+                    ArrayList arrayList = (ArrayList) wzVar.f26420j.f(parseLong);
                     if (arrayList == null) {
                         wzVar.e(new uz(this, str, bundle, 0), parseLong);
                         return;
                     }
-                    ArrayList arrayList2 = (ArrayList) wzVar.f26417k.f(parseLong);
+                    ArrayList arrayList2 = (ArrayList) wzVar.f26421k.f(parseLong);
                     if (parseInt >= 0 && parseInt < arrayList.size()) {
                         wzVar.d = parseLong;
-                        qp.s1(wzVar.f26411c).f24764d7.edit().putLong("auto_lastSelectedDialog", parseLong).apply();
+                        qp.s1(wzVar.f26415c).f24768d7.edit().putLong("auto_lastSelectedDialog", parseLong).apply();
                         MediaController.B().o0(arrayList, (ij) arrayList.get(parseInt), 0L, false, null, 0L);
                         a0Var.v(arrayList2);
                         if (m5.E(parseLong)) {
@@ -151,7 +151,7 @@ public final class vz extends android.support.v4.media.session.s {
                             ((android.support.v4.media.session.u) a0Var.f1763b).f1793a.setQueueTitle(str3);
                             return;
                         }
-                        TLRPC.Chat chat = (TLRPC.Chat) wzVar.f26415i.f(-parseLong);
+                        TLRPC.Chat chat = (TLRPC.Chat) wzVar.f26419i.f(-parseLong);
                         if (chat != null) {
                             str2 = chat.title;
                         } else {
@@ -171,8 +171,8 @@ public final class vz extends android.support.v4.media.session.s {
         String str2;
         String str3;
         String str4;
-        wz wzVar = this.f26238g;
-        ArrayList arrayList = wzVar.f26414g;
+        wz wzVar = this.f26242g;
+        ArrayList arrayList = wzVar.f26418g;
         if (str != null && str.length() != 0) {
             String lowerCase = str.toLowerCase();
             for (int i7 = 0; i7 < arrayList.size(); i7++) {
@@ -200,7 +200,7 @@ public final class vz extends android.support.v4.media.session.s {
                         continue;
                     }
                 } else {
-                    TLRPC.Chat chat = (TLRPC.Chat) wzVar.f26415i.f(-longValue);
+                    TLRPC.Chat chat = (TLRPC.Chat) wzVar.f26419i.f(-longValue);
                     if (chat != null && (str2 = chat.title) != null && str2.toLowerCase().contains(lowerCase)) {
                         q(longValue + "_0", null);
                         return;

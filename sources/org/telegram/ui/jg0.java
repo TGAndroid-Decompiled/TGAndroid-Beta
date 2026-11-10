@@ -2,116 +2,82 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.tgnet.TLObject;
-public final class jg0 extends org.telegram.ui.Components.pj0 {
-    public final Context f46964c;
-    public final lg0 d;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stats;
+public final class jg0 extends n41 {
+    public final kg0 f47009w;
 
-    public jg0(lg0 lg0Var, Context context) {
-        this.d = lg0Var;
-        this.f46964c = context;
+    public jg0(kg0 kg0Var, Context context, int i7, lg.f fVar, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, i7, fVar, h6Var);
+        this.f47009w = kg0Var;
     }
 
     @Override
-    public final void A(v4.d1 d1Var) {
-        View view = d1Var.f57056a;
-        if (view instanceof org.telegram.ui.Cells.a5) {
-            ((org.telegram.ui.Cells.a5) view).a();
-        }
-    }
-
-    @Override
-    public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57060f == 0) {
-            return ((org.telegram.ui.Cells.a5) d1Var.f57056a).getCurrentObject() instanceof TLObject;
-        }
-        return false;
-    }
-
-    @Override
-    public final int b() {
-        return this.d.Q;
-    }
-
-    @Override
-    public final int d(int i7) {
-        lg0 lg0Var = this.d;
-        if (lg0Var.R.contains(Integer.valueOf(i7))) {
-            return 1;
-        }
-        if (i7 != lg0Var.H && i7 != lg0Var.O) {
-            if (i7 == lg0Var.K) {
-                return 3;
-            }
-            if (i7 == lg0Var.L) {
-                return 4;
-            }
-            if (i7 == lg0Var.N) {
-                return 5;
-            }
-            if (i7 == lg0Var.P) {
-                return 6;
-            }
-            if (i7 == lg0Var.M) {
-                return 7;
-            }
-            return 0;
-        }
-        return 2;
-    }
-
-    @Override
-    public final void t(v4.d1 r17, int r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.jg0.t(v4.d1, int):void");
-    }
-
-    @Override
-    public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        View view;
-        org.telegram.ui.Cells.y6 y6Var;
-        lg0 lg0Var = this.d;
-        if (i7 != 0) {
-            int i10 = 1;
-            Context context = this.f46964c;
-            if (i7 != 1) {
-                if (i7 != 2) {
-                    if (i7 != 4) {
-                        if (i7 != 5) {
-                            if (i7 != 6) {
-                                if (i7 != 7) {
-                                    view = new org.telegram.ui.Cells.t4(context, org.telegram.messenger.g0.L(40.0f), org.telegram.messenger.g0.L(120.0f));
-                                }
-                            } else {
-                                view = new org.telegram.ui.Cells.m3(context, 16);
-                                view.setLayoutParams(new v4.o0(-1, 16));
-                            }
-                        } else {
-                            view = new kg0(lg0Var, context);
-                            view.setLayoutParams(new v4.o0(-1, -2));
-                        }
-                    }
-                    if (i7 != 4) {
-                        i10 = 2;
-                    }
-                    lg.f fVar = new lg.f(lg0Var.getResourceProvider());
-                    lg0Var.f47606c0 = fVar;
-                    view = new ig0(this, this.f46964c, i10, fVar, lg0Var.getResourceProvider());
+    public final void c() {
+        int i7;
+        int i10;
+        int i11;
+        mg0 mg0Var = this.f47009w.d;
+        if (this.f48119r.f48950c <= 0) {
+            performClick();
+            lg.g gVar = this.f48114b;
+            if (gVar.f18325t0.G) {
+                long selectedDate = gVar.getSelectedDate();
+                if (this.f48120s == 4) {
+                    q41 q41Var = this.f48119r;
+                    q41Var.f48951e = new mg.e(q41Var.d, selectedDate);
+                    g(false);
+                } else if (this.f48119r.f48953g == null) {
                 } else {
-                    org.telegram.ui.Cells.n4 n4Var = new org.telegram.ui.Cells.n4(this.f46964c, org.telegram.ui.ActionBar.l6.G6, 16, 11, false, lg0Var.getResourceProvider());
-                    n4Var.setHeight(43);
-                    y6Var = n4Var;
+                    f();
+                    String str = this.f48119r.f48953g + "_" + selectedDate;
+                    mg.b bVar = (mg.b) mg0Var.f47966w.f(str);
+                    if (bVar != null) {
+                        this.f48119r.f48951e = bVar;
+                        g(false);
+                        return;
+                    }
+                    TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
+                    tL_loadAsyncGraph.token = this.f48119r.f48953g;
+                    if (selectedDate != 0) {
+                        tL_loadAsyncGraph.f27193x = selectedDate;
+                        tL_loadAsyncGraph.flags |= 1;
+                    }
+                    ?? obj = new Object();
+                    mg0Var.f47967x = obj;
+                    mg0Var.f47962f.getClass();
+                    obj.f44901a = RecyclerView.R(this);
+                    gVar.f18325t0.d(true, false);
+                    i7 = ((org.telegram.ui.ActionBar.f2) mg0Var).currentAccount;
+                    int sendRequest = ConnectionsManager.getInstance(i7).sendRequest(tL_loadAsyncGraph, new z9(this, str, (Object) obj, 25), null, null, 0, mg0Var.f47953a.stats_dc, 1, true);
+                    i10 = ((org.telegram.ui.ActionBar.f2) mg0Var).currentAccount;
+                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i10);
+                    i11 = ((org.telegram.ui.ActionBar.f2) mg0Var).classGuid;
+                    connectionsManager.bindRequestToGuid(sendRequest, i11);
                 }
-            } else {
-                lg0Var.getResourceProvider();
-                y6Var = new org.telegram.ui.Cells.y6(context, (org.telegram.ui.Cells.f1) null);
             }
-            view = y6Var;
-        } else {
-            org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(this.f46964c, 6, 2, false, lg0Var.getResourceProvider());
-            a5Var.setDividerColor(org.telegram.ui.ActionBar.l6.f27866d7);
-            view = a5Var;
         }
-        return new v4.d1(view);
+    }
+
+    @Override
+    public final void f() {
+        kg0 kg0Var = this.f47009w;
+        mg0 mg0Var = kg0Var.d;
+        d51 d51Var = mg0Var.f47967x;
+        if (d51Var != null) {
+            d51Var.f44902b = true;
+        }
+        int childCount = mg0Var.f47962f.getChildCount();
+        for (int i7 = 0; i7 < childCount; i7++) {
+            View childAt = kg0Var.d.f47962f.getChildAt(i7);
+            if (childAt instanceof n41) {
+                ((n41) childAt).f48114b.f18325t0.d(false, true);
+            }
+        }
+    }
+
+    @Override
+    public final void b(q41 q41Var) {
     }
 }

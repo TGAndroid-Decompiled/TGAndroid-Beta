@@ -2,7 +2,7 @@ package f3;
 
 import java.io.EOFException;
 public final class n implements j0 {
-    public final byte[] f11068a = new byte[4096];
+    public final byte[] f11073a = new byte[4096];
 
     @Override
     public final void a(h2.x xVar, int i7, int i10) {
@@ -21,7 +21,7 @@ public final class n implements j0 {
 
     @Override
     public final int f(e2.n nVar, int i7, boolean z9) {
-        byte[] bArr = this.f11068a;
+        byte[] bArr = this.f11073a;
         int read = nVar.read(bArr, 0, Math.min(bArr.length, i7));
         if (read == -1) {
             if (z9) {

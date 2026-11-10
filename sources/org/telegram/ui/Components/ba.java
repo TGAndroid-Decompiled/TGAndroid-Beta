@@ -1,162 +1,345 @@
 package org.telegram.ui.Components;
 
+import android.animation.ValueAnimator;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Rect;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RecordingCanvas;
 import android.graphics.RectF;
+import android.graphics.RenderNode;
 import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.View;
-public final class ba extends Drawable {
-    public float f32197a = 1.0f;
-    public final Paint f32198b = new Paint(1);
-    public final Rect f32199c = new Rect();
-    public final Path d = new Path();
-    public final float f32200e;
-    public final float f32201f;
-    public final Drawable f32202g;
-    public final float h;
-    public final ca f32203i;
+import java.util.ArrayList;
+public final class ba {
+    public final x9 f32174a;
+    public final View f32175b;
+    public final ColorMatrix f32176c;
+    public final boolean d;
+    public boolean f32177e;
+    public float f32178f;
+    public Paint f32179g;
+    public Paint h;
+    public final int f32180i;
+    public final Integer f32181j;
+    public final Path f32182k;
+    public int f32183l;
+    public int f32184m;
+    public Bitmap f32185n;
+    public BitmapShader f32186o;
+    public final Matrix f32187p;
+    public final RectF f32188q;
+    public boolean f32189r;
+    public Paint[] f32190s;
+    public ValueAnimator f32191t;
+    public final int[] f32192u;
+    public final int[] v;
 
-    public ba(ca caVar, float f10, float f11, Drawable drawable, float f12) {
-        this.f32203i = caVar;
-        this.f32200e = f10;
-        this.f32201f = f11;
-        this.f32202g = drawable;
-        this.h = f12;
+    public ba(x9 x9Var, View view) {
+        this(x9Var, view, 6, false);
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
+    public final void a(Canvas canvas) {
+        b(canvas, true);
+    }
+
+    public final void b(Canvas canvas, boolean z9) {
+        int i7;
+        int i10;
+        int i11;
+        int i12;
+        x9 x9Var = this.f32174a;
+        if (x9Var.c() && Build.VERSION.SDK_INT >= 31) {
+            boolean isHardwareAccelerated = canvas.isHardwareAccelerated();
+            Integer num = this.f32181j;
+            if (!isHardwareAccelerated) {
+                if (num != null) {
+                    i12 = num.intValue();
+                } else {
+                    i12 = x9Var.f40264i;
+                }
+                canvas.drawColor(i12);
+                return;
+            }
+            RenderNode renderNode = (RenderNode) x9Var.f40267l;
+            if (!renderNode.hasDisplayList()) {
+                RenderNode renderNode2 = (RenderNode) x9Var.f40266k;
+                renderNode.setPosition(0, 0, renderNode2.getWidth(), renderNode2.getHeight());
+                RecordingCanvas beginRecording = renderNode.beginRecording();
+                if (num != null) {
+                    i11 = num.intValue();
+                } else {
+                    i11 = x9Var.f40264i;
+                }
+                beginRecording.drawColor(i11);
+                beginRecording.drawRenderNode(renderNode2);
+                renderNode.endRecording();
+            }
+            if (!renderNode.hasDisplayList()) {
+                if (num != null) {
+                    i10 = num.intValue();
+                } else {
+                    i10 = x9Var.f40264i;
+                }
+                canvas.drawColor(i10);
+                return;
+            }
+            if (num != null) {
+                i7 = num.intValue();
+            } else {
+                i7 = x9Var.f40264i;
+            }
+            canvas.drawColor(i7);
+            f(renderNode.getWidth(), renderNode.getHeight(), true);
+            if (renderNode.hasDisplayList()) {
+                Matrix matrix = this.f32187p;
+                matrix.postTranslate(-0.0f, -0.0f);
+                this.h.setAlpha((int) 255.0f);
+                canvas.saveLayer(null, this.h);
+                canvas.concat(matrix);
+                if (z9) {
+                    int i13 = this.f32183l;
+                    int width = renderNode.getWidth();
+                    Path path = this.f32182k;
+                    if (i13 != width || this.f32184m != renderNode.getHeight()) {
+                        path.rewind();
+                        RectF rectF = org.telegram.messenger.g0.P;
+                        int width2 = renderNode.getWidth();
+                        this.f32183l = width2;
+                        int height = renderNode.getHeight();
+                        this.f32184m = height;
+                        rectF.set(0.0f, 0.0f, width2, height);
+                        path.addRoundRect(rectF, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), Path.Direction.CW);
+                    }
+                    canvas.clipPath(path);
+                }
+                canvas.drawRenderNode(renderNode);
+                canvas.restore();
+                return;
+            }
+            return;
+        }
+        Paint c10 = c(1.0f);
+        if (c10 != null) {
+            canvas.drawPaint(c10);
+        }
+    }
+
+    public final Paint c(float f10) {
         Bitmap b10;
-        ca caVar = this.f32203i;
-        y9 y9Var = caVar.f32598a;
-        Matrix matrix = caVar.f32611p;
-        Paint paint = null;
-        if (y9Var != null && (b10 = y9Var.b()) != null) {
-            if (caVar.f32610o == null || caVar.f32609n != b10) {
-                caVar.f32609n = b10;
+        Bitmap bitmap;
+        x9 x9Var = this.f32174a;
+        if (x9Var == null || (b10 = x9Var.b()) == null) {
+            return null;
+        }
+        BitmapShader bitmapShader = this.f32186o;
+        if (bitmapShader == null || this.f32185n != b10) {
+            if (this.d && bitmapShader != null && (bitmap = this.f32185n) != null && !bitmap.isRecycled() && !b10.isRecycled()) {
+                Paint paint = this.h;
+                this.h = this.f32179g;
+                this.f32179g = paint;
+                this.f32177e = true;
+                ValueAnimator valueAnimator = this.f32191t;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                    this.f32191t = null;
+                }
+                this.f32178f = 1.0f;
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
+                this.f32191t = ofFloat;
+                ofFloat.addUpdateListener(new d6(this, 6));
+                this.f32191t.start();
+            }
+            this.f32185n = b10;
+            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            BitmapShader bitmapShader2 = new BitmapShader(b10, tileMode, tileMode);
+            this.f32186o = bitmapShader2;
+            this.h.setShader(bitmapShader2);
+        }
+        f(b10.getWidth(), b10.getHeight(), false);
+        Matrix matrix = this.f32187p;
+        matrix.postTranslate(-0.0f, -0.0f);
+        this.f32186o.setLocalMatrix(matrix);
+        this.h.setAlpha((int) (f10 * 255.0f));
+        return this.h;
+    }
+
+    public final Paint[] d() {
+        Paint paint;
+        Paint c10 = c(1.0f);
+        boolean z9 = this.f32177e;
+        if (z9) {
+            paint = this.f32179g;
+        } else {
+            paint = null;
+        }
+        if (c10 != null && z9) {
+            c10.setAlpha((int) org.telegram.messenger.k5.A(1.0f, this.f32178f, 255.0f, 1.0f));
+        }
+        if (paint != null) {
+            paint.setAlpha((int) 255.0f);
+        }
+        if (this.f32190s == null) {
+            this.f32190s = new Paint[2];
+        }
+        Paint[] paintArr = this.f32190s;
+        paintArr[0] = paint;
+        paintArr[1] = c10;
+        return paintArr;
+    }
+
+    public final void e(float f10, float f11, float f12, float f13) {
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(f10, f11, f12, f13);
+        RectF rectF2 = this.f32188q;
+        if (rectF2.top != rectF.top || rectF2.bottom != rectF.bottom || rectF2.left != rectF.left || rectF2.right != rectF.right) {
+            rectF2.set(rectF);
+            Bitmap b10 = this.f32174a.b();
+            if (b10 == null) {
+                return;
+            }
+            if (this.f32186o == null || this.f32185n != b10) {
+                this.f32185n = b10;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader = new BitmapShader(b10, tileMode, tileMode);
-                caVar.f32610o = bitmapShader;
-                caVar.h.setShader(bitmapShader);
+                this.f32186o = bitmapShader;
+                this.h.setShader(bitmapShader);
             }
+            float width = rectF2.width() / this.f32185n.getWidth();
+            float height = rectF2.height() / this.f32185n.getHeight();
+            Matrix matrix = this.f32187p;
             matrix.reset();
-            matrix.postTranslate((-0.0f) - this.f32200e, (-0.0f) - this.f32201f);
-            View view = y9Var.f40672b;
-            if (view != null) {
-                matrix.preScale(view.getWidth() / b10.getWidth(), y9Var.f40672b.getHeight() / b10.getHeight());
-            }
-            caVar.f32610o.setLocalMatrix(matrix);
-            caVar.h.setAlpha((int) (this.f32197a * 255.0f));
-            paint = caVar.h;
+            matrix.postTranslate(rectF2.left, rectF2.top);
+            matrix.preScale(width, height);
+            this.f32186o.setLocalMatrix(matrix);
         }
-        Paint paint2 = paint;
-        Rect bounds = getBounds();
-        Drawable drawable = this.f32202g;
-        Paint paint3 = this.f32198b;
-        float f10 = this.h;
-        if (paint2 == null && (y9Var == null || !y9Var.c())) {
-            if (drawable != null) {
-                drawable.setBounds(bounds);
-                drawable.draw(canvas);
-                return;
-            }
-            paint3.setColor(-14145495);
-            if (f10 > 0.0f) {
-                RectF rectF = org.telegram.messenger.g0.P;
-                rectF.set(bounds);
-                canvas.drawRoundRect(rectF, f10, f10, paint3);
-                return;
-            }
-            canvas.drawRect(bounds, paint3);
-            return;
-        }
-        Path path = this.d;
-        if (drawable != null) {
-            canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
-            drawable.setBounds(bounds);
-            drawable.draw(canvas);
-            Rect rect = this.f32199c;
-            if (y9Var != null && y9Var.c()) {
-                canvas.save();
-                getPadding(rect);
-                RectF rectF2 = org.telegram.messenger.g0.P;
-                rectF2.set(bounds.left + rect.left, bounds.top + rect.top, bounds.right - rect.right, bounds.bottom - rect.bottom);
-                path.rewind();
-                path.addRoundRect(rectF2, f10, f10, Path.Direction.CW);
-                canvas.clipPath(path);
-                caVar.b(canvas, false);
-                canvas.restore();
+    }
+
+    public final void f(int i7, int i10, boolean z9) {
+        View view;
+        View view2;
+        Matrix matrix = this.f32187p;
+        matrix.reset();
+        x9 x9Var = this.f32174a;
+        if (x9Var != null) {
+            if (z9) {
+                view = x9Var.f40265j;
             } else {
-                canvas.drawRect(bounds, paint2);
+                view = x9Var.f40259b;
             }
-            canvas.restore();
-            getPadding(rect);
-            RectF rectF3 = org.telegram.messenger.g0.P;
-            rectF3.set(bounds.left + rect.left, bounds.top + rect.top, bounds.right - rect.right, bounds.bottom - rect.bottom);
-            paint3.setColor(1711276032);
-            canvas.drawRoundRect(rectF3, f10, f10, paint3);
-            return;
-        }
-        int i7 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
-        if (i7 > 0) {
-            RectF rectF4 = org.telegram.messenger.g0.P;
-            rectF4.set(bounds);
-            if (y9Var != null && y9Var.c()) {
-                canvas.save();
-                path.rewind();
-                path.addRoundRect(rectF4, f10, f10, Path.Direction.CW);
-                canvas.clipPath(path);
-                caVar.b(canvas, false);
-                canvas.restore();
-            } else {
-                canvas.drawRoundRect(rectF4, f10, f10, paint2);
-            }
-        } else if (y9Var != null && y9Var.c()) {
-            canvas.save();
-            canvas.clipRect(bounds);
-            caVar.b(canvas, false);
-            canvas.restore();
         } else {
-            canvas.drawRect(bounds, paint2);
+            view = null;
         }
-        paint3.setColor(1711276032);
-        if (i7 > 0) {
-            RectF rectF5 = org.telegram.messenger.g0.P;
-            rectF5.set(bounds);
-            canvas.drawRoundRect(rectF5, f10, f10, paint3);
-            return;
+        if (x9Var != null) {
+            ArrayList arrayList = x9Var.f40260c;
+            View view3 = this.f32175b;
+            do {
+                matrix.preScale(1.0f / view3.getScaleX(), 1.0f / view3.getScaleY(), view3.getPivotX(), view3.getPivotY());
+                matrix.preRotate(-view3.getRotation(), view3.getPivotX(), view3.getPivotY());
+                matrix.preTranslate(-view3.getX(), -view3.getY());
+                if (!(view3.getParent() instanceof View) || (view3 = (View) view3.getParent()) == null) {
+                    break;
+                }
+            } while (!arrayList.contains(view3));
+            if (view != view3) {
+                int indexOf = arrayList.indexOf(view3) + 1;
+                if (indexOf == 0 && (view2 = (View) arrayList.get(indexOf)) != null) {
+                    int[] iArr = this.f32192u;
+                    view3.getLocationOnScreen(iArr);
+                    int[] iArr2 = this.v;
+                    view2.getLocationOnScreen(iArr2);
+                    matrix.preTranslate(iArr2[0] - iArr[0], iArr2[1] - iArr[1]);
+                }
+                while (indexOf >= 0 && indexOf < arrayList.size()) {
+                    View view4 = (View) arrayList.get(indexOf);
+                    if (view4 != null) {
+                        matrix.preScale(view4.getScaleX(), view4.getScaleY(), view4.getPivotX(), view4.getPivotY());
+                        matrix.preRotate(view4.getRotation(), view4.getPivotX(), view4.getPivotY());
+                        matrix.preTranslate(view4.getX(), view4.getY());
+                        indexOf++;
+                    }
+                }
+            }
         }
-        canvas.drawRect(bounds, paint3);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final boolean getPadding(Rect rect) {
-        Drawable drawable = this.f32202g;
-        if (drawable != null) {
-            return drawable.getPadding(rect);
+        if (view != null) {
+            matrix.preScale(view.getWidth() / i7, view.getHeight() / i10);
         }
-        rect.set(0, 0, 0, 0);
-        return true;
     }
 
-    @Override
-    public final void setAlpha(int i7) {
-        this.f32197a = i7 / 255.0f;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public ba(x9 x9Var, View view, int i7, boolean z9) {
+        this.f32179g = new Paint(3);
+        this.h = new Paint(3);
+        this.f32182k = new Path();
+        this.f32187p = new Matrix();
+        this.f32188q = new RectF();
+        this.f32189r = false;
+        this.f32192u = new int[2];
+        this.v = new int[2];
+        this.f32174a = x9Var;
+        this.f32175b = view;
+        this.f32180i = i7;
+        this.d = z9;
+        ColorMatrix colorMatrix = new ColorMatrix();
+        this.f32176c = colorMatrix;
+        if (i7 == 0) {
+            org.telegram.messenger.g0.i(colorMatrix, 0.45f);
+        } else if (i7 == 5) {
+            Paint paint = this.h;
+            PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+            paint.setXfermode(new PorterDuffXfermode(mode));
+            this.f32179g.setXfermode(new PorterDuffXfermode(mode));
+            org.telegram.messenger.g0.i(colorMatrix, 0.3f);
+        } else if (i7 == 2) {
+            Paint paint2 = this.h;
+            PorterDuff.Mode mode2 = PorterDuff.Mode.SRC_IN;
+            paint2.setXfermode(new PorterDuffXfermode(mode2));
+            this.f32179g.setXfermode(new PorterDuffXfermode(mode2));
+            org.telegram.messenger.g0.h(colorMatrix, 0.4f);
+            org.telegram.messenger.g0.i(colorMatrix, 0.3f);
+        } else if (i7 == 1) {
+            org.telegram.messenger.g0.i(colorMatrix, 0.35f);
+            org.telegram.messenger.g0.h(colorMatrix, 0.7f);
+            org.telegram.messenger.g0.n2(colorMatrix, 1.5f);
+        } else if (i7 == 3) {
+            org.telegram.messenger.g0.i(colorMatrix, 0.5f);
+        } else if (i7 == 4) {
+            this.f32181j = -10329502;
+            org.telegram.messenger.g0.i(colorMatrix, 0.6f);
+            org.telegram.messenger.g0.h(colorMatrix, 0.3f);
+            org.telegram.messenger.g0.n2(colorMatrix, 1.2f);
+        } else if (i7 == 6) {
+            org.telegram.messenger.g0.i(colorMatrix, 0.4f);
+            org.telegram.messenger.g0.n2(colorMatrix, 0.35f);
+        } else if (i7 == 7) {
+            org.telegram.messenger.g0.i(colorMatrix, 0.5f);
+            org.telegram.messenger.g0.n2(colorMatrix, 0.95f);
+        } else if (i7 == 8) {
+            org.telegram.messenger.g0.h(colorMatrix, -0.15f);
+            org.telegram.messenger.g0.i(colorMatrix, 0.47f);
+        } else if (i7 == 9) {
+            Paint paint3 = this.h;
+            PorterDuff.Mode mode3 = PorterDuff.Mode.SRC_IN;
+            paint3.setXfermode(new PorterDuffXfermode(mode3));
+            this.f32179g.setXfermode(new PorterDuffXfermode(mode3));
+            org.telegram.messenger.g0.h(colorMatrix, 0.4f);
+            org.telegram.messenger.g0.i(colorMatrix, 0.45f);
+        } else if (i7 == 10) {
+            colorMatrix.setSaturation(1.6f);
+            org.telegram.messenger.g0.n2(colorMatrix, this.f32189r ? 0.97f : 0.92f);
+            org.telegram.messenger.g0.h(colorMatrix, this.f32189r ? 0.12f : -0.06f);
+        }
+        this.h.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+        this.f32179g.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+        if (view.isAttachedToWindow() && x9Var != null) {
+            x9Var.d.add(this);
+        }
+        view.addOnAttachStateChangeListener(new z9(0, this, x9Var));
     }
 }

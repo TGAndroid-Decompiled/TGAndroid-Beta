@@ -10,34 +10,34 @@ import java.util.LinkedList;
 import java.util.List;
 import org.telegram.messenger.m6;
 public final class c implements w2.a {
-    public final long f53110a;
-    public final long f53111b;
-    public final long f53112c;
+    public final long f53109a;
+    public final long f53110b;
+    public final long f53111c;
     public final boolean d;
-    public final long f53113e;
-    public final long f53114f;
-    public final long f53115g;
+    public final long f53112e;
+    public final long f53113f;
+    public final long f53114g;
     public final long h;
-    public final m6 f53116i;
-    public final e0 f53117j;
-    public final Uri f53118k;
-    public final i f53119l;
-    public final List f53120m;
+    public final m6 f53115i;
+    public final e0 f53116j;
+    public final Uri f53117k;
+    public final i f53118l;
+    public final List f53119m;
 
     public c(long j3, long j10, long j11, boolean z9, long j12, long j13, long j14, long j15, i iVar, m6 m6Var, e0 e0Var, Uri uri, ArrayList arrayList) {
-        this.f53110a = j3;
-        this.f53111b = j10;
-        this.f53112c = j11;
+        this.f53109a = j3;
+        this.f53110b = j10;
+        this.f53111c = j11;
         this.d = z9;
-        this.f53113e = j12;
-        this.f53114f = j13;
-        this.f53115g = j14;
+        this.f53112e = j12;
+        this.f53113f = j13;
+        this.f53114g = j14;
         this.h = j15;
-        this.f53119l = iVar;
-        this.f53116i = m6Var;
-        this.f53118k = uri;
-        this.f53117j = e0Var;
-        this.f53120m = arrayList;
+        this.f53118l = iVar;
+        this.f53115i = m6Var;
+        this.f53117k = uri;
+        this.f53116j = e0Var;
+        this.f53119m = arrayList;
     }
 
     @Override
@@ -52,70 +52,70 @@ public final class c implements w2.a {
         int i7 = 0;
         while (true) {
             j3 = -9223372036854775807L;
-            if (i7 >= this.f53120m.size()) {
+            if (i7 >= this.f53119m.size()) {
                 break;
             }
-            if (((f1) linkedList.peek()).f10247a != i7) {
+            if (((f1) linkedList.peek()).f10252a != i7) {
                 long c10 = c(i7);
                 if (c10 != -9223372036854775807L) {
                     j11 += c10;
                 }
             } else {
                 h b10 = b(i7);
-                List list2 = b10.f53140c;
+                List list2 = b10.f53139c;
                 f1 f1Var = (f1) linkedList.poll();
-                int i10 = f1Var.f10247a;
+                int i10 = f1Var.f10252a;
                 ArrayList arrayList2 = new ArrayList();
                 while (true) {
-                    int i11 = f1Var.f10248b;
+                    int i11 = f1Var.f10253b;
                     a aVar = (a) list2.get(i11);
-                    List list3 = aVar.f53104c;
+                    List list3 = aVar.f53103c;
                     ArrayList arrayList3 = new ArrayList();
                     do {
-                        arrayList3.add((m) list3.get(f1Var.f10249c));
+                        arrayList3.add((m) list3.get(f1Var.f10254c));
                         f1Var = (f1) linkedList.poll();
-                        if (f1Var.f10247a != i10) {
+                        if (f1Var.f10252a != i10) {
                             break;
                         }
-                    } while (f1Var.f10248b == i11);
+                    } while (f1Var.f10253b == i11);
                     j10 = j11;
-                    arrayList2.add(new a(aVar.f53102a, aVar.f53103b, arrayList3, aVar.d, aVar.f53105e, aVar.f53106f));
-                    if (f1Var.f10247a != i10) {
+                    arrayList2.add(new a(aVar.f53101a, aVar.f53102b, arrayList3, aVar.d, aVar.f53104e, aVar.f53105f));
+                    if (f1Var.f10252a != i10) {
                         break;
                     }
                     j11 = j10;
                 }
                 linkedList.addFirst(f1Var);
-                arrayList.add(new h(b10.f53138a, b10.f53139b - j10, arrayList2, b10.d));
+                arrayList.add(new h(b10.f53137a, b10.f53138b - j10, arrayList2, b10.d));
                 j11 = j10;
             }
             i7++;
         }
         long j12 = j11;
-        long j13 = this.f53111b;
+        long j13 = this.f53110b;
         if (j13 != -9223372036854775807L) {
             j3 = j13 - j12;
         }
-        return new c(this.f53110a, j3, this.f53112c, this.d, this.f53113e, this.f53114f, this.f53115g, this.h, this.f53119l, this.f53116i, this.f53117j, this.f53118k, arrayList);
+        return new c(this.f53109a, j3, this.f53111c, this.d, this.f53112e, this.f53113f, this.f53114g, this.h, this.f53118l, this.f53115i, this.f53116j, this.f53117k, arrayList);
     }
 
     public final h b(int i7) {
-        return (h) this.f53120m.get(i7);
+        return (h) this.f53119m.get(i7);
     }
 
     public final long c(int i7) {
         long j3;
         long j10;
-        List list = this.f53120m;
+        List list = this.f53119m;
         if (i7 == list.size() - 1) {
-            j3 = this.f53111b;
+            j3 = this.f53110b;
             if (j3 == -9223372036854775807L) {
                 return -9223372036854775807L;
             }
-            j10 = ((h) list.get(i7)).f53139b;
+            j10 = ((h) list.get(i7)).f53138b;
         } else {
-            j3 = ((h) list.get(i7 + 1)).f53139b;
-            j10 = ((h) list.get(i7)).f53139b;
+            j3 = ((h) list.get(i7 + 1)).f53138b;
+            j10 = ((h) list.get(i7)).f53138b;
         }
         return j3 - j10;
     }

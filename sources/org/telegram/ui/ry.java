@@ -1,28 +1,22 @@
 package org.telegram.ui;
+public final class ry implements Runnable {
+    public final int f49593a;
+    public final fi.m3 f49594b;
 
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-public final class ry extends FrameLayout {
-    public ImageView f49630a;
-    public TextView f49631b;
-    public int f49632c;
-    public boolean d;
-    public Boolean f49633e;
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        TextView textView = this.f49631b;
-        super.onDraw(canvas);
-        if (this.d) {
-            canvas.drawRect(textView.getLeft(), getMeasuredHeight() - 1, textView.getRight(), getMeasuredHeight(), org.telegram.ui.ActionBar.l6.f27988k0);
-        }
+    public ry(fi.m3 m3Var, int i7) {
+        this.f49593a = i7;
+        this.f49594b = m3Var;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(48.0f), 1073741824));
+    public final void run() {
+        switch (this.f49593a) {
+            case 0:
+                org.telegram.messenger.g0.E2(this.f49594b);
+                return;
+            default:
+                this.f49594b.f(true);
+                return;
+        }
     }
 }

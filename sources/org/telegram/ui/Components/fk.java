@@ -1,10 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.LinearLayout;
-public final class fk extends LinearLayout {
+import android.text.Editable;
+import android.text.TextWatcher;
+public final class fk implements TextWatcher {
+    public final hk f33559a;
+
+    public fk(hk hkVar) {
+        this.f33559a = hkVar;
+    }
+
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(0, 0));
+    public final void afterTextChanged(Editable editable) {
+        this.f33559a.i0();
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 }

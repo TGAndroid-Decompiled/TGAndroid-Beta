@@ -27,29 +27,29 @@ public class ClippingImageView extends View {
     public float[][] N;
     public float O;
     public float P;
-    public int f31288a;
-    public int f31289b;
-    public int f31290c;
+    public int f31299a;
+    public int f31300b;
+    public int f31301c;
     public int d;
-    public int f31291e;
-    public int f31292f;
+    public int f31302e;
+    public int f31303f;
     public int h;
-    public int f31293n;
-    public final RectF f31294r;
-    public final Paint f31295s;
-    public org.telegram.messenger.jc f31296w;
-    public final Matrix f31297x;
-    public boolean f31298y;
+    public int f31304n;
+    public final RectF f31305r;
+    public final Paint f31306s;
+    public org.telegram.messenger.jc f31307w;
+    public final Matrix f31308x;
+    public boolean f31309y;
 
     public ClippingImageView(Context context) {
         super(context);
         this.D = new int[4];
         this.J = new Path();
         Paint paint = new Paint(2);
-        this.f31295s = paint;
+        this.f31306s = paint;
         paint.setFilterBitmap(true);
-        this.f31297x = new Matrix();
-        this.f31294r = new RectF();
+        this.f31308x = new Matrix();
+        this.f31305r = new RectF();
         this.H = new RectF();
         this.F = new Paint(3);
         this.G = new RectF();
@@ -61,45 +61,45 @@ public class ClippingImageView extends View {
     }
 
     public Bitmap getBitmap() {
-        org.telegram.messenger.jc jcVar = this.f31296w;
+        org.telegram.messenger.jc jcVar = this.f31307w;
         if (jcVar != null) {
-            return jcVar.f23535c;
+            return jcVar.f23539c;
         }
         return null;
     }
 
     public org.telegram.messenger.jc getBitmapHolder() {
-        return this.f31296w;
+        return this.f31307w;
     }
 
     public float getCenterX() {
         float scaleY = getScaleY();
         float translationX = getTranslationX();
-        float width = getWidth() - (this.f31290c / scaleY);
-        return (getScaleX() * ((width + (this.f31289b / scaleY)) / 2.0f)) + translationX;
+        float width = getWidth() - (this.f31301c / scaleY);
+        return (getScaleX() * ((width + (this.f31300b / scaleY)) / 2.0f)) + translationX;
     }
 
     public float getCenterY() {
         float scaleY = getScaleY();
         float translationY = getTranslationY();
-        float height = getHeight() - (this.f31288a / scaleY);
+        float height = getHeight() - (this.f31299a / scaleY);
         return (getScaleY() * ((height + (this.d / scaleY)) / 2.0f)) + translationY;
     }
 
     public int getClipBottom() {
-        return this.f31288a;
+        return this.f31299a;
     }
 
     public int getClipHorizontal() {
-        return this.f31290c;
+        return this.f31301c;
     }
 
     public int getClipLeft() {
-        return this.f31289b;
+        return this.f31300b;
     }
 
     public int getClipRight() {
-        return this.f31290c;
+        return this.f31301c;
     }
 
     public int getClipTop() {
@@ -107,7 +107,7 @@ public class ClippingImageView extends View {
     }
 
     public int getOrientation() {
-        return this.f31291e;
+        return this.f31302e;
     }
 
     public int[] getRadius() {
@@ -130,17 +130,17 @@ public class ClippingImageView extends View {
         float height2;
         boolean z9;
         float[] fArr;
-        if (getVisibility() == 0 && (jcVar = this.f31296w) != null && (bitmap = jcVar.f23535c) != null && !bitmap.isRecycled()) {
+        if (getVisibility() == 0 && (jcVar = this.f31307w) != null && (bitmap = jcVar.f23539c) != null && !bitmap.isRecycled()) {
             float scaleY = getScaleY();
             canvas.save();
-            boolean z10 = this.f31298y;
+            boolean z10 = this.f31309y;
             RectF rectF = this.H;
             if (z10) {
                 Matrix matrix = this.I;
                 matrix.reset();
                 RectF rectF2 = this.G;
-                rectF2.set(this.f31293n / scaleY, this.h / scaleY, getWidth() - (this.f31293n / scaleY), getHeight() - (this.h / scaleY));
-                Bitmap bitmap2 = this.f31296w.f23535c;
+                rectF2.set(this.f31304n / scaleY, this.h / scaleY, getWidth() - (this.f31304n / scaleY), getHeight() - (this.h / scaleY));
+                Bitmap bitmap2 = this.f31307w.f23539c;
                 int i11 = 0;
                 if (bitmap2 != null) {
                     i7 = bitmap2.getWidth();
@@ -148,16 +148,16 @@ public class ClippingImageView extends View {
                     i7 = 0;
                 }
                 float f10 = i7;
-                Bitmap bitmap3 = this.f31296w.f23535c;
+                Bitmap bitmap3 = this.f31307w.f23539c;
                 if (bitmap3 != null) {
                     i10 = bitmap3.getHeight();
                 } else {
                     i10 = 0;
                 }
                 rectF.set(0.0f, 0.0f, f10, i10);
-                int i12 = this.f31291e;
-                int i13 = this.f31292f;
-                Typeface typeface = org.telegram.messenger.g0.f22535a;
+                int i12 = this.f31302e;
+                int i13 = this.f31303f;
+                Typeface typeface = org.telegram.messenger.g0.f22539a;
                 if (i12 != 90 && i12 != 270) {
                     height = rectF2.width() / rectF.width();
                     width = rectF2.height();
@@ -208,7 +208,7 @@ public class ClippingImageView extends View {
                 }
                 matrix.preScale(height, height);
                 this.E.setLocalMatrix(matrix);
-                canvas.clipRect(this.f31289b / scaleY, this.d / scaleY, getWidth() - (this.f31290c / scaleY), getHeight() - (this.f31288a / scaleY));
+                canvas.clipRect(this.f31300b / scaleY, this.d / scaleY, getWidth() - (this.f31301c / scaleY), getHeight() - (this.f31299a / scaleY));
                 while (true) {
                     int[] iArr = this.D;
                     int length = iArr.length;
@@ -228,24 +228,24 @@ public class ClippingImageView extends View {
                 path.close();
                 canvas.drawPath(path, this.F);
             } else {
-                int i15 = this.f31291e;
-                RectF rectF3 = this.f31294r;
-                Matrix matrix2 = this.f31297x;
+                int i15 = this.f31302e;
+                RectF rectF3 = this.f31305r;
+                Matrix matrix2 = this.f31308x;
                 if (i15 != 90 && i15 != 270) {
                     if (i15 == 180) {
                         rectF3.set((-getWidth()) / 2, (-getHeight()) / 2, getWidth() / 2, getHeight() / 2);
                         matrix2.setRectToRect(rectF, rectF3, Matrix.ScaleToFit.FILL);
-                        int i16 = this.f31292f;
+                        int i16 = this.f31303f;
                         if (i16 == 1) {
                             matrix2.postScale(-1.0f, 1.0f);
                         } else if (i16 == 2) {
                             matrix2.postScale(1.0f, -1.0f);
                         }
-                        matrix2.postRotate(this.f31291e, 0.0f, 0.0f);
+                        matrix2.postRotate(this.f31302e, 0.0f, 0.0f);
                         matrix2.postTranslate(getWidth() / 2, getHeight() / 2);
                     } else {
                         rectF3.set(0.0f, 0.0f, getWidth(), getHeight());
-                        int i17 = this.f31292f;
+                        int i17 = this.f31303f;
                         if (i17 == 1) {
                             matrix2.postScale(-1.0f, 1.0f, getWidth() / 2, getHeight() / 2);
                         } else if (i17 == 2) {
@@ -256,18 +256,18 @@ public class ClippingImageView extends View {
                 } else {
                     rectF3.set((-getHeight()) / 2, (-getWidth()) / 2, getHeight() / 2, getWidth() / 2);
                     matrix2.setRectToRect(rectF, rectF3, Matrix.ScaleToFit.FILL);
-                    int i18 = this.f31292f;
+                    int i18 = this.f31303f;
                     if (i18 == 1) {
                         matrix2.postScale(-1.0f, 1.0f);
                     } else if (i18 == 2) {
                         matrix2.postScale(1.0f, -1.0f);
                     }
-                    matrix2.postRotate(this.f31291e, 0.0f, 0.0f);
+                    matrix2.postRotate(this.f31302e, 0.0f, 0.0f);
                     matrix2.postTranslate(getWidth() / 2, getHeight() / 2);
                 }
-                canvas.clipRect(this.f31289b / scaleY, this.d / scaleY, getWidth() - (this.f31290c / scaleY), getHeight() - (this.f31288a / scaleY));
+                canvas.clipRect(this.f31300b / scaleY, this.d / scaleY, getWidth() - (this.f31301c / scaleY), getHeight() - (this.f31299a / scaleY));
                 try {
-                    canvas.drawBitmap(this.f31296w.f23535c, matrix2, this.f31295s);
+                    canvas.drawBitmap(this.f31307w.f23539c, matrix2, this.f31306s);
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
                 }
@@ -340,23 +340,23 @@ public class ClippingImageView extends View {
     }
 
     public void setClipBottom(int i7) {
-        this.f31288a = i7;
+        this.f31299a = i7;
         invalidate();
     }
 
     public void setClipHorizontal(int i7) {
-        this.f31290c = i7;
-        this.f31289b = i7;
+        this.f31301c = i7;
+        this.f31300b = i7;
         invalidate();
     }
 
     public void setClipLeft(int i7) {
-        this.f31289b = i7;
+        this.f31300b = i7;
         invalidate();
     }
 
     public void setClipRight(int i7) {
-        this.f31290c = i7;
+        this.f31301c = i7;
         invalidate();
     }
 
@@ -366,7 +366,7 @@ public class ClippingImageView extends View {
     }
 
     public void setClipVertical(int i7) {
-        this.f31288a = i7;
+        this.f31299a = i7;
         this.d = i7;
         invalidate();
     }
@@ -375,16 +375,16 @@ public class ClippingImageView extends View {
         Bitmap bitmap;
         int i7;
         Bitmap bitmap2;
-        org.telegram.messenger.jc jcVar2 = this.f31296w;
+        org.telegram.messenger.jc jcVar2 = this.f31307w;
         if (jcVar2 != null) {
             jcVar2.a();
             this.E = null;
         }
-        if (jcVar != null && ((bitmap2 = jcVar.f23535c) == null || bitmap2.isRecycled())) {
+        if (jcVar != null && ((bitmap2 = jcVar.f23539c) == null || bitmap2.isRecycled())) {
             jcVar = null;
         }
-        this.f31296w = jcVar;
-        if (jcVar != null && (bitmap = jcVar.f23535c) != null) {
+        this.f31307w = jcVar;
+        if (jcVar != null && (bitmap = jcVar.f23539c) != null) {
             int i10 = 0;
             if (bitmap != null) {
                 i7 = bitmap.getWidth();
@@ -392,12 +392,12 @@ public class ClippingImageView extends View {
                 i7 = 0;
             }
             float f10 = i7;
-            Bitmap bitmap3 = jcVar.f23535c;
+            Bitmap bitmap3 = jcVar.f23539c;
             if (bitmap3 != null) {
                 i10 = bitmap3.getHeight();
             }
             this.H.set(0.0f, 0.0f, f10, i10);
-            Bitmap bitmap4 = this.f31296w.f23535c;
+            Bitmap bitmap4 = this.f31307w.f23539c;
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
             BitmapShader bitmapShader = new BitmapShader(bitmap4, tileMode, tileMode);
             this.E = bitmapShader;
@@ -407,7 +407,7 @@ public class ClippingImageView extends View {
     }
 
     public void setImageX(int i7) {
-        this.f31293n = i7;
+        this.f31304n = i7;
     }
 
     public void setImageY(int i7) {
@@ -415,22 +415,22 @@ public class ClippingImageView extends View {
     }
 
     public void setOrientation(int i7) {
-        this.f31291e = i7;
-        this.f31292f = 0;
+        this.f31302e = i7;
+        this.f31303f = 0;
     }
 
     public void setRadius(int[] iArr) {
         int[] iArr2 = this.D;
         if (iArr == null) {
-            this.f31298y = false;
+            this.f31309y = false;
             Arrays.fill(iArr2, 0);
             return;
         }
         System.arraycopy(iArr, 0, iArr2, 0, iArr.length);
-        this.f31298y = false;
+        this.f31309y = false;
         for (int i7 : iArr) {
             if (i7 != 0) {
-                this.f31298y = true;
+                this.f31309y = true;
                 return;
             }
         }

@@ -1,61 +1,144 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class pl0 extends ch.m0 {
-    public final ql0 f37037g0;
+public final class pl0 extends View {
+    public ol0 f37009a;
+    public final v5 f37010b;
+    public final fh.g f37011c;
+    public ch.o0 d;
+    public boolean f37012e;
+    public final Path f37013f;
+    public final RectF h;
+    public final RectF f37014n;
+    public boolean f37015r;
+    public final ql0 f37016s;
 
-    public pl0(ql0 ql0Var, int i7, View view, TLRPC.TL_reactionCount tL_reactionCount, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(null, i7, view, tL_reactionCount, true, g6Var);
-        this.f37037g0 = ql0Var;
-    }
-
-    @Override
-    public final boolean e() {
-        if (this.v <= 0 && !this.f6330t && this.E.f32371l == 1.0f) {
-            return false;
+    public pl0(ql0 ql0Var, Context context) {
+        super(context);
+        this.f37016s = ql0Var;
+        this.f37010b = new v5(this, 0L, 260L, wq.h);
+        this.f37013f = new Path();
+        this.h = new RectF();
+        this.f37014n = new RectF();
+        c8.ka.a(this);
+        dh.c cVar = ql0Var.f37329w;
+        if (cVar != null) {
+            fh.g c10 = cVar.c(this, null, false);
+            c10.p(ql0Var.f37330x);
+            c10.u(org.telegram.messenger.g0.L(5.0f));
+            c10.f11543s = false;
+            fh.e eVar = c10.f11540f0;
+            if (eVar != null) {
+                eVar.g(false);
+            }
+            org.telegram.messenger.camera.q.p(c10, org.telegram.messenger.g0.L(6.0f), 4.0f);
+            this.f37011c = c10;
         }
-        return true;
+    }
+
+    public final void a(boolean z9, boolean z10) {
+        if (this.f37012e == z9) {
+            return;
+        }
+        this.f37012e = z9;
+        ol0 ol0Var = this.f37009a;
+        if (ol0Var != null) {
+            ol0Var.f6330o = z9;
+            v5 v5Var = this.f37010b;
+            if (z10) {
+                ol0Var.h = ol0Var.M;
+                ol0Var.f6321f = ol0Var.N;
+                ol0Var.f6323g = ol0Var.O;
+                v5Var.e(true, 0.0f);
+            } else {
+                v5Var.e(true, 1.0f);
+            }
+            invalidate();
+        }
     }
 
     @Override
-    public final boolean h() {
-        return !e();
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (!this.f37015r) {
+            ol0 ol0Var = this.f37009a;
+            if (ol0Var != null) {
+                ol0Var.a();
+            }
+            this.f37015r = true;
+        }
     }
 
     @Override
-    public final int i() {
-        return 18;
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (this.f37015r) {
+            ol0 ol0Var = this.f37009a;
+            if (ol0Var != null) {
+                ol0Var.b();
+            }
+            this.f37015r = false;
+        }
     }
 
     @Override
-    public final void r(float f10) {
+    public final void onDraw(Canvas canvas) {
         int i7;
-        int i10;
-        int w02;
-        int i11 = this.h;
-        ql0 ql0Var = this.f37037g0;
-        if (ql0Var.f37413e) {
-            i7 = org.telegram.ui.ActionBar.l6.tk;
-        } else {
-            i7 = org.telegram.ui.ActionBar.l6.f27979jb;
+        ql0 ql0Var = this.f37016s;
+        Paint paint = ql0Var.f37331y;
+        int width = (getWidth() - this.f37009a.f6340z) / 2;
+        int height = getHeight();
+        ol0 ol0Var = this.f37009a;
+        int i10 = ol0Var.A;
+        int i11 = (height - i10) / 2;
+        fh.g gVar = this.f37011c;
+        if (gVar != null) {
+            Rect rect = org.telegram.messenger.g0.Q;
+            rect.set(width, i11, ol0Var.f6340z + width, i10 + i11);
+            RectF rectF = this.f37014n;
+            rectF.set(rect);
+            RectF rectF2 = this.h;
+            boolean equals = rectF.equals(rectF2);
+            Path path = this.f37013f;
+            if (!equals) {
+                rectF2.set(rectF);
+                ch.p0.h(rectF2, rectF, path);
+            }
+            rect.inset(-org.telegram.messenger.g0.L(4.0f), -org.telegram.messenger.g0.L(4.0f));
+            rect.right = org.telegram.messenger.g0.L(1.0f) + rect.right;
+            gVar.setBounds(rect);
+            canvas.save();
+            canvas.clipPath(path);
+            gVar.draw(canvas);
+            org.telegram.ui.ActionBar.h6 h6Var = ql0Var.f37323c;
+            if (h6Var == null ? org.telegram.ui.ActionBar.m6.I.q() : h6Var.a()) {
+                i7 = 687865855;
+            } else {
+                i7 = -1;
+            }
+            paint.setColor(i7);
+            canvas.drawPath(path, paint);
+            canvas.restore();
         }
-        this.M = i0.a.f(f10, i11, org.telegram.ui.ActionBar.l6.w0(i7, ql0Var.f37417s.f37735c));
-        int i12 = this.f6316f;
-        if (ql0Var.f37413e) {
-            i10 = org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.qk, ql0Var.f37417s.f37735c);
+        this.f37009a.d(canvas, width, i11, this.f37010b.e(false, 1.0f), 1.0f, false, false, 0.0f);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        int L;
+        int L2 = org.telegram.messenger.g0.L(8.67f);
+        ol0 ol0Var = this.f37009a;
+        if (ol0Var != null) {
+            L = ol0Var.f6340z;
         } else {
-            i10 = 0;
+            L = org.telegram.messenger.g0.L(44.33f);
         }
-        int f11 = i0.a.f(f10, i12, i10);
-        this.N = f11;
-        this.M = org.telegram.ui.ActionBar.l6.w(f11, this.M);
-        int i13 = this.f6318g;
-        if (ql0Var.f37413e) {
-            w02 = 1526726655;
-        } else {
-            w02 = org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.kb, ql0Var.f37417s.f37735c);
-        }
-        this.O = i0.a.f(f10, i13, w02);
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(L2 + L, 1073741824), i10);
     }
 }

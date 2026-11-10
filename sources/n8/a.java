@@ -12,24 +12,24 @@ import java.util.List;
 import m6.e;
 public final class a extends r6.a {
     public static final Parcelable.Creator<a> CREATOR = new e(11);
-    public final String f20526a;
-    public final byte[] f20527b;
-    public final byte[][] f20528c;
+    public final String f20531a;
+    public final byte[] f20532b;
+    public final byte[][] f20533c;
     public final byte[][] d;
-    public final byte[][] f20529e;
-    public final byte[][] f20530f;
+    public final byte[][] f20534e;
+    public final byte[][] f20535f;
     public final int[] h;
-    public final byte[][] f20531n;
+    public final byte[][] f20536n;
 
     public a(String str, byte[] bArr, byte[][] bArr2, byte[][] bArr3, byte[][] bArr4, byte[][] bArr5, int[] iArr, byte[][] bArr6) {
-        this.f20526a = str;
-        this.f20527b = bArr;
-        this.f20528c = bArr2;
+        this.f20531a = str;
+        this.f20532b = bArr;
+        this.f20533c = bArr2;
         this.d = bArr3;
-        this.f20529e = bArr4;
-        this.f20530f = bArr5;
+        this.f20534e = bArr4;
+        this.f20535f = bArr5;
         this.h = iArr;
-        this.f20531n = bArr6;
+        this.f20536n = bArr6;
     }
 
     public static List b(int[] iArr) {
@@ -88,7 +88,7 @@ public final class a extends r6.a {
     public final boolean equals(Object obj) {
         if (obj instanceof a) {
             a aVar = (a) obj;
-            if (aa.a(this.f20526a, aVar.f20526a) && Arrays.equals(this.f20527b, aVar.f20527b) && aa.a(c(this.f20528c), c(aVar.f20528c)) && aa.a(c(this.d), c(aVar.d)) && aa.a(c(this.f20529e), c(aVar.f20529e)) && aa.a(c(this.f20530f), c(aVar.f20530f)) && aa.a(b(this.h), b(aVar.h)) && aa.a(c(this.f20531n), c(aVar.f20531n))) {
+            if (aa.a(this.f20531a, aVar.f20531a) && Arrays.equals(this.f20532b, aVar.f20532b) && aa.a(c(this.f20533c), c(aVar.f20533c)) && aa.a(c(this.d), c(aVar.d)) && aa.a(c(this.f20534e), c(aVar.f20534e)) && aa.a(c(this.f20535f), c(aVar.f20535f)) && aa.a(b(this.h), b(aVar.h)) && aa.a(c(this.f20536n), c(aVar.f20536n))) {
                 return true;
             }
         }
@@ -99,7 +99,7 @@ public final class a extends r6.a {
         String sb2;
         StringBuilder sb3 = new StringBuilder("ExperimentTokens");
         sb3.append("(");
-        String str = this.f20526a;
+        String str = this.f20531a;
         if (str == null) {
             sb2 = "null";
         } else {
@@ -111,7 +111,7 @@ public final class a extends r6.a {
         }
         sb3.append(sb2);
         sb3.append(", direct=");
-        byte[] bArr = this.f20527b;
+        byte[] bArr = this.f20532b;
         if (bArr == null) {
             sb3.append("null");
         } else {
@@ -120,13 +120,13 @@ public final class a extends r6.a {
             sb3.append("'");
         }
         sb3.append(", ");
-        d(sb3, "GAIA", this.f20528c);
+        d(sb3, "GAIA", this.f20533c);
         sb3.append(", ");
         d(sb3, "PSEUDO", this.d);
         sb3.append(", ");
-        d(sb3, "ALWAYS", this.f20529e);
+        d(sb3, "ALWAYS", this.f20534e);
         sb3.append(", ");
-        d(sb3, "OTHER", this.f20530f);
+        d(sb3, "OTHER", this.f20535f);
         sb3.append(", ");
         sb3.append("weak");
         sb3.append("=");
@@ -150,7 +150,7 @@ public final class a extends r6.a {
             sb3.append(")");
         }
         sb3.append(", ");
-        d(sb3, "directs", this.f20531n);
+        d(sb3, "directs", this.f20536n);
         sb3.append(")");
         return sb3.toString();
     }
@@ -158,14 +158,14 @@ public final class a extends r6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = xb.r(parcel, 20293);
-        xb.l(parcel, 2, this.f20526a);
-        xb.c(parcel, 3, this.f20527b);
-        xb.d(parcel, 4, this.f20528c);
+        xb.l(parcel, 2, this.f20531a);
+        xb.c(parcel, 3, this.f20532b);
+        xb.d(parcel, 4, this.f20533c);
         xb.d(parcel, 5, this.d);
-        xb.d(parcel, 6, this.f20529e);
-        xb.d(parcel, 7, this.f20530f);
+        xb.d(parcel, 6, this.f20534e);
+        xb.d(parcel, 7, this.f20535f);
         xb.g(parcel, 8, this.h);
-        xb.d(parcel, 9, this.f20531n);
+        xb.d(parcel, 9, this.f20536n);
         xb.s(parcel, r10);
     }
 }

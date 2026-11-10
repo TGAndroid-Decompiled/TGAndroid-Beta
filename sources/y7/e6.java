@@ -1,12 +1,12 @@
 package y7;
 public final class e6 {
-    public final Long f59019a;
-    public final m6 f59020b;
-    public final Boolean f59021c;
+    public final Long f59017a;
+    public final m6 f59018b;
+    public final Boolean f59019c;
 
     public e6(d6 d6Var) {
-        this.f59019a = (Long) d6Var.f59011a;
-        this.f59020b = (m6) d6Var.f59012b;
-        this.f59021c = (Boolean) d6Var.f59013c;
+        this.f59017a = (Long) d6Var.f59009a;
+        this.f59018b = (m6) d6Var.f59010b;
+        this.f59019c = (Boolean) d6Var.f59011c;
     }
 }

@@ -41,7 +41,7 @@ public final class g implements d, d0 {
     public g(Context context, HashMap hashMap) {
         Context applicationContext;
         boolean z9;
-        g0 g0Var = g0.f14088a;
+        g0 g0Var = g0.f14090a;
         if (context == null) {
             applicationContext = null;
         } else {
@@ -64,17 +64,17 @@ public final class g implements d, d0 {
             Iterator it = copyOnWriteArrayList.iterator();
             while (it.hasNext()) {
                 v vVar = (v) it.next();
-                if (vVar.f14151a.get() == null) {
+                if (vVar.f14153a.get() == null) {
                     copyOnWriteArrayList.remove(vVar);
                 }
             }
             v vVar2 = new v(a10, fVar, e10);
-            synchronized (a10.f14158e) {
+            synchronized (a10.f14160e) {
                 ((CopyOnWriteArrayList) a10.d).add(vVar2);
-                z9 = a10.f14155a;
+                z9 = a10.f14157a;
             }
             if (z9) {
-                vVar2.f14152b.execute(new v9(vVar2, 9));
+                vVar2.f14154b.execute(new v9(vVar2, 9));
                 return;
             }
             return;

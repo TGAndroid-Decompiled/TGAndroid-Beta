@@ -3,17 +3,17 @@ package bi;
 import java.util.function.ToDoubleFunction;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.z51;
+import org.telegram.ui.Components.y51;
 public final class j1 implements ToDoubleFunction {
-    public final int f4076a;
+    public final int f4073a;
 
     public j1(int i7) {
-        this.f4076a = i7;
+        this.f4073a = i7;
     }
 
     @Override
     public final double applyAsDouble(Object obj) {
-        switch (this.f4076a) {
+        switch (this.f4073a) {
             case 0:
                 return w1.e1((TL_stars.starGiftAttributeBackdrop) obj);
             case 1:
@@ -21,7 +21,7 @@ public final class j1 implements ToDoubleFunction {
             case 2:
                 return w1.e1((TL_stars.starGiftAttributeModel) obj);
             case 3:
-                return ((z51) obj).f40912a;
+                return ((y51) obj).f40508a;
             case 4:
                 return ((TLRPC.TL_topPeer) obj).rating;
             case 5:

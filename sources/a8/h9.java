@@ -4,11 +4,11 @@ import java.io.IOException;
 public abstract class h9 {
     public static int a(byte[] bArr, int i7, com.google.android.gms.internal.play_billing.h1 h1Var) {
         int f10 = f(bArr, i7, h1Var);
-        int i10 = h1Var.f7358a;
+        int i10 = h1Var.f7363a;
         if (i10 >= 0) {
             if (i10 <= bArr.length - f10) {
                 if (i10 == 0) {
-                    h1Var.d = com.google.android.gms.internal.play_billing.l1.f7395c;
+                    h1Var.d = com.google.android.gms.internal.play_billing.l1.f7400c;
                     return f10;
                 }
                 h1Var.d = com.google.android.gms.internal.play_billing.l1.l(f10, i10, bArr);
@@ -38,7 +38,7 @@ public abstract class h9 {
             com.google.android.gms.internal.play_billing.h1 h1Var3 = h1Var2;
             int i13 = i12;
             int f10 = f(bArr2, k10, h1Var3);
-            if (i7 != h1Var3.f7358a) {
+            if (i7 != h1Var3.f7363a) {
                 break;
             }
             byte[] bArr3 = bArr2;
@@ -59,10 +59,10 @@ public abstract class h9 {
     public static int d(byte[] bArr, int i7, com.google.android.gms.internal.play_billing.z1 z1Var, com.google.android.gms.internal.play_billing.h1 h1Var) {
         com.google.android.gms.internal.play_billing.w1 w1Var = (com.google.android.gms.internal.play_billing.w1) z1Var;
         int f10 = f(bArr, i7, h1Var);
-        int i10 = h1Var.f7358a + f10;
+        int i10 = h1Var.f7363a + f10;
         while (f10 < i10) {
             f10 = f(bArr, f10, h1Var);
-            w1Var.j(h1Var.f7358a);
+            w1Var.j(h1Var.f7363a);
         }
         if (f10 == i10) {
             return f10;
@@ -85,8 +85,8 @@ public abstract class h9 {
                         }
                         int i13 = (i7 & (-8)) | 4;
                         com.google.android.gms.internal.play_billing.x2 b10 = com.google.android.gms.internal.play_billing.x2.b();
-                        int i14 = h1Var.f7359b + 1;
-                        h1Var.f7359b = i14;
+                        int i14 = h1Var.f7364b + 1;
+                        h1Var.f7364b = i14;
                         if (i14 < 100) {
                             int i15 = 0;
                             while (true) {
@@ -94,7 +94,7 @@ public abstract class h9 {
                                     break;
                                 }
                                 int f10 = f(bArr, i10, h1Var);
-                                int i16 = h1Var.f7358a;
+                                int i16 = h1Var.f7363a;
                                 if (i16 == i13) {
                                     i15 = i16;
                                     i10 = f10;
@@ -103,7 +103,7 @@ public abstract class h9 {
                                 i10 = e(i16, bArr, f10, i11, b10, h1Var);
                                 i15 = i16;
                             }
-                            h1Var.f7359b--;
+                            h1Var.f7364b--;
                             if (i10 <= i11 && i15 == i13) {
                                 x2Var.c(i7, b10);
                                 return i10;
@@ -113,11 +113,11 @@ public abstract class h9 {
                         throw new IOException("Protocol message had too many levels of nesting.  May be malicious.  Use setRecursionLimit() to increase the recursion depth limit.");
                     }
                     int f11 = f(bArr, i10, h1Var);
-                    int i17 = h1Var.f7358a;
+                    int i17 = h1Var.f7363a;
                     if (i17 >= 0) {
                         if (i17 <= bArr.length - f11) {
                             if (i17 == 0) {
-                                x2Var.c(i7, com.google.android.gms.internal.play_billing.l1.f7395c);
+                                x2Var.c(i7, com.google.android.gms.internal.play_billing.l1.f7400c);
                             } else {
                                 x2Var.c(i7, com.google.android.gms.internal.play_billing.l1.l(f11, i17, bArr));
                             }
@@ -131,7 +131,7 @@ public abstract class h9 {
                 return i10 + 8;
             }
             int i18 = i(bArr, i10, h1Var);
-            x2Var.c(i7, Long.valueOf(h1Var.f7360c));
+            x2Var.c(i7, Long.valueOf(h1Var.f7365c));
             return i18;
         }
         throw new IOException("Protocol message contained an invalid tag (zero).");
@@ -141,7 +141,7 @@ public abstract class h9 {
         int i10 = i7 + 1;
         byte b10 = bArr[i7];
         if (b10 >= 0) {
-            h1Var.f7358a = b10;
+            h1Var.f7363a = b10;
             return i10;
         }
         return g(b10, bArr, i10, h1Var);
@@ -152,28 +152,28 @@ public abstract class h9 {
         int i11 = i10 + 1;
         int i12 = i7 & 127;
         if (b10 >= 0) {
-            h1Var.f7358a = i12 | (b10 << 7);
+            h1Var.f7363a = i12 | (b10 << 7);
             return i11;
         }
         int i13 = i12 | ((b10 & Byte.MAX_VALUE) << 7);
         int i14 = i10 + 2;
         byte b11 = bArr[i11];
         if (b11 >= 0) {
-            h1Var.f7358a = i13 | (b11 << 14);
+            h1Var.f7363a = i13 | (b11 << 14);
             return i14;
         }
         int i15 = i13 | ((b11 & Byte.MAX_VALUE) << 14);
         int i16 = i10 + 3;
         byte b12 = bArr[i14];
         if (b12 >= 0) {
-            h1Var.f7358a = i15 | (b12 << 21);
+            h1Var.f7363a = i15 | (b12 << 21);
             return i16;
         }
         int i17 = i15 | ((b12 & Byte.MAX_VALUE) << 21);
         int i18 = i10 + 4;
         byte b13 = bArr[i16];
         if (b13 >= 0) {
-            h1Var.f7358a = i17 | (b13 << 28);
+            h1Var.f7363a = i17 | (b13 << 28);
             return i18;
         }
         int i19 = i17 | ((b13 & Byte.MAX_VALUE) << 28);
@@ -182,7 +182,7 @@ public abstract class h9 {
             if (bArr[i18] < 0) {
                 i18 = i20;
             } else {
-                h1Var.f7358a = i19;
+                h1Var.f7363a = i19;
                 return i20;
             }
         }
@@ -191,14 +191,14 @@ public abstract class h9 {
     public static int h(int i7, byte[] bArr, int i10, int i11, com.google.android.gms.internal.play_billing.z1 z1Var, com.google.android.gms.internal.play_billing.h1 h1Var) {
         com.google.android.gms.internal.play_billing.w1 w1Var = (com.google.android.gms.internal.play_billing.w1) z1Var;
         int f10 = f(bArr, i10, h1Var);
-        w1Var.j(h1Var.f7358a);
+        w1Var.j(h1Var.f7363a);
         while (f10 < i11) {
             int f11 = f(bArr, f10, h1Var);
-            if (i7 != h1Var.f7358a) {
+            if (i7 != h1Var.f7363a) {
                 break;
             }
             f10 = f(bArr, f11, h1Var);
-            w1Var.j(h1Var.f7358a);
+            w1Var.j(h1Var.f7363a);
         }
         return f10;
     }
@@ -208,7 +208,7 @@ public abstract class h9 {
         long j3 = bArr[i7];
         int i10 = i7 + 1;
         if (j3 >= 0) {
-            h1Var.f7360c = j3;
+            h1Var.f7365c = j3;
             return i10;
         }
         int i11 = i7 + 2;
@@ -222,17 +222,17 @@ public abstract class h9 {
             b11 = bArr[i11];
             i11 = i13;
         }
-        h1Var.f7360c = j10;
+        h1Var.f7365c = j10;
         return i11;
     }
 
     public static int j(Object obj, com.google.android.gms.internal.play_billing.t2 t2Var, byte[] bArr, int i7, int i10, int i11, com.google.android.gms.internal.play_billing.h1 h1Var) {
         com.google.android.gms.internal.play_billing.n2 n2Var = (com.google.android.gms.internal.play_billing.n2) t2Var;
-        int i12 = h1Var.f7359b + 1;
-        h1Var.f7359b = i12;
+        int i12 = h1Var.f7364b + 1;
+        h1Var.f7364b = i12;
         if (i12 < 100) {
             int q10 = n2Var.q(obj, bArr, i7, i10, i11, h1Var);
-            h1Var.f7359b--;
+            h1Var.f7364b--;
             h1Var.d = obj;
             return q10;
         }
@@ -244,16 +244,16 @@ public abstract class h9 {
         int i12 = bArr[i7];
         if (i12 < 0) {
             i11 = g(i12, bArr, i11, h1Var);
-            i12 = h1Var.f7358a;
+            i12 = h1Var.f7363a;
         }
         int i13 = i11;
         if (i12 >= 0 && i12 <= i10 - i13) {
-            int i14 = h1Var.f7359b + 1;
-            h1Var.f7359b = i14;
+            int i14 = h1Var.f7364b + 1;
+            h1Var.f7364b = i14;
             if (i14 < 100) {
                 int i15 = i13 + i12;
                 t2Var.e(obj, bArr, i13, i15, h1Var);
-                h1Var.f7359b--;
+                h1Var.f7364b--;
                 h1Var.d = obj;
                 return i15;
             }

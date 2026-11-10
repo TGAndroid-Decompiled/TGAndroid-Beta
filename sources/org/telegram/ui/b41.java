@@ -1,62 +1,83 @@
 package org.telegram.ui;
 
+import android.app.Activity;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
-public final class b41 extends org.telegram.ui.Components.n61 {
-    public final boolean f43885a;
-    public final boolean f43886b;
-    public final boolean f43887c;
-    public final FrameLayout d;
-    public final d51 f43888e;
+public final class b41 extends org.telegram.ui.Components.v61 {
+    public boolean V;
+    public final e51 W;
 
-    public b41(d51 d51Var, boolean z9, boolean z10, boolean z11, FrameLayout frameLayout) {
-        this.f43888e = d51Var;
-        this.f43885a = z9;
-        this.f43886b = z10;
-        this.f43887c = z11;
-        this.d = frameLayout;
+    public b41(e51 e51Var, Activity activity) {
+        super(activity, null);
+        this.W = e51Var;
     }
 
     @Override
-    public final View d(int i7) {
-        d51 d51Var = this.f43888e;
-        if (d51Var.f44843n0) {
-            return d51Var.f44838i0;
-        }
-        boolean z9 = this.f43885a;
-        FrameLayout frameLayout = this.d;
-        if (z9) {
-            if (i7 == 0) {
-                return frameLayout;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        boolean z9;
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked == 0) {
+            e51 e51Var = this.W;
+            if (e51Var.f45152j0 != null) {
+                View currentView = getCurrentView();
+                zd zdVar = e51Var.f45152j0;
+                if (currentView == zdVar) {
+                    boolean G = zdVar.G(motionEvent.getX() - e51Var.f45152j0.getX(), motionEvent.getY() - e51Var.f45152j0.getY());
+                    zdVar.Q0 = G;
+                    if (G && zdVar.f52411a1.f50705b.canScrollHorizontally(-1)) {
+                        z9 = true;
+                        this.V = z9;
+                    }
+                }
             }
-            i7--;
+            z9 = false;
+            this.V = z9;
         }
-        if (this.f43886b) {
-            if (i7 == 0) {
-                return d51Var.f44838i0;
+        try {
+            boolean dispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
+            if (actionMasked != 1 && actionMasked != 3) {
+                return dispatchTouchEvent;
             }
-            i7--;
+            this.V = false;
+            return dispatchTouchEvent;
+        } catch (Throwable th2) {
+            if (actionMasked == 1 || actionMasked == 3) {
+                this.V = false;
+            }
+            throw th2;
         }
-        if (this.f43887c && i7 == 0) {
-            return d51Var.f44839j0;
-        }
-        return frameLayout;
     }
 
     @Override
-    public final int e() {
-        if (this.f43888e.f44843n0) {
-            return 1;
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (!this.V && super.onInterceptTouchEvent(motionEvent)) {
+            return true;
         }
-        return (this.f43885a ? 1 : 0) + (this.f43886b ? 1 : 0) + (this.f43887c ? 1 : 0);
+        return false;
     }
 
     @Override
-    public final int h(int i7) {
-        return i7;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.V && B(motionEvent)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void b(View view, int i7, int i10) {
+    public final void u() {
+        e51 e51Var = this.W;
+        e51Var.p0(e51Var.f45150h0.getCurrentPosition(), true);
+        e51Var.q0(false, 0.0f);
+    }
+
+    @Override
+    public final void w(boolean z9) {
+        e51 e51Var = this.W;
+        float positionAnimated = e51Var.f45150h0.getPositionAnimated();
+        e51Var.q0(!z9, positionAnimated);
+        if (!z9) {
+            e51Var.p0(Math.round(positionAnimated), true);
+        }
     }
 }

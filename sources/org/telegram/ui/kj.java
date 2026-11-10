@@ -4,18 +4,18 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 public final class kj extends org.telegram.ui.Cells.t0 {
-    public final cn f47302t2;
+    public final cn f47314t2;
 
-    public kj(Context context, org.telegram.ui.ActionBar.g6 g6Var, cn cnVar) {
-        super(context, g6Var, false);
-        this.f47302t2 = cnVar;
+    public kj(Context context, org.telegram.ui.ActionBar.h6 h6Var, cn cnVar) {
+        super(context, h6Var, false);
+        this.f47314t2 = cnVar;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        cn cnVar = this.f47302t2;
+        cn cnVar = this.f47314t2;
         if (cnVar.P8 == null) {
-            float y10 = ((cnVar.f44700z0.getY() + cnVar.N9) - getY()) - org.telegram.messenger.g0.L(4.0f);
+            float y10 = ((cnVar.f44741z0.getY() + cnVar.N9) - getY()) - org.telegram.messenger.g0.L(4.0f);
             if (y10 > 0.0f) {
                 if (y10 < getMeasuredHeight()) {
                     canvas.save();
@@ -32,11 +32,11 @@ public final class kj extends org.telegram.ui.Cells.t0 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.k kVar;
+        org.telegram.ui.ActionBar.l lVar;
         if (getAlpha() != 0.0f) {
-            cn cnVar = this.f47302t2;
-            kVar = ((org.telegram.ui.ActionBar.f2) cnVar).actionBar;
-            if (!kVar.w() && !cnVar.X9()) {
+            cn cnVar = this.f47314t2;
+            lVar = ((org.telegram.ui.ActionBar.f2) cnVar).actionBar;
+            if (!lVar.x() && !cnVar.X9()) {
                 return super.onInterceptTouchEvent(motionEvent);
             }
             return false;
@@ -46,11 +46,11 @@ public final class kj extends org.telegram.ui.Cells.t0 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.k kVar;
+        org.telegram.ui.ActionBar.l lVar;
         if (getAlpha() != 0.0f) {
-            cn cnVar = this.f47302t2;
-            kVar = ((org.telegram.ui.ActionBar.f2) cnVar).actionBar;
-            if (!kVar.w() && !cnVar.X9()) {
+            cn cnVar = this.f47314t2;
+            lVar = ((org.telegram.ui.ActionBar.f2) cnVar).actionBar;
+            if (!lVar.x() && !cnVar.X9()) {
                 return super.onTouchEvent(motionEvent);
             }
             return false;

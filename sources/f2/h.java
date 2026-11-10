@@ -2,14 +2,14 @@ package f2;
 
 import android.content.Context;
 public final class h implements Runnable {
-    public final int f10909a;
-    public final Object f10910b;
-    public final Object f10911c;
+    public final int f10914a;
+    public final Object f10915b;
+    public final Object f10916c;
 
     public h(int i7, Context context, Object obj) {
-        this.f10909a = i7;
-        this.f10911c = obj;
-        this.f10910b = context;
+        this.f10914a = i7;
+        this.f10916c = obj;
+        this.f10915b = context;
     }
 
     @Override
@@ -18,8 +18,8 @@ public final class h implements Runnable {
     }
 
     public h(int i7, Object obj, Object obj2) {
-        this.f10909a = i7;
-        this.f10910b = obj;
-        this.f10911c = obj2;
+        this.f10914a = i7;
+        this.f10915b = obj;
+        this.f10916c = obj2;
     }
 }

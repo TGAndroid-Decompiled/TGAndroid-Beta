@@ -7,20 +7,20 @@ import org.telegram.messenger.id;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.t10;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.hc;
+import org.telegram.ui.Components.gc;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.y91;
-import org.telegram.ui.yw;
+import org.telegram.ui.z91;
+import org.telegram.ui.zw;
 public final class o1 implements c20 {
-    public final y91 f14839a;
-    public final yw f14840b;
-    public final long f14841c;
+    public final z91 f14841a;
+    public final zw f14842b;
+    public final long f14843c;
     public final int d;
 
-    public o1(y91 y91Var, yw ywVar, long j3, int i7) {
-        this.f14839a = y91Var;
-        this.f14840b = ywVar;
-        this.f14841c = j3;
+    public o1(z91 z91Var, zw zwVar, long j3, int i7) {
+        this.f14841a = z91Var;
+        this.f14842b = zwVar;
+        this.f14843c = j3;
         this.d = i7;
     }
 
@@ -30,19 +30,19 @@ public final class o1 implements c20 {
         TLRPC.User user;
         int i7;
         Boolean bool = (Boolean) obj;
-        y91 y91Var = this.f14839a;
-        yw ywVar = this.f14840b;
-        if (y91Var != null) {
-            y91Var.finishFragment();
-            ywVar.removeSelfFromStack();
+        z91 z91Var = this.f14841a;
+        zw zwVar = this.f14842b;
+        if (z91Var != null) {
+            z91Var.finishFragment();
+            zwVar.removeSelfFromStack();
         } else {
-            ywVar.finishFragment();
+            zwVar.finishFragment();
         }
         org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
         if (T == null) {
             return;
         }
-        long j3 = this.f14841c;
+        long j3 = this.f14843c;
         int i10 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
         int i11 = this.d;
         if (i10 >= 0) {
@@ -59,7 +59,7 @@ public final class o1 implements c20 {
                 user = M0;
             }
         }
-        hc a02 = hc.a0(T);
+        gc a02 = gc.a0(T);
         if (bool.booleanValue()) {
             i7 = 2131752988;
         } else {

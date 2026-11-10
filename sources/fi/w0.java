@@ -5,28 +5,28 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.yr;
 import org.telegram.tgnet.NativeByteBuffer;
 public final class w0 implements Runnable {
-    public final int f13022a;
-    public final yr f13023b;
-    public final y0 f13024c;
+    public final int f13024a;
+    public final yr f13025b;
+    public final y0 f13026c;
 
     public w0(yr yrVar, y0 y0Var, int i7) {
-        this.f13022a = i7;
-        this.f13023b = yrVar;
-        this.f13024c = y0Var;
+        this.f13024a = i7;
+        this.f13025b = yrVar;
+        this.f13026c = y0Var;
     }
 
     @Override
     public final void run() {
         SQLiteDatabase sQLiteDatabase;
         SQLiteDatabase sQLiteDatabase2;
-        switch (this.f13022a) {
+        switch (this.f13024a) {
             case 0:
-                yr yrVar = this.f13023b;
-                y0 y0Var = this.f13024c;
+                yr yrVar = this.f13025b;
+                y0 y0Var = this.f13026c;
                 SQLitePreparedStatement sQLitePreparedStatement = null;
                 try {
                     try {
-                        sQLiteDatabase = yrVar.f26721b;
+                        sQLiteDatabase = yrVar.f26725b;
                     } catch (Exception e10) {
                         org.telegram.messenger.a8.g(e10, true);
                         if (sQLitePreparedStatement == null) {
@@ -40,9 +40,9 @@ public final class w0 implements Runnable {
                         y0Var.b(nativeByteBuffer);
                         NativeByteBuffer nativeByteBuffer2 = new NativeByteBuffer(nativeByteBuffer.length());
                         y0Var.b(nativeByteBuffer2);
-                        sQLitePreparedStatement.bindLong(1, y0Var.f13110a);
+                        sQLitePreparedStatement.bindLong(1, y0Var.f13112a);
                         int i7 = 2;
-                        sQLitePreparedStatement.bindLong(2, y0Var.f13112b);
+                        sQLitePreparedStatement.bindLong(2, y0Var.f13114b);
                         sQLitePreparedStatement.bindByteBuffer(3, nativeByteBuffer2);
                         if (y0Var.G) {
                             i7 = 1;
@@ -64,12 +64,12 @@ public final class w0 implements Runnable {
                     throw th2;
                 }
             default:
-                yr yrVar2 = this.f13023b;
-                y0 y0Var2 = this.f13024c;
+                yr yrVar2 = this.f13025b;
+                y0 y0Var2 = this.f13026c;
                 SQLitePreparedStatement sQLitePreparedStatement2 = null;
                 try {
                     try {
-                        sQLiteDatabase2 = yrVar2.f26721b;
+                        sQLiteDatabase2 = yrVar2.f26725b;
                     } catch (Exception e11) {
                         org.telegram.messenger.a8.g(e11, true);
                         if (sQLitePreparedStatement2 == null) {
@@ -83,9 +83,9 @@ public final class w0 implements Runnable {
                         y0Var2.b(nativeByteBuffer3);
                         NativeByteBuffer nativeByteBuffer4 = new NativeByteBuffer(nativeByteBuffer3.length());
                         y0Var2.b(nativeByteBuffer4);
-                        sQLitePreparedStatement2.bindLong(1, y0Var2.f13110a);
+                        sQLitePreparedStatement2.bindLong(1, y0Var2.f13112a);
                         int i10 = 2;
-                        sQLitePreparedStatement2.bindLong(2, y0Var2.f13112b);
+                        sQLitePreparedStatement2.bindLong(2, y0Var2.f13114b);
                         sQLitePreparedStatement2.bindByteBuffer(3, nativeByteBuffer4);
                         if (y0Var2.G) {
                             i10 = 1;

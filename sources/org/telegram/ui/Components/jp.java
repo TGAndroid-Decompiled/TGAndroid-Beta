@@ -1,24 +1,24 @@
 package org.telegram.ui.Components;
-public final class jp implements wt0 {
-    public final hp f35106a;
-    public final lp f35107b;
+public final class jp implements vt0 {
+    public final hp f35040a;
+    public final lp f35041b;
 
     public jp(lp lpVar, hp hpVar) {
-        this.f35107b = lpVar;
-        this.f35106a = hpVar;
+        this.f35041b = lpVar;
+        this.f35040a = hpVar;
     }
 
     @Override
     public final void m(int i7) {
-        lp lpVar = this.f35107b;
-        lpVar.f35787q1 = i7;
+        lp lpVar = this.f35041b;
+        lpVar.f35716t1 = i7;
         lpVar.J0(true);
     }
 
     @Override
     public final void n() {
-        int measuredHeight = this.f35107b.f35783k1.getMeasuredHeight();
-        hp hpVar = this.f35106a;
+        int measuredHeight = this.f35041b.n1.getMeasuredHeight();
+        hp hpVar = this.f35040a;
         hpVar.z(0 - hpVar.getScrollX(), measuredHeight - hpVar.getScrollY(), false);
     }
 }

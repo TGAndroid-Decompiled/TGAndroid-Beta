@@ -5,17 +5,17 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Locale;
 public class s0 implements Iterable, Serializable {
-    public static final s0 f54034c = new s0(t0.f54039a);
-    public int f54035a = 0;
-    public final byte[] f54036b;
+    public static final s0 f54033c = new s0(t0.f54038a);
+    public int f54034a = 0;
+    public final byte[] f54035b;
 
     static {
-        int i7 = q0.f54028a;
+        int i7 = q0.f54027a;
     }
 
     public s0(byte[] bArr) {
         bArr.getClass();
-        this.f54036b = bArr;
+        this.f54035b = bArr;
     }
 
     public static int n(int i7, int i10, int i11) {
@@ -45,18 +45,18 @@ public class s0 implements Iterable, Serializable {
                 if (k() != 0) {
                     if (obj instanceof s0) {
                         s0 s0Var = (s0) obj;
-                        int i7 = this.f54035a;
-                        int i10 = s0Var.f54035a;
+                        int i7 = this.f54034a;
+                        int i10 = s0Var.f54034a;
                         if (i7 == 0 || i10 == 0 || i7 == i10) {
                             int k10 = k();
                             if (k10 <= s0Var.k()) {
                                 if (k10 <= s0Var.k()) {
-                                    byte[] bArr = s0Var.f54036b;
+                                    byte[] bArr = s0Var.f54035b;
                                     int j3 = j() + k10;
                                     int j10 = j();
                                     int j11 = s0Var.j();
                                     while (j10 < j3) {
-                                        if (this.f54036b[j10] != bArr[j11]) {
+                                        if (this.f54035b[j10] != bArr[j11]) {
                                             return false;
                                         }
                                         j10++;
@@ -81,30 +81,30 @@ public class s0 implements Iterable, Serializable {
     }
 
     public byte f(int i7) {
-        return this.f54036b[i7];
+        return this.f54035b[i7];
     }
 
     public final int hashCode() {
-        int i7 = this.f54035a;
+        int i7 = this.f54034a;
         if (i7 == 0) {
             int k10 = k();
             int j3 = j();
-            byte[] bArr = t0.f54039a;
+            byte[] bArr = t0.f54038a;
             int i10 = k10;
             for (int i11 = j3; i11 < j3 + k10; i11++) {
-                i10 = (i10 * 31) + this.f54036b[i11];
+                i10 = (i10 * 31) + this.f54035b[i11];
             }
             if (i10 == 0) {
                 i10 = 1;
             }
-            this.f54035a = i10;
+            this.f54034a = i10;
             return i10;
         }
         return i7;
     }
 
     public byte i(int i7) {
-        return this.f54036b[i7];
+        return this.f54035b[i7];
     }
 
     @Override
@@ -117,21 +117,21 @@ public class s0 implements Iterable, Serializable {
     }
 
     public int k() {
-        return this.f54036b.length;
+        return this.f54035b.length;
     }
 
     public void l(int i7, byte[] bArr) {
-        System.arraycopy(this.f54036b, 0, bArr, 0, i7);
+        System.arraycopy(this.f54035b, 0, bArr, 0, i7);
     }
 
     public final ByteArrayInputStream m() {
-        return new ByteArrayInputStream(this.f54036b, j(), k());
+        return new ByteArrayInputStream(this.f54035b, j(), k());
     }
 
     public final byte[] p() {
         int k10 = k();
         if (k10 == 0) {
-            return t0.f54039a;
+            return t0.f54038a;
         }
         byte[] bArr = new byte[k10];
         l(k10, bArr);
@@ -149,9 +149,9 @@ public class s0 implements Iterable, Serializable {
         } else {
             int n10 = n(0, 47, k());
             if (n10 == 0) {
-                r0Var = f54034c;
+                r0Var = f54033c;
             } else {
-                r0Var = new r0(this.f54036b, j(), n10);
+                r0Var = new r0(this.f54035b, j(), n10);
             }
             concat = a.d(r0Var).concat("...");
         }

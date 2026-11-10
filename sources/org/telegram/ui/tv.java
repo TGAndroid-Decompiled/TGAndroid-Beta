@@ -1,19 +1,29 @@
 package org.telegram.ui;
-public final class tv extends v4.b0 {
-    public final xw I;
-    public final uv J;
 
-    public tv(uv uvVar, xw xwVar) {
-        this.J = uvVar;
-        this.I = xwVar;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+public final class tv extends org.telegram.ui.Components.w9 {
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return false;
     }
 
     @Override
-    public final int R0() {
-        xw xwVar = this.I;
-        if (xwVar.f51779s == 0 && this.J.W.l4() && xwVar.f51780w == 2) {
-            return 1;
-        }
-        return 0;
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final int z1() {
+        return org.telegram.messenger.g0.L(48.0f);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
     }
 }

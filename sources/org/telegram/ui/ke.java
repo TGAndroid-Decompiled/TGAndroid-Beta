@@ -1,48 +1,48 @@
 package org.telegram.ui;
 public final class ke implements Runnable {
-    public final int f47274a;
-    public final cn f47275b;
-    public final org.telegram.ui.Components.kk0 f47276c;
+    public final int f47279a;
+    public final cn f47280b;
+    public final org.telegram.ui.Components.jk0 f47281c;
     public final String d;
 
-    public ke(cn cnVar, org.telegram.ui.Components.kk0 kk0Var, String str, int i7) {
-        this.f47274a = i7;
-        this.f47275b = cnVar;
-        this.f47276c = kk0Var;
+    public ke(cn cnVar, org.telegram.ui.Components.jk0 jk0Var, String str, int i7) {
+        this.f47279a = i7;
+        this.f47280b = cnVar;
+        this.f47281c = jk0Var;
         this.d = str;
     }
 
     @Override
     public final void run() {
-        org.telegram.ui.Components.hc a02;
+        org.telegram.ui.Components.gc a02;
         int i7;
-        int i10 = this.f47274a;
+        int i10 = this.f47279a;
         String str = this.d;
-        org.telegram.ui.Components.kk0 kk0Var = this.f47276c;
-        cn cnVar = this.f47275b;
+        org.telegram.ui.Components.jk0 jk0Var = this.f47281c;
+        cn cnVar = this.f47280b;
         switch (i10) {
             case 0:
-                kk0Var.dismiss();
+                jk0Var.dismiss();
                 org.telegram.messenger.g0.g(str);
-                a02 = org.telegram.ui.Components.hc.a0(cnVar);
+                a02 = org.telegram.ui.Components.gc.a0(cnVar);
                 i7 = 2131746335;
                 break;
             case 1:
-                kk0Var.dismiss();
+                jk0Var.dismiss();
                 org.telegram.messenger.g0.g(str);
-                a02 = org.telegram.ui.Components.hc.a0(cnVar);
+                a02 = org.telegram.ui.Components.gc.a0(cnVar);
                 i7 = 2131743201;
                 break;
             case 2:
-                kk0Var.dismiss();
+                jk0Var.dismiss();
                 org.telegram.messenger.g0.g(str);
-                a02 = org.telegram.ui.Components.hc.a0(cnVar);
+                a02 = org.telegram.ui.Components.gc.a0(cnVar);
                 i7 = 2131752553;
                 break;
             default:
-                kk0Var.dismiss();
+                jk0Var.dismiss();
                 org.telegram.messenger.g0.g("@" + str);
-                a02 = org.telegram.ui.Components.hc.a0(cnVar);
+                a02 = org.telegram.ui.Components.gc.a0(cnVar);
                 i7 = 2131743665;
                 break;
         }

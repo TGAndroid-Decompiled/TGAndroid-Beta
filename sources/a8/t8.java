@@ -5,7 +5,7 @@ public final class t8 {
     public final Float f652a;
 
     public t8(d6.i iVar) {
-        this.f652a = (Float) iVar.f8207b;
+        this.f652a = (Float) iVar.f8212b;
     }
 
     public final boolean equals(Object obj) {

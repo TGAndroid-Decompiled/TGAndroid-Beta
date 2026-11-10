@@ -1,47 +1,26 @@
 package org.telegram.ui.Components;
-public final class zw0 {
-    public final int f41176a;
+public final class zw0 extends dx0 {
+    public int d;
 
-    public zw0(int i7) {
-        this.f41176a = i7;
+    @Override
+    public final int a(mx0 mx0Var, fx0 fx0Var, yw0 yw0Var, int i7, boolean z9) {
+        return Math.max(0, this.f33096a - yw0Var.a(fx0Var, i7));
     }
 
-    public final int a(gx0 gx0Var, int i7) {
-        switch (this.f41176a) {
-            case 0:
-                return Integer.MIN_VALUE;
-            case 1:
-                return 0;
-            case 2:
-                return i7;
-            case 3:
-                return Integer.MIN_VALUE;
-            default:
-                return Integer.MIN_VALUE;
-        }
+    @Override
+    public final void b(int i7, int i10) {
+        super.b(i7, i10);
+        this.d = Math.max(this.d, i7 + i10);
     }
 
-    public final int b(gx0 gx0Var, int i7) {
-        switch (this.f41176a) {
-            case 0:
-                return Integer.MIN_VALUE;
-            case 1:
-                return 0;
-            case 2:
-                return i7;
-            case 3:
-                return 0;
-            default:
-                return 0;
-        }
+    @Override
+    public final void c() {
+        super.c();
+        this.d = Integer.MIN_VALUE;
     }
 
-    public int c(int i7, int i10) {
-        switch (this.f41176a) {
-            case 4:
-                return i10;
-            default:
-                return i7;
-        }
+    @Override
+    public final int d(boolean z9) {
+        return Math.max(super.d(z9), this.d);
     }
 }

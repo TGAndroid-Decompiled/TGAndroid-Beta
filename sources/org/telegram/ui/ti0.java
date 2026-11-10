@@ -1,66 +1,101 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class ti0 implements View.OnTouchListener {
-    public final int f50190a;
-    public final dk0 f50191b;
+public final class ti0 implements View.OnClickListener {
+    public final int f50289a;
+    public final ek0 f50290b;
 
-    public ti0(dk0 dk0Var, int i7) {
-        this.f50190a = i7;
-        this.f50191b = dk0Var;
+    public ti0(ek0 ek0Var, int i7) {
+        this.f50289a = i7;
+        this.f50290b = ek0Var;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        int i7 = this.f50190a;
-        dk0 dk0Var = this.f50191b;
+    public final void onClick(View view) {
+        int i7 = this.f50289a;
+        ek0 ek0Var = this.f50290b;
         switch (i7) {
             case 0:
-                if (dk0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    ss ssVar = new ss(null, false);
-                    ssVar.f49987r = new ru(28, dk0Var, view);
-                    dk0Var.presentFragment(ssVar);
-                }
-                return true;
+                ek0Var.S0 = 2;
+                ek0Var.H1();
+                return;
             case 1:
-                if (dk0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(dk0Var.getParentActivity());
-                    String M0 = org.telegram.messenger.id.M0(2131747466, null);
-                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
-                    u1Var.R = M0;
-                    alertDialog$Builder.f(new CharSequence[]{org.telegram.messenger.id.M0(2131747508, null), org.telegram.messenger.id.M0(2131747569, null)}, new k4(dk0Var, 3));
-                    alertDialog$Builder.k(org.telegram.messenger.id.M0(2131752589, null), null);
-                    dk0Var.showDialog(u1Var);
-                }
-                return true;
+                ek0Var.h1();
+                return;
             case 2:
-                if (dk0Var.getParentActivity() == null) {
-                    return false;
+                ek0Var.S0 = 3;
+                ek0Var.H1();
+                return;
+            case 3:
+                ek0Var.S0 = 1;
+                ek0Var.H1();
+                return;
+            case 4:
+                ek0Var.S0 = 4;
+                ek0Var.H1();
+                return;
+            case 5:
+                if (ek0Var.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
+                    ek0Var.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 22);
+                    return;
                 }
-                if (motionEvent.getAction() == 1) {
-                    ss ssVar2 = new ss(null, false);
-                    ssVar2.f49987r = new ui0(dk0Var, 2);
-                    dk0Var.presentFragment(ssVar2);
+                s9 s9Var = new s9(0);
+                s9Var.M = new ej0(ek0Var);
+                ek0Var.presentFragment(s9Var);
+                return;
+            case 6:
+                ek0Var.f45329f = true;
+                ek0Var.L.callOnClick();
+                ek0Var.f45329f = false;
+                return;
+            case 7:
+                ek0Var.S0 = 0;
+                ek0Var.H1();
+                return;
+            case 8:
+                ek0Var.S0 = 4;
+                ek0Var.H1();
+                return;
+            case 9:
+                ek0Var.h1();
+                return;
+            case 10:
+                ek0.g0(ek0Var);
+                return;
+            case 11:
+                ek0.h0(ek0Var);
+                return;
+            case 12:
+                ek0Var.G1();
+                return;
+            case 13:
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ek0Var.getParentActivity());
+                String M0 = org.telegram.messenger.id.M0(2131744232, null);
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27300a;
+                u1Var.R = M0;
+                u1Var.T = org.telegram.messenger.id.M0(2131744233, null);
+                alertDialog$Builder.k(org.telegram.messenger.id.M0(2131751598, null), new vi0(ek0Var, 5));
+                alertDialog$Builder.h(org.telegram.messenger.id.M0(2131752589, null), null);
+                ek0Var.showDialog(u1Var);
+                TextView textView = (TextView) u1Var.d(-1);
+                if (textView != null) {
+                    org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f28131q7, null);
+                    return;
                 }
-                return true;
+                return;
+            case 14:
+                ek0Var.G1();
+                return;
+            case 15:
+                ek0.a0(ek0Var);
+                return;
             default:
-                if (dk0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    ss ssVar3 = new ss(null, false);
-                    ssVar3.f49987r = new ui0(dk0Var, 3);
-                    dk0Var.presentFragment(ssVar3);
-                }
-                return true;
+                ek0Var.f45329f = true;
+                ek0Var.L.callOnClick();
+                ek0Var.f45329f = false;
+                return;
         }
     }
 }

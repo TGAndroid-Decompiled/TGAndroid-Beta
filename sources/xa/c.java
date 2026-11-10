@@ -22,14 +22,14 @@ import org.telegram.ui.Cells.f1;
 import q6.m;
 public final class c {
     public static final Pattern d = Pattern.compile("[0-9]+s");
-    public static final Charset f58684e = Charset.forName("UTF-8");
-    public final Context f58685a;
-    public final ua.b f58686b;
-    public final d f58687c = new d();
+    public static final Charset f58682e = Charset.forName("UTF-8");
+    public final Context f58683a;
+    public final ua.b f58684b;
+    public final d f58685c = new d();
 
     public c(Context context, ua.b bVar) {
-        this.f58685a = context;
-        this.f58686b = bVar;
+        this.f58683a = context;
+        this.f58684b = bVar;
     }
 
     public static URL a(String str) {
@@ -45,7 +45,7 @@ public final class c {
         InputStream errorStream = httpURLConnection.getErrorStream();
         String str4 = null;
         if (errorStream != null) {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, f58684e));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, f58682e));
             try {
                 StringBuilder sb2 = new StringBuilder();
                 while (true) {
@@ -91,7 +91,7 @@ public final class c {
 
     public static a e(HttpURLConnection httpURLConnection) {
         InputStream inputStream = httpURLConnection.getInputStream();
-        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f58684e));
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f58682e));
         byte b10 = (byte) (0 | 1);
         jsonReader.beginObject();
         String str = null;
@@ -139,7 +139,7 @@ public final class c {
 
     public static b f(HttpURLConnection httpURLConnection) {
         InputStream inputStream = httpURLConnection.getInputStream();
-        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f58684e));
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f58682e));
         byte b10 = (byte) (0 | 1);
         jsonReader.beginObject();
         String str = null;

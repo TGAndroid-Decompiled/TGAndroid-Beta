@@ -3,7 +3,7 @@ package bi;
 import android.graphics.Typeface;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.wq;
 public final class o6 {
     public final Runnable f4461a;
     public n6 f4462b;
@@ -17,7 +17,7 @@ public final class o6 {
     public final float f4468j;
     public final int f4469k;
     public int f4470l;
-    public final org.telegram.ui.Components.w5 f4471m;
+    public final org.telegram.ui.Components.v5 f4471m;
     public int f4472n = -1;
 
     public o6(Runnable runnable, ArrayList arrayList, n6 n6Var, n6 n6Var2, float f10, int i7) {
@@ -28,9 +28,9 @@ public final class o6 {
         this.f4467i = n6Var2;
         this.f4468j = f10;
         this.f4469k = i7;
-        org.telegram.ui.Components.w5 w5Var = new org.telegram.ui.Components.w5(runnable, 300L, xq.h);
-        this.f4471m = w5Var;
-        w5Var.a(true);
+        org.telegram.ui.Components.v5 v5Var = new org.telegram.ui.Components.v5(runnable, 300L, wq.h);
+        this.f4471m = v5Var;
+        v5Var.a(true);
         this.f4465f = -0.5f;
         this.f4464e = 1;
         this.f4470l = i7;
@@ -99,11 +99,11 @@ public final class o6 {
                 return this.h;
             }
         }
-        Typeface typeface = org.telegram.messenger.g0.f22535a;
+        Typeface typeface = org.telegram.messenger.g0.f22539a;
         if (arrayList2.isEmpty()) {
             obj = null;
         } else {
-            obj = arrayList2.get(Math.abs(((int) Utilities.f21335c.nextLong()) % arrayList2.size()));
+            obj = arrayList2.get(Math.abs(((int) Utilities.f21340c.nextLong()) % arrayList2.size()));
         }
         int intValue = ((Integer) obj).intValue();
         this.f4472n = intValue;
@@ -138,14 +138,14 @@ public final class o6 {
             }
             j3 = i7;
         }
-        org.telegram.ui.Components.w5 w5Var = this.f4471m;
-        w5Var.f39913g = j3;
+        org.telegram.ui.Components.v5 v5Var = this.f4471m;
+        v5Var.f38857g = j3;
         if (i10 >= i11) {
             z10 = true;
         } else {
             z10 = false;
         }
-        float d2 = w5Var.d(z10);
+        float d2 = v5Var.d(z10);
         if (i11 == 3) {
             f11 = 0.75f;
         } else {

@@ -2,34 +2,34 @@ package org.telegram.ui.ActionBar;
 
 import android.view.View;
 public final class b implements View.OnClickListener {
-    public final int f27336a;
-    public final k f27337b;
+    public final int f27321a;
+    public final l f27322b;
 
-    public b(k kVar, int i7) {
-        this.f27336a = i7;
-        this.f27337b = kVar;
+    public b(l lVar, int i7) {
+        this.f27321a = i7;
+        this.f27322b = lVar;
     }
 
     @Override
     public final void onClick(View view) {
         Runnable runnable;
-        switch (this.f27336a) {
+        switch (this.f27321a) {
             case 0:
-                k kVar = this.f27337b;
-                if (!kVar.f27664n0 && (runnable = kVar.f27657j0) != null) {
+                l lVar = this.f27322b;
+                if (!lVar.f27691n0 && (runnable = lVar.f27684j0) != null) {
                     runnable.run();
                     return;
                 }
                 return;
             default:
-                k kVar2 = this.f27337b;
-                if (!kVar2.J && kVar2.f27664n0) {
-                    kVar2.m(true);
+                l lVar2 = this.f27322b;
+                if (!lVar2.J && lVar2.f27691n0) {
+                    lVar2.n(true);
                     return;
                 }
-                j jVar = kVar2.f27679u0;
-                if (jVar != null) {
-                    jVar.b(-1);
+                k kVar = lVar2.f27706u0;
+                if (kVar != null) {
+                    kVar.b(-1);
                     return;
                 }
                 return;

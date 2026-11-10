@@ -10,9 +10,9 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import org.telegram.messenger.z9;
 import q6.h0;
 public final class a implements Continuation, com.google.android.gms.common.api.internal.p, com.google.android.gms.common.api.internal.n {
-    public static final a f56370a = new Object();
-    public static final a f56371b = new Object();
-    public static final a f56372c = new Object();
+    public static final a f56369a = new Object();
+    public static final a f56370b = new Object();
+    public static final a f56371c = new Object();
 
     public void a(k kVar, com.google.android.gms.common.api.internal.m mVar, boolean z9, TaskCompletionSource taskCompletionSource) {
         n6.c[] cVarArr;
@@ -26,13 +26,13 @@ public final class a implements Continuation, com.google.android.gms.common.api.
                     return;
                 }
                 n6.c cVar = null;
-                iVar.f56384b.g().f6669b = null;
+                iVar.f56383b.g().f6674b = null;
                 if (z9) {
                     h0 h0Var = kVar.B;
                     if (h0Var == null) {
                         cVarArr = null;
                     } else {
-                        cVarArr = h0Var.f53898b;
+                        cVarArr = h0Var.f53897b;
                     }
                     if (cVarArr != null) {
                         int length = cVarArr.length;
@@ -42,7 +42,7 @@ public final class a implements Continuation, com.google.android.gms.common.api.
                                 break;
                             }
                             n6.c cVar2 = cVarArr[i7];
-                            if ("location_updates_with_callback".equals(cVar2.f20495a)) {
+                            if ("location_updates_with_callback".equals(cVar2.f20500a)) {
                                 cVar = cVar2;
                                 break;
                             }
@@ -52,7 +52,7 @@ public final class a implements Continuation, com.google.android.gms.common.api.
                             x xVar = (x) kVar.n();
                             e eVar = new e(Boolean.TRUE, taskCompletionSource);
                             Parcel p12 = xVar.p1();
-                            int i10 = d.f56375a;
+                            int i10 = d.f56374a;
                             p12.writeInt(1);
                             int r10 = xb.r(p12, 20293);
                             xb.q(p12, 1, 4);
@@ -65,7 +65,7 @@ public final class a implements Continuation, com.google.android.gms.common.api.
                     }
                     x xVar2 = (x) kVar.n();
                     g gVar = new g(taskCompletionSource);
-                    int i11 = i.f56383c;
+                    int i11 = i.f56382c;
                     IInterface queryLocalInterface = iVar.queryLocalInterface("com.google.android.gms.location.ILocationCallback");
                     if (queryLocalInterface instanceof j8.j) {
                         aVar = (j8.j) queryLocalInterface;
@@ -79,7 +79,7 @@ public final class a implements Continuation, com.google.android.gms.common.api.
                         aVar2 = new a8.a(gVar, "com.google.android.gms.location.internal.IFusedLocationProviderCallback", 10);
                     }
                     Parcel p13 = xVar2.p1();
-                    int i12 = d.f56375a;
+                    int i12 = d.f56374a;
                     p13.writeInt(1);
                     int r11 = xb.r(p13, 20293);
                     xb.q(p13, 1, 4);
@@ -108,7 +108,7 @@ public final class a implements Continuation, com.google.android.gms.common.api.
         if (h0Var == null) {
             cVarArr = null;
         } else {
-            cVarArr = h0Var.f53898b;
+            cVarArr = h0Var.f53897b;
         }
         if (cVarArr != null) {
             int length = cVarArr.length;
@@ -118,7 +118,7 @@ public final class a implements Continuation, com.google.android.gms.common.api.
                     break;
                 }
                 n6.c cVar2 = cVarArr[i7];
-                if ("get_last_location_with_request".equals(cVar2.f20495a)) {
+                if ("get_last_location_with_request".equals(cVar2.f20500a)) {
                     cVar = cVar2;
                     break;
                 }
@@ -128,7 +128,7 @@ public final class a implements Continuation, com.google.android.gms.common.api.
                 x xVar = (x) kVar.n();
                 f fVar = new f(0, taskCompletionSource);
                 Parcel p12 = xVar.p1();
-                int i10 = d.f56375a;
+                int i10 = d.f56374a;
                 p12.writeInt(1);
                 aVar.writeToParcel(p12, 0);
                 d.c(p12, fVar);

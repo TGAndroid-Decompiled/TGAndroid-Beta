@@ -1,35 +1,30 @@
 package org.telegram.ui.Wallet;
-public final class o3 implements r1.d {
-    public final int f42936a;
-    public final Object f42937b;
 
-    public o3(Object obj, int i7) {
-        this.f42936a = i7;
-        this.f42937b = obj;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.view.View;
+public final class o3 extends View {
+    public final p3 f42902a;
+
+    public o3(p3 p3Var, Context context) {
+        super(context);
+        this.f42902a = p3Var;
     }
 
     @Override
-    public final void a(r1.g gVar, float f10, float f11) {
-        switch (this.f42936a) {
-            case 0:
-                u3 u3Var = (u3) this.f42937b;
-                u3Var.G = f10;
-                u3Var.c();
-                return;
-            case 1:
-                n8 n8Var = (n8) this.f42937b;
-                n8Var.f42901e = f10;
-                n8Var.setScaleX(f10);
-                n8Var.setScaleY(f10);
-                return;
-            case 2:
-                l9 l9Var = (l9) this.f42937b;
-                l9Var.f42733b0 = f10;
-                l9Var.G0();
-                return;
-            default:
-                ((k9) this.f42937b).d.setConversionWobble(f10);
-                return;
+    public final boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        p3 p3Var = this.f42902a;
+        Bitmap bitmap = p3Var.G;
+        if (bitmap != null && !bitmap.isRecycled()) {
+            p3Var.D.set(0.0f, 0.0f, getWidth(), getHeight());
+            canvas.drawBitmap(p3Var.G, (Rect) null, p3Var.D, p3Var.f42975y);
         }
     }
 }

@@ -8,52 +8,52 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 public final class sk implements Runnable {
-    public final int f49928a = 1;
-    public final int f49929b;
-    public final int f49930c;
+    public final int f49869a = 1;
+    public final int f49870b;
+    public final int f49871c;
     public final boolean d;
-    public final Object f49931e;
-    public final Object f49932f;
+    public final Object f49872e;
+    public final Object f49873f;
     public final Serializable h;
 
     public sk(h2.c cVar, Bitmap bitmap, int i7, int i10, String str, boolean z9) {
-        this.f49931e = cVar;
-        this.f49932f = bitmap;
-        this.f49929b = i7;
-        this.f49930c = i10;
+        this.f49872e = cVar;
+        this.f49873f = bitmap;
+        this.f49870b = i7;
+        this.f49871c = i10;
         this.h = str;
         this.d = z9;
     }
 
     @Override
     public final void run() {
-        org.telegram.ui.Components.cc ccVar;
+        org.telegram.ui.Components.bc bcVar;
         int i7;
         int i10;
         int i11;
         Rect rect;
-        int i12 = this.f49928a;
+        int i12 = this.f49869a;
         Serializable serializable = this.h;
-        int i13 = this.f49930c;
-        int i14 = this.f49929b;
-        Object obj = this.f49932f;
-        Object obj2 = this.f49931e;
+        int i13 = this.f49871c;
+        int i14 = this.f49870b;
+        Object obj = this.f49873f;
+        Object obj2 = this.f49872e;
         switch (i12) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
                 ArrayList arrayList2 = (ArrayList) serializable;
-                cn cnVar = ((tk) obj2).f50194b;
+                cn cnVar = ((tk) obj2).f50292b;
                 if (this.d) {
                     i7 = ((org.telegram.ui.ActionBar.f2) cnVar).currentAccount;
-                    org.telegram.messenger.qp.s1(i7).f24764d7.edit().remove("pin_" + cnVar.f44504j6).commit();
+                    org.telegram.messenger.qp.s1(i7).f24768d7.edit().remove("pin_" + cnVar.f44545j6).commit();
                     cnVar.fd(0, true);
-                    ccVar = null;
+                    bcVar = null;
                 } else {
-                    ccVar = null;
-                    cnVar.getNotificationCenter().k(56, Long.valueOf(cnVar.f44504j6), arrayList, Boolean.TRUE, arrayList2, null, 0, Integer.valueOf(i14), Boolean.valueOf(cnVar.f44438e5));
+                    bcVar = null;
+                    cnVar.getNotificationCenter().k(56, Long.valueOf(cnVar.f44545j6), arrayList, Boolean.TRUE, arrayList2, null, 0, Integer.valueOf(i14), Boolean.valueOf(cnVar.f44479e5));
                 }
                 if (i13 == cnVar.Q3) {
-                    cnVar.O3 = ccVar;
+                    cnVar.O3 = bcVar;
                     return;
                 }
                 return;
@@ -62,7 +62,7 @@ public final class sk implements Runnable {
                 Bitmap bitmap = (Bitmap) obj;
                 String str = (String) serializable;
                 Paint paint = (Paint) cVar.d;
-                int i15 = cVar.f14057a;
+                int i15 = cVar.f14059a;
                 if (bitmap != null && !bitmap.isRecycled()) {
                     float width = bitmap.getWidth() / bitmap.getHeight();
                     int round = (int) Math.round(Math.sqrt(width * 324.0f));
@@ -117,11 +117,11 @@ public final class sk implements Runnable {
     }
 
     public sk(tk tkVar, boolean z9, ArrayList arrayList, ArrayList arrayList2, int i7, int i10) {
-        this.f49931e = tkVar;
+        this.f49872e = tkVar;
         this.d = z9;
-        this.f49932f = arrayList;
+        this.f49873f = arrayList;
         this.h = arrayList2;
-        this.f49929b = i7;
-        this.f49930c = i10;
+        this.f49870b = i7;
+        this.f49871c = i10;
     }
 }

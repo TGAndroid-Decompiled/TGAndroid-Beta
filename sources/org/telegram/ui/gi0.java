@@ -1,37 +1,69 @@
 package org.telegram.ui;
 public final class gi0 implements Runnable {
-    public final int f46012a;
-    public final PasscodeActivity f46013b;
-    public final boolean f46014c;
+    public final int f46101a;
+    public final PasscodeActivity f46102b;
 
-    public gi0(PasscodeActivity passcodeActivity, boolean z9, int i7) {
-        this.f46012a = i7;
-        this.f46013b = passcodeActivity;
-        this.f46014c = z9;
+    public gi0(PasscodeActivity passcodeActivity, int i7) {
+        this.f46101a = i7;
+        this.f46102b = passcodeActivity;
     }
 
     @Override
     public final void run() {
-        switch (this.f46012a) {
+        long j3;
+        switch (this.f46101a) {
             case 0:
-                PasscodeActivity passcodeActivity = this.f46013b;
-                passcodeActivity.getMediaDataController().m();
-                if (this.f46014c) {
-                    passcodeActivity.presentFragment(new PasscodeActivity(0), true);
-                    n90 n90Var = passcodeActivity.U;
-                    if (n90Var != null) {
-                        org.telegram.messenger.g0.h3(n90Var);
-                        passcodeActivity.U = null;
-                    }
-                } else {
-                    passcodeActivity.finishFragment();
+                PasscodeActivity passcodeActivity = this.f46102b;
+                passcodeActivity.f41328n.postDelayed(passcodeActivity.S, 3000L);
+                passcodeActivity.R = true;
+                return;
+            case 1:
+                PasscodeActivity passcodeActivity2 = this.f46102b;
+                sb1 sb1Var = passcodeActivity2.V;
+                if (sb1Var != null) {
+                    org.telegram.messenger.g0.h3(sb1Var);
+                    passcodeActivity2.V = null;
                 }
-                org.telegram.messenger.qs.e().k(50, new Object[0]);
+                passcodeActivity2.finishFragment();
+                return;
+            case 2:
+                PasscodeActivity passcodeActivity3 = new PasscodeActivity(0);
+                PasscodeActivity passcodeActivity4 = this.f46102b;
+                passcodeActivity4.presentFragment(passcodeActivity3, true);
+                o90 o90Var = passcodeActivity4.U;
+                if (o90Var != null) {
+                    org.telegram.messenger.g0.h3(o90Var);
+                    passcodeActivity4.U = null;
+                    return;
+                }
+                return;
+            case 3:
+                PasscodeActivity passcodeActivity5 = this.f46102b;
+                gi0 gi0Var = new gi0(passcodeActivity5, 4);
+                if (passcodeActivity5.s0()) {
+                    j3 = 150;
+                } else {
+                    j3 = 1000;
+                }
+                org.telegram.messenger.g0.i3(gi0Var, j3);
+                return;
+            case 4:
+                PasscodeActivity passcodeActivity6 = this.f46102b;
+                if (passcodeActivity6.s0()) {
+                    for (er erVar : passcodeActivity6.f41328n.f44118f) {
+                        erVar.z(0.0f);
+                    }
+                    return;
+                }
+                passcodeActivity6.f41327f.a(0.0f);
+                return;
+            case 5:
+                PasscodeActivity passcodeActivity7 = this.f46102b;
+                passcodeActivity7.R = false;
+                org.telegram.messenger.g0.X3(passcodeActivity7.f41329r, false);
                 return;
             default:
-                PasscodeActivity passcodeActivity2 = this.f46013b;
-                passcodeActivity2.f41341x.e(true, this.f46014c);
-                org.telegram.messenger.g0.r(passcodeActivity2.T);
+                this.f46102b.y0();
                 return;
         }
     }

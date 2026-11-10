@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.ij;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.di;
-import org.telegram.ui.Components.mj;
-public final class r1 implements mj {
-    public final di f18808a;
-    public final b2 f18809b;
+import org.telegram.ui.Components.ci;
+import org.telegram.ui.Components.lj;
+public final class r1 implements lj {
+    public final ci f18811a;
+    public final b2 f18812b;
 
-    public r1(b2 b2Var, di diVar) {
-        this.f18809b = b2Var;
-        this.f18808a = diVar;
+    public r1(b2 b2Var, ci ciVar) {
+        this.f18812b = b2Var;
+        this.f18811a = ciVar;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class r1 implements mj {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f18809b.startActivityForResult(intent, 21);
+            this.f18812b.startActivityForResult(intent, 21);
         } catch (Exception e10) {
             a8.g(e10, true);
         }
@@ -31,7 +31,7 @@ public final class r1 implements mj {
     public final void n(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z9, int i7, long j3, boolean z10, long j10) {
         String str2;
         boolean isEmpty = arrayList.isEmpty();
-        b2 b2Var = this.f18809b;
+        b2 b2Var = this.f18812b;
         if (!isEmpty) {
             b2Var.P.f2((String) arrayList.get(0));
         } else if (!arrayList3.isEmpty()) {
@@ -40,7 +40,7 @@ public final class r1 implements mj {
             t3Var.getClass();
             if (ijVar != null && ijVar.F0() != null) {
                 TLRPC.Document F0 = ijVar.F0();
-                TLRPC.Message message = ijVar.f23262k;
+                TLRPC.Message message = ijVar.f23266k;
                 if (message != null) {
                     str2 = message.attachPath;
                 } else {
@@ -49,7 +49,7 @@ public final class r1 implements mj {
                 t3Var.g2(F0, str2);
             }
         }
-        this.f18808a.a(true);
+        this.f18811a.a(true);
     }
 
     @Override

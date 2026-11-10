@@ -5,11 +5,11 @@ import bi.k5;
 import java.util.ArrayList;
 public final class i extends a {
     public final ArrayList d;
-    public final Bitmap f56614e;
-    public final int f56615f;
+    public final Bitmap f56613e;
+    public final int f56614f;
 
-    public i(int r22, android.content.Context r23, org.telegram.ui.ActionBar.g6 r24) {
-        throw new UnsupportedOperationException("Method not decompiled: ug.i.<init>(int, android.content.Context, org.telegram.ui.ActionBar.g6):void");
+    public i(int r22, android.content.Context r23, org.telegram.ui.ActionBar.h6 r24) {
+        throw new UnsupportedOperationException("Method not decompiled: ug.i.<init>(int, android.content.Context, org.telegram.ui.ActionBar.h6):void");
     }
 
     @Override

@@ -1,62 +1,41 @@
 package org.telegram.ui;
 
-import android.telephony.PhoneNumberUtils;
-import j$.util.function.Predicate$CC;
-import java.util.function.Predicate;
-import org.telegram.tgnet.TLRPC;
-public final class k60 implements Predicate {
-    public final int f47211a;
-    public final Object f47212b;
+import android.content.DialogInterface;
+import java.util.Iterator;
+import java.util.Map;
+import org.telegram.tgnet.ConnectionsManager;
+public final class k60 implements DialogInterface.OnCancelListener {
+    public final int f47178a;
+    public final int f47179b;
 
-    public k60(Object obj, int i7) {
-        this.f47211a = i7;
-        this.f47212b = obj;
-    }
-
-    public Predicate and(Predicate predicate) {
-        int i7 = this.f47211a;
-        return Predicate$CC.$default$and(this, predicate);
-    }
-
-    public Predicate negate() {
-        switch (this.f47211a) {
-            case 0:
-                return Predicate$CC.$default$negate(this);
-            case 1:
-                return Predicate$CC.$default$negate(this);
-            case 2:
-                return Predicate$CC.$default$negate(this);
-            default:
-                return Predicate$CC.$default$negate(this);
-        }
-    }
-
-    public Predicate or(Predicate predicate) {
-        int i7 = this.f47211a;
-        return Predicate$CC.$default$or(this, predicate);
+    public k60(int i7, int i10) {
+        this.f47178a = i10;
+        this.f47179b = i7;
     }
 
     @Override
-    public final boolean test(Object obj) {
-        switch (this.f47211a) {
+    public final void onCancel(DialogInterface dialogInterface) {
+        switch (this.f47178a) {
             case 0:
-                String str = (String) this.f47212b;
-                String str2 = (String) obj;
-                if (str2 != null && str2.equals(str)) {
-                    return true;
+                org.telegram.messenger.id E0 = org.telegram.messenger.id.E0();
+                int i7 = this.f47179b;
+                if (i7 != 0) {
+                    Iterator it = E0.T.entrySet().iterator();
+                    while (it.hasNext()) {
+                        org.telegram.messenger.ed edVar = (org.telegram.messenger.ed) ((Map.Entry) it.next()).getValue();
+                        if (edVar.f22211c == i7) {
+                            ConnectionsManager.getInstance(edVar.d).cancelRequest(i7, true);
+                            it.remove();
+                            edVar.a();
+                            return;
+                        }
+                    }
+                    return;
                 }
-                return false;
-            case 1:
-                return PhoneNumberUtils.compare((String) this.f47212b, (String) obj);
-            case 2:
-                String str3 = (String) this.f47212b;
-                String str4 = (String) obj;
-                if (str4 != null && str4.equals(str3)) {
-                    return true;
-                }
-                return false;
+                return;
             default:
-                return cn.E1((cn) this.f47212b, (TLRPC.MessageEntity) obj);
+                ConnectionsManager.getInstance(org.telegram.messenger.p10.f24474s0).cancelRequest(this.f47179b, true);
+                return;
         }
     }
 }

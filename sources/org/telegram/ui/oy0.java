@@ -1,28 +1,29 @@
 package org.telegram.ui;
+public final class oy0 implements Runnable {
+    public final int f48594a;
+    public final ry0 f48595b;
 
-import android.content.Context;
-import android.text.Editable;
-import android.text.TextUtils;
-public final class oy0 extends org.telegram.ui.Cells.k3 {
-    public final qy0 E;
-
-    public oy0(qy0 qy0Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, "", true, false, 1024, g6Var);
-        this.E = qy0Var;
+    public oy0(ry0 ry0Var, int i7) {
+        this.f48594a = i7;
+        this.f48595b = ry0Var;
     }
 
     @Override
-    public final void b(Editable editable) {
-        boolean z9;
-        qy0 qy0Var = this.E;
-        fi.d dVar = qy0Var.f49223s;
-        if (dVar != null) {
-            if (!qy0Var.d.optional && TextUtils.isEmpty(qy0Var.f49221n.getText())) {
-                z9 = false;
-            } else {
-                z9 = true;
-            }
-            dVar.setEnabled(z9);
+    public final void run() {
+        switch (this.f48594a) {
+            case 0:
+                ry0 ry0Var = this.f48595b;
+                sy0 sy0Var = ry0Var.f49603w;
+                if (ry0Var.f49595a == 0) {
+                    sy0Var.dismiss();
+                    return;
+                } else {
+                    sy0Var.onBackPressed();
+                    return;
+                }
+            default:
+                org.telegram.messenger.g0.K3(this.f48595b.f49600n.d);
+                return;
         }
     }
 }

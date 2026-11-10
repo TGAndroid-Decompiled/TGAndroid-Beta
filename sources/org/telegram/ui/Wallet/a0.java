@@ -3,23 +3,23 @@ package org.telegram.ui.Wallet;
 import java.util.ArrayList;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qs;
-import org.telegram.ui.bd0;
+import org.telegram.ui.tc0;
 public final class a0 implements Runnable, ls {
-    public boolean f42092a;
-    public final qs f42093b;
-    public final bd0 f42094c;
+    public boolean f42083a;
+    public final qs f42084b;
+    public final tc0 f42085c;
     public final l0 d;
 
-    public a0(qs qsVar, bd0 bd0Var, l0 l0Var) {
-        this.f42093b = qsVar;
-        this.f42094c = bd0Var;
+    public a0(qs qsVar, tc0 tc0Var, l0 l0Var) {
+        this.f42084b = qsVar;
+        this.f42085c = tc0Var;
         this.d = l0Var;
     }
 
     public final void a() {
-        if (!this.f42092a) {
+        if (!this.f42083a) {
             l0 l0Var = this.d;
-            if (l0Var.f42683e != null) {
+            if (l0Var.f42752e != null) {
                 ArrayList arrayList = l0Var.G;
                 int size = arrayList.size();
                 int i7 = 0;
@@ -37,19 +37,19 @@ public final class a0 implements Runnable, ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == qs.f24971a4) {
+        if (i7 == qs.f24975a4) {
             a();
         }
     }
 
     @Override
     public final void run() {
-        if (this.f42092a) {
+        if (this.f42083a) {
             return;
         }
-        this.f42092a = true;
+        this.f42083a = true;
         org.telegram.messenger.g0.r(this);
-        this.f42093b.n(this, qs.f24971a4);
-        this.f42094c.run();
+        this.f42084b.n(this, qs.f24975a4);
+        this.f42085c.run();
     }
 }

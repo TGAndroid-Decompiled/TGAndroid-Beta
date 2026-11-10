@@ -26,19 +26,19 @@ public abstract class e2 implements l.b0 {
     public Rect M;
     public boolean N;
     public final y O;
-    public final Context f19088a;
-    public ListAdapter f19089b;
-    public s1 f19090c;
-    public int f19092f;
+    public final Context f19093a;
+    public ListAdapter f19094b;
+    public s1 f19095c;
+    public int f19097f;
     public int h;
-    public boolean f19094r;
-    public boolean f19095s;
-    public boolean f19096w;
+    public boolean f19099r;
+    public boolean f19100s;
+    public boolean f19101w;
     public final int d = -2;
-    public int f19091e = -2;
-    public final int f19093n = 1002;
-    public int f19097x = 0;
-    public final int f19098y = Integer.MAX_VALUE;
+    public int f19096e = -2;
+    public final int f19098n = 1002;
+    public int f19102x = 0;
+    public final int f19103y = Integer.MAX_VALUE;
     public final b2 G = new b2(this, 1);
     public final d2 H = new d2(this, 0);
     public final c2 I = new c2(this);
@@ -72,18 +72,18 @@ public abstract class e2 implements l.b0 {
     public e2(Context context, AttributeSet attributeSet, int i7) {
         Drawable drawable;
         int resourceId;
-        this.f19088a = context;
+        this.f19093a = context;
         this.K = new Handler(context.getMainLooper());
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, f.a.f10867o, i7, 0);
-        this.f19092f = obtainStyledAttributes.getDimensionPixelOffset(0, 0);
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, f.a.f10872o, i7, 0);
+        this.f19097f = obtainStyledAttributes.getDimensionPixelOffset(0, 0);
         int dimensionPixelOffset = obtainStyledAttributes.getDimensionPixelOffset(1, 0);
         this.h = dimensionPixelOffset;
         if (dimensionPixelOffset != 0) {
-            this.f19094r = true;
+            this.f19099r = true;
         }
         obtainStyledAttributes.recycle();
         ?? popupWindow = new PopupWindow(context, attributeSet, i7, 0);
-        TypedArray obtainStyledAttributes2 = context.obtainStyledAttributes(attributeSet, f.a.f10871s, i7, 0);
+        TypedArray obtainStyledAttributes2 = context.obtainStyledAttributes(attributeSet, f.a.f10876s, i7, 0);
         if (obtainStyledAttributes2.hasValue(2)) {
             popupWindow.setOverlapAnchor(obtainStyledAttributes2.getBoolean(2, false));
         }
@@ -104,11 +104,11 @@ public abstract class e2 implements l.b0 {
     }
 
     public final int b() {
-        return this.f19092f;
+        return this.f19097f;
     }
 
     public final void c(int i7) {
-        this.f19092f = i7;
+        this.f19097f = i7;
     }
 
     @Override
@@ -116,7 +116,7 @@ public abstract class e2 implements l.b0 {
         y yVar = this.O;
         yVar.dismiss();
         yVar.setContentView(null);
-        this.f19090c = null;
+        this.f19095c = null;
         this.K.removeCallbacks(this.G);
     }
 
@@ -126,7 +126,7 @@ public abstract class e2 implements l.b0 {
 
     @Override
     public final s1 f() {
-        return this.f19090c;
+        return this.f19095c;
     }
 
     @Override
@@ -141,20 +141,20 @@ public abstract class e2 implements l.b0 {
         s1 s1Var;
         int i12;
         int i13;
-        s1 s1Var2 = this.f19090c;
-        Context context = this.f19088a;
+        s1 s1Var2 = this.f19095c;
+        Context context = this.f19093a;
         y yVar = this.O;
         int i14 = 0;
         if (s1Var2 == null) {
             s1 o4 = o(context, !this.N);
-            this.f19090c = o4;
-            o4.setAdapter(this.f19089b);
-            this.f19090c.setOnItemClickListener(this.F);
-            this.f19090c.setFocusable(true);
-            this.f19090c.setFocusableInTouchMode(true);
-            this.f19090c.setOnItemSelectedListener(new y1(this, 0));
-            this.f19090c.setOnScrollListener(this.I);
-            yVar.setContentView(this.f19090c);
+            this.f19095c = o4;
+            o4.setAdapter(this.f19094b);
+            this.f19095c.setOnItemClickListener(this.F);
+            this.f19095c.setFocusable(true);
+            this.f19095c.setFocusableInTouchMode(true);
+            this.f19095c.setOnItemSelectedListener(new y1(this, 0));
+            this.f19095c.setOnScrollListener(this.I);
+            yVar.setContentView(this.f19095c);
         } else {
             ViewGroup viewGroup = (ViewGroup) yVar.getContentView();
         }
@@ -164,7 +164,7 @@ public abstract class e2 implements l.b0 {
             background.getPadding(rect);
             int i15 = rect.top;
             i7 = rect.bottom + i15;
-            if (!this.f19094r) {
+            if (!this.f19099r) {
                 this.h = -i15;
             }
         } else {
@@ -195,7 +195,7 @@ public abstract class e2 implements l.b0 {
         if (i17 == -1) {
             i11 = a10 + i7;
         } else {
-            int i18 = this.f19091e;
+            int i18 = this.f19096e;
             if (i18 != -2) {
                 if (i18 != -1) {
                     makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(i18, 1073741824);
@@ -205,9 +205,9 @@ public abstract class e2 implements l.b0 {
             } else {
                 makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(context.getResources().getDisplayMetrics().widthPixels - (rect.left + rect.right), Integer.MIN_VALUE);
             }
-            int a11 = this.f19090c.a(makeMeasureSpec, a10);
+            int a11 = this.f19095c.a(makeMeasureSpec, a10);
             if (a11 > 0) {
-                i10 = this.f19090c.getPaddingBottom() + this.f19090c.getPaddingTop() + i7;
+                i10 = this.f19095c.getPaddingBottom() + this.f19095c.getPaddingTop() + i7;
             } else {
                 i10 = 0;
             }
@@ -218,12 +218,12 @@ public abstract class e2 implements l.b0 {
         } else {
             z10 = false;
         }
-        yVar.setWindowLayoutType(this.f19093n);
+        yVar.setWindowLayoutType(this.f19098n);
         if (yVar.isShowing()) {
             View view2 = this.E;
-            WeakHashMap weakHashMap = r0.i0.f54203a;
+            WeakHashMap weakHashMap = r0.i0.f54202a;
             if (view2.isAttachedToWindow()) {
-                int i19 = this.f19091e;
+                int i19 = this.f19096e;
                 if (i19 == -1) {
                     i19 = -1;
                 } else if (i19 == -2) {
@@ -236,7 +236,7 @@ public abstract class e2 implements l.b0 {
                         i17 = -1;
                     }
                     if (z10) {
-                        if (this.f19091e == -1) {
+                        if (this.f19096e == -1) {
                             i13 = -1;
                         } else {
                             i13 = 0;
@@ -244,7 +244,7 @@ public abstract class e2 implements l.b0 {
                         yVar.setWidth(i13);
                         yVar.setHeight(0);
                     } else {
-                        if (this.f19091e == -1) {
+                        if (this.f19096e == -1) {
                             i14 = -1;
                         }
                         yVar.setWidth(i14);
@@ -256,7 +256,7 @@ public abstract class e2 implements l.b0 {
                 yVar.setOutsideTouchable(true);
                 View view3 = this.E;
                 int i20 = i19;
-                int i21 = this.f19092f;
+                int i21 = this.f19097f;
                 int i22 = this.h;
                 if (i20 < 0) {
                     i12 = -1;
@@ -271,7 +271,7 @@ public abstract class e2 implements l.b0 {
             }
             return;
         }
-        int i23 = this.f19091e;
+        int i23 = this.f19096e;
         if (i23 == -1) {
             i23 = -1;
         } else if (i23 == -2) {
@@ -298,8 +298,8 @@ public abstract class e2 implements l.b0 {
         }
         yVar.setOutsideTouchable(true);
         yVar.setTouchInterceptor(this.H);
-        if (this.f19096w) {
-            yVar.setOverlapAnchor(this.f19095s);
+        if (this.f19101w) {
+            yVar.setOverlapAnchor(this.f19100s);
         }
         if (Build.VERSION.SDK_INT <= 28) {
             Method method3 = R;
@@ -313,9 +313,9 @@ public abstract class e2 implements l.b0 {
         } else {
             a2.a(yVar, this.M);
         }
-        yVar.showAsDropDown(this.E, this.f19092f, this.h, this.f19097x);
-        this.f19090c.setSelection(-1);
-        if ((!this.N || this.f19090c.isInTouchMode()) && (s1Var = this.f19090c) != null) {
+        yVar.showAsDropDown(this.E, this.f19097f, this.h, this.f19102x);
+        this.f19095c.setSelection(-1);
+        if ((!this.N || this.f19095c.isInTouchMode()) && (s1Var = this.f19095c) != null) {
             s1Var.setListSelectionHidden(true);
             s1Var.requestLayout();
         }
@@ -330,11 +330,11 @@ public abstract class e2 implements l.b0 {
 
     public final void j(int i7) {
         this.h = i7;
-        this.f19094r = true;
+        this.f19099r = true;
     }
 
     public final int m() {
-        if (!this.f19094r) {
+        if (!this.f19099r) {
             return 0;
         }
         return this.h;
@@ -345,18 +345,18 @@ public abstract class e2 implements l.b0 {
         if (hVar == null) {
             this.D = new c5.h(this, 2);
         } else {
-            ListAdapter listAdapter2 = this.f19089b;
+            ListAdapter listAdapter2 = this.f19094b;
             if (listAdapter2 != null) {
                 listAdapter2.unregisterDataSetObserver(hVar);
             }
         }
-        this.f19089b = listAdapter;
+        this.f19094b = listAdapter;
         if (listAdapter != null) {
             listAdapter.registerDataSetObserver(this.D);
         }
-        s1 s1Var = this.f19090c;
+        s1 s1Var = this.f19095c;
         if (s1Var != null) {
-            s1Var.setAdapter(this.f19089b);
+            s1Var.setAdapter(this.f19094b);
         }
     }
 
@@ -369,9 +369,9 @@ public abstract class e2 implements l.b0 {
         if (background != null) {
             Rect rect = this.L;
             background.getPadding(rect);
-            this.f19091e = rect.left + rect.right + i7;
+            this.f19096e = rect.left + rect.right + i7;
             return;
         }
-        this.f19091e = i7;
+        this.f19096e = i7;
     }
 }

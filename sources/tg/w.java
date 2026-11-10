@@ -3,14 +3,14 @@ package tg;
 import android.app.Activity;
 import org.telegram.messenger.p10;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.cn;
 public final class w extends cn {
-    public final g0 f55994td;
+    public final g0 f55993td;
 
     public w(g0 g0Var) {
         super(null);
-        this.f55994td = g0Var;
+        this.f55993td = g0Var;
     }
 
     @Override
@@ -25,12 +25,12 @@ public final class w extends cn {
 
     @Override
     public final Activity getParentActivity() {
-        return org.telegram.messenger.g0.W(this.f55994td.getContext());
+        return org.telegram.messenger.g0.W(this.f55993td.getContext());
     }
 
     @Override
-    public final g6 getResourceProvider() {
-        return this.f55994td.f55717z1;
+    public final h6 getResourceProvider() {
+        return this.f55993td.f55716z1;
     }
 
     @Override

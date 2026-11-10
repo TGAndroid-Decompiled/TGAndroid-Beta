@@ -1,6 +1,6 @@
 package d4;
 public final class h extends c4.i implements Comparable {
-    public long f8174s;
+    public long f8179s;
 
     @Override
     public final int compareTo(Object obj) {
@@ -13,7 +13,7 @@ public final class h extends c4.i implements Comparable {
         }
         long j3 = this.f17176e - hVar.f17176e;
         if (j3 == 0) {
-            j3 = this.f8174s - hVar.f8174s;
+            j3 = this.f8179s - hVar.f8179s;
             if (j3 == 0) {
                 return 0;
             }

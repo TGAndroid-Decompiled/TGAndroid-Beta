@@ -1,24 +1,31 @@
 package org.telegram.ui.Components;
-public final class u70 implements Runnable {
-    public final int f38641a;
-    public final n2.n0 f38642b;
-    public final y70 f38643c;
 
-    public u70(n2.n0 n0Var, y70 y70Var, int i7) {
-        this.f38641a = i7;
-        this.f38642b = n0Var;
-        this.f38643c = y70Var;
+import android.content.Context;
+import android.graphics.Canvas;
+public final class u70 extends org.telegram.ui.ActionBar.m5 {
+    public final org.telegram.ui.ActionBar.h6 M0;
+    public final n2.n0 N0;
+    public x70 O0;
+
+    public u70(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context);
+        this.N0 = new n2.n0(this);
+        this.M0 = h6Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f38641a) {
-            case 0:
-                this.f38642b.m(this.f38643c, false);
-                return;
-            default:
-                this.f38642b.m(this.f38643c, false);
-                return;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.save();
+        canvas.translate(getLayoutX(), getLayoutY());
+        if (this.N0.h(canvas)) {
+            invalidate();
         }
+        canvas.restore();
+    }
+
+    @Override
+    public final boolean onTouchEvent(android.view.MotionEvent r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.u70.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

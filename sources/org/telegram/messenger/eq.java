@@ -2,14 +2,14 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class eq implements Runnable {
-    public final int f22269a;
-    public final yr f22270b;
-    public final TLRPC.EncryptedChat f22271c;
+    public final int f22273a;
+    public final yr f22274b;
+    public final TLRPC.EncryptedChat f22275c;
 
     public eq(yr yrVar, TLRPC.EncryptedChat encryptedChat, int i7) {
-        this.f22269a = i7;
-        this.f22270b = yrVar;
-        this.f22271c = encryptedChat;
+        this.f22273a = i7;
+        this.f22274b = yrVar;
+        this.f22275c = encryptedChat;
     }
 
     @Override

@@ -28,10 +28,10 @@ public final class h implements Runnable {
     private final void a() {
         f6.f fVar;
         d0 d0Var = (d0) this.f763b;
-        HashMap hashMap = d0Var.f11246b.D;
+        HashMap hashMap = d0Var.f11251b.D;
         String str = (String) this.f764c;
         synchronized (hashMap) {
-            fVar = (f6.f) d0Var.f11246b.D.get(str);
+            fVar = (f6.f) d0Var.f11251b.D.get(str);
         }
         if (fVar != null) {
             ((h6.h) fVar).o((String) this.d);
@@ -56,7 +56,7 @@ public final class h implements Runnable {
         int i7;
         Task k10;
         m6.a aVar = (m6.a) this.f764c;
-        Intent intent = aVar.f19882a;
+        Intent intent = aVar.f19887a;
         String stringExtra = intent.getStringExtra("google.message_id");
         if (stringExtra == null) {
             stringExtra = intent.getStringExtra("message_id");
@@ -67,13 +67,13 @@ public final class h implements Runnable {
             k10 = Tasks.forResult(null);
         } else {
             Bundle bundle = new Bundle();
-            Intent intent2 = aVar.f19882a;
+            Intent intent2 = aVar.f19887a;
             String stringExtra2 = intent2.getStringExtra("google.message_id");
             if (stringExtra2 == null) {
                 stringExtra2 = intent2.getStringExtra("message_id");
             }
             bundle.putString("google.message_id", stringExtra2);
-            Intent intent3 = aVar.f19882a;
+            Intent intent3 = aVar.f19887a;
             if (intent3.hasExtra("google.product_id")) {
                 num = Integer.valueOf(intent3.getIntExtra("google.product_id", 0));
             }
@@ -83,12 +83,12 @@ public final class h implements Runnable {
             bundle.putBoolean("supports_message_handled", true);
             n i10 = n.i((Context) this.f763b);
             synchronized (i10) {
-                i7 = i10.f19920a;
-                i10.f19920a = i7 + 1;
+                i7 = i10.f19925a;
+                i10.f19925a = i7 + 1;
             }
             k10 = i10.k(new m(i7, 2, bundle, 0));
         }
-        k10.addOnCompleteListener(m6.d.f19897c, new g6.d0((CountDownLatch) this.d, 18));
+        k10.addOnCompleteListener(m6.d.f19902c, new g6.d0((CountDownLatch) this.d, 18));
     }
 
     @Override

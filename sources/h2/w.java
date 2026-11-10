@@ -10,34 +10,34 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.ij;
 import org.telegram.ui.Components.PipRoundVideoView;
-import org.telegram.ui.Components.r51;
-import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.q51;
+import org.telegram.ui.Components.t51;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.j4;
-public final class w implements r51 {
-    public static w f14154f;
-    public boolean f14155a;
-    public int f14156b;
-    public final Object f14157c;
+public final class w implements q51 {
+    public static w f14156f;
+    public boolean f14157a;
+    public int f14158b;
+    public final Object f14159c;
     public final Object d;
-    public final Object f14158e;
+    public final Object f14160e;
 
     public w(bi.a aVar, com.google.android.gms.common.api.internal.o oVar, n6.c[] cVarArr, boolean z9, int i7) {
-        this.f14158e = aVar;
-        this.f14157c = oVar;
+        this.f14160e = aVar;
+        this.f14159c = oVar;
         this.d = cVarArr;
-        this.f14155a = z9;
-        this.f14156b = i7;
+        this.f14157a = z9;
+        this.f14158b = i7;
     }
 
     public static synchronized w a(Context context) {
         w wVar;
         synchronized (w.class) {
             try {
-                if (f14154f == null) {
-                    f14154f = new w(context);
+                if (f14156f == null) {
+                    f14156f = new w(context);
                 }
-                wVar = f14154f;
+                wVar = f14156f;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -47,8 +47,8 @@ public final class w implements r51 {
 
     public int b() {
         int i7;
-        synchronized (this.f14158e) {
-            i7 = this.f14156b;
+        synchronized (this.f14160e) {
+            i7 = this.f14158b;
         }
         return i7;
     }
@@ -58,21 +58,21 @@ public final class w implements r51 {
         Iterator it = copyOnWriteArrayList.iterator();
         while (it.hasNext()) {
             v vVar = (v) it.next();
-            if (vVar.f14151a.get() == null) {
+            if (vVar.f14153a.get() == null) {
                 copyOnWriteArrayList.remove(vVar);
             }
         }
-        synchronized (this.f14158e) {
+        synchronized (this.f14160e) {
             try {
-                if (this.f14155a && this.f14156b == i7) {
+                if (this.f14157a && this.f14158b == i7) {
                     return;
                 }
-                this.f14155a = true;
-                this.f14156b = i7;
+                this.f14157a = true;
+                this.f14158b = i7;
                 Iterator it2 = ((CopyOnWriteArrayList) this.d).iterator();
                 while (it2.hasNext()) {
                     v vVar2 = (v) it2.next();
-                    vVar2.f14152b.execute(new v9(vVar2, 9));
+                    vVar2.f14154b.execute(new v9(vVar2, 9));
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -81,7 +81,7 @@ public final class w implements r51 {
     }
 
     @Override
-    public void onError(u51 u51Var, Exception exc) {
+    public void onError(t51 t51Var, Exception exc) {
         a8.g(exc, true);
     }
 
@@ -91,17 +91,17 @@ public final class w implements r51 {
 
     @Override
     public void onStateChanged(boolean z9, int i7) {
-        int i10 = this.f14156b;
-        MediaController mediaController = (MediaController) this.f14158e;
+        int i10 = this.f14158b;
+        MediaController mediaController = (MediaController) this.f14160e;
         if (i10 != mediaController.m0) {
             return;
         }
-        MediaController.f(mediaController, (ij) this.f14157c, (int[]) this.d, this.f14155a, z9, i7);
+        MediaController.f(mediaController, (ij) this.f14159c, (int[]) this.d, this.f14157a, z9, i7);
     }
 
     @Override
     public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-        MediaController mediaController = (MediaController) this.f14158e;
+        MediaController mediaController = (MediaController) this.f14160e;
         if (mediaController.E0 != null) {
             int i7 = mediaController.I0;
             if (i7 == 2) {
@@ -133,10 +133,10 @@ public final class w implements r51 {
                     }
                     PipRoundVideoView pipRoundVideoView2 = mediaController.H0;
                     if (pipRoundVideoView2 != null) {
-                        if (pipRoundVideoView2.f31433c.getSurfaceTexture() != surfaceTexture) {
-                            mediaController.H0.f31433c.setSurfaceTexture(surfaceTexture);
+                        if (pipRoundVideoView2.f31444c.getSurfaceTexture() != surfaceTexture) {
+                            mediaController.H0.f31444c.setSurfaceTexture(surfaceTexture);
                         }
-                        mediaController.E0.A0(mediaController.H0.f31433c);
+                        mediaController.E0.A0(mediaController.H0.f31444c);
                     }
                 }
                 mediaController.I0 = 0;
@@ -152,7 +152,7 @@ public final class w implements r51 {
     @Override
     public void onVideoSizeChanged(int i7, int i10, int i11, float f10) {
         float f11;
-        MediaController mediaController = (MediaController) this.f14158e;
+        MediaController mediaController = (MediaController) this.f14160e;
         if (i10 == 0) {
             f11 = 1.0f;
         } else {
@@ -167,7 +167,7 @@ public final class w implements r51 {
 
     @Override
     public void onRenderedFirstFrame() {
-        MediaController mediaController = (MediaController) this.f14158e;
+        MediaController mediaController = (MediaController) this.f14160e;
         j4 j4Var = mediaController.L0;
         if (j4Var != null && !j4Var.d) {
             mediaController.M0 = true;
@@ -182,19 +182,19 @@ public final class w implements r51 {
 
     public w(Context context) {
         Executor e10 = a.e();
-        this.f14157c = e10;
+        this.f14159c = e10;
         this.d = new CopyOnWriteArrayList();
-        this.f14158e = new Object();
-        this.f14156b = 0;
+        this.f14160e = new Object();
+        this.f14158b = 0;
         e10.execute(new f2.h(25, context, (Object) this));
     }
 
     public w(MediaController mediaController, int i7, ij ijVar, int[] iArr, boolean z9) {
-        this.f14158e = mediaController;
-        this.f14156b = i7;
-        this.f14157c = ijVar;
+        this.f14160e = mediaController;
+        this.f14158b = i7;
+        this.f14159c = ijVar;
         this.d = iArr;
-        this.f14155a = z9;
+        this.f14157a = z9;
     }
 
     @Override

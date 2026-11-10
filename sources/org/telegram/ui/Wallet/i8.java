@@ -1,87 +1,78 @@
 package org.telegram.ui.Wallet;
 
-import android.text.TextUtils;
 import java.util.ArrayList;
-import org.telegram.messenger.c20;
-import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.hc;
-public final class i8 implements c20 {
-    public final int f42600a;
-    public final m8 f42601b;
-    public final vf.b f42602c;
+import org.telegram.messenger.v10;
+import org.telegram.ui.Components.gc;
+import org.telegram.ui.sb1;
+public final class i8 implements v10 {
+    public final int f42646a;
+    public final p8 f42647b;
+    public final vf.b f42648c;
+    public final l0 d;
 
-    public i8(m8 m8Var, vf.b bVar, int i7) {
-        this.f42600a = i7;
-        this.f42601b = m8Var;
-        this.f42602c = bVar;
+    public i8(p8 p8Var, vf.b bVar, l0 l0Var, int i7) {
+        this.f42646a = i7;
+        this.f42647b = p8Var;
+        this.f42648c = bVar;
+        this.d = l0Var;
     }
 
     @Override
-    public final void a(Object obj) {
-        int i7 = this.f42600a;
-        vf.b bVar = this.f42602c;
-        m8 m8Var = this.f42601b;
-        String str = (String) obj;
-        switch (i7) {
+    public final void a(Object obj, Object obj2) {
+        switch (this.f42646a) {
             case 0:
-                m8Var.getClass();
-                bVar.b();
-                if (!TextUtils.isEmpty(str)) {
-                    hc.a0(m8Var).e0(str, false);
-                    return;
-                }
-                return;
-            case 1:
-                bVar.c(false);
-                org.telegram.ui.ActionBar.q4 parentLayout = m8Var.getParentLayout();
-                if (parentLayout != null) {
-                    ArrayList arrayList = new ArrayList(parentLayout.getFragmentStack());
-                    int size = arrayList.size();
-                    int i10 = 0;
-                    while (i10 < size) {
-                        Object obj2 = arrayList.get(i10);
-                        i10++;
-                        org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) obj2;
-                        if ((f2Var instanceof v9) || (f2Var instanceof t8) || (f2Var instanceof da)) {
-                            ((ActionBarLayout) parentLayout).d0(f2Var, false);
-                        }
+                i0 i0Var = (i0) obj;
+                String str = (String) obj2;
+                this.f42648c.c(false);
+                p8 p8Var = this.f42647b;
+                if (i0Var == null) {
+                    gc a02 = gc.a0(p8Var);
+                    if (str == null) {
+                        str = "NULL_ERROR";
                     }
-                }
-                if (str != null) {
-                    hc.a0(m8Var).e0(str, false);
+                    a02.e0(str, false);
                     return;
                 }
-                cc I = hc.a0(m8Var).I(2131623989, id.M0(2131743191, null), id.M0(2131743189, null));
-                I.f32627j = 5000;
-                I.j();
+                w8 w8Var = new w8();
+                w8Var.h = true;
+                ArrayList arrayList = w8Var.f43302a;
+                arrayList.clear();
+                if (!i0Var.d()) {
+                    arrayList.addAll(i0Var.f());
+                }
+                w8Var.a0();
+                w8Var.f43306f = new sb1(23, p8Var, this.d);
+                p8Var.presentFragment(w8Var);
                 return;
             default:
-                m8Var.getClass();
-                bVar.b();
-                if (str != null) {
-                    hc.a0(m8Var).e0(str, false);
-                    return;
-                }
-                org.telegram.ui.ActionBar.q4 parentLayout2 = m8Var.getParentLayout();
-                if (parentLayout2 == null) {
-                    m8Var.finishFragment();
-                    return;
-                }
-                ArrayList arrayList2 = new ArrayList(parentLayout2.getFragmentStack());
-                int size2 = arrayList2.size();
-                int i11 = 0;
-                while (i11 < size2) {
-                    Object obj3 = arrayList2.get(i11);
-                    i11++;
-                    org.telegram.ui.ActionBar.f2 f2Var2 = (org.telegram.ui.ActionBar.f2) obj3;
-                    if ((f2Var2 instanceof v9) || (f2Var2 instanceof t8) || (f2Var2 instanceof da) || (f2Var2 instanceof m8)) {
-                        ((ActionBarLayout) parentLayout2).d0(f2Var2, false);
+                g0 g0Var = (g0) obj;
+                String str2 = (String) obj2;
+                this.f42648c.c(false);
+                p8 p8Var2 = this.f42647b;
+                if (g0Var == null) {
+                    gc a03 = gc.a0(p8Var2);
+                    if (str2 == null) {
+                        str2 = "NULL_ERROR";
                     }
+                    a03.e0(str2, false);
+                    return;
+                } else if (p8Var2.f43013f) {
+                    g0Var.close();
+                    return;
+                } else {
+                    p8Var2.f43012e.add(g0Var);
+                    w8 w8Var2 = new w8();
+                    i0 i0Var2 = g0Var.f42518b;
+                    ArrayList arrayList2 = w8Var2.f43302a;
+                    arrayList2.clear();
+                    if (!i0Var2.d()) {
+                        arrayList2.addAll(i0Var2.f());
+                    }
+                    w8Var2.a0();
+                    w8Var2.f43306f = new g(p8Var2, this.d, g0Var, 22);
+                    p8Var2.presentFragment(w8Var2);
+                    return;
                 }
-                m8Var.finishFragment();
-                return;
         }
     }
 }

@@ -6,21 +6,21 @@ import java.util.function.Predicate;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class j1 implements Predicate {
-    public final int f14737a;
-    public final Object f14738b;
+    public final int f14739a;
+    public final Object f14740b;
 
     public j1(Object obj, int i7) {
-        this.f14737a = i7;
-        this.f14738b = obj;
+        this.f14739a = i7;
+        this.f14740b = obj;
     }
 
     public Predicate and(Predicate predicate) {
-        int i7 = this.f14737a;
+        int i7 = this.f14739a;
         return Predicate$CC.$default$and(this, predicate);
     }
 
     public Predicate negate() {
-        switch (this.f14737a) {
+        switch (this.f14739a) {
             case 0:
                 return Predicate$CC.$default$negate(this);
             case 1:
@@ -31,7 +31,7 @@ public final class j1 implements Predicate {
     }
 
     public Predicate or(Predicate predicate) {
-        int i7 = this.f14737a;
+        int i7 = this.f14739a;
         return Predicate$CC.$default$or(this, predicate);
     }
 
@@ -39,22 +39,22 @@ public final class j1 implements Predicate {
     public final boolean test(Object obj) {
         boolean contains;
         boolean z9;
-        switch (this.f14737a) {
+        switch (this.f14739a) {
             case 0:
-                contains = ((HashSet) this.f14738b).contains(Long.valueOf(((l1) obj).f14779b));
+                contains = ((HashSet) this.f14740b).contains(Long.valueOf(((l1) obj).f14781b));
                 break;
             case 1:
-                contains = ((HashSet) this.f14738b).contains(Long.valueOf(((l1) obj).f14779b));
+                contains = ((HashSet) this.f14740b).contains(Long.valueOf(((l1) obj).f14781b));
                 break;
             default:
-                zh.g1 g1Var = (zh.g1) this.f14738b;
+                zh.g1 g1Var = (zh.g1) this.f14740b;
                 TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
                 if (starGift instanceof TL_stars.TL_starGiftUnique) {
-                    z9 = g1Var.S1.disallow_unique_stargifts;
+                    z9 = g1Var.V1.disallow_unique_stargifts;
                 } else {
                     g1Var.getClass();
                     if (starGift.limited) {
-                        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings = g1Var.S1;
+                        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings = g1Var.V1;
                         if (!disallowedGiftsSettings.disallow_limited_stargifts) {
                             return true;
                         }
@@ -63,7 +63,7 @@ public final class j1 implements Predicate {
                         }
                         return false;
                     }
-                    z9 = g1Var.S1.disallow_unlimited_stargifts;
+                    z9 = g1Var.V1.disallow_unlimited_stargifts;
                 }
                 return true ^ z9;
         }

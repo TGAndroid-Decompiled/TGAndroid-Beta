@@ -6,13 +6,13 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.cn;
 public final class oa implements Runnable {
     public final int f4492a;
-    public final org.telegram.ui.ActionBar.v2[] f4493b;
+    public final org.telegram.ui.ActionBar.w2[] f4493b;
     public final TL_stars.StarsTransaction f4494c;
     public final long d;
 
-    public oa(org.telegram.ui.ActionBar.v2[] v2VarArr, long j3, TL_stars.StarsTransaction starsTransaction) {
+    public oa(org.telegram.ui.ActionBar.w2[] w2VarArr, long j3, TL_stars.StarsTransaction starsTransaction) {
         this.f4492a = 3;
-        this.f4493b = v2VarArr;
+        this.f4493b = w2VarArr;
         this.d = j3;
         this.f4494c = starsTransaction;
     }
@@ -98,9 +98,9 @@ public final class oa implements Runnable {
         }
     }
 
-    public oa(org.telegram.ui.ActionBar.v2[] v2VarArr, TL_stars.StarsTransaction starsTransaction, long j3, int i7) {
+    public oa(org.telegram.ui.ActionBar.w2[] w2VarArr, TL_stars.StarsTransaction starsTransaction, long j3, int i7) {
         this.f4492a = i7;
-        this.f4493b = v2VarArr;
+        this.f4493b = w2VarArr;
         this.f4494c = starsTransaction;
         this.d = j3;
     }

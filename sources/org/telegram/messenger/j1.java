@@ -12,31 +12,31 @@ import org.telegram.tgnet.RequestTimeDelegate;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.WriteToSocketDelegate;
-import org.telegram.ui.Components.jm0;
-import org.telegram.ui.bb1;
-public final class j1 implements ResultCallback, WriteToSocketDelegate, OnTokenCanceledListener, OnSuccessListener, OnFailureListener, fi.c7, lc, RequestTimeDelegate, jm0, org.telegram.ui.ActionBar.r1 {
-    public final int f23464a;
-    public final Object f23465b;
+import org.telegram.ui.Components.im0;
+import org.telegram.ui.cb1;
+public final class j1 implements ResultCallback, WriteToSocketDelegate, OnTokenCanceledListener, OnSuccessListener, OnFailureListener, fi.c7, lc, RequestTimeDelegate, im0, org.telegram.ui.ActionBar.r1 {
+    public final int f23468a;
+    public final Object f23469b;
 
     public j1(Object obj, int i7) {
-        this.f23464a = i7;
-        this.f23465b = obj;
+        this.f23468a = i7;
+        this.f23469b = obj;
     }
 
     @Override
     public void a(float f10) {
-        ij ijVar = ((du) this.f23465b).W;
+        ij ijVar = ((du) this.f23469b).W;
         if (ijVar == null) {
             return;
         }
-        ijVar.f23222b0 = f10;
+        ijVar.f23226b0 = f10;
         MediaController.B().i0(ijVar, f10);
     }
 
     @Override
     public Bitmap c(BitmapFactory.Options options) {
-        gf gfVar = (gf) this.f23465b;
-        String str = gfVar.f26850i;
+        gf gfVar = (gf) this.f23469b;
+        String str = gfVar.f26854i;
         if (str == null) {
             str = gfVar.I;
         }
@@ -45,29 +45,29 @@ public final class j1 implements ResultCallback, WriteToSocketDelegate, OnTokenC
 
     @Override
     public void f0(ImageReceiver imageReceiver, boolean z9, boolean z10, boolean z11) {
-        MusicPlayerService musicPlayerService = (MusicPlayerService) this.f23465b;
+        MusicPlayerService musicPlayerService = (MusicPlayerService) this.f23469b;
         if (z9) {
-            if (!TextUtils.isEmpty(musicPlayerService.f21317r)) {
-                ij ijVar = MediaController.B().f21295u0;
+            if (!TextUtils.isEmpty(musicPlayerService.f21322r)) {
+                ij ijVar = MediaController.B().f21300u0;
                 if (ijVar != null) {
                     musicPlayerService.a(ijVar, true);
                 }
-                musicPlayerService.f21317r = null;
+                musicPlayerService.f21322r = null;
                 return;
             }
             return;
         }
-        boolean z12 = MusicPlayerService.f21310w;
+        boolean z12 = MusicPlayerService.f21315w;
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        ((org.telegram.ui.cn) this.f23465b).presentFragment(new bb1(6, null));
+        ((org.telegram.ui.cn) this.f23469b).presentFragment(new cb1(6, null));
     }
 
     @Override
     public void onCanceled() {
-        Runnable runnable = ((Runnable[]) this.f23465b)[0];
+        Runnable runnable = ((Runnable[]) this.f23469b)[0];
         if (runnable != null) {
             runnable.run();
         }
@@ -75,25 +75,25 @@ public final class j1 implements ResultCallback, WriteToSocketDelegate, OnTokenC
 
     @Override
     public void onComplete(Object obj) {
-        switch (this.f23464a) {
+        switch (this.f23468a) {
             case 1:
-                d4 d4Var = (d4) this.f23465b;
+                d4 d4Var = (d4) this.f23469b;
                 Pair pair = (Pair) obj;
                 if (pair != null) {
-                    d4Var.f21979a.put((Long) pair.first, (Bitmap) pair.second);
+                    d4Var.f21983a.put((Long) pair.first, (Bitmap) pair.second);
                     return;
                 } else {
                     d4Var.getClass();
                     return;
                 }
             default:
-                org.telegram.ui.ActionBar.p3 p3Var = (org.telegram.ui.ActionBar.p3) this.f23465b;
+                org.telegram.ui.ActionBar.q3 q3Var = (org.telegram.ui.ActionBar.q3) this.f23469b;
                 Bitmap bitmap = (Bitmap) obj;
                 if (bitmap != null) {
-                    p3Var.a(new gg.a(bitmap, 0, null));
+                    q3Var.a(new gg.a(bitmap, 0, null));
                     return;
                 } else {
-                    p3Var.a(null);
+                    q3Var.a(null);
                     return;
                 }
         }
@@ -101,34 +101,34 @@ public final class j1 implements ResultCallback, WriteToSocketDelegate, OnTokenC
 
     @Override
     public void onError(Throwable th2) {
-        int i7 = this.f23464a;
+        int i7 = this.f23468a;
         org.telegram.tgnet.k.a(this, th2);
     }
 
     @Override
     public void onFailure(Exception exc) {
-        ((oc) this.f23465b).r(exc);
+        ((oc) this.f23469b).r(exc);
     }
 
     @Override
     public void onSuccess(Object obj) {
-        ((pc) this.f23465b).a((String) obj);
+        ((pc) this.f23469b).a((String) obj);
     }
 
     @Override
     public void run(long j3) {
-        g0.h3(new pd((hz) this.f23465b, j3, 1));
+        g0.h3(new pd((hz) this.f23469b, j3, 1));
     }
 
     @Override
     public void onError(TLRPC.TL_error tL_error) {
-        int i7 = this.f23464a;
+        int i7 = this.f23468a;
         org.telegram.tgnet.k.b(this, tL_error);
     }
 
     @Override
     public void run() {
-        Utilities.d.c(new u8((y8) this.f23465b, 3));
+        Utilities.d.c(new u8((y8) this.f23469b, 3));
     }
 
     @Override

@@ -21,18 +21,18 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.r1;
 import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.Cells.c2;
-import org.telegram.ui.Components.j30;
-import org.telegram.ui.Components.kk0;
-import org.telegram.ui.Components.rt;
-import org.telegram.ui.Components.t4;
+import org.telegram.ui.Components.i30;
+import org.telegram.ui.Components.jk0;
+import org.telegram.ui.Components.qt;
+import org.telegram.ui.Components.s4;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.cn;
-import org.telegram.ui.e40;
-import org.telegram.ui.tv0;
-import org.telegram.ui.yq0;
-import org.telegram.ui.yw;
+import org.telegram.ui.f40;
+import org.telegram.ui.uv0;
+import org.telegram.ui.zq0;
+import org.telegram.ui.zw;
 import wg.f1;
-public final class e0 implements j30, r1, c7, t4, w5.b, v9.g {
+public final class e0 implements i30, r1, c7, s4, w5.b, v9.g {
     public final int f3271a;
     public final long f3272b;
     public final Object f3273c;
@@ -49,7 +49,7 @@ public final class e0 implements j30, r1, c7, t4, w5.b, v9.g {
 
     @Override
     public void L(int i7, int i10, boolean z9) {
-        cn.A1((cn) this.f3273c, (ArrayList) this.d, this.f3272b, (kk0) this.f3274e, z9, i7);
+        cn.A1((cn) this.f3273c, (ArrayList) this.d, this.f3272b, (jk0) this.f3274e, z9, i7);
     }
 
     @Override
@@ -81,18 +81,18 @@ public final class e0 implements j30, r1, c7, t4, w5.b, v9.g {
     }
 
     @Override
-    public ScheduledFuture a(final rt rtVar) {
+    public ScheduledFuture a(final qt qtVar) {
         switch (this.f3271a) {
             case 7:
                 v9.f fVar = (v9.f) this.f3273c;
-                return fVar.f57285b.schedule(new v9.d(fVar, (Runnable) this.d, rtVar, 1), this.f3272b, (TimeUnit) this.f3274e);
+                return fVar.f57281b.schedule(new v9.d(fVar, (Runnable) this.d, qtVar, 1), this.f3272b, (TimeUnit) this.f3274e);
             default:
                 final v9.f fVar2 = (v9.f) this.f3273c;
                 final Callable callable = (Callable) this.d;
-                return fVar2.f57285b.schedule(new Callable() {
+                return fVar2.f57281b.schedule(new Callable() {
                     @Override
                     public final Object call() {
-                        return f.this.f57284a.submit(new u9.f(11, callable, rtVar));
+                        return f.this.f57280a.submit(new u9.f(11, callable, qtVar));
                     }
                 }, this.f3272b, (TimeUnit) this.f3274e);
         }
@@ -141,16 +141,16 @@ public final class e0 implements j30, r1, c7, t4, w5.b, v9.g {
                 if (c2Var != null && c2Var.b()) {
                     z9 = true;
                 }
-                e40.B1(r3Var, z9, this.f3272b, runnable);
+                f40.B1(r3Var, z9, this.f3272b, runnable);
                 return;
             default:
                 TLRPC.User user = (TLRPC.User) this.f3274e;
-                ProfileActivity profileActivity = ((tv0) this.f3273c).f50246b;
+                ProfileActivity profileActivity = ((uv0) this.f3273c).f50573b;
                 profileActivity.M1 = true;
                 Bundle k10 = a8.p0.k("scrollToTopOnResume", true);
                 long j3 = -this.f3272b;
                 k10.putLong("chat_id", j3);
-                if (profileActivity.getMessagesController().E(k10, (yw) this.d, null, null)) {
+                if (profileActivity.getMessagesController().E(k10, (zw) this.d, null, null)) {
                     cn cnVar = new cn(k10);
                     profileActivity.getNotificationCenter().n(profileActivity, 4);
                     profileActivity.getNotificationCenter().k(4, new Object[0]);
@@ -163,7 +163,7 @@ public final class e0 implements j30, r1, c7, t4, w5.b, v9.g {
     }
 
     @Override
-    public yq0 getCloseIntoObject() {
+    public zq0 getCloseIntoObject() {
         return null;
     }
 
@@ -177,7 +177,7 @@ public final class e0 implements j30, r1, c7, t4, w5.b, v9.g {
         ia.c cVar = (ia.c) this.f3273c;
         Iterable iterable = (Iterable) this.d;
         o5.i iVar = (o5.i) this.f3274e;
-        v5.g gVar = (v5.g) ((v5.d) cVar.f15420c);
+        v5.g gVar = (v5.g) ((v5.d) cVar.f15422c);
         gVar.getClass();
         if (iterable.iterator().hasNext()) {
             String str = "UPDATE events SET num_attempts = num_attempts + 1 WHERE _id in " + v5.g.g(iterable);
@@ -196,7 +196,7 @@ public final class e0 implements j30, r1, c7, t4, w5.b, v9.g {
                 a10.endTransaction();
             }
         }
-        gVar.c(new c1(((x5.a) cVar.f15423g).s() + this.f3272b, iVar));
+        gVar.c(new c1(((x5.a) cVar.f15425g).s() + this.f3272b, iVar));
         return null;
     }
 

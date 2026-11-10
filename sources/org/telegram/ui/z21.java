@@ -1,56 +1,34 @@
 package org.telegram.ui;
+public final class z21 implements Runnable {
+    public final int f52189a;
+    public final a31 f52190b;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class z21 implements r9 {
-    public TLObject f52403a = null;
-    public TLRPC.TL_error f52404b = null;
-    public final SessionsActivity f52405c;
-
-    public z21(SessionsActivity sessionsActivity) {
-        this.f52405c = sessionsActivity;
+    public z21(a31 a31Var, int i7) {
+        this.f52189a = i7;
+        this.f52190b = a31Var;
     }
 
     @Override
-    public final void M(String str) {
-        TLObject tLObject = this.f52403a;
-        if (tLObject instanceof TLRPC.TL_authorization) {
-            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) tLObject;
-            boolean z9 = tL_authorization.password_pending;
-            SessionsActivity sessionsActivity = this.f52405c;
-            if (z9) {
-                sessionsActivity.f41965e.add(0, tL_authorization);
-                sessionsActivity.U = 4;
-                sessionsActivity.p0(false);
-            } else {
-                sessionsActivity.d.add(0, tL_authorization);
-            }
-            sessionsActivity.r0();
-            sessionsActivity.f41962a.f();
-            sessionsActivity.f41968r.m(0L, this.f52403a, 11);
-        } else if (this.f52404b != null) {
-            org.telegram.messenger.g0.h3(new y21(this, 0));
+    public final void run() {
+        String sb2;
+        int i7 = this.f52189a;
+        a31 a31Var = this.f52190b;
+        switch (i7) {
+            case 0:
+                String str = a31Var.f43549b.text;
+                if (str != null && str.equals("AUTH_TOKEN_EXCEPTION")) {
+                    sb2 = org.telegram.messenger.id.M0(2131754709, null);
+                } else {
+                    StringBuilder sb3 = new StringBuilder();
+                    org.telegram.messenger.camera.q.q(null, 2131751105, sb3, "\n");
+                    sb3.append(a31Var.f43549b.text);
+                    sb2 = sb3.toString();
+                }
+                org.telegram.ui.Components.u4.r0(a31Var.f43550c, org.telegram.messenger.id.M0(2131753894, null), sb2, null);
+                return;
+            default:
+                org.telegram.ui.Components.u4.r0(a31Var.f43550c, org.telegram.messenger.id.M0(2131753894, null), org.telegram.messenger.id.M0(2131751105, null), null);
+                return;
         }
-    }
-
-    @Override
-    public final String R0() {
-        return null;
-    }
-
-    @Override
-    public final boolean h1(String str, j9 j9Var) {
-        this.f52403a = null;
-        this.f52404b = null;
-        org.telegram.messenger.g0.i3(new v21(this, str, j9Var, 2), 750L);
-        return true;
-    }
-
-    @Override
-    public final void V0(org.telegram.messenger.zr zrVar) {
-    }
-
-    @Override
-    public final void onDismiss() {
     }
 }

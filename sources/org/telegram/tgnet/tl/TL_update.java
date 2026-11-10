@@ -295,12 +295,12 @@ public class TL_update {
         public static final int constructor = -761649164;
         public long channel_id;
         public int forwards;
-        public int f27211id;
+        public int f27215id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z9) {
             this.channel_id = inputSerializedData.readInt64(z9);
-            this.f27211id = inputSerializedData.readInt32(z9);
+            this.f27215id = inputSerializedData.readInt32(z9);
             this.forwards = inputSerializedData.readInt32(z9);
         }
 
@@ -308,7 +308,7 @@ public class TL_update {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-761649164);
             outputSerializedData.writeInt64(this.channel_id);
-            outputSerializedData.writeInt32(this.f27211id);
+            outputSerializedData.writeInt32(this.f27215id);
             outputSerializedData.writeInt32(this.forwards);
         }
     }
@@ -316,13 +316,13 @@ public class TL_update {
     public static class TL_updateChannelMessageViews extends TLRPC.Update {
         public static final int constructor = -232346616;
         public long channel_id;
-        public int f27212id;
+        public int f27216id;
         public int views;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z9) {
             this.channel_id = inputSerializedData.readInt64(z9);
-            this.f27212id = inputSerializedData.readInt32(z9);
+            this.f27216id = inputSerializedData.readInt32(z9);
             this.views = inputSerializedData.readInt32(z9);
         }
 
@@ -330,7 +330,7 @@ public class TL_update {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-232346616);
             outputSerializedData.writeInt64(this.channel_id);
-            outputSerializedData.writeInt32(this.f27212id);
+            outputSerializedData.writeInt32(this.f27216id);
             outputSerializedData.writeInt32(this.views);
         }
     }
@@ -892,12 +892,12 @@ public class TL_update {
         public static final int constructor = 654302845;
         public TLRPC.DialogFilter filter;
         public int flags;
-        public int f27213id;
+        public int f27217id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z9) {
             this.flags = inputSerializedData.readInt32(z9);
-            this.f27213id = inputSerializedData.readInt32(z9);
+            this.f27217id = inputSerializedData.readInt32(z9);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.filter = TLRPC.DialogFilter.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
             }
@@ -907,7 +907,7 @@ public class TL_update {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(654302845);
             outputSerializedData.writeInt32(this.flags);
-            outputSerializedData.writeInt32(this.f27213id);
+            outputSerializedData.writeInt32(this.f27217id);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.filter.serializeToStream(outputSerializedData);
             }
@@ -1696,19 +1696,19 @@ public class TL_update {
 
     public static class TL_updateMessageID extends TLRPC.Update {
         public static final int constructor = 1318109142;
-        public int f27214id;
+        public int f27218id;
         public long random_id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z9) {
-            this.f27214id = inputSerializedData.readInt32(z9);
+            this.f27218id = inputSerializedData.readInt32(z9);
             this.random_id = inputSerializedData.readInt64(z9);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1318109142);
-            outputSerializedData.writeInt32(this.f27214id);
+            outputSerializedData.writeInt32(this.f27218id);
             outputSerializedData.writeInt64(this.random_id);
         }
     }
@@ -3235,19 +3235,19 @@ public class TL_update {
 
     public static class TL_updateStoryID extends TLRPC.Update {
         public static final int constructor = 468923833;
-        public int f27215id;
+        public int f27219id;
         public long random_id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z9) {
-            this.f27215id = inputSerializedData.readInt32(z9);
+            this.f27219id = inputSerializedData.readInt32(z9);
             this.random_id = inputSerializedData.readInt64(z9);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(468923833);
-            outputSerializedData.writeInt32(this.f27215id);
+            outputSerializedData.writeInt32(this.f27219id);
             outputSerializedData.writeInt64(this.random_id);
         }
     }

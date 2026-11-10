@@ -9,17 +9,17 @@ import org.telegram.messenger.qp;
 import org.telegram.messenger.t10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ej0;
-import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.l60;
-import org.telegram.ui.Components.m90;
-public final class v4 implements ej0 {
-    public final q9 f9862a;
-    public final l5 f9863b;
+import org.telegram.ui.Components.dj0;
+import org.telegram.ui.Components.gc;
+import org.telegram.ui.Components.k60;
+import org.telegram.ui.Components.l90;
+public final class v4 implements dj0 {
+    public final q9 f9867a;
+    public final l5 f9868b;
 
     public v4(l5 l5Var, q9 q9Var) {
-        this.f9863b = l5Var;
-        this.f9862a = q9Var;
+        this.f9868b = l5Var;
+        this.f9867a = q9Var;
     }
 
     @Override
@@ -37,19 +37,19 @@ public final class v4 implements ej0 {
         boolean z15;
         boolean z16;
         TLRPC.InputStickerSet c10;
-        l5 l5Var = this.f9863b;
-        b bVar = l5Var.f9330s;
-        int i10 = l5Var.f9331w;
+        l5 l5Var = this.f9868b;
+        b bVar = l5Var.f9335s;
+        int i10 = l5Var.f9336w;
         if (view instanceof org.telegram.ui.Cells.m6) {
             final org.telegram.ui.Cells.m6 m6Var = (org.telegram.ui.Cells.m6) view;
-            q9 q9Var = this.f9862a;
-            if (q9Var.f9643w != null && (storyView = ((c5) l5Var.f9332x.f9073c.get(i7)).f8870b) != null && (a22 = (s12 = qp.s1(i10)).a2(Long.valueOf(storyView.user_id))) != null) {
-                if (s12.G0.indexOfKey(a22.f27105id) >= 0) {
+            q9 q9Var = this.f9867a;
+            if (q9Var.f9648w != null && (storyView = ((c5) l5Var.f9337x.f9078c.get(i7)).f8875b) != null && (a22 = (s12 = qp.s1(i10)).a2(Long.valueOf(storyView.user_id))) != null) {
+                if (s12.G0.indexOfKey(a22.f27109id) >= 0) {
                     z9 = true;
                 } else {
                     z9 = false;
                 }
-                if (!a22.contact && org.telegram.messenger.g5.r(i10).f22610f0.get(Long.valueOf(a22.f27105id)) == null) {
+                if (!a22.contact && org.telegram.messenger.g5.r(i10).f22614f0.get(Long.valueOf(a22.f27109id)) == null) {
                     z10 = false;
                 } else {
                     z10 = true;
@@ -73,11 +73,11 @@ public final class v4 implements ej0 {
                 if (B) {
                     return false;
                 }
-                l60 F = l60.F(q9Var.f9643w, bVar, view);
-                F.f35599i = 3;
-                F.f35601j = true;
-                F.W(new ColorDrawable(org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.f27938h5, bVar)));
-                F.f35617s = 133;
+                k60 F = k60.F(q9Var.f9648w, bVar, view);
+                F.f35201i = 3;
+                F.f35203j = true;
+                F.W(new ColorDrawable(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f27963h5, bVar)));
+                F.f35219s = 133;
                 if (d && !N && !z9 && !B) {
                     z11 = true;
                 } else {
@@ -85,10 +85,10 @@ public final class v4 implements ej0 {
                 }
                 final String str2 = str;
                 F.l(2131232388, id.a0(null, null, 2131744662, str), new Runnable(this) {
-                    public final v4 f9780b;
+                    public final v4 f9785b;
 
                     {
-                        this.f9780b = this;
+                        this.f9785b = this;
                     }
 
                     @Override
@@ -100,21 +100,21 @@ public final class v4 implements ej0 {
                         String str3 = str2;
                         TLRPC.User user = a22;
                         qp qpVar = s12;
-                        v4 v4Var = this.f9780b;
+                        v4 v4Var = this.f9785b;
                         switch (i11) {
                             case 0:
-                                qpVar.P1().m0(user.f27105id, true, true);
-                                l5 l5Var2 = v4Var.f9863b;
-                                new hc(l5Var2, l5Var2.f9330s).Q(2131624049, 36, id.a0(null, null, 2131744663, str3)).j();
+                                qpVar.P1().m0(user.f27109id, true, true);
+                                l5 l5Var2 = v4Var.f9868b;
+                                new gc(l5Var2, l5Var2.f9335s).Q(2131624049, 36, id.a0(null, null, 2131744663, str3)).j();
                                 if (l5Var2.d(storyView2)) {
                                     f10 = 1.0f;
                                 }
                                 m6Var2.a(true, f10);
                                 return;
                             default:
-                                qpVar.P1().m0(user.f27105id, false, true);
-                                l5 l5Var3 = v4Var.f9863b;
-                                new hc(l5Var3, l5Var3.f9330s).Q(2131623989, 36, id.a0(null, null, 2131744461, str3)).j();
+                                qpVar.P1().m0(user.f27109id, false, true);
+                                l5 l5Var3 = v4Var.f9868b;
+                                new gc(l5Var3, l5Var3.f9335s).Q(2131623989, 36, id.a0(null, null, 2131744461, str3)).j();
                                 if (l5Var3.d(storyView2)) {
                                     f10 = 1.0f;
                                 }
@@ -131,10 +131,10 @@ public final class v4 implements ej0 {
                     z12 = false;
                 }
                 F.l(2131232223, id.a0(null, null, 2131744462, str2), new Runnable(this) {
-                    public final v4 f9780b;
+                    public final v4 f9785b;
 
                     {
-                        this.f9780b = this;
+                        this.f9785b = this;
                     }
 
                     @Override
@@ -146,21 +146,21 @@ public final class v4 implements ej0 {
                         String str3 = str2;
                         TLRPC.User user = a22;
                         qp qpVar = s12;
-                        v4 v4Var = this.f9780b;
+                        v4 v4Var = this.f9785b;
                         switch (i11) {
                             case 0:
-                                qpVar.P1().m0(user.f27105id, true, true);
-                                l5 l5Var2 = v4Var.f9863b;
-                                new hc(l5Var2, l5Var2.f9330s).Q(2131624049, 36, id.a0(null, null, 2131744663, str3)).j();
+                                qpVar.P1().m0(user.f27109id, true, true);
+                                l5 l5Var2 = v4Var.f9868b;
+                                new gc(l5Var2, l5Var2.f9335s).Q(2131624049, 36, id.a0(null, null, 2131744663, str3)).j();
                                 if (l5Var2.d(storyView2)) {
                                     f10 = 1.0f;
                                 }
                                 m6Var2.a(true, f10);
                                 return;
                             default:
-                                qpVar.P1().m0(user.f27105id, false, true);
-                                l5 l5Var3 = v4Var.f9863b;
-                                new hc(l5Var3, l5Var3.f9330s).Q(2131623989, 36, id.a0(null, null, 2131744461, str3)).j();
+                                qpVar.P1().m0(user.f27109id, false, true);
+                                l5 l5Var3 = v4Var.f9868b;
+                                new gc(l5Var3, l5Var3.f9335s).Q(2131623989, 36, id.a0(null, null, 2131744461, str3)).j();
                                 if (l5Var3.d(storyView2)) {
                                     f10 = 1.0f;
                                 }
@@ -177,10 +177,10 @@ public final class v4 implements ej0 {
                     z13 = false;
                 }
                 F.m(2131232415, new Runnable(this) {
-                    public final v4 f9825b;
+                    public final v4 f9830b;
 
                     {
-                        this.f9825b = this;
+                        this.f9830b = this;
                     }
 
                     @Override
@@ -189,9 +189,9 @@ public final class v4 implements ej0 {
                         float f11;
                         switch (r6) {
                             case 0:
-                                s12.w(a22.f27105id);
-                                l5 l5Var2 = this.f9825b.f9863b;
-                                new hc(l5Var2, l5Var2.f9330s).e(true).j();
+                                s12.w(a22.f27109id);
+                                l5 l5Var2 = this.f9830b.f9868b;
+                                new gc(l5Var2, l5Var2.f9335s).e(true).j();
                                 if (l5Var2.d(storyView)) {
                                     f10 = 1.0f;
                                 } else {
@@ -203,10 +203,10 @@ public final class v4 implements ej0 {
                                 qp qpVar = s12;
                                 z6 P1 = qpVar.P1();
                                 TLRPC.User user = a22;
-                                P1.m0(user.f27105id, false, true);
-                                qpVar.f5(null, user.f27105id);
-                                l5 l5Var3 = this.f9825b.f9863b;
-                                new hc(l5Var3, l5Var3.f9330s).e(false).j();
+                                P1.m0(user.f27109id, false, true);
+                                qpVar.f5(null, user.f27109id);
+                                l5 l5Var3 = this.f9830b.f9868b;
+                                new gc(l5Var3, l5Var3.f9335s).e(false).j();
                                 if (l5Var3.d(storyView)) {
                                     f11 = 1.0f;
                                 } else {
@@ -223,10 +223,10 @@ public final class v4 implements ej0 {
                     z14 = false;
                 }
                 F.l(2131232067, id.M0(2131743911, null), new Runnable(this) {
-                    public final v4 f9825b;
+                    public final v4 f9830b;
 
                     {
-                        this.f9825b = this;
+                        this.f9830b = this;
                     }
 
                     @Override
@@ -235,9 +235,9 @@ public final class v4 implements ej0 {
                         float f11;
                         switch (r6) {
                             case 0:
-                                s12.w(a22.f27105id);
-                                l5 l5Var2 = this.f9825b.f9863b;
-                                new hc(l5Var2, l5Var2.f9330s).e(true).j();
+                                s12.w(a22.f27109id);
+                                l5 l5Var2 = this.f9830b.f9868b;
+                                new gc(l5Var2, l5Var2.f9335s).e(true).j();
                                 if (l5Var2.d(storyView)) {
                                     f10 = 1.0f;
                                 } else {
@@ -249,10 +249,10 @@ public final class v4 implements ej0 {
                                 qp qpVar = s12;
                                 z6 P1 = qpVar.P1();
                                 TLRPC.User user = a22;
-                                P1.m0(user.f27105id, false, true);
-                                qpVar.f5(null, user.f27105id);
-                                l5 l5Var3 = this.f9825b.f9863b;
-                                new hc(l5Var3, l5Var3.f9330s).e(false).j();
+                                P1.m0(user.f27109id, false, true);
+                                qpVar.f5(null, user.f27109id);
+                                l5 l5Var3 = this.f9830b.f9868b;
+                                new gc(l5Var3, l5Var3.f9335s).e(false).j();
                                 if (l5Var3.d(storyView)) {
                                     f11 = 1.0f;
                                 } else {
@@ -270,13 +270,13 @@ public final class v4 implements ej0 {
                 }
                 F.m(2131232415, new bi.u0(this, a22, str2, m6Var, storyView, 11), id.M0(2131744687, null), z15, true);
                 TLRPC.Reaction reaction = storyView.reaction;
-                if ((reaction instanceof TLRPC.TL_reactionCustomEmoji) && (c10 = org.telegram.ui.Components.i5.g(i10).c(((TLRPC.TL_reactionCustomEmoji) reaction).document_id)) != null) {
+                if ((reaction instanceof TLRPC.TL_reactionCustomEmoji) && (c10 = org.telegram.ui.Components.h5.g(i10).c(((TLRPC.TL_reactionCustomEmoji) reaction).document_id)) != null) {
                     F.k();
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(c10);
-                    m90 m90Var = new m90(l5Var.f9331w, 3, l5Var.getContext(), arrayList, bVar);
-                    m90Var.setOnClickListener(new ah.g(this, arrayList, F, 7));
-                    F.q(m90Var);
+                    l90 l90Var = new l90(l5Var.f9336w, 3, l5Var.getContext(), arrayList, bVar);
+                    l90Var.setOnClickListener(new ah.g(this, arrayList, F, 7));
+                    F.q(l90Var);
                     z16 = true;
                 } else {
                     z16 = false;

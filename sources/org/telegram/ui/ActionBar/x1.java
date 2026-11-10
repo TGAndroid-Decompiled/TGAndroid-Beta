@@ -24,8 +24,8 @@ public final class x1 extends u1 {
     public long f28745s1;
     public final l2.a0 f28746t1;
 
-    public x1(int i7, Context context, g6 g6Var) {
-        super(i7, context, g6Var);
+    public x1(int i7, Context context, h6 h6Var) {
+        super(i7, context, h6Var);
         this.f28744r1 = false;
         this.f28745s1 = 0L;
         this.f28746t1 = new l2.a0(this, 20);
@@ -81,7 +81,7 @@ public final class x1 extends u1 {
         this.f28739k1 = obtainStyledAttributes.getResourceId(0, -1);
         this.l1 = obtainStyledAttributes.getResourceId(1, -1);
         obtainStyledAttributes.recycle();
-        this.f28565j0 = true;
+        this.f28560j0 = true;
         ViewGroup g10 = g(false);
         this.n1 = g10;
         g10.setClickable(true);
@@ -90,7 +90,7 @@ public final class x1 extends u1 {
         frameLayout.setOnClickListener(new ii.g(this, 14));
         View view = new View(getContext());
         this.f28741o1 = view;
-        view.setBackgroundColor(l6.r1(attributes.dimAmount, -16777216));
+        view.setBackgroundColor(m6.r1(attributes.dimAmount, -16777216));
         frameLayout.addView(this.f28741o1, new FrameLayout.LayoutParams(-1, -1));
         FrameLayout frameLayout2 = new FrameLayout(getContext());
         frameLayout2.addView(this.n1, new FrameLayout.LayoutParams(-1, -2, 17));
@@ -98,7 +98,7 @@ public final class x1 extends u1 {
         this.f28740m1 = frameLayout;
         u().addView(this.f28740m1);
         FrameLayout frameLayout3 = this.f28740m1;
-        WeakHashMap weakHashMap = r0.i0.f54203a;
+        WeakHashMap weakHashMap = r0.i0.f54202a;
         r0.y.c(frameLayout3);
         r0.a0.i(this.f28740m1, new bi.f(3, frameLayout2));
         this.f28740m1.setVisibility(4);

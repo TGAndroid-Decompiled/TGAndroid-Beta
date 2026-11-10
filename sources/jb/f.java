@@ -17,8 +17,8 @@ public final class f {
         fVar.getClass();
         Uri.Builder appendPath = new Uri.Builder().scheme("https").authority("firebase-settings.crashlytics.com").appendPath("spi").appendPath("v2").appendPath("platforms").appendPath("android").appendPath("gmp");
         gb.b bVar = fVar.f16620a;
-        Uri.Builder appendPath2 = appendPath.appendPath(bVar.f13627a).appendPath("settings");
-        gb.a aVar = bVar.f13628b;
-        return new URL(appendPath2.appendQueryParameter("build_version", aVar.f13623c).appendQueryParameter("display_version", aVar.f13622b).build().toString());
+        Uri.Builder appendPath2 = appendPath.appendPath(bVar.f13629a).appendPath("settings");
+        gb.a aVar = bVar.f13630b;
+        return new URL(appendPath2.appendQueryParameter("build_version", aVar.f13625c).appendQueryParameter("display_version", aVar.f13624b).build().toString());
     }
 }

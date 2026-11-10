@@ -11,8 +11,8 @@ import org.telegram.messenger.yr;
 import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.d61;
-import org.telegram.ui.jw;
+import org.telegram.ui.e61;
+import org.telegram.ui.kw;
 public final class u implements Runnable {
     public final int f16937a;
     public final Object f16938b;
@@ -81,7 +81,7 @@ public final class u implements Runnable {
                         for (int i16 = 0; i16 < messages_messages.messages.size(); i16++) {
                             TLRPC.Message message = messages_messages.messages.get(i16);
                             int i17 = qp.s1(i15).T.get(ij.B0(message));
-                            if (i17 == 0 || message.f26977id > i17) {
+                            if (i17 == 0 || message.f26981id > i17) {
                                 arrayList2.add((ij) arrayList.get(i16));
                             }
                         }
@@ -102,14 +102,14 @@ public final class u implements Runnable {
                             }
                         }
                         zVar.f(h0Var.f16759s, h0Var.f16763v0);
-                        jw jwVar = h0Var.U;
-                        if (jwVar != null) {
+                        kw kwVar = h0Var.U;
+                        if (kwVar != null) {
                             if (h0Var.D0 > 0) {
                                 z10 = true;
                             } else {
                                 z10 = false;
                             }
-                            jwVar.d(z10, true);
+                            kwVar.d(z10, true);
                             h0Var.U.c();
                         }
                         h0Var.f();
@@ -142,12 +142,12 @@ public final class u implements Runnable {
                         while (i19 < messages_messages2.messages.size()) {
                             TLRPC.Message message2 = messages_messages2.messages.get(i19);
                             int i20 = qp.s1(i18).T.get(ij.B0(message2));
-                            if (i20 == 0 || message2.f26977id > i20) {
+                            if (i20 == 0 || message2.f26981id > i20) {
                                 ij ijVar = (ij) arrayList.get(i19);
                                 if (!arrayList4.isEmpty()) {
                                     for (int i21 = i14; i21 < arrayList4.size(); i21++) {
                                         ij ijVar2 = (ij) arrayList4.get(i21);
-                                        if (ijVar2 == null || ijVar == null || ijVar.e1() != ijVar2.e1() || ij.B0(ijVar.f23262k) != ij.B0(ijVar2.f23262k)) {
+                                        if (ijVar2 == null || ijVar == null || ijVar.e1() != ijVar2.e1() || ij.B0(ijVar.f23266k) != ij.B0(ijVar2.f23266k)) {
                                         }
                                     }
                                 }
@@ -160,7 +160,7 @@ public final class u implements Runnable {
                                 }
                                 Integer num = (Integer) concurrentHashMap.get(Long.valueOf(B0));
                                 if (num != null) {
-                                    if (num.intValue() < message2.f26977id) {
+                                    if (num.intValue() < message2.f26981id) {
                                         z13 = true;
                                     } else {
                                         z13 = false;
@@ -189,15 +189,15 @@ public final class u implements Runnable {
                             }
                         }
                         zVar2.f(h0Var2.f16759s, h0Var2.f16763v0);
-                        jw jwVar2 = h0Var2.U;
-                        if (jwVar2 != null) {
+                        kw kwVar2 = h0Var2.U;
+                        if (kwVar2 != null) {
                             if (h0Var2.D0 > 0) {
                                 z12 = true;
                             } else {
                                 z12 = false;
                             }
                             i10 = 1;
-                            jwVar2.d(z12, true);
+                            kwVar2.d(z12, true);
                             h0Var2.U.c();
                         } else {
                             i10 = 1;
@@ -206,11 +206,11 @@ public final class u implements Runnable {
                         h0Var2.H0 = i10;
                         i7 = 0;
                         h0Var2.d = false;
-                        d61 d61Var = h0Var2.E0;
-                        if (d61Var != null) {
+                        e61 e61Var = h0Var2.E0;
+                        if (e61Var != null) {
                             Object[] objArr = new Object[i10];
                             objArr[0] = h0Var2.Z;
-                            ((TextView) d61Var.f44867b).setText(id.a0(null, null, 2131745750, objArr));
+                            ((TextView) e61Var.f45178b).setText(id.a0(null, null, 2131745750, objArr));
                         }
                         h0Var2.f();
                         h0Var2.O = i7;
@@ -228,7 +228,7 @@ public final class u implements Runnable {
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                 ArrayList arrayList5 = this.f16942n;
                 arrayList5.set(i13, tL_messages_stickerSet);
-                hVar.k(tL_messages_stickerSet, ((TLRPC.StickerSet) obj).f26983id);
+                hVar.k(tL_messages_stickerSet, ((TLRPC.StickerSet) obj).f26987id);
                 if (hVar.m() == tL_messages_allStickers.sets.size()) {
                     while (i14 < arrayList5.size()) {
                         if (arrayList5.get(i14) == null) {

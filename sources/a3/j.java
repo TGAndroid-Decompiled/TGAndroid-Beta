@@ -10,7 +10,7 @@ public final class j extends q implements Comparable {
         int i12;
         this.f98e = jg.g.c(i11, nVar.B0) ? 1 : 0;
         e2.u uVar = this.d;
-        int i13 = uVar.f10621z;
+        int i13 = uVar.f10626z;
         int i14 = -1;
         if (i13 != -1 && (i12 = uVar.A) != -1) {
             i14 = i13 * i12;

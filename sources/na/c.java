@@ -5,12 +5,12 @@ import java.util.Collections;
 import java.util.Map;
 import m4.d0;
 public final class c {
-    public final String f20532a;
-    public final Map f20533b;
+    public final String f20537a;
+    public final Map f20538b;
 
     public c(String str, Map map) {
-        this.f20532a = str;
-        this.f20533b = map;
+        this.f20537a = str;
+        this.f20538b = map;
     }
 
     public static d0 a(String str) {
@@ -22,7 +22,7 @@ public final class c {
     }
 
     public final Annotation b(Class cls) {
-        return (Annotation) this.f20533b.get(cls);
+        return (Annotation) this.f20538b.get(cls);
     }
 
     public final boolean equals(Object obj) {
@@ -33,17 +33,17 @@ public final class c {
             return false;
         }
         c cVar = (c) obj;
-        if (this.f20532a.equals(cVar.f20532a) && this.f20533b.equals(cVar.f20533b)) {
+        if (this.f20537a.equals(cVar.f20537a) && this.f20538b.equals(cVar.f20538b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f20533b.hashCode() + (this.f20532a.hashCode() * 31);
+        return this.f20538b.hashCode() + (this.f20537a.hashCode() * 31);
     }
 
     public final String toString() {
-        return "FieldDescriptor{name=" + this.f20532a + ", properties=" + this.f20533b.values() + "}";
+        return "FieldDescriptor{name=" + this.f20537a + ", properties=" + this.f20538b.values() + "}";
     }
 }

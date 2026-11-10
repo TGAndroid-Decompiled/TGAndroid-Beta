@@ -12,8 +12,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.t10;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ah0;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.wq;
+import org.telegram.ui.Components.zg0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.cn;
 public final class p7 extends View {
@@ -34,8 +34,8 @@ public final class p7 extends View {
     public final RectF h;
     public final Paint f4523n;
     public boolean f4524r;
-    public final org.telegram.ui.Components.w5 f4525s;
-    public final org.telegram.ui.Components.i6 f4526w;
+    public final org.telegram.ui.Components.v5 f4525s;
+    public final org.telegram.ui.Components.h6 f4526w;
     public boolean f4527x;
     public final a4 f4528y;
 
@@ -47,21 +47,21 @@ public final class p7 extends View {
         this.h = new RectF();
         this.f4523n = new Paint();
         new Paint();
-        this.f4525s = new org.telegram.ui.Components.w5(this, 0L, 420L, xq.h);
-        org.telegram.ui.Components.i6 i6Var = new org.telegram.ui.Components.i6(false, false, false);
-        this.f4526w = i6Var;
+        this.f4525s = new org.telegram.ui.Components.v5(this, 0L, 420L, wq.h);
+        org.telegram.ui.Components.h6 h6Var = new org.telegram.ui.Components.h6(false, false, false);
+        this.f4526w = h6Var;
         new Matrix();
         this.J = new ArrayList();
         this.K = new int[]{2131624219, 2131624220, 2131624221, 2131624222, 2131624223};
         this.f4518a = cnVar;
-        i6Var.setCallback(this);
-        i6Var.r(false, true);
-        i6Var.w(org.telegram.messenger.g0.L(40.0f));
-        i6Var.x(org.telegram.messenger.g0.o1("fonts/num.otf"));
-        i6Var.s(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(3.5f), 0);
-        i6Var.M = org.telegram.messenger.g0.f22563q.x;
-        i6Var.u(-1);
-        i6Var.f34587b = 17;
+        h6Var.setCallback(this);
+        h6Var.r(false, true);
+        h6Var.w(org.telegram.messenger.g0.L(40.0f));
+        h6Var.x(org.telegram.messenger.g0.o1("fonts/num.otf"));
+        h6Var.s(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(3.5f), 0);
+        h6Var.M = org.telegram.messenger.g0.f22567q.x;
+        h6Var.u(-1);
+        h6Var.f34187b = 17;
         this.H = new n7(this, 0);
         this.f4528y = new a4(5, this, cnVar);
     }
@@ -84,7 +84,7 @@ public final class p7 extends View {
             cn cnVar = this.f4518a;
             ea y10 = ea.y(cnVar.getCurrentAccount(), false);
             long E = y10.E(messageObject);
-            if (y10.f3810e && y10.q(null, false, false).amount < E) {
+            if (y10.f3807e && y10.q(null, false, false).amount < E) {
                 ca caVar = ea.y(cnVar.getCurrentAccount(), false).B;
                 if (caVar != null) {
                     caVar.a();
@@ -115,7 +115,7 @@ public final class p7 extends View {
         this.E = ofFloat;
         ofFloat.addUpdateListener(new ah.h(this, 7));
         this.E.addListener(new o7(this, f10, n7Var, 0));
-        this.E.setInterpolator(xq.h);
+        this.E.setInterpolator(wq.h);
         this.E.setDuration(320L);
         this.E.start();
     }
@@ -142,16 +142,16 @@ public final class p7 extends View {
                     if (arrayList.size() <= 4) {
                         break;
                     }
-                    ((ah0) arrayList.remove(0)).C(true);
+                    ((zg0) arrayList.remove(0)).C(true);
                 }
-                g5.a aVar = Utilities.f21335c;
+                g5.a aVar = Utilities.f21340c;
                 int[] iArr = this.K;
-                ah0 ah0Var = new ah0(iArr[aVar.nextInt(iArr.length)], org.telegram.messenger.g0.L(70.0f), org.telegram.messenger.g0.L(70.0f));
-                ah0Var.R(this);
-                ah0Var.J(true);
-                ah0Var.K(0);
-                ah0Var.start();
-                arrayList.add(ah0Var);
+                zg0 zg0Var = new zg0(iArr[aVar.nextInt(iArr.length)], org.telegram.messenger.g0.L(70.0f), org.telegram.messenger.g0.L(70.0f));
+                zg0Var.R(this);
+                zg0Var.J(true);
+                zg0Var.K(0);
+                zg0Var.start();
+                arrayList.add(zg0Var);
                 invalidate();
                 ch.m0 l10 = reactionsLayoutInBubble.l("stars");
                 if (l10 != null) {
@@ -164,9 +164,9 @@ public final class p7 extends View {
                     }
                     ea.y(cnVar.getCurrentAccount(), false).b0(messageObject, this.f4518a, 1L, true, false, null);
                 }
-                org.telegram.ui.Components.i6 i6Var = this.f4526w;
-                i6Var.a();
-                i6Var.t("+" + y10.E(messageObject), true, true);
+                org.telegram.ui.Components.h6 h6Var = this.f4526w;
+                h6Var.a();
+                h6Var.t("+" + y10.E(messageObject), true, true);
                 this.f4524r = true;
                 n7 n7Var = this.H;
                 org.telegram.messenger.g0.r(n7Var);

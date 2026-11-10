@@ -1,60 +1,27 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class pg0 extends ah.o {
-    public final int K;
-    public boolean L;
-    public final org.telegram.ui.Components.na M;
+public final class pg0 extends ah.e {
+    public final int f48769n;
 
-    public pg0(org.telegram.ui.Components.na naVar, Context context, org.telegram.ui.ActionBar.g6 g6Var, int i7) {
-        super(context, g6Var);
-        this.K = i7;
-        this.M = naVar;
+    public pg0(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, h6Var);
+        this.f48769n = i7;
     }
 
     @Override
-    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        switch (this.K) {
+    public final int getHeaderHeight() {
+        switch (this.f48769n) {
             case 0:
-                super.onLayout(z9, i7, i10, i11, i12);
-                sg0 sg0Var = (sg0) this.M;
-                sg0Var.d2 = org.telegram.messenger.g0.L(64.0f) + getMeasuredHeight();
-                sg0Var.f49904c2.G();
-                boolean z10 = this.L;
-                boolean z11 = sg0Var.d;
-                if (z10 != z11) {
-                    this.L = z11;
-                    if (z11) {
-                        org.telegram.ui.Components.qj0 qj0Var = sg0Var.f36303k1;
-                        mi.m mVar = new mi.m(sg0Var.getContext(), 2, 0.6f);
-                        mVar.f57225a = 1;
-                        mVar.f20111p = org.telegram.messenger.g0.L(36.0f);
-                        qj0Var.getLayoutManager().w0(mVar);
-                        return;
-                    }
-                    return;
+                if (getResources().getConfiguration().orientation == 2) {
+                    return org.telegram.messenger.g0.L(48.0f);
                 }
-                return;
+                return org.telegram.messenger.g0.L(54.0f);
             default:
-                super.onLayout(z9, i7, i10, i11, i12);
-                wg.f1 f1Var = (wg.f1) this.M;
-                f1Var.f57733i2 = org.telegram.messenger.g0.L(64.0f) + getMeasuredHeight();
-                f1Var.f57732h2.G();
-                boolean z12 = this.L;
-                boolean z13 = f1Var.d;
-                if (z12 != z13) {
-                    this.L = z13;
-                    if (z13) {
-                        org.telegram.ui.Components.qj0 qj0Var2 = f1Var.f36303k1;
-                        mi.m mVar2 = new mi.m(f1Var.getContext(), 2, 0.6f);
-                        mVar2.f57225a = 1;
-                        mVar2.f20111p = org.telegram.messenger.g0.L(36.0f);
-                        qj0Var2.getLayoutManager().w0(mVar2);
-                        return;
-                    }
-                    return;
+                if (getResources().getConfiguration().orientation == 2) {
+                    return org.telegram.messenger.g0.L(48.0f);
                 }
-                return;
+                return org.telegram.messenger.g0.L(54.0f);
         }
     }
 }

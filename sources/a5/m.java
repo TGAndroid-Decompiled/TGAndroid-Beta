@@ -26,12 +26,12 @@ public abstract class m extends l {
         }
         i0.d[] dVarArr2 = this.f239a;
         for (int i7 = 0; i7 < dVarArr.length; i7++) {
-            dVarArr2[i7].f15124a = dVarArr[i7].f15124a;
+            dVarArr2[i7].f15126a = dVarArr[i7].f15126a;
             int i10 = 0;
             while (true) {
-                float[] fArr = dVarArr[i7].f15125b;
+                float[] fArr = dVarArr[i7].f15127b;
                 if (i10 < fArr.length) {
-                    dVarArr2[i7].f15125b[i10] = fArr[i10];
+                    dVarArr2[i7].f15127b[i10] = fArr[i10];
                     i10++;
                 }
             }

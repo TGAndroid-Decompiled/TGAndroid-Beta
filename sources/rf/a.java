@@ -7,23 +7,23 @@ import java.io.FileInputStream;
 import java.io.RandomAccessFile;
 import tf.l;
 public abstract class a {
-    public String f54527a;
-    public long f54528b;
-    public String f54529c;
+    public String f54526a;
+    public long f54527b;
+    public String f54528c;
     public String d;
-    public String f54530e;
-    public String f54531f;
-    public short f54532g;
+    public String f54529e;
+    public String f54530f;
+    public short f54531g;
     public String h;
-    public String f54533i;
-    public short f54534j;
-    public short f54535k;
-    public String f54536l;
-    public String f54537m;
-    public String f54538n;
-    public Bitmap f54539o;
-    public Bitmap f54540p;
-    public File f54541q;
+    public String f54532i;
+    public short f54533j;
+    public short f54534k;
+    public String f54535l;
+    public String f54536m;
+    public String f54537n;
+    public Bitmap f54538o;
+    public Bitmap f54539p;
+    public File f54540q;
 
     public static a a(File file) {
         byte b10;
@@ -38,14 +38,14 @@ public abstract class a {
             }
             if (bArr[0] == 102 && bArr[1] == 76 && bArr[2] == 97 && bArr[3] == 99) {
                 c cVar = new c(file);
-                if (!cVar.f54543s) {
+                if (!cVar.f54542s) {
                     return cVar;
                 }
                 return null;
             }
             if (!file.getAbsolutePath().endsWith("mp3") && (((b10 = bArr[0]) != 73 || bArr[1] != 68 || bArr[2] != 51) && (b10 != 84 || bArr[1] != 65 || bArr[2] != 71))) {
                 c cVar2 = new c(file);
-                if (!cVar2.f54543s) {
+                if (!cVar2.f54542s) {
                     return cVar2;
                 }
                 return null;

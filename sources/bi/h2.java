@@ -11,12 +11,12 @@ import org.telegram.messenger.x10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 public final class h2 implements x10 {
-    public final int f3986a;
-    public final ls f3987b;
+    public final int f3983a;
+    public final ls f3984b;
 
     public h2(ls lsVar, int i7) {
-        this.f3986a = i7;
-        this.f3987b = lsVar;
+        this.f3983a = i7;
+        this.f3984b = lsVar;
     }
 
     @Override
@@ -25,19 +25,19 @@ public final class h2 implements x10 {
         int i7;
         fi.t tVar;
         float f10;
-        switch (this.f3986a) {
+        switch (this.f3983a) {
             case 0:
-                ((k7) this.f3987b).p2((View) obj2, (CharSequence) obj, ((Boolean) obj3).booleanValue());
+                ((k7) this.f3984b).p2((View) obj2, (CharSequence) obj, ((Boolean) obj3).booleanValue());
                 return;
             case 1:
-                k7 k7Var = (k7) this.f3987b;
+                k7 k7Var = (k7) this.f3984b;
                 ArrayList arrayList = (ArrayList) obj;
                 v10 v10Var = (v10) obj2;
                 Runnable runnable = (Runnable) obj3;
-                zh.k3 k3Var = k7Var.O2;
+                zh.k3 k3Var = k7Var.R2;
                 if (k3Var != null) {
                     k3Var.b();
-                    k7Var.O2 = null;
+                    k7Var.R2 = null;
                 }
                 TL_stars.craftStarGift craftstargift = new TL_stars.craftStarGift();
                 int size = arrayList.size();
@@ -49,14 +49,14 @@ public final class h2 implements x10 {
                     tL_inputSavedStarGiftSlug.slug = ((TL_stars.StarGift) obj4).slug;
                     craftstargift.stargift.add(tL_inputSavedStarGiftSlug);
                 }
-                ConnectionsManager.getInstance(k7Var.f28621a).sendRequestTyped(craftstargift, new d3.b(1), new q2(k7Var, v10Var, arrayList, runnable, 0));
+                ConnectionsManager.getInstance(k7Var.f28669a).sendRequestTyped(craftstargift, new d3.b(1), new q2(k7Var, v10Var, arrayList, runnable, 0));
                 return;
             default:
-                fi.va vaVar = (fi.va) this.f3987b;
+                fi.va vaVar = (fi.va) this.f3984b;
                 Boolean bool = (Boolean) obj;
                 ArrayList arrayList2 = (ArrayList) obj2;
                 ArrayList arrayList3 = (ArrayList) obj3;
-                if (vaVar.f12953f0 == 0 && arrayList2 != null && !arrayList2.isEmpty() && vaVar.f12983p2 == null && !vaVar.W && vaVar.I()) {
+                if (vaVar.f12955f0 == 0 && arrayList2 != null && !arrayList2.isEmpty() && vaVar.f12985p2 == null && !vaVar.W && vaVar.I()) {
                     vaVar.H1 = null;
                     vaVar.I1 = null;
                     vaVar.J1 = null;
@@ -71,7 +71,7 @@ public final class h2 implements x10 {
                                     Object obj5 = a10.get(i11);
                                     i11++;
                                     tVar = (fi.t) obj5;
-                                    if (tVar.f12827e.size() >= size2) {
+                                    if (tVar.f12828e.size() >= size2) {
                                     }
                                 } else {
                                     tVar = null;
@@ -90,19 +90,19 @@ public final class h2 implements x10 {
                                 return;
                             }
                             fi.ia iaVar = vaVar.A0;
-                            vaVar.f13016z0 = tVar;
+                            vaVar.f13018z0 = tVar;
                             iaVar.o(tVar);
                             vaVar.I0.setSelected(tVar);
                             int indexOf = fi.t.a().indexOf(tVar);
                             if (indexOf >= 0) {
-                                vaVar.I0.f13105a.v0(indexOf);
+                                vaVar.I0.f13107a.v0(indexOf);
                             }
                             fi.y9 y9Var2 = vaVar.B0;
                             if (y9Var2 != null) {
                                 y9Var2.recordHevc = !vaVar.A0.j();
                             }
                             vaVar.G0.setDrawable(new fi.u(tVar, false));
-                            vaVar.b0(vaVar.H0, vaVar.I0.f13108e, true);
+                            vaVar.b0(vaVar.H0, vaVar.I0.f13110e, true);
                             fi.g6 g6Var = vaVar.O0;
                             if (vaVar.A0.j()) {
                                 f10 = vaVar.A0.getFilledProgress();
@@ -118,8 +118,8 @@ public final class h2 implements x10 {
                         if (i12 < arrayList2.size()) {
                             fi.e7 l10 = fi.e7.l((gf) arrayList2.get(i12));
                             l10.M0 = (Bitmap) arrayList3.get(i12);
-                            l10.J0 = vaVar.f13001v0;
-                            l10.K0 = vaVar.f13005w0;
+                            l10.J0 = vaVar.f13003v0;
+                            l10.K0 = vaVar.f13007w0;
                             l10.A();
                             if (bool.booleanValue()) {
                                 if (vaVar.A0.l(l10)) {
@@ -153,8 +153,8 @@ public final class h2 implements x10 {
                         } else {
                             z9 = false;
                         }
-                        g6Var2.f12089n0 = -1.0f;
-                        g6Var2.f12090o0 = z9;
+                        g6Var2.f12093n0 = -1.0f;
+                        g6Var2.f12094o0 = z9;
                         g6Var2.invalidate();
                         vaVar.I1 = new ArrayList();
                         vaVar.J1 = new ArrayList();
@@ -166,7 +166,7 @@ public final class h2 implements x10 {
                         vaVar.l0(true);
                         vaVar.e(false);
                         vaVar.J(1, true);
-                        fi.n9 n9Var = vaVar.f12947d1;
+                        fi.n9 n9Var = vaVar.f12949d1;
                         if (n9Var != null) {
                             di.f8 f8Var = n9Var.h;
                             if (!n9Var.I && !n9Var.M && (i7 = qp.e1().getInt("multistorieshint", 0)) < 3) {
@@ -179,8 +179,8 @@ public final class h2 implements x10 {
                         }
                         fi.i3 i3Var = vaVar.M0;
                         if (i3Var != null) {
-                            vaVar.f12972l2 = i3Var.f11963e.e0();
-                            vaVar.f12974m2 = vaVar.M0.getSelectedAlbum();
+                            vaVar.f12974l2 = i3Var.f11967e.e0();
+                            vaVar.f12976m2 = vaVar.M0.getSelectedAlbum();
                             return;
                         }
                         return;
@@ -194,8 +194,8 @@ public final class h2 implements x10 {
                     vaVar.e(false);
                     fi.i3 i3Var2 = vaVar.M0;
                     if (i3Var2 != null) {
-                        vaVar.f12972l2 = i3Var2.f11963e.e0();
-                        vaVar.f12974m2 = vaVar.M0.getSelectedAlbum();
+                        vaVar.f12974l2 = i3Var2.f11967e.e0();
+                        vaVar.f12976m2 = vaVar.M0.getSelectedAlbum();
                         return;
                     }
                     return;

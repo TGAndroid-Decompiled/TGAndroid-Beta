@@ -6,42 +6,42 @@ import org.telegram.messenger.ij;
 import org.telegram.messenger.w7;
 import org.telegram.tgnet.TLRPC;
 public final class a {
-    public final int f55287a;
-    public final TLRPC.Document f55288b;
-    public final String f55289c;
+    public final int f55286a;
+    public final TLRPC.Document f55287b;
+    public final String f55288c;
     public final ij d;
-    public final String f55290e;
-    public boolean f55291f;
-    public boolean f55292g;
+    public final String f55289e;
+    public boolean f55290f;
+    public boolean f55291g;
 
     public a(int i7, ij ijVar, TLRPC.Document document, String str) {
-        this.f55287a = i7;
+        this.f55286a = i7;
         this.d = ijVar;
-        this.f55288b = document;
-        this.f55289c = str;
-        this.f55290e = TextUtils.isEmpty(str) ? w7.r(null, document) : str;
+        this.f55287b = document;
+        this.f55288c = str;
+        this.f55289e = TextUtils.isEmpty(str) ? w7.r(null, document) : str;
         a();
     }
 
     public final void a() {
         boolean z9;
         boolean z10 = false;
-        String str = this.f55289c;
+        String str = this.f55288c;
         if (str != null) {
             z9 = p0.B(str);
         } else {
             z9 = false;
         }
-        int i7 = this.f55287a;
+        int i7 = this.f55286a;
         if (!z9) {
             w7.G(i7);
-            z9 = w7.I(this.f55288b).exists();
+            z9 = w7.I(this.f55287b).exists();
         }
-        this.f55291f = z9;
-        String str2 = this.f55290e;
+        this.f55290f = z9;
+        String str2 = this.f55289e;
         if (!TextUtils.isEmpty(str2) && w7.G(i7).S(str2)) {
             z10 = true;
         }
-        this.f55292g = z10;
+        this.f55291g = z10;
     }
 }

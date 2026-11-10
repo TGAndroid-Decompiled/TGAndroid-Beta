@@ -2,51 +2,56 @@ package org.telegram.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
+import android.view.ViewGroup;
+import java.lang.reflect.Method;
 public final class mz0 extends AnimatorListenerAdapter {
-    public final int f48040a;
-    public final SecretMediaViewer f48041b;
+    public final int f48083a;
+    public final org.telegram.ui.Components.nk0 f48084b;
 
-    public mz0(SecretMediaViewer secretMediaViewer, int i7) {
-        this.f48040a = i7;
-        this.f48041b = secretMediaViewer;
+    public mz0(org.telegram.ui.Components.nk0 nk0Var, int i7) {
+        this.f48083a = i7;
+        this.f48084b = nk0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f48040a) {
+        switch (this.f48083a) {
             case 0:
-                SecretMediaViewer secretMediaViewer = this.f48041b;
-                Runnable runnable = secretMediaViewer.m0;
-                if (runnable != null) {
-                    runnable.run();
-                    secretMediaViewer.m0 = null;
-                    return;
-                }
-                return;
-            case 1:
-                SecretMediaViewer secretMediaViewer2 = this.f48041b;
-                AnimatorSet animatorSet = secretMediaViewer2.G;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    secretMediaViewer2.F.setVisibility(8);
-                    secretMediaViewer2.G = null;
-                    secretMediaViewer2.Y.scrollTo(0, 0);
-                    return;
-                }
-                return;
-            case 2:
-                SecretMediaViewer secretMediaViewer3 = this.f48041b;
-                Runnable runnable2 = secretMediaViewer3.m0;
-                if (runnable2 != null) {
-                    runnable2.run();
-                    secretMediaViewer3.m0 = null;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f48084b.f36328b;
+                secretMediaViewer.X.getNextView().setText((CharSequence) null);
+                yp0 yp0Var = secretMediaViewer.Y;
+                yp0Var.f47674l0 = false;
+                if (yp0Var.m0 >= 0) {
+                    ((ViewGroup.MarginLayoutParams) yp0Var.f47676o0.getLayoutParams()).topMargin = yp0Var.m0;
+                    yp0Var.m0 = -1;
+                    yp0Var.requestLayout();
                     return;
                 }
                 return;
             default:
-                SecretMediaViewer secretMediaViewer4 = this.f48041b;
-                secretMediaViewer4.I0 = null;
-                secretMediaViewer4.f41915e.invalidate();
+                ((SecretMediaViewer) this.f48084b.f36328b).X.setTranslationY(0.0f);
+                return;
+        }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f48083a) {
+            case 0:
+                yp0 yp0Var = ((SecretMediaViewer) this.f48084b.f36328b).Y;
+                Method method = yp0Var.f47668f0;
+                if (method != null) {
+                    try {
+                        method.invoke(yp0Var, null);
+                        return;
+                    } catch (Exception e10) {
+                        org.telegram.messenger.a8.g(e10, true);
+                        return;
+                    }
+                }
+                return;
+            default:
+                super.onAnimationStart(animator);
                 return;
         }
     }

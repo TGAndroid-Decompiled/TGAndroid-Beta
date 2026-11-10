@@ -4,13 +4,13 @@ import a8.pa;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
-import org.telegram.ui.Components.vy;
+import org.telegram.ui.Components.uy;
 public abstract class p extends q {
-    public final Object f54877a = new Object();
-    public Executor f54878b;
-    public vy f54879c;
+    public final Object f54876a = new Object();
+    public Executor f54877b;
+    public uy f54878c;
     public m d;
-    public ArrayList f54880e;
+    public ArrayList f54879e;
 
     public String j() {
         return null;
@@ -22,15 +22,15 @@ public abstract class p extends q {
 
     public final void l(m mVar, ArrayList arrayList) {
         if (mVar != null) {
-            synchronized (this.f54877a) {
+            synchronized (this.f54876a) {
                 try {
                     try {
-                        Executor executor = this.f54878b;
+                        Executor executor = this.f54877b;
                         if (executor != null) {
-                            executor.execute(new pa(this, this.f54879c, mVar, arrayList, false, 6));
+                            executor.execute(new pa(this, this.f54878c, mVar, arrayList, false, 6));
                         } else {
                             this.d = mVar;
-                            this.f54880e = new ArrayList(arrayList);
+                            this.f54879e = new ArrayList(arrayList);
                         }
                         return;
                     } catch (Throwable th2) {

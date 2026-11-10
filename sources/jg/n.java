@@ -30,9 +30,10 @@ import org.telegram.messenger.vo;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.s6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Cells.b3;
 import org.telegram.ui.Cells.c7;
 import org.telegram.ui.Cells.g6;
@@ -43,18 +44,18 @@ import org.telegram.ui.Cells.pa;
 import org.telegram.ui.Cells.t2;
 import org.telegram.ui.Cells.y6;
 import org.telegram.ui.Cells.z2;
-import org.telegram.ui.Components.lg0;
-import org.telegram.ui.Components.mz;
-import org.telegram.ui.Components.p6;
+import org.telegram.ui.Components.kg0;
+import org.telegram.ui.Components.lz;
+import org.telegram.ui.Components.o6;
+import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.qj0;
-import org.telegram.ui.Components.tm;
-import org.telegram.ui.Components.w8;
+import org.telegram.ui.Components.sm;
+import org.telegram.ui.Components.v8;
 import org.telegram.ui.Components.xp;
-import org.telegram.ui.dv;
-import org.telegram.ui.uw;
-import org.telegram.ui.yw;
-public class n extends pj0 implements p2 {
+import org.telegram.ui.ev;
+import org.telegram.ui.vw;
+import org.telegram.ui.zw;
+public class n extends oj0 implements p2 {
     public boolean D;
     public boolean E;
     public final int F;
@@ -62,12 +63,12 @@ public class n extends pj0 implements p2 {
     public boolean H;
     public long I;
     public boolean J;
-    public qj0 K;
-    public lg0 L;
+    public pj0 K;
+    public kg0 L;
     public Drawable O;
     public final k P;
     public boolean Q;
-    public final yw R;
+    public final zw R;
     public boolean S;
     public final TLRPC.RequestPeerType T;
     public boolean U;
@@ -92,13 +93,13 @@ public class n extends pj0 implements p2 {
     public int f16850a0 = -1;
 
     static {
-        boolean z9 = r2.f25212a;
+        boolean z9 = r2.f25216a;
     }
 
-    public n(yw ywVar, Context context, int i7, int i10, boolean z9, ArrayList arrayList, int i11, TLRPC.RequestPeerType requestPeerType) {
+    public n(zw zwVar, Context context, int i7, int i10, boolean z9, ArrayList arrayList, int i11, TLRPC.RequestPeerType requestPeerType) {
         boolean z10;
         this.f16851c = context;
-        this.R = ywVar;
+        this.R = zwVar;
         this.h = i7;
         this.f16855r = i10;
         this.f16858x = z9;
@@ -110,7 +111,7 @@ public class n extends pj0 implements p2 {
         this.D = z10;
         this.f16859y = arrayList;
         this.F = i11;
-        this.V = ywVar.Z2;
+        this.V = zwVar.Z2;
         if (i10 == 0) {
             ?? obj = new Object();
             obj.f16815a = new HashSet();
@@ -126,28 +127,28 @@ public class n extends pj0 implements p2 {
     public static void E(View view, Drawable drawable) {
         if (drawable != null) {
             try {
-                s6.x(view, drawable, l6.f27829b7, null, PorterDuff.Mode.MULTIPLY);
+                t6.x(view, drawable, m6.f27854b7, null, PorterDuff.Mode.MULTIPLY);
             } catch (Exception e10) {
                 a8.g(e10, true);
                 return;
             }
         }
-        int i7 = l6.f27809a7;
+        int i7 = m6.f27834a7;
         x3 x3Var = new x3(8);
         x3 x3Var2 = new x3(9);
-        int P = s6.P(i7, -1, 0, 0.0f, null);
+        int P = t6.P(i7, -1, 0, 0.0f, null);
         x3Var2.c(P, view);
-        m6 w10 = s6.w(101, view);
+        n6 w10 = t6.w(101, view);
         w10.c(i7, -1, 0, 0.0f, null);
-        w10.f28312n = x3Var;
-        w10.f28313o = x3Var2;
-        w10.f28311m = false;
-        w10.f28306g = P;
+        w10.f28335n = x3Var;
+        w10.f28336o = x3Var2;
+        w10.f28334m = false;
+        w10.f28329g = P;
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57060f;
+        int i7 = d1Var.f57056f;
         if (i7 != 1 && i7 != 5 && i7 != 3 && i7 != 8 && i7 != 7 && i7 != 10 && i7 != 11 && i7 != 13 && i7 != 15 && i7 != 16 && i7 != 18 && i7 != 19 && i7 != 20) {
             return true;
         }
@@ -165,7 +166,7 @@ public class n extends pj0 implements p2 {
                 return 1;
             }
             return 0;
-        } else if (qp.s1(this.F).f24741b2.get(i10)) {
+        } else if (qp.s1(this.F).f24745b2.get(i10)) {
             return 2;
         } else {
             return 3;
@@ -174,7 +175,7 @@ public class n extends pj0 implements p2 {
 
     public final int G(long j3) {
         for (int i7 = 0; i7 < this.M.size(); i7++) {
-            if (((l) this.M.get(i7)).f16820c != null && ((l) this.M.get(i7)).f16820c.f26960id == j3) {
+            if (((l) this.M.get(i7)).f16820c != null && ((l) this.M.get(i7)).f16820c.f26964id == j3) {
                 return i7;
             }
         }
@@ -186,7 +187,7 @@ public class n extends pj0 implements p2 {
             i7--;
         }
         if (this.D) {
-            i7 = g.g(2, i7, qp.s1(this.F).f24889s);
+            i7 = g.g(2, i7, qp.s1(this.F).f24893s);
         }
         if (this.f16854n && this.h == 3) {
             i7--;
@@ -244,30 +245,30 @@ public class n extends pj0 implements p2 {
         this.f16854n = z9;
     }
 
-    public final void O(lg0 lg0Var) {
-        this.L = lg0Var;
+    public final void O(kg0 kg0Var) {
+        this.L = kg0Var;
     }
 
-    public final void P(qj0 qj0Var, boolean z9) {
+    public final void P(pj0 pj0Var, boolean z9) {
         this.J = z9;
-        for (int i7 = 0; i7 < qj0Var.getChildCount(); i7++) {
-            if (qj0Var.getChildAt(i7) instanceof t2) {
-                ((t2) qj0Var.getChildAt(i7)).f30418f = z9;
+        for (int i7 = 0; i7 < pj0Var.getChildCount(); i7++) {
+            if (pj0Var.getChildAt(i7) instanceof t2) {
+                ((t2) pj0Var.getChildAt(i7)).f30429f = z9;
             }
         }
-        for (int i10 = 0; i10 < qj0Var.getCachedChildCount(); i10++) {
-            if (qj0Var.P(i10) instanceof t2) {
-                ((t2) qj0Var.P(i10)).f30418f = z9;
+        for (int i10 = 0; i10 < pj0Var.getCachedChildCount(); i10++) {
+            if (pj0Var.P(i10) instanceof t2) {
+                ((t2) pj0Var.P(i10)).f30429f = z9;
             }
         }
-        for (int i11 = 0; i11 < qj0Var.getHiddenChildCount(); i11++) {
-            if (qj0Var.V(i11) instanceof t2) {
-                ((t2) qj0Var.V(i11)).f30418f = z9;
+        for (int i11 = 0; i11 < pj0Var.getHiddenChildCount(); i11++) {
+            if (pj0Var.V(i11) instanceof t2) {
+                ((t2) pj0Var.V(i11)).f30429f = z9;
             }
         }
-        for (int i12 = 0; i12 < qj0Var.getAttachedScrapChildCount(); i12++) {
-            if (qj0Var.O(i12) instanceof t2) {
-                ((t2) qj0Var.O(i12)).f30418f = z9;
+        for (int i12 = 0; i12 < pj0Var.getAttachedScrapChildCount(); i12++) {
+            if (pj0Var.O(i12) instanceof t2) {
+                ((t2) pj0Var.O(i12)).f30429f = z9;
             }
         }
     }
@@ -280,8 +281,8 @@ public class n extends pj0 implements p2 {
         this.f16856s = j3;
     }
 
-    public final void S(uw uwVar) {
-        this.K = uwVar;
+    public final void S(vw vwVar) {
+        this.K = vwVar;
     }
 
     public boolean T() {
@@ -308,7 +309,7 @@ public class n extends pj0 implements p2 {
 
     public final void V() {
         boolean z9;
-        if (this.f16855r == 0 && this.h == 0 && !this.f16858x && !qp.s1(this.F).f24889s.isEmpty()) {
+        if (this.f16855r == 0 && this.h == 0 && !this.f16858x && !qp.s1(this.F).f24893s.isEmpty()) {
             z9 = true;
         } else {
             z9 = false;
@@ -320,7 +321,7 @@ public class n extends pj0 implements p2 {
         throw new UnsupportedOperationException("Method not decompiled: jg.n.W():void");
     }
 
-    public final void X(dv dvVar) {
+    public final void X(ev evVar) {
         if (this.Z) {
             return;
         }
@@ -336,8 +337,8 @@ public class n extends pj0 implements p2 {
         arrayList3.size();
         p4.c c10 = v4.o.c(hVar, true);
         this.Z = false;
-        if (dvVar != null) {
-            dvVar.run();
+        if (evVar != null) {
+            evVar.run();
         }
         this.M = arrayList2;
         c10.c(this);
@@ -357,7 +358,7 @@ public class n extends pj0 implements p2 {
 
     @Override
     public final int d(int i7) {
-        return ((l) this.M.get(i7)).f54544a;
+        return ((l) this.M.get(i7)).f54543a;
     }
 
     @Override
@@ -408,9 +409,9 @@ public class n extends pj0 implements p2 {
         int i7 = this.F;
         qp.s1(i7);
         if (qp.s1(i7).P1().K(t2Var.getDialogId())) {
-            yw ywVar = this.R;
-            ywVar.getOrCreateStoryViewer().getClass();
-            ywVar.getOrCreateStoryViewer().J(ywVar.getParentActivity(), t2Var.getDialogId(), i7.a((qj0) t2Var.getParent()));
+            zw zwVar = this.R;
+            zwVar.getOrCreateStoryViewer().getClass();
+            zwVar.getOrCreateStoryViewer().J(zwVar.getParentActivity(), t2Var.getDialogId(), i7.a((pj0) t2Var.getParent()));
         }
     }
 
@@ -458,13 +459,13 @@ public class n extends pj0 implements p2 {
                     r22 = new g6(context, null);
                 }
                 if (this.h == 15) {
-                    s6.h(l6.f27865d6, r22, null);
+                    t6.h(m6.f27890d6, r22, null);
                     break;
                 }
                 break;
             case 1:
             case 13:
-                r22 = new mz(context, null);
+                r22 = new lz(context, null);
                 r22.setIsSingleCell(true);
                 if (i7 == 13) {
                     i10 = 18;
@@ -476,7 +477,7 @@ public class n extends pj0 implements p2 {
                     r22.setIgnoreHeightCheck(true);
                 }
                 if (i7 == 13) {
-                    r22.setItemsCount((int) ((org.telegram.messenger.g0.f22563q.y * 0.5f) / org.telegram.messenger.g0.L(64.0f)));
+                    r22.setItemsCount((int) ((org.telegram.messenger.g0.f22567q.y * 0.5f) / org.telegram.messenger.g0.L(64.0f)));
                     break;
                 }
                 break;
@@ -485,14 +486,14 @@ public class n extends pj0 implements p2 {
                 r22.setText(id.M0(2131746360, null));
                 TextView textView = new TextView(context);
                 com.google.android.recaptcha.internal.a.q(textView, 1, 15.0f);
-                org.telegram.messenger.camera.q.o(textView, l6.L6, null, null, 2131746359);
-                if (id.f23157a0) {
+                org.telegram.messenger.camera.q.o(textView, m6.L6, null, null, 2131746359);
+                if (id.f23161a0) {
                     i11 = 3;
                 } else {
                     i11 = 5;
                 }
                 textView.setGravity(i11 | 16);
-                if (id.f23157a0) {
+                if (id.f23161a0) {
                     i12 = 3;
                 } else {
                     i12 = 5;
@@ -502,9 +503,9 @@ public class n extends pj0 implements p2 {
                 break;
             case 3:
                 b4 b4Var = new b4(context, 2);
-                s6.h(l6.f27809a7, b4Var, null);
+                t6.h(m6.f27834a7, b4Var, null);
                 View view = new View(context);
-                s6.Z(view, context, 2131231229, l6.f27829b7);
+                t6.Z(view, context, 2131231229, m6.f27854b7);
                 b4Var.addView(view, ha.c(-1.0f, -1));
                 r22 = b4Var;
                 break;
@@ -512,11 +513,11 @@ public class n extends pj0 implements p2 {
                 r22 = new org.telegram.ui.Cells.z(context);
                 ImageReceiver imageReceiver = new ImageReceiver(r22);
                 r22.h = imageReceiver;
-                r22.f30564n = new w8((org.telegram.ui.ActionBar.g6) null);
-                r22.f30568x = org.telegram.messenger.g0.L(40.0f);
+                r22.f30575n = new v8((h6) null);
+                r22.f30579x = org.telegram.messenger.g0.L(40.0f);
                 r22.F = org.telegram.messenger.g0.L(10.0f);
-                r22.H = p10.f24470s0;
-                l6.T(context);
+                r22.H = p10.f24474s0;
+                m6.T(context);
                 imageReceiver.J0(org.telegram.messenger.g0.L(26.0f));
                 break;
             case 5:
@@ -527,17 +528,17 @@ public class n extends pj0 implements p2 {
                 break;
             case 7:
                 r22 = new n4(context);
-                yw ywVar = this.R;
-                if (ywVar == null || !ywVar.N0) {
+                zw zwVar = this.R;
+                if (zwVar == null || !zwVar.N0) {
                     r22.setPadding(0, 0, 0, org.telegram.messenger.g0.L(12.0f));
                     break;
                 }
                 break;
             case 8:
                 r22 = new y6(context, (org.telegram.ui.Cells.f1) null);
-                Drawable Y0 = l6.Y0(context, 2131231229, l6.f27829b7);
-                xp xpVar = new xp(new ColorDrawable(l6.x0(null, l6.f27809a7, false)), Y0);
-                xpVar.f40453x = true;
+                Drawable Y0 = m6.Y0(context, 2131231229, m6.f27854b7);
+                xp xpVar = new xp(new ColorDrawable(m6.x0(null, m6.f27834a7, false)), Y0);
+                xpVar.f40383x = true;
                 r22.setBackgroundDrawable(xpVar);
                 E(r22, Y0);
                 break;
@@ -546,7 +547,7 @@ public class n extends pj0 implements p2 {
             default:
                 r22 = new m8(context);
                 if (this.h == 15) {
-                    s6.h(l6.f27865d6, r22, null);
+                    t6.h(m6.f27890d6, r22, null);
                     break;
                 }
                 break;
@@ -555,14 +556,14 @@ public class n extends pj0 implements p2 {
                 break;
             case 11:
                 r22 = new j(this, context);
-                Drawable Y02 = l6.Y0(context, 2131231229, l6.f27829b7);
-                xp xpVar2 = new xp(new ColorDrawable(l6.x0(null, l6.f27809a7, false)), Y02);
-                xpVar2.f40453x = true;
+                Drawable Y02 = m6.Y0(context, 2131231229, m6.f27854b7);
+                xp xpVar2 = new xp(new ColorDrawable(m6.x0(null, m6.f27834a7, false)), Y02);
+                xpVar2.f40383x = true;
                 r22.setBackgroundDrawable(xpVar2);
                 E(r22, Y02);
                 break;
             case 14:
-                n4 n4Var2 = new n4(this.f16851c, l6.f27904f7, 16, 0, false, null);
+                n4 n4Var2 = new n4(this.f16851c, m6.f27929f7, 16, 0, false, null);
                 n4Var2.setHeight(32);
                 n4Var2.setClickable(false);
                 n4Var = n4Var2;
@@ -570,9 +571,9 @@ public class n extends pj0 implements p2 {
                 break;
             case 15:
                 r22 = new LinearLayout(context);
-                r22.f29663b = new ArrayList();
+                r22.f29674b = new ArrayList();
                 r22.setOrientation(1);
-                s6.h(l6.f27809a7, r22, null);
+                t6.h(m6.f27834a7, r22, null);
                 break;
             case 16:
                 r22 = new i(this, context);
@@ -581,11 +582,11 @@ public class n extends pj0 implements p2 {
                 r22 = new b3(context);
                 break;
             case 18:
-                r22 = new tm(context, 4);
+                r22 = new sm(context, 4);
                 break;
             case 19:
                 r22 = new m(this, context);
-                r22.addView(new p6(this.f16851c, this.F, null, new f(this, 1), null), ha.d(-1, -1.0f, 17, 0.0f, -40.0f, 0.0f, 0.0f));
+                r22.addView(new o6(this.f16851c, this.F, null, new f(this, 1), null), ha.d(-1, -1.0f, 17, 0.0f, -40.0f, 0.0f, 0.0f));
                 break;
             case 20:
                 r22 = new org.telegram.ui.Cells.x3(context, null);
@@ -615,7 +616,7 @@ public class n extends pj0 implements p2 {
 
     @Override
     public final void y(v4.d1 d1Var) {
-        View view = d1Var.f57056a;
+        View view = d1Var.f57052a;
         if (view instanceof t2) {
             t2 t2Var = (t2) view;
             t2Var.a0(this.H, false);

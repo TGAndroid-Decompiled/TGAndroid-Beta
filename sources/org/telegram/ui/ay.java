@@ -1,55 +1,61 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.view.ViewGroup;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.ScrollView;
-import android.widget.TextView;
-public abstract class ay extends FrameLayout {
-    public float[] D;
-    public FrameLayout f43816a;
-    public org.telegram.ui.ActionBar.l5 f43817b;
-    public org.telegram.ui.ActionBar.l5 f43818c;
-    public ImageView d;
-    public zx f43819e;
-    public bi.md f43820f;
-    public bi.md h;
-    public TextView f43821n;
-    public org.telegram.ui.ActionBar.f2 f43822r;
-    public String f43823s;
-    public float f43824w;
-    public ValueAnimator f43825x;
-    public org.telegram.ui.ActionBar.g1 f43826y;
+import java.util.HashSet;
+public final class ay extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
+    public Paint f43838a;
+    public float[] f43839b;
+    public Path f43840c;
+    public float d;
 
-    public static void a(FrameLayout frameLayout, FrameLayout frameLayout2, float[] fArr) {
-        float f10 = 0.0f;
-        float f11 = 0.0f;
-        FrameLayout frameLayout3 = frameLayout;
-        while (frameLayout3 != frameLayout2) {
-            float y10 = frameLayout3.getY() + f10;
-            f11 += frameLayout3.getX();
-            if (frameLayout3 instanceof ScrollView) {
-                y10 -= frameLayout3.getScrollY();
-            }
-            f10 = y10;
-            if (!(frameLayout3.getParent() instanceof View)) {
-                break;
-            }
-            ?? r32 = (View) frameLayout3.getParent();
-            boolean z9 = r32 instanceof ViewGroup;
-            frameLayout3 = r32;
-            if (!z9) {
-                return;
-            }
-        }
-        fArr[0] = f11 - frameLayout2.getPaddingLeft();
-        fArr[1] = f10 - frameLayout2.getPaddingTop();
+    public final void a(float f10, float f11) {
+        float[] fArr = this.f43839b;
+        fArr[7] = f10;
+        fArr[6] = f10;
+        fArr[1] = f10;
+        fArr[0] = f10;
+        fArr[5] = f11;
+        fArr[4] = f11;
+        fArr[3] = f11;
+        fArr[2] = f11;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(127.0f), 1073741824));
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        float measuredWidth = getMeasuredWidth() / 2.0f;
+        Path path = this.f43840c;
+        path.rewind();
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(0.0f, 0.0f, measuredWidth - org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(4.0f)), getMeasuredHeight());
+        a(org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(8.0f)));
+        float[] fArr = this.f43839b;
+        Path.Direction direction = Path.Direction.CW;
+        path.addRoundRect(rectF, fArr, direction);
+        Paint paint = this.f43838a;
+        canvas.drawPath(path, paint);
+        path.rewind();
+        rectF.set(measuredWidth + org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(4.0f)), 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        a(org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(8.0f)), org.telegram.messenger.g0.L(8.0f));
+        path.addRoundRect(rectF, fArr, direction);
+        canvas.drawPath(path, paint);
+    }
+
+    @Override
+    public final void updateColors() {
+        try {
+            this.f43838a.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Ci, false));
+            invalidate();
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+        }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

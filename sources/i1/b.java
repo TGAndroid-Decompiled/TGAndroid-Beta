@@ -4,11 +4,11 @@ import android.database.Cursor;
 import android.widget.Filter;
 import m.z2;
 public final class b extends Filter {
-    public a f15146a;
+    public a f15148a;
 
     @Override
     public final CharSequence convertResultToString(Object obj) {
-        return ((z2) this.f15146a).c((Cursor) obj);
+        return ((z2) this.f15148a).c((Cursor) obj);
     }
 
     @Override
@@ -18,8 +18,8 @@ public final class b extends Filter {
 
     @Override
     public final void publishResults(CharSequence charSequence, Filter.FilterResults filterResults) {
-        a aVar = this.f15146a;
-        Cursor cursor = aVar.f15143c;
+        a aVar = this.f15148a;
+        Cursor cursor = aVar.f15145c;
         Object obj = filterResults.values;
         if (obj != null && obj != cursor) {
             ((z2) aVar).b((Cursor) obj);

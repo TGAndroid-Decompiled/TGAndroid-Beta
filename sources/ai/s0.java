@@ -36,10 +36,10 @@ import org.telegram.messenger.qs;
 import org.telegram.messenger.r2;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.Components.jb;
-import org.telegram.ui.Components.x70;
-import org.telegram.ui.ei0;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.Components.ib;
+import org.telegram.ui.Components.w70;
+import org.telegram.ui.fi0;
 import org.telegram.ui.s9;
 public class s0 extends f2 {
     public boolean D;
@@ -141,26 +141,26 @@ public class s0 extends f2 {
             return;
         }
         zh.g1 g1Var = new zh.g1(s0Var.getParentActivity(), s0Var.currentAccount, s0Var.getUserConfig().e(), null, null);
-        if (!g1Var.f60344l2) {
-            g1Var.f60344l2 = true;
-            gc gcVar = g1Var.f60346n2;
+        if (!g1Var.f60349o2) {
+            g1Var.f60349o2 = true;
+            gc gcVar = g1Var.f60351q2;
             if (gcVar != null && (gcVar.getParent() instanceof ViewGroup)) {
-                ViewGroup viewGroup = (ViewGroup) g1Var.f60346n2.getParent();
-                int indexOfChild = viewGroup.indexOfChild(g1Var.f60346n2);
-                viewGroup.removeView(g1Var.f60346n2);
+                ViewGroup viewGroup = (ViewGroup) g1Var.f60351q2.getParent();
+                int indexOfChild = viewGroup.indexOfChild(g1Var.f60351q2);
+                viewGroup.removeView(g1Var.f60351q2);
                 gc gcVar2 = new gc(g1Var.getContext(), 250, 2, 0);
-                g1Var.f60346n2 = gcVar2;
+                g1Var.f60351q2 = gcVar2;
                 viewGroup.addView(gcVar2, indexOfChild, ha.c(-1.0f, -1));
             }
-            x70 x70Var = g1Var.f60347o2;
-            if (x70Var != null) {
+            w70 w70Var = g1Var.f60352r2;
+            if (w70Var != null) {
                 String M0 = id.M0(2131750288, null);
-                jb jbVar = g1Var.f60336c2;
-                jbVar.setText(M0);
-                jbVar.setBreakStrategy(2);
-                x70Var.setVisibility(8);
+                ib ibVar = g1Var.f60340f2;
+                ibVar.setText(M0);
+                ibVar.setBreakStrategy(2);
+                w70Var.setVisibility(8);
             }
-            g1Var.Q1.O(false);
+            g1Var.T1.O(false);
         }
         g1Var.show();
     }
@@ -244,7 +244,7 @@ public class s0 extends f2 {
     }
 
     @Override
-    public final org.telegram.ui.ActionBar.k createActionBar(Context context) {
+    public final org.telegram.ui.ActionBar.l createActionBar(Context context) {
         return null;
     }
 
@@ -399,14 +399,14 @@ public class s0 extends f2 {
         l1 l1Var;
         Activity parentActivity = getParentActivity();
         if (parentActivity != null && (l1Var = this.d) != null && l1Var.getCurrentLink() != null) {
-            if ((Build.VERSION.SDK_INT <= 28 || r2.f25213b) && parentActivity.checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
+            if ((Build.VERSION.SDK_INT <= 28 || r2.f25217b) && parentActivity.checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
                 this.E = true;
                 parentActivity.requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 4);
                 return;
             }
             Bitmap T0 = this.d.T0();
             if (T0 != null) {
-                Utilities.f21336e.c(new a1.e(14, this, T0));
+                Utilities.f21341e.c(new a1.e(14, this, T0));
             }
         }
     }
@@ -644,9 +644,9 @@ public class s0 extends f2 {
         l0();
         org.telegram.ui.f fVar = this.f1617c;
         if (fVar != null) {
-            ei0 ei0Var = (ei0) fVar.f45545b;
-            if (ei0Var.f45455b.remove(fVar)) {
-                ei0Var.a();
+            fi0 fi0Var = (fi0) fVar.f45464b;
+            if (fi0Var.f45784b.remove(fVar)) {
+                fi0Var.a();
             }
             this.f1617c = null;
         }
@@ -716,11 +716,11 @@ public class s0 extends f2 {
                 return;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-            alertDialog$Builder.f27296a.T = org.telegram.messenger.g0.X2(id.M0(2131746503, null));
+            alertDialog$Builder.f27300a.T = org.telegram.messenger.g0.X2(id.M0(2131746503, null));
             alertDialog$Builder.k(id.M0(2131747300, null), new j0(this));
             alertDialog$Builder.h(id.M0(2131751772, null), null);
-            int i10 = l6.L5;
-            alertDialog$Builder.m(2131624116, 72, l6.x0(null, i10, false), null);
+            int i10 = m6.L5;
+            alertDialog$Builder.m(2131624116, 72, m6.x0(null, i10, false), null);
             alertDialog$Builder.n(i10, null);
             alertDialog$Builder.p();
         }

@@ -2,5 +2,5 @@ package re;
 
 import pb.b;
 public abstract class a {
-    public static final b f54526a = new b(23);
+    public static final b f54525a = new b(23);
 }

@@ -6,31 +6,31 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.TextView;
 public final class p0 extends TextView {
-    public int f9484a;
-    public final h6.m f9485b;
+    public int f9489a;
+    public final h6.m f9490b;
 
     public p0(Context context) {
         super(context);
-        this.f9484a = -1;
-        this.f9485b = new h6.m(28);
+        this.f9489a = -1;
+        this.f9490b = new h6.m(28);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f9484a < 0) {
+        if (this.f9489a < 0) {
             int i7 = 0;
             if (getLayout() != null) {
                 i7 = (int) getLayout().getLineWidth(0);
             }
-            this.f9484a = i7;
+            this.f9489a = i7;
         }
-        if (this.f9484a > org.telegram.messenger.g0.L(100.0f)) {
+        if (this.f9489a > org.telegram.messenger.g0.L(100.0f)) {
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
             super.onDraw(canvas);
             canvas.save();
             RectF rectF = org.telegram.messenger.g0.P;
             rectF.set(getWidth() - org.telegram.messenger.g0.L(15.0f), 0.0f, getWidth(), getHeight());
-            this.f9485b.m(canvas, rectF, 2, 1.0f);
+            this.f9490b.m(canvas, rectF, 2, 1.0f);
             canvas.restore();
             canvas.restore();
             return;
@@ -46,6 +46,6 @@ public final class p0 extends TextView {
     @Override
     public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
         super.setText(charSequence, bufferType);
-        this.f9484a = -1;
+        this.f9489a = -1;
     }
 }

@@ -44,15 +44,15 @@ public final class b extends j implements p {
     public final Object invoke(Object obj, Object obj2) {
         switch (this.f17245a) {
             case 0:
-                k kVar = k.f13829a;
+                k kVar = k.f13831a;
                 ((b) create((q1.b) obj, (id.c) obj2)).invokeSuspend(kVar);
                 return kVar;
             case 1:
-                return ((b) create((e1) obj, (id.c) obj2)).invokeSuspend(k.f13829a);
+                return ((b) create((e1) obj, (id.c) obj2)).invokeSuspend(k.f13831a);
             case 2:
-                return ((b) create((q1.b) obj, (id.c) obj2)).invokeSuspend(k.f13829a);
+                return ((b) create((q1.b) obj, (id.c) obj2)).invokeSuspend(k.f13831a);
             default:
-                k kVar2 = k.f13829a;
+                k kVar2 = k.f13831a;
                 ((b) create((z) obj, (id.c) obj2)).invokeSuspend(kVar2);
                 return kVar2;
         }

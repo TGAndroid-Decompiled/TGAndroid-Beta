@@ -10,22 +10,22 @@ import f3.q;
 import f3.s;
 import sg.i0;
 public final class e implements q {
-    public static final s f58895w = new Object();
-    public final o f58896a;
-    public final int f58897b;
-    public final u f58898c;
+    public static final s f58893w = new Object();
+    public final o f58894a;
+    public final int f58895b;
+    public final u f58896c;
     public final SparseArray d = new SparseArray();
-    public final d f58899e = d.f58894a;
-    public boolean f58900f;
+    public final d f58897e = d.f58892a;
+    public boolean f58898f;
     public i0 h;
-    public long f58901n;
-    public c0 f58902r;
-    public u[] f58903s;
+    public long f58899n;
+    public c0 f58900r;
+    public u[] f58901s;
 
     public e(o oVar, int i7, u uVar) {
-        this.f58896a = oVar;
-        this.f58897b = i7;
-        this.f58898c = uVar;
+        this.f58894a = oVar;
+        this.f58895b = i7;
+        this.f58896c = uVar;
     }
 
     @Override
@@ -35,27 +35,27 @@ public final class e implements q {
         SparseArray sparseArray = this.d;
         c cVar = (c) sparseArray.get(i7);
         if (cVar == null) {
-            if (this.f58903s == null) {
+            if (this.f58901s == null) {
                 z9 = true;
             } else {
                 z9 = false;
             }
             ia.p(z9);
-            if (i10 == this.f58897b) {
-                uVar = this.f58898c;
+            if (i10 == this.f58895b) {
+                uVar = this.f58896c;
             } else {
                 uVar = null;
             }
-            cVar = new c(i7, i10, uVar, this.f58899e);
+            cVar = new c(i7, i10, uVar, this.f58897e);
             i0 i0Var = this.h;
-            long j3 = this.f58901n;
+            long j3 = this.f58899n;
             if (i0Var == null) {
-                cVar.f58892f = cVar.f58890c;
+                cVar.f58890f = cVar.f58888c;
             } else {
-                cVar.f58893g = j3;
+                cVar.f58891g = j3;
                 j0 f10 = i0Var.f(i10);
-                cVar.f58892f = f10;
-                u uVar2 = cVar.f58891e;
+                cVar.f58890f = f10;
+                u uVar2 = cVar.f58889e;
                 if (uVar2 != null) {
                     f10.g(uVar2);
                 }
@@ -70,35 +70,35 @@ public final class e implements q {
         SparseArray sparseArray = this.d;
         u[] uVarArr = new u[sparseArray.size()];
         for (int i7 = 0; i7 < sparseArray.size(); i7++) {
-            u uVar = ((c) sparseArray.valueAt(i7)).f58891e;
+            u uVar = ((c) sparseArray.valueAt(i7)).f58889e;
             uVar.getClass();
             uVarArr[i7] = uVar;
         }
-        this.f58903s = uVarArr;
+        this.f58901s = uVarArr;
     }
 
     public final f3.j a() {
-        c0 c0Var = this.f58902r;
+        c0 c0Var = this.f58900r;
         if (c0Var instanceof f3.j) {
             return (f3.j) c0Var;
         }
         if (c0Var instanceof x3.d) {
-            return ((x3.d) c0Var).f58559a;
+            return ((x3.d) c0Var).f58557a;
         }
         return null;
     }
 
     public final void b(i0 i0Var, long j3, long j10) {
         this.h = i0Var;
-        this.f58901n = j10;
-        boolean z9 = this.f58900f;
-        o oVar = this.f58896a;
+        this.f58899n = j10;
+        boolean z9 = this.f58898f;
+        o oVar = this.f58894a;
         if (!z9) {
             oVar.c(this);
             if (j3 != -9223372036854775807L) {
                 oVar.d(0L, j3);
             }
-            this.f58900f = true;
+            this.f58898f = true;
             return;
         }
         if (j3 == -9223372036854775807L) {
@@ -111,12 +111,12 @@ public final class e implements q {
             if (i7 < sparseArray.size()) {
                 c cVar = (c) sparseArray.valueAt(i7);
                 if (i0Var == null) {
-                    cVar.f58892f = cVar.f58890c;
+                    cVar.f58890f = cVar.f58888c;
                 } else {
-                    cVar.f58893g = j10;
-                    j0 f10 = i0Var.f(cVar.f58888a);
-                    cVar.f58892f = f10;
-                    u uVar = cVar.f58891e;
+                    cVar.f58891g = j10;
+                    j0 f10 = i0Var.f(cVar.f58886a);
+                    cVar.f58890f = f10;
+                    u uVar = cVar.f58889e;
                     if (uVar != null) {
                         f10.g(uVar);
                     }
@@ -130,6 +130,6 @@ public final class e implements q {
 
     @Override
     public final void f(c0 c0Var) {
-        this.f58902r = c0Var;
+        this.f58900r = c0Var;
     }
 }

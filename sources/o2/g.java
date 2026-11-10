@@ -14,7 +14,7 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class g implements q {
-    public static final Pattern f20739a = Pattern.compile("(.+?)(Z|((\\+|-|−)(\\d\\d)(:?(\\d\\d))?))");
+    public static final Pattern f20744a = Pattern.compile("(.+?)(Z|((\\+|-|−)(\\d\\d)(:?(\\d\\d))?))");
 
     @Override
     public final Object L1(Uri uri, j2.k kVar) {
@@ -22,7 +22,7 @@ public final class g implements q {
         long parseLong;
         String readLine = new BufferedReader(new InputStreamReader(kVar, StandardCharsets.UTF_8)).readLine();
         try {
-            Matcher matcher = f20739a.matcher(readLine);
+            Matcher matcher = f20744a.matcher(readLine);
             if (matcher.matches()) {
                 String group = matcher.group(1);
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);

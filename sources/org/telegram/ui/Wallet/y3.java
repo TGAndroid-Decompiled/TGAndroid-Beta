@@ -1,15 +1,8 @@
 package org.telegram.ui.Wallet;
-public final class y3 extends zh.b1 {
-    public final org.telegram.ui.Cells.t0 D;
 
-    public y3(org.telegram.ui.Cells.t0 t0Var, org.telegram.ui.Cells.t0 t0Var2) {
-        super(t0Var);
-        this.D = t0Var2;
-    }
-
+import org.telegram.messenger.ls;
+public final class y3 implements ls {
     @Override
-    public final void invalidateSelf() {
-        super.invalidateSelf();
-        this.D.invalidate();
+    public final void didReceivedNotification(int i7, int i10, Object[] objArr) {
     }
 }

@@ -2,7 +2,7 @@ package rc;
 
 import h2.j0;
 public final class g extends j0 {
-    public static final g f54464e;
+    public static final g f54463e;
 
     static {
         int[] iArr = new int[288];
@@ -23,6 +23,6 @@ public final class g extends j0 {
             iArr[i7] = 8;
             i7++;
         }
-        f54464e = new j0(iArr);
+        f54463e = new j0(iArr);
     }
 }

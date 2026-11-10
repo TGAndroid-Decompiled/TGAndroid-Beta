@@ -6,70 +6,70 @@ import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.c20;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.wq;
 public final class s5 extends FrameLayout {
-    public View f12789a;
-    public ArrayList f12790b;
-    public r5 f12791c;
+    public View f12793a;
+    public ArrayList f12794b;
+    public r5 f12795c;
     public String d;
-    public boolean f12792e;
-    public c20 f12793f;
+    public boolean f12796e;
+    public c20 f12797f;
     public boolean h;
-    public float f12794n;
-    public boolean f12795r;
-    public ValueAnimator f12796s;
+    public float f12798n;
+    public boolean f12799r;
+    public ValueAnimator f12800s;
 
     public final void a(int i7, int i10, String str) {
         q5 q5Var = new q5(this, getContext(), i7, i10);
         q5Var.setContentDescription(str);
-        this.f12790b.add(q5Var);
+        this.f12794b.add(q5Var);
         addView(q5Var);
     }
 
     public final void b(boolean z9, boolean z10) {
-        if (this.f12795r == z9) {
+        if (this.f12799r == z9) {
             return;
         }
-        ValueAnimator valueAnimator = this.f12796s;
+        ValueAnimator valueAnimator = this.f12800s;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        this.f12795r = z9;
+        this.f12799r = z9;
         float f10 = 0.0f;
         if (z10) {
-            float f11 = this.f12794n;
+            float f11 = this.f12798n;
             if (z9) {
                 f10 = 1.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
-            this.f12796s = ofFloat;
+            this.f12800s = ofFloat;
             ofFloat.addUpdateListener(new v3(this, 1));
-            if (this.f12795r) {
-                this.f12796s.setDuration(450L);
-                this.f12796s.setInterpolator(new LinearInterpolator());
+            if (this.f12799r) {
+                this.f12800s.setDuration(450L);
+                this.f12800s.setInterpolator(new LinearInterpolator());
             } else {
-                this.f12796s.setDuration(350L);
-                this.f12796s.setInterpolator(xq.h);
+                this.f12800s.setDuration(350L);
+                this.f12800s.setInterpolator(wq.h);
             }
-            this.f12796s.start();
+            this.f12800s.start();
             return;
         }
         if (z9) {
             f10 = 1.0f;
         }
-        this.f12794n = f10;
+        this.f12798n = f10;
         e();
     }
 
     public final boolean c() {
-        ArrayList arrayList = this.f12790b;
+        ArrayList arrayList = this.f12794b;
         int i7 = 0;
         while (true) {
             if (i7 >= arrayList.size()) {
                 break;
             }
             q5 q5Var = (q5) arrayList.get(i7);
-            if (q5Var.f12662a == 4) {
+            if (q5Var.f12666a == 4) {
                 if (q5Var.getVisibility() == 0) {
                     return true;
                 }
@@ -82,10 +82,10 @@ public final class s5 extends FrameLayout {
 
     public final void d(int i7, boolean z9) {
         int i10;
-        ArrayList arrayList = this.f12790b;
+        ArrayList arrayList = this.f12794b;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
             q5 q5Var = (q5) arrayList.get(i11);
-            if (q5Var.f12662a == i7) {
+            if (q5Var.f12666a == i7) {
                 if (z9) {
                     i10 = 0;
                 } else {
@@ -97,14 +97,14 @@ public final class s5 extends FrameLayout {
     }
 
     public final void e() {
-        View view = this.f12789a;
-        view.setAlpha(this.f12794n);
-        view.setTranslationY((1.0f - this.f12794n) * org.telegram.messenger.g0.L(16.0f));
+        View view = this.f12793a;
+        view.setAlpha(this.f12798n);
+        view.setTranslationY((1.0f - this.f12798n) * org.telegram.messenger.g0.L(16.0f));
         for (int i7 = 1; i7 < getChildCount(); i7++) {
             View childAt = getChildAt(i7);
-            float f10 = this.f12794n;
-            if (this.f12795r) {
-                f10 = xq.h.getInterpolation(org.telegram.messenger.g0.s(f10, i7 - 1, getChildCount() - 1, 3.0f));
+            float f10 = this.f12798n;
+            if (this.f12799r) {
+                f10 = wq.h.getInterpolation(org.telegram.messenger.g0.s(f10, i7 - 1, getChildCount() - 1, 3.0f));
             }
             childAt.setAlpha(f10);
             childAt.setTranslationY((1.0f - f10) * org.telegram.messenger.g0.L(24.0f));
@@ -116,13 +116,13 @@ public final class s5 extends FrameLayout {
         int A;
         float f10;
         int i13;
-        ArrayList arrayList = this.f12790b;
+        ArrayList arrayList = this.f12794b;
         int i14 = i11 - i7;
         int i15 = i12 - i10;
-        this.f12789a.layout(0, 0, i14, i15);
-        r5 r5Var = this.f12791c;
-        r5Var.layout(i14 - r5Var.getMeasuredWidth(), (i15 - this.f12791c.getMeasuredHeight()) / 2, i14, (this.f12791c.getMeasuredHeight() + i15) / 2);
-        int L = (i14 - org.telegram.messenger.g0.L(32.33f)) - this.f12791c.getMeasuredWidth();
+        this.f12793a.layout(0, 0, i14, i15);
+        r5 r5Var = this.f12795c;
+        r5Var.layout(i14 - r5Var.getMeasuredWidth(), (i15 - this.f12795c.getMeasuredHeight()) / 2, i14, (this.f12795c.getMeasuredHeight() + i15) / 2);
+        int L = (i14 - org.telegram.messenger.g0.L(32.33f)) - this.f12795c.getMeasuredWidth();
         int i16 = 0;
         for (int i17 = 0; i17 < arrayList.size(); i17++) {
             if (((q5) arrayList.get(i17)).getVisibility() == 0) {
@@ -163,14 +163,14 @@ public final class s5 extends FrameLayout {
     }
 
     public void setOnClickListener(c20 c20Var) {
-        this.f12793f = c20Var;
+        this.f12797f = c20Var;
     }
 
     public void setShareEnabled(boolean z9) {
         if (this.h != z9) {
             this.h = z9;
-            r5 r5Var = this.f12791c;
-            r5Var.f12740s = z9;
+            r5 r5Var = this.f12795c;
+            r5Var.f12744s = z9;
             r5Var.invalidate();
         }
     }

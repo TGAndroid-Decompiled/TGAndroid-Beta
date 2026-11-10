@@ -3,17 +3,17 @@ package d3;
 import a8.ia;
 import android.util.Range;
 public final class z {
-    public long f8106a;
-    public long f8107b;
-    public double f8108c;
+    public long f8111a;
+    public long f8112b;
+    public double f8113c;
     public Range d;
 
     public z() {
         Range range = new Range(Double.valueOf(0.0d), Double.valueOf(1.0d / 1.0f));
         this.d = range;
-        this.f8108c = ((Double) range.getUpper()).doubleValue();
-        this.f8106a = -9223372036854775807L;
-        this.f8107b = -9223372036854775807L;
+        this.f8113c = ((Double) range.getUpper()).doubleValue();
+        this.f8111a = -9223372036854775807L;
+        this.f8112b = -9223372036854775807L;
     }
 
     public final void a(long j3, long j10) {
@@ -31,25 +31,25 @@ public final class z {
             z10 = true;
         }
         ia.f(z10);
-        long j12 = this.f8106a;
+        long j12 = this.f8111a;
         if (j12 != -9223372036854775807L) {
-            if (this.f8107b != -9223372036854775807L && j3 != j12) {
+            if (this.f8112b != -9223372036854775807L && j3 != j12) {
                 doubleValue = (j10 - j11) / (j3 - j12);
-                this.f8108c = (((Double) this.d.clamp(Double.valueOf(doubleValue))).doubleValue() * 0.20000000298023224d) + (this.f8108c * 0.800000011920929d);
-                this.f8106a = j3;
-                this.f8107b = j10;
+                this.f8113c = (((Double) this.d.clamp(Double.valueOf(doubleValue))).doubleValue() * 0.20000000298023224d) + (this.f8113c * 0.800000011920929d);
+                this.f8111a = j3;
+                this.f8112b = j10;
             }
         }
         doubleValue = ((Double) this.d.getUpper()).doubleValue();
-        this.f8108c = (((Double) this.d.clamp(Double.valueOf(doubleValue))).doubleValue() * 0.20000000298023224d) + (this.f8108c * 0.800000011920929d);
-        this.f8106a = j3;
-        this.f8107b = j10;
+        this.f8113c = (((Double) this.d.clamp(Double.valueOf(doubleValue))).doubleValue() * 0.20000000298023224d) + (this.f8113c * 0.800000011920929d);
+        this.f8111a = j3;
+        this.f8112b = j10;
     }
 
     public final void b() {
-        this.f8108c = ((Double) this.d.getUpper()).doubleValue();
-        this.f8106a = -9223372036854775807L;
-        this.f8107b = -9223372036854775807L;
+        this.f8113c = ((Double) this.d.getUpper()).doubleValue();
+        this.f8111a = -9223372036854775807L;
+        this.f8112b = -9223372036854775807L;
     }
 
     public final void c(float f10) {

@@ -2,11 +2,11 @@ package ch;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import org.telegram.ui.Components.i5;
-import org.telegram.ui.Components.l9;
-public final class i0 extends l9 {
+import org.telegram.ui.Components.h5;
+import org.telegram.ui.Components.k9;
+public final class i0 extends k9 {
     public boolean G;
-    public i5 H;
+    public h5 H;
     public d I;
     public boolean J;
     public final k0 K;
@@ -21,9 +21,9 @@ public final class i0 extends l9 {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.J = true;
-        i5 i5Var = this.H;
-        if (i5Var != null) {
-            i5Var.a(this);
+        h5 h5Var = this.H;
+        if (h5Var != null) {
+            h5Var.a(this);
         }
         d dVar = this.I;
         if (dVar != null) {
@@ -35,9 +35,9 @@ public final class i0 extends l9 {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.J = false;
-        i5 i5Var = this.H;
-        if (i5Var != null) {
-            i5Var.n(this);
+        h5 h5Var = this.H;
+        if (h5Var != null) {
+            h5Var.n(this);
         }
         d dVar = this.I;
         if (dVar != null) {
@@ -47,9 +47,9 @@ public final class i0 extends l9 {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        i5 i5Var = this.H;
-        if (i5Var != null) {
-            i5Var.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        h5 h5Var = this.H;
+        if (h5Var != null) {
+            h5Var.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.H.setAlpha(255);
             this.H.draw(canvas);
             this.G = true;
@@ -62,13 +62,13 @@ public final class i0 extends l9 {
             this.G = true;
             return;
         }
-        if (getImageReceiver().B() != null && getImageReceiver().B().f31834k0) {
+        if (getImageReceiver().B() != null && getImageReceiver().B().f40976k0) {
             this.G = true;
         }
-        if (!this.G && getImageReceiver().B() != null && !getImageReceiver().B().f31834k0) {
+        if (!this.G && getImageReceiver().B() != null && !getImageReceiver().B().f40976k0) {
             k0 k0Var = this.K;
-            if (k0Var.f6280a == 2 && !k0Var.f6302z) {
-                getImageReceiver().B().N(getImageReceiver().B().f31826e[0] - 1, false, false);
+            if (k0Var.f6285a == 2 && !k0Var.f6307z) {
+                getImageReceiver().B().N(getImageReceiver().B().f40968e[0] - 1, false, false);
             } else {
                 getImageReceiver().B().N(0, false, false);
                 getImageReceiver().B().start();

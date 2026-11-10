@@ -2,23 +2,23 @@ package org.telegram.ui.ActionBar;
 
 import android.graphics.drawable.Drawable;
 public final class i5 {
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f27565a;
-    public final Drawable f27566b;
-    public final Drawable f27567c;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f27554a;
+    public final Drawable f27555b;
+    public final Drawable f27556c;
     public final int d;
-    public final int f27568e;
-    public final int f27569f;
-    public final int f27570g;
+    public final int f27557e;
+    public final int f27558f;
+    public final int f27559g;
     public final int h;
 
     public i5(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        this.f27565a = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        this.f27566b = actionBarPopupWindow$ActionBarPopupWindowLayout.getBackground();
-        this.f27567c = actionBarPopupWindow$ActionBarPopupWindowLayout.getBackgroundDrawable();
+        this.f27554a = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f27555b = actionBarPopupWindow$ActionBarPopupWindowLayout.getBackground();
+        this.f27556c = actionBarPopupWindow$ActionBarPopupWindowLayout.getBackgroundDrawable();
         this.d = actionBarPopupWindow$ActionBarPopupWindowLayout.getBackgroundColor();
-        this.f27568e = actionBarPopupWindow$ActionBarPopupWindowLayout.getPaddingLeft();
-        this.f27569f = actionBarPopupWindow$ActionBarPopupWindowLayout.getPaddingTop();
-        this.f27570g = actionBarPopupWindow$ActionBarPopupWindowLayout.getPaddingRight();
+        this.f27557e = actionBarPopupWindow$ActionBarPopupWindowLayout.getPaddingLeft();
+        this.f27558f = actionBarPopupWindow$ActionBarPopupWindowLayout.getPaddingTop();
+        this.f27559g = actionBarPopupWindow$ActionBarPopupWindowLayout.getPaddingRight();
         this.h = actionBarPopupWindow$ActionBarPopupWindowLayout.getPaddingBottom();
     }
 }

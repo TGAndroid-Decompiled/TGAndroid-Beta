@@ -1,147 +1,85 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-public final class p6 extends FrameLayout implements org.telegram.messenger.ls {
-    public final int f36931a;
-    public final x70 f36932b;
-    public final Runnable f36933c;
+public final class p6 extends View {
+    public final ImageReceiver f36801a;
+    public final Drawable f36802b;
+    public final Paint f36803c;
+    public final Paint d;
 
-    public p6(Context context, int i7, org.telegram.ui.ActionBar.g6 g6Var, Runnable runnable, org.telegram.ui.dh dhVar) {
+    public p6(Context context) {
         super(context);
-        int i10;
-        this.f36931a = i7;
-        this.f36933c = runnable;
-        org.telegram.messenger.g5.r(i7).B();
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, c8.ha.e(-1, -2, 17));
-        ImageView imageView = new ImageView(context);
-        int L = org.telegram.messenger.g0.L(80.0f);
-        int i11 = org.telegram.ui.ActionBar.l6.K7;
-        ShapeDrawable L2 = org.telegram.ui.ActionBar.l6.L(L, org.telegram.ui.ActionBar.l6.w0(i11, g6Var));
-        org.telegram.ui.ActionBar.o6 M = org.telegram.ui.ActionBar.s6.M(i11);
-        imageView.setBackground(L2);
-        org.telegram.ui.ActionBar.s6.j(imageView, L2, M, null, g6Var);
-        imageView.setImageResource(2131231601);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        if (dhVar != null) {
-            i10 = 14;
-        } else {
-            i10 = 0;
-        }
-        linearLayout.addView(imageView, c8.ha.t(80, 80, 49, 0, i10, 0, 14));
-        TextView textView = new TextView(context);
-        textView.setTextSize(1, 20.0f);
-        org.telegram.ui.ActionBar.s6.U(textView, org.telegram.ui.ActionBar.l6.f27973j5, g6Var);
-        textView.setTypeface(org.telegram.messenger.g0.o());
-        textView.setGravity(1);
-        textView.setText(org.telegram.messenger.id.M0(2131754167, null));
-        linearLayout.addView(textView, c8.ha.t(-1, -2, 1, 32, 0, 32, 9));
-        x70 x70Var = new x70(context, null);
-        this.f36932b = x70Var;
-        x70Var.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.s6.U(x70Var, org.telegram.ui.ActionBar.l6.f28275z6, g6Var);
-        x70Var.setGravity(1);
-        b();
-        linearLayout.addView(x70Var, c8.ha.t(-1, -2, 1, 32, 0, 32, 25));
-        linearLayout.addView(a(2131232052, org.telegram.messenger.id.N0("ArchiveHintSection1"), org.telegram.messenger.id.N0("ArchiveHintSection1Info"), g6Var), c8.ha.t(-1, -2, 7, 32, 0, 32, 16));
-        linearLayout.addView(a(2131232053, org.telegram.messenger.id.N0("ArchiveHintSection2"), org.telegram.messenger.id.N0("ArchiveHintSection2Info"), g6Var), c8.ha.t(-1, -2, 7, 32, 0, 32, 16));
-        linearLayout.addView(a(2131232055, org.telegram.messenger.id.N0("ArchiveHintSection3"), org.telegram.messenger.id.N0("ArchiveHintSection3Info"), g6Var), c8.ha.t(-1, -2, 7, 32, 0, 32, 16));
-        if (dhVar != null) {
-            fi.d h = org.telegram.messenger.k5.h(24, context, g6Var, true);
-            h.i(org.telegram.messenger.id.N0("GotIt"), false, true);
-            h.setOnClickListener(new o6(0, dhVar));
-            linearLayout.addView(h, c8.ha.k(14.0f, 18.0f, 14.0f, 0.0f, -1, 48));
-        }
-    }
-
-    public final FrameLayout a(int i7, String str, String str2, org.telegram.ui.ActionBar.g6 g6Var) {
-        FrameLayout frameLayout = new FrameLayout(getContext());
-        ImageView imageView = new ImageView(getContext());
-        int i10 = org.telegram.ui.ActionBar.l6.f27973j5;
-        org.telegram.ui.ActionBar.s6.s(imageView, i10, g6Var, PorterDuff.Mode.SRC_ATOP);
-        imageView.setImageResource(i7);
-        frameLayout.addView(imageView, c8.ha.d(24, 24.0f, 51, 0.0f, 8.0f, 0.0f, 0.0f));
-        LinearLayout linearLayout = new LinearLayout(getContext());
-        linearLayout.setOrientation(1);
-        TextView textView = new TextView(getContext());
-        org.telegram.ui.ActionBar.s6.U(textView, i10, g6Var);
-        textView.setTypeface(org.telegram.messenger.g0.o());
-        textView.setTextSize(0, org.telegram.messenger.g0.L(14.0f));
-        textView.setText(str);
-        linearLayout.addView(textView, c8.ha.k(0.0f, 2.6f, 0.0f, 0.0f, -1, -2));
-        TextView textView2 = new TextView(getContext());
-        org.telegram.ui.ActionBar.s6.U(textView2, org.telegram.ui.ActionBar.l6.f28275z6, g6Var);
-        textView2.setTextSize(0, org.telegram.messenger.g0.L(14.0f));
-        textView2.setText(str2);
-        linearLayout.addView(textView2, c8.ha.k(0.0f, 2.6f, 0.0f, 0.0f, -1, -2));
-        frameLayout.addView(linearLayout, c8.ha.d(-1, -2.0f, 55, 41.0f, 0.0f, 0.0f, 0.0f));
-        return frameLayout;
-    }
-
-    public final void b() {
-        boolean z9;
-        String str;
-        TLRPC.GlobalPrivacySettings globalPrivacySettings = org.telegram.messenger.g5.r(this.f36931a).X;
-        if (globalPrivacySettings != null) {
-            z9 = globalPrivacySettings.keep_archived_unmuted;
-        } else {
-            z9 = true;
-        }
-        if (z9) {
-            str = "ArchiveHintSubtitle";
-        } else {
-            str = "ArchiveHintSubtitleUnmutedMove";
-        }
-        String N0 = org.telegram.messenger.id.N0(str);
-        int i7 = org.telegram.ui.ActionBar.l6.Uc;
-        SpannableStringBuilder S2 = org.telegram.messenger.g0.S2(N0, i7, 0, this.f36933c, null);
-        SpannableString spannableString = new SpannableString(">");
-        Drawable mutate = getContext().getResources().getDrawable(2131232059).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.SRC_IN));
-        wp wpVar = new wp(0, mutate);
-        wpVar.a(i7);
-        wpVar.c(org.telegram.messenger.g0.L(18.0f));
-        wpVar.E = org.telegram.messenger.g0.L(11.0f);
-        wpVar.f40120r = -org.telegram.messenger.g0.L(5.0f);
-        spannableString.setSpan(wpVar, 0, spannableString.length(), 33);
-        this.f36932b.setText(org.telegram.messenger.g0.K2(S2, spannableString, ">"));
-    }
-
-    @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.qs.f25025k0) {
-            b();
-        }
+        Paint paint = new Paint(1);
+        this.f36803c = paint;
+        this.d = new Paint(1);
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.f36801a = imageReceiver;
+        imageReceiver.setAlpha(0.0f);
+        imageReceiver.f21200g1 = new t(this, 12);
+        this.f36802b = context.getDrawable(2131231495).mutate().getConstantState().newDrawable();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(3.0f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        org.telegram.messenger.qs.f(this.f36931a).c(this, org.telegram.messenger.qs.f25025k0);
-        b();
+        this.f36801a.P();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.messenger.qs.f(this.f36931a).n(this, org.telegram.messenger.qs.f25025k0);
+        this.f36801a.R();
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(400.0f), View.MeasureSpec.getSize(i7)), 1073741824), i10);
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(0.0f, 0.0f, getWidth(), org.telegram.messenger.g0.L(10.0f) + getHeight());
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), this.d);
+        ImageReceiver imageReceiver = this.f36801a;
+        imageReceiver.y0((getWidth() / 2.0f) - org.telegram.messenger.g0.L(66.0f), (getHeight() / 2.0f) - (org.telegram.messenger.g0.L(42.0f) / 2.0f), org.telegram.messenger.g0.L(42.0f), org.telegram.messenger.g0.L(42.0f));
+        imageReceiver.h(canvas, null);
+        Paint paint = this.f36803c;
+        canvas.drawLine((getWidth() / 2.0f) - org.telegram.messenger.g0.L(8.0f), getHeight() / 2.0f, (getWidth() / 2.0f) + org.telegram.messenger.g0.L(8.0f), getHeight() / 2.0f, paint);
+        canvas.drawLine(getWidth() / 2.0f, (getHeight() / 2.0f) - org.telegram.messenger.g0.L(8.0f), getWidth() / 2.0f, org.telegram.messenger.g0.L(8.0f) + (getHeight() / 2.0f), paint);
+        int L = org.telegram.messenger.g0.L(24.0f) + (getWidth() / 2);
+        int height = (getHeight() / 2) - (org.telegram.messenger.g0.L(42.0f) / 2);
+        int L2 = org.telegram.messenger.g0.L(66.0f) + (getWidth() / 2);
+        int L3 = (org.telegram.messenger.g0.L(42.0f) / 2) + (getHeight() / 2);
+        Drawable drawable = this.f36802b;
+        drawable.setBounds(L, height, L2, L3);
+        drawable.draw(canvas);
+    }
+
+    public void setAttachBot(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
+        TLRPC.TL_attachMenuBotIcon k02 = org.telegram.messenger.ui.k0(tL_attachMenuBot);
+        if (k02 != null) {
+            this.f36801a.q0(org.telegram.messenger.hc.b(k02.icon), "42_42", org.telegram.messenger.t5.f(k02.icon, org.telegram.ui.ActionBar.m6.f28129q5, 1.0f, null), "svg", tL_attachMenuBot, 0);
+        }
+    }
+
+    @Override
+    public void setBackgroundColor(int i7) {
+        this.d.setColor(i7);
+    }
+
+    public void setColor(int i7) {
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        this.f36802b.setColorFilter(i7, mode);
+        this.f36803c.setColor(i7);
+        this.f36801a.f21214o1 = new PorterDuffColorFilter(i7, mode);
     }
 }

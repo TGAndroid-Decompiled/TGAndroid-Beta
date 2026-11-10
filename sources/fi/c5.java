@@ -6,20 +6,20 @@ import android.os.Build;
 import org.telegram.messenger.id;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.qp;
-import org.telegram.ui.Components.hc;
+import org.telegram.ui.Components.gc;
 public final class c5 extends k2 {
-    public final o5 A1;
-    public final int f11730z1;
+    public final int C1;
+    public final o5 D1;
 
     public c5(o5 o5Var, Context context, g5 g5Var, int i7) {
         super(context, g5Var, false, false);
-        this.A1 = o5Var;
-        this.f11730z1 = i7;
+        this.D1 = o5Var;
+        this.C1 = i7;
     }
 
     @Override
     public final boolean I0(Integer num) {
-        j5 j5Var = this.A1.A0;
+        j5 j5Var = this.D1.A0;
         if (num.intValue() == 3) {
             int i7 = 0;
             for (int i10 = 0; i10 < j5Var.getChildCount(); i10++) {
@@ -27,22 +27,22 @@ public final class c5 extends k2 {
                     i7++;
                 }
             }
-            int i11 = qp.s1(this.f28621a).f24857o5;
-            org.telegram.ui.ActionBar.l2 l2Var = this.f28627c;
-            if (i7 >= i11 && !p10.i(this.f28621a).q()) {
-                String G = id.G(qp.s1(this.f28621a).f24866p5, "StoryPremiumWidgets2", new Object[0]);
+            int i11 = qp.s1(this.f28669a).f24861o5;
+            org.telegram.ui.ActionBar.m2 m2Var = this.f28675c;
+            if (i7 >= i11 && !p10.i(this.f28669a).q()) {
+                String G = id.G(qp.s1(this.f28669a).f24870p5, "StoryPremiumWidgets2", new Object[0]);
                 try {
-                    l2Var.performHapticFeedback(3);
+                    m2Var.performHapticFeedback(3);
                 } catch (Exception unused) {
                 }
-                new hc(l2Var, this.I0).I(2131624216, id.M0(2131749199, null), org.telegram.messenger.g0.S2(G, org.telegram.ui.ActionBar.l6.Uc, 0, new di.f8(this, 16), this.I0)).k(true);
+                new gc(m2Var, this.I0).I(2131624216, id.M0(2131749199, null), org.telegram.messenger.g0.S2(G, org.telegram.ui.ActionBar.m6.Uc, 0, new di.f8(this, 16), this.I0)).k(true);
                 return false;
-            } else if (i7 >= qp.s1(this.f28621a).f24866p5) {
+            } else if (i7 >= qp.s1(this.f28669a).f24870p5) {
                 try {
-                    l2Var.performHapticFeedback(3);
+                    m2Var.performHapticFeedback(3);
                 } catch (Exception unused2) {
                 }
-                new hc(l2Var, this.I0).I(2131623981, id.M0(2131748978, "LimitReached"), id.G(qp.s1(this.f28621a).f24866p5, "StoryReactionsWidgetLimit2", new Object[0])).k(true);
+                new gc(m2Var, this.I0).I(2131623981, id.M0(2131748978, "LimitReached"), id.G(qp.s1(this.f28669a).f24870p5, "StoryReactionsWidgetLimit2", new Object[0])).k(true);
                 return false;
             }
         }
@@ -51,7 +51,7 @@ public final class c5 extends k2 {
 
     @Override
     public final boolean J0(Integer num) {
-        o5 o5Var = this.A1;
+        o5 o5Var = this.D1;
         j5 j5Var = o5Var.A0;
         boolean z9 = false;
         if (o5Var.G1) {
@@ -77,19 +77,19 @@ public final class c5 extends k2 {
 
     @Override
     public final boolean K0(Runnable runnable) {
-        va vaVar = ((x9) this.A1).f13102j2;
-        Activity activity = vaVar.f12938b;
+        va vaVar = ((x9) this.D1).f13104j2;
+        Activity activity = vaVar.f12940b;
         if (activity != null) {
             if (Build.VERSION.SDK_INT >= 33) {
                 if (activity.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") != 0) {
                     activity.requestPermissions(new String[]{"android.permission.READ_MEDIA_AUDIO"}, 115);
-                    vaVar.f13015y2 = (bg.m0) runnable;
+                    vaVar.f13017y2 = (bg.m0) runnable;
                     return false;
                 }
                 return true;
             } else if (activity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
                 activity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 115);
-                vaVar.f13015y2 = (bg.m0) runnable;
+                vaVar.f13017y2 = (bg.m0) runnable;
                 return false;
             } else {
                 return true;
@@ -100,6 +100,6 @@ public final class c5 extends k2 {
 
     @Override
     public final void n0() {
-        this.A1.O0(this.f11730z1);
+        this.D1.O0(this.C1);
     }
 }

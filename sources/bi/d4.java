@@ -7,11 +7,11 @@ import org.telegram.messenger.ln;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.px;
+import org.telegram.ui.Components.ox;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.cn;
 import org.telegram.ui.fo;
-import org.telegram.ui.us;
+import org.telegram.ui.vs;
 public final class d4 implements RequestDelegate {
     public final int f3648a;
     public final boolean f3649b;
@@ -49,10 +49,10 @@ public final class d4 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new l4((fo) this.f3650c, (TLRPC.TL_channels_toggleUsername) this.d, tLObject, (TLRPC.TL_username) this.f3651e, this.f3649b, tL_error));
                 return;
             case 6:
-                org.telegram.messenger.g0.h3(new fi.q1((px) this.f3650c, (String) this.d, this.f3649b, (String) this.f3651e, tLObject));
+                org.telegram.messenger.g0.h3(new fi.q1((ox) this.f3650c, (String) this.d, this.f3649b, (String) this.f3651e, tLObject));
                 return;
             default:
-                org.telegram.messenger.g0.h3(new l4((us) this.f3650c, tLObject, (fi.d) this.d, this.f3649b, (HashSet) this.f3651e, tL_error));
+                org.telegram.messenger.g0.h3(new l4((vs) this.f3650c, tLObject, (fi.d) this.d, this.f3649b, (HashSet) this.f3651e, tL_error));
                 return;
         }
     }

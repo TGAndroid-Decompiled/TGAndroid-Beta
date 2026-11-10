@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import org.json.JSONObject;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class e implements Runnable {
-    public final int f42397a;
-    public final f f42398b;
-    public final TL_wallet.currencyRates f42399c;
+    public final int f42440a;
+    public final f f42441b;
+    public final TL_wallet.currencyRates f42442c;
 
     public e(f fVar, TL_wallet.currencyRates currencyrates, int i7) {
-        this.f42397a = i7;
-        this.f42398b = fVar;
-        this.f42399c = currencyrates;
+        this.f42440a = i7;
+        this.f42441b = fVar;
+        this.f42442c = currencyrates;
     }
 
     @Override
@@ -20,18 +20,18 @@ public final class e implements Runnable {
         int i7;
         boolean z9;
         String str;
-        switch (this.f42397a) {
+        switch (this.f42440a) {
             case 0:
-                f fVar = this.f42398b;
-                TL_wallet.currencyRates currencyrates = this.f42399c;
+                f fVar = this.f42441b;
+                TL_wallet.currencyRates currencyrates = this.f42442c;
                 boolean z10 = true;
                 if (currencyrates == null || currencyrates.rates == null) {
                     i7 = 1;
                 } else {
                     try {
-                        InputStream open = org.telegram.messenger.t0.f25566b.getAssets().open("currencies.json");
-                        String str2 = h2.m0.f14112a;
-                        JSONObject jSONObject = new JSONObject(new String(i9.f.b(open), g9.j.f13590a));
+                        InputStream open = org.telegram.messenger.t0.f25570b.getAssets().open("currencies.json");
+                        String str2 = h2.m0.f14114a;
+                        JSONObject jSONObject = new JSONObject(new String(i9.f.b(open), g9.j.f13592a));
                         ArrayList<TL_wallet.currencyRate> arrayList = currencyrates.rates;
                         int size = arrayList.size();
                         int i10 = 0;
@@ -93,10 +93,10 @@ public final class e implements Runnable {
                 org.telegram.messenger.g0.h3(new e(fVar, currencyrates, i7));
                 return;
             default:
-                f fVar2 = this.f42398b;
-                fVar2.d = this.f42399c;
-                fVar2.f42432c = false;
-                fVar2.f42431b.L();
+                f fVar2 = this.f42441b;
+                fVar2.d = this.f42442c;
+                fVar2.f42480c = false;
+                fVar2.f42479b.L();
                 return;
         }
     }

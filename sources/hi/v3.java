@@ -6,26 +6,26 @@ import android.graphics.Paint;
 import android.view.View;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.Components.nt0;
-public class v3 extends View implements b6 {
-    public final nt0 f15006a;
-    public final Paint f15007b;
-    public float f15008c;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.Components.mt0;
+public class v3 extends View implements c6 {
+    public final mt0 f15008a;
+    public final Paint f15009b;
+    public float f15010c;
     public r1.g d;
-    public final g6 f15009e;
+    public final h6 f15011e;
 
-    public v3(Context context, g6 g6Var) {
+    public v3(Context context, h6 h6Var) {
         super(context);
-        nt0 nt0Var = new nt0(new g2.c(27), new g2.c(28));
-        nt0Var.f36500c = 100.0f;
-        this.f15006a = nt0Var;
+        mt0 mt0Var = new mt0(new g2.c(27), new g2.c(28));
+        mt0Var.f36092c = 100.0f;
+        this.f15008a = mt0Var;
         Paint paint = new Paint(1);
-        this.f15007b = paint;
-        this.f15009e = g6Var;
-        paint.setColor(l6.w0(l6.Ci, g6Var));
+        this.f15009b = paint;
+        this.f15011e = h6Var;
+        paint.setColor(m6.w0(m6.Ci, h6Var));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -34,21 +34,21 @@ public class v3 extends View implements b6 {
     @Override
     public final void draw(Canvas canvas) {
         super.draw(canvas);
-        if (this.f15008c > 0.0f) {
-            Paint paint = this.f15007b;
+        if (this.f15010c > 0.0f) {
+            Paint paint = this.f15009b;
             float height = getHeight() - (paint.getStrokeWidth() / 2.0f);
-            canvas.drawLine(0.0f, height, getWidth() * this.f15008c, height, paint);
+            canvas.drawLine(0.0f, height, getWidth() * this.f15010c, height, paint);
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        r1.g gVar = new r1.g(this, this.f15006a);
+        r1.g gVar = new r1.g(this, this.f15008a);
         r1.h hVar = new r1.h();
         hVar.b(400.0f);
         hVar.a(1.0f);
-        gVar.f54280m = hVar;
+        gVar.f54279m = hVar;
         this.d = gVar;
     }
 
@@ -60,7 +60,7 @@ public class v3 extends View implements b6 {
     }
 
     public void setLoadProgress(float f10) {
-        this.f15008c = f10;
+        this.f15010c = f10;
         invalidate();
     }
 
@@ -70,14 +70,14 @@ public class v3 extends View implements b6 {
             setLoadProgress(f10);
             return;
         }
-        gVar.f54280m.f54288i = f10 * 100.0f;
+        gVar.f54279m.f54287i = f10 * 100.0f;
         gVar.h();
     }
 
     @Override
     public final void updateColors() {
         try {
-            this.f15007b.setColor(l6.w0(l6.Ci, this.f15009e));
+            this.f15009b.setColor(m6.w0(m6.Ci, this.f15011e));
             invalidate();
         } catch (Exception e10) {
             a8.g(e10, true);

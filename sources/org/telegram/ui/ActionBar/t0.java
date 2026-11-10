@@ -6,38 +6,38 @@ import android.animation.ValueAnimator;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import org.telegram.ui.Cells.t7;
-import org.telegram.ui.Components.n9;
-import org.telegram.ui.Components.we0;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.m9;
+import org.telegram.ui.Components.ve0;
+import org.telegram.ui.Components.wq;
 public final class t0 extends AnimatorListenerAdapter {
-    public final int f28506a;
-    public final float f28507b;
-    public final Object f28508c;
+    public final int f28511a;
+    public final float f28512b;
+    public final Object f28513c;
 
     public t0(Object obj, float f10, int i7) {
-        this.f28506a = i7;
-        this.f28508c = obj;
-        this.f28507b = f10;
+        this.f28511a = i7;
+        this.f28513c = obj;
+        this.f28512b = f10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        int i7 = this.f28506a;
-        float f10 = this.f28507b;
-        Object obj = this.f28508c;
+        int i7 = this.f28511a;
+        float f10 = this.f28512b;
+        Object obj = this.f28513c;
         switch (i7) {
             case 0:
                 w0 w0Var = (w0) obj;
                 w0Var.T = null;
-                w0Var.f28683a = f10;
+                w0Var.f28651a = f10;
                 w0Var.invalidate();
                 return;
             case 1:
-                j3 j3Var = (j3) obj;
-                j3Var.f27606i = f10;
-                k3 k3Var = j3Var.f27601b;
-                if (k3Var != null) {
-                    k3Var.invalidate();
+                k3 k3Var = (k3) obj;
+                k3Var.f27644i = f10;
+                l3 l3Var = k3Var.f27639b;
+                if (l3Var != null) {
+                    l3Var.invalidate();
                     return;
                 }
                 return;
@@ -49,61 +49,61 @@ public final class t0 extends AnimatorListenerAdapter {
             case 3:
                 ColorMatrix colorMatrix = new ColorMatrix();
                 t7 t7Var = (t7) obj;
-                t7Var.f30540w = f10;
+                t7Var.f30551w = f10;
                 colorMatrix.setSaturation(f10);
-                if (l6.I.q()) {
-                    org.telegram.messenger.g0.h(colorMatrix, (1.0f - t7Var.f30540w) * (-0.3f));
+                if (m6.I.q()) {
+                    org.telegram.messenger.g0.h(colorMatrix, (1.0f - t7Var.f30551w) * (-0.3f));
                 }
                 t7Var.d.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
                 return;
             case 4:
-                n9 n9Var = (n9) obj;
-                n9Var.f36297g = f10;
-                n9Var.invalidateSelf();
+                m9 m9Var = (m9) obj;
+                m9Var.f35897g = f10;
+                m9Var.invalidateSelf();
                 return;
             case 5:
-                we0 we0Var = (we0) obj;
-                we0Var.H.e();
-                we0Var.f40040b = f10;
+                ve0 ve0Var = (ve0) obj;
+                ve0Var.H.e();
+                ve0Var.f38991b = f10;
                 if (f10 <= 0.0f) {
-                    we0Var.G = -1;
+                    ve0Var.G = -1;
                 }
-                we0Var.c(true);
-                we0Var.f40043f = false;
-                if (we0Var.P != null && Math.abs(f10 - 1.0f) < 0.01f) {
-                    we0Var.P.run();
+                ve0Var.c(true);
+                ve0Var.f38994f = false;
+                if (ve0Var.P != null && Math.abs(f10 - 1.0f) < 0.01f) {
+                    ve0Var.P.run();
                     return;
                 }
                 return;
             case 6:
-                org.telegram.ui.Wallet.n3 n3Var = (org.telegram.ui.Wallet.n3) obj;
-                org.telegram.ui.Wallet.f6 f6Var = n3Var.f42866r;
-                f6Var.getClass();
-                f6Var.setLayerType(0, null);
+                org.telegram.ui.Wallet.p3 p3Var = (org.telegram.ui.Wallet.p3) obj;
+                org.telegram.ui.Wallet.i6 i6Var = p3Var.f42971r;
+                i6Var.getClass();
+                i6Var.setLayerType(0, null);
                 if (f10 == 0.0f) {
-                    n3Var.b();
+                    p3Var.b();
                     return;
-                } else if (!n3Var.R) {
-                    ValueAnimator valueAnimator = n3Var.P;
+                } else if (!p3Var.R) {
+                    ValueAnimator valueAnimator = p3Var.P;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
                     }
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(n3Var.Q, 1.0f);
-                    n3Var.P = ofFloat;
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(p3Var.Q, 1.0f);
+                    p3Var.P = ofFloat;
                     ofFloat.setDuration(320L);
-                    n3Var.P.setInterpolator(xq.f40459g);
-                    n3Var.P.addUpdateListener(new org.telegram.ui.Wallet.k3(n3Var, 1));
-                    n3Var.P.start();
+                    p3Var.P.setInterpolator(wq.f40047g);
+                    p3Var.P.addUpdateListener(new org.telegram.ui.Wallet.i3(p3Var, 0));
+                    p3Var.P.start();
                     return;
                 } else {
                     return;
                 }
             default:
-                org.telegram.ui.Wallet.w5 w5Var = (org.telegram.ui.Wallet.w5) obj;
-                if (w5Var.m0 == animator) {
-                    w5Var.m0 = null;
-                    w5Var.M0(f10);
-                    w5Var.f43266p0.o(false);
+                org.telegram.ui.Wallet.z5 z5Var = (org.telegram.ui.Wallet.z5) obj;
+                if (z5Var.m0 == animator) {
+                    z5Var.m0 = null;
+                    z5Var.N0(f10);
+                    z5Var.f43461p0.o(false);
                     return;
                 }
                 return;
@@ -112,11 +112,11 @@ public final class t0 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f28506a) {
+        switch (this.f28511a) {
             case 5:
-                we0 we0Var = (we0) this.f28508c;
-                we0Var.f40043f = true;
-                we0Var.f40041c = this.f28507b;
+                ve0 ve0Var = (ve0) this.f28513c;
+                ve0Var.f38994f = true;
+                ve0Var.f38992c = this.f28512b;
                 return;
             default:
                 super.onAnimationStart(animator);

@@ -9,20 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 import w7.s;
 public final class l {
-    public final b3.p f20762a;
-    public final b0 f20763b;
-    public final int[] f20764c;
+    public final b3.p f20767a;
+    public final b0 f20768b;
+    public final int[] f20769c;
     public final int d;
-    public final j2.h f20765e;
-    public final long f20766f;
-    public final int f20767g;
+    public final j2.h f20770e;
+    public final long f20771f;
+    public final int f20772g;
     public final o h;
-    public final j[] f20768i;
-    public u f20769j;
-    public p2.c f20770k;
-    public int f20771l;
-    public x2.b f20772m;
-    public boolean f20773n;
+    public final j[] f20773i;
+    public u f20774j;
+    public p2.c f20775k;
+    public int f20776l;
+    public x2.b f20777m;
+    public boolean f20778n;
 
     public l(w0 w0Var, b3.p pVar, p2.c cVar, b0 b0Var, int i7, int[] iArr, u uVar, int i10, j2.h hVar, long j3, int i11, boolean z9, ArrayList arrayList, o oVar) {
         int i12;
@@ -32,32 +32,32 @@ public final class l {
         f3.o hVar2;
         y2.e eVar;
         ?? obj = new Object();
-        obj.f20762a = pVar;
-        obj.f20770k = cVar;
-        obj.f20763b = b0Var;
-        obj.f20764c = iArr;
-        obj.f20769j = uVar;
+        obj.f20767a = pVar;
+        obj.f20775k = cVar;
+        obj.f20768b = b0Var;
+        obj.f20769c = iArr;
+        obj.f20774j = uVar;
         obj.d = i10;
-        obj.f20765e = hVar;
-        obj.f20771l = i7;
-        obj.f20766f = j3;
-        obj.f20767g = i11;
+        obj.f20770e = hVar;
+        obj.f20776l = i7;
+        obj.f20771f = j3;
+        obj.f20772g = i11;
         o oVar2 = oVar;
         obj.h = oVar2;
         long d = cVar.d(i7);
         ArrayList a10 = obj.a();
-        obj.f20768i = new j[uVar.length()];
+        obj.f20773i = new j[uVar.length()];
         int i13 = 0;
         int i14 = 0;
         l lVar = obj;
-        while (i14 < lVar.f20768i.length) {
+        while (i14 < lVar.f20773i.length) {
             p2.m mVar2 = (p2.m) a10.get(uVar.i(i14));
-            p2.b s5 = b0Var.s(mVar2.f53152b);
-            j[] jVarArr2 = lVar.f20768i;
-            p2.b bVar = s5 == null ? (p2.b) mVar2.f53152b.get(i13) : s5;
-            e2.u uVar3 = mVar2.f53151a;
+            p2.b s5 = b0Var.s(mVar2.f53151b);
+            j[] jVarArr2 = lVar.f20773i;
+            p2.b bVar = s5 == null ? (p2.b) mVar2.f53151b.get(i13) : s5;
+            e2.u uVar3 = mVar2.f53150a;
             w0Var.getClass();
-            String str = uVar3.f10614r;
+            String str = uVar3.f10619r;
             if (s0.l(str)) {
                 if (!w0Var.f3392a) {
                     eVar = null;
@@ -125,20 +125,20 @@ public final class l {
     }
 
     public final ArrayList a() {
-        List list = this.f20770k.b(this.f20771l).f53140c;
+        List list = this.f20775k.b(this.f20776l).f53139c;
         ArrayList arrayList = new ArrayList();
-        for (int i7 : this.f20764c) {
-            arrayList.addAll(((p2.a) list.get(i7)).f53104c);
+        for (int i7 : this.f20769c) {
+            arrayList.addAll(((p2.a) list.get(i7)).f53103c);
         }
         return arrayList;
     }
 
     public final j b(int i7) {
-        j[] jVarArr = this.f20768i;
+        j[] jVarArr = this.f20773i;
         j jVar = jVarArr[i7];
-        p2.b s5 = this.f20763b.s(jVar.f20758b.f53152b);
-        if (s5 != null && !s5.equals(jVar.f20759c)) {
-            j jVar2 = new j(jVar.f20760e, jVar.f20758b, s5, jVar.f20757a, jVar.f20761f, jVar.d);
+        p2.b s5 = this.f20768b.s(jVar.f20763b.f53151b);
+        if (s5 != null && !s5.equals(jVar.f20764c)) {
+            j jVar2 = new j(jVar.f20765e, jVar.f20763b, s5, jVar.f20762a, jVar.f20766f, jVar.d);
             jVarArr[i7] = jVar2;
             return jVar2;
         }

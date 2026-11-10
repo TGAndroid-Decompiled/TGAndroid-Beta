@@ -23,11 +23,11 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.ActionBar.s6;
-import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.xa;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.Components.gc;
+import org.telegram.ui.Components.wa;
 import org.telegram.ui.Wallet.d2;
 public final class v0 implements v10 {
     public final int f1655a = 1;
@@ -96,7 +96,7 @@ public final class v0 implements v10 {
                 TL_account.reportProfilePhoto reportprofilephoto = new TL_account.reportProfilePhoto();
                 reportprofilephoto.peer = qp.s1(i15).j1(j3);
                 TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-                tL_inputPhoto.f26975id = photo.f26980id;
+                tL_inputPhoto.f26979id = photo.f26984id;
                 tL_inputPhoto.file_reference = photo.file_reference;
                 tL_inputPhoto.access_hash = photo.access_hash;
                 reportprofilephoto.photo_id = tL_inputPhoto;
@@ -115,7 +115,7 @@ public final class v0 implements v10 {
                     reportprofilephoto.reason = new TLRPC.TL_inputReportReasonPersonalDetails();
                 }
                 ConnectionsManager.getInstance(i15).sendRequest(reportprofilephoto, null);
-                new hc(xa.a(context), bVar).E(bVar).j();
+                new gc(wa.a(context), bVar).E(bVar).j();
                 return;
             case 2:
                 d2 d2Var = (d2) obj5;
@@ -130,7 +130,7 @@ public final class v0 implements v10 {
                     if (optBoolean) {
                         TL_wallet.tonConnectCloseSession tonconnectclosesession = new TL_wallet.tonConnectCloseSession();
                         tonconnectclosesession.session_id = j10;
-                        d2Var.f42349f.sendRequestTyped(tonconnectclosesession, new d3.b(1), new org.telegram.ui.Wallet.n1(d2Var, c20Var, j10, i16, 1));
+                        d2Var.f42290f.sendRequestTyped(tonconnectclosesession, new d3.b(1), new org.telegram.ui.Wallet.n1(d2Var, c20Var, j10, i16, 1));
                         return;
                     }
                     d2Var.e(i16, j10, c20Var);
@@ -140,14 +140,14 @@ public final class v0 implements v10 {
                 return;
             default:
                 Context context2 = (Context) obj5;
-                g6 g6Var = (g6) obj4;
+                h6 h6Var = (h6) obj4;
                 Runnable runnable = (Runnable) obj3;
                 s9 s9Var = (s9) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
                 if (s9Var != null) {
                     int i17 = this.f1656b;
                     p10.i(i17);
-                    long o4 = m5.o(s9Var.f25437e.peer);
+                    long o4 = m5.o(s9Var.f25441e.peer);
                     long j11 = this.f1657c;
                     if (j11 != o4 && j11 != 0 && o4 != 0) {
                         bi.d0 d0Var = new bi.d0(context2, i17, s9Var, j11, runnable);
@@ -168,22 +168,22 @@ public final class v0 implements v10 {
                         TextView textView = new TextView(context2);
                         qs.i(textView);
                         textView.setText(id.M0(2131750305, null));
-                        int i18 = l6.f27973j5;
-                        k5.n(textView, i18, g6Var, 1, 20.0f);
-                        if (id.f23157a0) {
+                        int i18 = m6.f27998j5;
+                        k5.n(textView, i18, h6Var, 1, 20.0f);
+                        if (id.f23161a0) {
                             i12 = 5;
                         } else {
                             i12 = 3;
                         }
                         textView.setGravity(i12);
-                        if (id.f23157a0) {
+                        if (id.f23161a0) {
                             i13 = 5;
                         } else {
                             i13 = 3;
                         }
                         f10.addView(textView, ha.d(-2, -2.0f, i13 | 48, 24.0f, 19.0f, 24.0f, 2.0f));
                         TextView textView2 = new TextView(context2);
-                        s6.U(textView2, i18, g6Var);
+                        t6.U(textView2, i18, h6Var);
                         textView2.setTextSize(1, 16.0f);
                         String t6 = m5.t(o4);
                         String t10 = m5.t(j11);
@@ -192,19 +192,19 @@ public final class v0 implements v10 {
                         objArr[1] = t10;
                         k5.r(null, null, 2131750304, objArr, textView2);
                         f10.addView(textView2, ha.t(-1, -2, 48, 24, 4, 24, 4));
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(i11, context2, g6Var);
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(i11, context2, h6Var);
                         alertDialog$Builder.o(f10);
                         alertDialog$Builder.k(id.M0(2131751771, null), new u5.e(d0Var, 13));
                         alertDialog$Builder.h(id.M0(2131752589, null), null);
-                        alertDialog$Builder.f27296a.show();
+                        alertDialog$Builder.f27300a.show();
                         return;
-                    } else if (s9Var.f25437e.bid_date > 0 && !s9Var.f()) {
-                        zh.l lVar = new zh.l(context2, g6Var, null, s9Var);
-                        lVar.f60435f2 = runnable;
+                    } else if (s9Var.f25441e.bid_date > 0 && !s9Var.f()) {
+                        zh.l lVar = new zh.l(context2, h6Var, null, s9Var);
+                        lVar.f60440i2 = runnable;
                         lVar.show();
                         return;
                     } else {
-                        new zh.u(context2, g6Var, j11, s9Var.d, runnable).show();
+                        new zh.u(context2, h6Var, j11, s9Var.d, runnable).show();
                         return;
                     }
                 }
@@ -220,9 +220,9 @@ public final class v0 implements v10 {
         this.f1657c = j3;
     }
 
-    public v0(Context context, g6 g6Var, int i7, long j3, Runnable runnable) {
+    public v0(Context context, h6 h6Var, int i7, long j3, Runnable runnable) {
         this.d = context;
-        this.f1658e = g6Var;
+        this.f1658e = h6Var;
         this.f1656b = i7;
         this.f1657c = j3;
         this.f1659f = runnable;

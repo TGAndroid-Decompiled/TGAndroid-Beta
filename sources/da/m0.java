@@ -2,44 +2,44 @@ package da;
 
 import java.util.List;
 public final class m0 {
-    public String f8417a;
-    public String f8418b;
-    public String f8419c;
+    public String f8422a;
+    public String f8423b;
+    public String f8424c;
     public long d;
-    public Long f8420e;
-    public boolean f8421f;
-    public b2 f8422g;
+    public Long f8425e;
+    public boolean f8426f;
+    public b2 f8427g;
     public s2 h;
-    public r2 f8423i;
-    public c2 f8424j;
-    public List f8425k;
-    public int f8426l;
-    public byte f8427m;
+    public r2 f8428i;
+    public c2 f8429j;
+    public List f8430k;
+    public int f8431l;
+    public byte f8432m;
 
     public final n0 a() {
         String str;
         String str2;
         b2 b2Var;
-        if (this.f8427m == 7 && (str = this.f8417a) != null && (str2 = this.f8418b) != null && (b2Var = this.f8422g) != null) {
-            return new n0(str, str2, this.f8419c, this.d, this.f8420e, this.f8421f, b2Var, this.h, this.f8423i, this.f8424j, this.f8425k, this.f8426l);
+        if (this.f8432m == 7 && (str = this.f8422a) != null && (str2 = this.f8423b) != null && (b2Var = this.f8427g) != null) {
+            return new n0(str, str2, this.f8424c, this.d, this.f8425e, this.f8426f, b2Var, this.h, this.f8428i, this.f8429j, this.f8430k, this.f8431l);
         }
         StringBuilder sb2 = new StringBuilder();
-        if (this.f8417a == null) {
+        if (this.f8422a == null) {
             sb2.append(" generator");
         }
-        if (this.f8418b == null) {
+        if (this.f8423b == null) {
             sb2.append(" identifier");
         }
-        if ((this.f8427m & 1) == 0) {
+        if ((this.f8432m & 1) == 0) {
             sb2.append(" startedAt");
         }
-        if ((this.f8427m & 2) == 0) {
+        if ((this.f8432m & 2) == 0) {
             sb2.append(" crashed");
         }
-        if (this.f8422g == null) {
+        if (this.f8427g == null) {
             sb2.append(" app");
         }
-        if ((this.f8427m & 4) == 0) {
+        if ((this.f8432m & 4) == 0) {
             sb2.append(" generatorType");
         }
         throw new IllegalStateException(a8.p0.q("Missing required properties:", sb2));

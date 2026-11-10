@@ -19,8 +19,8 @@ public final class b implements m {
     public Inflater d;
 
     static {
-        g0 g0Var = i0.f14329b;
-        f17217e = new c4.a(-9223372036854775807L, -9223372036854775807L, t1.f14397e);
+        g0 g0Var = i0.f14331b;
+        f17217e = new c4.a(-9223372036854775807L, -9223372036854775807L, t1.f14399e);
     }
 
     public b(List list) {
@@ -29,7 +29,7 @@ public final class b implements m {
         a aVar = new a();
         this.f17220c = aVar;
         String trim = new String((byte[]) list.get(0), StandardCharsets.UTF_8).trim();
-        String str = m0.f14112a;
+        String str = m0.f14114a;
         for (String str2 : trim.split("\\r?\\n", -1)) {
             if (str2.startsWith("palette: ")) {
                 String[] split2 = str2.substring(9).split(",", -1);

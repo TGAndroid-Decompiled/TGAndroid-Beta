@@ -1,17 +1,17 @@
 package h9;
 public final class p extends a8.l {
-    public final int f14362f;
+    public final int f14364f;
     public final s h;
 
     public p(s sVar, int i7) {
         super(sVar);
-        this.f14362f = i7;
+        this.f14364f = i7;
         this.h = sVar;
     }
 
     @Override
     public final Object a(int i7) {
-        switch (this.f14362f) {
+        switch (this.f14364f) {
             case 0:
                 return this.h.k()[i7];
             case 1:

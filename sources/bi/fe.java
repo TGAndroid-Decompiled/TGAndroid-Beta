@@ -7,27 +7,27 @@ import android.view.View;
 import android.view.WindowInsets;
 import java.util.ArrayList;
 public final class fe extends b1 {
-    public final ArrayList f3898b;
-    public final RuntimeShader f3899c;
+    public final ArrayList f3895b;
+    public final RuntimeShader f3896c;
     public RenderEffect d;
-    public int f3900e;
-    public int f3901f;
-    public int f3902g;
+    public int f3897e;
+    public int f3898f;
+    public int f3899g;
     public float h;
-    public final float[] f3903i;
-    public final float[] f3904j;
-    public final float[] f3905k;
-    public final float[] f3906l;
+    public final float[] f3900i;
+    public final float[] f3901j;
+    public final float[] f3902k;
+    public final float[] f3903l;
 
     public fe(View view) {
         super(view);
-        this.f3898b = new ArrayList();
-        this.f3903i = new float[7];
-        this.f3904j = new float[7];
-        this.f3905k = new float[7];
-        this.f3906l = new float[7];
+        this.f3895b = new ArrayList();
+        this.f3900i = new float[7];
+        this.f3901j = new float[7];
+        this.f3902k = new float[7];
+        this.f3903l = new float[7];
         RuntimeShader runtimeShader = new RuntimeShader(org.telegram.messenger.g0.y2(null, 2131624241));
-        this.f3899c = runtimeShader;
+        this.f3896c = runtimeShader;
         e1(true);
         this.d = RenderEffect.createRuntimeShaderEffect(runtimeShader, "img");
     }
@@ -39,18 +39,18 @@ public final class fe extends b1 {
         float f10;
         float radius;
         float f11;
-        View view = (View) this.f3500a;
-        if (!z9 && this.f3901f == view.getWidth() && this.f3902g == view.getHeight() && Math.abs(this.h - org.telegram.messenger.g0.f22562p) <= 0.01f) {
+        View view = (View) this.f3503a;
+        if (!z9 && this.f3898f == view.getWidth() && this.f3899g == view.getHeight() && Math.abs(this.h - org.telegram.messenger.g0.f22566p) <= 0.01f) {
             return;
         }
-        RuntimeShader runtimeShader = this.f3899c;
+        RuntimeShader runtimeShader = this.f3896c;
         int width = view.getWidth();
-        this.f3901f = width;
+        this.f3898f = width;
         int height = view.getHeight();
-        this.f3902g = height;
+        this.f3899g = height;
         runtimeShader.setFloatUniform("size", width, height);
-        RuntimeShader runtimeShader2 = this.f3899c;
-        float f12 = org.telegram.messenger.g0.f22562p;
+        RuntimeShader runtimeShader2 = this.f3896c;
+        float f12 = org.telegram.messenger.g0.f22566p;
         this.h = f12;
         runtimeShader2.setFloatUniform("density", f12);
         WindowInsets rootWindowInsets = view.getRootWindowInsets();
@@ -73,9 +73,9 @@ public final class fe extends b1 {
         if (rootWindowInsets != null) {
             roundedCorner4 = rootWindowInsets.getRoundedCorner(2);
         }
-        RuntimeShader runtimeShader3 = this.f3899c;
+        RuntimeShader runtimeShader3 = this.f3896c;
         float f13 = 0.0f;
-        if (roundedCorner4 != null && (view == view.getRootView() || org.telegram.messenger.g0.f22558n <= 0)) {
+        if (roundedCorner4 != null && (view == view.getRootView() || org.telegram.messenger.g0.f22562n <= 0)) {
             f10 = roundedCorner4.getRadius();
         } else {
             f10 = 0.0f;
@@ -85,7 +85,7 @@ public final class fe extends b1 {
         } else {
             radius = roundedCorner2.getRadius();
         }
-        if (roundedCorner3 != null && (view == view.getRootView() || org.telegram.messenger.g0.f22558n <= 0)) {
+        if (roundedCorner3 != null && (view == view.getRootView() || org.telegram.messenger.g0.f22562n <= 0)) {
             f11 = roundedCorner3.getRadius();
         } else {
             f11 = 0.0f;
@@ -106,24 +106,24 @@ public final class fe extends b1 {
         boolean z10;
         boolean z11;
         boolean z12;
-        View view = (View) this.f3500a;
-        ArrayList arrayList = this.f3898b;
+        View view = (View) this.f3503a;
+        ArrayList arrayList = this.f3895b;
         boolean z13 = false;
         if (!arrayList.isEmpty()) {
             boolean z14 = true;
-            if (this.f3900e != Math.min(7, arrayList.size())) {
+            if (this.f3897e != Math.min(7, arrayList.size())) {
                 z9 = true;
             } else {
                 z9 = false;
             }
-            this.f3900e = Math.min(7, arrayList.size());
+            this.f3897e = Math.min(7, arrayList.size());
             int i7 = 0;
             while (true) {
-                int i10 = this.f3900e;
-                fArr = this.f3906l;
-                fArr2 = this.f3905k;
-                fArr3 = this.f3904j;
-                fArr4 = this.f3903i;
+                int i10 = this.f3897e;
+                fArr = this.f3903l;
+                fArr2 = this.f3902k;
+                fArr3 = this.f3901j;
+                fArr4 = this.f3900i;
                 if (i7 >= i10) {
                     break;
                 }
@@ -134,9 +134,9 @@ public final class fe extends b1 {
                     z10 = true;
                 }
                 float f10 = eeVar.d;
-                float f11 = eeVar.f3838c;
-                float f12 = eeVar.f3837b;
-                float f13 = eeVar.f3836a;
+                float f11 = eeVar.f3835c;
+                float f12 = eeVar.f3834b;
+                float f13 = eeVar.f3833a;
                 fArr4[i7] = f10;
                 if (!z10 && Math.abs(fArr3[i7] - f13) <= 0.001f) {
                     z11 = false;
@@ -158,17 +158,17 @@ public final class fe extends b1 {
                 fArr[i7] = f11;
                 i7++;
             }
-            if (!z9 && this.f3901f == view.getWidth() && this.f3902g == view.getHeight() && Math.abs(this.h - org.telegram.messenger.g0.f22562p) <= 0.01f) {
+            if (!z9 && this.f3898f == view.getWidth() && this.f3899g == view.getHeight() && Math.abs(this.h - org.telegram.messenger.g0.f22566p) <= 0.01f) {
                 z14 = false;
             }
             if (z14) {
-                this.f3899c.setIntUniform("count", this.f3900e);
-                this.f3899c.setFloatUniform("t", fArr4);
-                this.f3899c.setFloatUniform("centerX", fArr3);
-                this.f3899c.setFloatUniform("centerY", fArr2);
-                this.f3899c.setFloatUniform("intensity", fArr);
+                this.f3896c.setIntUniform("count", this.f3897e);
+                this.f3896c.setFloatUniform("t", fArr4);
+                this.f3896c.setFloatUniform("centerX", fArr3);
+                this.f3896c.setFloatUniform("centerY", fArr2);
+                this.f3896c.setFloatUniform("intensity", fArr);
                 e1(false);
-                this.d = RenderEffect.createRuntimeShaderEffect(this.f3899c, "img");
+                this.d = RenderEffect.createRuntimeShaderEffect(this.f3896c, "img");
             }
             z13 = z14;
         }

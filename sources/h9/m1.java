@@ -7,23 +7,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 public final class m1 extends l implements a1 {
-    public final a1 f14350e;
-    public final g6.d0 f14351f;
+    public final a1 f14352e;
+    public final g6.d0 f14353f;
 
     public m1(a1 a1Var, g6.d0 d0Var) {
         a1Var.getClass();
-        this.f14350e = a1Var;
-        this.f14351f = d0Var;
+        this.f14352e = a1Var;
+        this.f14353f = d0Var;
     }
 
     @Override
     public final void clear() {
-        this.f14350e.clear();
+        this.f14352e.clear();
     }
 
     @Override
     public final Map d() {
-        return new i1(this.f14350e.b(), new r4(this, 18));
+        return new i1(this.f14352e.b(), new r4(this, 18));
     }
 
     @Override
@@ -33,17 +33,17 @@ public final class m1 extends l implements a1 {
 
     @Override
     public final Set f() {
-        return this.f14350e.keySet();
+        return this.f14352e.keySet();
     }
 
     @Override
     public final Iterator g() {
-        return new w0(this.f14350e.a().iterator(), new f1(this.f14351f, 0));
+        return new w0(this.f14352e.a().iterator(), new f1(this.f14353f, 0));
     }
 
     @Override
     public final Collection get(Object obj) {
-        return o.y((List) this.f14350e.get(obj), new q4.q(this.f14351f, obj, false, 26));
+        return o.y((List) this.f14352e.get(obj), new q4.q(this.f14353f, obj, false, 26));
     }
 
     @Override
@@ -53,6 +53,6 @@ public final class m1 extends l implements a1 {
 
     @Override
     public final int size() {
-        return this.f14350e.size();
+        return this.f14352e.size();
     }
 }

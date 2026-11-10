@@ -59,7 +59,7 @@ public class kb extends AbstractMap {
                 }
                 return;
             case 1:
-                c8.d dVar2 = ((jg) this.f515e).f5736c;
+                c8.d dVar2 = ((jg) this.f515e).f5741c;
                 if (this.f513b == dVar2) {
                     for (Collection collection2 : dVar2.values()) {
                         collection2.clear();
@@ -75,7 +75,7 @@ public class kb extends AbstractMap {
                 return;
             default:
                 h9.l1 l1Var = (h9.l1) this.f515e;
-                if (this.f513b == l1Var.f14345e) {
+                if (this.f513b == l1Var.f14347e) {
                     l1Var.clear();
                     return;
                 }
@@ -269,10 +269,10 @@ public class kb extends AbstractMap {
                 return bVar;
             case 1:
                 jg jgVar = (jg) this.f515e;
-                cd cdVar = jgVar.f5721a;
+                cd cdVar = jgVar.f5726a;
                 if (cdVar == null) {
-                    cd cdVar2 = new cd(jgVar, jgVar.f5736c);
-                    jgVar.f5721a = cdVar2;
+                    cd cdVar2 = new cd(jgVar, jgVar.f5741c);
+                    jgVar.f5726a = cdVar2;
                     return cdVar2;
                 }
                 return cdVar;
@@ -316,7 +316,7 @@ public class kb extends AbstractMap {
                 }
                 Collection h = l1Var.h();
                 h.addAll(collection3);
-                l1Var.f14346f -= collection3.size();
+                l1Var.f14348f -= collection3.size();
                 collection3.clear();
                 return h;
         }

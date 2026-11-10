@@ -13,7 +13,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.q31;
+import org.telegram.ui.r31;
 public final class d0 implements Runnable {
     public final int f3632a;
     public final int f3633b;
@@ -84,13 +84,13 @@ public final class d0 implements Runnable {
             case 1:
                 fi.d dVar = (fi.d) this.d;
                 int i12 = this.f3633b;
-                org.telegram.ui.ActionBar.v2[] v2VarArr = (org.telegram.ui.ActionBar.v2[]) this.f3636f;
+                org.telegram.ui.ActionBar.w2[] w2VarArr = (org.telegram.ui.ActionBar.w2[]) this.f3636f;
                 long j10 = this.f3634c;
                 dVar.setLoading(true);
                 TL_stars.TL_fulfillStarsSubscription tL_fulfillStarsSubscription = new TL_stars.TL_fulfillStarsSubscription();
-                tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) this.f3635e).f27186id;
+                tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) this.f3635e).f27190id;
                 tL_fulfillStarsSubscription.peer = new TLRPC.TL_inputPeerSelf();
-                ConnectionsManager.getInstance(i12).sendRequest(tL_fulfillStarsSubscription, new b0(i12, 1, j10, dVar, v2VarArr));
+                ConnectionsManager.getInstance(i12).sendRequest(tL_fulfillStarsSubscription, new b0(i12, 1, j10, dVar, w2VarArr));
                 return;
             case 2:
                 di.z6 z6Var = (di.z6) this.d;
@@ -98,15 +98,15 @@ public final class d0 implements Runnable {
                 int i13 = this.f3633b;
                 String str2 = (String) this.f3635e;
                 long j11 = this.f3634c;
-                int i14 = z6Var.f9992a;
-                HashSet hashSet = z6Var.f10009t;
+                int i14 = z6Var.f9997a;
+                HashSet hashSet = z6Var.f10014t;
                 if (tLObject2 != null) {
                     TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject2;
                     qp.s1(i14).Y3(tL_stories_stories.users, false);
                     qp.s1(i14).S3(tL_stories_stories.chats, false);
                     while (true) {
                         if (i7 < tL_stories_stories.stories.size()) {
-                            if (tL_stories_stories.stories.get(i7).f27195id == i13) {
+                            if (tL_stories_stories.stories.get(i7).f27199id == i13) {
                                 storyItem = tL_stories_stories.stories.get(i7);
                             } else {
                                 i7++;
@@ -133,7 +133,7 @@ public final class d0 implements Runnable {
                     }
                 }
                 hashSet.add(str2);
-                z6Var.f10001l.edit().putStringSet("unsupported_stories_checked", hashSet).apply();
+                z6Var.f10006l.edit().putStringSet("unsupported_stories_checked", hashSet).apply();
                 return;
             case 3:
                 org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) this.d;
@@ -142,15 +142,15 @@ public final class d0 implements Runnable {
                 TLRPC.Chat chat = (TLRPC.Chat) this.f3636f;
                 long j12 = this.f3634c;
                 if (user != null) {
-                    q1Var.f29910k7[i15].r(user);
-                    q1Var.f29897j7[i15].i0(user, q1Var.f29910k7[i15], null);
+                    q1Var.f29921k7[i15].r(user);
+                    q1Var.f29908j7[i15].i0(user, q1Var.f29921k7[i15], null);
                     return;
                 } else if (chat != null) {
-                    q1Var.f29910k7[i15].q(chat);
-                    q1Var.f29897j7[i15].i0(chat, q1Var.f29910k7[i15], null);
+                    q1Var.f29921k7[i15].q(chat);
+                    q1Var.f29908j7[i15].i0(chat, q1Var.f29921k7[i15], null);
                     return;
                 } else {
-                    q1Var.f29910k7[i15].k(j12, "", "", null);
+                    q1Var.f29921k7[i15].k(j12, "", "", null);
                     return;
                 }
             case 4:
@@ -159,16 +159,16 @@ public final class d0 implements Runnable {
                 int i16 = this.f3633b;
                 String str4 = (String) this.f3635e;
                 String str5 = (String) this.f3636f;
-                if (i1Var.f52868w) {
-                    org.telegram.utils.twidget.a1.f52767a.execute(new q31(i1Var, j13, 2));
+                if (i1Var.f52867w) {
+                    org.telegram.utils.twidget.a1.f52766a.execute(new r31(i1Var, j13, 2));
                     return;
                 }
                 i1Var.v = j13;
                 int i17 = i1Var.G;
                 if (i17 != i16 && i17 > 0) {
-                    org.telegram.utils.twidget.r0 r0Var = i1Var.f52851c;
-                    float f10 = i17 / i1Var.f52858l;
-                    org.telegram.utils.twidget.o0 o0Var = (org.telegram.utils.twidget.o0) r0Var.f52972e.get(Long.valueOf(j13));
+                    org.telegram.utils.twidget.r0 r0Var = i1Var.f52850c;
+                    float f10 = i17 / i1Var.f52857l;
+                    org.telegram.utils.twidget.o0 o0Var = (org.telegram.utils.twidget.o0) r0Var.f52971e.get(Long.valueOf(j13));
                     if (o0Var == null) {
                         h14 = null;
                     } else {
@@ -182,9 +182,9 @@ public final class d0 implements Runnable {
                     }
                 }
                 if (!i1Var.B.equals(str4)) {
-                    org.telegram.utils.twidget.r0 r0Var2 = i1Var.f52851c;
+                    org.telegram.utils.twidget.r0 r0Var2 = i1Var.f52850c;
                     byte[] bytes = i1Var.B.getBytes(StandardCharsets.UTF_8);
-                    org.telegram.utils.twidget.o0 o0Var2 = (org.telegram.utils.twidget.o0) r0Var2.f52972e.get(Long.valueOf(j13));
+                    org.telegram.utils.twidget.o0 o0Var2 = (org.telegram.utils.twidget.o0) r0Var2.f52971e.get(Long.valueOf(j13));
                     if (o0Var2 == null) {
                         h13 = null;
                     } else {
@@ -197,10 +197,10 @@ public final class d0 implements Runnable {
                         }
                     }
                 }
-                if (i1Var.f52857k != null && !i1Var.f52857k.equals(str5)) {
-                    org.telegram.utils.twidget.r0 r0Var3 = i1Var.f52851c;
-                    byte[] bytes2 = i1Var.f52857k.getBytes(StandardCharsets.UTF_8);
-                    org.telegram.utils.twidget.o0 o0Var3 = (org.telegram.utils.twidget.o0) r0Var3.f52972e.get(Long.valueOf(j13));
+                if (i1Var.f52856k != null && !i1Var.f52856k.equals(str5)) {
+                    org.telegram.utils.twidget.r0 r0Var3 = i1Var.f52850c;
+                    byte[] bytes2 = i1Var.f52856k.getBytes(StandardCharsets.UTF_8);
+                    org.telegram.utils.twidget.o0 o0Var3 = (org.telegram.utils.twidget.o0) r0Var3.f52971e.get(Long.valueOf(j13));
                     if (o0Var3 == null) {
                         h12 = null;
                     } else {
@@ -214,9 +214,9 @@ public final class d0 implements Runnable {
                     }
                 }
                 i1Var.C = true;
-                org.telegram.utils.twidget.r0 r0Var4 = i1Var.f52851c;
+                org.telegram.utils.twidget.r0 r0Var4 = i1Var.f52850c;
                 boolean z11 = i1Var.F;
-                org.telegram.utils.twidget.o0 o0Var4 = (org.telegram.utils.twidget.o0) r0Var4.f52972e.get(Long.valueOf(j13));
+                org.telegram.utils.twidget.o0 o0Var4 = (org.telegram.utils.twidget.o0) r0Var4.f52971e.get(Long.valueOf(j13));
                 if (o0Var4 != null) {
                     bVar = o0Var4.h1();
                 }

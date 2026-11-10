@@ -2,14 +2,14 @@ package org.webrtc;
 
 import android.view.Choreographer;
 public final class o implements Choreographer.FrameCallback {
-    public final RenderSynchronizer f53073a;
+    public final RenderSynchronizer f53072a;
 
     public o(RenderSynchronizer renderSynchronizer) {
-        this.f53073a = renderSynchronizer;
+        this.f53072a = renderSynchronizer;
     }
 
     @Override
     public final void doFrame(long j3) {
-        this.f53073a.onDisplayRefreshCycleBegin(j3);
+        RenderSynchronizer.a(this.f53072a, j3);
     }
 }

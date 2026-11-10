@@ -1,21 +1,21 @@
 package org.telegram.messenger;
 public final class kk implements Runnable {
-    public final int f23706a;
-    public final boolean[] f23707b;
+    public final int f23710a;
+    public final boolean[] f23711b;
 
     public kk(int i7, boolean[] zArr) {
-        this.f23706a = i7;
-        this.f23707b = zArr;
+        this.f23710a = i7;
+        this.f23711b = zArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f23706a) {
+        switch (this.f23710a) {
             case 0:
-                this.f23707b[0] = true;
+                this.f23711b[0] = true;
                 return;
             default:
-                this.f23707b[0] = true;
+                this.f23711b[0] = true;
                 return;
         }
     }

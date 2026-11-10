@@ -18,14 +18,14 @@ public final class f0 implements Runnable {
     public f0(FirebaseMessaging firebaseMessaging, long j3) {
         this.f926c = firebaseMessaging;
         this.f924a = j3;
-        PowerManager.WakeLock newWakeLock = ((PowerManager) firebaseMessaging.f7888b.getSystemService("power")).newWakeLock(1, "fiid-sync");
+        PowerManager.WakeLock newWakeLock = ((PowerManager) firebaseMessaging.f7893b.getSystemService("power")).newWakeLock(1, "fiid-sync");
         this.f925b = newWakeLock;
         newWakeLock.setReferenceCounted(false);
     }
 
     public final boolean a() {
         NetworkInfo networkInfo;
-        ConnectivityManager connectivityManager = (ConnectivityManager) this.f926c.f7888b.getSystemService("connectivity");
+        ConnectivityManager connectivityManager = (ConnectivityManager) this.f926c.f7893b.getSystemService("connectivity");
         if (connectivityManager != null) {
             networkInfo = connectivityManager.getActiveNetworkInfo();
         } else {
@@ -70,24 +70,24 @@ public final class f0 implements Runnable {
         PowerManager.WakeLock wakeLock = this.f925b;
         b0 k10 = b0.k();
         FirebaseMessaging firebaseMessaging = this.f926c;
-        if (k10.m(firebaseMessaging.f7888b)) {
+        if (k10.m(firebaseMessaging.f7893b)) {
             wakeLock.acquire();
         }
         try {
             try {
                 synchronized (firebaseMessaging) {
-                    firebaseMessaging.f7895k = true;
+                    firebaseMessaging.f7900k = true;
                 }
-                if (!firebaseMessaging.f7893i.e()) {
+                if (!firebaseMessaging.f7898i.e()) {
                     firebaseMessaging.f(false);
-                    if (b0.k().m(firebaseMessaging.f7888b)) {
+                    if (b0.k().m(firebaseMessaging.f7893b)) {
                         wakeLock.release();
                     }
-                } else if (b0.k().l(firebaseMessaging.f7888b) && !a()) {
+                } else if (b0.k().l(firebaseMessaging.f7893b) && !a()) {
                     e0 e0Var = new e0();
                     e0Var.f922c = this;
                     e0Var.a();
-                    if (b0.k().m(firebaseMessaging.f7888b)) {
+                    if (b0.k().m(firebaseMessaging.f7893b)) {
                         wakeLock.release();
                     }
                 } else {
@@ -96,19 +96,19 @@ public final class f0 implements Runnable {
                     } else {
                         firebaseMessaging.i(this.f924a);
                     }
-                    if (b0.k().m(firebaseMessaging.f7888b)) {
+                    if (b0.k().m(firebaseMessaging.f7893b)) {
                         wakeLock.release();
                     }
                 }
             } catch (IOException e10) {
                 Log.e("FirebaseMessaging", "Topic sync or token retrieval failed on hard failure exceptions: " + e10.getMessage() + ". Won't retry the operation.");
                 firebaseMessaging.f(false);
-                if (b0.k().m(firebaseMessaging.f7888b)) {
+                if (b0.k().m(firebaseMessaging.f7893b)) {
                     wakeLock.release();
                 }
             }
         } catch (Throwable th2) {
-            if (b0.k().m(firebaseMessaging.f7888b)) {
+            if (b0.k().m(firebaseMessaging.f7893b)) {
                 wakeLock.release();
             }
             throw th2;

@@ -10,26 +10,26 @@ import di.q9;
 import di.w5;
 import fi.va;
 import hi.b4;
-import org.telegram.ui.Components.ab;
-import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.gb;
-import org.telegram.ui.Components.q7;
-import org.telegram.ui.Components.ql;
+import org.telegram.ui.Components.bc;
+import org.telegram.ui.Components.fb;
+import org.telegram.ui.Components.p7;
+import org.telegram.ui.Components.pl;
 import org.telegram.ui.Components.v80;
-import org.telegram.ui.Components.zv0;
+import org.telegram.ui.Components.yv0;
+import org.telegram.ui.Components.za;
 import org.telegram.ui.web.x0;
-public final class v implements ab {
-    public final int f6401a;
-    public final Object f6402b;
+public final class v implements za {
+    public final int f6406a;
+    public final Object f6407b;
 
     public v(Object obj, int i7) {
-        this.f6401a = i7;
-        this.f6402b = obj;
+        this.f6406a = i7;
+        this.f6407b = obj;
     }
 
     @Override
     public final boolean a() {
-        switch (this.f6401a) {
+        switch (this.f6406a) {
             case 0:
                 return true;
             case 1:
@@ -58,13 +58,13 @@ public final class v implements ab {
     }
 
     @Override
-    public final void b(cc ccVar) {
+    public final void b(bc bcVar) {
         c4 c4Var;
-        switch (this.f6401a) {
+        switch (this.f6406a) {
             case 0:
                 return;
             case 1:
-                if (ccVar.f32620a == 2 && (c4Var = ((j3) this.f6402b).f9161y.f9253z1) != null) {
+                if (bcVar.f32196a == 2 && (c4Var = ((j3) this.f6407b).f9166y.f9258z1) != null) {
                     q9 q9Var = ((h9) c4Var).d;
                     q9Var.X0 = true;
                     q9Var.V();
@@ -82,35 +82,35 @@ public final class v implements ab {
             case 10:
                 return;
             default:
-                gb gbVar = ccVar.f32623e;
-                zh.h0 h0Var = (zh.h0) this.f6402b;
-                fh.g c10 = h0Var.l1.c(gbVar, null, true);
+                fb fbVar = bcVar.f32199e;
+                zh.h0 h0Var = (zh.h0) this.f6407b;
+                fh.g c10 = h0Var.f60362o1.c(fbVar, null, true);
                 gh.e eVar = new gh.e(h0Var.I0);
-                eVar.f13971e = new g2.c(9);
+                eVar.f13973e = new g2.c(9);
                 float N = org.telegram.messenger.g0.N(0.5f);
                 float N2 = org.telegram.messenger.g0.N(0.5f);
-                eVar.f13972f = N;
+                eVar.f13974f = N;
                 eVar.h = N2;
                 c10.p(eVar);
                 c10.r(org.telegram.messenger.g0.L(16.0f));
-                gbVar.setCustomBackground(c10);
+                fbVar.setCustomBackground(c10);
                 return;
         }
     }
 
     @Override
     public final void c(float f10) {
-        int i7 = this.f6401a;
+        int i7 = this.f6406a;
     }
 
     @Override
-    public final void d(cc ccVar) {
+    public final void d(bc bcVar) {
         c4 c4Var;
-        switch (this.f6401a) {
+        switch (this.f6406a) {
             case 0:
                 return;
             case 1:
-                if (ccVar.f32620a == 2 && (c4Var = ((j3) this.f6402b).f9161y.f9253z1) != null) {
+                if (bcVar.f32196a == 2 && (c4Var = ((j3) this.f6407b).f9166y.f9258z1) != null) {
                     q9 q9Var = ((h9) c4Var).d;
                     q9Var.X0 = false;
                     q9Var.V();
@@ -133,7 +133,7 @@ public final class v implements ab {
 
     @Override
     public final boolean e() {
-        switch (this.f6401a) {
+        switch (this.f6406a) {
             case 0:
                 return true;
             case 1:
@@ -165,46 +165,46 @@ public final class v implements ab {
     public final int f(int i7) {
         int editTextHeight;
         int L;
-        switch (this.f6401a) {
+        switch (this.f6406a) {
             case 0:
-                return (int) ((b0) ((x5) this.f6402b).f5025c).f6199u;
+                return (int) ((b0) ((x5) this.f6407b).f5030c).f6204u;
             case 1:
-                if (((j3) this.f6402b).f9161y.f9182g2) {
+                if (((j3) this.f6407b).f9166y.f9187g2) {
                     return 0;
                 }
                 return org.telegram.messenger.g0.L(64.0f);
             case 2:
-                return ((l5) this.f6402b).f9329r.getPaddingBottom();
+                return ((l5) this.f6407b).f9334r.getPaddingBottom();
             case 3:
                 return 0;
             case 4:
-                editTextHeight = ((va) this.f6402b).f12944c1.getEditTextHeight();
+                editTextHeight = ((va) this.f6407b).f12946c1.getEditTextHeight();
                 L = org.telegram.messenger.g0.L(12.0f);
                 break;
             case 5:
-                return ((q7) this.f6402b).f37210e.f32154u1.getHeight();
+                return ((p7) this.f6407b).f36809e.f31766x1.getHeight();
             case 6:
-                ab abVar = (ab) this.f6402b;
-                if (abVar == null) {
+                za zaVar = (za) this.f6407b;
+                if (zaVar == null) {
                     return 0;
                 }
-                return abVar.f(i7);
+                return zaVar.f(i7);
             case 7:
                 editTextHeight = org.telegram.messenger.g0.L(126.0f);
-                L = ((ql) this.f6402b).f37409c.f39071b.Q();
+                L = ((pl) this.f6407b).f37008c.f38656b.Q();
                 break;
             case 8:
-                editTextHeight = v80.Z((v80) this.f6402b).d;
+                editTextHeight = v80.Z((v80) this.f6407b).d;
                 L = org.telegram.messenger.g0.L(72.0f);
                 break;
             case 9:
-                FrameLayout frameLayout = ((zv0) this.f6402b).f41164s1;
+                FrameLayout frameLayout = ((yv0) this.f6407b).f40759v1;
                 if (frameLayout != null) {
                     return frameLayout.getHeight();
                 }
                 return 0;
             case 10:
-                x0 x0Var = (x0) this.f6402b;
+                x0 x0Var = (x0) this.f6407b;
                 if (x0Var.getParent() instanceof b4) {
                     b4 b4Var = (b4) x0Var.getParent();
                     return (int) ((b4Var.getSwipeOffsetY() + b4Var.getOffsetY()) - b4Var.getTopActionBarOffsetY());
@@ -218,7 +218,7 @@ public final class v implements ab {
 
     @Override
     public final boolean g(int i7) {
-        switch (this.f6401a) {
+        switch (this.f6406a) {
             case 0:
                 return false;
             case 1:
@@ -235,8 +235,8 @@ public final class v implements ab {
             case 5:
                 return false;
             case 6:
-                ab abVar = (ab) this.f6402b;
-                if (abVar != null && abVar.g(i7)) {
+                za zaVar = (za) this.f6407b;
+                if (zaVar != null && zaVar.g(i7)) {
                     return true;
                 }
                 return false;
@@ -255,7 +255,7 @@ public final class v implements ab {
 
     @Override
     public final int h(int i7) {
-        switch (this.f6401a) {
+        switch (this.f6406a) {
             case 0:
                 return 0;
             case 1:
@@ -263,17 +263,17 @@ public final class v implements ab {
             case 2:
                 return 0;
             case 3:
-                return (int) (((w5) this.f6402b).f9897a + org.telegram.messenger.g0.L(58.0f));
+                return (int) (((w5) this.f6407b).f9902a + org.telegram.messenger.g0.L(58.0f));
             case 4:
                 return 0;
             case 5:
                 return 0;
             case 6:
-                ab abVar = (ab) this.f6402b;
-                if (abVar == null) {
-                    return org.telegram.messenger.g0.f22557m;
+                za zaVar = (za) this.f6407b;
+                if (zaVar == null) {
+                    return org.telegram.messenger.g0.f22561m;
                 }
-                return abVar.h(i7);
+                return zaVar.h(i7);
             case 7:
                 return 0;
             case 8:
@@ -283,53 +283,53 @@ public final class v implements ab {
             case 10:
                 return 0;
             default:
-                return org.telegram.messenger.g0.f22557m;
+                return org.telegram.messenger.g0.f22561m;
         }
     }
 
-    private final void A(cc ccVar) {
+    private final void A(bc bcVar) {
     }
 
-    private final void B(cc ccVar) {
+    private final void B(bc bcVar) {
     }
 
-    private final void C(cc ccVar) {
+    private final void C(bc bcVar) {
     }
 
-    private final void D(cc ccVar) {
+    private final void D(bc bcVar) {
     }
 
-    private final void E(cc ccVar) {
+    private final void E(bc bcVar) {
     }
 
-    private final void F(cc ccVar) {
+    private final void F(bc bcVar) {
     }
 
-    private final void G(cc ccVar) {
+    private final void G(bc bcVar) {
     }
 
-    private final void H(cc ccVar) {
+    private final void H(bc bcVar) {
     }
 
-    private final void I(cc ccVar) {
+    private final void I(bc bcVar) {
     }
 
-    private final void J(cc ccVar) {
+    private final void J(bc bcVar) {
     }
 
-    private final void K(cc ccVar) {
+    private final void K(bc bcVar) {
     }
 
-    private final void L(cc ccVar) {
+    private final void L(bc bcVar) {
     }
 
-    private final void M(cc ccVar) {
+    private final void M(bc bcVar) {
     }
 
-    private final void N(cc ccVar) {
+    private final void N(bc bcVar) {
     }
 
-    private final void O(cc ccVar) {
+    private final void O(bc bcVar) {
     }
 
     private final void i(float f10) {
@@ -368,21 +368,21 @@ public final class v implements ab {
     private final void t(float f10) {
     }
 
-    private final void u(cc ccVar) {
+    private final void u(bc bcVar) {
     }
 
-    private final void v(cc ccVar) {
+    private final void v(bc bcVar) {
     }
 
-    private final void w(cc ccVar) {
+    private final void w(bc bcVar) {
     }
 
-    private final void x(cc ccVar) {
+    private final void x(bc bcVar) {
     }
 
-    private final void y(cc ccVar) {
+    private final void y(bc bcVar) {
     }
 
-    private final void z(cc ccVar) {
+    private final void z(bc bcVar) {
     }
 }

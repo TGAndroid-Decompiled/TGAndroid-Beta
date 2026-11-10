@@ -2,9 +2,9 @@ package h2;
 
 import a8.ia;
 public final class y {
-    public static final y f14165c = new y(-1, -1);
-    public final int f14166a;
-    public final int f14167b;
+    public static final y f14167c = new y(-1, -1);
+    public final int f14168a;
+    public final int f14169b;
 
     static {
         new y(0, 0);
@@ -20,8 +20,8 @@ public final class y {
             z9 = true;
         }
         ia.f(z9);
-        this.f14166a = i7;
-        this.f14167b = i10;
+        this.f14168a = i7;
+        this.f14169b = i10;
     }
 
     public final boolean equals(Object obj) {
@@ -33,7 +33,7 @@ public final class y {
         }
         if (obj instanceof y) {
             y yVar = (y) obj;
-            if (this.f14166a == yVar.f14166a && this.f14167b == yVar.f14167b) {
+            if (this.f14168a == yVar.f14168a && this.f14169b == yVar.f14169b) {
                 return true;
             }
         }
@@ -41,11 +41,11 @@ public final class y {
     }
 
     public final int hashCode() {
-        int i7 = this.f14166a;
-        return ((i7 >>> 16) | (i7 << 16)) ^ this.f14167b;
+        int i7 = this.f14168a;
+        return ((i7 >>> 16) | (i7 << 16)) ^ this.f14169b;
     }
 
     public final String toString() {
-        return this.f14166a + "x" + this.f14167b;
+        return this.f14168a + "x" + this.f14169b;
     }
 }

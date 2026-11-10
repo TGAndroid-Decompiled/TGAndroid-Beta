@@ -5,29 +5,29 @@ import java.io.EOFException;
 import java.io.InterruptedIOException;
 import java.util.Arrays;
 public final class l implements p {
-    public final e2.n f11056b;
-    public final long f11057c;
+    public final e2.n f11061b;
+    public final long f11062c;
     public long d;
-    public int f11059f;
+    public int f11064f;
     public int h;
-    public byte[] f11058e = new byte[65536];
-    public final byte[] f11055a = new byte[4096];
+    public byte[] f11063e = new byte[65536];
+    public final byte[] f11060a = new byte[4096];
 
     static {
         m0.a("media3.extractor");
     }
 
     public l(e2.n nVar, long j3, long j10) {
-        this.f11056b = nVar;
+        this.f11061b = nVar;
         this.d = j3;
-        this.f11057c = j10;
+        this.f11062c = j10;
     }
 
     public final void a(int i7) {
-        int i10 = this.f11059f + i7;
-        byte[] bArr = this.f11058e;
+        int i10 = this.f11064f + i7;
+        byte[] bArr = this.f11063e;
         if (i10 > bArr.length) {
-            this.f11058e = Arrays.copyOf(this.f11058e, h2.m0.i(bArr.length * 2, 65536 + i10, i10 + 524288));
+            this.f11063e = Arrays.copyOf(this.f11063e, h2.m0.i(bArr.length * 2, 65536 + i10, i10 + 524288));
         }
     }
 
@@ -44,7 +44,7 @@ public final class l implements p {
             min = 0;
         } else {
             min = Math.min(i11, i10);
-            System.arraycopy(this.f11058e, 0, bArr, i7, min);
+            System.arraycopy(this.f11063e, 0, bArr, i7, min);
             e(min);
         }
         int i12 = min;
@@ -62,7 +62,7 @@ public final class l implements p {
 
     public final int d(byte[] bArr, int i7, int i10, int i11, boolean z9) {
         if (!Thread.interrupted()) {
-            int read = this.f11056b.read(bArr, i7 + i11, i10 - i11);
+            int read = this.f11061b.read(bArr, i7 + i11, i10 - i11);
             if (read == -1) {
                 if (i11 == 0 && z9) {
                     return -1;
@@ -78,20 +78,20 @@ public final class l implements p {
         byte[] bArr;
         int i10 = this.h - i7;
         this.h = i10;
-        this.f11059f = 0;
-        byte[] bArr2 = this.f11058e;
+        this.f11064f = 0;
+        byte[] bArr2 = this.f11063e;
         if (i10 < bArr2.length - 524288) {
             bArr = new byte[65536 + i10];
         } else {
             bArr = bArr2;
         }
         System.arraycopy(bArr2, i7, bArr, 0, i10);
-        this.f11058e = bArr;
+        this.f11063e = bArr;
     }
 
     @Override
     public final long getLength() {
-        return this.f11057c;
+        return this.f11062c;
     }
 
     @Override
@@ -105,11 +105,11 @@ public final class l implements p {
         int min;
         a(i10);
         int i11 = this.h;
-        int i12 = this.f11059f;
+        int i12 = this.f11064f;
         int i13 = i11 - i12;
         if (i13 == 0) {
             lVar = this;
-            min = lVar.d(this.f11058e, i12, i10, 0, true);
+            min = lVar.d(this.f11063e, i12, i10, 0, true);
             if (min == -1) {
                 return -1;
             }
@@ -118,8 +118,8 @@ public final class l implements p {
             lVar = this;
             min = Math.min(i10, i13);
         }
-        System.arraycopy(lVar.f11058e, lVar.f11059f, bArr, i7, min);
-        lVar.f11059f += min;
+        System.arraycopy(lVar.f11063e, lVar.f11064f, bArr, i7, min);
+        lVar.f11064f += min;
         return min;
     }
 
@@ -129,7 +129,7 @@ public final class l implements p {
         e(min);
         int i10 = min;
         while (i10 < i7 && i10 != -1) {
-            byte[] bArr = this.f11055a;
+            byte[] bArr = this.f11060a;
             i10 = d(bArr, -i10, Math.min(i7, bArr.length + i10), i10, z9);
         }
         if (i10 != -1) {
@@ -146,13 +146,13 @@ public final class l implements p {
         if (!v(i10, z9)) {
             return false;
         }
-        System.arraycopy(this.f11058e, this.f11059f - i10, bArr, i7, i10);
+        System.arraycopy(this.f11063e, this.f11064f - i10, bArr, i7, i10);
         return true;
     }
 
     @Override
     public final long l() {
-        return this.d + this.f11059f;
+        return this.d + this.f11064f;
     }
 
     @Override
@@ -162,7 +162,7 @@ public final class l implements p {
 
     @Override
     public final void q() {
-        this.f11059f = 0;
+        this.f11064f = 0;
     }
 
     @Override
@@ -172,7 +172,7 @@ public final class l implements p {
         int i12 = 0;
         if (i11 != 0) {
             int min = Math.min(i11, i10);
-            System.arraycopy(this.f11058e, 0, bArr, i7, min);
+            System.arraycopy(this.f11063e, 0, bArr, i7, min);
             e(min);
             i12 = min;
         }
@@ -204,7 +204,7 @@ public final class l implements p {
         int min = Math.min(this.h, i7);
         e(min);
         if (min == 0) {
-            byte[] bArr = this.f11055a;
+            byte[] bArr = this.f11060a;
             lVar = this;
             min = lVar.d(bArr, 0, Math.min(i7, bArr.length), 0, true);
         } else {
@@ -219,19 +219,19 @@ public final class l implements p {
     @Override
     public final boolean v(int i7, boolean z9) {
         a(i7);
-        int i10 = this.h - this.f11059f;
+        int i10 = this.h - this.f11064f;
         while (i10 < i7) {
             int i11 = i7;
             boolean z10 = z9;
-            i10 = d(this.f11058e, this.f11059f, i11, i10, z10);
+            i10 = d(this.f11063e, this.f11064f, i11, i10, z10);
             if (i10 == -1) {
                 return false;
             }
-            this.h = this.f11059f + i10;
+            this.h = this.f11064f + i10;
             i7 = i11;
             z9 = z10;
         }
-        this.f11059f += i7;
+        this.f11064f += i7;
         return true;
     }
 }

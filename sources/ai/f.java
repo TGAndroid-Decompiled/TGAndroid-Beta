@@ -17,7 +17,7 @@ public final class f {
 
     public f(int i7) {
         this.f1172a = i7;
-        String string = qp.s1(i7).f24774e7.getString("qrBackdrops", null);
+        String string = qp.s1(i7).f24778e7.getString("qrBackdrops", null);
         if (!TextUtils.isEmpty(string)) {
             try {
                 SerializedData serializedData = new SerializedData(Utilities.v(string));

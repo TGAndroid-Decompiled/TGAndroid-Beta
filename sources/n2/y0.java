@@ -2,11 +2,11 @@ package n2;
 
 import java.nio.ByteBuffer;
 public final class y0 extends f2.o {
-    public static final int f20347i = Float.floatToIntBits(Float.NaN);
+    public static final int f20352i = Float.floatToIntBits(Float.NaN);
 
     public static void m(int i7, ByteBuffer byteBuffer) {
         int floatToIntBits = Float.floatToIntBits((float) (i7 * 4.656612875245797E-10d));
-        if (floatToIntBits == f20347i) {
+        if (floatToIntBits == f20352i) {
             floatToIntBits = Float.floatToIntBits(0.0f);
         }
         byteBuffer.putInt(floatToIntBits);
@@ -18,7 +18,7 @@ public final class y0 extends f2.o {
         int position = byteBuffer.position();
         int limit = byteBuffer.limit();
         int i7 = limit - position;
-        int i10 = this.f10923b.f10919c;
+        int i10 = this.f10928b.f10924c;
         if (i10 != 2) {
             if (i10 != 1342177280) {
                 if (i10 != 1610612736) {
@@ -74,13 +74,13 @@ public final class y0 extends f2.o {
 
     @Override
     public final f2.k h(f2.k kVar) {
-        int i7 = kVar.f10919c;
+        int i7 = kVar.f10924c;
         if (!h2.m0.L(i7) && i7 != 2) {
             throw new f2.m(kVar);
         }
         if (i7 != 4) {
-            return new f2.k(kVar.f10917a, kVar.f10918b, 4);
+            return new f2.k(kVar.f10922a, kVar.f10923b, 4);
         }
-        return f2.k.f10916e;
+        return f2.k.f10921e;
     }
 }

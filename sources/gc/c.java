@@ -1,14 +1,14 @@
 package gc;
 public final class c {
-    public static final int[][] f13796c = {new int[]{21522, 0}, new int[]{20773, 1}, new int[]{24188, 2}, new int[]{23371, 3}, new int[]{17913, 4}, new int[]{16590, 5}, new int[]{20375, 6}, new int[]{19104, 7}, new int[]{30660, 8}, new int[]{29427, 9}, new int[]{32170, 10}, new int[]{30877, 11}, new int[]{26159, 12}, new int[]{25368, 13}, new int[]{27713, 14}, new int[]{26998, 15}, new int[]{5769, 16}, new int[]{5054, 17}, new int[]{7399, 18}, new int[]{6608, 19}, new int[]{1890, 20}, new int[]{597, 21}, new int[]{3340, 22}, new int[]{2107, 23}, new int[]{13663, 24}, new int[]{12392, 25}, new int[]{16177, 26}, new int[]{14854, 27}, new int[]{9396, 28}, new int[]{8579, 29}, new int[]{11994, 30}, new int[]{11245, 31}};
-    public final b f13797a;
-    public final byte f13798b;
+    public static final int[][] f13798c = {new int[]{21522, 0}, new int[]{20773, 1}, new int[]{24188, 2}, new int[]{23371, 3}, new int[]{17913, 4}, new int[]{16590, 5}, new int[]{20375, 6}, new int[]{19104, 7}, new int[]{30660, 8}, new int[]{29427, 9}, new int[]{32170, 10}, new int[]{30877, 11}, new int[]{26159, 12}, new int[]{25368, 13}, new int[]{27713, 14}, new int[]{26998, 15}, new int[]{5769, 16}, new int[]{5054, 17}, new int[]{7399, 18}, new int[]{6608, 19}, new int[]{1890, 20}, new int[]{597, 21}, new int[]{3340, 22}, new int[]{2107, 23}, new int[]{13663, 24}, new int[]{12392, 25}, new int[]{16177, 26}, new int[]{14854, 27}, new int[]{9396, 28}, new int[]{8579, 29}, new int[]{11994, 30}, new int[]{11245, 31}};
+    public final b f13799a;
+    public final byte f13800b;
 
     public c(int i7) {
         int i10 = (i7 >> 3) & 3;
         if (i10 >= 0 && i10 < 4) {
-            this.f13797a = b.f13793e[i10];
-            this.f13798b = (byte) (i7 & 7);
+            this.f13799a = b.f13795e[i10];
+            this.f13800b = (byte) (i7 & 7);
             return;
         }
         throw new IllegalArgumentException();
@@ -19,7 +19,7 @@ public final class c {
         int i11 = Integer.MAX_VALUE;
         int i12 = 0;
         for (int i13 = 0; i13 < 32; i13++) {
-            int[] iArr = f13796c[i13];
+            int[] iArr = f13798c[i13];
             int i14 = iArr[0];
             if (i14 != i7 && i14 != i10) {
                 int bitCount2 = Integer.bitCount(i7 ^ i14);
@@ -46,13 +46,13 @@ public final class c {
             return false;
         }
         c cVar = (c) obj;
-        if (this.f13797a != cVar.f13797a || this.f13798b != cVar.f13798b) {
+        if (this.f13799a != cVar.f13799a || this.f13800b != cVar.f13800b) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return (this.f13797a.ordinal() << 3) | this.f13798b;
+        return (this.f13799a.ordinal() << 3) | this.f13800b;
     }
 }

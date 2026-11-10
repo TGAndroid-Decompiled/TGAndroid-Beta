@@ -1,14 +1,14 @@
 package q7;
 public abstract class f0 {
-    public static final char[] f53985a = "0123456789abcdef".toCharArray();
+    public static final char[] f53984a = "0123456789abcdef".toCharArray();
 
     public final boolean equals(Object obj) {
         boolean z9;
         boolean z10;
         if (obj instanceof f0) {
-            byte[] bArr = ((e0) this).f53980b;
+            byte[] bArr = ((e0) this).f53979b;
             int length = bArr.length * 8;
-            byte[] bArr2 = ((e0) ((f0) obj)).f53980b;
+            byte[] bArr2 = ((e0) ((f0) obj)).f53979b;
             if (length == bArr2.length * 8) {
                 if (bArr.length == bArr2.length) {
                     z9 = true;
@@ -32,7 +32,7 @@ public abstract class f0 {
     }
 
     public final int hashCode() {
-        byte[] bArr = ((e0) this).f53980b;
+        byte[] bArr = ((e0) this).f53979b;
         if (bArr.length * 8 >= 32) {
             int length = bArr.length;
             if (length >= 4) {
@@ -48,11 +48,11 @@ public abstract class f0 {
     }
 
     public final String toString() {
-        byte[] bArr = ((e0) this).f53980b;
+        byte[] bArr = ((e0) this).f53979b;
         int length = bArr.length;
         StringBuilder sb2 = new StringBuilder(length + length);
         for (byte b10 : bArr) {
-            char[] cArr = f53985a;
+            char[] cArr = f53984a;
             sb2.append(cArr[(b10 >> 4) & 15]);
             sb2.append(cArr[b10 & 15]);
         }

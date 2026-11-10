@@ -4,17 +4,17 @@ import bi.v9;
 import org.telegram.messenger.id;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.qp;
-import org.telegram.ui.Components.hp0;
-import org.telegram.ui.Components.l60;
-public final class n3 extends org.telegram.ui.ActionBar.j {
-    public final org.telegram.ui.ActionBar.r0 f60488a;
-    public final long f60489b;
-    public final o3 f60490c;
+import org.telegram.ui.Components.gp0;
+import org.telegram.ui.Components.k60;
+public final class n3 extends org.telegram.ui.ActionBar.k {
+    public final org.telegram.ui.ActionBar.r0 f60495a;
+    public final long f60496b;
+    public final o3 f60497c;
 
     public n3(o3 o3Var, org.telegram.ui.ActionBar.r0 r0Var, long j3) {
-        this.f60490c = o3Var;
-        this.f60488a = r0Var;
-        this.f60489b = j3;
+        this.f60497c = o3Var;
+        this.f60495a = r0Var;
+        this.f60496b = j3;
     }
 
     @Override
@@ -22,25 +22,25 @@ public final class n3 extends org.telegram.ui.ActionBar.j {
         boolean w10;
         org.telegram.ui.ActionBar.z0 z0Var;
         org.telegram.ui.ActionBar.z0 z0Var2;
-        o3 o3Var = this.f60490c;
-        v9 v9Var = o3Var.Q1;
+        o3 o3Var = this.f60497c;
+        v9 v9Var = o3Var.T1;
         if (i7 == 1) {
-            l60 l60Var = o3Var.V1;
-            if (l60Var != null) {
-                l60Var.u();
+            k60 k60Var = o3Var.Y1;
+            if (k60Var != null) {
+                k60Var.u();
             }
-            l60 F = l60.F(o3Var.f28627c, o3Var.I0, this.f60488a);
-            o3Var.V1 = F;
-            long e10 = p10.i(o3Var.f28621a).e();
-            long j3 = this.f60489b;
+            k60 F = k60.F(o3Var.f28675c, o3Var.I0, this.f60495a);
+            o3Var.Y1 = F;
+            long e10 = p10.i(o3Var.f28669a).e();
+            long j3 = this.f60496b;
             if (j3 == e10) {
                 w10 = true;
             } else if (j3 >= 0) {
                 w10 = false;
             } else {
-                w10 = org.telegram.messenger.t3.w(5, qp.s1(o3Var.f28621a).M0(Long.valueOf(-j3)));
+                w10 = org.telegram.messenger.t3.w(5, qp.s1(o3Var.f28669a).M0(Long.valueOf(-j3)));
             }
-            org.telegram.ui.ActionBar.z0 z0Var3 = new org.telegram.ui.ActionBar.z0(0, F.f35592e, F.d, false, false);
+            org.telegram.ui.ActionBar.z0 z0Var3 = new org.telegram.ui.ActionBar.z0(0, F.f35194e, F.d, false, false);
             F.d(z0Var3);
             F.k();
             org.telegram.ui.ActionBar.z0 h = F.h();
@@ -63,20 +63,20 @@ public final class n3 extends org.telegram.ui.ActionBar.j {
                 z0Var = null;
                 z0Var2 = null;
             }
-            hp0 hp0Var = new hp0(this, z0Var3, h, h7, h10, h11, w10, z0Var, z0Var2);
-            hp0Var.run();
-            z0Var3.setOnClickListener(new wg.z0(10, this, hp0Var));
-            d2.j(h, v9Var, hp0Var, 1);
-            d2.j(h7, v9Var, hp0Var, 2);
-            d2.j(h10, v9Var, hp0Var, 4);
-            d2.j(h11, v9Var, hp0Var, 8);
+            gp0 gp0Var = new gp0(this, z0Var3, h, h7, h10, h11, w10, z0Var, z0Var2);
+            gp0Var.run();
+            z0Var3.setOnClickListener(new wg.a1(9, this, gp0Var));
+            d2.j(h, v9Var, gp0Var, 1);
+            d2.j(h7, v9Var, gp0Var, 2);
+            d2.j(h10, v9Var, gp0Var, 4);
+            d2.j(h11, v9Var, gp0Var, 8);
             if (w10) {
-                d2.j(z0Var, v9Var, hp0Var, 256);
-                d2.j(z0Var2, v9Var, hp0Var, 512);
+                d2.j(z0Var, v9Var, gp0Var, 256);
+                d2.j(z0Var2, v9Var, gp0Var, 512);
             }
             F.Y = true;
             F.J = false;
-            F.f35617s = 0;
+            F.f35219s = 0;
             F.Z();
         } else if (i7 == -1) {
             o3Var.dismiss();

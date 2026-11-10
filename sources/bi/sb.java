@@ -16,9 +16,9 @@ public final class sb implements Runnable {
     public final Object h;
     public final Object f4719n;
 
-    public sb(int i7, fi.d dVar, TLObject tLObject, TL_stars.StarsSubscription starsSubscription, boolean z9, boolean z10, org.telegram.ui.ActionBar.v2[] v2VarArr) {
+    public sb(int i7, fi.d dVar, TLObject tLObject, TL_stars.StarsSubscription starsSubscription, boolean z9, boolean z10, org.telegram.ui.ActionBar.w2[] w2VarArr) {
         this.f4717e = dVar;
-        this.f4718f = v2VarArr;
+        this.f4718f = w2VarArr;
         this.d = i7;
         this.f4715b = z9;
         this.h = starsSubscription;

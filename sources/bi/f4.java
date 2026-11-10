@@ -3,16 +3,17 @@ package bi;
 import java.util.ArrayList;
 import org.telegram.messenger.c20;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.zs0;
+import org.telegram.ui.Components.ys0;
+import org.telegram.ui.fq;
 public final class f4 implements c20 {
-    public final int f3862a = 0;
-    public final int f3863b;
-    public final long f3864c;
+    public final int f3859a = 0;
+    public final int f3860b;
+    public final long f3861c;
     public final Object d;
 
     public f4(int i7, long j3, TLRPC.Document document) {
-        this.f3863b = i7;
-        this.f3864c = j3;
+        this.f3860b = i7;
+        this.f3861c = j3;
         this.d = document;
     }
 
@@ -20,9 +21,9 @@ public final class f4 implements c20 {
     public final void a(Object obj) {
         Object M0;
         TLRPC.StickerSet stickerSet;
-        int i7 = this.f3862a;
-        int i10 = this.f3863b;
-        long j3 = this.f3864c;
+        int i7 = this.f3859a;
+        int i10 = this.f3860b;
+        long j3 = this.f3861c;
         Object obj2 = this.d;
         switch (i7) {
             case 0:
@@ -34,7 +35,7 @@ public final class f4 implements c20 {
                 }
                 return;
             case 1:
-                org.telegram.ui.Components.cc ccVar = (org.telegram.ui.Components.cc) obj2;
+                org.telegram.ui.Components.bc bcVar = (org.telegram.ui.Components.bc) obj2;
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
                 if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null) {
                     if (i10 == 1) {
@@ -47,23 +48,23 @@ public final class f4 implements c20 {
                 } else {
                     M0 = org.telegram.messenger.id.M0(2131754435, null);
                 }
-                org.telegram.messenger.g0.i3(new org.telegram.ui.Components.f(3, ccVar, M0), Math.max(1L, 750 - (System.currentTimeMillis() - j3)));
+                org.telegram.messenger.g0.i3(new fq(4, bcVar, M0), Math.max(1L, 750 - (System.currentTimeMillis() - j3)));
                 return;
             default:
-                ((zs0) obj2).getStoriesController().b(i10, j3, (ArrayList) obj);
+                ((ys0) obj2).getStoriesController().b(i10, j3, (ArrayList) obj);
                 return;
         }
     }
 
-    public f4(int i7, org.telegram.ui.Components.cc ccVar, long j3) {
-        this.f3863b = i7;
-        this.d = ccVar;
-        this.f3864c = j3;
+    public f4(int i7, org.telegram.ui.Components.bc bcVar, long j3) {
+        this.f3860b = i7;
+        this.d = bcVar;
+        this.f3861c = j3;
     }
 
-    public f4(zs0 zs0Var, long j3, int i7) {
-        this.d = zs0Var;
-        this.f3864c = j3;
-        this.f3863b = i7;
+    public f4(ys0 ys0Var, long j3, int i7) {
+        this.d = ys0Var;
+        this.f3861c = j3;
+        this.f3860b = i7;
     }
 }

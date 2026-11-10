@@ -3,7 +3,7 @@ package h5;
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 public abstract class b {
-    public static final char[] f14212a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    public static final char[] f14214a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
     public static int a(byte b10) {
         if (b10 < 0) {
@@ -41,7 +41,7 @@ public abstract class b {
             }
             int i14 = i12 + 1;
             byte b10 = bArr[i13];
-            char[] cArr2 = f14212a;
+            char[] cArr2 = f14214a;
             cArr[i12] = cArr2[(b10 & 240) >>> 4];
             i12 += 2;
             cArr[i14] = cArr2[b10 & 15];

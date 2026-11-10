@@ -13,30 +13,30 @@ import android.support.v4.media.session.PlaybackStateCompat;
 import java.util.ArrayList;
 import org.telegram.ui.LaunchActivity;
 public final class wz {
-    public static volatile wz f26408p;
-    public final Context f26409a;
-    public final android.support.v4.media.session.a0 f26410b;
-    public int f26411c;
+    public static volatile wz f26412p;
+    public final Context f26413a;
+    public final android.support.v4.media.session.a0 f26414b;
+    public int f26415c;
     public long d;
-    public boolean f26412e;
-    public boolean f26413f;
-    public Paint f26419m;
-    public RectF f26420n;
-    public final ArrayList f26414g = new ArrayList();
+    public boolean f26416e;
+    public boolean f26417f;
+    public Paint f26423m;
+    public RectF f26424n;
+    public final ArrayList f26418g = new ArrayList();
     public final a0.h h = new a0.h();
-    public final a0.h f26415i = new a0.h();
-    public final a0.h f26416j = new a0.h();
-    public final a0.h f26417k = new a0.h();
-    public final a0.h f26418l = new a0.h();
-    public final ArrayList f26421o = new ArrayList();
+    public final a0.h f26419i = new a0.h();
+    public final a0.h f26420j = new a0.h();
+    public final a0.h f26421k = new a0.h();
+    public final a0.h f26422l = new a0.h();
+    public final ArrayList f26425o = new ArrayList();
 
     public wz(Context context) {
-        this.f26409a = context;
-        int i7 = p10.f24470s0;
-        this.f26411c = i7;
-        this.d = g0.b1(qp.s1(i7).f24764d7, "auto_lastSelectedDialog", 0L);
+        this.f26413a = context;
+        int i7 = p10.f24474s0;
+        this.f26415c = i7;
+        this.d = g0.b1(qp.s1(i7).f24768d7, "auto_lastSelectedDialog", 0L);
         android.support.v4.media.session.a0 a0Var = new android.support.v4.media.session.a0(context, "TelegramMediaSession", (ComponentName) null, (PendingIntent) null);
-        this.f26410b = a0Var;
+        this.f26414b = a0Var;
         android.support.v4.media.session.u uVar = (android.support.v4.media.session.u) a0Var.f1763b;
         uVar.f1793a.setFlags(3);
         a0Var.s(new vz(this), null);
@@ -49,7 +49,7 @@ public final class wz {
         a0Var.r(true);
         ArrayList arrayList = new ArrayList();
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        ij ijVar = MediaController.B().f21295u0;
+        ij ijVar = MediaController.B().f21300u0;
         if (ijVar != null) {
             r3 = MediaController.B().H() ? 2477828L : 2477830L;
             if (ijVar.I3()) {
@@ -59,29 +59,29 @@ public final class wz {
         a0Var.u(new PlaybackStateCompat(0, 0L, 0L, 1.0f, r3, 0, null, elapsedRealtime, arrayList, -1L, null));
         f();
         a0Var.x(iz.N0 ? 1 : 0);
-        qs.e().b(new h5(this, 1), qs.f24983c4);
+        qs.e().b(new h5(this, 1), qs.f24987c4);
     }
 
     public static wz a(MusicBrowserService musicBrowserService) {
-        if (f26408p == null) {
+        if (f26412p == null) {
             synchronized (wz.class) {
                 try {
-                    if (f26408p == null) {
-                        f26408p = new wz(musicBrowserService.getApplicationContext());
+                    if (f26412p == null) {
+                        f26412p = new wz(musicBrowserService.getApplicationContext());
                     }
                 } finally {
                 }
             }
         }
-        return f26408p;
+        return f26412p;
     }
 
     public static boolean b() {
         int i7;
         int elapsedRealtime = (int) (SystemClock.elapsedRealtime() / 1000);
-        if (iz.f23434s.length() > 0) {
-            if (!iz.f23448x) {
-                if ((iz.f23451y != 0 && (i7 = iz.B) != 0 && i7 + iz.f23451y <= elapsedRealtime) || elapsedRealtime + 5 < iz.B) {
+        if (iz.f23438s.length() > 0) {
+            if (!iz.f23452x) {
+                if ((iz.f23455y != 0 && (i7 = iz.B) != 0 && i7 + iz.f23455y <= elapsedRealtime) || elapsedRealtime + 5 < iz.B) {
                     return true;
                 }
                 return false;
@@ -93,15 +93,15 @@ public final class wz {
 
     public final void c(String str, j1 j1Var) {
         long j3;
-        if (!this.f26412e) {
-            this.f26421o.add(new tz(str, j1Var));
-            if (this.f26413f) {
+        if (!this.f26416e) {
+            this.f26425o.add(new tz(str, j1Var));
+            if (this.f26417f) {
                 return;
             }
-            this.f26413f = true;
-            int i7 = this.f26411c;
+            this.f26417f = true;
+            int i7 = this.f26415c;
             yr a02 = yr.a0(i7);
-            a02.f26719a.c(new l7(this, a02, i7, 22));
+            a02.f26723a.c(new l7(this, a02, i7, 22));
             return;
         }
         if (str != null && str.startsWith("__CHAT_")) {
@@ -110,16 +110,16 @@ public final class wz {
             } catch (Exception e10) {
                 a8.g(e10, true);
             }
-            if (j3 == 0 && this.f26416j.f(j3) == null) {
+            if (j3 == 0 && this.f26420j.f(j3) == null) {
                 e(new lg((Object) this, (Object) j1Var, str, 29), j3);
                 return;
             }
-            ((MediaBrowserService.Result) j1Var.f23465b).sendResult(d(str));
+            ((MediaBrowserService.Result) j1Var.f23469b).sendResult(d(str));
         }
         j3 = 0;
         if (j3 == 0) {
         }
-        ((MediaBrowserService.Result) j1Var.f23465b).sendResult(d(str));
+        ((MediaBrowserService.Result) j1Var.f23469b).sendResult(d(str));
     }
 
     public final java.util.ArrayList d(java.lang.String r17) {
@@ -127,7 +127,7 @@ public final class wz {
     }
 
     public final void e(Runnable runnable, long j3) {
-        a0.h hVar = this.f26418l;
+        a0.h hVar = this.f26422l;
         ArrayList arrayList = (ArrayList) hVar.f(j3);
         if (arrayList != null) {
             arrayList.add(runnable);
@@ -136,9 +136,9 @@ public final class wz {
         ArrayList arrayList2 = new ArrayList();
         arrayList2.add(runnable);
         hVar.k(arrayList2, j3);
-        int i7 = this.f26411c;
+        int i7 = this.f26415c;
         yr a02 = yr.a0(i7);
-        a02.f26719a.c(new hk(i7, 11, j3, this, a02));
+        a02.f26723a.c(new hk(i7, 11, j3, this, a02));
     }
 
     public final void f() {
@@ -151,6 +151,6 @@ public final class wz {
                 i10 = 1;
             }
         }
-        this.f26410b.w(i10);
+        this.f26414b.w(i10);
     }
 }

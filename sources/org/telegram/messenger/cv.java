@@ -15,20 +15,20 @@ import android.text.TextPaint;
 import android.text.style.CharacterStyle;
 import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.ui.vg0;
+import org.telegram.ui.wg0;
 public final class cv extends fu {
     public final jv W;
     public final jv[] X;
     public int Y;
     public LinearGradient Z;
-    public final Matrix f21937a0;
-    public final Paint f21938b0;
+    public final Matrix f21941a0;
+    public final Paint f21942b0;
 
     public cv(kv kvVar, Rect rect, int i7, SpannableStringBuilder spannableStringBuilder) {
         super(kvVar, rect, i7);
-        this.f21937a0 = new Matrix();
-        this.f21938b0 = new Paint(1);
-        jv jvVar = new jv(kvVar, spannableStringBuilder, this.f22471c);
+        this.f21941a0 = new Matrix();
+        this.f21942b0 = new Paint(1);
+        jv jvVar = new jv(kvVar, spannableStringBuilder, this.f22475c);
         this.W = jvVar;
         this.X = r2;
         jv[] jvVarArr = {jvVar};
@@ -36,19 +36,19 @@ public final class cv extends fu {
 
     @Override
     public final int I() {
-        Rect rect = this.f22470b;
-        return this.W.f23605b.getHeight() + rect.top + rect.bottom;
+        Rect rect = this.f22474b;
+        return this.W.f23609b.getHeight() + rect.top + rect.bottom;
     }
 
     @Override
     public final int J() {
-        Rect rect = this.f22470b;
+        Rect rect = this.f22474b;
         return this.W.q() + rect.left + rect.right;
     }
 
     @Override
     public final int K() {
-        Rect rect = this.f22470b;
+        Rect rect = this.f22474b;
         return this.W.r() + rect.left + rect.right;
     }
 
@@ -69,31 +69,31 @@ public final class cv extends fu {
 
     @Override
     public final void W(Canvas canvas) {
-        kv kvVar = this.f22469a;
+        kv kvVar = this.f22473a;
         canvas.saveLayerAlpha(0.0f, 0.0f, kvVar.C, I(), 255, 31);
         int i02 = i0();
         jv jvVar = this.W;
         if (i02 != 0) {
-            jvVar.f23606c = (this.f22470b.left + i02) - jvVar.f23608f;
+            jvVar.f23610c = (this.f22474b.left + i02) - jvVar.f23612f;
             canvas.save();
             canvas.translate(i02, 0.0f);
         }
         jvVar.d(canvas, jvVar.S);
         if (kvVar.F()) {
             canvas.save();
-            canvas.translate(-jvVar.f23608f, 0.0f);
-            org.telegram.ui.Components.r5.drawAnimatedEmojis(canvas, jvVar.f23605b, jvVar.E, 0.0f, jvVar.f23613x, 0.0f, 0.0f, 0.0f, 1.0f);
+            canvas.translate(-jvVar.f23612f, 0.0f);
+            org.telegram.ui.Components.q5.drawAnimatedEmojis(canvas, jvVar.f23609b, jvVar.E, 0.0f, jvVar.f23617x, 0.0f, 0.0f, 0.0f, 1.0f);
             canvas.restore();
         }
         if (i02 != 0) {
             canvas.restore();
         }
         j0();
-        Matrix matrix = this.f21937a0;
+        Matrix matrix = this.f21941a0;
         matrix.reset();
-        matrix.postTranslate((((float) (System.currentTimeMillis() % 2000)) / 2000.0f) * this.f22471c, 0.0f);
+        matrix.postTranslate((((float) (System.currentTimeMillis() % 2000)) / 2000.0f) * this.f22475c, 0.0f);
         this.Z.setLocalMatrix(matrix);
-        canvas.drawRect(0.0f, 0.0f, kvVar.C, I(), this.f21938b0);
+        canvas.drawRect(0.0f, 0.0f, kvVar.C, I(), this.f21942b0);
         canvas.restore();
         View view = this.V;
         if (view != null) {
@@ -104,34 +104,34 @@ public final class cv extends fu {
     @Override
     public final void X(Canvas canvas, int i7, float f10) {
         int i10;
-        kv kvVar = this.f22469a;
+        kv kvVar = this.f22473a;
         int i11 = kvVar.C;
-        TextPaint textPaint = kvVar.f23782w;
+        TextPaint textPaint = kvVar.f23786w;
         canvas.saveLayerAlpha(0.0f, 0.0f, i11, I(), 255, 31);
         int i02 = i0();
         jv jvVar = this.W;
         if (i02 != 0) {
-            jvVar.f23606c = (this.f22470b.left + i02) - jvVar.f23608f;
+            jvVar.f23610c = (this.f22474b.left + i02) - jvVar.f23612f;
         }
         canvas.save();
-        canvas.translate(i02 - jvVar.f23608f, 0.0f);
+        canvas.translate(i02 - jvVar.f23612f, 0.0f);
         int color = textPaint.getColor();
         textPaint.setColor(-1);
         if (kvVar.E()) {
-            i10 = org.telegram.ui.ActionBar.l6.Vc;
+            i10 = org.telegram.ui.ActionBar.m6.Vc;
         } else {
-            i10 = org.telegram.ui.ActionBar.l6.Uc;
+            i10 = org.telegram.ui.ActionBar.m6.Uc;
         }
-        textPaint.linkColor = org.telegram.ui.ActionBar.l6.w0(i10, kvVar.D);
-        vg0.b(canvas, jvVar.f23605b, i7, f10, new o(5, this, this.V));
+        textPaint.linkColor = org.telegram.ui.ActionBar.m6.w0(i10, kvVar.D);
+        wg0.b(canvas, jvVar.f23609b, i7, f10, new o(5, this, this.V));
         canvas.restore();
         textPaint.setColor(color);
         j0();
-        Matrix matrix = this.f21937a0;
+        Matrix matrix = this.f21941a0;
         matrix.reset();
-        matrix.postTranslate((((float) (System.currentTimeMillis() % 2000)) / 2000.0f) * this.f22471c, 0.0f);
+        matrix.postTranslate((((float) (System.currentTimeMillis() % 2000)) / 2000.0f) * this.f22475c, 0.0f);
         this.Z.setLocalMatrix(matrix);
-        canvas.drawRect(0.0f, 0.0f, kvVar.C, I(), this.f21938b0);
+        canvas.drawRect(0.0f, 0.0f, kvVar.C, I(), this.f21942b0);
         canvas.restore();
         View view = this.V;
         if (view != null) {
@@ -159,41 +159,41 @@ public final class cv extends fu {
         if (i02 != 0) {
             int i12 = i7 + i02;
             jv jvVar = this.W;
-            jvVar.f23606c = i12 - jvVar.f23608f;
+            jvVar.f23610c = i12 - jvVar.f23612f;
         }
     }
 
     @Override
     public final Layout a() {
-        return this.W.f23605b;
+        return this.W.f23609b;
     }
 
     public final int i0() {
-        kv kvVar = this.f22469a;
+        kv kvVar = this.f22473a;
         if (!kvVar.I()) {
             return 0;
         }
         int L = (kvVar.C + kvVar.T) - g0.L(14.0f);
-        Rect rect = this.f22470b;
+        Rect rect = this.f22474b;
         return ((L - rect.right) - rect.left) - this.W.r();
     }
 
     public final void j0() {
         int i7;
-        kv kvVar = this.f22469a;
+        kv kvVar = this.f22473a;
         if (kvVar.E()) {
-            i7 = org.telegram.ui.ActionBar.l6.Tc;
+            i7 = org.telegram.ui.ActionBar.m6.Tc;
         } else {
-            i7 = org.telegram.ui.ActionBar.l6.Sc;
+            i7 = org.telegram.ui.ActionBar.m6.Sc;
         }
-        int w02 = org.telegram.ui.ActionBar.l6.w0(i7, kvVar.D);
+        int w02 = org.telegram.ui.ActionBar.m6.w0(i7, kvVar.D);
         if (this.Z != null && this.Y == w02) {
             return;
         }
         this.Y = w02;
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, this.f22471c, 0.0f, new int[]{org.telegram.ui.ActionBar.l6.r1(0.7f, w02), org.telegram.ui.ActionBar.l6.r1(0.25f, w02), org.telegram.ui.ActionBar.l6.r1(0.7f, w02)}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.REPEAT);
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, this.f22475c, 0.0f, new int[]{org.telegram.ui.ActionBar.m6.r1(0.7f, w02), org.telegram.ui.ActionBar.m6.r1(0.25f, w02), org.telegram.ui.ActionBar.m6.r1(0.7f, w02)}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.REPEAT);
         this.Z = linearGradient;
-        Paint paint = this.f21938b0;
+        Paint paint = this.f21942b0;
         paint.setShader(linearGradient);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
     }
@@ -212,9 +212,9 @@ public final class cv extends fu {
     public final boolean u(CharacterStyle characterStyle, int i7, wt wtVar) {
         jv jvVar = this.W;
         if (jvVar.o(characterStyle, wtVar)) {
-            Rect rect = this.f22470b;
-            wtVar.f26374e = (i0() + rect.left) - jvVar.f23608f;
-            wtVar.f26375f = i7 + rect.top;
+            Rect rect = this.f22474b;
+            wtVar.f26378e = (i0() + rect.left) - jvVar.f23612f;
+            wtVar.f26379f = i7 + rect.top;
             return true;
         }
         return false;

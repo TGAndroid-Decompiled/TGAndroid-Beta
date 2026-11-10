@@ -4,38 +4,38 @@ import a8.ia;
 import h2.m0;
 import java.util.ArrayDeque;
 public abstract class j implements c4.e {
-    public final ArrayDeque f8176a = new ArrayDeque();
-    public final ArrayDeque f8177b;
-    public final ArrayDeque f8178c;
+    public final ArrayDeque f8181a = new ArrayDeque();
+    public final ArrayDeque f8182b;
+    public final ArrayDeque f8183c;
     public h d;
-    public long f8179e;
-    public long f8180f;
-    public long f8181g;
+    public long f8184e;
+    public long f8185f;
+    public long f8186g;
 
     public j() {
         for (int i7 = 0; i7 < 10; i7++) {
-            this.f8176a.add(new c4.i());
+            this.f8181a.add(new c4.i());
         }
-        this.f8177b = new ArrayDeque();
+        this.f8182b = new ArrayDeque();
         for (int i10 = 0; i10 < 2; i10++) {
-            ArrayDeque arrayDeque = this.f8177b;
+            ArrayDeque arrayDeque = this.f8182b;
             a1.c cVar = new a1.c(this, 24);
             ?? obj = new Object();
-            obj.f8175c = cVar;
+            obj.f8180c = cVar;
             arrayDeque.add(obj);
         }
-        this.f8178c = new ArrayDeque();
-        this.f8181g = -9223372036854775807L;
+        this.f8183c = new ArrayDeque();
+        this.f8186g = -9223372036854775807L;
     }
 
     @Override
     public final void a(long j3) {
-        this.f8181g = j3;
+        this.f8186g = j3;
     }
 
     @Override
     public final void b(long j3) {
-        this.f8179e = j3;
+        this.f8184e = j3;
     }
 
     @Override
@@ -47,7 +47,7 @@ public abstract class j implements c4.e {
             z9 = false;
         }
         ia.p(z9);
-        ArrayDeque arrayDeque = this.f8176a;
+        ArrayDeque arrayDeque = this.f8181a;
         if (arrayDeque.isEmpty()) {
             return null;
         }
@@ -70,18 +70,18 @@ public abstract class j implements c4.e {
         if (!hVar.isEndOfStream()) {
             long j3 = hVar.f17176e;
             if (j3 != Long.MIN_VALUE) {
-                long j10 = this.f8181g;
+                long j10 = this.f8186g;
                 if (j10 != -9223372036854775807L && j3 < j10) {
                     hVar.clear();
-                    this.f8176a.add(hVar);
+                    this.f8181a.add(hVar);
                     this.d = null;
                 }
             }
         }
-        long j11 = this.f8180f;
-        this.f8180f = 1 + j11;
-        hVar.f8174s = j11;
-        this.f8178c.add(hVar);
+        long j11 = this.f8185f;
+        this.f8185f = 1 + j11;
+        hVar.f8179s = j11;
+        this.f8183c.add(hVar);
         this.d = null;
     }
 
@@ -90,17 +90,17 @@ public abstract class j implements c4.e {
     @Override
     public void flush() {
         ArrayDeque arrayDeque;
-        this.f8180f = 0L;
-        this.f8179e = 0L;
+        this.f8185f = 0L;
+        this.f8184e = 0L;
         while (true) {
-            ArrayDeque arrayDeque2 = this.f8178c;
+            ArrayDeque arrayDeque2 = this.f8183c;
             boolean isEmpty = arrayDeque2.isEmpty();
-            arrayDeque = this.f8176a;
+            arrayDeque = this.f8181a;
             if (isEmpty) {
                 break;
             }
             h hVar = (h) arrayDeque2.poll();
-            String str = m0.f14112a;
+            String str = m0.f14114a;
             hVar.clear();
             arrayDeque.add(hVar);
         }
@@ -116,18 +116,18 @@ public abstract class j implements c4.e {
 
     @Override
     public c4.j c() {
-        ArrayDeque arrayDeque = this.f8177b;
+        ArrayDeque arrayDeque = this.f8182b;
         if (arrayDeque.isEmpty()) {
             return null;
         }
         while (true) {
-            ArrayDeque arrayDeque2 = this.f8178c;
+            ArrayDeque arrayDeque2 = this.f8183c;
             if (!arrayDeque2.isEmpty()) {
-                String str = m0.f14112a;
-                if (((h) arrayDeque2.peek()).f17176e <= this.f8179e) {
+                String str = m0.f14114a;
+                if (((h) arrayDeque2.peek()).f17176e <= this.f8184e) {
                     h hVar = (h) arrayDeque2.poll();
                     boolean isEndOfStream = hVar.isEndOfStream();
-                    ArrayDeque arrayDeque3 = this.f8176a;
+                    ArrayDeque arrayDeque3 = this.f8181a;
                     if (isEndOfStream) {
                         c4.j jVar = (c4.j) arrayDeque.pollFirst();
                         jVar.addFlag(4);
@@ -141,8 +141,8 @@ public abstract class j implements c4.e {
                         c4.j jVar2 = (c4.j) arrayDeque.pollFirst();
                         long j3 = hVar.f17176e;
                         jVar2.timeUs = j3;
-                        jVar2.f5285a = f10;
-                        jVar2.f5286b = j3;
+                        jVar2.f5290a = f10;
+                        jVar2.f5291b = j3;
                         hVar.clear();
                         arrayDeque3.add(hVar);
                         return jVar2;

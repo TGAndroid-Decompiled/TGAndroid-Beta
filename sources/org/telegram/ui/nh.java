@@ -2,60 +2,60 @@ package org.telegram.ui;
 
 import android.view.ViewTreeObserver;
 public final class nh implements ViewTreeObserver.OnPreDrawListener {
-    public final int f48190a = 0;
-    public boolean f48191b;
-    public final Object f48192c;
+    public final int f48209a = 0;
+    public boolean f48210b;
+    public final Object f48211c;
     public final Object d;
 
-    public nh(e40 e40Var, org.telegram.messenger.s3 s3Var, boolean z9) {
-        this.d = e40Var;
-        this.f48192c = s3Var;
-        this.f48191b = z9;
+    public nh(f40 f40Var, org.telegram.messenger.s3 s3Var, boolean z9) {
+        this.d = f40Var;
+        this.f48211c = s3Var;
+        this.f48210b = z9;
     }
 
     @Override
     public final boolean onPreDraw() {
-        switch (this.f48190a) {
+        switch (this.f48209a) {
             case 0:
                 cn cnVar = (cn) this.d;
-                ViewTreeObserver viewTreeObserver = (ViewTreeObserver) this.f48192c;
+                ViewTreeObserver viewTreeObserver = (ViewTreeObserver) this.f48211c;
                 if (viewTreeObserver.isAlive()) {
                     viewTreeObserver.removeOnPreDrawListener(this);
                 }
-                wi wiVar = cnVar.f44560o1;
+                wi wiVar = cnVar.f44601o1;
                 if (wiVar != null) {
                     wiVar.getViewTreeObserver().removeOnPreDrawListener(this);
                 }
-                if (this.f48191b) {
+                if (this.f48210b) {
                     return true;
                 }
-                this.f48191b = true;
+                this.f48210b = true;
                 return cnVar.L8();
             default:
-                e40 e40Var = (e40) this.d;
-                m30 m30Var = e40Var.H1;
-                m30Var.getViewTreeObserver().removeOnPreDrawListener(this);
-                e40Var.f45217h4 = null;
-                b20 b20Var = e40Var.R3;
-                org.telegram.messenger.s3 s3Var = (org.telegram.messenger.s3) this.f48192c;
-                b20Var.j(s3Var);
-                if (e40Var.f45225j2) {
-                    e40Var.f45225j2 = false;
-                    e40Var.Q0(true);
-                    if (this.f48191b && s3Var != null) {
-                        m30Var.v0(0);
+                f40 f40Var = (f40) this.d;
+                n30 n30Var = f40Var.K1;
+                n30Var.getViewTreeObserver().removeOnPreDrawListener(this);
+                f40Var.f45544k4 = null;
+                c20 c20Var = f40Var.U3;
+                org.telegram.messenger.s3 s3Var = (org.telegram.messenger.s3) this.f48211c;
+                c20Var.j(s3Var);
+                if (f40Var.f45551m2) {
+                    f40Var.f45551m2 = false;
+                    f40Var.Q0(true);
+                    if (this.f48210b && s3Var != null) {
+                        n30Var.v0(0);
                     }
-                    e40Var.f45225j2 = true;
+                    f40Var.f45551m2 = true;
                 } else {
-                    e40Var.Q0(true);
+                    f40Var.Q0(true);
                 }
-                e40Var.f28624b.requestLayout();
+                f40Var.f28672b.requestLayout();
                 return false;
         }
     }
 
     public nh(cn cnVar, ViewTreeObserver viewTreeObserver) {
         this.d = cnVar;
-        this.f48192c = viewTreeObserver;
+        this.f48211c = viewTreeObserver;
     }
 }

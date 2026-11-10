@@ -8,13 +8,13 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.cn;
 public final class d5 extends cn {
-    public final v10 f11788td;
-    public final o5 f11789ud;
+    public final v10 f11792td;
+    public final o5 f11793ud;
 
     public d5(o5 o5Var, v10 v10Var) {
         super(null);
-        this.f11789ud = o5Var;
-        this.f11788td = v10Var;
+        this.f11793ud = o5Var;
+        this.f11792td = v10Var;
     }
 
     @Override
@@ -50,24 +50,24 @@ public final class d5 extends cn {
                 if (tL_geoPointAddress != null) {
                     tL_mediaAreaGeoPoint3.flags |= 1;
                 }
-                Utilities.f21336e.c(new f2.h(6, messageMedia, tL_mediaAreaGeoPoint3));
+                Utilities.f21341e.c(new f2.h(6, messageMedia, tL_mediaAreaGeoPoint3));
                 tL_mediaAreaGeoPoint = tL_mediaAreaGeoPoint3;
             }
             tL_mediaAreaGeoPoint2 = tL_mediaAreaGeoPoint;
         } else {
             return;
         }
-        this.f11788td.a(messageMedia, tL_mediaAreaGeoPoint2);
+        this.f11792td.a(messageMedia, tL_mediaAreaGeoPoint2);
     }
 
     @Override
     public final Activity getParentActivity() {
-        return org.telegram.messenger.g0.W(this.f11789ud.getContext());
+        return org.telegram.messenger.g0.W(this.f11793ud.getContext());
     }
 
     @Override
-    public final org.telegram.ui.ActionBar.g6 getResourceProvider() {
-        return this.f11789ud.f12538p1;
+    public final org.telegram.ui.ActionBar.h6 getResourceProvider() {
+        return this.f11793ud.f12542p1;
     }
 
     @Override

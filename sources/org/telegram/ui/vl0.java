@@ -1,81 +1,59 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.tl.TL_stars;
-public final class vl0 implements org.telegram.messenger.c20 {
-    public final int f50716a;
-    public final wl0 f50717b;
+import android.content.Context;
+import android.graphics.Canvas;
+public final class vl0 extends org.telegram.ui.Components.pj0 {
+    public final int f50755e3;
+    public final em0 f50756f3;
 
-    public vl0(wl0 wl0Var, int i7) {
-        this.f50716a = i7;
-        this.f50717b = wl0Var;
+    public vl0(em0 em0Var, Context context, org.telegram.ui.ActionBar.h6 h6Var, int i7) {
+        super(context, h6Var);
+        this.f50756f3 = em0Var;
+        this.f50755e3 = i7;
     }
 
     @Override
-    public final void a(Object obj) {
-        TL_stars.StarGift starGift;
-        int i7;
-        dm0 dm0Var;
-        hm0 hm0Var;
-        dm0 dm0Var2;
-        switch (this.f50716a) {
-            case 0:
-                Integer num = (Integer) obj;
-                wl0 wl0Var = this.f50717b;
-                dm0 dm0Var3 = wl0Var.f51429e;
-                if (num.intValue() == 0) {
-                    starGift = null;
-                } else {
-                    starGift = (TL_stars.StarGift) dm0Var3.M.get(num);
-                }
-                dm0Var3.K = starGift;
-                jm0 jm0Var = dm0Var3.f45078p0;
-                if (starGift == null) {
-                    zh.c3 c3Var = dm0Var3.J;
-                    if (c3Var != null) {
-                        c3Var.f();
-                        dm0Var3.J = null;
-                    }
-                } else {
-                    zh.c3 c3Var2 = dm0Var3.J;
-                    if (c3Var2 == null || c3Var2.f60262b != starGift.f27185id) {
-                        i7 = ((org.telegram.ui.ActionBar.f2) jm0Var).currentAccount;
-                        zh.c3 c3Var3 = new zh.c3(i7, dm0Var3.K.f27185id, new vl0(wl0Var, 2));
-                        dm0Var3.J = c3Var3;
-                        c3Var3.g(false);
-                    }
-                }
-                dm0.a(dm0Var3);
-                if (jm0Var.I.getCurrentPosition() == 1) {
-                    dm0Var = jm0Var.f47045n;
-                } else {
-                    dm0Var = jm0Var.h;
-                }
-                dm0Var.e();
+    public final Integer V0(int i7) {
+        em0 em0Var = this.f50756f3;
+        if ((i7 >= em0Var.f45384b0 && i7 < em0Var.f45386c0) || (i7 >= em0Var.f45387d0 && i7 < em0Var.f45389e0)) {
+            return 0;
+        }
+        return super.V0(i7);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        em0 em0Var = this.f50756f3;
+        if (em0Var.G && em0Var.E != null && em0Var.F != null) {
+            int save = canvas.save();
+            canvas.translate(em0Var.E.getLeft() + em0Var.F.getLeft(), em0Var.F.getTop());
+            em0Var.E.draw(canvas);
+            canvas.restoreToCount(save);
+        }
+    }
+
+    @Override
+    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
+        bi.v9 v9Var;
+        super.onLayout(z9, i7, i10, i11, i12);
+        em0 em0Var = this.f50756f3;
+        km0 km0Var = em0Var.f45401p0;
+        em0Var.h();
+        if (em0Var.K != null) {
+            if (em0Var.J != null && em0Var.c()) {
+                em0Var.J.g(false);
                 return;
-            case 1:
-                dm0 dm0Var4 = this.f50717b.f51429e;
-                dm0Var4.h = ((Integer) obj).intValue();
-                dm0Var4.f45079r = null;
-                dm0Var4.f45080s = null;
-                dm0Var4.I = null;
-                dm0Var4.j(true);
-                dm0Var4.i();
-                dm0Var4.f(true);
-                cm0 cm0Var = dm0Var4.D;
-                if (cm0Var != null) {
-                    cm0Var.invalidate();
-                }
-                jm0 jm0Var2 = dm0Var4.f45078p0;
-                dm0 dm0Var5 = jm0Var2.f47045n;
-                if (dm0Var5 != null && (hm0Var = dm0Var5.f45058a) != null && (dm0Var2 = jm0Var2.h) != null) {
-                    hm0Var.a(dm0Var2.h);
-                    return;
-                }
-                return;
-            default:
-                Boolean bool = (Boolean) obj;
-                this.f50717b.f51429e.e();
-                return;
+            }
+            return;
+        }
+        if (this.f50755e3 == 1) {
+            v9Var = km0Var.f47371c;
+        } else {
+            v9Var = km0Var.f47369b;
+        }
+        if (v9Var != null && em0Var.c()) {
+            v9Var.a();
         }
     }
 }

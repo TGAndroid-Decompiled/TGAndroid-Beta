@@ -3,11 +3,11 @@ package org.telegram.ui.Components;
 import android.graphics.Canvas;
 import android.view.View;
 import java.util.HashSet;
-public class GroupCreateCheckBox extends View implements org.telegram.ui.ActionBar.b6 {
-    public float f31418a;
+public class GroupCreateCheckBox extends View implements org.telegram.ui.ActionBar.c6 {
+    public float f31429a;
 
     public float getProgress() {
-        return this.f31418a;
+        return this.f31429a;
     }
 
     @Override
@@ -24,7 +24,7 @@ public class GroupCreateCheckBox extends View implements org.telegram.ui.ActionB
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (getVisibility() != 0 || this.f31418a == 0.0f) {
+        if (getVisibility() != 0 || this.f31429a == 0.0f) {
             return;
         }
         getMeasuredWidth();
@@ -34,16 +34,16 @@ public class GroupCreateCheckBox extends View implements org.telegram.ui.ActionB
     }
 
     public void setProgress(float f10) {
-        if (this.f31418a == f10) {
+        if (this.f31429a == f10) {
             return;
         }
-        this.f31418a = f10;
+        this.f31429a = f10;
         invalidate();
     }
 
     @Override
     public final void updateColors() {
-        org.telegram.ui.ActionBar.l6.v0(0);
+        org.telegram.ui.ActionBar.m6.v0(0);
         throw null;
     }
 

@@ -1,47 +1,87 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-public final class je implements Runnable {
-    public final int f34984a;
-    public final ChatActivityEnterView f34985b;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.widget.ImageView;
+public final class je extends ImageView {
+    public final int f34920a;
+    public final ChatActivityEnterView f34921b;
 
-    public je(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f34984a = i7;
-        this.f34985b = chatActivityEnterView;
+    public je(ChatActivityEnterView chatActivityEnterView, Context context, int i7) {
+        super(context);
+        this.f34920a = i7;
+        this.f34921b = chatActivityEnterView;
     }
 
     @Override
-    public final void run() {
-        switch (this.f34984a) {
+    public void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
+        switch (this.f34920a) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f34985b;
-                je jeVar = chatActivityEnterView.f31124r3;
-                if ((!chatActivityEnterView.g0() || !chatActivityEnterView.s()) && !org.telegram.ui.ActionBar.f2.hasSheets(chatActivityEnterView.P2) && !chatActivityEnterView.Y1 && chatActivityEnterView.E0 != null && chatActivityEnterView.f31084k3 && !chatActivityEnterView.f31168z2 && !org.telegram.messenger.g0.D && !org.telegram.messenger.g0.E) {
-                    wf wfVar = chatActivityEnterView.Z2;
-                    if (wfVar != null) {
-                        wfVar.f1();
-                    }
-                    chatActivityEnterView.E0.requestFocus();
-                    org.telegram.messenger.g0.K3(chatActivityEnterView.E0);
-                    org.telegram.messenger.g0.r(jeVar);
-                    org.telegram.messenger.g0.i3(jeVar, 100L);
+                super.onLayout(z9, i7, i10, i11, i12);
+                post(new qd(this.f34921b, 5));
+                return;
+            default:
+                super.onLayout(z9, i7, i10, i11, i12);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f34920a) {
+            case 2:
+                if (getAlpha() <= 0.0f) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public final void setAlpha(float f10) {
+        switch (this.f34920a) {
+            case 0:
+                super.setAlpha(f10);
+                he heVar = this.f34921b.J1;
+                if (heVar != null) {
+                    heVar.setTranslationX(heVar.f34319a);
                     return;
                 }
                 return;
             case 1:
-                wf wfVar2 = this.f34985b.Z2;
-                if (wfVar2 != null) {
-                    wfVar2.Z1(0, 0, 0, 0L, 0L, true);
+                super.setAlpha(f10);
+                he heVar2 = this.f34921b.J1;
+                if (heVar2 != null) {
+                    heVar2.setTranslationX(heVar2.f34319a);
                     return;
                 }
                 return;
             default:
-                ChatActivityEnterView chatActivityEnterView2 = this.f34985b;
-                AnimatorSet animatorSet = chatActivityEnterView2.V0;
-                if (animatorSet != null && !animatorSet.isRunning()) {
-                    chatActivityEnterView2.V0.start();
+                super.setAlpha(f10);
+                ce ceVar = this.f34921b.Z0;
+                if (ceVar != null) {
+                    ceVar.invalidate();
                     return;
                 }
+                return;
+        }
+    }
+
+    @Override
+    public void setVisibility(int i7) {
+        switch (this.f34920a) {
+            case 2:
+                super.setVisibility(i7);
+                ce ceVar = this.f34921b.Z0;
+                if (ceVar != null) {
+                    ceVar.invalidate();
+                    return;
+                }
+                return;
+            default:
+                super.setVisibility(i7);
                 return;
         }
     }

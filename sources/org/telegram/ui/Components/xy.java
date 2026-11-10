@@ -1,49 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.graphics.RectF;
-import android.view.View;
-public final class xy implements dj0, ej0 {
-    public final fz f40526a;
+import android.animation.ValueAnimator;
+public final class xy implements ValueAnimator.AnimatorUpdateListener {
+    public final int f40432a;
+    public final cz f40433b;
 
-    public xy(fz fzVar) {
-        this.f40526a = fzVar;
+    public xy(cz czVar, int i7) {
+        this.f40432a = i7;
+        this.f40433b = czVar;
     }
 
     @Override
-    public boolean c(int r23, android.view.View r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.xy.c(int, android.view.View):boolean");
-    }
-
-    @Override
-    public void f(float f10, float f11, int i7, View view) {
-        fz fzVar = this.f40526a;
-        bz bzVar = fzVar.J;
-        if (!((org.telegram.ui.pw) bzVar).f48821b.f52263k2) {
-            dz dzVar = (dz) view;
-            if (fzVar.f33782n) {
-                if (i7 != 0) {
-                    int L = org.telegram.messenger.g0.L(6.0f);
-                    RectF rectF = dzVar.f33216f;
-                    float f12 = L;
-                    if (rectF.left - f12 < f10 && rectF.right + f12 > f10) {
-                        org.telegram.ui.pw pwVar = (org.telegram.ui.pw) fzVar.J;
-                        pwVar.d((org.telegram.messenger.vo) pwVar.f48821b.getMessagesController().T0().get(dzVar.f33209b.f32790a));
-                    }
-                }
-            } else if (i7 == fzVar.K && bzVar != null) {
-                ((org.telegram.ui.pw) bzVar).f48821b.J4(true, false);
-            } else {
-                fzVar.f(dzVar.f33209b, i7);
-            }
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f40432a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                cz czVar = this.f40433b;
+                czVar.f32826y = floatValue;
+                czVar.invalidate();
+                return;
+            default:
+                cz czVar2 = this.f40433b;
+                czVar2.getClass();
+                czVar2.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                czVar2.invalidate();
+                return;
         }
-    }
-
-    @Override
-    public boolean f1(View view) {
-        return false;
-    }
-
-    @Override
-    public void r0(View view, float f10, float f11) {
     }
 }

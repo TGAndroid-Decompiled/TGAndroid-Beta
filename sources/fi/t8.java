@@ -12,30 +12,30 @@ import org.telegram.messenger.yr;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public abstract class t8 extends View {
-    public static final int f12862a = 0;
+    public static final int f12863a = 0;
 
     public static void a(int i7, e7 e7Var) {
         q8 q8Var;
         if (e7Var != null) {
             try {
-                String string = qp.s1(i7).f24774e7.getString("story_privacy2", null);
+                String string = qp.s1(i7).f24778e7.getString("story_privacy2", null);
                 if (string == null) {
                     q8Var = new q8();
                 } else {
                     SerializedData serializedData = new SerializedData(Utilities.v(string));
                     q8Var = b(serializedData);
                     serializedData.cleanup();
-                    if (q8Var.f12682f.isEmpty() && q8Var.f12679b.isEmpty()) {
+                    if (q8Var.f12686f.isEmpty() && q8Var.f12683b.isEmpty()) {
                         q8Var = new q8();
                     } else {
                         HashSet hashSet = new HashSet();
-                        hashSet.addAll(q8Var.f12680c);
+                        hashSet.addAll(q8Var.f12684c);
                         for (ArrayList arrayList : q8Var.d.values()) {
                             hashSet.addAll(arrayList);
                         }
                         if (!hashSet.isEmpty()) {
                             yr a02 = yr.a0(i7);
-                            a02.f26719a.c(new ai.e0(a02, hashSet, i7, 12));
+                            a02.f26723a.c(new ai.e0(a02, hashSet, i7, 12));
                         }
                     }
                 }
@@ -45,9 +45,9 @@ public abstract class t8 extends View {
             }
             e7Var.E0 = q8Var;
             e7Var.F0.clear();
-            e7Var.F0.addAll(e7Var.E0.f12679b);
+            e7Var.F0.addAll(e7Var.E0.f12683b);
             if (p10.i(i7).q()) {
-                e7Var.I0 = qp.s1(i7).f24774e7.getInt("story_period", 86400);
+                e7Var.I0 = qp.s1(i7).f24778e7.getInt("story_period", 86400);
             } else {
                 e7Var.I0 = 86400;
             }
@@ -90,7 +90,7 @@ public abstract class t8 extends View {
                         hashSet.addAll(arrayList4);
                     }
                     q8 q8Var = new q8(readInt32, arrayList, 0);
-                    ArrayList arrayList5 = q8Var.f12680c;
+                    ArrayList arrayList5 = q8Var.f12684c;
                     arrayList5.clear();
                     arrayList5.addAll(arrayList2);
                     HashMap hashMap2 = q8Var.d;
@@ -106,12 +106,12 @@ public abstract class t8 extends View {
     }
 
     public static void c(SerializedData serializedData, q8 q8Var) {
-        int i7 = q8Var.f12678a;
+        int i7 = q8Var.f12682a;
         HashMap hashMap = q8Var.d;
-        ArrayList arrayList = q8Var.f12680c;
+        ArrayList arrayList = q8Var.f12684c;
         serializedData.writeInt32(i7);
         serializedData.writeInt32(481674261);
-        ArrayList arrayList2 = q8Var.f12681e;
+        ArrayList arrayList2 = q8Var.f12685e;
         serializedData.writeInt32(arrayList2.size());
         int size = arrayList2.size();
         int i10 = 0;

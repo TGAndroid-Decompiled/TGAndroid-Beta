@@ -7,10 +7,10 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.x4;
-import org.telegram.ui.Components.m51;
-import org.telegram.ui.Components.oj;
-import org.telegram.ui.x50;
+import org.telegram.ui.Components.h41;
+import org.telegram.ui.Components.nj;
 import org.telegram.ui.y50;
+import org.telegram.ui.z50;
 public final class q1 extends TimerTask {
     public final int f16896a;
     public final Object f16897b;
@@ -37,28 +37,28 @@ public final class q1 extends TimerTask {
                 org.telegram.messenger.g0.h3(new ha.b(14, s1Var, (String) this.f16897b));
                 return;
             case 1:
-                synchronized (((MediaController) this.f16898c).f21301w1) {
+                synchronized (((MediaController) this.f16898c).f21306w1) {
                     org.telegram.messenger.g0.h3(new x4(25, this, (ij) this.f16897b));
                 }
                 return;
             case 2:
                 try {
-                    ((Timer) ((oj) this.f16898c).h).cancel();
-                    ((oj) this.f16898c).h = null;
+                    ((Timer) ((nj) this.f16898c).h).cancel();
+                    ((nj) this.f16898c).h = null;
                 } catch (Exception e11) {
                     a8.g(e11, true);
                 }
-                Utilities.f21338g.c(new m51(8, (oj) this.f16898c, (String) this.f16897b));
+                Utilities.f21343g.c(new h41(9, (nj) this.f16898c, (String) this.f16897b));
                 return;
             default:
-                y50 y50Var = (y50) this.f16898c;
+                z50 z50Var = (z50) this.f16898c;
                 try {
-                    y50Var.f51913f.cancel();
-                    y50Var.f51913f = null;
+                    z50Var.f52268f.cancel();
+                    z50Var.f52268f = null;
                 } catch (Exception e12) {
                     a8.g(e12, true);
                 }
-                org.telegram.messenger.g0.h3(new x50(this, (String) this.f16897b, 0));
+                org.telegram.messenger.g0.h3(new y50(this, (String) this.f16897b, 0));
                 return;
         }
     }

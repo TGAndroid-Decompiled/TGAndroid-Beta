@@ -1,27 +1,51 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class q01 {
-    public TLRPC.TL_forumTopic f37148a;
-    public org.telegram.messenger.uv f37149b;
-    public final t01 f37150c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.FrameLayout;
+public final class q01 extends FrameLayout {
+    public final Paint f37119a;
+    public final RectF f37120b;
+    public final v5 f37121c;
+    public final String d;
+    public final s01 f37122e;
 
-    public q01(t01 t01Var) {
-        this.f37150c = t01Var;
+    public q01(s01 s01Var, Context context) {
+        super(context);
+        this.f37122e = s01Var;
+        this.f37119a = new Paint(1);
+        this.f37120b = new RectF();
+        this.f37121c = new v5(this, 0L, 260L, wq.h);
+        this.d = "";
+        setWillNotDraw(false);
+        c8.ka.a(this);
+        addView(new k9(context), c8.ha.d(20, 20.0f, 19, 10.0f, 0.0f, 0.0f, 0.0f));
     }
 
-    public final long a() {
-        org.telegram.messenger.uv uvVar = this.f37149b;
-        if (uvVar != null) {
-            return uvVar.f25896a;
-        }
-        TLRPC.TL_forumTopic tL_forumTopic = this.f37148a;
-        if (tL_forumTopic == null) {
-            return 0L;
-        }
-        if (this.f37150c.f38211c) {
-            return org.telegram.messenger.m5.o(tL_forumTopic.from_id);
-        }
-        return tL_forumTopic.f27008id;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float e10 = this.f37121c.e(false, 0.0f);
+        int i7 = org.telegram.ui.ActionBar.m6.qk;
+        s01 s01Var = this.f37122e;
+        int w02 = org.telegram.ui.ActionBar.m6.w0(i7, s01Var.f37798e);
+        float width = getWidth() - org.telegram.messenger.g0.L(3.0f);
+        int height = getHeight();
+        RectF rectF = this.f37120b;
+        rectF.set(org.telegram.messenger.g0.L(3.0f), (getHeight() - org.telegram.messenger.g0.L(28.0f)) / 2.0f, width, (org.telegram.messenger.g0.L(28.0f) + height) / 2.0f);
+        int f10 = i0.a.f(e10, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.O5, s01Var.f37798e), w02);
+        Paint paint = this.f37119a;
+        paint.setColor(f10);
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), paint);
+        s01Var.f37802g0.setColor(i0.a.f(e10, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.G6, s01Var.f37798e), org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.tk, s01Var.f37798e)));
+        float centerY = rectF.centerY();
+        float descent = s01Var.f37802g0.descent();
+        canvas.drawText(this.d, org.telegram.messenger.g0.L(35.0f), centerY - ((s01Var.f37802g0.ascent() + descent) / 2.0f), s01Var.f37802g0);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(org.telegram.messenger.camera.q.B(13.0f, org.telegram.messenger.g0.L(35.0f) + ((int) Math.ceil(this.f37122e.f37802g0.measureText(this.d))), 1073741824), i10);
     }
 }

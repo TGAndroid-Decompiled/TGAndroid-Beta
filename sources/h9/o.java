@@ -14,7 +14,7 @@ import java.util.RandomAccess;
 import java.util.Set;
 import java.util.SortedSet;
 public abstract class o {
-    public final int f14355a = 2;
+    public final int f14357a = 2;
 
     public static int d(int i7) {
         if (i7 < 3) {
@@ -101,16 +101,16 @@ public abstract class o {
             SortedSet sortedSet = (SortedSet) set;
             if (sortedSet instanceof d2) {
                 d2 d2Var = (d2) sortedSet;
-                g9.m mVar2 = d2Var.f14315b;
+                g9.m mVar2 = d2Var.f14317b;
                 mVar2.getClass();
-                return new d2((SortedSet) d2Var.f14314a, new g9.n(Arrays.asList(mVar2, mVar)));
+                return new d2((SortedSet) d2Var.f14316a, new g9.n(Arrays.asList(mVar2, mVar)));
             }
             return new d2(sortedSet, mVar);
         } else if (set instanceof d2) {
             d2 d2Var2 = (d2) set;
-            g9.m mVar3 = d2Var2.f14315b;
+            g9.m mVar3 = d2Var2.f14317b;
             mVar3.getClass();
-            return new d2(d2Var2.f14314a, new g9.n(Arrays.asList(mVar3, mVar)));
+            return new d2(d2Var2.f14316a, new g9.n(Arrays.asList(mVar3, mVar)));
         } else {
             set.getClass();
             return new d2(set, mVar);
@@ -232,7 +232,7 @@ public abstract class o {
     public abstract Object i();
 
     public String toString() {
-        switch (this.f14355a) {
+        switch (this.f14357a) {
             case 2:
                 return i().toString();
             default:

@@ -10,23 +10,23 @@ import bi.eb;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.id;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.o5;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.p5;
 public final class q0 extends WebViewClient {
-    public final WebView f51262a;
-    public final r0 f51263b;
+    public final WebView f51216a;
+    public final r0 f51217b;
 
     public q0(r0 r0Var, WebView webView) {
-        this.f51263b = r0Var;
-        this.f51262a = webView;
+        this.f51217b = r0Var;
+        this.f51216a = webView;
     }
 
     @Override
     public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        g6 g6Var;
+        h6 h6Var;
         Integer valueOf;
         Boolean valueOf2;
-        u0 u0Var = this.f51263b.f51274e;
+        u0 u0Var = this.f51217b.f51228e;
         if (Build.VERSION.SDK_INT >= 26) {
             StringBuilder sb2 = new StringBuilder("newWebView.onRenderProcessGone priority=");
             if (renderProcessGoneDetail == null) {
@@ -53,14 +53,14 @@ public final class q0 extends WebViewClient {
             Context context = u0Var.getContext();
             x0 x0Var = u0Var.Q;
             if (x0Var == null) {
-                g6Var = null;
+                h6Var = null;
             } else {
-                g6Var = x0Var.f51348e;
+                h6Var = x0Var.f51302e;
             }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, g6Var);
-            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, h6Var);
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27300a;
             u1Var.R = id.M0(2131752104, null);
-            u1Var.T = org.telegram.messenger.g0.U2(id.M0(2131752105, null), new o5(this, 12));
+            u1Var.T = org.telegram.messenger.g0.U2(id.M0(2131752105, null), new p5(this, 12));
             alertDialog$Builder.k(id.M0(2131747831, null), null);
             u1Var.setOnDismissListener(new eb(this, 12));
             alertDialog$Builder.p();
@@ -73,10 +73,10 @@ public final class q0 extends WebViewClient {
 
     @Override
     public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        x0 x0Var = this.f51263b.f51274e.Q;
+        x0 x0Var = this.f51217b.f51228e.Q;
         if (x0Var != null) {
-            x0Var.H(Uri.parse(str), null, !x0Var.f51360o0, false, false);
-            this.f51262a.destroy();
+            x0Var.H(Uri.parse(str), null, !x0Var.f51314o0, false, false);
+            this.f51216a.destroy();
         }
         return true;
     }

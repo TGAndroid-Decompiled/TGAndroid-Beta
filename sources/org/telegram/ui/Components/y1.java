@@ -1,26 +1,43 @@
 package org.telegram.ui.Components;
 
-import java.util.HashMap;
-public final class y1 implements Runnable {
-    public final int f40541a;
-    public final org.telegram.messenger.c20 f40542b;
-    public final HashMap f40543c;
+import android.content.DialogInterface;
+public final class y1 implements DialogInterface.OnDismissListener {
+    public final int f40456a = 0;
+    public final boolean[] f40457b;
+    public final Runnable f40458c;
 
-    public y1(org.telegram.messenger.c20 c20Var, HashMap hashMap, int i7) {
-        this.f40541a = i7;
-        this.f40542b = c20Var;
-        this.f40543c = hashMap;
+    public y1(Runnable runnable, boolean[] zArr) {
+        this.f40458c = runnable;
+        this.f40457b = zArr;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40541a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f40456a) {
             case 0:
-                this.f40542b.a(this.f40543c);
+                Runnable runnable = this.f40458c;
+                if (runnable != null && this.f40457b[0]) {
+                    runnable.run();
+                    return;
+                }
                 return;
             default:
-                this.f40542b.a(this.f40543c);
+                boolean[] zArr = this.f40457b;
+                if (!zArr[0]) {
+                    zArr[0] = true;
+                    Runnable runnable2 = this.f40458c;
+                    if (runnable2 != null) {
+                        runnable2.run();
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
+    }
+
+    public y1(boolean[] zArr, Runnable runnable) {
+        this.f40457b = zArr;
+        this.f40458c = runnable;
     }
 }

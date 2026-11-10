@@ -1,13 +1,13 @@
 package di;
 
-import org.telegram.ui.Components.ab;
-import org.telegram.ui.Components.cc;
-public final class d9 implements ab {
-    public final float[] f8937a = new float[2];
-    public final e9 f8938b;
+import org.telegram.ui.Components.bc;
+import org.telegram.ui.Components.za;
+public final class d9 implements za {
+    public final float[] f8942a = new float[2];
+    public final e9 f8943b;
 
     public d9(e9 e9Var) {
-        this.f8938b = e9Var;
+        this.f8943b = e9Var;
     }
 
     @Override
@@ -22,15 +22,15 @@ public final class d9 implements ab {
 
     @Override
     public final int f(int i7) {
-        e9 e9Var = this.f8938b;
-        q9 q9Var = e9Var.f8975r0;
+        e9 e9Var = this.f8943b;
+        q9 q9Var = e9Var.f8980r0;
         j4 z9 = q9Var.z();
         if (z9 == null) {
             return 0;
         }
         j3 j3Var = z9.L0;
-        e9 e9Var2 = q9Var.f9634s;
-        float[] fArr = this.f8937a;
+        e9 e9Var2 = q9Var.f9639s;
+        float[] fArr = this.f8942a;
         org.telegram.messenger.g0.r1(j3Var, e9Var2, fArr);
         return (int) (e9Var.getMeasuredHeight() - (fArr[1] + j3Var.getMeasuredHeight()));
     }
@@ -46,7 +46,7 @@ public final class d9 implements ab {
     }
 
     @Override
-    public final void b(cc ccVar) {
+    public final void b(bc bcVar) {
     }
 
     @Override
@@ -54,6 +54,6 @@ public final class d9 implements ab {
     }
 
     @Override
-    public final void d(cc ccVar) {
+    public final void d(bc bcVar) {
     }
 }

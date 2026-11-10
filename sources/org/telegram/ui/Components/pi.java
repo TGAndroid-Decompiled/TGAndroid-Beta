@@ -1,52 +1,76 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.ui.WallpapersListActivity;
-import org.telegram.ui.uc1;
-import org.telegram.ui.vc1;
-import org.telegram.ui.w71;
-public final class pi extends org.telegram.ui.Cells.ua {
-    public final int f37020x;
-    public final pj0 f37021y;
+import android.view.View;
+public final class pi extends uh {
+    public bi.q1 f36936n;
+    public int f36937r;
+    public ei.h f36938s;
+    public ka f36939w;
+    public int f36940x;
+    public q0.a f36941y;
 
-    public pi(pj0 pj0Var, Context context, int i7) {
-        super(context, 5);
-        this.f37020x = i7;
-        this.f37021y = pj0Var;
+    @Override
+    public final void B(int r9, int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.pi.B(int, int):void");
     }
 
     @Override
-    public final void a(int i7, Object obj) {
-        switch (this.f37020x) {
-            case 0:
-                q0.a aVar = ((qi) ((la) this.f37021y).f35661f).f37342y;
-                if (aVar != null) {
-                    aVar.accept(obj);
-                    return;
-                }
-                return;
-            case 1:
-                WallpapersListActivity.w0(((uc1) this.f37021y).d, this, obj, i7);
-                return;
-            default:
-                ((vc1) this.f37021y).E.presentFragment(new w71(obj, null, true));
-                return;
+    public final void H(uh uhVar) {
+        ci ciVar = this.f38656b;
+        try {
+            ciVar.U2.getTitleTextView().setBuildFullLayout(true);
+        } catch (Exception unused) {
         }
+        ciVar.U2.setTitle(org.telegram.messenger.id.M0(2131745663, null));
+        this.f36938s.h1(0, 0);
     }
 
     @Override
-    public boolean b(Object obj, int i7) {
-        switch (this.f37020x) {
-            case 1:
-                return WallpapersListActivity.x0(((uc1) this.f37021y).d, this, obj, i7);
-            default:
-                return super.b(obj, i7);
-        }
+    public final void J() {
+        this.f36936n.y0(0);
     }
 
-    public pi(la laVar, Context context) {
-        super(context, 1);
-        this.f37020x = 0;
-        this.f37021y = laVar;
+    @Override
+    public int getCurrentItemTop() {
+        bi.q1 q1Var = this.f36936n;
+        if (q1Var.getChildCount() <= 0) {
+            q1Var.setTopGlowOffset(q1Var.getPaddingTop());
+            return Integer.MAX_VALUE;
+        }
+        View childAt = q1Var.getChildAt(0);
+        xi0 xi0Var = (xi0) q1Var.G(childAt);
+        int top = childAt.getTop();
+        int L = org.telegram.messenger.g0.L(7.0f);
+        if (top < org.telegram.messenger.g0.L(7.0f) || xi0Var == null || xi0Var.b() != 0) {
+            top = L;
+        }
+        q1Var.setTopGlowOffset(top);
+        return top;
+    }
+
+    @Override
+    public int getFirstOffset() {
+        return org.telegram.messenger.g0.L(56.0f) + getListTopPadding();
+    }
+
+    @Override
+    public int getListTopPadding() {
+        return this.f36936n.getPaddingTop();
+    }
+
+    @Override
+    public final int j() {
+        return 1;
+    }
+
+    public void setDelegate(q0.a aVar) {
+        this.f36941y = aVar;
+    }
+
+    @Override
+    public void setTranslationY(float f10) {
+        super.setTranslationY(f10);
+        this.f38656b.f28672b.invalidate();
+        invalidate();
     }
 }

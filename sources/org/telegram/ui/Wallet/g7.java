@@ -1,30 +1,33 @@
 package org.telegram.ui.Wallet;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.messenger.v10;
+import org.telegram.messenger.c20;
 public final class g7 implements Runnable {
-    public final int f42514a;
-    public final AtomicBoolean f42515b;
-    public final v10 f42516c;
+    public final int f42534a = 1;
+    public final WalletEngine2 f42535b;
+    public final String f42536c;
+    public final c20 d;
 
-    public g7(AtomicBoolean atomicBoolean, v10 v10Var, int i7) {
-        this.f42514a = i7;
-        this.f42515b = atomicBoolean;
-        this.f42516c = v10Var;
+    public g7(WalletEngine2 walletEngine2, String str, c20 c20Var) {
+        this.f42535b = walletEngine2;
+        this.f42536c = str;
+        this.d = c20Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f42514a) {
+        switch (this.f42534a) {
             case 0:
-                WalletEngine2.lambda$emulateSend$17(this.f42515b, this.f42516c);
-                return;
-            case 1:
-                WalletEngine2.lambda$emulateSendNFT$21(this.f42515b, this.f42516c);
+                this.f42535b.lambda$previewSignMessage$7(this.d, this.f42536c);
                 return;
             default:
-                WalletEngine2.lambda$emulateSendNFT$22(this.f42515b, this.f42516c);
+                this.f42535b.lambda$getTransactionByHash$39(this.f42536c, this.d);
                 return;
         }
+    }
+
+    public g7(WalletEngine2 walletEngine2, c20 c20Var, String str) {
+        this.f42535b = walletEngine2;
+        this.d = c20Var;
+        this.f42536c = str;
     }
 }

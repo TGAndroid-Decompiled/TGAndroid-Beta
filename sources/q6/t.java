@@ -7,21 +7,21 @@ import android.os.Build;
 import android.util.Log;
 import com.google.android.gms.common.api.GoogleApiActivity;
 public final class t implements DialogInterface.OnClickListener {
-    public final Intent f53946a;
-    public final GoogleApiActivity f53947b;
+    public final Intent f53945a;
+    public final GoogleApiActivity f53946b;
 
     public t(Intent intent, GoogleApiActivity googleApiActivity) {
-        this.f53946a = intent;
-        this.f53947b = googleApiActivity;
+        this.f53945a = intent;
+        this.f53946b = googleApiActivity;
     }
 
     @Override
     public final void onClick(DialogInterface dialogInterface, int i7) {
         try {
             try {
-                Intent intent = this.f53946a;
+                Intent intent = this.f53945a;
                 if (intent != null) {
-                    this.f53947b.startActivityForResult(intent, 2);
+                    this.f53946b.startActivityForResult(intent, 2);
                 }
             } catch (ActivityNotFoundException e10) {
                 String str = "Failed to start resolution intent.";

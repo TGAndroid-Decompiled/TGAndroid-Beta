@@ -1,22 +1,23 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-public final class k40 extends ug.i0 {
-    public final l40 P2;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
+public final class k40 implements ViewTreeObserver.OnGlobalLayoutListener {
+    public final FrameLayout f47156a;
+    public final m40 f47157b;
 
-    public k40(l40 l40Var, l40 l40Var2, Activity activity, int i7, int i10, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(i7, i10, activity, l40Var2, g6Var);
-        this.P2 = l40Var;
+    public k40(m40 m40Var, FrameLayout frameLayout) {
+        this.f47157b = m40Var;
+        this.f47156a = frameLayout;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.P2.B0 = false;
-    }
-
-    @Override
-    public final void v() {
-        this.P2.B0 = false;
+    public final void onGlobalLayout() {
+        this.f47156a.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        m40 m40Var = this.f47157b;
+        if (m40Var.f47788z0 == null) {
+            m40Var.f47788z0 = (kc) m40Var.F0(m40Var.Z);
+        }
+        m40Var.f47788z0.f47255f.setOnClickListener(new j40(this, 0));
     }
 }

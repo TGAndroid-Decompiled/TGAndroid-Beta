@@ -60,8 +60,8 @@ import org.telegram.ui.Cells.f1;
 import org.telegram.ui.Cells.j9;
 import org.telegram.ui.Cells.l1;
 import org.telegram.ui.Cells.q1;
-import org.telegram.ui.Components.r5;
-import org.telegram.ui.hr0;
+import org.telegram.ui.Components.q5;
+import org.telegram.ui.ir0;
 import org.xml.sax.Attributes;
 import pb.h;
 import q2.f;
@@ -71,11 +71,11 @@ import u2.u;
 import w7.q;
 import w7.s;
 public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d, IMapsProvider, gh.a, l1, m, u, x5.a {
-    public static final a f20534b = new a(14);
-    public final int f20535a;
+    public static final a f20539b = new a(14);
+    public final int f20540a;
 
     public a(int i7) {
-        this.f20535a = i7;
+        this.f20540a = i7;
     }
 
     public static ia.b W(s sVar) {
@@ -107,11 +107,11 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
             if (z9) {
                 String a10 = bg.m.a("data-document-id", attributes);
                 if (a10 != null) {
-                    editable.setSpan(new r5(Long.parseLong(a10), (Paint.FontMetricsInt) null), editable.length(), editable.length(), 17);
+                    editable.setSpan(new q5(Long.parseLong(a10), (Paint.FontMetricsInt) null), editable.length(), editable.length(), 17);
                     return true;
                 }
             } else {
-                Object[] spans = editable.getSpans(0, editable.length(), r5.class);
+                Object[] spans = editable.getSpans(0, editable.length(), q5.class);
                 if (spans.length != 0) {
                     int length = spans.length;
                     while (true) {
@@ -126,7 +126,7 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
                         length--;
                     }
                 }
-                Object obj2 = (r5) obj;
+                Object obj2 = (q5) obj;
                 if (obj2 != null) {
                     int spanStart = editable.getSpanStart(obj2);
                     editable.removeSpan(obj2);
@@ -342,7 +342,7 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
 
     @Override
     public int F(e2.u uVar) {
-        if (uVar.f10618w != null) {
+        if (uVar.f10623w != null) {
             return 1;
         }
         return 0;
@@ -352,13 +352,13 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
     public void H0(ShortBuffer shortBuffer, int i7, ShortBuffer shortBuffer2, int i10) {
         eg.a aVar;
         if (i7 == 6) {
-            aVar = eg.a.f10808p;
+            aVar = eg.a.f10813p;
         } else if (i7 > i10) {
-            aVar = eg.a.f10805l;
+            aVar = eg.a.f10810l;
         } else if (i7 < i10) {
-            aVar = eg.a.f10806m;
+            aVar = eg.a.f10811m;
         } else {
-            aVar = eg.a.f10807o;
+            aVar = eg.a.f10812o;
         }
         aVar.H0(shortBuffer, i7, shortBuffer2, i10);
     }
@@ -389,7 +389,7 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
     }
 
     @Override
-    public hr0 N1() {
+    public ir0 N1() {
         return null;
     }
 
@@ -490,7 +490,7 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
 
     @Override
     public Object e(r7 r7Var) {
-        switch (this.f20535a) {
+        switch (this.f20540a) {
             case 15:
                 return new h();
             default:
@@ -561,7 +561,7 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
 
     @Override
     public q2.g i(j jVar, e2.u uVar) {
-        if (uVar.f10618w == null) {
+        if (uVar.f10623w == null) {
             return null;
         }
         return new q2.n(new f(6001, new Exception()));
@@ -609,7 +609,7 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
                     x6.b.a(byteArrayOutputStream);
                     e eVar = new e(new String(byteArrayOutputStream.toByteArray(), "UTF-8"));
                     ?? obj = new Object();
-                    obj.f22634a = eVar;
+                    obj.f22638a = eVar;
                     return obj;
                 }
             }
@@ -621,11 +621,11 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
 
     @Override
     public q2.l m(j jVar, e2.u uVar) {
-        return q2.l.f53752z;
+        return q2.l.f53751z;
     }
 
     @Override
-    public boolean n0(r5 r5Var) {
+    public boolean n0(q5 q5Var) {
         return false;
     }
 
@@ -636,9 +636,9 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
 
     @Override
     public ua newCameraUpdateLatLng(cb cbVar) {
-        LatLng latLng = new LatLng(cbVar.f21833a, cbVar.f21834b);
+        LatLng latLng = new LatLng(cbVar.f21837a, cbVar.f21838b);
         try {
-            l8.a aVar = z0.f5982a;
+            l8.a aVar = z0.f5987a;
             q6.m.h(aVar, "CameraUpdateFactory is not initialized");
             Parcel p12 = aVar.p1();
             v7.b.b(p12, latLng);
@@ -653,9 +653,9 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
 
     @Override
     public ua newCameraUpdateLatLngBounds(wa waVar, int i7) {
-        LatLngBounds latLngBounds = ((da) waVar).f22009a;
+        LatLngBounds latLngBounds = ((da) waVar).f22013a;
         try {
-            l8.a aVar = z0.f5982a;
+            l8.a aVar = z0.f5987a;
             q6.m.h(aVar, "CameraUpdateFactory is not initialized");
             Parcel p12 = aVar.p1();
             v7.b.b(p12, latLngBounds);
@@ -671,9 +671,9 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
 
     @Override
     public ua newCameraUpdateLatLngZoom(cb cbVar, float f10) {
-        LatLng latLng = new LatLng(cbVar.f21833a, cbVar.f21834b);
+        LatLng latLng = new LatLng(cbVar.f21837a, cbVar.f21838b);
         try {
-            l8.a aVar = z0.f5982a;
+            l8.a aVar = z0.f5987a;
             q6.m.h(aVar, "CameraUpdateFactory is not initialized");
             Parcel p12 = aVar.p1();
             v7.b.b(p12, latLng);
@@ -696,16 +696,16 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
     public va onCreateCircleOptions() {
         h9.f1 f1Var = new h9.f1(22, false);
         ?? obj = new Object();
-        obj.f19929a = null;
-        obj.f19930b = 0.0d;
-        obj.f19931c = 10.0f;
+        obj.f19934a = null;
+        obj.f19935b = 0.0d;
+        obj.f19936c = 10.0f;
         obj.d = -16777216;
-        obj.f19932e = 0;
-        obj.f19933f = 0.0f;
+        obj.f19937e = 0;
+        obj.f19938f = 0.0f;
         obj.h = true;
-        obj.f19934n = false;
-        obj.f19935r = null;
-        f1Var.f14323b = obj;
+        obj.f19939n = false;
+        obj.f19940r = null;
+        f1Var.f14325b = obj;
         return f1Var;
     }
 
@@ -713,11 +713,11 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
     public xa onCreateLatLngBoundsBuilder() {
         d0 d0Var = new d0(25, false);
         m8.d dVar = new m8.d(0);
-        dVar.f19938b = Double.POSITIVE_INFINITY;
-        dVar.f19939c = Double.NEGATIVE_INFINITY;
+        dVar.f19943b = Double.POSITIVE_INFINITY;
+        dVar.f19944c = Double.NEGATIVE_INFINITY;
         dVar.d = Double.NaN;
-        dVar.f19940e = Double.NaN;
-        d0Var.f13555b = dVar;
+        dVar.f19945e = Double.NaN;
+        d0Var.f13557b = dVar;
         return d0Var;
     }
 
@@ -732,15 +732,15 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
     public ab onCreateMarkerOptions() {
         gf.g gVar = new gf.g(24);
         ?? obj = new Object();
-        obj.f19946e = 0.5f;
-        obj.f19947f = 1.0f;
-        obj.f19948n = true;
-        obj.f19949r = false;
-        obj.f19950s = 0.0f;
-        obj.f19951w = 0.5f;
-        obj.f19952x = 0.0f;
-        obj.f19953y = 1.0f;
-        gVar.f13889b = obj;
+        obj.f19951e = 0.5f;
+        obj.f19952f = 1.0f;
+        obj.f19953n = true;
+        obj.f19954r = false;
+        obj.f19955s = 0.0f;
+        obj.f19956w = 0.5f;
+        obj.f19957x = 0.0f;
+        obj.f19958y = 1.0f;
+        gVar.f13891b = obj;
         return gVar;
     }
 
@@ -839,13 +839,13 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
     public int z1(int i7, int i10, int i11) {
         eg.a aVar;
         if (i10 == 6) {
-            aVar = eg.a.f10808p;
+            aVar = eg.a.f10813p;
         } else if (i10 > i11) {
-            aVar = eg.a.f10805l;
+            aVar = eg.a.f10810l;
         } else if (i10 < i11) {
-            aVar = eg.a.f10806m;
+            aVar = eg.a.f10811m;
         } else {
-            aVar = eg.a.f10807o;
+            aVar = eg.a.f10812o;
         }
         return aVar.z1(i7, i10, i11);
     }

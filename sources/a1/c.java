@@ -61,14 +61,14 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.r1;
 import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.Cells.t0;
+import org.telegram.ui.Components.cj0;
 import org.telegram.ui.Components.dj0;
-import org.telegram.ui.Components.ej0;
-import org.telegram.ui.Components.t4;
-import org.telegram.ui.Components.y31;
+import org.telegram.ui.Components.s4;
+import org.telegram.ui.Components.x31;
 import org.telegram.ui.Wallet.t1;
-import org.telegram.ui.il0;
+import org.telegram.ui.jl0;
 import v4.l0;
-public final class c implements OnSuccessListener, p, Continuation, OnCompleteListener, a20, t4, r1, bg.p, te.b, il0, j, i, com.google.android.gms.common.api.internal.p, ej0, w10, dj0 {
+public final class c implements OnSuccessListener, p, Continuation, OnCompleteListener, a20, s4, r1, bg.p, te.b, jl0, j, i, com.google.android.gms.common.api.internal.p, dj0, w10, cj0 {
     public final int f37a;
     public final Object f38b;
 
@@ -82,9 +82,9 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
         e1 e1Var = (e1) this.f38b;
         if (z9) {
             long j3 = i7;
-            if (e1Var.f3749z1 != j3) {
-                e1Var.f3749z1 = j3;
-                e1Var.f3739p1.setText(e1.K0(j3));
+            if (e1Var.C1 != j3) {
+                e1Var.C1 = j3;
+                e1Var.f3739s1.setText(e1.K0(j3));
             }
             e1Var.J0(true);
         }
@@ -104,7 +104,7 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
     public void a(k2.j jVar) {
         d4.i iVar = (d4.i) jVar;
         iVar.clear();
-        ((d4.j) this.f38b).f8177b.add(iVar);
+        ((d4.j) this.f38b).f8182b.add(iVar);
     }
 
     @Override
@@ -113,11 +113,11 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
         kotlin.jvm.internal.j.e(clientImpl, "clientImpl");
         u uVar = new u((TaskCompletionSource) obj2);
         com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new h(-1, -1, 0, true), false);
-        gVar.f6536c = false;
+        gVar.f6541c = false;
         r rVar = (r) ((t) clientImpl.n());
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken("com.google.firebase.pnv.internal.IFpnvService");
-        int i7 = db.e.f8576a;
+        int i7 = db.e.f8581a;
         obtain.writeStrongBinder(uVar);
         obtain.writeInt(1);
         ((q) this.f38b).writeToParcel(obtain, 0);
@@ -125,7 +125,7 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
         gVar.writeToParcel(obtain, 0);
         Parcel obtain2 = Parcel.obtain();
         try {
-            rVar.f8591a.transact(3, obtain, obtain2, 0);
+            rVar.f8596a.transact(3, obtain, obtain2, 0);
             obtain2.readException();
         } finally {
             obtain.recycle();
@@ -191,9 +191,9 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
         int i11;
         int i12;
         g2 g2Var = (g2) this.f38b;
-        q1 q1Var = g2Var.f9805c;
-        ArrayList arrayList = g2Var.f9814r;
-        di.t0 t0Var = ((r0) view).f9664f;
+        q1 q1Var = g2Var.f9810c;
+        ArrayList arrayList = g2Var.f9819r;
+        di.t0 t0Var = ((r0) view).f9669f;
         int i13 = g2Var.N;
         int currentTime = ConnectionsManager.getInstance(i13).getCurrentTime();
         HashSet hashSet = new HashSet();
@@ -201,13 +201,13 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
         int i15 = 0;
         while (true) {
             j3 = 0;
-            if (i15 >= t0Var.f9771f.size()) {
+            if (i15 >= t0Var.f9776f.size()) {
                 break;
             }
-            s0 s0Var = (s0) t0Var.f9771f.get(i15);
-            long j11 = s0Var.f9719g;
+            s0 s0Var = (s0) t0Var.f9776f.get(i15);
+            long j11 = s0Var.f9724g;
             if (j11 > 0 && currentTime - s0Var.d <= di.t.b(i13, (int) j11, 0)) {
-                hashSet.add(Integer.valueOf(s0Var.f9714a));
+                hashSet.add(Integer.valueOf(s0Var.f9719a));
             }
             i15++;
         }
@@ -219,13 +219,13 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
         int i17 = 0;
         while (i16 < arrayList.size()) {
             s0 s0Var2 = (s0) arrayList.get(i16);
-            if (!s0Var2.f9715b && s0Var2.f9717e && s0Var2.f9719g < j3) {
+            if (!s0Var2.f9720b && s0Var2.f9722e && s0Var2.f9724g < j3) {
                 j10 = j3;
             } else {
-                if (hashSet.contains(Integer.valueOf(s0Var2.f9714a))) {
+                if (hashSet.contains(Integer.valueOf(s0Var2.f9719a))) {
                     j10 = j3;
-                    if (g2Var.f9817x != t0Var.f9768b || (i12 = g2Var.f9818y) == 0 || s0Var2.f9714a < i12) {
-                        i10 = s0Var2.f9714a;
+                    if (g2Var.f9822x != t0Var.f9773b || (i12 = g2Var.f9823y) == 0 || s0Var2.f9719a < i12) {
+                        i10 = s0Var2.f9719a;
                         break;
                     }
                 } else {
@@ -243,9 +243,9 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
             while (true) {
                 if (i14 < arrayList.size()) {
                     s0 s0Var3 = (s0) arrayList.get(i14);
-                    if (s0Var3.f9715b || !s0Var3.f9717e || s0Var3.f9719g >= j10) {
-                        if (hashSet.contains(Integer.valueOf(s0Var3.f9714a))) {
-                            i11 = s0Var3.f9714a;
+                    if (s0Var3.f9720b || !s0Var3.f9722e || s0Var3.f9724g >= j10) {
+                        if (hashSet.contains(Integer.valueOf(s0Var3.f9719a))) {
+                            i11 = s0Var3.f9719a;
                             i17 = i18;
                             break;
                         }
@@ -264,13 +264,13 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
         if (i11 < 0) {
             return;
         }
-        g2Var.f9817x = t0Var.f9768b;
-        g2Var.f9818y = i11;
+        g2Var.f9822x = t0Var.f9773b;
+        g2Var.f9823y = i11;
         g2Var.D = true;
         l0 itemAnimator = q1Var.getItemAnimator();
         q1Var.setItemAnimator(null);
         g2Var.d.i1(i17, q1Var.getHeight() / 2, true);
-        g2Var.f9808e.g(i17);
+        g2Var.f9813e.g(i17);
         q1Var.setItemAnimator(itemAnimator);
     }
 
@@ -288,7 +288,7 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
     public h9.t1 h(int i7, m1 m1Var, int[] iArr) {
         n nVar = (n) this.f38b;
         f0 p10 = i0.p();
-        for (int i10 = 0; i10 < m1Var.f10373a; i10++) {
+        for (int i10 = 0; i10 < m1Var.f10378a; i10++) {
             p10.c(new a3.j(i7, m1Var, i10, nVar, iArr[i10]));
         }
         return p10.f();
@@ -299,14 +299,14 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
         switch (this.f37a) {
             case 10:
                 y yVar = (y) this.f38b;
-                y31 y31Var = (y31) obj;
+                x31 x31Var = (x31) obj;
                 View view = (View) obj2;
                 Integer num = (Integer) number;
                 Float f10 = (Float) serializable;
                 Float f11 = (Float) serializable2;
-                z zVar = yVar.f5059r;
-                if (y31Var.G instanceof TL_stars.StarsTransaction) {
-                    dd.k1(yVar.getContext(), true, zVar.f5108b, z.p0(zVar), (TL_stars.StarsTransaction) y31Var.G, z.q0(zVar));
+                z zVar = yVar.f5064r;
+                if (x31Var.G instanceof TL_stars.StarsTransaction) {
+                    dd.k1(yVar.getContext(), true, zVar.f5113b, z.p0(zVar), (TL_stars.StarsTransaction) x31Var.G, z.q0(zVar));
                     return;
                 } else if (yVar.h) {
                     yVar.h = false;
@@ -320,13 +320,13 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                 return;
             default:
                 ad adVar = (ad) this.f38b;
-                y31 y31Var2 = (y31) obj;
+                x31 x31Var2 = (x31) obj;
                 View view2 = (View) obj2;
                 Integer num2 = (Integer) number;
                 Float f12 = (Float) serializable;
                 Float f13 = (Float) serializable2;
-                if (y31Var2.G instanceof TL_stars.StarsTransaction) {
-                    dd.k1(adVar.getContext(), false, 0L, adVar.f3470c, (TL_stars.StarsTransaction) y31Var2.G, adVar.f3469b);
+                if (x31Var2.G instanceof TL_stars.StarsTransaction) {
+                    dd.k1(adVar.getContext(), false, 0L, adVar.f3473c, (TL_stars.StarsTransaction) x31Var2.G, adVar.f3472b);
                     return;
                 }
                 return;
@@ -383,7 +383,7 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                 r7Var.getClass();
                 if (!task.isSuccessful() && (exception = task.getException()) != null && !TextUtils.isEmpty(exception.getMessage()) && exception.getMessage().contains("FID_ALREADY_USED:")) {
                     Log.w("FirebaseMessaging", "FID_ALREADY_USED Detected. Retrying with FID cache clearing!");
-                    ((va.c) ((va.d) r7Var.d)).f57303c.b().delete();
+                    ((va.c) ((va.d) r7Var.d)).f57299c.b().delete();
                     return r7Var.C();
                 }
                 return task;
@@ -413,21 +413,21 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                 db.n this$0 = (db.n) this.f38b;
                 kotlin.jvm.internal.j.e(this$0, "this$0");
                 kotlin.jvm.internal.j.e(task, "task");
-                d1 d1Var = db.n.f8587b;
+                d1 d1Var = db.n.f8592b;
                 if (task.isSuccessful()) {
                     d1Var.a("Successfully completed the operation", new Object[0]);
-                    Task forResult = Tasks.forResult(m.f8586b.invoke(task.getResult()));
+                    Task forResult = Tasks.forResult(m.f8591b.invoke(task.getResult()));
                     kotlin.jvm.internal.j.d(forResult, "{\n      logger.d(\"Succes…ccess(task.result))\n    }");
                     return forResult;
                 }
-                Log.e(d1Var.f21970b, d1Var.b("Failed to fetch the Verification Support Info: " + task.getException(), new Object[0]));
+                Log.e(d1Var.f21974b, d1Var.b("Failed to fetch the Verification Support Info: " + task.getException(), new Object[0]));
                 Exception exception2 = task.getException();
                 if (exception2 != null && (message = exception2.getMessage()) != null && xd.d.e(message, "test_number_token is invalid")) {
                     d1Var.a("Backend rejected the test number token.", new Object[0]);
                     forException = Tasks.forException(new db.b(55507, "Invalid test number ID(s) - might be empty, expired or duplicated."));
                 } else {
                     if (exception2 instanceof com.google.android.gms.common.api.f) {
-                        i7 = ((com.google.android.gms.common.api.f) exception2).getStatus().f6527a;
+                        i7 = ((com.google.android.gms.common.api.f) exception2).getStatus().f6532a;
                     } else {
                         i7 = 55501;
                     }
@@ -446,9 +446,9 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
             case 21:
                 c4.h hVar = (c4.h) this.f38b;
                 c4.a aVar = (c4.a) obj;
-                c4.g gVar = new c4.g(aVar.f5268b, sa.d.w0(aVar.f5267a, aVar.f5269c));
-                hVar.f5278c.add(gVar);
-                long j3 = hVar.f5283j;
+                c4.g gVar = new c4.g(aVar.f5273b, sa.d.w0(aVar.f5272a, aVar.f5274c));
+                hVar.f5283c.add(gVar);
+                long j3 = hVar.f5288j;
                 if (j3 == -9223372036854775807L || aVar.d >= j3) {
                     hVar.g(gVar);
                     return;

@@ -3,37 +3,37 @@ package gh;
 import android.graphics.Color;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.sc;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.ActionBar.s6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
 public class b implements a {
-    public final g6 f13958a;
-    public final int f13959b;
-    public final float f13960c;
+    public final h6 f13960a;
+    public final int f13961b;
+    public final float f13962c;
     public int d;
-    public int f13961e;
-    public int f13962f;
+    public int f13963e;
+    public int f13964f;
     public int h;
-    public int f13963n;
-    public int f13964r;
+    public int f13965n;
+    public int f13966r;
 
-    public b(int i7, g6 g6Var) {
-        this(g6Var, i7, sc.e(262144) ? 0.85f : 0.76f);
+    public b(int i7, h6 h6Var) {
+        this(h6Var, i7, sc.e(262144) ? 0.85f : 0.76f);
     }
 
     @Override
     public int A() {
         a();
-        if (b() && Color.alpha(l6.w0(this.f13963n, this.f13958a)) != 0) {
+        if (b() && Color.alpha(m6.w0(this.f13965n, this.f13960a)) != 0) {
             return 0;
         }
-        return this.f13962f;
+        return this.f13964f;
     }
 
     @Override
     public final int C0() {
         if (b()) {
-            return l6.w0(l6.ya, this.f13958a);
+            return m6.w0(m6.ya, this.f13960a);
         }
         return 0;
     }
@@ -41,7 +41,7 @@ public class b implements a {
     @Override
     public final int M() {
         if (b()) {
-            return l6.w0(this.f13963n, this.f13958a);
+            return m6.w0(this.f13965n, this.f13960a);
         }
         return 0;
     }
@@ -49,7 +49,7 @@ public class b implements a {
     @Override
     public int O() {
         a();
-        if (b() && Color.alpha(l6.w0(this.f13963n, this.f13958a)) != 0) {
+        if (b() && Color.alpha(m6.w0(this.f13965n, this.f13960a)) != 0) {
             return 0;
         }
         return this.h;
@@ -59,43 +59,43 @@ public class b implements a {
     public int R0() {
         a();
         if (b()) {
-            return l6.w0(l6.f28242xa, this.f13958a);
+            return m6.w0(m6.f28267xa, this.f13960a);
         }
-        return this.f13961e;
+        return this.f13963e;
     }
 
     public final void a() {
-        if (this.f13964r != s6.f28501b) {
+        if (this.f13966r != t6.f28531b) {
             d();
         }
     }
 
     public final boolean b() {
-        if (this.f13963n >= 0 && l6.i1(this.f13958a)) {
+        if (this.f13965n >= 0 && m6.i1(this.f13960a)) {
             return true;
         }
         return false;
     }
 
     public boolean c() {
-        if (g0.B(l6.w0(this.f13959b, this.f13958a)) < 0.721f) {
+        if (g0.B(m6.w0(this.f13961b, this.f13960a)) < 0.721f) {
             return true;
         }
         return false;
     }
 
     public final void d() {
-        this.f13964r = s6.f28501b;
-        this.d = l6.r1(this.f13960c, l6.w0(this.f13959b, this.f13958a));
+        this.f13966r = t6.f28531b;
+        this.d = m6.r1(this.f13962c, m6.w0(this.f13961b, this.f13960a));
         if (c()) {
-            this.f13962f = 687865855;
+            this.f13964f = 687865855;
             this.h = 352321535;
-            this.f13961e = 0;
+            this.f13963e = 0;
             return;
         }
-        this.f13962f = -1;
+        this.f13964f = -1;
         this.h = -1;
-        this.f13961e = 536870912;
+        this.f13963e = 536870912;
     }
 
     @Override
@@ -125,12 +125,12 @@ public class b implements a {
         return g0.N(0.6f);
     }
 
-    public b(g6 g6Var, int i7, float f10) {
-        this.f13963n = -1;
-        this.f13964r = s6.f28501b;
-        this.f13958a = g6Var;
-        this.f13959b = i7;
-        this.f13960c = f10;
+    public b(h6 h6Var, int i7, float f10) {
+        this.f13965n = -1;
+        this.f13966r = t6.f28531b;
+        this.f13960a = h6Var;
+        this.f13961b = i7;
+        this.f13962c = f10;
         d();
     }
 }

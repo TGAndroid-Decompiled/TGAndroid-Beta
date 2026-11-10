@@ -3,20 +3,20 @@ package org.telegram.ui;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class wb implements org.telegram.messenger.c20 {
-    public final int f51012a;
-    public final rc f51013b;
+    public final int f50971a;
+    public final rc f50972b;
 
     public wb(rc rcVar, int i7) {
-        this.f51012a = i7;
-        this.f51013b = rcVar;
+        this.f50971a = i7;
+        this.f50972b = rcVar;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f51012a) {
+        switch (this.f50971a) {
             case 0:
                 TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) obj;
-                rc rcVar = this.f51013b;
+                rc rcVar = this.f50972b;
                 rcVar.E = wallPaper;
                 rcVar.F = wallPaper;
                 rcVar.G = wallPaper;
@@ -25,10 +25,10 @@ public final class wb implements org.telegram.messenger.c20 {
                 org.telegram.messenger.g0.i3(new xb(rcVar, 1), 350L);
                 return;
             case 1:
-                rc.a0(this.f51013b, (org.telegram.messenger.e3) obj);
+                rc.a0(this.f50972b, (org.telegram.messenger.e3) obj);
                 return;
             default:
-                this.f51013b.d1((TL_stories.TL_premium_boostsStatus) obj);
+                this.f50972b.d1((TL_stories.TL_premium_boostsStatus) obj);
                 return;
         }
     }

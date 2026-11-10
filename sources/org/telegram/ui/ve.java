@@ -1,75 +1,29 @@
 package org.telegram.ui;
+public final class ve implements Runnable {
+    public final int f50716a;
+    public final cn f50717b;
+    public final boolean f50718c;
 
-import org.telegram.tgnet.TLRPC;
-public final class ve implements org.telegram.ui.ActionBar.r1, org.telegram.messenger.bp, il0 {
-    public final int f50666a;
-    public final Runnable f50667b;
-
-    public ve(int i7, Runnable runnable) {
-        this.f50666a = i7;
-        this.f50667b = runnable;
+    public ve(cn cnVar, boolean z9, int i7) {
+        this.f50716a = i7;
+        this.f50717b = cnVar;
+        this.f50718c = z9;
     }
 
     @Override
-    public boolean a(TLRPC.TL_error tL_error) {
-        switch (this.f50666a) {
-            case 3:
-                this.f50667b.run();
-                return true;
-            case 4:
-                this.f50667b.run();
-                return true;
-            case 5:
-                this.f50667b.run();
-                return true;
-            case 6:
-                this.f50667b.run();
-                return true;
-            case 7:
-                this.f50667b.run();
-                return true;
-            default:
-                this.f50667b.run();
-                return true;
-        }
-    }
-
-    @Override
-    public void b(int i7) {
-        int i10 = this.f50666a;
-        Runnable runnable = this.f50667b;
-        switch (i10) {
-            case 9:
-                String str = LaunchActivity.B1;
-                if (i7 == 1) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            default:
-                if (i7 == 1) {
-                    runnable.run();
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f50666a) {
+    public final void run() {
+        String str;
+        switch (this.f50716a) {
             case 0:
-                this.f50667b.run();
-                return;
-            case 1:
-                this.f50667b.run();
+                if (this.f50718c) {
+                    str = "upload_speed";
+                } else {
+                    str = "download_speed";
+                }
+                this.f50717b.presentFragment(new PremiumPreviewFragment(0, str));
                 return;
             default:
-                Runnable runnable = this.f50667b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                this.f50717b.fd(0, this.f50718c);
                 return;
         }
     }

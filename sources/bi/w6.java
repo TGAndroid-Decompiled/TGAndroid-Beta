@@ -2,15 +2,15 @@ package bi;
 
 import android.content.Context;
 import android.text.SpannableStringBuilder;
-public final class w6 extends org.telegram.ui.Components.jc {
-    public final org.telegram.ui.ActionBar.g6 P;
+public final class w6 extends org.telegram.ui.Components.ic {
+    public final org.telegram.ui.ActionBar.h6 P;
     public String Q;
     public int R;
 
-    public w6(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+    public w6(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
-        this.P = g6Var;
-        org.telegram.ui.ActionBar.s6.U(this, org.telegram.ui.ActionBar.l6.G6, g6Var);
+        this.P = h6Var;
+        org.telegram.ui.ActionBar.t6.U(this, org.telegram.ui.ActionBar.m6.G6, h6Var);
         setTextSize(1, 14.0f);
         setPadding(0, org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f));
     }
@@ -28,7 +28,7 @@ public final class w6 extends org.telegram.ui.Components.jc {
         } else {
             e0Var = null;
         }
-        append.append((CharSequence) org.telegram.ui.Components.kc.b(J0, e0Var, this.P, null));
+        append.append((CharSequence) org.telegram.ui.Components.jc.b(J0, e0Var, this.P, null));
         setText(spannableStringBuilder);
         this.Q = str;
         this.R = i7;

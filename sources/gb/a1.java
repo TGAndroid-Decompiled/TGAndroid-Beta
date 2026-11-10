@@ -1,11 +1,11 @@
 package gb;
 public final class a1 implements ce.d {
-    public final int f13625a;
-    public final Object f13626b;
+    public final int f13627a;
+    public final Object f13628b;
 
     public a1(Object obj, int i7) {
-        this.f13625a = i7;
-        this.f13626b = obj;
+        this.f13627a = i7;
+        this.f13628b = obj;
     }
 
     @Override

@@ -5,23 +5,23 @@ import android.graphics.Canvas;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 public final class w7 extends FrameLayout {
-    public j4 f9901a;
-    public long f9902b;
-    public ArrayList f9903c;
+    public j4 f9906a;
+    public long f9907b;
+    public ArrayList f9908c;
     public boolean d;
-    public final w f9904e;
+    public final w f9909e;
 
     public w7(w wVar, Context context) {
         super(context);
-        this.f9904e = wVar;
+        this.f9909e = wVar;
     }
 
     public final void a(boolean z9) {
         if (this.d != z9) {
             this.d = z9;
             invalidate();
-            this.f9901a.setIsVisible(z9);
-            this.f9904e.A();
+            this.f9906a.setIsVisible(z9);
+            this.f9909e.A();
         }
     }
 

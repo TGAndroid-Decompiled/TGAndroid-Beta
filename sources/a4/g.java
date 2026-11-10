@@ -25,7 +25,7 @@ public final class g {
         x xVar = this.f175g;
         xVar.K(27);
         try {
-            z10 = pVar.k(xVar.f14162a, 0, 27, z9);
+            z10 = pVar.k(xVar.f14164a, 0, 27, z9);
         } catch (EOFException e10) {
             if (z9) {
                 z10 = false;
@@ -49,7 +49,7 @@ public final class g {
                 this.d = A + 27;
                 xVar.K(A);
                 try {
-                    z11 = pVar.k(xVar.f14162a, 0, this.f172c, z9);
+                    z11 = pVar.k(xVar.f14164a, 0, this.f172c, z9);
                 } catch (EOFException e11) {
                     if (z9) {
                         z11 = false;
@@ -88,7 +88,7 @@ public final class g {
                 break;
             }
             try {
-                z10 = pVar.k(xVar.f14162a, 0, 4, true);
+                z10 = pVar.k(xVar.f14164a, 0, 4, true);
             } catch (EOFException unused) {
                 z10 = false;
             }

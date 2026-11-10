@@ -12,7 +12,7 @@ public final class x {
     public int f28726e;
     public Drawable f28727f;
     public int f28728g;
-    public g6 h;
+    public h6 h;
     public float f28729i;
     public Boolean f28730j;
     public Boolean f28731k;
@@ -24,7 +24,7 @@ public final class x {
         y yVar = this.f28723a;
         if (this.f28733m == null) {
             int childCount = yVar.getChildCount();
-            ArrayList arrayList = yVar.f28761e;
+            ArrayList arrayList = yVar.f28773e;
             int i7 = 0;
             if (arrayList != null) {
                 int indexOf = arrayList.indexOf(Integer.valueOf(this.f28724b));
@@ -35,7 +35,7 @@ public final class x {
                     }
                     Object tag = yVar.getChildAt(i10).getTag();
                     if (tag instanceof Integer) {
-                        if (yVar.f28761e.indexOf((Integer) tag) > indexOf) {
+                        if (yVar.f28773e.indexOf((Integer) tag) > indexOf) {
                             childCount = i10;
                             break;
                         }

@@ -32,13 +32,13 @@ public final class c extends kd.j implements rd.p {
     public final Object invoke(Object obj, Object obj2) {
         switch (this.f16608a) {
             case 0:
-                gd.k kVar = gd.k.f13829a;
+                gd.k kVar = gd.k.f13831a;
                 ((c) create((String) obj, (id.c) obj2)).invokeSuspend(kVar);
                 return kVar;
             case 1:
-                return ((c) create((e1) obj, (id.c) obj2)).invokeSuspend(gd.k.f13829a);
+                return ((c) create((e1) obj, (id.c) obj2)).invokeSuspend(gd.k.f13831a);
             default:
-                return ((c) create((i) obj, (id.c) obj2)).invokeSuspend(gd.k.f13829a);
+                return ((c) create((i) obj, (id.c) obj2)).invokeSuspend(gd.k.f13831a);
         }
     }
 
@@ -49,7 +49,7 @@ public final class c extends kd.j implements rd.p {
                 jd.a aVar = jd.a.f16646a;
                 af.b.c(obj);
                 Log.e("FirebaseSessions", "Error failed to fetch the remote configs: " + ((String) this.f16609b));
-                return gd.k.f13829a;
+                return gd.k.f13831a;
             case 1:
                 jd.a aVar2 = jd.a.f16646a;
                 af.b.c(obj);

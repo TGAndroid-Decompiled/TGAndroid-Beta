@@ -1,50 +1,103 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class x4 extends FrameLayout {
-    public boolean f40287a;
-    public int f40288b;
-    public j6 f40289c;
-    public j6 d;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Picture;
+import android.text.TextUtils;
+public abstract class x4 extends s70 implements te.b {
+    public final te.c P0;
+    public Picture Q0;
+    public float R0;
+    public int S0;
+    public Paint T0;
 
-    public j6 getSubtitleTextView() {
-        return this.d;
-    }
-
-    public j6 getTitle() {
-        return this.f40289c;
-    }
-
-    @Override
-    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        int i13;
-        j6 j6Var = this.d;
-        j6 j6Var2 = this.f40289c;
-        int y10 = org.telegram.messenger.camera.q.y(42.0f, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 2);
-        if (this.f40287a) {
-            i13 = org.telegram.messenger.g0.f22557m;
-        } else {
-            i13 = 0;
-        }
-        int i14 = y10 + i13;
-        int i15 = this.f40288b;
-        if (j6Var.getVisibility() != 8) {
-            j6Var2.layout(i15, (org.telegram.messenger.g0.L(1.0f) + i14) - j6Var2.getPaddingTop(), j6Var2.getMeasuredWidth() + i15, j6Var2.getPaddingBottom() + ((org.telegram.messenger.g0.L(1.3f) + (j6Var2.getTextHeight() + i14)) - j6Var2.getPaddingTop()));
-        } else {
-            j6Var2.layout(i15, (org.telegram.messenger.g0.L(11.0f) + i14) - j6Var2.getPaddingTop(), j6Var2.getMeasuredWidth() + i15, j6Var2.getPaddingBottom() + ((org.telegram.messenger.g0.L(11.0f) + (j6Var2.getTextHeight() + i14)) - j6Var2.getPaddingTop()));
-        }
-        j6Var.layout(i15, org.telegram.messenger.g0.L(20.0f) + i14, j6Var.getMeasuredWidth() + i15, org.telegram.messenger.g0.L(24.0f) + j6Var.getTextHeight() + i14);
+    public x4(Context context) {
+        super(context);
+        this.P0 = new te.c(0, this, wq.h, 320L, 1.0f);
+        this.S0 = 0;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        int size = View.MeasureSpec.getSize(i7);
-        j6 j6Var = this.f40289c;
-        int paddingRight = j6Var.getPaddingRight() + size;
-        int L = paddingRight - org.telegram.messenger.g0.L(16.0f);
-        j6Var.measure(View.MeasureSpec.makeMeasureSpec(L, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(j6Var.getPaddingRight() + org.telegram.messenger.g0.L(32.0f), Integer.MIN_VALUE));
-        this.d.measure(View.MeasureSpec.makeMeasureSpec(L, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(20.0f), Integer.MIN_VALUE));
-        setMeasuredDimension(paddingRight, View.MeasureSpec.getSize(i10));
+    public final void F(float f10, int i7) {
+        if (f10 == 1.0f) {
+            if (this.Q0 != null) {
+                this.Q0 = null;
+                super.setLayerType(this.S0, this.T0);
+            }
+            invalidate();
+        }
+    }
+
+    @Override
+    public int getLayerType() {
+        return this.S0;
+    }
+
+    public final void n(Canvas canvas, float f10, float f11) {
+        if (f10 >= 1.0f && f11 == 0.0f) {
+            super.onDraw(canvas);
+            return;
+        }
+        canvas.save();
+        canvas.translate(0.0f, f11);
+        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (f10 * 255.0f));
+        super.onDraw(canvas);
+        canvas.restore();
+        canvas.restore();
+    }
+
+    public final boolean o(CharSequence charSequence, boolean z9) {
+        CharSequence text = getText();
+        if (TextUtils.equals(text, charSequence)) {
+            return l(charSequence, false);
+        }
+        te.c cVar = this.P0;
+        if (z9 && isAttachedToWindow() && isLaidOut() && getVisibility() == 0 && getAlpha() > 0.0f && getWidth() > 0 && getHeight() > 0 && !TextUtils.isEmpty(text)) {
+            Picture picture = new Picture();
+            n(picture.beginRecording(getWidth(), getHeight()), 1.0f, 0.0f);
+            picture.endRecording();
+            cVar.c(0.0f);
+            this.Q0 = picture;
+            this.R0 = getTranslationX();
+            super.setLayerType(0, null);
+            cVar.a(1.0f);
+        } else {
+            cVar.c(1.0f);
+            if (this.Q0 != null) {
+                this.Q0 = null;
+                super.setLayerType(this.S0, this.T0);
+            }
+            invalidate();
+        }
+        invalidate();
+        return l(charSequence, false);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (this.Q0 == null) {
+            super.onDraw(canvas);
+            return;
+        }
+        float f10 = this.P0.f55504f;
+        int L = org.telegram.messenger.g0.L(6.0f);
+        canvas.save();
+        canvas.translate(this.R0 - getTranslationX(), (-L) * f10);
+        float f11 = 1.0f - f10;
+        canvas.saveLayerAlpha(0.0f, 0.0f, this.Q0.getWidth(), this.Q0.getHeight(), (int) (255.0f * f11));
+        canvas.drawPicture(this.Q0);
+        canvas.restore();
+        canvas.restore();
+        n(canvas, f10, L * f11);
+    }
+
+    @Override
+    public final void setLayerType(int i7, Paint paint) {
+        this.S0 = i7;
+        this.T0 = paint;
+        if (this.Q0 == null) {
+            super.setLayerType(i7, paint);
+        }
     }
 }

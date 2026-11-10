@@ -1,162 +1,69 @@
 package org.telegram.ui.Wallet;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.os.SystemClock;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
+import android.text.SpannableStringBuilder;
+import android.view.View;
 import android.widget.ImageView;
-import org.telegram.ui.Components.xq;
-import org.telegram.ui.sf;
-public final class n8 extends FrameLayout {
-    public final ImageView f42898a;
-    public final a4 f42899b;
-    public float f42900c;
-    public float d;
-    public float f42901e;
-    public float f42902f;
-    public int h;
-    public float f42903n;
-    public float f42904r;
-    public boolean f42905s;
-    public ValueAnimator f42906w;
-    public r1.g f42907x;
+import android.widget.TextView;
+import org.telegram.messenger.id;
+import org.telegram.ui.Components.b80;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.r41;
+import org.telegram.ui.Components.w31;
+import org.telegram.ui.Components.x31;
+public final class n8 extends w31 {
+    public static final int f42866b = 0;
 
-    public n8(Context context) {
-        super(context);
-        this.f42901e = 1.0f;
-        this.h = -1;
-        setClipChildren(false);
-        ImageView imageView = new ImageView(context);
-        this.f42898a = imageView;
-        imageView.setImageResource(2131231957);
-        imageView.setScaleX(0.7407407f);
-        imageView.setScaleY(0.7407407f);
-        addView(imageView, c8.ha.c(-1.0f, -1));
-        a4 a4Var = new a4(this, context, new l(this, 11));
-        this.f42899b = a4Var;
-        addView(a4Var, c8.ha.c(-1.0f, -1));
-    }
-
-    public final void a(float f10) {
-        if (this.f42907x == null) {
-            r1.g gVar = new r1.g(new r1.f(this.f42901e));
-            this.f42907x = gVar;
-            r1.h hVar = new r1.h(f10);
-            hVar.a(0.55f);
-            hVar.b(280.0f);
-            gVar.f54280m = hVar;
-            this.f42907x.f(0.001f);
-            this.f42907x.b(new o3(this, 1));
-        }
-        this.f42907x.c(f10);
-    }
-
-    public final void b() {
-        this.h = -1;
-        if (getParent() != null) {
-            getParent().requestDisallowInterceptTouchEvent(false);
-        }
-        this.f42902f = (float) Math.IEEEremainder((this.f42902f + this.f42900c) - c(), 6.283185307179586d);
-        this.f42905s = true;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f42906w = ofFloat;
-        ofFloat.setDuration(350L);
-        this.f42906w.setInterpolator(xq.h);
-        this.f42906w.addUpdateListener(new sf(this, (float) Math.IEEEremainder(this.d, 6.283185307179586d), 6));
-        this.f42906w.start();
-        a(1.0f);
-    }
-
-    public final float c() {
-        return ((float) (((SystemClock.uptimeMillis() / 1000.0d) * 0.5961171984672546d) % 6.283185307179586d)) + this.f42902f;
+    static {
+        w31.h(new w31());
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f42899b.setPaused(false);
+    public final void b(View view, x31 x31Var, boolean z9, m41 m41Var, r41 r41Var) {
+        float f10;
+        float f11;
+        o8 o8Var = (o8) view;
+        String charSequence = x31Var.f40156l.toString();
+        long j3 = x31Var.B;
+        int i7 = x31Var.f40169z;
+        boolean z10 = x31Var.f40161q;
+        TextView textView = o8Var.f42915c;
+        TextView textView2 = o8Var.f42914b;
+        textView2.setText(g8.c0(charSequence));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        if (j3 < 0) {
+            spannableStringBuilder.append((CharSequence) id.M0(2131748779, null));
+            spannableStringBuilder.setSpan(new b80(org.telegram.messenger.g0.L(35.0f), textView), 0, spannableStringBuilder.length(), 33);
+        } else {
+            spannableStringBuilder.append((CharSequence) l0.s(j3, false));
+        }
+        if (i7 > 0) {
+            spannableStringBuilder = new SpannableStringBuilder(id.V(null, null, 2131743050, spannableStringBuilder, id.Q(i7)));
+        }
+        textView.setText(spannableStringBuilder);
+        float f12 = 1.0f;
+        if (z10) {
+            f10 = 0.5f;
+        } else {
+            f10 = 1.0f;
+        }
+        textView2.setAlpha(f10);
+        if (z10) {
+            f11 = 0.5f;
+        } else {
+            f11 = 1.0f;
+        }
+        textView.setAlpha(f11);
+        ImageView imageView = o8Var.d;
+        if (z10) {
+            f12 = 0.5f;
+        }
+        imageView.setAlpha(f12);
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        this.f42899b.setPaused(true);
-        ValueAnimator valueAnimator = this.f42906w;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        r1.g gVar = this.f42907x;
-        if (gVar != null) {
-            gVar.d();
-        }
-        super.onDetachedFromWindow();
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        a4 a4Var = this.f42899b;
-        int i7 = 0;
-        if (a4Var.f57507n && a4Var.getVisibility() == 0) {
-            int actionMasked = motionEvent.getActionMasked();
-            if (actionMasked != 0) {
-                if (actionMasked != 1) {
-                    if (actionMasked != 2) {
-                        if (actionMasked != 3) {
-                            if (actionMasked != 6) {
-                                if (this.h != -1) {
-                                }
-                            } else if (motionEvent.getPointerId(motionEvent.getActionIndex()) == this.h) {
-                                if (motionEvent.getActionIndex() == 0) {
-                                    i7 = 1;
-                                }
-                                this.h = motionEvent.getPointerId(i7);
-                                this.f42903n = motionEvent.getX(i7);
-                                this.f42904r = motionEvent.getY(i7);
-                                return true;
-                            }
-                            return true;
-                        }
-                    } else {
-                        int i10 = this.h;
-                        if (i10 != -1) {
-                            int findPointerIndex = motionEvent.findPointerIndex(i10);
-                            if (findPointerIndex < 0) {
-                                b();
-                                return true;
-                            }
-                            float radians = ((float) Math.toRadians(0.800000011920929d)) / org.telegram.messenger.g0.f22562p;
-                            this.f42900c = com.google.android.recaptcha.internal.a.z(motionEvent.getX(findPointerIndex), this.f42903n, radians, this.f42900c);
-                            this.d = com.google.android.recaptcha.internal.a.z(motionEvent.getY(findPointerIndex), this.f42904r, radians, this.d);
-                            this.f42903n = motionEvent.getX(findPointerIndex);
-                            this.f42904r = motionEvent.getY(findPointerIndex);
-                            return true;
-                        }
-                    }
-                }
-                if (this.h != -1) {
-                    b();
-                }
-                return true;
-            }
-            if (!this.f42905s && this.f42901e <= 1.001f) {
-                this.f42900c = c();
-                this.d = 0.0f;
-            }
-            ValueAnimator valueAnimator = this.f42906w;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.f42906w = null;
-            }
-            this.f42905s = false;
-            this.h = motionEvent.getPointerId(0);
-            this.f42903n = motionEvent.getX();
-            this.f42904r = motionEvent.getY();
-            if (getParent() != null) {
-                getParent().requestDisallowInterceptTouchEvent(true);
-            }
-            a(3.0f);
-            return true;
-        }
-        return false;
+    public final View d(Context context, pj0 pj0Var, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
+        return new o8(context, h6Var);
     }
 }

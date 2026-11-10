@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.wp;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.wq;
 public abstract class p4 extends View {
     public float D;
     public ArrayList E;
@@ -24,19 +24,19 @@ public abstract class p4 extends View {
     public int K;
     public boolean L;
     public ValueAnimator M;
-    public int f9498a;
-    public int f9499b;
-    public int f9500c;
+    public int f9503a;
+    public int f9504b;
+    public int f9505c;
     public Scroller d;
-    public float f9501e;
-    public float f9502f;
+    public float f9506e;
+    public float f9507f;
     public float h;
-    public int f9503n;
-    public int f9504r;
-    public int f9505s;
-    public boolean f9506w;
-    public int f9507x;
-    public float f9508y;
+    public int f9508n;
+    public int f9509r;
+    public int f9510s;
+    public boolean f9511w;
+    public int f9512x;
+    public float f9513y;
 
     public static void a(p4 p4Var, SpannableStringBuilder spannableStringBuilder, TL_stories.StoryViews storyViews, boolean z9) {
         int i7;
@@ -81,14 +81,14 @@ public abstract class p4 extends View {
                 this.M = null;
             }
             if (!z9) {
-                int i10 = this.f9505s;
-                this.f9501e = (i10 / 2.0f) + ((-getMeasuredWidth()) / 2.0f) + ((i10 + this.f9503n) * i7);
+                int i10 = this.f9510s;
+                this.f9506e = (i10 / 2.0f) + ((-getMeasuredWidth()) / 2.0f) + ((i10 + this.f9508n) * i7);
                 invalidate();
                 return;
             }
-            int i11 = this.f9505s;
-            float f10 = (i11 / 2.0f) + ((-getMeasuredWidth()) / 2.0f) + ((i11 + this.f9503n) * i7);
-            float f11 = this.f9501e;
+            int i11 = this.f9510s;
+            float f10 = (i11 / 2.0f) + ((-getMeasuredWidth()) / 2.0f) + ((i11 + this.f9508n) * i7);
+            float f11 = this.f9506e;
             if (f10 == f11) {
                 return;
             }
@@ -96,7 +96,7 @@ public abstract class p4 extends View {
             this.M = ofFloat;
             ofFloat.addUpdateListener(new n4(this, 0));
             this.M.addListener(new bi.t5(this, 12));
-            this.M.setInterpolator(xq.f40458f);
+            this.M.setInterpolator(wq.f40046f);
             this.M.setDuration(200L);
             this.M.start();
         }
@@ -104,16 +104,16 @@ public abstract class p4 extends View {
 
     public final void d() {
         int measuredWidth = getMeasuredWidth();
-        int i7 = this.f9505s;
-        this.f9502f = (-(measuredWidth - i7)) / 2.0f;
-        int i10 = i7 + this.f9503n;
-        this.h = ((getMeasuredWidth() - this.f9505s) / 2.0f) + (((this.E.size() * i10) - this.f9503n) - getMeasuredWidth());
+        int i7 = this.f9510s;
+        this.f9507f = (-(measuredWidth - i7)) / 2.0f;
+        int i10 = i7 + this.f9508n;
+        this.h = ((getMeasuredWidth() - this.f9510s) / 2.0f) + (((this.E.size() * i10) - this.f9508n) - getMeasuredWidth());
     }
 
     public o4 getCenteredImageReciever() {
         ArrayList arrayList = this.G;
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            if (((o4) arrayList.get(i7)).f9433b == this.K) {
+            if (((o4) arrayList.get(i7)).f9438b == this.K) {
                 return (o4) arrayList.get(i7);
             }
         }
@@ -131,16 +131,16 @@ public abstract class p4 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f9506w = true;
+        this.f9511w = true;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         ArrayList arrayList = this.G;
         super.onDetachedFromWindow();
-        this.f9506w = false;
+        this.f9511w = false;
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            ((o4) arrayList.get(i7)).f9432a.R();
+            ((o4) arrayList.get(i7)).f9437a.R();
         }
         arrayList.clear();
     }
@@ -165,7 +165,7 @@ public abstract class p4 extends View {
         ArrayList arrayList4 = this.F;
         super.onDraw(canvas);
         if (this.d.computeScrollOffset()) {
-            this.f9501e = scroller.getCurrX();
+            this.f9506e = scroller.getCurrX();
             invalidate();
             this.L = true;
         } else if (this.L && (i7 = this.K) >= 0) {
@@ -181,12 +181,12 @@ public abstract class p4 extends View {
         int i13 = -1;
         int i14 = 0;
         while (i14 < this.E.size()) {
-            int i15 = this.f9505s;
-            float f17 = (-this.f9501e) + ((this.f9503n + i15) * i14);
+            int i15 = this.f9510s;
+            float f17 = (-this.f9506e) + ((this.f9508n + i15) * i14);
             float f18 = ((i15 / f15) + f17) - measuredWidth;
             float abs = Math.abs(f18);
-            if (abs < this.f9505s) {
-                f11 = 1.0f - (Math.abs(f18) / this.f9505s);
+            if (abs < this.f9510s) {
+                f11 = 1.0f - (Math.abs(f18) / this.f9510s);
                 f10 = (0.2f * f11) + 1.0f;
             } else {
                 f10 = 1.0f;
@@ -197,11 +197,11 @@ public abstract class p4 extends View {
                 f16 = abs;
             }
             if (f18 < 0.0f) {
-                z9 = com.google.android.recaptcha.internal.a.v(1.0f, f11, this.f9505s * 0.1f, f17);
+                z9 = com.google.android.recaptcha.internal.a.v(1.0f, f11, this.f9510s * 0.1f, f17);
             } else {
-                z9 = com.google.android.recaptcha.internal.a.z(1.0f, f11, this.f9505s * 0.1f, f17);
+                z9 = com.google.android.recaptcha.internal.a.z(1.0f, f11, this.f9510s * 0.1f, f17);
             }
-            if (z9 > getMeasuredWidth() || this.f9505s + z9 < 0.0f) {
+            if (z9 > getMeasuredWidth() || this.f9510s + z9 < 0.0f) {
                 arrayList = arrayList4;
                 f12 = measuredWidth;
                 f13 = f16;
@@ -211,7 +211,7 @@ public abstract class p4 extends View {
                 int i16 = 0;
                 while (true) {
                     if (i16 < arrayList4.size()) {
-                        if (((o4) arrayList4.get(i16)).f9433b == i14) {
+                        if (((o4) arrayList4.get(i16)).f9438b == i14) {
                             o4Var = (o4) arrayList4.remove(i16);
                             break;
                         }
@@ -219,46 +219,46 @@ public abstract class p4 extends View {
                     } else {
                         o4Var = new o4(this);
                         o4Var.a(i14);
-                        o4Var.f9433b = i14;
+                        o4Var.f9438b = i14;
                         break;
                     }
                 }
-                float f19 = this.f9505s;
+                float f19 = this.f9510s;
                 float f20 = f19 * f10;
-                float f21 = this.f9504r;
+                float f21 = this.f9509r;
                 float f22 = f10 * f21;
                 f12 = measuredWidth;
                 float y10 = org.telegram.messenger.k5.y(f20, f19, 2.0f, z9);
-                float y11 = org.telegram.messenger.k5.y(f22, f21, 2.0f, this.f9508y);
+                float y11 = org.telegram.messenger.k5.y(f22, f21, 2.0f, this.f9513y);
                 if (this.D == 0.0f || i14 == (i11 = this.K)) {
                     arrayList2 = arrayList3;
                     arrayList = arrayList4;
                     f13 = f16;
                     i10 = i13;
-                    o4Var.f9432a.y0(y10, y11, f20, f22);
+                    o4Var.f9437a.y0(y10, y11, f20, f22);
                 } else {
                     f13 = f16;
                     i10 = i13;
                     arrayList = arrayList4;
                     arrayList2 = arrayList3;
-                    o4Var.f9432a.y0(org.telegram.messenger.g0.T1(getMeasuredWidth() * (i14 - i11), y10, this.D), org.telegram.messenger.g0.T1(this.f9498a, y11, this.D), org.telegram.messenger.g0.T1(this.f9499b, f20, this.D), org.telegram.messenger.g0.T1(this.f9500c, f22, this.D));
+                    o4Var.f9437a.y0(org.telegram.messenger.g0.T1(getMeasuredWidth() * (i14 - i11), y10, this.D), org.telegram.messenger.g0.T1(this.f9503a, y11, this.D), org.telegram.messenger.g0.T1(this.f9504b, f20, this.D), org.telegram.messenger.g0.T1(this.f9505c, f22, this.D));
                 }
                 if (this.D != 1.0f && i14 == this.K) {
                     arrayList3 = arrayList2;
                     f14 = 2.0f;
                 } else {
-                    ImageReceiver imageReceiver = o4Var.f9432a;
+                    ImageReceiver imageReceiver = o4Var.f9437a;
                     imageReceiver.h(canvas, null);
-                    if (o4Var.f9434c != null) {
+                    if (o4Var.f9439c != null) {
                         int B = (int) com.google.android.recaptcha.internal.a.B(f11, 0.3f, 0.7f, 255.0f);
                         gradientDrawable.setAlpha(B);
                         gradientDrawable.setBounds((int) imageReceiver.K0, (int) (imageReceiver.A() - org.telegram.messenger.g0.L(24.0f)), (int) imageReceiver.y(), ((int) imageReceiver.A()) + 2);
                         gradientDrawable.draw(canvas);
                         canvas.save();
                         f14 = 2.0f;
-                        canvas.translate(imageReceiver.r() - (this.J / 2.0f), (imageReceiver.A() - org.telegram.messenger.g0.L(8.0f)) - o4Var.f9434c.getHeight());
+                        canvas.translate(imageReceiver.r() - (this.J / 2.0f), (imageReceiver.A() - org.telegram.messenger.g0.L(8.0f)) - o4Var.f9439c.getHeight());
                         o4Var.d.setAlpha(B);
-                        o4Var.f9434c.draw(canvas);
+                        o4Var.f9439c.draw(canvas);
                         canvas.restore();
                     } else {
                         f14 = 2.0f;
@@ -281,7 +281,7 @@ public abstract class p4 extends View {
             b(i13);
         }
         for (int i17 = 0; i17 < arrayList5.size(); i17++) {
-            ((o4) arrayList5.get(i17)).f9432a.R();
+            ((o4) arrayList5.get(i17)).f9437a.R();
         }
         arrayList5.clear();
     }
@@ -290,23 +290,23 @@ public abstract class p4 extends View {
     public final void onMeasure(int i7, int i10) {
         ArrayList arrayList = this.G;
         super.onMeasure(i7, i10);
-        this.f9503n = org.telegram.messenger.g0.L(8.0f);
+        this.f9508n = org.telegram.messenger.g0.L(8.0f);
         int L = (int) (org.telegram.messenger.g0.L(180.0f) / 1.2f);
-        this.f9504r = L;
+        this.f9509r = L;
         int i11 = (int) ((L / 16.0f) * 9.0f);
-        this.f9505s = i11;
+        this.f9510s = i11;
         float L2 = i11 - org.telegram.messenger.g0.L(8.0f);
-        this.f9508y = ((org.telegram.messenger.g0.L(180.0f) - this.f9504r) / 2.0f) + org.telegram.messenger.g0.L(20.0f);
+        this.f9513y = ((org.telegram.messenger.g0.L(180.0f) - this.f9509r) / 2.0f) + org.telegram.messenger.g0.L(20.0f);
         d();
-        if (this.f9507x >= 0 && getMeasuredWidth() > 0) {
+        if (this.f9512x >= 0 && getMeasuredWidth() > 0) {
             this.K = -1;
-            c(this.f9507x, false, false);
-            this.f9507x = -1;
+            c(this.f9512x, false, false);
+            this.f9512x = -1;
         }
         if (this.J != L2) {
             this.J = L2;
             for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                ((o4) arrayList.get(i12)).a(((o4) arrayList.get(i12)).f9433b);
+                ((o4) arrayList.get(i12)).a(((o4) arrayList.get(i12)).f9438b);
             }
         }
     }

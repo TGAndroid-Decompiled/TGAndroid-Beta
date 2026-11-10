@@ -3,6 +3,6 @@ public final class f0 extends j0 {
     @Override
     public void u(h0 h0Var, l lVar) {
         super.u(h0Var, lVar);
-        lVar.f54857a.putInt("deviceType", h0Var.f54839a.getDeviceType());
+        lVar.f54856a.putInt("deviceType", h0Var.f54838a.getDeviceType());
     }
 }

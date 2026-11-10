@@ -18,29 +18,29 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ah0;
-import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.t51;
+import org.telegram.ui.Components.zg0;
 import org.telegram.ui.LaunchActivity;
 public final class x4 implements Runnable {
-    public final int f26441a;
-    public final Object f26442b;
-    public final Object f26443c;
+    public final int f26445a;
+    public final Object f26446b;
+    public final Object f26447c;
 
     public x4(int i7, Object obj, Object obj2) {
-        this.f26441a = i7;
-        this.f26442b = obj;
-        this.f26443c = obj2;
+        this.f26445a = i7;
+        this.f26446b = obj;
+        this.f26447c = obj2;
     }
 
     private final void a() {
         int i7;
-        ui uiVar = (ui) this.f26442b;
-        TLRPC.TL_contacts_topPeers tL_contacts_topPeers = (TLRPC.TL_contacts_topPeers) this.f26443c;
+        ui uiVar = (ui) this.f26446b;
+        TLRPC.TL_contacts_topPeers tL_contacts_topPeers = (TLRPC.TL_contacts_topPeers) this.f26447c;
         try {
-            uiVar.getMessagesStorage().f26721b.executeFast("DELETE FROM chat_hints WHERE 1").stepThis().dispose();
-            uiVar.getMessagesStorage().f26721b.beginTransaction();
+            uiVar.getMessagesStorage().f26725b.executeFast("DELETE FROM chat_hints WHERE 1").stepThis().dispose();
+            uiVar.getMessagesStorage().f26725b.beginTransaction();
             uiVar.getMessagesStorage().m1(tL_contacts_topPeers.users, tL_contacts_topPeers.chats, false, false);
-            SQLitePreparedStatement executeFast = uiVar.getMessagesStorage().f26721b.executeFast("REPLACE INTO chat_hints VALUES(?, ?, ?, ?)");
+            SQLitePreparedStatement executeFast = uiVar.getMessagesStorage().f26725b.executeFast("REPLACE INTO chat_hints VALUES(?, ?, ?, ?)");
             for (int i10 = 0; i10 < tL_contacts_topPeers.categories.size(); i10++) {
                 TLRPC.TL_topPeerCategoryPeers tL_topPeerCategoryPeers = tL_contacts_topPeers.categories.get(i10);
                 TLRPC.TopPeerCategory topPeerCategory = tL_topPeerCategoryPeers.category;
@@ -64,7 +64,7 @@ public final class x4 implements Runnable {
                 }
             }
             executeFast.dispose();
-            uiVar.getMessagesStorage().f26721b.commitTransaction();
+            uiVar.getMessagesStorage().f26725b.commitTransaction();
             g0.h3(new fg(uiVar, 6));
         } catch (Exception e10) {
             a8.g(e10, true);
@@ -76,7 +76,7 @@ public final class x4 implements Runnable {
         boolean z9;
         boolean z10;
         String str;
-        org.telegram.ui.Components.v5 v5Var;
+        org.telegram.ui.Components.u5 u5Var;
         long U;
         long S;
         float f10;
@@ -94,38 +94,38 @@ public final class x4 implements Runnable {
         sQLitePreparedStatement = null;
         boolean z11 = true;
         int i10 = 0;
-        switch (this.f26441a) {
+        switch (this.f26445a) {
             case 0:
-                g5 g5Var = (g5) this.f26442b;
-                SparseArray sparseArray = (SparseArray) this.f26443c;
-                if (!g5Var.f22619s) {
-                    g5Var.f22619s = true;
+                g5 g5Var = (g5) this.f26446b;
+                SparseArray sparseArray = (SparseArray) this.f26447c;
+                if (!g5Var.f22623s) {
+                    g5Var.f22623s = true;
                     HashMap hashMap = new HashMap();
                     HashMap H = g5Var.H();
                     HashMap hashMap2 = new HashMap();
                     for (Map.Entry entry : H.entrySet()) {
                         d5 d5Var = (d5) entry.getValue();
-                        for (int i11 = 0; i11 < d5Var.f21991g.size(); i11++) {
-                            hashMap2.put((String) d5Var.f21991g.get(i11), d5Var.f21987b);
+                        for (int i11 = 0; i11 < d5Var.f21995g.size(); i11++) {
+                            hashMap2.put((String) d5Var.f21995g.get(i11), d5Var.f21991b);
                         }
                     }
                     for (int i12 = 0; i12 < sparseArray.size(); i12++) {
                         d5 d5Var2 = (d5) sparseArray.valueAt(i12);
                         int i13 = 0;
                         while (true) {
-                            if (i13 >= d5Var2.f21991g.size()) {
+                            if (i13 >= d5Var2.f21995g.size()) {
                                 break;
                             }
-                            String str3 = (String) hashMap2.get((String) d5Var2.f21991g.get(i13));
+                            String str3 = (String) hashMap2.get((String) d5Var2.f21995g.get(i13));
                             if (str3 != null) {
-                                d5Var2.f21987b = str3;
+                                d5Var2.f21991b = str3;
                                 hashMap.put(str3, d5Var2);
                             } else {
                                 i13++;
                             }
                         }
                     }
-                    if (r2.f25212a) {
+                    if (r2.f25216a) {
                         a8.b("migrated contacts " + hashMap.size() + " of " + sparseArray.size());
                     }
                     g5Var.getMessagesStorage().Z0(hashMap, true, false);
@@ -133,31 +133,31 @@ public final class x4 implements Runnable {
                 }
                 return;
             case 1:
-                r5 r5Var = (r5) this.f26442b;
-                q5 q5Var = (q5) this.f26443c;
-                r5Var.f25256g--;
-                SparseIntArray sparseIntArray = r5Var.f25252b;
+                r5 r5Var = (r5) this.f26446b;
+                q5 q5Var = (q5) this.f26447c;
+                r5Var.f25260g--;
+                SparseIntArray sparseIntArray = r5Var.f25256b;
                 int i14 = sparseIntArray.get(q5Var.index) - 1;
                 if (i14 == 0) {
                     sparseIntArray.delete(q5Var.index);
-                    r5Var.f25253c.remove(q5Var);
-                    r5Var.f25251a.add(q5Var);
+                    r5Var.f25257c.remove(q5Var);
+                    r5Var.f25255a.add(q5Var);
                     return;
                 }
                 sparseIntArray.put(q5Var.index, i14);
                 return;
             case 2:
-                ((w00) this.f26442b).a((ArrayList) this.f26443c);
+                ((w00) this.f26446b).a((ArrayList) this.f26447c);
                 return;
             case 3:
-                qp.s1(((x6) this.f26442b).f26446a).O3((TLRPC.Updates) ((TLObject) this.f26443c), false);
+                qp.s1(((x6) this.f26446b).f26450a).O3((TLRPC.Updates) ((TLObject) this.f26447c), false);
                 return;
             case 4:
-                yr yrVar = (yr) this.f26442b;
-                TLRPC.TL_factCheck tL_factCheck = (TLRPC.TL_factCheck) this.f26443c;
+                yr yrVar = (yr) this.f26446b;
+                TLRPC.TL_factCheck tL_factCheck = (TLRPC.TL_factCheck) this.f26447c;
                 try {
                     try {
-                        sQLitePreparedStatement = yrVar.f26721b.executeFast("REPLACE INTO fact_checks VALUES(?, ?, ?)");
+                        sQLitePreparedStatement = yrVar.f26725b.executeFast("REPLACE INTO fact_checks VALUES(?, ?, ?)");
                         sQLitePreparedStatement.requery();
                         sQLitePreparedStatement.bindLong(1, tL_factCheck.hash);
                         NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tL_factCheck.getObjectSize());
@@ -182,21 +182,21 @@ public final class x4 implements Runnable {
                     throw th2;
                 }
             case 5:
-                i7 i7Var = (i7) this.f26442b;
-                boolean[] zArr = (boolean[]) this.f26443c;
-                if (i7Var.f23121y && zArr[0]) {
+                i7 i7Var = (i7) this.f26446b;
+                boolean[] zArr = (boolean[]) this.f26447c;
+                if (i7Var.f23125y && zArr[0]) {
                     z9 = true;
                 } else {
                     z9 = false;
                 }
                 int i15 = i7Var.J;
-                if (i15 > 0 && i7Var.f23068a0 >= i15 && i7Var.f23092j && i7Var.W0 < 3) {
+                if (i15 > 0 && i7Var.f23072a0 >= i15 && i7Var.f23096j && i7Var.W0 < 3) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                long j3 = i7Var.f23071b0;
-                if (j3 != 0 && (z9 || i7Var.f23068a0 == j3 || z10)) {
+                long j3 = i7Var.f23075b0;
+                if (j3 != 0 && (z9 || i7Var.f23072a0 == j3 || z10)) {
                     try {
                         i7Var.k(1, false, true);
                         return;
@@ -208,8 +208,8 @@ public final class x4 implements Runnable {
                 i7Var.s(-1);
                 return;
             case 6:
-                i7 i7Var2 = (i7) this.f26442b;
-                ArrayList arrayList = (ArrayList) this.f26443c;
+                i7 i7Var2 = (i7) this.f26446b;
+                ArrayList arrayList = (ArrayList) this.f26447c;
                 System.currentTimeMillis();
                 try {
                 } catch (Exception e11) {
@@ -232,8 +232,8 @@ public final class x4 implements Runnable {
                     i7.l1.c(size);
                     for (int i17 = 0; i17 < size; i17++) {
                         g7 g7Var = (g7) arrayList.get(i17);
-                        i7.l1.d(g7Var.f22626a);
-                        i7.l1.d(g7Var.f22627b);
+                        i7.l1.d(g7Var.f22630a);
+                        i7.l1.d(g7Var.f22631b);
                     }
                     synchronized (i7Var2) {
                         RandomAccessFile randomAccessFile = i7Var2.S0;
@@ -258,135 +258,135 @@ public final class x4 implements Runnable {
                 }
                 return;
             case 7:
-                w7 w7Var = (w7) this.f26442b;
-                ls[] lsVarArr = (ls[]) this.f26443c;
+                w7 w7Var = (w7) this.f26446b;
+                ls[] lsVarArr = (ls[]) this.f26447c;
                 w7Var.getNotificationCenter().n(lsVarArr[0], 138);
                 w7Var.getNotificationCenter().n(lsVarArr[0], 139);
                 return;
             case 8:
-                w7 w7Var2 = (w7) this.f26442b;
-                w7Var2.getDownloadController().H.removeAll((ArrayList) this.f26443c);
+                w7 w7Var2 = (w7) this.f26446b;
+                w7Var2.getDownloadController().H.removeAll((ArrayList) this.f26447c);
                 w7Var2.getNotificationCenter().k(304, new Object[0]);
                 return;
             case 9:
-                i7 i7Var3 = (i7) ((w7) this.f26442b).f26271w.get(w7.r("mp4", (TLRPC.FileLocation) this.f26443c));
+                i7 i7Var3 = (i7) ((w7) this.f26446b).f26275w.get(w7.r("mp4", (TLRPC.FileLocation) this.f26447c));
                 if (i7Var3 != null) {
-                    if (i7Var3.f23121y) {
+                    if (i7Var3.f23125y) {
                         i7Var3.q(false);
                     }
                     i7Var3.V0 = true;
                     i7Var3.W0 = Integer.MAX_VALUE;
-                    ((ArrayList) i7Var3.f23080e1.d).remove(i7Var3);
-                    i7Var3.f23080e1.a(i7Var3);
-                    i7Var3.f23080e1.b(false);
+                    ((ArrayList) i7Var3.f23084e1.d).remove(i7Var3);
+                    i7Var3.f23084e1.a(i7Var3);
+                    i7Var3.f23084e1.b(false);
                     return;
                 }
                 return;
             case 10:
-                ((i7) this.f26442b).f23067a = true;
-                ((lg.f) this.f26443c).b(false);
+                ((i7) this.f26446b).f23071a = true;
+                ((lg.f) this.f26447c).b(false);
                 return;
             case 11:
-                String str4 = (String) this.f26442b;
-                Throwable th3 = (Throwable) this.f26443c;
+                String str4 = (String) this.f26446b;
+                Throwable th3 = (Throwable) this.f26447c;
                 try {
-                    a8.j().f21398a.write(a8.j().f21399b.format(System.currentTimeMillis()) + " E/tmessages: " + str4 + "\n");
-                    a8.j().f21398a.write(th3.toString());
+                    a8.j().f21403a.write(a8.j().f21404b.format(System.currentTimeMillis()) + " E/tmessages: " + str4 + "\n");
+                    a8.j().f21403a.write(th3.toString());
                     StackTraceElement[] stackTrace = th3.getStackTrace();
                     while (i10 < stackTrace.length) {
-                        a8.j().f21398a.write(a8.j().f21399b.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTrace[i10] + "\n");
+                        a8.j().f21403a.write(a8.j().f21404b.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTrace[i10] + "\n");
                         i10++;
                     }
-                    a8.j().f21398a.flush();
+                    a8.j().f21403a.flush();
                     return;
                 } catch (Exception e13) {
                     e13.printStackTrace();
                     return;
                 }
             case 12:
-                f8 f8Var = (f8) this.f26442b;
-                List list = (List) this.f26443c;
+                f8 f8Var = (f8) this.f26446b;
+                List list = (List) this.f26447c;
                 f8Var.getClass();
                 try {
                     f8Var.c();
-                    f8Var.f22380c.beginTransaction();
+                    f8Var.f22384c.beginTransaction();
                     while (i10 < list.size()) {
-                        f8Var.f22380c.executeFast("DELETE FROM paths_by_dialog_id WHERE path = '" + ((ci.b) list.get(i10)).f6415a.getPath().replace("'", "").replace("\"", "") + "'").stepThis().dispose();
+                        f8Var.f22384c.executeFast("DELETE FROM paths_by_dialog_id WHERE path = '" + ((ci.b) list.get(i10)).f6420a.getPath().replace("'", "").replace("\"", "") + "'").stepThis().dispose();
                         i10++;
                     }
                 } catch (Throwable th4) {
                     try {
                         a8.g(th4, true);
                     } finally {
-                        f8Var.f22380c.commitTransaction();
+                        f8Var.f22384c.commitTransaction();
                     }
                 }
                 return;
             case 13:
-                ((r8) this.f26442b).getMessagesController().X3((TLRPC.User) this.f26443c, false, false);
+                ((r8) this.f26446b).getMessagesController().X3((TLRPC.User) this.f26447c, false, false);
                 return;
             case 14:
-                ((r8) this.f26442b).getMediaDataController().P1((TLRPC.TL_messages_stickerSet) this.f26443c);
+                ((r8) this.f26446b).getMediaDataController().P1((TLRPC.TL_messages_stickerSet) this.f26447c);
                 return;
             case 15:
-                g0.h3(new x4(((gc) this.f26442b).l(), (Runnable) this.f26443c));
+                g0.h3(new x4(((gc) this.f26446b).l(), (Runnable) this.f26447c));
                 return;
             case 16:
-                gc gcVar = (gc) this.f26442b;
-                gcVar.B.add((xb) this.f26443c);
+                gc gcVar = (gc) this.f26446b;
+                gcVar.B.add((xb) this.f26447c);
                 gcVar.U(null, 0);
                 return;
             case 17:
-                Runnable runnable = (Runnable) this.f26442b;
-                w7.K = (SparseArray) this.f26443c;
+                Runnable runnable = (Runnable) this.f26446b;
+                w7.K = (SparseArray) this.f26447c;
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             case 18:
-                tb tbVar = (tb) this.f26442b;
-                ub ubVar = tbVar.f25603a;
-                gc gcVar2 = tbVar.f25606e;
-                bc bcVar = new bc(gcVar2, ubVar, (String) this.f26443c);
-                ubVar.f25764t = bcVar;
-                gcVar2.f22646n.add(bcVar);
+                tb tbVar = (tb) this.f26446b;
+                ub ubVar = tbVar.f25607a;
+                gc gcVar2 = tbVar.f25610e;
+                bc bcVar = new bc(gcVar2, ubVar, (String) this.f26447c);
+                ubVar.f25768t = bcVar;
+                gcVar2.f22650n.add(bcVar);
                 gcVar2.V(false);
                 return;
             case 19:
-                vb vbVar = (vb) this.f26442b;
-                BitmapDrawable bitmapDrawable = (Drawable) this.f26443c;
-                gc gcVar3 = vbVar.f25963e;
-                kb kbVar = gcVar3.f22638e;
-                ub ubVar2 = vbVar.f25962c;
-                if (bitmapDrawable instanceof ah0) {
-                    ah0 ah0Var = (ah0) bitmapDrawable;
+                vb vbVar = (vb) this.f26446b;
+                BitmapDrawable bitmapDrawable = (Drawable) this.f26447c;
+                gc gcVar3 = vbVar.f25967e;
+                kb kbVar = gcVar3.f22642e;
+                ub ubVar2 = vbVar.f25966c;
+                if (bitmapDrawable instanceof zg0) {
+                    zg0 zg0Var = (zg0) bitmapDrawable;
                     Drawable drawable2 = (Drawable) kbVar.f(ubVar2.d);
                     if (drawable2 == null) {
-                        kbVar.l(ubVar2.d, ah0Var);
-                        drawable = ah0Var;
+                        kbVar.l(ubVar2.d, zg0Var);
+                        drawable = zg0Var;
                     } else {
-                        ah0Var.C(false);
+                        zg0Var.C(false);
                         drawable = drawable2;
                     }
                     gcVar3.H(ubVar2.d);
                     str = ubVar2.d;
-                } else if (bitmapDrawable instanceof org.telegram.ui.Components.v5) {
-                    org.telegram.ui.Components.v5 v5Var2 = (org.telegram.ui.Components.v5) bitmapDrawable;
-                    if (v5Var2.f38936n0) {
+                } else if (bitmapDrawable instanceof org.telegram.ui.Components.u5) {
+                    org.telegram.ui.Components.u5 u5Var2 = (org.telegram.ui.Components.u5) bitmapDrawable;
+                    if (u5Var2.f38531n0) {
                         String str5 = ubVar2.d;
                         ThreadLocal threadLocal = gc.I;
                         BitmapDrawable y10 = gcVar3.y(str5);
                         if (y10 == null) {
-                            kbVar.l(ubVar2.d, v5Var2);
-                            v5Var = v5Var2;
+                            kbVar.l(ubVar2.d, u5Var2);
+                            u5Var = u5Var2;
                         } else {
-                            v5Var2.u();
-                            v5Var = y10;
+                            u5Var2.u();
+                            u5Var = y10;
                         }
                         gcVar3.H(ubVar2.d);
                         str = ubVar2.d;
-                        drawable = v5Var;
+                        drawable = u5Var;
                     }
                     String str6 = str2;
                     drawable = bitmapDrawable;
@@ -399,13 +399,13 @@ public final class x4 implements Runnable {
                             gcVar3.d.l(ubVar2.d, bitmapDrawable2);
                             z11 = false;
                             bitmapDrawable = bitmapDrawable2;
-                        } else if (!ubVar2.d.endsWith("_isc") && !ubVar2.d.endsWith("_nocache") && bitmapDrawable2.getBitmap().getWidth() <= g0.f22562p * 80.0f && bitmapDrawable2.getBitmap().getHeight() <= g0.f22562p * 80.0f) {
-                            gcVar3.f22636b.l(ubVar2.d, bitmapDrawable2);
+                        } else if (!ubVar2.d.endsWith("_isc") && !ubVar2.d.endsWith("_nocache") && bitmapDrawable2.getBitmap().getWidth() <= g0.f22566p * 80.0f && bitmapDrawable2.getBitmap().getHeight() <= g0.f22566p * 80.0f) {
+                            gcVar3.f22640b.l(ubVar2.d, bitmapDrawable2);
                             bitmapDrawable = bitmapDrawable2;
                         } else {
                             bitmapDrawable = bitmapDrawable2;
                             if (!ubVar2.d.endsWith("_nocache")) {
-                                gcVar3.f22637c.l(ubVar2.d, bitmapDrawable2);
+                                gcVar3.f22641c.l(ubVar2.d, bitmapDrawable2);
                                 bitmapDrawable = bitmapDrawable2;
                             }
                         }
@@ -423,60 +423,60 @@ public final class x4 implements Runnable {
                 } else {
                     str = null;
                 }
-                gcVar3.f22651s.d(new ng(vbVar, drawable, str, 26), ubVar2.f25747a);
+                gcVar3.f22655s.d(new ng(vbVar, drawable, str, 26), ubVar2.f25751a);
                 return;
             case 20:
-                ((fc) this.f26442b).d.v.remove((String) this.f26443c);
+                ((fc) this.f26446b).d.v.remove((String) this.f26447c);
                 return;
             case 21:
                 String[] strArr = MediaController.V1;
-                ((MediaController) this.f26442b).R((ij) this.f26443c, true);
+                ((MediaController) this.f26446b).R((ij) this.f26447c, true);
                 return;
             case 22:
-                MediaController mediaController = (MediaController) this.f26442b;
-                File file = (File) this.f26443c;
+                MediaController mediaController = (MediaController) this.f26446b;
+                File file = (File) this.f26447c;
                 String[] strArr2 = MediaController.V1;
                 try {
-                    int i18 = mediaController.f21275k0 + 1;
-                    mediaController.f21275k0 = i18;
-                    u51 u51Var = mediaController.f21273j0;
-                    if (u51Var != null) {
-                        u51Var.m0();
+                    int i18 = mediaController.f21280k0 + 1;
+                    mediaController.f21280k0 = i18;
+                    t51 t51Var = mediaController.f21278j0;
+                    if (t51Var != null) {
+                        t51Var.m0();
                     }
-                    u51 u51Var2 = new u51(false, false);
-                    mediaController.f21273j0 = u51Var2;
-                    u51Var2.J = new f5.u(mediaController, i18, 10);
-                    u51Var2.j0(Uri.fromFile(file), "other");
-                    mediaController.f21273j0.x0(3);
-                    mediaController.f21273j0.h0();
+                    t51 t51Var2 = new t51(false, false);
+                    mediaController.f21278j0 = t51Var2;
+                    t51Var2.J = new f5.u(mediaController, i18, 10);
+                    t51Var2.j0(Uri.fromFile(file), "other");
+                    mediaController.f21278j0.x0(3);
+                    mediaController.f21278j0.h0();
                     return;
                 } catch (Exception e14) {
                     a8.g(e14, true);
-                    u51 u51Var3 = mediaController.f21273j0;
-                    if (u51Var3 != null) {
-                        u51Var3.m0();
-                        mediaController.f21273j0 = null;
+                    t51 t51Var3 = mediaController.f21278j0;
+                    if (t51Var3 != null) {
+                        t51Var3.m0();
+                        mediaController.f21278j0 = null;
                         return;
                     }
                     return;
                 }
             case 23:
                 String[] strArr3 = MediaController.V1;
-                w7.G(((c) this.f26442b).f21765a).W((TLRPC.TL_document) this.f26443c, null, 1, 1);
+                w7.G(((c) this.f26446b).f21770a).W((TLRPC.TL_document) this.f26447c, null, 1, 1);
                 return;
             case 24:
-                ((MediaController) ((m.f3) this.f26442b).f19105b).f21304x1.add((ByteBuffer) this.f26443c);
+                ((MediaController) ((m.f3) this.f26446b).f19110b).f21309x1.add((ByteBuffer) this.f26447c);
                 return;
             case 25:
-                jg.q1 q1Var = (jg.q1) this.f26442b;
-                ij ijVar = (ij) this.f26443c;
+                jg.q1 q1Var = (jg.q1) this.f26446b;
+                ij ijVar = (ij) this.f26447c;
                 MediaController mediaController2 = (MediaController) q1Var.f16898c;
-                u51 u51Var4 = mediaController2.f21271i0;
-                if ((u51Var4 != null || mediaController2.E0 != null) && !mediaController2.f21267g0) {
+                t51 t51Var4 = mediaController2.f21276i0;
+                if ((t51Var4 != null || mediaController2.E0 != null) && !mediaController2.f21272g0) {
                     try {
-                        u51 u51Var5 = mediaController2.E0;
-                        if (u51Var5 != null) {
-                            U = u51Var5.U();
+                        t51 t51Var5 = mediaController2.E0;
+                        if (t51Var5 != null) {
+                            U = t51Var5.U();
                             S = ((MediaController) q1Var.f16898c).E0.S();
                             if (S >= 0 && U > 0) {
                                 float f11 = (float) U;
@@ -488,17 +488,17 @@ public final class x4 implements Runnable {
                             }
                             return;
                         }
-                        U = u51Var4.U();
-                        S = ((MediaController) q1Var.f16898c).f21271i0.S();
+                        U = t51Var4.U();
+                        S = ((MediaController) q1Var.f16898c).f21276i0.S();
                         if (U >= 0) {
                             f10 = ((float) S) / ((float) U);
                         } else {
                             f10 = 0.0f;
                         }
-                        K = ((float) ((MediaController) q1Var.f16898c).f21271i0.K()) / ((float) U);
+                        K = ((float) ((MediaController) q1Var.f16898c).f21276i0.K()) / ((float) U);
                         if (U != -9223372036854775807L) {
                             if (S >= 0) {
-                                if (((MediaController) q1Var.f16898c).f21293t0 != 0.0f) {
+                                if (((MediaController) q1Var.f16898c).f21298t0 != 0.0f) {
                                     return;
                                 }
                             } else {
@@ -508,17 +508,17 @@ public final class x4 implements Runnable {
                             return;
                         }
                         MediaController mediaController3 = (MediaController) q1Var.f16898c;
-                        ijVar.f23249h0 = (int) (U / 1000);
-                        ijVar.f23222b0 = f10;
-                        ijVar.f23245g0 = (int) (S / 1000);
-                        ijVar.f23235e0 = K;
-                        if (f10 >= 0.0f && mediaController3.f21280n0 != null) {
+                        ijVar.f23253h0 = (int) (U / 1000);
+                        ijVar.f23226b0 = f10;
+                        ijVar.f23249g0 = (int) (S / 1000);
+                        ijVar.f23239e0 = K;
+                        if (f10 >= 0.0f && mediaController3.f21285n0 != null) {
                             long elapsedRealtime = SystemClock.elapsedRealtime();
                             MediaController mediaController4 = (MediaController) q1Var.f16898c;
-                            if (elapsedRealtime - mediaController4.f21281o0 >= 1000) {
-                                String str7 = mediaController4.f21280n0;
-                                mediaController4.f21281o0 = SystemClock.elapsedRealtime();
-                                Utilities.f21336e.c(new ve(str7, 0, f10));
+                            if (elapsedRealtime - mediaController4.f21286o0 >= 1000) {
+                                String str7 = mediaController4.f21285n0;
+                                mediaController4.f21286o0 = SystemClock.elapsedRealtime();
+                                Utilities.f21341e.c(new ve(str7, 0, f10));
                             }
                         }
                         qs.f(ijVar.I1).k(148, Integer.valueOf(ijVar.e1()), Float.valueOf(f10));
@@ -530,17 +530,17 @@ public final class x4 implements Runnable {
                 }
                 return;
             case 26:
-                cf cfVar = (cf) this.f26442b;
-                ij ijVar2 = (ij) this.f26443c;
+                cf cfVar = (cf) this.f26446b;
+                ij ijVar2 = (ij) this.f26447c;
                 TLRPC.Document F0 = ijVar2.F0();
-                TLRPC.Document document = ijVar2.f23233d3;
+                TLRPC.Document document = ijVar2.f23237d3;
                 if (document != null) {
                     F0 = document;
                 }
                 if (F0 != null) {
                     cfVar.d.put(w7.r(null, F0), ijVar2);
-                    w7 G = w7.G(cfVar.f21842a.f21765a);
-                    if (!ij.R5(ijVar2.f23262k)) {
+                    w7 G = w7.G(cfVar.f21846a.f21770a);
+                    if (!ij.R5(ijVar2.f23266k)) {
                         i7 = 0;
                     }
                     G.W(F0, ijVar2, 3, i7);
@@ -551,8 +551,8 @@ public final class x4 implements Runnable {
                 a();
                 return;
             case 28:
-                boolean[] zArr2 = (boolean[]) this.f26442b;
-                mh mhVar = (mh) this.f26443c;
+                boolean[] zArr2 = (boolean[]) this.f26446b;
+                mh mhVar = (mh) this.f26447c;
                 if (!zArr2[0]) {
                     mhVar.run();
                     zArr2[0] = true;
@@ -560,10 +560,10 @@ public final class x4 implements Runnable {
                 }
                 return;
             default:
-                ui uiVar = (ui) this.f26442b;
-                TLRPC.StickerSet stickerSet2 = (TLRPC.StickerSet) this.f26443c;
+                ui uiVar = (ui) this.f26446b;
+                TLRPC.StickerSet stickerSet2 = (TLRPC.StickerSet) this.f26447c;
                 try {
-                    SQLiteCursor queryFinalized = uiVar.getMessagesStorage().f26721b.queryFinalized("SELECT document FROM web_recent_v3 WHERE id = 's_" + stickerSet2.f26983id + "'", new Object[0]);
+                    SQLiteCursor queryFinalized = uiVar.getMessagesStorage().f26725b.queryFinalized("SELECT document FROM web_recent_v3 WHERE id = 's_" + stickerSet2.f26987id + "'", new Object[0]);
                     if (queryFinalized.next() && !queryFinalized.isNull(0) && (byteBufferValue = queryFinalized.byteBufferValue(0)) != null) {
                         tL_messages_stickerSet = TLRPC.messages_StickerSet.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                         byteBufferValue.reuse();
@@ -585,8 +585,8 @@ public final class x4 implements Runnable {
     }
 
     public x4(SparseArray sparseArray, Runnable runnable) {
-        this.f26441a = 17;
-        this.f26443c = sparseArray;
-        this.f26442b = runnable;
+        this.f26445a = 17;
+        this.f26447c = sparseArray;
+        this.f26446b = runnable;
     }
 }

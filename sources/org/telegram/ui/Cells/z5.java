@@ -13,15 +13,15 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
-import org.telegram.ui.Components.zs;
-import org.telegram.ui.g11;
-import org.telegram.ui.k01;
-public final class z5 extends zs {
+import org.telegram.ui.Components.ys;
+import org.telegram.ui.h11;
+import org.telegram.ui.l01;
+public final class z5 extends ys {
     public final int Y1;
     public final Object Z1;
 
-    public z5(FrameLayout frameLayout, Context context, org.telegram.ui.ActionBar.g6 g6Var, int i7) {
-        super(context, g6Var);
+    public z5(FrameLayout frameLayout, Context context, org.telegram.ui.ActionBar.h6 h6Var, int i7) {
+        super(context, h6Var);
         this.Y1 = i7;
         this.Z1 = frameLayout;
     }
@@ -58,7 +58,7 @@ public final class z5 extends zs {
     public void invalidate() {
         switch (this.Y1) {
             case 1:
-                if (!ch.e0.f6230b) {
+                if (!ch.e0.f6235b) {
                     super.invalidate();
                     return;
                 }
@@ -74,7 +74,7 @@ public final class z5 extends zs {
         switch (this.Y1) {
             case 0:
                 InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
-                if (((a6) this.Z1).f28899s) {
+                if (((a6) this.Z1).f28910s) {
                     editorInfo.imeOptions &= -1073741825;
                 }
                 return onCreateInputConnection;
@@ -110,8 +110,8 @@ public final class z5 extends zs {
                 return;
             case 1:
                 if (z9) {
-                    ((k01) this.Z1).F.q();
-                    org.telegram.messenger.g0.i3(new g11(this, 0), 200L);
+                    ((l01) this.Z1).F.q();
+                    org.telegram.messenger.g0.i3(new h11(this, 0), 200L);
                 }
                 super.onFocusChanged(z9, i7, rect);
                 return;
@@ -177,8 +177,8 @@ public final class z5 extends zs {
                 }
                 return super.onTouchEvent(motionEvent);
             case 1:
-                if (motionEvent.getAction() == 1 && ((k01) this.Z1).F.u()) {
-                    org.telegram.messenger.g0.i3(new g11(this, 1), 200L);
+                if (motionEvent.getAction() == 1 && ((l01) this.Z1).F.u()) {
+                    org.telegram.messenger.g0.i3(new h11(this, 1), 200L);
                     return false;
                 }
                 return super.onTouchEvent(motionEvent);
@@ -199,8 +199,8 @@ public final class z5 extends zs {
         }
     }
 
-    public z5(Context context, org.telegram.ui.ActionBar.g6 g6Var, Drawable drawable) {
-        super(context, g6Var);
+    public z5(Context context, org.telegram.ui.ActionBar.h6 h6Var, Drawable drawable) {
+        super(context, h6Var);
         this.Y1 = 3;
         this.Z1 = drawable;
     }

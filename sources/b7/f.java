@@ -89,7 +89,7 @@ public final class f {
                 i7 = 0;
             }
             ProviderInfo resolveContentProvider = packageManager.resolveContentProvider("com.google.android.gms.chimera", i7);
-            if (n6.e.f20501b.d(context, 10000000) == 0 && resolveContentProvider != null && "com.google.android.gms".equals(resolveContentProvider.packageName)) {
+            if (n6.e.f20506b.d(context, 10000000) == 0 && resolveContentProvider != null && "com.google.android.gms".equals(resolveContentProvider.packageName)) {
                 z9 = true;
             }
             h = Boolean.valueOf(z9);

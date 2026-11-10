@@ -1,23 +1,23 @@
 package org.telegram.messenger;
 public final class ni implements Runnable {
-    public final ui f24196a;
-    public final long f24197b;
-    public final boolean f24198c;
+    public final ui f24200a;
+    public final long f24201b;
+    public final boolean f24202c;
     public final int d;
-    public final int f24199e;
-    public final int f24200f;
+    public final int f24203e;
+    public final int f24204f;
     public final long h;
-    public final int f24201n;
+    public final int f24205n;
 
     public ni(ui uiVar, long j3, boolean z9, int i7, int i10, int i11, long j10, int i12) {
-        this.f24196a = uiVar;
-        this.f24197b = j3;
-        this.f24198c = z9;
+        this.f24200a = uiVar;
+        this.f24201b = j3;
+        this.f24202c = z9;
         this.d = i7;
-        this.f24199e = i10;
-        this.f24200f = i11;
+        this.f24203e = i10;
+        this.f24204f = i11;
         this.h = j10;
-        this.f24201n = i12;
+        this.f24205n = i12;
     }
 
     @Override
@@ -26,22 +26,22 @@ public final class ni implements Runnable {
         long j3;
         int i7;
         int i10;
-        long j10 = this.f24197b;
+        long j10 = this.f24201b;
         boolean C = m5.C(j10);
-        boolean z10 = this.f24198c;
+        boolean z10 = this.f24202c;
         int i11 = this.d;
-        int i12 = this.f24199e;
+        int i12 = this.f24203e;
         if (z10 && ((i11 == -1 || (i11 == 0 && i12 == 2)) && !C)) {
             z9 = true;
         } else {
             z9 = false;
         }
-        ui uiVar = this.f24196a;
+        ui uiVar = this.f24200a;
         long j11 = j10;
         int i13 = i12;
         long j12 = this.h;
-        if (z9 || (this.f24200f == 1 && !C)) {
-            uiVar.d0(i13, this.f24201n, j11, j12, false);
+        if (z9 || (this.f24204f == 1 && !C)) {
+            uiVar.d0(i13, this.f24205n, j11, j12, false);
         }
         if (!z9) {
             if (!z10) {

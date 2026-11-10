@@ -1,110 +1,71 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.ComposeShader;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
 import android.graphics.Rect;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-public final class d80 extends Drawable {
-    public final Bitmap f32887a;
-    public final Paint f32888b = new Paint(2);
-    public long f32889c;
-    public LinearGradient d;
-    public final Matrix f32890e;
-    public float f32891f;
-    public float f32892g;
-    public final l9 h;
-    public int f32893i;
-    public int f32894j;
+import android.text.TextPaint;
+import android.view.View;
+import java.util.HashSet;
+public final class d80 extends View implements org.telegram.ui.ActionBar.c6 {
+    public final TextPaint f32921a;
+    public final Paint f32922b;
+    public final String f32923c;
+    public final Rect d;
+    public View f32924e;
 
-    public d80(l9 l9Var, String str, int i7, int i10) {
-        Bitmap bitmap;
-        try {
-            Path b10 = org.telegram.messenger.sz.b(str);
-            bitmap = Bitmap.createBitmap(i7, i10, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(bitmap);
-            float f10 = 512;
-            canvas.scale(i7 / f10, i10 / f10);
-            Paint paint = new Paint();
-            paint.setColor(-1);
-            canvas.drawPath(b10, paint);
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
-            bitmap = null;
-        }
-        this.f32887a = bitmap;
-        this.h = l9Var;
-        this.f32890e = new Matrix();
+    public d80(Context context) {
+        super(context);
+        TextPaint textPaint = new TextPaint(1);
+        this.f32921a = textPaint;
+        this.f32922b = new Paint(1);
+        this.d = new Rect();
+        this.f32923c = org.telegram.messenger.id.M0(2131748727, null);
+        textPaint.setTextSize(org.telegram.messenger.g0.L(14.0f));
+        updateColors();
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Bitmap bitmap = this.f32887a;
-        if (bitmap == null) {
-            return;
+    public final void onDraw(Canvas canvas) {
+        float L;
+        super.onDraw(canvas);
+        View view = this.f32924e;
+        Rect rect = this.d;
+        if (view != null) {
+            L = ((((getWidth() - rect.width()) - org.telegram.messenger.g0.L(8.0f)) - this.f32924e.getPaddingLeft()) - this.f32924e.getPaddingRight()) / 2.0f;
+        } else {
+            L = org.telegram.messenger.g0.L(64.0f);
         }
-        int i7 = org.telegram.ui.ActionBar.l6.f27938h5;
-        int i10 = org.telegram.ui.ActionBar.l6.f27956i5;
-        int x02 = org.telegram.ui.ActionBar.l6.x0(null, i7, false);
-        int x03 = org.telegram.ui.ActionBar.l6.x0(null, i10, false);
-        int i11 = this.f32893i;
-        Paint paint = this.f32888b;
-        Matrix matrix = this.f32890e;
-        if (i11 != x02 || this.f32894j != x03) {
-            this.f32893i = x02;
-            this.f32894j = x03;
-            int w02 = org.telegram.messenger.g0.w0(x03, x02);
-            paint.setColor(x03);
-            float L = org.telegram.messenger.g0.L(500.0f);
-            this.f32892g = L;
-            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, L, 0.0f, new int[]{x03, w02, x03}, new float[]{0.0f, 0.18f, 0.36f}, Shader.TileMode.REPEAT);
-            this.d = linearGradient;
-            linearGradient.setLocalMatrix(matrix);
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            paint.setShader(new ComposeShader(this.d, new BitmapShader(bitmap, tileMode, tileMode), PorterDuff.Mode.MULTIPLY));
-        }
-        Rect bounds = getBounds();
-        canvas.drawRect(bounds.left, bounds.top, bounds.right, bounds.bottom, paint);
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long abs = Math.abs(this.f32889c - elapsedRealtime);
-        if (abs > 17) {
-            abs = 16;
-        }
-        this.f32889c = elapsedRealtime;
-        this.f32891f = a8.p0.f((float) abs, this.f32892g, 1800.0f, this.f32891f);
-        while (true) {
-            float f10 = this.f32891f;
-            float f11 = this.f32892g * 2.0f;
-            if (f10 >= f11) {
-                this.f32891f = f10 - f11;
-            } else {
-                matrix.setTranslate(f10, 0.0f);
-                this.d.setLocalMatrix(matrix);
-                this.h.invalidate();
-                return;
-            }
-        }
+        Paint paint = this.f32922b;
+        canvas.drawLine((((getWidth() - rect.width()) / 2.0f) - org.telegram.messenger.g0.L(8.0f)) - L, getHeight() / 2.0f, ((getWidth() - rect.width()) / 2.0f) - org.telegram.messenger.g0.L(8.0f), getHeight() / 2.0f, paint);
+        canvas.drawLine(((rect.width() + getWidth()) / 2.0f) + org.telegram.messenger.g0.L(8.0f), getHeight() / 2.0f, ((rect.width() + getWidth()) / 2.0f) + org.telegram.messenger.g0.L(8.0f) + L, getHeight() / 2.0f, paint);
+        int height = getHeight();
+        canvas.drawText(this.f32923c, (getWidth() - rect.width()) / 2.0f, (rect.height() + height) / 2.0f, this.f32921a);
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public final void onMeasure(int i7, int i10) {
+        View view = this.f32924e;
+        if (view != null) {
+            i7 = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(view.getMeasuredWidth()), 1073741824);
+        }
+        super.onMeasure(i7, i10);
+        String str = this.f32923c;
+        this.f32921a.getTextBounds(str, 0, str.length(), this.d);
+    }
+
+    public void setMeasureAfter(View view) {
+        this.f32924e = view;
     }
 
     @Override
-    public final void setAlpha(int i7) {
+    public final void updateColors() {
+        this.f32921a.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f28282y6, false));
+        this.f32922b.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.wj, false));
+        invalidate();
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

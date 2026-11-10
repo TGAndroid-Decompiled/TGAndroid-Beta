@@ -1,73 +1,24 @@
 package org.telegram.ui.ActionBar;
+public enum d6 {
+    DEFAULT(m6.f28100og, m6.f28120pg, m6.f28139qg, m6.Dg, m6.Eg, m6.Fg),
+    PRIMARY(m6.f28159rg, m6.f28177sg, m6.f28196tg, m6.Gg, m6.Hg, m6.Ig),
+    DANGER(m6.f28216ug, m6.f28234vg, m6.f28253wg, m6.Jg, m6.Kg, m6.Lg),
+    SUCCESS(m6.f28272xg, m6.f28291yg, m6.f28309zg, m6.Mg, m6.Ng, m6.Og),
+    DEFAULT_IN_TEXT(m6.Ag, m6.Bg, m6.Cg, m6.Pg, m6.Qg, m6.Rg);
+    
+    public final int f27425a;
+    public final int f27426b;
+    public final int f27427c;
+    public final int d;
+    public final int f27428e;
+    public final int f27429f;
 
-import android.content.SharedPreferences;
-import java.io.File;
-import java.util.ArrayList;
-import org.json.JSONObject;
-import org.telegram.messenger.a8;
-import org.telegram.tgnet.TLRPC;
-public final class d6 {
-    public String f27428a = "";
-    public String f27429b = "";
-    public String f27430c = "";
-    public int d;
-    public int f27431e;
-    public int f27432f;
-    public int f27433g;
-    public int h;
-    public boolean f27434i;
-    public boolean f27435j;
-    public float f27436k;
-    public long f27437l;
-    public long f27438m;
-    public long f27439n;
-    public boolean f27440o;
-    public k6 f27441p;
-    public i6 f27442q;
-    public float f27443r;
-    public ArrayList f27444s;
-    public TLRPC.WallPaper f27445t;
-
-    public static void a(d6 d6Var) {
-        org.telegram.messenger.t0.f25566b.getSharedPreferences("themeconfig", 0).edit().remove(d6Var.b()).commit();
-        new File(org.telegram.messenger.t0.h(), d6Var.f27428a).delete();
-        new File(org.telegram.messenger.t0.h(), d6Var.f27429b).delete();
-    }
-
-    public final String b() {
-        if (this.f27442q != null) {
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f27441p.f27736a);
-            sb2.append("_");
-            return a8.p0.n(this.f27442q.f27571a, "_owp", sb2);
-        }
-        return a8.p0.s(new StringBuilder(), this.f27441p.f27736a, "_owp");
-    }
-
-    public final void c() {
-        try {
-            String b10 = b();
-            SharedPreferences.Editor edit = org.telegram.messenger.t0.f25566b.getSharedPreferences("themeconfig", 0).edit();
-            JSONObject jSONObject = new JSONObject();
-            jSONObject.put("wall", this.f27428a);
-            jSONObject.put("owall", this.f27429b);
-            jSONObject.put("pColor", this.d);
-            jSONObject.put("pGrColor", this.f27431e);
-            jSONObject.put("pGrColor2", this.f27432f);
-            jSONObject.put("pGrColor3", this.f27433g);
-            jSONObject.put("pGrAngle", this.h);
-            String str = this.f27430c;
-            if (str == null) {
-                str = "";
-            }
-            jSONObject.put("wallSlug", str);
-            jSONObject.put("wBlur", this.f27434i);
-            jSONObject.put("wMotion", this.f27435j);
-            jSONObject.put("pIntensity", this.f27436k);
-            edit.putString(b10, jSONObject.toString());
-            edit.commit();
-        } catch (Throwable th2) {
-            a8.g(th2, true);
-        }
+    d6(int i7, int i10, int i11, int i12, int i13, int i14) {
+        this.f27425a = i7;
+        this.f27426b = i10;
+        this.f27427c = i11;
+        this.d = i12;
+        this.f27428e = i13;
+        this.f27429f = i14;
     }
 }

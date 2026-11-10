@@ -2,31 +2,30 @@ package org.telegram.ui.Wallet;
 
 import android.content.Context;
 import android.view.View;
-public final class k5 extends f6 {
-    public final w5 f42661l0;
+public final class k5 extends View {
+    public final int f42719a;
+    public final z5 f42720b;
 
-    public k5(w5 w5Var, Context context) {
+    public k5(z5 z5Var, Context context, int i7) {
         super(context);
-        this.f42661l0 = w5Var;
+        this.f42719a = i7;
+        this.f42720b = z5Var;
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
-        super.onMeasure(i7, makeMeasureSpec);
-        w5 w5Var = this.f42661l0;
-        if (w5Var.f43268r > 0 && getMeasuredHeight() > w5Var.f43268r) {
-            int paddingRight = getPaddingRight() + getPaddingLeft();
-            int paddingBottom = getPaddingBottom() + getPaddingTop();
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(paddingRight + ((int) ((getMeasuredWidth() - paddingRight) * (Math.max(0, w5Var.f43268r - paddingBottom) / Math.max(1, getMeasuredHeight() - paddingBottom)))), 1073741824), makeMeasureSpec);
+        switch (this.f42719a) {
+            case 0:
+                int size = View.MeasureSpec.getSize(i7);
+                z5 z5Var = this.f42720b;
+                z5Var.Z.measure(View.MeasureSpec.makeMeasureSpec(Math.max(0, size - org.telegram.messenger.g0.L(24.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+                setMeasuredDimension(size, org.telegram.messenger.g0.L(36.0f) + z5Var.Z.getMeasuredHeight());
+                return;
+            default:
+                z5 z5Var2 = this.f42720b;
+                z5Var2.f43448e.measure(i7, View.MeasureSpec.makeMeasureSpec(0, 0));
+                setMeasuredDimension(View.MeasureSpec.getSize(i7), z5Var2.f43448e.getMeasuredHeight());
+                return;
         }
-    }
-
-    @Override
-    public final void setStickerStyle(float[] fArr) {
-        super.setStickerStyle(fArr);
-        w5 w5Var = this.f42661l0;
-        w5Var.U0(w5Var.f43278x0);
-        w5Var.V0(fArr);
     }
 }

@@ -24,17 +24,17 @@ import q1.e;
 import rd.l;
 import v0.g;
 public final class b implements l {
-    public final int f10131a;
-    public final Object f10132b;
-    public final Object f10133c;
+    public final int f10136a;
+    public final Object f10137b;
+    public final Object f10138c;
     public final Object d;
-    public final Object f10134e;
+    public final Object f10139e;
 
     public b(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f10131a = i7;
-        this.f10132b = obj;
-        this.f10134e = obj2;
-        this.f10133c = obj3;
+        this.f10136a = i7;
+        this.f10137b = obj;
+        this.f10139e = obj2;
+        this.f10138c = obj3;
         this.d = obj4;
     }
 
@@ -42,12 +42,12 @@ public final class b implements l {
     public final Object invoke(Object obj) {
         long j3;
         Object obj2;
-        switch (this.f10131a) {
+        switch (this.f10136a) {
             case 0:
-                CancellationSignal cancellationSignal = (CancellationSignal) this.f10132b;
-                d dVar = (d) this.f10134e;
-                Context context = dVar.f10138e;
-                Executor executor = (Executor) this.f10133c;
+                CancellationSignal cancellationSignal = (CancellationSignal) this.f10137b;
+                d dVar = (d) this.f10139e;
+                Context context = dVar.f10143e;
+                Executor executor = (Executor) this.f10138c;
                 g gVar = (g) this.d;
                 f fVar = (f) obj;
                 PendingIntent pendingIntent = fVar.f16561a;
@@ -60,14 +60,14 @@ public final class b implements l {
                 } else {
                     if (pendingIntent != null) {
                         Intent intent = new Intent(context, HiddenActivity.class);
-                        b1.d.a(dVar.f10141i, intent, "CREATE_PUBLIC_KEY_CREDENTIAL");
+                        b1.d.a(dVar.f10146i, intent, "CREATE_PUBLIC_KEY_CREDENTIAL");
                         intent.putExtra("EXTRA_FLOW_PENDING_INTENT", pendingIntent);
                         try {
                             context.startActivity(intent);
                         } catch (Exception unused) {
                             CredentialProviderPlayServicesImpl.Companion.getClass();
                             if (!a1.g.a(cancellationSignal)) {
-                                Executor executor2 = dVar.f10140g;
+                                Executor executor2 = dVar.f10145g;
                                 if (executor2 != null) {
                                     executor2.execute(new a(dVar, 0));
                                 } else {
@@ -93,18 +93,18 @@ public final class b implements l {
                         }
                     }
                 }
-                return k.f13829a;
+                return k.f13831a;
             case 1:
-                CancellationSignal cancellationSignal2 = (CancellationSignal) this.f10132b;
-                f1.a aVar = (f1.a) this.f10134e;
-                Context context2 = aVar.f10883e;
-                Executor executor3 = (Executor) this.f10133c;
+                CancellationSignal cancellationSignal2 = (CancellationSignal) this.f10137b;
+                f1.a aVar = (f1.a) this.f10139e;
+                Context context2 = aVar.f10888e;
+                Executor executor3 = (Executor) this.f10138c;
                 g gVar2 = (g) this.d;
                 m mVar = (m) obj;
                 CredentialProviderPlayServicesImpl.Companion.getClass();
                 if (!a1.g.a(cancellationSignal2)) {
                     Intent intent2 = new Intent(context2, HiddenActivity.class);
-                    b1.d.a(aVar.f10886i, intent2, "BEGIN_SIGN_IN");
+                    b1.d.a(aVar.f10891i, intent2, "BEGIN_SIGN_IN");
                     intent2.putExtra("EXTRA_FLOW_PENDING_INTENT", mVar.f16578a);
                     try {
                         context2.startActivity(intent2);
@@ -115,19 +115,19 @@ public final class b implements l {
                         }
                     }
                 }
-                return k.f13829a;
+                return k.f13831a;
             default:
-                String str = (String) this.f10134e;
-                String str2 = (String) this.f10133c;
+                String str = (String) this.f10139e;
+                String str2 = (String) this.f10138c;
                 e eVar = (e) this.d;
                 q1.b bVar = (q1.b) obj;
-                ((sa.h) this.f10132b).getClass();
-                e eVar2 = sa.h.f55008c;
+                ((sa.h) this.f10137b).getClass();
+                e eVar2 = sa.h.f55007c;
                 e eVar3 = sa.h.d;
                 String str3 = "";
                 if (((String) a1.a(bVar, eVar3, "")).equals(str)) {
                     e d = sa.h.d(bVar, str);
-                    if (d != null && !d.f53699a.equals(str2)) {
+                    if (d != null && !d.f53698a.equals(str2)) {
                         sa.h.f(bVar, str);
                         HashSet hashSet = new HashSet((Collection) a1.a(bVar, eVar, new HashSet()));
                         hashSet.add(str);
@@ -147,7 +147,7 @@ public final class b implements l {
                             for (String str5 : set) {
                                 long j11 = j10;
                                 if (str4 == null || str4.compareTo(str5) > 0) {
-                                    str3 = ((e) entry.getKey()).f53699a;
+                                    str3 = ((e) entry.getKey()).f53698a;
                                     hashSet2 = set;
                                     str4 = str5;
                                 }

@@ -7,7 +7,7 @@ import android.os.Handler;
 import android.view.Surface;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import org.telegram.ui.Components.rt;
+import org.telegram.ui.Components.qt;
 public interface l {
     void a(int i7, int i10, int i11, long j3);
 
@@ -39,7 +39,7 @@ public interface l {
 
     void k(Surface surface);
 
-    boolean l(rt rtVar);
+    boolean l(qt qtVar);
 
     void m(ArrayList arrayList);
 

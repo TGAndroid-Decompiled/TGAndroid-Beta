@@ -6,7 +6,7 @@ import android.os.Build;
 import android.os.Process;
 import android.provider.Settings;
 public abstract class kc {
-    public static ti.n f5745a;
+    public static ti.n f5750a;
 
     public static boolean a(Context context) {
         if (Settings.canDrawOverlays(context)) {

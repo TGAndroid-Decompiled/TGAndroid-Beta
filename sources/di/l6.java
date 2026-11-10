@@ -30,7 +30,7 @@ public final class l6 extends r6 {
     @Override
     public final ij f(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f9694i;
+            ArrayList arrayList = this.f9699i;
             if (i7 < arrayList.size()) {
                 return (ij) arrayList.get(i7);
             }
@@ -51,7 +51,7 @@ public final class l6 extends r6 {
 
     @Override
     public final int i() {
-        return this.f9694i.size();
+        return this.f9699i.size();
     }
 
     @Override
@@ -86,7 +86,7 @@ public final class l6 extends r6 {
         String str2 = this.D;
         boolean isEmpty = TextUtils.isEmpty(str2);
         TLObject tLObject = null;
-        int i10 = this.f9690c;
+        int i10 = this.f9695c;
         if (!isEmpty) {
             TLObject f22 = qp.s1(i10).f2(str2);
             if (f22 == null) {

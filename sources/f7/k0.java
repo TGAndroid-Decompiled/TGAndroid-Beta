@@ -11,23 +11,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 public final class k0 extends r6.a {
     public static final Parcelable.Creator<k0> CREATOR = new db.k(27);
-    public final List f11399a;
+    public final List f11404a;
 
     public k0(ArrayList arrayList) {
-        this.f11399a = arrayList;
+        this.f11404a = arrayList;
     }
 
     public final JSONArray b() {
         try {
             JSONArray jSONArray = new JSONArray();
-            List list = this.f11399a;
+            List list = this.f11404a;
             if (list != null) {
                 for (int i7 = 0; i7 < list.size(); i7++) {
                     l0 l0Var = (l0) list.get(i7);
                     JSONArray jSONArray2 = new JSONArray();
-                    jSONArray2.put((int) l0Var.f11402c);
-                    jSONArray2.put((int) l0Var.f11401b);
-                    jSONArray2.put((int) l0Var.f11402c);
+                    jSONArray2.put((int) l0Var.f11407c);
+                    jSONArray2.put((int) l0Var.f11406b);
+                    jSONArray2.put((int) l0Var.f11407c);
                     jSONArray.put(i7, jSONArray2);
                 }
             }
@@ -41,8 +41,8 @@ public final class k0 extends r6.a {
         if (!(obj instanceof k0)) {
             return false;
         }
-        List list = ((k0) obj).f11399a;
-        List list2 = this.f11399a;
+        List list = ((k0) obj).f11404a;
+        List list2 = this.f11404a;
         if (list2 == null && list == null) {
             return true;
         }
@@ -54,7 +54,7 @@ public final class k0 extends r6.a {
 
     public final int hashCode() {
         HashSet hashSet;
-        List list = this.f11399a;
+        List list = this.f11404a;
         if (list == null) {
             hashSet = null;
         } else {
@@ -66,7 +66,7 @@ public final class k0 extends r6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = xb.r(parcel, 20293);
-        xb.p(parcel, 1, this.f11399a);
+        xb.p(parcel, 1, this.f11404a);
         xb.s(parcel, r10);
     }
 }

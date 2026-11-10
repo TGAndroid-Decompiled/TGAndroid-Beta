@@ -1,163 +1,136 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.tgnet.ConnectionsManager;
+import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
-public final class h50 extends org.telegram.ui.ActionBar.f2 implements org.telegram.messenger.ls {
-    public g50 f46160a;
-    public org.telegram.ui.Components.qj0 f46161b;
-    public org.telegram.ui.Components.jy f46162c;
-    public long d;
-    public boolean f46163e;
-    public TLRPC.TL_chatInviteExported f46164f;
-    public int h;
-    public int f46165n;
-    public int f46166r;
-    public int f46167s;
-    public int f46168w;
-    public int f46169x;
+public final class h50 extends org.telegram.ui.Components.oj0 {
+    public final Context f46220c;
+    public final i50 d;
 
-    public final void Z(boolean z9) {
-        this.f46163e = true;
-        TLRPC.TL_messages_exportChatInvite tL_messages_exportChatInvite = new TLRPC.TL_messages_exportChatInvite();
-        tL_messages_exportChatInvite.peer = getMessagesController().j1(-this.d);
-        ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_exportChatInvite, new fi.d3(7, this, z9)), this.classGuid);
-        g50 g50Var = this.f46160a;
-        if (g50Var != null) {
-            g50Var.f();
+    public h50(i50 i50Var, Context context) {
+        this.d = i50Var;
+        this.f46220c = context;
+    }
+
+    @Override
+    public final boolean D(v4.d1 d1Var) {
+        int b10 = d1Var.b();
+        i50 i50Var = this.d;
+        if (b10 != i50Var.f46506r && b10 != i50Var.f46505n && b10 != i50Var.f46507s && b10 != 0) {
+            return false;
         }
+        return true;
     }
 
     @Override
-    public final void addThemeColorKeys(HashSet hashSet) {
-        super.addThemeColorKeys(hashSet);
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.l6.G6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.l6.B6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.l6.f27829b7));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.l6.f27866d7));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.l6.f27957i6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.l6.f28163t8));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.l6.A8));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.l6.f28202v8));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.l6.f28145s8));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.l6.f27865d6));
+    public final int b() {
+        i50 i50Var = this.d;
+        if (i50Var.f46503e) {
+            return 0;
+        }
+        return i50Var.f46509x;
     }
 
     @Override
-    public final View createView(Context context) {
-        setHasOwnBackground(true);
-        this.simpleActionBar.setBackButtonImage(2131231240);
-        this.simpleActionBar.setTitle(org.telegram.messenger.id.M0(2131749149, null));
-        this.simpleActionBar.setActionBarMenuOnItemClick(new wx(this, 6));
-        this.f46160a = new g50(this, context);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.fragmentView = frameLayout;
-        org.telegram.ui.Components.jy jyVar = new org.telegram.ui.Components.jy(context, null);
-        this.f46162c = jyVar;
-        jyVar.b();
-        org.telegram.ui.Components.qj0 qj0Var = new org.telegram.ui.Components.qj0(context, null);
-        this.f46161b = qj0Var;
-        qj0Var.r1();
-        this.f46161b.setSectionsDrawBackground(true);
-        this.f46161b.setLayoutManager(new v4.b0(1, false));
-        this.f46161b.setEmptyView(this.f46162c);
-        this.f46161b.setVerticalScrollBarEnabled(false);
-        frameLayout.addView(this.f46161b, c8.ha.e(-1, -1, 51));
-        frameLayout.addView(this.f46162c, c8.ha.e(-1, -1, 51));
-        this.f46161b.setAdapter(this.f46160a);
-        this.f46161b.setOnItemClickListener(new h(this, 13));
-        return this.fragmentView;
+    public final int d(int i7) {
+        i50 i50Var = this.d;
+        if (i7 != i50Var.f46505n && i7 != i50Var.f46507s && i7 != i50Var.f46506r) {
+            if (i7 != i50Var.f46508w && i7 != i50Var.h) {
+                if (i7 == 0) {
+                    return 2;
+                }
+                return 0;
+            }
+            return 1;
+        }
+        return 0;
     }
 
     @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        long j3 = this.d;
-        if (i7 == org.telegram.messenger.qs.T) {
-            int intValue = ((Integer) objArr[1]).intValue();
-            if (((TLRPC.ChatFull) objArr[0]).f26957id == j3 && intValue == this.classGuid) {
-                TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) getMessagesController().f24879r.f(j3);
-                this.f46164f = tL_chatInviteExported;
-                if (tL_chatInviteExported == null) {
-                    Z(false);
+    public final void t(v4.d1 d1Var, int i7) {
+        String str;
+        int i10 = d1Var.f57056f;
+        View view = d1Var.f57052a;
+        i50 i50Var = this.d;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 == 2) {
+                    org.telegram.ui.Cells.k8 k8Var = (org.telegram.ui.Cells.k8) view;
+                    TLRPC.TL_chatInviteExported tL_chatInviteExported = i50Var.f46504f;
+                    if (tL_chatInviteExported != null) {
+                        str = tL_chatInviteExported.link;
+                    } else {
+                        str = "error";
+                    }
+                    k8Var.f29470a.setText(str);
+                    k8Var.setWillNotDraw(true);
                     return;
                 }
-                this.f46163e = false;
-                g50 g50Var = this.f46160a;
-                if (g50Var != null) {
-                    g50Var.f();
+                return;
+            }
+            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) view;
+            if (i7 == i50Var.f46508w) {
+                z8Var.setText("");
+                return;
+            } else if (i7 == i50Var.h) {
+                TLRPC.Chat M0 = i50Var.getMessagesController().M0(Long.valueOf(i50Var.d));
+                if (org.telegram.messenger.t3.T(M0) && !M0.megagroup) {
+                    z8Var.setText(org.telegram.messenger.id.M0(2131752386, null));
+                    return;
+                } else {
+                    z8Var.setText(org.telegram.messenger.id.M0(2131748911, null));
+                    return;
                 }
+            } else {
+                return;
             }
         }
-    }
-
-    @Override
-    public final org.telegram.ui.Components.qj0 getListViewForSimpleGlass() {
-        return this.f46161b;
-    }
-
-    @Override
-    public final ArrayList getThemeDescriptions() {
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(new org.telegram.ui.ActionBar.u6(this.f46162c, 2048, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.t6) null, org.telegram.ui.ActionBar.l6.f27939h6));
-        return arrayList;
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        super.onFragmentCreate();
-        org.telegram.messenger.qs.f(this.currentAccount).c(this, org.telegram.messenger.qs.T);
-        getMessagesController().V2(this.classGuid, this.d, true);
-        this.f46163e = true;
-        this.h = 1;
-        this.f46165n = 2;
-        this.f46166r = 3;
-        this.f46167s = 4;
-        this.f46169x = 6;
-        this.f46168w = 5;
-        return true;
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        org.telegram.messenger.qs.f(this.currentAccount).n(this, org.telegram.messenger.qs.T);
-    }
-
-    @Override
-    public final void onResume() {
-        super.onResume();
-        g50 g50Var = this.f46160a;
-        if (g50Var != null) {
-            g50Var.f();
+        org.telegram.ui.Cells.w9 w9Var = (org.telegram.ui.Cells.w9) view;
+        if (i7 == i50Var.f46505n) {
+            w9Var.b(org.telegram.messenger.id.M0(2131751762, null), true);
+        } else if (i7 == i50Var.f46507s) {
+            w9Var.b(org.telegram.messenger.id.M0(2131745458, null), false);
+        } else if (i7 == i50Var.f46506r) {
+            w9Var.b(org.telegram.messenger.id.M0(2131746023, null), true);
         }
     }
 
     @Override
-    public final void onThemeColorsChanged() {
-        super.onThemeColorsChanged();
-        try {
-            org.telegram.ui.Components.jy jyVar = this.f46162c;
-            if (jyVar != null) {
-                jyVar.setProgressBarColor(org.telegram.ui.ActionBar.l6.x0(null, org.telegram.ui.ActionBar.l6.f27939h6, false));
+    public final v4.d1 x(ViewGroup viewGroup, int i7) {
+        FrameLayout frameLayout;
+        int i10;
+        Context context = this.f46220c;
+        if (i7 != 0) {
+            if (i7 != 1) {
+                ?? frameLayout2 = new FrameLayout(context);
+                TextView textView = new TextView(context);
+                frameLayout2.f29470a = textView;
+                org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.G6, null);
+                textView.setTextSize(1, 16.0f);
+                int i11 = 3;
+                if (org.telegram.messenger.id.f23161a0) {
+                    i10 = 5;
+                } else {
+                    i10 = 3;
+                }
+                textView.setGravity(i10 | 16);
+                if (org.telegram.messenger.id.f23161a0) {
+                    i11 = 5;
+                }
+                frameLayout2.addView(textView, c8.ha.d(-1, -2.0f, i11 | 48, 23.0f, 10.0f, 23.0f, 10.0f));
+                org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f27890d6, frameLayout2, null);
+                frameLayout = frameLayout2;
+            } else {
+                frameLayout = new org.telegram.ui.Cells.z8(context);
             }
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+        } else {
+            FrameLayout w9Var = new org.telegram.ui.Cells.w9(context);
+            org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f27890d6, w9Var, null);
+            frameLayout = w9Var;
         }
-    }
-
-    @Override
-    public final boolean useSimpleActionBar() {
-        return true;
+        return new v4.d1(frameLayout);
     }
 }

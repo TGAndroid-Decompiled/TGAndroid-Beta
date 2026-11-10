@@ -2,11 +2,11 @@ package t3;
 
 import java.util.Arrays;
 public final class b extends i {
-    public final byte[] f55398b;
+    public final byte[] f55397b;
 
     public b(String str, byte[] bArr) {
         super(str);
-        this.f55398b = bArr;
+        this.f55397b = bArr;
     }
 
     public final boolean equals(Object obj) {
@@ -15,7 +15,7 @@ public final class b extends i {
         }
         if (obj != null && b.class == obj.getClass()) {
             b bVar = (b) obj;
-            if (this.f55415a.equals(bVar.f55415a) && Arrays.equals(this.f55398b, bVar.f55398b)) {
+            if (this.f55414a.equals(bVar.f55414a) && Arrays.equals(this.f55397b, bVar.f55397b)) {
                 return true;
             }
         }
@@ -23,6 +23,6 @@ public final class b extends i {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.f55398b) + com.google.android.recaptcha.internal.a.h(527, 31, this.f55415a);
+        return Arrays.hashCode(this.f55397b) + com.google.android.recaptcha.internal.a.h(527, 31, this.f55414a);
     }
 }

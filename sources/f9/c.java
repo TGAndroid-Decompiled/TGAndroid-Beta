@@ -12,19 +12,19 @@ import android.os.Build;
 import android.util.Log;
 import e0.q;
 public abstract class c extends IntentService {
-    public final boolean f11469a;
-    public final long f11470b;
-    public final Intent f11471c;
+    public final boolean f11474a;
+    public final long f11475b;
+    public final Intent f11476c;
     public final Intent d;
-    public b f11472e;
-    public b f11473f;
+    public b f11477e;
+    public b f11478f;
 
     public c() {
         super("SearchActionVerificationClientService");
-        this.f11471c = new Intent("com.google.android.googlequicksearchbox.SEARCH_ACTION_VERIFICATION_SERVICE").setPackage("com.google.android.googlequicksearchbox");
+        this.f11476c = new Intent("com.google.android.googlequicksearchbox.SEARCH_ACTION_VERIFICATION_SERVICE").setPackage("com.google.android.googlequicksearchbox");
         this.d = new Intent("com.google.android.apps.assistant.go.verification.VERIFICATION_SERVICE").setPackage("com.google.android.apps.assistant");
-        this.f11469a = !"user".equals(Build.TYPE);
-        this.f11470b = 1000L;
+        this.f11474a = !"user".equals(Build.TYPE);
+        this.f11475b = 1000L;
     }
 
     public final boolean a(String str) {
@@ -49,17 +49,17 @@ public abstract class c extends IntentService {
 
     @Override
     public final void onCreate() {
-        if (this.f11469a) {
+        if (this.f11474a) {
             Log.d("SAVerificationClientS", "onCreate");
         }
         super.onCreate();
-        this.f11472e = new b(this);
+        this.f11477e = new b(this);
         if (a("com.google.android.googlequicksearchbox") && (!"user".equals(Build.TYPE) || y9.a(this, "com.google.android.googlequicksearchbox"))) {
-            bindService(this.f11471c, this.f11472e, 1);
+            bindService(this.f11476c, this.f11477e, 1);
         }
-        this.f11473f = new b(this);
+        this.f11478f = new b(this);
         if (a("com.google.android.apps.assistant") && (!"user".equals(Build.TYPE) || y9.a(this, "com.google.android.apps.assistant"))) {
-            bindService(this.d, this.f11473f, 1);
+            bindService(this.d, this.f11478f, 1);
         }
         if (Build.VERSION.SDK_INT >= 26) {
             NotificationChannel notificationChannel = new NotificationChannel("Assistant_verifier", getApplicationContext().getResources().getString(2131230720), 2);
@@ -68,26 +68,26 @@ public abstract class c extends IntentService {
             notificationChannel.setShowBadge(false);
             ((NotificationManager) getApplicationContext().getSystemService(NotificationManager.class)).createNotificationChannel(notificationChannel);
             q qVar = new q(getApplicationContext(), "Assistant_verifier");
-            qVar.f10108q = "Assistant_verifier";
-            qVar.f10097e = q.d(getApplicationContext().getResources().getString(2131230721));
+            qVar.f10113q = "Assistant_verifier";
+            qVar.f10102e = q.d(getApplicationContext().getResources().getString(2131230721));
             qVar.F.icon = 17301545;
-            qVar.f10101j = -2;
-            qVar.f10114x = 1;
+            qVar.f10106j = -2;
+            qVar.f10119x = 1;
             startForeground(10000, qVar.b());
         }
     }
 
     @Override
     public final void onDestroy() {
-        if (this.f11469a) {
+        if (this.f11474a) {
             Log.d("SAVerificationClientS", "onDestroy");
         }
         super.onDestroy();
-        if (b.a(this.f11472e)) {
-            unbindService(this.f11472e);
+        if (b.a(this.f11477e)) {
+            unbindService(this.f11477e);
         }
-        if (b.a(this.f11473f)) {
-            unbindService(this.f11473f);
+        if (b.a(this.f11478f)) {
+            unbindService(this.f11478f);
         }
         if (Build.VERSION.SDK_INT >= 26) {
             stopForeground(true);
@@ -97,7 +97,7 @@ public abstract class c extends IntentService {
     @Override
     public final void onHandleIntent(Intent intent) {
         boolean z9;
-        boolean z10 = this.f11469a;
+        boolean z10 = this.f11474a;
         if (intent == null) {
             if (z10) {
                 Log.d("SAVerificationClientS", "Unable to verify null intent");
@@ -109,22 +109,22 @@ public abstract class c extends IntentService {
         while (true) {
             boolean a10 = a("com.google.android.googlequicksearchbox");
             boolean z11 = true;
-            if (a10 && !b.a(this.f11472e)) {
+            if (a10 && !b.a(this.f11477e)) {
                 z9 = false;
             } else {
                 z9 = true;
             }
             if (z10) {
-                Log.d("SAVerificationClientS", "GSA app com.google.android.googlequicksearchbox installed: " + a10 + " connected " + b.a(this.f11472e));
+                Log.d("SAVerificationClientS", "GSA app com.google.android.googlequicksearchbox installed: " + a10 + " connected " + b.a(this.f11477e));
             }
             boolean a11 = a("com.google.android.apps.assistant");
-            if (a11 && !b.a(this.f11473f)) {
+            if (a11 && !b.a(this.f11478f)) {
                 z11 = false;
             }
             if (z10) {
-                Log.d("SAVerificationClientS", "AssistantGo app com.google.android.apps.assistant installed: " + a11 + " connected " + b.a(this.f11473f));
+                Log.d("SAVerificationClientS", "AssistantGo app com.google.android.apps.assistant installed: " + a11 + " connected " + b.a(this.f11478f));
             }
-            if ((!z9 || !z11) && System.nanoTime() - nanoTime < this.f11470b * 1000000) {
+            if ((!z9 || !z11) && System.nanoTime() - nanoTime < this.f11475b * 1000000) {
                 try {
                     Thread.sleep(50L);
                 } catch (InterruptedException e10) {
@@ -138,12 +138,12 @@ public abstract class c extends IntentService {
                 }
             }
         }
-        if (b("com.google.android.googlequicksearchbox", intent, this.f11472e)) {
+        if (b("com.google.android.googlequicksearchbox", intent, this.f11477e)) {
             Log.i("SAVerificationClientS", "Verified the intent with GSA.");
             return;
         }
         Log.i("SAVerificationClientS", "Unable to verify the intent with GSA.");
-        if (b("com.google.android.apps.assistant", intent, this.f11473f)) {
+        if (b("com.google.android.apps.assistant", intent, this.f11478f)) {
             Log.i("SAVerificationClientS", "Verified the intent with Assistant Go.");
         } else {
             Log.i("SAVerificationClientS", "Unable to verify the intent with Assistant Go.");

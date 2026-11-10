@@ -1,34 +1,22 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class gw extends FrameLayout {
-    public final hy f34057a;
+import androidx.recyclerview.widget.RecyclerView;
+public final class gw extends v4.s {
+    public final gy Q;
 
-    public gw(hy hyVar, Context context) {
-        super(context);
-        this.f34057a = hyVar;
+    public gw(gy gyVar) {
+        super(8);
+        this.Q = gyVar;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        hy hyVar = this.f34057a;
-        lw lwVar = hyVar.I;
-        iv ivVar = hyVar.V;
-        tw twVar = hyVar.P;
-        if (view != twVar && view != ivVar) {
-            return super.drawChild(canvas, view, j3);
+    public final void v0(RecyclerView recyclerView, v4.a1 a1Var, int i7) {
+        try {
+            fi.j1 j1Var = new fi.j1(2, recyclerView.getContext(), this);
+            j1Var.f57221a = i7;
+            w0(j1Var);
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
-        canvas.save();
-        float y10 = lwVar.getY() + lwVar.getMeasuredHeight() + 1.0f;
-        if (view == twVar && ivVar != null) {
-            y10 = Math.max(y10, ivVar.getY() + ivVar.getMeasuredHeight() + 1.0f);
-        }
-        canvas.clipRect(0.0f, y10 - (org.telegram.messenger.g0.L(16.0f) * hyVar.f34409b.f55499e), getMeasuredWidth(), getMeasuredHeight());
-        boolean drawChild = super.drawChild(canvas, view, j3);
-        canvas.restore();
-        return drawChild;
     }
 }

@@ -9,28 +9,28 @@ import org.telegram.messenger.id;
 import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.yb;
+import org.telegram.ui.Components.bc;
+import org.telegram.ui.Components.gc;
+import org.telegram.ui.Components.xb;
 import org.telegram.ui.LaunchActivity;
 public final class g0 implements v10 {
-    public final int f15538a;
-    public final long f15539b;
-    public final Object f15540c;
+    public final int f15537a;
+    public final long f15538b;
+    public final Object f15539c;
 
     public g0(Object obj, long j3, int i7) {
-        this.f15538a = i7;
-        this.f15540c = obj;
-        this.f15539b = j3;
+        this.f15537a = i7;
+        this.f15539c = obj;
+        this.f15538b = j3;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         boolean z9;
         int i7;
-        int i10 = this.f15538a;
-        long j3 = this.f15539b;
-        Object obj3 = this.f15540c;
+        int i10 = this.f15537a;
+        long j3 = this.f15538b;
+        Object obj3 = this.f15539c;
         switch (i10) {
             case 0:
                 f2 f2Var = (f2) obj3;
@@ -41,7 +41,7 @@ public final class g0 implements v10 {
                         m0.d(f2Var, -j3, 2);
                         return;
                     } else {
-                        hc.a0(f2Var).f0(tL_error, false);
+                        gc.a0(f2Var).f0(tL_error, false);
                         return;
                     }
                 }
@@ -52,7 +52,7 @@ public final class g0 implements v10 {
                 Long l10 = (Long) obj2;
                 String str = LaunchActivity.B1;
                 if ("paid".equals((String) obj) && l10.longValue() != 0) {
-                    org.telegram.messenger.g0.h3(new d3(launchActivity, l10, this.f15539b, 28));
+                    org.telegram.messenger.g0.h3(new d3(launchActivity, l10, this.f15538b, 28));
                     return;
                 }
                 return;
@@ -60,41 +60,41 @@ public final class g0 implements v10 {
                 zh.l lVar = (zh.l) obj3;
                 Boolean bool2 = (Boolean) obj;
                 String str2 = (String) obj2;
-                FrameLayout frameLayout = lVar.f60433c2;
-                lVar.S1.setLoading(false);
-                lVar.f60447r2 = false;
+                FrameLayout frameLayout = lVar.f60437f2;
+                lVar.V1.setLoading(false);
+                lVar.f60452u2 = false;
                 if (bool2 != null) {
                     if (j3 > 0) {
                         z9 = true;
                     } else {
                         z9 = false;
                     }
-                    yb ybVar = new yb(lVar.getContext(), lVar.I0);
-                    ybVar.f40692a.setImageResource(2131231117);
+                    xb xbVar = new xb(lVar.getContext(), lVar.I0);
+                    xbVar.f40279a.setImageResource(2131231117);
                     if (z9) {
                         i7 = 2131750307;
                     } else {
                         i7 = 2131750306;
                     }
                     String M0 = id.M0(i7, null);
-                    TextView textView = ybVar.f40693b;
+                    TextView textView = xbVar.f40280b;
                     textView.setText(M0);
                     textView.setSingleLine(true);
                     textView.setTextSize(1, 15.0f);
                     textView.setMaxLines(1);
                     textView.setTypeface(org.telegram.messenger.g0.o());
-                    String a02 = id.a0(null, null, 2131750342, Integer.valueOf(lVar.d2.d.gifts_per_round));
-                    TextView textView2 = ybVar.f40694c;
+                    String a02 = id.a0(null, null, 2131750342, Integer.valueOf(lVar.f60438g2.d.gifts_per_round));
+                    TextView textView2 = xbVar.f40281c;
                     textView2.setText(a02);
                     textView2.setSingleLine(false);
                     textView2.setMaxLines(5);
                     lVar.h1();
-                    cc.f(frameLayout, ybVar, 2750).j();
-                    ea.y(lVar.f28621a, false).q(null, false, true);
+                    bc.f(frameLayout, xbVar, 2750).j();
+                    ea.y(lVar.f28669a, false).q(null, false, true);
                 }
                 if (str2 != null) {
                     lVar.h1();
-                    new hc(frameLayout, lVar.I0).Q(2131624011, 36, id.a0(null, null, 2131743878, str2)).j();
+                    new gc(frameLayout, lVar.I0).Q(2131624011, 36, id.a0(null, null, 2131743878, str2)).j();
                     return;
                 }
                 return;

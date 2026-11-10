@@ -1,28 +1,30 @@
 package org.telegram.ui;
 
-import android.view.View;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class ue0 implements Runnable {
-    public final ef0 f50387a;
+    public final int f50484a;
+    public final ff0 f50485b;
+    public final TLRPC.TL_error f50486c;
+    public final TLObject d;
 
-    public ue0(ef0 ef0Var) {
-        this.f50387a = ef0Var;
+    public ue0(ff0 ff0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i7) {
+        this.f50484a = i7;
+        this.f50485b = ff0Var;
+        this.f50486c = tL_error;
+        this.d = tLObject;
     }
 
     @Override
     public final void run() {
-        ef0 ef0Var = this.f50387a;
-        if (ef0Var.f45407b == null) {
-            return;
+        switch (this.f50484a) {
+            case 0:
+                ff0 ff0Var = this.f50485b;
+                ff0Var.getNotificationCenter().d(new ue0(ff0Var, this.f50486c, this.d, 1));
+                return;
+            default:
+                ff0.a0(this.f50485b, this.f50486c, this.d);
+                return;
         }
-        for (int i7 = 0; i7 < ef0Var.f45407b.getChildCount(); i7++) {
-            View childAt = ef0Var.f45407b.getChildAt(i7);
-            if (childAt instanceof bf0) {
-                bf0 bf0Var = (bf0) childAt;
-                if (bf0Var.I) {
-                    bf0Var.b(bf0Var.f44029n, bf0Var.f44030r);
-                }
-            }
-        }
-        org.telegram.messenger.g0.i3(this, 500L);
     }
 }

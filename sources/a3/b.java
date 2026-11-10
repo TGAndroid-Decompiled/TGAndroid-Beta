@@ -41,7 +41,7 @@ public final class b extends d {
         this.f64m = 0.7f;
         this.f65n = 0.75f;
         this.f66o = i0.q(i0Var);
-        this.f67p = g0.f14088a;
+        this.f67p = g0.f14090a;
         this.f68q = 1.0f;
         this.f70s = 0;
         this.f71t = -9223372036854775807L;
@@ -65,7 +65,7 @@ public final class b extends d {
             y2.l lVar = (y2.l) h9.o.n(list);
             long j3 = lVar.h;
             if (j3 != -9223372036854775807L) {
-                long j10 = lVar.f58909n;
+                long j10 = lVar.f58907n;
                 if (j10 != -9223372036854775807L) {
                     return j10 - j3;
                 }
@@ -120,7 +120,7 @@ public final class b extends d {
             b10 = b(((y2.l) h9.o.n(list)).d);
         }
         if (b10 != -1) {
-            i11 = ((y2.l) h9.o.n(list)).f58907e;
+            i11 = ((y2.l) h9.o.n(list)).f58905e;
             i12 = b10;
         }
         int w10 = w(1, elapsedRealtime);
@@ -138,8 +138,8 @@ public final class b extends d {
                 }
                 j13 = Math.min(((float) j12) * this.f65n, j13);
             }
-            int i14 = uVar2.f10606j;
-            int i15 = uVar.f10606j;
+            int i14 = uVar2.f10611j;
+            int i15 = uVar.f10611j;
             if ((i14 > i15 && j10 < j13) || (i14 < i15 && j10 >= this.f60i)) {
                 w10 = i12;
             }
@@ -187,7 +187,7 @@ public final class b extends d {
             for (int i11 = 0; i11 < size; i11++) {
                 y2.l lVar2 = (y2.l) list.get(i11);
                 e2.u uVar2 = lVar2.d;
-                if (m0.F(lVar2.h - j3, this.f68q) >= j11 && uVar2.f10606j < uVar.f10606j && (i7 = uVar2.A) != -1 && i7 <= this.f63l && (i10 = uVar2.f10621z) != -1 && i10 <= this.f62k && i7 < uVar.A) {
+                if (m0.F(lVar2.h - j3, this.f68q) >= j11 && uVar2.f10611j < uVar.f10611j && (i7 = uVar2.A) != -1 && i7 <= this.f63l && (i10 = uVar2.f10626z) != -1 && i10 <= this.f62k && i7 < uVar.A) {
                     return i11;
                 }
             }
@@ -244,15 +244,15 @@ public final class b extends d {
             }
             if (j3 == Long.MIN_VALUE || !a(i12, j3)) {
                 e2.u uVar = uVarArr[i12];
-                int max = Math.max(uVar.f10621z, uVar.A);
+                int max = Math.max(uVar.f10626z, uVar.A);
                 if (!hashMap.containsKey(Integer.valueOf(max))) {
                     hashMap.put(Integer.valueOf(max), Integer.valueOf(i12));
                     arrayList.add(Integer.valueOf(i12));
                 } else {
                     Integer num = (Integer) hashMap.get(Integer.valueOf(max));
                     e2.u uVar2 = uVarArr[num.intValue()];
-                    boolean z9 = uVar2.f10610n;
-                    if ((!z9 || uVar.f10610n) && ((!z9 && uVar.f10610n) || uVar.f10606j < uVar2.f10606j)) {
+                    boolean z9 = uVar2.f10615n;
+                    if ((!z9 || uVar.f10615n) && ((!z9 && uVar.f10615n) || uVar.f10611j < uVar2.f10611j)) {
                         hashMap.put(Integer.valueOf(max), Integer.valueOf(i12));
                         arrayList.remove(num);
                         arrayList.add(Integer.valueOf(i12));
@@ -268,7 +268,7 @@ public final class b extends d {
                 Object obj = arrayList.get(i14);
                 i14++;
                 int intValue = ((Integer) obj).intValue();
-                if (uVarArr[intValue].f10610n) {
+                if (uVarArr[intValue].f10615n) {
                     return intValue;
                 }
             }
@@ -280,8 +280,8 @@ public final class b extends d {
             i15++;
             i11 = ((Integer) obj2).intValue();
             e2.u uVar3 = uVarArr[i11];
-            int i16 = uVar3.f10606j;
-            if (!uVar3.f10610n) {
+            int i16 = uVar3.f10611j;
+            if (!uVar3.f10615n) {
                 if (i16 <= a10) {
                     break;
                 }

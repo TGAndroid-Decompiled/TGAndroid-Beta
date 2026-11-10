@@ -2,24 +2,24 @@ package oe;
 
 import h2.p0;
 public final class c implements ke.a {
-    public static final c f20903a = new Object();
-    public static final n f20904b = new n("kotlin.Double", me.b.f20008c);
+    public static final c f20908a = new Object();
+    public static final n f20909b = new n("kotlin.Double", me.b.f20013c);
 
     @Override
     public final void a(qe.h hVar, Object obj) {
         double doubleValue = ((Number) obj).doubleValue();
-        ca.i iVar = (ca.i) hVar.f54110b;
-        if (hVar.f54109a) {
+        ca.i iVar = (ca.i) hVar.f54109b;
+        if (hVar.f54108a) {
             hVar.j(String.valueOf(doubleValue));
         } else {
-            ((mc.a) iVar.f6014c).c(String.valueOf(doubleValue));
+            ((mc.a) iVar.f6019c).c(String.valueOf(doubleValue));
         }
-        ((p0) hVar.f54113f).getClass();
+        ((p0) hVar.f54112f).getClass();
         if (!Double.isInfinite(doubleValue) && !Double.isNaN(doubleValue)) {
             return;
         }
         Double valueOf = Double.valueOf(doubleValue);
-        String aVar = ((mc.a) iVar.f6014c).toString();
+        String aVar = ((mc.a) iVar.f6019c).toString();
         throw new qe.d("Unexpected special floating-point value " + valueOf + ". By default, non-finite floating point values are prohibited because they do not conform JSON specification. It is possible to deserialize them using 'JsonBuilder.allowSpecialFloatingPointValues = true'\nCurrent output: " + ((Object) qe.f.d(-1, aVar)));
     }
 
@@ -30,7 +30,7 @@ public final class c implements ke.a {
         String k10 = kVar.k();
         try {
             double parseDouble = Double.parseDouble(k10);
-            ((pe.b) decoder.f14058b).f53589a.getClass();
+            ((pe.b) decoder.f14060b).f53588a.getClass();
             if (!Double.isInfinite(parseDouble) && !Double.isNaN(parseDouble)) {
                 return Double.valueOf(parseDouble);
             }
@@ -45,6 +45,6 @@ public final class c implements ke.a {
 
     @Override
     public final me.d d() {
-        return f20904b;
+        return f20909b;
     }
 }

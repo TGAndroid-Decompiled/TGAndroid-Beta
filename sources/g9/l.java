@@ -12,25 +12,25 @@ import java.util.Iterator;
 import java.util.List;
 import org.json.JSONObject;
 public class l {
-    public final String f13591a;
+    public final String f13593a;
 
     public l(String str, pb.b bVar) {
         if (str != null) {
-            this.f13591a = str;
+            this.f13593a = str;
             return;
         }
         throw new IllegalArgumentException("url must not be null.");
     }
 
     public static void b(a0 a0Var, ia.e eVar) {
-        String str = (String) eVar.f15427b;
+        String str = (String) eVar.f15429b;
         if (str != null) {
             a0Var.l("X-CRASHLYTICS-GOOGLE-APP-ID", str);
         }
         a0Var.l("X-CRASHLYTICS-API-CLIENT-TYPE", "android");
         a0Var.l("X-CRASHLYTICS-API-CLIENT-VERSION", "20.1.1");
         a0Var.l("Accept", "application/json");
-        String str2 = (String) eVar.f15428c;
+        String str2 = (String) eVar.f15430c;
         if (str2 != null) {
             a0Var.l("X-CRASHLYTICS-DEVICE-MODEL", str2);
         }
@@ -38,11 +38,11 @@ public class l {
         if (str3 != null) {
             a0Var.l("X-CRASHLYTICS-OS-BUILD-VERSION", str3);
         }
-        String str4 = (String) eVar.f15429e;
+        String str4 = (String) eVar.f15431e;
         if (str4 != null) {
             a0Var.l("X-CRASHLYTICS-OS-DISPLAY-VERSION", str4);
         }
-        String str5 = ((b0) eVar.f15432i).c().f784a;
+        String str5 = ((b0) eVar.f15434i).c().f784a;
         if (str5 != null) {
             a0Var.l("X-CRASHLYTICS-INSTALLATION-ID", str5);
         }
@@ -51,9 +51,9 @@ public class l {
     public static HashMap c(ia.e eVar) {
         HashMap hashMap = new HashMap();
         hashMap.put("build_version", (String) eVar.h);
-        hashMap.put("display_version", (String) eVar.f15431g);
-        hashMap.put("source", Integer.toString(eVar.f15426a));
-        String str = (String) eVar.f15430f;
+        hashMap.put("display_version", (String) eVar.f15433g);
+        hashMap.put("source", Integer.toString(eVar.f15428a));
+        String str = (String) eVar.f15432f;
         if (!TextUtils.isEmpty(str)) {
             hashMap.put("instance", str);
         }
@@ -73,7 +73,7 @@ public class l {
             if (it.hasNext()) {
                 sb2.append(f(it.next()));
                 while (it.hasNext()) {
-                    sb2.append((CharSequence) this.f13591a);
+                    sb2.append((CharSequence) this.f13593a);
                     sb2.append(f(it.next()));
                 }
             }
@@ -83,10 +83,10 @@ public class l {
     }
 
     public JSONObject d(z0 z0Var) {
-        int i7 = z0Var.f7295b;
-        x9.b bVar = x9.b.f58675a;
+        int i7 = z0Var.f7300b;
+        x9.b bVar = x9.b.f58673a;
         bVar.c("Settings response code was: " + i7);
-        String str = this.f13591a;
+        String str = this.f13593a;
         if (i7 != 200 && i7 != 201 && i7 != 202 && i7 != 203) {
             String str2 = "Settings request failed; (status: " + i7 + ") from " + str;
             if (bVar.a(6)) {
@@ -94,7 +94,7 @@ public class l {
             }
             return null;
         }
-        String str3 = z0Var.f7296c;
+        String str3 = z0Var.f7301c;
         try {
             return new JSONObject(str3);
         } catch (Exception e10) {
@@ -114,11 +114,11 @@ public class l {
     public l(String str, int i7) {
         switch (i7) {
             case 2:
-                this.f13591a = str;
+                this.f13593a = str;
                 return;
             default:
                 str.getClass();
-                this.f13591a = str;
+                this.f13593a = str;
                 return;
         }
     }

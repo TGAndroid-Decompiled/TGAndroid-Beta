@@ -1,54 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.EditText;
-public final class yq implements Runnable {
-    public final int f40793a;
-    public final br f40794b;
+import android.content.Context;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+public final class yq extends ImageView {
+    public final int f40633a = 0;
+    public Object f40634b;
+    public final ViewGroup f40635c;
 
-    public yq(br brVar, int i7) {
-        this.f40793a = i7;
-        this.f40794b = brVar;
+    public yq(ar arVar, Context context, uy uyVar) {
+        super(context);
+        this.f40635c = arVar;
+        this.f40634b = uyVar;
     }
 
     @Override
-    public final void run() {
-        View view;
-        switch (this.f40793a) {
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f40633a) {
             case 0:
-                br brVar = this.f40794b;
-                if (brVar.f32387b == null && (view = brVar.d) != null) {
-                    View findFocus = view.findFocus();
-                    if (findFocus instanceof EditText) {
-                        brVar.f32387b = (EditText) findFocus;
-                    }
+                ar arVar = (ar) this.f40635c;
+                if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && (arVar.f31974n || arVar.f31973f)) {
+                    arVar.f31974n = false;
+                    arVar.f31973f = false;
+                    removeCallbacks(arVar.f31975r);
+                    removeCallbacks(arVar.h);
                 }
-                EditText editText = brVar.f32387b;
-                if (editText != null) {
-                    if (editText.length() != 0 || brVar.f32389e) {
-                        try {
-                            brVar.performHapticFeedback(3, 2);
-                            brVar.playSoundEffect(0);
-                        } catch (Exception unused) {
-                        }
-                        brVar.f32387b.dispatchKeyEvent(new KeyEvent(0, 67));
-                        brVar.f32387b.dispatchKeyEvent(new KeyEvent(1, 67));
-                        if (brVar.f32390f) {
-                            brVar.postDelayed(brVar.h, 50L);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
+                super.onTouchEvent(motionEvent);
+                return ((GestureDetector) ((uy) this.f40634b).f38776b).onTouchEvent(motionEvent);
             default:
-                br brVar2 = this.f40794b;
-                brVar2.f32391n = false;
-                brVar2.f32390f = true;
-                brVar2.h.run();
-                return;
+                return super.onTouchEvent(motionEvent);
         }
+    }
+
+    public yq(ii0 ii0Var, Context context) {
+        super(context);
+        this.f40635c = ii0Var;
     }
 }

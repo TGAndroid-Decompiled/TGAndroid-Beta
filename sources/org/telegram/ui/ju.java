@@ -1,25 +1,25 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.tl.TL_account;
-public final class ju implements org.telegram.messenger.c20 {
-    public final int f47099a;
-    public final yw f47100b;
+import android.animation.ValueAnimator;
+public final class ju implements ValueAnimator.AnimatorUpdateListener {
+    public final int f47075a;
+    public final zw f47076b;
+    public final float f47077c;
 
-    public ju(yw ywVar, int i7) {
-        this.f47099a = i7;
-        this.f47100b = ywVar;
+    public ju(zw zwVar, float f10, int i7) {
+        this.f47075a = i7;
+        this.f47076b = zwVar;
+        this.f47077c = f10;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f47099a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f47075a) {
             case 0:
-                yw ywVar = this.f47100b;
-                ywVar.P1 = (Long) obj;
-                ywVar.g5();
+                zw.a0(this.f47076b, this.f47077c, valueAnimator);
                 return;
             default:
-                yw.f0(this.f47100b, (TL_account.TL_birthday) obj);
+                zw.G0(this.f47076b, this.f47077c, valueAnimator);
                 return;
         }
     }

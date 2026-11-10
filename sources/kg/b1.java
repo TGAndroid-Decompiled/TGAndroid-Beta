@@ -19,11 +19,11 @@ public final class b1 {
         Calendar calendar = Calendar.getInstance();
         calendar.set(0, 0, 0, ((i7 - i10) / 60) % 24, i10);
         id E0 = id.E0();
-        if (E0.f23166c == null) {
+        if (E0.f23170c == null) {
             synchronized (E0) {
                 try {
-                    if (E0.f23166c == null) {
-                        Locale locale = E0.f23185y;
+                    if (E0.f23170c == null) {
+                        Locale locale = E0.f23189y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
@@ -35,7 +35,7 @@ public final class b1 {
                         if (!lowerCase.toLowerCase().equals("ar") && !lowerCase.toLowerCase().equals("ko")) {
                             locale = Locale.US;
                         }
-                        boolean z9 = id.f23159c0;
+                        boolean z9 = id.f23163c0;
                         if (z9) {
                             str = "HH:mm";
                         } else {
@@ -46,13 +46,13 @@ public final class b1 {
                         } else {
                             str2 = "h:mm a";
                         }
-                        E0.f23166c = id.k(locale, str, str2);
+                        E0.f23170c = id.k(locale, str, str2);
                     }
                 } finally {
                 }
             }
         }
-        String format = E0.f23166c.format(calendar.getTime());
+        String format = E0.f23170c.format(calendar.getTime());
         if (i7 > 1440) {
             return id.a0(null, null, 2131752748, format);
         }

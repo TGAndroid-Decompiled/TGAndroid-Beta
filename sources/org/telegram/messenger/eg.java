@@ -6,25 +6,25 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class eg implements RequestDelegate {
-    public final int f22220a;
-    public final ui f22221b;
-    public final SharedPreferences f22222c;
+    public final int f22224a;
+    public final ui f22225b;
+    public final SharedPreferences f22226c;
 
     public eg(ui uiVar, SharedPreferences sharedPreferences, int i7) {
-        this.f22220a = i7;
-        this.f22221b = uiVar;
-        this.f22222c = sharedPreferences;
+        this.f22224a = i7;
+        this.f22225b = uiVar;
+        this.f22226c = sharedPreferences;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f22220a) {
+        switch (this.f22224a) {
             case 0:
-                g0.h3(new em(this.f22221b, tL_error, tLObject, this.f22222c, 13));
+                g0.h3(new em(this.f22225b, tL_error, tLObject, this.f22226c, 13));
                 return;
             case 1:
-                final ui uiVar = this.f22221b;
-                final SharedPreferences sharedPreferences = this.f22222c;
+                final ui uiVar = this.f22225b;
+                final SharedPreferences sharedPreferences = this.f22226c;
                 g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -64,9 +64,9 @@ public final class eg implements RequestDelegate {
                 });
                 return;
             default:
-                final ui uiVar2 = this.f22221b;
+                final ui uiVar2 = this.f22225b;
                 uiVar2.getClass();
-                final SharedPreferences sharedPreferences2 = this.f22222c;
+                final SharedPreferences sharedPreferences2 = this.f22226c;
                 g0.h3(new Runnable() {
                     @Override
                     public final void run() {

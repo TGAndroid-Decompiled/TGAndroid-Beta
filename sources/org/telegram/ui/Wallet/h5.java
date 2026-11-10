@@ -1,31 +1,15 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.view.View;
-public final class h5 extends View {
-    public final int f42546a;
-    public final w5 f42547b;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class h5 implements bi.j7 {
+    public final TL_stars.TL_starGiftUnique f42586a;
+    public final TL_wallet.nftItem f42587b;
+    public final z5 f42588c;
 
-    public h5(w5 w5Var, Context context, int i7) {
-        super(context);
-        this.f42546a = i7;
-        this.f42547b = w5Var;
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        switch (this.f42546a) {
-            case 0:
-                int size = View.MeasureSpec.getSize(i7);
-                w5 w5Var = this.f42547b;
-                w5Var.Z.measure(View.MeasureSpec.makeMeasureSpec(Math.max(0, size - org.telegram.messenger.g0.L(24.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-                setMeasuredDimension(size, org.telegram.messenger.g0.L(36.0f) + w5Var.Z.getMeasuredHeight());
-                return;
-            default:
-                w5 w5Var2 = this.f42547b;
-                w5Var2.f43253e.measure(i7, View.MeasureSpec.makeMeasureSpec(0, 0));
-                setMeasuredDimension(View.MeasureSpec.getSize(i7), w5Var2.f43253e.getMeasuredHeight());
-                return;
-        }
+    public h5(z5 z5Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, TL_wallet.nftItem nftitem) {
+        this.f42588c = z5Var;
+        this.f42586a = tL_starGiftUnique;
+        this.f42587b = nftitem;
     }
 }

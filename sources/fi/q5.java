@@ -6,14 +6,14 @@ import android.graphics.PorterDuffColorFilter;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
 public final class q5 extends ImageView {
-    public final int f12662a;
-    public final s5 f12663b;
+    public final int f12666a;
+    public final s5 f12667b;
 
     public q5(s5 s5Var, Context context, int i7, int i10) {
         super(context);
-        this.f12663b = s5Var;
-        this.f12662a = i7;
-        setBackground(org.telegram.ui.ActionBar.l6.h0(1090519039, 1, -1));
+        this.f12667b = s5Var;
+        this.f12666a = i7;
+        setBackground(org.telegram.ui.ActionBar.m6.h0(1090519039, 1, -1));
         setScaleType(ImageView.ScaleType.CENTER);
         setImageResource(i10);
         setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));

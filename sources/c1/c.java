@@ -4,17 +4,17 @@ import kotlin.jvm.internal.i;
 import kotlin.jvm.internal.j;
 import rd.p;
 public final class c extends i implements p {
-    public final int f5249a;
+    public final int f5254a;
 
     public c(int i7, Object obj, Class cls, String str, String str2, int i10, int i11) {
         super(i7, obj, cls, str, str2, i10);
-        this.f5249a = i11;
+        this.f5254a = i11;
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
         boolean z9;
-        switch (this.f5249a) {
+        switch (this.f5254a) {
             case 0:
                 ((b1.a) this.receiver).getClass();
                 return b1.a.b((String) obj, (String) obj2);
@@ -41,7 +41,7 @@ public final class c extends i implements p {
                 } else {
                     z9 = false;
                 }
-                eVar.f54106b = z9;
+                eVar.f54105b = z9;
                 return Boolean.valueOf(z9);
         }
     }

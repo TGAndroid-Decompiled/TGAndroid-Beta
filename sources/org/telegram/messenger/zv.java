@@ -8,76 +8,76 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class zv implements RequestDelegate {
-    public final int f26926a;
-    public final dw f26927b;
-    public final TLRPC.EncryptedChat f26928c;
+    public final int f26930a;
+    public final dw f26931b;
+    public final TLRPC.EncryptedChat f26932c;
 
     public zv(dw dwVar, TLRPC.EncryptedChat encryptedChat, int i7) {
-        this.f26926a = i7;
-        this.f26927b = dwVar;
-        this.f26928c = encryptedChat;
+        this.f26930a = i7;
+        this.f26931b = dwVar;
+        this.f26932c = encryptedChat;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         yr messagesStorage;
         byte[] bArr;
-        int i7 = this.f26926a;
-        TLRPC.EncryptedChat encryptedChat = this.f26928c;
-        dw dwVar = this.f26927b;
+        int i7 = this.f26930a;
+        TLRPC.EncryptedChat encryptedChat = this.f26932c;
+        dw dwVar = this.f26931b;
         switch (i7) {
             case 0:
-                SparseArray sparseArray = dwVar.f22126e;
+                SparseArray sparseArray = dwVar.f22130e;
                 if (tL_error == null) {
                     TLRPC.messages_DhConfig messages_dhconfig = (TLRPC.messages_DhConfig) tLObject;
                     if (tLObject instanceof TLRPC.TL_messages_dhConfig) {
-                        byte[] bArr2 = messages_dhconfig.f27113p;
-                        int i10 = messages_dhconfig.f27112g;
-                        Pattern pattern = Utilities.f21333a;
+                        byte[] bArr2 = messages_dhconfig.f27117p;
+                        int i10 = messages_dhconfig.f27116g;
+                        Pattern pattern = Utilities.f21338a;
                         if (!ConnectionsManager.native_isGoodPrime(bArr2, i10)) {
-                            sparseArray.remove(encryptedChat.f26964id);
-                            dwVar.f(encryptedChat.f26964id, false);
+                            sparseArray.remove(encryptedChat.f26968id);
+                            dwVar.f(encryptedChat.f26968id, false);
                             return;
                         }
                         yr messagesStorage2 = dwVar.getMessagesStorage();
-                        byte[] bArr3 = messages_dhconfig.f27113p;
+                        byte[] bArr3 = messages_dhconfig.f27117p;
                         messagesStorage2.H();
-                        messagesStorage2.f26733y = bArr3;
+                        messagesStorage2.f26737y = bArr3;
                         yr messagesStorage3 = dwVar.getMessagesStorage();
-                        int i11 = messages_dhconfig.f27112g;
+                        int i11 = messages_dhconfig.f27116g;
                         messagesStorage3.H();
                         messagesStorage3.D = i11;
                         yr messagesStorage4 = dwVar.getMessagesStorage();
                         int i12 = messages_dhconfig.version;
                         messagesStorage4.H();
-                        messagesStorage4.f26732x = i12;
+                        messagesStorage4.f26736x = i12;
                         yr messagesStorage5 = dwVar.getMessagesStorage();
                         yr messagesStorage6 = dwVar.getMessagesStorage();
                         messagesStorage6.H();
-                        int i13 = messagesStorage6.f26732x;
+                        int i13 = messagesStorage6.f26736x;
                         yr messagesStorage7 = dwVar.getMessagesStorage();
                         messagesStorage7.H();
                         int i14 = messagesStorage7.D;
                         yr messagesStorage8 = dwVar.getMessagesStorage();
                         messagesStorage8.H();
-                        messagesStorage5.f26719a.c(new l2.z(messagesStorage5, i13, i14, messagesStorage8.f26733y, 7));
+                        messagesStorage5.f26723a.c(new l2.z(messagesStorage5, i13, i14, messagesStorage8.f26737y, 7));
                     }
                     byte[] bArr4 = new byte[256];
                     for (int i15 = 0; i15 < 256; i15++) {
-                        bArr4[i15] = (byte) (((byte) (Utilities.f21334b.nextDouble() * 256.0d)) ^ messages_dhconfig.random[i15]);
+                        bArr4[i15] = (byte) (((byte) (Utilities.f21339b.nextDouble() * 256.0d)) ^ messages_dhconfig.random[i15]);
                     }
                     encryptedChat.a_or_b = bArr4;
                     encryptedChat.seq_in = -1;
                     encryptedChat.seq_out = 0;
                     yr messagesStorage9 = dwVar.getMessagesStorage();
                     messagesStorage9.H();
-                    BigInteger bigInteger = new BigInteger(1, messagesStorage9.f26733y);
+                    BigInteger bigInteger = new BigInteger(1, messagesStorage9.f26737y);
                     dwVar.getMessagesStorage().H();
                     BigInteger modPow = BigInteger.valueOf(messagesStorage.D).modPow(new BigInteger(1, bArr4), bigInteger);
                     BigInteger bigInteger2 = new BigInteger(1, encryptedChat.g_a);
                     if (!Utilities.w(bigInteger2, bigInteger)) {
-                        sparseArray.remove(encryptedChat.f26964id);
-                        dwVar.f(encryptedChat.f26964id, false);
+                        sparseArray.remove(encryptedChat.f26968id);
+                        dwVar.f(encryptedChat.f26968id, false);
                         return;
                     }
                     byte[] byteArray = modPow.toByteArray();
@@ -107,7 +107,7 @@ public final class zv implements RequestDelegate {
                         tL_messages_acceptEncryption.g_b = byteArray;
                         TLRPC.TL_inputEncryptedChat tL_inputEncryptedChat = new TLRPC.TL_inputEncryptedChat();
                         tL_messages_acceptEncryption.peer = tL_inputEncryptedChat;
-                        tL_inputEncryptedChat.chat_id = encryptedChat.f26964id;
+                        tL_inputEncryptedChat.chat_id = encryptedChat.f26968id;
                         tL_inputEncryptedChat.access_hash = encryptedChat.access_hash;
                         tL_messages_acceptEncryption.key_fingerprint = Utilities.g(bArr6);
                         dwVar.getConnectionsManager().sendRequest(tL_messages_acceptEncryption, new zv(dwVar, encryptedChat, 1), 64);
@@ -123,16 +123,16 @@ public final class zv implements RequestDelegate {
                     tL_messages_acceptEncryption2.g_b = byteArray;
                     TLRPC.TL_inputEncryptedChat tL_inputEncryptedChat2 = new TLRPC.TL_inputEncryptedChat();
                     tL_messages_acceptEncryption2.peer = tL_inputEncryptedChat2;
-                    tL_inputEncryptedChat2.chat_id = encryptedChat.f26964id;
+                    tL_inputEncryptedChat2.chat_id = encryptedChat.f26968id;
                     tL_inputEncryptedChat2.access_hash = encryptedChat.access_hash;
                     tL_messages_acceptEncryption2.key_fingerprint = Utilities.g(bArr62);
                     dwVar.getConnectionsManager().sendRequest(tL_messages_acceptEncryption2, new zv(dwVar, encryptedChat, 1), 64);
                     return;
                 }
-                sparseArray.remove(encryptedChat.f26964id);
+                sparseArray.remove(encryptedChat.f26968id);
                 return;
             default:
-                dwVar.f22126e.remove(encryptedChat.f26964id);
+                dwVar.f22130e.remove(encryptedChat.f26968id);
                 if (tL_error == null) {
                     TLRPC.EncryptedChat encryptedChat2 = (TLRPC.EncryptedChat) tLObject;
                     encryptedChat2.auth_key = encryptedChat.auth_key;

@@ -1,52 +1,41 @@
 package org.telegram.ui.Components;
-public final class id implements Runnable {
-    public final int f34709a;
-    public final ChatActivityEnterView f34710b;
-    public final boolean f34711c;
 
-    public id(ChatActivityEnterView chatActivityEnterView, boolean z9, int i7) {
-        this.f34709a = i7;
-        this.f34710b = chatActivityEnterView;
-        this.f34711c = z9;
+import android.view.KeyEvent;
+public final class id implements hi.h0, org.telegram.ui.ActionBar.r1, ws, org.telegram.ui.ActionBar.e1 {
+    public final ChatActivityEnterView f34592a;
+
+    public id(ChatActivityEnterView chatActivityEnterView) {
+        this.f34592a = chatActivityEnterView;
     }
 
     @Override
-    public final void run() {
-        ue ueVar;
-        int i7 = this.f34709a;
-        ChatActivityEnterView chatActivityEnterView = this.f34710b;
-        boolean z9 = this.f34711c;
-        switch (i7) {
-            case 0:
-                if (!z9) {
-                    chatActivityEnterView.f31134t1.setVisibility(8);
-                    return;
-                }
-                int i10 = ChatActivityEnterView.s5;
-                chatActivityEnterView.getClass();
-                return;
-            case 1:
-                if (!z9) {
-                    chatActivityEnterView.f31139u1.setVisibility(8);
-                    return;
-                }
-                int i11 = ChatActivityEnterView.s5;
-                chatActivityEnterView.getClass();
-                return;
-            default:
-                ChatActivityEnterView chatActivityEnterView2 = this.f34710b;
-                ad adVar = chatActivityEnterView2.F4;
-                chatActivityEnterView2.M0 = System.currentTimeMillis();
-                boolean T0 = chatActivityEnterView2.T0(false, 0, 0, 0L, true);
-                if (!z9 && (ueVar = chatActivityEnterView2.L0) != null) {
-                    ueVar.g(!T0);
-                    chatActivityEnterView2.L0 = null;
-                    return;
-                }
-                chatActivityEnterView2.E4 = !T0;
-                org.telegram.messenger.g0.r(adVar);
-                org.telegram.messenger.g0.i3(adVar, 500L);
-                return;
+    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        int i10 = ChatActivityEnterView.s5;
+        ChatActivityEnterView chatActivityEnterView = this.f34592a;
+        chatActivityEnterView.J();
+        we weVar = chatActivityEnterView.E0;
+        if (weVar != null) {
+            weVar.setText("");
+        }
+    }
+
+    @Override
+    public void j(KeyEvent keyEvent) {
+        ChatActivityEnterView chatActivityEnterView;
+        se seVar;
+        int i7 = ChatActivityEnterView.s5;
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (seVar = (chatActivityEnterView = this.f34592a).N0) != null && seVar.isShowing()) {
+            chatActivityEnterView.N0.dismiss();
+        }
+    }
+
+    @Override
+    public void m() {
+        ChatActivityEnterView chatActivityEnterView = this.f34592a;
+        chatActivityEnterView.E0.f();
+        vf vfVar = chatActivityEnterView.Z2;
+        if (vfVar != null) {
+            vfVar.k1(chatActivityEnterView.E0.getTextToUse());
         }
     }
 }

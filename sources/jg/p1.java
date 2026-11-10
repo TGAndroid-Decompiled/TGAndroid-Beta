@@ -1,12 +1,12 @@
 package jg;
 
 import java.util.ArrayList;
-import org.telegram.ui.tr;
+import org.telegram.ui.ur;
 public final class p1 implements y1 {
-    public final tr f16881a;
+    public final ur f16881a;
 
-    public p1(tr trVar) {
-        this.f16881a = trVar;
+    public p1(ur urVar) {
+        this.f16881a = urVar;
     }
 
     @Override
@@ -21,10 +21,10 @@ public final class p1 implements y1 {
 
     @Override
     public final void q(int i7) {
-        tr trVar = this.f16881a;
-        trVar.f();
+        ur urVar = this.f16881a;
+        urVar.f();
         if (i7 != 0) {
-            trVar.F();
+            urVar.F();
         }
     }
 

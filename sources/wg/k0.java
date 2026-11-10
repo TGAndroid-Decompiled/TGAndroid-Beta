@@ -1,8 +1,8 @@
 package wg;
 
-import org.telegram.ui.Components.ab;
-import org.telegram.ui.Components.cc;
-public final class k0 implements ab {
+import org.telegram.ui.Components.bc;
+import org.telegram.ui.Components.za;
+public final class k0 implements za {
     @Override
     public final boolean a() {
         return true;
@@ -25,11 +25,11 @@ public final class k0 implements ab {
 
     @Override
     public final int h(int i7) {
-        return org.telegram.messenger.g0.f22557m;
+        return org.telegram.messenger.g0.f22561m;
     }
 
     @Override
-    public final void b(cc ccVar) {
+    public final void b(bc bcVar) {
     }
 
     @Override
@@ -37,6 +37,6 @@ public final class k0 implements ab {
     }
 
     @Override
-    public final void d(cc ccVar) {
+    public final void d(bc bcVar) {
     }
 }

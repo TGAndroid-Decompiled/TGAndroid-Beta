@@ -5,33 +5,33 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class lm implements Runnable {
-    public final int f23911a;
-    public final c1 f23912b;
-    public final long f23913c;
+    public final int f23915a;
+    public final c1 f23916b;
+    public final long f23917c;
     public final Object d;
-    public final Object f23914e;
-    public final Object f23915f;
+    public final Object f23918e;
+    public final Object f23919f;
 
     public lm(c1 c1Var, Object obj, long j3, Object obj2, Object obj3, int i7) {
-        this.f23911a = i7;
-        this.f23912b = c1Var;
+        this.f23915a = i7;
+        this.f23916b = c1Var;
         this.d = obj;
-        this.f23913c = j3;
-        this.f23914e = obj2;
-        this.f23915f = obj3;
+        this.f23917c = j3;
+        this.f23918e = obj2;
+        this.f23919f = obj3;
     }
 
     private final void a() {
         ArrayList arrayList;
         ArrayList arrayList2;
-        f10 f10Var = (f10) this.f23912b;
+        f10 f10Var = (f10) this.f23916b;
         a10 a10Var = (a10) this.d;
-        TLObject tLObject = (TLObject) this.f23914e;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f23915f;
-        long j3 = this.f23913c;
+        TLObject tLObject = (TLObject) this.f23918e;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f23919f;
+        long j3 = this.f23917c;
         synchronized (f10Var) {
-            arrayList = a10Var.f21368b;
-            arrayList2 = a10Var.f21369c;
+            arrayList = a10Var.f21373b;
+            arrayList2 = a10Var.f21374c;
         }
         if (tLObject instanceof TLRPC.TL_messages_translatedRichMessage) {
             ArrayList<TL_iv.RichMessage> arrayList3 = ((TLRPC.TL_messages_translatedRichMessage) tLObject).result;
@@ -53,7 +53,7 @@ public final class lm implements Runnable {
         synchronized (f10Var) {
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                 try {
-                    f10Var.f22351x.remove(arrayList.get(i11));
+                    f10Var.f22355x.remove(arrayList.get(i11));
                 } catch (Throwable th2) {
                     throw th2;
                 }
@@ -67,11 +67,11 @@ public final class lm implements Runnable {
     }
 
     public lm(c1 c1Var, Object obj, Object obj2, TLObject tLObject, long j3, int i7) {
-        this.f23911a = i7;
-        this.f23912b = c1Var;
+        this.f23915a = i7;
+        this.f23916b = c1Var;
         this.d = obj;
-        this.f23914e = obj2;
-        this.f23915f = tLObject;
-        this.f23913c = j3;
+        this.f23918e = obj2;
+        this.f23919f = tLObject;
+        this.f23917c = j3;
     }
 }

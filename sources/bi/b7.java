@@ -2,7 +2,7 @@ package bi;
 
 import android.content.Context;
 import android.view.View;
-public final class b7 extends org.telegram.ui.Components.l9 {
+public final class b7 extends org.telegram.ui.Components.k9 {
     public final int G;
 
     public b7(Context context, int i7) {

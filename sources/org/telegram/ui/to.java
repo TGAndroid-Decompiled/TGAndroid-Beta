@@ -7,16 +7,16 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class to extends org.telegram.ui.Components.pj0 {
-    public final Context f50208c;
+public final class to extends org.telegram.ui.Components.oj0 {
+    public final Context f50312c;
     public ArrayList d = new ArrayList();
-    public ArrayList f50209e = new ArrayList();
-    public so f50210f;
+    public ArrayList f50313e = new ArrayList();
+    public so f50314f;
     public final uo h;
 
     public to(uo uoVar, Context context) {
         this.h = uoVar;
-        this.f50208c = context;
+        this.f50312c = context;
     }
 
     public static void E(to toVar, ArrayList arrayList, ArrayList arrayList2) {
@@ -25,8 +25,8 @@ public final class to extends org.telegram.ui.Components.pj0 {
             return;
         }
         toVar.d = arrayList;
-        toVar.f50209e = arrayList2;
-        if (uoVar.f50432b.getAdapter() == uoVar.f50434e) {
+        toVar.f50313e = arrayList2;
+        if (uoVar.f50528b.getAdapter() == uoVar.f50530e) {
             uoVar.d.c();
         }
         super.f();
@@ -34,7 +34,7 @@ public final class to extends org.telegram.ui.Components.pj0 {
 
     @Override
     public final void A(v4.d1 d1Var) {
-        View view = d1Var.f57056a;
+        View view = d1Var.f57052a;
         if (view instanceof org.telegram.ui.Cells.a5) {
             ((org.telegram.ui.Cells.a5) view).a();
         }
@@ -42,26 +42,26 @@ public final class to extends org.telegram.ui.Components.pj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57060f != 1) {
+        if (d1Var.f57056f != 1) {
             return true;
         }
         return false;
     }
 
     public final void F(String str) {
-        if (this.f50210f != null) {
-            Utilities.f21338g.a(this.f50210f);
-            this.f50210f = null;
+        if (this.f50314f != null) {
+            Utilities.f21343g.a(this.f50314f);
+            this.f50314f = null;
         }
         if (TextUtils.isEmpty(str)) {
             this.d.clear();
-            this.f50209e.clear();
+            this.f50313e.clear();
             super.f();
             return;
         }
-        org.telegram.messenger.p5 p5Var = Utilities.f21338g;
+        org.telegram.messenger.p5 p5Var = Utilities.f21343g;
         so soVar = new so(this, str, 0);
-        this.f50210f = soVar;
+        this.f50314f = soVar;
         p5Var.d(soVar, 300L);
     }
 
@@ -79,7 +79,7 @@ public final class to extends org.telegram.ui.Components.pj0 {
     public final void t(v4.d1 d1Var, int i7) {
         TLRPC.Chat chat = (TLRPC.Chat) this.d.get(i7);
         String K = org.telegram.messenger.t3.K(chat, false);
-        CharSequence charSequence = (CharSequence) this.f50209e.get(i7);
+        CharSequence charSequence = (CharSequence) this.f50313e.get(i7);
         CharSequence charSequence2 = null;
         if (charSequence != null && !TextUtils.isEmpty(K)) {
             if (charSequence.toString().startsWith("@" + K)) {
@@ -87,15 +87,15 @@ public final class to extends org.telegram.ui.Components.pj0 {
                 charSequence = null;
             }
         }
-        org.telegram.ui.Cells.a5 a5Var = (org.telegram.ui.Cells.a5) d1Var.f57056a;
+        org.telegram.ui.Cells.a5 a5Var = (org.telegram.ui.Cells.a5) d1Var.f57052a;
         a5Var.setTag(Integer.valueOf(i7));
         a5Var.c(chat, charSequence, charSequence2, false);
     }
 
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(this.f50208c, 6, 2, false, null);
-        org.telegram.ui.ActionBar.s6.h(org.telegram.ui.ActionBar.l6.f27865d6, a5Var, null);
+        org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(this.f50312c, 6, 2, false, null);
+        org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f27890d6, a5Var, null);
         return new v4.d1(a5Var);
     }
 }

@@ -2,8 +2,8 @@ package org.telegram.ui;
 public final class xi extends rh.h {
     public final cn H;
 
-    public xi(cn cnVar, af afVar) {
-        super(afVar);
+    public xi(cn cnVar, bf bfVar) {
+        super(bfVar);
         this.H = cnVar;
     }
 

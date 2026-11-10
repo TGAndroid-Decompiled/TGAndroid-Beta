@@ -1,22 +1,22 @@
 package l2;
 public final class e0 implements b1 {
-    public final Object f17793a;
-    public final x2.b0 f17794b;
-    public e2.l1 f17795c;
+    public final Object f17796a;
+    public final x2.a0 f17797b;
+    public e2.l1 f17798c;
 
-    public e0(Object obj, x2.b0 b0Var) {
-        this.f17793a = obj;
-        this.f17794b = b0Var;
-        this.f17795c = b0Var.f58284o;
+    public e0(Object obj, x2.a0 a0Var) {
+        this.f17796a = obj;
+        this.f17797b = a0Var;
+        this.f17798c = a0Var.f58287o;
     }
 
     @Override
     public final Object a() {
-        return this.f17793a;
+        return this.f17796a;
     }
 
     @Override
     public final e2.l1 b() {
-        return this.f17795c;
+        return this.f17798c;
     }
 }

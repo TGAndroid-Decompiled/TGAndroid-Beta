@@ -9,15 +9,15 @@ import java.util.List;
 import org.telegram.messenger.g0;
 import org.telegram.ui.ActionBar.r1;
 import org.telegram.ui.ActionBar.u1;
+import org.telegram.ui.Components.kt0;
 import org.telegram.ui.Components.lt0;
-import org.telegram.ui.Components.mt0;
 import sg.z;
 import tg.c2;
-public final class b implements z, t3.g, OnFailureListener, lt0, mt0, u9.e, ua.a, r1 {
-    public final int f54605a;
+public final class b implements z, t3.g, OnFailureListener, kt0, lt0, u9.e, ua.a, r1 {
+    public final int f54604a;
 
     public b(int i7) {
-        this.f54605a = i7;
+        this.f54604a = i7;
     }
 
     public static MediaRoute2Info d(Object obj) {
@@ -26,7 +26,7 @@ public final class b implements z, t3.g, OnFailureListener, lt0, mt0, u9.e, ua.a
 
     @Override
     public Typeface a() {
-        switch (this.f54605a) {
+        switch (this.f54604a) {
             case 10:
                 return g0.o1("fonts/rmedium.ttf");
             case 11:
@@ -50,15 +50,15 @@ public final class b implements z, t3.g, OnFailureListener, lt0, mt0, u9.e, ua.a
     @Override
     public void f(Object obj, float f10) {
         ti.i iVar = (ti.i) obj;
-        switch (this.f54605a) {
+        switch (this.f54604a) {
             case 21:
-                WindowManager.LayoutParams layoutParams = iVar.f56097e;
+                WindowManager.LayoutParams layoutParams = iVar.f56096e;
                 iVar.B = f10;
                 layoutParams.x = (int) f10;
                 iVar.r();
                 return;
             default:
-                WindowManager.LayoutParams layoutParams2 = iVar.f56097e;
+                WindowManager.LayoutParams layoutParams2 = iVar.f56096e;
                 iVar.C = f10;
                 layoutParams2.y = (int) f10;
                 iVar.r();
@@ -68,7 +68,7 @@ public final class b implements z, t3.g, OnFailureListener, lt0, mt0, u9.e, ua.a
 
     @Override
     public void g(u1 u1Var, int i7) {
-        switch (this.f54605a) {
+        switch (this.f54604a) {
             case 28:
                 u1Var.dismiss();
                 return;
@@ -81,7 +81,7 @@ public final class b implements z, t3.g, OnFailureListener, lt0, mt0, u9.e, ua.a
     @Override
     public float get(Object obj) {
         ti.i iVar = (ti.i) obj;
-        switch (this.f54605a) {
+        switch (this.f54604a) {
             case 20:
                 return iVar.B;
             default:
@@ -96,7 +96,7 @@ public final class b implements z, t3.g, OnFailureListener, lt0, mt0, u9.e, ua.a
 
     @Override
     public void onFailure(Exception exc) {
-        int i7 = c2.f55600r0;
+        int i7 = c2.f55599r0;
     }
 
     @Override

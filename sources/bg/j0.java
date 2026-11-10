@@ -1,10 +1,10 @@
 package bg;
 
 import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.n11;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.Components.bc;
+import org.telegram.ui.Components.gc;
+import org.telegram.ui.Components.m11;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.cn;
 public final class j0 implements Runnable {
@@ -34,20 +34,20 @@ public final class j0 implements Runnable {
                 cnVar.getMessagesController().V2(0, j3, true);
                 return;
             case 3:
-                cnVar.f44412c6.put(j3, 0);
-                n11 n11Var = cnVar.f44449f2;
-                if (n11Var != null) {
-                    n11Var.setAllTopicsHidden(false);
+                cnVar.f44453c6.put(j3, 0);
+                m11 m11Var = cnVar.f44490f2;
+                if (m11Var != null) {
+                    m11Var.setAllTopicsHidden(false);
                 }
-                if (j3 == cnVar.f44602r4) {
+                if (j3 == cnVar.f44643r4) {
                     cnVar.C0.O(false);
                     return;
                 }
                 return;
             case 4:
                 cn cnVar2 = this.f3331b;
-                cc v = hc.v(cnVar2.getParentActivity(), cnVar2, null, 1, this.f3332c, 1, cnVar2.getThemedColor(l6.tj), cnVar2.getThemedColor(l6.vj), 5000, true, null);
-                v.f32628k = true;
+                bc v = gc.v(cnVar2.getParentActivity(), cnVar2, null, 1, this.f3332c, 1, cnVar2.getThemedColor(m6.tj), cnVar2.getThemedColor(m6.vj), 5000, true, null);
+                v.f32204k = true;
                 v.k(true);
                 return;
             case 5:
@@ -59,7 +59,7 @@ public final class j0 implements Runnable {
                 cnVar.presentFragment(ProfileActivity.D4(j3));
                 return;
             default:
-                hc.a0(cnVar).I(2131624226, id.M0(2131745092, null), org.telegram.messenger.g0.X2(id.H(',', "StarsGiveawaySentPopupInfo", (int) j3))).k(true);
+                gc.a0(cnVar).I(2131624226, id.M0(2131745092, null), org.telegram.messenger.g0.X2(id.H(',', "StarsGiveawaySentPopupInfo", (int) j3))).k(true);
                 return;
         }
     }

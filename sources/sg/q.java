@@ -12,69 +12,69 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import bi.nc;
 import c8.ha;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.ActionBar.v2;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.w2;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.w61;
-import org.telegram.ui.hk0;
-public final class q extends v2 {
-    public static final int f55191q1 = 0;
-    public final nc f55192i1;
-    public final ImageView f55193j1;
-    public final k f55194k1;
-    public final Path l1;
-    public int f55195m1;
-    public q0.a n1;
-    public androidx.activity.n f55196o1;
-    public boolean f55197p1;
+import org.telegram.ui.Components.v61;
+import org.telegram.ui.ik0;
+public final class q extends w2 {
+    public static final int f55190t1 = 0;
+    public final nc l1;
+    public final ImageView f55191m1;
+    public final k n1;
+    public final Path f55192o1;
+    public int f55193p1;
+    public q0.a f55194q1;
+    public androidx.activity.n f55195r1;
+    public boolean f55196s1;
 
-    public q(Context context, g6 g6Var) {
-        super(1, context, g6Var, true);
-        this.l1 = new Path();
+    public q(Context context, h6 h6Var) {
+        super(1, context, h6Var, true);
+        this.f55192o1 = new Path();
         O(-14342875);
         Drawable mutate = context.getResources().getDrawable(2131232728).mutate();
-        this.f28651r0 = mutate;
+        this.f28702r0 = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(-14342875, PorterDuff.Mode.MULTIPLY));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setPadding(0, org.telegram.messenger.g0.L(16.0f), 0, 0);
         ImageView imageView = new ImageView(context);
-        this.f55193j1 = imageView;
+        this.f55191m1 = imageView;
         imageView.setImageResource(2131232538);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        imageView.setBackground(l6.h0(1090519039, 1, -1));
-        imageView.setOnClickListener(new hk0(25, this, context));
+        imageView.setBackground(m6.h0(1090519039, 1, -1));
+        imageView.setOnClickListener(new ik0(24, this, context));
         ImageView imageView2 = new ImageView(context);
         imageView2.setImageResource(2131231242);
         imageView2.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        imageView2.setBackground(l6.h0(1090519039, 1, -1));
+        imageView2.setBackground(m6.h0(1090519039, 1, -1));
         imageView2.setOnClickListener(new ii.g(this, 21));
         k kVar = new k(this, context);
-        this.f55194k1 = kVar;
-        kVar.f55126c = Color.alpha(-65536) / 255.0f;
+        this.n1 = kVar;
+        kVar.f55125c = Color.alpha(-65536) / 255.0f;
         kVar.a();
         kVar.invalidate();
         nc ncVar = new nc(context, 6);
         ncVar.setOrientation(1);
         o oVar = new o(this, context);
         ncVar.f4435b = oVar;
-        oVar.a(this.f55195m1);
+        oVar.a(this.f55193p1);
         ncVar.f4436c = new n(this, context);
         ncVar.d = new p(this, context);
-        w61 w61Var = new w61(context, this.I0);
-        w61Var.setAdapter(new ii.x(ncVar, 4));
-        ncVar.addView(w61Var, ha.l(1.0f, -1, 0));
+        v61 v61Var = new v61(context, this.I0);
+        v61Var.setAdapter(new ii.x(ncVar, 4));
+        ncVar.addView(v61Var, ha.l(1.0f, -1, 0));
         ncVar.addView(kVar, ha.k(12.0f, 0.0f, 12.0f, 0.0f, -1, 48));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
         linearLayout2.setGravity(16);
         linearLayout2.addView(imageView, ha.o(28, 28));
-        linearLayout2.addView(w61Var.n(8, false), ha.q(-1, 40, 1.0f, 16, 12, 0, 12, 0));
+        linearLayout2.addView(v61Var.n(8, false), ha.q(-1, 40, 1.0f, 16, 12, 0, 12, 0));
         linearLayout2.addView(imageView2, ha.o(28, 28));
         ncVar.addView(linearLayout2, ha.k(14.0f, 0.0f, 14.0f, 0.0f, -1, 48));
-        this.f55192i1 = ncVar;
+        this.l1 = ncVar;
         linearLayout.addView(ncVar, ha.o(-1, 0));
         j jVar = new j(this, context, linearLayout);
         jVar.addView(linearLayout);
@@ -85,13 +85,13 @@ public final class q extends v2 {
         boolean z9;
         float v;
         View findFocus;
-        if (!this.f55197p1) {
+        if (!this.f55196s1) {
             if (i10 != 2) {
                 return;
             }
-            this.f55197p1 = true;
+            this.f55196s1 = true;
         }
-        nc ncVar = this.f55192i1;
+        nc ncVar = this.l1;
         if (i10 != 5 && (findFocus = ncVar.findFocus()) != null) {
             findFocus.clearFocus();
             org.telegram.messenger.g0.v1(findFocus);
@@ -106,7 +106,7 @@ public final class q extends v2 {
             } else {
                 z9 = false;
             }
-            nVar.f55165n.f55195m1 = i7;
+            nVar.f55164n.f55193p1 = i7;
             float[] fArr = nVar.h;
             Color.colorToHSV(i7, fArr);
             if (z9) {
@@ -118,49 +118,49 @@ public final class q extends v2 {
                     v = com.google.android.recaptcha.internal.a.v(1.0f, f11, 0.22f, 1.0f);
                 }
                 nVar.d = f10 - v;
-                nVar.f55163e = fArr[0] / 360.0f;
+                nVar.f55162e = fArr[0] / 360.0f;
             }
             nVar.invalidate();
         }
         if (i10 != 1) {
-            k kVar = this.f55194k1;
+            k kVar = this.n1;
             kVar.getClass();
-            kVar.f55126c = Color.alpha(i7) / 255.0f;
+            kVar.f55125c = Color.alpha(i7) / 255.0f;
             kVar.a();
             kVar.invalidate();
         }
         p pVar = (p) ncVar.d;
-        pVar.f55187e = true;
-        pVar.f55184a.b();
-        pVar.f55185b.b();
-        pVar.f55186c.b();
+        pVar.f55186e = true;
+        pVar.f55183a.b();
+        pVar.f55184b.b();
+        pVar.f55185c.b();
         EditTextBoldCursor editTextBoldCursor = pVar.d;
         if (!editTextBoldCursor.isFocused()) {
             int selectionStart = editTextBoldCursor.getSelectionStart();
             int selectionEnd = editTextBoldCursor.getSelectionEnd();
-            StringBuilder sb2 = new StringBuilder(Integer.toHexString(pVar.f55188f.f55195m1));
+            StringBuilder sb2 = new StringBuilder(Integer.toHexString(pVar.f55187f.f55193p1));
             while (sb2.length() < 8) {
                 sb2.insert(0, "0");
             }
             editTextBoldCursor.setText(sb2.toString().toUpperCase().substring(2));
             editTextBoldCursor.setSelection(selectionStart, selectionEnd);
         }
-        pVar.f55187e = false;
+        pVar.f55186e = false;
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        q0.a aVar = this.n1;
+        q0.a aVar = this.f55194q1;
         if (aVar != null) {
-            aVar.accept(Integer.valueOf(this.f55195m1));
+            aVar.accept(Integer.valueOf(this.f55193p1));
         }
     }
 
     @Override
     public final void show() {
         boolean z9;
-        androidx.activity.n nVar = this.f55196o1;
+        androidx.activity.n nVar = this.f55195r1;
         switch (nVar.f1845a) {
             default:
                 if (((Bitmap) nVar.f1847c) != null) {
@@ -172,7 +172,7 @@ public final class q extends v2 {
                 break;
         }
         if (!z9) {
-            this.f55193j1.setVisibility(8);
+            this.f55191m1.setVisibility(8);
         }
         super.show();
     }

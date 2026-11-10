@@ -16,7 +16,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.Components.voip.y1;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ic1;
+import org.telegram.ui.jc1;
 public class VoIPGroupNotification {
     public static long currentCallId;
     public static State currentState;
@@ -49,20 +49,20 @@ public class VoIPGroupNotification {
 
         @Override
         public void acceptIncomingCall() {
-            VoIPGroupNotification.answer(org.telegram.messenger.t0.f25566b, this.currentAccount, this.msg_id);
+            VoIPGroupNotification.answer(org.telegram.messenger.t0.f25570b, this.currentAccount, this.msg_id);
         }
 
         @Override
         public void declineIncomingCall() {
-            VoIPGroupNotification.decline(org.telegram.messenger.t0.f25566b, this.currentAccount, this.msg_id);
+            VoIPGroupNotification.decline(org.telegram.messenger.t0.f25570b, this.currentAccount, this.msg_id);
         }
 
         public void destroy() {
             if (!this.destroyed) {
                 this.destroyed = true;
-                ic1 ic1Var = ic1.l1;
-                if (ic1Var != null) {
-                    ic1Var.onStateChanged(getCallState());
+                jc1 jc1Var = jc1.l1;
+                if (jc1Var != null) {
+                    jc1Var.onStateChanged(getCallState());
                 }
             }
         }
@@ -152,9 +152,9 @@ public class VoIPGroupNotification {
         TL_phone.declineConferenceCallInvite declineconferencecallinvite = new TL_phone.declineConferenceCallInvite();
         declineconferencecallinvite.msg_id = i10;
         ConnectionsManager.getInstance(i7).sendRequest(declineconferencecallinvite, new g2(i7, 1));
-        ic1 ic1Var = ic1.l1;
-        if (ic1Var != null) {
-            ic1Var.e();
+        jc1 jc1Var = jc1.l1;
+        if (jc1Var != null) {
+            jc1Var.e();
         }
     }
 
@@ -177,9 +177,9 @@ public class VoIPGroupNotification {
             currentCallId = 0L;
             ((NotificationManager) context.getSystemService("notification")).cancel(203);
             VoIPPreNotificationService.stopRinging();
-            ic1 ic1Var = ic1.l1;
-            if (ic1Var != null) {
-                ic1Var.e();
+            jc1 jc1Var = jc1.l1;
+            if (jc1Var != null) {
+                jc1Var.e();
             }
         }
     }
@@ -219,12 +219,12 @@ public class VoIPGroupNotification {
         if (state != null && state.msg_id == i10) {
             ((NotificationManager) context.getSystemService("notification")).cancel(203);
             VoIPPreNotificationService.stopRinging();
-            Activity W = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f25566b);
+            Activity W = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f25570b);
             if (W == null) {
                 W = LaunchActivity.G1;
             }
             if (W != null) {
-                ic1.n(W, i7);
+                jc1.n(W, i7);
             }
         }
     }
@@ -268,9 +268,9 @@ public class VoIPGroupNotification {
             currentCallId = 0L;
             ((NotificationManager) context.getSystemService("notification")).cancel(203);
             VoIPPreNotificationService.stopRinging();
-            ic1 ic1Var = ic1.l1;
-            if (ic1Var != null) {
-                ic1Var.e();
+            jc1 jc1Var = jc1.l1;
+            if (jc1Var != null) {
+                jc1Var.e();
             }
         }
     }

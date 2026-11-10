@@ -13,41 +13,41 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.ui.Components.ny0;
-import org.telegram.ui.tg0;
-public final class fj implements tg0 {
+import org.telegram.ui.Components.my0;
+import org.telegram.ui.ug0;
+public final class fj implements ug0 {
     public float D;
     public ij E;
     public int F;
-    public org.telegram.ui.Components.ic G;
+    public org.telegram.ui.Components.hc G;
     public boolean H;
     public boolean I;
     public boolean J;
     public String K;
-    public ny0 L;
+    public my0 L;
     public int M;
     public boolean N;
     public int O;
     public Drawable P;
-    public ny0 Q;
+    public my0 Q;
     public int R;
     public org.telegram.ui.Cells.y S;
     public Paint T;
     public boolean U;
     public Paint V;
-    public boolean f22421a;
-    public boolean f22422b;
-    public int f22423c;
-    public StaticLayout f22424e;
-    public int f22425f;
+    public boolean f22425a;
+    public boolean f22426b;
+    public int f22427c;
+    public StaticLayout f22428e;
+    public int f22429f;
     public int h;
-    public int f22426n;
-    public int f22427r;
-    public int f22428s;
-    public int f22429w;
-    public byte f22430x;
+    public int f22430n;
+    public int f22431r;
+    public int f22432s;
+    public int f22433w;
+    public byte f22434x;
     public final AtomicReference d = new AtomicReference();
-    public final ArrayList f22431y = new ArrayList();
+    public final ArrayList f22435y = new ArrayList();
 
     public static String b(String str) {
         if (str == null) {
@@ -463,7 +463,7 @@ public final class fj implements tg0 {
 
     @Override
     public final Layout a() {
-        return this.f22424e;
+        return this.f22428e;
     }
 
     public final int c() {
@@ -479,10 +479,10 @@ public final class fj implements tg0 {
     public final float d(org.telegram.ui.Cells.x1 x1Var) {
         boolean f10;
         float f11;
-        if (x1Var.f30796f3) {
-            HashSet hashSet = x1Var.f30791e3;
+        if (x1Var.f30807f3) {
+            HashSet hashSet = x1Var.f30802e3;
             f10 = true;
-            if (hashSet != null && hashSet.contains(Integer.valueOf(this.f22423c))) {
+            if (hashSet != null && hashSet.contains(Integer.valueOf(this.f22427c))) {
                 f10 = false;
             }
         } else {
@@ -508,7 +508,7 @@ public final class fj implements tg0 {
     public final boolean f() {
         HashSet hashSet;
         ij ijVar = this.E;
-        if (ijVar != null && (hashSet = ijVar.I0) != null && hashSet.contains(Integer.valueOf(this.f22423c))) {
+        if (ijVar != null && (hashSet = ijVar.I0) != null && hashSet.contains(Integer.valueOf(this.f22427c))) {
             return false;
         }
         return true;
@@ -526,8 +526,8 @@ public final class fj implements tg0 {
 
     public final int h() {
         StaticLayout staticLayout;
-        if (this.L == null && (staticLayout = this.f22424e) != null && staticLayout.getLineCount() != 0) {
-            return Math.round(((this.f22424e.getLineBottom(0) + this.f22424e.getLineTop(0)) / 2.0f) - (g0.L(18.0f) / 2.0f));
+        if (this.L == null && (staticLayout = this.f22428e) != null && staticLayout.getLineCount() != 0) {
+            return Math.round(((this.f22428e.getLineBottom(0) + this.f22428e.getLineTop(0)) / 2.0f) - (g0.L(18.0f) / 2.0f));
         }
         return g0.L(8.0f) + (-g());
     }
@@ -536,11 +536,11 @@ public final class fj implements tg0 {
         if (!this.N) {
             return;
         }
-        int r12 = org.telegram.ui.ActionBar.l6.r1(0.1f, i7);
+        int r12 = org.telegram.ui.ActionBar.m6.r1(0.1f, i7);
         if (this.R != r12) {
             org.telegram.ui.Cells.y yVar = this.S;
             this.R = r12;
-            org.telegram.ui.ActionBar.l6.H1(yVar, r12, true);
+            org.telegram.ui.ActionBar.m6.H1(yVar, r12, true);
         }
         this.S.setBounds(g0.L(3.0f) + ((int) rectF.left), (int) (rectF.bottom - g0.L(38.0f)), (int) rectF.right, (int) rectF.bottom);
         int i11 = (int) (255.0f * f10);
@@ -550,7 +550,7 @@ public final class fj implements tg0 {
         }
         this.T.setColor(i0.a.o(i10, 38));
         canvas.drawRect(rectF.left + g0.L(10.0f), (rectF.bottom - g0.L(38.0f)) - g0.f1(), rectF.right - g0.L(6.66f), rectF.bottom - g0.L(38.0f), this.T);
-        float min = Math.min(rectF.width() - g0.L(12.0f), (this.P.getIntrinsicWidth() * 0.8f) + g0.L(5.0f) + this.Q.f36541c);
+        float min = Math.min(rectF.width() - g0.L(12.0f), (this.P.getIntrinsicWidth() * 0.8f) + g0.L(5.0f) + this.Q.f36133c);
         float centerX = rectF.centerX() - (min / 2.0f);
         float L = rectF.bottom - (g0.L(38.0f) / 2.0f);
         if (this.O != i7) {
@@ -563,16 +563,16 @@ public final class fj implements tg0 {
         drawable2.setBounds((int) centerX, (int) (L - ((drawable2.getIntrinsicHeight() * 0.8f) / 2.0f)), (int) ((this.P.getIntrinsicWidth() * 0.8f) + centerX), (int) a8.p0.f(this.P.getIntrinsicHeight(), 0.8f, 2.0f, L));
         this.P.draw(canvas);
         float intrinsicWidth = (this.P.getIntrinsicWidth() * 0.8f) + g0.L(5.0f) + centerX;
-        ny0 ny0Var = this.Q;
-        ny0Var.f36552p = g0.L(12.0f) + ((int) (min - ((this.P.getIntrinsicWidth() * 0.8f) + g0.L(5.0f))));
-        ny0Var.c(intrinsicWidth, L, f10, i7, canvas);
+        my0 my0Var = this.Q;
+        my0Var.f36144p = g0.L(12.0f) + ((int) (min - ((this.P.getIntrinsicWidth() * 0.8f) + g0.L(5.0f))));
+        my0Var.c(intrinsicWidth, L, f10, i7, canvas);
     }
 
     public final int j(org.telegram.ui.Cells.x1 x1Var) {
         if (!this.J) {
-            return this.f22429w;
+            return this.f22433w;
         }
-        return g0.W1(d(x1Var), this.f22429w, this.F);
+        return g0.W1(d(x1Var), this.f22433w, this.F);
     }
 
     public final boolean k(float f10, float f11, float f12) {
@@ -586,7 +586,7 @@ public final class fj implements tg0 {
     }
 
     public final boolean l() {
-        byte b10 = this.f22430x;
+        byte b10 = this.f22434x;
         if ((b10 & 1) != 0 && (b10 & 2) == 0) {
             return true;
         }
@@ -603,11 +603,11 @@ public final class fj implements tg0 {
         this.N = z10;
         int i10 = 5;
         if (z10) {
-            this.Q = new ny0(id.M0(2131751765, null).toUpperCase(), iz.W0 - 3, g0.o());
-            Drawable h = jg.g.h(t0.f25566b, 2131232103);
+            this.Q = new my0(id.M0(2131751765, null).toUpperCase(), iz.W0 - 3, g0.o());
+            Drawable h = jg.g.h(t0.f25570b, 2131232103);
             this.P = h;
             h.setColorFilter(new PorterDuffColorFilter(this.O, PorterDuff.Mode.SRC_IN));
-            this.S = org.telegram.ui.ActionBar.l6.c0(this.R, 0, 0, Math.min(5, iz.Y0), 0);
+            this.S = org.telegram.ui.ActionBar.m6.c0(this.R, 0, 0, Math.min(5, iz.Y0), 0);
             this.T = new Paint(1);
         }
         if (TextUtils.isEmpty(str)) {
@@ -618,7 +618,7 @@ public final class fj implements tg0 {
         this.K = str;
         String b10 = b(str);
         int i11 = iz.W0 - 1;
-        ni.s sVar = ni.m.f20635a;
+        ni.s sVar = ni.m.f20640a;
         if (i7 <= 120) {
             if (i7 > 50) {
                 i10 = 3;
@@ -626,29 +626,29 @@ public final class fj implements tg0 {
                 i10 = 2;
             }
         }
-        ny0 ny0Var = new ny0(b10, i11 - (i10 / 2), g0.o());
-        this.L = ny0Var;
-        this.M = g0.L(4.0f) + ((int) (ny0Var.f36539a.getTextSize() * 1.714f));
+        my0 my0Var = new my0(b10, i11 - (i10 / 2), g0.o());
+        this.L = my0Var;
+        this.M = g0.L(4.0f) + ((int) (my0Var.f36131a.getTextSize() * 1.714f));
     }
 
     public final void n(String str, boolean z9) {
         this.U = true;
         this.N = !z9;
         if (!z9) {
-            Drawable h = jg.g.h(t0.f25566b, 2131232103);
+            Drawable h = jg.g.h(t0.f25570b, 2131232103);
             this.P = h;
             h.setColorFilter(new PorterDuffColorFilter(this.O, PorterDuff.Mode.SRC_IN));
-            this.S = org.telegram.ui.ActionBar.l6.c0(this.R, 0, 0, Math.min(5, iz.Y0), 0);
+            this.S = org.telegram.ui.ActionBar.m6.c0(this.R, 0, 0, Math.min(5, iz.Y0), 0);
         }
-        ny0 ny0Var = null;
+        my0 my0Var = null;
         if (TextUtils.isEmpty(str)) {
             str = null;
         }
         this.K = str;
         if (str != null) {
-            ny0Var = new ny0(str, Math.max(8, iz.W0 - 4), null);
+            my0Var = new my0(str, Math.max(8, iz.W0 - 4), null);
         }
-        this.L = ny0Var;
+        this.L = my0Var;
         this.M = 0;
     }
 
@@ -660,11 +660,11 @@ public final class fj implements tg0 {
         }
         int i10 = 0;
         for (int i11 = 0; i11 < arrayList.size() && (fjVar = (fj) arrayList.get(i11)) != this; i11++) {
-            int i12 = fjVar.f22425f;
+            int i12 = fjVar.f22429f;
             if (fjVar.J && fjVar.f()) {
                 i7 = fjVar.F;
             } else {
-                i7 = fjVar.f22429w;
+                i7 = fjVar.f22433w;
             }
             i10 += i7 + i12 + fjVar.h;
         }
@@ -678,7 +678,7 @@ public final class fj implements tg0 {
         }
         int i7 = 0;
         for (int i10 = 0; i10 < arrayList.size() && (fjVar = (fj) arrayList.get(i10)) != this; i10++) {
-            i7 += fjVar.j(x1Var) + fjVar.f22425f + fjVar.h;
+            i7 += fjVar.j(x1Var) + fjVar.f22429f + fjVar.h;
         }
         return i7;
     }

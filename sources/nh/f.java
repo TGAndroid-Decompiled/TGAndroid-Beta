@@ -6,8 +6,8 @@ import ch.k0;
 import ch.o0;
 import java.util.List;
 import org.telegram.messenger.voip.GroupCallMessage;
-import org.telegram.ui.e40;
-import org.telegram.ui.h20;
+import org.telegram.ui.f40;
+import org.telegram.ui.i20;
 import v4.d1;
 import v4.k;
 public final class f extends k {
@@ -29,22 +29,22 @@ public final class f extends k {
         h hVar = this.F;
         e eVar = hVar.S0;
         int b10 = d1Var.b();
-        List list = eVar.f20605c;
+        List list = eVar.f20610c;
         GroupCallMessage groupCallMessage = null;
         if (list != null && b10 >= 0 && b10 < list.size()) {
-            groupCallMessage = (GroupCallMessage) eVar.f20605c.get(b10);
+            groupCallMessage = (GroupCallMessage) eVar.f20610c.get(b10);
         }
         if (groupCallMessage != null && (o0Var = groupCallMessage.visibleReaction) != null) {
-            View view = d1Var.f57056a;
+            View view = d1Var.f57052a;
             if ((view instanceof c) && (gVar = hVar.X0) != null) {
-                e40 e40Var = ((h20) gVar).f46132a;
-                k0 k0Var = new k0(e40Var.getContext(), null, e40Var.B1, (c) view, null, 0.0f, 0.0f, o0Var, e40Var.f28621a, 1, false);
+                f40 f40Var = ((i20) gVar).f46471a;
+                k0 k0Var = new k0(f40Var.getContext(), null, f40Var.E1, (c) view, null, 0.0f, 0.0f, o0Var, f40Var.f28669a, 1, false);
                 k0.B = k0Var;
-                h0 h0Var = k0Var.f6286i;
+                h0 h0Var = k0Var.f6291i;
                 h0Var.setTag(2131296591, 1);
-                e40Var.f28627c.addView(h0Var);
-                k0Var.f6296s = true;
-                k0Var.f6301y = System.currentTimeMillis();
+                f40Var.f28675c.addView(h0Var);
+                k0Var.f6301s = true;
+                k0Var.f6306y = System.currentTimeMillis();
             }
         }
     }

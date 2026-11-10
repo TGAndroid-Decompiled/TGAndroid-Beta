@@ -15,11 +15,11 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.en0;
+import org.telegram.ui.aw;
+import org.telegram.ui.fn0;
 import org.telegram.ui.rn;
-import org.telegram.ui.sw;
-import org.telegram.ui.yw;
-import org.telegram.ui.zv;
+import org.telegram.ui.tw;
+import org.telegram.ui.zw;
 public final class r2 implements c20 {
     public final int f4607a;
     public final long f4608b;
@@ -46,15 +46,15 @@ public final class r2 implements c20 {
         switch (i7) {
             case 0:
                 k7 k7Var = (k7) obj4;
-                k7Var.f4168c2.setLoading(false);
+                k7Var.f4170f2.setLoading(false);
                 w4 w4Var = new w4(k7Var, 0);
-                ug.i0 i0Var = new ug.i0(26, k7Var.f28621a, k7Var.getContext(), w4Var, k7Var.I0);
+                ug.i0 i0Var = new ug.i0(26, k7Var.f28669a, k7Var.getContext(), w4Var, k7Var.I0);
                 i0Var.A1((org.telegram.messenger.e3) obj);
                 i0Var.z1((TL_stories.TL_premium_boostsStatus) obj3, true);
                 i0Var.B1(j3);
                 TLRPC.Chat M0 = ((qp) obj2).M0(Long.valueOf(-j3));
                 if (M0 != null) {
-                    i0Var.I2 = new j3(k7Var, M0);
+                    i0Var.L2 = new j3(k7Var, M0);
                 }
                 i0Var.show();
                 return;
@@ -63,9 +63,9 @@ public final class r2 implements c20 {
                 di.p pVar = (di.p) obj2;
                 ((org.telegram.ui.ActionBar.u1) obj3).dismiss();
                 if (((Boolean) obj).booleanValue()) {
-                    fi.va D = fi.va.D(qVar.f9534e0.getParentActivity(), qVar.f9535f);
+                    fi.va D = fi.va.D(qVar.f9539e0.getParentActivity(), qVar.f9540f);
                     D.N = j3;
-                    fi.la laVar = D.f12944c1;
+                    fi.la laVar = D.f12946c1;
                     if (laVar != null) {
                         laVar.setDialogId(j3);
                     }
@@ -101,13 +101,13 @@ public final class r2 implements c20 {
                 if (z6Var2.j(j3)) {
                     r3Var = new r3(z6Var2, j3, 5);
                 }
-                int i10 = ug.i0.O2;
+                int i10 = ug.i0.R2;
                 if (Q != null && tL_premium_boostsStatus2 != null && Q.getContext() != null) {
                     ug.i0 i0Var2 = new ug.i0(18, Q.getCurrentAccount(), Q.getContext(), Q, Q.getResourceProvider());
                     i0Var2.A1(e3Var);
                     i0Var2.z1(tL_premium_boostsStatus2, true);
                     i0Var2.B1(j3);
-                    i0Var2.I2 = r3Var;
+                    i0Var2.L2 = r3Var;
                     i0Var2.show();
                 }
                 c20Var2.a(Boolean.FALSE);
@@ -119,20 +119,20 @@ public final class r2 implements c20 {
                 org.telegram.ui.ActionBar.f2[] f2VarArr = (org.telegram.ui.ActionBar.f2[]) obj2;
                 Runnable runnable = (Runnable) obj;
                 ((org.telegram.ui.ActionBar.u1) obj3).dismiss();
-                yw ywVar = ((zv) obj4).f52678b;
-                ywVar.getMessagesController().T2(Long.valueOf(j3), null, 32);
-                sw swVar = ywVar.D2;
-                ywVar.removeSelfFromStack();
+                zw zwVar = ((aw) obj4).f43827b;
+                zwVar.getMessagesController().T2(Long.valueOf(j3), null, 32);
+                tw twVar = zwVar.D2;
+                zwVar.removeSelfFromStack();
                 if (f2VarArr[1] != null) {
                     f2VarArr[0].removeSelfFromStack();
                     f2VarArr[1].finishFragment();
                 } else {
                     f2VarArr[0].finishFragment();
                 }
-                if (swVar != null) {
+                if (twVar != null) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(xr.a(-j3, 0L));
-                    swVar.y(ywVar, arrayList, null, false, ywVar.K2, ywVar.L2, ywVar.M2, null);
+                    twVar.y(zwVar, arrayList, null, false, zwVar.K2, zwVar.L2, zwVar.M2, null);
                     return;
                 }
                 return;
@@ -143,7 +143,7 @@ public final class r2 implements c20 {
                 Bitmap bitmap = (Bitmap) obj;
                 Drawable[] drawableArr = PhotoViewer.Y8;
                 if (bitmap == null) {
-                    org.telegram.messenger.g0.h3(new en0(photoViewer, 18));
+                    org.telegram.messenger.g0.h3(new fn0(photoViewer, 18));
                     return;
                 }
                 try {
@@ -161,7 +161,7 @@ public final class r2 implements c20 {
                     return;
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
-                    org.telegram.messenger.g0.h3(new en0(photoViewer, 19));
+                    org.telegram.messenger.g0.h3(new fn0(photoViewer, 19));
                     return;
                 }
             default:

@@ -9,8 +9,8 @@ import c8.y9;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class s {
-    public static final a0.l f53944a = new a0.l(0);
-    public static Locale f53945b;
+    public static final a0.l f53943a = new a0.l(0);
+    public static Locale f53944b;
 
     public static String a(Context context, int i7) {
         Resources resources = context.getResources();
@@ -144,19 +144,19 @@ public abstract class s {
 
     public static String f(Context context, String str) {
         Resources resources;
-        a0.l lVar = f53944a;
+        a0.l lVar = f53943a;
         synchronized (lVar) {
             try {
-                Locale locale = y9.a(context.getResources().getConfiguration()).f20120a.get(0);
-                if (!locale.equals(f53945b)) {
+                Locale locale = y9.a(context.getResources().getConfiguration()).f20125a.get(0);
+                if (!locale.equals(f53944b)) {
                     lVar.clear();
-                    f53945b = locale;
+                    f53944b = locale;
                 }
                 String str2 = (String) lVar.get(str);
                 if (str2 != null) {
                     return str2;
                 }
-                AtomicBoolean atomicBoolean = n6.g.f20503a;
+                AtomicBoolean atomicBoolean = n6.g.f20508a;
                 try {
                     resources = context.getPackageManager().getResourcesForApplication("com.google.android.gms");
                 } catch (PackageManager.NameNotFoundException unused) {

@@ -19,21 +19,21 @@ import org.telegram.messenger.t5;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.b5;
+import org.telegram.ui.ActionBar.c5;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.ActionBar.s6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Components.m41;
 import org.telegram.ui.Components.np;
-import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.r41;
 public final class a1 extends f2 implements ls {
     public boolean D;
     public int E;
     public boolean F;
     public r41 f17301a;
-    public b5 f17302b;
+    public c5 f17302b;
     public boolean f17303c;
     public FrameLayout d;
     public x0 f17304e;
@@ -56,7 +56,7 @@ public final class a1 extends f2 implements ls {
         if (this.f17302b != null) {
             this.f17302b.a(a0(), z9);
             r41 r41Var = this.f17301a;
-            if (r41Var != null && r41Var.f37556f3 != null) {
+            if (r41Var != null && r41Var.f37496f3 != null) {
                 boolean z11 = this.F;
                 if (this.f17309w != null && (this.f17310x != null || !TextUtils.isEmpty(this.f17311y))) {
                     z10 = true;
@@ -64,7 +64,7 @@ public final class a1 extends f2 implements ls {
                     z10 = false;
                 }
                 if (z11 != z10) {
-                    this.f17301a.f37556f3.O(true);
+                    this.f17301a.f37496f3.O(true);
                 }
             }
         }
@@ -139,7 +139,7 @@ public final class a1 extends f2 implements ls {
     public final void b0() {
         boolean z9;
         String trim;
-        if (this.f17302b.f27360y.f55500f) {
+        if (this.f17302b.f27380y.f55499f) {
             return;
         }
         if (this.f17310x == null && TextUtils.isEmpty(this.f17311y)) {
@@ -232,7 +232,7 @@ public final class a1 extends f2 implements ls {
         }
         d0();
         r41 r41Var = this.f17301a;
-        if (r41Var != null && (m41Var = r41Var.f37556f3) != null) {
+        if (r41Var != null && (m41Var = r41Var.f37496f3) != null) {
             m41Var.O(true);
         }
         this.f17308s = true;
@@ -244,29 +244,29 @@ public final class a1 extends f2 implements ls {
         this.simpleActionBar.setBackButtonImage(2131231240);
         this.simpleActionBar.setTitle(id.M0(2131752698, null));
         this.simpleActionBar.setActionBarMenuOnItemClick(new bi.s(this, 15));
-        this.f17302b = this.simpleActionBar.o(id.M0(2131745946, null));
+        this.f17302b = this.simpleActionBar.p(id.M0(2131745946, null));
         Z(false);
         FrameLayout frameLayout = new FrameLayout(context);
         x0 x0Var = new x0(this, getParentActivity());
         this.f17304e = x0Var;
         x0Var.setTextSize(1, 17.0f);
-        s6.D(this.f17304e, l6.H6, null);
+        t6.D(this.f17304e, m6.H6, null);
         x0 x0Var2 = this.f17304e;
-        int i7 = l6.G6;
-        s6.U(x0Var2, i7, null);
+        int i7 = m6.G6;
+        t6.U(x0Var2, i7, null);
         this.f17304e.setBackgroundDrawable(null);
         int i10 = 5;
         this.f17304e.setMaxLines(5);
         this.f17304e.setSingleLine(false);
         this.f17304e.setPadding(0, 0, org.telegram.messenger.g0.L(42.0f), 0);
         x0 x0Var3 = this.f17304e;
-        if (!id.f23157a0) {
+        if (!id.f23161a0) {
             i10 = 3;
         }
         x0Var3.setGravity(i10 | 48);
         this.f17304e.setInputType(180225);
         this.f17304e.setHint(id.M0(2131752697, null));
-        s6.v(this.f17304e, i7, null);
+        t6.v(this.f17304e, i7, null);
         this.f17304e.setCursorSize(org.telegram.messenger.g0.L(19.0f));
         this.f17304e.setCursorWidth(1.5f);
         this.f17304e.addTextChangedListener(new ah.j(this, 10));
@@ -275,8 +275,8 @@ public final class a1 extends f2 implements ls {
         this.d = frameLayout2;
         frameLayout2.addView(this.f17304e, ha.d(-1, -1.0f, 48, 21.0f, 15.0f, 21.0f, 15.0f));
         FrameLayout frameLayout3 = this.d;
-        int i11 = l6.f27865d6;
-        s6.h(i11, frameLayout3, getResourceProvider());
+        int i11 = m6.f27890d6;
+        t6.h(i11, frameLayout3, getResourceProvider());
         x0 x0Var4 = this.f17304e;
         if (x0Var4 != null) {
             this.f17303c = true;
@@ -286,16 +286,16 @@ public final class a1 extends f2 implements ls {
             this.f17303c = false;
         }
         this.f17307r = new d4(1, context, this);
-        rz c10 = t5.c(0.2f, l6.Dc);
-        g6 resourceProvider = getResourceProvider();
-        c10.f25389m = i7;
-        c10.f25391o = resourceProvider;
-        c10.f25396t = true;
-        c10.f25387k = this.f17307r.getImageReceiver();
+        rz c10 = t5.c(0.2f, m6.Dc);
+        h6 resourceProvider = getResourceProvider();
+        c10.f25393m = i7;
+        c10.f25395o = resourceProvider;
+        c10.f25400t = true;
+        c10.f25391k = this.f17307r.getImageReceiver();
         np npVar = new np(c10);
         this.f17306n = npVar;
         npVar.setCallback(this.f17307r);
-        s6.h(i11, this.f17307r, getResourceProvider());
+        t6.h(i11, this.f17307r, getResourceProvider());
         this.h = new z0(this, context);
         FrameLayout frameLayout4 = new FrameLayout(context);
         this.f17305f = frameLayout4;
@@ -307,7 +307,7 @@ public final class a1 extends f2 implements ls {
         r41Var.r1();
         this.f17301a.setSectionsDrawBackground(true);
         r41 r41Var2 = this.f17301a;
-        r41Var2.f37556f3.f35945r = false;
+        r41Var2.f37496f3.f35845r = false;
         frameLayout.addView(r41Var2, ha.c(-1.0f, -1));
         c0();
         this.fragmentView = frameLayout;
@@ -323,11 +323,11 @@ public final class a1 extends f2 implements ls {
                 z0Var.setAlpha(0.0f);
                 this.h.setTranslationY(-org.telegram.messenger.g0.L(12.0f));
                 if (this.f17307r.getMeasuredWidth() <= 0) {
-                    measuredWidth = org.telegram.messenger.g0.f22563q.x;
+                    measuredWidth = org.telegram.messenger.g0.f22567q.x;
                 } else {
                     measuredWidth = this.f17307r.getMeasuredWidth();
                 }
-                float f10 = org.telegram.messenger.g0.f22562p;
+                float f10 = org.telegram.messenger.g0.f22566p;
                 int i7 = (int) (measuredWidth / f10);
                 int min = Math.min(2, (int) Math.ceil(f10));
                 d4 d4Var2 = this.f17307r;
@@ -347,7 +347,7 @@ public final class a1 extends f2 implements ls {
     }
 
     @Override
-    public final qj0 getListViewForSimpleGlass() {
+    public final pj0 getListViewForSimpleGlass() {
         return this.f17301a;
     }
 
@@ -373,7 +373,7 @@ public final class a1 extends f2 implements ls {
             if (z9) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
                 String M0 = id.M0(2131743835, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27300a;
                 u1Var.R = M0;
                 u1Var.T = id.M0(2131752690, null);
                 alertDialog$Builder.k(id.M0(2131754216, null), new v0(this, 1));

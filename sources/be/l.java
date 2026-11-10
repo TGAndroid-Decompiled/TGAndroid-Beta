@@ -68,29 +68,29 @@ public final class l extends kd.j implements rd.p {
     public final Object invoke(Object obj, Object obj2) {
         switch (this.f3222a) {
             case 0:
-                return ((l) create((z) obj, (id.c) obj2)).invokeSuspend(gd.k.f13829a);
+                return ((l) create((z) obj, (id.c) obj2)).invokeSuspend(gd.k.f13831a);
             case 1:
-                return ((l) create((s) obj, (id.c) obj2)).invokeSuspend(gd.k.f13829a);
+                return ((l) create((s) obj, (id.c) obj2)).invokeSuspend(gd.k.f13831a);
             case 2:
-                return ((l) create((ce.d) obj, (id.c) obj2)).invokeSuspend(gd.k.f13829a);
+                return ((l) create((ce.d) obj, (id.c) obj2)).invokeSuspend(gd.k.f13831a);
             case 3:
-                return ((l) create(obj, (id.c) obj2)).invokeSuspend(gd.k.f13829a);
+                return ((l) create(obj, (id.c) obj2)).invokeSuspend(gd.k.f13831a);
             case 4:
-                return ((l) create((z) obj, (id.c) obj2)).invokeSuspend(gd.k.f13829a);
+                return ((l) create((z) obj, (id.c) obj2)).invokeSuspend(gd.k.f13831a);
             case 5:
-                return ((l) create((z) obj, (id.c) obj2)).invokeSuspend(gd.k.f13829a);
+                return ((l) create((z) obj, (id.c) obj2)).invokeSuspend(gd.k.f13831a);
             case 6:
-                return ((l) create((JSONObject) obj, (id.c) obj2)).invokeSuspend(gd.k.f13829a);
+                return ((l) create((JSONObject) obj, (id.c) obj2)).invokeSuspend(gd.k.f13831a);
             case 7:
-                return ((l) create((z) obj, (id.c) obj2)).invokeSuspend(gd.k.f13829a);
+                return ((l) create((z) obj, (id.c) obj2)).invokeSuspend(gd.k.f13831a);
             case 8:
-                return ((l) create((m1.j) obj, (id.c) obj2)).invokeSuspend(gd.k.f13829a);
+                return ((l) create((m1.j) obj, (id.c) obj2)).invokeSuspend(gd.k.f13831a);
             case 9:
-                return ((l) create((z) obj, (id.c) obj2)).invokeSuspend(gd.k.f13829a);
+                return ((l) create((z) obj, (id.c) obj2)).invokeSuspend(gd.k.f13831a);
             case 10:
-                return ((l) create((n0) obj, (id.c) obj2)).invokeSuspend(gd.k.f13829a);
+                return ((l) create((n0) obj, (id.c) obj2)).invokeSuspend(gd.k.f13831a);
             default:
-                return ((l) create((z) obj, (id.c) obj2)).invokeSuspend(gd.k.f13829a);
+                return ((l) create((z) obj, (id.c) obj2)).invokeSuspend(gd.k.f13831a);
         }
     }
 

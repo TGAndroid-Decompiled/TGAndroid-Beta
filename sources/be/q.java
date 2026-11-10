@@ -15,13 +15,13 @@ public final class q implements rd.l {
         switch (this.f3229a) {
             case 0:
                 Throwable th2 = (Throwable) obj;
-                gd.k kVar = gd.k.f13829a;
+                gd.k kVar = gd.k.f13831a;
                 ((zd.m) this.f3230b).resumeWith(kVar);
                 return kVar;
             default:
                 Throwable th3 = (Throwable) obj;
                 ((CancellationSignal) this.f3230b).cancel();
-                return gd.k.f13829a;
+                return gd.k.f13831a;
         }
     }
 }

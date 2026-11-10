@@ -2,32 +2,32 @@ package ei;
 
 import android.content.Context;
 import di.r6;
-import org.telegram.ui.Components.cv0;
+import org.telegram.ui.Components.bv0;
 public final class i extends m {
-    public final n f10818w;
+    public final n f10823w;
 
     public i(n nVar, Context context) {
         super(nVar, context);
-        this.f10818w = nVar;
+        this.f10823w = nVar;
     }
 
     @Override
     public final void f() {
         boolean z9;
         super.f();
-        n nVar = this.f10818w;
-        if (nVar.f10835r.getVisibility() == 0) {
-            nVar.f10838x.f();
+        n nVar = this.f10823w;
+        if (nVar.f10840r.getVisibility() == 0) {
+            nVar.f10843x.f();
         }
-        cv0 cv0Var = nVar.D;
-        if (cv0Var != null) {
-            r6 r6Var = this.f10823e;
+        bv0 bv0Var = nVar.D;
+        if (bv0Var != null) {
+            r6 r6Var = this.f10828e;
             if (r6Var != null && r6Var.k()) {
                 z9 = true;
             } else {
                 z9 = false;
             }
-            cv0Var.e(z9, true);
+            bv0Var.e(z9, true);
         }
     }
 }

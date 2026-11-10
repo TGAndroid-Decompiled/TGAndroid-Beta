@@ -1,19 +1,141 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLObject;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class hh0 {
-    public final TLObject f34299a;
-    public final long f34300b;
-    public int f34301c;
+public final class hh0 extends FrameLayout {
+    public final lz f34348a;
+    public final TextView f34349b;
+    public final y8 f34350c;
+    public final ImageView d;
+    public final k9 f34351e;
+    public final int f34352f;
+    public boolean h;
+    public final ArrayList f34353n;
+    public final ArrayList f34354r;
+    public final org.telegram.messenger.ij f34355s;
+    public int f34356w;
+    public q0.a f34357x;
 
-    public hh0(int i7, TLObject tLObject) {
-        this.f34299a = tLObject;
-        this.f34301c = i7;
-        if (tLObject instanceof TLRPC.User) {
-            this.f34300b = ((TLRPC.User) tLObject).f27105id;
-        } else if (tLObject instanceof TLRPC.Chat) {
-            this.f34300b = -((TLRPC.Chat) tLObject).f26956id;
+    public hh0(Context context, int i7, org.telegram.messenger.ij ijVar) {
+        super(context);
+        this.f34353n = new ArrayList();
+        this.f34354r = new ArrayList();
+        this.f34352f = i7;
+        this.f34355s = ijVar;
+        lz lzVar = new lz(context, null);
+        this.f34348a = lzVar;
+        lzVar.e(org.telegram.ui.ActionBar.m6.G8, org.telegram.ui.ActionBar.m6.f27982i6, -1);
+        lzVar.setViewType(13);
+        lzVar.setIsSingleCell(false);
+        addView(lzVar, c8.ha.c(-1.0f, -2));
+        TextView textView = new TextView(context);
+        this.f34349b = textView;
+        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.E8, null);
+        textView.setTextSize(1, 16.0f);
+        textView.setLines(1);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        addView(textView, c8.ha.i(-2.0f, -2.0f, 8388627, 40.0f, 0.0f, 62.0f, 0.0f));
+        y8 y8Var = new y8(context, false);
+        this.f34350c = y8Var;
+        y8Var.setStyle(11);
+        y8Var.setAvatarsTextSize(org.telegram.messenger.g0.L(22.0f));
+        addView(y8Var, c8.ha.i(56.0f, -1.0f, 8388629, 0.0f, 0.0f, 0.0f, 0.0f));
+        ImageView imageView = new ImageView(context);
+        this.d = imageView;
+        addView(imageView, c8.ha.i(24.0f, 24.0f, 8388627, 11.0f, 0.0f, 0.0f, 0.0f));
+        Drawable mutate = context.getDrawable(2131232323).mutate();
+        org.telegram.ui.ActionBar.t6.x(this, mutate, org.telegram.ui.ActionBar.m6.F8, null, PorterDuff.Mode.MULTIPLY);
+        imageView.setImageDrawable(mutate);
+        imageView.setVisibility(8);
+        k9 k9Var = new k9(context);
+        this.f34351e = k9Var;
+        addView(k9Var, c8.ha.i(24.0f, 24.0f, 8388627, 11.0f, 0.0f, 0.0f, 0.0f));
+        textView.setAlpha(0.0f);
+        y8Var.setAlpha(0.0f);
+        setBackground(org.telegram.ui.ActionBar.m6.N0(false));
+    }
+
+    public final void a() {
+        int i7 = this.f34352f;
+        org.telegram.messenger.qp s12 = org.telegram.messenger.qp.s1(i7);
+        TLRPC.TL_messages_getMessageReactionsList tL_messages_getMessageReactionsList = new TLRPC.TL_messages_getMessageReactionsList();
+        org.telegram.messenger.ij ijVar = this.f34355s;
+        tL_messages_getMessageReactionsList.peer = s12.j1(org.telegram.messenger.ij.B0(ijVar.f23266k));
+        tL_messages_getMessageReactionsList.f27055id = ijVar.e1();
+        tL_messages_getMessageReactionsList.limit = 3;
+        tL_messages_getMessageReactionsList.reaction = null;
+        tL_messages_getMessageReactionsList.offset = null;
+        ConnectionsManager.getInstance(i7).sendRequest(tL_messages_getMessageReactionsList, new w1(this, 9), 64);
+    }
+
+    public List<gh0> getSeenUsers() {
+        return this.f34353n;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        long j3;
+        super.onAttachedToWindow();
+        int i7 = this.f34352f;
+        org.telegram.messenger.qp s12 = org.telegram.messenger.qp.s1(i7);
+        org.telegram.messenger.ij ijVar = this.f34355s;
+        TLRPC.Chat M0 = s12.M0(Long.valueOf(ijVar.x0()));
+        TLRPC.ChatFull N0 = s12.N0(ijVar.x0());
+        if (M0 != null && ijVar.P3() && ijVar.q4() && !ijVar.Y2() && !ijVar.o4() && !ijVar.n4() && !ijVar.f23266k.media_unread && !ijVar.F4() && ConnectionsManager.getInstance(i7).getCurrentTime() - ijVar.f23266k.date < 604800 && ((org.telegram.messenger.t3.n0(M0) || !org.telegram.messenger.t3.T(M0)) && N0 != null && N0.participants_count <= org.telegram.messenger.qp.s1(i7).f24868p3 && !(ijVar.f23266k.action instanceof TLRPC.TL_messageActionChatJoinedByRequest))) {
+            TLRPC.TL_messages_getMessageReadParticipants tL_messages_getMessageReadParticipants = new TLRPC.TL_messages_getMessageReadParticipants();
+            tL_messages_getMessageReadParticipants.msg_id = ijVar.e1();
+            tL_messages_getMessageReadParticipants.peer = org.telegram.messenger.qp.s1(i7).j1(org.telegram.messenger.ij.B0(ijVar.f23266k));
+            TLRPC.Peer peer = ijVar.f23266k.from_id;
+            if (peer != null) {
+                j3 = peer.user_id;
+            } else {
+                j3 = 0;
+            }
+            ConnectionsManager.getInstance(i7).sendRequest(tL_messages_getMessageReadParticipants, new bi.h3(this, j3, M0, 5), 64);
+            return;
         }
+        a();
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        int i11 = this.f34356w;
+        if (i11 > 0) {
+            i7 = View.MeasureSpec.makeMeasureSpec(i11, 1073741824);
+        }
+        lz lzVar = this.f34348a;
+        if (lzVar.getVisibility() == 0) {
+            this.h = true;
+            lzVar.setVisibility(8);
+            super.onMeasure(i7, i10);
+            lzVar.getLayoutParams().width = getMeasuredWidth();
+            lzVar.setVisibility(0);
+            this.h = false;
+            super.onMeasure(i7, i10);
+            return;
+        }
+        super.onMeasure(i7, i10);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.h) {
+            return;
+        }
+        super.requestLayout();
+    }
+
+    public void setSeenCallback(q0.a aVar) {
+        this.f34357x = aVar;
     }
 }

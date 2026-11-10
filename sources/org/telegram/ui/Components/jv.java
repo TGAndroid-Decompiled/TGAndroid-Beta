@@ -1,20 +1,28 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Canvas;
 import android.view.View;
-public final class jv implements View.OnFocusChangeListener {
-    public final hy f35164a;
+import android.widget.FrameLayout;
+public final class jv extends FrameLayout {
+    public final gy f35081a;
 
-    public jv(hy hyVar) {
-        this.f35164a = hyVar;
+    public jv(gy gyVar, Context context) {
+        super(context);
+        this.f35081a = gyVar;
     }
 
     @Override
-    public final void onFocusChange(View view, boolean z9) {
-        if (z9) {
-            String[] G0 = org.telegram.messenger.g0.G0();
-            hy hyVar = this.f35164a;
-            hyVar.W0 = G0;
-            org.telegram.messenger.ui.b0(hyVar.f34415c1).M(hyVar.W0, false);
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        gy gyVar = this.f35081a;
+        mv mvVar = gyVar.f34050o0;
+        if (view == gyVar.f34031h0) {
+            canvas.save();
+            canvas.clipRect(0.0f, mvVar.getY() + mvVar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
+            boolean drawChild = super.drawChild(canvas, view, j3);
+            canvas.restore();
+            return drawChild;
         }
+        return super.drawChild(canvas, view, j3);
     }
 }

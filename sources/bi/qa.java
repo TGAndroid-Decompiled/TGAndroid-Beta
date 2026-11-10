@@ -5,12 +5,12 @@ import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.cn;
 public final class qa implements Runnable {
     public final int f4584a;
-    public final org.telegram.ui.ActionBar.v2[] f4585b;
+    public final org.telegram.ui.ActionBar.w2[] f4585b;
     public final long f4586c;
 
-    public qa(org.telegram.ui.ActionBar.v2[] v2VarArr, long j3, int i7) {
+    public qa(org.telegram.ui.ActionBar.w2[] w2VarArr, long j3, int i7) {
         this.f4584a = i7;
-        this.f4585b = v2VarArr;
+        this.f4585b = w2VarArr;
         this.f4586c = j3;
     }
 
@@ -66,9 +66,9 @@ public final class qa implements Runnable {
                 }
                 return;
             default:
-                org.telegram.ui.ActionBar.v2 v2Var = this.f4585b[0];
-                if (v2Var != null) {
-                    v2Var.dismiss();
+                org.telegram.ui.ActionBar.w2 w2Var = this.f4585b[0];
+                if (w2Var != null) {
+                    w2Var.dismiss();
                 }
                 org.telegram.ui.ActionBar.f2 T7 = LaunchActivity.T();
                 if (T7 != null) {

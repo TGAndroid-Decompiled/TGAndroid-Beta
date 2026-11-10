@@ -1,10 +1,10 @@
 package c8;
 public final class r extends a8.v {
-    public final transient Object[] f5819e;
+    public final transient Object[] f5824e;
 
     public r(Object[] objArr) {
         super(1);
-        this.f5819e = objArr;
+        this.f5824e = objArr;
     }
 
     @Override

@@ -1,14 +1,14 @@
 package org.telegram.ui.Cells;
 public final class o2 {
-    public String f29640a;
-    public String f29641b;
-    public int f29642c;
+    public String f29651a;
+    public String f29652b;
+    public int f29653c;
     public int d;
-    public boolean f29643e;
-    public boolean f29644f;
-    public int f29645g;
+    public boolean f29654e;
+    public boolean f29655f;
+    public int f29656g;
     public int h;
-    public boolean f29646i;
-    public boolean f29647j;
-    public int f29648k = -1;
+    public boolean f29657i;
+    public boolean f29658j;
+    public int f29659k = -1;
 }

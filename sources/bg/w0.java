@@ -9,13 +9,13 @@ import java.nio.ByteOrder;
 import java.security.MessageDigest;
 import org.telegram.messenger.qs;
 import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.nw;
-import org.telegram.ui.Components.oc;
-import org.telegram.ui.Components.tt0;
-import org.telegram.ui.Components.wf;
-import org.telegram.ui.Components.xe;
-import org.telegram.ui.Components.yx;
-public final class w0 implements r0.m0, nw {
+import org.telegram.ui.Components.mw;
+import org.telegram.ui.Components.nc;
+import org.telegram.ui.Components.st0;
+import org.telegram.ui.Components.vf;
+import org.telegram.ui.Components.we;
+import org.telegram.ui.Components.xx;
+public final class w0 implements r0.m0, mw {
     public boolean f3392a;
     public int f3393b;
     public Object f3394c;
@@ -46,11 +46,11 @@ public final class w0 implements r0.m0, nw {
     }
 
     public boolean d() {
-        yx yxVar;
-        xe xeVar;
+        xx xxVar;
+        we weVar;
         ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f3394c;
-        if (chatActivityEnterView.f31158x3) {
-            if ((chatActivityEnterView.f31169z3 || (xeVar = chatActivityEnterView.E0) == null || xeVar.length() <= 0) && (yxVar = chatActivityEnterView.U0.f34484y0) != null && yxVar.b() > 0 && !chatActivityEnterView.f31084k3) {
+        if (chatActivityEnterView.f31169x3) {
+            if ((chatActivityEnterView.f31180z3 || (weVar = chatActivityEnterView.E0) == null || weVar.length() <= 0) && (xxVar = chatActivityEnterView.U0.f34085y0) != null && xxVar.b() > 0 && !chatActivityEnterView.f31095k3) {
                 return true;
             }
             return false;
@@ -61,40 +61,40 @@ public final class w0 implements r0.m0, nw {
     public void e() {
         int i7;
         ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f3394c;
-        tt0 tt0Var = chatActivityEnterView.f31092m1;
+        st0 st0Var = chatActivityEnterView.f31103m1;
         if (d()) {
             AnimatorSet animatorSet = chatActivityEnterView.B3;
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
             chatActivityEnterView.E3 = true;
-            this.f3392a = chatActivityEnterView.f31169z3;
-            chatActivityEnterView.f31169z3 = true;
-            qs.e().k(qs.f25021j1, 1);
-            int height = ((((tt0Var.getHeight() - org.telegram.messenger.g0.f22557m) - org.telegram.messenger.g0.f22558n) - org.telegram.messenger.g0.L(6.0f)) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - chatActivityEnterView.getHeight();
+            this.f3392a = chatActivityEnterView.f31180z3;
+            chatActivityEnterView.f31180z3 = true;
+            qs.e().k(qs.f25025j1, 1);
+            int height = ((((st0Var.getHeight() - org.telegram.messenger.g0.f22561m) - org.telegram.messenger.g0.f22562n) - org.telegram.messenger.g0.L(6.0f)) - org.telegram.ui.ActionBar.l.getCurrentActionBarHeight()) - chatActivityEnterView.getHeight();
             chatActivityEnterView.D3 = height;
             if (chatActivityEnterView.R1 == 2) {
                 int L = org.telegram.messenger.g0.L(175.0f);
-                Point point = org.telegram.messenger.g0.f22563q;
+                Point point = org.telegram.messenger.g0.f22567q;
                 if (point.x > point.y) {
-                    i7 = chatActivityEnterView.f31163y2;
+                    i7 = chatActivityEnterView.f31174y2;
                 } else {
-                    i7 = chatActivityEnterView.f31157x2;
+                    i7 = chatActivityEnterView.f31168x2;
                 }
                 chatActivityEnterView.D3 = Math.min(height, L + i7);
             }
-            if (chatActivityEnterView.f31069h5 == null) {
+            if (chatActivityEnterView.f31080h5 == null) {
                 chatActivityEnterView.U0.getLayoutParams().height = chatActivityEnterView.D3;
             }
             chatActivityEnterView.U0.setLayerType(2, null);
-            tt0Var.requestLayout();
-            if (chatActivityEnterView.f31165y4) {
-                tt0Var.setForeground(new oc(chatActivityEnterView));
+            st0Var.requestLayout();
+            if (chatActivityEnterView.f31176y4) {
+                st0Var.setForeground(new nc(chatActivityEnterView));
             }
             this.f3393b = (int) chatActivityEnterView.getTranslationY();
-            wf wfVar = chatActivityEnterView.Z2;
-            if (wfVar != null) {
-                wfVar.h1();
+            vf vfVar = chatActivityEnterView.Z2;
+            if (vfVar != null) {
+                vfVar.h1();
             }
         }
     }

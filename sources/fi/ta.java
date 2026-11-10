@@ -2,29 +2,29 @@ package fi;
 
 import android.view.ScaleGestureDetector;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.s71;
+import org.telegram.ui.Components.r71;
 public final class ta extends ScaleGestureDetector.SimpleOnScaleGestureListener {
-    public final ua f12866a;
+    public final ua f12867a;
 
     public ta(ua uaVar) {
-        this.f12866a = uaVar;
+        this.f12867a = uaVar;
     }
 
     @Override
     public final boolean onScale(ScaleGestureDetector scaleGestureDetector) {
         y9 y9Var;
-        ua uaVar = this.f12866a;
-        va vaVar = uaVar.f12908n0;
-        if (!uaVar.f12905j0 || (y9Var = vaVar.B0) == null || vaVar.f12953f0 != 0 || y9Var.f11643s || vaVar.A0.getFilledProgress() >= 1.0f) {
+        ua uaVar = this.f12867a;
+        va vaVar = uaVar.f12910n0;
+        if (!uaVar.f12907j0 || (y9Var = vaVar.B0) == null || vaVar.f12955f0 != 0 || y9Var.f11648s || vaVar.A0.getFilledProgress() >= 1.0f) {
             return false;
         }
         float scaleFactor = vaVar.T1 + ((scaleGestureDetector.getScaleFactor() - 1.0f) * 0.75f);
         vaVar.T1 = scaleFactor;
         vaVar.T1 = Utilities.i(scaleFactor, 1.0f, 0.0f);
         vaVar.B0.setZoom(vaVar.T1);
-        s71 s71Var = vaVar.V0;
-        if (s71Var != null) {
-            s71Var.b(false, vaVar.T1);
+        r71 r71Var = vaVar.V0;
+        if (r71Var != null) {
+            r71Var.b(false, vaVar.T1);
         }
         vaVar.i0(true);
         return true;
@@ -32,10 +32,10 @@ public final class ta extends ScaleGestureDetector.SimpleOnScaleGestureListener 
 
     @Override
     public final boolean onScaleBegin(ScaleGestureDetector scaleGestureDetector) {
-        ua uaVar = this.f12866a;
-        va vaVar = uaVar.f12908n0;
-        if (vaVar.B0 != null && vaVar.f12953f0 == 0 && !vaVar.K0) {
-            uaVar.f12905j0 = true;
+        ua uaVar = this.f12867a;
+        va vaVar = uaVar.f12910n0;
+        if (vaVar.B0 != null && vaVar.f12955f0 == 0 && !vaVar.K0) {
+            uaVar.f12907j0 = true;
             return super.onScaleBegin(scaleGestureDetector);
         }
         return false;
@@ -43,10 +43,10 @@ public final class ta extends ScaleGestureDetector.SimpleOnScaleGestureListener 
 
     @Override
     public final void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
-        ua uaVar = this.f12866a;
-        uaVar.f12905j0 = false;
-        uaVar.f12908n0.e(false);
-        va.b(uaVar.f12908n0);
+        ua uaVar = this.f12867a;
+        uaVar.f12907j0 = false;
+        uaVar.f12910n0.e(false);
+        va.b(uaVar.f12910n0);
         super.onScaleEnd(scaleGestureDetector);
     }
 }

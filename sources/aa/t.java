@@ -23,8 +23,8 @@ public final class t implements Callable {
                 qVar.getClass();
                 ba.e.a();
                 wf.b bVar = qVar.f836c;
-                ga.d dVar = (ga.d) bVar.f57668c;
-                String str = (String) bVar.f57667b;
+                ga.d dVar = (ga.d) bVar.f57667c;
+                String str = (String) bVar.f57666b;
                 dVar.getClass();
                 boolean z9 = true;
                 if (!new File((File) dVar.d, str).exists()) {
@@ -36,7 +36,7 @@ public final class t implements Callable {
                     if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                         Log.v("FirebaseCrashlytics", "Found previous crash marker.", null);
                     }
-                    ga.d dVar2 = (ga.d) bVar.f57668c;
+                    ga.d dVar2 = (ga.d) bVar.f57667c;
                     dVar2.getClass();
                     new File((File) dVar2.d, str).delete();
                 }
@@ -44,10 +44,10 @@ public final class t implements Callable {
             case 1:
                 return new e5.f((JsReplyProxyBoundaryInterface) this.f856b);
             default:
-                ia.c cVar = (ia.c) ((q4.q) this.f856b).f53817c;
-                g9.l lVar = (g9.l) cVar.f15422f;
-                ia.e eVar = (ia.e) cVar.f15419b;
-                String str2 = lVar.f13591a;
+                ia.c cVar = (ia.c) ((q4.q) this.f856b).f53816c;
+                g9.l lVar = (g9.l) cVar.f15424f;
+                ia.e eVar = (ia.e) cVar.f15421b;
+                String str2 = lVar.f13593a;
                 ba.e.b();
                 try {
                     HashMap c10 = g9.l.c(eVar);

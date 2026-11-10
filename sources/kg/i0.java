@@ -17,120 +17,120 @@ import org.telegram.messenger.qp;
 import org.telegram.messenger.t10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l5;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.ActionBar.s6;
-import org.telegram.ui.Components.l9;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m5;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.Components.k9;
 import org.telegram.ui.Components.m41;
-import org.telegram.ui.Components.na;
+import org.telegram.ui.Components.ma;
+import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.qj0;
-import org.telegram.ui.Components.r2;
-import org.telegram.ui.Components.w8;
-import org.telegram.ui.Components.xq;
-public final class i0 extends na {
-    public static final int f17400c2 = -1;
-    public static final int d2 = -2;
-    public final TL_account.TL_connectedBot P1;
-    public final TLRPC.User Q1;
-    public final a0 R1;
-    public final LinearLayout S1;
-    public final FrameLayout T1;
-    public final fi.d U1;
-    public final fi.d V1;
-    public m41 W1;
-    public boolean X1;
-    public Boolean Y1;
-    public int Z1;
-    public int f17401a2;
-    public int f17402b2;
+import org.telegram.ui.Components.q2;
+import org.telegram.ui.Components.v8;
+import org.telegram.ui.Components.wq;
+public final class i0 extends ma {
+    public static final int f17400f2 = -1;
+    public static final int f17401g2 = -2;
+    public final TL_account.TL_connectedBot S1;
+    public final TLRPC.User T1;
+    public final a0 U1;
+    public final LinearLayout V1;
+    public final FrameLayout W1;
+    public final fi.d X1;
+    public final fi.d Y1;
+    public m41 Z1;
+    public boolean f17402a2;
+    public Boolean f17403b2;
+    public int f17404c2;
+    public int d2;
+    public int f17405e2;
 
-    public i0(Activity activity, TL_account.TL_connectedBot tL_connectedBot, r2 r2Var, g6 g6Var) {
-        super(2, (Context) activity, g6Var, false);
-        this.P1 = tL_connectedBot;
-        TLRPC.User a22 = qp.s1(this.f28621a).a2(Long.valueOf(tL_connectedBot.bot_id));
-        this.Q1 = a22;
-        this.B1 = org.telegram.messenger.g0.L(36.0f);
-        this.f36308r1 = 0.15f;
-        a0 a0Var = new a0(activity, this.f28621a, new v9(this, 23), g6Var);
-        this.R1 = a0Var;
+    public i0(Activity activity, TL_account.TL_connectedBot tL_connectedBot, q2 q2Var, h6 h6Var) {
+        super(2, (Context) activity, h6Var, false);
+        this.S1 = tL_connectedBot;
+        TLRPC.User a22 = qp.s1(this.f28669a).a2(Long.valueOf(tL_connectedBot.bot_id));
+        this.T1 = a22;
+        this.E1 = org.telegram.messenger.g0.L(36.0f);
+        this.f35908u1 = 0.15f;
+        a0 a0Var = new a0(activity, this.f28669a, new v9(this, 23), h6Var);
+        this.U1 = a0Var;
         TL_account.TL_businessBotRecipients tL_businessBotRecipients = tL_connectedBot.recipients;
-        this.X1 = tL_businessBotRecipients.exclude_selected;
+        this.f17402a2 = tL_businessBotRecipients.exclude_selected;
         a0Var.i(tL_businessBotRecipients);
         LinearLayout linearLayout = new LinearLayout(activity);
-        this.S1 = linearLayout;
+        this.V1 = linearLayout;
         linearLayout.setOrientation(1);
-        w8 w8Var = new w8((g6) null);
-        l9 l9Var = new l9(activity);
-        l9Var.setRoundRadius(org.telegram.messenger.g0.L(40.0f));
-        w8Var.r(a22);
-        l9Var.e(a22, w8Var);
-        linearLayout.addView(l9Var, ha.t(80, 80, 1, 0, 0, 0, 0));
+        v8 v8Var = new v8((h6) null);
+        k9 k9Var = new k9(activity);
+        k9Var.setRoundRadius(org.telegram.messenger.g0.L(40.0f));
+        v8Var.r(a22);
+        k9Var.e(a22, v8Var);
+        linearLayout.addView(k9Var, ha.t(80, 80, 1, 0, 0, 0, 0));
         TextView textView = new TextView(activity);
         textView.setTextSize(1, 20.0f);
-        s6.U(textView, l6.G6, g6Var);
+        t6.U(textView, m6.G6, h6Var);
         textView.setGravity(17);
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setText(t10.p(a22));
         linearLayout.addView(textView, ha.s(-1, -2, 1, 32.0f, 15.66f, 32.0f, 3.66f));
-        this.l1.setTitle(t10.p(a22));
+        this.f35902o1.setTitle(t10.p(a22));
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
-        s6.U(textView2, l6.f28257y6, g6Var);
+        t6.U(textView2, m6.f28282y6, h6Var);
         k5.m(textView2, 17, null, 2131745560);
         linearLayout.addView(textView2, ha.s(-1, -2, 1, 32.0f, 0.0f, 32.0f, 3.66f));
         String n10 = t10.n(a22);
         if (!TextUtils.isEmpty(n10)) {
             TextView textView3 = new TextView(activity);
             textView3.setTextSize(1, 14.0f);
-            s6.U(textView3, l6.Uc, g6Var);
+            t6.U(textView3, m6.Uc, h6Var);
             textView3.setText("@" + n10);
             textView3.setGravity(17);
             linearLayout.addView(textView3, ha.t(-1, -2, 1, 32, 0, 32, 18));
         }
-        int i7 = l6.f27809a7;
-        v0(l6.w0(i7, this.I0));
+        int i7 = m6.f27834a7;
+        v0(m6.w0(i7, this.I0));
         P(i7);
-        this.Z1 = this.G0;
-        qj0 qj0Var = this.f36303k1;
-        int i10 = this.f28654t0;
-        qj0Var.setPadding(i10, 0, i10, org.telegram.messenger.g0.L(72.0f));
-        this.f36303k1.r1();
-        this.f36303k1.setOnItemClickListener(new ai.k(this, 16));
+        this.f17404c2 = this.G0;
+        pj0 pj0Var = this.n1;
+        int i10 = this.f28705t0;
+        pj0Var.setPadding(i10, 0, i10, org.telegram.messenger.g0.L(72.0f));
+        this.n1.r1();
+        this.n1.setOnItemClickListener(new ai.k(this, 16));
         FrameLayout frameLayout = new FrameLayout(activity);
-        this.T1 = frameLayout;
+        this.W1 = frameLayout;
         frameLayout.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f));
-        frameLayout.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{l6.r1(0.0f, l6.w0(i7, this.I0)), l6.w0(i7, this.I0), l6.w0(i7, this.I0)}));
-        fi.d dVar = new fi.d(activity, g6Var, true);
+        frameLayout.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{m6.r1(0.0f, m6.w0(i7, this.I0)), m6.w0(i7, this.I0), m6.w0(i7, this.I0)}));
+        fi.d dVar = new fi.d(activity, h6Var, true);
         dVar.setRoundRadius(24);
-        this.U1 = dVar;
-        int w02 = l6.w0(l6.kk, this.I0);
-        this.f17402b2 = w02;
+        this.X1 = dVar;
+        int w02 = m6.w0(m6.kk, this.I0);
+        this.f17405e2 = w02;
         dVar.setColor(w02);
         dVar.setText(id.M0(2131744205, null));
-        dVar.setOnClickListener(new ah.g(this, tL_connectedBot, r2Var, 12));
+        dVar.setOnClickListener(new ah.g(this, tL_connectedBot, q2Var, 12));
         frameLayout.addView(dVar, ha.d(-1, 48.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
-        fi.d dVar2 = new fi.d(activity, g6Var, true);
+        fi.d dVar2 = new fi.d(activity, h6Var, true);
         dVar2.setRoundRadius(24);
-        this.V1 = dVar2;
+        this.Y1 = dVar2;
         dVar2.setText(id.M0(2131752785, null));
         dVar2.setOnClickListener(new bi.r(20, this, tL_connectedBot));
         frameLayout.addView(dVar2, ha.d(-1, 48.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
         d1(false);
         FrameLayout.LayoutParams e10 = ha.e(-1, -2, 80);
         int i11 = e10.leftMargin;
-        int i12 = this.f28654t0;
+        int i12 = this.f28705t0;
         e10.leftMargin = i11 + i12;
         e10.rightMargin += i12;
-        this.f28624b.addView(frameLayout, e10);
+        this.f28672b.addView(frameLayout, e10);
         v4.k kVar = new v4.k();
-        kVar.f57083m = false;
+        kVar.f57079m = false;
         kVar.C = false;
-        kVar.o(xq.h);
+        kVar.o(wq.h);
         kVar.n(350L);
-        this.f36303k1.setItemAnimator(kVar);
-        m41 m41Var = this.W1;
+        this.n1.setItemAnimator(kVar);
+        m41 m41Var = this.Z1;
         if (m41Var != null) {
             m41Var.O(false);
         }
@@ -138,7 +138,7 @@ public final class i0 extends na {
 
     @Override
     public final boolean G() {
-        a0 a0Var = this.R1;
+        a0 a0Var = this.U1;
         if (a0Var != null) {
             a0Var.g();
         }
@@ -147,18 +147,18 @@ public final class i0 extends na {
 
     @Override
     public final boolean H() {
-        a0 a0Var = this.R1;
+        a0 a0Var = this.U1;
         if (a0Var != null && a0Var.g()) {
             return false;
         }
-        return this.f28628c0;
+        return this.f28676c0;
     }
 
     @Override
-    public final pj0 L0(qj0 qj0Var) {
-        m41 m41Var = new m41(qj0Var, getContext(), this.f28621a, 0, true, new hi.u1(this, 7), this.I0);
-        this.W1 = m41Var;
-        m41Var.f35945r = false;
+    public final oj0 L0(pj0 pj0Var) {
+        m41 m41Var = new m41(pj0Var, getContext(), this.f28669a, 0, true, new hi.u1(this, 7), this.I0);
+        this.Z1 = m41Var;
+        m41Var.f35845r = false;
         return m41Var;
     }
 
@@ -169,7 +169,7 @@ public final class i0 extends na {
 
     @Override
     public final void Q0(float f10) {
-        l5 titleTextView = this.l1.getTitleTextView();
+        m5 titleTextView = this.f35902o1.getTitleTextView();
         if (titleTextView != null) {
             titleTextView.setAlpha(f10);
         }
@@ -187,20 +187,20 @@ public final class i0 extends na {
         float f16;
         float f17;
         int i10 = 0;
-        a0 a0Var = this.R1;
+        a0 a0Var = this.U1;
         if (a0Var != null && a0Var.g()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        Boolean bool = this.Y1;
+        Boolean bool = this.f17403b2;
         if (bool != null && bool.booleanValue() == z10) {
             return;
         }
-        this.Y1 = Boolean.valueOf(z10);
+        this.f17403b2 = Boolean.valueOf(z10);
         float f18 = 0.0f;
-        fi.d dVar = this.U1;
-        fi.d dVar2 = this.V1;
+        fi.d dVar = this.X1;
+        fi.d dVar2 = this.Y1;
         float f19 = 0.8f;
         if (!z9) {
             if (z10) {
@@ -269,8 +269,8 @@ public final class i0 extends na {
             f12 = 0.8f;
         }
         ViewPropertyAnimator duration = scaleX.scaleY(f12).setDuration(320L);
-        xq xqVar = xq.h;
-        duration.setInterpolator(xqVar).withEndAction(new Runnable(this) {
+        wq wqVar = wq.h;
+        duration.setInterpolator(wqVar).withEndAction(new Runnable(this) {
             public final i0 f17397b;
 
             {
@@ -284,7 +284,7 @@ public final class i0 extends na {
                         boolean z11 = z10;
                         i0 i0Var = this.f17397b;
                         if (!z11) {
-                            i0Var.V1.setVisibility(8);
+                            i0Var.Y1.setVisibility(8);
                             return;
                         } else {
                             i0Var.getClass();
@@ -294,7 +294,7 @@ public final class i0 extends na {
                         boolean z12 = z10;
                         i0 i0Var2 = this.f17397b;
                         if (z12) {
-                            i0Var2.U1.setVisibility(8);
+                            i0Var2.X1.setVisibility(8);
                             return;
                         } else {
                             i0Var2.getClass();
@@ -318,7 +318,7 @@ public final class i0 extends na {
         if (!z10) {
             f19 = 1.0f;
         }
-        scaleX2.scaleY(f19).setDuration(320L).setInterpolator(xqVar).withEndAction(new Runnable(this) {
+        scaleX2.scaleY(f19).setDuration(320L).setInterpolator(wqVar).withEndAction(new Runnable(this) {
             public final i0 f17397b;
 
             {
@@ -332,7 +332,7 @@ public final class i0 extends na {
                         boolean z11 = z10;
                         i0 i0Var = this.f17397b;
                         if (!z11) {
-                            i0Var.V1.setVisibility(8);
+                            i0Var.Y1.setVisibility(8);
                             return;
                         } else {
                             i0Var.getClass();
@@ -342,7 +342,7 @@ public final class i0 extends na {
                         boolean z12 = z10;
                         i0 i0Var2 = this.f17397b;
                         if (z12) {
-                            i0Var2.U1.setVisibility(8);
+                            i0Var2.X1.setVisibility(8);
                             return;
                         } else {
                             i0Var2.getClass();
@@ -358,26 +358,26 @@ public final class i0 extends na {
         int i7;
         try {
             super.s0();
-            int i10 = l6.f27809a7;
-            int w02 = l6.w0(i10, this.I0);
-            if (w02 != this.f17401a2) {
-                this.f17401a2 = w02;
+            int i10 = m6.f27834a7;
+            int w02 = m6.w0(i10, this.I0);
+            if (w02 != this.d2) {
+                this.d2 = w02;
                 v0(w02);
-                FrameLayout frameLayout = this.T1;
+                FrameLayout frameLayout = this.W1;
                 if (frameLayout != null) {
-                    frameLayout.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{l6.r1(0.0f, w02), w02, w02}));
+                    frameLayout.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{m6.r1(0.0f, w02), w02, w02}));
                 }
             }
-            int w03 = l6.w0(l6.kk, this.I0);
-            fi.d dVar = this.U1;
-            if (dVar != null && w03 != this.f17402b2) {
-                this.f17402b2 = w03;
+            int w03 = m6.w0(m6.kk, this.I0);
+            fi.d dVar = this.X1;
+            if (dVar != null && w03 != this.f17405e2) {
+                this.f17405e2 = w03;
                 dVar.setColor(w03);
             }
-            int w04 = l6.w0(i10, this.I0);
-            if (this.F0 < 0 && (i7 = this.G0) == this.Z1 && w04 != i7) {
+            int w04 = m6.w0(i10, this.I0);
+            if (this.F0 < 0 && (i7 = this.G0) == this.f17404c2 && w04 != i7) {
                 this.G0 = w04;
-                this.Z1 = w04;
+                this.f17404c2 = w04;
                 E0(w04);
             }
         } catch (Exception e10) {

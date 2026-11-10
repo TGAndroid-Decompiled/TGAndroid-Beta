@@ -1,36 +1,45 @@
 package org.telegram.ui.Components;
+public final class cd0 extends k6 {
+    public final int f32539b;
+    public final fd0 f32540c;
 
-import android.graphics.Path;
-import android.graphics.RectF;
-public final class cd0 extends Path {
-    public int f32644a;
-    public int f32645b;
-    public int f32646c;
-
-    public final void a(int i7, int i10, int i11) {
-        if (this.f32644a == i7 && this.f32645b == i10 && this.f32646c == i11) {
-            return;
+    public cd0(fd0 fd0Var, int i7) {
+        super("thumbAnimationProgress", 0);
+        this.f32539b = i7;
+        switch (i7) {
+            case 1:
+                this.f32540c = fd0Var;
+                super("thumbImageVisibleProgress", 0);
+                return;
+            default:
+                this.f32540c = fd0Var;
+                return;
         }
-        rewind();
-        RectF rectF = org.telegram.messenger.g0.P;
-        float f10 = i7 - i11;
-        float f11 = i10 + i11;
-        rectF.set(f10, i10 - i11, i7 + i11, f11);
-        arcTo(rectF, -180.0f, 270.0f, false);
-        float f12 = i11 / 81.0f;
-        float f13 = i7;
-        float f14 = f11 - (3.0f * f12);
-        cubicTo(f13 - (13.0f * f12), f11, f13 - (25.0f * f12), f14, f13 - (36.0f * f12), f11 - (8.42f * f12));
-        float f15 = f11 - f12;
-        cubicTo(f13 - (52.0f * f12), f15, f13 - (56.5f * f12), f15, f13 - (78.02f * f12), f15);
-        cubicTo(f13 - (80.0f * f12), f15, f13 - (81.0f * f12), f14, f13 - (79.52f * f12), f11 - (4.5f * f12));
-        float f16 = f13 - (63.73f * f12);
-        cubicTo(f13 - (78.0f * f12), f11 - (6.0f * f12), f16, f11 - (15.0f * f12), f16, f11 - (31.0f * f12));
-        float f17 = i10;
-        cubicTo(f13 - (74.5f * f12), f11 - (44.75f * f12), f10, (f12 * 18.87f) + f17, f10, f17);
-        close();
-        this.f32644a = i7;
-        this.f32645b = i10;
-        this.f32646c = i11;
+    }
+
+    @Override
+    public final void c(Object obj, float f10) {
+        switch (this.f32539b) {
+            case 0:
+                this.f32540c.f33532r = f10;
+                ((fd0) obj).invalidate();
+                return;
+            default:
+                this.f32540c.f33531n = f10;
+                ((fd0) obj).invalidate();
+                return;
+        }
+    }
+
+    @Override
+    public final Object get(Object obj) {
+        switch (this.f32539b) {
+            case 0:
+                fd0 fd0Var = (fd0) obj;
+                return Float.valueOf(this.f32540c.f33532r);
+            default:
+                fd0 fd0Var2 = (fd0) obj;
+                return Float.valueOf(this.f32540c.f33531n);
+        }
     }
 }

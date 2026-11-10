@@ -7,38 +7,38 @@ import android.widget.TextView;
 import org.telegram.messenger.gf;
 import org.telegram.messenger.we;
 public final class v5 extends FrameLayout {
-    public t5[] f30642a;
-    public we[] f30643b;
-    public int f30644c;
+    public t5[] f30653a;
+    public we[] f30654b;
+    public int f30655c;
     public u5 d;
-    public Paint f30645e;
+    public Paint f30656e;
 
     public final void a(int i7, we weVar) {
-        t5[] t5VarArr = this.f30642a;
-        this.f30643b[i7] = weVar;
+        t5[] t5VarArr = this.f30653a;
+        this.f30654b[i7] = weVar;
         if (weVar != null) {
             gf gfVar = weVar.d;
             t5 t5Var = t5VarArr[i7];
-            org.telegram.ui.Components.l9 l9Var = t5Var.f30527b;
-            l9Var.r();
+            org.telegram.ui.Components.k9 k9Var = t5Var.f30538b;
+            k9Var.r();
             if (gfVar != null) {
                 int i10 = gfVar.C;
                 String str = gfVar.I;
                 if (str != null) {
-                    l9Var.s(gfVar.J, gfVar.K, true);
-                    if (gfVar.f26845b) {
-                        l9Var.h("vthumb://" + i10 + ":" + str, null, org.telegram.ui.ActionBar.l6.R4);
+                    k9Var.s(gfVar.J, gfVar.K, true);
+                    if (gfVar.f26849b) {
+                        k9Var.h("vthumb://" + i10 + ":" + str, null, org.telegram.ui.ActionBar.m6.R4);
                     } else {
-                        l9Var.h("thumb://" + i10 + ":" + str, null, org.telegram.ui.ActionBar.l6.R4);
+                        k9Var.h("thumb://" + i10 + ":" + str, null, org.telegram.ui.ActionBar.m6.R4);
                     }
-                    ((TextView) t5Var.f30528c).setText(weVar.f26299c);
-                    ((TextView) t5Var.d).setText(String.format("%d", Integer.valueOf(weVar.f26300e.size())));
+                    ((TextView) t5Var.f30539c).setText(weVar.f26303c);
+                    ((TextView) t5Var.d).setText(String.format("%d", Integer.valueOf(weVar.f26304e.size())));
                     return;
                 }
             }
-            l9Var.setImageDrawable(org.telegram.ui.ActionBar.l6.R4);
-            ((TextView) t5Var.f30528c).setText(weVar.f26299c);
-            ((TextView) t5Var.d).setText(String.format("%d", Integer.valueOf(weVar.f26300e.size())));
+            k9Var.setImageDrawable(org.telegram.ui.ActionBar.m6.R4);
+            ((TextView) t5Var.f30539c).setText(weVar.f26303c);
+            ((TextView) t5Var.d).setText(String.format("%d", Integer.valueOf(weVar.f26304e.size())));
             return;
         }
         t5VarArr[i7].setVisibility(4);
@@ -47,13 +47,13 @@ public final class v5 extends FrameLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         int A;
-        View[] viewArr = this.f30642a;
+        View[] viewArr = this.f30653a;
         if (org.telegram.messenger.g0.Q1()) {
-            A = org.telegram.messenger.camera.q.A(4.0f, this.f30644c - 1, org.telegram.messenger.g0.L(490.0f) - org.telegram.messenger.g0.L(12.0f)) / this.f30644c;
+            A = org.telegram.messenger.camera.q.A(4.0f, this.f30655c - 1, org.telegram.messenger.g0.L(490.0f) - org.telegram.messenger.g0.L(12.0f)) / this.f30655c;
         } else {
-            A = org.telegram.messenger.camera.q.A(4.0f, this.f30644c - 1, org.telegram.messenger.g0.f22563q.x - org.telegram.messenger.g0.L(12.0f)) / this.f30644c;
+            A = org.telegram.messenger.camera.q.A(4.0f, this.f30655c - 1, org.telegram.messenger.g0.f22567q.x - org.telegram.messenger.g0.L(12.0f)) / this.f30655c;
         }
-        for (int i11 = 0; i11 < this.f30644c; i11++) {
+        for (int i11 = 0; i11 < this.f30655c; i11++) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewArr[i11].getLayoutParams();
             layoutParams.topMargin = org.telegram.messenger.g0.L(4.0f);
             layoutParams.leftMargin = (org.telegram.messenger.g0.L(4.0f) + A) * i11;
@@ -69,7 +69,7 @@ public final class v5 extends FrameLayout {
         int i10;
         int i11 = 0;
         while (true) {
-            t5[] t5VarArr = this.f30642a;
+            t5[] t5VarArr = this.f30653a;
             if (i11 < t5VarArr.length) {
                 t5 t5Var = t5VarArr[i11];
                 if (i11 < i7) {
@@ -80,7 +80,7 @@ public final class v5 extends FrameLayout {
                 t5Var.setVisibility(i10);
                 i11++;
             } else {
-                this.f30644c = i7;
+                this.f30655c = i7;
                 return;
             }
         }

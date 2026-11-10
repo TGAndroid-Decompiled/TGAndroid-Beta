@@ -39,7 +39,7 @@ public final class d0 {
 
     public static d0 b() {
         if (f917b == null) {
-            Point point = org.telegram.messenger.g0.f22563q;
+            Point point = org.telegram.messenger.g0.f22567q;
             f917b = new d0(point.x, point.y);
         }
         return f917b;
@@ -50,6 +50,6 @@ public final class d0 {
     }
 
     public d0(int i7, int i10) {
-        this.f918a = t0.f25566b.getSharedPreferences(a8.p0.m(i7, i10, "pip_floating_", "_"), 0);
+        this.f918a = t0.f25570b.getSharedPreferences(a8.p0.m(i7, i10, "pip_floating_", "_"), 0);
     }
 }

@@ -1,112 +1,172 @@
 package org.telegram.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class bz0 implements org.telegram.ui.Components.dj0, org.telegram.ui.Components.fj0, sw {
-    public final SaveToGallerySettingsActivity f44165a;
+import android.widget.FrameLayout;
+import java.util.Locale;
+import org.telegram.messenger.MediaController;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class bz0 extends org.telegram.ui.ActionBar.f2 {
+    public static final int[] d = {750000, 1000000, 1200000, 2000000};
+    public final int f44184a;
+    public org.telegram.ui.Components.pj0 f44185b;
+    public org.telegram.ui.Components.oj0 f44186c;
 
-    public bz0(SaveToGallerySettingsActivity saveToGallerySettingsActivity) {
-        this.f44165a = saveToGallerySettingsActivity;
+    public bz0(int i7, Bundle bundle) {
+        super(bundle);
+        this.f44184a = i7;
     }
 
-    @Override
-    public boolean G() {
-        return false;
-    }
-
-    @Override
-    public boolean N(yw ywVar) {
-        return false;
-    }
-
-    @Override
-    public void f(float f10, float f11, int i7, View view) {
-        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f44165a;
-        ArrayList arrayList = saveToGallerySettingsActivity.f41901s;
-        if (i7 == saveToGallerySettingsActivity.f41897e) {
-            org.telegram.messenger.rv c02 = saveToGallerySettingsActivity.c0();
-            c02.f25345a = !c02.f25345a;
-            saveToGallerySettingsActivity.d0();
-            saveToGallerySettingsActivity.e0();
-        } else if (i7 == saveToGallerySettingsActivity.f41898f) {
-            org.telegram.messenger.rv c03 = saveToGallerySettingsActivity.c0();
-            c03.f25346b = !c03.f25346b;
-            saveToGallerySettingsActivity.d0();
-            saveToGallerySettingsActivity.e0();
-        } else if (((dz0) arrayList.get(i7)).f54544a == 1) {
-            Bundle bundle = new Bundle();
-            bundle.putBoolean("onlySelect", true);
-            bundle.putBoolean("checkCanWrite", false);
-            int i10 = saveToGallerySettingsActivity.f41894a;
-            if (i10 == 2) {
-                bundle.putInt("dialogsType", 6);
-            } else if (i10 == 4) {
-                bundle.putInt("dialogsType", 5);
-            } else {
-                bundle.putInt("dialogsType", 4);
+    public static void Z(bz0 bz0Var, int i7) {
+        if (i7 == 1) {
+            xi.a aVar = xi.e.f58865b;
+            boolean z9 = !MediaController.s0(bz0Var.currentAccount);
+            synchronized (aVar) {
+                aVar.d = z9;
+                aVar.f58857c = true;
+                aVar.f58856b = true;
+                xi.d.f58863a.edit().putBoolean("audio_recorder_v2_enabled", z9).apply();
             }
-            bundle.putBoolean("allowGlobalSearch", false);
-            yw ywVar = new yw(bundle);
-            ywVar.D2 = new bz0(saveToGallerySettingsActivity);
-            saveToGallerySettingsActivity.presentFragment(ywVar);
-        } else if (((dz0) arrayList.get(i7)).f54544a == 2) {
-            Bundle bundle2 = new Bundle();
-            bundle2.putLong("dialog_id", ((dz0) arrayList.get(i7)).f45134c.d);
-            bundle2.putInt("type", saveToGallerySettingsActivity.f41894a);
-            saveToGallerySettingsActivity.presentFragment(new SaveToGallerySettingsActivity(bundle2));
-        } else if (((dz0) arrayList.get(i7)).f54544a == 4) {
-            org.telegram.ui.ActionBar.u1 u1Var = org.telegram.ui.Components.v4.L(saveToGallerySettingsActivity.getParentActivity(), org.telegram.messenger.id.M0(2131747913, null), org.telegram.messenger.id.M0(2131747914, null), org.telegram.messenger.id.M0(2131751598, null), new tu0(saveToGallerySettingsActivity, 11), null).f27296a;
-            u1Var.show();
-            u1Var.i();
+            ((l4) bz0Var.f44186c).f();
+        } else if (MediaController.s0(bz0Var.currentAccount) && i7 == 2) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(bz0Var.getParentActivity());
+            alertDialog$Builder.f27300a.R = org.telegram.messenger.id.M0(2131753922, null);
+            alertDialog$Builder.f(new CharSequence[]{org.telegram.messenger.id.M0(2131753921, null), org.telegram.messenger.id.M0(2131753920, null)}, new k4(bz0Var, 0));
+            bz0Var.showDialog(alertDialog$Builder.f27300a);
+        }
+    }
+
+    public static void a0(bz0 bz0Var, int i7) {
+        if (i7 == 1) {
+            xi.a aVar = xi.e.d;
+            boolean z9 = !org.telegram.ui.Components.t40.e(bz0Var.currentAccount);
+            synchronized (aVar) {
+                aVar.d = z9;
+                aVar.f58857c = true;
+                aVar.f58856b = true;
+                xi.d.f58863a.edit().putBoolean("round_video_camera2_enabled", z9).apply();
+            }
+            ((l4) bz0Var.f44186c).f();
+        } else if (org.telegram.ui.Components.t40.e(bz0Var.currentAccount)) {
+            int i10 = 0;
+            if (i7 == 2) {
+                bz0Var.g0(2131745986, new CharSequence[]{"480p", "360p"}, new jo0(6));
+            } else if (i7 == 3) {
+                bz0Var.g0(2131745996, new CharSequence[]{org.telegram.messenger.id.M0(2131745995, null), org.telegram.messenger.id.M0(2131745993, null), org.telegram.messenger.id.M0(2131745994, null)}, new jo0(7));
+            } else if (i7 == 4) {
+                bz0Var.g0(2131745989, new CharSequence[]{"30 FPS", "60 FPS"}, new jo0(8));
+            } else if (i7 == 5) {
+                CharSequence[] charSequenceArr = new CharSequence[4];
+                while (true) {
+                    int[] iArr = d;
+                    if (i10 < 3) {
+                        charSequenceArr[i10] = f0(iArr[i10]);
+                        i10++;
+                    } else {
+                        bz0Var.g0(2131745997, charSequenceArr, new jo0(9));
+                        return;
+                    }
+                }
+            } else if (i7 == 8) {
+                xi.a aVar2 = xi.e.f58870i;
+                aVar2.a();
+                aVar2.b(true ^ aVar2.d);
+                ((l4) bz0Var.f44186c).g(i7);
+            }
+        }
+    }
+
+    public static String f0(int i7) {
+        if (i7 % 1000000 == 0) {
+            return (i7 / 1000000) + " Mbps";
+        } else if (i7 > 1000000) {
+            return String.format(Locale.US, "%.1f Mbps", Float.valueOf(i7 / 1000000.0f));
+        } else {
+            return (i7 / 1000) + " kbps";
         }
     }
 
     @Override
-    public boolean f1(View view) {
-        return false;
-    }
-
-    @Override
-    public boolean y(yw ywVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, y91 y91Var) {
-        Bundle bundle = new Bundle();
-        bundle.putLong("dialog_id", ((org.telegram.messenger.xr) arrayList.get(0)).f26520a);
-        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f44165a;
-        bundle.putInt("type", saveToGallerySettingsActivity.f41894a);
-        saveToGallerySettingsActivity.presentFragment(new SaveToGallerySettingsActivity(bundle), true);
-        return true;
-    }
-
-    @Override
-    public void q(float f10) {
-    }
-
-    @Override
-    public void i() {
-    }
-
-    @Override
-    public boolean mo19f(float f10, float f11, int i7, View view) {
-        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f44165a;
-        ArrayList arrayList = saveToGallerySettingsActivity.f41901s;
-        if (((dz0) arrayList.get(i7)).f54544a == 2) {
-            org.telegram.messenger.qv qvVar = ((dz0) arrayList.get(i7)).f45134c;
-            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(saveToGallerySettingsActivity.getParentActivity(), null);
-            org.telegram.ui.ActionBar.z0 c10 = org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, 2131232106, org.telegram.messenger.id.M0(2131751280, null), false, null);
-            org.telegram.ui.ActionBar.z0 c11 = org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, 2131232108, org.telegram.messenger.id.M0(2131751542, null), false, null);
-            int i10 = org.telegram.ui.ActionBar.l6.f28086p7;
-            c11.d(org.telegram.ui.ActionBar.l6.x0(null, i10, false), org.telegram.ui.ActionBar.l6.x0(null, i10, false));
-            org.telegram.ui.ActionBar.g1 N = org.telegram.ui.Components.v4.N(saveToGallerySettingsActivity, actionBarPopupWindow$ActionBarPopupWindowLayout, view, f10, f11);
-            actionBarPopupWindow$ActionBarPopupWindowLayout.setParentWindow(N);
-            c10.setOnClickListener(new bi.la(saveToGallerySettingsActivity, N, i7, 17));
-            c11.setOnClickListener(new z(saveToGallerySettingsActivity, N, qvVar, 15));
-            return true;
+    public final View createView(Context context) {
+        switch (this.f44184a) {
+            case 0:
+                setHasOwnBackground(true);
+                this.simpleActionBar.setBackButtonImage(2131231240);
+                this.simpleActionBar.setTitle(org.telegram.messenger.id.M0(2131745985, null));
+                this.simpleActionBar.setActionBarMenuOnItemClick(new qt0(this, 7));
+                FrameLayout frameLayout = new FrameLayout(context);
+                this.fragmentView = frameLayout;
+                org.telegram.ui.Components.pj0 pj0Var = new org.telegram.ui.Components.pj0(context, null);
+                this.f44185b = pj0Var;
+                pj0Var.r1();
+                this.f44185b.setSectionsDrawBackground(true);
+                this.f44185b.setLayoutManager(new v4.b0());
+                this.f44185b.setVerticalScrollBarEnabled(false);
+                org.telegram.ui.Components.pj0 pj0Var2 = this.f44185b;
+                l4 l4Var = new l4(17, this, context);
+                this.f44186c = l4Var;
+                pj0Var2.setAdapter(l4Var);
+                this.f44185b.setOnItemClickListener(new ay0(this, 2));
+                frameLayout.addView(this.f44185b, c8.ha.c(-1.0f, -1));
+                return this.fragmentView;
+            default:
+                setHasOwnBackground(true);
+                this.simpleActionBar.setBackButtonImage(2131231240);
+                this.simpleActionBar.setTitle(org.telegram.messenger.id.M0(2131753919, null));
+                this.simpleActionBar.setActionBarMenuOnItemClick(new bi.s(this, 23));
+                FrameLayout frameLayout2 = new FrameLayout(context);
+                this.fragmentView = frameLayout2;
+                org.telegram.ui.Components.pj0 pj0Var3 = new org.telegram.ui.Components.pj0(context, null);
+                this.f44185b = pj0Var3;
+                pj0Var3.setSectionsDrawBackground(true);
+                this.f44185b.r1();
+                this.f44185b.setLayoutManager(new v4.b0());
+                this.f44185b.setVerticalScrollBarEnabled(false);
+                org.telegram.ui.Components.pj0 pj0Var4 = this.f44185b;
+                l4 l4Var2 = new l4(0, this, context);
+                this.f44186c = l4Var2;
+                pj0Var4.setAdapter(l4Var2);
+                this.f44185b.setOnItemClickListener(new h(this, 2));
+                frameLayout2.addView(this.f44185b, c8.ha.c(-1.0f, -1));
+                return this.fragmentView;
         }
-        return false;
+    }
+
+    public void g0(int i7, CharSequence[] charSequenceArr, jo0 jo0Var) {
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
+        alertDialog$Builder.f27300a.R = org.telegram.messenger.id.M0(i7, null);
+        alertDialog$Builder.f(charSequenceArr, new og.j(11, this, jo0Var));
+        showDialog(alertDialog$Builder.f27300a);
     }
 
     @Override
-    public void r0(View view, float f10, float f11) {
+    public final org.telegram.ui.Components.pj0 getListViewForSimpleGlass() {
+        switch (this.f44184a) {
+            case 0:
+                return this.f44185b;
+            default:
+                return this.f44185b;
+        }
+    }
+
+    @Override
+    public final boolean isSupportEdgeToEdge() {
+        switch (this.f44184a) {
+            case 0:
+                return true;
+            default:
+                return true;
+        }
+    }
+
+    @Override
+    public final boolean useSimpleActionBar() {
+        switch (this.f44184a) {
+            case 0:
+                return true;
+            default:
+                return true;
+        }
     }
 }

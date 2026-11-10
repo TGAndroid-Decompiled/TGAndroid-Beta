@@ -5,16 +5,16 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import org.telegram.ui.Components.xp;
-import org.telegram.ui.rv;
+import org.telegram.ui.sv;
 public final class g extends xp {
     public int D;
     public final Drawable E;
     public final Drawable F;
-    public final rv G;
+    public final sv G;
 
-    public g(rv rvVar, Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
+    public g(sv svVar, Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super(drawable, drawable2);
-        this.G = rvVar;
+        this.G = svVar;
         this.E = drawable3;
         this.F = drawable4;
     }
@@ -23,22 +23,22 @@ public final class g extends xp {
     public final void draw(Canvas canvas) {
         int i7;
         int i10;
-        rv rvVar = this.G;
-        int i11 = rvVar.f9528b;
+        sv svVar = this.G;
+        int i11 = svVar.f9533b;
         if (i11 == 0) {
-            i7 = org.telegram.ui.ActionBar.l6.f28145s8;
+            i7 = org.telegram.ui.ActionBar.m6.f28170s8;
         } else {
-            i7 = org.telegram.ui.ActionBar.l6.M8;
+            i7 = org.telegram.ui.ActionBar.m6.M8;
         }
-        int f10 = rvVar.f(i7);
+        int f10 = svVar.f(i7);
         if (this.D != f10) {
             this.D = f10;
             if (i11 == 0) {
-                i10 = org.telegram.ui.ActionBar.l6.A8;
+                i10 = org.telegram.ui.ActionBar.m6.A8;
             } else {
-                i10 = org.telegram.ui.ActionBar.l6.P8;
+                i10 = org.telegram.ui.ActionBar.m6.P8;
             }
-            int f11 = i0.a.f(0.1f, rvVar.f(i10), f10);
+            int f11 = i0.a.f(0.1f, svVar.f(i10), f10);
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
             this.E.setColorFilter(new PorterDuffColorFilter(f11, mode));
             this.F.setColorFilter(new PorterDuffColorFilter(f10, mode));

@@ -1,11 +1,11 @@
 package ce;
 public final class h implements c {
-    public final gf.g f6104a;
-    public final m1.n f6105b;
+    public final gf.g f6109a;
+    public final m1.n f6110b;
 
     public h(gf.g gVar, m1.n nVar) {
-        this.f6104a = gVar;
-        this.f6105b = nVar;
+        this.f6109a = gVar;
+        this.f6110b = nVar;
     }
 
     @Override

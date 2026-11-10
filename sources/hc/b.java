@@ -2,26 +2,26 @@ package hc;
 
 import java.util.ArrayList;
 public final class b {
-    public final cc.b f14456a;
-    public final int f14458c;
+    public final cc.b f14458a;
+    public final int f14460c;
     public final int d;
-    public final int f14459e;
-    public final int f14460f;
-    public final float f14461g;
-    public final ArrayList f14457b = new ArrayList(5);
+    public final int f14461e;
+    public final int f14462f;
+    public final float f14463g;
+    public final ArrayList f14459b = new ArrayList(5);
     public final int[] h = new int[3];
 
     public b(cc.b bVar, int i7, int i10, int i11, int i12, float f10) {
-        this.f14456a = bVar;
-        this.f14458c = i7;
+        this.f14458a = bVar;
+        this.f14460c = i7;
         this.d = i10;
-        this.f14459e = i11;
-        this.f14460f = i12;
-        this.f14461g = f10;
+        this.f14461e = i11;
+        this.f14462f = i12;
+        this.f14463g = f10;
     }
 
     public final boolean a(int[] iArr) {
-        float f10 = this.f14461g;
+        float f10 = this.f14463g;
         float f11 = f10 / 2.0f;
         for (int i7 = 0; i7 < 3; i7++) {
             if (Math.abs(f10 - iArr[i7]) >= f11) {
@@ -40,8 +40,8 @@ public final class b {
         float f10 = (i10 - i11) - (i14 / 2.0f);
         int i16 = (int) f10;
         int i17 = i14 * 2;
-        cc.b bVar = this.f14456a;
-        int i18 = bVar.f6043b;
+        cc.b bVar = this.f14458a;
+        int i18 = bVar.f6048b;
         int[] iArr2 = this.h;
         iArr2[0] = 0;
         iArr2[1] = 0;
@@ -93,19 +93,19 @@ public final class b {
         }
         if (!Float.isNaN(f11)) {
             float f12 = ((iArr[0] + iArr[1]) + iArr[2]) / 3.0f;
-            ArrayList arrayList = this.f14457b;
+            ArrayList arrayList = this.f14459b;
             int size = arrayList.size();
             while (i12 < size) {
                 Object obj = arrayList.get(i12);
                 i12++;
                 a aVar = (a) obj;
-                float f13 = aVar.f14455c;
+                float f13 = aVar.f14457c;
                 float f14 = aVar.f3180a;
                 float f15 = aVar.f3181b;
                 if (Math.abs(f11 - f15) <= f12 && Math.abs(f10 - f14) <= f12) {
                     float abs = Math.abs(f12 - f13);
                     if (abs <= 1.0f || abs <= f13) {
-                        return new a((f14 + f10) / 2.0f, (f15 + f11) / 2.0f, (aVar.f14455c + f12) / 2.0f);
+                        return new a((f14 + f10) / 2.0f, (f15 + f11) / 2.0f, (aVar.f14457c + f12) / 2.0f);
                     }
                 }
             }

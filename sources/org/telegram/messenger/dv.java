@@ -12,29 +12,29 @@ public final class dv extends fu implements Drawable.Callback {
     public final int X;
     public final int Y;
     public final int Z;
-    public final int f22119a0;
-    public pb.b f22120b0;
-    public Bitmap f22121c0;
+    public final int f22123a0;
+    public pb.b f22124b0;
+    public Bitmap f22125c0;
 
     public dv(kv kvVar, Rect rect, int i7, int i10, int i11) {
         super(kvVar, rect, i7);
         this.Z = i10;
-        this.f22119a0 = i11;
+        this.f22123a0 = i11;
         t41 t41Var = new t41();
         this.W = t41Var;
         t41Var.setCallback(this);
-        t41Var.f38283n = id.M0(2131743831, null);
-        t41Var.f38284o = id.M0(2131743832, null);
-        t41Var.f38285p = id.M0(2131743826, null);
-        t41Var.f38279j = new ds(kvVar, 7);
-        int i12 = this.f22471c;
+        t41Var.f38175n = id.M0(2131743831, null);
+        t41Var.f38176o = id.M0(2131743832, null);
+        t41Var.f38177p = id.M0(2131743826, null);
+        t41Var.f38171j = new ds(kvVar, 7);
+        int i12 = this.f22475c;
         this.X = i12;
         this.Y = t41Var.a(i12);
     }
 
     @Override
     public final int I() {
-        Rect rect = this.f22470b;
+        Rect rect = this.f22474b;
         return rect.top + this.Y + rect.bottom;
     }
 
@@ -42,7 +42,7 @@ public final class dv extends fu implements Drawable.Callback {
     public final boolean Y(MotionEvent motionEvent) {
         View view = this.V;
         if (view != null) {
-            return this.W.f38278i.a(view, motionEvent);
+            return this.W.f38170i.a(view, motionEvent);
         }
         return false;
     }
@@ -50,8 +50,8 @@ public final class dv extends fu implements Drawable.Callback {
     public final float i0(org.telegram.ui.Cells.x1 x1Var) {
         int i7;
         if (x1Var != null) {
-            kv kvVar = this.f22469a;
-            if (kvVar.f23779s || kvVar.f23781u) {
+            kv kvVar = this.f22473a;
+            if (kvVar.f23783s || kvVar.f23785u) {
                 i7 = g0.W1(Math.max(0.0f, Math.min(1.0f, x1Var.L1)), this.P, this.N);
                 return i7;
             }
@@ -70,8 +70,8 @@ public final class dv extends fu implements Drawable.Callback {
 
     public final float j0(org.telegram.ui.Cells.x1 x1Var) {
         if (x1Var != null) {
-            kv kvVar = this.f22469a;
-            if (kvVar.f23779s || kvVar.f23781u) {
+            kv kvVar = this.f22473a;
+            if (kvVar.f23783s || kvVar.f23785u) {
                 return g0.T1(this.O, this.M, Math.max(0.0f, Math.min(1.0f, x1Var.L1)));
             }
         }
@@ -80,7 +80,7 @@ public final class dv extends fu implements Drawable.Callback {
 
     @Override
     public final void q(Canvas canvas) {
-        Rect rect = this.f22470b;
+        Rect rect = this.f22474b;
         int i7 = rect.left;
         int i10 = rect.top;
         t41 t41Var = this.W;

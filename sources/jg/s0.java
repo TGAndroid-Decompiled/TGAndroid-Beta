@@ -6,19 +6,19 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.id;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.v4;
 import org.telegram.ui.Cells.x3;
-import org.telegram.ui.Components.mz;
+import org.telegram.ui.Components.lz;
 public abstract class s0 extends c {
     public final Context f16914x;
-    public final g6 f16915y;
+    public final h6 f16915y;
 
-    public s0(Context context, g6 g6Var, boolean z9, boolean z10) {
+    public s0(Context context, h6 h6Var, boolean z9, boolean z10) {
         super(z9, z10);
         this.f16914x = context;
-        this.f16915y = g6Var;
-        new mz(context, null).setIsSingleCell(true);
+        this.f16915y = h6Var;
+        new lz(context, null).setIsSingleCell(true);
     }
 
     @Override
@@ -58,8 +58,8 @@ public abstract class s0 extends c {
     @Override
     public final void t(v4.d1 d1Var, int i7) {
         int i10;
-        int i11 = d1Var.f57060f;
-        View view = d1Var.f57056a;
+        int i11 = d1Var.f57056f;
+        View view = d1Var.f57052a;
         boolean z9 = true;
         if (i11 == 0) {
             TLRPC.TL_messageMediaVenue H = H(i7);
@@ -81,12 +81,12 @@ public abstract class s0 extends c {
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View x3Var;
-        g6 g6Var = this.f16915y;
+        h6 h6Var = this.f16915y;
         Context context = this.f16914x;
         if (i7 == 0) {
-            x3Var = new v4(context, g6Var);
+            x3Var = new v4(context, h6Var);
         } else {
-            x3Var = new x3(context, g6Var);
+            x3Var = new x3(context, h6Var);
         }
         return new v4.d1(x3Var);
     }

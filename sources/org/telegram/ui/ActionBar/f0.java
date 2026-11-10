@@ -7,24 +7,24 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
 import java.util.ArrayList;
 import org.telegram.ui.Components.vp;
-import org.telegram.ui.Components.z70;
+import org.telegram.ui.Components.y70;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.b20;
-import org.telegram.ui.bb1;
-import org.telegram.ui.zo0;
+import org.telegram.ui.ap0;
+import org.telegram.ui.c20;
+import org.telegram.ui.cb1;
 public final class f0 extends ImageView {
-    public final int f27464a;
-    public final Object f27465b;
+    public final int f27468a;
+    public final Object f27469b;
 
     public f0(int i7, Context context, Object obj) {
         super(context);
-        this.f27464a = i7;
-        this.f27465b = obj;
+        this.f27468a = i7;
+        this.f27469b = obj;
     }
 
     @Override
     public void draw(Canvas canvas) {
-        switch (this.f27464a) {
+        switch (this.f27468a) {
             case 0:
                 getBackground().draw(canvas);
                 super.draw(canvas);
@@ -37,12 +37,12 @@ public final class f0 extends ImageView {
 
     @Override
     public void invalidate() {
-        switch (this.f27464a) {
+        switch (this.f27468a) {
             case 2:
                 super.invalidate();
-                b20 b20Var = (b20) this.f27465b;
-                b20Var.f39390f0.invalidate();
-                b20Var.invalidate();
+                c20 c20Var = (c20) this.f27469b;
+                c20Var.f39310f0.invalidate();
+                c20Var.invalidate();
                 return;
             default:
                 super.invalidate();
@@ -52,23 +52,23 @@ public final class f0 extends ImageView {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f27464a) {
+        switch (this.f27468a) {
             case 0:
-                r0 r0Var = (r0) this.f27465b;
+                r0 r0Var = (r0) this.f27469b;
                 super.onDetachedFromWindow();
                 clearAnimation();
                 if (getTag() == null) {
-                    r0Var.f28447s.setVisibility(4);
-                    r0Var.f28447s.setAlpha(0.0f);
-                    r0Var.f28447s.setRotation(45.0f);
-                    r0Var.f28447s.setScaleX(0.0f);
-                    r0Var.f28447s.setScaleY(0.0f);
+                    r0Var.f28452s.setVisibility(4);
+                    r0Var.f28452s.setAlpha(0.0f);
+                    r0Var.f28452s.setRotation(45.0f);
+                    r0Var.f28452s.setScaleX(0.0f);
+                    r0Var.f28452s.setScaleY(0.0f);
                     return;
                 }
-                r0Var.f28447s.setAlpha(1.0f);
-                r0Var.f28447s.setRotation(0.0f);
-                r0Var.f28447s.setScaleX(1.0f);
-                r0Var.f28447s.setScaleY(1.0f);
+                r0Var.f28452s.setAlpha(1.0f);
+                r0Var.f28452s.setRotation(0.0f);
+                r0Var.f28452s.setScaleX(1.0f);
+                r0Var.f28452s.setScaleY(1.0f);
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -78,12 +78,12 @@ public final class f0 extends ImageView {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f27464a) {
+        switch (this.f27468a) {
             case 4:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 boolean z9 = true;
                 accessibilityNodeInfo.setCheckable(true);
-                if (((bb1) this.f27465b).f43965n.getTransformationMethod() != null) {
+                if (((cb1) this.f27469b).f44307n.getTransformationMethod() != null) {
                     z9 = false;
                 }
                 accessibilityNodeInfo.setChecked(z9);
@@ -96,9 +96,9 @@ public final class f0 extends ImageView {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f27464a) {
+        switch (this.f27468a) {
             case 2:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(k.getCurrentActionBarHeight(), 1073741824));
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(l.getCurrentActionBarHeight(), 1073741824));
                 return;
             default:
                 super.onMeasure(i7, i10);
@@ -108,10 +108,10 @@ public final class f0 extends ImageView {
 
     @Override
     public void setAlpha(float f10) {
-        switch (this.f27464a) {
+        switch (this.f27468a) {
             case 1:
                 super.setAlpha(f10);
-                ((vp) this.f27465b).f39787y.invalidate();
+                ((vp) this.f27469b).f39709y.invalidate();
                 return;
             default:
                 super.setAlpha(f10);
@@ -121,11 +121,11 @@ public final class f0 extends ImageView {
 
     @Override
     public void setTranslationY(float f10) {
-        switch (this.f27464a) {
+        switch (this.f27468a) {
             case 3:
                 super.setTranslationY(f10);
-                PhotoViewer photoViewer = (PhotoViewer) this.f27465b;
-                ArrayList arrayList = photoViewer.f41420h1;
+                PhotoViewer photoViewer = (PhotoViewer) this.f27469b;
+                ArrayList arrayList = photoViewer.f41411h1;
                 if (arrayList != null) {
                     int size = arrayList.size();
                     int i7 = 0;
@@ -135,13 +135,13 @@ public final class f0 extends ImageView {
                         ((fi.m3) obj).setTranslationY(f10);
                     }
                 }
-                zo0 zo0Var = photoViewer.f41411g1;
-                if (zo0Var != null) {
-                    zo0Var.setTranslationY(f10);
+                ap0 ap0Var = photoViewer.f41402g1;
+                if (ap0Var != null) {
+                    ap0Var.setTranslationY(f10);
                 }
-                z70 z70Var = photoViewer.f41402f1;
-                if (z70Var != null) {
-                    z70Var.setTranslationY(f10);
+                y70 y70Var = photoViewer.f41393f1;
+                if (y70Var != null) {
+                    y70Var.setTranslationY(f10);
                     return;
                 }
                 return;

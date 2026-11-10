@@ -9,13 +9,13 @@ import org.telegram.messenger.ej;
 import org.telegram.messenger.id;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.ix;
-import org.telegram.ui.Components.u31;
-public final class h5 implements ix {
-    public final o5 f12133a;
+import org.telegram.ui.Components.hx;
+import org.telegram.ui.Components.t31;
+public final class h5 implements hx {
+    public final o5 f12137a;
 
     public h5(o5 o5Var) {
-        this.f12133a = o5Var;
+        this.f12137a = o5Var;
     }
 
     @Override
@@ -55,7 +55,7 @@ public final class h5 implements ix {
 
     @Override
     public final boolean k() {
-        tg.b editText = ((tg.k2) this.f12133a.f12543s0).getEditText();
+        tg.b editText = ((tg.k2) this.f12137a.f12547s0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -68,7 +68,7 @@ public final class h5 implements ix {
         tg.k2 k2Var;
         tg.b editText;
         org.telegram.messenger.f6[] f6VarArr;
-        tg.j jVar = this.f12133a.f12543s0;
+        tg.j jVar = this.f12137a.f12547s0;
         if (!(jVar instanceof tg.k2) || (editText = (k2Var = (tg.k2) jVar).getEditText()) == null) {
             return;
         }
@@ -80,7 +80,7 @@ public final class h5 implements ix {
             CharSequence m10 = org.telegram.messenger.i6.m(str, k2Var.getFontMetricsInt(), false, null, 0);
             if ((m10 instanceof Spanned) && (f6VarArr = (org.telegram.messenger.f6[]) ((Spanned) m10).getSpans(0, m10.length(), org.telegram.messenger.f6.class)) != null) {
                 for (org.telegram.messenger.f6 f6Var : f6VarArr) {
-                    f6Var.f22370b = 0.85f;
+                    f6Var.f22374b = 0.85f;
                 }
             }
             editText.setText(editText.getText().insert(selectionEnd, m10));
@@ -95,10 +95,10 @@ public final class h5 implements ix {
 
     @Override
     public final void n() {
-        o5 o5Var = this.f12133a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, o5Var.getContext(), o5Var.f12538p1);
+        o5 o5Var = this.f12137a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, o5Var.getContext(), o5Var.f12542p1);
         String M0 = id.M0(2131752068, null);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27300a;
         u1Var.R = M0;
         u1Var.T = id.M0(2131752069, null);
         alertDialog$Builder.k(id.M0(2131752099, null), new di.r4(this, 14));
@@ -113,8 +113,8 @@ public final class h5 implements ix {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z9) {
-        org.telegram.ui.Components.r5 r5Var;
-        tg.b editText = ((tg.k2) this.f12133a.f12543s0).getEditText();
+        org.telegram.ui.Components.q5 q5Var;
+        tg.b editText = ((tg.k2) this.f12137a.f12547s0).getEditText();
         if (editText == null) {
             return;
         }
@@ -125,12 +125,12 @@ public final class h5 implements ix {
         try {
             SpannableString spannableString = new SpannableString(str);
             if (document != null) {
-                r5Var = new org.telegram.ui.Components.r5(document.f26962id, 1.0f, editText.getPaint().getFontMetricsInt());
-                r5Var.document = document;
+                q5Var = new org.telegram.ui.Components.q5(document.f26966id, 1.0f, editText.getPaint().getFontMetricsInt());
+                q5Var.document = document;
             } else {
-                r5Var = new org.telegram.ui.Components.r5(j3, 1.0f, editText.getPaint().getFontMetricsInt());
+                q5Var = new org.telegram.ui.Components.q5(j3, 1.0f, editText.getPaint().getFontMetricsInt());
             }
-            spannableString.setSpan(r5Var, 0, spannableString.length(), 33);
+            spannableString.setSpan(q5Var, 0, spannableString.length(), 33);
             editText.setText(editText.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();
             editText.setSelection(length, length);
@@ -155,7 +155,7 @@ public final class h5 implements ix {
     }
 
     @Override
-    public final void o(u31 u31Var) {
+    public final void o(t31 t31Var) {
     }
 
     @Override

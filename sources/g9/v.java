@@ -2,24 +2,24 @@ package g9;
 
 import java.io.Serializable;
 public final class v implements u, Serializable {
-    public final transient Object f13600a = new Object();
-    public final u f13601b;
-    public volatile transient boolean f13602c;
+    public final transient Object f13602a = new Object();
+    public final u f13603b;
+    public volatile transient boolean f13604c;
     public transient Object d;
 
     public v(u uVar) {
-        this.f13601b = uVar;
+        this.f13603b = uVar;
     }
 
     @Override
     public final Object get() {
-        if (!this.f13602c) {
-            synchronized (this.f13600a) {
+        if (!this.f13604c) {
+            synchronized (this.f13602a) {
                 try {
-                    if (!this.f13602c) {
-                        Object obj = this.f13601b.get();
+                    if (!this.f13604c) {
+                        Object obj = this.f13603b.get();
                         this.d = obj;
-                        this.f13602c = true;
+                        this.f13604c = true;
                         return obj;
                     }
                 } finally {
@@ -32,10 +32,10 @@ public final class v implements u, Serializable {
     public final String toString() {
         Object obj;
         StringBuilder sb2 = new StringBuilder("Suppliers.memoize(");
-        if (this.f13602c) {
+        if (this.f13604c) {
             obj = "<supplier that returned " + this.d + ">";
         } else {
-            obj = this.f13601b;
+            obj = this.f13603b;
         }
         sb2.append(obj);
         sb2.append(")");

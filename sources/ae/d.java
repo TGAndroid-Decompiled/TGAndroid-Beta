@@ -42,12 +42,12 @@ public final class d implements l {
             case 2:
                 CancellationSignal cancellationSignal = (CancellationSignal) this.f1049b;
                 c1.e eVar = (c1.e) this.f1050c;
-                Context context = eVar.f5252e;
+                Context context = eVar.f5257e;
                 a6.f fVar = (a6.f) obj;
                 CredentialProviderPlayServicesImpl.Companion.getClass();
                 if (!a1.g.a(cancellationSignal)) {
                     Intent intent = new Intent(context, HiddenActivity.class);
-                    b1.d.a(eVar.f5255i, intent, "BEGIN_SIGN_IN");
+                    b1.d.a(eVar.f5260i, intent, "BEGIN_SIGN_IN");
                     intent.putExtra("EXTRA_FLOW_PENDING_INTENT", fVar.f291a);
                     try {
                         context.startActivity(intent);
@@ -58,24 +58,24 @@ public final class d implements l {
                         }
                     }
                 }
-                return k.f13829a;
+                return k.f13831a;
             case 3:
                 CancellationSignal cancellationSignal2 = (CancellationSignal) this.f1049b;
                 d1.e eVar2 = (d1.e) this.f1050c;
-                Context context2 = eVar2.f7938e;
+                Context context2 = eVar2.f7943e;
                 PendingIntent result = (PendingIntent) obj;
                 j.e(result, "result");
                 CredentialProviderPlayServicesImpl.Companion.getClass();
                 if (!a1.g.a(cancellationSignal2)) {
                     Intent intent2 = new Intent(context2, HiddenActivity.class);
-                    b1.d.a(eVar2.f7941i, intent2, "CREATE_PUBLIC_KEY_CREDENTIAL");
+                    b1.d.a(eVar2.f7946i, intent2, "CREATE_PUBLIC_KEY_CREDENTIAL");
                     intent2.putExtra("EXTRA_FLOW_PENDING_INTENT", result);
                     try {
                         context2.startActivity(intent2);
                     } catch (Exception unused2) {
                         CredentialProviderPlayServicesImpl.Companion.getClass();
                         if (!a1.g.a(cancellationSignal2)) {
-                            Executor executor = eVar2.f7940g;
+                            Executor executor = eVar2.f7945g;
                             if (executor != null) {
                                 executor.execute(new d1.d(eVar2, 0));
                             } else {
@@ -85,22 +85,22 @@ public final class d implements l {
                         }
                     }
                 }
-                return k.f13829a;
+                return k.f13831a;
             default:
                 g1.a aVar = (g1.a) this.f1050c;
-                Context context3 = aVar.f13410e;
+                Context context3 = aVar.f13412e;
                 m mVar = (m) obj;
                 CredentialProviderPlayServicesImpl.Companion.getClass();
                 if (!a1.g.a((CancellationSignal) this.f1049b)) {
                     Intent intent3 = new Intent(context3, IdentityCredentialApiHiddenActivity.class);
                     intent3.setFlags(65536);
-                    intent3.putExtra("RESULT_RECEIVER", b1.d.d(aVar.f13413i));
+                    intent3.putExtra("RESULT_RECEIVER", b1.d.d(aVar.f13415i));
                     intent3.putExtra("EXTRA_FLOW_PENDING_INTENT", mVar.f16578a);
                     intent3.putExtra("EXTRA_ERROR_NAME", "GET_UNKNOWN");
                     context3.startActivity(intent3);
                 }
-                return k.f13829a;
+                return k.f13831a;
         }
-        return k.f13829a;
+        return k.f13831a;
     }
 }

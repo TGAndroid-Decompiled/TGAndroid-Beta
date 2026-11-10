@@ -17,7 +17,7 @@ import org.telegram.messenger.m5;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.y00;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.os;
+import org.telegram.ui.ps;
 public final class l implements Function {
     public final int f822a;
 
@@ -48,7 +48,7 @@ public final class l implements Function {
             case 1:
                 File file = (File) obj;
                 try {
-                    ea.a aVar = ga.b.f13609g;
+                    ea.a aVar = ga.b.f13611g;
                     String f10 = ga.b.f(file);
                     aVar.getClass();
                     try {
@@ -76,7 +76,7 @@ public final class l implements Function {
                 return Integer.valueOf(Integer.bitCount(((Integer) obj).intValue()));
             case 3:
                 String str = (String) obj;
-                Pattern pattern = Utilities.f21333a;
+                Pattern pattern = Utilities.f21338a;
                 try {
                     j3 = Long.parseLong(str);
                 } catch (Exception unused) {
@@ -91,7 +91,7 @@ public final class l implements Function {
             case 6:
                 return qp.a((int[]) obj);
             case 7:
-                return ((y00) obj).f26570b;
+                return ((y00) obj).f26574b;
             case 8:
                 return Long.valueOf(m5.o((TLRPC.Peer) obj));
             case 9:
@@ -109,9 +109,9 @@ public final class l implements Function {
             case 13:
                 return Long.valueOf(m5.o(((TLRPC.GroupCallParticipant) obj).peer));
             case 14:
-                return ((os) obj).f48510a;
+                return ((ps) obj).f48826a;
             default:
-                return ((os) obj).f48510a;
+                return ((ps) obj).f48826a;
         }
     }
 

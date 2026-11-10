@@ -4,21 +4,21 @@ import android.app.Activity;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class hm extends org.telegram.ui.Components.no0 {
-    public final org.telegram.messenger.ij R2;
-    public final nm S2;
+public final class hm extends org.telegram.ui.Components.mo0 {
+    public final org.telegram.messenger.ij U2;
+    public final nm V2;
 
-    public hm(nm nmVar, Activity activity, cn cnVar, ArrayList arrayList, boolean z9, boolean z10, org.telegram.ui.ActionBar.g6 g6Var, boolean z11, org.telegram.messenger.ij ijVar) {
-        super(activity, cnVar, arrayList, null, null, z9, null, null, false, false, z10, null, g6Var);
-        this.S2 = nmVar;
-        this.R2 = ijVar;
-        this.S1 = z11;
+    public hm(nm nmVar, Activity activity, cn cnVar, ArrayList arrayList, boolean z9, boolean z10, org.telegram.ui.ActionBar.h6 h6Var, boolean z11, org.telegram.messenger.ij ijVar) {
+        super(activity, cnVar, arrayList, null, null, z9, null, null, false, false, z10, null, h6Var);
+        this.V2 = nmVar;
+        this.U2 = ijVar;
+        this.V1 = z11;
     }
 
     @Override
     public final void K() {
         int i7;
-        cn cnVar = this.S2.f48207a;
+        cn cnVar = this.V2.f48227a;
         Activity parentActivity = cnVar.getParentActivity();
         i7 = ((org.telegram.ui.ActionBar.f2) cnVar).classGuid;
         org.telegram.messenger.g0.a3(parentActivity, i7);
@@ -30,26 +30,26 @@ public final class hm extends org.telegram.ui.Components.no0 {
 
     @Override
     public final void R0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z9) {
-        nm nmVar = this.S2;
-        cn cnVar = nmVar.f48207a;
-        int i10 = cn.f44367kd;
+        nm nmVar = this.V2;
+        cn cnVar = nmVar.f48227a;
+        int i10 = cn.f44408kd;
         cnVar.g8();
-        if (nmVar.f48207a.M3 != null && z9) {
+        if (nmVar.f48227a.M3 != null && z9) {
             if (hVar.m() == 1) {
-                if (((TLRPC.Dialog) hVar.n(0)).f26960id != nmVar.f48207a.getUserConfig().e() || !org.telegram.ui.Components.hc.a0(nmVar.f48207a).g0(i7, ((TLRPC.Dialog) hVar.n(0)).f26960id)) {
-                    nmVar.f48207a.M3.k(((TLRPC.Dialog) hVar.n(0)).f26960id, 53, Integer.valueOf(i7), tL_forumTopic, null, null);
+                if (((TLRPC.Dialog) hVar.n(0)).f26964id != nmVar.f48227a.getUserConfig().e() || !org.telegram.ui.Components.gc.a0(nmVar.f48227a).g0(i7, ((TLRPC.Dialog) hVar.n(0)).f26964id)) {
+                    nmVar.f48227a.M3.k(((TLRPC.Dialog) hVar.n(0)).f26964id, 53, Integer.valueOf(i7), tL_forumTopic, null, null);
                     return;
                 }
                 return;
             }
-            nmVar.f48207a.M3.k(0L, 53, Integer.valueOf(i7), Integer.valueOf(hVar.m()), null, null);
+            nmVar.f48227a.M3.k(0L, 53, Integer.valueOf(i7), Integer.valueOf(hVar.m()), null, null);
         }
     }
 
     @Override
     public final void S0(final View view) {
         fi.oa oaVar;
-        cn cnVar = this.S2.f48207a;
+        cn cnVar = this.V2.f48227a;
         org.telegram.messenger.dj djVar = null;
         if (view instanceof org.telegram.ui.Cells.d7) {
             oaVar = fi.qa.b((org.telegram.ui.Cells.d7) view);
@@ -57,7 +57,7 @@ public final class hm extends org.telegram.ui.Components.no0 {
             oaVar = null;
         }
         ArrayList arrayList = new ArrayList();
-        org.telegram.messenger.ij ijVar = this.R2;
+        org.telegram.messenger.ij ijVar = this.U2;
         if (ijVar.c1() != 0) {
             djVar = (org.telegram.messenger.dj) cnVar.N6.f(ijVar.c1());
         }
@@ -66,7 +66,7 @@ public final class hm extends org.telegram.ui.Components.no0 {
         } else {
             arrayList.add(ijVar);
         }
-        final fi.va D = fi.va.D(cnVar.getParentActivity(), this.f28621a);
+        final fi.va D = fi.va.D(cnVar.getParentActivity(), this.f28669a);
         D.R = new org.telegram.messenger.z10() {
             @Override
             public final void a(Object obj, Object obj2, Object obj3, Object obj4) {
@@ -78,7 +78,7 @@ public final class hm extends org.telegram.ui.Components.no0 {
                 fi.oa oaVar2 = null;
                 if (booleanValue) {
                     hm hmVar = hm.this;
-                    org.telegram.messenger.g0.h3(new rf(18, hmVar, l11));
+                    org.telegram.messenger.g0.h3(new oe(19, hmVar, l11));
                     hmVar.dismiss();
                     vaVar.X(null);
                 } else {

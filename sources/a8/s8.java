@@ -4,7 +4,7 @@ public final class s8 {
     public final a0 f635b;
 
     public s8(q4.q qVar) {
-        this.f634a = (t8) qVar.f53816b;
-        this.f635b = (a0) qVar.f53817c;
+        this.f634a = (t8) qVar.f53815b;
+        this.f635b = (a0) qVar.f53816c;
     }
 }

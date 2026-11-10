@@ -6,21 +6,21 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 public final class pa implements RequestDelegate {
-    public final int f48676a;
-    public final mb f48677b;
+    public final int f48730a;
+    public final mb f48731b;
 
     public pa(mb mbVar, int i7) {
-        this.f48676a = i7;
-        this.f48677b = mbVar;
+        this.f48730a = i7;
+        this.f48731b = mbVar;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f48676a) {
+        switch (this.f48730a) {
             case 0:
                 if (tLObject != null) {
                     final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults = (TLRPC.TL_channels_adminLogResults) tLObject;
-                    final mb mbVar = this.f48677b;
+                    final mb mbVar = this.f48731b;
                     org.telegram.messenger.g0.h3(new Runnable() {
                         @Override
                         public final void run() {
@@ -38,7 +38,7 @@ public final class pa implements RequestDelegate {
                 }
                 return;
             case 1:
-                mb mbVar2 = this.f48677b;
+                mb mbVar2 = this.f48731b;
                 mbVar2.getClass();
                 if (tLObject instanceof Vector) {
                     ArrayList<T> arrayList = ((Vector) tLObject).objects;
@@ -53,12 +53,12 @@ public final class pa implements RequestDelegate {
                 }
                 return;
             case 2:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.ActionBar.p(20, this.f48677b, tLObject));
+                org.telegram.messenger.g0.h3(new org.telegram.ui.ActionBar.c(21, this.f48731b, tLObject));
                 return;
             case 3:
                 if (tLObject != null) {
                     final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults2 = (TLRPC.TL_channels_adminLogResults) tLObject;
-                    final mb mbVar3 = this.f48677b;
+                    final mb mbVar3 = this.f48731b;
                     org.telegram.messenger.g0.h3(new Runnable() {
                         @Override
                         public final void run() {
@@ -76,7 +76,7 @@ public final class pa implements RequestDelegate {
                 }
                 return;
             default:
-                org.telegram.messenger.g0.h3(new o1(this.f48677b, tL_error, tLObject, 9));
+                org.telegram.messenger.g0.h3(new o1(this.f48731b, tL_error, tLObject, 9));
                 return;
         }
     }

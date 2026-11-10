@@ -1,58 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import androidx.mediarouter.app.MediaRouteButton;
-import java.lang.reflect.Field;
-public abstract class vc extends MediaRouteButton {
-    public boolean f39035a;
+import android.content.Context;
+import android.widget.LinearLayout;
+public final class vc extends LinearLayout {
+    public final wc[] f38984a;
 
-    public final void a() {
-        boolean b10 = b();
-        if (this.f39035a != b10) {
-            this.f39035a = b10;
-            c(b10);
+    public vc(Context context) {
+        super(context);
+        this.f38984a = new wc[2];
+    }
+
+    public final void a(org.telegram.ui.uj ujVar, LinearLayout.LayoutParams layoutParams) {
+        int childCount = getChildCount();
+        if (childCount < 2) {
+            this.f38984a[childCount] = ujVar;
+            addView(ujVar, layoutParams);
         }
     }
 
-    public final boolean b() {
-        Field declaredField;
-        try {
-            declaredField = MediaRouteButton.class.getDeclaredField("mConnectionState");
-            declaredField.setAccessible(true);
-        } catch (Exception unused) {
-        }
-        if (((Integer) declaredField.get(this)).intValue() <= 0) {
-            return false;
-        }
-        return true;
-    }
-
-    public abstract void c(boolean z9);
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        a();
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        a();
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        a();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        a();
-    }
-
-    @Override
-    public void setBackground(Drawable drawable) {
+    public wc[] getButtons() {
+        return this.f38984a;
     }
 }

@@ -52,7 +52,7 @@ public final class f {
             if (i10 < 0) {
                 if (gVar.b(pVar, -1L) && gVar.a(pVar, true)) {
                     int i11 = gVar.d;
-                    if ((gVar.f170a & 1) == 1 && xVar.f14164c == 0) {
+                    if ((gVar.f170a & 1) == 1 && xVar.f14166c == 0) {
                         i11 += a(0);
                         i7 = this.d;
                     } else {
@@ -69,10 +69,10 @@ public final class f {
             int a10 = a(this.f168c);
             int i12 = this.f168c + this.d;
             if (a10 > 0) {
-                xVar.c(xVar.f14164c + a10);
+                xVar.c(xVar.f14166c + a10);
                 try {
-                    pVar.readFully(xVar.f14162a, xVar.f14164c, a10);
-                    xVar.M(xVar.f14164c + a10);
+                    pVar.readFully(xVar.f14164a, xVar.f14166c, a10);
+                    xVar.M(xVar.f14166c + a10);
                     if (gVar.f174f[i12 - 1] != 255) {
                         z10 = true;
                     } else {

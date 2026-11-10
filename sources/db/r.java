@@ -3,14 +3,14 @@ package db;
 import android.os.IBinder;
 import android.os.IInterface;
 public final class r implements t, IInterface {
-    public final IBinder f8591a;
+    public final IBinder f8596a;
 
     public r(IBinder iBinder) {
-        this.f8591a = iBinder;
+        this.f8596a = iBinder;
     }
 
     @Override
     public final IBinder asBinder() {
-        return this.f8591a;
+        return this.f8596a;
     }
 }

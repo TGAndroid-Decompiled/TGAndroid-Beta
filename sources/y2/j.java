@@ -8,7 +8,7 @@ import f3.j0;
 import h2.x;
 import j2.c0;
 import sg.i0;
-import x2.b1;
+import x2.a1;
 public final class j extends a {
     public final int E;
     public final long F;
@@ -28,38 +28,38 @@ public final class j extends a {
     public final void a() {
         boolean z9;
         boolean z10;
-        b1[] b1VarArr;
+        a1[] a1VarArr;
         long j3;
-        i0 i0Var = this.f58884y;
+        i0 i0Var = this.f58882y;
         i0Var.getClass();
         if (this.H == 0) {
             long j10 = this.F;
-            for (b1 b1Var : (b1[]) i0Var.f55093c) {
-                if (b1Var.H != j10) {
-                    b1Var.H = j10;
-                    b1Var.B = true;
+            for (a1 a1Var : (a1[]) i0Var.f55092c) {
+                if (a1Var.H != j10) {
+                    a1Var.H = j10;
+                    a1Var.B = true;
                 }
             }
             e eVar = this.G;
-            long j11 = this.f58882w;
+            long j11 = this.f58880w;
             long j12 = -9223372036854775807L;
             if (j11 == -9223372036854775807L) {
                 j3 = -9223372036854775807L;
             } else {
                 j3 = j11 - this.F;
             }
-            long j13 = this.f58883x;
+            long j13 = this.f58881x;
             if (j13 != -9223372036854775807L) {
                 j12 = j13 - this.F;
             }
             eVar.b(i0Var, j3, j12);
         }
         try {
-            j2.m b10 = this.f58905b.b(this.H);
-            c0 c0Var = this.f58910r;
+            j2.m b10 = this.f58903b.b(this.H);
+            c0 c0Var = this.f58908r;
             f3.l lVar = new f3.l(c0Var, b10.f16452e, c0Var.open(b10));
             while (!this.I) {
-                int f10 = this.G.f58896a.f(lVar, e.f58895w);
+                int f10 = this.G.f58894a.f(lVar, e.f58893w);
                 if (f10 != 1) {
                     z9 = true;
                 } else {
@@ -76,30 +76,30 @@ public final class j extends a {
                 }
             }
             u uVar = this.d;
-            String str = uVar.f10614r;
+            String str = uVar.f10619r;
             int i7 = uVar.R;
             int i10 = uVar.S;
             if (s0.k(str) && ((i7 > 1 || i10 > 1) && i7 != -1 && i10 != -1)) {
                 j0 f11 = i0Var.f(4);
                 int i11 = i7 * i10;
-                long j14 = (this.f58909n - this.h) / i11;
+                long j14 = (this.f58907n - this.h) / i11;
                 for (int i12 = 1; i12 < i11; i12++) {
                     f11.b(0, new x());
                     f11.c(i12 * j14, 0, 0, 0, null);
                 }
             }
-            this.H = lVar.d - this.f58905b.f16452e;
-            p0.a(this.f58910r);
+            this.H = lVar.d - this.f58903b.f16452e;
+            p0.a(this.f58908r);
             this.J = !this.I;
         } catch (Throwable th2) {
-            p0.a(this.f58910r);
+            p0.a(this.f58908r);
             throw th2;
         }
     }
 
     @Override
     public final long b() {
-        return this.f58930s + this.E;
+        return this.f58928s + this.E;
     }
 
     @Override

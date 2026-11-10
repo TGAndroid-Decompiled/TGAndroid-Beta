@@ -7,35 +7,35 @@ import java.util.HashSet;
 import org.telegram.messenger.c20;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.o41;
+import org.telegram.ui.p41;
 public final class c3 implements w9 {
-    public final int f60261a;
-    public final long f60262b;
-    public final c20 f60263c;
-    public int f60264e;
-    public long f60267i;
-    public String f60275q;
-    public boolean f60276r;
-    public boolean f60277s;
-    public boolean f60278t;
+    public final int f60263a;
+    public final long f60264b;
+    public final c20 f60265c;
+    public int f60266e;
+    public long f60269i;
+    public String f60277q;
+    public boolean f60278r;
+    public boolean f60279s;
+    public boolean f60280t;
     public final ArrayList d = new ArrayList();
-    public final ArrayList f60265f = new ArrayList();
-    public final ArrayList f60266g = new ArrayList();
+    public final ArrayList f60267f = new ArrayList();
+    public final ArrayList f60268g = new ArrayList();
     public final ArrayList h = new ArrayList();
-    public final HashSet f60268j = new HashSet();
-    public final HashSet f60269k = new HashSet();
-    public final HashSet f60270l = new HashSet();
-    public final HashMap f60271m = new HashMap();
-    public final HashMap f60272n = new HashMap();
-    public final HashMap f60273o = new HashMap();
-    public b3 f60274p = b3.f60227a;
-    public boolean f60279u = false;
+    public final HashSet f60270j = new HashSet();
+    public final HashSet f60271k = new HashSet();
+    public final HashSet f60272l = new HashSet();
+    public final HashMap f60273m = new HashMap();
+    public final HashMap f60274n = new HashMap();
+    public final HashMap f60275o = new HashMap();
+    public b3 f60276p = b3.f60227a;
+    public boolean f60281u = false;
     public int v = -1;
 
     public c3(int i7, long j3, c20 c20Var) {
-        this.f60261a = i7;
-        this.f60262b = j3;
-        this.f60263c = c20Var;
+        this.f60263a = i7;
+        this.f60264b = j3;
+        this.f60265c = c20Var;
     }
 
     @Override
@@ -50,7 +50,7 @@ public final class c3 implements w9 {
 
     @Override
     public final int c() {
-        return this.f60264e;
+        return this.f60266e;
     }
 
     @Override
@@ -60,27 +60,27 @@ public final class c3 implements w9 {
 
     public final void f() {
         if (this.v >= 0) {
-            ConnectionsManager.getInstance(this.f60261a).cancelRequest(this.v, true);
+            ConnectionsManager.getInstance(this.f60263a).cancelRequest(this.v, true);
             this.v = -1;
         }
-        this.f60278t = false;
+        this.f60280t = false;
     }
 
     public final void g(boolean z9) {
-        if (!this.f60278t) {
-            if (z9 || !this.f60279u) {
-                this.f60278t = true;
+        if (!this.f60280t) {
+            if (z9 || !this.f60281u) {
+                this.f60280t = true;
                 TL_stars.getResaleStarGifts getresalestargifts = new TL_stars.getResaleStarGifts();
-                getresalestargifts.gift_id = this.f60262b;
-                String str = this.f60275q;
+                getresalestargifts.gift_id = this.f60264b;
+                String str = this.f60277q;
                 if (str == null) {
                     str = "";
                 }
                 getresalestargifts.offset = str;
                 getresalestargifts.limit = 15;
-                getresalestargifts.for_craft = this.f60277s;
-                getresalestargifts.stars_only = this.f60276r;
-                b3 b3Var = this.f60274p;
+                getresalestargifts.for_craft = this.f60279s;
+                getresalestargifts.stars_only = this.f60278r;
+                b3 b3Var = this.f60276p;
                 int i7 = 0;
                 if (b3Var == b3.f60229c) {
                     getresalestargifts.sort_by_num = true;
@@ -92,11 +92,11 @@ public final class c3 implements w9 {
                     getresalestargifts.sort_by_num = false;
                     getresalestargifts.sort_by_price = true;
                 }
-                long j3 = this.f60267i;
+                long j3 = this.f60269i;
                 int i10 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
                 ArrayList arrayList = this.h;
-                ArrayList arrayList2 = this.f60266g;
-                ArrayList arrayList3 = this.f60265f;
+                ArrayList arrayList2 = this.f60268g;
+                ArrayList arrayList3 = this.f60267f;
                 if (i10 != 0) {
                     getresalestargifts.flags = 1 | getresalestargifts.flags;
                     getresalestargifts.attributes_hash = j3;
@@ -104,10 +104,10 @@ public final class c3 implements w9 {
                     getresalestargifts.flags = 1 | getresalestargifts.flags;
                     getresalestargifts.attributes_hash = 0L;
                 }
-                HashSet hashSet = this.f60268j;
+                HashSet hashSet = this.f60270j;
                 boolean isEmpty = hashSet.isEmpty();
-                HashSet hashSet2 = this.f60270l;
-                HashSet hashSet3 = this.f60269k;
+                HashSet hashSet2 = this.f60272l;
+                HashSet hashSet3 = this.f60271k;
                 if (!isEmpty || !hashSet3.isEmpty() || !hashSet2.isEmpty()) {
                     getresalestargifts.flags |= 8;
                     if (!hashSet.isEmpty()) {
@@ -117,9 +117,9 @@ public final class c3 implements w9 {
                             Object obj = arrayList3.get(i11);
                             i11++;
                             TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj;
-                            if (!hashSet.contains(Long.valueOf(stargiftattributemodel.document.f26962id))) {
+                            if (!hashSet.contains(Long.valueOf(stargiftattributemodel.document.f26966id))) {
                                 TL_stars.starGiftAttributeIdModel stargiftattributeidmodel = new TL_stars.starGiftAttributeIdModel();
-                                stargiftattributeidmodel.document_id = stargiftattributemodel.document.f26962id;
+                                stargiftattributeidmodel.document_id = stargiftattributemodel.document.f26966id;
                                 getresalestargifts.attributes.add(stargiftattributeidmodel);
                             }
                         }
@@ -144,15 +144,15 @@ public final class c3 implements w9 {
                             Object obj3 = arrayList.get(i7);
                             i7++;
                             TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj3;
-                            if (!hashSet2.contains(Long.valueOf(stargiftattributepattern.document.f26962id))) {
+                            if (!hashSet2.contains(Long.valueOf(stargiftattributepattern.document.f26966id))) {
                                 TL_stars.starGiftAttributeIdPattern stargiftattributeidpattern = new TL_stars.starGiftAttributeIdPattern();
-                                stargiftattributeidpattern.document_id = stargiftattributepattern.document.f26962id;
+                                stargiftattributeidpattern.document_id = stargiftattributepattern.document.f26966id;
                                 getresalestargifts.attributes.add(stargiftattributeidpattern);
                             }
                         }
                     }
                 }
-                this.v = ConnectionsManager.getInstance(this.f60261a).sendRequest(getresalestargifts, new o41(11, this, getresalestargifts));
+                this.v = ConnectionsManager.getInstance(this.f60263a).sendRequest(getresalestargifts, new p41(11, this, getresalestargifts));
             }
         }
     }
@@ -164,18 +164,18 @@ public final class c3 implements w9 {
 
     public final void h() {
         f();
-        this.f60275q = null;
+        this.f60277q = null;
         this.d.clear();
         g(true);
-        c20 c20Var = this.f60263c;
+        c20 c20Var = this.f60265c;
         if (c20Var != null) {
             c20Var.a(Boolean.TRUE);
         }
     }
 
     public final void i(b3 b3Var) {
-        if (this.f60274p != b3Var) {
-            this.f60274p = b3Var;
+        if (this.f60276p != b3Var) {
+            this.f60276p = b3Var;
             h();
         }
     }

@@ -1,9 +1,9 @@
 package n5;
 public final class q extends c0 {
-    public final Integer f20466a;
+    public final Integer f20471a;
 
     public q(Integer num) {
-        this.f20466a = num;
+        this.f20471a = num;
     }
 
     public final boolean equals(Object obj) {
@@ -13,20 +13,20 @@ public final class q extends c0 {
         if (!(obj instanceof c0)) {
             return false;
         }
-        Integer num = this.f20466a;
+        Integer num = this.f20471a;
         q qVar = (q) ((c0) obj);
         if (num == null) {
-            if (qVar.f20466a == null) {
+            if (qVar.f20471a == null) {
                 return true;
             }
             return false;
         }
-        return num.equals(qVar.f20466a);
+        return num.equals(qVar.f20471a);
     }
 
     public final int hashCode() {
         int hashCode;
-        Integer num = this.f20466a;
+        Integer num = this.f20471a;
         if (num == null) {
             hashCode = 0;
         } else {
@@ -36,6 +36,6 @@ public final class q extends c0 {
     }
 
     public final String toString() {
-        return "ExternalPRequestContext{originAssociatedProductId=" + this.f20466a + "}";
+        return "ExternalPRequestContext{originAssociatedProductId=" + this.f20471a + "}";
     }
 }

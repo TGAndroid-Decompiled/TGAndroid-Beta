@@ -29,9 +29,9 @@ public final class o extends q implements Comparable {
         boolean z13;
         int i14 = 0;
         this.f108f = jg.g.c(i11, false);
-        int i15 = this.d.f10602e;
+        int i15 = this.d.f10607e;
         int i16 = nVar.C;
-        i0 i0Var2 = nVar.f10528y;
+        i0 i0Var2 = nVar.f10533y;
         int i17 = i15 & (~i16);
         if ((i17 & 1) != 0) {
             z9 = true;
@@ -73,7 +73,7 @@ public final class o extends q implements Comparable {
         } else {
             i13 = nVar.A;
         }
-        int i19 = this.d.f10603f;
+        int i19 = this.d.f10608f;
         r1 r1Var = s.f126l;
         if (i19 != 0 && i19 == i13) {
             bitCount = Integer.MAX_VALUE;
@@ -82,13 +82,13 @@ public final class o extends q implements Comparable {
         }
         this.f112w = bitCount;
         e2.u uVar = this.d;
-        if ((1088 & uVar.f10603f) != 0) {
+        if ((1088 & uVar.f10608f) != 0) {
             z11 = true;
         } else {
             z11 = false;
         }
         this.D = z11;
-        int c10 = s.c(uVar, nVar.f10529z);
+        int c10 = s.c(uVar, nVar.f10534z);
         this.f113x = c10;
         if (s.l(str) == null) {
             z12 = true;
@@ -97,7 +97,7 @@ public final class o extends q implements Comparable {
         }
         int i20 = s.i(this.d, str, z12);
         this.f114y = i20;
-        if (i12 <= 0 && ((!i0Var2.isEmpty() || bitCount <= 0) && ((!i0Var2.isEmpty() || c10 == Integer.MAX_VALUE) && !this.h && ((!this.f109n || i20 <= 0) && !nVar.f10527x)))) {
+        if (i12 <= 0 && ((!i0Var2.isEmpty() || bitCount <= 0) && ((!i0Var2.isEmpty() || c10 == Integer.MAX_VALUE) && !this.h && ((!this.f109n || i20 <= 0) && !nVar.f10532x)))) {
             z13 = false;
         } else {
             z13 = true;
@@ -121,11 +121,11 @@ public final class o extends q implements Comparable {
 
     @Override
     public final int compareTo(o oVar) {
-        h9.w c10 = h9.w.f14407a.c(this.f108f, oVar.f108f);
+        h9.w c10 = h9.w.f14409a.c(this.f108f, oVar.f108f);
         Integer valueOf = Integer.valueOf(this.f110r);
         Integer valueOf2 = Integer.valueOf(oVar.f110r);
-        o1 o1Var = o1.f14359b;
-        o1 o1Var2 = o1.f14360c;
+        o1 o1Var = o1.f14361b;
+        o1 o1Var2 = o1.f14362c;
         h9.w b10 = c10.b(valueOf, valueOf2, o1Var2);
         int i7 = oVar.f111s;
         int i10 = this.f111s;

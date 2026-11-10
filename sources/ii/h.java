@@ -2,26 +2,26 @@ package ii;
 
 import org.telegram.ui.cn;
 public final class h implements Runnable {
-    public final int f15541a;
-    public final p f15542b;
-    public final long f15543c;
+    public final int f15540a;
+    public final p f15541b;
+    public final long f15542c;
 
     public h(p pVar, long j3, int i7) {
-        this.f15541a = i7;
-        this.f15542b = pVar;
-        this.f15543c = j3;
+        this.f15540a = i7;
+        this.f15541b = pVar;
+        this.f15542c = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f15541a) {
+        switch (this.f15540a) {
             case 0:
-                p.c0(this.f15542b, this.f15543c);
+                p.c0(this.f15541b, this.f15542c);
                 return;
             default:
-                p pVar = this.f15542b;
+                p pVar = this.f15541b;
                 pVar.getClass();
-                pVar.presentFragment(cn.ta(this.f15543c));
+                pVar.presentFragment(cn.ta(this.f15542c));
                 return;
         }
     }

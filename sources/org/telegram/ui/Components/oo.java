@@ -1,92 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Point;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.tc1;
-public final class oo implements bi {
-    public final vo f36756a;
+public final class oo implements org.telegram.ui.p71 {
+    public final vo f36654a;
 
     public oo(vo voVar) {
-        this.f36756a = voVar;
+        this.f36654a = voVar;
     }
 
     @Override
-    public final boolean G1() {
-        System.currentTimeMillis();
+    public final boolean a() {
+        return this.f36654a.G1;
+    }
+
+    @Override
+    public final boolean a1() {
         return true;
     }
 
     @Override
-    public final void M0(Object obj) {
-        lo loVar = new lo(obj, null, true, 3);
-        vo voVar = this.f36756a;
-        loVar.W1 = voVar.V1;
-        loVar.h1(voVar.f39150r1.a());
-        loVar.J1 = new no(this, 1);
-        vo.I0(voVar, loVar);
-    }
-
-    @Override
-    public final void c0(qg qgVar) {
-        qgVar.run();
-    }
-
-    @Override
-    public final boolean f0() {
-        return false;
-    }
-
-    @Override
-    public final void o1(int i7, boolean z9, boolean z10, int i10, int i11, long j3, boolean z11, boolean z12, long j10) {
-        vo voVar = this.f36756a;
-        try {
-            HashMap<Object, Object> selectedPhotos = voVar.O1.f32987a2.getSelectedPhotos();
-            if (!selectedPhotos.isEmpty()) {
-                org.telegram.messenger.gf gfVar = (org.telegram.messenger.gf) selectedPhotos.values().iterator().next();
-                String str = gfVar.h;
-                if (str == null) {
-                    str = gfVar.I;
-                }
-                if (str != null) {
-                    File z13 = org.telegram.messenger.w7.z(4);
-                    File file = new File(z13, Utilities.f21334b.nextInt() + ".jpg");
-                    Point c12 = org.telegram.messenger.g0.c1();
-                    Bitmap K = org.telegram.messenger.gc.K(str, null, (float) c12.x, (float) c12.y, true);
-                    K.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-                    lo loVar = new lo(new tc1(file, file, ""), K, false, 2);
-                    loVar.W1 = voVar.V1;
-                    loVar.G1 = false;
-                    loVar.F1 = false;
-                    loVar.f50944o1 = 0.2f;
-                    loVar.h1(voVar.f39150r1.a());
-                    loVar.J1 = new no(this, 0);
-                    vo.I0(voVar, loVar);
-                }
+    public final void t1(boolean z9) {
+        TLRPC.WallPaper wallPaper;
+        vo voVar = this.f36654a;
+        org.telegram.ui.cn cnVar = voVar.f39071u1;
+        voVar.G1 = !voVar.G1;
+        if (voVar.F1 != null) {
+            voVar.I1 = true;
+            cnVar.f44683u7 = true;
+            if (voVar.P0()) {
+                wallPaper = null;
+            } else {
+                wallPaper = voVar.f39068r1.f43730g;
             }
-        } catch (Throwable th2) {
-            org.telegram.messenger.a8.g(th2, true);
+            TLRPC.WallPaper wallPaper2 = wallPaper;
+            org.telegram.ui.ActionBar.s3 s3Var = voVar.F1.f38725a;
+            if (s3Var.f28485a) {
+                voVar.f39068r1.r(null, wallPaper2, z9, Boolean.valueOf(voVar.G1), false);
+            } else {
+                voVar.f39068r1.r(s3Var, wallPaper2, z9, Boolean.valueOf(voVar.G1), false);
+            }
+            cnVar.f44683u7 = false;
         }
-    }
-
-    @Override
-    public final void Y0(TLRPC.User user) {
-    }
-
-    @Override
-    public final void F0() {
-    }
-
-    @Override
-    public final void t0() {
-    }
-
-    @Override
-    public final void M1(ArrayList arrayList, CharSequence charSequence, boolean z9, int i7, int i10, long j3, boolean z10, long j10) {
     }
 }

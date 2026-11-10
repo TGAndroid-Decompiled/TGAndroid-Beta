@@ -37,8 +37,8 @@ public final class t9 {
         long j3 = this.f4756b;
         int i11 = this.f4755a;
         if (e10 != null) {
-            e10.f4913l.addAll(0, arrayList);
-            e10.f4915n = arrayList.size() + e10.f4915n;
+            e10.f4914l.addAll(0, arrayList);
+            e10.f4916n = arrayList.size() + e10.f4916n;
             qs.f(i11).k(qs.G3, Long.valueOf(j3), e10);
             n(i7);
         }
@@ -81,10 +81,10 @@ public final class t9 {
         int i7 = this.f4755a;
         long j3 = this.f4756b;
         v9 v9Var = new v9(i7, j3, false);
-        v9Var.f4906c = true;
+        v9Var.f4907c = true;
         v9Var.d = -1;
-        v9Var.f4915n = 0;
-        v9Var.f4911j = true;
+        v9Var.f4916n = 0;
+        v9Var.f4912j = true;
         this.h.put(-1, v9Var);
         TL_stars.createStarGiftCollection createstargiftcollection = new TL_stars.createStarGiftCollection();
         createstargiftcollection.peer = qp.s1(i7).j1(j3);
@@ -209,7 +209,7 @@ public final class t9 {
         char c11 = 1;
         boolean z10 = false;
         if (e10 != null) {
-            ArrayList arrayList2 = e10.f4913l;
+            ArrayList arrayList2 = e10.f4914l;
             if (!arrayList2.isEmpty()) {
                 int i10 = 0;
                 while (i10 < arrayList2.size()) {
@@ -220,7 +220,7 @@ public final class t9 {
                             break;
                         } else if (ea.k(savedStarGift2, (TL_stars.SavedStarGift) arrayList.get(i11))) {
                             arrayList2.remove(i10);
-                            e10.f4915n = Math.max(0, e10.f4915n - 1);
+                            e10.f4916n = Math.max(0, e10.f4916n - 1);
                             i10--;
                             break;
                         } else {
@@ -302,7 +302,7 @@ public final class t9 {
         v9 e10 = e(i7);
         TL_stars.TL_starGiftCollection c10 = c(i7);
         if (e10 != null) {
-            ArrayList arrayList = e10.f4913l;
+            ArrayList arrayList = e10.f4914l;
             if (c10 != null) {
                 if (arrayList.isEmpty()) {
                     savedStarGift = null;

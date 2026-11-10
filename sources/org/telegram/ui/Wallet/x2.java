@@ -8,33 +8,33 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-public final class x2 extends org.telegram.ui.ActionBar.v2 {
-    public final fi.g1 f43303i1;
-    public final ArrayList f43304j1;
-    public boolean f43305k1;
-    public FrameLayout l1;
-    public Integer f43306m1;
+public final class x2 extends org.telegram.ui.ActionBar.w2 {
+    public final fi.g1 l1;
+    public final ArrayList f43321m1;
+    public boolean n1;
+    public FrameLayout f43322o1;
+    public Integer f43323p1;
 
-    public x2(Context context, org.telegram.ui.ActionBar.g6 g6Var, View... viewArr) {
-        super(1, context, g6Var, true);
+    public x2(Context context, org.telegram.ui.ActionBar.h6 h6Var, View... viewArr) {
+        super(1, context, h6Var, true);
         List asList = Arrays.asList(viewArr);
         ArrayList arrayList = new ArrayList();
-        this.f43304j1 = arrayList;
+        this.f43321m1 = arrayList;
         if (asList != null) {
             arrayList.addAll(asList);
         }
         u2 u2Var = new u2(this, context);
-        this.f28624b = u2Var;
+        this.f28672b = u2Var;
         fi.g1 g1Var = new fi.g1(8, context, this);
-        this.f43303i1 = g1Var;
-        int i7 = this.f28654t0;
-        g1Var.setPadding(i7, 0, i7, org.telegram.messenger.g0.f22558n);
+        this.l1 = g1Var;
+        int i7 = this.f28705t0;
+        g1Var.setPadding(i7, 0, i7, org.telegram.messenger.g0.f22562n);
         u2Var.addView(g1Var, c8.ha.e(-1, -1, 119));
     }
 
     @Override
     public final boolean G() {
-        if (this.f43303i1.getCurrentPosition() == 0) {
+        if (this.l1.getCurrentPosition() == 0) {
             return true;
         }
         return false;
@@ -42,50 +42,50 @@ public final class x2 extends org.telegram.ui.ActionBar.v2 {
 
     @Override
     public final boolean I(MotionEvent motionEvent) {
-        if (this.f43303i1.getCurrentPosition() == 0) {
+        if (this.l1.getCurrentPosition() == 0) {
             return true;
         }
         return false;
     }
 
     public final void I0(w2 w2Var) {
-        this.f43304j1.add(w2Var);
-        if (this.f43305k1) {
-            fi.g1 g1Var = this.f43303i1;
+        this.f43321m1.add(w2Var);
+        if (this.n1) {
+            fi.g1 g1Var = this.l1;
             g1Var.D(false);
             g1Var.o(false);
         }
     }
 
     public final void J0(int i7) {
-        this.f43306m1 = Integer.valueOf(i7);
+        this.f43323p1 = Integer.valueOf(i7);
         v0(i7);
         O(i7);
-        ((u2) this.f28624b).invalidate();
+        ((u2) this.f28672b).invalidate();
     }
 
     public final void K0(LinearLayout linearLayout) {
-        FrameLayout frameLayout = this.l1;
+        FrameLayout frameLayout = this.f43322o1;
         if (frameLayout == null) {
             FrameLayout frameLayout2 = new FrameLayout(getContext());
-            this.l1 = frameLayout2;
+            this.f43322o1 = frameLayout2;
             frameLayout2.setClipChildren(false);
-            this.l1.setClipToPadding(false);
-            this.f28624b.addView(this.l1, c8.ha.e(-1, -2, 80));
+            this.f43322o1.setClipToPadding(false);
+            this.f28672b.addView(this.f43322o1, c8.ha.e(-1, -2, 80));
         } else {
             frameLayout.removeAllViews();
         }
-        this.l1.addView(linearLayout, c8.ha.e(-1, -2, 80));
-        fi.g1 g1Var = this.f43303i1;
-        int i7 = this.f28654t0;
+        this.f43322o1.addView(linearLayout, c8.ha.e(-1, -2, 80));
+        fi.g1 g1Var = this.l1;
+        int i7 = this.f28705t0;
         g1Var.setPadding(i7, 0, i7, 0);
-        ((u2) this.f28624b).requestLayout();
+        ((u2) this.f28672b).requestLayout();
     }
 
     @Override
     public final void onBackPressed() {
         View[] viewPages;
-        fi.g1 g1Var = this.f43303i1;
+        fi.g1 g1Var = this.l1;
         if (g1Var.getCurrentPosition() <= 0) {
             super.onBackPressed();
             return;
@@ -100,12 +100,12 @@ public final class x2 extends org.telegram.ui.ActionBar.v2 {
 
     @Override
     public final void show() {
-        if (!this.f43305k1) {
-            this.f43305k1 = true;
-            this.f43303i1.setAdapter(new ii.x(this, 3));
+        if (!this.n1) {
+            this.n1 = true;
+            this.l1.setAdapter(new ii.x(this, 3));
         }
         super.show();
-        Integer num = this.f43306m1;
+        Integer num = this.f43323p1;
         if (num != null) {
             E0(num.intValue());
         }

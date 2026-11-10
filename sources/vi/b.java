@@ -7,17 +7,17 @@ import org.telegram.messenger.r2;
 import w7.s;
 public final class b {
     public static final AtomicLong d = new AtomicLong(1);
-    public final long f57535a = d.getAndIncrement();
-    public final long f57536b = SystemClock.elapsedRealtime();
-    public final s f57537c;
+    public final long f57534a = d.getAndIncrement();
+    public final long f57535b = SystemClock.elapsedRealtime();
+    public final s f57536c;
 
     public b(s sVar) {
-        this.f57537c = sVar;
+        this.f57536c = sVar;
     }
 
     public final void a(String str, Throwable th2) {
-        String str2 = "AudioRecorder[" + this.f57535a + "] t+" + (SystemClock.elapsedRealtime() - this.f57536b) + "ms [" + Thread.currentThread().getName() + "] " + str;
-        switch (this.f57537c.f57623a) {
+        String str2 = "AudioRecorder[" + this.f57534a + "] t+" + (SystemClock.elapsedRealtime() - this.f57535b) + "ms [" + Thread.currentThread().getName() + "] " + str;
+        switch (this.f57536c.f57622a) {
             case 16:
                 a8.e("AudioRecorderV2 " + str2, th2);
                 return;
@@ -27,10 +27,10 @@ public final class b {
     }
 
     public final void b(String str) {
-        String str2 = "AudioRecorder[" + this.f57535a + "] t+" + (SystemClock.elapsedRealtime() - this.f57536b) + "ms [" + Thread.currentThread().getName() + "] " + str;
-        switch (this.f57537c.f57623a) {
+        String str2 = "AudioRecorder[" + this.f57534a + "] t+" + (SystemClock.elapsedRealtime() - this.f57535b) + "ms [" + Thread.currentThread().getName() + "] " + str;
+        switch (this.f57536c.f57622a) {
             case 16:
-                if (r2.f25212a) {
+                if (r2.f25216a) {
                     a8.b("AudioRecorderV2 " + str2);
                     return;
                 }

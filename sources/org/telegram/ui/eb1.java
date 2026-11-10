@@ -1,44 +1,35 @@
 package org.telegram.ui;
-
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class eb1 implements org.telegram.messenger.c20 {
-    public final int f45354a;
-    public final UserInfoActivity f45355b;
+public final class eb1 implements Runnable {
+    public final int f45226a;
+    public final UserInfoActivity f45227b;
 
     public eb1(UserInfoActivity userInfoActivity, int i7) {
-        this.f45354a = i7;
-        this.f45355b = userInfoActivity;
+        this.f45226a = i7;
+        this.f45227b = userInfoActivity;
     }
 
     @Override
-    public final void a(Object obj) {
-        int i7 = this.f45354a;
-        UserInfoActivity userInfoActivity = this.f45355b;
-        switch (i7) {
+    public final void run() {
+        switch (this.f45226a) {
             case 0:
-                userInfoActivity.J = (TL_account.TL_birthday) obj;
-                fi.w3 w3Var = userInfoActivity.f42080y;
-                if (w3Var != null) {
-                    w3Var.f37556f3.O(true);
-                }
-                userInfoActivity.g0(true);
+                this.f45227b.presentFragment(new PrivacyControlActivity(9, true));
                 return;
-            default:
-                TLRPC.Chat chat = (TLRPC.Chat) obj;
-                if (userInfoActivity.K != chat) {
-                    userInfoActivity.K = chat;
-                    if (chat != null) {
-                        org.telegram.messenger.k5.o(null, 2131751233, org.telegram.ui.Components.hc.a0(userInfoActivity), 2131623989, 36);
-                    }
-                    userInfoActivity.g0(true);
-                    fi.w3 w3Var2 = userInfoActivity.f42080y;
-                    if (w3Var2 != null) {
-                        w3Var2.f37556f3.O(true);
-                        return;
-                    }
+            case 1:
+                fi.w3 w3Var = this.f45227b.f42071y;
+                if (w3Var != null) {
+                    w3Var.f37496f3.O(true);
                     return;
                 }
+                return;
+            case 2:
+                UserInfoActivity userInfoActivity = this.f45227b;
+                userInfoActivity.getClass();
+                userInfoActivity.presentFragment(new PrivacyControlActivity(11, false));
+                return;
+            default:
+                UserInfoActivity userInfoActivity2 = this.f45227b;
+                userInfoActivity2.getClass();
+                userInfoActivity2.presentFragment(new PremiumPreviewFragment(0, "add_account"));
                 return;
         }
     }

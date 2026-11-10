@@ -16,20 +16,20 @@ import org.telegram.messenger.ui;
 import org.telegram.messenger.yr;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.zs0;
+import org.telegram.ui.Components.ys0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.cn;
 public final class ia implements Runnable {
-    public final int f4057a;
-    public final long f4058b;
-    public final int f4059c;
+    public final int f4054a;
+    public final long f4055b;
+    public final int f4056c;
     public final Object d;
 
     public ia(Object obj, int i7, long j3, int i10) {
-        this.f4057a = i10;
+        this.f4054a = i10;
         this.d = obj;
-        this.f4059c = i7;
-        this.f4058b = j3;
+        this.f4056c = i7;
+        this.f4055b = j3;
     }
 
     private final void a() {
@@ -39,9 +39,9 @@ public final class ia implements Runnable {
     @Override
     public final void run() {
         int i7;
-        int i10 = this.f4057a;
-        long j3 = this.f4058b;
-        int i11 = this.f4059c;
+        int i10 = this.f4054a;
+        long j3 = this.f4055b;
+        int i11 = this.f4056c;
         Object obj = this.d;
         switch (i10) {
             case 0:
@@ -52,7 +52,7 @@ public final class ia implements Runnable {
                     T.presentFragment(ta2);
                     TLRPC.Chat M0 = qp.s1(i11).M0(Long.valueOf(-l10.longValue()));
                     if (M0 != null) {
-                        org.telegram.messenger.g0.i3(new ja(ta2, this.f4058b, M0, 0), 250L);
+                        org.telegram.messenger.g0.i3(new ja(ta2, this.f4055b, M0, 0), 250L);
                         return;
                     }
                     return;
@@ -60,20 +60,20 @@ public final class ia implements Runnable {
                 return;
             case 1:
                 di.z6 z6Var = (di.z6) obj;
-                int max = Math.max(z6Var.f9996f.get(j3, 0), i11);
-                z6Var.f9996f.put(j3, max);
-                z6Var.f10000k.i(max, j3);
+                int max = Math.max(z6Var.f10001f.get(j3, 0), i11);
+                z6Var.f10001f.put(j3, max);
+                z6Var.f10005k.i(max, j3);
                 TL_stories.PeerStories y10 = z6Var.y(j3);
                 if (y10 != null && i11 > y10.max_read_id) {
                     y10.max_read_id = i11;
-                    Collections.sort(z6Var.f9997g, z6Var.J);
-                    qs.f(z6Var.f9992a).k(324, new Object[0]);
+                    Collections.sort(z6Var.f10002g, z6Var.J);
+                    qs.f(z6Var.f9997a).k(324, new Object[0]);
                     return;
                 }
                 return;
             case 2:
                 try {
-                    SQLitePreparedStatement executeFast = ((org.telegram.messenger.sd) obj).getMessagesStorage().f26721b.executeFast("UPDATE sharing_locations SET proximity = ? WHERE uid = ?");
+                    SQLitePreparedStatement executeFast = ((org.telegram.messenger.sd) obj).getMessagesStorage().f26725b.executeFast("UPDATE sharing_locations SET proximity = ? WHERE uid = ?");
                     executeFast.requery();
                     executeFast.bindInteger(1, i11);
                     executeFast.bindLong(2, j3);
@@ -87,12 +87,12 @@ public final class ia implements Runnable {
             case 3:
                 MediaController mediaController = (MediaController) obj;
                 String[] strArr = MediaController.V1;
-                ui.b0(i11).B1(this.f4058b, mediaController.n1, null);
+                ui.b0(i11).B1(this.f4055b, mediaController.n1, null);
                 mediaController.L1 = null;
                 return;
             case 4:
                 try {
-                    SQLiteDatabase sQLiteDatabase = ((ui) obj).getMessagesStorage().f26721b;
+                    SQLiteDatabase sQLiteDatabase = ((ui) obj).getMessagesStorage().f26725b;
                     Locale locale = Locale.US;
                     sQLiteDatabase.executeFast("DELETE FROM chat_hints WHERE did = " + j3 + " AND type = " + i11).stepThis().dispose();
                     return;
@@ -105,18 +105,18 @@ public final class ia implements Runnable {
                 return;
             case 6:
                 org.telegram.messenger.c cVar = (org.telegram.messenger.c) obj;
-                gz C = gz.C(cVar.f21765a);
-                ArrayList arrayList = (ArrayList) C.f22764a.get("group_" + j3);
+                gz C = gz.C(cVar.f21770a);
+                ArrayList arrayList = (ArrayList) C.f22768a.get("group_" + j3);
                 if (arrayList != null && !arrayList.isEmpty()) {
                     sy syVar = (sy) arrayList.get(0);
-                    ij ijVar = (ij) jg.g.i(1, syVar.f25558x);
+                    ij ijVar = (ij) jg.g.i(1, syVar.f25562x);
                     syVar.G = ijVar.e1();
-                    ijVar.f23262k.params.put("final", "1");
+                    ijVar.f23266k.params.put("final", "1");
                     TLRPC.TL_messages_messages tL_messages_messages = new TLRPC.TL_messages_messages();
-                    tL_messages_messages.messages.add(ijVar.f23262k);
+                    tL_messages_messages.messages.add(ijVar.f23266k);
                     if (!syVar.I && !syVar.J) {
-                        yr a02 = yr.a0(cVar.f21765a);
-                        long j10 = syVar.f25538a;
+                        yr a02 = yr.a0(cVar.f21770a);
+                        long j10 = syVar.f25542a;
                         if (i11 != 0) {
                             i7 = 1;
                         } else {
@@ -132,25 +132,25 @@ public final class ia implements Runnable {
                 m4.d0 d0Var = ((org.telegram.ui.Cells.q1) obj).Wb;
                 if (d0Var != null) {
                     if (i11 > 0) {
-                        i11 = ((SparseIntArray) d0Var.f19612b).get(i11, 0);
+                        i11 = ((SparseIntArray) d0Var.f19617b).get(i11, 0);
                     }
                     if (i11 != 0) {
-                        ((g6.d0) d0Var.f19611a).a0(this.f4058b, 0L, i11);
+                        ((g6.d0) d0Var.f19616a).a0(this.f4055b, 0L, i11);
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                zs0.e((zs0) obj, j3, i11);
+                ys0.e((ys0) obj, j3, i11);
                 return;
         }
     }
 
     public ia(Object obj, long j3, int i7, int i10) {
-        this.f4057a = i10;
+        this.f4054a = i10;
         this.d = obj;
-        this.f4058b = j3;
-        this.f4059c = i7;
+        this.f4055b = j3;
+        this.f4056c = i7;
     }
 }

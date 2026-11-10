@@ -11,15 +11,15 @@ import m6.e;
 import q6.m;
 public final class a extends r6.a {
     public static final Parcelable.Creator<a> CREATOR = new e(17);
-    public final int f53492a;
-    public final Uri f53493b;
-    public final int f53494c;
+    public final int f53491a;
+    public final Uri f53492b;
+    public final int f53493c;
     public final int d;
 
     public a(int i7, Uri uri, int i10, int i11) {
-        this.f53492a = i7;
-        this.f53493b = uri;
-        this.f53494c = i10;
+        this.f53491a = i7;
+        this.f53492b = uri;
+        this.f53493c = i10;
         this.d = i11;
     }
 
@@ -29,7 +29,7 @@ public final class a extends r6.a {
         }
         if (obj != null && (obj instanceof a)) {
             a aVar = (a) obj;
-            if (m.k(this.f53493b, aVar.f53493b) && this.f53494c == aVar.f53494c && this.d == aVar.d) {
+            if (m.k(this.f53492b, aVar.f53492b) && this.f53493c == aVar.f53493c && this.d == aVar.d) {
                 return true;
             }
         }
@@ -37,13 +37,13 @@ public final class a extends r6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f53493b, Integer.valueOf(this.f53494c), Integer.valueOf(this.d)});
+        return Arrays.hashCode(new Object[]{this.f53492b, Integer.valueOf(this.f53493c), Integer.valueOf(this.d)});
     }
 
     public final String toString() {
         Locale locale = Locale.US;
-        String uri = this.f53493b.toString();
-        StringBuilder o4 = g.o("Image ", this.f53494c, "x", this.d, " ");
+        String uri = this.f53492b.toString();
+        StringBuilder o4 = g.o("Image ", this.f53493c, "x", this.d, " ");
         o4.append(uri);
         return o4.toString();
     }
@@ -52,10 +52,10 @@ public final class a extends r6.a {
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = xb.r(parcel, 20293);
         xb.q(parcel, 1, 4);
-        parcel.writeInt(this.f53492a);
-        xb.k(parcel, 2, this.f53493b, i7);
+        parcel.writeInt(this.f53491a);
+        xb.k(parcel, 2, this.f53492b, i7);
         xb.q(parcel, 3, 4);
-        parcel.writeInt(this.f53494c);
+        parcel.writeInt(this.f53493c);
         xb.q(parcel, 4, 4);
         parcel.writeInt(this.d);
         xb.s(parcel, r10);

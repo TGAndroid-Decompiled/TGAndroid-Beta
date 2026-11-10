@@ -17,7 +17,7 @@ import kotlin.jvm.internal.j;
 import m1.g1;
 import m1.y0;
 public final class h implements y0 {
-    public static final h f53701a = new Object();
+    public static final h f53700a = new Object();
 
     @Override
     public final Object a() {
@@ -46,7 +46,7 @@ public final class h implements y0 {
                     if (C == 0) {
                         i7 = -1;
                     } else {
-                        i7 = g.f53700a[p1.g.c(C)];
+                        i7 = g.f53699a[p1.g.c(C)];
                     }
                     switch (i7) {
                         case -1:
@@ -115,7 +115,7 @@ public final class h implements y0 {
         p1.a n10 = p1.c.n();
         for (Map.Entry entry : a11.entrySet()) {
             Object value = entry.getValue();
-            String str = ((e) entry.getKey()).f53699a;
+            String str = ((e) entry.getKey()).f53698a;
             if (value instanceof Boolean) {
                 p1.f D = p1.h.D();
                 boolean booleanValue = ((Boolean) value).booleanValue();

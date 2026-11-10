@@ -1,20 +1,20 @@
 package org.telegram.messenger;
 public final class vl implements Runnable {
-    public final int f26051a;
-    public final qp f26052b;
-    public final bg.u f26053c;
+    public final int f26055a;
+    public final qp f26056b;
+    public final bg.u f26057c;
 
     public vl(qp qpVar, bg.u uVar, int i7) {
-        this.f26051a = i7;
-        this.f26052b = qpVar;
-        this.f26053c = uVar;
+        this.f26055a = i7;
+        this.f26056b = qpVar;
+        this.f26057c = uVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f26051a;
-        bg.u uVar = this.f26053c;
-        qp qpVar = this.f26052b;
+        int i7 = this.f26055a;
+        bg.u uVar = this.f26057c;
+        qp qpVar = this.f26056b;
         switch (i7) {
             case 0:
                 a0.h hVar = uVar.f3375c;

@@ -5,12 +5,12 @@ import android.content.SharedPreferences;
 import android.view.MotionEvent;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class lj extends org.telegram.ui.Components.h90 {
+public final class lj extends org.telegram.ui.Components.g90 {
     public boolean V;
     public final cn W;
 
-    public lj(cn cnVar, Context context, long j3, long j10, cn cnVar2, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, j3, j10, cnVar2, g6Var);
+    public lj(cn cnVar, Context context, long j3, long j10, cn cnVar2, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, j3, j10, cnVar2, h6Var);
         this.W = cnVar;
         this.V = true;
     }
@@ -53,7 +53,7 @@ public final class lj extends org.telegram.ui.Components.h90 {
             }
             String str2 = botInlineResult.description;
             String str3 = botInlineResult.content.url;
-            org.telegram.ui.Components.wt.N0(cnVar, null, thVar, str, str2, str3, str3, g12[0], g12[1], -1, cnVar.U9());
+            org.telegram.ui.Components.vt.N0(cnVar, null, thVar, str, str2, str3, str3, g12[0], g12[1], -1, cnVar.U9());
         }
     }
 
@@ -76,15 +76,15 @@ public final class lj extends org.telegram.ui.Components.h90 {
                 }
             }
             sjVar.setCaption(str);
-            org.telegram.ui.Components.fe feVar = cnVar.Z.P1;
-            if (feVar != null) {
+            org.telegram.ui.Components.ee eeVar = cnVar.Z.P1;
+            if (eeVar != null) {
                 if (z9) {
-                    feVar.f36765e = true;
-                    feVar.f36763b = System.currentTimeMillis();
-                    feVar.invalidateSelf();
+                    eeVar.f36658e = true;
+                    eeVar.f36656b = System.currentTimeMillis();
+                    eeVar.invalidateSelf();
                     return;
                 }
-                feVar.f36765e = false;
+                eeVar.f36658e = false;
             }
         }
     }
@@ -92,12 +92,12 @@ public final class lj extends org.telegram.ui.Components.h90 {
     @Override
     public final void m() {
         cn cnVar = this.W;
-        if (cnVar.f44576p5 && ((getAdapter().R == null || cnVar.f44589q5 || cnVar.f44603r5) && cnVar.h != null && getAdapter().R != null)) {
+        if (cnVar.f44617p5 && ((getAdapter().R == null || cnVar.f44630q5 || cnVar.f44644r5) && cnVar.h != null && getAdapter().R != null)) {
             SharedPreferences e12 = org.telegram.messenger.qp.e1();
             if (!e12.getBoolean("secretbot", false)) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, cnVar.getParentActivity(), cnVar.f44709za);
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, cnVar.getParentActivity(), cnVar.f44750za);
                 String M0 = org.telegram.messenger.id.M0(2131689472, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27300a;
                 u1Var.R = M0;
                 u1Var.T = org.telegram.messenger.id.M0(2131745694, null);
                 alertDialog$Builder.k(org.telegram.messenger.id.M0(2131747831, null), null);
@@ -113,13 +113,13 @@ public final class lj extends org.telegram.ui.Components.h90 {
         boolean z10;
         if (this.V != z9) {
             cn cnVar = this.W;
-            org.telegram.ui.Components.pw0 pw0Var = cnVar.f44599r1;
+            org.telegram.ui.Components.ow0 ow0Var = cnVar.f44640r1;
             if (!cnVar.isInPreviewMode() && z9) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            org.telegram.messenger.g0.V3(pw0Var, z10, false);
+            org.telegram.messenger.g0.V3(ow0Var, z10, false);
             this.V = z9;
         }
     }

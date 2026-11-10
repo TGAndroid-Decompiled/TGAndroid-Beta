@@ -4,11 +4,11 @@ import android.view.View;
 import android.widget.ScrollView;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class fo implements org.telegram.ui.Components.cj0 {
-    public final ho f45769a;
+public final class fo implements org.telegram.ui.Components.bj0 {
+    public final ho f45814a;
 
     public fo(ho hoVar) {
-        this.f45769a = hoVar;
+        this.f45814a = hoVar;
     }
 
     @Override
@@ -17,15 +17,15 @@ public final class fo implements org.telegram.ui.Components.cj0 {
         int i10;
         int i11;
         int i12;
-        ho hoVar = this.f45769a;
-        io ioVar = hoVar.f46362h3;
-        if ((view instanceof ia) && (tL_username = ((ia) view).f46544w) != null) {
+        ho hoVar = this.f45814a;
+        io ioVar = hoVar.f46402h3;
+        if ((view instanceof ia) && (tL_username = ((ia) view).f46595w) != null) {
             if (tL_username.editable) {
                 if (ioVar.fragmentView instanceof ScrollView) {
-                    ioVar.f46708a.smoothScrollTo(0, ioVar.D.getTop() - org.telegram.messenger.g0.L(128.0f));
+                    ioVar.f46681a.smoothScrollTo(0, ioVar.D.getTop() - org.telegram.messenger.g0.L(128.0f));
                 }
-                ioVar.f46710b.requestFocus();
-                org.telegram.messenger.g0.K3(ioVar.f46710b);
+                ioVar.f46683b.requestFocus();
+                org.telegram.messenger.g0.K3(ioVar.f46683b);
                 return;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, hoVar.getContext(), ioVar.getResourceProvider());
@@ -35,7 +35,7 @@ public final class fo implements org.telegram.ui.Components.cj0 {
                 i10 = 2131743671;
             }
             String M0 = org.telegram.messenger.id.M0(i10, null);
-            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27296a;
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27300a;
             u1Var.R = M0;
             if (tL_username.active) {
                 i11 = 2131743663;

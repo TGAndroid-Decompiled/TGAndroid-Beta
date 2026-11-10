@@ -1,136 +1,87 @@
 package org.telegram.ui;
 
 import android.text.TextUtils;
-import java.util.Arrays;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class bi0 implements Runnable {
-    public final org.telegram.ui.ActionBar.g6 D;
-    public final boolean E;
-    public final String F;
-    public final org.telegram.ui.web.x0 G;
-    public final fi.d f44044a;
-    public final fi.d f44045b;
-    public final TLRPC.TL_urlAuthResultRequest f44046c;
-    public final TL_wallet.inputTonConnectOauthSession[] d;
-    public final TLRPC.TL_messages_requestUrlAuth f44047e;
-    public final String[] f44048f;
-    public final org.telegram.ui.Cells.r8 h;
-    public final boolean[] f44049n;
-    public final boolean[] f44050r;
-    public final int[] f44051s;
-    public final boolean[] f44052w;
-    public final org.telegram.ui.ActionBar.v2 f44053x;
-    public final String f44054y;
+public final class bi0 implements org.telegram.messenger.c20 {
+    public final int[] f44066a;
+    public final fi.d f44067b;
+    public final fi.d f44068c;
+    public final TLRPC.TL_messages_requestUrlAuth d;
+    public final org.telegram.ui.ActionBar.w2 f44069e;
+    public final boolean f44070f;
+    public final String f44071g;
+    public final TLRPC.UrlAuthResult h;
+    public final String[] f44072i;
+    public final boolean f44073j;
+    public final org.telegram.ui.web.x0 f44074k;
+    public final String f44075l;
+    public final org.telegram.ui.ActionBar.h6 f44076m;
 
-    public bi0(fi.d dVar, fi.d dVar2, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String[] strArr, org.telegram.ui.Cells.r8 r8Var, boolean[] zArr, boolean[] zArr2, int[] iArr, boolean[] zArr3, org.telegram.ui.ActionBar.v2 v2Var, String str, org.telegram.ui.ActionBar.g6 g6Var, boolean z9, String str2, org.telegram.ui.web.x0 x0Var) {
-        this.f44044a = dVar;
-        this.f44045b = dVar2;
-        this.f44046c = tL_urlAuthResultRequest;
-        this.d = inputtonconnectoauthsessionArr;
-        this.f44047e = tL_messages_requestUrlAuth;
-        this.f44048f = strArr;
-        this.h = r8Var;
-        this.f44049n = zArr;
-        this.f44050r = zArr2;
-        this.f44051s = iArr;
-        this.f44052w = zArr3;
-        this.f44053x = v2Var;
-        this.f44054y = str;
-        this.D = g6Var;
-        this.E = z9;
-        this.F = str2;
-        this.G = x0Var;
+    public bi0(int[] iArr, fi.d dVar, fi.d dVar2, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, org.telegram.ui.ActionBar.w2 w2Var, boolean z9, String str, TLRPC.UrlAuthResult urlAuthResult, String[] strArr, boolean z10, org.telegram.ui.web.x0 x0Var, String str2, org.telegram.ui.ActionBar.h6 h6Var) {
+        this.f44066a = iArr;
+        this.f44067b = dVar;
+        this.f44068c = dVar2;
+        this.d = tL_messages_requestUrlAuth;
+        this.f44069e = w2Var;
+        this.f44070f = z9;
+        this.f44071g = str;
+        this.h = urlAuthResult;
+        this.f44072i = strArr;
+        this.f44073j = z10;
+        this.f44074k = x0Var;
+        this.f44075l = str2;
+        this.f44076m = h6Var;
     }
 
     @Override
-    public final void run() {
-        final fi.d dVar = this.f44044a;
-        if (!dVar.Q && !this.f44045b.Q) {
-            final TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = this.f44046c;
-            boolean z9 = tL_urlAuthResultRequest.request_wallet;
-            TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr = this.d;
-            if (!z9 || inputtonconnectoauthsessionArr[0] != null) {
-                boolean z10 = true;
-                dVar.setLoading(true);
-                final TLRPC.TL_messages_acceptUrlAuth tL_messages_acceptUrlAuth = new TLRPC.TL_messages_acceptUrlAuth();
-                final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = this.f44047e;
-                if (TLObject.hasFlag(tL_messages_requestUrlAuth.flags, 2)) {
-                    tL_messages_acceptUrlAuth.flags |= 2;
-                    tL_messages_acceptUrlAuth.peer = tL_messages_requestUrlAuth.peer;
-                    tL_messages_acceptUrlAuth.msg_id = tL_messages_requestUrlAuth.msg_id;
-                    tL_messages_acceptUrlAuth.button_id = tL_messages_requestUrlAuth.button_id;
-                }
-                if (TLObject.hasFlag(tL_messages_requestUrlAuth.flags, 4)) {
-                    tL_messages_acceptUrlAuth.flags |= 4;
-                    tL_messages_acceptUrlAuth.url = tL_messages_requestUrlAuth.url;
-                }
-                String str = this.f44048f[0];
-                if (str != null) {
-                    tL_messages_acceptUrlAuth.match_code = str;
-                }
-                org.telegram.ui.Cells.r8 r8Var = this.h;
-                if (r8Var == null || !r8Var.f30214e.h) {
-                    z10 = false;
-                }
-                tL_messages_acceptUrlAuth.write_allowed = z10;
-                tL_messages_acceptUrlAuth.share_phone_number = this.f44049n[0];
-                TL_wallet.inputTonConnectOauthSession inputtonconnectoauthsession = inputtonconnectoauthsessionArr[0];
-                tL_messages_acceptUrlAuth.tonconnect_session = inputtonconnectoauthsession;
-                inputtonconnectoauthsessionArr[0] = null;
-                if (this.f44050r[0]) {
-                    if (inputtonconnectoauthsession != null) {
-                        Arrays.fill(inputtonconnectoauthsession.challenge_answer, (byte) 0);
-                        return;
-                    }
-                    return;
-                }
-                final int[] iArr = this.f44051s;
-                ConnectionsManager connectionsManager = ConnectionsManager.getInstance(iArr[0]);
-                d3.b bVar = new d3.b(1);
-                final boolean[] zArr = this.f44052w;
-                final org.telegram.ui.ActionBar.v2 v2Var = this.f44053x;
-                final String str2 = this.f44054y;
-                final org.telegram.ui.ActionBar.g6 g6Var = this.D;
-                final boolean z11 = this.E;
-                final String str3 = this.F;
-                final org.telegram.ui.web.x0 x0Var = this.G;
-                connectionsManager.sendRequestTyped(tL_messages_acceptUrlAuth, bVar, new org.telegram.messenger.v10() {
-                    @Override
-                    public final void a(Object obj, Object obj2) {
-                        CharSequence P2;
-                        TLRPC.UrlAuthResult urlAuthResult = (TLRPC.UrlAuthResult) obj;
-                        TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                        fi.d.this.setLoading(false);
-                        TLRPC.TL_messages_acceptUrlAuth tL_messages_acceptUrlAuth2 = tL_messages_acceptUrlAuth;
-                        TL_wallet.inputTonConnectOauthSession inputtonconnectoauthsession2 = tL_messages_acceptUrlAuth2.tonconnect_session;
-                        if (inputtonconnectoauthsession2 != null) {
-                            Arrays.fill(inputtonconnectoauthsession2.challenge_answer, (byte) 0);
-                        }
-                        zArr[0] = true;
-                        v2Var.dismiss();
-                        if (tL_error != null) {
-                            if ("URL_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                                org.telegram.ui.Components.hc a10 = di0.a();
-                                String M0 = org.telegram.messenger.id.M0(2131753128, null);
-                                String str4 = str2;
-                                if (TextUtils.isEmpty(str4)) {
-                                    P2 = org.telegram.messenger.id.M0(2131753129, null);
-                                } else {
-                                    P2 = org.telegram.messenger.g0.P2(org.telegram.ui.ActionBar.l6.w0(org.telegram.ui.ActionBar.l6.uj, g6Var), org.telegram.messenger.id.a0(null, null, 2131753130, str4));
-                                }
-                                a10.I(2131624011, M0, P2).j();
-                                return;
+    public final void a(Object obj) {
+        int[] iArr = this.f44066a;
+        fi.d dVar = this.f44067b;
+        fi.d dVar2 = this.f44068c;
+        final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = this.d;
+        final org.telegram.ui.ActionBar.w2 w2Var = this.f44069e;
+        final boolean z9 = this.f44070f;
+        final String str = this.f44071g;
+        final TLRPC.UrlAuthResult urlAuthResult = this.h;
+        final String[] strArr = this.f44072i;
+        final boolean z10 = this.f44073j;
+        final org.telegram.ui.web.x0 x0Var = this.f44074k;
+        final String str2 = this.f44075l;
+        final org.telegram.ui.ActionBar.h6 h6Var = this.f44076m;
+        final Integer num = (Integer) obj;
+        if (iArr[0] != num.intValue() && !dVar.Q && !dVar2.Q) {
+            final org.telegram.ui.ActionBar.u1 u1Var = new org.telegram.ui.ActionBar.u1(3, org.telegram.messenger.t0.f25570b, null);
+            u1Var.r(200L);
+            ConnectionsManager.getInstance(num.intValue()).sendRequestTyped(tL_messages_requestUrlAuth, new d3.b(1), new org.telegram.messenger.v10() {
+                @Override
+                public final void a(Object obj2, Object obj3) {
+                    CharSequence P2;
+                    TLRPC.UrlAuthResult urlAuthResult2 = (TLRPC.UrlAuthResult) obj2;
+                    TLRPC.TL_error tL_error = (TLRPC.TL_error) obj3;
+                    org.telegram.ui.ActionBar.u1.this.dismiss();
+                    org.telegram.ui.ActionBar.w2 w2Var2 = w2Var;
+                    if (urlAuthResult2 != null) {
+                        w2Var2.dismiss();
+                        ei0.b(z9, num.intValue(), tL_messages_requestUrlAuth, urlAuthResult2, str, urlAuthResult, strArr[0], z10, x0Var);
+                    } else if (tL_error != null) {
+                        if ("URL_EXPIRED".equalsIgnoreCase(tL_error.text)) {
+                            w2Var2.dismiss();
+                            org.telegram.ui.Components.gc a10 = ei0.a();
+                            String M0 = org.telegram.messenger.id.M0(2131753128, null);
+                            String str3 = str2;
+                            if (TextUtils.isEmpty(str3)) {
+                                P2 = org.telegram.messenger.id.M0(2131753129, null);
+                            } else {
+                                P2 = org.telegram.messenger.g0.P2(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.uj, h6Var), org.telegram.messenger.id.a0(null, null, 2131753130, str3));
                             }
-                            di0.a().f0(tL_error, false);
+                            a10.I(2131624011, M0, P2).j();
                             return;
                         }
-                        di0.b(z11, iArr[0], tL_messages_requestUrlAuth, urlAuthResult, str3, tL_urlAuthResultRequest, null, tL_messages_acceptUrlAuth2.share_phone_number, x0Var);
+                        org.telegram.ui.Cells.f1.r(w2Var2.E, w2Var2.I0, tL_error, false);
                     }
-                });
-            }
+                }
+            });
         }
     }
 }

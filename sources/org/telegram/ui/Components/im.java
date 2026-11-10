@@ -1,31 +1,33 @@
 package org.telegram.ui.Components;
+public final class im extends org.telegram.ui.qq0 {
+    public boolean f34703a;
+    public final int f34704b;
+    public final an f34705c;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class im extends AnimatorListenerAdapter {
-    public final int f34806a;
-    public final bn f34807b;
-
-    public im(bn bnVar, int i7) {
-        this.f34806a = i7;
-        this.f34807b = bnVar;
+    public im(an anVar, int i7) {
+        this.f34705c = anVar;
+        this.f34704b = i7;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f34806a) {
-            case 0:
-                this.f34807b.E.setTranslationY(0.0f);
-                return;
-            case 1:
-                this.f34807b.E.setTranslationY(0.0f);
-                return;
-            default:
-                bn bnVar = this.f34807b;
-                bnVar.f32296f1 = false;
-                bnVar.E.setTranslationY(0.0f);
-                bnVar.f0();
-                return;
+    public final void D() {
+        if (this.f34703a) {
+            this.f34705c.g0(this.f34704b);
         }
+    }
+
+    @Override
+    public final void J() {
+        this.f34705c.j0(this.f34704b, null);
+    }
+
+    @Override
+    public final void W() {
+        this.f34703a = true;
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
     }
 }

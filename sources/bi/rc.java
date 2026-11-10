@@ -6,8 +6,8 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.ViewGroup;
-import org.telegram.ui.yy;
-public final class rc extends org.telegram.ui.Components.j6 {
+import org.telegram.ui.zy;
+public final class rc extends org.telegram.ui.Components.i6 {
     public final int f4647s = 0;
     public final Object f4648w;
     public final ViewGroup f4649x;
@@ -31,16 +31,16 @@ public final class rc extends org.telegram.ui.Components.j6 {
                 super.dispatchDraw(canvas);
                 return;
             default:
-                yy yyVar = (yy) this.f4649x;
-                int a10 = yyVar.f52358x.a(yyVar.f52357w, false);
+                zy zyVar = (zy) this.f4649x;
+                int a10 = zyVar.f52708x.a(zyVar.f52707w, false);
                 setTextColor(a10);
                 Paint paint = (Paint) this.f4648w;
-                if (org.telegram.ui.ActionBar.l6.I.q()) {
+                if (org.telegram.ui.ActionBar.m6.I.q()) {
                     f10 = 0.2f;
                 } else {
                     f10 = 0.1f;
                 }
-                paint.setColor(org.telegram.ui.ActionBar.l6.r1(f10, a10));
+                paint.setColor(org.telegram.ui.ActionBar.m6.r1(f10, a10));
                 RectF rectF = org.telegram.messenger.g0.P;
                 rectF.set((getWidth() - getDrawable().c()) - org.telegram.messenger.g0.N(9.32f), (getHeight() - org.telegram.messenger.g0.N(14.66f)) / 2.0f, getWidth(), (org.telegram.messenger.g0.N(14.66f) + getHeight()) / 2.0f);
                 canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint);
@@ -49,9 +49,9 @@ public final class rc extends org.telegram.ui.Components.j6 {
         }
     }
 
-    public rc(yy yyVar, Context context) {
+    public rc(zy zyVar, Context context) {
         super(context, false, true, true);
-        this.f4649x = yyVar;
+        this.f4649x = zyVar;
         this.f4648w = new Paint(1);
     }
 }

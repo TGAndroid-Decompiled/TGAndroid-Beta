@@ -2,20 +2,20 @@ package di;
 
 import android.content.Context;
 import android.view.View;
-public final class u extends org.telegram.ui.Components.z8 {
-    public final int f9800e;
+public final class u extends org.telegram.ui.Components.y8 {
+    public final int f9805e;
 
     public u(int i7, Context context, boolean z9) {
         super(context, z9);
-        this.f9800e = i7;
+        this.f9805e = i7;
     }
 
     @Override
     public void invalidate() {
-        switch (this.f9800e) {
+        switch (this.f9805e) {
             case 0:
-                if (v.f9851c) {
-                    v.f9850b.add(this);
+                if (v.f9856c) {
+                    v.f9855b.add(this);
                     return;
                 } else {
                     super.invalidate();
@@ -30,9 +30,9 @@ public final class u extends org.telegram.ui.Components.z8 {
     @Override
     public void onMeasure(int i7, int i10) {
         int e10;
-        switch (this.f9800e) {
+        switch (this.f9805e) {
             case 1:
-                int i11 = this.f40934a.f40655n;
+                int i11 = this.f40530a.f40242n;
                 if (i11 == 0) {
                     e10 = 0;
                 } else {
@@ -48,10 +48,10 @@ public final class u extends org.telegram.ui.Components.z8 {
 
     @Override
     public void invalidate(int i7, int i10, int i11, int i12) {
-        switch (this.f9800e) {
+        switch (this.f9805e) {
             case 0:
-                if (v.f9851c) {
-                    v.f9850b.add(this);
+                if (v.f9856c) {
+                    v.f9855b.add(this);
                     return;
                 } else {
                     super.invalidate(i7, i10, i11, i12);

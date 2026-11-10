@@ -3,28 +3,28 @@ package org.telegram.ui;
 import android.graphics.drawable.BitmapDrawable;
 import org.telegram.tgnet.TLRPC;
 public final class w4 {
-    public final org.telegram.messenger.hc f50849a;
-    public final org.telegram.messenger.hc f50850b;
-    public final org.telegram.messenger.hc f50851c;
+    public final org.telegram.messenger.hc f50893a;
+    public final org.telegram.messenger.hc f50894b;
+    public final org.telegram.messenger.hc f50895c;
     public final String d;
-    public final String f50852e;
-    public final String f50853f;
-    public final BitmapDrawable f50854g;
+    public final String f50896e;
+    public final String f50897f;
+    public final BitmapDrawable f50898g;
     public final Object h;
-    public final c5[] f50855i;
-    public final y4 f50856j;
+    public final c5[] f50899i;
+    public final y4 f50900j;
 
     public w4(org.telegram.messenger.hc hcVar, org.telegram.messenger.hc hcVar2, org.telegram.messenger.hc hcVar3, String str, String str2, String str3, BitmapDrawable bitmapDrawable, Object obj, c5[] c5VarArr, y4 y4Var) {
-        this.f50849a = hcVar;
-        this.f50850b = hcVar2;
-        this.f50851c = hcVar3;
+        this.f50893a = hcVar;
+        this.f50894b = hcVar2;
+        this.f50895c = hcVar3;
         this.d = str;
-        this.f50852e = str2;
-        this.f50853f = str3;
-        this.f50854g = bitmapDrawable;
+        this.f50896e = str2;
+        this.f50897f = str3;
+        this.f50898g = bitmapDrawable;
         this.h = obj;
-        this.f50855i = c5VarArr;
-        this.f50856j = y4Var;
+        this.f50899i = c5VarArr;
+        this.f50900j = y4Var;
     }
 
     public static w4 a(TLRPC.Chat chat, TLRPC.ChatFull chatFull, c5... c5VarArr) {
@@ -33,10 +33,10 @@ public final class w4 {
         org.telegram.messenger.hc hcVar;
         String str2;
         TLRPC.ChatPhoto chatPhoto;
-        org.telegram.messenger.hc m10 = org.telegram.messenger.hc.m(org.telegram.messenger.p10.f24470s0, 0, chat);
-        org.telegram.messenger.hc m11 = org.telegram.messenger.hc.m(org.telegram.messenger.p10.f24470s0, 1, chat);
+        org.telegram.messenger.hc m10 = org.telegram.messenger.hc.m(org.telegram.messenger.p10.f24474s0, 0, chat);
+        org.telegram.messenger.hc m11 = org.telegram.messenger.hc.m(org.telegram.messenger.p10.f24474s0, 1, chat);
         String str3 = null;
-        if (m11 != null && (m11.f22873k instanceof TLRPC.TL_photoStrippedSize)) {
+        if (m11 != null && (m11.f22877k instanceof TLRPC.TL_photoStrippedSize)) {
             str = "b";
         } else {
             str = null;
@@ -55,7 +55,7 @@ public final class w4 {
             hcVar = null;
             str2 = null;
         }
-        if (hcVar != null && hcVar.f22878p == 2) {
+        if (hcVar != null && hcVar.f22882p == 2) {
             str3 = "g";
         }
         return new w4(m10, m11, hcVar, str, str3, str2, bitmapDrawable, chat, c5VarArr, null);
@@ -64,10 +64,10 @@ public final class w4 {
     public static w4 b(TLRPC.User user, int i7, c5... c5VarArr) {
         String str;
         TLRPC.UserProfilePhoto userProfilePhoto;
-        org.telegram.messenger.hc m10 = org.telegram.messenger.hc.m(org.telegram.messenger.p10.f24470s0, 0, user);
-        org.telegram.messenger.hc m11 = org.telegram.messenger.hc.m(org.telegram.messenger.p10.f24470s0, 1, user);
+        org.telegram.messenger.hc m10 = org.telegram.messenger.hc.m(org.telegram.messenger.p10.f24474s0, 0, user);
+        org.telegram.messenger.hc m11 = org.telegram.messenger.hc.m(org.telegram.messenger.p10.f24474s0, 1, user);
         BitmapDrawable bitmapDrawable = null;
-        if (m11 != null && (m11.f22873k instanceof TLRPC.TL_photoStrippedSize)) {
+        if (m11 != null && (m11.f22877k instanceof TLRPC.TL_photoStrippedSize)) {
             str = "b";
         } else {
             str = null;
@@ -85,14 +85,14 @@ public final class w4 {
         String str2;
         TLRPC.UserProfilePhoto userProfilePhoto;
         TLRPC.Photo photo;
-        org.telegram.messenger.hc m10 = org.telegram.messenger.hc.m(org.telegram.messenger.p10.f24470s0, 0, userFull.user);
+        org.telegram.messenger.hc m10 = org.telegram.messenger.hc.m(org.telegram.messenger.p10.f24474s0, 0, userFull.user);
         String str3 = null;
         if (m10 == null && (photo = userFull.profile_photo) != null) {
             m10 = org.telegram.messenger.hc.i(org.telegram.messenger.w7.w(photo.sizes, 500, false, null, false), userFull.profile_photo);
         }
         org.telegram.messenger.hc hcVar2 = m10;
-        org.telegram.messenger.hc m11 = org.telegram.messenger.hc.m(org.telegram.messenger.p10.f24470s0, 1, userFull.user);
-        if (m11 != null && (m11.f22873k instanceof TLRPC.TL_photoStrippedSize)) {
+        org.telegram.messenger.hc m11 = org.telegram.messenger.hc.m(org.telegram.messenger.p10.f24474s0, 1, userFull.user);
+        if (m11 != null && (m11.f22877k instanceof TLRPC.TL_photoStrippedSize)) {
             str = "b";
         } else {
             str = null;
@@ -112,7 +112,7 @@ public final class w4 {
             hcVar = null;
             str2 = null;
         }
-        if (hcVar != null && hcVar.f22878p == 2) {
+        if (hcVar != null && hcVar.f22882p == 2) {
             str3 = "g";
         }
         return new w4(hcVar2, m11, hcVar, str, str3, str2, bitmapDrawable, userFull.user, c5VarArr, null);

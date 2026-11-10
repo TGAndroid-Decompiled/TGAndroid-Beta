@@ -1,24 +1,24 @@
 package wi;
 
-import org.telegram.ui.Components.rt;
+import org.telegram.ui.Components.qt;
 public final class c {
-    public final int f57936a;
-    public final rt f57937b;
+    public final int f57940a;
+    public final qt f57941b;
 
-    public c(rt rtVar, int i7) {
-        this.f57936a = i7;
-        this.f57937b = rtVar;
+    public c(qt qtVar, int i7) {
+        this.f57940a = i7;
+        this.f57941b = qtVar;
     }
 
     public void a(Exception exc) {
-        switch (this.f57936a) {
+        switch (this.f57940a) {
             case 0:
-                rt rtVar = this.f57937b;
-                ((t0) rtVar.f37805b).f58209i.post(new j0(rtVar, exc, 1));
+                qt qtVar = this.f57941b;
+                ((t0) qtVar.f37395b).f58213i.post(new j0(qtVar, exc, 1));
                 return;
             default:
-                rt rtVar2 = this.f57937b;
-                ((t0) rtVar2.f37805b).f58209i.post(new j0(rtVar2, exc, 0));
+                qt qtVar2 = this.f57941b;
+                ((t0) qtVar2.f37395b).f58213i.post(new j0(qtVar2, exc, 0));
                 return;
         }
     }

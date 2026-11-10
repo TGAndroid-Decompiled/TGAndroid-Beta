@@ -7,62 +7,62 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.ah0;
+import org.telegram.ui.Components.zg0;
 public final class ic {
     public Paint A;
     public Path B;
-    public boolean f23134a;
-    public float f23135b;
-    public long f23136c;
+    public boolean f23138a;
+    public float f23139b;
+    public long f23140c;
     public int d;
-    public BitmapShader f23137e;
-    public org.telegram.ui.Components.v5 f23138f;
-    public ah0 f23139g;
+    public BitmapShader f23141e;
+    public org.telegram.ui.Components.u5 f23142f;
+    public zg0 f23143g;
     public int[] h;
-    public BitmapShader f23140i;
-    public Drawable f23141j;
-    public BitmapShader f23142k;
-    public Drawable f23143l;
-    public Drawable f23144m;
-    public BitmapShader f23145n;
-    public Drawable f23146o;
-    public float f23147p;
-    public float f23148q;
-    public BitmapShader f23149r;
-    public float f23150s;
-    public float f23151t;
-    public float f23152u;
+    public BitmapShader f23144i;
+    public Drawable f23145j;
+    public BitmapShader f23146k;
+    public Drawable f23147l;
+    public Drawable f23148m;
+    public BitmapShader f23149n;
+    public Drawable f23150o;
+    public float f23151p;
+    public float f23152q;
+    public BitmapShader f23153r;
+    public float f23154s;
+    public float f23155t;
+    public float f23156u;
     public float v;
-    public boolean f23153w;
-    public Drawable f23154x;
-    public RectF f23155y;
-    public ColorFilter f23156z;
+    public boolean f23157w;
+    public Drawable f23158x;
+    public RectF f23159y;
+    public ColorFilter f23160z;
 
     public final void a() {
-        this.f23138f = null;
-        this.f23139g = null;
+        this.f23142f = null;
+        this.f23143g = null;
         for (int i7 = 0; i7 < 4; i7++) {
             int[] iArr = this.h;
             iArr[i7] = iArr[i7];
         }
-        this.f23141j = null;
-        this.f23140i = null;
-        this.f23143l = null;
-        this.f23142k = null;
-        this.f23144m = null;
-        this.f23145n = null;
-        this.f23137e = null;
-        this.f23146o = null;
-        this.f23154x = null;
-        this.f23156z = null;
+        this.f23145j = null;
+        this.f23144i = null;
+        this.f23147l = null;
+        this.f23146k = null;
+        this.f23148m = null;
+        this.f23149n = null;
+        this.f23141e = null;
+        this.f23150o = null;
+        this.f23158x = null;
+        this.f23160z = null;
     }
 
     public final void b(Rect rect) {
         if (rect != null) {
-            this.f23152u = rect.left;
+            this.f23156u = rect.left;
             this.v = rect.top;
-            this.f23151t = rect.width();
-            this.f23150s = rect.height();
+            this.f23155t = rect.width();
+            this.f23154s = rect.height();
         }
     }
 }

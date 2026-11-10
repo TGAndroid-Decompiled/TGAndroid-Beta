@@ -1,24 +1,24 @@
 package tg;
 public final class r implements r1.c {
-    public final int f55930a;
-    public final g0 f55931b;
-    public final boolean f55932c;
+    public final int f55929a;
+    public final g0 f55930b;
+    public final boolean f55931c;
 
     public r(g0 g0Var, boolean z9, int i7) {
-        this.f55930a = i7;
-        this.f55931b = g0Var;
-        this.f55932c = z9;
+        this.f55929a = i7;
+        this.f55930b = g0Var;
+        this.f55931c = z9;
     }
 
     @Override
     public final void a(r1.g gVar, boolean z9, float f10, float f11) {
-        switch (this.f55930a) {
+        switch (this.f55929a) {
             case 0:
-                g0 g0Var = this.f55931b;
-                j1 j1Var = g0Var.f55682e1;
-                if (gVar == g0Var.f55695o1) {
-                    g0Var.f55695o1 = null;
-                    if (!this.f55932c) {
+                g0 g0Var = this.f55930b;
+                j1 j1Var = g0Var.f55681e1;
+                if (gVar == g0Var.f55694o1) {
+                    g0Var.f55694o1 = null;
+                    if (!this.f55931c) {
                         j1Var.setVisibility(8);
                     }
                     j1Var.setMaskProvider(null);
@@ -26,13 +26,13 @@ public final class r implements r1.c {
                 }
                 return;
             default:
-                g0 g0Var2 = this.f55931b;
-                d0 d0Var = g0Var2.f55697p1;
-                if (gVar == g0Var2.f55709v1) {
-                    g0Var2.f55709v1 = null;
-                    if (!this.f55932c) {
+                g0 g0Var2 = this.f55930b;
+                d0 d0Var = g0Var2.f55696p1;
+                if (gVar == g0Var2.f55708v1) {
+                    g0Var2.f55708v1 = null;
+                    if (!this.f55931c) {
                         d0Var.setVisibility(8);
-                        sg.l0.e(g0Var2.f55715y1).g();
+                        sg.l0.e(g0Var2.f55714y1).g();
                         d0Var.getAdapter().f();
                         return;
                     }

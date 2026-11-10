@@ -1,36 +1,44 @@
 package org.telegram.ui;
 
-import android.text.style.URLSpan;
 import android.view.View;
-public final class ef implements org.telegram.messenger.d20 {
-    public final int f45402a;
-    public final Object f45403b;
-    public final Object f45404c;
+public final class ef implements View.OnLongClickListener {
+    public final int f45262a;
+    public final cn f45263b;
 
-    public ef(int i7, Object obj, Object obj2) {
-        this.f45402a = i7;
-        this.f45403b = obj;
-        this.f45404c = obj2;
+    public ef(cn cnVar, int i7) {
+        this.f45262a = i7;
+        this.f45263b = cnVar;
     }
 
     @Override
-    public final Object a(Object obj) {
-        org.telegram.ui.Cells.q1 q1Var;
-        switch (this.f45402a) {
+    public final boolean onLongClick(View view) {
+        org.telegram.messenger.ij ijVar;
+        org.telegram.messenger.ij ijVar2;
+        switch (this.f45262a) {
             case 0:
-                cn cnVar = (cn) this.f45403b;
-                View view = (View) this.f45404c;
-                URLSpan uRLSpan = (URLSpan) obj;
-                org.telegram.messenger.ij ijVar = cnVar.f44628t5;
-                if (view instanceof org.telegram.ui.Cells.q1) {
-                    q1Var = (org.telegram.ui.Cells.q1) view;
-                } else {
-                    q1Var = null;
+                cn cnVar = this.f45263b;
+                org.telegram.messenger.ij ijVar3 = cnVar.f44669t5;
+                if (ijVar3 == null) {
+                    return false;
                 }
-                cnVar.k8(uRLSpan, false, ijVar, q1Var);
-                return Boolean.TRUE;
+                if (org.telegram.messenger.g0.g(ijVar3.R0)) {
+                    new org.telegram.ui.Components.gc(org.telegram.ui.Components.wa.a(cnVar.getParentActivity()), cnVar.f44750za).k(false).j();
+                }
+                return true;
+            case 1:
+                return cn.H0(this.f45263b);
             default:
-                return th.c.d((View) obj, (String) this.f45403b, (String) this.f45404c, null, null);
+                cn cnVar2 = this.f45263b;
+                int i7 = cnVar2.Qb;
+                if (i7 == 1 && (ijVar2 = cnVar2.F5) != null) {
+                    cnVar2.l(ijVar2.e1(), 0, true, 0, true, 0);
+                    return true;
+                } else if (cnVar2.f44694v5 != null && i7 == 2 && (ijVar = cnVar2.D5) != null) {
+                    cnVar2.l(ijVar.e1(), 0, true, 0, true, 0);
+                    return true;
+                } else {
+                    return false;
+                }
         }
     }
 }

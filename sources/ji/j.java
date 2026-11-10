@@ -15,14 +15,14 @@ import org.telegram.messenger.camera.q;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.id;
 import org.telegram.messenger.k5;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.ActionBar.s6;
-import org.telegram.ui.Components.ea0;
-public final class j extends LinearLayout implements b6 {
-    public final g6 f17099a;
-    public final ea0 f17100b;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.Components.da0;
+public final class j extends LinearLayout implements c6 {
+    public final h6 f17099a;
+    public final da0 f17100b;
     public final FrameLayout f17101c;
     public final ImageView d;
     public final TextView f17102e;
@@ -30,20 +30,20 @@ public final class j extends LinearLayout implements b6 {
     public final boolean h;
     public boolean f17104n;
 
-    public j(Context context, g6 g6Var, boolean z9) {
+    public j(Context context, h6 h6Var, boolean z9) {
         super(context);
         int i7;
         int i10;
         int i11;
         int i12;
-        this.f17099a = g6Var;
+        this.f17099a = h6Var;
         this.h = z9;
         setOrientation(0);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f17101c = frameLayout;
-        ea0 ea0Var = new ea0(1);
-        this.f17100b = ea0Var;
-        frameLayout.setBackground(ea0Var);
+        da0 da0Var = new da0(1);
+        this.f17100b = da0Var;
+        frameLayout.setBackground(da0Var);
         ImageView imageView = new ImageView(context);
         this.d = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
@@ -58,7 +58,7 @@ public final class j extends LinearLayout implements b6 {
         f11.setMinWidth(g0.L(20.66f));
         f11.setPadding(g0.L(6.33f), 0, g0.L(6.33f), 0);
         f11.setTextSize(1, 16.0f);
-        if (id.f23157a0) {
+        if (id.f23161a0) {
             addView(f11, ha.j(13.33f, 0.0f));
             if (z9) {
                 i11 = 12;
@@ -115,8 +115,8 @@ public final class j extends LinearLayout implements b6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(l6.G6));
-        hashSet.add(Integer.valueOf(l6.U8));
+        hashSet.add(Integer.valueOf(m6.G6));
+        hashSet.add(Integer.valueOf(m6.U8));
     }
 
     @Override
@@ -156,14 +156,14 @@ public final class j extends LinearLayout implements b6 {
             }
             textView.setTypeface(typeface);
             if (z9) {
-                i7 = l6.W8;
+                i7 = m6.W8;
             } else {
-                i7 = l6.f28047n6;
+                i7 = m6.f28072n6;
             }
-            g6 g6Var = this.f17099a;
-            s6.U(textView, i7, g6Var);
+            h6 h6Var = this.f17099a;
+            t6.U(textView, i7, h6Var);
             if (z9) {
-                shapeDrawable = l6.d0(g0.L(10.33f), l6.w0(l6.U8, g6Var));
+                shapeDrawable = m6.d0(g0.L(10.33f), m6.w0(m6.U8, h6Var));
             }
             textView.setBackground(shapeDrawable);
         }
@@ -186,28 +186,28 @@ public final class j extends LinearLayout implements b6 {
         int i7;
         ShapeDrawable shapeDrawable;
         boolean q10;
-        int i10 = l6.G6;
-        g6 g6Var = this.f17099a;
-        this.f17102e.setTextColor(l6.w0(i10, g6Var));
+        int i10 = m6.G6;
+        h6 h6Var = this.f17099a;
+        this.f17102e.setTextColor(m6.w0(i10, h6Var));
         if (this.f17104n) {
-            i7 = l6.W8;
+            i7 = m6.W8;
         } else {
-            i7 = l6.f28047n6;
+            i7 = m6.f28072n6;
         }
-        int w02 = l6.w0(i7, g6Var);
+        int w02 = m6.w0(i7, h6Var);
         TextView textView = this.f17103f;
         textView.setTextColor(w02);
         if (this.f17104n) {
-            shapeDrawable = l6.d0(g0.L(10.33f), l6.w0(l6.U8, g6Var));
+            shapeDrawable = m6.d0(g0.L(10.33f), m6.w0(m6.U8, h6Var));
         } else {
             shapeDrawable = null;
         }
         textView.setBackground(shapeDrawable);
-        if (g6Var != null) {
-            q10 = g6Var.a();
+        if (h6Var != null) {
+            q10 = h6Var.a();
         } else {
-            q10 = l6.I.q();
+            q10 = m6.I.q();
         }
-        this.f17100b.f33353b = q10;
+        this.f17100b.f32938b = q10;
     }
 }

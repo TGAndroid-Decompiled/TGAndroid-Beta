@@ -2,10 +2,10 @@ package fi;
 
 import org.telegram.messenger.ImageReceiver;
 public abstract class p6 {
-    public final String f12597a;
+    public final String f12601a;
 
     public p6(String str) {
-        this.f12597a = str;
+        this.f12601a = str;
     }
 
     public abstract String a();

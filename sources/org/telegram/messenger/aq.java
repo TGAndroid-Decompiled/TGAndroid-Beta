@@ -5,28 +5,28 @@ import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLiteException;
 import org.telegram.SQLite.SQLitePreparedStatement;
 public final class aq implements Runnable {
-    public final int f21503a;
-    public final yr f21504b;
-    public final int f21505c;
+    public final int f21508a;
+    public final yr f21509b;
+    public final int f21510c;
     public final long d;
 
     public aq(yr yrVar, int i7, long j3, int i10) {
-        this.f21503a = i10;
-        this.f21504b = yrVar;
-        this.f21505c = i7;
+        this.f21508a = i10;
+        this.f21509b = yrVar;
+        this.f21510c = i7;
         this.d = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f21503a) {
+        switch (this.f21508a) {
             case 0:
-                int i7 = this.f21505c;
+                int i7 = this.f21510c;
                 long j3 = this.d;
-                yr yrVar = this.f21504b;
+                yr yrVar = this.f21509b;
                 yrVar.getClass();
                 try {
-                    SQLiteDatabase sQLiteDatabase = yrVar.f26721b;
+                    SQLiteDatabase sQLiteDatabase = yrVar.f26725b;
                     Locale locale = Locale.US;
                     sQLiteDatabase.executeFast("UPDATE dialogs SET ttl_period = " + i7 + " WHERE did = " + j3).stepThis().dispose();
                     return;
@@ -35,17 +35,17 @@ public final class aq implements Runnable {
                     return;
                 }
             case 1:
-                this.f21504b.A0(this.f21505c, this.d);
+                this.f21509b.A0(this.f21510c, this.d);
                 return;
             case 2:
-                int i10 = this.f21505c;
+                int i10 = this.f21510c;
                 long j10 = this.d;
-                yr yrVar2 = this.f21504b;
+                yr yrVar2 = this.f21509b;
                 yrVar2.getClass();
                 SQLitePreparedStatement sQLitePreparedStatement = null;
                 try {
                     try {
-                        sQLitePreparedStatement = yrVar2.f26721b.executeFast("UPDATE chat_settings_v2 SET links = ? WHERE uid = ?");
+                        sQLitePreparedStatement = yrVar2.f26725b.executeFast("UPDATE chat_settings_v2 SET links = ? WHERE uid = ?");
                         sQLitePreparedStatement.requery();
                         sQLitePreparedStatement.bindInteger(1, i10);
                         sQLitePreparedStatement.bindLong(2, j10);
@@ -67,14 +67,14 @@ public final class aq implements Runnable {
                     return;
                 }
             case 3:
-                int i11 = this.f21505c;
+                int i11 = this.f21510c;
                 long j11 = this.d;
-                yr yrVar3 = this.f21504b;
+                yr yrVar3 = this.f21509b;
                 yrVar3.getClass();
                 SQLitePreparedStatement sQLitePreparedStatement2 = null;
                 try {
                     try {
-                        sQLitePreparedStatement2 = yrVar3.f26721b.executeFast("UPDATE dialogs SET pinned = ? WHERE did = ?");
+                        sQLitePreparedStatement2 = yrVar3.f26725b.executeFast("UPDATE dialogs SET pinned = ? WHERE did = ?");
                         sQLitePreparedStatement2.bindInteger(1, i11);
                         sQLitePreparedStatement2.bindLong(2, j11);
                         sQLitePreparedStatement2.step();
@@ -95,12 +95,12 @@ public final class aq implements Runnable {
                     throw th3;
                 }
             case 4:
-                int i12 = this.f21505c;
+                int i12 = this.f21510c;
                 long j12 = this.d;
-                yr yrVar4 = this.f21504b;
+                yr yrVar4 = this.f21509b;
                 yrVar4.getClass();
                 try {
-                    SQLiteDatabase sQLiteDatabase2 = yrVar4.f26721b;
+                    SQLiteDatabase sQLiteDatabase2 = yrVar4.f26725b;
                     Locale locale2 = Locale.US;
                     sQLiteDatabase2.executeFast("UPDATE messages_v2 SET mention = 1, read_state = read_state & ~2 WHERE mid = " + i12 + " AND uid = " + j12).stepThis().dispose();
                     return;
@@ -109,12 +109,12 @@ public final class aq implements Runnable {
                     return;
                 }
             case 5:
-                int i13 = this.f21505c;
+                int i13 = this.f21510c;
                 long j13 = this.d;
-                yr yrVar5 = this.f21504b;
+                yr yrVar5 = this.f21509b;
                 yrVar5.getClass();
                 try {
-                    SQLitePreparedStatement executeFast = yrVar5.f26721b.executeFast("UPDATE dialogs SET pts = ? WHERE did = ?");
+                    SQLitePreparedStatement executeFast = yrVar5.f26725b.executeFast("UPDATE dialogs SET pts = ? WHERE did = ?");
                     executeFast.bindInteger(1, i13);
                     executeFast.bindLong(2, -j13);
                     executeFast.step();
@@ -125,11 +125,11 @@ public final class aq implements Runnable {
                     return;
                 }
             case 6:
-                yr yrVar6 = this.f21504b;
-                int i14 = this.f21505c;
+                yr yrVar6 = this.f21509b;
+                int i14 = this.f21510c;
                 long j14 = this.d;
                 try {
-                    SQLiteDatabase sQLiteDatabase3 = yrVar6.f26721b;
+                    SQLiteDatabase sQLiteDatabase3 = yrVar6.f26725b;
                     Locale locale3 = Locale.US;
                     sQLiteDatabase3.executeFast("DELETE FROM download_queue WHERE uid = " + j14 + " AND type = " + i14).stepThis().dispose();
                     return;
@@ -138,14 +138,14 @@ public final class aq implements Runnable {
                     return;
                 }
             default:
-                int i15 = this.f21505c;
+                int i15 = this.f21510c;
                 long j15 = this.d;
-                yr yrVar7 = this.f21504b;
+                yr yrVar7 = this.f21509b;
                 yrVar7.getClass();
                 SQLitePreparedStatement sQLitePreparedStatement3 = null;
                 try {
                     try {
-                        sQLitePreparedStatement3 = yrVar7.f26721b.executeFast("UPDATE chat_settings_v2 SET online = ? WHERE uid = ?");
+                        sQLitePreparedStatement3 = yrVar7.f26725b.executeFast("UPDATE chat_settings_v2 SET online = ? WHERE uid = ?");
                         sQLitePreparedStatement3.requery();
                         sQLitePreparedStatement3.bindInteger(1, i15);
                         sQLitePreparedStatement3.bindLong(2, j15);

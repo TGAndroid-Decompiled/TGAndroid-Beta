@@ -4,26 +4,26 @@ import org.telegram.messenger.c20;
 import org.telegram.messenger.id;
 import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.x70;
-import org.telegram.ui.v60;
-import org.telegram.ui.wb1;
+import org.telegram.ui.Components.w70;
+import org.telegram.ui.sb1;
+import org.telegram.ui.w60;
 public final class k implements c20 {
-    public final int f42641a;
-    public final Object f42642b;
+    public final int f42695a;
+    public final Object f42696b;
 
     public k(Object obj, int i7) {
-        this.f42641a = i7;
-        this.f42642b = obj;
+        this.f42695a = i7;
+        this.f42696b = obj;
     }
 
     @Override
     public final void a(Object obj) {
         int i7;
         CharSequence V;
-        int i10 = this.f42641a;
+        int i10 = this.f42695a;
         String str = null;
         boolean z9 = false;
-        Object obj2 = this.f42642b;
+        Object obj2 = this.f42696b;
         switch (i10) {
             case 0:
                 bi.b9 b9Var = (bi.b9) obj2;
@@ -48,25 +48,25 @@ public final class k implements c20 {
             case 3:
                 String str3 = (String) obj;
                 d2.m("approve session", str3);
-                ((v60) obj2).a(str3);
+                ((w60) obj2).a(str3);
                 return;
             case 4:
-                org.telegram.messenger.g0.h3(new wb1(20, (a8) obj2, (TLRPC.UserFull) obj));
+                org.telegram.messenger.g0.h3(new sb1(20, (d8) obj2, (TLRPC.UserFull) obj));
                 return;
             default:
-                d8 d8Var = (d8) obj2;
-                d8Var.getClass();
+                g8 g8Var = (g8) obj2;
+                g8Var.getClass();
                 if (((Integer) obj).intValue() == 0) {
                     i7 = 12;
                 } else {
                     i7 = 24;
                 }
-                if (d8Var.f42374a != i7) {
-                    d8Var.f42374a = i7;
-                    d8Var.b0(d8Var.getParentActivity());
-                    d8Var.d0();
-                    x70 x70Var = d8Var.h;
-                    byte[] bArr = d8Var.f42381s;
+                if (g8Var.f42537a != i7) {
+                    g8Var.f42537a = i7;
+                    g8Var.b0(g8Var.getParentActivity());
+                    g8Var.d0();
+                    w70 w70Var = g8Var.h;
+                    byte[] bArr = g8Var.f42544s;
                     Integer valueOf = Integer.valueOf(i7);
                     Object[] objArr = new Object[1];
                     if (bArr != null) {
@@ -76,7 +76,7 @@ public final class k implements c20 {
                         objArr[0] = valueOf;
                         V = id.V(null, null, 2131743091, objArr);
                     }
-                    x70Var.setText(V);
+                    w70Var.setText(V);
                     return;
                 }
                 return;

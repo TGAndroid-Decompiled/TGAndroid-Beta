@@ -10,14 +10,14 @@ public final class db implements View.OnClickListener {
     public final v10 f3697c;
     public final fi.d d;
     public final EditTextBoldCursor f3698e;
-    public final org.telegram.ui.ActionBar.v2[] f3699f;
+    public final org.telegram.ui.ActionBar.w2[] f3699f;
 
-    public db(boolean[] zArr, v10 v10Var, fi.d dVar, EditTextBoldCursor editTextBoldCursor, org.telegram.ui.ActionBar.v2[] v2VarArr) {
+    public db(boolean[] zArr, v10 v10Var, fi.d dVar, EditTextBoldCursor editTextBoldCursor, org.telegram.ui.ActionBar.w2[] w2VarArr) {
         this.f3696b = zArr;
         this.f3697c = v10Var;
         this.d = dVar;
         this.f3698e = editTextBoldCursor;
-        this.f3699f = v2VarArr;
+        this.f3699f = w2VarArr;
     }
 
     @Override
@@ -52,11 +52,11 @@ public final class db implements View.OnClickListener {
         }
     }
 
-    public db(boolean[] zArr, v10 v10Var, EditTextBoldCursor editTextBoldCursor, fi.d dVar, org.telegram.ui.ActionBar.v2[] v2VarArr) {
+    public db(boolean[] zArr, v10 v10Var, EditTextBoldCursor editTextBoldCursor, fi.d dVar, org.telegram.ui.ActionBar.w2[] w2VarArr) {
         this.f3696b = zArr;
         this.f3697c = v10Var;
         this.f3698e = editTextBoldCursor;
         this.d = dVar;
-        this.f3699f = v2VarArr;
+        this.f3699f = w2VarArr;
     }
 }

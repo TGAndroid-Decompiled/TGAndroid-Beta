@@ -6,39 +6,39 @@ import android.view.ViewParent;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 import java.util.HashSet;
-public final class ic extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public final org.telegram.ui.ActionBar.g6 f46565a;
-    public final f61 f46566b;
-    public final v4.b0 f46567c;
+public final class ic extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
+    public final org.telegram.ui.ActionBar.h6 f46609a;
+    public final g61 f46610b;
+    public final v4.b0 f46611c;
     public final int d;
-    public int f46568e;
+    public int f46612e;
 
-    public ic(int i7, Activity activity, org.telegram.ui.ActionBar.g6 g6Var) {
+    public ic(int i7, Activity activity, org.telegram.ui.ActionBar.h6 h6Var) {
         super(activity);
         this.d = i7;
-        this.f46565a = g6Var;
-        f61 f61Var = new f61(3, activity, g6Var);
-        this.f46566b = f61Var;
-        f61Var.setPadding(org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(6.0f), 0);
-        f61Var.setClipToPadding(false);
-        f61Var.setAdapter(new gc(this, activity, g6Var, i7));
+        this.f46609a = h6Var;
+        g61 g61Var = new g61(3, activity, h6Var);
+        this.f46610b = g61Var;
+        g61Var.setPadding(org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(6.0f), 0);
+        g61Var.setClipToPadding(false);
+        g61Var.setAdapter(new gc(this, activity, h6Var, i7));
         v4.b0 b0Var = new v4.b0();
-        this.f46567c = b0Var;
+        this.f46611c = b0Var;
         b0Var.j1(0);
-        f61Var.setLayoutManager(b0Var);
-        addView(f61Var, c8.ha.c(-1.0f, -1));
+        g61Var.setLayoutManager(b0Var);
+        addView(g61Var, c8.ha.c(-1.0f, -1));
     }
 
     public final void a(int i7, boolean z9) {
-        org.telegram.messenger.gp gpVar = org.telegram.messenger.qp.s1(this.d).f24874q4;
+        org.telegram.messenger.gp gpVar = org.telegram.messenger.qp.s1(this.d).f24878q4;
         int i10 = 0;
         if (gpVar != null) {
-            ArrayList arrayList = gpVar.f22706c;
+            ArrayList arrayList = gpVar.f22710c;
             int i11 = 0;
             while (true) {
                 if (i11 >= arrayList.size()) {
                     break;
-                } else if (((org.telegram.messenger.fp) arrayList.get(i11)).f22451c == i7) {
+                } else if (((org.telegram.messenger.fp) arrayList.get(i11)).f22455c == i7) {
                     i10 = i11;
                     break;
                 } else {
@@ -46,12 +46,12 @@ public final class ic extends FrameLayout implements org.telegram.ui.ActionBar.b
                 }
             }
         }
-        if (i10 != this.f46568e) {
-            this.f46568e = i10;
+        if (i10 != this.f46612e) {
+            this.f46612e = i10;
             if (!z9) {
-                this.f46567c.h1(i10, (org.telegram.messenger.g0.f22563q.x - org.telegram.messenger.g0.L(56.0f)) / 2);
+                this.f46611c.h1(i10, (org.telegram.messenger.g0.f22567q.x - org.telegram.messenger.g0.L(56.0f)) / 2);
             }
-            org.telegram.messenger.g0.d0(this.f46566b, new bi.b9(4, this, z9));
+            org.telegram.messenger.g0.d0(this.f46610b, new bi.b9(4, this, z9));
         }
     }
 
@@ -70,7 +70,7 @@ public final class ic extends FrameLayout implements org.telegram.ui.ActionBar.b
 
     @Override
     public final void updateColors() {
-        org.telegram.messenger.g0.d0(this.f46566b, new org.telegram.messenger.voip.k(7, this, org.telegram.messenger.qp.s1(this.d).f24874q4));
+        org.telegram.messenger.g0.d0(this.f46610b, new org.telegram.messenger.voip.k(7, this, org.telegram.messenger.qp.s1(this.d).f24878q4));
     }
 
     @Override

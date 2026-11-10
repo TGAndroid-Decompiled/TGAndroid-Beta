@@ -14,13 +14,13 @@ import java.util.Map;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.iz;
-import org.telegram.ui.ActionBar.v2;
+import org.telegram.ui.ActionBar.w2;
 import org.telegram.ui.k3;
 public final class u0 extends WebView {
     public static final int V = 0;
     public String D;
     public boolean E;
-    public v2 F;
+    public w2 F;
     public int G;
     public int H;
     public Runnable I;
@@ -36,28 +36,28 @@ public final class u0 extends WebView {
     public d6.i S;
     public w0 T;
     public Runnable U;
-    public final int f51294a;
-    public boolean f51295b;
-    public final boolean f51296c;
+    public final int f51248a;
+    public boolean f51249b;
+    public final boolean f51250c;
     public String d;
-    public y0 f51297e;
-    public u0 f51298f;
+    public y0 f51251e;
+    public u0 f51252f;
     public boolean h;
-    public String f51299n;
-    public String f51300r;
-    public boolean f51301s;
-    public boolean f51302w;
-    public int f51303x;
-    public int f51304y;
+    public String f51253n;
+    public String f51254r;
+    public boolean f51255s;
+    public boolean f51256w;
+    public int f51257x;
+    public int f51258y;
 
     public u0(Context context, boolean z9, long j3) {
         super(context);
         int i7 = x0.R0;
         x0.R0 = i7 + 1;
-        this.f51294a = i7;
+        this.f51248a = i7;
         this.D = "about:blank";
         this.P = new HashMap();
-        this.f51296c = z9;
+        this.f51250c = z9;
         c("created new webview " + this);
         setOnLongClickListener(new h0(this));
         setWebViewClient(new j0(this, z9, context));
@@ -69,22 +69,22 @@ public final class u0 extends WebView {
     }
 
     public static void a(u0 u0Var) {
-        if (!u0Var.f51296c) {
+        if (!u0Var.f51250c) {
             a2 a10 = a2.a(u0Var);
             b2 b10 = b2.b();
             if (a10 == null) {
                 b10.getClass();
             } else {
-                if (b10.f51088a == null) {
-                    b10.f51088a = new HashMap();
+                if (b10.f51042a == null) {
+                    b10.f51042a = new HashMap();
                 }
-                if (!TextUtils.isEmpty(a10.f51073b)) {
-                    b10.f51088a.put(a10.f51073b, a10);
+                if (!TextUtils.isEmpty(a10.f51027b)) {
+                    b10.f51042a.put(a10.f51027b, a10);
                     b10.c();
                     b10.d();
                 }
             }
-            y0 y0Var = u0Var.f51297e;
+            y0 y0Var = u0Var.f51251e;
             if (y0Var != null && a10 != null) {
                 y0Var.d = a10;
                 xa.c(y0Var);
@@ -97,20 +97,20 @@ public final class u0 extends WebView {
         if (a2Var != null) {
             x0 x0Var = this.Q;
             boolean z9 = false;
-            if (x0Var != null && (d0Var = x0Var.f51345c) != null) {
-                int i7 = a2Var.f51075e;
+            if (x0Var != null && (d0Var = x0Var.f51299c) != null) {
+                int i7 = a2Var.f51029e;
                 if (i7 != 0) {
                     d0Var.o(i7, true);
-                    this.f51301s = true;
+                    this.f51255s = true;
                 }
-                int i10 = a2Var.f51076f;
+                int i10 = a2Var.f51030f;
                 if (i10 != 0) {
-                    this.Q.f51345c.o(i10, false);
-                    this.f51302w = true;
+                    this.Q.f51299c.o(i10, false);
+                    this.f51256w = true;
                 } else {
                     i10 = -1;
                 }
-                Bitmap bitmap = a2Var.f51077i;
+                Bitmap bitmap = a2Var.f51031i;
                 if (bitmap != null) {
                     x0 x0Var2 = this.Q;
                     this.O = bitmap;
@@ -119,13 +119,13 @@ public final class u0 extends WebView {
                 }
                 if (!TextUtils.isEmpty(a2Var.d)) {
                     String str = a2Var.d;
-                    this.f51300r = str;
+                    this.f51254r = str;
                     x0 x0Var3 = this.Q;
                     this.K = str;
                     x0Var3.I();
                     z9 = true;
                 }
-                if (iz.f23443v0) {
+                if (iz.f23447v0) {
                     setBackgroundColor(i10);
                 }
             }
@@ -140,7 +140,7 @@ public final class u0 extends WebView {
     }
 
     public final void c(String str) {
-        a8.b("[webview] #" + this.f51294a + " " + str);
+        a8.b("[webview] #" + this.f51248a + " " + str);
     }
 
     @Override
@@ -170,9 +170,9 @@ public final class u0 extends WebView {
     }
 
     public final void e(String str, a2 a2Var) {
-        v2 v2Var = this.F;
-        if (v2Var != null) {
-            v2Var.dismiss();
+        w2 w2Var = this.F;
+        if (w2Var != null) {
+            w2Var.dismiss();
             this.F = null;
         }
         b(a2Var);
@@ -196,7 +196,7 @@ public final class u0 extends WebView {
         }
         this.Q = x0Var;
         this.T = w0Var;
-        if (z9 && !this.f51296c) {
+        if (z9 && !this.f51250c) {
             d("window.__tg__postBackgroundChange && window.__tg__postBackgroundChange()");
         }
     }
@@ -275,12 +275,12 @@ public final class u0 extends WebView {
 
     @Override
     public final void loadUrl(String str) {
-        v2 v2Var = this.F;
-        if (v2Var != null) {
-            v2Var.dismiss();
+        w2 w2Var = this.F;
+        if (w2Var != null) {
+            w2Var.dismiss();
             this.F = null;
         }
-        if (!this.f51296c) {
+        if (!this.f51250c) {
             b(b2.b().a(org.telegram.messenger.g0.K0(str, true)));
         }
         this.d = str;
@@ -348,7 +348,7 @@ public final class u0 extends WebView {
         if (w0Var != null) {
             getScrollX();
             getScrollY();
-            ((k3) ((org.telegram.ui.f) w0Var).f45545b).L.d0();
+            ((k3) ((org.telegram.ui.f) w0Var).f45464b).L.d0();
         }
         getScrollX();
         getScrollY();
@@ -450,12 +450,12 @@ public final class u0 extends WebView {
 
     @Override
     public final void loadUrl(String str, Map map) {
-        v2 v2Var = this.F;
-        if (v2Var != null) {
-            v2Var.dismiss();
+        w2 w2Var = this.F;
+        if (w2Var != null) {
+            w2Var.dismiss();
             this.F = null;
         }
-        if (!this.f51296c) {
+        if (!this.f51250c) {
             b(b2.b().a(org.telegram.messenger.g0.K0(str, true)));
         }
         this.d = str;

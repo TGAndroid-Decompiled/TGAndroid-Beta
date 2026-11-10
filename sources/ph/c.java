@@ -12,26 +12,26 @@ import c8.ha;
 import java.util.HashSet;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l6;
-public final class c extends FrameLayout implements b6 {
-    public final g6 f53653a;
-    public final ImageView f53654b;
-    public final TextView f53655c;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+public final class c extends FrameLayout implements c6 {
+    public final h6 f53652a;
+    public final ImageView f53653b;
+    public final TextView f53654c;
     public int d;
-    public boolean f53656e;
+    public boolean f53655e;
 
-    public c(Context context, g6 g6Var) {
+    public c(Context context, h6 h6Var) {
         super(context);
-        this.f53653a = g6Var;
+        this.f53652a = h6Var;
         ImageView imageView = new ImageView(context);
-        this.f53654b = imageView;
+        this.f53653b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(2131232057);
         addView(imageView, ha.d(48, 48.0f, 8388627, 6.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f53655c = textView;
+        this.f53654c = textView;
         textView.setText(id.M0(2131751166, null));
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(g0.o());
@@ -42,34 +42,34 @@ public final class c extends FrameLayout implements b6 {
     }
 
     public final int a(float f10) {
-        return i0.a.o(l6.w0(l6.Kl, this.f53653a), (int) (f10 * 255.0f));
+        return i0.a.o(m6.w0(m6.Kl, this.f53652a), (int) (f10 * 255.0f));
     }
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(l6.Kl));
+        hashSet.add(Integer.valueOf(m6.Kl));
     }
 
     public void setOnBackClickListener(View.OnClickListener onClickListener) {
-        this.f53654b.setOnClickListener(onClickListener);
+        this.f53653b.setOnClickListener(onClickListener);
     }
 
     @Override
     public final void updateColors() {
-        this.f53655c.setTextColor(a(0.6f));
+        this.f53654c.setTextColor(a(0.6f));
         int a10 = a(1.0f);
-        if (this.f53656e && a10 == this.d) {
+        if (this.f53655e && a10 == this.d) {
             return;
         }
-        this.f53656e = true;
+        this.f53655e = true;
         this.d = a10;
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(a(0.6f), PorterDuff.Mode.MULTIPLY);
-        ImageView imageView = this.f53654b;
+        ImageView imageView = this.f53653b;
         imageView.setColorFilter(porterDuffColorFilter);
         if (imageView.getBackground() != null) {
-            l6.H1(imageView.getBackground(), a(0.1f), true);
+            m6.H1(imageView.getBackground(), a(0.1f), true);
         } else {
-            imageView.setBackground(l6.h0(a(0.1f), 1, -1));
+            imageView.setBackground(m6.h0(a(0.1f), 1, -1));
         }
     }
 }

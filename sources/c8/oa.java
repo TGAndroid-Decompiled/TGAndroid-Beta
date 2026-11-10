@@ -11,14 +11,14 @@ public enum oa implements u {
     UI_IMAGE(6),
     CV_PIXEL_BUFFER_REF(9);
     
-    public final int f5792a;
+    public final int f5797a;
 
     oa(int i7) {
-        this.f5792a = i7;
+        this.f5797a = i7;
     }
 
     @Override
     public final int zza() {
-        return this.f5792a;
+        return this.f5797a;
     }
 }

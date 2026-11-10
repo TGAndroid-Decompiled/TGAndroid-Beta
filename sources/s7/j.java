@@ -2,15 +2,15 @@ package s7;
 
 import java.util.HashMap;
 public abstract class j {
-    public static final String[] f54964a = {"text1", "text2", "icon", "intent_action", "intent_data", "intent_data_id", "intent_extra_data", "suggest_large_icon", "intent_activity", "thing_proto"};
-    public static final HashMap f54965b = new HashMap(10);
+    public static final String[] f54963a = {"text1", "text2", "icon", "intent_action", "intent_data", "intent_data_id", "intent_extra_data", "suggest_large_icon", "intent_activity", "thing_proto"};
+    public static final HashMap f54964b = new HashMap(10);
 
     static {
         int i7 = 0;
         while (true) {
-            String[] strArr = f54964a;
+            String[] strArr = f54963a;
             if (i7 < 10) {
-                f54965b.put(strArr[i7], Integer.valueOf(i7));
+                f54964b.put(strArr[i7], Integer.valueOf(i7));
                 i7++;
             } else {
                 return;

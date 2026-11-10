@@ -2,8 +2,8 @@ package jg;
 
 import android.view.ViewGroup;
 import bi.ec;
-import org.telegram.ui.Components.pj0;
-public final class o1 extends pj0 {
+import org.telegram.ui.Components.oj0;
+public final class o1 extends oj0 {
     public i1 f16876c;
     public Integer d;
     public ec f16877e;

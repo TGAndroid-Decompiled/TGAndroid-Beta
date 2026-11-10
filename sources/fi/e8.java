@@ -5,32 +5,32 @@ import java.util.HashSet;
 import org.telegram.messenger.c20;
 import org.telegram.tgnet.TLRPC;
 public final class e8 implements c20 {
-    public final int f11929a;
-    public final n8 f11930b;
+    public final int f11933a;
+    public final n8 f11934b;
 
     public e8(n8 n8Var, int i7) {
-        this.f11929a = i7;
-        this.f11930b = n8Var;
+        this.f11933a = i7;
+        this.f11934b = n8Var;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f11929a;
-        n8 n8Var = this.f11930b;
+        int i7 = this.f11933a;
+        n8 n8Var = this.f11934b;
         switch (i7) {
             case 0:
                 s8 s8Var = n8Var.W;
-                s8Var.f12803j1 = (TLRPC.InputPeer) obj;
-                HashSet hashSet = s8Var.f12809r1;
+                s8Var.f12806m1 = (TLRPC.InputPeer) obj;
+                HashSet hashSet = s8Var.f12813u1;
                 hashSet.clear();
-                if (s8Var.B1 && s8Var.f12815x1) {
-                    s8Var.f12815x1 = false;
+                if (s8Var.E1 && s8Var.A1) {
+                    s8Var.A1 = false;
                 }
-                c20 c20Var = s8Var.N1;
+                c20 c20Var = s8Var.Q1;
                 if (c20Var != null) {
-                    c20Var.a(s8Var.f12803j1);
+                    c20Var.a(s8Var.f12806m1);
                 }
-                v8 v8Var = s8Var.O1;
+                v8 v8Var = s8Var.R1;
                 if (v8Var != null) {
                     v8Var.a(new HashSet(hashSet));
                 }
@@ -38,15 +38,15 @@ public final class e8 implements c20 {
                 return;
             case 1:
                 s8 s8Var2 = n8Var.W;
-                int i10 = s8.U1;
-                s8Var2.N0(new q8(5, s8Var2.f28621a, (ArrayList) obj), new di.x3(s8Var2, 1), false);
+                int i10 = s8.X1;
+                s8Var2.N0(new q8(5, s8Var2.f28669a, (ArrayList) obj), new di.x3(s8Var2, 1), false);
                 return;
             case 2:
                 s8 s8Var3 = n8Var.W;
-                HashSet hashSet2 = s8Var3.f12809r1;
-                hashSet2.add(Integer.valueOf(((di.s6) obj).f9732a));
+                HashSet hashSet2 = s8Var3.f12813u1;
+                hashSet2.add(Integer.valueOf(((di.s6) obj).f9737a));
                 n8Var.h(true);
-                v8 v8Var2 = s8Var3.O1;
+                v8 v8Var2 = s8Var3.R1;
                 if (v8Var2 != null) {
                     v8Var2.a(new HashSet(hashSet2));
                     return;

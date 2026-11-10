@@ -106,8 +106,8 @@ public abstract class o0 {
             }
             return h9.i0.q(treeSet);
         }
-        h9.g0 g0Var = h9.i0.f14329b;
-        return t1.f14397e;
+        h9.g0 g0Var = h9.i0.f14331b;
+        return t1.f14399e;
     }
 
     public static RenderEffect d() {
@@ -156,7 +156,7 @@ public abstract class o0 {
 
     public static void j(q4.q qVar, ComponentName componentName) {
         try {
-            MediaSession mediaSession = ((q4.l) qVar.f53816b).f53798a;
+            MediaSession mediaSession = ((q4.l) qVar.f53815b).f53797a;
             mediaSession.getClass();
             mediaSession.setMediaButtonBroadcastReceiver(componentName);
         } catch (IllegalArgumentException e10) {

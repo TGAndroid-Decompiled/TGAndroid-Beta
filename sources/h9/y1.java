@@ -7,13 +7,13 @@ import java.util.Arrays;
 public final class y1 extends l0 {
     public static final y1 h = new y1(null, new Object[0], 0);
     public final transient Object d;
-    public final transient Object[] f14418e;
-    public final transient int f14419f;
+    public final transient Object[] f14420e;
+    public final transient int f14421f;
 
     public y1(Object obj, Object[] objArr, int i7) {
         this.d = obj;
-        this.f14418e = objArr;
-        this.f14419f = i7;
+        this.f14420e = objArr;
+        this.f14421f = i7;
     }
 
     public static y1 g(int i7, Object[] objArr, wa waVar) {
@@ -254,22 +254,22 @@ public final class y1 extends l0 {
 
     @Override
     public final v1 c() {
-        return new v1(this, this.f14418e, 0, this.f14419f);
+        return new v1(this, this.f14420e, 0, this.f14421f);
     }
 
     @Override
     public final w1 d() {
-        return new w1(this, new x1(0, this.f14419f, this.f14418e));
+        return new w1(this, new x1(0, this.f14421f, this.f14420e));
     }
 
     @Override
     public final d0 e() {
-        return new x1(1, this.f14419f, this.f14418e);
+        return new x1(1, this.f14421f, this.f14420e);
     }
 
     @Override
     public final Object get(Object obj) {
-        Object i7 = i(this.d, this.f14418e, this.f14419f, 0, obj);
+        Object i7 = i(this.d, this.f14420e, this.f14421f, 0, obj);
         if (i7 == null) {
             return null;
         }
@@ -278,6 +278,6 @@ public final class y1 extends l0 {
 
     @Override
     public final int size() {
-        return this.f14419f;
+        return this.f14421f;
     }
 }

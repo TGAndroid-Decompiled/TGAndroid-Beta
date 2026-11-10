@@ -1,138 +1,57 @@
 package org.telegram.ui.Wallet;
 
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.Scroller;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.ui.Components.r41;
-public final class s5 extends v4.q0 {
-    public RecyclerView f43090a;
-    public fi.w3 f43092c;
-    public boolean d;
-    public boolean f43093e;
-    public boolean f43094f;
-    public float f43095g;
-    public float h;
-    public final w5 f43097j;
-    public final fi.h8 f43091b = new fi.h8(this);
-    public final l f43096i = new l(this, 8);
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.HashSet;
+public final class s5 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
+    public final org.telegram.ui.ActionBar.h6 f43155a;
+    public final ImageView f43156b;
+    public final TextView f43157c;
+    public final TextView d;
 
-    public s5(w5 w5Var) {
-        this.f43097j = w5Var;
+    public s5(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context);
+        this.f43155a = h6Var;
+        setPadding(org.telegram.messenger.g0.L(36.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(36.0f), org.telegram.messenger.g0.L(8.0f));
+        ImageView imageView = new ImageView(context);
+        this.f43156b = imageView;
+        addView(imageView, c8.ha.d(28, 28.0f, 51, 0.0f, 2.0f, 0.0f, 0.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        addView(linearLayout, c8.ha.d(-1, -2.0f, 55, 42.0f, 0.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(context);
+        this.f43157c = textView;
+        com.google.android.recaptcha.internal.a.q(textView, 1, 14.0f);
+        TextView f10 = org.telegram.messenger.camera.q.f(linearLayout, textView, c8.ha.t(-1, -2, 55, 0, 0, 0, 2), context);
+        this.d = f10;
+        f10.setTextSize(1, 14.0f);
+        linearLayout.addView(f10, c8.ha.t(-1, -2, 55, 0, 0, 0, 2));
+        updateColors();
+    }
+
+    public final void a(int i7, CharSequence charSequence, CharSequence charSequence2) {
+        this.f43156b.setImageResource(i7);
+        this.f43157c.setText(charSequence);
+        this.d.setText(charSequence2);
     }
 
     @Override
-    public final boolean a(int r7, int r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.s5.a(int, int):boolean");
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.m6.G6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.m6.f28300z6));
     }
 
-    public final void b(fi.w3 w3Var) {
-        fi.w3 w3Var2 = this.f43092c;
-        if (w3Var2 != null) {
-            w3Var2.removeCallbacks(this.f43096i);
-        }
-        this.f43092c = w3Var;
-        RecyclerView recyclerView = this.f43090a;
-        if (recyclerView != w3Var) {
-            fi.h8 h8Var = this.f43091b;
-            if (recyclerView != null) {
-                ArrayList arrayList = recyclerView.f2870w0;
-                if (arrayList != null) {
-                    arrayList.remove(h8Var);
-                }
-                this.f43090a.setOnFlingListener(null);
-            }
-            this.f43090a = w3Var;
-            if (w3Var != null) {
-                if (w3Var.getOnFlingListener() == null) {
-                    this.f43090a.j(h8Var);
-                    this.f43090a.setOnFlingListener(this);
-                    new Scroller(this.f43090a.getContext(), new DecelerateInterpolator());
-                    f();
-                    return;
-                }
-                throw new IllegalStateException("An instance of OnFlingListener already set.");
-            }
-        }
-    }
-
-    public final void c() {
-        this.f43093e = false;
-        this.f43094f = false;
-        this.d = false;
-        fi.w3 w3Var = this.f43092c;
-        if (w3Var != null) {
-            w3Var.removeCallbacks(this.f43096i);
-        }
-    }
-
-    public final View d(v4.n0 n0Var) {
-        fi.w3 w3Var;
-        if (!this.f43093e && (w3Var = this.f43092c) != null && w3Var.getScrollState() == 0) {
-            w5 w5Var = this.f43097j;
-            r41 y02 = w5Var.y0();
-            if ((y02 == null || y02.getScrollState() == 0) && this.d) {
-                this.d = false;
-                if (w5Var.z0()) {
-                    View m10 = n0Var.m(0);
-                    View m11 = n0Var.m(n0Var.B() - 1);
-                    if (m10 == null) {
-                        return m11;
-                    }
-                    if (m11 == null || Math.abs(new int[]{0, v4.n0.z(m10) - n0Var.F()}[1]) < Math.abs(new int[]{0, v4.n0.z(m11) - n0Var.F()}[1])) {
-                        return m10;
-                    }
-                    return m11;
-                }
-                return null;
-            }
-            return null;
-        }
-        return null;
-    }
-
-    public final void e(MotionEvent motionEvent) {
-        boolean z9;
-        int actionMasked = motionEvent.getActionMasked();
-        if (actionMasked == 0) {
-            c();
-            this.f43093e = true;
-            this.f43095g = motionEvent.getX();
-            this.h = motionEvent.getY();
-        } else if (actionMasked == 3) {
-            c();
-        } else if (actionMasked == 2 || actionMasked == 1) {
-            float abs = Math.abs(motionEvent.getX() - this.f43095g);
-            float abs2 = Math.abs(motionEvent.getY() - this.h);
-            if (abs2 > ViewConfiguration.get(this.f43092c.getContext()).getScaledTouchSlop() && abs2 > abs * 1.5f) {
-                z9 = true;
-            } else {
-                z9 = false;
-            }
-            this.f43094f = z9;
-            if (!z9) {
-                this.d = false;
-            }
-            if (actionMasked == 1) {
-                this.f43093e = false;
-            }
-        }
-    }
-
-    public final void f() {
-        v4.n0 layoutManager;
-        View d;
-        RecyclerView recyclerView = this.f43090a;
-        if (recyclerView != null && (layoutManager = recyclerView.getLayoutManager()) != null && (d = d(layoutManager)) != null) {
-            int[] iArr = {0, v4.n0.z(d) - layoutManager.F()};
-            int i7 = iArr[0];
-            if (i7 == 0 && iArr[1] == 0) {
-                return;
-            }
-            this.f43090a.w0(i7, iArr[1], null);
-        }
+    @Override
+    public final void updateColors() {
+        int i7 = org.telegram.ui.ActionBar.m6.G6;
+        org.telegram.ui.ActionBar.h6 h6Var = this.f43155a;
+        this.f43156b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.m6.w0(i7, h6Var), PorterDuff.Mode.SRC_IN));
+        this.f43157c.setTextColor(org.telegram.ui.ActionBar.m6.w0(i7, h6Var));
+        this.d.setTextColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f28300z6, h6Var));
     }
 }

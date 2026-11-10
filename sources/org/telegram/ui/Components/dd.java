@@ -1,42 +1,25 @@
 package org.telegram.ui.Components;
 
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.StickersActivity;
-import org.telegram.ui.ThemeActivity;
-public final class dd implements Runnable {
-    public final int f32933a;
-    public final org.telegram.ui.ActionBar.f2 f32934b;
-
-    public dd(int i7, org.telegram.ui.ActionBar.f2 f2Var) {
-        this.f32933a = i7;
-        this.f32934b = f2Var;
-    }
-
+import android.text.InputFilter;
+import android.text.Spanned;
+public final class dd implements InputFilter {
     @Override
-    public final void run() {
-        int i7 = this.f32933a;
-        org.telegram.ui.ActionBar.f2 f2Var = this.f32934b;
-        switch (i7) {
-            case 0:
-                int i10 = ChatActivityEnterView.s5;
-                if (f2Var != null) {
-                    new ug.w0(f2Var, 11, false).show();
-                    return;
-                } else if (f2Var.getContext() instanceof LaunchActivity) {
-                    ((LaunchActivity) f2Var.getContext()).t0(new PremiumPreviewFragment(0, null));
-                    return;
-                } else {
-                    return;
+    public final CharSequence filter(CharSequence charSequence, int i7, int i10, Spanned spanned, int i11, int i12) {
+        int i13 = ChatActivityEnterView.s5;
+        for (int i14 = i7; i14 < i10; i14++) {
+            char charAt = charSequence.charAt(i14);
+            if (charAt == '\n' || charAt == '\r') {
+                StringBuilder sb2 = new StringBuilder(i10 - i7);
+                while (i7 < i10) {
+                    char charAt2 = charSequence.charAt(i7);
+                    if (charAt2 != '\n' && charAt2 != '\r') {
+                        sb2.append(charAt2);
+                    }
+                    i7++;
                 }
-            case 1:
-                f2Var.presentFragment(new StickersActivity(0, null));
-                return;
-            default:
-                ThemeActivity themeActivity = new ThemeActivity(0);
-                themeActivity.T0 = true;
-                f2Var.presentFragment(themeActivity);
-                return;
+                return sb2;
+            }
         }
+        return null;
     }
 }

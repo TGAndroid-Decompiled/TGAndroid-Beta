@@ -5,7 +5,7 @@ import kf.g;
 import kf.p;
 import kf.s;
 public final class a implements nf.a {
-    public final char f14488a;
+    public final char f14490a;
 
     public a(int i7) {
         this('*');
@@ -21,7 +21,7 @@ public final class a implements nf.a {
     @Override
     public final void a(s sVar, s sVar2, int i7) {
         g gVar;
-        String.valueOf(this.f14488a);
+        String.valueOf(this.f14490a);
         if (i7 == 1) {
             gVar = new g(0);
         } else {
@@ -47,18 +47,18 @@ public final class a implements nf.a {
 
     @Override
     public final char b() {
-        return this.f14488a;
+        return this.f14490a;
     }
 
     @Override
     public final int c(e eVar, e eVar2) {
-        if (eVar.d || eVar2.f13882c) {
+        if (eVar.d || eVar2.f13884c) {
             int i7 = eVar2.h;
             if (i7 % 3 != 0 && (eVar.h + i7) % 3 == 0) {
                 return 0;
             }
         }
-        if (eVar.f13885g >= 2 && eVar2.f13885g >= 2) {
+        if (eVar.f13887g >= 2 && eVar2.f13887g >= 2) {
             return 2;
         }
         return 1;
@@ -71,10 +71,10 @@ public final class a implements nf.a {
 
     @Override
     public final char e() {
-        return this.f14488a;
+        return this.f14490a;
     }
 
     public a(char c10) {
-        this.f14488a = c10;
+        this.f14490a = c10;
     }
 }

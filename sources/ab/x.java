@@ -44,22 +44,22 @@ public abstract class x {
                     break;
                 }
             }
-            if (i11 == 1 && oc.f5793a == null) {
+            if (i11 == 1 && oc.f5798a == null) {
                 int i13 = Build.VERSION.SDK_INT;
                 if (i13 < 37) {
                     int c10 = c(true);
                     if (i13 < 35) {
-                        oc.f5793a = Boolean.valueOf(z9);
+                        oc.f5798a = Boolean.valueOf(z9);
                         if (z9) {
                         }
                     } else {
-                        oc.f5793a = Boolean.valueOf(z9);
+                        oc.f5798a = Boolean.valueOf(z9);
                         if (z9) {
                         }
                     }
                 }
                 z9 = false;
-                oc.f5793a = Boolean.valueOf(z9);
+                oc.f5798a = Boolean.valueOf(z9);
                 if (z9) {
                 }
             }
@@ -74,14 +74,14 @@ public abstract class x {
         List<MediaCodecInfo.VideoCapabilities.PerformancePoint> supportedPerformancePoints;
         try {
             e2.t tVar = new e2.t();
-            tVar.f10563r = s0.n("video/avc");
+            tVar.f10568r = s0.n("video/avc");
             e2.u uVar = new e2.u(tVar);
-            String str = uVar.f10615s;
+            String str = uVar.f10620s;
             if (str != null) {
                 List e11 = u2.w.e(str, z9, false);
                 String c10 = u2.w.c(uVar);
                 if (c10 == null) {
-                    e10 = t1.f14397e;
+                    e10 = t1.f14399e;
                 } else {
                     e10 = u2.w.e(c10, z9, false);
                 }
@@ -109,10 +109,10 @@ public abstract class x {
     public static t1 d(e2.e eVar) {
         h9.f0 p10 = h9.i0.p();
         h9.l0 l0Var = n2.b.h;
-        t0 t0Var = l0Var.f14343b;
+        t0 t0Var = l0Var.f14345b;
         if (t0Var == null) {
             t0Var = l0Var.d();
-            l0Var.f14343b = t0Var;
+            l0Var.f14345b = t0Var;
         }
         h2 it = t0Var.iterator();
         while (it.hasNext()) {

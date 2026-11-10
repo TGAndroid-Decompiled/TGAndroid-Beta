@@ -1,29 +1,54 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.ShapeDrawable;
-import org.telegram.ui.Components.pr;
-public final class g5 extends pr {
-    public final ShapeDrawable G;
-    public final w5 H;
+import android.view.View;
+import java.io.Serializable;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.qs;
+import org.telegram.messenger.v10;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class g5 implements View.OnAttachStateChangeListener {
+    public final di.r f42526a;
+    public final TL_wallet.walletTransaction[] f42527b;
+    public final ls f42528c;
+    public final int d;
+    public final v10 f42529e;
+    public final y2[] f42530f;
+    public final String[] h;
+    public final boolean[] f42531n;
 
-    public g5(w5 w5Var, Context context) {
-        super(context);
-        this.H = w5Var;
-        this.G = org.telegram.ui.ActionBar.l6.d0(org.telegram.messenger.g0.L(22.0f), w5Var.getThemedColor(org.telegram.ui.ActionBar.l6.f27865d6));
+    public g5(di.r rVar, TL_wallet.walletTransaction[] wallettransactionArr, f5 f5Var, int i7, v10 v10Var, y2[] y2VarArr, String[] strArr, boolean[] zArr) {
+        this.f42526a = rVar;
+        this.f42527b = wallettransactionArr;
+        this.f42528c = f5Var;
+        this.d = i7;
+        this.f42529e = v10Var;
+        this.f42530f = y2VarArr;
+        this.h = strArr;
+        this.f42531n = zArr;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int ceil = (int) Math.ceil(getMetadata().f55518g.f55525a);
-        if (ceil > 0) {
-            ShapeDrawable shapeDrawable = this.G;
-            shapeDrawable.getPaint().setColor(this.H.getThemedColor(org.telegram.ui.ActionBar.l6.f27865d6));
-            shapeDrawable.setBounds(0, 0, getWidth(), ceil);
-            shapeDrawable.setAlpha((int) (getMetadata().f55515c.f55525a * 255.0f));
-            shapeDrawable.draw(canvas);
+    public final void onViewAttachedToWindow(View view) {
+        this.f42526a.a(this.f42527b[0]);
+        ls lsVar = this.f42528c;
+        if (lsVar != null) {
+            int i7 = this.d;
+            qs.f(i7).c(lsVar, qs.f24975a4);
+            qs.f(i7).c(lsVar, qs.f24981b4);
         }
-        super.dispatchDraw(canvas);
+        v10 v10Var = this.f42529e;
+        if (v10Var != null) {
+            this.f42530f[0].n(new g(v10Var, (Serializable) this.h, (Serializable) this.f42531n, 15));
+        }
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        ls lsVar = this.f42528c;
+        if (lsVar != null) {
+            int i7 = this.d;
+            qs.f(i7).n(lsVar, qs.f24975a4);
+            qs.f(i7).n(lsVar, qs.f24981b4);
+        }
     }
 }

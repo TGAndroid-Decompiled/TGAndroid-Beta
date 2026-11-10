@@ -1,22 +1,58 @@
 package x2;
-public final class r implements c1 {
-    @Override
-    public final boolean f() {
-        return true;
+public abstract class r extends e2.l1 {
+    public final e2.l1 f58462e;
+
+    public r(e2.l1 l1Var) {
+        this.f58462e = l1Var;
     }
 
     @Override
-    public final int l(long j3) {
-        return 0;
+    public final int a(boolean z9) {
+        return this.f58462e.a(z9);
     }
 
     @Override
-    public final int m(wf.b bVar, k2.h hVar, int i7) {
-        hVar.setFlags(4);
-        return -4;
+    public int b(Object obj) {
+        return this.f58462e.b(obj);
     }
 
     @Override
-    public final void a() {
+    public final int c(boolean z9) {
+        return this.f58462e.c(z9);
+    }
+
+    @Override
+    public int e(int i7, int i10, boolean z9) {
+        return this.f58462e.e(i7, i10, z9);
+    }
+
+    @Override
+    public e2.i1 f(int i7, e2.i1 i1Var, boolean z9) {
+        return this.f58462e.f(i7, i1Var, z9);
+    }
+
+    @Override
+    public final int h() {
+        return this.f58462e.h();
+    }
+
+    @Override
+    public int k(int i7, int i10, boolean z9) {
+        return this.f58462e.k(i7, i10, z9);
+    }
+
+    @Override
+    public Object l(int i7) {
+        return this.f58462e.l(i7);
+    }
+
+    @Override
+    public e2.k1 m(int i7, e2.k1 k1Var, long j3) {
+        return this.f58462e.m(i7, k1Var, j3);
+    }
+
+    @Override
+    public final int o() {
+        return this.f58462e.o();
     }
 }

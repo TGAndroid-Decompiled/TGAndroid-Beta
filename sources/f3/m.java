@@ -5,13 +5,13 @@ import h9.t1;
 import java.util.ArrayList;
 public final class m implements r {
     public static final int[] h = {5, 4, 12, 8, 3, 10, 9, 11, 6, 2, 0, 1, 7, 16, 15, 14, 17, 18, 19, 20, 21};
-    public static final wf.b f11061n = new wf.b(new a1(19));
-    public static final wf.b f11062r = new wf.b(new a1(20));
-    public t1 f11063a;
-    public int f11066e;
-    public int f11067f;
-    public w7.s f11065c = new w7.s(5, false);
-    public boolean f11064b = true;
+    public static final wf.b f11066n = new wf.b(new a1(19));
+    public static final wf.b f11067r = new wf.b(new a1(20));
+    public t1 f11068a;
+    public int f11071e;
+    public int f11072f;
+    public w7.s f11070c = new w7.s(5, false);
+    public boolean f11069b = true;
     public int d = 3;
 
     public final void a(int i7, ArrayList arrayList) {
@@ -32,7 +32,7 @@ public final class m implements r {
                 arrayList.add(new g3.a(1));
                 return;
             case 4:
-                o Y = f11061n.Y(0);
+                o Y = f11066n.Y(0);
                 if (Y != null) {
                     arrayList.add(Y);
                     return;
@@ -44,8 +44,8 @@ public final class m implements r {
                 arrayList.add(new l3.b());
                 return;
             case 6:
-                w7.s sVar = this.f11065c;
-                if (this.f11064b) {
+                w7.s sVar = this.f11070c;
+                if (this.f11069b) {
                     i11 = 0;
                 }
                 arrayList.add(new x3.f(sVar, i11));
@@ -54,18 +54,18 @@ public final class m implements r {
                 arrayList.add(new y3.d(1));
                 return;
             case 8:
-                w7.s sVar2 = this.f11065c;
+                w7.s sVar2 = this.f11070c;
                 int g10 = z3.h.g(this.d);
                 int i13 = 32;
-                if (this.f11064b) {
+                if (this.f11069b) {
                     i10 = 0;
                 } else {
                     i10 = 32;
                 }
                 int i14 = g10 | i10;
-                h9.g0 g0Var = h9.i0.f14329b;
-                arrayList.add(new z3.h(sVar2, i14, null, t1.f14397e, null));
-                w7.s sVar3 = this.f11065c;
+                h9.g0 g0Var = h9.i0.f14331b;
+                arrayList.add(new z3.h(sVar2, i14, null, t1.f14399e, null));
+                w7.s sVar3 = this.f11070c;
                 int i15 = this.d;
                 if ((i15 & 1) == 0) {
                     i13 = 0;
@@ -73,7 +73,7 @@ public final class m implements r {
                 if ((2 & i15) != 0) {
                     i13 |= 128;
                 }
-                if (!this.f11064b) {
+                if (!this.f11069b) {
                     i12 = 16;
                 }
                 arrayList.add(new z3.m(sVar3, i13 | i12));
@@ -85,35 +85,35 @@ public final class m implements r {
                 arrayList.add(new m4.z());
                 return;
             case 11:
-                if (this.f11063a == null) {
-                    h9.g0 g0Var2 = h9.i0.f14329b;
-                    this.f11063a = t1.f14397e;
+                if (this.f11068a == null) {
+                    h9.g0 g0Var2 = h9.i0.f14331b;
+                    this.f11068a = t1.f14399e;
                 }
-                arrayList.add(new m4.e0(1, !this.f11064b ? 1 : 0, this.f11065c, new h2.k0(0L), new m4.f(0, this.f11063a)));
+                arrayList.add(new m4.e0(1, !this.f11069b ? 1 : 0, this.f11070c, new h2.k0(0L), new m4.f(0, this.f11068a)));
                 return;
             case 12:
                 ?? obj = new Object();
-                obj.f20392c = 0;
+                obj.f20397c = 0;
                 obj.d = -1L;
-                obj.f20394f = -1;
-                obj.f20395g = -1L;
+                obj.f20399f = -1;
+                obj.f20400g = -1L;
                 arrayList.add(obj);
                 return;
             case 13:
             default:
                 return;
             case 14:
-                arrayList.add(new n3.a(this.f11066e));
+                arrayList.add(new n3.a(this.f11071e));
                 return;
             case 15:
-                o Y2 = f11062r.Y(new Object[0]);
+                o Y2 = f11067r.Y(new Object[0]);
                 if (Y2 != null) {
                     arrayList.add(Y2);
                     return;
                 }
                 return;
             case 16:
-                arrayList.add(new h3.b(!this.f11064b ? 1 : 0, this.f11065c));
+                arrayList.add(new h3.b(!this.f11069b ? 1 : 0, this.f11070c));
                 return;
             case 17:
                 arrayList.add(new b4.a(0));
@@ -125,7 +125,7 @@ public final class m implements r {
                 arrayList.add(new b4.a(1));
                 return;
             case 20:
-                arrayList.add(new m3.b(this.f11067f));
+                arrayList.add(new m3.b(this.f11072f));
                 return;
             case 21:
                 arrayList.add(new i3.a(0));

@@ -30,7 +30,7 @@ public final class d {
 
     static {
         n nVar = new n(kotlin.jvm.internal.c.NO_RECEIVER, d.class, "dataStore", "getDataStore(Landroid/content/Context;)Landroidx/datastore/core/DataStore;", 0);
-        s.f17616a.getClass();
+        s.f17619a.getClass();
         d = new g[]{nVar};
     }
 
@@ -60,10 +60,10 @@ public final class d {
                         Context it = (Context) obj;
                         j.e(it, "it");
                         String sharedPreferencesName = this.f17244b.f17251a;
-                        LinkedHashSet keysToMigrate = p1.j.f53101a;
+                        LinkedHashSet keysToMigrate = p1.j.f53100a;
                         j.e(sharedPreferencesName, "sharedPreferencesName");
                         j.e(keysToMigrate, "keysToMigrate");
-                        return d0.a(new o1.d(it, sharedPreferencesName, e.f20706a, new b(keysToMigrate, null, 2), new kd.j(3, null)));
+                        return d0.a(new o1.d(it, sharedPreferencesName, e.f20711a, new b(keysToMigrate, null, 2), new kd.j(3, null)));
                 }
             }
         }, 15);
@@ -87,32 +87,32 @@ public final class d {
                         Context it = (Context) obj;
                         j.e(it, "it");
                         String sharedPreferencesName = this.f17244b.f17251a;
-                        LinkedHashSet keysToMigrate = p1.j.f53101a;
+                        LinkedHashSet keysToMigrate = p1.j.f53100a;
                         j.e(sharedPreferencesName, "sharedPreferencesName");
                         j.e(keysToMigrate, "keysToMigrate");
-                        return d0.a(new o1.d(it, sharedPreferencesName, e.f20706a, new b(keysToMigrate, null, 2), new kd.j(3, null)));
+                        return d0.a(new o1.d(it, sharedPreferencesName, e.f20711a, new b(keysToMigrate, null, 2), new kd.j(3, null)));
                 }
             }
         };
-        ge.e eVar = j0.f60093a;
-        ge.d dVar2 = ge.d.f13851c;
+        ge.e eVar = j0.f60091a;
+        ge.d dVar2 = ge.d.f13853c;
         c1 c1Var = new c1();
         dVar2.getClass();
         ee.c b10 = b0.b(m0.c(dVar2, c1Var));
         s0 s0Var = new s0(name, f1Var, lVar, b10);
         g property = d[0];
         j.e(property, "property");
-        q1.d dVar3 = (q1.d) s0Var.f7452b;
+        q1.d dVar3 = (q1.d) s0Var.f7457b;
         if (dVar3 == null) {
-            synchronized (s0Var.f7453c) {
+            synchronized (s0Var.f7458c) {
                 try {
-                    if (((q1.d) s0Var.f7452b) == null) {
+                    if (((q1.d) s0Var.f7457b) == null) {
                         Context applicationContext = context.getApplicationContext();
                         j.d(applicationContext, "applicationContext");
                         o1.a aVar = new o1.a(1, applicationContext, s0Var);
-                        s0Var.f7452b = new q1.d(new q1.d(new m1.b0(new f0(h.f53701a, e0.f19366b, new k0(aVar, 3)), d0.a(new be.l((List) lVar.invoke(applicationContext), (id.c) null, 8)), f1Var, b10)));
+                        s0Var.f7457b = new q1.d(new q1.d(new m1.b0(new f0(h.f53700a, e0.f19371b, new k0(aVar, 3)), d0.a(new be.l((List) lVar.invoke(applicationContext), (id.c) null, 8)), f1Var, b10)));
                     }
-                    dVar = (q1.d) s0Var.f7452b;
+                    dVar = (q1.d) s0Var.f7457b;
                     j.b(dVar);
                 } catch (Throwable th2) {
                     throw th2;

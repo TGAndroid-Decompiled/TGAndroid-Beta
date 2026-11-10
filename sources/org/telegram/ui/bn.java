@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import org.telegram.ui.Components.NumberTextView;
-public final class bn extends org.telegram.ui.ActionBar.l5 {
+public final class bn extends org.telegram.ui.ActionBar.m5 {
     public boolean M0;
     public final cn N0;
 

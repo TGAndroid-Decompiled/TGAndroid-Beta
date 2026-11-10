@@ -5,8 +5,8 @@ import f5.u;
 import java.util.Arrays;
 import java.util.HashMap;
 public final class t {
-    public static final HashMap f20658b;
-    public final int[] f20659a;
+    public static final HashMap f20663b;
+    public final int[] f20664a;
 
     static {
         HashMap hashMap = new HashMap();
@@ -34,20 +34,20 @@ public final class t {
         a(hashMap, 256, "bold");
         a(hashMap, 512, "italic");
         a(hashMap, 257, "important");
-        f20658b = hashMap;
+        f20663b = hashMap;
     }
 
     public t(String[] strArr) {
-        this.f20659a = new int[strArr.length];
+        this.f20664a = new int[strArr.length];
         for (int i7 = 0; i7 < strArr.length; i7++) {
             int i10 = 0;
             for (String str : strArr[i7].split("\\s+")) {
-                Integer num = (Integer) f20658b.get(str);
+                Integer num = (Integer) f20663b.get(str);
                 if (num != null) {
                     i10 = ((i10 & 255) == 0 ? i10 | (num.intValue() & 255) : i10) | (num.intValue() & (-256));
                 }
             }
-            this.f20659a[i7] = i10;
+            this.f20664a[i7] = i10;
         }
     }
 
@@ -59,7 +59,7 @@ public final class t {
 
     public final int[] b(s0 s0Var) {
         int i7;
-        int[] iArr = (int[]) s0Var.f7453c;
+        int[] iArr = (int[]) s0Var.f7458c;
         int length = iArr.length / 5;
         if (length == 0) {
             return new int[0];
@@ -68,7 +68,7 @@ public final class t {
         int[] iArr3 = new int[length];
         int[] iArr4 = new int[length];
         u uVar = new u(8, false, false);
-        uVar.f11191c = new int[48];
+        uVar.f11196c = new int[48];
         int i10 = -1;
         int i11 = 0;
         int i12 = 0;
@@ -95,7 +95,7 @@ public final class t {
                 i7 = iArr2[i17];
             }
             int i18 = iArr[i13 + 2];
-            int[] iArr5 = this.f20659a;
+            int[] iArr5 = this.f20664a;
             int i19 = iArr5[i18];
             int i20 = iArr5[iArr[i13 + 3]];
             int i21 = i20 & 255;
@@ -118,6 +118,6 @@ public final class t {
             i12 = iArr3[i10];
             i10--;
         }
-        return Arrays.copyOf((int[]) uVar.f11191c, uVar.f11190b);
+        return Arrays.copyOf((int[]) uVar.f11196c, uVar.f11195b);
     }
 }

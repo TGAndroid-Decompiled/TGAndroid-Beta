@@ -5,12 +5,12 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 public final class p1 extends i {
-    public final int f55914n;
-    public RectF f55915r;
+    public final int f55913n;
+    public RectF f55914r;
 
     public p1(j jVar, Context context, int i7) {
         super(jVar, context);
-        this.f55914n = i7;
+        this.f55913n = i7;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class p1 extends i {
         float measuredWidth;
         float measuredWidth2;
         float measuredWidth3;
-        switch (this.f55914n) {
+        switch (this.f55913n) {
             case 0:
                 float L = org.telegram.messenger.g0.L(19.5f);
                 float L2 = org.telegram.messenger.g0.L(1.0f) + L;
@@ -69,9 +69,9 @@ public final class p1 extends i {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        switch (this.f55914n) {
+        switch (this.f55913n) {
             case 0:
-                RectF rectF = this.f55915r;
+                RectF rectF = this.f55914r;
                 super.onDraw(canvas);
                 int saveCount = canvas.getSaveCount();
                 float showAlpha = getShowAlpha();
@@ -84,13 +84,13 @@ public final class p1 extends i {
                     float measuredWidth = (getMeasuredWidth() / 2) - L;
                     float f10 = (2.0f * measuredWidth) + L;
                     rectF.set(L, L, f10, f10);
-                    Paint paint = this.f55734a;
+                    Paint paint = this.f55733a;
                     canvas.drawArc(rectF, 0.0f, 180.0f, false, paint);
                     canvas.drawArc(rectF, 180.0f, 180.0f, false, paint);
                     float f11 = measuredWidth + L;
-                    Paint paint2 = this.f55736c;
+                    Paint paint2 = this.f55735c;
                     canvas.drawCircle(L, f11, N, paint2);
-                    Paint paint3 = this.f55735b;
+                    Paint paint3 = this.f55734b;
                     canvas.drawCircle(L, f11, N - org.telegram.messenger.g0.L(1.0f), paint3);
                     canvas.drawCircle(f10, f11, N, paint2);
                     canvas.drawCircle(f10, f11, N - org.telegram.messenger.g0.L(1.0f), paint3);
@@ -99,7 +99,7 @@ public final class p1 extends i {
                 }
                 return;
             case 1:
-                RectF rectF2 = this.f55915r;
+                RectF rectF2 = this.f55914r;
                 super.onDraw(canvas);
                 int saveCount2 = canvas.getSaveCount();
                 float showAlpha2 = getShowAlpha();
@@ -112,13 +112,13 @@ public final class p1 extends i {
                     float measuredWidth2 = (getMeasuredWidth() / 2.0f) - L2;
                     float f12 = (2.0f * measuredWidth2) + L2;
                     rectF2.set(L2, L2, f12, f12);
-                    Paint paint4 = this.f55734a;
+                    Paint paint4 = this.f55733a;
                     canvas.drawArc(rectF2, 0.0f, 180.0f, false, paint4);
                     canvas.drawArc(rectF2, 180.0f, 180.0f, false, paint4);
                     float f13 = measuredWidth2 + L2;
-                    Paint paint5 = this.f55736c;
+                    Paint paint5 = this.f55735c;
                     canvas.drawCircle(L2, f13, N2, paint5);
-                    Paint paint6 = this.f55735b;
+                    Paint paint6 = this.f55734b;
                     canvas.drawCircle(L2, f13, N2 - org.telegram.messenger.g0.L(1.0f), paint6);
                     canvas.drawCircle(f12, f13, N2, paint5);
                     canvas.drawCircle(f12, f13, N2 - org.telegram.messenger.g0.L(1.0f), paint6);
@@ -127,7 +127,7 @@ public final class p1 extends i {
                 }
                 return;
             default:
-                RectF rectF3 = this.f55915r;
+                RectF rectF3 = this.f55914r;
                 super.onDraw(canvas);
                 int saveCount3 = canvas.getSaveCount();
                 float showAlpha3 = getShowAlpha();
@@ -140,13 +140,13 @@ public final class p1 extends i {
                     float measuredWidth3 = (getMeasuredWidth() / 2) - L3;
                     float f14 = (2.0f * measuredWidth3) + L3;
                     rectF3.set(L3, L3, f14, f14);
-                    Paint paint7 = this.f55734a;
+                    Paint paint7 = this.f55733a;
                     canvas.drawArc(rectF3, 0.0f, 180.0f, false, paint7);
                     canvas.drawArc(rectF3, 180.0f, 180.0f, false, paint7);
                     float f15 = measuredWidth3 + L3;
-                    Paint paint8 = this.f55736c;
+                    Paint paint8 = this.f55735c;
                     canvas.drawCircle(L3, f15, N3, paint8);
-                    Paint paint9 = this.f55735b;
+                    Paint paint9 = this.f55734b;
                     canvas.drawCircle(L3, f15, N3 - org.telegram.messenger.g0.L(1.0f), paint9);
                     canvas.drawCircle(f14, f15, N3, paint8);
                     canvas.drawCircle(f14, f15, N3 - org.telegram.messenger.g0.L(1.0f), paint9);
@@ -159,7 +159,7 @@ public final class p1 extends i {
 
     public p1(r1 r1Var, Context context) {
         super(r1Var, context);
-        this.f55914n = 1;
-        this.f55915r = new RectF();
+        this.f55913n = 1;
+        this.f55914r = new RectF();
     }
 }

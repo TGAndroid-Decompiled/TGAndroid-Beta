@@ -13,9 +13,9 @@ import java.util.Map;
 import org.telegram.messenger.c20;
 import org.telegram.messenger.sz;
 public final class a1 extends AsyncTask {
-    public final int f51069a = 1;
-    public final HashMap f51070b = new HashMap();
-    public Exception f51071c;
+    public final int f51023a = 1;
+    public final HashMap f51024b = new HashMap();
+    public Exception f51025c;
     public final c20 d;
 
     public a1(c20 c20Var) {
@@ -25,11 +25,11 @@ public final class a1 extends AsyncTask {
     @Override
     public final Object doInBackground(Object[] objArr) {
         BufferedReader bufferedReader;
-        switch (this.f51069a) {
+        switch (this.f51023a) {
             case 0:
                 try {
                     HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-                    for (Map.Entry entry : this.f51070b.entrySet()) {
+                    for (Map.Entry entry : this.f51024b.entrySet()) {
                         if (entry.getKey() != null && entry.getValue() != null) {
                             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
                         }
@@ -46,13 +46,13 @@ public final class a1 extends AsyncTask {
                     httpURLConnection.disconnect();
                     return null;
                 } catch (Exception e10) {
-                    this.f51071c = e10;
+                    this.f51025c = e10;
                     return null;
                 }
             default:
                 try {
                     HttpURLConnection httpURLConnection2 = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-                    for (Map.Entry entry2 : this.f51070b.entrySet()) {
+                    for (Map.Entry entry2 : this.f51024b.entrySet()) {
                         if (entry2.getKey() != null && entry2.getValue() != null) {
                             httpURLConnection2.setRequestProperty((String) entry2.getKey(), (String) entry2.getValue());
                         }
@@ -76,7 +76,7 @@ public final class a1 extends AsyncTask {
                         }
                     }
                 } catch (Exception e11) {
-                    this.f51071c = e11;
+                    this.f51025c = e11;
                     return null;
                 }
                 break;
@@ -85,12 +85,12 @@ public final class a1 extends AsyncTask {
 
     @Override
     public final void onPostExecute(Object obj) {
-        switch (this.f51069a) {
+        switch (this.f51023a) {
             case 0:
                 Bitmap bitmap = (Bitmap) obj;
                 org.telegram.ui.Wallet.s sVar = (org.telegram.ui.Wallet.s) this.d;
                 if (sVar != null) {
-                    if (this.f51071c == null) {
+                    if (this.f51025c == null) {
                         sVar.a(bitmap);
                         return;
                     } else {
@@ -103,7 +103,7 @@ public final class a1 extends AsyncTask {
                 String str = (String) obj;
                 c20 c20Var = this.d;
                 if (c20Var != null) {
-                    if (this.f51071c == null) {
+                    if (this.f51025c == null) {
                         c20Var.a(str);
                         return;
                     } else {

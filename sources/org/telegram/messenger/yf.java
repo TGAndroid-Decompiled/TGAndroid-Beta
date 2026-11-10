@@ -12,56 +12,56 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class yf implements Runnable {
-    public final int f26651a;
-    public final boolean f26652b;
-    public final Object f26653c;
+    public final int f26655a;
+    public final boolean f26656b;
+    public final Object f26657c;
     public final Object d;
 
     public yf(Object obj, Object obj2, boolean z9, int i7) {
-        this.f26651a = i7;
-        this.f26653c = obj;
+        this.f26655a = i7;
+        this.f26657c = obj;
         this.d = obj2;
-        this.f26652b = z9;
+        this.f26656b = z9;
     }
 
     private final void a() {
         y8 y8Var;
-        w7 w7Var = (w7) this.f26653c;
-        boolean z9 = this.f26652b;
+        w7 w7Var = (w7) this.f26657c;
+        boolean z9 = this.f26656b;
         String str = (String) this.d;
         if (!z9) {
             y8Var = (y8) w7Var.h.get(str);
         } else {
-            y8Var = (y8) w7Var.f26268n.get(str);
+            y8Var = (y8) w7Var.f26272n.get(str);
         }
-        w7Var.f26273y.remove(str);
+        w7Var.f26277y.remove(str);
         if (y8Var != null) {
-            w7Var.f26268n.remove(str);
-            w7Var.f26266e.remove(y8Var);
-            w7Var.f26267f.remove(y8Var);
-            if (y8Var.f26609m != 3) {
-                y8Var.f26609m = 2;
+            w7Var.f26272n.remove(str);
+            w7Var.f26270e.remove(y8Var);
+            w7Var.f26271f.remove(y8Var);
+            if (y8Var.f26613m != 3) {
+                y8Var.f26613m = 2;
                 Utilities.d.c(new u8(y8Var, 1));
-                String str2 = y8Var.f26608l;
+                String str2 = y8Var.f26612l;
                 if (str2 == null) {
-                    Set set = z0.f26790a;
+                    Set set = z0.f26794a;
                 } else {
-                    z0.f26790a.remove(str2);
+                    z0.f26794a.remove(str2);
                 }
-                y8Var.f26611o.a();
+                y8Var.f26615o.a();
                 y8Var.b();
             }
         }
     }
 
     private final void b() {
-        gc gcVar = (gc) this.f26653c;
+        gc gcVar = (gc) this.f26657c;
         ImageReceiver imageReceiver = (ImageReceiver) this.d;
         int i7 = 0;
         while (true) {
             int i10 = 3;
             if (i7 < 3) {
-                if (i7 <= 0 || this.f26652b) {
+                if (i7 <= 0 || this.f26656b) {
                     if (i7 == 0) {
                         i10 = 1;
                     } else if (i7 == 1) {
@@ -70,13 +70,13 @@ public final class yf implements Runnable {
                     int G = imageReceiver.G(i10);
                     if (G != 0) {
                         if (i7 == 0) {
-                            HashMap hashMap = gcVar.f22644l;
-                            SparseArray sparseArray = gcVar.f22645m;
+                            HashMap hashMap = gcVar.f22648l;
+                            SparseArray sparseArray = gcVar.f22649m;
                             String str = (String) sparseArray.get(G);
                             if (str != null) {
                                 ec ecVar = (ec) hashMap.get(str);
                                 if (ecVar != null) {
-                                    ArrayList arrayList = ecVar.f22203c;
+                                    ArrayList arrayList = ecVar.f22207c;
                                     int indexOf = arrayList.indexOf(imageReceiver);
                                     if (indexOf >= 0) {
                                         arrayList.remove(indexOf);
@@ -89,7 +89,7 @@ public final class yf implements Runnable {
                                 sparseArray.remove(G);
                             }
                         }
-                        ub ubVar = (ub) gcVar.f22643k.get(G);
+                        ub ubVar = (ub) gcVar.f22647k.get(G);
                         if (ubVar != null) {
                             ubVar.b(imageReceiver);
                         }
@@ -108,12 +108,12 @@ public final class yf implements Runnable {
         int i7;
         int position;
         int writeFrame;
-        m.f3 f3Var = (m.f3) this.f26653c;
+        m.f3 f3Var = (m.f3) this.f26657c;
         ByteBuffer byteBuffer = (ByteBuffer) this.d;
-        MediaController mediaController = (MediaController) f3Var.f19105b;
+        MediaController mediaController = (MediaController) f3Var.f19110b;
         while (byteBuffer.hasRemaining()) {
             int remaining = byteBuffer.remaining();
-            ByteBuffer byteBuffer2 = mediaController.f21307y1;
+            ByteBuffer byteBuffer2 = mediaController.f21312y1;
             if (remaining > byteBuffer2.remaining()) {
                 i7 = byteBuffer.limit();
                 byteBuffer.limit(byteBuffer.position() + byteBuffer2.remaining());
@@ -123,7 +123,7 @@ public final class yf implements Runnable {
             byteBuffer2.put(byteBuffer);
             int position2 = byteBuffer2.position();
             int limit = byteBuffer2.limit();
-            boolean z9 = this.f26652b;
+            boolean z9 = this.f26656b;
             if (position2 == limit || z9) {
                 if (!z9) {
                     position = byteBuffer2.limit();
@@ -133,7 +133,7 @@ public final class yf implements Runnable {
                 writeFrame = mediaController.writeFrame(byteBuffer2, position);
                 if (writeFrame != 0) {
                     byteBuffer2.rewind();
-                    mediaController.f21276k1 += (byteBuffer2.limit() / 2) / (mediaController.A1 / 1000);
+                    mediaController.f21281k1 += (byteBuffer2.limit() / 2) / (mediaController.A1 / 1000);
                     mediaController.l1++;
                 } else {
                     a8.d("writing frame failed");
@@ -150,19 +150,19 @@ public final class yf implements Runnable {
         SQLiteCursor queryFinalized;
         TLRPC.Message message;
         NativeByteBuffer byteBufferValue;
-        ui uiVar = (ui) this.f26653c;
+        ui uiVar = (ui) this.f26657c;
         xr xrVar = (xr) this.d;
         try {
-            if (xrVar.f26521b != 0) {
-                SQLiteDatabase sQLiteDatabase = uiVar.getMessagesStorage().f26721b;
+            if (xrVar.f26525b != 0) {
+                SQLiteDatabase sQLiteDatabase = uiVar.getMessagesStorage().f26725b;
                 Locale locale = Locale.US;
-                long j3 = xrVar.f26520a;
-                long j10 = xrVar.f26521b;
+                long j3 = xrVar.f26524a;
+                long j10 = xrVar.f26525b;
                 queryFinalized = sQLiteDatabase.queryFinalized("SELECT info FROM bot_keyboard_topics WHERE uid = " + j3 + " AND tid = " + j10, new Object[0]);
             } else {
-                SQLiteDatabase sQLiteDatabase2 = uiVar.getMessagesStorage().f26721b;
+                SQLiteDatabase sQLiteDatabase2 = uiVar.getMessagesStorage().f26725b;
                 Locale locale2 = Locale.US;
-                long j11 = xrVar.f26520a;
+                long j11 = xrVar.f26524a;
                 queryFinalized = sQLiteDatabase2.queryFinalized("SELECT info FROM bot_keyboard WHERE uid = " + j11, new Object[0]);
             }
             if (queryFinalized.next() && !queryFinalized.isNull(0) && (byteBufferValue = queryFinalized.byteBufferValue(0)) != null) {
@@ -172,7 +172,7 @@ public final class yf implements Runnable {
                 message = null;
             }
             queryFinalized.dispose();
-            if (message == null && !this.f26652b) {
+            if (message == null && !this.f26656b) {
                 return;
             }
             g0.h3(new qg(uiVar, message, xrVar));
@@ -186,8 +186,8 @@ public final class yf implements Runnable {
     }
 
     private final void g() {
-        yr yrVar = (yr) this.f26653c;
-        yrVar.x1((vo) this.d, this.f26652b);
+        yr yrVar = (yr) this.f26657c;
+        yrVar.x1((vo) this.d, this.f26656b);
         yrVar.j(false);
         g0.h3(new rq(yrVar, 16));
     }
@@ -198,22 +198,22 @@ public final class yf implements Runnable {
 
     private final void i() {
         int i7;
-        yr yrVar = (yr) this.f26653c;
+        yr yrVar = (yr) this.f26657c;
         TLRPC.EncryptedChat encryptedChat = (TLRPC.EncryptedChat) this.d;
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
-                sQLitePreparedStatement = yrVar.f26721b.executeFast("UPDATE enc_chats SET seq_in = ?, seq_out = ?, use_count = ?, in_seq_no = ?, mtproto_seq = ? WHERE uid = ?");
+                sQLitePreparedStatement = yrVar.f26725b.executeFast("UPDATE enc_chats SET seq_in = ?, seq_out = ?, use_count = ?, in_seq_no = ?, mtproto_seq = ? WHERE uid = ?");
                 sQLitePreparedStatement.bindInteger(1, encryptedChat.seq_in);
                 sQLitePreparedStatement.bindInteger(2, encryptedChat.seq_out);
                 sQLitePreparedStatement.bindInteger(3, (encryptedChat.key_use_count_in << 16) | encryptedChat.key_use_count_out);
                 sQLitePreparedStatement.bindInteger(4, encryptedChat.in_seq_no);
                 sQLitePreparedStatement.bindInteger(5, encryptedChat.mtproto_seq);
-                sQLitePreparedStatement.bindInteger(6, encryptedChat.f26964id);
+                sQLitePreparedStatement.bindInteger(6, encryptedChat.f26968id);
                 sQLitePreparedStatement.step();
-                if (this.f26652b && (i7 = encryptedChat.in_seq_no) != 0) {
-                    long j3 = (int) (encryptedChat.f26964id & 4294967295L);
-                    SQLiteDatabase sQLiteDatabase = yrVar.f26721b;
+                if (this.f26656b && (i7 = encryptedChat.in_seq_no) != 0) {
+                    long j3 = (int) (encryptedChat.f26968id & 4294967295L);
+                    SQLiteDatabase sQLiteDatabase = yrVar.f26725b;
                     Locale locale = Locale.US;
                     sQLiteDatabase.executeFast("DELETE FROM messages_v2 WHERE mid IN (SELECT m.mid FROM messages_v2 as m LEFT JOIN messages_seq as s ON m.mid = s.mid WHERE m.uid = " + j3 + " AND m.date = 0 AND m.mid < 0 AND s.seq_out <= " + i7 + ") AND uid = " + j3).stepThis().dispose();
                 }
@@ -242,9 +242,9 @@ public final class yf implements Runnable {
     }
 
     public yf(Object obj, boolean z9, Object obj2, int i7) {
-        this.f26651a = i7;
-        this.f26653c = obj;
-        this.f26652b = z9;
+        this.f26655a = i7;
+        this.f26657c = obj;
+        this.f26656b = z9;
         this.d = obj2;
     }
 }

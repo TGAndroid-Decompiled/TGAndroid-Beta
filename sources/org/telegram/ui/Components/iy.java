@@ -1,52 +1,171 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-public final class iy extends ReplacementSpan {
-    public final int f34879a;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class iy extends FrameLayout {
+    public static final int h = 0;
+    public final org.telegram.ui.ActionBar.h6 f34784a;
+    public final TextView f34785b;
+    public final View f34786c;
+    public final ch0 d;
+    public boolean f34787e;
+    public int f34788f;
 
-    public iy(int i7) {
-        this.f34879a = i7;
+    public iy(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context);
+        this.f34784a = h6Var;
+        View radialProgressView = new RadialProgressView(context, null);
+        addView(radialProgressView, c8.ha.c(-2.0f, -2));
+        this.f34786c = radialProgressView;
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setPadding(org.telegram.messenger.g0.L(20.0f), 0, org.telegram.messenger.g0.L(20.0f), 0);
+        linearLayout.setGravity(1);
+        linearLayout.setClipChildren(false);
+        linearLayout.setClipToPadding(false);
+        linearLayout.setOrientation(1);
+        ?? imageView = new ImageView(context);
+        this.d = imageView;
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        imageView.setImportantForAccessibility(2);
+        imageView.setVisibility(8);
+        linearLayout.addView((View) imageView, c8.ha.t(150, 150, 17, 0, 0, 0, 20));
+        TextView textView = new TextView(context);
+        this.f34785b = textView;
+        textView.setTextSize(1, 20.0f);
+        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f27873c7, h6Var);
+        org.telegram.messenger.k5.m(textView, 1, null, 2131748167);
+        linearLayout.addView(textView, c8.ha.r(-2, -2, 17));
+        addView(linearLayout, c8.ha.c(-2.0f, -2));
+        org.telegram.messenger.g0.Z3(textView, false, 2.0f, true, false);
+        org.telegram.messenger.g0.Z3(radialProgressView, false, 1.0f, true, false);
+        setOnTouchListener(new ei.b(18));
     }
 
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-        int i14 = this.f34879a;
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f34879a) {
-            case 0:
-                return (int) paint.measureText(charSequence, i7, i10);
-            case 1:
-                return org.telegram.messenger.g0.L(16.0f);
-            case 2:
-                return org.telegram.messenger.g0.L(12.0f);
-            case 3:
-                return org.telegram.messenger.g0.L(12.0f);
-            default:
-                return org.telegram.messenger.g0.L(16.0f);
+    public final void a(int i7, int i10, int i11) {
+        int i12;
+        if (i7 != 0) {
+            i12 = 0;
+        } else {
+            i12 = 8;
+        }
+        ch0 ch0Var = this.d;
+        ch0Var.setVisibility(i12);
+        if (i7 != 0) {
+            ch0Var.f(i7, i10, i11, null);
+            ch0Var.d();
         }
     }
 
-    public iy(boolean z9) {
-        this.f34879a = 0;
+    public final void b() {
+        org.telegram.messenger.g0.Z3(this.f34785b, false, 0.9f, true, true);
+        org.telegram.messenger.g0.Z3(this.f34786c, true, 1.0f, true, true);
     }
 
-    private final void a(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+    public final void c() {
+        org.telegram.messenger.g0.Z3(this.f34785b, true, 0.9f, true, true);
+        org.telegram.messenger.g0.Z3(this.f34786c, false, 1.0f, true, true);
     }
 
-    private final void b(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+    @Override
+    public final boolean hasOverlappingRendering() {
+        return false;
     }
 
-    private final void c(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+    @Override
+    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
+        int measuredHeight;
+        int paddingTop;
+        this.f34787e = true;
+        int i13 = i11 - i7;
+        int i14 = i12 - i10;
+        int childCount = getChildCount();
+        for (int i15 = 0; i15 < childCount; i15++) {
+            View childAt = getChildAt(i15);
+            if (childAt.getVisibility() != 8) {
+                int measuredWidth = (i13 - childAt.getMeasuredWidth()) / 2;
+                View view = this.f34786c;
+                if (childAt == view && (view instanceof lz)) {
+                    measuredHeight = (i14 - childAt.getMeasuredHeight()) / 2;
+                    paddingTop = getPaddingTop();
+                } else {
+                    int i16 = this.f34788f;
+                    if (i16 == 2) {
+                        measuredHeight = (org.telegram.messenger.g0.L(100.0f) - childAt.getMeasuredHeight()) / 2;
+                        paddingTop = getPaddingTop();
+                    } else if (i16 == 1) {
+                        measuredHeight = ((i14 / 2) - childAt.getMeasuredHeight()) / 2;
+                        paddingTop = getPaddingTop();
+                    } else {
+                        measuredHeight = (i14 - childAt.getMeasuredHeight()) / 2;
+                        paddingTop = getPaddingTop();
+                    }
+                }
+                int i17 = paddingTop + measuredHeight;
+                childAt.layout(measuredWidth, i17, childAt.getMeasuredWidth() + measuredWidth, childAt.getMeasuredHeight() + i17);
+            }
+        }
+        this.f34787e = false;
     }
 
-    private final void d(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+    @Override
+    public final void requestLayout() {
+        if (!this.f34787e) {
+            super.requestLayout();
+        }
     }
 
-    private final void e(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+    public void setProgressBarColor(int i7) {
+        View view = this.f34786c;
+        if (view instanceof RadialProgressView) {
+            ((RadialProgressView) view).setProgressColor(i7);
+        }
+    }
+
+    public void setShowAtCenter(boolean z9) {
+        this.f34788f = z9 ? 1 : 0;
+    }
+
+    public void setShowAtTop(boolean z9) {
+        int i7;
+        if (z9) {
+            i7 = 2;
+        } else {
+            i7 = 0;
+        }
+        this.f34788f = i7;
+    }
+
+    public void setText(String str) {
+        this.f34785b.setText(str);
+    }
+
+    public void setTextColor(int i7) {
+        TextView textView = this.f34785b;
+        org.telegram.ui.ActionBar.t6.q(textView);
+        textView.setTextColor(i7);
+    }
+
+    public void setTextSize(int i7) {
+        this.f34785b.setTextSize(1, i7);
+    }
+
+    public void setTopImage(int i7) {
+        TextView textView = this.f34785b;
+        if (i7 == 0) {
+            textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, (Drawable) null, (Drawable) null);
+            return;
+        }
+        Drawable mutate = getContext().getResources().getDrawable(i7).mutate();
+        if (mutate != null) {
+            org.telegram.ui.ActionBar.t6.x(this, mutate, org.telegram.ui.ActionBar.m6.f27873c7, this.f34784a, PorterDuff.Mode.MULTIPLY);
+        }
+        textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate, (Drawable) null, (Drawable) null);
+        textView.setCompoundDrawablePadding(org.telegram.messenger.g0.L(1.0f));
     }
 }

@@ -24,12 +24,12 @@ import org.telegram.messenger.yr;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_ephemeral;
-import org.telegram.ui.Components.ah0;
 import org.telegram.ui.Components.m41;
-import org.telegram.ui.Components.vr;
-import org.telegram.ui.Components.xr;
-import org.telegram.ui.tt;
-import org.telegram.ui.vt;
+import org.telegram.ui.Components.ur;
+import org.telegram.ui.Components.wr;
+import org.telegram.ui.Components.zg0;
+import org.telegram.ui.ut;
+import org.telegram.ui.wt;
 public final class nb implements Runnable {
     public final int f4429a;
     public final boolean f4430b;
@@ -68,13 +68,13 @@ public final class nb implements Runnable {
                 ImageReceiver imageReceiver = (ImageReceiver) obj2;
                 boolean[] zArr = (boolean[]) obj;
                 if (z10) {
-                    str = p10.i(i10).f24477c0;
+                    str = p10.i(i10).f24481c0;
                     if (str == null) {
                         ui.b0(i10).C();
                         return;
                     }
                 } else {
-                    str = p10.i(i10).f24475b0;
+                    str = p10.i(i10).f24479b0;
                     if (str == null) {
                         ui.b0(i10).z();
                         return;
@@ -93,7 +93,7 @@ public final class nb implements Runnable {
                                 long longValue = tL_stickerPack.documents.get(0).longValue();
                                 for (int i12 = 0; i12 < p02.documents.size(); i12++) {
                                     document = p02.documents.get(i12);
-                                    if (document == null || document.f26962id != longValue) {
+                                    if (document == null || document.f26966id != longValue) {
                                     }
                                 }
                             } else {
@@ -109,9 +109,9 @@ public final class nb implements Runnable {
                     document = null;
                 }
                 if (document != null) {
-                    imageReceiver.f21222u0 = true;
-                    imageReceiver.f21195g1 = new aa.n(zArr, 7);
-                    rz f11 = org.telegram.messenger.t5.f(document, org.telegram.ui.ActionBar.l6.f27809a7, 0.3f, null);
+                    imageReceiver.f21227u0 = true;
+                    imageReceiver.f21200g1 = new aa.n(zArr, 7);
+                    rz f11 = org.telegram.messenger.t5.f(document, org.telegram.ui.ActionBar.m6.f27834a7, 0.3f, null);
                     TLRPC.PhotoSize w10 = org.telegram.messenger.w7.w(document.thumbs, 160, true, null, true);
                     imageReceiver.W(0);
                     imageReceiver.r0(org.telegram.messenger.hc.b(document), "160_160_nr", org.telegram.messenger.hc.c(w10, document), "160_160", f11, document.size, "tgs", p02, 1);
@@ -130,22 +130,22 @@ public final class nb implements Runnable {
                 final q0.a aVar = (q0.a) obj;
                 LongSparseIntArray longSparseIntArray = qpVar.B0;
                 a0.h hVar = qpVar.A0;
-                ArrayList arrayList = (ArrayList) hVar.f(chat.f26956id);
+                ArrayList arrayList = (ArrayList) hVar.f(chat.f26960id);
                 a0.h hVar2 = qpVar.C0;
-                ArrayList arrayList2 = (ArrayList) hVar2.f(chat.f26956id);
+                ArrayList arrayList2 = (ArrayList) hVar2.f(chat.f26960id);
                 if (z10) {
                     if (arrayList != null) {
                         arrayList.remove(Integer.valueOf(i10));
                     }
                     if (arrayList == null || arrayList.isEmpty()) {
-                        hVar.e(chat.f26956id);
+                        hVar.e(chat.f26960id);
                     }
                     if (chat.megagroup) {
                         if (arrayList2 != null) {
                             arrayList2.remove(Integer.valueOf(i10));
                         }
                         if (arrayList2 == null || arrayList2.isEmpty()) {
-                            hVar2.e(chat.f26956id);
+                            hVar2.e(chat.f26960id);
                             return;
                         }
                         return;
@@ -154,12 +154,12 @@ public final class nb implements Runnable {
                 }
                 if (arrayList == null) {
                     arrayList = new ArrayList();
-                    hVar.k(arrayList, chat.f26956id);
+                    hVar.k(arrayList, chat.f26960id);
                 }
                 if (!arrayList.contains(Integer.valueOf(i10))) {
                     arrayList.add(Integer.valueOf(i10));
                 }
-                if (qpVar.f24954z0.indexOfKey(chat.f26956id) < 0) {
+                if (qpVar.f24958z0.indexOfKey(chat.f26960id) < 0) {
                     if (aVar != null) {
                         org.telegram.messenger.g0.h3(new Runnable() {
                             @Override
@@ -175,7 +175,7 @@ public final class nb implements Runnable {
                             }
                         });
                     }
-                    qpVar.J0(chat.f26956id, 3, 0L, null);
+                    qpVar.J0(chat.f26960id, 3, 0L, null);
                 } else if (aVar != null) {
                     org.telegram.messenger.g0.h3(new Runnable() {
                         @Override
@@ -194,13 +194,13 @@ public final class nb implements Runnable {
                 if (chat.megagroup && !chat.monoforum) {
                     if (arrayList2 == null) {
                         arrayList2 = new ArrayList();
-                        hVar2.k(arrayList2, chat.f26956id);
+                        hVar2.k(arrayList2, chat.f26960id);
                     }
                     if (!arrayList2.contains(Integer.valueOf(i10))) {
                         arrayList2.add(Integer.valueOf(i10));
                     }
-                    if (longSparseIntArray.indexOfKey(chat.f26956id) < 0) {
-                        longSparseIntArray.put(chat.f26956id, 0);
+                    if (longSparseIntArray.indexOfKey(chat.f26960id) < 0) {
+                        longSparseIntArray.put(chat.f26960id, 0);
                         return;
                     }
                     return;
@@ -215,7 +215,7 @@ public final class nb implements Runnable {
                     TLRPC.TL_messageMediaDocument tL_messageMediaDocument = (TLRPC.TL_messageMediaDocument) tLObject;
                     TLRPC.TL_inputMediaUploadedPhoto tL_inputMediaUploadedPhoto = new TLRPC.TL_inputMediaUploadedPhoto();
                     tL_inputMediaUploadedPhoto.live_photo = true;
-                    tL_inputMediaUploadedPhoto.file = syVar.f25545j;
+                    tL_inputMediaUploadedPhoto.file = syVar.f25549j;
                     tL_inputMediaUploadedPhoto.spoiler = z10;
                     if (i10 != 0) {
                         tL_inputMediaUploadedPhoto.ttl_seconds = i10;
@@ -224,10 +224,10 @@ public final class nb implements Runnable {
                     TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
                     tL_inputMediaUploadedPhoto.video = tL_inputDocument;
                     TLRPC.Document document2 = tL_messageMediaDocument.document;
-                    tL_inputDocument.f26968id = document2.f26962id;
+                    tL_inputDocument.f26972id = document2.f26966id;
                     tL_inputDocument.access_hash = document2.access_hash;
                     tL_inputDocument.file_reference = document2.file_reference;
-                    TLObject tLObject2 = syVar.f25540c;
+                    TLObject tLObject2 = syVar.f25544c;
                     if (tLObject2 instanceof TLRPC.TL_messages_sendMedia) {
                         ((TLRPC.TL_messages_sendMedia) tLObject2).media = tL_inputMediaUploadedPhoto;
                     } else if (tLObject2 instanceof TL_ephemeral.TL_sendMessage) {
@@ -237,19 +237,19 @@ public final class nb implements Runnable {
                     } else {
                         ((TLRPC.TL_messages_editMessage) tLObject2).media = tL_inputMediaUploadedPhoto;
                     }
-                    gzVar.N(tLObject2, syVar.f25548m, syVar.f25542f, syVar, syVar.K, null, syVar.H);
+                    gzVar.N(tLObject2, syVar.f25552m, syVar.f25546f, syVar, syVar.K, null, syVar.H);
                     return;
                 }
                 syVar.c();
                 return;
             case 3:
-                vr vrVar = (vr) obj3;
+                ur urVar = (ur) obj3;
                 TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = (TLRPC.TL_messages_searchGlobal) obj2;
                 TLObject tLObject3 = (TLObject) obj;
-                ArrayList arrayList3 = vrVar.V;
-                int i13 = vrVar.P;
-                if (i10 == vrVar.f39796f0 && TextUtils.equals(tL_messages_searchGlobal.f27069q, vrVar.f39797g0)) {
-                    vrVar.f39792b0 = false;
+                ArrayList arrayList3 = urVar.V;
+                int i13 = urVar.P;
+                if (i10 == urVar.f38737f0 && TextUtils.equals(tL_messages_searchGlobal.f27073q, urVar.f38738g0)) {
+                    urVar.f38733b0 = false;
                     if (!z10) {
                         arrayList3.clear();
                     }
@@ -265,25 +265,25 @@ public final class nb implements Runnable {
                             TLRPC.Message message = arrayList4.get(i14);
                             i14++;
                             ij ijVar = new ij(i13, message, false, true);
-                            ijVar.K5(vrVar.f39797g0, true);
+                            ijVar.K5(urVar.f38738g0, true);
                             arrayList3.add(ijVar);
                         }
-                        vrVar.f39794d0 = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
+                        urVar.f38735d0 = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
                         Math.max(arrayList3.size(), messages_messages.count);
-                        vrVar.f39795e0 = messages_messages.next_rate;
+                        urVar.f38736e0 = messages_messages.next_rate;
                     }
-                    vrVar.O(true);
+                    urVar.O(true);
                     return;
                 }
                 return;
             case 4:
-                xr xrVar = (xr) obj3;
+                wr wrVar = (wr) obj3;
                 TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal2 = (TLRPC.TL_messages_searchGlobal) obj2;
                 TLObject tLObject4 = (TLObject) obj;
-                ArrayList arrayList5 = xrVar.R;
-                int i15 = xrVar.P;
-                if (i10 == xrVar.f40471c0 && TextUtils.equals(tL_messages_searchGlobal2.f27069q, xrVar.f40472d0)) {
-                    xrVar.Y = false;
+                ArrayList arrayList5 = wrVar.R;
+                int i15 = wrVar.P;
+                if (i10 == wrVar.f40059c0 && TextUtils.equals(tL_messages_searchGlobal2.f27073q, wrVar.f40060d0)) {
+                    wrVar.Y = false;
                     if (!z10) {
                         arrayList5.clear();
                     }
@@ -299,29 +299,29 @@ public final class nb implements Runnable {
                             TLRPC.Message message2 = arrayList6.get(i16);
                             i16++;
                             ij ijVar2 = new ij(i15, message2, false, true);
-                            ijVar2.K5(xrVar.f40472d0, true);
+                            ijVar2.K5(wrVar.f40060d0, true);
                             arrayList5.add(ijVar2);
                         }
-                        xrVar.f40469a0 = messages_messages2 instanceof TLRPC.TL_messages_messagesSlice;
+                        wrVar.f40057a0 = messages_messages2 instanceof TLRPC.TL_messages_messagesSlice;
                         Math.max(arrayList5.size(), messages_messages2.count);
-                        xrVar.f40470b0 = messages_messages2.next_rate;
+                        wrVar.f40058b0 = messages_messages2.next_rate;
                     }
-                    xrVar.O(true);
+                    wrVar.O(true);
                     return;
                 }
                 return;
             case 5:
-                org.telegram.ui.Components.xd xdVar = (org.telegram.ui.Components.xd) obj3;
+                org.telegram.ui.Components.wd wdVar = (org.telegram.ui.Components.wd) obj3;
                 Context context = (Context) obj2;
                 org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) obj;
-                vt vtVar = (vt) xdVar.d;
-                vtVar.a();
-                org.telegram.ui.Cells.m8 m8Var = vtVar.f50765e;
-                vtVar.c();
-                int x02 = org.telegram.ui.ActionBar.l6.x0(null, org.telegram.ui.ActionBar.l6.f28105q6, false);
-                ah0 ah0Var = vtVar.d;
-                ah0Var.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
-                int x03 = org.telegram.ui.ActionBar.l6.x0(null, org.telegram.ui.ActionBar.l6.f27809a7, false);
+                wt wtVar = (wt) wdVar.d;
+                wtVar.a();
+                org.telegram.ui.Cells.m8 m8Var = wtVar.f51435e;
+                wtVar.c();
+                int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f28130q6, false);
+                zg0 zg0Var = wtVar.d;
+                zg0Var.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
+                int x03 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f27834a7, false);
                 if (context instanceof Activity) {
                     activity = (Activity) context;
                 } else {
@@ -333,35 +333,35 @@ public final class nb implements Runnable {
                     window = null;
                 }
                 if (window != null) {
-                    ValueAnimator valueAnimator = vtVar.h;
+                    ValueAnimator valueAnimator = wtVar.h;
                     if (valueAnimator != null && valueAnimator.isRunning()) {
-                        vtVar.h.cancel();
+                        wtVar.h.cancel();
                     }
-                    ValueAnimator valueAnimator2 = vtVar.h;
+                    ValueAnimator valueAnimator2 = wtVar.h;
                     if (valueAnimator2 != null && valueAnimator2.isRunning()) {
-                        i10 = vtVar.f50767n;
+                        i10 = wtVar.f51437n;
                     }
                     int i17 = i10;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    vtVar.h = ofFloat;
+                    wtVar.h = ofFloat;
                     if (z10) {
                         f10 = 50.0f;
                     } else {
                         f10 = 200.0f;
                     }
-                    ofFloat.addUpdateListener(new tt(xdVar, f10, i17, x03, activity));
-                    vtVar.h.addListener(new org.telegram.ui.r0(activity, x03, 1));
-                    vtVar.h.setDuration(350L);
-                    vtVar.h.start();
+                    ofFloat.addUpdateListener(new ut(wdVar, f10, i17, x03, activity));
+                    wtVar.h.addListener(new org.telegram.ui.r0(activity, x03, 1));
+                    wtVar.h.setDuration(350L);
+                    wtVar.h.start();
                 }
-                if (org.telegram.ui.ActionBar.l6.k1()) {
-                    m8Var.p(org.telegram.messenger.id.M0(2131745466, null), ah0Var, true);
-                    m8Var.f29580x += 2;
+                if (org.telegram.ui.ActionBar.m6.k1()) {
+                    m8Var.p(org.telegram.messenger.id.M0(2131745466, null), zg0Var, true);
+                    m8Var.f29591x += 2;
                 } else {
-                    m8Var.p(org.telegram.messenger.id.M0(2131745467, null), ah0Var, true);
-                    m8Var.f29580x += 2;
+                    m8Var.p(org.telegram.messenger.id.M0(2131745467, null), zg0Var, true);
+                    m8Var.f29591x += 2;
                 }
-                org.telegram.ui.ActionBar.l6.M1(f2Var);
+                org.telegram.ui.ActionBar.m6.M1(f2Var);
                 return;
             case 6:
                 p4.m0 m0Var = (p4.m0) obj3;
@@ -369,21 +369,21 @@ public final class nb implements Runnable {
                 p4.l0 l0Var = (p4.l0) obj;
                 p4.d0 d0Var = m0Var.h;
                 if (!d0Var.j()) {
-                    if (!((q4.l) m0Var.f53382n.f53816b).f53798a.isActive()) {
+                    if (!((q4.l) m0Var.f53381n.f53815b).f53797a.isActive()) {
                         StringBuilder n10 = jg.g.n(i10, "Ignore incoming player command before initialization. command=", ", pid=");
-                        n10.append(rVar.f53818a.f53820b);
+                        n10.append(rVar.f53817a.f53819b);
                         h2.a.l("MediaSessionLegacyStub", n10.toString());
                         return;
                     }
                     p4.v m0 = m0Var.m0(rVar);
-                    if (!m0Var.f53376g.G(m0, i10)) {
-                        if (i10 == 1 && !d0Var.f53230t.u()) {
+                    if (!m0Var.f53375g.G(m0, i10)) {
+                        if (i10 == 1 && !d0Var.f53229t.u()) {
                             h2.a.l("MediaSessionLegacyStub", "Calling play() omitted due to COMMAND_PLAY_PAUSE not being available. If this play command has started the service for instance for playback resumption, this may prevent the service from being started into the foreground.");
                             return;
                         }
                         return;
                     }
-                    pb.b bVar = d0Var.f53216e;
+                    pb.b bVar = d0Var.f53215e;
                     d0Var.s(m0);
                     bVar.getClass();
                     try {

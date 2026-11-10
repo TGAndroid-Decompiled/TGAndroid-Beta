@@ -9,8 +9,8 @@ import org.telegram.messenger.g0;
 import org.telegram.messenger.i6;
 import org.telegram.messenger.id;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.Components.wo;
 public final class c extends yg.c {
     public final wo f1061s;
@@ -18,23 +18,23 @@ public final class c extends yg.c {
     public final TextPaint f1063x;
     public final a3.f f1064y;
 
-    public c(Context context, g6 g6Var) {
-        super(context, g6Var);
+    public c(Context context, h6 h6Var) {
+        super(context, h6Var);
         int i7;
         TextPaint textPaint = new TextPaint();
         this.f1063x = textPaint;
         this.f1064y = new a3.f(this, 3);
         textPaint.setTextSize(g0.L(20.0f));
-        this.f59445f.setVisibility(8);
-        this.f59443c.setVisibility(8);
-        wo woVar = new wo(21, context, g6Var);
+        this.f59443f.setVisibility(8);
+        this.f59441c.setVisibility(8);
+        wo woVar = new wo(21, context, h6Var);
         this.f1061s = woVar;
-        woVar.b(l6.B5, l6.f27975j7, l6.C5);
+        woVar.b(m6.B5, m6.f28000j7, m6.C5);
         woVar.setDrawUnchecked(true);
         woVar.setDrawBackgroundAsArc(10);
         addView(woVar);
         woVar.a(false, false);
-        if (id.f23157a0) {
+        if (id.f23161a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -70,7 +70,7 @@ public final class c extends yg.c {
         float f13;
         float f14;
         float f15;
-        boolean z9 = id.f23157a0;
+        boolean z9 = id.f23161a0;
         int i11 = 3;
         if (z9) {
             i7 = 5;
@@ -89,7 +89,7 @@ public final class c extends yg.c {
             f11 = 20.0f;
         }
         this.d.setLayoutParams(ha.d(-1, -2.0f, i12, f10, 0.0f, f11, 0.0f));
-        boolean z10 = id.f23157a0;
+        boolean z10 = id.f23161a0;
         if (z10) {
             i10 = 5;
         } else {
@@ -106,8 +106,8 @@ public final class c extends yg.c {
         } else {
             f13 = 20.0f;
         }
-        this.f59444e.setLayoutParams(ha.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
-        boolean z11 = id.f23157a0;
+        this.f59442e.setLayoutParams(ha.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
+        boolean z11 = id.f23161a0;
         if (z11) {
             i11 = 5;
         }
@@ -122,7 +122,7 @@ public final class c extends yg.c {
         } else {
             f15 = 15.0f;
         }
-        this.f59445f.setLayoutParams(ha.d(22, 22.0f, i14, f14, 0.0f, f15, 0.0f));
+        this.f59443f.setLayoutParams(ha.d(22, 22.0f, i14, f14, 0.0f, f15, 0.0f));
     }
 
     public final void f() {

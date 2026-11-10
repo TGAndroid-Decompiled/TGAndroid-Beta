@@ -12,27 +12,27 @@ import org.telegram.messenger.ui;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.fz;
-import org.telegram.ui.Components.my0;
-import org.telegram.ui.Components.uv;
+import org.telegram.ui.Components.ez;
+import org.telegram.ui.Components.ly0;
+import org.telegram.ui.Components.tv;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.gf0;
+import org.telegram.ui.ak0;
+import org.telegram.ui.hf0;
 import org.telegram.ui.ho;
-import org.telegram.ui.id0;
-import org.telegram.ui.jl0;
+import org.telegram.ui.jd0;
+import org.telegram.ui.kl0;
 import org.telegram.ui.la;
-import org.telegram.ui.n21;
-import org.telegram.ui.zj0;
+import org.telegram.ui.o21;
 public final class v5 implements RequestDelegate {
-    public final int f9864a;
+    public final int f9869a;
 
     public v5(int i7) {
-        this.f9864a = i7;
+        this.f9869a = i7;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f9864a) {
+        switch (this.f9869a) {
             case 0:
                 org.telegram.messenger.g0.h3(new ai.m0(8));
                 return;
@@ -46,7 +46,7 @@ public final class v5 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new ai.m0(24));
                 return;
             case 4:
-                int[] iArr = fi.b1.f11635a0;
+                int[] iArr = fi.b1.f11640a0;
                 return;
             case 5:
                 org.telegram.messenger.g0.h3(new ai.m0(17));
@@ -58,12 +58,12 @@ public final class v5 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new ai.m0(17));
                 return;
             case 8:
-                org.telegram.messenger.p5 p5Var = org.telegram.messenger.d4.f21977s;
+                org.telegram.messenger.p5 p5Var = org.telegram.messenger.d4.f21981s;
                 return;
             case 9:
                 return;
             case 10:
-                int i7 = bc.f21634i;
+                int i7 = bc.f21639i;
                 return;
             case 11:
                 Pattern pattern = ui.R1;
@@ -75,49 +75,49 @@ public final class v5 implements RequestDelegate {
                 int i10 = qp.C8;
                 return;
             case 14:
-                String str = dt.f22075j0;
+                String str = dt.f22079j0;
                 return;
             case 15:
                 Paint paint = la.H;
                 return;
             case 16:
-                int i11 = ho.f46358i3;
+                int i11 = ho.f46398i3;
                 return;
             case 17:
                 org.telegram.messenger.g0.h3(new ai.m0(24));
                 return;
             case 18:
-                Pattern pattern2 = org.telegram.ui.Components.v4.f38913a;
+                Pattern pattern2 = org.telegram.ui.Components.u4.f38507a;
                 return;
             case 19:
-                int i12 = uv.H0;
+                int i12 = tv.H0;
                 return;
             case 20:
-                int i13 = fz.A0;
+                int i13 = ez.A0;
                 return;
             case 21:
                 org.telegram.messenger.g0.h3(new ai.m0(24));
                 return;
             case 22:
-                int i14 = my0.f36168e;
+                int i14 = ly0.f35761e;
                 return;
             case 23:
-                int i15 = id0.f46621v0;
+                int i15 = jd0.f46957v0;
                 return;
             case 24:
-                org.telegram.messenger.g0.h3(new gf0(tLObject, 5));
+                org.telegram.messenger.g0.h3(new hf0(tLObject, 5));
                 return;
             case 25:
-                int i16 = zj0.R;
+                int i16 = ak0.R;
                 return;
             case 26:
-                List list = jl0.f46991g1;
+                List list = kl0.f47323g1;
                 return;
             case 27:
                 RectF rectF = ProfileActivity.V6;
                 return;
             default:
-                int i17 = n21.l1;
+                int i17 = o21.f48378o1;
                 return;
         }
     }

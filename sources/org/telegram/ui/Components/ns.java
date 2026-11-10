@@ -1,92 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
 import android.os.Build;
 import android.widget.EdgeEffect;
 import androidx.recyclerview.widget.RecyclerView;
-public final class ns extends EdgeEffect {
-    public final int f36490a;
-    public final ls f36491b;
-    public final RecyclerView f36492c;
-    public final gp d;
-    public boolean f36493e;
+import java.util.ArrayList;
+public final class ns extends v4.k0 {
+    public final ms[] f36367a = new ms[4];
+    public final ArrayList f36368b = new ArrayList();
 
-    public ns(RecyclerView recyclerView, int i7, ls lsVar) {
-        super(recyclerView.getContext());
-        this.d = new gp(this, 7);
-        this.f36492c = recyclerView;
-        this.f36490a = i7;
-        this.f36491b = lsVar;
+    @Override
+    public final EdgeEffect a(RecyclerView recyclerView, int i7) {
+        ms msVar = new ms(recyclerView, i7, new ks(this, 0));
+        this.f36367a[i7] = msVar;
+        return msVar;
     }
 
-    public final void a() {
-        boolean b10 = b();
-        if (this.f36493e != b10) {
-            this.f36493e = b10;
-            ls lsVar = this.f36491b;
-            if (lsVar != null) {
-                lsVar.a(this.f36490a, b10);
-            }
+    public final float b(int i7) {
+        ms msVar = this.f36367a[i7];
+        if (Build.VERSION.SDK_INT >= 31 && msVar != null && !msVar.isFinished()) {
+            return msVar.getDistance();
         }
-    }
-
-    public final boolean b() {
-        if (!isFinished()) {
-            if (Build.VERSION.SDK_INT < 31 || getDistance() != 0.0f) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean draw(Canvas canvas) {
-        boolean draw = super.draw(canvas);
-        this.f36492c.postOnAnimation(this.d);
-        return draw;
-    }
-
-    @Override
-    public final void finish() {
-        super.finish();
-        a();
-    }
-
-    @Override
-    public final void onAbsorb(int i7) {
-        super.onAbsorb(i7);
-        a();
-    }
-
-    @Override
-    public final void onPull(float f10) {
-        super.onPull(f10);
-        a();
-    }
-
-    @Override
-    public final float onPullDistance(float f10, float f11) {
-        float onPullDistance = super.onPullDistance(f10, f11);
-        a();
-        return onPullDistance;
-    }
-
-    @Override
-    public final void onRelease() {
-        super.onRelease();
-        a();
-    }
-
-    @Override
-    public final void setSize(int i7, int i10) {
-        super.setSize(i7, i10);
-        a();
-    }
-
-    @Override
-    public final void onPull(float f10, float f11) {
-        super.onPull(f10, f11);
-        a();
+        return 0.0f;
     }
 }

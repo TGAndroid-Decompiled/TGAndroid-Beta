@@ -1,21 +1,21 @@
 package zh;
 public final class w0 implements Runnable {
-    public final int f60589a;
-    public final y0 f60590b;
-    public final boolean f60591c;
+    public final int f60601a;
+    public final y0 f60602b;
+    public final boolean f60603c;
 
     public w0(y0 y0Var, boolean z9, int i7) {
-        this.f60589a = i7;
-        this.f60590b = y0Var;
-        this.f60591c = z9;
+        this.f60601a = i7;
+        this.f60602b = y0Var;
+        this.f60603c = z9;
     }
 
     @Override
     public final void run() {
-        switch (this.f60589a) {
+        switch (this.f60601a) {
             case 0:
-                boolean z9 = this.f60591c;
-                y0 y0Var = this.f60590b;
+                boolean z9 = this.f60603c;
+                y0 y0Var = this.f60602b;
                 if (!z9) {
                     y0Var.G.setVisibility(8);
                     return;
@@ -24,10 +24,10 @@ public final class w0 implements Runnable {
                     return;
                 }
             default:
-                boolean z10 = this.f60591c;
-                y0 y0Var2 = this.f60590b;
+                boolean z10 = this.f60603c;
+                y0 y0Var2 = this.f60602b;
                 if (!z10) {
-                    y0Var2.f60629w.setVisibility(8);
+                    y0Var2.f60641w.setVisibility(8);
                     return;
                 } else {
                     y0Var2.getClass();

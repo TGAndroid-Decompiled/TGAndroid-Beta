@@ -2,18 +2,16 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.MotionEvent;
-public final class ow extends org.telegram.ui.Components.fz {
-    public final yw B0;
-
-    public ow(yw ywVar, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, g6Var);
-        this.B0 = ywVar;
+public final class ow extends org.telegram.ui.Components.r00 {
+    public ow(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, h6Var);
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        getParent().requestDisallowInterceptTouchEvent(true);
-        this.B0.f52282o3 = false;
-        return super.onInterceptTouchEvent(motionEvent);
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && getAlpha() < 0.25f) {
+            return false;
+        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 }

@@ -5,26 +5,26 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.widget.FrameLayout;
 import c8.ha;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.Components.qj0;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.Components.pj0;
 public abstract class a extends FrameLayout implements l0 {
-    public final g6 f56534a;
-    public final qj0 f56535b;
-    public final v4.b0 f56536c;
+    public final h6 f56533a;
+    public final pj0 f56534b;
+    public final v4.b0 f56535c;
 
-    public a(Context context, g6 g6Var) {
+    public a(Context context, h6 h6Var) {
         super(context);
-        this.f56534a = g6Var;
-        qj0 qj0Var = new qj0(context, g6Var);
-        this.f56535b = qj0Var;
-        qj0Var.setNestedScrollingEnabled(true);
-        qj0Var.setAdapter(a());
+        this.f56533a = h6Var;
+        pj0 pj0Var = new pj0(context, h6Var);
+        this.f56534b = pj0Var;
+        pj0Var.setNestedScrollingEnabled(true);
+        pj0Var.setAdapter(a());
         v4.b0 b0Var = new v4.b0(1, false);
-        this.f56536c = b0Var;
-        qj0Var.setLayoutManager(b0Var);
-        qj0Var.setClipToPadding(false);
-        addView(qj0Var, ha.c(-1.0f, -1));
+        this.f56535c = b0Var;
+        pj0Var.setLayoutManager(b0Var);
+        pj0Var.setClipToPadding(false);
+        addView(pj0Var, ha.c(-1.0f, -1));
     }
 
     public abstract v4.g0 a();
@@ -32,9 +32,9 @@ public abstract class a extends FrameLayout implements l0 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        Paint W0 = l6.W0("paintDivider", this.f56534a);
+        Paint W0 = m6.W0("paintDivider", this.f56533a);
         if (W0 == null) {
-            W0 = l6.f27988k0;
+            W0 = m6.f28013k0;
         }
         canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, W0);
     }
@@ -42,14 +42,14 @@ public abstract class a extends FrameLayout implements l0 {
     @Override
     public void setOffset(float f10) {
         if (Math.abs(f10 / getMeasuredWidth()) == 1.0f) {
-            qj0 qj0Var = this.f56535b;
-            if (qj0Var.K(0) == null || qj0Var.K(0).f57056a.getTop() != qj0Var.getPaddingTop()) {
-                qj0Var.v0(0);
+            pj0 pj0Var = this.f56534b;
+            if (pj0Var.K(0) == null || pj0Var.K(0).f57052a.getTop() != pj0Var.getPaddingTop()) {
+                pj0Var.v0(0);
             }
         }
     }
 
     public void setTopOffset(int i7) {
-        this.f56535b.setPadding(0, i7, 0, 0);
+        this.f56534b.setPadding(0, i7, 0, 0);
     }
 }

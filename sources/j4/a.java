@@ -134,17 +134,17 @@ public final class a implements m {
         if (H == 0) {
             y10 = "";
         } else {
-            int i16 = xVar.f14163b;
+            int i16 = xVar.f14165b;
             Charset J = xVar.J();
-            int i17 = H - (xVar.f14163b - i16);
+            int i17 = H - (xVar.f14165b - i16);
             if (J == null) {
                 J = StandardCharsets.UTF_8;
             }
             y10 = xVar.y(i17, J);
         }
         if (y10.isEmpty()) {
-            g0 g0Var = i0.f14329b;
-            jVar.accept(new c4.a(-9223372036854775807L, -9223372036854775807L, t1.f14397e));
+            g0 g0Var = i0.f14331b;
+            jVar.accept(new c4.a(-9223372036854775807L, -9223372036854775807L, t1.f14399e));
             return;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(y10);
@@ -157,7 +157,7 @@ public final class a implements m {
         }
         float f10 = this.f16496f;
         while (xVar.a() >= 8) {
-            int i18 = xVar.f14163b;
+            int i18 = xVar.f14165b;
             int m10 = xVar.m();
             int m11 = xVar.m();
             if (m11 == 1937013100) {

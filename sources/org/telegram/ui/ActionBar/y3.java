@@ -1,52 +1,10 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Rect;
-import android.view.View;
-import org.telegram.ui.Components.nm0;
-public final class y3 implements View.OnLayoutChangeListener {
-    public final int f28778a;
-    public final Object f28779b;
-    public final Object f28780c;
-    public final Object d;
-
-    public y3(nm0 nm0Var, nm0 nm0Var2, nm0 nm0Var3) {
-        this.f28778a = 1;
-        this.f28779b = nm0Var;
-        this.f28780c = nm0Var2;
-        this.d = nm0Var3;
-    }
-
+import android.view.MenuItem;
+public final class y3 implements MenuItem.OnMenuItemClickListener {
     @Override
-    public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
-        switch (this.f28778a) {
-            case 0:
-                Rect rect = (Rect) this.f28779b;
-                rect.set(i7, i10, i11, i12);
-                Rect rect2 = (Rect) this.f28780c;
-                rect2.set(i13, i14, i15, i16);
-                k4 k4Var = (k4) this.d;
-                i4 i4Var = k4Var.f27724b;
-                if (i4Var.f() && !rect.equals(rect2)) {
-                    k4Var.h = true;
-                    if (i4Var.f()) {
-                        k4Var.c();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                ((nm0) this.f28779b).setProgress(org.telegram.ui.h5.f46157j1);
-                ((nm0) this.f28780c).setProgress(org.telegram.ui.h5.f46158k1);
-                ((nm0) this.d).setProgress(org.telegram.ui.h5.l1);
-                return;
-        }
-    }
-
-    public y3(k4 k4Var) {
-        this.f28778a = 0;
-        this.d = k4Var;
-        this.f28779b = new Rect();
-        this.f28780c = new Rect();
+    public final boolean onMenuItemClick(MenuItem menuItem) {
+        y3 y3Var = l4.f27749p;
+        return false;
     }
 }

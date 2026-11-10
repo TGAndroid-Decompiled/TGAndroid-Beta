@@ -52,11 +52,11 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.ActionBar.r1;
 import org.telegram.ui.ActionBar.u1;
-import org.telegram.ui.Components.dj0;
-import org.telegram.ui.Components.sn;
-import org.telegram.ui.Components.vy;
+import org.telegram.ui.Components.cj0;
+import org.telegram.ui.Components.rn;
+import org.telegram.ui.Components.uy;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ky0;
+import org.telegram.ui.ly0;
 import q4.q;
 import r0.k1;
 import r0.m;
@@ -69,26 +69,26 @@ import wg.r0;
 import wh.h;
 import zh.g1;
 import zh.h0;
-public final class e implements w5.b, u9.d, d5.a, r1, dj0, wh.a, ua.a, p, m, q1 {
-    public final int f56363a;
-    public final Object f56364b;
+public final class e implements w5.b, u9.d, d5.a, r1, cj0, wh.a, ua.a, p, m, q1 {
+    public final int f56362a;
+    public final Object f56363b;
 
     public e(Object obj, int i7) {
-        this.f56363a = i7;
-        this.f56364b = obj;
+        this.f56362a = i7;
+        this.f56363b = obj;
     }
 
     @Override
     public k1 S0(View view, k1 k1Var) {
-        ((h0) this.f56364b).n1.j(k1Var);
-        return k1.f54213b;
+        ((h0) this.f56363b).f60364q1.j(k1Var);
+        return k1.f54212b;
     }
 
     @Override
     public void a(f fVar, List list) {
         int i7;
-        g1 g1Var = (g1) this.f56364b;
-        ArrayList arrayList = g1Var.f60337e2;
+        g1 g1Var = (g1) this.f56363b;
+        ArrayList arrayList = g1Var.f60342h2;
         Iterator it = list.iterator();
         long j3 = 0;
         while (true) {
@@ -103,7 +103,7 @@ public final class e implements w5.b, u9.d, d5.a, r1, dj0, wh.a, ua.a, p, m, q1 
                     Object obj = arrayList.get(i7);
                     i7++;
                     j jVar = (j) obj;
-                    if (jVar.h() != null && jVar.h().equals(lVar.f11168c)) {
+                    if (jVar.h() != null && jVar.h().equals(lVar.f11173c)) {
                         jVar.h = lVar;
                         if (jVar.f() > j3) {
                             j3 = jVar.f();
@@ -116,18 +116,18 @@ public final class e implements w5.b, u9.d, d5.a, r1, dj0, wh.a, ua.a, p, m, q1 
         while (i7 < size2) {
             Object obj2 = arrayList.get(i7);
             i7++;
-            ((j) obj2).f56655g = j3;
+            ((j) obj2).f56654g = j3;
         }
         g0.h3(new a0(g1Var, 5));
     }
 
     @Override
     public void c(ua.b bVar) {
-        x9.a aVar = (x9.a) this.f56364b;
+        x9.a aVar = (x9.a) this.f56363b;
         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
             Log.d("FirebaseCrashlytics", "Crashlytics native component now available.", null);
         }
-        aVar.f58674b.set((x9.a) bVar.get());
+        aVar.f58672b.set((x9.a) bVar.get());
     }
 
     @Override
@@ -148,44 +148,44 @@ public final class e implements w5.b, u9.d, d5.a, r1, dj0, wh.a, ua.a, p, m, q1 
         Task onSuccessTask;
         NetworkInfo activeNetworkInfo;
         ia.b a10;
-        switch (this.f56363a) {
+        switch (this.f56362a) {
             case 1:
-                return this.f56364b;
+                return this.f56363b;
             default:
-                CrashlyticsRegistrar crashlyticsRegistrar = (CrashlyticsRegistrar) this.f56364b;
+                CrashlyticsRegistrar crashlyticsRegistrar = (CrashlyticsRegistrar) this.f56363b;
                 int i13 = CrashlyticsRegistrar.d;
                 long currentTimeMillis = System.currentTimeMillis();
                 g gVar = (g) r7Var.a(g.class);
                 u9.p o4 = r7Var.o(x9.a.class);
                 u9.p o10 = r7Var.o(p9.a.class);
                 u9.p o11 = r7Var.o(fb.a.class);
-                ExecutorService executorService = (ExecutorService) r7Var.e(crashlyticsRegistrar.f7880c);
+                ExecutorService executorService = (ExecutorService) r7Var.e(crashlyticsRegistrar.f7885c);
                 gVar.a();
-                Context context = gVar.f20875a;
+                Context context = gVar.f20880a;
                 String packageName = context.getPackageName();
                 Log.i("FirebaseCrashlytics", "Initializing Firebase Crashlytics 20.1.1 for " + packageName, null);
-                ba.e eVar2 = new ba.e((ExecutorService) r7Var.e(crashlyticsRegistrar.f7878a), (ExecutorService) r7Var.e(crashlyticsRegistrar.f7879b));
+                ba.e eVar2 = new ba.e((ExecutorService) r7Var.e(crashlyticsRegistrar.f7883a), (ExecutorService) r7Var.e(crashlyticsRegistrar.f7884b));
                 ga.d dVar = new ga.d(context);
                 x xVar = new x(gVar);
                 b0 b0Var = new b0(context, packageName, (va.d) r7Var.a(va.d.class), xVar);
                 x9.a aVar = new x9.a(o4);
                 androidx.emoji2.text.f fVar = new androidx.emoji2.text.f(o10);
                 aa.j jVar = new aa.j(xVar, dVar);
-                hb.c cVar = hb.c.f14449a;
-                hb.d dVar2 = hb.d.f14451a;
-                hb.c cVar2 = hb.c.f14449a;
+                hb.c cVar = hb.c.f14451a;
+                hb.d dVar2 = hb.d.f14453a;
+                hb.c cVar2 = hb.c.f14451a;
                 hb.a a11 = hb.c.a(dVar2);
-                if (a11.f14442b != null) {
+                if (a11.f14444b != null) {
                     Log.d("FirebaseSessions", "Subscriber " + dVar2 + " already registered.");
                 } else {
-                    a11.f14442b = jVar;
+                    a11.f14444b = jVar;
                     Log.d("FirebaseSessions", "Subscriber " + dVar2 + " registered.");
-                    a11.f14441a.countDown();
+                    a11.f14443a.countDown();
                 }
-                u uVar2 = new u(gVar, b0Var, aVar, xVar, new w9.a(fVar), new w9.a(fVar), dVar, jVar, new vy(o11, 28), eVar2);
+                u uVar2 = new u(gVar, b0Var, aVar, xVar, new w9.a(fVar), new w9.a(fVar), dVar, jVar, new uy(o11, 28), eVar2);
                 ba.e eVar3 = uVar2.f868n;
                 gVar.a();
-                String str5 = gVar.f20877c.f20888b;
+                String str5 = gVar.f20882c.f20893b;
                 int e10 = aa.g.e(context, "com.google.firebase.crashlytics.mapping_file_id", "string");
                 if (e10 == 0) {
                     e10 = aa.g.e(context, "com.crashlytics.android.build_id", "string");
@@ -329,18 +329,18 @@ public final class e implements w5.b, u9.d, d5.a, r1, dj0, wh.a, ua.a, p, m, q1 
                     ?? obj3 = new Object();
                     AtomicReference atomicReference = new AtomicReference();
                     obj3.h = atomicReference;
-                    obj3.f15424i = new AtomicReference(new TaskCompletionSource());
-                    obj3.f15418a = context;
-                    obj3.f15419b = eVar4;
+                    obj3.f15426i = new AtomicReference(new TaskCompletionSource());
+                    obj3.f15420a = context;
+                    obj3.f15421b = eVar4;
                     obj3.d = sVar;
-                    obj3.f15420c = gVar2;
-                    obj3.f15421e = f1Var;
-                    obj3.f15422f = lVar;
-                    obj3.f15423g = xVar;
+                    obj3.f15422c = gVar2;
+                    obj3.f15423e = f1Var;
+                    obj3.f15424f = lVar;
+                    obj3.f15425g = xVar;
                     atomicReference.set(nb.a.W(sVar));
-                    AtomicReference atomicReference2 = (AtomicReference) obj3.f15424i;
+                    AtomicReference atomicReference2 = (AtomicReference) obj3.f15426i;
                     AtomicReference atomicReference3 = (AtomicReference) obj3.h;
-                    if (((Context) obj3.f15418a).getSharedPreferences("com.google.firebase.crashlytics", 0).getString("existing_instance_identifier", "").equals((String) ((ia.e) obj3.f15419b).f15430f) && (a10 = obj3.a(1)) != null) {
+                    if (((Context) obj3.f15420a).getSharedPreferences("com.google.firebase.crashlytics", 0).getString("existing_instance_identifier", "").equals((String) ((ia.e) obj3.f15421b).f15432f) && (a10 = obj3.a(1)) != null) {
                         atomicReference3.set(a10);
                         ((TaskCompletionSource) atomicReference2.get()).trySetResult(a10);
                         onSuccessTask = Tasks.forResult(null);
@@ -350,7 +350,7 @@ public final class e implements w5.b, u9.d, d5.a, r1, dj0, wh.a, ua.a, p, m, q1 
                             atomicReference3.set(a13);
                             ((TaskCompletionSource) atomicReference2.get()).trySetResult(a13);
                         }
-                        x xVar2 = (x) obj3.f15423g;
+                        x xVar2 = (x) obj3.f15425g;
                         Task task2 = xVar2.h.getTask();
                         synchronized (xVar2.f881c) {
                             task = xVar2.d.getTask();
@@ -401,12 +401,12 @@ public final class e implements w5.b, u9.d, d5.a, r1, dj0, wh.a, ua.a, p, m, q1 
                         q3 q3Var = new q3(str16, dVar4, eVar5);
                         ca.f fVar2 = new ca.f(dVar4);
                         n nVar = new n(new ja.a[]{new nb.a(12)});
-                        ((u9.p) uVar3.f867m.f39835b).a(new v0.j(26));
+                        ((u9.p) uVar3.f867m.f38776b).a(new v0.j(26));
                         uVar3.f861f = new aa.q(uVar3.f857a, uVar3.f862g, uVar3.f858b, uVar3.h, uVar3.f860e, a12, q3Var, fVar2, f0.d(uVar3.f857a, uVar3.f862g, uVar3.h, a12, fVar2, q3Var, nVar, obj3, uVar3.f859c, uVar3.f865k, uVar3.f868n), uVar3.f866l, uVar3.f864j, uVar3.f865k, uVar3.f868n);
                         wf.b bVar3 = uVar3.d;
-                        ga.d dVar5 = (ga.d) bVar3.f57668c;
+                        ga.d dVar5 = (ga.d) bVar3.f57667c;
                         dVar5.getClass();
-                        boolean exists = new File((File) dVar5.d, (String) bVar3.f57667b).exists();
+                        boolean exists = new File((File) dVar5.d, (String) bVar3.f57666b).exists();
                         try {
                             Boolean.TRUE.equals((Boolean) eVar5.f3135a.f3132a.submit(new t(uVar3, 0)).get(3L, TimeUnit.SECONDS));
                         } catch (Exception unused) {
@@ -464,12 +464,12 @@ public final class e implements w5.b, u9.d, d5.a, r1, dj0, wh.a, ua.a, p, m, q1 
 
     @Override
     public void g(u1 u1Var, int i7) {
-        switch (this.f56363a) {
+        switch (this.f56362a) {
             case 4:
-                ((r0) this.f56364b).run();
+                ((r0) this.f56363b).run();
                 return;
             case 5:
-                TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults = (TLRPC.TL_payments_giveawayInfoResults) this.f56364b;
+                TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults = (TLRPC.TL_payments_giveawayInfoResults) this.f56363b;
                 f2 Q = LaunchActivity.Q();
                 if (Q != null) {
                     c0.e1(Q, tL_payments_giveawayInfoResults.gift_code_slug, null);
@@ -477,22 +477,22 @@ public final class e implements w5.b, u9.d, d5.a, r1, dj0, wh.a, ua.a, p, m, q1 
                 }
                 return;
             case 6:
-                ((sn) this.f56364b).run();
+                ((rn) this.f56363b).run();
                 return;
             case 7:
-                ((r0) this.f56364b).run();
+                ((r0) this.f56363b).run();
                 return;
             default:
-                ((d0) this.f56364b).run();
+                ((d0) this.f56363b).run();
                 return;
         }
     }
 
     @Override
     public Object h() {
-        ui.e eVar = (ui.e) this.f56364b;
-        for (i iVar : (Iterable) ((v5.g) ((v5.d) eVar.f56944c)).c(new v0.j(5))) {
-            ((ky0) eVar.d).J(iVar, 1, false);
+        ui.e eVar = (ui.e) this.f56363b;
+        for (i iVar : (Iterable) ((v5.g) ((v5.d) eVar.f56940c)).c(new v0.j(5))) {
+            ((ly0) eVar.d).J(iVar, 1, false);
         }
         return null;
     }
@@ -500,20 +500,20 @@ public final class e implements w5.b, u9.d, d5.a, r1, dj0, wh.a, ua.a, p, m, q1 
     @Override
     public void i(WebView webView, wa waVar, Uri uri, boolean z9, e5.f fVar) {
         e5.f fVar2;
-        ui.i iVar = (ui.i) this.f56364b;
-        if (webView == iVar.f56966o && z9 && uri != null && iVar.f56958f.equals(uri.toString()) && iVar.j(webView)) {
+        ui.i iVar = (ui.i) this.f56363b;
+        if (webView == iVar.f56962o && z9 && uri != null && iVar.f56954f.equals(uri.toString()) && iVar.j(webView)) {
             int i7 = waVar.f700b;
             if (i7 == 0) {
                 waVar.f(0);
                 String str = (String) waVar.f701c;
-                if (!iVar.f56968q && str != null && str.startsWith("tproxy-base64:")) {
-                    synchronized (iVar.f56954a) {
-                        if (!iVar.f56972u && iVar.f56969r && iVar.f56967p == fVar) {
+                if (!iVar.f56964q && str != null && str.startsWith("tproxy-base64:")) {
+                    synchronized (iVar.f56950a) {
+                        if (!iVar.f56968u && iVar.f56965r && iVar.f56963p == fVar) {
                             if (str.length() - 14 > 1398112) {
                                 iVar.h();
                                 return;
                             } else {
-                                iVar.f56962k.execute(new u9.f(8, iVar, str));
+                                iVar.f56958k.execute(new u9.f(8, iVar, str));
                                 return;
                             }
                         }
@@ -522,12 +522,12 @@ public final class e implements w5.b, u9.d, d5.a, r1, dj0, wh.a, ua.a, p, m, q1 
                 }
                 iVar.i(str, fVar);
             } else if (i7 == 1) {
-                synchronized (iVar.f56954a) {
-                    if (!iVar.f56972u && (fVar2 = iVar.f56967p) != null && fVar2 == fVar) {
+                synchronized (iVar.f56950a) {
+                    if (!iVar.f56968u && (fVar2 = iVar.f56963p) != null && fVar2 == fVar) {
                         waVar.f(1);
                         byte[] bArr = (byte[]) waVar.d;
                         Objects.requireNonNull(bArr);
-                        iVar.f56962k.execute(new u9.f(9, iVar, bArr));
+                        iVar.f56958k.execute(new u9.f(9, iVar, bArr));
                     }
                 }
             }
@@ -536,15 +536,15 @@ public final class e implements w5.b, u9.d, d5.a, r1, dj0, wh.a, ua.a, p, m, q1 
 
     @Override
     public void j(long j3) {
-        ((zh.e) this.f56364b).a(j3, true);
+        ((zh.e) this.f56363b).a(j3, true);
     }
 
     @Override
     public void m(Canvas canvas, int i7) {
-        h hVar = (h) this.f56364b;
+        h hVar = (h) this.f56363b;
         hVar.getClass();
         canvas.save();
-        RectF rectF = hVar.f57917r;
+        RectF rectF = hVar.f57921r;
         canvas.translate(-rectF.left, (-rectF.top) + g0.L(30.0f));
         hVar.e(canvas, true, i7);
         canvas.restore();

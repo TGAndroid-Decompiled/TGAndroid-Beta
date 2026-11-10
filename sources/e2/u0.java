@@ -4,21 +4,21 @@ import a8.ia;
 import android.os.Bundle;
 import j$.util.Objects;
 public final class u0 extends d1 {
-    public static final String f10622c;
-    public final float f10623b;
+    public static final String f10627c;
+    public final float f10628b;
 
     static {
-        String str = h2.m0.f14112a;
-        f10622c = Integer.toString(1, 36);
+        String str = h2.m0.f14114a;
+        f10627c = Integer.toString(1, 36);
     }
 
     public u0() {
-        this.f10623b = -1.0f;
+        this.f10628b = -1.0f;
     }
 
     @Override
     public final boolean b() {
-        if (this.f10623b != -1.0f) {
+        if (this.f10628b != -1.0f) {
             return true;
         }
         return false;
@@ -27,8 +27,8 @@ public final class u0 extends d1 {
     @Override
     public final Bundle c() {
         Bundle bundle = new Bundle();
-        bundle.putInt(d1.f10214a, 1);
-        bundle.putFloat(f10622c, this.f10623b);
+        bundle.putInt(d1.f10219a, 1);
+        bundle.putFloat(f10627c, this.f10628b);
         return bundle;
     }
 
@@ -36,18 +36,18 @@ public final class u0 extends d1 {
         if (!(obj instanceof u0)) {
             return false;
         }
-        if (this.f10623b != ((u0) obj).f10623b) {
+        if (this.f10628b != ((u0) obj).f10628b) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Objects.hash(Float.valueOf(this.f10623b));
+        return Objects.hash(Float.valueOf(this.f10628b));
     }
 
     public u0(float f10) {
         ia.e("percent must be in the range of [0, 100]", f10 >= 0.0f && f10 <= 100.0f);
-        this.f10623b = f10;
+        this.f10628b = f10;
     }
 }

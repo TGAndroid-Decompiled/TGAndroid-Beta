@@ -27,21 +27,21 @@ public final class n implements View.OnFocusChangeListener {
                 return;
             case 1:
                 a1 a1Var = (a1) this.f4381b;
-                a1Var.V1.c(z9, !TextUtils.isEmpty(a1Var.W1.getText()));
+                a1Var.Y1.c(z9, !TextUtils.isEmpty(a1Var.Z1.getText()));
                 return;
             case 2:
                 e1 e1Var = (e1) this.f4381b;
-                e1Var.f3737m1.c(z9, !TextUtils.isEmpty(e1Var.n1.getText()));
+                e1Var.f3736p1.c(z9, !TextUtils.isEmpty(e1Var.f3737q1.getText()));
                 return;
             case 3:
                 h1 h1Var = (h1) this.f4381b;
-                h1Var.f3973i1.c(z9, !TextUtils.isEmpty(h1Var.f3974j1.getText()));
+                h1Var.l1.c(z9, !TextUtils.isEmpty(h1Var.f3970m1.getText()));
                 return;
             case 4:
                 ch.l lVar = (ch.l) this.f4381b;
                 if (z9) {
                     lVar.J(true);
-                    Runnable runnable = lVar.f6225a2;
+                    Runnable runnable = lVar.f6230a2;
                     if (runnable != null) {
                         runnable.run();
                         return;
@@ -54,7 +54,7 @@ public final class n implements View.OnFocusChangeListener {
                 li.a6.a((li.a6) this.f4381b, z9);
                 return;
             case 6:
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) ((org.telegram.ui.t4) this.f4381b).f50069f;
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) ((org.telegram.ui.t4) this.f4381b).f50109f;
                 if (!z9 && TextUtils.isEmpty(editTextBoldCursor.getText())) {
                     editTextBoldCursor.setText("0");
                     return;

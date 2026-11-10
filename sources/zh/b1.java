@@ -14,14 +14,14 @@ import android.view.View;
 import bi.ud;
 import org.telegram.messenger.d20;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.Components.ny0;
-import org.telegram.ui.Components.w5;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.Components.my0;
+import org.telegram.ui.Components.v5;
+import org.telegram.ui.Components.wq;
 public class b1 extends a5.h {
-    public ny0 f60218c;
-    public ny0 d;
-    public final w5 f60219e;
+    public my0 f60218c;
+    public my0 d;
+    public final v5 f60219e;
     public final Path f60220f;
     public final Path h;
     public final Paint f60221n;
@@ -33,7 +33,7 @@ public class b1 extends a5.h {
 
     public b1(View view) {
         super(view);
-        this.f60219e = new w5(new wg.a0(this, 7), 320L, xq.h, 0);
+        this.f60219e = new v5(new wg.a0(this, 7), 320L, wq.h, 0);
         Path path = new Path();
         this.f60220f = path;
         this.h = new Path();
@@ -83,7 +83,7 @@ public class b1 extends a5.h {
         path.close();
     }
 
-    public final void c(Canvas canvas, ny0 ny0Var, float f10) {
+    public final void c(Canvas canvas, my0 my0Var, float f10) {
         float f11;
         float f12;
         canvas.save();
@@ -107,9 +107,9 @@ public class b1 extends a5.h {
             f12 = 45.0f;
         }
         canvas.rotate(f12, L, L2);
-        float min = Math.min(1.0f, org.telegram.messenger.g0.L(40.0f) / ny0Var.f36541c);
+        float min = Math.min(1.0f, org.telegram.messenger.g0.L(40.0f) / my0Var.f36133c);
         canvas.scale(min, min, L, L2);
-        ny0Var.c(L - (ny0Var.k() / 2.0f), L2 + org.telegram.messenger.g0.L(1.0f), 1.0f, this.f60226y, canvas);
+        my0Var.c(L - (my0Var.k() / 2.0f), L2 + org.telegram.messenger.g0.L(1.0f), 1.0f, this.f60226y, canvas);
         canvas.restore();
     }
 
@@ -145,13 +145,13 @@ public class b1 extends a5.h {
             canvas2 = canvas;
         }
         if (this.f60218c != null) {
-            w5 w5Var = this.f60219e;
-            float e10 = w5Var.e(false, 1.0f);
-            if (!w5Var.f39914i) {
+            v5 v5Var = this.f60219e;
+            float e10 = v5Var.e(false, 1.0f);
+            if (!v5Var.f38858i) {
                 this.d = null;
             }
             canvas2.save();
-            if (this.d != null && w5Var.f39914i) {
+            if (this.d != null && v5Var.f38858i) {
                 canvas2.clipPath(path);
                 float L = org.telegram.messenger.g0.L(f10 * 64.0f);
                 c(canvas2, this.d, L * e10);
@@ -202,7 +202,7 @@ public class b1 extends a5.h {
         } else {
             f12 = 0.0f;
         }
-        int b10 = l6.b(f10, f11 - f12, i7);
+        int b10 = m6.b(f10, f11 - f12, i7);
         int i10 = stargiftattributebackdrop.edge_color | (-16777216);
         if (z11) {
             f14 = 0.07f;
@@ -213,7 +213,7 @@ public class b1 extends a5.h {
         if (!z10) {
             f16 = 0.0f;
         }
-        int[] iArr = {b10, l6.b(f14, f15 - f16, i10)};
+        int[] iArr = {b10, m6.b(f14, f15 - f16, i10)};
         if (z11) {
             f13 = 1.0f;
         } else {
@@ -233,18 +233,18 @@ public class b1 extends a5.h {
         if (z9) {
             typeface = org.telegram.messenger.g0.o();
         }
-        this.f60218c = new ny0(charSequence, f10, typeface);
+        this.f60218c = new my0(charSequence, f10, typeface);
         invalidateSelf();
     }
 
     public final void g(int i7, String str) {
-        ny0 ny0Var = this.f60218c;
-        if (ny0Var == null) {
+        my0 my0Var = this.f60218c;
+        if (my0Var == null) {
             f(i7, str, true);
-        } else if (TextUtils.equals(ny0Var.j(), str)) {
+        } else if (TextUtils.equals(my0Var.j(), str)) {
         } else {
             this.d = this.f60218c;
-            this.f60218c = new ny0(str, i7, org.telegram.messenger.g0.o());
+            this.f60218c = new my0(str, i7, org.telegram.messenger.g0.o());
             this.f60219e.e(true, 0.0f);
             invalidateSelf();
         }

@@ -1,21 +1,21 @@
 package fi;
 public final class wa implements Runnable {
-    public final int f13066a;
-    public final fb f13067b;
+    public final int f13068a;
+    public final fb f13069b;
 
     public wa(fb fbVar, int i7) {
-        this.f13066a = i7;
-        this.f13067b = fbVar;
+        this.f13068a = i7;
+        this.f13069b = fbVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f13066a) {
+        switch (this.f13068a) {
             case 0:
-                fb fbVar = this.f13067b;
+                fb fbVar = this.f13069b;
                 db dbVar = fbVar.M;
                 if (dbVar != null) {
-                    long j3 = dbVar.f11807a;
+                    long j3 = dbVar.f11811a;
                     if (j3 > 0) {
                         fbVar.H = j3;
                         return;
@@ -24,14 +24,14 @@ public final class wa implements Runnable {
                 }
                 return;
             case 1:
-                za zaVar = this.f13067b.f11993a;
+                za zaVar = this.f13069b.f11997a;
                 if (zaVar != null) {
                     zaVar.V();
                     return;
                 }
                 return;
             default:
-                za zaVar2 = this.f13067b.f11993a;
+                za zaVar2 = this.f13069b.f11997a;
                 if (zaVar2 != null) {
                     zaVar2.r();
                     return;

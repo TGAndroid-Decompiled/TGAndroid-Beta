@@ -5,15 +5,15 @@ import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_communities;
 public final class m implements Vector.TLDeserializer {
-    public final int f27152a;
+    public final int f27156a;
 
     public m(int i7) {
-        this.f27152a = i7;
+        this.f27156a = i7;
     }
 
     @Override
     public final TLObject deserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
-        switch (this.f27152a) {
+        switch (this.f27156a) {
             case 0:
                 return TLRPC.AttachMenuPeerType.TLdeserialize(inputSerializedData, i7, z9);
             case 1:

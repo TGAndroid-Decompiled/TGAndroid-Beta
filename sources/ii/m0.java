@@ -15,7 +15,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_communities;
 import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.ActionBar.u1;
-import org.telegram.ui.Components.hc;
+import org.telegram.ui.Components.gc;
 public abstract class m0 {
     public static SpannableStringBuilder a(ij ijVar, String str, String str2, boolean z9, boolean z10) {
         boolean z11;
@@ -26,7 +26,7 @@ public abstract class m0 {
         int i12;
         int i13;
         int i14;
-        TLRPC.Message message = ijVar.f23262k;
+        TLRPC.Message message = ijVar.f23266k;
         TLRPC.TL_messageActionChangeCommunity tL_messageActionChangeCommunity = (TLRPC.TL_messageActionChangeCommunity) message.action;
         if (m5.o(message.peer_id) == m5.o(message.from_id)) {
             z11 = true;
@@ -129,7 +129,7 @@ public abstract class m0 {
                 TL_communities.CommunityPeer communityPeer2 = communityPeer;
                 if (m5.o(communityPeer2.peer) == j3) {
                     if (user != null) {
-                        dialog = qp.s1(i7).S0(user.f27105id);
+                        dialog = qp.s1(i7).S0(user.f27109id);
                     }
                     return c(M0, dialog, user, communityPeer2);
                 }
@@ -179,7 +179,7 @@ public abstract class m0 {
         u1VarArr[0].setOnCancelListener(new e0(i7, sendRequestTyped, u1VarArr, 0));
     }
 
-    public static void f(hc hcVar, int i7, boolean z9) {
+    public static void f(gc gcVar, int i7, boolean z9) {
         int i10;
         int i11;
         String M0;
@@ -206,6 +206,6 @@ public abstract class m0 {
         } else {
             M0 = id.M0(2131751940, null);
         }
-        hcVar.G(i10, i11, M0).j();
+        gcVar.G(i10, i11, M0).j();
     }
 }

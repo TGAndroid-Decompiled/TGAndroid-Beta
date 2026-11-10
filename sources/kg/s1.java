@@ -3,19 +3,19 @@ package kg;
 import java.util.HashSet;
 import org.telegram.messenger.ij;
 public final class s1 {
-    public int f17532a;
-    public String f17533b;
-    public int f17534c;
+    public int f17535a;
+    public String f17536b;
+    public int f17537c;
     public int d;
-    public ij f17535e;
-    public int f17536f;
-    public boolean f17537g;
+    public ij f17538e;
+    public int f17539f;
+    public boolean f17540g;
     public final HashSet h = new HashSet();
 
     public final int a() {
-        if (this.f17537g) {
+        if (this.f17540g) {
             return this.h.size();
         }
-        return this.f17536f;
+        return this.f17539f;
     }
 }

@@ -1,69 +1,80 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.messenger.id;
-import org.telegram.ui.Components.c80;
-import org.telegram.ui.Components.m41;
-import org.telegram.ui.Components.qj0;
-import org.telegram.ui.Components.r41;
-import org.telegram.ui.Components.x31;
-import org.telegram.ui.Components.y31;
-public final class k8 extends x31 {
-    public static final int f42665b = 0;
+import android.text.TextUtils;
+import java.nio.charset.StandardCharsets;
+import org.telegram.ui.Components.o41;
+public final class k8 implements org.telegram.ui.ActionBar.r1 {
+    public final int f42732a;
+    public final o41 f42733b;
+    public final Object f42734c;
+    public final Object d;
 
-    static {
-        x31.h(new x31());
+    public k8(o41 o41Var, Object obj, Object obj2, int i7) {
+        this.f42732a = i7;
+        this.f42733b = o41Var;
+        this.d = obj;
+        this.f42734c = obj2;
     }
 
     @Override
-    public final void b(View view, y31 y31Var, boolean z9, m41 m41Var, r41 r41Var) {
-        float f10;
-        float f11;
-        l8 l8Var = (l8) view;
-        String charSequence = y31Var.f40568l.toString();
-        long j3 = y31Var.B;
-        int i7 = y31Var.f40581z;
-        boolean z10 = y31Var.f40573q;
-        TextView textView = l8Var.f42731c;
-        TextView textView2 = l8Var.f42730b;
-        textView2.setText(d8.c0(charSequence));
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        if (j3 < 0) {
-            spannableStringBuilder.append((CharSequence) id.M0(2131748779, null));
-            spannableStringBuilder.setSpan(new c80(org.telegram.messenger.g0.L(35.0f), textView), 0, spannableStringBuilder.length(), 33);
-        } else {
-            spannableStringBuilder.append((CharSequence) l0.s(j3, false));
+    public final void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        org.telegram.ui.ActionBar.f2 f2Var;
+        switch (this.f42732a) {
+            case 0:
+                p8 p8Var = (p8) this.f42733b;
+                l0 l0Var = (l0) this.f42734c;
+                if (!((Boolean) this.d).booleanValue()) {
+                    l0Var.f42751c.B();
+                }
+                if (p8Var.getParentLayout() != null && p8Var.getParentLayout().getFragmentStack().size() > 1) {
+                    f2Var = (org.telegram.ui.ActionBar.f2) p8Var.getParentLayout().getFragmentStack().get(p8Var.getParentLayout().getFragmentStack().size() - 2);
+                } else {
+                    f2Var = null;
+                }
+                g3.a(l0Var.f42749a, new ai.c0(10), null, null, null, new di.b0(5, l0Var, new s(10, p8Var, f2Var)), false, true, new bg.v0((Object) null, 2));
+                return;
+            case 1:
+                l0 l0Var2 = (l0) this.f42734c;
+                vf.b h = u1Var.h(i7, true, true);
+                h.d();
+                l8 l8Var = new l8((p8) this.f42733b, h, 2);
+                l0.H("disable backup: getting phrase...");
+                l0Var2.z(new j((Object) l0Var2, (Object) l8Var, (Object) ((g0) this.d), 1), false, true);
+                return;
+            default:
+                o9 o9Var = (o9) this.f42733b;
+                kg.x0 x0Var = (kg.x0) this.d;
+                org.telegram.ui.Cells.c2 c2Var = (org.telegram.ui.Cells.c2) this.f42734c;
+                String str = null;
+                if (x0Var.getText().toString().getBytes(StandardCharsets.UTF_8).length > 960) {
+                    int i10 = -o9Var.f42932o0;
+                    o9Var.f42932o0 = i10;
+                    org.telegram.messenger.g0.G3(i10, x0Var, null);
+                    return;
+                }
+                String trim = x0Var.getText().toString().trim();
+                if (!TextUtils.isEmpty(trim)) {
+                    str = trim;
+                }
+                o9Var.f42924g0 = str;
+                o9Var.f42925h0 = !c2Var.b();
+                if (TextUtils.isEmpty(o9Var.f42924g0)) {
+                    o9Var.P.setVisibility(8);
+                } else {
+                    o9Var.P.setText(o9Var.f42924g0);
+                    o9Var.P.setVisibility(0);
+                }
+                o9Var.E0();
+                u1Var.dismiss();
+                o9Var.t0();
+                return;
         }
-        if (i7 > 0) {
-            spannableStringBuilder = new SpannableStringBuilder(id.V(null, null, 2131743050, spannableStringBuilder, id.Q(i7)));
-        }
-        textView.setText(spannableStringBuilder);
-        float f12 = 1.0f;
-        if (z10) {
-            f10 = 0.5f;
-        } else {
-            f10 = 1.0f;
-        }
-        textView2.setAlpha(f10);
-        if (z10) {
-            f11 = 0.5f;
-        } else {
-            f11 = 1.0f;
-        }
-        textView.setAlpha(f11);
-        ImageView imageView = l8Var.d;
-        if (z10) {
-            f12 = 0.5f;
-        }
-        imageView.setAlpha(f12);
     }
 
-    @Override
-    public final View d(Context context, qj0 qj0Var, int i7, org.telegram.ui.ActionBar.g6 g6Var) {
-        return new l8(context, g6Var);
+    public k8(p8 p8Var, l0 l0Var, g0 g0Var) {
+        this.f42732a = 1;
+        this.f42733b = p8Var;
+        this.f42734c = l0Var;
+        this.d = g0Var;
     }
 }

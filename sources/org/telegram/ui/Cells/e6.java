@@ -13,29 +13,29 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class e6 {
-    public final int f29071a;
-    public boolean f29072b;
-    public boolean f29073c;
-    public int f29074e;
-    public long f29075f;
-    public int f29076g;
+    public final int f29082a;
+    public boolean f29083b;
+    public boolean f29084c;
+    public int f29085e;
+    public long f29086f;
+    public int f29087g;
     public final ArrayList d = new ArrayList();
     public final ArrayList h = new ArrayList();
 
     public e6(int i7) {
-        this.f29071a = i7;
+        this.f29082a = i7;
     }
 
     public static void a(e6 e6Var, TLObject tLObject, yr yrVar, long j3, int i7, ArrayList arrayList) {
         ArrayList arrayList2 = e6Var.d;
-        int i10 = e6Var.f29071a;
+        int i10 = e6Var.f29082a;
         if (tLObject instanceof TLRPC.messages_Messages) {
             TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
             qp.s1(i10).Y3(messages_messages.users, false);
             qp.s1(i10).S3(messages_messages.chats, false);
             yrVar.m1(messages_messages.users, messages_messages.chats, true, true);
             yrVar.h1(3, 0, 0, -j3, 0L, messages_messages, false);
-            if (i7 == e6Var.f29074e && !messages_messages.messages.isEmpty()) {
+            if (i7 == e6Var.f29085e && !messages_messages.messages.isEmpty()) {
                 arrayList2.clear();
                 Collections.sort(arrayList, Comparator$CC.comparingInt(new bg.d(16)));
                 TLRPC.Message message = (TLRPC.Message) jg.g.i(1, messages_messages.messages);
@@ -59,16 +59,16 @@ public final class e6 {
                     e6Var.c();
                 }
             }
-        } else if (i7 != e6Var.f29074e) {
+        } else if (i7 != e6Var.f29085e) {
         } else {
             e6Var.c();
         }
     }
 
     public static void b(final e6 e6Var, final int i7, final ArrayList arrayList, final long j3, int i10, final yr yrVar) {
-        int i11 = e6Var.f29071a;
+        int i11 = e6Var.f29082a;
         ArrayList arrayList2 = e6Var.d;
-        if (i7 != e6Var.f29074e) {
+        if (i7 != e6Var.f29085e) {
             return;
         }
         if (!arrayList.isEmpty()) {
@@ -100,7 +100,7 @@ public final class e6 {
         for (int i13 = 10; i13 >= 0; i13--) {
             int i14 = i10 - i13;
             if (i14 >= 0) {
-                tL_channels_getMessages.f26994id.add(Integer.valueOf(i14));
+                tL_channels_getMessages.f26998id.add(Integer.valueOf(i14));
             }
         }
         ConnectionsManager.getInstance(i11).sendRequest(tL_channels_getMessages, new RequestDelegate() {
@@ -113,8 +113,8 @@ public final class e6 {
 
     public final void c() {
         int i7 = 0;
-        this.f29072b = false;
-        this.f29073c = true;
+        this.f29083b = false;
+        this.f29084c = true;
         ArrayList arrayList = this.h;
         int size = arrayList.size();
         while (i7 < size) {
@@ -130,26 +130,26 @@ public final class e6 {
         if (userFull != null && (userFull.flags2 & 64) != 0) {
             long j3 = userFull.personal_channel_id;
             int i7 = userFull.personal_channel_message;
-            if (this.f29073c || this.f29072b) {
-                if (this.f29075f == j3 && this.f29076g == i7) {
+            if (this.f29084c || this.f29083b) {
+                if (this.f29086f == j3 && this.f29087g == i7) {
                     return;
                 }
-                this.f29073c = false;
+                this.f29084c = false;
                 arrayList.clear();
             }
-            int i10 = this.f29074e + 1;
-            this.f29074e = i10;
-            this.f29072b = true;
-            this.f29075f = j3;
-            this.f29076g = i7;
-            int i11 = this.f29071a;
+            int i10 = this.f29085e + 1;
+            this.f29085e = i10;
+            this.f29083b = true;
+            this.f29086f = j3;
+            this.f29087g = i7;
+            int i11 = this.f29082a;
             long e10 = p10.i(i11).e();
             yr a02 = yr.a0(i11);
-            a02.f26719a.c(new gq(this, i7, a02, j3, e10, i10));
+            a02.f26723a.c(new gq(this, i7, a02, j3, e10, i10));
             return;
         }
-        this.f29074e++;
-        this.f29073c = true;
+        this.f29085e++;
+        this.f29084c = true;
         arrayList.clear();
         c();
     }

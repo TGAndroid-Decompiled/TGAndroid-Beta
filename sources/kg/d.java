@@ -27,7 +27,7 @@ public final class d implements Runnable {
                 int i10 = eVar.f17344a;
                 disablepeerconnectedbot.peer = qp.s1(i10).j1(eVar.f17351s);
                 ConnectionsManager.getInstance(i10).sendRequest(disablepeerconnectedbot, null);
-                SharedPreferences.Editor edit = qp.s1(i10).f24764d7.edit();
+                SharedPreferences.Editor edit = qp.s1(i10).f24768d7.edit();
                 SharedPreferences.Editor remove = edit.remove("dialog_botid" + eVar.f17351s);
                 SharedPreferences.Editor remove2 = remove.remove("dialog_boturl" + eVar.f17351s);
                 remove2.remove("dialog_botflags" + eVar.f17351s).apply();

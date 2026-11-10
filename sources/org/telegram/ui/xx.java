@@ -1,16 +1,15 @@
 package org.telegram.ui;
+public final class xx extends org.telegram.ui.ActionBar.k {
+    public final int f51837a;
+    public final Object f51838b;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class xx extends FrameLayout {
-    public xh.l f51788a;
-
-    public xh.l getSubtitleTextView() {
-        return this.f51788a;
+    public xx(Object obj, int i7) {
+        this.f51837a = i7;
+        this.f51838b = obj;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
+    public final void b(int r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.xx.b(int):void");
     }
 }

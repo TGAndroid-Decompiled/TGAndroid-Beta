@@ -1,35 +1,35 @@
 package org.telegram.ui.Cells;
 
 import android.view.View;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.wq;
 public final class e4 {
-    public float f29058a;
-    public float f29059b;
-    public float f29060c;
-    public boolean f29061e;
-    public final org.telegram.ui.Components.r9 f29062f;
-    public final org.telegram.ui.Components.r9 f29063g;
+    public float f29069a;
+    public float f29070b;
+    public float f29071c;
+    public boolean f29072e;
+    public final org.telegram.ui.Components.q9 f29073f;
+    public final org.telegram.ui.Components.q9 f29074g;
     public boolean h;
-    public int f29064i;
+    public int f29075i;
     public float d = 0.0f;
-    public float f29065j = 0.0f;
+    public float f29076j = 0.0f;
 
     public e4(int i7, int i10) {
-        org.telegram.ui.Components.r9 r9Var = new org.telegram.ui.Components.r9(6);
-        this.f29062f = r9Var;
-        org.telegram.ui.Components.r9 r9Var2 = new org.telegram.ui.Components.r9(8);
-        this.f29063g = r9Var2;
+        org.telegram.ui.Components.q9 q9Var = new org.telegram.ui.Components.q9(6);
+        this.f29073f = q9Var;
+        org.telegram.ui.Components.q9 q9Var2 = new org.telegram.ui.Components.q9(8);
+        this.f29074g = q9Var2;
         float f10 = i7;
-        r9Var.f37587a = f10;
+        q9Var.f37178a = f10;
         float f11 = i10;
-        r9Var.f37588b = f11;
-        r9Var2.f37587a = f10;
-        r9Var2.f37588b = f11;
-        r9Var.b();
-        r9Var2.b();
-        int i11 = org.telegram.ui.ActionBar.l6.f27894eh;
-        r9Var.d.setColor(i0.a.o(org.telegram.ui.ActionBar.l6.x0(null, i11, false), 38));
-        r9Var2.d.setColor(i0.a.o(org.telegram.ui.ActionBar.l6.x0(null, i11, false), 38));
+        q9Var.f37179b = f11;
+        q9Var2.f37178a = f10;
+        q9Var2.f37179b = f11;
+        q9Var.b();
+        q9Var2.b();
+        int i11 = org.telegram.ui.ActionBar.m6.f27919eh;
+        q9Var.d.setColor(i0.a.o(org.telegram.ui.ActionBar.m6.x0(null, i11, false), 38));
+        q9Var2.d.setColor(i0.a.o(org.telegram.ui.ActionBar.m6.x0(null, i11, false), 38));
     }
 
     public final void a(android.graphics.Canvas r9, float r10, float r11, android.view.View r12) {
@@ -37,14 +37,14 @@ public final class e4 {
     }
 
     public final float b() {
-        float interpolation = xq.f40459g.getInterpolation(this.d);
-        return com.google.android.recaptcha.internal.a.z(1.0f, interpolation, 1.0f, ((this.f29058a * 0.2f) + 0.9f) * interpolation);
+        float interpolation = wq.f40047g.getInterpolation(this.d);
+        return com.google.android.recaptcha.internal.a.z(1.0f, interpolation, 1.0f, ((this.f29069a * 0.2f) + 0.9f) * interpolation);
     }
 
     public final void c(double d) {
         float f10 = ((float) d) / 80.0f;
         float f11 = 0.0f;
-        if (!this.f29061e) {
+        if (!this.f29072e) {
             f10 = 0.0f;
         }
         if (f10 > 1.0f) {
@@ -52,38 +52,38 @@ public final class e4 {
         } else if (f10 >= 0.0f) {
             f11 = f10;
         }
-        this.f29059b = f11;
-        this.f29060c = (f11 - this.f29058a) / 200.0f;
+        this.f29070b = f11;
+        this.f29071c = (f11 - this.f29069a) / 200.0f;
     }
 
     public final void d(int i7) {
         this.h = true;
-        this.f29062f.d.setColor(i7);
+        this.f29073f.d.setColor(i7);
     }
 
     public final void e(View view, boolean z9) {
-        if (this.f29061e != z9) {
+        if (this.f29072e != z9) {
             view.invalidate();
         }
-        this.f29061e = z9;
+        this.f29072e = z9;
     }
 
     public final void f() {
-        float f10 = this.f29059b;
-        float f11 = this.f29058a;
+        float f10 = this.f29070b;
+        float f11 = this.f29069a;
         if (f10 != f11) {
-            float f12 = this.f29060c;
+            float f12 = this.f29071c;
             float f13 = (16.0f * f12) + f11;
-            this.f29058a = f13;
+            this.f29069a = f13;
             if (f12 > 0.0f) {
                 if (f13 > f10) {
-                    this.f29058a = f10;
+                    this.f29069a = f10;
                 }
             } else if (f13 < f10) {
-                this.f29058a = f10;
+                this.f29069a = f10;
             }
         }
-        boolean z9 = this.f29061e;
+        boolean z9 = this.f29072e;
         if (z9) {
             float f14 = this.d;
             if (f14 != 1.0f) {

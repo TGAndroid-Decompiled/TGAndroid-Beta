@@ -2,12 +2,12 @@ package fi;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.mz;
-public final class s2 extends mz {
+import org.telegram.ui.Components.lz;
+public final class s2 extends lz {
     public final int U;
 
-    public s2(int i7, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, g6Var);
+    public s2(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, h6Var);
         this.U = i7;
     }
 

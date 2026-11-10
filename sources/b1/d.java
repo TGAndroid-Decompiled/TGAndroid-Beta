@@ -35,7 +35,7 @@ public abstract class d {
                 j.d(set, "singleton(...)");
             }
         } else {
-            set = p.f14476a;
+            set = p.f14478a;
         }
         f2898b = set;
         f2899c = 1;
@@ -62,9 +62,9 @@ public abstract class d {
     public static final boolean c(int i7, rd.p pVar, l lVar, CancellationSignal cancellationSignal) {
         if (i7 != -1) {
             ?? obj = new Object();
-            obj.f17615a = new w0.c(2, jg.g.k(i7, "activity with result code: ", " indicating not RESULT_OK"));
+            obj.f17618a = new w0.c(2, jg.g.k(i7, "activity with result code: ", " indicating not RESULT_OK"));
             if (i7 == 0) {
-                obj.f17615a = new w0.b("activity is cancelled by the user.");
+                obj.f17618a = new w0.b("activity is cancelled by the user.");
             }
             pVar.invoke(cancellationSignal, new c(lVar, obj, 0));
             return true;

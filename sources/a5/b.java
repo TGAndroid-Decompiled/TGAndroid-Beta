@@ -6,8 +6,8 @@ import bi.u6;
 import ch.m0;
 import li.r0;
 import org.telegram.ui.Components.np;
-import org.telegram.ui.Components.rm0;
-import org.telegram.ui.Components.s11;
+import org.telegram.ui.Components.qm0;
+import org.telegram.ui.Components.r11;
 public final class b implements Drawable.Callback {
     public final int f209a;
     public Object f210b;
@@ -39,22 +39,22 @@ public final class b implements Drawable.Callback {
             case 4:
                 return;
             case 5:
-                ((r0) this.f210b).f18803b.invalidate();
+                ((r0) this.f210b).f18806b.invalidate();
                 return;
             case 6:
                 ((np) this.f210b).invalidateSelf();
                 return;
             case 7:
-                ((rm0) this.f210b).f37746b.run();
+                ((qm0) this.f210b).f37334b.run();
                 return;
             case 8:
-                ((s11) this.f210b).invalidateSelf();
+                ((r11) this.f210b).invalidateSelf();
                 return;
             case 9:
-                ((zg.a) this.f210b).f60162c.invalidate();
+                ((zg.a) this.f210b).f60160c.invalidate();
                 return;
             default:
-                ((zg.c) this.f210b).f60188c.invalidate();
+                ((zg.c) this.f210b).f60186c.invalidate();
                 return;
         }
     }
@@ -93,10 +93,10 @@ public final class b implements Drawable.Callback {
             case 8:
                 return;
             case 9:
-                ((zg.a) this.f210b).f60162c.invalidate();
+                ((zg.a) this.f210b).f60160c.invalidate();
                 return;
             default:
-                ((zg.c) this.f210b).f60188c.invalidate();
+                ((zg.c) this.f210b).f60186c.invalidate();
                 return;
         }
     }
@@ -135,10 +135,10 @@ public final class b implements Drawable.Callback {
             case 8:
                 return;
             case 9:
-                ((zg.a) this.f210b).f60162c.invalidate();
+                ((zg.a) this.f210b).f60160c.invalidate();
                 return;
             default:
-                ((zg.c) this.f210b).f60188c.invalidate();
+                ((zg.c) this.f210b).f60186c.invalidate();
                 return;
         }
     }

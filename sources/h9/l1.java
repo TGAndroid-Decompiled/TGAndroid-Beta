@@ -12,28 +12,28 @@ import java.util.RandomAccess;
 import java.util.Set;
 import java.util.SortedMap;
 public final class l1 extends l implements a1, Serializable {
-    public final transient Map f14345e;
-    public transient int f14346f;
+    public final transient Map f14347e;
+    public transient int f14348f;
     public transient k1 h;
 
     public l1(Map map) {
         ia.f(map.isEmpty());
-        this.f14345e = map;
+        this.f14347e = map;
     }
 
     @Override
     public final void clear() {
-        Map map = this.f14345e;
+        Map map = this.f14347e;
         for (Collection collection : map.values()) {
             collection.clear();
         }
         map.clear();
-        this.f14346f = 0;
+        this.f14348f = 0;
     }
 
     @Override
     public final Map d() {
-        Map map = this.f14345e;
+        Map map = this.f14347e;
         if (map instanceof NavigableMap) {
             return new e(this, (NavigableMap) map);
         }
@@ -50,7 +50,7 @@ public final class l1 extends l implements a1, Serializable {
 
     @Override
     public final Set f() {
-        Map map = this.f14345e;
+        Map map = this.f14347e;
         if (map instanceof NavigableMap) {
             return new f(this, (NavigableMap) map);
         }
@@ -67,7 +67,7 @@ public final class l1 extends l implements a1, Serializable {
 
     @Override
     public final Collection get(Object obj) {
-        Collection collection = (Collection) this.f14345e.get(obj);
+        Collection collection = (Collection) this.f14347e.get(obj);
         if (collection == null) {
             collection = h();
         }
@@ -84,6 +84,6 @@ public final class l1 extends l implements a1, Serializable {
 
     @Override
     public final int size() {
-        return this.f14346f;
+        return this.f14348f;
     }
 }

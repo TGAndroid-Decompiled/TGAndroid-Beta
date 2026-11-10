@@ -7,30 +7,30 @@ import java.util.concurrent.CancellationException;
 import org.json.JSONObject;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.bd0;
+import org.telegram.ui.tc0;
 public final class h9 implements v0.g {
-    public final CancellationToken f22859a;
-    public final TaskCompletionSource f22860b;
-    public final bd0 f22861c;
+    public final CancellationToken f22863a;
+    public final TaskCompletionSource f22864b;
+    public final tc0 f22865c;
     public final int d;
-    public final Runnable[] f22862e;
+    public final Runnable[] f22866e;
 
-    public h9(CancellationToken cancellationToken, TaskCompletionSource taskCompletionSource, bd0 bd0Var, int i7, Runnable[] runnableArr) {
-        this.f22859a = cancellationToken;
-        this.f22860b = taskCompletionSource;
-        this.f22861c = bd0Var;
+    public h9(CancellationToken cancellationToken, TaskCompletionSource taskCompletionSource, tc0 tc0Var, int i7, Runnable[] runnableArr) {
+        this.f22863a = cancellationToken;
+        this.f22864b = taskCompletionSource;
+        this.f22865c = tc0Var;
         this.d = i7;
-        this.f22862e = runnableArr;
+        this.f22866e = runnableArr;
     }
 
     @Override
     public final void a(Object obj) {
         w0.i iVar = (w0.i) obj;
-        if (this.f22859a.isCancellationRequested()) {
+        if (this.f22863a.isCancellationRequested()) {
             return;
         }
         boolean z9 = iVar instanceof w0.k;
-        TaskCompletionSource taskCompletionSource = this.f22860b;
+        TaskCompletionSource taskCompletionSource = this.f22864b;
         if (z9) {
             taskCompletionSource.trySetException(new Exception("EMPTY"));
         } else if (!(iVar instanceof w0.g) && !(iVar instanceof w0.j)) {
@@ -43,17 +43,17 @@ public final class h9 implements v0.g {
     @Override
     public final void onResult(Object obj) {
         v0.o oVar = (v0.o) obj;
-        TaskCompletionSource taskCompletionSource = this.f22860b;
-        CancellationToken cancellationToken = this.f22859a;
+        TaskCompletionSource taskCompletionSource = this.f22864b;
+        CancellationToken cancellationToken = this.f22863a;
         if (!cancellationToken.isCancellationRequested()) {
             try {
-                String string = new JSONObject(((Bundle) oVar.f56988a.f3500a).getString("androidx.credentials.BUNDLE_KEY_REQUEST_JSON")).getJSONObject("data").getJSONObject("vp_token").getJSONArray("firebase").getString(0);
-                this.f22861c.run();
+                String string = new JSONObject(((Bundle) oVar.f56984a.f3503a).getString("androidx.credentials.BUNDLE_KEY_REQUEST_JSON")).getJSONObject("data").getJSONObject("vp_token").getJSONArray("firebase").getString(0);
+                this.f22865c.run();
                 TLRPC.TL_auth_finishFirebasePnvLogin tL_auth_finishFirebasePnvLogin = new TLRPC.TL_auth_finishFirebasePnvLogin();
                 tL_auth_finishFirebasePnvLogin.google_token = string;
                 int i7 = this.d;
                 g9 g9Var = new g9(i7, ConnectionsManager.getInstance(i7).sendRequestTyped(tL_auth_finishFirebasePnvLogin, new d3.b(1), new x3(1, cancellationToken, taskCompletionSource), 8), 1);
-                Runnable[] runnableArr = this.f22862e;
+                Runnable[] runnableArr = this.f22866e;
                 runnableArr[0] = g9Var;
                 if (cancellationToken.isCancellationRequested()) {
                     runnableArr[0].run();

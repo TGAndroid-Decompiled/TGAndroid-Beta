@@ -1,135 +1,88 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-public final class ya1 implements TextWatcher {
-    public final int f52068a;
-    public final bb1 f52069b;
+import android.app.Dialog;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ya1 implements Runnable {
+    public final int f51985a;
+    public final cb1 f51986b;
+    public final TLRPC.TL_error f51987c;
 
-    public ya1(bb1 bb1Var, int i7) {
-        this.f52068a = i7;
-        this.f52069b = bb1Var;
+    public ya1(cb1 cb1Var, TLRPC.TL_error tL_error, int i7) {
+        this.f51985a = i7;
+        this.f51986b = cb1Var;
+        this.f51987c = tL_error;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        org.telegram.ui.Components.ah0 ah0Var;
-        switch (this.f52068a) {
+    public final void run() {
+        String G;
+        String G2;
+        int i7 = this.f51985a;
+        TLRPC.TL_error tL_error = this.f51987c;
+        cb1 cb1Var = this.f51986b;
+        switch (i7) {
             case 0:
-                this.f52069b.getClass();
-                return;
-            case 1:
-                bb1 bb1Var = this.f52069b;
-                if (!bb1Var.M) {
-                    int i7 = bb1Var.O;
-                    if (i7 == 0) {
-                        org.telegram.ui.Components.ah0 animatedDrawable = bb1Var.f43950a.getAnimatedDrawable();
-                        if (bb1Var.f43965n.length() > 0) {
-                            if (bb1Var.f43965n.getTransformationMethod() == null) {
-                                org.telegram.ui.Components.ah0[] ah0VarArr = bb1Var.f43960f0;
-                                if (animatedDrawable != ah0VarArr[3] && animatedDrawable != (ah0Var = ah0VarArr[5])) {
-                                    bb1Var.f43950a.setAnimation(ah0Var);
-                                    bb1Var.f43960f0[5].T(false, 0.0f);
-                                    bb1Var.f43950a.d();
-                                    return;
-                                }
-                                return;
-                            }
-                            org.telegram.ui.Components.ah0[] ah0VarArr2 = bb1Var.f43960f0;
-                            if (animatedDrawable != ah0VarArr2[3]) {
-                                org.telegram.ui.Components.ah0 ah0Var2 = ah0VarArr2[2];
-                                if (animatedDrawable != ah0Var2) {
-                                    bb1Var.f43950a.setAnimation(ah0Var2);
-                                    bb1Var.f43960f0[2].P(49);
-                                    bb1Var.f43960f0[2].T(false, 0.0f);
-                                    bb1Var.f43950a.d();
-                                    return;
-                                } else if (ah0Var2.f31820a0 < 49) {
-                                    ah0Var2.P(49);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                            }
-                            return;
-                        }
-                        if (animatedDrawable != bb1Var.f43960f0[3] || bb1Var.f43965n.getTransformationMethod() != null) {
-                            org.telegram.ui.Components.ah0[] ah0VarArr3 = bb1Var.f43960f0;
-                            if (animatedDrawable != ah0VarArr3[5]) {
-                                ah0VarArr3[2].P(-1);
-                                org.telegram.ui.Components.ah0 ah0Var3 = bb1Var.f43960f0[2];
-                                if (animatedDrawable != ah0Var3) {
-                                    bb1Var.f43950a.setAnimation(ah0Var3);
-                                    bb1Var.f43960f0[2].N(49, false, false);
-                                }
-                                bb1Var.f43950a.d();
-                                return;
-                            }
-                        }
-                        bb1Var.f43950a.setAnimation(bb1Var.f43960f0[4]);
-                        bb1Var.f43960f0[4].T(false, 0.0f);
-                        bb1Var.f43950a.d();
-                        return;
-                    } else if (i7 == 1) {
-                        try {
-                            bb1Var.f43960f0[6].P((int) ((Math.min(1.0f, bb1Var.f43965n.getLayout().getLineWidth(0) / bb1Var.f43965n.getWidth()) * 142.0f) + 18.0f));
-                            bb1Var.f43950a.d();
-                            return;
-                        } catch (Exception e10) {
-                            org.telegram.messenger.a8.g(e10, true);
-                            return;
-                        }
-                    } else if (i7 == 8 && editable.length() > 0) {
-                        bb1Var.M0(true);
-                        return;
-                    } else {
+                cb1Var.B0();
+                if (tL_error == null) {
+                    cb1Var.getMessagesController().k4(0L, "VALIDATE_PASSWORD");
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(cb1Var.getParentActivity());
+                    alertDialog$Builder.k(org.telegram.messenger.id.M0(2131747831, null), new ua1(cb1Var, 3));
+                    String M0 = org.telegram.messenger.id.M0(2131747436, null);
+                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27300a;
+                    u1Var.T = M0;
+                    u1Var.R = org.telegram.messenger.id.M0(2131743931, null);
+                    Dialog showDialog = cb1Var.showDialog(u1Var);
+                    if (showDialog != null) {
+                        showDialog.setCanceledOnTouchOutside(false);
+                        showDialog.setCancelable(false);
                         return;
                     }
+                    return;
+                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                    int intValue = Utilities.z(tL_error.text).intValue();
+                    if (intValue < 60) {
+                        G = org.telegram.messenger.id.G(intValue, "Seconds", new Object[0]);
+                    } else {
+                        G = org.telegram.messenger.id.G(intValue / 60, "Minutes", new Object[0]);
+                    }
+                    cb1Var.L0(org.telegram.messenger.id.M0(2131743931, null), org.telegram.messenger.id.a0("FloodWaitTime", null, 2131750686, G));
+                    return;
+                } else {
+                    cb1Var.L0(org.telegram.messenger.id.M0(2131743931, null), tL_error.text);
+                    return;
                 }
+            case 1:
+                cb1Var.B0();
+                if (tL_error == null) {
+                    if (cb1Var.getParentActivity() != null) {
+                        cb1Var.z0(new ta1(cb1Var, 5));
+                        return;
+                    }
+                    return;
+                } else if (tL_error.text.startsWith("CODE_INVALID")) {
+                    cb1Var.D0();
+                    return;
+                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                    int intValue2 = Utilities.z(tL_error.text).intValue();
+                    if (intValue2 < 60) {
+                        G2 = org.telegram.messenger.id.G(intValue2, "Seconds", new Object[0]);
+                    } else {
+                        G2 = org.telegram.messenger.id.G(intValue2 / 60, "Minutes", new Object[0]);
+                    }
+                    cb1Var.L0(org.telegram.messenger.id.M0(2131689472, null), org.telegram.messenger.id.a0("FloodWaitTime", null, 2131750686, G2));
+                    return;
+                } else {
+                    cb1Var.L0(org.telegram.messenger.id.M0(2131689472, null), tL_error.text);
+                    return;
+                }
+            case 2:
+                cb1.j0(cb1Var, tL_error);
                 return;
             default:
-                bb1 bb1Var2 = this.f52069b;
-                if (bb1Var2.F) {
-                    if (bb1Var2.E.getVisibility() != 0 && !TextUtils.isEmpty(editable)) {
-                        org.telegram.messenger.g0.Z3(bb1Var2.E, true, 0.1f, true, true);
-                        return;
-                    } else if (bb1Var2.E.getVisibility() != 8 && TextUtils.isEmpty(editable)) {
-                        org.telegram.messenger.g0.Z3(bb1Var2.E, false, 0.1f, true, true);
-                        return;
-                    } else {
-                        return;
-                    }
-                }
+                cb1.e0(cb1Var, tL_error);
                 return;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f52068a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f52068a;
-    }
-
-    private final void a(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void b(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void e(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void f(int i7, int i10, int i11, CharSequence charSequence) {
     }
 }

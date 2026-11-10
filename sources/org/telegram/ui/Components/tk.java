@@ -1,74 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class tk extends v4.s0 {
-    public final int f38440a;
-    public final wk f38441b;
+import android.content.Context;
+import android.widget.TextView;
+public final class tk extends jg.s0 {
+    public final int D = 0;
+    public final org.telegram.messenger.ls E;
 
-    public tk(wk wkVar, int i7) {
-        this.f38440a = i7;
-        this.f38441b = wkVar;
+    public tk(vk vkVar, Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z9) {
+        super(context, h6Var, z9, false);
+        this.E = vkVar;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i7) {
-        boolean z9;
-        yi0 yi0Var;
-        switch (this.f38440a) {
+    public final void f() {
+        int i7 = this.D;
+        org.telegram.messenger.ls lsVar = this.E;
+        switch (i7) {
             case 0:
-                wk wkVar = this.f38441b;
-                bi.q1 q1Var = wkVar.L;
-                if (i7 != 0) {
-                    z9 = true;
-                } else {
-                    z9 = false;
+                vk vkVar = (vk) lsVar;
+                tk tkVar = vkVar.N;
+                org.telegram.ui.ActionBar.r0 r0Var = vkVar.f39042x;
+                if (r0Var != null) {
+                    r0Var.setShowSearchProgress(tkVar.f16678w);
                 }
-                wkVar.H = z9;
-                if (!z9 && wkVar.F != null) {
-                    wkVar.F = null;
+                TextView textView = vkVar.f39040w;
+                if (textView != null) {
+                    textView.setText(org.telegram.messenger.id.a0(null, null, 2131748165, tkVar.h));
                 }
-                if (i7 == 0) {
-                    int L = org.telegram.messenger.g0.L(13.0f);
-                    di diVar = wkVar.f39071b;
-                    int i10 = diVar.f28653s0;
-                    if (((diVar.V3[0] - i10) - L) + i10 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (yi0Var = (yi0) q1Var.K(0)) != null) {
-                        View view = yi0Var.f57056a;
-                        if (view.getTop() > 0) {
-                            q1Var.w0(0, view.getTop(), null);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
+                super.f();
                 return;
             default:
-                if (i7 == 1) {
-                    wk wkVar2 = this.f38441b;
-                    if (wkVar2.f40067c0 && wkVar2.f40068d0) {
-                        org.telegram.messenger.g0.v1(wkVar2.f39071b.getCurrentFocus());
-                        return;
-                    }
-                    return;
+                org.telegram.ui.sa0 sa0Var = (org.telegram.ui.sa0) lsVar;
+                org.telegram.ui.ActionBar.g5 g5Var = sa0Var.f49789r;
+                if (g5Var != null) {
+                    g5Var.setShowSearchProgress(sa0Var.S.f16678w);
                 }
+                TextView textView2 = sa0Var.f49784n;
+                if (textView2 != null) {
+                    textView2.setText(org.telegram.messenger.id.a0(null, null, 2131748165, sa0Var.S.h));
+                }
+                super.f();
                 return;
         }
     }
 
-    @Override
-    public void b(RecyclerView recyclerView, int i7, int i10) {
-        switch (this.f38440a) {
-            case 0:
-                wk wkVar = this.f38441b;
-                wkVar.i0();
-                if (wkVar.F != null) {
-                    wkVar.G += i10;
-                }
-                wkVar.f39071b.M1(wkVar, i10);
-                return;
-            default:
-                return;
-        }
+    public tk(org.telegram.ui.sa0 sa0Var, Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z9) {
+        super(context, h6Var, false, z9);
+        this.E = sa0Var;
     }
 }

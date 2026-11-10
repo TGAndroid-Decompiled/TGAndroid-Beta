@@ -4,32 +4,32 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.i6;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.m41;
-import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.r41;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.x31;
-import org.telegram.ui.Components.y31;
-public final class d5 extends x31 {
-    public static final int f18526b = 0;
+public final class d5 extends w31 {
+    public static final int f18529b = 0;
 
     static {
-        x31.h(new x31());
+        w31.h(new w31());
     }
 
     @Override
-    public final void b(View view, y31 y31Var, boolean z9, m41 m41Var, r41 r41Var) {
+    public final void b(View view, x31 x31Var, boolean z9, m41 m41Var, r41 r41Var) {
         TL_iv.RichText richText;
         e5 e5Var = (e5) view;
-        a aVar = (a) y31Var.G;
-        c5 c5Var = (c5) y31Var.H;
-        g1 g1Var = e5Var.f18539r;
-        e5Var.f18989a = aVar;
-        e5Var.f18540s = c5Var;
+        a aVar = (a) x31Var.G;
+        c5 c5Var = (c5) x31Var.H;
+        g1 g1Var = e5Var.f18542r;
+        e5Var.f18994a = aVar;
+        e5Var.f18543s = c5Var;
         e5Var.f(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(8.0f));
         e5Var.c(aVar);
         if (c5Var != null) {
-            richText = (TL_iv.RichText) ((z2) c5Var).f19046a.f18899t3.get(Long.valueOf(aVar.f18408t));
+            richText = (TL_iv.RichText) ((z2) c5Var).f19051a.f18902t3.get(Long.valueOf(aVar.f18411t));
         } else {
             richText = null;
         }
@@ -40,8 +40,8 @@ public final class d5 extends x31 {
     }
 
     @Override
-    public final View d(Context context, qj0 qj0Var, int i7, g6 g6Var) {
-        return new e5(context, g6Var);
+    public final View d(Context context, pj0 pj0Var, int i7, h6 h6Var) {
+        return new e5(context, h6Var);
     }
 
     @Override

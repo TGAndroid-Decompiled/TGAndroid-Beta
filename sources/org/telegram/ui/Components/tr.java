@@ -1,34 +1,43 @@
 package org.telegram.ui.Components;
 
 import java.util.ArrayList;
-public final class tr implements Runnable {
-    public final int f38474a;
-    public final ur f38475b;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_bots;
+public final class tr {
+    public final int f38374a;
+    public final qr f38375b;
+    public boolean f38376c;
+    public boolean d;
+    public boolean f38377e;
+    public long f38378f;
+    public String f38379g;
+    public final ArrayList h = new ArrayList();
+    public boolean f38380i = false;
 
-    public tr(ur urVar, int i7) {
-        this.f38474a = i7;
-        this.f38475b = urVar;
+    public tr(int i7, qr qrVar) {
+        this.f38374a = i7;
+        this.f38375b = qrVar;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f38474a) {
-            case 0:
-                ur urVar = this.f38475b;
-                urVar.f38782c = false;
-                urVar.f38781b.run();
-                ArrayList arrayList = urVar.h;
-                if (arrayList.isEmpty() || System.currentTimeMillis() - urVar.f38784f > 3600000) {
-                    arrayList.clear();
-                    urVar.f38783e = false;
-                    urVar.f38785g = null;
-                    urVar.a();
-                    return;
-                }
+    public final void a() {
+        if (!this.f38376c && !this.f38377e) {
+            this.f38376c = true;
+            boolean z9 = this.d;
+            int i7 = this.f38374a;
+            if (!z9) {
+                sr srVar = new sr(this, 0);
+                org.telegram.messenger.yr a02 = org.telegram.messenger.yr.a0(i7);
+                a02.f26723a.c(new mg(this, a02, srVar, 4));
                 return;
-            default:
-                this.f38475b.f38786i = false;
-                return;
+            }
+            TL_bots.getPopularAppBots getpopularappbots = new TL_bots.getPopularAppBots();
+            getpopularappbots.limit = 20;
+            String str = this.f38379g;
+            if (str == null) {
+                str = "";
+            }
+            getpopularappbots.offset = str;
+            ConnectionsManager.getInstance(i7).sendRequest(getpopularappbots, new w1(this, 2));
         }
     }
 }

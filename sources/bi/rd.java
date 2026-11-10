@@ -5,7 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.graphics.RectF;
 import android.view.View;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.t80;
+import org.telegram.ui.u80;
 public final class rd extends AnimatorListenerAdapter {
     public final ch.m0 f4650a;
     public final View f4651b;
@@ -27,14 +27,14 @@ public final class rd extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        t80 t80Var;
+        u80 u80Var;
         ce ceVar = this.h;
-        qd qdVar = ceVar.B1;
+        qd qdVar = ceVar.E1;
         qdVar.setVisibility(4);
         qdVar.setPaused(true);
         ch.m0 m0Var = this.f4650a;
         if (m0Var != null) {
-            m0Var.f6321k = true;
+            m0Var.f6326k = true;
         }
         View view = this.f4651b;
         if (view != null) {
@@ -44,14 +44,14 @@ public final class rd extends AnimatorListenerAdapter {
         if (n0Var != null) {
             n0Var.setDrawStar(true);
         }
-        super/*org.telegram.ui.ActionBar.v2*/.K();
+        super/*org.telegram.ui.ActionBar.w2*/.K();
         boolean[] zArr = this.d;
         if (!zArr[0]) {
             zArr[0] = true;
             RectF rectF = this.f4653e;
             LaunchActivity.b0(rectF.centerX(), rectF.centerY(), 1.5f);
             try {
-                ceVar.f28627c.performHapticFeedback(0, 1);
+                ceVar.f28675c.performHapticFeedback(0, 1);
             } catch (Exception unused) {
             }
             Runnable runnable = this.f4654f;
@@ -60,8 +60,8 @@ public final class rd extends AnimatorListenerAdapter {
             }
         }
         LaunchActivity launchActivity = LaunchActivity.G1;
-        if (launchActivity != null && (t80Var = launchActivity.f41300v0) != null) {
-            t80Var.c(true);
+        if (launchActivity != null && (u80Var = launchActivity.f41291v0) != null) {
+            u80Var.c(true);
         }
     }
 }

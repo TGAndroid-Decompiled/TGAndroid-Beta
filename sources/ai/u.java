@@ -8,10 +8,10 @@ import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.i5;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.h5;
+import org.telegram.ui.Components.wq;
 public final class u extends View {
-    public final i5 f1646a;
+    public final h5 f1646a;
     public final Drawable f1647b;
     public float f1648c;
     public boolean d;
@@ -20,7 +20,7 @@ public final class u extends View {
         super(context);
         int i10;
         if (document != null) {
-            this.f1646a = i5.l(q0Var.f1671a, 5, document);
+            this.f1646a = h5.l(q0Var.f1671a, 5, document);
             this.f1647b = null;
             return;
         }
@@ -38,18 +38,18 @@ public final class u extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        i5 i5Var = this.f1646a;
-        if (i5Var != null) {
-            i5Var.a(this);
+        h5 h5Var = this.f1646a;
+        if (h5Var != null) {
+            h5Var.a(this);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        i5 i5Var = this.f1646a;
-        if (i5Var != null) {
-            i5Var.n(this);
+        h5 h5Var = this.f1646a;
+        if (h5Var != null) {
+            h5Var.n(this);
         }
     }
 
@@ -70,7 +70,7 @@ public final class u extends View {
             this.f1648c = f10;
             invalidate();
         }
-        float interpolation = (1.0f - (xq.f40459g.getInterpolation(this.f1648c) * 0.15f)) * org.telegram.messenger.g0.L(26.0f);
+        float interpolation = (1.0f - (wq.f40047g.getInterpolation(this.f1648c) * 0.15f)) * org.telegram.messenger.g0.L(26.0f);
         float f13 = interpolation / 2.0f;
         int width = (int) ((getWidth() / 2.0f) - f13);
         int height = (int) ((getHeight() / 2.0f) - f13);

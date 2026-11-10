@@ -1,8 +1,8 @@
 package org.telegram.ui.Cells;
 
 import android.view.View;
-import org.telegram.ui.Components.gn;
-import org.telegram.ui.Components.qj0;
+import org.telegram.ui.Components.fn;
+import org.telegram.ui.Components.pj0;
 import org.telegram.ui.LaunchActivity;
 public final class k6 extends di.o7 {
     public final int S = 0;
@@ -24,24 +24,24 @@ public final class k6 extends di.o7 {
                 org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
                 if (Q != null) {
                     Q.getOrCreateStoryViewer().getClass();
-                    Q.getOrCreateStoryViewer().J(paVar.getContext(), j3, di.i7.a((qj0) paVar.getParent()));
+                    Q.getOrCreateStoryViewer().J(paVar.getContext(), j3, di.i7.a((pj0) paVar.getParent()));
                     return;
                 }
                 return;
             default:
-                gn gnVar = (gn) this.T;
-                gnVar.H.getOrCreateStoryViewer().J(gnVar.getContext(), j3, new org.telegram.ui.Components.u(this, 25));
+                fn fnVar = (fn) this.T;
+                fnVar.H.getOrCreateStoryViewer().J(fnVar.getContext(), j3, new org.telegram.ui.Components.t(this, 25));
                 return;
         }
     }
 
-    public k6(m6 m6Var, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(g6Var, false);
+    public k6(m6 m6Var, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(h6Var, false);
         this.T = m6Var;
     }
 
-    public k6(gn gnVar) {
+    public k6(fn fnVar) {
         super(null, true);
-        this.T = gnVar;
+        this.T = fnVar;
     }
 }

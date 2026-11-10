@@ -10,33 +10,33 @@ import z7.ia;
 import z7.pa;
 import z7.qa;
 public final class d implements Callable {
-    public final int f57324a = 1;
-    public final Object f57325b;
-    public final Object f57326c;
+    public final int f57320a = 1;
+    public final Object f57321b;
+    public final Object f57322c;
 
     public d(MobileVisionBase mobileVisionBase, ub.a aVar) {
-        this.f57325b = mobileVisionBase;
-        this.f57326c = aVar;
+        this.f57321b = mobileVisionBase;
+        this.f57322c = aVar;
     }
 
     @Override
     public final Object call() {
         ia iaVar;
-        int i7 = this.f57324a;
-        Object obj = this.f57325b;
-        Object obj2 = this.f57326c;
+        int i7 = this.f57320a;
+        Object obj = this.f57321b;
+        Object obj2 = this.f57322c;
         switch (i7) {
             case 0:
                 MobileVisionBase mobileVisionBase = (MobileVisionBase) obj;
                 ub.a aVar = (ub.a) obj2;
-                HashMap hashMap = ia.f59844f;
+                HashMap hashMap = ia.f59842f;
                 qa.b();
-                int i10 = pa.f59931a;
+                int i10 = pa.f59929a;
                 qa.b();
                 if (!Boolean.parseBoolean("")) {
                     iaVar = ha.h;
                 } else {
-                    HashMap hashMap2 = ia.f59844f;
+                    HashMap hashMap2 = ia.f59842f;
                     if (hashMap2.get("detectorTaskWithResource#run") == null) {
                         hashMap2.put("detectorTaskWithResource#run", new ia("detectorTaskWithResource#run"));
                     }
@@ -44,7 +44,7 @@ public final class d implements Callable {
                 }
                 iaVar.a();
                 try {
-                    Object e10 = mobileVisionBase.f7911b.e(aVar);
+                    Object e10 = mobileVisionBase.f7916b.e(aVar);
                     iaVar.close();
                     return e10;
                 } catch (Throwable th2) {
@@ -64,7 +64,7 @@ public final class d implements Callable {
     }
 
     public d(ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl, String str) {
-        this.f57326c = shortcutInfoCompatSaverImpl;
-        this.f57325b = str;
+        this.f57322c = shortcutInfoCompatSaverImpl;
+        this.f57321b = str;
     }
 }

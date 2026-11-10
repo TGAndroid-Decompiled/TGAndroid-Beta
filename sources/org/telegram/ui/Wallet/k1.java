@@ -3,25 +3,25 @@ package org.telegram.ui.Wallet;
 import android.view.ViewTreeObserver;
 import android.widget.PopupWindow;
 public final class k1 implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final int f42653a;
-    public final Object f42654b;
+    public final int f42707a;
+    public final Object f42708b;
 
     public k1(Object obj, int i7) {
-        this.f42653a = i7;
-        this.f42654b = obj;
+        this.f42707a = i7;
+        this.f42708b = obj;
     }
 
     @Override
     public final void onGlobalLayout() {
-        switch (this.f42653a) {
+        switch (this.f42707a) {
             case 0:
-                ((g) this.f42654b).run();
+                ((g) this.f42708b).run();
                 return;
             default:
-                ma maVar = (ma) this.f42654b;
-                PopupWindow popupWindow = maVar.f42836s;
+                pa paVar = (pa) this.f42708b;
+                PopupWindow popupWindow = paVar.f43031s;
                 if (popupWindow != null && popupWindow.isShowing()) {
-                    maVar.c();
+                    paVar.c();
                     return;
                 }
                 return;

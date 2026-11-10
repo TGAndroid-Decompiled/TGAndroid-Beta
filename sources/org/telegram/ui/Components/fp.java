@@ -2,11 +2,11 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 public abstract class fp extends c5.k {
-    public ep f33720w0;
+    public ep f33620w0;
 
     public fp(Context context) {
         super(context);
-        b(new dp((tf0) this));
+        b(new dp((sf0) this));
     }
 
     @Override
@@ -20,7 +20,7 @@ public abstract class fp extends c5.k {
     }
 
     public void setAdapter(ep epVar) {
-        this.f33720w0 = epVar;
+        this.f33620w0 = epVar;
         super.setAdapter((c5.a) epVar);
         if (epVar != null) {
             x(epVar.j(), false);

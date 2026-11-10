@@ -1,7 +1,0 @@
-package org.telegram.ui.Components;
-
-import java.util.ArrayList;
-public final class sf {
-    public String f38046a;
-    public ArrayList f38047b;
-}

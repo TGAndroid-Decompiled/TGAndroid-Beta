@@ -1,126 +1,110 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-public final class wy extends rg.b {
-    public final xy d;
+import android.content.Context;
+import org.telegram.tgnet.tl.TL_chatlists;
+public final class wy extends dz {
+    public final xy E;
 
-    public wy(xy xyVar) {
-        this.d = xyVar;
+    public wy(xy xyVar, Context context, int i7, int i10) {
+        super(context, null, i7, i10);
+        this.E = xyVar;
     }
 
     @Override
-    public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57060f;
-        if (i7 != 8 && i7 != 7) {
-            return false;
-        }
-        return true;
-    }
-
-    public final v4.g0 F() {
-        return this.d.f36303k1.getAdapter();
+    public final void b(TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite) {
+        xy xyVar = this.E;
+        xyVar.d.U1.remove(tL_exportedChatlistInvite);
+        xyVar.d.g1();
+        xyVar.d.h1(true);
     }
 
     @Override
-    public final int b() {
-        return this.d.W1.size();
-    }
+    public final void c() {
+        org.telegram.ui.Components.k60 F = org.telegram.ui.Components.k60.F(this.E.d.f28675c, null, this);
+        F.c(2131232103, org.telegram.messenger.id.M0(2131751762, null), new Runnable(this) {
+            public final wy f50825b;
 
-    @Override
-    public final int d(int i7) {
-        return ((az) this.d.W1.get(i7)).f54544a;
-    }
+            {
+                this.f50825b = this;
+            }
 
-    @Override
-    public final void f() {
-        F().f();
-    }
-
-    @Override
-    public final void g(int i7) {
-        F().g(i7 + 1);
-    }
-
-    @Override
-    public final void j(int i7, int i10) {
-        F().j(i7 + 1, i10);
-    }
-
-    @Override
-    public final void k(int i7, int i10) {
-        F().k(i7 + 1, i10);
-    }
-
-    @Override
-    public final void n(int i7, int i10, Object obj) {
-        F().n(i7 + 1, i10, obj);
-    }
-
-    @Override
-    public final void o(int i7, int i10) {
-        F().o(i7 + 1, i10);
-    }
-
-    @Override
-    public final void p(int i7, int i10) {
-        F().p(i7 + 1, i10);
-    }
-
-    @Override
-    public final void t(v4.d1 d1Var, int i7) {
-        boolean z9;
-        int i10;
-        int i11 = d1Var.f57060f;
-        View view = d1Var.f57056a;
-        ArrayList arrayList = this.d.W1;
-        az azVar = (az) arrayList.get(i7);
-        int i12 = i7 + 1;
-        if (i12 < arrayList.size() && (i10 = ((az) arrayList.get(i12)).f54544a) != 3 && i10 != 6) {
-            z9 = true;
-        } else {
-            z9 = false;
-        }
-        if (i11 == 7) {
-            ((cz) view).e(azVar.f43836m, z9);
-        } else if (i11 != 6 && i11 != 3) {
-            if (i11 != 0 && i11 == 8) {
-                ty tyVar = (ty) view;
-                tyVar.f50255a.setText(org.telegram.messenger.id.M0(2131751714, null));
-                if (tyVar.f50257c != z9) {
-                    tyVar.f50257c = z9;
-                    tyVar.setWillNotDraw(!z9);
+            @Override
+            public final void run() {
+                switch (r2) {
+                    case 0:
+                        wy wyVar = this.f50825b;
+                        String str = wyVar.f45081y;
+                        if (str != null && org.telegram.messenger.g0.g(str)) {
+                            new org.telegram.ui.Components.gc(wyVar.E.d.V1, null).k(false).j();
+                            return;
+                        }
+                        return;
+                    case 1:
+                        this.f50825b.d();
+                        return;
+                    default:
+                        this.f50825b.a();
+                        return;
                 }
             }
-        } else {
-            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) view;
-            if (i11 == 6) {
-                z8Var.setFixedSize(0);
-                z8Var.setText(azVar.d);
-                return;
-            }
-            z8Var.setFixedSize(12);
-            z8Var.setText("");
-        }
-    }
+        }, false);
+        F.c(2131232320, org.telegram.messenger.id.M0(2131750472, null), new Runnable(this) {
+            public final wy f50825b;
 
-    @Override
-    public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        View z8Var;
-        xy xyVar = this.d;
-        if (i7 == 8) {
-            z8Var = new ty(xyVar.getContext());
-            org.telegram.ui.ActionBar.s6.h(org.telegram.ui.ActionBar.l6.f27938h5, z8Var, null);
-        } else if (i7 == 7) {
-            z8Var = new vy(this, xyVar.getContext(), xyVar.f28621a, xyVar.Q1.f26070a);
-            org.telegram.ui.ActionBar.s6.h(org.telegram.ui.ActionBar.l6.f27938h5, z8Var, null);
-        } else if (i7 != 6 && i7 != 3) {
-            z8Var = new k0(xyVar, xyVar.getContext());
-        } else {
-            z8Var = new org.telegram.ui.Cells.z8(xyVar.getContext());
-            org.telegram.ui.ActionBar.s6.h(org.telegram.ui.ActionBar.l6.f27809a7, z8Var, null);
+            {
+                this.f50825b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r2) {
+                    case 0:
+                        wy wyVar = this.f50825b;
+                        String str = wyVar.f45081y;
+                        if (str != null && org.telegram.messenger.g0.g(str)) {
+                            new org.telegram.ui.Components.gc(wyVar.E.d.V1, null).k(false).j();
+                            return;
+                        }
+                        return;
+                    case 1:
+                        this.f50825b.d();
+                        return;
+                    default:
+                        this.f50825b.a();
+                        return;
+                }
+            }
+        }, false);
+        F.c(2131232108, org.telegram.messenger.id.M0(2131751534, null), new Runnable(this) {
+            public final wy f50825b;
+
+            {
+                this.f50825b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r2) {
+                    case 0:
+                        wy wyVar = this.f50825b;
+                        String str = wyVar.f45081y;
+                        if (str != null && org.telegram.messenger.g0.g(str)) {
+                            new org.telegram.ui.Components.gc(wyVar.E.d.V1, null).k(false).j();
+                            return;
+                        }
+                        return;
+                    case 1:
+                        this.f50825b.d();
+                        return;
+                    default:
+                        this.f50825b.a();
+                        return;
+                }
+            }
+        }, true);
+        if (org.telegram.messenger.id.f23161a0) {
+            F.f35201i = 3;
         }
-        return new v4.d1(z8Var);
+        F.Z();
     }
 }

@@ -1,123 +1,70 @@
 package org.telegram.ui.Wallet;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.os.SystemClock;
-public final class j9 {
-    public final float f42633a;
-    public final float f42634b;
-    public final float f42635c;
-    public final float d;
-    public final float f42636e;
-    public final boolean f42637f;
-    public final long f42638g;
-    public final k9 h;
+import android.graphics.Rect;
+import android.graphics.drawable.GradientDrawable;
+import android.view.MotionEvent;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.wq;
+public final class j9 extends EditTextBoldCursor {
+    public final org.telegram.ui.Components.v5 G1;
+    public final org.telegram.ui.Components.v5 H1;
+    public float I1;
+    public float J1;
+    public final n9 K1;
 
-    public j9(k9 k9Var, j9 j9Var, float f10, boolean z9) {
-        float z10;
-        this.h = k9Var;
-        this.f42637f = z9;
-        this.f42634b = f10;
-        this.f42633a = j9Var != null ? j9Var.f42633a : f10;
-        this.f42638g = (j9Var == null || z9) ? SystemClock.uptimeMillis() : j9Var.f42638g;
-        float f11 = 0.0f;
-        float a10 = (j9Var == null || !z9) ? 0.0f : j9Var.a();
-        if (j9Var != null) {
-            float f12 = j9Var.f42635c;
-            f11 = com.google.android.recaptcha.internal.a.z(1.0f, f12, a10, f12);
-        }
-        this.f42635c = f11;
-        if (j9Var == null) {
-            z10 = k9Var.O;
-        } else {
-            float f13 = j9Var.d;
-            z10 = com.google.android.recaptcha.internal.a.z(1.0f, f13, a10, f13);
-        }
-        this.d = z10;
-        this.f42636e = j9Var == null ? (-org.telegram.messenger.g0.N(44.0f)) * 0.1f : j9Var.f42636e * (1.0f - a10);
+    public j9(n9 n9Var, Context context) {
+        super(context);
+        this.K1 = n9Var;
+        this.G1 = new org.telegram.ui.Components.v5(this, 180L, wq.h);
+        this.H1 = new org.telegram.ui.Components.v5(this, 320L, n9.S);
+        this.I1 = 1.0f;
     }
 
-    public final float a() {
-        if (this.h.I >= 1.0f) {
-            return 1.0f;
+    @Override
+    public final void n(Canvas canvas, GradientDrawable gradientDrawable) {
+        gradientDrawable.setCornerRadius(org.telegram.messenger.g0.N(1.5f));
+        int lineBaseline = getLayout().getLineBaseline(0);
+        Rect bounds = gradientDrawable.getBounds();
+        float f10 = lineBaseline;
+        int round = Math.round(((bounds.top - lineBaseline) * this.I1) + f10);
+        int round2 = Math.round(((bounds.bottom - lineBaseline) * this.I1) + f10);
+        int i7 = bounds.left;
+        int width = bounds.width();
+        if (this.J1 > 0.0f) {
+            float f11 = i7;
+            i7 = Math.round((((((((getWidth() + getScrollX()) - getCompoundPaddingLeft()) - getCompoundPaddingRight()) - getPaint().measureText("0")) - width) - f11) * this.J1) + f11);
         }
-        return k9.S.getInterpolation(Math.min(1.0f, ((float) (SystemClock.uptimeMillis() - this.f42638g)) / 320.0f));
+        gradientDrawable.setBounds(i7, round, width + i7, round2);
+        gradientDrawable.draw(canvas);
     }
 
-    public final void b(Canvas canvas, Paint paint, String str, float f10, int i7) {
-        float f11;
-        float f12;
-        float a10 = a();
-        float f13 = 1.0f;
-        boolean z9 = this.f42637f;
-        if (z9) {
-            f11 = 0.0f;
-        } else {
-            f11 = 1.0f;
-        }
-        float f14 = this.f42635c;
-        float z10 = com.google.android.recaptcha.internal.a.z(f11, f14, a10, f14);
-        if (z10 <= 0.0f) {
-            return;
-        }
-        int alpha = paint.getAlpha();
-        float measureText = paint.measureText(str);
-        canvas.save();
-        float d = d() + f10;
-        float f15 = i7;
-        float f16 = this.f42636e;
-        float f17 = f15 + f16;
-        if (z9) {
-            f12 = org.telegram.messenger.g0.N(44.0f) * 0.1f;
-        } else {
-            f12 = 0.0f;
-        }
-        canvas.translate(d, com.google.android.recaptcha.internal.a.z(f12, f16, a10, f17));
-        if (z9) {
-            f13 = this.h.O;
-        }
-        float f18 = this.d;
-        float z11 = com.google.android.recaptcha.internal.a.z(f13, f18, a10, f18);
-        canvas.scale(z11, z11, measureText / 2.0f, (paint.descent() + paint.ascent()) / 2.0f);
-        paint.setAlpha(Math.round(alpha * z10));
-        canvas.drawText(str, 0.0f, 0.0f, paint);
-        paint.setAlpha(alpha);
-        canvas.restore();
+    @Override
+    public final void onDraw(android.graphics.Canvas r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.j9.onDraw(android.graphics.Canvas):void");
     }
 
-    public final j9 c() {
-        k9 k9Var = this.h;
-        if (k9Var.I >= 1.0f) {
-            return new j9(k9Var, d());
+    @Override
+    public final void onSelectionChanged(int i7, int i10) {
+        super.onSelectionChanged(i7, i10);
+        if (i7 != i10) {
+            this.K1.b();
         }
-        return new j9(k9Var, d(), this);
     }
 
-    public final float d() {
-        float f10 = this.f42634b;
-        float f11 = this.f42633a;
-        return (k9.S.getInterpolation(this.h.I) * (f10 - f11)) + f11;
-    }
-
-    public j9(k9 k9Var, float f10) {
-        this.h = k9Var;
-        this.f42637f = false;
-        this.f42634b = f10;
-        this.f42633a = f10;
-        this.f42635c = 1.0f;
-        this.d = 1.0f;
-        this.f42636e = 0.0f;
-        this.f42638g = SystemClock.uptimeMillis();
-    }
-
-    public j9(k9 k9Var, float f10, j9 j9Var) {
-        this.h = k9Var;
-        this.f42637f = j9Var.f42637f;
-        this.f42634b = f10;
-        this.f42633a = f10;
-        this.f42635c = j9Var.f42635c;
-        this.d = j9Var.d;
-        this.f42636e = j9Var.f42636e;
-        this.f42638g = j9Var.f42638g;
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z9;
+        if (motionEvent.getActionMasked() == 0) {
+            this.K1.b();
+            if (length() == 0) {
+                z9 = true;
+            } else {
+                z9 = false;
+            }
+            this.H1.a(z9);
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

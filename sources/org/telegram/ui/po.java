@@ -1,21 +1,21 @@
 package org.telegram.ui;
 public final class po implements Runnable {
-    public final int f48767a;
-    public final qo f48768b;
+    public final int f48812a;
+    public final qo f48813b;
 
     public po(qo qoVar, int i7) {
-        this.f48767a = i7;
-        this.f48768b = qoVar;
+        this.f48812a = i7;
+        this.f48813b = qoVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f48767a) {
+        switch (this.f48812a) {
             case 0:
-                this.f48768b.f49109y.d.P = false;
+                this.f48813b.f49112y.d.P = false;
                 return;
             default:
-                this.f48768b.f49109y.d.P = false;
+                this.f48813b.f49112y.d.P = false;
                 return;
         }
     }

@@ -3,9 +3,9 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import java.util.HashMap;
 public final class g1 {
-    public final ArrayList f45837a = new ArrayList();
-    public final HashMap f45838b = new HashMap();
-    public final int f45839c = 1000;
+    public final ArrayList f45902a = new ArrayList();
+    public final HashMap f45903b = new HashMap();
+    public final int f45904c = 1000;
     public final h1 d;
 
     public g1(h1 h1Var) {
@@ -18,6 +18,6 @@ public final class g1 {
             f10 += fArr[i7];
             i7++;
         }
-        return this.f45839c / f10;
+        return this.f45904c / f10;
     }
 }

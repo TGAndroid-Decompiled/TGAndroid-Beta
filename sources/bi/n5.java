@@ -149,7 +149,7 @@ public final class n5 implements View.OnClickListener {
                 if (starGift8 == null) {
                     starGift8 = null;
                 }
-                if (starGift8 != null && !b6Var7.f3516n) {
+                if (starGift8 != null && !b6Var7.f3519n) {
                     b6Var7.a(null, true);
                     d6Var.d(true);
                     return;

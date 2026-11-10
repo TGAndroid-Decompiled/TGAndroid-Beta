@@ -1,17 +1,17 @@
 package c8;
 public final class m extends i {
-    public static final m f5758e = new m(0, new Object[0]);
-    public final transient Object[] f5759c;
+    public static final m f5763e = new m(0, new Object[0]);
+    public final transient Object[] f5764c;
     public final transient int d;
 
     public m(int i7, Object[] objArr) {
-        this.f5759c = objArr;
+        this.f5764c = objArr;
         this.d = i7;
     }
 
     @Override
     public final int f(Object[] objArr) {
-        Object[] objArr2 = this.f5759c;
+        Object[] objArr2 = this.f5764c;
         int i7 = this.d;
         System.arraycopy(objArr2, 0, objArr, 0, i7);
         return i7;
@@ -20,7 +20,7 @@ public final class m extends i {
     @Override
     public final Object get(int i7) {
         a8.f8.a(i7, this.d);
-        Object obj = this.f5759c[i7];
+        Object obj = this.f5764c[i7];
         obj.getClass();
         return obj;
     }
@@ -37,7 +37,7 @@ public final class m extends i {
 
     @Override
     public final Object[] k() {
-        return this.f5759c;
+        return this.f5764c;
     }
 
     @Override

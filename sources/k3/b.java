@@ -33,12 +33,12 @@ public final class b implements o {
 
     @Override
     public final boolean b(p pVar) {
-        q0 a10 = new y(0).a(pVar, h.f55413b, 0);
+        q0 a10 = new y(0).a(pVar, h.f55412b, 0);
         if (a10 != null) {
-            int length = a10.f10484a.length;
+            int length = a10.f10489a.length;
         }
         x xVar = new x(4);
-        ((l) pVar).k(xVar.f14162a, 0, 4, false);
+        ((l) pVar).k(xVar.f14164a, 0, 4, false);
         if (xVar.C() != 1716281667) {
             return false;
         }
@@ -73,8 +73,8 @@ public final class b implements o {
 
     @Override
     public final List e() {
-        g0 g0Var = i0.f14329b;
-        return t1.f14397e;
+        g0 g0Var = i0.f14331b;
+        return t1.f14399e;
     }
 
     @Override

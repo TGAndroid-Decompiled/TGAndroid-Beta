@@ -4,35 +4,35 @@ import c8.s9;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
 public final class p extends s implements Runnable {
-    public y f19992n;
-    public g9.k f19993r;
+    public y f19997n;
+    public g9.k f19998r;
 
     @Override
     public final void d() {
         boolean z9;
-        y yVar = this.f19992n;
+        y yVar = this.f19997n;
         boolean z10 = false;
         if (yVar != null) {
             z9 = true;
         } else {
             z9 = false;
         }
-        if (z9 & (this.f19989a instanceof a)) {
-            Object obj = this.f19989a;
-            if ((obj instanceof a) && ((a) obj).f19957a) {
+        if (z9 & (this.f19994a instanceof a)) {
+            Object obj = this.f19994a;
+            if ((obj instanceof a) && ((a) obj).f19962a) {
                 z10 = true;
             }
             yVar.cancel(z10);
         }
-        this.f19992n = null;
-        this.f19993r = null;
+        this.f19997n = null;
+        this.f19998r = null;
     }
 
     @Override
     public final String k() {
         String str;
-        y yVar = this.f19992n;
-        g9.k kVar = this.f19993r;
+        y yVar = this.f19997n;
+        g9.k kVar = this.f19998r;
         String k10 = super.k();
         if (yVar != null) {
             str = "inputFuture=[" + yVar + "], ";
@@ -51,9 +51,9 @@ public final class p extends s implements Runnable {
     @Override
     public final void run() {
         boolean z9;
-        y yVar = this.f19992n;
-        g9.k kVar = this.f19993r;
-        boolean z10 = this.f19989a instanceof a;
+        y yVar = this.f19997n;
+        g9.k kVar = this.f19998r;
+        boolean z10 = this.f19994a instanceof a;
         boolean z11 = true;
         if (yVar == null) {
             z9 = true;
@@ -67,7 +67,7 @@ public final class p extends s implements Runnable {
         if (z12 | z11) {
             return;
         }
-        this.f19992n = null;
+        this.f19997n = null;
         if (yVar.isCancelled()) {
             o(yVar);
             return;
@@ -75,7 +75,7 @@ public final class p extends s implements Runnable {
         try {
             try {
                 Object apply = kVar.apply(s9.a(yVar));
-                this.f19993r = null;
+                this.f19998r = null;
                 m(apply);
             } catch (Throwable th2) {
                 try {
@@ -84,7 +84,7 @@ public final class p extends s implements Runnable {
                     }
                     n(th2);
                 } finally {
-                    this.f19993r = null;
+                    this.f19998r = null;
                 }
             }
         } catch (Error e10) {

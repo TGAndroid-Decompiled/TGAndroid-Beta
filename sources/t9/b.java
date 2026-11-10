@@ -7,21 +7,21 @@ import c8.xb;
 import q4.x;
 public final class b extends r6.a {
     public static final Parcelable.Creator<b> CREATOR = new x(24);
-    public final String f55474a;
-    public final String f55475b;
-    public final String f55476c;
+    public final String f55473a;
+    public final String f55474b;
+    public final String f55475c;
     public final String d;
-    public final a f55477e;
-    public final String f55478f;
+    public final a f55476e;
+    public final String f55477f;
     public final Bundle h;
 
     public b(String str, String str2, String str3, String str4, a aVar, String str5, Bundle bundle) {
-        this.f55474a = str;
-        this.f55475b = str2;
-        this.f55476c = str3;
+        this.f55473a = str;
+        this.f55474b = str2;
+        this.f55475c = str3;
         this.d = str4;
-        this.f55477e = aVar;
-        this.f55478f = str5;
+        this.f55476e = aVar;
+        this.f55477f = str5;
         if (bundle != null) {
             this.h = bundle;
         } else {
@@ -39,11 +39,11 @@ public final class b extends r6.a {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("ActionImpl { { actionType: '");
-        sb2.append(this.f55474a);
+        sb2.append(this.f55473a);
         sb2.append("' } { objectName: '");
-        sb2.append(this.f55475b);
+        sb2.append(this.f55474b);
         sb2.append("' } { objectUrl: '");
-        sb2.append(this.f55476c);
+        sb2.append(this.f55475c);
         sb2.append("' } ");
         String str = this.d;
         if (str != null) {
@@ -51,13 +51,13 @@ public final class b extends r6.a {
             sb2.append(str);
             sb2.append("' } ");
         }
-        a aVar = this.f55477e;
+        a aVar = this.f55476e;
         if (aVar != null) {
             sb2.append("{ metadata: '");
             sb2.append(aVar.toString());
             sb2.append("' } ");
         }
-        String str2 = this.f55478f;
+        String str2 = this.f55477f;
         if (str2 != null) {
             sb2.append("{ actionStatus: '");
             sb2.append(str2);
@@ -76,12 +76,12 @@ public final class b extends r6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = xb.r(parcel, 20293);
-        xb.l(parcel, 1, this.f55474a);
-        xb.l(parcel, 2, this.f55475b);
-        xb.l(parcel, 3, this.f55476c);
+        xb.l(parcel, 1, this.f55473a);
+        xb.l(parcel, 2, this.f55474b);
+        xb.l(parcel, 3, this.f55475c);
         xb.l(parcel, 4, this.d);
-        xb.k(parcel, 5, this.f55477e, i7);
-        xb.l(parcel, 6, this.f55478f);
+        xb.k(parcel, 5, this.f55476e, i7);
+        xb.l(parcel, 6, this.f55477f);
         xb.b(parcel, 7, this.h);
         xb.s(parcel, r10);
     }

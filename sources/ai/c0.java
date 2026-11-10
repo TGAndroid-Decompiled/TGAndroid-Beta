@@ -15,10 +15,10 @@ import org.telegram.ui.Cells.x3;
 import org.telegram.ui.Cells.y6;
 import org.telegram.ui.Cells.z8;
 import org.telegram.ui.Components.m41;
-import org.telegram.ui.Components.xq;
-import org.telegram.ui.Wallet.v9;
-import org.telegram.ui.Wallet.w5;
-import org.telegram.ui.d00;
+import org.telegram.ui.Components.wq;
+import org.telegram.ui.Wallet.y9;
+import org.telegram.ui.Wallet.z5;
+import org.telegram.ui.e00;
 public final class c0 implements d20 {
     public final int f1135a;
 
@@ -38,7 +38,7 @@ public final class c0 implements d20 {
                 return Boolean.valueOf(z9);
             case 1:
                 String str2 = (String) obj;
-                xq xqVar = i0.f1238z0;
+                wq wqVar = i0.f1238z0;
                 if (TextUtils.isEmpty(str2) || (!str2.startsWith("tg:") && !vf.c.g(Uri.parse(str2), false, null))) {
                     z9 = false;
                 }
@@ -63,7 +63,7 @@ public final class c0 implements d20 {
                 return id.G(((Integer) obj).intValue(), "Minutes", new Object[0]);
             case 7:
                 View view = (View) obj;
-                if ((view instanceof z8) || (view instanceof y6) || (view instanceof d00) || (view instanceof x3) || (view instanceof d2) || Objects.equals(view.getTag(), -33024)) {
+                if ((view instanceof z8) || (view instanceof y6) || (view instanceof e00) || (view instanceof x3) || (view instanceof d2) || Objects.equals(view.getTag(), -33024)) {
                     z9 = false;
                 }
                 return Boolean.valueOf(z9);
@@ -83,9 +83,9 @@ public final class c0 implements d20 {
                 disablebackup.password = (TLRPC.InputCheckPasswordSRP) obj;
                 return disablebackup;
             case 12:
-                return Boolean.valueOf(w5.C0(w5.b1((String) obj)));
+                return Boolean.valueOf(z5.C0(z5.c1((String) obj)));
             default:
-                if (v9.l0((String) obj) == null) {
+                if (y9.l0((String) obj) == null) {
                     z9 = false;
                 }
                 return Boolean.valueOf(z9);

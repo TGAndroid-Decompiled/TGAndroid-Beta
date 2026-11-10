@@ -1,54 +1,60 @@
 package org.telegram.ui.Components;
-public final class w0 implements eb0 {
-    public final int f39848a;
-    public final int[] f39849b;
 
-    public w0(int[] iArr, int i7) {
-        this.f39848a = i7;
-        this.f39849b = iArr;
+import android.view.View;
+public final class w0 implements View.OnClickListener {
+    public final int f39849a;
+    public final boolean[] f39850b;
+
+    public w0(int i7, boolean[] zArr) {
+        this.f39849a = i7;
+        this.f39850b = zArr;
     }
 
     @Override
-    public final String h(int i7) {
-        int i10 = this.f39848a;
-        int[] iArr = this.f39849b;
-        switch (i10) {
+    public final void onClick(View view) {
+        switch (this.f39849a) {
             case 0:
-                int i11 = iArr[i7];
-                if (i11 == 0) {
-                    return org.telegram.messenger.id.M0(2131748307, null);
-                }
-                if (i11 < 60) {
-                    return org.telegram.messenger.id.G(i11, "Minutes", new Object[0]);
-                }
-                if (i11 < 1440) {
-                    return org.telegram.messenger.id.G(i11 / 60, "Hours", new Object[0]);
-                }
-                if (i11 < 10080) {
-                    return org.telegram.messenger.id.G(i11 / 1440, "Days", new Object[0]);
-                }
-                if (i11 < 44640) {
-                    return org.telegram.messenger.id.G(i11 / 10080, "Weeks", new Object[0]);
-                }
-                if (i11 < 525600) {
-                    return org.telegram.messenger.id.G(i11 / 44640, "Months", new Object[0]);
-                }
-                return org.telegram.messenger.id.G(i11 / 525600, "Years", new Object[0]);
+                boolean[] zArr = this.f39850b;
+                boolean z9 = !zArr[0];
+                zArr[0] = z9;
+                ((org.telegram.ui.Cells.c2) view).c(z9, true);
+                return;
+            case 1:
+                boolean[] zArr2 = this.f39850b;
+                boolean z10 = !zArr2[0];
+                zArr2[0] = z10;
+                ((org.telegram.ui.Cells.c2) view).c(z10, true);
+                return;
+            case 2:
+                boolean[] zArr3 = this.f39850b;
+                boolean z11 = !zArr3[0];
+                zArr3[0] = z11;
+                ((org.telegram.ui.Cells.c2) view).c(z11, true);
+                return;
+            case 3:
+                boolean[] zArr4 = this.f39850b;
+                boolean z12 = !zArr4[0];
+                zArr4[0] = z12;
+                ((org.telegram.ui.Cells.c2) view).c(z12, true);
+                return;
+            case 4:
+                boolean[] zArr5 = this.f39850b;
+                boolean z13 = !zArr5[0];
+                zArr5[0] = z13;
+                ((org.telegram.ui.Cells.c2) view).c(z13, true);
+                return;
+            case 5:
+                boolean[] zArr6 = this.f39850b;
+                boolean z14 = !zArr6[0];
+                zArr6[0] = z14;
+                ((org.telegram.ui.Cells.c2) view).c(z14, true);
+                return;
             default:
-                int i12 = iArr[i7];
-                if (i12 == 0) {
-                    return org.telegram.messenger.id.M0(2131753849, null);
-                }
-                if (i12 < 10080) {
-                    return org.telegram.messenger.id.G(i12 / 1440, "Days", new Object[0]);
-                }
-                if (i12 < 44640) {
-                    return org.telegram.messenger.id.G(i12 / 10080, "Weeks", new Object[0]);
-                }
-                if (i12 < 525600) {
-                    return org.telegram.messenger.id.G(i12 / 44640, "Months", new Object[0]);
-                }
-                return org.telegram.messenger.id.G(i12 / 525600, "Years", new Object[0]);
+                boolean[] zArr7 = this.f39850b;
+                boolean z15 = !zArr7[0];
+                zArr7[0] = z15;
+                ((org.telegram.ui.Cells.c2) view).c(z15, true);
+                return;
         }
     }
 }

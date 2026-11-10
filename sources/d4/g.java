@@ -8,35 +8,35 @@ import java.util.ArrayList;
 import java.util.List;
 public final class g extends j {
     public final x h = new x();
-    public final f f8165i = new f();
-    public int f8166j = -1;
-    public final int f8167k;
-    public final e[] f8168l;
-    public e f8169m;
-    public List f8170n;
-    public List f8171o;
-    public f f8172p;
-    public int f8173q;
+    public final f f8170i = new f();
+    public int f8171j = -1;
+    public final int f8172k;
+    public final e[] f8173l;
+    public e f8174m;
+    public List f8175n;
+    public List f8176o;
+    public f f8177p;
+    public int f8178q;
 
     public g(int i7, List list) {
-        this.f8167k = i7 == -1 ? 1 : i7;
+        this.f8172k = i7 == -1 ? 1 : i7;
         if (list != null) {
-            byte[] bArr = h2.g.f14085a;
+            byte[] bArr = h2.g.f14087a;
             if (list.size() == 1 && ((byte[]) list.get(0)).length == 1) {
                 byte b10 = ((byte[]) list.get(0))[0];
             }
         }
-        this.f8168l = new e[8];
+        this.f8173l = new e[8];
         for (int i10 = 0; i10 < 8; i10++) {
-            this.f8168l[i10] = new e();
+            this.f8173l[i10] = new e();
         }
-        this.f8169m = this.f8168l[0];
+        this.f8174m = this.f8173l[0];
     }
 
     @Override
     public final d6.i f() {
-        List list = this.f8170n;
-        this.f8171o = list;
+        List list = this.f8175n;
+        this.f8176o = list;
         list.getClass();
         return new d6.i(list, 16);
     }
@@ -44,12 +44,12 @@ public final class g extends j {
     @Override
     public final void flush() {
         super.flush();
-        this.f8170n = null;
-        this.f8171o = null;
-        this.f8173q = 0;
-        this.f8169m = this.f8168l[0];
+        this.f8175n = null;
+        this.f8176o = null;
+        this.f8178q = 0;
+        this.f8174m = this.f8173l[0];
         l();
-        this.f8172p = null;
+        this.f8177p = null;
     }
 
     @Override
@@ -77,40 +77,40 @@ public final class g extends j {
                     if (i7 == 3) {
                         j();
                         int i10 = (A2 & 192) >> 6;
-                        int i11 = this.f8166j;
+                        int i11 = this.f8171j;
                         if (i11 != -1 && i10 != (i11 + 1) % 4) {
                             l();
-                            h2.a.l("Cea708Decoder", "Sequence number discontinuity. previous=" + this.f8166j + " current=" + i10);
+                            h2.a.l("Cea708Decoder", "Sequence number discontinuity. previous=" + this.f8171j + " current=" + i10);
                         }
-                        this.f8166j = i10;
+                        this.f8171j = i10;
                         int i12 = A2 & 63;
                         if (i12 == 0) {
                             i12 = 64;
                         }
                         f fVar = new f(i10, i12);
-                        this.f8172p = fVar;
-                        fVar.f8164e = 1;
-                        ((byte[]) fVar.f8162b)[0] = A3;
+                        this.f8177p = fVar;
+                        fVar.f8169e = 1;
+                        ((byte[]) fVar.f8167b)[0] = A3;
                     } else {
                         if (i7 == 2) {
                             z10 = true;
                         }
                         ia.f(z10);
-                        f fVar2 = this.f8172p;
+                        f fVar2 = this.f8177p;
                         if (fVar2 == null) {
                             h2.a.c("Cea708Decoder", "Encountered DTVCC_PACKET_DATA before DTVCC_PACKET_START");
                         } else {
-                            byte[] bArr = (byte[]) fVar2.f8162b;
-                            int i13 = fVar2.f8164e;
+                            byte[] bArr = (byte[]) fVar2.f8167b;
+                            int i13 = fVar2.f8169e;
                             int i14 = i13 + 1;
-                            fVar2.f8164e = i14;
+                            fVar2.f8169e = i14;
                             bArr[i13] = A2;
-                            fVar2.f8164e = i13 + 2;
+                            fVar2.f8169e = i13 + 2;
                             bArr[i14] = A3;
                         }
                     }
-                    f fVar3 = this.f8172p;
-                    if (fVar3.f8164e == (fVar3.d * 2) - 1) {
+                    f fVar3 = this.f8177p;
+                    if (fVar3.f8169e == (fVar3.d * 2) - 1) {
                         j();
                     }
                 }
@@ -125,7 +125,7 @@ public final class g extends j {
 
     @Override
     public final boolean i() {
-        if (this.f8170n != this.f8171o) {
+        if (this.f8175n != this.f8176o) {
             return true;
         }
         return false;
@@ -136,18 +136,18 @@ public final class g extends j {
         int i7;
         boolean z9;
         e eVar;
-        f fVar = this.f8172p;
+        f fVar = this.f8177p;
         if (fVar == null) {
             return;
         }
         int i10 = 2;
-        if (fVar.f8164e != (fVar.d * 2) - 1) {
-            h2.a.b("Cea708Decoder", "DtvCcPacket ended prematurely; size is " + ((this.f8172p.d * 2) - 1) + ", but current index is " + this.f8172p.f8164e + " (sequence number " + this.f8172p.f8163c + ");");
+        if (fVar.f8169e != (fVar.d * 2) - 1) {
+            h2.a.b("Cea708Decoder", "DtvCcPacket ended prematurely; size is " + ((this.f8177p.d * 2) - 1) + ", but current index is " + this.f8177p.f8169e + " (sequence number " + this.f8177p.f8168c + ");");
         }
-        f fVar2 = this.f8172p;
-        int i11 = fVar2.f8164e;
-        f fVar3 = this.f8165i;
-        fVar3.H(i11, (byte[]) fVar2.f8162b);
+        f fVar2 = this.f8177p;
+        int i11 = fVar2.f8169e;
+        f fVar3 = this.f8170i;
+        fVar3.H(i11, (byte[]) fVar2.f8167b);
         boolean z10 = false;
         while (true) {
             if (fVar3.b() > 0) {
@@ -165,7 +165,7 @@ public final class g extends j {
                     if (j3 != 0) {
                         h2.a.l("Cea708Decoder", "serviceNumber is non-zero (" + j3 + ") when blockSize is 0");
                     }
-                } else if (j3 != this.f8167k) {
+                } else if (j3 != this.f8172k) {
                     fVar3.M(j10);
                 } else {
                     int f10 = (j10 * 8) + fVar3.f();
@@ -181,7 +181,7 @@ public final class g extends j {
                                                     l();
                                                     break;
                                                 case 13:
-                                                    this.f8169m.a('\n');
+                                                    this.f8174m.a('\n');
                                                     break;
                                                 case 14:
                                                     break;
@@ -200,28 +200,28 @@ public final class g extends j {
                                                     }
                                             }
                                         } else {
-                                            SpannableStringBuilder spannableStringBuilder = this.f8169m.f8143b;
+                                            SpannableStringBuilder spannableStringBuilder = this.f8174m.f8148b;
                                             int length = spannableStringBuilder.length();
                                             if (length > 0) {
                                                 spannableStringBuilder.delete(length - 1, length);
                                             }
                                         }
                                     } else {
-                                        this.f8170n = k();
+                                        this.f8175n = k();
                                     }
                                 }
                                 i7 = i10;
                             } else if (j11 <= 127) {
                                 if (j11 == 127) {
-                                    this.f8169m.a((char) 9835);
+                                    this.f8174m.a((char) 9835);
                                 } else {
-                                    this.f8169m.a((char) (j11 & 255));
+                                    this.f8174m.a((char) (j11 & 255));
                                 }
                                 i7 = i10;
                                 z10 = true;
                             } else {
                                 if (j11 <= 159) {
-                                    e[] eVarArr = this.f8168l;
+                                    e[] eVarArr = this.f8173l;
                                     switch (j11) {
                                         case 128:
                                         case 129:
@@ -233,9 +233,9 @@ public final class g extends j {
                                         case 135:
                                             z9 = true;
                                             int i13 = j11 - 128;
-                                            if (this.f8173q != i13) {
-                                                this.f8173q = i13;
-                                                this.f8169m = eVarArr[i13];
+                                            if (this.f8178q != i13) {
+                                                this.f8178q = i13;
+                                                this.f8174m = eVarArr[i13];
                                                 break;
                                             }
                                             break;
@@ -244,13 +244,13 @@ public final class g extends j {
                                             for (int i14 = 1; i14 <= 8; i14++) {
                                                 if (fVar3.i()) {
                                                     e eVar2 = eVarArr[8 - i14];
-                                                    eVar2.f8142a.clear();
-                                                    eVar2.f8143b.clear();
-                                                    eVar2.f8154o = -1;
-                                                    eVar2.f8155p = -1;
-                                                    eVar2.f8156q = -1;
-                                                    eVar2.f8158s = -1;
-                                                    eVar2.f8160u = 0;
+                                                    eVar2.f8147a.clear();
+                                                    eVar2.f8148b.clear();
+                                                    eVar2.f8159o = -1;
+                                                    eVar2.f8160p = -1;
+                                                    eVar2.f8161q = -1;
+                                                    eVar2.f8163s = -1;
+                                                    eVar2.f8165u = 0;
                                                 }
                                             }
                                             break;
@@ -299,7 +299,7 @@ public final class g extends j {
                                             break;
                                         case 144:
                                             int i19 = i10;
-                                            if (!this.f8169m.f8144c) {
+                                            if (!this.f8174m.f8149c) {
                                                 fVar3.L(16);
                                                 z9 = true;
                                                 i12 = 3;
@@ -313,35 +313,35 @@ public final class g extends j {
                                                 i12 = 3;
                                                 fVar3.j(3);
                                                 fVar3.j(3);
-                                                this.f8169m.e(i20, i21);
+                                                this.f8174m.e(i20, i21);
                                                 z9 = true;
                                             }
                                         case 145:
-                                            if (!this.f8169m.f8144c) {
+                                            if (!this.f8174m.f8149c) {
                                                 fVar3.L(24);
                                             } else {
                                                 int c11 = e.c(fVar3.j(2), fVar3.j(2), fVar3.j(2), fVar3.j(2));
                                                 int c12 = e.c(fVar3.j(2), fVar3.j(2), fVar3.j(2), fVar3.j(2));
                                                 fVar3.L(2);
                                                 e.c(fVar3.j(2), fVar3.j(2), fVar3.j(2), 0);
-                                                this.f8169m.f(c11, c12);
+                                                this.f8174m.f(c11, c12);
                                             }
                                             z9 = true;
                                             i12 = 3;
                                             break;
                                         case 146:
-                                            if (!this.f8169m.f8144c) {
+                                            if (!this.f8174m.f8149c) {
                                                 fVar3.L(16);
                                             } else {
                                                 fVar3.L(4);
                                                 int j12 = fVar3.j(4);
                                                 fVar3.L(2);
                                                 fVar3.j(6);
-                                                e eVar3 = this.f8169m;
-                                                if (eVar3.f8160u != j12) {
+                                                e eVar3 = this.f8174m;
+                                                if (eVar3.f8165u != j12) {
                                                     eVar3.a('\n');
                                                 }
-                                                eVar3.f8160u = j12;
+                                                eVar3.f8165u = j12;
                                             }
                                             z9 = true;
                                             i12 = 3;
@@ -355,7 +355,7 @@ public final class g extends j {
                                             z9 = true;
                                             break;
                                         case 151:
-                                            if (!this.f8169m.f8144c) {
+                                            if (!this.f8174m.f8149c) {
                                                 fVar3.L(32);
                                             } else {
                                                 int c13 = e.c(fVar3.j(2), fVar3.j(2), fVar3.j(2), fVar3.j(2));
@@ -367,9 +367,9 @@ public final class g extends j {
                                                 fVar3.j(2);
                                                 int j13 = fVar3.j(2);
                                                 fVar3.L(8);
-                                                e eVar4 = this.f8169m;
-                                                eVar4.f8153n = c13;
-                                                eVar4.f8150k = j13;
+                                                e eVar4 = this.f8174m;
+                                                eVar4.f8158n = c13;
+                                                eVar4.f8155k = j13;
                                             }
                                             z9 = true;
                                             i12 = 3;
@@ -398,45 +398,45 @@ public final class g extends j {
                                             fVar3.L(i10);
                                             int j19 = fVar3.j(3);
                                             int j20 = fVar3.j(3);
-                                            ArrayList arrayList = eVar5.f8142a;
-                                            eVar5.f8144c = true;
+                                            ArrayList arrayList = eVar5.f8147a;
+                                            eVar5.f8149c = true;
                                             eVar5.d = i23;
-                                            eVar5.f8145e = j14;
-                                            eVar5.f8146f = i24;
-                                            eVar5.f8147g = j15;
+                                            eVar5.f8150e = j14;
+                                            eVar5.f8151f = i24;
+                                            eVar5.f8152g = j15;
                                             eVar5.h = j16;
-                                            eVar5.f8148i = j17;
+                                            eVar5.f8153i = j17;
                                             int i25 = j18 + 1;
-                                            if (eVar5.f8149j != i25) {
-                                                eVar5.f8149j = i25;
+                                            if (eVar5.f8154j != i25) {
+                                                eVar5.f8154j = i25;
                                                 while (true) {
-                                                    if (arrayList.size() >= eVar5.f8149j || arrayList.size() >= 15) {
+                                                    if (arrayList.size() >= eVar5.f8154j || arrayList.size() >= 15) {
                                                         arrayList.remove(0);
                                                     }
                                                 }
                                             }
-                                            if (j19 != 0 && eVar5.f8151l != j19) {
-                                                eVar5.f8151l = j19;
+                                            if (j19 != 0 && eVar5.f8156l != j19) {
+                                                eVar5.f8156l = j19;
                                                 int i26 = j19 - 1;
                                                 int i27 = e.B[i26];
                                                 boolean z11 = e.A[i26];
-                                                int i28 = e.f8140y[i26];
-                                                int i29 = e.f8141z[i26];
-                                                int i30 = e.f8139x[i26];
-                                                eVar5.f8153n = i27;
-                                                eVar5.f8150k = i30;
+                                                int i28 = e.f8145y[i26];
+                                                int i29 = e.f8146z[i26];
+                                                int i30 = e.f8144x[i26];
+                                                eVar5.f8158n = i27;
+                                                eVar5.f8155k = i30;
                                             }
-                                            if (j20 != 0 && eVar5.f8152m != j20) {
-                                                eVar5.f8152m = j20;
+                                            if (j20 != 0 && eVar5.f8157m != j20) {
+                                                eVar5.f8157m = j20;
                                                 int i31 = j20 - 1;
                                                 int i32 = e.D[i31];
                                                 int i33 = e.C[i31];
                                                 eVar5.e(false, false);
                                                 eVar5.f(e.v, e.E[i31]);
                                             }
-                                            if (this.f8173q != i22) {
-                                                this.f8173q = i22;
-                                                this.f8169m = eVarArr[i22];
+                                            if (this.f8178q != i22) {
+                                                this.f8178q = i22;
+                                                this.f8174m = eVarArr[i22];
                                             }
                                             z9 = true;
                                             i12 = 3;
@@ -445,7 +445,7 @@ public final class g extends j {
                                 } else {
                                     z9 = true;
                                     if (j11 <= 255) {
-                                        this.f8169m.a((char) (j11 & 255));
+                                        this.f8174m.a((char) (j11 & 255));
                                     } else {
                                         com.google.android.recaptcha.internal.a.o(j11, "Invalid base command: ", "Cea708Decoder");
                                         i7 = 2;
@@ -485,54 +485,54 @@ public final class g extends j {
                                                                         if (j21 != 61) {
                                                                             switch (j21) {
                                                                                 case 48:
-                                                                                    this.f8169m.a((char) 9608);
+                                                                                    this.f8174m.a((char) 9608);
                                                                                     break;
                                                                                 case 49:
-                                                                                    this.f8169m.a((char) 8216);
+                                                                                    this.f8174m.a((char) 8216);
                                                                                     break;
                                                                                 case 50:
-                                                                                    this.f8169m.a((char) 8217);
+                                                                                    this.f8174m.a((char) 8217);
                                                                                     break;
                                                                                 case 51:
-                                                                                    this.f8169m.a((char) 8220);
+                                                                                    this.f8174m.a((char) 8220);
                                                                                     break;
                                                                                 case 52:
-                                                                                    this.f8169m.a((char) 8221);
+                                                                                    this.f8174m.a((char) 8221);
                                                                                     break;
                                                                                 case 53:
-                                                                                    this.f8169m.a((char) 8226);
+                                                                                    this.f8174m.a((char) 8226);
                                                                                     break;
                                                                                 default:
                                                                                     switch (j21) {
                                                                                         case 118:
-                                                                                            this.f8169m.a((char) 8539);
+                                                                                            this.f8174m.a((char) 8539);
                                                                                             break;
                                                                                         case 119:
-                                                                                            this.f8169m.a((char) 8540);
+                                                                                            this.f8174m.a((char) 8540);
                                                                                             break;
                                                                                         case 120:
-                                                                                            this.f8169m.a((char) 8541);
+                                                                                            this.f8174m.a((char) 8541);
                                                                                             break;
                                                                                         case 121:
-                                                                                            this.f8169m.a((char) 8542);
+                                                                                            this.f8174m.a((char) 8542);
                                                                                             break;
                                                                                         case 122:
-                                                                                            this.f8169m.a((char) 9474);
+                                                                                            this.f8174m.a((char) 9474);
                                                                                             break;
                                                                                         case 123:
-                                                                                            this.f8169m.a((char) 9488);
+                                                                                            this.f8174m.a((char) 9488);
                                                                                             break;
                                                                                         case 124:
-                                                                                            this.f8169m.a((char) 9492);
+                                                                                            this.f8174m.a((char) 9492);
                                                                                             break;
                                                                                         case 125:
-                                                                                            this.f8169m.a((char) 9472);
+                                                                                            this.f8174m.a((char) 9472);
                                                                                             break;
                                                                                         case 126:
-                                                                                            this.f8169m.a((char) 9496);
+                                                                                            this.f8174m.a((char) 9496);
                                                                                             break;
                                                                                         case 127:
-                                                                                            this.f8169m.a((char) 9484);
+                                                                                            this.f8174m.a((char) 9484);
                                                                                             break;
                                                                                         default:
                                                                                             com.google.android.recaptcha.internal.a.o(j21, "Invalid G2 character: ", "Cea708Decoder");
@@ -540,34 +540,34 @@ public final class g extends j {
                                                                                     }
                                                                             }
                                                                         } else {
-                                                                            this.f8169m.a((char) 8480);
+                                                                            this.f8174m.a((char) 8480);
                                                                         }
                                                                     } else {
-                                                                        this.f8169m.a((char) 339);
+                                                                        this.f8174m.a((char) 339);
                                                                     }
                                                                 } else {
-                                                                    this.f8169m.a((char) 353);
+                                                                    this.f8174m.a((char) 353);
                                                                 }
                                                             } else {
-                                                                this.f8169m.a((char) 8482);
+                                                                this.f8174m.a((char) 8482);
                                                             }
                                                         } else {
-                                                            this.f8169m.a((char) 376);
+                                                            this.f8174m.a((char) 376);
                                                         }
                                                     } else {
-                                                        this.f8169m.a((char) 338);
+                                                        this.f8174m.a((char) 338);
                                                     }
                                                 } else {
-                                                    this.f8169m.a((char) 352);
+                                                    this.f8174m.a((char) 352);
                                                 }
                                             } else {
-                                                this.f8169m.a((char) 8230);
+                                                this.f8174m.a((char) 8230);
                                             }
                                         } else {
-                                            this.f8169m.a((char) 160);
+                                            this.f8174m.a((char) 160);
                                         }
                                     } else {
-                                        this.f8169m.a(' ');
+                                        this.f8174m.a(' ');
                                     }
                                     i7 = 2;
                                     z10 = true;
@@ -585,10 +585,10 @@ public final class g extends j {
                                     i7 = 2;
                                     if (j21 <= 255) {
                                         if (j21 == 160) {
-                                            this.f8169m.a((char) 13252);
+                                            this.f8174m.a((char) 13252);
                                         } else {
                                             com.google.android.recaptcha.internal.a.o(j21, "Invalid G3 character: ", "Cea708Decoder");
-                                            this.f8169m.a('_');
+                                            this.f8174m.a('_');
                                         }
                                         z10 = true;
                                     } else {
@@ -604,9 +604,9 @@ public final class g extends j {
             }
         }
         if (z10) {
-            this.f8170n = k();
+            this.f8175n = k();
         }
-        this.f8172p = null;
+        this.f8177p = null;
     }
 
     public final java.util.List k() {
@@ -615,7 +615,7 @@ public final class g extends j {
 
     public final void l() {
         for (int i7 = 0; i7 < 8; i7++) {
-            this.f8168l[i7].d();
+            this.f8173l[i7].d();
         }
     }
 }

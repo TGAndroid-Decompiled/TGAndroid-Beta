@@ -3,15 +3,15 @@ package e2;
 import a8.ia;
 import android.util.Pair;
 public abstract class l1 {
-    public static final h1 f10354a = new Object();
-    public static final String f10355b;
-    public static final String f10356c;
+    public static final h1 f10359a = new Object();
+    public static final String f10360b;
+    public static final String f10361c;
     public static final String d;
 
     static {
-        String str = h2.m0.f14112a;
-        f10355b = Integer.toString(0, 36);
-        f10356c = Integer.toString(1, 36);
+        String str = h2.m0.f14114a;
+        f10360b = Integer.toString(0, 36);
+        f10361c = Integer.toString(1, 36);
         d = Integer.toString(2, 36);
     }
 
@@ -32,13 +32,13 @@ public abstract class l1 {
     }
 
     public final int d(int i7, i1 i1Var, k1 k1Var, int i10, boolean z9) {
-        int i11 = f(i7, i1Var, false).f10282c;
-        if (m(i11, k1Var, 0L).f10336o == i7) {
+        int i11 = f(i7, i1Var, false).f10287c;
+        if (m(i11, k1Var, 0L).f10341o == i7) {
             int e10 = e(i11, i10, z9);
             if (e10 == -1) {
                 return -1;
             }
-            return m(e10, k1Var, 0L).f10335n;
+            return m(e10, k1Var, 0L).f10340n;
         }
         return i7 + 1;
     }
@@ -145,28 +145,28 @@ public abstract class l1 {
         ia.j(i7, o());
         m(i7, k1Var, j10);
         if (j3 == -9223372036854775807L) {
-            j3 = k1Var.f10333l;
+            j3 = k1Var.f10338l;
             if (j3 == -9223372036854775807L) {
                 return null;
             }
         }
-        int i10 = k1Var.f10335n;
+        int i10 = k1Var.f10340n;
         f(i10, i1Var, false);
-        while (i10 < k1Var.f10336o && i1Var.f10283e != j3) {
+        while (i10 < k1Var.f10341o && i1Var.f10288e != j3) {
             int i11 = i10 + 1;
-            if (f(i11, i1Var, false).f10283e > j3) {
+            if (f(i11, i1Var, false).f10288e > j3) {
                 break;
             }
             i10 = i11;
         }
         f(i10, i1Var, true);
-        long j11 = j3 - i1Var.f10283e;
+        long j11 = j3 - i1Var.f10288e;
         long j12 = i1Var.d;
         if (j12 != -9223372036854775807L) {
             j11 = Math.min(j11, j12 - 1);
         }
         long max = Math.max(0L, j11);
-        Object obj = i1Var.f10281b;
+        Object obj = i1Var.f10286b;
         obj.getClass();
         return Pair.create(obj, Long.valueOf(max));
     }

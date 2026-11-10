@@ -23,7 +23,7 @@ public final class e0 extends BroadcastReceiver {
         IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
         f0 f0Var = (f0) this.f922c;
         if (f0Var != null) {
-            Context context = f0Var.f926c.f7888b;
+            Context context = f0Var.f926c.f7893b;
             this.f921b = context;
             context.registerReceiver(this, intentFilter);
         }

@@ -6,25 +6,25 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.yn0;
+import org.telegram.ui.zn0;
 public final class mm implements RequestDelegate {
-    public final int f24057a = 2;
-    public final c1 f24058b;
-    public final String f24059c;
+    public final int f24061a = 2;
+    public final c1 f24062b;
+    public final String f24063c;
     public final long d;
-    public final Object f24060e;
-    public final Object f24061f;
-    public final Object f24062g;
+    public final Object f24064e;
+    public final Object f24065f;
+    public final Object f24066g;
     public final TLObject h;
 
     public mm(qp qpVar, long j3, String str, Runnable runnable, org.telegram.ui.ActionBar.f2 f2Var, TLRPC.TL_channels_updateUsername tL_channels_updateUsername, Runnable runnable2) {
-        this.f24058b = qpVar;
+        this.f24062b = qpVar;
         this.d = j3;
-        this.f24059c = str;
-        this.f24060e = runnable;
-        this.f24062g = f2Var;
+        this.f24063c = str;
+        this.f24064e = runnable;
+        this.f24066g = f2Var;
         this.h = tL_channels_updateUsername;
-        this.f24061f = runnable2;
+        this.f24065f = runnable2;
     }
 
     @Override
@@ -34,26 +34,26 @@ public final class mm implements RequestDelegate {
         TLRPC.VideoSize videoSize;
         qp qpVar2;
         String str;
-        switch (this.f24057a) {
+        switch (this.f24061a) {
             case 0:
-                qp qpVar3 = (qp) this.f24058b;
-                Runnable runnable = (Runnable) this.f24060e;
-                org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.f24062g;
+                qp qpVar3 = (qp) this.f24062b;
+                Runnable runnable = (Runnable) this.f24064e;
+                org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.f24066g;
                 TLRPC.TL_channels_updateUsername tL_channels_updateUsername = (TLRPC.TL_channels_updateUsername) this.h;
-                Runnable runnable2 = (Runnable) this.f24061f;
+                Runnable runnable2 = (Runnable) this.f24065f;
                 if (!(tLObject instanceof TLRPC.TL_boolTrue) && (tL_error == null || !"USERNAME_NOT_MODIFIED".equals(tL_error.text))) {
-                    org.telegram.ui.Components.v4.c0(p10.f24470s0, tL_error, f2Var, tL_channels_updateUsername, new Object[0]);
+                    org.telegram.ui.Components.u4.c0(p10.f24474s0, tL_error, f2Var, tL_channels_updateUsername, new Object[0]);
                     runnable2.run();
                     return;
                 }
-                g0.h3(new jm(qpVar3, this.d, this.f24059c, runnable, 6));
+                g0.h3(new jm(qpVar3, this.d, this.f24063c, runnable, 6));
                 return;
             case 1:
-                qp qpVar4 = (qp) this.f24058b;
-                TLRPC.TL_inputChatPhoto tL_inputChatPhoto = (TLRPC.TL_inputChatPhoto) this.f24061f;
-                TLRPC.FileLocation fileLocation = (TLRPC.FileLocation) this.f24062g;
+                qp qpVar4 = (qp) this.f24062b;
+                TLRPC.TL_inputChatPhoto tL_inputChatPhoto = (TLRPC.TL_inputChatPhoto) this.f24065f;
+                TLRPC.FileLocation fileLocation = (TLRPC.FileLocation) this.f24066g;
                 TLRPC.FileLocation fileLocation2 = (TLRPC.FileLocation) this.h;
-                Runnable runnable3 = (Runnable) this.f24060e;
+                Runnable runnable3 = (Runnable) this.f24064e;
                 if (tL_error == null) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
                     boolean z9 = false;
@@ -125,7 +125,7 @@ public final class mm implements RequestDelegate {
                                 qpVar2.getFileLoader().getClass();
                                 w7.J(fileLocation2, null, true, true).renameTo(J2);
                             }
-                            if (videoSize != null && (str = this.f24059c) != null) {
+                            if (videoSize != null && (str = this.f24063c) != null) {
                                 qpVar2.getFileLoader().getClass();
                                 new File(str).renameTo(w7.J(videoSize, "mp4", true, true));
                             }
@@ -144,14 +144,14 @@ public final class mm implements RequestDelegate {
                 }
                 return;
             default:
-                final f10 f10Var = (f10) this.f24058b;
-                final ij ijVar = (ij) this.f24060e;
-                final f3.s sVar = (f3.s) this.f24061f;
-                final yn0 yn0Var = (yn0) this.f24062g;
+                final f10 f10Var = (f10) this.f24062b;
+                final ij ijVar = (ij) this.f24064e;
+                final f3.s sVar = (f3.s) this.f24065f;
+                final zn0 zn0Var = (zn0) this.f24066g;
                 TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) this.h;
                 f10Var.getClass();
                 boolean z10 = tLObject instanceof TLRPC.TL_messages_translateResult;
-                final String str2 = this.f24059c;
+                final String str2 = this.f24063c;
                 final long j3 = this.d;
                 if (z10) {
                     ArrayList<TLRPC.TL_textWithEntities> arrayList = ((TLRPC.TL_messages_translateResult) tLObject).result;
@@ -164,34 +164,34 @@ public final class mm implements RequestDelegate {
                                         f10 f10Var2 = f10Var;
                                         f10Var2.getClass();
                                         ij ijVar2 = ijVar;
-                                        TLRPC.Message message = ijVar2.f23262k;
+                                        TLRPC.Message message = ijVar2.f23266k;
                                         message.translatedToLanguage = str2;
                                         message.translatedText = null;
                                         yr messagesStorage = f10Var2.getMessagesStorage();
                                         f3.s sVar2 = sVar;
-                                        messagesStorage.X1(sVar2.f11070a, ijVar2.f23262k);
+                                        messagesStorage.X1(sVar2.f11075a, ijVar2.f23266k);
                                         f10Var2.L.remove(sVar2);
-                                        g0.i3(yn0Var, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
+                                        g0.i3(zn0Var, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
                                         return;
                                     default:
                                         f10 f10Var3 = f10Var;
                                         f10Var3.getClass();
                                         ij ijVar3 = ijVar;
-                                        TLRPC.Message message2 = ijVar3.f23262k;
+                                        TLRPC.Message message2 = ijVar3.f23266k;
                                         message2.translatedToLanguage = str2;
                                         message2.translatedText = null;
                                         yr messagesStorage2 = f10Var3.getMessagesStorage();
                                         f3.s sVar3 = sVar;
-                                        messagesStorage2.X1(sVar3.f11070a, ijVar3.f23262k);
+                                        messagesStorage2.X1(sVar3.f11075a, ijVar3.f23266k);
                                         f10Var3.L.remove(sVar3);
-                                        g0.i3(yn0Var, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
+                                        g0.i3(zn0Var, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
                                         return;
                                 }
                             }
                         });
                         return;
                     } else {
-                        g0.h3(new bi.m4(f10Var, ijVar, str2, tL_textWithEntities, arrayList.get(0), sVar, yn0Var, j3));
+                        g0.h3(new bi.m4(f10Var, ijVar, str2, tL_textWithEntities, arrayList.get(0), sVar, zn0Var, j3));
                         return;
                     }
                 }
@@ -203,27 +203,27 @@ public final class mm implements RequestDelegate {
                                 f10 f10Var2 = f10Var;
                                 f10Var2.getClass();
                                 ij ijVar2 = ijVar;
-                                TLRPC.Message message = ijVar2.f23262k;
+                                TLRPC.Message message = ijVar2.f23266k;
                                 message.translatedToLanguage = str2;
                                 message.translatedText = null;
                                 yr messagesStorage = f10Var2.getMessagesStorage();
                                 f3.s sVar2 = sVar;
-                                messagesStorage.X1(sVar2.f11070a, ijVar2.f23262k);
+                                messagesStorage.X1(sVar2.f11075a, ijVar2.f23266k);
                                 f10Var2.L.remove(sVar2);
-                                g0.i3(yn0Var, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
+                                g0.i3(zn0Var, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
                                 return;
                             default:
                                 f10 f10Var3 = f10Var;
                                 f10Var3.getClass();
                                 ij ijVar3 = ijVar;
-                                TLRPC.Message message2 = ijVar3.f23262k;
+                                TLRPC.Message message2 = ijVar3.f23266k;
                                 message2.translatedToLanguage = str2;
                                 message2.translatedText = null;
                                 yr messagesStorage2 = f10Var3.getMessagesStorage();
                                 f3.s sVar3 = sVar;
-                                messagesStorage2.X1(sVar3.f11070a, ijVar3.f23262k);
+                                messagesStorage2.X1(sVar3.f11075a, ijVar3.f23266k);
                                 f10Var3.L.remove(sVar3);
-                                g0.i3(yn0Var, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
+                                g0.i3(zn0Var, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
                                 return;
                         }
                     }
@@ -233,21 +233,21 @@ public final class mm implements RequestDelegate {
     }
 
     public mm(qp qpVar, TLRPC.TL_inputChatPhoto tL_inputChatPhoto, TLRPC.FileLocation fileLocation, TLRPC.FileLocation fileLocation2, String str, long j3, Runnable runnable) {
-        this.f24058b = qpVar;
-        this.f24061f = tL_inputChatPhoto;
-        this.f24062g = fileLocation;
+        this.f24062b = qpVar;
+        this.f24065f = tL_inputChatPhoto;
+        this.f24066g = fileLocation;
         this.h = fileLocation2;
-        this.f24059c = str;
+        this.f24063c = str;
         this.d = j3;
-        this.f24060e = runnable;
+        this.f24064e = runnable;
     }
 
-    public mm(f10 f10Var, ij ijVar, String str, f3.s sVar, yn0 yn0Var, long j3, TLRPC.TL_textWithEntities tL_textWithEntities) {
-        this.f24058b = f10Var;
-        this.f24060e = ijVar;
-        this.f24059c = str;
-        this.f24061f = sVar;
-        this.f24062g = yn0Var;
+    public mm(f10 f10Var, ij ijVar, String str, f3.s sVar, zn0 zn0Var, long j3, TLRPC.TL_textWithEntities tL_textWithEntities) {
+        this.f24062b = f10Var;
+        this.f24064e = ijVar;
+        this.f24063c = str;
+        this.f24065f = sVar;
+        this.f24066g = zn0Var;
         this.d = j3;
         this.h = tL_textWithEntities;
     }

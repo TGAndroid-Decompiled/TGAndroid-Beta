@@ -1,77 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-public final class un0 implements TextWatcher {
-    public final int f38758a;
-    public final no0 f38759b;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class un0 implements jg.f0 {
+    public final mo0 f38724a;
 
-    public un0(no0 no0Var, int i7) {
-        this.f38758a = i7;
-        this.f38759b = no0Var;
+    public un0(mo0 mo0Var) {
+        this.f38724a = mo0Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        switch (this.f38758a) {
-            case 0:
-                org.telegram.messenger.g0.h3(new pb0(this, 25));
-                return;
-            default:
-                no0 no0Var = this.f38759b;
-                go0 go0Var = no0Var.C1;
-                cv0 cv0Var = no0Var.I1;
-                s00 s00Var = no0Var.f36452q2;
-                if (!TextUtils.isEmpty(s00Var.f37857r.getText())) {
-                    no0Var.K0(false);
-                }
-                if (no0Var.f36456s2) {
-                    String obj = s00Var.f37857r.getText().toString();
-                    if (obj.length() != 0) {
-                        if (cv0Var != null) {
-                            cv0Var.d.setText(org.telegram.messenger.id.M0(2131748167, null));
-                        }
-                    } else if (no0Var.f36465x1.getAdapter() != go0Var) {
-                        int J0 = no0.J0(no0Var);
-                        cv0Var.d.setText(org.telegram.messenger.id.M0(2131748167, null));
-                        cv0Var.e(false, true);
-                        no0Var.K0(false);
-                        go0Var.f();
-                        if (J0 > 0) {
-                            no0Var.f36469z1.h1(0, -J0);
-                        }
-                    }
-                    ko0 ko0Var = no0Var.E1;
-                    if (ko0Var != null) {
-                        ko0Var.E(obj);
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void a(a0.h hVar, ArrayList arrayList) {
+        int i7 = 0;
+        while (i7 < arrayList.size()) {
+            TLObject tLObject = ((jg.g0) arrayList.get(i7)).f16727a;
+            if ((tLObject instanceof TLRPC.Chat) && !org.telegram.messenger.t3.B((TLRPC.Chat) tLObject)) {
+                arrayList.remove(i7);
+                i7--;
+            }
+            i7++;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f38758a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f38758a;
-    }
-
-    private final void a(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void b(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
+        mo0 mo0Var = this.f38724a;
+        mo0Var.f36064z2 = arrayList;
+        for (int i10 = 0; i10 < mo0Var.f36064z2.size(); i10++) {
+            jg.g0 g0Var = (jg.g0) mo0Var.f36064z2.get(i10);
+            TLObject tLObject2 = g0Var.f16727a;
+            if (tLObject2 instanceof TLRPC.User) {
+                org.telegram.messenger.qp.s1(mo0Var.f28669a).X3((TLRPC.User) g0Var.f16727a, true, false);
+            } else if (tLObject2 instanceof TLRPC.Chat) {
+                org.telegram.messenger.qp.s1(mo0Var.f28669a).Q3((TLRPC.Chat) g0Var.f16727a, true);
+            } else if (tLObject2 instanceof TLRPC.EncryptedChat) {
+                org.telegram.messenger.qp.s1(mo0Var.f28669a).U3((TLRPC.EncryptedChat) g0Var.f16727a, true);
+            }
+        }
+        mo0Var.H1.f();
     }
 }
