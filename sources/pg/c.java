@@ -1,18 +1,18 @@
 package pg;
 
 import android.view.View;
-import org.telegram.messenger.c20;
+import org.telegram.messenger.z10;
 import org.telegram.tgnet.TLRPC;
-public final class c implements c20 {
-    public final int f53614a;
+public final class c implements z10 {
+    public final int f55022a;
 
     public c(int i7) {
-        this.f53614a = i7;
+        this.f55022a = i7;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f53614a) {
+        switch (this.f55022a) {
             case 0:
                 ((View) obj).invalidate();
                 return;

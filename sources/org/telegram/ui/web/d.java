@@ -1,58 +1,64 @@
 package org.telegram.ui.web;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import c8.ha;
-public final class d extends FrameLayout {
-    public final ImageView f51049a;
-    public final TextView f51050b;
-    public final ImageView f51051c;
-    public final Paint d;
-    public boolean f51052e;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.a41;
+import org.telegram.ui.Components.b41;
+import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.u41;
+import org.telegram.ui.Components.uj0;
+public final class d extends a41 {
+    public static final int f52584b = 0;
 
-    public d(Context context) {
-        super(context);
-        this.d = new Paint(1);
-        ImageView imageView = new ImageView(context);
-        this.f51049a = imageView;
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        imageView.setImageResource(2131231777);
-        addView(imageView, ha.d(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
-        TextView textView = new TextView(context);
-        this.f51050b = textView;
-        textView.setTextSize(1, 16.0f);
-        addView(textView, ha.d(-1, -2.0f, 19, 64.0f, 8.0f, 64.0f, 8.0f));
-        ImageView imageView2 = new ImageView(context);
-        this.f51051c = imageView2;
-        imageView2.setScaleType(scaleType);
-        imageView2.setImageResource(2131231768);
-        addView(imageView2, ha.d(32, 32.0f, 21, 8.0f, 8.0f, 10.0f, 8.0f));
+    static {
+        a41.h(new a41());
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        if (this.f51052e) {
-            canvas.drawRect(org.telegram.messenger.g0.L(64.0f), getHeight() - Math.max(org.telegram.messenger.g0.L(0.66f), 1), getWidth(), getHeight(), this.d);
+    public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
+        int i7;
+        e eVar = (e) view;
+        if (b41Var.G == null) {
+            eVar.setAsShowMore((k) b41Var.H);
+            return;
         }
+        int i10 = b41Var.f33194z;
+        String charSequence = b41Var.f33181l.toString();
+        View.OnClickListener onClickListener = b41Var.D;
+        k kVar = (k) b41Var.H;
+        ImageView imageView = eVar.f52589a;
+        imageView.setVisibility(0);
+        int i11 = kVar.G;
+        int i12 = kVar.I;
+        TextView textView = eVar.f52590b;
+        textView.setTextColor(i12);
+        int r12 = j6.r1(0.6f, i12);
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        imageView.setColorFilter(new PorterDuffColorFilter(r12, mode));
+        ImageView imageView2 = eVar.f52591c;
+        imageView2.setColorFilter(new PorterDuffColorFilter(j6.r1(0.6f, i12), mode));
+        imageView2.setBackground(j6.b0(0, j6.r1(0.15f, i12), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f)));
+        if (i10 == 0) {
+            i7 = 2131232095;
+        } else {
+            i7 = 2131232355;
+        }
+        imageView.setImageResource(i7);
+        textView.setText(charSequence);
+        imageView2.setOnClickListener(onClickListener);
+        eVar.d.setColor(j6.r1(0.1f, kVar.I));
+        eVar.f52592e = z10;
+        eVar.setWillNotDraw(!z10);
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
-    }
-
-    public void setAsShowMore(j jVar) {
-        ImageView imageView = this.f51049a;
-        imageView.setImageResource(2131230871);
-        imageView.setColorFilter(new PorterDuffColorFilter(jVar.H, PorterDuff.Mode.SRC_IN));
+    public final View d(Context context, uj0 uj0Var, int i7, e6 e6Var) {
+        return new e(context);
     }
 }

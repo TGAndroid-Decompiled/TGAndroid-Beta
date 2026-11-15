@@ -1,91 +1,26 @@
 package bi;
 
 import android.content.Context;
-import android.text.TextUtils;
-import org.telegram.messenger.qp;
-import org.telegram.messenger.qs;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.cn;
-public final class b4 implements Runnable {
-    public final int f3510a;
-    public final k7 f3511b;
-    public final String f3512c;
+import org.telegram.ui.Components.cc;
+public final class b4 extends di.c6 {
+    public final int f3397x3;
+    public final c4 f3398y3;
 
-    public b4(k7 k7Var, String str, int i7) {
-        this.f3510a = i7;
-        this.f3511b = k7Var;
-        this.f3512c = str;
+    public b4(c4 c4Var, Context context, int i7, long j3, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
+        super(context, i7, j3, e6Var, null);
+        this.f3397x3 = i10;
+        this.f3398y3 = c4Var;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f3510a;
-        String str = this.f3512c;
-        k7 k7Var = this.f3511b;
-        switch (i7) {
+    public final cc k() {
+        switch (this.f3397x3) {
             case 0:
-                long j3 = k7Var.S1;
-                k7Var.f4170f2.setLoading(false);
-                if (!TextUtils.isEmpty(str)) {
-                    k7Var.dismiss();
-                    org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
-                    if (Q != null) {
-                        if (Q instanceof cn) {
-                            cn cnVar = (cn) Q;
-                            if (cnVar.a() == j3) {
-                                org.telegram.ui.Components.gc.a0(cnVar).I(2131624033, org.telegram.messenger.id.M0(2131745096, null), org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131745094, org.telegram.messenger.m5.t(j3)))).k(true);
-                                return;
-                            }
-                        }
-                        qs f10 = qs.f(k7Var.f28669a);
-                        Long valueOf = Long.valueOf(j3);
-                        Boolean bool = Boolean.FALSE;
-                        f10.k(6, valueOf, bool);
-                        qs.f(k7Var.f28669a).k(5, Long.valueOf(j3), bool);
-                        cn ta2 = cn.ta(j3);
-                        ta2.whenFullyVisible(new a4(1, k7Var, ta2));
-                        Q.presentFragment(ta2);
-                        return;
-                    }
-                    return;
-                }
-                k7Var.s2(0, true, null);
-                return;
+                return cc.a0(this.f3398y3.f3409a.f3607a);
             case 1:
-                Context context = k7Var.getContext();
-                vf.c.v(context, qp.s1(k7Var.f28669a).H6 + str, false);
-                return;
-            case 2:
-                Context context2 = k7Var.getContext();
-                vf.c.v(context2, qp.s1(k7Var.f28669a).H6 + str, false);
-                return;
-            case 3:
-                Context context3 = k7Var.getContext();
-                vf.c.v(context3, qp.s1(k7Var.f28669a).H6 + str, false);
-                return;
-            case 4:
-                Context context4 = k7Var.getContext();
-                vf.c.v(context4, qp.s1(k7Var.f28669a).H6 + str, false);
-                return;
-            case 5:
-                Context context5 = k7Var.getContext();
-                vf.c.v(context5, qp.s1(k7Var.f28669a).H6 + str, false);
-                return;
-            case 6:
-                Context context6 = k7Var.getContext();
-                vf.c.v(context6, qp.s1(k7Var.f28669a).H6 + str, false);
-                return;
-            case 7:
-                org.telegram.messenger.g0.g(str);
-                org.telegram.ui.Components.bc k10 = k7Var.k().k(false);
-                k10.f32213t = true;
-                k10.j();
-                return;
+                return cc.a0(this.f3398y3.f3409a.f3607a);
             default:
-                k7Var.dismiss();
-                Context context7 = k7Var.getContext();
-                vf.c.t(context7, "https://" + qp.s1(k7Var.f28669a).U2 + "/" + str);
-                return;
+                return cc.a0(this.f3398y3.f3409a.f3607a);
         }
     }
 }

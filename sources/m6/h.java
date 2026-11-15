@@ -7,7 +7,7 @@ import android.os.Parcelable;
 import android.util.Log;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.iid.FirebaseInstanceIdReceiver;
-import f5.r;
+import f5.s;
 import java.lang.ref.SoftReference;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
@@ -17,31 +17,31 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.f2;
+import org.telegram.ui.ActionBar.e2;
 public final class h implements Runnable {
-    public final int f19906a = 0;
-    public final boolean f19907b;
-    public final Object f19908c;
+    public final int f20498a = 0;
+    public final boolean f20499b;
+    public final Object f20500c;
     public final Object d;
-    public final Object f19909e;
+    public final Object f20501e;
 
-    public h(FirebaseInstanceIdReceiver firebaseInstanceIdReceiver, Intent intent, Context context, boolean z9, BroadcastReceiver.PendingResult pendingResult) {
-        this.f19908c = intent;
+    public h(FirebaseInstanceIdReceiver firebaseInstanceIdReceiver, Intent intent, Context context, boolean z10, BroadcastReceiver.PendingResult pendingResult) {
+        this.f20500c = intent;
         this.d = context;
-        this.f19907b = z9;
-        this.f19909e = pendingResult;
+        this.f20499b = z10;
+        this.f20501e = pendingResult;
     }
 
     @Override
     public final void run() {
         Intent intent;
         int i7;
-        switch (this.f19906a) {
+        switch (this.f20498a) {
             case 0:
-                Intent intent2 = (Intent) this.f19908c;
+                Intent intent2 = (Intent) this.f20500c;
                 Context context = (Context) this.d;
-                boolean z9 = this.f19907b;
-                BroadcastReceiver.PendingResult pendingResult = (BroadcastReceiver.PendingResult) this.f19909e;
+                boolean z10 = this.f20499b;
+                BroadcastReceiver.PendingResult pendingResult = (BroadcastReceiver.PendingResult) this.f20501e;
                 try {
                     Parcelable parcelableExtra = intent2.getParcelableExtra("wrapped_intent");
                     Executor executor = null;
@@ -58,15 +58,15 @@ public final class h implements Runnable {
                             a aVar = new a(intent2);
                             CountDownLatch countDownLatch = new CountDownLatch(1);
                             synchronized (FirebaseInstanceIdReceiver.class) {
-                                SoftReference softReference = FirebaseInstanceIdReceiver.f7887b;
+                                SoftReference softReference = FirebaseInstanceIdReceiver.f7271b;
                                 if (softReference != null) {
                                     executor = (Executor) softReference.get();
                                 }
                                 if (executor == null) {
-                                    ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1, 1, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue(), new r("pscm-ack-executor"));
+                                    ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1, 1, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue(), new s("pscm-ack-executor"));
                                     threadPoolExecutor.allowCoreThreadTimeOut(true);
                                     executor = Executors.unconfigurableExecutorService(threadPoolExecutor);
-                                    FirebaseInstanceIdReceiver.f7887b = new SoftReference(executor);
+                                    FirebaseInstanceIdReceiver.f7271b = new SoftReference(executor);
                                 }
                             }
                             executor.execute(new a9.h(context, aVar, countDownLatch, 7));
@@ -85,7 +85,7 @@ public final class h implements Runnable {
                         }
                         i7 = i10;
                     }
-                    if (z9 && pendingResult != null) {
+                    if (z10 && pendingResult != null) {
                         pendingResult.setResultCode(i7);
                     }
                     if (pendingResult != null) {
@@ -100,25 +100,25 @@ public final class h implements Runnable {
                     throw th2;
                 }
             default:
-                ActionBarLayout actionBarLayout = (ActionBarLayout) this.f19909e;
-                if (actionBarLayout.f27245e == this) {
-                    actionBarLayout.f27245e = null;
-                    f2 f2Var = (f2) this.f19908c;
-                    if (f2Var != null) {
-                        f2Var.onTransitionAnimationStart(false, false);
+                ActionBarLayout actionBarLayout = (ActionBarLayout) this.f20501e;
+                if (actionBarLayout.f28336e == this) {
+                    actionBarLayout.f28336e = null;
+                    e2 e2Var = (e2) this.f20500c;
+                    if (e2Var != null) {
+                        e2Var.onTransitionAnimationStart(false, false);
                     }
-                    ((f2) this.d).onTransitionAnimationStart(true, false);
-                    actionBarLayout.h0(true, true, this.f19907b);
+                    ((e2) this.d).onTransitionAnimationStart(true, false);
+                    actionBarLayout.h0(true, true, this.f20499b);
                     return;
                 }
                 return;
         }
     }
 
-    public h(ActionBarLayout actionBarLayout, f2 f2Var, f2 f2Var2, boolean z9) {
-        this.f19909e = actionBarLayout;
-        this.f19908c = f2Var;
-        this.d = f2Var2;
-        this.f19907b = z9;
+    public h(ActionBarLayout actionBarLayout, e2 e2Var, e2 e2Var2, boolean z10) {
+        this.f20501e = actionBarLayout;
+        this.f20500c = e2Var;
+        this.d = e2Var2;
+        this.f20499b = z10;
     }
 }

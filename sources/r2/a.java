@@ -1,7 +1,7 @@
 package r2;
 
 import android.net.Uri;
-import j2.d0;
+import j2.c0;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -12,39 +12,39 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 public final class a implements j2.h {
-    public final j2.h f54289a;
-    public final byte[] f54290b;
-    public final byte[] f54291c;
+    public final j2.h f55758a;
+    public final byte[] f55759b;
+    public final byte[] f55760c;
     public CipherInputStream d;
 
     public a(j2.h hVar, byte[] bArr, byte[] bArr2) {
-        this.f54289a = hVar;
-        this.f54290b = bArr;
-        this.f54291c = bArr2;
+        this.f55758a = hVar;
+        this.f55759b = bArr;
+        this.f55760c = bArr2;
     }
 
     @Override
-    public final void addTransferListener(d0 d0Var) {
-        d0Var.getClass();
-        this.f54289a.addTransferListener(d0Var);
+    public final void addTransferListener(c0 c0Var) {
+        c0Var.getClass();
+        this.f55758a.addTransferListener(c0Var);
     }
 
     @Override
     public final void close() {
         if (this.d != null) {
             this.d = null;
-            this.f54289a.close();
+            this.f55758a.close();
         }
     }
 
     @Override
     public final Map getResponseHeaders() {
-        return this.f54289a.getResponseHeaders();
+        return this.f55758a.getResponseHeaders();
     }
 
     @Override
     public final Uri getUri() {
-        return this.f54289a.getUri();
+        return this.f55758a.getUri();
     }
 
     @Override
@@ -52,8 +52,8 @@ public final class a implements j2.h {
         try {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
             try {
-                cipher.init(2, new SecretKeySpec(this.f54290b, "AES"), new IvParameterSpec(this.f54291c));
-                j2.k kVar = new j2.k(this.f54289a, mVar);
+                cipher.init(2, new SecretKeySpec(this.f55759b, "AES"), new IvParameterSpec(this.f55760c));
+                j2.k kVar = new j2.k(this.f55758a, mVar);
                 this.d = new CipherInputStream(kVar, cipher);
                 kVar.a();
                 return -1L;

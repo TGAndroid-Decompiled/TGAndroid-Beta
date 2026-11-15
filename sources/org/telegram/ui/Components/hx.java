@@ -1,60 +1,31 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public interface hx {
-    boolean A();
+public final class hx extends u41 {
+    public hx(Context context, int i7, org.telegram.messenger.s10 s10Var, org.telegram.messenger.x10 x10Var, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, i7, -1, false, s10Var, x10Var, null, e6Var, -1, 0);
+        this.f40091z2 = true;
+        setOverScrollMode(2);
+    }
 
-    long a();
-
-    boolean b();
-
-    boolean c();
-
-    void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z9);
-
-    void e(Object obj, Object obj2);
-
-    int f();
-
-    boolean g();
-
-    void h(TLRPC.StickerSetCovered stickerSetCovered);
-
-    void i(int i7);
-
-    boolean j();
-
-    boolean k();
-
-    void l(String str);
-
-    void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.ej ejVar, boolean z9, int i7);
-
-    void n();
-
-    void o(t31 t31Var);
-
-    float p();
-
-    void q();
-
-    void r(TLRPC.StickerSetCovered stickerSetCovered);
-
-    void s(int i7);
-
-    void t(ArrayList arrayList);
-
-    void u();
-
-    void v(View view, Object obj, String str, Object obj2, boolean z9, int i7, int i10);
-
-    void w();
-
-    void x(long j3, TLRPC.Document document, String str, boolean z9);
-
-    void y(long j3);
-
-    boolean z();
+    public final void L1(View view) {
+        int i7;
+        if (view != null) {
+            float L = org.telegram.messenger.g0.L(92.0f);
+            float width = getWidth() - L;
+            float x10 = view.getX();
+            float width2 = view.getWidth() + x10;
+            if (x10 < L) {
+                i7 = (int) (x10 - L);
+            } else if (width2 > width) {
+                i7 = (int) (width2 - width);
+            } else {
+                i7 = 0;
+            }
+            if (i7 != 0) {
+                org.telegram.messenger.g0.J(this, new u11(this, view, i7, 23));
+            }
+        }
+    }
 }

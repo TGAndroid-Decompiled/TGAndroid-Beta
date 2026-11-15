@@ -1,11 +1,11 @@
 package a5;
 
-import a8.wa;
+import a8.xa;
 import android.graphics.Paint;
 public final class j extends m {
-    public wa d;
+    public xa d;
     public float f221e;
-    public wa f222f;
+    public xa f222f;
     public float f223g;
     public float h;
     public float f224i;
@@ -17,7 +17,7 @@ public final class j extends m {
 
     @Override
     public final boolean a() {
-        if (!this.f222f.n() && !this.d.n()) {
+        if (!this.f222f.m() && !this.d.m()) {
             return false;
         }
         return true;
@@ -33,7 +33,7 @@ public final class j extends m {
     }
 
     public int getFillColor() {
-        return this.f222f.f700b;
+        return this.f222f.f713b;
     }
 
     public float getStrokeAlpha() {
@@ -41,7 +41,7 @@ public final class j extends m {
     }
 
     public int getStrokeColor() {
-        return this.d.f700b;
+        return this.d.f713b;
     }
 
     public float getStrokeWidth() {
@@ -65,7 +65,7 @@ public final class j extends m {
     }
 
     public void setFillColor(int i7) {
-        this.f222f.f700b = i7;
+        this.f222f.f713b = i7;
     }
 
     public void setStrokeAlpha(float f10) {
@@ -73,7 +73,7 @@ public final class j extends m {
     }
 
     public void setStrokeColor(int i7) {
-        this.d.f700b = i7;
+        this.d.f713b = i7;
     }
 
     public void setStrokeWidth(float f10) {

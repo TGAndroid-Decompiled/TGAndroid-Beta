@@ -1,22 +1,22 @@
 package i2;
 
-import a8.ia;
+import a8.ja;
 import e2.n0;
 import e2.p0;
 public final class e implements p0 {
-    public final float f15156a;
-    public final float f15157b;
+    public final float f15608a;
+    public final float f15609b;
 
     public e(float f10, float f11) {
-        boolean z9;
+        boolean z10;
         if (f10 >= -90.0f && f10 <= 90.0f && f11 >= -180.0f && f11 <= 180.0f) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        ia.e("Invalid latitude or longitude", z9);
-        this.f15156a = f10;
-        this.f15157b = f11;
+        ja.e("Invalid latitude or longitude", z10);
+        this.f15608a = f10;
+        this.f15609b = f11;
     }
 
     @Override
@@ -35,7 +35,7 @@ public final class e implements p0 {
         }
         if (obj != null && e.class == obj.getClass()) {
             e eVar = (e) obj;
-            if (this.f15156a == eVar.f15156a && this.f15157b == eVar.f15157b) {
+            if (this.f15608a == eVar.f15608a && this.f15609b == eVar.f15609b) {
                 return true;
             }
         }
@@ -43,11 +43,11 @@ public final class e implements p0 {
     }
 
     public final int hashCode() {
-        return Float.valueOf(this.f15157b).hashCode() + ((Float.valueOf(this.f15156a).hashCode() + 527) * 31);
+        return Float.valueOf(this.f15609b).hashCode() + ((Float.valueOf(this.f15608a).hashCode() + 527) * 31);
     }
 
     public final String toString() {
-        return "xyz: latitude=" + this.f15156a + ", longitude=" + this.f15157b;
+        return "xyz: latitude=" + this.f15608a + ", longitude=" + this.f15609b;
     }
 
     @Override

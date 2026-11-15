@@ -1,4 +1,4 @@
 package l5;
 public interface g {
-    void b(Exception exc);
+    void a(Exception exc);
 }

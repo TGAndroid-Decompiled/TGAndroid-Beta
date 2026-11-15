@@ -1,211 +1,152 @@
 package org.telegram.messenger;
 
+import j$.util.concurrent.ConcurrentHashMap;
+import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class bl implements RequestDelegate {
-    public final int f21690a;
-    public final qp f21691b;
-    public final int f21692c;
-    public final int d;
-    public final int f21693e;
-    public final int f21694f;
-    public final int f21695g;
-    public final long h;
-    public final long f21696i;
-    public final int f21697j;
-    public final int f21698k;
-    public final int f21699l;
-    public final int f21700m;
-    public final int f21701n;
-    public final long f21702o;
-    public final int f21703p;
-    public final boolean f21704q;
-    public final int f21705r;
-    public final boolean f21706s;
-    public final boolean f21707t;
-    public final TLObject f21708u;
+    public final int f22730a = 0;
+    public final np f22731b;
+    public final boolean f22732c;
+    public final long d;
+    public final TLObject f22733e;
 
-    public bl(qp qpVar, int i7, int i10, int i11, int i12, int i13, long j3, long j10, int i14, int i15, int i16, int i17, int i18, long j11, int i19, boolean z9, int i20, boolean z10, boolean z11, TLRPC.TL_messages_getReplies tL_messages_getReplies) {
-        this.f21690a = 1;
-        this.f21691b = qpVar;
-        this.f21692c = i7;
-        this.d = i10;
-        this.f21693e = i11;
-        this.f21694f = i12;
-        this.f21695g = i13;
-        this.h = j3;
-        this.f21696i = j10;
-        this.f21697j = i14;
-        this.f21698k = i15;
-        this.f21699l = i16;
-        this.f21700m = i17;
-        this.f21701n = i18;
-        this.f21702o = j11;
-        this.f21703p = i19;
-        this.f21704q = z9;
-        this.f21705r = i20;
-        this.f21706s = z10;
-        this.f21707t = z11;
-        this.f21708u = tL_messages_getReplies;
+    public bl(np npVar, TLRPC.Chat chat, boolean z10, long j3) {
+        this.f22731b = npVar;
+        this.f22733e = chat;
+        this.f22732c = z10;
+        this.d = j3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7;
-        int i10;
-        int i11;
-        int i12;
-        switch (this.f21690a) {
+        long j3;
+        ArrayList arrayList;
+        switch (this.f22730a) {
             case 0:
-                TLRPC.TL_messages_getSavedHistory tL_messages_getSavedHistory = (TLRPC.TL_messages_getSavedHistory) this.f21708u;
-                qp qpVar = this.f21691b;
-                int i13 = this.f21694f;
-                if (tLObject != null) {
-                    TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-                    ArrayList<TLRPC.Message> arrayList = messages_messages.messages;
-                    long j3 = this.h;
-                    qpVar.e4(arrayList, j3);
-                    int size = messages_messages.messages.size();
-                    int i14 = this.f21692c;
-                    if (size > i14) {
-                        messages_messages.messages.remove(0);
-                    }
-                    int i15 = this.f21693e;
-                    if (i15 != 0 && !messages_messages.messages.isEmpty()) {
-                        i7 = ((TLRPC.Message) jg.g.i(1, messages_messages.messages)).f26981id;
-                        int size2 = messages_messages.messages.size() - 1;
-                        while (true) {
-                            if (size2 >= 0) {
-                                TLRPC.Message message = messages_messages.messages.get(size2);
-                                if (message.date > i15) {
-                                    i7 = message.f26981id;
-                                } else {
-                                    size2--;
-                                }
+                TLRPC.Chat chat = (TLRPC.Chat) this.f22733e;
+                TLRPC.TL_channels_channelParticipant tL_channels_channelParticipant = (TLRPC.TL_channels_channelParticipant) tLObject;
+                if (tL_channels_channelParticipant != null) {
+                    TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipant.participant;
+                    if (channelParticipant instanceof TLRPC.TL_channelParticipantSelf) {
+                        TLRPC.TL_channelParticipantSelf tL_channelParticipantSelf = (TLRPC.TL_channelParticipantSelf) channelParticipant;
+                        boolean z10 = chat.megagroup;
+                        np npVar = this.f22731b;
+                        if (z10) {
+                            vr messagesStorage = npVar.getMessagesStorage();
+                            long j10 = chat.f28051id;
+                            messagesStorage.getClass();
+                            CountDownLatch countDownLatch = new CountDownLatch(1);
+                            boolean[] zArr = new boolean[1];
+                            messagesStorage.f27220a.c(new cq(messagesStorage, j10, zArr, countDownLatch, 0));
+                            try {
+                                countDownLatch.await();
+                            } catch (Exception e10) {
+                                messagesStorage.o(e10, true);
+                            }
+                            if (zArr[0]) {
+                                return;
                             }
                         }
-                    } else {
-                        i7 = this.d;
-                    }
-                    qpVar.K3(messages_messages, messages_messages.messages.size(), j3, this.f21696i, i14, i7, i15, false, i13, this.f21695g, this.f21697j, this.f21698k, this.f21699l, this.f21700m, false, this.f21701n, this.f21702o, this.f21703p, this.f21704q, this.f21705r, this.f21706s, this.f21707t, null);
-                    return;
-                }
-                g0.h3(new dg(qpVar, i13, (TLObject) tL_messages_getSavedHistory, tL_error, 13));
-                return;
-            case 1:
-                TLRPC.TL_messages_getReplies tL_messages_getReplies = (TLRPC.TL_messages_getReplies) this.f21708u;
-                qp qpVar2 = this.f21691b;
-                int i16 = this.f21697j;
-                if (tLObject != null) {
-                    TLRPC.messages_Messages messages_messages2 = (TLRPC.messages_Messages) tLObject;
-                    int size3 = messages_messages2.messages.size();
-                    int i17 = this.f21692c;
-                    if (size3 > i17) {
-                        messages_messages2.messages.remove(0);
-                    }
-                    boolean isEmpty = messages_messages2.messages.isEmpty();
-                    int i18 = this.d;
-                    int i19 = this.f21693e;
-                    int i20 = this.f21695g;
-                    if (!isEmpty) {
-                        if (i19 != 0) {
-                            i18 = ((TLRPC.Message) jg.g.i(1, messages_messages2.messages)).f26981id;
-                            int size4 = messages_messages2.messages.size() - 1;
-                            while (true) {
-                                if (size4 >= 0) {
-                                    TLRPC.Message message2 = messages_messages2.messages.get(size4);
-                                    if (message2.date > i19) {
-                                        i18 = message2.f26981id;
-                                    } else {
-                                        size4--;
-                                    }
+                        g0.h3(new fi(12, npVar, tL_channels_channelParticipant));
+                        npVar.getMessagesStorage().m1(tL_channels_channelParticipant.users, tL_channels_channelParticipant.chats, true, true);
+                        boolean z11 = this.f22732c;
+                        long j11 = this.d;
+                        if (z11 && Math.abs(npVar.getConnectionsManager().getCurrentTime() - tL_channels_channelParticipant.participant.date) < 86400) {
+                            vr messagesStorage2 = npVar.getMessagesStorage();
+                            messagesStorage2.getClass();
+                            j3 = j11;
+                            CountDownLatch countDownLatch2 = new CountDownLatch(1);
+                            boolean[] zArr2 = new boolean[1];
+                            messagesStorage2.f27220a.c(new cq(messagesStorage2, j3, zArr2, countDownLatch2, 1));
+                            try {
+                                countDownLatch2.await();
+                            } catch (Exception e11) {
+                                messagesStorage2.o(e11, true);
+                            }
+                            if (!zArr2[0]) {
+                                TLRPC.TL_messageService tL_messageService = new TLRPC.TL_messageService();
+                                tL_messageService.flags = 256;
+                                int j12 = npVar.getUserConfig().j();
+                                tL_messageService.f28072id = j12;
+                                tL_messageService.local_id = j12;
+                                tL_messageService.date = tL_channels_channelParticipant.participant.date;
+                                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                                tL_messageService.from_id = tL_peerUser;
+                                tL_peerUser.user_id = tL_channels_channelParticipant.participant.inviter_id;
+                                TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
+                                tL_messageService.peer_id = tL_peerChannel;
+                                tL_peerChannel.channel_id = j3;
+                                tL_messageService.media_unread = true;
+                                tL_messageService.unread = true;
+                                tL_messageService.post = true;
+                                if (tL_channelParticipantSelf.via_invite && tL_channelParticipantSelf.inviter_id == npVar.getUserConfig().e()) {
+                                    tL_messageService.action = new TLRPC.TL_messageActionChatJoinedByRequest();
+                                } else {
+                                    tL_messageService.action = new TLRPC.TL_messageActionChatAddUser();
                                 }
+                                tL_messageService.action.users.add(Long.valueOf(npVar.getUserConfig().e()));
+                                tL_messageService.dialog_id = -j3;
+                                npVar.getUserConfig().v(false);
+                                arrayList = new ArrayList();
+                                ArrayList arrayList2 = new ArrayList();
+                                ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
+                                for (int i7 = 0; i7 < tL_channels_channelParticipant.users.size(); i7++) {
+                                    TLRPC.User user = tL_channels_channelParticipant.users.get(i7);
+                                    concurrentHashMap.put(Long.valueOf(user.f28200id), user);
+                                }
+                                arrayList2.add(tL_messageService);
+                                arrayList.add(new gj(npVar.currentAccount, (TLRPC.Message) tL_messageService, (AbstractMap) concurrentHashMap, (AbstractMap) null, true, false));
+                                if (tL_messageService.from_id.user_id != npVar.getUserConfig().e()) {
+                                    npVar.getMessagesStorage().f27220a.c(new oj(npVar, arrayList, 2));
+                                }
+                                npVar.getMessagesStorage().j1(arrayList2, true, true, false, 0, false, 0, 0L);
+                                ArrayList arrayList3 = arrayList;
+                                vr messagesStorage3 = npVar.getMessagesStorage();
+                                long j13 = j3;
+                                messagesStorage3.f27220a.c(new sp(2, tL_channels_channelParticipant.participant.inviter_id, j13, messagesStorage3));
+                                g0.h3(new gm(npVar, j13, arrayList3, tL_channels_channelParticipant, 5));
+                                return;
                             }
                         } else {
-                            int i21 = this.f21694f;
-                            if (i21 != 0 && i20 == 2 && i18 > 0) {
-                                for (int size5 = messages_messages2.messages.size() - 1; size5 >= 0; size5--) {
-                                    TLRPC.Message message3 = messages_messages2.messages.get(size5);
-                                    int i22 = message3.f26981id;
-                                    if (i22 > i21 && !message3.out) {
-                                        i11 = i18;
-                                        i10 = i22;
-                                        qpVar2.K3(messages_messages2, messages_messages2.messages.size(), this.h, this.f21696i, i17, i11, i19, false, i16, i10, this.f21698k, this.f21699l, this.f21700m, i20, false, this.f21701n, this.f21702o, this.f21703p, this.f21704q, this.f21705r, this.f21706s, this.f21707t, null);
-                                        return;
-                                    }
-                                }
-                            }
+                            j3 = j11;
                         }
+                        arrayList = null;
+                        ArrayList arrayList32 = arrayList;
+                        vr messagesStorage32 = npVar.getMessagesStorage();
+                        long j132 = j3;
+                        messagesStorage32.f27220a.c(new sp(2, tL_channels_channelParticipant.participant.inviter_id, j132, messagesStorage32));
+                        g0.h3(new gm(npVar, j132, arrayList32, tL_channels_channelParticipant, 5));
+                        return;
                     }
-                    i10 = 0;
-                    i11 = i18;
-                    qpVar2.K3(messages_messages2, messages_messages2.messages.size(), this.h, this.f21696i, i17, i11, i19, false, i16, i10, this.f21698k, this.f21699l, this.f21700m, i20, false, this.f21701n, this.f21702o, this.f21703p, this.f21704q, this.f21705r, this.f21706s, this.f21707t, null);
                     return;
                 }
-                g0.h3(new dg(qpVar2, i16, (TLObject) tL_messages_getReplies, tL_error, 9));
                 return;
             default:
-                TLRPC.TL_messages_getHistory tL_messages_getHistory = (TLRPC.TL_messages_getHistory) this.f21708u;
-                qp qpVar3 = this.f21691b;
-                int i23 = this.f21694f;
-                if (tLObject != null) {
-                    TLRPC.messages_Messages messages_messages3 = (TLRPC.messages_Messages) tLObject;
-                    ArrayList<TLRPC.Message> arrayList2 = messages_messages3.messages;
-                    long j10 = this.h;
-                    qpVar3.e4(arrayList2, j10);
-                    int size6 = messages_messages3.messages.size();
-                    int i24 = this.f21692c;
-                    if (size6 > i24) {
-                        messages_messages3.messages.remove(0);
+                TLRPC.User user2 = (TLRPC.User) this.f22733e;
+                if (tL_error == null) {
+                    boolean z12 = tLObject instanceof TLRPC.Updates;
+                    np npVar2 = this.f22731b;
+                    if (z12) {
+                        npVar2.O3((TLRPC.Updates) tLObject, false);
                     }
-                    int i25 = this.f21693e;
-                    if (i25 != 0 && !messages_messages3.messages.isEmpty()) {
-                        i12 = ((TLRPC.Message) jg.g.i(1, messages_messages3.messages)).f26981id;
-                        int size7 = messages_messages3.messages.size() - 1;
-                        while (true) {
-                            if (size7 >= 0) {
-                                TLRPC.Message message4 = messages_messages3.messages.get(size7);
-                                if (message4.date > i25) {
-                                    i12 = message4.f26981id;
-                                } else {
-                                    size7--;
-                                }
-                            }
-                        }
-                    } else {
-                        i12 = this.d;
+                    if (this.f22732c && !q10.B(user2)) {
+                        g0.i3(new kk(npVar2, this.d, 10), 1000L);
+                        return;
                     }
-                    qpVar3.K3(messages_messages3, messages_messages3.messages.size(), j10, this.f21696i, i24, i12, i25, false, i23, this.f21695g, this.f21697j, this.f21698k, this.f21699l, this.f21700m, false, this.f21701n, this.f21702o, this.f21703p, this.f21704q, this.f21705r, this.f21706s, this.f21707t, null);
                     return;
                 }
-                g0.h3(new dg(qpVar3, i23, (TLObject) tL_messages_getHistory, tL_error, 11));
                 return;
         }
     }
 
-    public bl(qp qpVar, long j3, int i7, int i10, int i11, long j10, int i12, int i13, int i14, int i15, int i16, int i17, int i18, long j11, int i19, boolean z9, int i20, boolean z10, boolean z11, TLObject tLObject, int i21) {
-        this.f21690a = i21;
-        this.f21691b = qpVar;
-        this.h = j3;
-        this.f21692c = i7;
-        this.d = i10;
-        this.f21693e = i11;
-        this.f21696i = j10;
-        this.f21694f = i12;
-        this.f21695g = i13;
-        this.f21697j = i14;
-        this.f21698k = i15;
-        this.f21699l = i16;
-        this.f21700m = i17;
-        this.f21701n = i18;
-        this.f21702o = j11;
-        this.f21703p = i19;
-        this.f21704q = z9;
-        this.f21705r = i20;
-        this.f21706s = z10;
-        this.f21707t = z11;
-        this.f21708u = tLObject;
+    public bl(np npVar, boolean z10, TLRPC.User user, long j3) {
+        this.f22731b = npVar;
+        this.f22732c = z10;
+        this.f22733e = user;
+        this.d = j3;
     }
 }

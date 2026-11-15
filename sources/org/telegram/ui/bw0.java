@@ -1,37 +1,50 @@
 package org.telegram.ui;
 
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
 import android.view.View;
-public final class bw0 implements View.OnClickListener {
-    public final int f44150a;
-    public final mw0 f44151b;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_fragment;
+public final class bw0 extends ClickableSpan {
+    public final TLRPC.TL_username f45843a;
+    public final String f45844b;
+    public final iw0 f45845c;
 
-    public bw0(mw0 mw0Var, int i7) {
-        this.f44150a = i7;
-        this.f44151b = mw0Var;
+    public bw0(iw0 iw0Var, TLRPC.TL_username tL_username, String str) {
+        this.f45845c = iw0Var;
+        this.f45843a = tL_username;
+        this.f45844b = str;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f44150a) {
-            case 0:
-                ProfileActivity profileActivity = this.f44151b.f48065e;
-                profileActivity.getMessagesController().x3(profileActivity, profileActivity.getMessagesController().a2(Long.valueOf(profileActivity.f41714d1)), null, profileActivity.getClassGuid(), null, false, false);
+        ProfileActivity profileActivity = this.f45845c.f48138e;
+        TLRPC.TL_username tL_username = this.f45843a;
+        if (!tL_username.editable) {
+            if (profileActivity.f43152m5 != this) {
+                profileActivity.g5(this);
+                TL_fragment.TL_getCollectibleInfo tL_getCollectibleInfo = new TL_fragment.TL_getCollectibleInfo();
+                TL_fragment.TL_inputCollectibleUsername tL_inputCollectibleUsername = new TL_fragment.TL_inputCollectibleUsername();
+                tL_inputCollectibleUsername.username = tL_username.username;
+                tL_getCollectibleInfo.collectible = tL_inputCollectibleUsername;
+                profileActivity.getConnectionsManager().bindRequestToGuid(profileActivity.getConnectionsManager().sendRequest(tL_getCollectibleInfo, new b00(26, this, tL_username)), profileActivity.getClassGuid());
                 return;
-            default:
-                ProfileActivity profileActivity2 = this.f44151b.f48065e;
-                profileActivity2.O4 = !profileActivity2.O4;
-                if (!profileActivity2.N4) {
-                    profileActivity2.N4 = true;
-                }
-                profileActivity2.W4();
-                view.requestLayout();
-                profileActivity2.d.g(profileActivity2.N3);
-                int i7 = profileActivity2.f41787n6;
-                if (i7 >= 0) {
-                    profileActivity2.f41705c.h1(i7, profileActivity2.f41793o6 - profileActivity2.f41689a.getPaddingTop());
-                    return;
-                }
-                return;
+            }
+            return;
         }
+        profileActivity.g5(null);
+        String str = profileActivity.getMessagesController().V2 + "/" + this.f45844b;
+        TLRPC.Chat chat = profileActivity.F2;
+        if (chat != null && chat.noforwards) {
+            return;
+        }
+        org.telegram.messenger.g0.g(str);
+        profileActivity.M.j(56, 0L, null);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setUnderlineText(false);
+        textPaint.setColor(textPaint.linkColor);
     }
 }

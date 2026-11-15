@@ -1,4 +1,4 @@
 package org.telegram.messenger;
 public final class v7 {
-    public p7 f25955a;
+    public p7 f26939a;
 }

@@ -2,58 +2,58 @@ package oc;
 
 import java.io.InputStream;
 public final class a {
-    public static int f20900f;
-    public InputStream f20901a;
-    public int f20902b;
-    public int f20903c;
+    public static int f21418f;
+    public InputStream f21419a;
+    public int f21420b;
+    public int f21421c;
     public int d;
-    public mc.a f20904e;
+    public mc.a f21422e;
 
     public final int a() {
         char c10;
         if (this.d == 8) {
-            this.f20902b = this.f20903c;
-            this.f20903c = this.f20901a.read();
+            this.f21420b = this.f21421c;
+            this.f21421c = this.f21419a.read();
             this.d = 0;
-            if (this.f20902b == -1) {
+            if (this.f21420b == -1) {
                 return -1;
             }
         }
-        int i7 = this.f20902b;
+        int i7 = this.f21420b;
         int i10 = this.d;
         int i11 = (i7 >> (7 - i10)) & 1;
         this.d = i10 + 1;
-        mc.a aVar = this.f20904e;
+        mc.a aVar = this.f21422e;
         if (i11 == 0) {
             c10 = '0';
         } else {
             c10 = '1';
         }
-        int i12 = aVar.f20010c;
-        char[] cArr = aVar.f20009b;
+        int i12 = aVar.f20602c;
+        char[] cArr = aVar.f20601b;
         if (i12 < cArr.length - 1) {
             cArr[i12] = c10;
-            aVar.f20010c = i12 + 1;
+            aVar.f20602c = i12 + 1;
         }
-        f20900f++;
+        f21418f++;
         return i11;
     }
 
     public final boolean b(String str) {
-        boolean z9;
+        boolean z10;
         String str2;
         if (a() == 0) {
-            z9 = false;
+            z10 = false;
         } else {
-            z9 = true;
+            z10 = true;
         }
-        if (z9) {
+        if (z10) {
             str2 = "1";
         } else {
             str2 = "0";
         }
         f(str, str2);
-        return z9;
+        return z10;
     }
 
     public final long c(int i7) {
@@ -88,21 +88,21 @@ public final class a {
 
     public final void f(String str, String str2) {
         StringBuilder sb2 = new StringBuilder();
-        int i7 = f20900f;
-        mc.a aVar = this.f20904e;
-        String valueOf = String.valueOf(i7 - aVar.f20010c);
+        int i7 = f21418f;
+        mc.a aVar = this.f21422e;
+        String valueOf = String.valueOf(i7 - aVar.f20602c);
         int length = 8 - valueOf.length();
         sb2.append("@".concat(valueOf));
         for (int i10 = 0; i10 < length; i10++) {
             sb2.append(' ');
         }
         sb2.append(str);
-        int length2 = (100 - sb2.length()) - aVar.f20010c;
+        int length2 = (100 - sb2.length()) - aVar.f20602c;
         for (int i11 = 0; i11 < length2; i11++) {
             sb2.append(' ');
         }
         sb2.append(aVar);
         sb2.append(" (" + str2 + ")");
-        aVar.f20010c = 0;
+        aVar.f20602c = 0;
     }
 }

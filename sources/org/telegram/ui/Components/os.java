@@ -1,120 +1,211 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public class os extends View {
-    public final my0 f36672a;
-    public final Drawable f36673b;
-    public final ImageReceiver f36674c;
-    public final Rect d;
-    public final RectF f36675e;
-    public fh.g f36676f;
+import android.graphics.Paint;
+import java.util.ArrayList;
+public abstract class os implements org.telegram.messenger.is {
+    public static tm M;
+    public final org.telegram.messenger.q5 E;
+    public boolean F;
+    public boolean H;
+    public boolean J;
+    public int K;
+    public final int L;
+    public boolean f38054a;
+    public Bitmap f38055b;
+    public Canvas f38056c;
+    public Bitmap d;
+    public Canvas f38057e;
+    public boolean f38058f;
+    public int f38059n;
+    public boolean f38060r;
+    public int f38062w;
+    public int f38063x;
+    public int f38064y;
+    public int h = 1;
+    public final Paint f38061s = new Paint(1);
+    public final ns G = new ns(this, 0);
+    public final ns I = new ns(this, 1);
 
-    public os(Context context, CharSequence charSequence) {
-        super(context);
-        this.d = new Rect();
-        this.f36675e = new RectF();
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f36674c = imageReceiver;
-        imageReceiver.J0(org.telegram.messenger.g0.L(22.66f));
-        this.f36672a = new my0(charSequence, 14.0f, org.telegram.messenger.g0.o());
-        Drawable h = jg.g.h(context, 2131230872);
-        this.f36673b = h;
-        h.setColorFilter(new PorterDuffColorFilter(-1711276033, PorterDuff.Mode.SRC_IN));
+    public os() {
+        if (M == null) {
+            ?? obj = new Object();
+            obj.f39724b = new org.telegram.messenger.q5[2];
+            M = obj;
+        }
+        tm tmVar = M;
+        int i7 = tmVar.f39723a + 1;
+        tmVar.f39723a = i7;
+        if (i7 > 1) {
+            tmVar.f39723a = 0;
+        }
+        org.telegram.messenger.q5[] q5VarArr = (org.telegram.messenger.q5[]) tmVar.f39724b;
+        int i10 = tmVar.f39723a;
+        org.telegram.messenger.q5 q5Var = q5VarArr[i10];
+        if (q5Var == null) {
+            q5Var = new org.telegram.messenger.q5("draw_background_queue_" + tmVar.f39723a, true);
+            q5VarArr[i10] = q5Var;
+        }
+        this.E = q5Var;
+        this.L = M.f39723a;
     }
 
-    public final void a(TLRPC.Photo photo, Object obj) {
-        TLRPC.PhotoSize w10 = org.telegram.messenger.w7.w(photo.sizes, org.telegram.messenger.g0.L(48.0f), false, null, true);
-        TLRPC.PhotoSize w11 = org.telegram.messenger.w7.w(photo.sizes, org.telegram.messenger.g0.L(24.0f), false, w10, false);
-        this.f36674c.r0(org.telegram.messenger.hc.i(w10, photo), "24_24", org.telegram.messenger.hc.i(w11, photo), "24_24", null, 0L, null, obj, 0);
+    public void a(Canvas canvas, long j3, int i7, int i10, float f10) {
+        if (this.F) {
+            boolean z10 = org.telegram.messenger.r2.f26198a;
+            return;
+        }
+        this.f38063x = i10;
+        this.f38064y = i7;
+        if (this.H) {
+            this.H = false;
+            Bitmap bitmap = this.d;
+            Canvas canvas2 = this.f38057e;
+            this.d = this.f38055b;
+            this.f38057e = this.f38056c;
+            this.f38055b = bitmap;
+            this.f38056c = canvas2;
+        }
+        Bitmap bitmap2 = this.d;
+        if (bitmap2 == null || this.J) {
+            this.J = false;
+            if (bitmap2 != null) {
+                ArrayList arrayList = new ArrayList();
+                arrayList.add(this.d);
+                org.telegram.messenger.g0.A2(arrayList);
+                this.d = null;
+            }
+            int i11 = this.f38063x + 0;
+            Bitmap bitmap3 = this.d;
+            if (bitmap3 != null && bitmap3.getHeight() == i11 && this.d.getWidth() == this.f38064y) {
+                this.d.eraseColor(0);
+            } else {
+                this.d = Bitmap.createBitmap(this.f38064y, i11, Bitmap.Config.ARGB_8888);
+                this.f38057e = new Canvas(this.d);
+            }
+            this.f38057e.save();
+            this.f38057e.translate(0.0f, 0);
+            d(this.f38057e, f10);
+            this.f38057e.restore();
+        }
+        if (!this.f38058f && !this.f38060r) {
+            this.f38058f = true;
+            i(j3);
+            this.K = this.f38062w;
+            this.E.postRunnable(this.G);
+        }
+        Bitmap bitmap4 = this.d;
+        if (bitmap4 != null) {
+            Paint paint = this.f38061s;
+            paint.setAlpha((int) (f10 * 255.0f));
+            canvas.save();
+            canvas.translate(0.0f, -0);
+            b(canvas, bitmap4, paint);
+            canvas.restore();
+        }
     }
+
+    public void b(Canvas canvas, Bitmap bitmap, Paint paint) {
+        canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
+    }
+
+    public abstract void c(Canvas canvas);
+
+    public abstract void d(Canvas canvas, float f10);
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (!this.d.contains((int) motionEvent.getX(), (int) motionEvent.getY()) && motionEvent.getAction() == 0) {
-            return false;
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        int i11;
+        if (i7 == org.telegram.messenger.ns.f25517j1) {
+            Integer num = (Integer) objArr[0];
+            if (this.h < num.intValue()) {
+                if (num.intValue() != 512 || org.telegram.messenger.gz.o() < 2) {
+                    int intValue = num.intValue() | this.f38059n;
+                    this.f38059n = intValue;
+                    if (intValue != 0 && !this.f38060r) {
+                        this.f38060r = true;
+                    }
+                }
+            }
+        } else if (i7 == org.telegram.messenger.ns.f25522k1) {
+            Integer num2 = (Integer) objArr[0];
+            if (this.h < num2.intValue() && (i11 = this.f38059n) != 0) {
+                int i12 = (~num2.intValue()) & i11;
+                this.f38059n = i12;
+                if (i12 == 0 && this.f38060r) {
+                    this.f38060r = false;
+                }
+            }
         }
-        return super.dispatchTouchEvent(motionEvent);
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f36674c.P();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f36674c.R();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f10;
-        int L;
-        ImageReceiver imageReceiver = this.f36674c;
-        boolean I = imageReceiver.I();
-        if (I) {
-            f10 = 30.33f;
-        } else {
-            f10 = 11.33f;
+    public final void e() {
+        if (this.f38054a) {
+            return;
         }
-        int L2 = org.telegram.messenger.g0.L(19.0f) + ((int) Math.ceil(this.f36672a.f36133c)) + org.telegram.messenger.g0.L(f10);
-        int L3 = org.telegram.messenger.g0.L(24.0f);
-        int width = (getWidth() - L2) / 2;
-        int height = getHeight() / 2;
-        int i7 = height - (L3 / 2);
-        int i10 = L2 + width;
-        Rect rect = this.d;
-        rect.set(width, i7, i10, L3 + i7);
-        rect.inset(-org.telegram.messenger.g0.L(4.0f), -org.telegram.messenger.g0.L(4.0f));
-        fh.g gVar = this.f36676f;
-        if (gVar != null) {
-            gVar.setBounds(rect);
-            this.f36676f.draw(canvas);
+        this.f38054a = true;
+        this.F = false;
+        int i7 = org.telegram.messenger.ns.e().f25633p & (~this.h);
+        this.f38059n = i7;
+        if (i7 == 0 && this.f38060r) {
+            this.f38060r = false;
         }
-        if (I) {
-            float f11 = height;
-            float L4 = (org.telegram.messenger.g0.L(22.66f) / 2.0f) + f11;
-            RectF rectF = this.f36675e;
-            rectF.set(org.telegram.messenger.g0.L(0.66f) + width, f11 - (org.telegram.messenger.g0.L(22.66f) / 2.0f), org.telegram.messenger.g0.L(23.32f) + width, L4);
-            imageReceiver.A0(rectF);
-            imageReceiver.h(canvas, null);
-        }
-        this.f36672a.c(width + L, height, 1.0f, -1, canvas);
-        Drawable drawable = this.f36673b;
-        drawable.setBounds(i10 - org.telegram.messenger.g0.L(17.0f), height - org.telegram.messenger.g0.L(6.0f), i10 - org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(6.0f) + height);
-        drawable.draw(canvas);
+        org.telegram.messenger.ns.e().c(this, org.telegram.messenger.ns.f25517j1);
+        org.telegram.messenger.ns.e().c(this, org.telegram.messenger.ns.f25522k1);
     }
 
-    public void setBlurredBackgroundDrawable(fh.g gVar) {
-        gVar.q(org.telegram.messenger.g0.L(4.0f));
-        gVar.r(org.telegram.messenger.g0.L(11.0f));
-        this.f36676f = gVar;
-    }
-
-    public void setImage(Bitmap bitmap) {
-        this.f36674c.v0(bitmap);
-        invalidate();
-    }
-
-    public void setImage(String str) {
-        if (str == null) {
-            setImage((Bitmap) null);
-        } else {
-            Utilities.f21341e.c(new ro(6, this, str));
+    public final void f() {
+        if (!this.f38054a) {
+            return;
         }
+        if (!this.f38058f) {
+            j();
+        }
+        this.f38054a = false;
+        org.telegram.messenger.ns.e().n(this, org.telegram.messenger.ns.f25517j1);
+        org.telegram.messenger.ns.e().n(this, org.telegram.messenger.ns.f25522k1);
+    }
+
+    public abstract void g();
+
+    public abstract void i(long j3);
+
+    public final void j() {
+        ArrayList arrayList = new ArrayList();
+        Bitmap bitmap = this.d;
+        if (bitmap != null) {
+            arrayList.add(bitmap);
+        }
+        Bitmap bitmap2 = this.f38055b;
+        if (bitmap2 != null) {
+            arrayList.add(bitmap2);
+        }
+        this.d = null;
+        this.f38055b = null;
+        this.f38056c = null;
+        this.f38057e = null;
+        org.telegram.messenger.g0.A2(arrayList);
+    }
+
+    public final void k() {
+        this.J = true;
+        this.f38062w++;
+        if (this.d != null) {
+            ArrayList arrayList = new ArrayList();
+            arrayList.add(this.d);
+            this.d = null;
+            org.telegram.messenger.g0.A2(arrayList);
+        }
+    }
+
+    public final void l(int i7) {
+        this.h = 7;
+        if (this.f38054a) {
+            this.f38059n = org.telegram.messenger.ns.e().f25633p & (~this.h);
+        }
+    }
+
+    public void h() {
     }
 }

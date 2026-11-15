@@ -1,270 +1,30 @@
 package org.telegram.ui;
 
 import android.graphics.RectF;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class ju0 implements RequestDelegate {
-    public final int f47078a;
-    public final ProfileActivity f47079b;
+import android.view.View;
+public final class ju0 implements View.OnClickListener {
+    public final int f48463a;
+    public final Runnable f48464b;
 
-    public ju0(ProfileActivity profileActivity, int i7) {
-        this.f47078a = i7;
-        this.f47079b = profileActivity;
+    public ju0(int i7, Runnable runnable) {
+        this.f48463a = i7;
+        this.f48464b = runnable;
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        int i7 = this.f47078a;
-        final ProfileActivity profileActivity = this.f47079b;
+    public final void onClick(View view) {
+        int i7 = this.f48463a;
+        Runnable runnable = this.f48464b;
         switch (i7) {
             case 0:
-                RectF rectF = ProfileActivity.V6;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        int i10 = r4;
-                        TLObject tLObject2 = tLObject;
-                        TLRPC.TL_error tL_error2 = tL_error;
-                        ProfileActivity profileActivity2 = profileActivity;
-                        switch (i10) {
-                            case 0:
-                                RectF rectF2 = ProfileActivity.V6;
-                                if (tL_error2 != null) {
-                                    org.telegram.ui.Components.gc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.k5.p(null, 2131743879, org.telegram.ui.Components.gc.a0(profileActivity2), null);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                            case 1:
-                                RectF rectF3 = ProfileActivity.V6;
-                                if (tL_error2 != null) {
-                                    org.telegram.ui.Components.gc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.k5.p(null, 2131743879, org.telegram.ui.Components.gc.a0(profileActivity2), null);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                            case 2:
-                                RectF rectF4 = ProfileActivity.V6;
-                                if (tL_error2 != null) {
-                                    org.telegram.ui.Components.gc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.k5.p(null, 2131743879, org.telegram.ui.Components.gc.a0(profileActivity2), null);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                            default:
-                                RectF rectF5 = ProfileActivity.V6;
-                                if (tL_error2 != null) {
-                                    org.telegram.ui.Components.gc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.k5.p(null, 2131743879, org.telegram.ui.Components.gc.a0(profileActivity2), null);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                        }
-                    }
-                });
-                return;
-            case 1:
-                RectF rectF2 = ProfileActivity.V6;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        int i10 = r4;
-                        TLObject tLObject2 = tLObject;
-                        TLRPC.TL_error tL_error2 = tL_error;
-                        ProfileActivity profileActivity2 = profileActivity;
-                        switch (i10) {
-                            case 0:
-                                RectF rectF22 = ProfileActivity.V6;
-                                if (tL_error2 != null) {
-                                    org.telegram.ui.Components.gc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.k5.p(null, 2131743879, org.telegram.ui.Components.gc.a0(profileActivity2), null);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                            case 1:
-                                RectF rectF3 = ProfileActivity.V6;
-                                if (tL_error2 != null) {
-                                    org.telegram.ui.Components.gc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.k5.p(null, 2131743879, org.telegram.ui.Components.gc.a0(profileActivity2), null);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                            case 2:
-                                RectF rectF4 = ProfileActivity.V6;
-                                if (tL_error2 != null) {
-                                    org.telegram.ui.Components.gc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.k5.p(null, 2131743879, org.telegram.ui.Components.gc.a0(profileActivity2), null);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                            default:
-                                RectF rectF5 = ProfileActivity.V6;
-                                if (tL_error2 != null) {
-                                    org.telegram.ui.Components.gc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.k5.p(null, 2131743879, org.telegram.ui.Components.gc.a0(profileActivity2), null);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                        }
-                    }
-                });
-                return;
-            case 2:
-                RectF rectF3 = ProfileActivity.V6;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        int i10 = r4;
-                        TLObject tLObject2 = tLObject;
-                        TLRPC.TL_error tL_error2 = tL_error;
-                        ProfileActivity profileActivity2 = profileActivity;
-                        switch (i10) {
-                            case 0:
-                                RectF rectF22 = ProfileActivity.V6;
-                                if (tL_error2 != null) {
-                                    org.telegram.ui.Components.gc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.k5.p(null, 2131743879, org.telegram.ui.Components.gc.a0(profileActivity2), null);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                            case 1:
-                                RectF rectF32 = ProfileActivity.V6;
-                                if (tL_error2 != null) {
-                                    org.telegram.ui.Components.gc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.k5.p(null, 2131743879, org.telegram.ui.Components.gc.a0(profileActivity2), null);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                            case 2:
-                                RectF rectF4 = ProfileActivity.V6;
-                                if (tL_error2 != null) {
-                                    org.telegram.ui.Components.gc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.k5.p(null, 2131743879, org.telegram.ui.Components.gc.a0(profileActivity2), null);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                            default:
-                                RectF rectF5 = ProfileActivity.V6;
-                                if (tL_error2 != null) {
-                                    org.telegram.ui.Components.gc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.k5.p(null, 2131743879, org.telegram.ui.Components.gc.a0(profileActivity2), null);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                        }
-                    }
-                });
-                return;
-            case 3:
-                RectF rectF4 = ProfileActivity.V6;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        int i10 = r4;
-                        TLObject tLObject2 = tLObject;
-                        TLRPC.TL_error tL_error2 = tL_error;
-                        ProfileActivity profileActivity2 = profileActivity;
-                        switch (i10) {
-                            case 0:
-                                RectF rectF22 = ProfileActivity.V6;
-                                if (tL_error2 != null) {
-                                    org.telegram.ui.Components.gc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.k5.p(null, 2131743879, org.telegram.ui.Components.gc.a0(profileActivity2), null);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                            case 1:
-                                RectF rectF32 = ProfileActivity.V6;
-                                if (tL_error2 != null) {
-                                    org.telegram.ui.Components.gc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.k5.p(null, 2131743879, org.telegram.ui.Components.gc.a0(profileActivity2), null);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                            case 2:
-                                RectF rectF42 = ProfileActivity.V6;
-                                if (tL_error2 != null) {
-                                    org.telegram.ui.Components.gc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.k5.p(null, 2131743879, org.telegram.ui.Components.gc.a0(profileActivity2), null);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                            default:
-                                RectF rectF5 = ProfileActivity.V6;
-                                if (tL_error2 != null) {
-                                    org.telegram.ui.Components.gc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.k5.p(null, 2131743879, org.telegram.ui.Components.gc.a0(profileActivity2), null);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                        }
-                    }
-                });
-                return;
-            case 4:
-                RectF rectF5 = ProfileActivity.V6;
-                if (tLObject != null) {
-                    org.telegram.messenger.g0.h3(new tn0(23, profileActivity, tLObject));
-                    return;
-                }
+                RectF rectF = ProfileActivity.X6;
+                runnable.run();
                 return;
             default:
-                if (tLObject instanceof TL_account.TL_password) {
-                    profileActivity.G2 = (TL_account.TL_password) tLObject;
+                if (runnable != null) {
+                    runnable.run();
                     return;
                 }
-                RectF rectF6 = ProfileActivity.V6;
-                profileActivity.getClass();
                 return;
         }
     }

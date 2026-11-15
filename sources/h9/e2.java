@@ -1,54 +1,50 @@
 package h9;
+public final class e2 extends t0 {
+    public final transient Object d;
 
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.SortedSet;
-public final class e2 extends d2 implements SortedSet {
-    @Override
-    public final Comparator comparator() {
-        return ((SortedSet) this.f14316a).comparator();
+    public e2(Object obj) {
+        obj.getClass();
+        this.d = obj;
     }
 
     @Override
-    public final Object first() {
-        Iterator it = this.f14316a.iterator();
-        it.getClass();
-        g9.m mVar = this.f14317b;
-        mVar.getClass();
-        while (it.hasNext()) {
-            Object next = it.next();
-            if (mVar.apply(next)) {
-                return next;
-            }
-        }
-        throw new NoSuchElementException();
+    public final boolean contains(Object obj) {
+        return this.d.equals(obj);
     }
 
     @Override
-    public final SortedSet headSet(Object obj) {
-        return new d2(((SortedSet) this.f14316a).headSet(obj), this.f14317b);
+    public final i0 f() {
+        return i0.u(this.d);
     }
 
     @Override
-    public final Object last() {
-        SortedSet sortedSet = (SortedSet) this.f14316a;
-        while (true) {
-            Object last = sortedSet.last();
-            if (this.f14317b.apply(last)) {
-                return last;
-            }
-            sortedSet = sortedSet.headSet(last);
-        }
+    public final int hashCode() {
+        return this.d.hashCode();
     }
 
     @Override
-    public final SortedSet subSet(Object obj, Object obj2) {
-        return new d2(((SortedSet) this.f14316a).subSet(obj, obj2), this.f14317b);
+    public final int i(int i7, Object[] objArr) {
+        objArr[i7] = this.d;
+        return i7 + 1;
     }
 
     @Override
-    public final SortedSet tailSet(Object obj) {
-        return new d2(((SortedSet) this.f14316a).tailSet(obj), this.f14317b);
+    public final boolean m() {
+        return false;
+    }
+
+    @Override
+    public final g2 n() {
+        return new z0(this.d);
+    }
+
+    @Override
+    public final int size() {
+        return 1;
+    }
+
+    @Override
+    public final String toString() {
+        return "[" + this.d.toString() + ']';
     }
 }

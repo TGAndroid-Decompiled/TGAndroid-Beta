@@ -1,28 +1,26 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.v10;
+import org.telegram.messenger.z10;
 public final class c7 implements Runnable {
-    public final int f42216a;
-    public final WalletEngine2 f42217b;
-    public final v10 f42218c;
+    public final int f43643a;
+    public final z10 f43644b;
 
-    public c7(WalletEngine2 walletEngine2, v10 v10Var, int i7) {
-        this.f42216a = i7;
-        this.f42217b = walletEngine2;
-        this.f42218c = v10Var;
+    public c7(z10 z10Var, int i7) {
+        this.f43643a = i7;
+        this.f43644b = z10Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f42216a) {
+        switch (this.f43643a) {
             case 0:
-                this.f42217b.lambda$emulateRotateKey$30(this.f42218c);
+                this.f43644b.a("Wallet engine is closed");
                 return;
             case 1:
-                this.f42217b.lambda$balance$14(this.f42218c);
+                this.f43644b.a(null);
                 return;
             default:
-                this.f42217b.lambda$prepareSendNFT$24(this.f42218c);
+                this.f43644b.a(null);
                 return;
         }
     }

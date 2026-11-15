@@ -1,86 +1,44 @@
 package li;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.gf;
-import org.telegram.messenger.qs;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.ai;
-import org.telegram.ui.Components.ci;
-import org.telegram.ui.Components.pg;
-public final class m implements ai {
-    public final ci f18696a;
-    public final p f18697b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.FrameLayout;
+import c8.ja;
+import java.util.HashSet;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.z5;
+import org.telegram.ui.Components.i9;
+public final class m extends FrameLayout implements z5 {
+    public final i9 f19608a;
 
-    public m(p pVar, ci ciVar) {
-        this.f18697b = pVar;
-        this.f18696a = ciVar;
+    public m(Context context) {
+        super(context);
+        i9 i9Var = new i9(context);
+        this.f19608a = i9Var;
+        i9Var.setRoundRadius(org.telegram.messenger.g0.L(20.0f));
+        addView(i9Var, ja.d(72, 72.0f, 81, 0.0f, 0.0f, 0.0f, 28.0f));
     }
 
     @Override
-    public final boolean G1() {
-        return false;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        Drawable drawable = j6.S0;
+        i9 i9Var = this.f19608a;
+        bg.s.a(canvas, drawable, (i9Var.getWidth() / 2.0f) + i9Var.getLeft(), (i9Var.getHeight() / 2.0f) + i9Var.getTop(), i9Var.getHeight());
     }
 
     @Override
-    public final void c0(pg pgVar) {
-        qs.f(this.f18697b.f18762n).d(pgVar);
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(136.0f), 1073741824));
     }
 
     @Override
-    public final boolean f0() {
-        return false;
+    public final void updateColors() {
     }
 
     @Override
-    public final void o1(int i7, boolean z9, boolean z10, int i10, int i11, long j3, boolean z11, boolean z12, long j10) {
-        ci ciVar = this.f18696a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ciVar.d2;
-        t3 t3Var = this.f18697b.f18763r;
-        if (i7 == 7 || i7 == 8) {
-            HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
-            a aVar = t3Var.f18885i4;
-            t3Var.f18885i4 = null;
-            int i12 = 0;
-            while (true) {
-                if (i12 >= selectedPhotosOrder.size()) {
-                    break;
-                }
-                Object obj = selectedPhotos.get(selectedPhotosOrder.get(i12));
-                if (obj instanceof gf) {
-                    if (aVar != null) {
-                        t3Var.X1(aVar, (gf) obj);
-                    } else {
-                        t3Var.i2((gf) obj);
-                    }
-                } else {
-                    i12++;
-                }
-            }
-        }
-        t3Var.f18885i4 = null;
-        ciVar.a(true);
-    }
-
-    @Override
-    public final void F0() {
-    }
-
-    @Override
-    public final void t0() {
-    }
-
-    @Override
-    public final void M0(Object obj) {
-    }
-
-    @Override
-    public final void Y0(TLRPC.User user) {
-    }
-
-    @Override
-    public final void M1(ArrayList arrayList, CharSequence charSequence, boolean z9, int i7, int i10, long j3, boolean z10, long j10) {
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

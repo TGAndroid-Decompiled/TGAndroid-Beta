@@ -8,22 +8,22 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import java.util.concurrent.ExecutorService;
 public final class k {
-    public static final Object f959c = new Object();
+    public static final Object f958c = new Object();
     public static p0 d;
-    public final Object f960a;
-    public final Object f961b;
+    public final Object f959a;
+    public final Object f960b;
 
     public k(ExecutorService executorService) {
-        this.f961b = new a0.l(0);
-        this.f960a = executorService;
+        this.f960b = new a0.l(0);
+        this.f959a = executorService;
     }
 
-    public static Task a(Context context, Intent intent, boolean z9) {
+    public static Task a(Context context, Intent intent, boolean z10) {
         p0 p0Var;
         if (Log.isLoggable("FirebaseMessaging", 3)) {
             Log.d("FirebaseMessaging", "Binding to service");
         }
-        synchronized (f959c) {
+        synchronized (f958c) {
             try {
                 if (d == null) {
                     d = new p0(context);
@@ -33,8 +33,8 @@ public final class k {
                 throw th2;
             }
         }
-        if (z9) {
-            if (b0.k().m(context)) {
+        if (z10) {
+            if (c0.q().w(context)) {
                 m0.c(context, p0Var, intent);
             } else {
                 p0Var.b(intent);
@@ -45,36 +45,36 @@ public final class k {
     }
 
     public Task b(Intent intent) {
-        boolean z9;
+        boolean z10;
         String stringExtra = intent.getStringExtra("gcm.rawData64");
-        boolean z10 = false;
+        boolean z11 = false;
         if (stringExtra != null) {
             intent.putExtra("rawData", Base64.decode(stringExtra, 0));
             intent.removeExtra("gcm.rawData64");
         }
-        Context context = (Context) this.f960a;
-        d3.b bVar = (d3.b) this.f961b;
+        Context context = (Context) this.f959a;
+        d3.b bVar = (d3.b) this.f960b;
         if (x6.b.d() && context.getApplicationInfo().targetSdkVersion >= 26) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
         if ((intent.getFlags() & 268435456) != 0) {
-            z10 = true;
+            z11 = true;
         }
-        if (z9 && !z10) {
-            return a(context, intent, z10);
+        if (z10 && !z11) {
+            return a(context, intent, z11);
         }
-        return Tasks.call(bVar, new i(0, context, intent)).continueWithTask(bVar, new j(context, intent, z10, 0));
+        return Tasks.call(bVar, new i(0, context, intent)).continueWithTask(bVar, new j(context, intent, z11, 0));
     }
 
     public k(Context context) {
-        this.f960a = context;
-        this.f961b = new d3.b(3);
+        this.f959a = context;
+        this.f960b = new d3.b(3);
     }
 
     public k(e0.q qVar, String str) {
-        this.f960a = qVar;
-        this.f961b = str;
+        this.f959a = qVar;
+        this.f960b = str;
     }
 }

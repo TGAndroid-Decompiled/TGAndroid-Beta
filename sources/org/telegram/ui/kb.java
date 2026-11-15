@@ -1,73 +1,46 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.os.SystemClock;
 import android.view.View;
-public abstract class kb extends org.telegram.ui.Components.st0 {
-    public final mb f47246f0;
+public final class kb extends c8.ma {
+    public org.telegram.messenger.gj f48659a;
+    public int f48660b = 0;
+    public boolean f48661c = true;
+    public int d = 0;
+    public int f48662e;
+    public final lb f48663f;
 
-    public kb(mb mbVar, Context context) {
-        super(context, null);
-        this.f47246f0 = mbVar;
+    public kb(lb lbVar) {
+        this.f48663f = lbVar;
     }
 
-    public final void X(Canvas canvas, RectF rectF) {
-        boolean z9;
-        long uptimeMillis = SystemClock.uptimeMillis();
-        mb mbVar = this.f47246f0;
-        if (mbVar.f47901w.Y0()) {
-            canvas.save();
-            canvas.clipRect(rectF);
-            drawChild(canvas, mbVar.f47901w, uptimeMillis);
-            canvas.restore();
-            return;
-        }
-        canvas.save();
-        canvas.clipRect(rectF);
-        canvas.translate(0.0f, mbVar.f47901w.getY());
-        mbVar.f47901w.getClass();
-        for (int i7 = 0; i7 < mbVar.f47901w.getChildCount(); i7++) {
-            View childAt = mbVar.f47901w.getChildAt(i7);
-            RectF rectF2 = mbVar.P0;
-            if (rectF != null && mbVar.f47901w != null && childAt != null) {
-                rectF2.set(childAt.getX(), mbVar.f47901w.getY() + childAt.getY(), childAt.getX() + childAt.getWidth(), mbVar.f47901w.getY() + childAt.getY() + childAt.getHeight());
-                z9 = !rectF2.intersect(rectF);
-            } else {
-                z9 = false;
+    @Override
+    public final void a() {
+        org.telegram.messenger.gj gjVar = this.f48659a;
+        lb lbVar = this.f48663f;
+        if (gjVar != null) {
+            int indexOf = lbVar.f48949p0.indexOf(gjVar) + lbVar.F.f48012f;
+            if (indexOf >= 0) {
+                lbVar.f48962y.i1(indexOf, this.f48662e, false);
             }
-            if (!z9) {
-                if (childAt instanceof org.telegram.ui.Cells.q1) {
-                    canvas.save();
-                    canvas.translate(childAt.getX(), childAt.getY());
-                    org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) childAt;
-                    if (q1Var.L0()) {
-                        canvas.save();
-                        canvas.translate(0.0f, q1Var.V);
-                        q1Var.M0(canvas, true, false);
-                        canvas.restore();
-                    }
-                    canvas.restore();
-                    mbVar.f47901w.drawChild(canvas, childAt, uptimeMillis);
-                    if (q1Var.j2()) {
-                        canvas.save();
-                        canvas.translate(q1Var.getX(), q1Var.getY());
-                        q1Var.i1(canvas);
-                        canvas.restore();
-                    }
-                } else if (childAt instanceof org.telegram.ui.Cells.t0) {
-                    mbVar.f47901w.drawChild(canvas, childAt, uptimeMillis);
-                    canvas.save();
-                    canvas.translate(childAt.getX(), childAt.getY());
-                    ((org.telegram.ui.Cells.t0) childAt).G(canvas);
-                    canvas.restore();
-                } else {
-                    mbVar.f47901w.drawChild(canvas, childAt, uptimeMillis);
-                }
-            }
+        } else {
+            lbVar.f48962y.i1(this.f48660b, this.d, this.f48661c);
         }
-        mbVar.f47901w.getClass();
-        canvas.restore();
+        this.f48659a = null;
+        lbVar.W = true;
+        lbVar.i1();
+        org.telegram.messenger.g0.h3(new fq0(this, 21));
+    }
+
+    @Override
+    public final void c() {
+        lb lbVar = this.f48663f;
+        lbVar.L0 = lbVar.getNotificationCenter().q(lb.S0, lbVar.L0, true);
+    }
+
+    @Override
+    public final void d(View view) {
+        if (view instanceof org.telegram.ui.Cells.q1) {
+            this.f48663f.h.add((org.telegram.ui.Cells.q1) view);
+        }
     }
 }

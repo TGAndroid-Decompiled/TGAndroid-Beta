@@ -3,24 +3,25 @@ package b9;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
-import c8.xb;
+import c8.yb;
+import com.google.android.gms.internal.vision.e2;
 public final class e extends r6.a {
     public static final Parcelable.Creator<e> CREATOR = new c(1);
-    public final f f3040a;
-    public final int f3041b;
-    public final int f3042c;
+    public final f f2994a;
+    public final int f2995b;
+    public final int f2996c;
     public final int d;
 
     public e(f fVar, int i7, int i10, int i11) {
-        this.f3040a = fVar;
-        this.f3041b = i7;
-        this.f3042c = i10;
+        this.f2994a = fVar;
+        this.f2995b = i7;
+        this.f2996c = i10;
         this.d = i11;
     }
 
     public final void b(a9.a aVar) {
-        f fVar = this.f3040a;
-        int i7 = this.f3041b;
+        f fVar = this.f2994a;
+        int i7 = this.f2995b;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {
@@ -43,8 +44,8 @@ public final class e extends r6.a {
     public final String toString() {
         String str;
         String str2;
-        String valueOf = String.valueOf(this.f3040a);
-        int i7 = this.f3041b;
+        String valueOf = String.valueOf(this.f2994a);
+        int i7 = this.f2995b;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {
@@ -62,7 +63,7 @@ public final class e extends r6.a {
         } else {
             str = "CHANNEL_OPENED";
         }
-        int i10 = this.f3042c;
+        int i10 = this.f2996c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -80,7 +81,7 @@ public final class e extends r6.a {
         } else {
             str2 = "CLOSE_REASON_NORMAL";
         }
-        StringBuilder n10 = com.google.android.recaptcha.internal.a.n("ChannelEventParcelable[, channel=", valueOf, ", type=", str, ", closeReason=");
+        StringBuilder n10 = e2.n("ChannelEventParcelable[, channel=", valueOf, ", type=", str, ", closeReason=");
         n10.append(str2);
         n10.append(", appErrorCode=");
         n10.append(this.d);
@@ -90,14 +91,14 @@ public final class e extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = xb.r(parcel, 20293);
-        xb.k(parcel, 2, this.f3040a, i7);
-        xb.q(parcel, 3, 4);
-        parcel.writeInt(this.f3041b);
-        xb.q(parcel, 4, 4);
-        parcel.writeInt(this.f3042c);
-        xb.q(parcel, 5, 4);
+        int r10 = yb.r(parcel, 20293);
+        yb.k(parcel, 2, this.f2994a, i7);
+        yb.q(parcel, 3, 4);
+        parcel.writeInt(this.f2995b);
+        yb.q(parcel, 4, 4);
+        parcel.writeInt(this.f2996c);
+        yb.q(parcel, 5, 4);
         parcel.writeInt(this.d);
-        xb.s(parcel, r10);
+        yb.s(parcel, r10);
     }
 }

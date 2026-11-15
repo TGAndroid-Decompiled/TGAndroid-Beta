@@ -82,31 +82,31 @@ public interface WebSettingsBoundaryInterface {
 
     boolean isAlgorithmicDarkeningAllowed();
 
-    void setAlgorithmicDarkeningAllowed(boolean z9);
+    void setAlgorithmicDarkeningAllowed(boolean z10);
 
     void setAttributionBehavior(int i7);
 
-    void setBackForwardCacheEnabled(boolean z9);
+    void setBackForwardCacheEnabled(boolean z10);
 
     void setDisabledActionModeMenuItems(int i7);
 
-    void setEnterpriseAuthenticationAppLinkPolicyEnabled(boolean z9);
+    void setEnterpriseAuthenticationAppLinkPolicyEnabled(boolean z10);
 
     void setForceDark(int i7);
 
     void setForceDarkBehavior(int i7);
 
-    void setHasEnrolledInstrumentEnabled(boolean z9);
+    void setHasEnrolledInstrumentEnabled(boolean z10);
 
-    void setIncludeCookiesOnIntercept(boolean z9);
+    void setIncludeCookiesOnIntercept(boolean z10);
 
-    void setOffscreenPreRaster(boolean z9);
+    void setOffscreenPreRaster(boolean z10);
 
-    void setPaymentRequestEnabled(boolean z9);
+    void setPaymentRequestEnabled(boolean z10);
 
     void setRequestedWithHeaderOriginAllowList(Set<String> set);
 
-    void setSafeBrowsingEnabled(boolean z9);
+    void setSafeBrowsingEnabled(boolean z10);
 
     void setSpeculativeLoadingStatus(int i7);
 
@@ -116,5 +116,5 @@ public interface WebSettingsBoundaryInterface {
 
     void setWebauthnSupport(int i7);
 
-    void setWillSuppressErrorPage(boolean z9);
+    void setWillSuppressErrorPage(boolean z10);
 }

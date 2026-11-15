@@ -9,25 +9,25 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashSet;
 public abstract class os0 extends sr0 {
-    public final HashSet j3;
-    public final ArrayList f36677k3;
-    public final ArrayList f36678l3;
-    public final ArrayList f36679m3;
-    public TextPaint f36680n3;
-    public StaticLayout f36681o3;
-    public float f36682p3;
-    public float f36683q3;
-    public di.y9 f36684r3;
-    public int f36685s3;
-    public final ArrayList f36686t3;
+    public final HashSet f38065k3;
+    public final ArrayList f38066l3;
+    public final ArrayList f38067m3;
+    public final ArrayList f38068n3;
+    public TextPaint f38069o3;
+    public StaticLayout f38070p3;
+    public float f38071q3;
+    public float f38072r3;
+    public fi.q9 f38073s3;
+    public int f38074t3;
+    public final ArrayList f38075u3;
 
     public os0(Context context) {
         super(context, null);
-        this.j3 = new HashSet();
-        this.f36677k3 = new ArrayList();
-        this.f36678l3 = new ArrayList();
-        this.f36679m3 = new ArrayList();
-        this.f36686t3 = new ArrayList();
+        this.f38065k3 = new HashSet();
+        this.f38066l3 = new ArrayList();
+        this.f38067m3 = new ArrayList();
+        this.f38068n3 = new ArrayList();
+        this.f38075u3 = new ArrayList();
     }
 
     public abstract boolean A1();
@@ -45,8 +45,8 @@ public abstract class os0 extends sr0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        vi0 movingAdapter = getMovingAdapter();
-        if (C1() && getAdapter() == movingAdapter && A1() && (view instanceof org.telegram.ui.Cells.o7)) {
+        aj0 movingAdapter = getMovingAdapter();
+        if (C1() && getAdapter() == movingAdapter && A1() && (view instanceof org.telegram.ui.Cells.n7)) {
             return true;
         }
         return super.drawChild(canvas, view, j3);
@@ -68,7 +68,7 @@ public abstract class os0 extends sr0 {
         return null;
     }
 
-    public vi0 getMovingAdapter() {
+    public aj0 getMovingAdapter() {
         return null;
     }
 
@@ -76,7 +76,7 @@ public abstract class os0 extends sr0 {
         return 0;
     }
 
-    public vi0 getSupportingAdapter() {
+    public aj0 getSupportingAdapter() {
         return null;
     }
 
@@ -84,15 +84,15 @@ public abstract class os0 extends sr0 {
         return null;
     }
 
-    public os0(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, h6Var);
-        this.j3 = new HashSet();
-        this.f36677k3 = new ArrayList();
-        this.f36678l3 = new ArrayList();
-        this.f36679m3 = new ArrayList();
-        this.f36686t3 = new ArrayList();
+    public os0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        this.f38065k3 = new HashSet();
+        this.f38066l3 = new ArrayList();
+        this.f38067m3 = new ArrayList();
+        this.f38068n3 = new ArrayList();
+        this.f38075u3 = new ArrayList();
     }
 
-    public void z1(org.telegram.ui.Cells.o7 o7Var) {
+    public void z1(org.telegram.ui.Cells.n7 n7Var) {
     }
 }

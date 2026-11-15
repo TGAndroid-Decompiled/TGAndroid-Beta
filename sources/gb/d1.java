@@ -1,43 +1,92 @@
 package gb;
-public final class d1 extends kd.j implements rd.p {
-    public final int f13658a;
-    public Object f13659b;
-    public final f1 f13660c;
 
-    public d1(f1 f1Var, id.c cVar, int i7) {
-        super(2, cVar);
-        this.f13658a = i7;
-        this.f13660c = f1Var;
+import android.util.Log;
+import java.util.Map;
+public final class d1 {
+    public final jb.l f13005a;
+    public final u0 f13006b;
+    public final q0 f13007c;
+    public final h1 d;
+    public final m1.g f13008e;
+    public final d0 f13009f;
+    public final id.h f13010g;
+    public j0 h;
+    public boolean f13011i;
+    public boolean f13012j;
+    public String f13013k;
+
+    public d1(jb.l sessionsSettings, u0 sessionGenerator, q0 sessionFirelogPublisher, h1 timeProvider, m1.g sessionDataStore, d0 processDataManager, id.h backgroundDispatcher) {
+        kotlin.jvm.internal.j.e(sessionsSettings, "sessionsSettings");
+        kotlin.jvm.internal.j.e(sessionGenerator, "sessionGenerator");
+        kotlin.jvm.internal.j.e(sessionFirelogPublisher, "sessionFirelogPublisher");
+        kotlin.jvm.internal.j.e(timeProvider, "timeProvider");
+        kotlin.jvm.internal.j.e(sessionDataStore, "sessionDataStore");
+        kotlin.jvm.internal.j.e(processDataManager, "processDataManager");
+        kotlin.jvm.internal.j.e(backgroundDispatcher, "backgroundDispatcher");
+        this.f13005a = sessionsSettings;
+        this.f13006b = sessionGenerator;
+        this.f13007c = sessionFirelogPublisher;
+        this.d = timeProvider;
+        this.f13008e = sessionDataStore;
+        this.f13009f = processDataManager;
+        this.f13010g = backgroundDispatcher;
+        a1 a1Var = a1.f12972a;
+        this.f13013k = "";
+        zd.b0.q(zd.b0.b(backgroundDispatcher), new z0(this, null, 0));
     }
 
-    @Override
-    public final id.c create(Object obj, id.c cVar) {
-        switch (this.f13658a) {
-            case 0:
-                d1 d1Var = new d1(this.f13660c, cVar, 0);
-                d1Var.f13659b = obj;
-                return d1Var;
-            default:
-                d1 d1Var2 = new d1(this.f13660c, cVar, 1);
-                d1Var2.f13659b = obj;
-                return d1Var2;
+    public static final java.lang.Object a(gb.d1 r4, java.lang.String r5, gb.a1 r6, id.c r7) {
+        throw new UnsupportedOperationException("Method not decompiled: gb.d1.a(gb.d1, java.lang.String, gb.a1, id.c):java.lang.Object");
+    }
+
+    public final void b() {
+        this.f13011i = false;
+        if (this.h == null) {
+            Log.d("FirebaseSessions", "App backgrounded, but local SessionData not initialized");
+            return;
+        }
+        Log.d("FirebaseSessions", "App backgrounded on " + this.f13009f.a());
+        zd.b0.q(zd.b0.b(this.f13010g), new z0(this, null, 1));
+    }
+
+    public final void c() {
+        this.f13011i = true;
+        j0 j0Var = this.h;
+        if (j0Var == null) {
+            this.f13012j = true;
+            Log.d("FirebaseSessions", "App foregrounded, but local SessionData not initialized");
+        } else if (j0Var != null) {
+            Log.d("FirebaseSessions", "App foregrounded on " + this.f13009f.a());
+            if (!e(j0Var) && !d(j0Var)) {
+                return;
+            }
+            zd.b0.q(zd.b0.b(this.f13010g), new be.l(this, j0Var, null, 5));
+        } else {
+            kotlin.jvm.internal.j.h("localSessionData");
+            throw null;
         }
     }
 
-    @Override
-    public final Object invoke(Object obj, Object obj2) {
-        k0 k0Var = (k0) obj;
-        id.c cVar = (id.c) obj2;
-        switch (this.f13658a) {
-            case 0:
-                return ((d1) create(k0Var, cVar)).invokeSuspend(gd.k.f13831a);
-            default:
-                return ((d1) create(k0Var, cVar)).invokeSuspend(gd.k.f13831a);
+    public final boolean d(j0 j0Var) {
+        Map map = j0Var.f13061c;
+        boolean z10 = true;
+        d0 d0Var = this.f13009f;
+        if (map != null) {
+            d0Var.getClass();
+            b0 b0Var = (b0) map.get(d0Var.a());
+            if (b0Var != null && b0Var.f12977a == d0Var.f13002c && kotlin.jvm.internal.j.a(b0Var.f12978b, (String) d0Var.d.getValue())) {
+                z10 = false;
+            }
+            if (z10) {
+                Log.d("FirebaseSessions", "Process " + d0Var.a() + " is stale");
+            }
+            return z10;
         }
+        Log.d("FirebaseSessions", "No process data for " + d0Var.a());
+        return true;
     }
 
-    @Override
-    public final java.lang.Object invokeSuspend(java.lang.Object r17) {
-        throw new UnsupportedOperationException("Method not decompiled: gb.d1.invokeSuspend(java.lang.Object):java.lang.Object");
+    public final boolean e(gb.j0 r12) {
+        throw new UnsupportedOperationException("Method not decompiled: gb.d1.e(gb.j0):boolean");
     }
 }

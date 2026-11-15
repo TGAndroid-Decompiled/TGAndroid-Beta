@@ -1,6 +1,7 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-public interface ri {
-    void e(String str, ArrayList arrayList);
+public final class ri {
+    public final ArrayList f26295a = new ArrayList();
+    public Integer f26296b;
 }

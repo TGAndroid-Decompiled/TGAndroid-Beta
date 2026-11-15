@@ -1,108 +1,56 @@
 package org.telegram.ui;
 
-import android.media.MediaExtractor;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.camera.Size;
-import org.telegram.ui.Components.AnimatedFileNative;
-public final class gq0 implements Runnable {
-    public final String f46145a;
-    public final long f46146b;
-    public final int f46147c;
-    public final PhotoViewer d;
+import android.graphics.Canvas;
+import android.graphics.Path;
+public final class gq0 extends tg.s1 {
+    public final Path f47505s0;
+    public boolean f47506t0;
+    public final org.telegram.ui.Components.u5 f47507u0;
+    public final PhotoViewer f47508v0;
 
-    public gq0(PhotoViewer photoViewer, String str, long j3, int i7) {
-        this.d = photoViewer;
-        this.f46145a = str;
-        this.f46146b = j3;
-        this.f46147c = i7;
+    public gq0(PhotoViewer photoViewer) {
+        super(photoViewer.f42852p5, photoViewer.F, photoViewer.f42913w2, photoViewer.f42735c0);
+        this.f47508v0 = photoViewer;
+        this.f47505s0 = new Path();
+        this.f47507u0 = new org.telegram.ui.Components.u5(this, 0L, 420L, org.telegram.ui.Components.er.h);
+    }
+
+    public final void m(boolean z10, boolean z11) {
+        this.f47506t0 = z10;
+        if (!z11) {
+            this.f47507u0.f(z10, true);
+        }
+        invalidate();
     }
 
     @Override
-    public final void run() {
-        boolean z9;
-        boolean z10;
-        if (this.d.f41548w8 == this) {
-            int E = MediaController.E(this.f46145a);
-            int[] iArr = new int[11];
-            AnimatedFileNative.d(this.f46145a, iArr, this.f46146b);
-            boolean z11 = false;
-            if (iArr[10] != 0) {
-                z9 = true;
-            } else {
-                z9 = false;
-            }
-            PhotoViewer photoViewer = this.d;
-            if (iArr[0] != 0 && (!z9 || iArr[9] != 0)) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            photoViewer.f41433j8 = z10;
-            PhotoViewer photoViewer2 = this.d;
-            if (E == -1) {
-                E = iArr[3];
-            }
-            photoViewer2.f41400f8 = E;
-            photoViewer2.f41409g8 = E;
-            if (this.d.f41433j8) {
-                PhotoViewer photoViewer3 = this.d;
-                int i7 = iArr[1];
-                photoViewer3.f41362b8 = i7;
-                photoViewer3.f41380d8 = i7;
-                PhotoViewer photoViewer4 = this.d;
-                int i10 = iArr[2];
-                photoViewer4.f41372c8 = i10;
-                photoViewer4.f41390e8 = i10;
-                PhotoViewer photoViewer5 = this.d;
-                int max = Math.max(photoViewer5.f41362b8, this.d.f41372c8);
-                if (max > 1280) {
-                    photoViewer5.Y7 = 4;
-                } else if (max > 854) {
-                    photoViewer5.Y7 = 3;
-                } else if (max > 640) {
-                    photoViewer5.Y7 = 2;
-                } else {
-                    photoViewer5.Y7 = 1;
-                }
-                PhotoViewer photoViewer6 = this.d;
-                int i11 = this.f46147c;
-                if (i11 == -1) {
-                    i11 = photoViewer6.s2();
-                }
-                photoViewer6.X7 = i11;
-                PhotoViewer photoViewer7 = this.d;
-                if (photoViewer7.f41400f8 != 0 && photoViewer7.f41366c2 != 1) {
-                    Size i02 = photoViewer7.i0();
-                    if (i02.getWidth() == photoViewer7.f41362b8 && i02.getHeight() == photoViewer7.f41372c8) {
-                        MediaController.v(i02.getWidth(), i02.getHeight(), photoViewer7.f41409g8, false);
-                    } else {
-                        MediaController.v(i02.getWidth(), i02.getHeight(), MediaController.Q(photoViewer7.f41372c8, photoViewer7.f41362b8, photoViewer7.f41409g8, i02.getHeight(), i02.getWidth()), false);
-                    }
-                }
-                PhotoViewer photoViewer8 = this.d;
-                String str = this.f46145a;
-                MediaExtractor mediaExtractor = new MediaExtractor();
-                try {
-                    try {
-                        mediaExtractor.setDataSource(str);
-                        int w10 = MediaController.w(mediaExtractor, false);
-                        if (w10 >= 0) {
-                            if (mediaExtractor.getTrackFormat(w10).getString("mime").equals("video/avc")) {
-                                z11 = true;
-                            }
-                        }
-                    } catch (Exception e10) {
-                        org.telegram.messenger.a8.g(e10, true);
-                    }
-                    photoViewer8.f41442k8 = z11;
-                } finally {
-                    mediaExtractor.release();
-                }
-            }
-            if (this.d.f41548w8 != this) {
-                return;
-            }
-            org.telegram.messenger.g0.h3(new pc0(this, this, iArr, 22));
+    public final void onDraw(Canvas canvas) {
+        canvas.save();
+        Path path = this.f47505s0;
+        path.rewind();
+        Path.Direction direction = Path.Direction.CW;
+        path.addRoundRect(this.m0, org.telegram.messenger.g0.L(this.f57556q0), org.telegram.messenger.g0.L(this.f57556q0), direction);
+        canvas.clipPath(path);
+        canvas.translate(-getX(), -getY());
+        PhotoViewer photoViewer = this.f47508v0;
+        if (this == photoViewer.f42906v5 || this == photoViewer.f42916w5) {
+            canvas.translate(-photoViewer.f42897u5.getX(), -photoViewer.f42897u5.getY());
         }
+        photoViewer.N0(canvas, this.f57552l0, -13948117, 855638016, false, true, false);
+        float d = this.f47507u0.d(this.f47506t0);
+        if (d > 0.0f) {
+            canvas.drawColor(org.telegram.ui.ActionBar.j6.r1(d, -1));
+        }
+        setTextColor(i0.a.f(d, -1, -16777216));
+        canvas.restore();
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public final void onDrawForeground(Canvas canvas) {
+        canvas.save();
+        canvas.clipPath(this.f47505s0);
+        super.onDrawForeground(canvas);
+        canvas.restore();
     }
 }

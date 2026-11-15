@@ -1,13 +1,17 @@
 package fi;
 
 import android.view.View;
-import android.widget.FrameLayout;
-public final class v1 extends FrameLayout {
-    public org.telegram.ui.Components.k9 f12916a;
-    public int f12917b;
+public final class v1 implements View.OnClickListener {
+    public final int f12411a;
+    public final b4 f12412b;
+
+    public v1(b4 b4Var, int i7) {
+        this.f12411a = i7;
+        this.f12412b = b4Var;
+    }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.max(org.telegram.messenger.g0.L(170.0f), (org.telegram.messenger.g0.f22567q.y * 0.34999996f) - org.telegram.messenger.g0.L(142.0f)), 1073741824));
+    public final void onClick(android.view.View r21) {
+        throw new UnsupportedOperationException("Method not decompiled: fi.v1.onClick(android.view.View):void");
     }
 }

@@ -8,23 +8,23 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import tg.o1;
 public final class i extends o1 {
-    public final q D;
+    public final q E;
 
     public i(q qVar, Context context, Bitmap bitmap) {
         super(context);
-        this.D = qVar;
+        this.E = qVar;
         Paint paint = new Paint(1);
-        this.f55895b = paint;
+        this.f57486b = paint;
         Paint paint2 = new Paint(1);
-        this.f55896c = paint2;
+        this.f57487c = paint2;
         Paint paint3 = new Paint(1);
         this.d = paint3;
-        this.f55897e = 0.5f;
-        this.f55898f = 0.5f;
+        this.f57488e = 0.5f;
+        this.f57489f = 0.5f;
         this.h = new Path();
-        this.f55899n = new Rect();
-        this.f55900r = new RectF();
-        this.f55894a = bitmap;
+        this.f57490n = new Rect();
+        this.f57491r = new RectF();
+        this.f57485a = bitmap;
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(4.0f));

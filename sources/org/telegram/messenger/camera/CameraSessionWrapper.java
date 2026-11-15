@@ -13,17 +13,17 @@ public class CameraSessionWrapper {
         return cameraSessionWrapper;
     }
 
-    public void destroy(boolean z9, Runnable runnable, Runnable runnable2) {
+    public void destroy(boolean z10, Runnable runnable, Runnable runnable2) {
         CountDownLatch countDownLatch;
         if (this.camera2Session != null) {
             if (runnable != null) {
                 runnable.run();
             }
-            this.camera2Session.destroy(z9, runnable2);
+            this.camera2Session.destroy(z10, runnable2);
         } else if (this.camera1Session != null) {
             CameraController cameraController = CameraController.getInstance();
             CameraSession cameraSession = this.camera1Session;
-            if (!z9) {
+            if (!z10) {
                 countDownLatch = new CountDownLatch(1);
             } else {
                 countDownLatch = null;
@@ -179,22 +179,22 @@ public class CameraSessionWrapper {
         }
     }
 
-    public void setFlipFront(boolean z9) {
+    public void setFlipFront(boolean z10) {
         CameraSession cameraSession;
         if (this.camera2Session == null && (cameraSession = this.camera1Session) != null) {
-            cameraSession.setFlipFront(z9);
+            cameraSession.setFlipFront(z10);
         }
     }
 
-    public void setOptimizeForBarcode(boolean z9) {
+    public void setOptimizeForBarcode(boolean z10) {
         Camera2Session camera2Session = this.camera2Session;
         if (camera2Session != null) {
-            camera2Session.setScanningBarcode(z9);
+            camera2Session.setScanningBarcode(z10);
             return;
         }
         CameraSession cameraSession = this.camera1Session;
         if (cameraSession != null) {
-            cameraSession.setOptimizeForBarcode(z9);
+            cameraSession.setOptimizeForBarcode(z10);
         }
     }
 

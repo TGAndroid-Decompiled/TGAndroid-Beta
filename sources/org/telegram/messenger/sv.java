@@ -1,57 +1,76 @@
 package org.telegram.messenger;
 
-import android.content.SharedPreferences;
-import android.util.LongSparseArray;
-public final class sv extends rv {
-    public int d;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class sv {
+    public long f26569a;
+    public boolean f26570b;
+    public int f26571c;
+    public gj d;
+    public int f26572e;
+    public long f26573f;
+    public long f26574g;
+    public long h;
+    public boolean f26575i;
+    public int f26576j;
+    public int f26577k;
 
-    public static void c(sv svVar, String str, SharedPreferences sharedPreferences) {
-        svVar.getClass();
-        sharedPreferences.edit().putBoolean(str.concat("_save_gallery_photo"), svVar.f25349a).putBoolean(str.concat("_save_gallery_video"), svVar.f25350b).putLong(str.concat("_save_gallery_limitVideo"), svVar.f25351c).apply();
+    public static sv a(int i7, TLRPC.Message message) {
+        ?? obj = new Object();
+        obj.f26569a = gj.Q1(m10.i(i7).e(), message);
+        obj.f26570b = false;
+        obj.f26571c = message.f28072id;
+        obj.d = new gj(i7, message, null, null, null, null, null, false, false, 0L, false, false, true, 0);
+        return obj;
     }
 
-    public static sv d(String str, SharedPreferences sharedPreferences) {
-        ?? rvVar = new rv();
-        rvVar.f25349a = sharedPreferences.getBoolean(str.concat("_save_gallery_photo"), false);
-        rvVar.f25350b = sharedPreferences.getBoolean(str.concat("_save_gallery_video"), false);
-        rvVar.f25351c = sharedPreferences.getLong(str.concat("_save_gallery_limitVideo"), 104857600L);
-        return rvVar;
-    }
-
-    @Override
-    public final void b() {
-        super.b();
-        b6.m(this.d);
-    }
-
-    public final CharSequence e(int i7) {
-        StringBuilder sb2 = new StringBuilder();
-        if (a()) {
-            if (this.f25349a) {
-                sb2.append(id.M0(2131745920, null));
-            }
-            if (this.f25350b) {
-                if (sb2.length() != 0) {
-                    sb2.append(", ");
+    public static sv b(int i7, TLRPC.savedDialog saveddialog, ArrayList arrayList) {
+        TLRPC.Message message;
+        ?? obj = new Object();
+        obj.f26569a = m5.o(saveddialog.peer);
+        obj.f26570b = saveddialog.pinned;
+        obj.f26571c = saveddialog.top_message;
+        obj.f26573f = saveddialog.unread_count;
+        obj.f26574g = saveddialog.read_inbox_max_id;
+        obj.h = saveddialog.read_outbox_max_id;
+        int i10 = 0;
+        while (true) {
+            if (i10 < arrayList.size()) {
+                message = (TLRPC.Message) arrayList.get(i10);
+                if (obj.f26571c == message.f28072id) {
+                    break;
                 }
-                sb2.append(id.M0(2131745913, null));
-                long j3 = this.f25351c;
-                if (j3 > 0 && j3 < 4194304000L) {
-                    sb2.append(" (");
-                    sb2.append(g0.i0(this.f25351c, true, false));
-                    sb2.append(")");
-                }
+                i10++;
+            } else {
+                message = null;
+                break;
             }
-        } else {
-            sb2.append(id.M0(2131745921, null));
         }
-        LongSparseArray m10 = p10.i(i7).m(this.d);
-        if (m10.size() != 0) {
-            if (sb2.length() != 0) {
-                sb2.append(", ");
+        TLRPC.Message message2 = message;
+        if (message2 != null) {
+            obj.d = new gj(i7, message2, null, null, null, null, null, false, false, 0L, false, false, true, 0);
+        }
+        return obj;
+    }
+
+    public final int c() {
+        TLRPC.Message message;
+        gj gjVar = this.d;
+        if (gjVar != null && (message = gjVar.f23817k) != null) {
+            if ((message.flags & 32768) != 0) {
+                return message.edit_date;
             }
-            sb2.append(id.G(m10.size(), "Exception", Integer.valueOf(m10.size())));
+            return message.date;
         }
-        return sb2;
+        return this.f26576j;
+    }
+
+    public final boolean d() {
+        TLRPC.Message message;
+        gj gjVar = this.d;
+        if (gjVar != null && (message = gjVar.f23817k) != null && (message.action instanceof TLRPC.TL_messageActionHistoryClear)) {
+            return true;
+        }
+        return false;
     }
 }

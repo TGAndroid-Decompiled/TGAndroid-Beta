@@ -1,68 +1,45 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.accessibility.AccessibilityEvent;
-import android.widget.ImageView;
-public final class z10 extends ImageView {
-    public final int f40823a;
-    public final int f40824b;
-    public final Object f40825c;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+public final class z10 extends FrameLayout {
+    public final org.telegram.ui.d30 f42211a;
 
-    public z10(Object obj, Context context, int i7, int i10) {
+    public z10(org.telegram.ui.d30 d30Var, Context context) {
         super(context);
-        this.f40823a = i10;
-        this.f40825c = obj;
-        this.f40824b = i7;
+        this.f42211a = d30Var;
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f40823a) {
-            case 1:
-                super.onDraw(canvas);
-                org.telegram.ui.d00 d00Var = (org.telegram.ui.d00) this.f40825c;
-                a80 a80Var = d00Var.f44860s;
-                if (d00Var.f44859r) {
-                    int i7 = this.f40824b / 2;
-                    a80Var.setBounds(i7, i7, getWidth() - i7, getHeight() - i7);
-                    a80Var.draw(canvas);
-                    return;
-                }
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        super.onLayout(z10, i7, i10, i11, i12);
+        e20.I0(this.f42211a);
     }
 
     @Override
-    public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        switch (this.f40823a) {
-            case 0:
-                super.onInitializeAccessibilityEvent(accessibilityEvent);
-                if (accessibilityEvent.getEventType() == 32768) {
-                    ((org.telegram.ui.f30) ((a20) this.f40825c).d).l1.x(this.f40824b, true);
-                    return;
-                }
-                return;
-            default:
-                super.onInitializeAccessibilityEvent(accessibilityEvent);
-                return;
+    public final void onMeasure(int i7, int i10) {
+        boolean z10;
+        if (View.MeasureSpec.getSize(i7) > View.MeasureSpec.getSize(i10)) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-    }
-
-    @Override
-    public boolean verifyDrawable(Drawable drawable) {
-        switch (this.f40823a) {
-            case 1:
-                if (drawable != ((org.telegram.ui.d00) this.f40825c).f44860s && !super.verifyDrawable(drawable)) {
-                    return false;
-                }
-                return true;
-            default:
-                return super.verifyDrawable(drawable);
+        org.telegram.ui.d30 d30Var = this.f42211a;
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) d30Var.n1.getLayoutParams();
+        if (z10) {
+            int L = org.telegram.messenger.g0.L(80.0f);
+            marginLayoutParams.leftMargin = L;
+            marginLayoutParams.rightMargin = L;
+        } else {
+            int L2 = org.telegram.messenger.g0.L(16.0f);
+            marginLayoutParams.leftMargin = L2;
+            marginLayoutParams.rightMargin = L2;
         }
+        int y10 = org.telegram.messenger.i20.y(200.0f, View.MeasureSpec.getSize(i7), 2);
+        d30Var.f34165m1.setPadding(y10, 0, y10, 0);
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(370.0f), 1073741824));
+        measureChildWithMargins(d30Var.f34166o1, View.MeasureSpec.makeMeasureSpec(0, 0), 0, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(64.0f), 1073741824), 0);
     }
 }

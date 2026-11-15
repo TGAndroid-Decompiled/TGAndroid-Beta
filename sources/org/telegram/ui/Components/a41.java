@@ -1,52 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class a41 extends MetricAffectingSpan {
-    public final CharSequence f31703a;
-    public final int f31704b;
-    public final int f31705c;
-    public final byte d;
-    public final uy0 f31706e;
+import android.content.Context;
+import android.util.LongSparseArray;
+import android.view.View;
+import java.util.HashMap;
+public abstract class a41 {
+    public final int f32849a;
 
-    public a41(CharSequence charSequence, int i7, int i10, byte b10, uy0 uy0Var) {
-        this.f31703a = charSequence;
-        this.f31704b = i7;
-        this.f31705c = i10;
-        this.d = b10;
-        this.f31706e = uy0Var;
+    public a41() {
+        int i7 = b41.J;
+        b41.J = i7 + 1;
+        this.f32849a = i7;
     }
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setTextSize(org.telegram.messenger.g0.L(org.telegram.messenger.iz.W0 - 1));
-        byte b10 = this.d;
-        if (b10 == 2) {
-            textPaint.setColor(-1);
-        } else if (b10 == 1) {
-            textPaint.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Tc, false));
-        } else {
-            textPaint.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Sc, false));
+    public static void h(a41 a41Var) {
+        if (b41.L == null) {
+            b41.L = new HashMap();
         }
-        uy0 uy0Var = this.f31706e;
-        if (uy0Var != null) {
-            uy0Var.a(textPaint);
-            return;
+        if (b41.K == null) {
+            b41.K = new LongSparseArray();
         }
-        textPaint.setTypeface(Typeface.MONOSPACE);
-        textPaint.setUnderlineText(false);
+        Class<?> cls = a41Var.getClass();
+        if (!b41.L.containsKey(cls)) {
+            b41.L.put(cls, a41Var);
+            b41.K.put(a41Var.f32849a, a41Var);
+        }
     }
 
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        textPaint.setTextSize(org.telegram.messenger.g0.L(org.telegram.messenger.iz.W0 - 1));
-        textPaint.setFlags(textPaint.getFlags() | 128);
-        uy0 uy0Var = this.f31706e;
-        if (uy0Var != null) {
-            uy0Var.a(textPaint);
-        } else {
-            textPaint.setTypeface(Typeface.MONOSPACE);
-        }
+    public boolean c(b41 b41Var, b41 b41Var2) {
+        return b41Var.I(b41Var2);
+    }
+
+    public abstract View d(Context context, uj0 uj0Var, int i7, org.telegram.ui.ActionBar.e6 e6Var);
+
+    public boolean e(b41 b41Var, b41 b41Var2) {
+        return b41Var.J(b41Var2);
+    }
+
+    public boolean f() {
+        return !(this instanceof org.telegram.messenger.wt);
+    }
+
+    public boolean g() {
+        return this instanceof ti;
+    }
+
+    public void a(uj0 uj0Var, View view, b41 b41Var) {
+    }
+
+    public void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
     }
 }

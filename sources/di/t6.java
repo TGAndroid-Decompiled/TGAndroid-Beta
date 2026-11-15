@@ -1,67 +1,28 @@
 package di;
+public final class t6 implements Runnable {
+    public final int f9470a;
+    public final org.telegram.ui.Wallet.t1 f9471b;
 
-import org.telegram.tgnet.ConnectionsManager;
-public final class t6 implements f3.g0 {
-    public final int f9800a = 1;
-    public int f9801b;
-    public long f9802c;
-    public int d;
-
-    public t6() {
+    public t6(org.telegram.ui.Wallet.t1 t1Var, int i7) {
+        this.f9470a = i7;
+        this.f9471b = t1Var;
     }
 
-    public boolean a(int i7, int i10) {
-        int i11 = this.d;
-        if (i11 != 1) {
-            if ((i11 == 2 || i11 == 3) && ConnectionsManager.getInstance(i7).getCurrentTime() >= this.f9802c) {
-                return false;
-            }
-        } else if (this.f9801b >= i10) {
-            return false;
-        }
-        return true;
-    }
-
-    public int b() {
-        int i7 = this.d;
-        if (i7 != 2) {
-            if (i7 != 3) {
-                return 14;
-            }
-            return 16;
-        }
-        return 15;
-    }
-
-    public String toString() {
-        switch (this.f9800a) {
-            case 3:
-                StringBuilder sb2 = new StringBuilder("AtomSizeTooSmall{type=");
-                sb2.append(h2.m0.e0(this.f9801b));
-                sb2.append(", size=");
-                sb2.append(this.f9802c);
-                sb2.append(", minHeaderSize=");
-                return a8.p0.n(this.d, "}", sb2);
+    @Override
+    public final void run() {
+        switch (this.f9470a) {
+            case 0:
+                this.f9471b.a(Boolean.FALSE, "PRODUCT_NOT_FOUND");
+                return;
+            case 1:
+                this.f9471b.a(Boolean.FALSE, "PRODUCT_NO_ONETIME_OFFER_DETAILS");
+                return;
+            case 2:
+                org.telegram.messenger.g0.h3(new t6(this.f9471b, 3));
+                return;
             default:
-                return super.toString();
+                this.f9471b.a(Boolean.FALSE, null);
+                return;
         }
-    }
-
-    public t6(int i7, long j3, int i10) {
-        this.f9801b = i7;
-        this.f9802c = j3;
-        this.d = i10;
-    }
-
-    public t6(long j3, int i7, int i10) {
-        this.f9802c = j3;
-        this.f9801b = i7;
-        this.d = i10;
-    }
-
-    public t6(int i7, int i10, long j3) {
-        this.d = i7;
-        this.f9802c = j3;
-        this.f9801b = i10;
     }
 }

@@ -1,51 +1,81 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.content.res.Configuration;
-import android.graphics.Canvas;
-import android.view.View;
-import fi.r7;
-import org.telegram.messenger.a8;
-public final class m2 extends t2 {
-    public final w2 H;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.view.WindowManager;
+import org.telegram.messenger.ns;
+public final class m2 extends AnimatorListenerAdapter {
+    public final int f29377a;
+    public final u2 f29378b;
 
-    public m2(w2 w2Var, Context context) {
-        super(w2Var, context);
-        this.H = w2Var;
+    public m2(u2 u2Var, int i7) {
+        this.f29377a = i7;
+        this.f29378b = u2Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        this.H.Z(canvas);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        try {
-            return super.drawChild(canvas, view, j3);
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return true;
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.f29377a) {
+            case 0:
+                u2 u2Var = this.f29378b;
+                AnimatorSet animatorSet = u2Var.A0;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    u2Var.A0 = null;
+                    u2Var.B0 = 0;
+                    return;
+                }
+                return;
+            default:
+                u2 u2Var2 = this.f29378b;
+                AnimatorSet animatorSet2 = u2Var2.A0;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    u2Var2.A0 = null;
+                    u2Var2.B0 = 0;
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        setTag(2131296351, new r7(6));
-    }
-
-    @Override
-    public final void onConfigurationChanged(Configuration configuration) {
-        w2 w2Var = this.H;
-        w2Var.h = null;
-        w2Var.f28675c.requestApplyInsets();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        setTag(2131296351, null);
+    public final void onAnimationEnd(Animator animator) {
+        int i7 = this.f29377a;
+        u2 u2Var = this.f29378b;
+        switch (i7) {
+            case 0:
+                AnimatorSet animatorSet = u2Var.A0;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    u2Var.A0 = null;
+                    u2Var.B0 = 0;
+                    u2Var.v();
+                    o2 o2Var = u2Var.f29725z0;
+                    if (o2Var != null) {
+                        o2Var.v();
+                    }
+                    if (u2Var.K) {
+                        u2Var.f29685c.setLayerType(0, null);
+                    }
+                    if (u2Var.W) {
+                        WindowManager.LayoutParams attributes = u2Var.getWindow().getAttributes();
+                        attributes.flags &= -1025;
+                        u2Var.getWindow().setAttributes(attributes);
+                    }
+                }
+                if (u2Var.L0) {
+                    ns.e().k(99, 512);
+                }
+                u2Var.M0.e();
+                return;
+            default:
+                AnimatorSet animatorSet2 = u2Var.A0;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    u2Var.A0 = null;
+                    u2Var.B0 = 0;
+                    org.telegram.messenger.g0.h3(new r0(this, 5));
+                }
+                ns.e().k(99, 512);
+                return;
+        }
     }
 }

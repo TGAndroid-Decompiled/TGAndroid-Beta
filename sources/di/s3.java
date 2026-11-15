@@ -1,40 +1,45 @@
 package di;
-public final class s3 implements Runnable {
-    public final int f9731a;
-    public final a4 f9732b;
 
-    public s3(a4 a4Var, int i7) {
-        this.f9731a = i7;
-        this.f9732b = a4Var;
+import org.telegram.messenger.hd;
+import org.telegram.ui.LaunchActivity;
+public final class s3 implements Runnable {
+    public final int f9382a;
+    public final org.telegram.ui.ActionBar.t1 f9383b;
+
+    public s3(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        this.f9382a = i7;
+        this.f9383b = t1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f9731a) {
+        int i7 = this.f9382a;
+        org.telegram.ui.ActionBar.t1 t1Var = this.f9383b;
+        switch (i7) {
             case 0:
-                ((h9) this.f9732b.f8813x.f9258z1).g(false);
+                t1Var.dismiss();
+                org.telegram.ui.ActionBar.e2 T = LaunchActivity.T();
+                if (T != null) {
+                    org.telegram.ui.Components.xb Q = org.telegram.ui.Components.cc.a0(T).Q(2131624012, 36, hd.M0(2131748552, null));
+                    Q.f41653t = true;
+                    Q.j();
+                    return;
+                }
                 return;
             case 1:
-                j4 j4Var = this.f9732b.f8813x;
-                c4 c4Var = j4Var.f9258z1;
-                if (c4Var != null) {
-                    q9 q9Var = ((h9) c4Var).d;
-                    q9Var.Y0 = false;
-                    q9Var.V();
-                }
-                j4Var.d1(false);
-                j4Var.Q2 = true;
-                j4Var.f9233t0.E(true);
+                t1Var.dismiss();
                 return;
             case 2:
-                j4 j4Var2 = this.f9732b.f8813x;
-                j4Var2.D3 = true;
-                j4Var2.setActive(false);
+                t1Var.dismiss();
                 return;
             default:
-                j4 j4Var3 = this.f9732b.f8813x;
-                j4Var3.D3 = true;
-                j4Var3.setActive(false);
+                if (!t1Var.isShowing()) {
+                    try {
+                        t1Var.show();
+                    } catch (Exception unused) {
+                        return;
+                    }
+                }
                 return;
         }
     }

@@ -1,41 +1,42 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class ua0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f50446a;
-    public final fe0 f50447b;
+import android.os.Bundle;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.play.core.integrity.IntegrityTokenResponse;
+import org.telegram.tgnet.TLRPC;
+public final class ua0 implements OnSuccessListener {
+    public final int f51890a = 0;
+    public final ce0 f51891b;
+    public final String f51892c;
+    public final TLRPC.auth_SentCode d;
+    public final Bundle f51893e;
+    public final boolean f51894f;
 
-    public ua0(fe0 fe0Var, int i7) {
-        this.f50446a = i7;
-        this.f50447b = fe0Var;
+    public ua0(ce0 ce0Var, Bundle bundle, TLRPC.auth_SentCode auth_sentcode, String str, boolean z10) {
+        this.f51891b = ce0Var;
+        this.f51893e = bundle;
+        this.d = auth_sentcode;
+        this.f51892c = str;
+        this.f51894f = z10;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f50446a) {
+    public final void onSuccess(Object obj) {
+        switch (this.f51890a) {
             case 0:
-                fe0 fe0Var = this.f50447b;
-                fe0Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                fe0Var.f45696c.setAlpha(floatValue);
-                fe0Var.f45696c.setTranslationY((1.0f - floatValue) * org.telegram.messenger.g0.L(230.0f));
-                return;
-            case 1:
-                fe0 fe0Var2 = this.f50447b;
-                fe0Var2.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float f10 = (0.9f * floatValue2) + 0.1f;
-                fe0Var2.V.setScaleX(f10);
-                fe0Var2.V.setScaleY(f10);
-                fe0Var2.V.setAlpha(floatValue2);
+                ce0.a0(this.f51891b, this.f51893e, this.d, this.f51892c, this.f51894f, (IntegrityTokenResponse) obj);
                 return;
             default:
-                fe0 fe0Var3 = this.f50447b;
-                fe0Var3.getClass();
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                fe0Var3.f45696c.setAlpha(floatValue3);
-                fe0Var3.f45696c.setTranslationY((1.0f - floatValue3) * org.telegram.messenger.g0.L(230.0f));
+                ce0.c0(this.f51891b, this.f51892c, this.d, this.f51893e, this.f51894f, (p8.d) obj);
                 return;
         }
+    }
+
+    public ua0(ce0 ce0Var, String str, TLRPC.auth_SentCode auth_sentcode, Bundle bundle, boolean z10) {
+        this.f51891b = ce0Var;
+        this.f51892c = str;
+        this.d = auth_sentcode;
+        this.f51893e = bundle;
+        this.f51894f = z10;
     }
 }

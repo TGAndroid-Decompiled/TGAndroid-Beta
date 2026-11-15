@@ -1,16 +1,16 @@
 package y1;
 
-import bi.b1;
+import com.google.android.gms.common.api.q;
 import java.util.LinkedHashMap;
 import kotlin.jvm.internal.j;
-public final class b extends b1 {
+public final class b extends q {
     public b() {
-        this(a.f58878b);
+        this(a.f60091b);
     }
 
-    public b(b1 initialExtras) {
+    public b(q initialExtras) {
         super(9);
         j.e(initialExtras, "initialExtras");
-        ((LinkedHashMap) this.f3503a).putAll((LinkedHashMap) initialExtras.f3503a);
+        ((LinkedHashMap) this.f6112a).putAll((LinkedHashMap) initialExtras.f6112a);
     }
 }

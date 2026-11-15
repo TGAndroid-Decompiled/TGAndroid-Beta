@@ -1,19 +1,19 @@
 package jb;
 public final class b extends kd.c {
-    public ie.a f16605a;
-    public Object f16606b;
-    public final d f16607c;
+    public ie.a f16958a;
+    public Object f16959b;
+    public final d f16960c;
     public int d;
 
     public b(d dVar, kd.c cVar) {
         super(cVar);
-        this.f16607c = dVar;
+        this.f16960c = dVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.f16606b = obj;
+        this.f16959b = obj;
         this.d |= Integer.MIN_VALUE;
-        return this.f16607c.b(this);
+        return this.f16960c.b(this);
     }
 }

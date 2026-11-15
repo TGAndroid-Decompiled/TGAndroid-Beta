@@ -1,46 +1,46 @@
 package lh;
 
-import ai.v;
 import android.content.Context;
 import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
-import c8.ha;
-import c8.ka;
+import c8.ja;
+import c8.na;
+import ci.q;
 import h6.m;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.cq;
-import org.telegram.ui.Components.wq;
+import org.telegram.messenger.hd;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.Components.er;
+import org.telegram.ui.Components.kq;
 public final class h extends FrameLayout implements te.b {
-    public static final int[] f18385s = {2131232186, 2131232508, 2131231760, 2131232672, 2131231848, 2131232508, 2131232508};
-    public final String[] f18386a;
-    public final h6 f18387b;
-    public final gh.a f18388c;
+    public static final int[] f19515s = {2131232187, 2131232509, 2131231760, 2131232673, 2131231848, 2131232509, 2131232509};
+    public final String[] f19516a;
+    public final e6 f19517b;
+    public final gh.a f19518c;
     public final dh.c d;
-    public final m[] f18389e;
-    public final bg.f[] f18390f;
+    public final m[] f19519e;
+    public final bg.f[] f19520f;
     public a h;
-    public b f18391n;
-    public int f18392r;
+    public b f19521n;
+    public int f19522r;
 
-    public h(Context context, h6 h6Var, gh.b bVar, dh.c cVar) {
+    public h(Context context, e6 e6Var, gh.b bVar, dh.c cVar) {
         super(context);
-        this.f18386a = new String[]{id.M0(2131753953, null), id.M0(2131754815, null), id.M0(2131754842, null), id.M0(2131754790, null), id.M0(2131754804, null), id.M0(2131754778, null), id.M0(2131754779, null)};
-        this.f18389e = new m[7];
-        this.f18390f = new bg.f[7];
-        this.f18392r = 83;
+        this.f19516a = new String[]{hd.M0(2131753953, null), hd.M0(2131754815, null), hd.M0(2131754842, null), hd.M0(2131754790, null), hd.M0(2131754804, null), hd.M0(2131754778, null), hd.M0(2131754779, null)};
+        this.f19519e = new m[7];
+        this.f19520f = new bg.f[7];
+        this.f19522r = 83;
         this.d = cVar;
-        this.f18388c = bVar;
-        this.f18387b = h6Var;
+        this.f19518c = bVar;
+        this.f19517b = e6Var;
     }
 
     @Override
-    public final void Y(int i7, float f10, float f11, te.c cVar) {
+    public final void G(int i7, float f10, float f11, te.c cVar) {
         int i10 = i7 >> 16;
         int i11 = i7 & 65535;
         if (i10 >= 0) {
-            m[] mVarArr = this.f18389e;
+            m[] mVarArr = this.f19519e;
             if (i10 < mVarArr.length && mVarArr[i10] != null) {
                 if (i11 == 1 || i11 == 2) {
                     a();
@@ -54,13 +54,13 @@ public final class h extends FrameLayout implements te.b {
         float f10 = 0.0f;
         int i10 = 0;
         while (true) {
-            m[] mVarArr = this.f18389e;
+            m[] mVarArr = this.f19519e;
             if (i10 < mVarArr.length) {
                 m mVar = mVarArr[i10];
                 if (mVar != null) {
-                    kh.b bVar = (kh.b) mVar.f14266b;
-                    float f11 = ((te.a) mVar.f14267c).f55498e;
-                    float f12 = ((te.a) mVar.d).f55498e;
+                    kh.b bVar = (kh.b) mVar.f13624b;
+                    float f11 = ((te.a) mVar.f13625c).f57081e;
+                    float f12 = ((te.a) mVar.d).f57081e;
                     if (f11 > 0.0f) {
                         i7 = 0;
                     } else {
@@ -83,60 +83,60 @@ public final class h extends FrameLayout implements te.b {
     }
 
     public final bg.f b(int i7) {
-        bg.f[] fVarArr = this.f18390f;
+        bg.f[] fVarArr = this.f19520f;
         if (fVarArr[i7] == 0) {
             ?? obj = new Object();
-            obj.f3275a = 0;
-            obj.f3276b = false;
-            obj.f3277c = true;
+            obj.f3230a = 0;
+            obj.f3231b = false;
+            obj.f3232c = true;
             fVarArr[i7] = obj;
         }
         return fVarArr[i7];
     }
 
-    public final void c(int i7, int i10, boolean z9) {
-        boolean z10;
-        b(i7).f3275a = i10;
-        m mVar = this.f18389e[i7];
+    public final void c(int i7, int i10, boolean z10) {
+        boolean z11;
+        b(i7).f3230a = i10;
+        m mVar = this.f19519e[i7];
         if (mVar != null) {
-            ((kh.b) mVar.f14266b).a(i10, z9);
+            ((kh.b) mVar.f13624b).a(i10, z10);
             te.a aVar = (te.a) mVar.d;
             if (i10 > 0) {
-                z10 = true;
+                z11 = true;
             } else {
-                z10 = false;
+                z11 = false;
             }
-            aVar.a(z10, z9);
+            aVar.a(z11, z10);
         }
     }
 
-    public final void d(boolean z9) {
-        b(1).f3276b = z9;
-        m mVar = this.f18389e[1];
+    public final void d(boolean z10) {
+        b(1).f3231b = z10;
+        m mVar = this.f19519e[1];
         if (mVar != null) {
-            ((kh.b) mVar.f14266b).c(z9, true);
+            ((kh.b) mVar.f13624b).c(z10, true);
         }
     }
 
-    public final void e(int i7, boolean z9, boolean z10) {
+    public final void e(int i7, boolean z10, boolean z11) {
         Interpolator interpolator;
         long j3;
         Interpolator interpolator2;
         long j10;
         int i10;
         int i11;
-        m[] mVarArr = this.f18389e;
+        m[] mVarArr = this.f19519e;
         m mVar = mVarArr[i7];
-        if (mVar == null && !z9) {
+        if (mVar == null && !z10) {
             return;
         }
         if (mVar == null) {
             int i12 = i7 << 16;
             int i13 = i12 | 1;
             if (i7 == 0) {
-                interpolator = wq.h;
+                interpolator = er.h;
             } else {
-                interpolator = se.a.f55016a;
+                interpolator = se.a.f56572a;
             }
             if (i7 == 0) {
                 j3 = 300;
@@ -146,9 +146,9 @@ public final class h extends FrameLayout implements te.b {
             te.a aVar = new te.a(i13, this, interpolator, j3, false);
             int i14 = i12 | 2;
             if (i7 == 0) {
-                interpolator2 = wq.h;
+                interpolator2 = er.h;
             } else {
-                interpolator2 = se.a.f55016a;
+                interpolator2 = se.a.f56572a;
             }
             Interpolator interpolator3 = interpolator2;
             if (i7 == 0) {
@@ -166,50 +166,50 @@ public final class h extends FrameLayout implements te.b {
             }
             int i15 = i11;
             Context context = getContext();
-            int i16 = f18385s[i7];
-            h6 h6Var = this.f18387b;
-            kh.b bVar = new kh.b(context, h6Var);
-            kh.a d = kh.a.d(context, this.d, this.f18388c, h6Var, i16, i15);
-            bVar.f17602b = d;
-            bVar.addView(d, ha.e(i10, i10, 80));
+            int i16 = f19515s[i7];
+            e6 e6Var = this.f19517b;
+            kh.b bVar = new kh.b(context, e6Var);
+            kh.a d = kh.a.d(context, this.d, this.f19518c, e6Var, i16, i15);
+            bVar.f18168b = d;
+            bVar.addView(d, ja.e(i10, i10, 80));
             d.setIconPadding(g0.L(2.0f));
-            ka.b(bVar, 0.13f, 2.0f);
+            na.b(bVar, 0.13f, 2.0f);
             float f10 = i10 / 2.0f;
             bVar.setPivotX(g0.L(f10));
             bVar.setPivotY(g0.L(f10 + 8.0f));
             bVar.setVisibility(8);
-            bVar.setContentDescription(this.f18386a[i7]);
-            bVar.setOnClickListener(new v(this, i7, 6));
+            bVar.setContentDescription(this.f19516a[i7]);
+            bVar.setOnClickListener(new q(this, i7, 6));
             bVar.setOnLongClickListener(new g(this, i7, 0));
             if (i7 == 6) {
-                kh.a aVar3 = bVar.f17602b;
+                kh.a aVar3 = bVar.f18168b;
                 aVar3.h = -1.0f;
                 aVar3.a();
             }
-            boolean z11 = true;
+            boolean z12 = true;
             if (i7 == 1) {
                 bVar.d = true;
-                cq cqVar = bVar.f17603c;
-                if (cqVar != null) {
-                    cqVar.setReverse(true);
+                kq kqVar = bVar.f18169c;
+                if (kqVar != null) {
+                    kqVar.setReverse(true);
                 }
             }
-            addView(bVar, ha.e(i10, i10 + 8, this.f18392r));
-            mVarArr[i7] = new m(bVar, aVar, aVar2, 9);
-            bg.f fVar = this.f18390f[i7];
+            addView(bVar, ja.e(i10, i10 + 8, this.f19522r));
+            mVarArr[i7] = new m(bVar, aVar, aVar2, false, 10);
+            bg.f fVar = this.f19520f[i7];
             if (fVar != null) {
-                bVar.a(fVar.f3275a, false);
+                bVar.a(fVar.f3230a, false);
                 aVar.a(false, false);
-                if (fVar.f3275a <= 0) {
-                    z11 = false;
+                if (fVar.f3230a <= 0) {
+                    z12 = false;
                 }
-                aVar2.a(z11, false);
-                bVar.c(fVar.f3276b, false);
-                bVar.b(fVar.f3277c, false);
+                aVar2.a(z12, false);
+                bVar.c(fVar.f3231b, false);
+                bVar.b(fVar.f3232c, false);
             }
             a();
         }
-        ((te.a) mVarArr[i7].f14267c).a(z9, z10);
+        ((te.a) mVarArr[i7].f13625c).a(z10, z11);
     }
 
     @Override
@@ -218,7 +218,7 @@ public final class h extends FrameLayout implements te.b {
     }
 
     public void setGravity(int i7) {
-        this.f18392r = i7;
+        this.f19522r = i7;
     }
 
     public void setOnClickListener(a aVar) {
@@ -226,10 +226,10 @@ public final class h extends FrameLayout implements te.b {
     }
 
     public void setOnLongClickListener(b bVar) {
-        this.f18391n = bVar;
+        this.f19521n = bVar;
     }
 
     @Override
-    public final void F(float f10, int i7) {
+    public final void E(float f10, int i7) {
     }
 }

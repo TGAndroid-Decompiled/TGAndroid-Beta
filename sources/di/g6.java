@@ -1,40 +1,134 @@
 package di;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class g6 implements RequestDelegate {
-    public final int f9037a = 0;
-    public final boolean f9038b;
-    public final boolean f9039c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import org.telegram.messenger.ns;
+import org.telegram.messenger.xe;
+import org.telegram.ui.Components.Crop.CropAreaView;
+import org.telegram.ui.Components.gd0;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.n30;
+public final class g6 extends AnimatorListenerAdapter {
+    public final int f8599a;
+    public final float f8600b;
+    public final Runnable f8601c;
     public final Object d;
-    public final Object f9040e;
 
-    public g6(z6 z6Var, boolean z9, TL_stories.TL_stories_getAllStories tL_stories_getAllStories, boolean z10) {
-        this.d = z6Var;
-        this.f9038b = z9;
-        this.f9040e = tL_stories_getAllStories;
-        this.f9039c = z10;
+    public g6(Object obj, float f10, Runnable runnable, int i7) {
+        this.f8599a = i7;
+        this.d = obj;
+        this.f8600b = f10;
+        this.f8601c = runnable;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f9037a) {
+    public final void onAnimationEnd(Animator animator) {
+        int i7 = this.f8599a;
+        Runnable runnable = this.f8601c;
+        float f10 = this.f8600b;
+        Object obj = this.d;
+        switch (i7) {
             case 0:
-                org.telegram.messenger.g0.h3(new a6((z6) this.d, this.f9038b, (TL_stories.TL_stories_getAllStories) this.f9040e, tLObject, this.f9039c));
+                h6 h6Var = (h6) obj;
+                h6Var.E = f10;
+                h6Var.invalidate();
+                if (animator == h6Var.F && runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            case 1:
+                fi.o1 o1Var = (fi.o1) obj;
+                o1Var.f12108n = f10;
+                o1Var.invalidate();
+                if (animator == o1Var.f12109r && runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            case 2:
+                hi.n2 n2Var = (hi.n2) obj;
+                n2Var.h = f10;
+                n2Var.i();
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            case 3:
+                hi.sa saVar = (hi.sa) obj;
+                saVar.M = null;
+                saVar.J = f10;
+                saVar.j();
+                saVar.f15088r.invalidate();
+                saVar.f15076n.invalidate();
+                runnable.run();
+                saVar.Q.e();
+                ns.e().k(99, 512);
+                ns.e().o();
+                saVar.n();
+                Runnable runnable2 = saVar.R;
+                if (runnable2 != null) {
+                    runnable2.run();
+                    saVar.R = null;
+                }
+                saVar.f15088r.invalidate();
+                saVar.f15063i0.invalidate();
+                return;
+            case 4:
+                n30 n30Var = (n30) obj;
+                n30Var.h = f10;
+                n30Var.f49432a.invalidate();
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
                 return;
             default:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.ActionBar.q((TwoStepVerificationActivity) this.d, tL_error, tLObject, this.f9038b, this.f9039c, (Runnable) this.f9040e));
+                PhotoViewer photoViewer = (PhotoViewer) obj;
+                photoViewer.f42853p6 = null;
+                photoViewer.f42769f6 = 0.0f;
+                photoViewer.f42731b6 = 0.0f;
+                photoViewer.f42778g6 = 0.0f;
+                float p22 = photoViewer.p2(false);
+                photoViewer.f42759e6 = p22;
+                photoViewer.f42721a6 = p22;
+                photoViewer.f42763f0.invalidate();
+                CropAreaView cropAreaView = photoViewer.D1.f34907b.f21530a;
+                float p23 = photoViewer.p2(false);
+                cropAreaView.f32495o0 = 0.0f;
+                cropAreaView.f32496p0 = p23;
+                cropAreaView.f32497q0 = 0.0f;
+                cropAreaView.f32499r0 = 0.0f;
+                cropAreaView.invalidate();
+                photoViewer.D1.f34908c.setRotated(false);
+                if (Math.abs(f10) > 0.0f) {
+                    gd0 gd0Var = photoViewer.D1;
+                    og.f fVar = gd0Var.f34908c;
+                    if (fVar != null) {
+                        fVar.b(0.0f);
+                        fVar.setRotated(false);
+                    }
+                    if (gd0Var.f34907b.m(f10)) {
+                        org.telegram.ui.ActionBar.q6.s(photoViewer.f42736c1, org.telegram.ui.ActionBar.j6.f29098qg, photoViewer.f42913w2, PorterDuff.Mode.MULTIPLY);
+                    } else {
+                        photoViewer.f42736c1.setColorFilter((ColorFilter) null);
+                    }
+                }
+                xe xeVar = photoViewer.X4.f49027c;
+                if (xeVar != null) {
+                    xeVar.f27489b = 0.0f;
+                    xeVar.f27488a = 0.0f;
+                    xeVar.f27492f = 1.0f;
+                    xeVar.f27491e = 1.0f;
+                }
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
                 return;
         }
-    }
-
-    public g6(TwoStepVerificationActivity twoStepVerificationActivity, boolean z9, boolean z10, Runnable runnable) {
-        this.d = twoStepVerificationActivity;
-        this.f9038b = z9;
-        this.f9039c = z10;
-        this.f9040e = runnable;
     }
 }

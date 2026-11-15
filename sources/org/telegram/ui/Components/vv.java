@@ -1,64 +1,84 @@
 package org.telegram.ui.Components;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.view.MotionEvent;
-import android.view.ViewGroup;
-public final class vv extends c5.k {
-    public final gy f39750w0;
+import j$.util.Objects;
+public final class vv extends rg.d {
+    public boolean f41157g3;
+    public final ly f41158h3;
 
-    public vv(gy gyVar, Context context) {
-        super(context);
-        this.f39750w0 = gyVar;
+    public vv(ly lyVar, Context context) {
+        super(context, null);
+        this.f41158h3 = lyVar;
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        this.f41158h3.f36974o2.g();
+    }
+
+    @Override
+    public final void l0(int i7) {
+        int i10;
+        ly lyVar = this.f41158h3;
+        gy gyVar = lyVar.A0;
+        if (lyVar.D0 != null) {
+            zv zvVar = lyVar.C0;
+            if (lyVar.E0.canScrollVertically(-1)) {
+                i10 = org.telegram.messenger.g0.f1();
+            } else {
+                i10 = 0;
+            }
+            zvVar.setUnderlineHeight(i10);
+        }
+        if (gyVar != null && getAdapter() == gyVar && gyVar.d == 0) {
+            gy gyVar2 = gyVar.P.f34744x;
+            if (!gyVar2.R.H0.G && !gyVar2.E) {
+                if (lyVar.F0.N0() + 50 > gyVar.b()) {
+                    fy fyVar = gyVar.P;
+                    Objects.requireNonNull(fyVar);
+                    org.telegram.messenger.g0.h3(new uv(fyVar, 0));
+                }
+            }
+        }
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f39750w0.f34024f) {
-            return false;
+        ly lyVar = this.f41158h3;
+        if (!lyVar.f36946f) {
+            org.telegram.ui.ns p10 = org.telegram.ui.ns.p();
+            vv vvVar = lyVar.E0;
+            lyVar.getMeasuredHeight();
+            boolean q10 = p10.q(motionEvent, vvVar, lyVar.f36955h2, this.f40069o2);
+            if (!super.onInterceptTouchEvent(motionEvent) && !q10) {
+                return false;
+            }
+            return true;
         }
-        if (getParent() != null) {
-            getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
-        }
-        try {
-            return super.onInterceptTouchEvent(motionEvent);
-        } catch (IllegalArgumentException unused) {
-            return false;
-        }
+        return false;
     }
 
     @Override
-    public final void x(int i7, boolean z9) {
-        boolean z10;
-        gy gyVar = this.f39750w0;
-        kw kwVar = gyVar.I;
-        if (i7 == 1) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        ly lyVar = this.f41158h3;
+        if (lyVar.J0 && lyVar.f37010z0.b() > 0) {
+            this.f41157g3 = true;
+            lyVar.F0.h1(0, 0);
+            lyVar.J0 = false;
+            this.f41157g3 = false;
         }
-        gy.a(gyVar, z10);
-        if (i7 == getCurrentItem()) {
-            if (i7 == 0) {
-                gyVar.Q0[1] = 0;
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(kwVar, ViewGroup.TRANSLATION_Y, 0.0f);
-                ofFloat.setDuration(150L);
-                ofFloat.setInterpolator(wq.h);
-                ofFloat.start();
-                gyVar.G(1, 0);
-                if (kwVar != null) {
-                    kwVar.j(0, true);
-                    return;
-                }
-                return;
-            } else if (i7 == 1) {
-                gyVar.f34031h0.y0(0);
-                return;
-            } else {
-                gyVar.D0.y0(1);
-                return;
-            }
+        super.onLayout(z10, i7, i10, i11, i12);
+        lyVar.q(true);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f41157g3) {
+            return;
         }
-        super.x(i7, z9);
+        super.requestLayout();
     }
 }

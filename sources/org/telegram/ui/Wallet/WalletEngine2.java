@@ -24,19 +24,18 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.c20;
-import org.telegram.messenger.qp;
-import org.telegram.messenger.v10;
-import org.telegram.messenger.x10;
+import org.telegram.messenger.np;
+import org.telegram.messenger.s10;
+import org.telegram.messenger.u10;
+import org.telegram.messenger.w10;
 import org.telegram.messenger.z10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_toncenter;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.z11;
+import org.telegram.ui.Components.e21;
 import org.telegram.ui.Wallet.WalletEngine2;
-import org.telegram.ui.sb1;
-import org.telegram.ui.sw0;
+import org.telegram.ui.cu0;
 public class WalletEngine2 implements AutoCloseable {
     private static final long NFT_ATTACHED_NANOGRAMS = 100000000;
     private static final long NFT_FORWARD_NANOGRAMS = 10000000;
@@ -48,18 +47,18 @@ public class WalletEngine2 implements AutoCloseable {
     private String nftPreviewComment;
     private String nftPreviewOperationId;
     private String nftPreviewRecipient;
-    private m7 pendingSend;
+    private l7 pendingSend;
     private long ptr;
     public final byte[] publicKey;
     private ScheduledFuture<?> resolutionTask;
     private final HttpTransport transport;
-    private final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor(new h2.l0(5));
+    private final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor(new ai.x0(5));
     private long nextAuxiliaryRequestId = -1;
 
     public static class HttpTransport {
         private boolean closed;
         public final int currentAccount;
-        private final HashMap<Long, l7> pending = new HashMap<>();
+        private final HashMap<Long, k7> pending = new HashMap<>();
 
         public static class HostException extends RuntimeException {
             final int kind;
@@ -78,24 +77,24 @@ public class WalletEngine2 implements AutoCloseable {
             return ConnectionsManager.getInstance(this.currentAccount);
         }
 
-        public static void lambda$execute$0(l7 l7Var, TL_toncenter.apiResponse apiresponse, TLRPC.TL_error tL_error) {
+        public static void lambda$execute$0(k7 k7Var, TL_toncenter.apiResponse apiresponse, TLRPC.TL_error tL_error) {
             TLRPC.TL_dataJSON tL_dataJSON;
             String str;
             if (tL_error != null) {
-                l7Var.a(null, new HostException(3));
+                k7Var.a(null, new HostException(3));
             } else if (apiresponse != null && (tL_dataJSON = apiresponse.response) != null && (str = tL_dataJSON.data) != null) {
-                l7Var.a(str.getBytes(StandardCharsets.UTF_8), null);
+                k7Var.a(str.getBytes(StandardCharsets.UTF_8), null);
             } else {
-                l7Var.a(null, new HostException(7));
+                k7Var.a(null, new HostException(7));
             }
         }
 
         public void cancel(long j3) {
             synchronized (this.pending) {
                 try {
-                    l7 l7Var = this.pending.get(Long.valueOf(j3));
-                    if (l7Var != null) {
-                        l7Var.a(null, new HostException(6));
+                    k7 k7Var = this.pending.get(Long.valueOf(j3));
+                    if (k7Var != null) {
+                        k7Var.a(null, new HostException(6));
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -107,8 +106,8 @@ public class WalletEngine2 implements AutoCloseable {
             synchronized (this.pending) {
                 try {
                     this.closed = true;
-                    for (l7 l7Var : this.pending.values()) {
-                        l7Var.a(null, new HostException(6));
+                    for (k7 k7Var : this.pending.values()) {
+                        k7Var.a(null, new HostException(6));
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -116,15 +115,15 @@ public class WalletEngine2 implements AutoCloseable {
             }
         }
 
-        public byte[] execute(long j3, String str, boolean z9, byte[] bArr, long j10) {
+        public byte[] execute(long j3, String str, boolean z10, byte[] bArr, long j10) {
             String str2;
             int i7;
-            HashMap<Long, l7> hashMap;
+            HashMap<Long, k7> hashMap;
             try {
                 URI create = URI.create(str);
                 if ("https".equalsIgnoreCase(create.getScheme()) && "toncenter.com".equalsIgnoreCase(create.getHost()) && create.getRawUserInfo() == null && create.getRawFragment() == null && ((create.getPort() == -1 || create.getPort() == 443) && j10 > 0)) {
                     TL_toncenter.performApiRequest performapirequest = new TL_toncenter.performApiRequest();
-                    performapirequest.post = z9;
+                    performapirequest.post = z10;
                     performapirequest.endpoint = create.getRawPath();
                     performapirequest.query = create.getRawQuery();
                     if (bArr.length == 0) {
@@ -133,20 +132,20 @@ public class WalletEngine2 implements AutoCloseable {
                         str2 = new String(bArr, StandardCharsets.UTF_8);
                     }
                     performapirequest.payload = str2;
-                    l7 l7Var = new l7();
+                    k7 k7Var = new k7();
                     long nanoTime = System.nanoTime();
                     try {
                         try {
-                            HashMap<Long, l7> hashMap2 = this.pending;
+                            HashMap<Long, k7> hashMap2 = this.pending;
                             try {
                                 synchronized (hashMap2) {
                                     try {
                                         try {
                                             if (!this.closed) {
                                                 try {
-                                                    this.pending.put(Long.valueOf(j3), l7Var);
+                                                    this.pending.put(Long.valueOf(j3), k7Var);
                                                     try {
-                                                        l7Var.f42795b = getConnectionsManager().sendRequestTyped(performapirequest, new d3.b(3), new d(l7Var, 9), qp.s1(this.currentAccount).N3, 0);
+                                                        k7Var.f44071b = getConnectionsManager().sendRequestTyped(performapirequest, new d3.b(3), new d(k7Var, 9), np.s1(this.currentAccount).O3, 0);
                                                     } catch (Throwable th2) {
                                                         th = th2;
                                                         hashMap = hashMap2;
@@ -155,7 +154,7 @@ public class WalletEngine2 implements AutoCloseable {
                                                             throw th;
                                                         } catch (InterruptedException unused) {
                                                             Thread.currentThread().interrupt();
-                                                            l7Var.a(null, new HostException(i7));
+                                                            k7Var.a(null, new HostException(i7));
                                                             throw new HostException(i7);
                                                         }
                                                     }
@@ -176,17 +175,17 @@ public class WalletEngine2 implements AutoCloseable {
                                     }
                                 }
                                 try {
-                                    if (!l7Var.f42794a.await(Math.max(0L, TimeUnit.MILLISECONDS.toNanos(j10) - (System.nanoTime() - nanoTime)), TimeUnit.NANOSECONDS)) {
-                                        l7Var.a(null, new HostException(2));
+                                    if (!k7Var.f44070a.await(Math.max(0L, TimeUnit.MILLISECONDS.toNanos(j10) - (System.nanoTime() - nanoTime)), TimeUnit.NANOSECONDS)) {
+                                        k7Var.a(null, new HostException(2));
                                     }
-                                    HostException hostException = l7Var.d;
+                                    HostException hostException = k7Var.d;
                                     if (hostException == null) {
-                                        byte[] bArr2 = l7Var.f42796c;
+                                        byte[] bArr2 = k7Var.f44072c;
                                         synchronized (this.pending) {
                                             try {
                                                 this.pending.remove(Long.valueOf(j3));
-                                                if (l7Var.d != null && l7Var.f42795b != 0) {
-                                                    getConnectionsManager().cancelRequest(l7Var.f42795b, true);
+                                                if (k7Var.d != null && k7Var.f44071b != 0) {
+                                                    getConnectionsManager().cancelRequest(k7Var.f44071b, true);
                                                 }
                                             } finally {
                                             }
@@ -197,7 +196,7 @@ public class WalletEngine2 implements AutoCloseable {
                                 } catch (InterruptedException unused2) {
                                     i7 = 6;
                                     Thread.currentThread().interrupt();
-                                    l7Var.a(null, new HostException(i7));
+                                    k7Var.a(null, new HostException(i7));
                                     throw new HostException(i7);
                                 }
                             } catch (Throwable th6) {
@@ -207,8 +206,8 @@ public class WalletEngine2 implements AutoCloseable {
                             synchronized (this.pending) {
                                 try {
                                     this.pending.remove(Long.valueOf(j3));
-                                    if (l7Var.d != null && l7Var.f42795b != 0) {
-                                        getConnectionsManager().cancelRequest(l7Var.f42795b, true);
+                                    if (k7Var.d != null && k7Var.f44071b != 0) {
+                                        getConnectionsManager().cancelRequest(k7Var.f44071b, true);
                                     }
                                     throw th7;
                                 } finally {
@@ -274,7 +273,7 @@ public class WalletEngine2 implements AutoCloseable {
             TL_wallet.sendTransfer sendtransfer = new TL_wallet.sendTransfer();
             this.transfer = sendtransfer;
             sendtransfer.user_id = new TLRPC.TL_inputUserEmpty();
-            sendtransfer.random_id = Utilities.f21339b.nextLong();
+            sendtransfer.random_id = Utilities.f22414b.nextLong();
             sendtransfer.data_normal = decodeTransferBoc(str);
             sendtransfer.normalMessageBodyHash = WalletEngine2.nativeMessageBodyHash(str);
             if (str2 == null) {
@@ -299,17 +298,17 @@ public class WalletEngine2 implements AutoCloseable {
     }
 
     public static class RotationCallbacks extends SendCallbacks {
-        private final v10 onReplacement;
+        private final s10 onReplacement;
 
-        public RotationCallbacks(final v10 v10Var, v10 v10Var2) {
-            super(new x10() {
+        public RotationCallbacks(final s10 s10Var, s10 s10Var2) {
+            super(new u10() {
                 @Override
                 public final void a(Object obj, Object obj2, Object obj3) {
                     String str = (String) obj3;
-                    v10.this.a((WalletEngine2.SendPhase) obj, (String) obj2);
+                    s10.this.a((WalletEngine2.SendPhase) obj, (String) obj2);
                 }
             });
-            this.onReplacement = v10Var2;
+            this.onReplacement = s10Var2;
         }
 
         private void lambda$replacement$1(byte[] bArr, i0 i0Var) {
@@ -329,7 +328,7 @@ public class WalletEngine2 implements AutoCloseable {
         }
 
         private void replacement(final byte[] bArr, final byte[] bArr2) {
-            boolean z9;
+            boolean z10;
             try {
                 FutureTask futureTask = new FutureTask(new Callable() {
                     @Override
@@ -340,29 +339,29 @@ public class WalletEngine2 implements AutoCloseable {
                     }
                 });
                 org.telegram.messenger.g0.h3(futureTask);
-                z9 = false;
+                z10 = false;
                 while (true) {
                     try {
                         try {
                             futureTask.get();
                             break;
                         } catch (InterruptedException unused) {
-                            z9 = true;
+                            z10 = true;
                         } catch (ExecutionException unused2) {
                             throw new IllegalStateException("Could not save replacement recovery phrase");
                         }
                     } catch (Throwable th2) {
                         th = th2;
                         Arrays.fill(bArr, (byte) 0);
-                        if (z9) {
+                        if (z10) {
                             Thread.currentThread().interrupt();
                         }
                         throw th;
                     }
                 }
-                if (!z9) {
+                if (!z10) {
                     Arrays.fill(bArr, (byte) 0);
-                    if (z9) {
+                    if (z10) {
                         Thread.currentThread().interrupt();
                         return;
                     }
@@ -371,19 +370,19 @@ public class WalletEngine2 implements AutoCloseable {
                 throw new IllegalStateException("Key rotation was interrupted before submission");
             } catch (Throwable th3) {
                 th = th3;
-                z9 = false;
+                z10 = false;
             }
         }
     }
 
     public static class SendCallbacks {
-        final x10 callback;
+        final u10 callback;
         String error;
         SendPhase phase = SendPhase.IDLE;
         String transactionHash;
 
-        public SendCallbacks(x10 x10Var) {
-            this.callback = x10Var;
+        public SendCallbacks(u10 u10Var) {
+            this.callback = u10Var;
         }
 
         public void lambda$dispatch$0(SendPhase sendPhase, String str, String str2) {
@@ -391,7 +390,7 @@ public class WalletEngine2 implements AutoCloseable {
         }
 
         public void dispatch(SendPhase sendPhase, String str, String str2) {
-            org.telegram.messenger.g0.h3(new h7((Object) this, (Object) sendPhase, str, (Object) str2, 2));
+            org.telegram.messenger.g0.h3(new g7(2, this, sendPhase, str2, str));
         }
 
         public synchronized void failed(String str) {
@@ -446,7 +445,7 @@ public class WalletEngine2 implements AutoCloseable {
                     return sendPhase;
                 }
             }
-            throw new IllegalArgumentException(jg.g.j(i7, "Unknown native send phase: "));
+            throw new IllegalArgumentException(i5.c.i(i7, "Unknown native send phase: "));
         }
     }
 
@@ -473,7 +472,7 @@ public class WalletEngine2 implements AutoCloseable {
         this.publicKey = bArr2;
         HttpTransport httpTransport = new HttpTransport(i7);
         this.transport = httpTransport;
-        this.ptr = nativeCreate(i7, str, bArr2, httpTransport, org.telegram.messenger.t0.f25570b.getNoBackupFilesDir().getAbsolutePath() + "/wallet-engine");
+        this.ptr = nativeCreate(i7, str, bArr2, httpTransport, org.telegram.messenger.t0.f26600b.getNoBackupFilesDir().getAbsolutePath() + "/wallet-engine");
     }
 
     public static ImportedWalletProof createImportProof(i0 i0Var, String str, String str2, int i7) {
@@ -484,13 +483,13 @@ public class WalletEngine2 implements AutoCloseable {
         return createProof(i0Var, str, str2, i7, false);
     }
 
-    private static ImportedWalletProof createProof(i0 i0Var, String str, String str2, int i7, boolean z9) {
+    private static ImportedWalletProof createProof(i0 i0Var, String str, String str2, int i7, boolean z10) {
         if (i0Var != null && !i0Var.d()) {
             if (str != null && !str.isEmpty() && str2 != null && !str2.isEmpty() && i7 > 0) {
                 byte[] c10 = i0Var.c();
                 try {
                     Charset charset = StandardCharsets.UTF_8;
-                    return nativeCreateImportProof(c10, str.getBytes(charset), str2.getBytes(charset), i7, z9);
+                    return nativeCreateImportProof(c10, str.getBytes(charset), str2.getBytes(charset), i7, z10);
                 } finally {
                     Arrays.fill(c10, (byte) 0);
                 }
@@ -625,14 +624,14 @@ public class WalletEngine2 implements AutoCloseable {
         int i7;
         int i10;
         int i11;
-        int D = jg.g.D(bArr.length, -91, 127, 1);
-        int length = (D * 2) + bArr.length + 4 + D;
+        int e10 = i5.c.e(bArr.length, -91, 127, 1);
+        int length = (e10 * 2) + bArr.length + 4 + e10;
         int i12 = length - 1;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(length + 11);
-        byteArrayOutputStream.write(new byte[]{-75, -18, -100, 114, 1, 2, (byte) D, 1, 0, (byte) (i12 >> 8), (byte) i12, 0}, 0, 12);
+        byteArrayOutputStream.write(new byte[]{-75, -18, -100, 114, 1, 2, (byte) e10, 1, 0, (byte) (i12 >> 8), (byte) i12, 0}, 0, 12);
         int i13 = 0;
         int i14 = 0;
-        while (i13 < D) {
+        while (i13 < e10) {
             if (i13 == 0) {
                 i7 = 35;
             } else {
@@ -640,7 +639,7 @@ public class WalletEngine2 implements AutoCloseable {
             }
             int min = Math.min(i7, bArr.length - i14);
             int i15 = i13 + 1;
-            if (i15 < D) {
+            if (i15 < e10) {
                 i10 = 1;
             } else {
                 i10 = 0;
@@ -678,17 +677,17 @@ public class WalletEngine2 implements AutoCloseable {
         int i12;
         if (i7 <= 960) {
             int i13 = ((16 - (i7 % 16)) % 16) + i7 + 64;
-            int D = jg.g.D(i13, -91, 127, 1);
-            int i14 = (D * 2) + i13 + 4 + D;
+            int e10 = i5.c.e(i13, -91, 127, 1);
+            int i14 = (e10 * 2) + i13 + 4 + e10;
             int i15 = i14 - 1;
             ByteBuffer allocate = ByteBuffer.allocate(i14 + 11);
             allocate.putInt(-1242653582);
             allocate.put((byte) 1);
             allocate.put((byte) 2);
-            allocate.put((byte) D).put((byte) 1).put((byte) 0);
+            allocate.put((byte) e10).put((byte) 1).put((byte) 0);
             allocate.putShort((short) i15).put((byte) 0);
             int i16 = 0;
-            while (i16 < D) {
+            while (i16 < e10) {
                 if (i16 == 0) {
                     i10 = 35;
                 } else {
@@ -696,7 +695,7 @@ public class WalletEngine2 implements AutoCloseable {
                 }
                 int min = Math.min(i13, i10);
                 int i17 = i16 + 1;
-                if (i17 < D) {
+                if (i17 < e10) {
                     i11 = 1;
                 } else {
                     i11 = 0;
@@ -827,7 +826,7 @@ public class WalletEngine2 implements AutoCloseable {
         return true;
     }
 
-    public void lambda$balance$14(v10 v10Var) {
+    public void lambda$balance$14(s10 s10Var) {
         String message;
         Long l10 = null;
         try {
@@ -840,7 +839,7 @@ public class WalletEngine2 implements AutoCloseable {
                 message = e10.getMessage();
             }
         }
-        org.telegram.messenger.g0.h3(new g(v10Var, (Serializable) l10, (Serializable) message, 19));
+        org.telegram.messenger.g0.h3(new g(s10Var, (Serializable) l10, (Serializable) message, 19));
     }
 
     public void lambda$close$53() {
@@ -856,7 +855,7 @@ public class WalletEngine2 implements AutoCloseable {
         }
     }
 
-    public void lambda$decryptTransactionComment$45(String str, byte[] bArr, v10 v10Var) {
+    public void lambda$decryptTransactionComment$45(String str, byte[] bArr, s10 s10Var) {
         String message;
         String str2 = null;
         try {
@@ -876,24 +875,24 @@ public class WalletEngine2 implements AutoCloseable {
                 }
                 Arrays.fill(bArr, (byte) 0);
             }
-            org.telegram.messenger.g0.h3(new g(v10Var, (Serializable) str2, (Serializable) message, 17));
+            org.telegram.messenger.g0.h3(new g(s10Var, (Serializable) str2, (Serializable) message, 17));
         } catch (Throwable th2) {
             Arrays.fill(bArr, (byte) 0);
             throw th2;
         }
     }
 
-    public void lambda$emulateRotateKey$29(v10 v10Var, TL_wallet.walletTransaction wallettransaction, String str) {
+    public void lambda$emulateRotateKey$29(s10 s10Var, TL_wallet.walletTransaction wallettransaction, String str) {
         if (this.closed) {
             wallettransaction = null;
         }
         if (this.closed) {
             str = "NO_WALLET_ENGINE";
         }
-        v10Var.a(wallettransaction, str);
+        s10Var.a(wallettransaction, str);
     }
 
-    public void lambda$emulateRotateKey$30(v10 v10Var) {
+    public void lambda$emulateRotateKey$30(s10 s10Var) {
         String errorMessage;
         TL_wallet.walletTransaction wallettransaction;
         try {
@@ -904,20 +903,20 @@ public class WalletEngine2 implements AutoCloseable {
         if (!this.closed) {
             wallettransaction = nativeEmulateRotateKey(this.ptr, this.address);
             errorMessage = null;
-            org.telegram.messenger.g0.h3(new e7(this, v10Var, wallettransaction, errorMessage, 1));
+            org.telegram.messenger.g0.h3(new d7(this, s10Var, wallettransaction, errorMessage, 1));
             return;
         }
         throw new IllegalStateException("NO_WALLET_ENGINE");
     }
 
-    public static void lambda$emulateSend$15(AtomicBoolean atomicBoolean, v10 v10Var, TL_wallet.walletTransaction wallettransaction, String str) {
+    public static void lambda$emulateSend$15(AtomicBoolean atomicBoolean, s10 s10Var, TL_wallet.walletTransaction wallettransaction, String str) {
         if (!atomicBoolean.get()) {
-            v10Var.a(wallettransaction, str);
+            s10Var.a(wallettransaction, str);
         }
     }
 
-    public Void lambda$emulateSend$16(AtomicBoolean atomicBoolean, byte[] bArr, byte[] bArr2, String str, long j3, v10 v10Var) {
-        boolean z9;
+    public Void lambda$emulateSend$16(AtomicBoolean atomicBoolean, byte[] bArr, byte[] bArr2, String str, long j3, s10 s10Var) {
+        boolean z10;
         TL_wallet.walletTransaction nativeEmulateSend;
         String str2;
         if (atomicBoolean.get()) {
@@ -934,19 +933,19 @@ public class WalletEngine2 implements AutoCloseable {
         byte[] bArr3 = bArr;
         long j10 = this.ptr;
         if (bArr2 != null) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        nativeEmulateSend = nativeEmulateSend(j10, str, j3, bArr3, z9);
+        nativeEmulateSend = nativeEmulateSend(j10, str, j3, bArr3, z10);
         str2 = null;
-        org.telegram.messenger.g0.h3(new h7(atomicBoolean, v10Var, nativeEmulateSend, str2, 16));
+        org.telegram.messenger.g0.h3(new g7(atomicBoolean, s10Var, nativeEmulateSend, str2, 16));
         return null;
     }
 
-    public static void lambda$emulateSend$17(AtomicBoolean atomicBoolean, v10 v10Var) {
+    public static void lambda$emulateSend$17(AtomicBoolean atomicBoolean, s10 s10Var) {
         if (!atomicBoolean.get()) {
-            v10Var.a(null, "NO_WALLET_ENGINE");
+            s10Var.a(null, "NO_WALLET_ENGINE");
         }
     }
 
@@ -955,7 +954,7 @@ public class WalletEngine2 implements AutoCloseable {
         futureTask.cancel(false);
     }
 
-    public void lambda$emulateSendNFT$19(AtomicBoolean atomicBoolean, v10 v10Var, TL_wallet.walletTransaction wallettransaction, String str) {
+    public void lambda$emulateSendNFT$19(AtomicBoolean atomicBoolean, s10 s10Var, TL_wallet.walletTransaction wallettransaction, String str) {
         if (!atomicBoolean.get()) {
             if (this.closed) {
                 wallettransaction = null;
@@ -963,11 +962,11 @@ public class WalletEngine2 implements AutoCloseable {
             if (this.closed) {
                 str = "NO_WALLET_ENGINE";
             }
-            v10Var.a(wallettransaction, str);
+            s10Var.a(wallettransaction, str);
         }
     }
 
-    public Void lambda$emulateSendNFT$20(AtomicBoolean atomicBoolean, String str, String str2, String str3, v10 v10Var) {
+    public Void lambda$emulateSendNFT$20(AtomicBoolean atomicBoolean, String str, String str2, String str3, s10 s10Var) {
         TL_wallet.walletTransaction wallettransaction;
         String errorMessage;
         byte[] bytes;
@@ -997,24 +996,24 @@ public class WalletEngine2 implements AutoCloseable {
             } catch (RuntimeException e11) {
                 e = e11;
                 errorMessage = errorMessage(e);
-                org.telegram.messenger.g0.h3(new sw0((Object) this, (Object) atomicBoolean, (Object) v10Var, (Object) wallettransaction, errorMessage, 7));
+                org.telegram.messenger.g0.h3(new cu0(this, atomicBoolean, s10Var, wallettransaction, errorMessage, 10));
                 return null;
             }
-            org.telegram.messenger.g0.h3(new sw0((Object) this, (Object) atomicBoolean, (Object) v10Var, (Object) wallettransaction, errorMessage, 7));
+            org.telegram.messenger.g0.h3(new cu0(this, atomicBoolean, s10Var, wallettransaction, errorMessage, 10));
             return null;
         }
         throw new IllegalStateException("NO_WALLET_ENGINE");
     }
 
-    public static void lambda$emulateSendNFT$21(AtomicBoolean atomicBoolean, v10 v10Var) {
+    public static void lambda$emulateSendNFT$21(AtomicBoolean atomicBoolean, s10 s10Var) {
         if (!atomicBoolean.get()) {
-            v10Var.a(null, "NO_WALLET_ENGINE");
+            s10Var.a(null, "NO_WALLET_ENGINE");
         }
     }
 
-    public static void lambda$emulateSendNFT$22(AtomicBoolean atomicBoolean, v10 v10Var) {
+    public static void lambda$emulateSendNFT$22(AtomicBoolean atomicBoolean, s10 s10Var) {
         if (!atomicBoolean.get()) {
-            v10Var.a(null, "NO_WALLET_ENGINE");
+            s10Var.a(null, "NO_WALLET_ENGINE");
         }
     }
 
@@ -1023,7 +1022,7 @@ public class WalletEngine2 implements AutoCloseable {
         futureTask.cancel(false);
     }
 
-    public void lambda$getTransactionByHash$39(String str, c20 c20Var) {
+    public void lambda$getTransactionByHash$39(String str, z10 z10Var) {
         TL_wallet.walletTransaction wallettransaction;
         try {
             HttpTransport httpTransport = this.transport;
@@ -1034,21 +1033,21 @@ public class WalletEngine2 implements AutoCloseable {
             org.telegram.messenger.a8.g(e10, true);
             wallettransaction = null;
         }
-        org.telegram.messenger.g0.h3(new sb1(19, c20Var, wallettransaction));
+        org.telegram.messenger.g0.h3(new r(14, z10Var, wallettransaction));
     }
 
     public static Thread lambda$new$0(Runnable runnable) {
         return new Thread(runnable, "WalletEngine2");
     }
 
-    public void lambda$prepareRotateKey$34(z10 z10Var, PreparedRotation preparedRotation, String str) {
+    public void lambda$prepareRotateKey$34(w10 w10Var, PreparedRotation preparedRotation, String str) {
         try {
             if (this.closed) {
-                z10Var.a(null, null, null, "NO_WALLET_ENGINE");
+                w10Var.a(null, null, null, "NO_WALLET_ENGINE");
             } else if (preparedRotation == null) {
-                z10Var.a(null, null, null, str);
+                w10Var.a(null, null, null, str);
             } else {
-                z10Var.a(preparedRotation.transfer, preparedRotation.newSecretPhrase, preparedRotation.newPublicKey, null);
+                w10Var.a(preparedRotation.transfer, preparedRotation.newSecretPhrase, preparedRotation.newPublicKey, null);
             }
             if (preparedRotation != null) {
                 preparedRotation.newSecretPhrase.close();
@@ -1061,7 +1060,7 @@ public class WalletEngine2 implements AutoCloseable {
         }
     }
 
-    public void lambda$prepareRotateKey$35(byte[] bArr, String str, z10 z10Var) {
+    public void lambda$prepareRotateKey$35(byte[] bArr, String str, w10 w10Var) {
         String str2;
         PreparedRotation preparedRotation;
         PreparedRotation preparedRotation2 = null;
@@ -1081,7 +1080,7 @@ public class WalletEngine2 implements AutoCloseable {
                 Arrays.fill(bArr, (byte) 0);
                 preparedRotation = nativePrepareRotateKey;
                 str2 = null;
-                org.telegram.messenger.g0.h3(new h7(this, z10Var, preparedRotation, str2, 0));
+                org.telegram.messenger.g0.h3(new g7(this, w10Var, preparedRotation, str2, 0));
                 return;
             }
             try {
@@ -1093,14 +1092,14 @@ public class WalletEngine2 implements AutoCloseable {
                 Arrays.fill(bArr, (byte) 0);
                 str2 = errorMessage;
                 preparedRotation = preparedRotation2;
-                org.telegram.messenger.g0.h3(new h7(this, z10Var, preparedRotation, str2, 0));
+                org.telegram.messenger.g0.h3(new g7(this, w10Var, preparedRotation, str2, 0));
                 return;
             }
         }
         throw new IllegalStateException("Previous wallet send is still unresolved");
     }
 
-    public void lambda$prepareSend$49(x10 x10Var, TL_wallet.sendTransfer sendtransfer, String str, String str2) {
+    public void lambda$prepareSend$49(u10 u10Var, TL_wallet.sendTransfer sendtransfer, String str, String str2) {
         if (this.closed) {
             sendtransfer = null;
         }
@@ -1110,34 +1109,34 @@ public class WalletEngine2 implements AutoCloseable {
         if (this.closed) {
             str2 = "NO_WALLET_ENGINE";
         }
-        x10Var.a(sendtransfer, str, str2);
+        u10Var.a(sendtransfer, str, str2);
     }
 
-    public void lambda$prepareSend$50(byte[] r14, java.lang.String r15, long r16, byte[] r18, byte[] r19, java.lang.String r20, org.telegram.messenger.x10 r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.WalletEngine2.lambda$prepareSend$50(byte[], java.lang.String, long, byte[], byte[], java.lang.String, org.telegram.messenger.x10):void");
+    public void lambda$prepareSend$50(byte[] r14, java.lang.String r15, long r16, byte[] r18, byte[] r19, java.lang.String r20, org.telegram.messenger.u10 r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.WalletEngine2.lambda$prepareSend$50(byte[], java.lang.String, long, byte[], byte[], java.lang.String, org.telegram.messenger.u10):void");
     }
 
-    public void lambda$prepareSendNFT$24(v10 v10Var) {
+    public void lambda$prepareSendNFT$24(s10 s10Var) {
         String str;
         if (this.closed) {
             str = "NO_WALLET_ENGINE";
         } else {
             str = "Recovery phrase is required";
         }
-        v10Var.a(null, str);
+        s10Var.a(null, str);
     }
 
-    public void lambda$prepareSendNFT$25(v10 v10Var, TL_wallet.sendTransfer sendtransfer, String str) {
+    public void lambda$prepareSendNFT$25(s10 s10Var, TL_wallet.sendTransfer sendtransfer, String str) {
         if (this.closed) {
             sendtransfer = null;
         }
         if (this.closed) {
             str = "NO_WALLET_ENGINE";
         }
-        v10Var.a(sendtransfer, str);
+        s10Var.a(sendtransfer, str);
     }
 
-    public void lambda$prepareSendNFT$26(String str, String str2, String str3, byte[] bArr, v10 v10Var) {
+    public void lambda$prepareSendNFT$26(String str, String str2, String str3, byte[] bArr, s10 s10Var) {
         byte[] bArr2;
         String str4;
         TL_wallet.sendTransfer sendtransfer;
@@ -1194,10 +1193,10 @@ public class WalletEngine2 implements AutoCloseable {
                         Arrays.fill(bArr2, (byte) 0);
                         str4 = errorMessage;
                         sendtransfer = sendtransfer2;
-                        org.telegram.messenger.g0.h3(new y6(this, v10Var, sendtransfer, str4, 1));
+                        org.telegram.messenger.g0.h3(new x6(this, s10Var, sendtransfer, str4, 1));
                         return;
                     }
-                    org.telegram.messenger.g0.h3(new y6(this, v10Var, sendtransfer, str4, 1));
+                    org.telegram.messenger.g0.h3(new x6(this, s10Var, sendtransfer, str4, 1));
                     return;
                 }
                 throw new IllegalStateException("Could not prepare NFT transfer");
@@ -1207,17 +1206,17 @@ public class WalletEngine2 implements AutoCloseable {
         throw new IllegalStateException("NO_WALLET_ENGINE");
     }
 
-    public void lambda$prepareTonConnectTransfer$4(v10 v10Var, TL_wallet.sendTransfer sendtransfer, String str) {
+    public void lambda$prepareTonConnectTransfer$4(s10 s10Var, TL_wallet.sendTransfer sendtransfer, String str) {
         if (this.closed) {
             sendtransfer = null;
         }
         if (this.closed) {
             str = "Wallet engine is closed";
         }
-        v10Var.a(sendtransfer, str);
+        s10Var.a(sendtransfer, str);
     }
 
-    public void lambda$prepareTonConnectTransfer$5(byte[] bArr, c2 c2Var, String str, v10 v10Var) {
+    public void lambda$prepareTonConnectTransfer$5(byte[] bArr, c2 c2Var, String str, s10 s10Var) {
         String str2;
         TL_wallet.sendTransfer sendtransfer;
         try {
@@ -1229,7 +1228,7 @@ public class WalletEngine2 implements AutoCloseable {
                     Arrays.fill(bArr, (byte) 0);
                     str2 = i7;
                     sendtransfer = null;
-                    org.telegram.messenger.g0.h3(new y6(this, v10Var, sendtransfer, str2, 0));
+                    org.telegram.messenger.g0.h3(new x6(this, s10Var, sendtransfer, str2, 0));
                     return;
                 }
             } catch (Throwable th2) {
@@ -1249,11 +1248,11 @@ public class WalletEngine2 implements AutoCloseable {
         if (!this.closed) {
             resolveBeforeNewSend();
             if (!isPendingPhase(nativeResolvePending(this.ptr).phase)) {
-                TL_wallet.sendTransfer sendtransfer2 = nativePrepareTonConnectTransfer(this.ptr, bArr, c2Var.a(), c2Var.f42209a, str).transfer;
+                TL_wallet.sendTransfer sendtransfer2 = nativePrepareTonConnectTransfer(this.ptr, bArr, c2Var.a(), c2Var.f43558a, str).transfer;
                 Arrays.fill(bArr, (byte) 0);
                 sendtransfer = sendtransfer2;
                 str2 = null;
-                org.telegram.messenger.g0.h3(new y6(this, v10Var, sendtransfer, str2, 0));
+                org.telegram.messenger.g0.h3(new x6(this, s10Var, sendtransfer, str2, 0));
                 return;
             }
             throw new IllegalStateException("Previous wallet send is still unresolved");
@@ -1261,39 +1260,39 @@ public class WalletEngine2 implements AutoCloseable {
         throw new IllegalStateException("Wallet engine is closed");
     }
 
-    public void lambda$previewSignMessage$7(c20 c20Var, String str) {
+    public void lambda$previewSignMessage$7(z10 z10Var, String str) {
         if (this.closed) {
             str = "Wallet engine is closed";
         }
-        c20Var.a(str);
+        z10Var.a(str);
     }
 
-    public void lambda$previewSignMessage$8(c2 c2Var, c20 c20Var) {
+    public void lambda$previewSignMessage$8(c2 c2Var, z10 z10Var) {
         String i7;
         try {
         } catch (RuntimeException e10) {
             i7 = d2.i("preview signing", e10);
         }
         if (!this.closed) {
-            nativePreviewSignMessage(this.ptr, c2Var.a(), c2Var.f42209a);
+            nativePreviewSignMessage(this.ptr, c2Var.a(), c2Var.f43558a);
             i7 = null;
-            org.telegram.messenger.g0.h3(new g7(this, c20Var, i7));
+            org.telegram.messenger.g0.h3(new f7(this, z10Var, i7));
             return;
         }
         throw new IllegalStateException("Wallet engine is closed");
     }
 
-    public void lambda$previewTonConnect$1(v10 v10Var, TL_wallet.walletTransaction wallettransaction, String str) {
+    public void lambda$previewTonConnect$1(s10 s10Var, TL_wallet.walletTransaction wallettransaction, String str) {
         if (this.closed) {
             wallettransaction = null;
         }
         if (this.closed) {
             str = "Wallet engine is closed";
         }
-        v10Var.a(wallettransaction, str);
+        s10Var.a(wallettransaction, str);
     }
 
-    public void lambda$previewTonConnect$2(c2 c2Var, v10 v10Var) {
+    public void lambda$previewTonConnect$2(c2 c2Var, s10 s10Var) {
         String i7;
         TL_wallet.walletTransaction wallettransaction;
         try {
@@ -1302,9 +1301,9 @@ public class WalletEngine2 implements AutoCloseable {
             wallettransaction = null;
         }
         if (!this.closed) {
-            wallettransaction = nativePreviewTonConnect(this.ptr, c2Var.a(), c2Var.f42209a);
+            wallettransaction = nativePreviewTonConnect(this.ptr, c2Var.a(), c2Var.f43558a);
             i7 = null;
-            org.telegram.messenger.g0.h3(new e7(this, v10Var, wallettransaction, i7, 0));
+            org.telegram.messenger.g0.h3(new d7(this, s10Var, wallettransaction, i7, 0));
             return;
         }
         throw new IllegalStateException("Wallet engine is closed");
@@ -1322,17 +1321,17 @@ public class WalletEngine2 implements AutoCloseable {
         }
     }
 
-    public void lambda$signMessage$10(v10 v10Var, String str, String str2) {
+    public void lambda$signMessage$10(s10 s10Var, String str, String str2) {
         if (this.closed) {
             str = null;
         }
         if (this.closed) {
             str2 = "Wallet engine is closed";
         }
-        v10Var.a(str, str2);
+        s10Var.a(str, str2);
     }
 
-    public void lambda$signMessage$11(byte[] bArr, c2 c2Var, String str, v10 v10Var) {
+    public void lambda$signMessage$11(byte[] bArr, c2 c2Var, String str, s10 s10Var) {
         String str2;
         String str3;
         try {
@@ -1344,7 +1343,7 @@ public class WalletEngine2 implements AutoCloseable {
                     Arrays.fill(bArr, (byte) 0);
                     str2 = i7;
                     str3 = null;
-                    org.telegram.messenger.g0.h3(new h7((Object) this, (Object) v10Var, str3, (Object) str2, 14));
+                    org.telegram.messenger.g0.h3(new g7(14, this, s10Var, str2, str3));
                     return;
                 }
             } catch (Throwable th2) {
@@ -1362,11 +1361,11 @@ public class WalletEngine2 implements AutoCloseable {
             throw th32;
         }
         if (!this.closed) {
-            String nativeSignMessage = nativeSignMessage(this.ptr, bArr, c2Var.a(), c2Var.f42209a, str);
+            String nativeSignMessage = nativeSignMessage(this.ptr, bArr, c2Var.a(), c2Var.f43558a, str);
             Arrays.fill(bArr, (byte) 0);
             str3 = nativeSignMessage;
             str2 = null;
-            org.telegram.messenger.g0.h3(new h7((Object) this, (Object) v10Var, str3, (Object) str2, 14));
+            org.telegram.messenger.g0.h3(new g7(14, this, s10Var, str2, str3));
             return;
         }
         throw new IllegalStateException("Wallet engine is closed");
@@ -1380,7 +1379,7 @@ public class WalletEngine2 implements AutoCloseable {
 
     private static native long nativeCreate(int i7, String str, byte[] bArr, HttpTransport httpTransport, String str2);
 
-    private static native ImportedWalletProof nativeCreateImportProof(byte[] bArr, byte[] bArr2, byte[] bArr3, int i7, boolean z9);
+    private static native ImportedWalletProof nativeCreateImportProof(byte[] bArr, byte[] bArr2, byte[] bArr3, int i7, boolean z10);
 
     private static native byte[] nativeDecryptComment(long j3, byte[] bArr, String str, String str2);
 
@@ -1388,7 +1387,7 @@ public class WalletEngine2 implements AutoCloseable {
 
     private static native TL_wallet.walletTransaction nativeEmulateRotateKey(long j3, String str);
 
-    private static native TL_wallet.walletTransaction nativeEmulateSend(long j3, String str, long j10, byte[] bArr, boolean z9);
+    private static native TL_wallet.walletTransaction nativeEmulateSend(long j3, String str, long j10, byte[] bArr, boolean z10);
 
     private static native TL_wallet.walletTransaction nativeEmulateSendNFT(long j3, String str, String str2, byte[] bArr, String str3, long j10, long j11);
 
@@ -1425,12 +1424,12 @@ public class WalletEngine2 implements AutoCloseable {
     private static native String nativeTransactionAddress(String str);
 
     private static TL_wallet.walletTransaction parseTransactionResponse(byte[] bArr) {
-        boolean z9;
+        boolean z10;
         String str;
         SendPhase sendPhase;
         JSONArray jSONArray = new JSONObject(new String(bArr, StandardCharsets.UTF_8)).getJSONArray("transactions");
         JSONObject jSONObject = null;
-        boolean z10 = true;
+        boolean z11 = true;
         if (jSONArray.length() != 1) {
             return null;
         }
@@ -1439,18 +1438,18 @@ public class WalletEngine2 implements AutoCloseable {
         JSONArray jSONArray2 = jSONObject2.getJSONArray("out_msgs");
         String str2 = "source";
         if (optJSONObject != null && !optJSONObject.isNull("source") && !optJSONObject.getString("source").isEmpty()) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
         int length = jSONArray2.length();
-        if (!z9 ? length != 1 : length != 0) {
+        if (!z10 ? length != 1 : length != 0) {
             return null;
         }
-        if (!z9) {
+        if (!z10) {
             optJSONObject = jSONArray2.getJSONObject(0);
         }
-        if (!z9) {
+        if (!z10) {
             str2 = "destination";
         }
         if (optJSONObject.isNull(str2)) {
@@ -1462,27 +1461,27 @@ public class WalletEngine2 implements AutoCloseable {
             return null;
         }
         TL_wallet.walletTransaction createTransaction = createTransaction(optJSONObject.getString(str2), parseLong);
-        createTransaction.incoming = z9;
+        createTransaction.incoming = z10;
         createTransaction.tx_hash = jSONObject2.getString("hash");
         StringBuilder sb2 = new StringBuilder("chain:");
         sb2.append(createTransaction.tx_hash);
-        if (z9) {
+        if (z10) {
             str = ":in:0";
         } else {
             str = ":out:0";
         }
         sb2.append(str);
-        createTransaction.f27223id = sb2.toString();
+        createTransaction.f28314id = sb2.toString();
         long j3 = jSONObject2.getLong("now");
         int i7 = (int) j3;
         if (j3 == i7) {
             createTransaction.date = i7;
             createTransaction.fee = parseLong2;
             if (!jSONObject2.getJSONObject("description").getBoolean("aborted") && !optJSONObject.optBoolean("bounced", false)) {
-                z10 = false;
+                z11 = false;
             }
-            createTransaction.failed = z10;
-            if (z10) {
+            createTransaction.failed = z11;
+            if (z11) {
                 sendPhase = SendPhase.FAILED;
             } else {
                 sendPhase = SendPhase.CONFIRMED;
@@ -1561,7 +1560,7 @@ public class WalletEngine2 implements AutoCloseable {
                     i0Var.a();
                     int i7 = 0;
                     while (true) {
-                        byte[] bArr = i0Var.f42599a;
+                        byte[] bArr = i0Var.f43960a;
                         if (i7 >= bArr.length || !i0.e(bArr[i7])) {
                             break;
                         }
@@ -1570,9 +1569,9 @@ public class WalletEngine2 implements AutoCloseable {
                     int i10 = 0;
                     int i11 = i7;
                     while (i10 < 12) {
-                        if (i11 != i0Var.f42599a.length) {
+                        if (i11 != i0Var.f43960a.length) {
                             while (true) {
-                                byte[] bArr2 = i0Var.f42599a;
+                                byte[] bArr2 = i0Var.f43960a;
                                 if (i11 >= bArr2.length || i0.e(bArr2[i11])) {
                                     break;
                                 }
@@ -1581,7 +1580,7 @@ public class WalletEngine2 implements AutoCloseable {
                             i10++;
                             if (i10 < 12) {
                                 while (true) {
-                                    byte[] bArr3 = i0Var.f42599a;
+                                    byte[] bArr3 = i0Var.f43960a;
                                     if (i11 < bArr3.length && i0.e(bArr3[i11])) {
                                         i11++;
                                     }
@@ -1591,7 +1590,7 @@ public class WalletEngine2 implements AutoCloseable {
                             throw new IllegalArgumentException("Not enough recovery words");
                         }
                     }
-                    byte[] copyOfRange = Arrays.copyOfRange(i0Var.f42599a, i7, i11);
+                    byte[] copyOfRange = Arrays.copyOfRange(i0Var.f43960a, i7, i11);
                     i0Var2 = new i0(copyOfRange);
                     Arrays.fill(copyOfRange, (byte) 0);
                 } catch (Throwable th2) {
@@ -1627,16 +1626,16 @@ public class WalletEngine2 implements AutoCloseable {
     }
 
     private static void setTransactionPhase(TL_wallet.walletTransaction wallettransaction, int i7) {
-        boolean z9;
+        boolean z10;
         SendPhase fromNative = SendPhase.fromNative(i7);
         wallettransaction.phase = fromNative;
         wallettransaction.failed = isFailedPhase(fromNative);
         if (!wallettransaction.preview && isPendingPhase(wallettransaction.phase)) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        wallettransaction.pending = z9;
+        wallettransaction.pending = z10;
     }
 
     public static JSONObject signData(i0 i0Var, TL_wallet.tonConnectSession tonconnectsession, String str, byte[] bArr, JSONObject jSONObject, String str2, int i7) {
@@ -1677,8 +1676,8 @@ public class WalletEngine2 implements AutoCloseable {
         throw new IllegalArgumentException("Missing TON Connect crypto parameters");
     }
 
-    public synchronized void balance(v10 v10Var) {
-        this.worker.execute(new c7(this, v10Var, 1));
+    public synchronized void balance(s10 s10Var) {
+        this.worker.execute(new b7(this, s10Var, 1));
     }
 
     @Override
@@ -1691,51 +1690,51 @@ public class WalletEngine2 implements AutoCloseable {
         this.worker.execute(new l(this, 10));
     }
 
-    public void decryptTransactionComment(i0 i0Var, String str, v10 v10Var) {
-        if (v10Var != null) {
+    public void decryptTransactionComment(i0 i0Var, String str, s10 s10Var) {
+        if (s10Var != null) {
             if (i0Var != null && !i0Var.d()) {
                 if (str != null && !str.isEmpty()) {
                     if (this.closed) {
-                        org.telegram.messenger.g0.h3(new b7(v10Var, 5));
+                        org.telegram.messenger.g0.h3(new a7(s10Var, 5));
                         return;
                     }
                     byte[] c10 = i0Var.c();
                     try {
-                        this.worker.execute(new h7(this, str, c10, v10Var));
+                        this.worker.execute(new g7(this, str, c10, s10Var));
                         return;
                     } catch (RejectedExecutionException unused) {
                         Arrays.fill(c10, (byte) 0);
-                        org.telegram.messenger.g0.h3(new b7(v10Var, 6));
+                        org.telegram.messenger.g0.h3(new a7(s10Var, 6));
                         return;
                     }
                 }
-                org.telegram.messenger.g0.h3(new b7(v10Var, 4));
+                org.telegram.messenger.g0.h3(new a7(s10Var, 4));
                 return;
             }
-            org.telegram.messenger.g0.h3(new b7(v10Var, 3));
+            org.telegram.messenger.g0.h3(new a7(s10Var, 3));
             return;
         }
         throw new IllegalArgumentException("Result callback is required");
     }
 
-    public void emulateRotateKey(v10 v10Var) {
-        if (v10Var != null) {
+    public void emulateRotateKey(s10 s10Var) {
+        if (s10Var != null) {
             if (this.closed) {
-                org.telegram.messenger.g0.h3(new b7(v10Var, 1));
+                org.telegram.messenger.g0.h3(new a7(s10Var, 1));
                 return;
             }
             try {
-                this.worker.execute(new c7(this, v10Var, 0));
+                this.worker.execute(new b7(this, s10Var, 0));
                 return;
             } catch (RejectedExecutionException unused) {
-                org.telegram.messenger.g0.h3(new b7(v10Var, 2));
+                org.telegram.messenger.g0.h3(new a7(s10Var, 2));
                 return;
             }
         }
         throw new IllegalArgumentException("Result callback is required");
     }
 
-    public Runnable emulateSend(final String str, final long j3, String str2, final byte[] bArr, final v10 v10Var) {
+    public Runnable emulateSend(final String str, final long j3, String str2, final byte[] bArr, final s10 s10Var) {
         byte[] bytes;
         if (str2 == null) {
             bytes = null;
@@ -1748,54 +1747,54 @@ public class WalletEngine2 implements AutoCloseable {
             @Override
             public final Object call() {
                 Void lambda$emulateSend$16;
-                lambda$emulateSend$16 = WalletEngine2.this.lambda$emulateSend$16(atomicBoolean, bArr2, bArr, str, j3, v10Var);
+                lambda$emulateSend$16 = WalletEngine2.this.lambda$emulateSend$16(atomicBoolean, bArr2, bArr, str, j3, s10Var);
                 return lambda$emulateSend$16;
             }
         });
         try {
             this.worker.execute(futureTask);
         } catch (RejectedExecutionException unused) {
-            org.telegram.messenger.g0.h3(new j7(atomicBoolean, v10Var, 0));
+            org.telegram.messenger.g0.h3(new i7(atomicBoolean, s10Var, 0));
         }
-        return new k7(atomicBoolean, futureTask, 0);
+        return new j7(atomicBoolean, futureTask, 0);
     }
 
-    public synchronized Runnable emulateSendNFT(String str, String str2, v10 v10Var) {
-        return emulateSendNFT(str, str2, null, v10Var);
+    public synchronized Runnable emulateSendNFT(String str, String str2, s10 s10Var) {
+        return emulateSendNFT(str, str2, null, s10Var);
     }
 
-    public void getTransactionByHash(String str, c20 c20Var) {
-        if (c20Var != null) {
+    public void getTransactionByHash(String str, z10 z10Var) {
+        if (z10Var != null) {
             if (str != null && !str.isEmpty() && !this.closed) {
                 try {
-                    this.worker.execute(new g7(this, str, c20Var));
+                    this.worker.execute(new f7(this, str, z10Var));
                     return;
                 } catch (RejectedExecutionException unused) {
-                    org.telegram.messenger.g0.h3(new d7(c20Var, 2));
+                    org.telegram.messenger.g0.h3(new c7(z10Var, 2));
                     return;
                 }
             }
-            org.telegram.messenger.g0.h3(new d7(c20Var, 1));
+            org.telegram.messenger.g0.h3(new c7(z10Var, 1));
             return;
         }
         throw new IllegalArgumentException("Result callback is required");
     }
 
-    public void prepareRotateKey(i0 i0Var, String str, final z10 z10Var) {
-        if (z10Var != null) {
+    public void prepareRotateKey(i0 i0Var, String str, final w10 w10Var) {
+        if (w10Var != null) {
             if (this.closed) {
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                z10Var.a(null, null, null, "NO_WALLET_ENGINE");
+                                w10Var.a(null, null, null, "NO_WALLET_ENGINE");
                                 return;
                             case 1:
-                                z10Var.a(null, null, null, "Recovery phrase is required");
+                                w10Var.a(null, null, null, "Recovery phrase is required");
                                 return;
                             default:
-                                z10Var.a(null, null, null, "NO_WALLET_ENGINE");
+                                w10Var.a(null, null, null, "NO_WALLET_ENGINE");
                                 return;
                         }
                     }
@@ -1804,7 +1803,7 @@ public class WalletEngine2 implements AutoCloseable {
             } else if (i0Var != null && !i0Var.d()) {
                 byte[] c10 = i0Var.c();
                 try {
-                    this.worker.execute(new h7(this, c10, str, z10Var));
+                    this.worker.execute(new g7(this, c10, str, w10Var));
                     return;
                 } catch (RejectedExecutionException unused) {
                     Arrays.fill(c10, (byte) 0);
@@ -1813,13 +1812,13 @@ public class WalletEngine2 implements AutoCloseable {
                         public final void run() {
                             switch (r2) {
                                 case 0:
-                                    z10Var.a(null, null, null, "NO_WALLET_ENGINE");
+                                    w10Var.a(null, null, null, "NO_WALLET_ENGINE");
                                     return;
                                 case 1:
-                                    z10Var.a(null, null, null, "Recovery phrase is required");
+                                    w10Var.a(null, null, null, "Recovery phrase is required");
                                     return;
                                 default:
-                                    z10Var.a(null, null, null, "NO_WALLET_ENGINE");
+                                    w10Var.a(null, null, null, "NO_WALLET_ENGINE");
                                     return;
                             }
                         }
@@ -1832,13 +1831,13 @@ public class WalletEngine2 implements AutoCloseable {
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                z10Var.a(null, null, null, "NO_WALLET_ENGINE");
+                                w10Var.a(null, null, null, "NO_WALLET_ENGINE");
                                 return;
                             case 1:
-                                z10Var.a(null, null, null, "Recovery phrase is required");
+                                w10Var.a(null, null, null, "Recovery phrase is required");
                                 return;
                             default:
-                                z10Var.a(null, null, null, "NO_WALLET_ENGINE");
+                                w10Var.a(null, null, null, "NO_WALLET_ENGINE");
                                 return;
                         }
                     }
@@ -1849,22 +1848,22 @@ public class WalletEngine2 implements AutoCloseable {
         throw new IllegalArgumentException("Result callback is required");
     }
 
-    public void prepareSend(i0 i0Var, String str, long j3, String str2, byte[] bArr, String str3, final x10 x10Var) {
+    public void prepareSend(i0 i0Var, String str, long j3, String str2, byte[] bArr, String str3, final u10 u10Var) {
         byte[] bArr2;
-        if (x10Var != null) {
+        if (u10Var != null) {
             if (this.closed) {
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                x10Var.a(null, null, "NO_WALLET_ENGINE");
+                                u10Var.a(null, null, "NO_WALLET_ENGINE");
                                 return;
                             case 1:
-                                x10Var.a(null, null, "Recovery phrase is required");
+                                u10Var.a(null, null, "Recovery phrase is required");
                                 return;
                             default:
-                                x10Var.a(null, null, "NO_WALLET_ENGINE");
+                                u10Var.a(null, null, "NO_WALLET_ENGINE");
                                 return;
                         }
                     }
@@ -1882,7 +1881,7 @@ public class WalletEngine2 implements AutoCloseable {
                     bArr3 = str2.getBytes(StandardCharsets.UTF_8);
                 }
                 try {
-                    this.worker.execute(new bi.m4(this, c10, str, j3, bArr3, bArr2, str3, x10Var));
+                    this.worker.execute(new di.n3(this, c10, str, j3, bArr3, bArr2, str3, u10Var));
                     return;
                 } catch (RejectedExecutionException unused) {
                     Arrays.fill(c10, (byte) 0);
@@ -1891,13 +1890,13 @@ public class WalletEngine2 implements AutoCloseable {
                         public final void run() {
                             switch (r2) {
                                 case 0:
-                                    x10Var.a(null, null, "NO_WALLET_ENGINE");
+                                    u10Var.a(null, null, "NO_WALLET_ENGINE");
                                     return;
                                 case 1:
-                                    x10Var.a(null, null, "Recovery phrase is required");
+                                    u10Var.a(null, null, "Recovery phrase is required");
                                     return;
                                 default:
-                                    x10Var.a(null, null, "NO_WALLET_ENGINE");
+                                    u10Var.a(null, null, "NO_WALLET_ENGINE");
                                     return;
                             }
                         }
@@ -1910,13 +1909,13 @@ public class WalletEngine2 implements AutoCloseable {
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                x10Var.a(null, null, "NO_WALLET_ENGINE");
+                                u10Var.a(null, null, "NO_WALLET_ENGINE");
                                 return;
                             case 1:
-                                x10Var.a(null, null, "Recovery phrase is required");
+                                u10Var.a(null, null, "Recovery phrase is required");
                                 return;
                             default:
-                                x10Var.a(null, null, "NO_WALLET_ENGINE");
+                                u10Var.a(null, null, "NO_WALLET_ENGINE");
                                 return;
                         }
                     }
@@ -1927,51 +1926,51 @@ public class WalletEngine2 implements AutoCloseable {
         throw new IllegalArgumentException("Result callback is required");
     }
 
-    public synchronized void prepareSendNFT(i0 i0Var, String str, String str2, v10 v10Var) {
-        prepareSendNFT(i0Var, str, str2, null, v10Var);
+    public synchronized void prepareSendNFT(i0 i0Var, String str, String str2, s10 s10Var) {
+        prepareSendNFT(i0Var, str, str2, null, s10Var);
     }
 
-    public void prepareTonConnectTransfer(i0 i0Var, c2 c2Var, String str, v10 v10Var) {
-        v10 v10Var2;
+    public void prepareTonConnectTransfer(i0 i0Var, c2 c2Var, String str, s10 s10Var) {
+        s10 s10Var2;
         byte[] c10 = i0Var.c();
         try {
-            v10Var2 = v10Var;
+            s10Var2 = s10Var;
         } catch (RejectedExecutionException e10) {
             e = e10;
-            v10Var2 = v10Var;
+            s10Var2 = s10Var;
         }
         try {
-            this.worker.execute(new a7(this, c10, c2Var, str, v10Var2, 1));
+            this.worker.execute(new z6(this, c10, c2Var, str, s10Var2, 1));
         } catch (RejectedExecutionException e11) {
             e = e11;
             RejectedExecutionException rejectedExecutionException = e;
             Arrays.fill(c10, (byte) 0);
-            org.telegram.messenger.g0.h3(new z11(d2.i("schedule transaction signing", rejectedExecutionException), 1, v10Var2));
+            org.telegram.messenger.g0.h3(new e21(d2.i("schedule transaction signing", rejectedExecutionException), 1, s10Var2));
         }
     }
 
-    public void previewSignMessage(c2 c2Var, c20 c20Var) {
+    public void previewSignMessage(c2 c2Var, z10 z10Var) {
         try {
-            this.worker.execute(new g(this, c2Var, c20Var, 18));
+            this.worker.execute(new g(this, c2Var, z10Var, 18));
         } catch (RejectedExecutionException unused) {
-            org.telegram.messenger.g0.h3(new d7(c20Var, 0));
+            org.telegram.messenger.g0.h3(new c7(z10Var, 0));
         }
     }
 
-    public void previewTonConnect(c2 c2Var, v10 v10Var) {
+    public void previewTonConnect(c2 c2Var, s10 s10Var) {
         try {
-            this.worker.execute(new g(this, c2Var, v10Var, 20));
+            this.worker.execute(new g(this, c2Var, s10Var, 20));
         } catch (RejectedExecutionException e10) {
-            org.telegram.messenger.g0.h3(new z11(d2.i("schedule transaction preview", e10), 2, v10Var));
+            org.telegram.messenger.g0.h3(new e21(d2.i("schedule transaction preview", e10), 2, s10Var));
         }
     }
 
-    public void rotateKey(i0 i0Var, v10 v10Var, v10 v10Var2) {
-        RotationCallbacks rotationCallbacks = new RotationCallbacks(v10Var2, v10Var);
-        if (i0Var != null && !i0Var.d() && v10Var != null) {
+    public void rotateKey(i0 i0Var, s10 s10Var, s10 s10Var2) {
+        RotationCallbacks rotationCallbacks = new RotationCallbacks(s10Var2, s10Var);
+        if (i0Var != null && !i0Var.d() && s10Var != null) {
             byte[] c10 = i0Var.c();
             try {
-                this.worker.execute(new h7(this, rotationCallbacks, c10, UUID.randomUUID().toString(), 1));
+                this.worker.execute(new g7(this, rotationCallbacks, c10, UUID.randomUUID().toString(), 1));
                 return;
             } catch (RejectedExecutionException unused) {
                 Arrays.fill(c10, (byte) 0);
@@ -1982,37 +1981,37 @@ public class WalletEngine2 implements AutoCloseable {
         rotationCallbacks.failed("Current recovery phrase and replacement callback are required");
     }
 
-    public void signMessage(i0 i0Var, c2 c2Var, String str, v10 v10Var) {
-        v10 v10Var2;
+    public void signMessage(i0 i0Var, c2 c2Var, String str, s10 s10Var) {
+        s10 s10Var2;
         byte[] c10 = i0Var.c();
         try {
-            v10Var2 = v10Var;
+            s10Var2 = s10Var;
         } catch (RejectedExecutionException unused) {
-            v10Var2 = v10Var;
+            s10Var2 = s10Var;
         }
         try {
-            this.worker.execute(new a7(this, c10, c2Var, str, v10Var2, 0));
+            this.worker.execute(new z6(this, c10, c2Var, str, s10Var2, 0));
         } catch (RejectedExecutionException unused2) {
             Arrays.fill(c10, (byte) 0);
-            org.telegram.messenger.g0.h3(new b7(v10Var2, 0));
+            org.telegram.messenger.g0.h3(new a7(s10Var2, 0));
         }
     }
 
-    public synchronized Runnable emulateSendNFT(String str, String str2, String str3, v10 v10Var) {
+    public synchronized Runnable emulateSendNFT(String str, String str2, String str3, s10 s10Var) {
         try {
             try {
                 AtomicBoolean atomicBoolean = new AtomicBoolean();
-                FutureTask futureTask = new FutureTask(new ab.i0(this, atomicBoolean, str, str2, str3, v10Var, 1));
+                FutureTask futureTask = new FutureTask(new ab.i0(this, atomicBoolean, str, str2, str3, s10Var, 1));
                 if (this.closed) {
-                    org.telegram.messenger.g0.h3(new j7(atomicBoolean, v10Var, 1));
+                    org.telegram.messenger.g0.h3(new i7(atomicBoolean, s10Var, 1));
                 } else {
                     try {
                         this.worker.execute(futureTask);
                     } catch (RejectedExecutionException unused) {
-                        org.telegram.messenger.g0.h3(new j7(atomicBoolean, v10Var, 2));
+                        org.telegram.messenger.g0.h3(new i7(atomicBoolean, s10Var, 2));
                     }
                 }
-                return new k7(atomicBoolean, futureTask, 1);
+                return new j7(atomicBoolean, futureTask, 1);
             } catch (Throwable th2) {
                 th = th2;
                 throw th;
@@ -2023,27 +2022,27 @@ public class WalletEngine2 implements AutoCloseable {
         }
     }
 
-    public synchronized void prepareSendNFT(i0 i0Var, String str, String str2, String str3, v10 v10Var) {
-        v10 v10Var2;
+    public synchronized void prepareSendNFT(i0 i0Var, String str, String str2, String str3, s10 s10Var) {
+        s10 s10Var2;
         try {
             try {
                 if (!this.closed && i0Var != null && !i0Var.d()) {
                     byte[] c10 = i0Var.c();
                     try {
-                        v10Var2 = v10Var;
+                        s10Var2 = s10Var;
                         try {
-                            this.worker.execute(new bi.a3(this, str, str2, str3, c10, v10Var2, 24));
+                            this.worker.execute(new bi.p1(this, str, str2, str3, c10, s10Var2, 26));
                         } catch (RejectedExecutionException unused) {
                             Arrays.fill(c10, (byte) 0);
-                            org.telegram.messenger.g0.h3(new b7(v10Var2, 7));
+                            org.telegram.messenger.g0.h3(new a7(s10Var2, 7));
                             return;
                         }
                     } catch (RejectedExecutionException unused2) {
-                        v10Var2 = v10Var;
+                        s10Var2 = s10Var;
                     }
                     return;
                 }
-                org.telegram.messenger.g0.h3(new c7(this, v10Var, 2));
+                org.telegram.messenger.g0.h3(new b7(this, s10Var, 2));
             } catch (Throwable th2) {
                 th = th2;
                 throw th;

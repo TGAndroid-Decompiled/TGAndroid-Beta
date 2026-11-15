@@ -67,7 +67,7 @@ public class YuvConverter {
         ByteBuffer byteBuffer;
         int i10;
         int i11;
-        boolean z9;
+        boolean z10;
         this.threadChecker.checkIsOnValidThread();
         VideoFrame.TextureBuffer textureBuffer2 = (VideoFrame.TextureBuffer) this.videoFrameDrawer.prepareBufferForViewportSize(textureBuffer, textureBuffer.getWidth(), textureBuffer.getHeight());
         int width = textureBuffer2.getWidth();
@@ -106,7 +106,7 @@ public class YuvConverter {
                     } catch (Exception e11) {
                         e = e11;
                         byteBuffer = nativeAllocateByteBuffer;
-                        z9 = true;
+                        z10 = true;
                         a8.g(e, true);
                         int i16 = i7 * height;
                         int i17 = i7 / 2;
@@ -128,10 +128,10 @@ public class YuvConverter {
                         GLES20.glReadPixels(0, 0, this.i420TextureFrameBuffer.getWidth(), this.i420TextureFrameBuffer.getHeight(), 6408, 5121, byteBuffer);
                         GlUtil.checkNoGLES2Error("YuvConverter.convert");
                         GLES20.glBindFramebuffer(36160, 0);
-                        z9 = true;
+                        z10 = true;
                     } catch (Exception e12) {
                         e = e12;
-                        z9 = true;
+                        z10 = true;
                         a8.g(e, true);
                         int i162 = i7 * height;
                         int i172 = i7 / 2;

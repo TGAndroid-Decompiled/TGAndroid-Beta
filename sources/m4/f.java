@@ -6,33 +6,33 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 public final class f {
-    public final int f19657a;
-    public final List f19658b;
+    public final int f20248a;
+    public final List f20249b;
 
     public f(int i7, List list) {
-        this.f19657a = i7;
-        this.f19658b = list;
+        this.f20248a = i7;
+        this.f20249b = list;
     }
 
-    public m4.h0 a(int r6, m6.n r7) {
-        throw new UnsupportedOperationException("Method not decompiled: m4.f.a(int, m6.n):m4.h0");
+    public m4.g0 a(int r6, m6.n r7) {
+        throw new UnsupportedOperationException("Method not decompiled: m4.f.a(int, m6.n):m4.g0");
     }
 
     public List b(m6.n nVar) {
-        boolean z9;
+        boolean z10;
         String str;
         int i7;
         List list;
-        boolean z10;
+        boolean z11;
         boolean c10 = c(32);
-        List list2 = this.f19658b;
+        List list2 = this.f20249b;
         if (c10) {
             return list2;
         }
         h2.x xVar = new h2.x((byte[]) nVar.d);
         while (xVar.a() > 0) {
             int A = xVar.A();
-            int A2 = xVar.f14165b + xVar.A();
+            int A2 = xVar.f13522b + xVar.A();
             if (A == 134) {
                 ArrayList arrayList = new ArrayList();
                 int A3 = xVar.A() & 31;
@@ -40,11 +40,11 @@ public final class f {
                     String y10 = xVar.y(3, StandardCharsets.UTF_8);
                     int A4 = xVar.A();
                     if ((A4 & 128) != 0) {
-                        z9 = true;
+                        z10 = true;
                     } else {
-                        z9 = false;
+                        z10 = false;
                     }
-                    if (z9) {
+                    if (z10) {
                         i7 = A4 & 63;
                         str = "application/cea-708";
                     } else {
@@ -53,22 +53,22 @@ public final class f {
                     }
                     byte A5 = (byte) xVar.A();
                     xVar.O(1);
-                    if (z9) {
+                    if (z10) {
                         if ((A5 & 64) != 0) {
-                            z10 = true;
+                            z11 = true;
                         } else {
-                            z10 = false;
+                            z11 = false;
                         }
-                        byte[] bArr = h2.g.f14087a;
-                        list = Collections.singletonList(z10 ? new byte[]{1} : new byte[]{0});
+                        byte[] bArr = h2.g.f13445a;
+                        list = Collections.singletonList(z11 ? new byte[]{1} : new byte[]{0});
                     } else {
                         list = null;
                     }
                     e2.t tVar = new e2.t();
-                    tVar.f10568r = s0.n(str);
+                    tVar.f10399r = s0.n(str);
                     tVar.d = y10;
                     tVar.O = i7;
-                    tVar.f10571u = list;
+                    tVar.f10402u = list;
                     arrayList.add(new e2.u(tVar));
                 }
                 list2 = arrayList;
@@ -79,19 +79,19 @@ public final class f {
     }
 
     public boolean c(int i7) {
-        if ((i7 & this.f19657a) != 0) {
+        if ((i7 & this.f20248a) != 0) {
             return true;
         }
         return false;
     }
 
     public f() {
-        this.f19657a = 1;
-        this.f19658b = Collections.singletonList(null);
+        this.f20248a = 1;
+        this.f20249b = Collections.singletonList(null);
     }
 
     public f(ArrayList arrayList) {
-        this.f19657a = 0;
-        this.f19658b = arrayList;
+        this.f20248a = 0;
+        this.f20249b = arrayList;
     }
 }

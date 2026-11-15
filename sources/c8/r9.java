@@ -1,16 +1,45 @@
 package c8;
+
+import java.util.concurrent.Future;
 public abstract class r9 {
-    public abstract boolean a(m9.o oVar, m9.c cVar, m9.c cVar2);
+    public static Object a(Future future) {
+        Object obj;
+        boolean z10 = false;
+        if (future.isDone()) {
+            while (true) {
+                try {
+                    obj = future.get();
+                    break;
+                } catch (InterruptedException unused) {
+                    z10 = true;
+                } catch (Throwable th2) {
+                    if (z10) {
+                        Thread.currentThread().interrupt();
+                    }
+                    throw th2;
+                }
+            }
+            if (z10) {
+                Thread.currentThread().interrupt();
+            }
+            return obj;
+        }
+        throw new IllegalStateException(a8.ka.a("Future was expected to be done: %s", future));
+    }
 
-    public abstract boolean b(m9.o oVar, Object obj, Object obj2);
+    public static m9.w b(Object obj) {
+        if (obj == null) {
+            return m9.w.f20596b;
+        }
+        return new m9.w(obj);
+    }
 
-    public abstract boolean c(m9.o oVar, m9.n nVar, m9.n nVar2);
-
-    public abstract m9.c d(m9.o oVar);
-
-    public abstract m9.n e(m9.o oVar);
-
-    public abstract void f(m9.n nVar, m9.n nVar2);
-
-    public abstract void g(m9.n nVar, Thread thread);
+    public static m9.p c(m9.y yVar, g9.k kVar) {
+        ?? obj = new Object();
+        yVar.getClass();
+        obj.f20589n = yVar;
+        obj.f20590r = kVar;
+        yVar.b(obj, m9.r.f20591a);
+        return obj;
+    }
 }

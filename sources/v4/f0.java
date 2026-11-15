@@ -2,25 +2,25 @@ package v4;
 
 import androidx.recyclerview.widget.RecyclerView;
 public final class f0 implements Runnable {
-    public final int f57077a;
-    public final RecyclerView f57078b;
+    public final int f58556a;
+    public final RecyclerView f58557b;
 
     public f0(RecyclerView recyclerView, int i7) {
-        this.f57077a = i7;
-        this.f57078b = recyclerView;
+        this.f58556a = i7;
+        this.f58557b = recyclerView;
     }
 
     @Override
     public final void run() {
-        switch (this.f57077a) {
+        switch (this.f58556a) {
             case 0:
-                RecyclerView recyclerView = this.f57078b;
-                if (recyclerView.I && !recyclerView.isLayoutRequested()) {
-                    if (!recyclerView.G) {
+                RecyclerView recyclerView = this.f58557b;
+                if (recyclerView.J && !recyclerView.isLayoutRequested()) {
+                    if (!recyclerView.H) {
                         recyclerView.requestLayout();
                         return;
-                    } else if (recyclerView.L) {
-                        recyclerView.K = true;
+                    } else if (recyclerView.M) {
+                        recyclerView.L = true;
                         return;
                     } else {
                         recyclerView.p();
@@ -29,12 +29,12 @@ public final class f0 implements Runnable {
                 }
                 return;
             default:
-                RecyclerView recyclerView2 = this.f57078b;
-                l0 l0Var = recyclerView2.f2845c0;
-                if (l0Var != null) {
-                    l0Var.m();
+                RecyclerView recyclerView2 = this.f58557b;
+                m0 m0Var = recyclerView2.f2800d0;
+                if (m0Var != null) {
+                    m0Var.m();
                 }
-                recyclerView2.A0 = false;
+                recyclerView2.B0 = false;
                 return;
         }
     }

@@ -4,12 +4,12 @@ import java.util.Arrays;
 public final class e1 {
     public final z7 f375a;
     public final Boolean f376b;
-    public final t8 f377c;
+    public final u8 f377c;
 
     public e1(android.support.v4.media.session.a0 a0Var) {
-        this.f375a = (z7) a0Var.f1763b;
-        this.f376b = (Boolean) a0Var.f1764c;
-        this.f377c = (t8) a0Var.d;
+        this.f375a = (z7) a0Var.f1706b;
+        this.f376b = (Boolean) a0Var.f1707c;
+        this.f377c = (u8) a0Var.d;
     }
 
     public final boolean equals(Object obj) {

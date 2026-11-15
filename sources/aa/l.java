@@ -12,21 +12,21 @@ import java.io.StringReader;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ij;
+import org.telegram.messenger.gj;
 import org.telegram.messenger.m5;
-import org.telegram.messenger.qp;
-import org.telegram.messenger.y00;
+import org.telegram.messenger.np;
+import org.telegram.messenger.v00;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ps;
 public final class l implements Function {
-    public final int f822a;
+    public final int f821a;
 
     public l(int i7) {
-        this.f822a = i7;
+        this.f821a = i7;
     }
 
     public Function andThen(Function function) {
-        int i7 = this.f822a;
+        int i7 = this.f821a;
         return Function$CC.$default$andThen(this, function);
     }
 
@@ -34,7 +34,7 @@ public final class l implements Function {
     public final Object apply(Object obj) {
         long j3;
         int[] array;
-        switch (this.f822a) {
+        switch (this.f821a) {
             case 0:
                 String name = ((File) obj).getName();
                 name.getClass();
@@ -48,7 +48,7 @@ public final class l implements Function {
             case 1:
                 File file = (File) obj;
                 try {
-                    ea.a aVar = ga.b.f13611g;
+                    ea.a aVar = ga.b.f12956g;
                     String f10 = ga.b.f(file);
                     aVar.getClass();
                     try {
@@ -76,7 +76,7 @@ public final class l implements Function {
                 return Integer.valueOf(Integer.bitCount(((Integer) obj).intValue()));
             case 3:
                 String str = (String) obj;
-                Pattern pattern = Utilities.f21338a;
+                Pattern pattern = Utilities.f22413a;
                 try {
                     j3 = Long.parseLong(str);
                 } catch (Exception unused) {
@@ -89,15 +89,15 @@ public final class l implements Function {
             case 5:
                 return String.valueOf((Long) obj);
             case 6:
-                return qp.a((int[]) obj);
+                return np.a((int[]) obj);
             case 7:
-                return ((y00) obj).f26574b;
+                return ((v00) obj).f26917b;
             case 8:
                 return Long.valueOf(m5.o((TLRPC.Peer) obj));
             case 9:
-                return Long.valueOf(((ij) obj).Z0());
+                return Long.valueOf(((gj) obj).Z0());
             case 10:
-                return Integer.valueOf(((ij) obj).e1());
+                return Integer.valueOf(((gj) obj).e1());
             case 11:
                 TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) obj;
                 if (channelParticipant == null) {
@@ -109,14 +109,16 @@ public final class l implements Function {
             case 13:
                 return Long.valueOf(m5.o(((TLRPC.GroupCallParticipant) obj).peer));
             case 14:
-                return ((ps) obj).f48826a;
+                return ((ps) obj).f50358a;
+            case 15:
+                return ((ps) obj).f50358a;
             default:
-                return ((ps) obj).f48826a;
+                return new org.telegram.utils.twidget.h(((Integer) obj).intValue());
         }
     }
 
     public Function compose(Function function) {
-        int i7 = this.f822a;
+        int i7 = this.f821a;
         return Function$CC.$default$compose(this, function);
     }
 }

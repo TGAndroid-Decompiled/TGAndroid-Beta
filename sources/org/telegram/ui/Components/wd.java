@@ -1,22 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewGroup;
-public final class wd implements View.OnClickListener {
-    public final int f39946a;
-    public final Object f39947b;
-    public final Object f39948c;
-    public final ViewGroup d;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+public final class wd extends pg {
+    public final ChatActivityEnterView G;
 
-    public wd(int i7, ViewGroup viewGroup, Object obj, Object obj2) {
-        this.f39946a = i7;
-        this.d = viewGroup;
-        this.f39947b = obj;
-        this.f39948c = obj2;
+    public wd(ChatActivityEnterView chatActivityEnterView, Activity activity) {
+        super(activity);
+        this.G = chatActivityEnterView;
     }
 
     @Override
-    public final void onClick(android.view.View r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.wd.onClick(android.view.View):void");
+    public final void onDraw(Canvas canvas) {
+        ChatActivityEnterView chatActivityEnterView = this.G;
+        Paint paint = chatActivityEnterView.f32326y2;
+        super.onDraw(canvas);
+        if (getTag() != null && chatActivityEnterView.X1 != null && !chatActivityEnterView.X0 && !this.f38299x && !org.telegram.messenger.si.b0(chatActivityEnterView.R).f26505v0[0].isEmpty() && paint != null) {
+            canvas.drawCircle(org.telegram.messenger.g0.L(9.0f) + (getWidth() / 2), (getHeight() / 2) - org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(5.0f), paint);
+        }
     }
 }

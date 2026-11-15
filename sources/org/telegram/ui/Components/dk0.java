@@ -1,104 +1,20 @@
 package org.telegram.ui.Components;
+public final class dk0 {
+    public final float f33970a;
+    public final float f33971b;
+    public final float f33972c;
+    public final float d;
+    public final boolean f33973e;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-public final class dk0 extends pu0 {
-    public float d;
-    public final Paint f33019f;
-    public boolean f33015a = false;
-    public long f33016b = 0;
-    public boolean f33017c = false;
-    public int f33018e = 1;
-
-    public dk0(boolean z9) {
-        if (z9) {
-            this.f33019f = new Paint(1);
-        }
+    public dk0(float f10, float f11, float f12, float f13, int i7) {
+        this(f10, f11, f12, f13);
+        this.f33973e = true;
     }
 
-    @Override
-    public final void b(int i7) {
-        Paint paint = this.f33019f;
-        if (paint != null) {
-            paint.setColor(i7);
-        }
-    }
-
-    @Override
-    public final void c(boolean z9) {
-        this.f33015a = z9;
-    }
-
-    @Override
-    public final void d() {
-        this.f33016b = System.currentTimeMillis();
-        this.f33017c = true;
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        float f10;
-        Paint paint = this.f33019f;
-        if (paint == null) {
-            paint = org.telegram.ui.ActionBar.m6.f27868c2;
-        }
-        paint.setAlpha(((int) (this.d * 200.0f)) + 55);
-        float L = org.telegram.messenger.g0.L(6.0f);
-        if (this.f33015a) {
-            f10 = 8.0f;
-        } else {
-            f10 = 9.0f;
-        }
-        canvas.drawCircle(L, org.telegram.messenger.g0.L(f10), org.telegram.messenger.g0.L(4.0f), paint);
-        if (this.f33017c) {
-            long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f33016b;
-            this.f33016b = currentTimeMillis;
-            if (j3 > 50) {
-                j3 = 50;
-            }
-            float f11 = this.d;
-            int i7 = this.f33018e;
-            float f12 = (((float) (i7 * j3)) / 400.0f) + f11;
-            this.d = f12;
-            if (i7 > 0 && f12 >= 1.0f) {
-                this.f33018e = -1;
-                this.d = 1.0f;
-            } else if (i7 < 0 && f12 <= 0.0f) {
-                this.f33018e = 1;
-                this.d = 0.0f;
-            }
-            a();
-        }
-    }
-
-    @Override
-    public final void e() {
-        this.f33017c = false;
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return org.telegram.messenger.g0.L(10.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return org.telegram.messenger.g0.L(12.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public dk0(float f10, float f11, float f12, float f13) {
+        this.f33970a = f10;
+        this.f33971b = f11;
+        this.f33972c = f12;
+        this.d = f13;
     }
 }

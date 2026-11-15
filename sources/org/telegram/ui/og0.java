@@ -1,43 +1,47 @@
 package org.telegram.ui;
 
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.tgnet.TLRPC;
-public final class og0 implements View.OnClickListener {
-    public final int f48525a;
-    public final tg0 f48526b;
+import android.content.Context;
+public final class og0 extends hi.d {
+    public final int f49957l0;
+    public final org.telegram.ui.Components.ja m0;
 
-    public og0(tg0 tg0Var, int i7) {
-        this.f48525a = i7;
-        this.f48526b = tg0Var;
+    public og0(org.telegram.ui.Components.ja jaVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i7) {
+        super(context, e6Var, true);
+        this.f49957l0 = i7;
+        this.m0 = jaVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f48525a) {
+    public final float b(float f10, float f11) {
+        boolean z10;
+        boolean z11;
+        switch (this.f49957l0) {
             case 0:
-                tg0 tg0Var = this.f48526b;
-                sg0 sg0Var = tg0Var.f50276l2;
-                HashSet hashSet = tg0Var.Y1;
-                if (hashSet.size() != 0 && sg0Var != null) {
-                    ArrayList arrayList = new ArrayList();
-                    for (TLRPC.User user : tg0Var.d2.values()) {
-                        if (hashSet.contains(Long.valueOf(user.f27109id))) {
-                            arrayList.add(Long.valueOf(user.f27109id));
-                        }
-                    }
-                    sg0Var.a(arrayList);
-                    tg0Var.dismiss();
-                    return;
+                qg0 qg0Var = (qg0) this.m0;
+                if (qg0Var.f50615j2 == 0.0f) {
+                    z10 = true;
+                } else {
+                    z10 = false;
                 }
-                return;
+                qg0Var.f50615j2 = f10;
+                if (z10) {
+                    qg0Var.f50616k2 = new org.telegram.ui.Components.hp(qg0Var, 2);
+                    qg0Var.e1(false);
+                }
+                return f10;
             default:
-                tg0 tg0Var2 = this.f48526b;
-                tg0Var2.Y1.clear();
-                tg0Var2.T1.d.b(true);
-                tg0Var2.g1(true, false);
-                return;
+                wg.c1 c1Var = (wg.c1) this.m0;
+                if (c1Var.f59158p2 == 0.0f) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                c1Var.f59158p2 = f10;
+                if (z11) {
+                    c1Var.f59159q2 = new org.telegram.ui.Components.hp(c1Var, 3);
+                    c1Var.n1(false);
+                }
+                return f10;
         }
     }
 }

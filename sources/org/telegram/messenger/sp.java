@@ -1,15 +1,15 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
 public final class sp implements Runnable {
-    public final int f25512a;
-    public final yr f25513b;
-    public final ArrayList f25514c;
+    public final int f26556a;
+    public final vr f26557b;
+    public final long f26558c;
+    public final long d;
 
-    public sp(yr yrVar, ArrayList arrayList, int i7) {
-        this.f25512a = i7;
-        this.f25513b = yrVar;
-        this.f25514c = arrayList;
+    public sp(int i7, long j3, long j10, vr vrVar) {
+        this.f26556a = i7;
+        this.f26557b = vrVar;
+        this.f26558c = j3;
+        this.d = j10;
     }
 
     @Override

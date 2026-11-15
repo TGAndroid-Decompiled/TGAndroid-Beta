@@ -1,17 +1,10 @@
 package c8;
-
-import android.graphics.Rect;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
 public abstract class m1 {
-    public static StaticLayout f5765a;
-
-    public static li.a0 a(int i7, int i10, int i11, int i12) {
-        Rect rect = new Rect(i7, i10, i11, i12);
-        if (f5765a == null) {
-            f5765a = new StaticLayout(" ", new TextPaint(), 1, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+    public static final ke.a a(ke.a aVar) {
+        kotlin.jvm.internal.j.e(aVar, "<this>");
+        if (aVar.d().c()) {
+            return aVar;
         }
-        return new li.a0(f5765a, rect);
+        return new oe.j(aVar);
     }
 }

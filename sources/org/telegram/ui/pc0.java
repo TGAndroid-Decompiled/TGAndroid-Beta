@@ -1,19 +1,228 @@
 package org.telegram.ui;
-public final class pc0 implements Runnable {
-    public final int f48751a;
-    public final Object f48752b;
-    public final Object f48753c;
-    public final Object d;
 
-    public pc0(Object obj, Object obj2, Object obj3, int i7) {
-        this.f48751a = i7;
-        this.f48752b = obj;
-        this.f48753c = obj2;
-        this.d = obj3;
+import android.content.Context;
+import android.graphics.Point;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.Locale;
+import org.telegram.tgnet.ConnectionsManager;
+public final class pc0 extends org.telegram.ui.Components.xt0 {
+    public Boolean E;
+    public int F;
+    public int G;
+    public final ce0 H;
+    public final org.telegram.ui.Components.fh0 f50241a;
+    public final TextView f50242b;
+    public final TextView f50243c;
+    public final TextView d;
+    public final TextView f50244e;
+    public final TextView f50245f;
+    public m4 h;
+    public Bundle f50246n;
+    public String f50247r;
+    public String f50248s;
+    public String f50249w;
+    public int f50250x;
+    public int f50251y;
+
+    public pc0(ce0 ce0Var, Context context) {
+        super(context);
+        int i7;
+        this.H = ce0Var;
+        setOrientation(1);
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.setGravity(17);
+        FrameLayout frameLayout = new FrameLayout(context);
+        ?? imageView = new ImageView(context);
+        this.f50241a = imageView;
+        imageView.setAutoRepeat(true);
+        imageView.f(2131624190, 120, 120, null);
+        frameLayout.addView((View) imageView, c8.ja.e(120, 120, 1));
+        Point point = org.telegram.messenger.g0.f23609q;
+        if (point.x > point.y && !org.telegram.messenger.g0.Q1()) {
+            i7 = 8;
+        } else {
+            i7 = 0;
+        }
+        frameLayout.setVisibility(i7);
+        linearLayout.addView(frameLayout, c8.ja.e(-1, -2, 1));
+        TextView textView = new TextView(context);
+        this.f50242b = textView;
+        textView.setTextSize(1, 18.0f);
+        textView.setTypeface(org.telegram.messenger.g0.o());
+        textView.setText(org.telegram.messenger.hd.M0(2131746117, null));
+        textView.setGravity(17);
+        textView.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
+        linearLayout.addView(textView, c8.ja.d(-1, -2.0f, 1, 32.0f, 16.0f, 32.0f, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.f50243c = textView2;
+        textView2.setTextSize(1, 14.0f);
+        textView2.setGravity(1);
+        textView2.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
+        linearLayout.addView(textView2, c8.ja.t(-2, -2, 1, 12, 8, 12, 0));
+        addView(linearLayout, c8.ja.l(1.0f, -1, 0));
+        TextView textView3 = new TextView(context);
+        this.f50245f = textView3;
+        org.telegram.messenger.k5.l(textView3, 1, "ResetAccountStatus", 2131746113);
+        textView3.setTextSize(1, 14.0f);
+        textView3.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
+        addView(textView3, c8.ja.t(-2, -2, 49, 0, 24, 0, 0));
+        TextView textView4 = new TextView(context);
+        this.f50244e = textView4;
+        textView4.setGravity(1);
+        textView4.setTextSize(1, 20.0f);
+        textView4.setTypeface(org.telegram.messenger.g0.o());
+        textView4.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
+        addView(textView4, c8.ja.t(-2, -2, 1, 0, 8, 0, 0));
+        TextView textView5 = new TextView(context);
+        this.d = textView5;
+        textView5.setGravity(17);
+        textView5.setText(org.telegram.messenger.hd.M0(2131746117, null));
+        textView5.setTypeface(org.telegram.messenger.g0.o());
+        textView5.setTextSize(1, 15.0f);
+        textView5.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
+        textView5.setPadding(org.telegram.messenger.g0.L(34.0f), 0, org.telegram.messenger.g0.L(34.0f), 0);
+        textView5.setTextColor(-1);
+        addView(textView5, c8.ja.t(-1, 50, 1, 16, 32, 16, 48));
+        textView5.setOnClickListener(new g40(this, 7));
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.pc0.run():void");
+    public final boolean b() {
+        return true;
+    }
+
+    @Override
+    public final boolean c(boolean z10) {
+        this.H.C1(true, true);
+        org.telegram.messenger.g0.r(this.h);
+        this.h = null;
+        this.f50246n = null;
+        return true;
+    }
+
+    @Override
+    public String getHeaderName() {
+        return org.telegram.messenger.hd.M0(2131746117, "ResetAccount");
+    }
+
+    @Override
+    public final void k(Bundle bundle) {
+        Bundle bundle2 = bundle.getBundle("resetview_params");
+        this.f50246n = bundle2;
+        if (bundle2 != null) {
+            m(bundle2, true);
+        }
+    }
+
+    @Override
+    public final void l(Bundle bundle) {
+        Bundle bundle2 = this.f50246n;
+        if (bundle2 != null) {
+            bundle.putBundle("resetview_params", bundle2);
+        }
+    }
+
+    @Override
+    public final void m(Bundle bundle, boolean z10) {
+        if (bundle == null) {
+            return;
+        }
+        this.f50246n = bundle;
+        this.f50247r = bundle.getString("phoneFormated");
+        this.f50248s = bundle.getString("phoneHash");
+        this.f50249w = bundle.getString("code");
+        this.f50250x = bundle.getInt("startTime");
+        this.f50251y = bundle.getInt("waitTime");
+        pf.b c10 = pf.b.c();
+        org.telegram.messenger.k5.q("ResetAccountInfo", null, 2131746114, new Object[]{org.telegram.messenger.hd.a(c10.b("+" + this.f50247r))}, this.f50243c);
+        n();
+        m4 m4Var = new m4(this, 11);
+        this.h = m4Var;
+        org.telegram.messenger.g0.i3(m4Var, 1000L);
+    }
+
+    public final void n() {
+        int i7;
+        boolean z10;
+        int i10;
+        int i11;
+        int i12 = this.f50251y;
+        i7 = ((org.telegram.ui.ActionBar.e2) this.H).currentAccount;
+        int currentTime = i12 - (ConnectionsManager.getInstance(i7).getCurrentTime() - this.f50250x);
+        int i13 = 0;
+        int max = Math.max(0, currentTime);
+        int i14 = max / 86400;
+        int round = Math.round(max / 86400.0f);
+        int i15 = max / 3600;
+        int i16 = (max / 60) % 60;
+        int i17 = max % 60;
+        TextView textView = this.f50244e;
+        if (i14 >= 2) {
+            textView.setText(org.telegram.messenger.hd.G(round, "Days", new Object[0]));
+        } else {
+            textView.setText(String.format(Locale.getDefault(), "%02d:%02d:%02d", Integer.valueOf(i15), Integer.valueOf(i16), Integer.valueOf(i17)));
+        }
+        if (max == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        Boolean bool = this.E;
+        if (bool != null && bool.booleanValue() == z10) {
+            return;
+        }
+        org.telegram.ui.Components.fh0 fh0Var = this.f50241a;
+        if (!z10) {
+            fh0Var.setAutoRepeat(true);
+            if (!fh0Var.b()) {
+                fh0Var.d();
+            }
+        } else {
+            fh0Var.getAnimatedDrawable().K(0);
+        }
+        if (z10) {
+            i10 = 4;
+        } else {
+            i10 = 0;
+        }
+        textView.setVisibility(i10);
+        if (z10) {
+            i11 = 4;
+        } else {
+            i11 = 0;
+        }
+        this.f50245f.setVisibility(i11);
+        if (!z10) {
+            i13 = 4;
+        }
+        this.d.setVisibility(i13);
+        this.E = Boolean.valueOf(z10);
+    }
+
+    @Override
+    public final void updateColors() {
+        int i7 = org.telegram.ui.ActionBar.j6.G6;
+        this.f50242b.setTextColor(org.telegram.ui.ActionBar.j6.x0(null, i7, false));
+        this.f50243c.setTextColor(org.telegram.ui.ActionBar.j6.x0(null, i7, false));
+        this.f50245f.setTextColor(org.telegram.ui.ActionBar.j6.x0(null, i7, false));
+        this.f50244e.setTextColor(org.telegram.ui.ActionBar.j6.x0(null, i7, false));
+        int x02 = org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Ni, false);
+        int x03 = org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Q9, false);
+        TextView textView = this.d;
+        if (textView.getBackground() == null) {
+            int L = org.telegram.messenger.g0.L(6.0f);
+            textView.setBackground(org.telegram.ui.ActionBar.j6.k0(L, L, L, L, x02, x03, x03));
+        } else if (x02 != this.F || x03 != this.G) {
+            org.telegram.ui.ActionBar.j6.H1(textView.getBackground(), x02, false);
+            org.telegram.ui.ActionBar.j6.H1(textView.getBackground(), x03, true);
+        }
+        this.F = x02;
+        this.G = x03;
     }
 }

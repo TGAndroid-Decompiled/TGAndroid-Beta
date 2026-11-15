@@ -1,6 +1,6 @@
 package m2;
 
-import d3.q;
+import d3.p;
 import e2.i1;
 import e2.k1;
 import e2.l1;
@@ -9,39 +9,39 @@ import java.util.Iterator;
 import java.util.Random;
 import x2.f0;
 public final class g {
-    public static final q h = new q(4);
-    public static final Random f19546i = new Random();
+    public static final p h = new p(4);
+    public static final Random f20137i = new Random();
     public h d;
-    public String f19551f;
-    public final k1 f19547a = new k1();
-    public final i1 f19548b = new i1();
-    public final HashMap f19549c = new HashMap();
-    public l1 f19550e = l1.f10359a;
-    public long f19552g = -1;
+    public String f20142f;
+    public final k1 f20138a = new k1();
+    public final i1 f20139b = new i1();
+    public final HashMap f20140c = new HashMap();
+    public l1 f20141e = l1.f10190a;
+    public long f20143g = -1;
 
     public final void a(f fVar) {
-        long j3 = fVar.f19542c;
-        if (j3 != -1 && fVar.f19543e) {
-            this.f19552g = j3;
+        long j3 = fVar.f20133c;
+        if (j3 != -1 && fVar.f20134e) {
+            this.f20143g = j3;
         }
-        this.f19551f = null;
+        this.f20142f = null;
     }
 
     public final synchronized void b(a aVar) {
         h hVar;
         try {
-            String str = this.f19551f;
+            String str = this.f20142f;
             if (str != null) {
-                f fVar = (f) this.f19549c.get(str);
+                f fVar = (f) this.f20140c.get(str);
                 fVar.getClass();
                 a(fVar);
             }
-            Iterator it = this.f19549c.values().iterator();
+            Iterator it = this.f20140c.values().iterator();
             while (it.hasNext()) {
                 f fVar2 = (f) it.next();
                 it.remove();
-                if (fVar2.f19543e && (hVar = this.d) != null) {
-                    hVar.n(aVar, fVar2.f19540a);
+                if (fVar2.f20134e && (hVar = this.d) != null) {
+                    hVar.m(aVar, fVar2.f20131a);
                 }
             }
         } catch (Throwable th2) {
@@ -54,18 +54,18 @@ public final class g {
     }
 
     public final synchronized String d(l1 l1Var, f0 f0Var) {
-        return c(l1Var.g(f0Var.f58342a, this.f19548b).f10287c, f0Var).f19540a;
+        return c(l1Var.g(f0Var.f59523a, this.f20139b).f10118c, f0Var).f20131a;
     }
 
     public final void e(a aVar) {
         f0 f0Var;
-        l1 l1Var = aVar.f19524b;
-        int i7 = aVar.f19525c;
+        l1 l1Var = aVar.f20113b;
+        int i7 = aVar.f20114c;
         f0 f0Var2 = aVar.d;
         boolean p10 = l1Var.p();
-        HashMap hashMap = this.f19549c;
+        HashMap hashMap = this.f20140c;
         if (p10) {
-            String str = this.f19551f;
+            String str = this.f20142f;
             if (str != null) {
                 f fVar = (f) hashMap.get(str);
                 fVar.getClass();
@@ -74,14 +74,14 @@ public final class g {
             }
             return;
         }
-        f fVar2 = (f) hashMap.get(this.f19551f);
-        this.f19551f = c(i7, f0Var2).f19540a;
+        f fVar2 = (f) hashMap.get(this.f20142f);
+        this.f20142f = c(i7, f0Var2).f20131a;
         f(aVar);
         if (f0Var2 != null) {
             long j3 = f0Var2.d;
             if (f0Var2.b()) {
-                if (fVar2 == null || fVar2.f19542c != j3 || (f0Var = fVar2.d) == null || f0Var.f58343b != f0Var2.f58343b || f0Var.f58344c != f0Var2.f58344c) {
-                    c(i7, new f0(f0Var2.f58342a, j3));
+                if (fVar2 == null || fVar2.f20133c != j3 || (f0Var = fVar2.d) == null || f0Var.f59524b != f0Var2.f59524b || f0Var.f59525c != f0Var2.f59525c) {
+                    c(i7, new f0(f0Var2.f59523a, j3));
                     this.d.getClass();
                 }
             }
@@ -93,28 +93,28 @@ public final class g {
     }
 
     public final synchronized void g(a aVar, int i7) {
-        boolean z9;
+        boolean z10;
         try {
             this.d.getClass();
             if (i7 == 0) {
-                z9 = true;
+                z10 = true;
             } else {
-                z9 = false;
+                z10 = false;
             }
-            Iterator it = this.f19549c.values().iterator();
+            Iterator it = this.f20140c.values().iterator();
             while (it.hasNext()) {
                 f fVar = (f) it.next();
                 if (fVar.a(aVar)) {
                     it.remove();
-                    boolean equals = fVar.f19540a.equals(this.f19551f);
+                    boolean equals = fVar.f20131a.equals(this.f20142f);
                     if (equals) {
                         a(fVar);
                     }
-                    if (fVar.f19543e) {
-                        if (z9 && equals) {
-                            boolean z10 = fVar.f19544f;
+                    if (fVar.f20134e) {
+                        if (z10 && equals) {
+                            boolean z11 = fVar.f20135f;
                         }
-                        this.d.n(aVar, fVar.f19540a);
+                        this.d.m(aVar, fVar.f20131a);
                     }
                 }
             }

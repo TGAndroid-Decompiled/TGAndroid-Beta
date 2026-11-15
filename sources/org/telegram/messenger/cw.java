@@ -1,44 +1,21 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class cw extends TLObject {
-    public int f21943a;
-    public TLRPC.TL_decryptedMessageLayer f21944b;
-    public TLRPC.EncryptedFile f21945c;
-    public boolean d;
-    public int f21946e;
+    public final dw f22950a;
+    public final TLRPC.TL_secureFile f22951b;
+    public final String f22952c;
+    public TLRPC.TL_inputFile d;
+    public final byte[] f22953e;
+    public final byte[] f22954f;
+    public int f22955i;
 
-    @Override
-    public final void readParams(InputSerializedData inputSerializedData, boolean z9) {
-        inputSerializedData.readInt64(z9);
-        this.f21943a = inputSerializedData.readInt32(z9);
-        this.f21944b = TLRPC.TL_decryptedMessageLayer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
-        if (inputSerializedData.readBool(z9)) {
-            this.f21945c = TLRPC.EncryptedFile.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
-        }
-        this.d = inputSerializedData.readBool(z9);
-    }
-
-    @Override
-    public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        boolean z9;
-        outputSerializedData.writeInt32(1431655929);
-        outputSerializedData.writeInt64(0L);
-        outputSerializedData.writeInt32(this.f21943a);
-        this.f21944b.serializeToStream(outputSerializedData);
-        if (this.f21945c != null) {
-            z9 = true;
-        } else {
-            z9 = false;
-        }
-        outputSerializedData.writeBool(z9);
-        TLRPC.EncryptedFile encryptedFile = this.f21945c;
-        if (encryptedFile != null) {
-            encryptedFile.serializeToStream(outputSerializedData);
-        }
-        outputSerializedData.writeBool(this.d);
+    public cw(dw dwVar, TLRPC.TL_secureFile tL_secureFile, String str, byte[] bArr, byte[] bArr2) {
+        this.f22950a = dwVar;
+        this.f22951b = tL_secureFile;
+        this.f22952c = str;
+        this.f22954f = bArr;
+        this.f22953e = bArr2;
     }
 }

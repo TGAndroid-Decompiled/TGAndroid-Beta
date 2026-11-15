@@ -1,38 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
+import android.util.SparseArray;
 import org.telegram.tgnet.TLRPC;
-public abstract class p31 {
-    public String[] f36793a = new String[0];
+public final class p31 extends g.p {
+    public final x31 f38193c;
 
-    public boolean a() {
-        return false;
+    public p31(x31 x31Var) {
+        this.f38193c = x31Var;
     }
 
-    public String[] b() {
-        return this.f36793a;
-    }
-
-    public boolean c() {
-        return false;
-    }
-
-    public boolean d(i31 i31Var, MotionEvent motionEvent) {
-        return false;
-    }
-
-    public boolean e(i31 i31Var, j jVar, MotionEvent motionEvent) {
-        return false;
-    }
-
-    public abstract void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z9);
-
-    public abstract void h(TLRPC.StickerSetCovered stickerSetCovered);
-
-    public void i(String[] strArr) {
-        this.f36793a = strArr;
-    }
-
-    public void f(TLRPC.Document document, Object obj, boolean z9, int i7) {
+    @Override
+    public final int i(int i7) {
+        x31 x31Var = this.f38193c;
+        v4.h0 adapter = x31Var.f41549n.getAdapter();
+        w31 w31Var = x31Var.f41551s;
+        if (adapter == w31Var) {
+            if ((w31Var.d.get(i7) instanceof Integer) || i7 >= w31Var.f41250x) {
+                return w31Var.f41249w;
+            }
+            return 1;
+        }
+        jg.c2 c2Var = x31Var.f41552w;
+        SparseArray sparseArray = c2Var.f17041s;
+        if (i7 != c2Var.E && (sparseArray.get(i7) == null || (sparseArray.get(i7) instanceof TLRPC.Document))) {
+            return 1;
+        }
+        return c2Var.f17037e.a();
     }
 }

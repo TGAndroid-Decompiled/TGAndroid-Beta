@@ -1,61 +1,73 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Point;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
-public final class m10 extends FrameLayout {
-    public float f35787a;
-    public float f35788b;
-    public boolean f35789c;
-    public AnimatorSet d;
-    public final l10 f35790e;
-    public final us f35791f;
-    public final float h;
-    public final p10 f35792n;
+import java.util.ArrayList;
+public final class m10 extends AnimatorListenerAdapter {
+    public final int f37026a = 0;
+    public final View f37027b;
+    public final View f37028c;
+    public final View d;
+    public final Object f37029e;
+    public final Object f37030f;
 
-    public m10(p10 p10Var, Context context, float f10) {
-        super(context);
-        this.f35792n = p10Var;
-        this.h = f10;
-        this.f35790e = new l10(this);
-        this.f35791f = new us(2);
+    public m10(org.telegram.ui.i51 i51Var, ji jiVar, org.telegram.ui.Cells.q1 q1Var, org.telegram.ui.qj qjVar, org.telegram.ui.an anVar) {
+        this.f37030f = i51Var;
+        this.f37027b = jiVar;
+        this.f37028c = q1Var;
+        this.d = qjVar;
+        this.f37029e = anVar;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, i10);
-        Point point = org.telegram.messenger.g0.f22567q;
-        int i11 = point.x;
-        p10 p10Var = this.f35792n;
-        if (i11 != p10Var.J || p10Var.K != point.y) {
-            p10Var.J = i11;
-            p10Var.K = point.y;
-            if (p10Var.L < 0.0f) {
-                SharedPreferences sharedPreferences = org.telegram.messenger.t0.f25570b.getSharedPreferences("groupcallpipconfig", 0);
-                this.f35792n.L = sharedPreferences.getFloat("relativeX", 1.0f);
-                this.f35792n.M = sharedPreferences.getFloat("relativeY", 0.4f);
-            }
-            p10 p10Var2 = p10.f36761e0;
-            if (p10Var2 != null) {
-                p10 p10Var3 = this.f35792n;
-                float f10 = p10Var3.L;
-                float f11 = p10Var3.M;
-                float f12 = -org.telegram.messenger.g0.L(36.0f);
-                p10Var2.f36774s.x = (int) com.google.android.recaptcha.internal.a.z(point.x - (2.0f * f12), org.telegram.messenger.g0.L(105.0f), f10, f12);
-                p10Var2.f36774s.y = (int) ((point.y - org.telegram.messenger.g0.L(105.0f)) * f11);
-                p10Var2.i();
-                m10 m10Var = p10Var2.f36763a;
-                if (m10Var.getParent() != null) {
-                    p10Var2.f36772n.updateViewLayout(m10Var, p10Var2.f36774s);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f37026a) {
+            case 0:
+                WindowManager windowManager = (WindowManager) this.f37030f;
+                View view = this.f37027b;
+                if (view.getParent() != null) {
+                    view.setVisibility(8);
+                    View view2 = this.f37028c;
+                    view2.setVisibility(8);
+                    View view3 = this.d;
+                    view3.setVisibility(8);
+                    windowManager.removeView(view);
+                    windowManager.removeView(view2);
+                    windowManager.removeView(view3);
+                    windowManager.removeView((View) this.f37029e);
+                    return;
                 }
-            }
+                return;
+            default:
+                org.telegram.ui.i51 i51Var = (org.telegram.ui.i51) this.f37030f;
+                i51Var.D.e();
+                ji jiVar = (ji) this.f37027b;
+                ((ArrayList) jiVar.f36017c).remove(i51Var);
+                jiVar.a();
+                ((ViewGroup) jiVar.d).invalidate();
+                org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) this.f37028c;
+                q1Var.setEnterTransitionInProgress(false);
+                q1Var.getTransitionParams().E0.set(q1Var.getBackgroundDrawableLeft(), q1Var.getBackgroundDrawableTop(), q1Var.getBackgroundDrawableRight(), q1Var.getBackgroundDrawableBottom());
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.d;
+                chatActivityEnterView.setTextTransitionIsRunning(false);
+                chatActivityEnterView.getEditField().setAlpha(1.0f);
+                org.telegram.ui.an anVar = (org.telegram.ui.an) this.f37029e;
+                ((jo[]) anVar.f45147c0.f3545b)[0].f36124c.setAlpha(1.0f);
+                ((jo[]) anVar.f45147c0.f3545b)[0].d.setAlpha(1.0f);
+                p5.release((View) null, i51Var.H);
+                return;
         }
     }
 
-    @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m10.onTouchEvent(android.view.MotionEvent):boolean");
+    public m10(q10 q10Var, bi.g2 g2Var, FrameLayout frameLayout, WindowManager windowManager, org.telegram.ui.x7 x7Var) {
+        this.f37027b = q10Var;
+        this.f37028c = g2Var;
+        this.d = frameLayout;
+        this.f37030f = windowManager;
+        this.f37029e = x7Var;
     }
 }

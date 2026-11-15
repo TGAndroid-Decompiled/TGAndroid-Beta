@@ -1,68 +1,32 @@
 package ai;
 
-import kg.t1;
-import org.telegram.tgnet.TLRPC;
+import java.util.concurrent.ExecutorService;
+import org.telegram.messenger.z10;
+import org.telegram.ui.Dictation.DictationLid;
 public final class a1 implements Runnable {
-    public final int f1121a;
-    public final Object f1122b;
-    public final int f1123c;
-    public final Object d;
-    public final Object f1124e;
+    public final int f1116a;
+    public final z10 f1117b;
+    public final int f1118c;
 
-    public a1(int i7, Object obj, Object obj2, Object obj3, int i10) {
-        this.f1121a = i10;
-        this.f1123c = i7;
-        this.f1122b = obj;
-        this.d = obj2;
-        this.f1124e = obj3;
-    }
-
-    private final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: ai.a1.a():void");
+    public a1(z10 z10Var, int i7, int i10) {
+        this.f1116a = i10;
+        this.f1117b = z10Var;
+        this.f1118c = i7;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: ai.a1.run():void");
-    }
-
-    public a1(Object obj, int i7, Object obj2, Object obj3, int i10) {
-        this.f1121a = i10;
-        this.f1122b = obj;
-        this.f1123c = i7;
-        this.d = obj2;
-        this.f1124e = obj3;
-    }
-
-    public a1(Object obj, int i7, Object obj2, String str, int i10) {
-        this.f1121a = i10;
-        this.f1122b = obj;
-        this.f1123c = i7;
-        this.f1124e = obj2;
-        this.d = str;
-    }
-
-    public a1(Object obj, Object obj2, int i7, Object obj3, int i10) {
-        this.f1121a = i10;
-        this.f1122b = obj;
-        this.d = obj2;
-        this.f1123c = i7;
-        this.f1124e = obj3;
-    }
-
-    public a1(Object obj, Object obj2, Object obj3, int i7, int i10) {
-        this.f1121a = i10;
-        this.f1122b = obj;
-        this.d = obj2;
-        this.f1124e = obj3;
-        this.f1123c = i7;
-    }
-
-    public a1(t1 t1Var, TLRPC.Message message, String str, int i7) {
-        this.f1121a = 9;
-        this.f1122b = t1Var;
-        this.f1124e = message;
-        this.d = str;
-        this.f1123c = i7;
+        int i7 = this.f1116a;
+        int i10 = this.f1118c;
+        z10 z10Var = this.f1117b;
+        switch (i7) {
+            case 0:
+                ExecutorService executorService = DictationLid.f42585a;
+                z10Var.a(Integer.valueOf(i10));
+                return;
+            default:
+                z10Var.a(Integer.valueOf(i10));
+                return;
+        }
     }
 }

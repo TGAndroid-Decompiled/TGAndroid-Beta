@@ -1,119 +1,227 @@
 package org.telegram.messenger;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import java.util.ArrayList;
-import org.telegram.ui.Components.zg0;
-public final class kb extends h2.j0 {
-    public final int f23682e;
-    public final gc f23683f;
+import java.util.Locale;
+import org.telegram.SQLite.SQLiteCursor;
+import org.telegram.SQLite.SQLiteDatabase;
+import org.telegram.tgnet.TLRPC;
+public final class kb implements Runnable {
+    public final int f24674a;
+    public final long f24675b;
+    public final long f24676c;
+    public final int d;
+    public final Object f24677e;
 
-    public kb(gc gcVar, int i7, int i10) {
-        super(i7, 2);
-        this.f23682e = i10;
-        this.f23683f = gcVar;
+    public kb(int i7, long j3, long j10, String str) {
+        this.f24674a = 0;
+        this.d = i7;
+        this.f24677e = str;
+        this.f24675b = j3;
+        this.f24676c = j10;
     }
 
     @Override
-    public void e(String str, Object obj, Object obj2) {
-        switch (this.f23682e) {
+    public final void run() {
+        SQLiteCursor queryFinalized;
+        long j3;
+        long j10;
+        int i7;
+        int i10;
+        long j11;
+        long j12;
+        int i11 = this.f24674a;
+        int i12 = 0;
+        long j13 = this.f24676c;
+        long j14 = this.f24675b;
+        int i13 = this.d;
+        Object obj = this.f24677e;
+        switch (i11) {
             case 0:
-                BitmapDrawable bitmapDrawable = (BitmapDrawable) obj;
-                BitmapDrawable bitmapDrawable2 = (BitmapDrawable) obj2;
-                gc gcVar = this.f23683f;
-                String str2 = gcVar.F;
-                if (str2 == null || !str2.equals(str)) {
-                    Integer num = (Integer) gcVar.f22639a.get(str);
-                    if (num == null || num.intValue() == 0) {
-                        Bitmap bitmap = bitmapDrawable.getBitmap();
-                        if (!bitmap.isRecycled()) {
-                            ArrayList arrayList = new ArrayList();
-                            arrayList.add(bitmap);
-                            g0.A2(arrayList);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
+                ns.f(i13).k(141, (String) obj, Long.valueOf(j14), Long.valueOf(j13));
                 return;
             case 1:
-                BitmapDrawable bitmapDrawable3 = (BitmapDrawable) obj;
-                BitmapDrawable bitmapDrawable4 = (BitmapDrawable) obj2;
-                gc gcVar2 = this.f23683f;
-                String str3 = gcVar2.F;
-                if (str3 == null || !str3.equals(str)) {
-                    Integer num2 = (Integer) gcVar2.f22639a.get(str);
-                    if (num2 == null || num2.intValue() == 0) {
-                        Bitmap bitmap2 = bitmapDrawable3.getBitmap();
-                        if (!bitmap2.isRecycled()) {
-                            ArrayList arrayList2 = new ArrayList();
-                            arrayList2.add(bitmap2);
-                            g0.A2(arrayList2);
-                            return;
+                si siVar = (si) obj;
+                siVar.getClass();
+                try {
+                    int[] iArr = new int[9];
+                    iArr[0] = -1;
+                    iArr[1] = -1;
+                    iArr[2] = -1;
+                    iArr[3] = -1;
+                    iArr[4] = -1;
+                    iArr[5] = -1;
+                    iArr[6] = -1;
+                    iArr[7] = -1;
+                    iArr[8] = -1;
+                    int i14 = 8;
+                    int[] iArr2 = new int[9];
+                    iArr2[0] = -1;
+                    iArr2[1] = -1;
+                    iArr2[2] = -1;
+                    iArr2[3] = -1;
+                    iArr2[4] = -1;
+                    iArr2[5] = -1;
+                    iArr2[6] = -1;
+                    iArr2[7] = -1;
+                    iArr2[8] = -1;
+                    int i15 = 7;
+                    int[] iArr3 = new int[9];
+                    iArr3[0] = 0;
+                    iArr3[1] = 0;
+                    iArr3[2] = 0;
+                    iArr3[3] = 0;
+                    iArr3[4] = 0;
+                    iArr3[5] = 0;
+                    iArr3[6] = 0;
+                    iArr3[7] = 0;
+                    iArr3[8] = 0;
+                    long j15 = this.f24675b;
+                    int i16 = (j15 > 0L ? 1 : (j15 == 0L ? 0 : -1));
+                    int i17 = 4;
+                    long j16 = this.f24676c;
+                    if (i16 != 0) {
+                        SQLiteDatabase sQLiteDatabase = siVar.getMessagesStorage().f27222b;
+                        Locale locale = Locale.US;
+                        queryFinalized = sQLiteDatabase.queryFinalized("SELECT type, count, old FROM media_counts_topics WHERE uid = " + j16 + " AND topic_id = " + j15, new Object[0]);
+                    } else {
+                        SQLiteDatabase sQLiteDatabase2 = siVar.getMessagesStorage().f27222b;
+                        Locale locale2 = Locale.US;
+                        queryFinalized = sQLiteDatabase2.queryFinalized("SELECT type, count, old FROM media_counts_v2 WHERE uid = " + j16, new Object[0]);
+                    }
+                    while (queryFinalized.next()) {
+                        int intValue = queryFinalized.intValue(0);
+                        if (intValue >= 0 && intValue < 9) {
+                            int intValue2 = queryFinalized.intValue(1);
+                            iArr[intValue] = intValue2;
+                            iArr2[intValue] = intValue2;
+                            iArr3[intValue] = queryFinalized.intValue(2);
                         }
+                    }
+                    queryFinalized.dispose();
+                    if (m5.C(j16)) {
+                        int i18 = 0;
+                        while (i18 < 9) {
+                            if (iArr[i18] == -1) {
+                                SQLiteDatabase sQLiteDatabase3 = siVar.getMessagesStorage().f27222b;
+                                Locale locale3 = Locale.US;
+                                SQLiteCursor queryFinalized2 = sQLiteDatabase3.queryFinalized("SELECT COUNT(mid) FROM media_v4 WHERE uid = " + j16 + " AND type = " + i18 + " LIMIT 1", new Object[0]);
+                                if (queryFinalized2.next()) {
+                                    iArr[i18] = queryFinalized2.intValue(0);
+                                } else {
+                                    iArr[i18] = 0;
+                                }
+                                queryFinalized2.dispose();
+                                i10 = i18;
+                                j12 = j15;
+                                long j17 = j16;
+                                si siVar2 = siVar;
+                                siVar2.H1(j17, j12, i10, iArr[i18]);
+                                j11 = j17;
+                                siVar = siVar2;
+                            } else {
+                                i10 = i18;
+                                j11 = j16;
+                                j12 = j15;
+                            }
+                            i18 = i10 + 1;
+                            j16 = j11;
+                            j15 = j12;
+                        }
+                        g0.h3(new gg(siVar, j16, j15, iArr, 0));
+                        return;
+                    }
+                    TLRPC.TL_messages_getSearchCounters tL_messages_getSearchCounters = new TLRPC.TL_messages_getSearchCounters();
+                    tL_messages_getSearchCounters.peer = siVar.getMessagesController().j1(j16);
+                    if (i16 != 0) {
+                        if (j16 == siVar.getUserConfig().e()) {
+                            tL_messages_getSearchCounters.saved_peer_id = siVar.getMessagesController().j1(j15);
+                            tL_messages_getSearchCounters.flags |= 4;
+                        } else {
+                            tL_messages_getSearchCounters.top_msg_id = (int) j15;
+                            tL_messages_getSearchCounters.flags |= 1;
+                        }
+                    }
+                    int i19 = 0;
+                    boolean z10 = false;
+                    while (i19 < 9) {
+                        if (tL_messages_getSearchCounters.peer == null) {
+                            iArr[i19] = i12;
+                        } else if (iArr[i19] == -1 || iArr3[i19] == 1) {
+                            if (i19 == 0) {
+                                i7 = i12;
+                                tL_messages_getSearchCounters.filters.add(new TLRPC.TL_inputMessagesFilterPhotoVideo());
+                            } else {
+                                i7 = i12;
+                                if (i19 == 1) {
+                                    tL_messages_getSearchCounters.filters.add(new TLRPC.TL_inputMessagesFilterDocument());
+                                } else if (i19 == 2) {
+                                    tL_messages_getSearchCounters.filters.add(new TLRPC.TL_inputMessagesFilterRoundVoice());
+                                } else if (i19 == 3) {
+                                    tL_messages_getSearchCounters.filters.add(new TLRPC.TL_inputMessagesFilterUrl());
+                                } else if (i19 == i17) {
+                                    tL_messages_getSearchCounters.filters.add(new TLRPC.TL_inputMessagesFilterMusic());
+                                } else if (i19 == 6) {
+                                    tL_messages_getSearchCounters.filters.add(new TLRPC.TL_inputMessagesFilterPhotos());
+                                } else if (i19 == i15) {
+                                    tL_messages_getSearchCounters.filters.add(new TLRPC.TL_inputMessagesFilterVideo());
+                                } else if (i19 == i14) {
+                                    tL_messages_getSearchCounters.filters.add(new TLRPC.TL_inputMessagesFilterPoll());
+                                } else {
+                                    tL_messages_getSearchCounters.filters.add(new TLRPC.TL_inputMessagesFilterGif());
+                                }
+                            }
+                            if (iArr[i19] == -1) {
+                                z10 = true;
+                            } else if (iArr3[i19] == 1) {
+                                iArr[i19] = -1;
+                            }
+                            i19++;
+                            i12 = i7;
+                            i14 = 8;
+                            i15 = 7;
+                            i17 = 4;
+                        }
+                        i7 = i12;
+                        i19++;
+                        i12 = i7;
+                        i14 = 8;
+                        i15 = 7;
+                        i17 = 4;
+                    }
+                    if (!tL_messages_getSearchCounters.filters.isEmpty()) {
+                        j10 = j16;
+                        j3 = j15;
+                        siVar.getConnectionsManager().bindRequestToGuid(siVar.getConnectionsManager().sendRequest(tL_messages_getSearchCounters, new zf(siVar, iArr, j16, j15, 1)), i13);
+                    } else {
+                        j3 = j15;
+                        j10 = j16;
+                    }
+                    if (!z10 || siVar.getConnectionsManager().getConnectionState() != 3) {
+                        g0.h3(new gg(siVar, j10, j3, iArr2, 1));
                         return;
                     }
                     return;
+                } catch (Exception e10) {
+                    a8.g(e10, true);
+                    return;
                 }
-                return;
-            case 2:
             default:
-                return;
-            case 3:
-                BitmapDrawable bitmapDrawable5 = (BitmapDrawable) obj;
-                BitmapDrawable bitmapDrawable6 = (BitmapDrawable) obj2;
-                gc gcVar3 = this.f23683f;
-                Integer num3 = (Integer) gcVar3.f22639a.get(str);
-                boolean z9 = bitmapDrawable5 instanceof org.telegram.ui.Components.u5;
-                if (z9) {
-                    gcVar3.f22643f.remove((org.telegram.ui.Components.u5) bitmapDrawable5);
-                }
-                if (num3 == null || num3.intValue() == 0) {
-                    if (z9) {
-                        ((org.telegram.ui.Components.u5) bitmapDrawable5).u();
-                    }
-                    if (bitmapDrawable5 instanceof zg0) {
-                        ((zg0) bitmapDrawable5).C(false);
-                        return;
-                    }
+                h00 h00Var = (h00) obj;
+                long j18 = -j14;
+                TLRPC.TL_forumTopic f10 = h00Var.f(j18, j13);
+                if (f10 != null) {
+                    f10.unread_mentions_count = i13;
+                    h00Var.y(j18, true);
                     return;
                 }
                 return;
         }
     }
 
-    @Override
-    public Object l(String str, Object obj) {
-        switch (this.f23682e) {
-            case 3:
-                BitmapDrawable bitmapDrawable = (BitmapDrawable) obj;
-                if (bitmapDrawable instanceof org.telegram.ui.Components.u5) {
-                    this.f23683f.f22643f.add((org.telegram.ui.Components.u5) bitmapDrawable);
-                }
-                return (BitmapDrawable) super.l(str, bitmapDrawable);
-            default:
-                return super.l(str, obj);
-        }
-    }
-
-    @Override
-    public final int q(Object obj) {
-        switch (this.f23682e) {
-            case 0:
-                return gc.d(this.f23683f, (BitmapDrawable) obj);
-            case 1:
-                return gc.d(this.f23683f, (BitmapDrawable) obj);
-            case 2:
-                return gc.d(this.f23683f, (BitmapDrawable) obj);
-            default:
-                return gc.d(this.f23683f, (BitmapDrawable) obj);
-        }
-    }
-
-    public kb(gc gcVar) {
-        super(10485760, 2);
-        this.f23682e = 3;
-        this.f23683f = gcVar;
+    public kb(c1 c1Var, long j3, long j10, int i7, int i10) {
+        this.f24674a = i10;
+        this.f24677e = c1Var;
+        this.f24675b = j3;
+        this.f24676c = j10;
+        this.d = i7;
     }
 }

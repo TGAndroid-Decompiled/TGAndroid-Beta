@@ -1,16 +1,21 @@
 package a8;
 
-import java.util.AbstractCollection;
-public final class s9 {
-    public String f636a;
-    public String f637b;
-    public String f638c;
-    public String d;
-    public String f639e;
-    public Boolean f640f;
-    public Boolean f641g;
-    public Boolean h;
-    public Integer f642i;
-    public Integer f643j;
-    public AbstractCollection f644k;
+import android.os.Bundle;
+import java.util.ArrayList;
+public abstract class s9 {
+    public static final ArrayList a(ArrayList arrayList) {
+        ArrayList arrayList2 = new ArrayList();
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            d9.t tVar = (d9.t) obj;
+            Bundle bundle = new Bundle();
+            bundle.putInt("event_type", tVar.f7642a);
+            bundle.putLong("event_timestamp", tVar.f7643b);
+            arrayList2.add(bundle);
+        }
+        return arrayList2;
+    }
 }

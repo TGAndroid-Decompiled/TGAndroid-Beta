@@ -1,45 +1,55 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-public final class ig0 extends org.telegram.ui.Components.jn {
-    public final mg0 A0;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class ig0 extends LinearLayout {
+    public static final int d = 0;
+    public final TextView[] f48048a;
+    public final TextView[] f48049b;
+    public final jg0 f48050c;
 
-    public ig0(mg0 mg0Var, Context context) {
-        super(context, null, false, null);
-        this.A0 = mg0Var;
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        mg0 mg0Var = this.A0;
-        mg0Var.W.y0(mg0Var.f47956b0.getAvatarImageView().getX(), mg0Var.f47956b0.getAvatarImageView().getY(), mg0Var.f47956b0.getAvatarImageView().getWidth(), mg0Var.f47956b0.getAvatarImageView().getHeight());
-        if (mg0Var.Y) {
-            canvas.save();
-            canvas.scale(0.9f, 0.9f, mg0Var.W.r(), mg0Var.W.s());
-            mg0Var.W.h(canvas, null);
-            canvas.restore();
+    public ig0(jg0 jg0Var, Context context) {
+        super(context);
+        float f10;
+        this.f48050c = jg0Var;
+        this.f48048a = new TextView[4];
+        this.f48049b = new TextView[4];
+        setOrientation(1);
+        setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f));
+        for (int i7 = 0; i7 < 2; i7++) {
+            LinearLayout f11 = org.telegram.messenger.k5.f(context, 0);
+            for (int i10 = 0; i10 < 2; i10++) {
+                LinearLayout f12 = org.telegram.messenger.k5.f(context, 1);
+                LinearLayout f13 = org.telegram.messenger.k5.f(context, 0);
+                int i11 = (i7 * 2) + i10;
+                this.f48048a[i11] = new TextView(context);
+                this.f48049b[i11] = new TextView(context);
+                this.f48048a[i11].setTypeface(org.telegram.messenger.g0.o());
+                this.f48048a[i11].setTextSize(1, 17.0f);
+                this.f48049b[i11].setTextSize(1, 13.0f);
+                this.f48049b[i11].setGravity(3);
+                f13.addView(this.f48048a[i11]);
+                f12.addView(f13);
+                f12.addView(this.f48049b[i11]);
+                f11.addView(f12, c8.ja.l(1.0f, -1, -2));
+            }
+            if (i7 == 0) {
+                f10 = 16.0f;
+            } else {
+                f10 = 0.0f;
+            }
+            addView(f11, c8.ja.d(-1, -2.0f, 0, 0.0f, 0.0f, 0.0f, f10));
         }
-        if (mg0Var.X) {
-            int r10 = (int) (mg0Var.W.r() - (org.telegram.ui.ActionBar.m6.U0.getIntrinsicWidth() / 2));
-            int s5 = (int) (mg0Var.W.s() - (org.telegram.ui.ActionBar.m6.U0.getIntrinsicHeight() / 2));
-            Drawable drawable = org.telegram.ui.ActionBar.m6.U0;
-            drawable.setBounds(r10, s5, drawable.getIntrinsicWidth() + r10, org.telegram.ui.ActionBar.m6.U0.getIntrinsicHeight() + s5);
-            org.telegram.ui.ActionBar.m6.U0.draw(canvas);
+    }
+
+    public final void a() {
+        for (int i7 = 0; i7 < 4; i7++) {
+            TextView textView = this.f48048a[i7];
+            int i10 = org.telegram.ui.ActionBar.j6.G6;
+            jg0 jg0Var = this.f48050c;
+            textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(i10, jg0Var.getResourceProvider()));
+            this.f48049b[i7].setTextColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f29260z6, jg0Var.getResourceProvider()));
         }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.A0.W.P();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.A0.W.R();
     }
 }

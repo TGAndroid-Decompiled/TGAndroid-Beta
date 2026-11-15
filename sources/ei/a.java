@@ -1,170 +1,84 @@
 package ei;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.Components.sp0;
-import org.telegram.ui.Components.u61;
-import org.telegram.ui.Components.up0;
-import org.telegram.ui.Components.v61;
-import org.telegram.ui.Components.wp;
-import org.telegram.ui.Components.xp0;
-import org.telegram.ui.Components.yp0;
-import org.telegram.ui.Components.ys0;
-import org.telegram.ui.ProfileActivity;
-public final class a extends v61 {
-    public final int V;
-    public Object W;
-    public final FrameLayout f10814a0;
+import a8.ja;
+import d4.f;
+import i2.q;
+import i2.r;
+import java.nio.ByteBuffer;
+public final class a {
+    public boolean f10645a;
 
-    public a(FrameLayout frameLayout, Context context, Object obj, int i7) {
-        super(context, null);
-        this.V = i7;
-        this.f10814a0 = frameLayout;
-        this.W = obj;
-    }
-
-    @Override
-    public final void A(int i7) {
-        switch (this.V) {
-            case 0:
-                sp0 sp0Var = (sp0) this.f10814a0;
-                String currentLang = sp0Var.getCurrentLang();
-                if (!TextUtils.equals((String) this.W, currentLang)) {
-                    this.W = currentLang;
-                    sp0Var.G.Y0();
-                    return;
-                }
-                return;
-            case 1:
-                ((yp0) this.f10814a0).f48862b.f38559b0.get(i7, -1);
-                ((xp0) this.W).d.V0(1.0f);
-                return;
-            default:
-                ((up0) this.f10814a0).l();
-                f2 f2Var = (f2) this.W;
-                if (f2Var instanceof ProfileActivity) {
-                    ((ProfileActivity) f2Var).V();
-                    return;
-                }
-                return;
+    public a(r rVar, q qVar) {
+        boolean z10;
+        boolean z11;
+        int i7;
+        int i10 = qVar.f15662a;
+        ByteBuffer byteBuffer = qVar.f15663b;
+        if (i10 != 6 && i10 != 3) {
+            z10 = false;
+        } else {
+            z10 = true;
         }
-    }
-
-    @Override
-    public void a() {
-        switch (this.V) {
-            case 2:
-                up0 up0Var = (up0) this.f10814a0;
-                u61 u61Var = up0Var.f60299n;
-                if (up0Var.b() && u61Var != null) {
-                    if (up0Var.J == null) {
-                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(jg.g.l(2131750098, null, new StringBuilder("+ ")));
-                        wp wpVar = new wp(2131232560, 0);
-                        wpVar.G = 0.8f;
-                        spannableStringBuilder.setSpan(wpVar, 0, 1, 33);
-                        up0Var.J = spannableStringBuilder;
-                    }
-                    u61Var.a(-1, up0Var.J);
+        ja.f(z10);
+        int min = Math.min(4, byteBuffer.remaining());
+        byte[] bArr = new byte[min];
+        byteBuffer.asReadOnlyBuffer().get(bArr);
+        f fVar = new f(bArr, min);
+        if (!rVar.f15664a) {
+            if (fVar.i()) {
+                this.f10645a = false;
+                return;
+            }
+            int j3 = fVar.j(2);
+            boolean i11 = fVar.i();
+            if (!rVar.f15665b) {
+                if (!i11) {
+                    this.f10645a = true;
                     return;
                 }
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public boolean b(MotionEvent motionEvent) {
-        boolean z9;
-        switch (this.V) {
-            case 0:
-                z9 = ((sp0) this.f10814a0).G.E1;
-                break;
-            case 1:
-            default:
-                return super.b(motionEvent);
-            case 2:
-                z9 = ((up0) this.f10814a0).g();
-                break;
-        }
-        return !z9;
-    }
-
-    @Override
-    public final void w(boolean z9) {
-        switch (this.V) {
-            case 0:
-                sp0 sp0Var = (sp0) this.f10814a0;
-                String currentLang = sp0Var.getCurrentLang();
-                if (!TextUtils.equals((String) this.W, currentLang)) {
-                    this.W = currentLang;
-                    sp0Var.G.Y0();
-                    return;
-                }
-                return;
-            case 1:
-                ((xp0) this.W).d.V0(((yp0) this.f10814a0).f48862b.getAnimatingIndicatorProgress());
-                return;
-            default:
-                up0 up0Var = (up0) this.f10814a0;
-                up0Var.l();
-                f2 f2Var = (f2) this.W;
-                if (f2Var instanceof ProfileActivity) {
-                    ((ProfileActivity) f2Var).V();
-                    View fragmentView = f2Var.getFragmentView();
-                    if (fragmentView != null) {
-                        fragmentView.invalidate();
-                    }
-                }
-                up0Var.p();
-                return;
-        }
-    }
-
-    @Override
-    public void y(int i7) {
-        switch (this.V) {
-            case 0:
-                sp0 sp0Var = (sp0) this.f10814a0;
-                String currentLang = sp0Var.getCurrentLang();
-                if (!TextUtils.equals((String) this.W, currentLang)) {
-                    this.W = currentLang;
-                    sp0Var.G.Y0();
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public void z(int i7, boolean z9) {
-        switch (this.V) {
-            case 1:
-                int i10 = ((yp0) this.f10814a0).f48862b.f38559b0.get(i7, -1);
-                ys0 ys0Var = ((xp0) this.W).d;
-                if (i10 <= 0) {
-                    ys0.t(ys0Var, 8, z9);
-                    return;
+                if (j3 != 3 && j3 != 0) {
+                    z11 = fVar.i();
                 } else {
-                    ys0.t(ys0Var, ys0Var.x1(i10).f40395a, z9);
-                    return;
+                    z11 = true;
                 }
-            default:
-                super.z(i7, z9);
-                return;
+                fVar.K();
+                if (rVar.d) {
+                    if (fVar.i()) {
+                        if (rVar.f15667e) {
+                            fVar.K();
+                        } else {
+                            throw new Exception();
+                        }
+                    }
+                    if (!rVar.f15666c) {
+                        if (j3 != 3) {
+                            fVar.K();
+                        }
+                        fVar.L(rVar.f15668f);
+                        if (j3 != 2 && j3 != 0 && !z11) {
+                            fVar.L(3);
+                        }
+                        if (j3 != 3 && j3 != 0) {
+                            i7 = fVar.j(8);
+                        } else {
+                            i7 = 255;
+                        }
+                        this.f10645a = i7 != 0;
+                        return;
+                    }
+                    throw new Exception();
+                }
+                throw new Exception();
+            }
+            throw new Exception();
         }
+        throw new Exception();
     }
 
-    public a(sp0 sp0Var, Context context) {
-        super(context, null);
-        this.V = 0;
-        this.f10814a0 = sp0Var;
+    public void a(boolean z10) {
+        if (this.f10645a == z10) {
+            return;
+        }
+        this.f10645a = z10;
     }
 }

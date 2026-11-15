@@ -1,13 +1,13 @@
 package fi;
-public final class i7 extends v4.k {
-    public final m7 F;
+public final class i7 {
+    public long f11823a;
+    public boolean f11824b;
+    public Object f11825c;
+    public Object d;
+    public Object f11826e;
 
-    public i7(m7 m7Var) {
-        this.F = m7Var;
-    }
-
-    @Override
-    public final void P(v4.d1 d1Var) {
-        this.F.f28672b.invalidate();
+    public void a() {
+        this.f11824b = true;
+        ((s6) this.f11825c).h0(this.f11823a, false);
     }
 }

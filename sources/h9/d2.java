@@ -1,215 +1,54 @@
 package h9;
 
-import a8.ia;
-import java.util.AbstractCollection;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Comparator;
 import java.util.Iterator;
-import java.util.List;
-import java.util.RandomAccess;
-import java.util.Set;
-public class d2 extends AbstractCollection implements Set {
-    public final Set f14316a;
-    public final g9.m f14317b;
-
-    public d2(Set set, g9.m mVar) {
-        this.f14316a = set;
-        this.f14317b = mVar;
+import java.util.NoSuchElementException;
+import java.util.SortedSet;
+public final class d2 extends c2 implements SortedSet {
+    @Override
+    public final Comparator comparator() {
+        return ((SortedSet) this.f13666a).comparator();
     }
 
     @Override
-    public final boolean add(Object obj) {
-        ia.f(this.f14317b.apply(obj));
-        return this.f14316a.add(obj);
-    }
-
-    @Override
-    public final boolean addAll(Collection collection) {
-        for (Object obj : collection) {
-            ia.f(this.f14317b.apply(obj));
-        }
-        return this.f14316a.addAll(collection);
-    }
-
-    @Override
-    public final void clear() {
-        Set set = this.f14316a;
-        boolean z9 = set instanceof RandomAccess;
-        g9.m mVar = this.f14317b;
-        if (z9 && (set instanceof List)) {
-            List list = (List) set;
-            mVar.getClass();
-            int i7 = 0;
-            for (int i10 = 0; i10 < list.size(); i10++) {
-                Object obj = list.get(i10);
-                if (!mVar.apply(obj)) {
-                    if (i10 > i7) {
-                        try {
-                            list.set(i7, obj);
-                        } catch (IllegalArgumentException unused) {
-                            o.t(list, mVar, i7, i10);
-                            return;
-                        } catch (UnsupportedOperationException unused2) {
-                            o.t(list, mVar, i7, i10);
-                            return;
-                        }
-                    }
-                    i7++;
-                }
-            }
-            list.subList(i7, list.size()).clear();
-            return;
-        }
-        Iterator it = set.iterator();
-        mVar.getClass();
-        while (it.hasNext()) {
-            if (mVar.apply(it.next())) {
-                it.remove();
-            }
-        }
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        boolean z9;
-        Set set = this.f14316a;
-        set.getClass();
-        try {
-            z9 = set.contains(obj);
-        } catch (ClassCastException | NullPointerException unused) {
-            z9 = false;
-        }
-        if (!z9) {
-            return false;
-        }
-        return this.f14317b.apply(obj);
-    }
-
-    @Override
-    public final boolean containsAll(Collection collection) {
-        for (Object obj : collection) {
-            if (!contains(obj)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        return o.k(this, obj);
-    }
-
-    @Override
-    public final int hashCode() {
-        return o.o(this);
-    }
-
-    @Override
-    public final boolean isEmpty() {
-        Iterator it = this.f14316a.iterator();
-        g9.m mVar = this.f14317b;
-        ia.k(mVar, "predicate");
-        boolean z9 = false;
-        int i7 = 0;
-        while (true) {
-            if (it.hasNext()) {
-                if (mVar.apply(it.next())) {
-                    break;
-                }
-                i7++;
-            } else {
-                i7 = -1;
-                break;
-            }
-        }
-        if (i7 != -1) {
-            z9 = true;
-        }
-        return true ^ z9;
-    }
-
-    @Override
-    public final Iterator iterator() {
-        Iterator it = this.f14316a.iterator();
+    public final Object first() {
+        Iterator it = this.f13666a.iterator();
         it.getClass();
-        g9.m mVar = this.f14317b;
-        mVar.getClass();
-        return new v0(it, mVar);
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        if (contains(obj) && this.f14316a.remove(obj)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean removeAll(Collection collection) {
-        Iterator it = this.f14316a.iterator();
-        boolean z9 = false;
+        g9.l lVar = this.f13667b;
+        lVar.getClass();
         while (it.hasNext()) {
             Object next = it.next();
-            if (this.f14317b.apply(next) && collection.contains(next)) {
-                it.remove();
-                z9 = true;
+            if (lVar.apply(next)) {
+                return next;
             }
         }
-        return z9;
+        throw new NoSuchElementException();
     }
 
     @Override
-    public final boolean retainAll(Collection collection) {
-        Iterator it = this.f14316a.iterator();
-        boolean z9 = false;
-        while (it.hasNext()) {
-            Object next = it.next();
-            if (this.f14317b.apply(next) && !collection.contains(next)) {
-                it.remove();
-                z9 = true;
-            }
-        }
-        return z9;
+    public final SortedSet headSet(Object obj) {
+        return new c2(((SortedSet) this.f13666a).headSet(obj), this.f13667b);
     }
 
     @Override
-    public final int size() {
-        int i7 = 0;
-        for (Object obj : this.f14316a) {
-            if (this.f14317b.apply(obj)) {
-                i7++;
-            }
-        }
-        return i7;
-    }
-
-    @Override
-    public final Object[] toArray() {
-        Iterator it = iterator();
-        ArrayList arrayList = new ArrayList();
+    public final Object last() {
+        SortedSet sortedSet = (SortedSet) this.f13666a;
         while (true) {
-            v0 v0Var = (v0) it;
-            if (v0Var.hasNext()) {
-                arrayList.add(v0Var.next());
-            } else {
-                return arrayList.toArray();
+            Object last = sortedSet.last();
+            if (this.f13667b.apply(last)) {
+                return last;
             }
+            sortedSet = sortedSet.headSet(last);
         }
     }
 
     @Override
-    public final Object[] toArray(Object[] objArr) {
-        Iterator it = iterator();
-        ArrayList arrayList = new ArrayList();
-        while (true) {
-            v0 v0Var = (v0) it;
-            if (v0Var.hasNext()) {
-                arrayList.add(v0Var.next());
-            } else {
-                return arrayList.toArray(objArr);
-            }
-        }
+    public final SortedSet subSet(Object obj, Object obj2) {
+        return new c2(((SortedSet) this.f13666a).subSet(obj, obj2), this.f13667b);
+    }
+
+    @Override
+    public final SortedSet tailSet(Object obj) {
+        return new c2(((SortedSet) this.f13666a).tailSet(obj), this.f13667b);
     }
 }

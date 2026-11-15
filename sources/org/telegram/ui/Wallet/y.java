@@ -1,23 +1,23 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.c20;
+import org.telegram.messenger.z10;
 import org.telegram.ui.PasscodeActivity;
 public final class y extends PasscodeActivity {
-    public final boolean[] W;
-    public final c20 X;
+    public final boolean[] X;
+    public final z10 Y;
 
-    public y(boolean[] zArr, c20 c20Var) {
+    public y(boolean[] zArr, z10 z10Var) {
         super(3);
-        this.W = zArr;
-        this.X = c20Var;
+        this.X = zArr;
+        this.Y = z10Var;
     }
 
     @Override
     public final void onFragmentDestroy() {
-        c20 c20Var;
+        z10 z10Var;
         super.onFragmentDestroy();
-        if (!this.W[0] && (c20Var = this.X) != null) {
-            c20Var.a("PASSCODE_FAILED");
+        if (!this.X[0] && (z10Var = this.Y) != null) {
+            z10Var.a("PASSCODE_FAILED");
         }
     }
 }

@@ -1,18 +1,18 @@
 package i2;
 public final class h {
-    public final int f15163a;
-    public final boolean f15164b;
-    public final int f15165c;
+    public final int f15615a;
+    public final boolean f15616b;
+    public final int f15617c;
     public final int d;
-    public final int[] f15166e;
-    public final int f15167f;
+    public final int[] f15618e;
+    public final int f15619f;
 
-    public h(int i7, int i10, int i11, int i12, boolean z9, int[] iArr) {
-        this.f15163a = i7;
-        this.f15164b = z9;
-        this.f15165c = i10;
+    public h(int i7, int i10, int i11, int i12, boolean z10, int[] iArr) {
+        this.f15615a = i7;
+        this.f15616b = z10;
+        this.f15617c = i10;
         this.d = i11;
-        this.f15166e = iArr;
-        this.f15167f = i12;
+        this.f15618e = iArr;
+        this.f15619f = i12;
     }
 }

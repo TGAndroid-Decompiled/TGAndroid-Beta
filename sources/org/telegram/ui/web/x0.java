@@ -1,1663 +1,208 @@
 package org.telegram.ui.web;
 
-import a8.n9;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.app.Activity;
-import android.content.ClipData;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
-import android.os.Build;
 import android.text.TextUtils;
-import android.util.Pair;
-import android.util.Property;
 import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.CookieManager;
-import android.webkit.GeolocationPermissions;
-import android.webkit.ValueCallback;
-import android.webkit.WebResourceResponse;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.widget.FrameLayout;
-import android.widget.TextView;
-import bi.u3;
-import c8.ha;
-import c8.qa;
-import di.d4;
-import di.p7;
-import di.v3;
-import hi.a3;
-import hi.b4;
-import hi.q4;
-import j$.util.Objects;
-import java.io.File;
-import java.net.HttpURLConnection;
-import java.net.IDN;
-import java.net.URL;
+import c8.ja;
+import c8.za;
+import hi.g7;
+import hi.s2;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.Calendar;
 import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import org.chromium.support_lib_boundary.ScriptHandlerBoundaryInterface;
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.util.TimeZone;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.hc;
-import org.telegram.messenger.id;
-import org.telegram.messenger.iz;
-import org.telegram.messenger.k5;
-import org.telegram.messenger.ls;
-import org.telegram.messenger.m5;
-import org.telegram.messenger.p10;
-import org.telegram.messenger.qp;
-import org.telegram.messenger.qs;
-import org.telegram.messenger.rz;
-import org.telegram.messenger.sz;
-import org.telegram.messenger.t10;
-import org.telegram.messenger.ui;
+import org.telegram.messenger.hd;
 import org.telegram.messenger.z10;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_bots;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.n3;
-import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.ActionBar.w2;
-import org.telegram.ui.Cells.n4;
-import org.telegram.ui.Cells.z8;
-import org.telegram.ui.Components.gc;
-import org.telegram.ui.Components.k9;
-import org.telegram.ui.Components.r31;
-import org.telegram.ui.Components.v8;
-import org.telegram.ui.Components.xp;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.mo0;
-import org.telegram.ui.o9;
-import org.telegram.ui.u81;
-public abstract class x0 extends FrameLayout implements ls, c6 {
-    public static boolean Q0 = true;
-    public static int R0;
-    public static HashMap S0;
-    public int A0;
-    public boolean B0;
-    public int C0;
-    public int D;
-    public Runnable D0;
-    public int E;
-    public boolean E0;
-    public String F;
-    public q4 F0;
-    public String G;
-    public String G0;
-    public int H;
-    public final Rect H0;
-    public int I;
-    public int I0;
-    public String J;
-    public p7 J0;
-    public String K;
-    public final p K0;
-    public String L;
-    public int L0;
-    public int M;
-    public int M0;
-    public boolean N;
-    public long N0;
-    public boolean O;
-    public final int O0;
-    public long P;
-    public z10 P0;
-    public long Q;
-    public boolean R;
-    public boolean S;
-    public boolean T;
-    public TLRPC.User U;
-    public r31 V;
-    public Activity W;
-    public u0 f51295a;
-    public boolean f51296a0;
-    public String f51297b;
-    public String f51298b0;
-    public d0 f51299c;
-    public org.telegram.ui.ActionBar.u1 f51300c0;
-    public w0 d;
-    public int f51301d0;
-    public final h6 f51302e;
-    public long f51303e0;
-    public final TextView f51304f;
-    public long f51305f0;
-    public o9 f51306g0;
-    public boolean h;
-    public boolean f51307h0;
-    public String f51308i0;
-    public hi.p f51309j0;
-    public hi.r0 f51310k0;
-    public hi.g0 f51311l0;
-    public hi.m1 m0;
-    public final org.telegram.ui.Components.voip.n f51312n;
-    public hi.m1 f51313n0;
-    public final boolean f51314o0;
-    public int f51315p0;
-    public boolean f51316q0;
-    public rz f51317r;
-    public BotWebViewContainer$BotWebViewProxy f51318r0;
-    public final d4 f51319s;
-    public long f51320s0;
-    public boolean f51321t0;
-    public BotWebViewContainer$WebViewProxy f51322u0;
-    public u0 f51323v0;
-    public boolean f51324w;
-    public int f51325w0;
-    public q0.a f51326x;
-    public boolean f51327x0;
-    public ValueCallback f51328y;
-    public boolean f51329y0;
-    public float f51330z0;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.q6;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.NumberTextView;
+import org.telegram.ui.Components.b41;
+import org.telegram.ui.Components.cv0;
+import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.r41;
+import org.telegram.ui.Components.ri;
+import org.telegram.ui.ct0;
+public final class x0 extends r41 {
+    public final z10 f52865e;
+    public boolean f52867n;
+    public String f52868r;
+    public NumberTextView f52869s;
+    public org.telegram.ui.ActionBar.q0 f52871x;
+    public cv0 f52872y;
+    public ArrayList f52866f = za.a(new g7(this, 22));
+    public final ArrayList h = new ArrayList();
+    public final HashSet f52870w = new HashSet();
 
-    public x0(int i7, Context context, h6 h6Var, boolean z9) {
-        super(context);
-        org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n();
-        this.f51312n = nVar;
-        int i10 = m6.Ci;
-        this.D = j(i10);
-        int i11 = m6.Gi;
-        this.E = j(i11);
-        this.F = "";
-        this.H = j(i10);
-        this.I = j(i11);
-        this.J = "";
-        this.K = "";
-        this.M = p10.f24474s0;
-        this.A0 = -1;
-        this.H0 = new Rect(0, 0, 0, 0);
-        this.I0 = 0;
-        this.K0 = new p(this, 2);
-        this.L0 = -1;
-        this.M0 = 0;
-        int i12 = R0;
-        R0 = i12 + 1;
-        this.O0 = i12;
-        this.f51314o0 = z9;
-        this.f51302e = h6Var;
-        g("created new webview container");
-        if (context instanceof Activity) {
-            this.W = (Activity) context;
-        }
-        nVar.f39387k = false;
-        nVar.b(i7, 153);
-        d4 d4Var = new d4(this, context);
-        this.f51319s = d4Var;
-        int j3 = j(m6.yj);
-        this.f51315p0 = j3;
-        d4Var.setColorFilter(new PorterDuffColorFilter(j3, PorterDuff.Mode.SRC_IN));
-        d4Var.getImageReceiver().R0 = true;
-        addView(d4Var, ha.e(-1, -2, 48));
-        TextView textView = new TextView(context);
-        this.f51304f = textView;
-        textView.setText(id.M0(2131752913, null));
-        t6.U(textView, m6.f28282y6, h6Var);
-        textView.setTextSize(1, 15.0f);
-        textView.setGravity(17);
-        textView.setVisibility(8);
-        int L = org.telegram.messenger.g0.L(16.0f);
-        textView.setPadding(L, L, L, L);
-        addView(textView, ha.e(-1, -2, 17));
-        setFocusable(false);
+    public x0(org.telegram.ui.z zVar, z10 z10Var) {
+        this.f52865e = z10Var;
     }
 
-    public static JSONObject A(Object obj, String str) {
-        try {
-            JSONObject jSONObject = new JSONObject();
-            jSONObject.put(str, obj);
-            return jSONObject;
-        } catch (Exception unused) {
-            return null;
-        }
-    }
-
-    public static JSONObject B(String str, Object obj, String str2, Object obj2) {
-        try {
-            JSONObject jSONObject = new JSONObject();
-            jSONObject.put(str, obj);
-            jSONObject.put(str2, obj2);
-            return jSONObject;
-        } catch (Exception unused) {
-            return null;
-        }
-    }
-
-    public static JSONObject C(String str, Object obj, String str2, Object obj2, String str3, Object obj3, String str4, Object obj4) {
-        try {
-            JSONObject jSONObject = new JSONObject();
-            jSONObject.put(str, obj);
-            jSONObject.put(str2, obj2);
-            jSONObject.put(str3, obj3);
-            jSONObject.put(str4, obj4);
-            return jSONObject;
-        } catch (Exception unused) {
-            return null;
-        }
-    }
-
-    public static WebResourceResponse N(String str, String str2, Map map) {
-        try {
-            HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(vf.c.w(Uri.parse(str2), "https", null, T(org.telegram.messenger.g0.K0(str2, false)), null)).openConnection();
-            httpURLConnection.setRequestMethod(str);
-            if (map != null) {
-                for (Map.Entry entry : map.entrySet()) {
-                    httpURLConnection.addRequestProperty((String) entry.getKey(), (String) entry.getValue());
+    @Override
+    public final void Z(ArrayList arrayList, p41 p41Var) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(TimeZone.getDefault());
+        int i7 = 5;
+        int i10 = 2;
+        if (TextUtils.isEmpty(this.f52868r)) {
+            ArrayList arrayList2 = this.f52866f;
+            if (arrayList2 != null) {
+                int i11 = 0;
+                for (int size = arrayList2.size() - 1; size >= 0; size--) {
+                    w0 w0Var = (w0) this.f52866f.get(size);
+                    calendar.setTimeInMillis(w0Var.f52856b);
+                    int i12 = calendar.get(5) + (calendar.get(2) * 100) + (calendar.get(1) * 10000);
+                    if (i11 != i12) {
+                        arrayList.add(b41.r(hd.u(w0Var.f52856b / 1000, false)));
+                        i11 = i12;
+                    }
+                    String str = this.f52868r;
+                    int i13 = g.f52608b;
+                    b41 K = b41.K(g.class);
+                    K.f33194z = 3;
+                    K.f33186q = false;
+                    K.H = w0Var;
+                    K.f33182m = str;
+                    arrayList.add(K);
                 }
             }
-            httpURLConnection.connect();
-            return new WebResourceResponse(httpURLConnection.getContentType().split(";", 2)[0], httpURLConnection.getContentEncoding(), httpURLConnection.getInputStream());
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return null;
-        }
-    }
-
-    public static String T(String str) {
-        try {
-            str = IDN.toASCII(str, 1);
-        } catch (Exception e10) {
-            a8.g(e10, true);
-        }
-        String[] split = str.split("\\.");
-        StringBuilder sb2 = new StringBuilder();
-        for (int i7 = 0; i7 < split.length; i7++) {
-            if (i7 > 0) {
-                sb2.append("-d");
-            }
-            sb2.append(split[i7].replaceAll("\\-", "-h"));
-        }
-        sb2.append(".");
-        sb2.append(qp.s1(p10.f24474s0).U5);
-        return sb2.toString();
-    }
-
-    public static void a(x0 x0Var, String[] strArr, q0.a aVar) {
-        x0Var.getClass();
-        for (String str : strArr) {
-            if (x0Var.getContext().checkSelfPermission(str) != 0) {
-                x0Var.V = new r31(x0Var, aVar, strArr, 5);
-                Activity activity = x0Var.W;
-                if (activity != null) {
-                    activity.requestPermissions(strArr, 4000);
-                    return;
+        } else {
+            ArrayList arrayList3 = this.h;
+            int size2 = arrayList3.size() - 1;
+            int i14 = 0;
+            while (size2 >= 0) {
+                w0 w0Var2 = (w0) arrayList3.get(size2);
+                calendar.setTimeInMillis(w0Var2.f52856b);
+                int i15 = calendar.get(i7) + (calendar.get(i10) * 100) + (calendar.get(1) * 10000);
+                if (i14 != i15) {
+                    arrayList.add(b41.r(hd.u(w0Var2.f52856b / 1000, false)));
+                    i14 = i15;
                 }
-                return;
+                String str2 = this.f52868r;
+                int i16 = g.f52608b;
+                b41 K2 = b41.K(g.class);
+                K2.f33194z = 3;
+                K2.f33186q = false;
+                K2.H = w0Var2;
+                K2.f33182m = str2;
+                arrayList.add(K2);
+                size2--;
+                i7 = 5;
+                i10 = 2;
+            }
+            if (this.f52867n) {
+                arrayList.add(b41.p(32));
+                arrayList.add(b41.p(32));
+                arrayList.add(b41.p(32));
             }
         }
-        aVar.accept(Boolean.TRUE);
+        if (!arrayList.isEmpty()) {
+            arrayList.add(b41.C(null));
+        }
     }
 
-    public static String b(String str) {
-        if (str == null) {
-            return str;
-        }
-        if (p(Uri.parse(str))) {
-            String K0 = org.telegram.messenger.g0.K0(str, false);
-            try {
-                K0 = IDN.toASCII(K0, 1);
-            } catch (Exception unused) {
-            }
-            String T = T(K0);
-            if (S0 == null) {
-                S0 = new HashMap();
-            }
-            S0.put(T, K0);
-            return vf.c.w(Uri.parse(str), "https", null, T, null);
-        }
-        return str;
+    @Override
+    public final CharSequence a0() {
+        return hd.M0(2131742920, null);
     }
 
-    public static String k(String str) {
-        if (str != null && !str.isEmpty()) {
-            Uri parse = Uri.parse(str);
-            String scheme = parse.getScheme();
-            String host = parse.getHost();
-            int port = parse.getPort();
-            if (scheme != null && host != null) {
-                StringBuilder sb2 = new StringBuilder();
-                sb2.append(scheme);
-                sb2.append("://");
-                sb2.append(host);
-                if (port != -1 && ((!scheme.equalsIgnoreCase("http") || port != 80) && (!scheme.equalsIgnoreCase("https") || port != 443))) {
-                    sb2.append(":");
-                    sb2.append(port);
-                }
-                return sb2.toString();
-            }
+    @Override
+    public final void b0(b41 b41Var, View view) {
+        if (b41Var.H(g.class) && !this.actionBar.x()) {
+            finishFragment();
+            this.f52865e.a((w0) b41Var.H);
         }
-        return null;
     }
 
-    public static boolean p(Uri uri) {
-        if ("tonsite".equals(uri.getScheme())) {
-            return true;
-        }
-        String authority = uri.getAuthority();
-        if (authority == null && uri.getScheme() == null) {
-            authority = Uri.parse("http://" + uri.toString()).getAuthority();
-        }
-        if (authority != null) {
-            if (authority.endsWith(".ton") || authority.endsWith(".adnl")) {
-                return true;
-            }
-            return false;
-        }
+    @Override
+    public final boolean c0(b41 b41Var, View view) {
         return false;
     }
 
-    private void setupFlickerParams(boolean z9) {
+    @Override
+    public final View createView(Context context) {
         int i7;
-        this.f51324w = z9;
-        d4 d4Var = this.f51319s;
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) d4Var.getLayoutParams();
-        if (z9) {
-            i7 = 17;
+        this.fragmentView = super.createView(context);
+        org.telegram.ui.ActionBar.k kVar = this.actionBar;
+        int i10 = j6.f28849d6;
+        q6.h(i10, kVar, getResourceProvider());
+        this.actionBar.setActionModeColor(j6.x0(null, i10, false));
+        this.actionBar.setBackButtonImage(2131231240);
+        org.telegram.ui.ActionBar.k kVar2 = this.actionBar;
+        int i11 = j6.G6;
+        q6.l(kVar2, 5, i11, getResourceProvider());
+        q6.l(this.actionBar, 3, j6.f29262z8, getResourceProvider());
+        q6.l(this.actionBar, 1, i11, getResourceProvider());
+        q6.b(this.actionBar, i11, getResourceProvider(), true);
+        this.actionBar.setCastShadows(true);
+        this.actionBar.setActionBarMenuOnItemClick(new ct0(this, 23));
+        org.telegram.ui.ActionBar.y p10 = this.actionBar.p(null);
+        NumberTextView numberTextView = new NumberTextView(p10.getContext());
+        this.f52869s = numberTextView;
+        numberTextView.setTextSize(18);
+        this.f52869s.setTypeface(org.telegram.messenger.g0.o());
+        this.f52869s.setTextColor(getThemedColor(j6.f29243y8));
+        this.f52869s.setOnTouchListener(new gi.a(2));
+        p10.addView(this.f52869s, ja.m(1.0f, 0, -1, 65, 0, 0));
+        org.telegram.ui.ActionBar.q0 c10 = this.actionBar.s().c(0, 2131232487, getResourceProvider());
+        c10.O();
+        c10.I = new s2(this);
+        this.f52871x = c10;
+        c10.setSearchFieldHint(hd.M0(2131745836, null));
+        this.f52871x.setContentDescription(hd.M0(2131745836, null));
+        EditTextBoldCursor searchField = this.f52871x.getSearchField();
+        q6.U(searchField, i11, getResourceProvider());
+        q6.D(searchField, j6.Jj, getResourceProvider());
+        q6.v(searchField, i11, getResourceProvider());
+        cv0 cv0Var = new cv0(context, null, 1, null);
+        this.f52872y = cv0Var;
+        if (TextUtils.isEmpty(this.f52868r)) {
+            i7 = 2131742918;
         } else {
-            i7 = 48;
+            i7 = 2131742917;
         }
-        layoutParams.gravity = i7;
-        if (z9) {
-            int L = org.telegram.messenger.g0.L(100.0f);
-            layoutParams.height = L;
-            layoutParams.width = L;
-        } else {
-            layoutParams.width = -1;
-            layoutParams.height = -2;
-        }
-        d4Var.requestLayout();
+        cv0Var.d.setText(hd.M0(i7, null));
+        this.f52872y.f33707e.setVisibility(8);
+        this.f52872y.e(false, false);
+        this.f52872y.setAnimateLayoutChange(true);
+        ((FrameLayout) this.fragmentView).addView(this.f52872y, ja.c(-1.0f, -1));
+        this.f38882a.setEmptyView(this.f52872y);
+        this.f38882a.j(new ri(this, 27));
+        return this.fragmentView;
     }
 
-    private void setupWebView(u0 u0Var) {
-        X(u0Var, null);
-    }
-
-    public static String u(String str) {
-        String str2;
-        if (S0 == null || str == null) {
-            return str;
-        }
-        String K0 = org.telegram.messenger.g0.K0(str, false);
-        if (K0 != null) {
-            if (K0.endsWith("." + qp.s1(p10.f24474s0).U5) && (str2 = (String) S0.get(K0)) != null) {
-                return vf.c.w(Uri.parse(str), "tonsite", null, str2, null);
-            }
-            return str;
-        }
-        return str;
-    }
-
-    public static void w(int i7, u0 u0Var, p7 p7Var, String str, JSONObject jSONObject) {
-        if (u0Var == null) {
-            return;
-        }
-        qs.f(i7).d(new mo0(u0Var, p7Var, str, jSONObject, 20));
-    }
-
-    public final boolean D() {
-        if (this.f51295a != null && this.R) {
-            y("back_button_pressed", null);
+    @Override
+    public final boolean isLightStatusBar() {
+        if (org.telegram.messenger.g0.B(getThemedColor(j6.f28849d6)) > 0.721f) {
             return true;
         }
         return false;
     }
 
-    public final void F(org.telegram.ui.web.BotWebViewContainer$BotWebViewProxy r56, final di.p7 r57, java.lang.String r58, java.lang.String r59) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.x0.F(org.telegram.ui.web.BotWebViewContainer$BotWebViewProxy, di.p7, java.lang.String, java.lang.String):void");
-    }
-
-    public final void G(String str, String str2, boolean z9) {
+    @Override
+    public final void onThemeColorsChanged() {
         try {
-            JSONObject jSONObject = new JSONObject();
-            jSONObject.put("slug", str);
-            jSONObject.put("status", str2);
-            y("invoice_closed", jSONObject);
-            a8.b("invoice_closed " + jSONObject);
-            if (!z9 && Objects.equals(this.f51298b0, str)) {
-                this.f51298b0 = null;
-            }
-        } catch (JSONException e10) {
-            a8.g(e10, true);
-        }
-    }
-
-    public final void H(Uri uri, String str, boolean z9, boolean z10, boolean z11) {
-        if (System.currentTimeMillis() - this.P > 10000 && z10) {
-            return;
-        }
-        this.P = 0L;
-        boolean[] zArr = {false};
-        if (vf.c.g(uri, false, zArr) && !zArr[0] && this.f51299c != null) {
-            setKeyboardFocusable(false);
-        }
-        vf.c.s(getContext(), uri, true, z9, false, null, str, false, true, z11, false);
-    }
-
-    public abstract void K(u0 u0Var);
-
-    public final void M() {
-        g("preserveWebView");
-        this.B0 = true;
-        if (this.f51314o0) {
-            y("visibility_changed", A(Boolean.FALSE, "is_visible"));
-            this.f51320s0++;
-        }
-        u0 u0Var = this.f51295a;
-        if (u0Var != null) {
-            u0Var.f(null, null);
-            this.f51295a.setCloseListener(null);
-        }
-        BotWebViewContainer$BotWebViewProxy botWebViewContainer$BotWebViewProxy = this.f51318r0;
-        if (botWebViewContainer$BotWebViewProxy != null) {
-            botWebViewContainer$BotWebViewProxy.f51013a = null;
-        }
-        BotWebViewContainer$WebViewProxy botWebViewContainer$WebViewProxy = this.f51322u0;
-        if (botWebViewContainer$WebViewProxy != null) {
-            botWebViewContainer$WebViewProxy.f51014a = null;
-        }
-    }
-
-    public final void O(int i7, u0 u0Var, Object obj, String str, boolean z9) {
-        String str2;
-        this.M = i7;
-        this.B0 = false;
-        boolean z10 = this.f51314o0;
-        if (z10) {
-            this.f51320s0++;
-            this.f51321t0 = z9;
-            if (z9) {
-                str2 = k(str);
-            } else {
-                str2 = null;
-            }
-            this.G0 = str2;
-        }
-        X(u0Var, obj);
-        if (z10) {
-            y("visibility_changed", A(Boolean.TRUE, "is_visible"));
-        }
-    }
-
-    public final void P(int i7, boolean z9) {
-        if (!z9 && i7 == this.I0) {
-            return;
-        }
-        y("content_safe_area_changed", C("left", 0, "top", Float.valueOf(i7 / org.telegram.messenger.g0.f22566p), "right", 0, "bottom", 0));
-        this.I0 = i7;
-    }
-
-    public final void Q(Rect rect, boolean z9) {
-        if (rect != null) {
-            Rect rect2 = this.H0;
-            if (z9 || !rect2.equals(rect)) {
-                y("safe_area_changed", C("left", Float.valueOf(rect.left / org.telegram.messenger.g0.f22566p), "top", Float.valueOf(rect.top / org.telegram.messenger.g0.f22566p), "right", Float.valueOf(rect.right / org.telegram.messenger.g0.f22566p), "bottom", Float.valueOf(rect.bottom / org.telegram.messenger.g0.f22566p)));
-                rect2.set(rect);
-            }
-        }
-    }
-
-    public final void R() {
-        try {
-            if (this.G != null) {
-                F(this.f51318r0, f(), "web_app_setup_main_button", this.G);
-            }
-            if (this.L != null) {
-                F(this.f51318r0, f(), "web_app_setup_secondary_button", this.L);
+            super.onThemeColorsChanged();
+            org.telegram.ui.ActionBar.k kVar = this.actionBar;
+            if (kVar != null) {
+                kVar.setActionModeColor(j6.x0(null, j6.f28849d6, false));
             }
         } catch (Exception e10) {
             a8.g(e10, true);
         }
-    }
-
-    public final void S(p7 p7Var, hi.m1 m1Var, String str) {
-        h6 h6Var;
-        boolean z9;
-        boolean z10;
-        if (m1Var != null && this.U != null) {
-            boolean z11 = true;
-            try {
-                JSONObject jSONObject = new JSONObject(str);
-                String string = jSONObject.getString("req_id");
-                try {
-                    String optString = jSONObject.optString("key");
-                    if (optString == null) {
-                        x(p7Var, "secure_storage_failed", B("req_id", string, "error", "KEY_INVALID"));
-                        return;
-                    }
-                    try {
-                        ArrayList h = m1Var.h(optString);
-                        if (h.isEmpty()) {
-                            x(p7Var, "secure_storage_failed", B("req_id", string, "error", "RESTORE_UNAVAILABLE"));
-                            return;
-                        }
-                        Context context = getContext();
-                        v vVar = new v(this, p7Var, string, m1Var, optString);
-                        f2 T = LaunchActivity.T();
-                        if (T != null) {
-                            h6Var = T.getResourceProvider();
-                        } else {
-                            h6Var = null;
-                        }
-                        String[] strArr = new String[1];
-                        boolean[] zArr = new boolean[1];
-                        w2 l10 = k5.l(1, context, h6Var, false);
-                        ViewGroup f10 = k5.f(context, 1);
-                        k9 k9Var = new k9(context);
-                        TLRPC.User a22 = qp.s1(m1Var.f14793a).a2(Long.valueOf(m1Var.f14794b));
-                        v8 v8Var = new v8((h6) null);
-                        v8Var.r(a22);
-                        k9Var.e(a22, v8Var);
-                        f10.addView(k9Var, ha.t(80, 80, 49, 0, 21, 0, 13));
-                        int i7 = m6.G6;
-                        Context context2 = context;
-                        TextView b10 = qa.b(context2, 20.0f, i7, true, null);
-                        b10.setText(id.M0(2131752990, null));
-                        b10.setGravity(17);
-                        f10.addView(b10, ha.t(-1, -2, 7, 32, 0, 32, 10));
-                        TextView b11 = qa.b(context2, 14.0f, i7, false, null);
-                        k5.r(null, null, 2131752991, new Object[]{m5.H(null, null, a22)}, b11);
-                        b11.setGravity(17);
-                        f10.addView(b11, ha.t(-1, -2, 7, 32, 0, 32, 19));
-                        z8 z8Var = new z8(context2, h6Var);
-                        ColorDrawable colorDrawable = new ColorDrawable(-1);
-                        z8Var.setBackground(new xp(colorDrawable, m6.X0(context2, 2131231229, m6.w0(m6.f27854b7, h6Var))));
-                        t6.x(z8Var, colorDrawable, m6.f27834a7, h6Var, PorterDuff.Mode.SRC_IN);
-                        z8Var.setFixedSize(12);
-                        f10.addView(z8Var, ha.t(-1, 12, 7, 0, 0, 0, 0));
-                        n4 n4Var = new n4(context2, h6Var);
-                        n4Var.setText(id.M0(2131752992, null));
-                        f10.addView(n4Var, ha.t(-1, -2, 7, 0, 0, 0, 0));
-                        fi.d dVar = new fi.d(context2, h6Var, true);
-                        ArrayList arrayList = new ArrayList();
-                        int i10 = 0;
-                        while (i10 < h.size()) {
-                            hi.l1 l1Var = (hi.l1) h.get(i10);
-                            boolean z12 = z11;
-                            if (i10 < h.size() - 1) {
-                                z10 = z12;
-                            } else {
-                                z10 = false;
-                            }
-                            hi.k1 k1Var = new hi.k1(l1Var, z10, context2);
-                            int i11 = m6.f27982i6;
-                            v vVar2 = vVar;
-                            org.telegram.ui.Cells.y h02 = m6.h0(m6.w0(i11, h6Var), 2, -1);
-                            p6 M = t6.M(i11);
-                            k1Var.setBackground(h02);
-                            t6.j(k1Var, h02, null, M, h6Var);
-                            ViewGroup viewGroup = f10;
-                            k1Var.setOnClickListener(new v3(strArr, l1Var, arrayList, dVar, 2));
-                            viewGroup.addView(k1Var, ha.o(-1, 56));
-                            arrayList.add(k1Var);
-                            i10++;
-                            context2 = context2;
-                            f10 = viewGroup;
-                            z11 = z12;
-                            vVar = vVar2;
-                            zArr = zArr;
-                        }
-                        v vVar3 = vVar;
-                        boolean[] zArr2 = zArr;
-                        ViewGroup viewGroup2 = f10;
-                        dVar.i(id.M0(2131752994, null), false, z11);
-                        if (strArr[0] != null) {
-                            z9 = true;
-                        } else {
-                            z9 = false;
-                        }
-                        dVar.setEnabled(z9);
-                        viewGroup2.addView(dVar, ha.t(-1, 48, 7, 8, 8, 8, 4));
-                        l10.N = viewGroup2;
-                        l10.P(m6.f27963h5);
-                        dVar.setOnClickListener(new v3(zArr2, vVar3, strArr, l10, 3));
-                        l10.setOnDismissListener(new u3(3, zArr2, vVar3));
-                        l10.show();
-                    } catch (Exception e10) {
-                        x(p7Var, "secure_storage_failed", B("req_id", string, "error", e10.getMessage()));
-                    }
-                } catch (Exception unused) {
-                    x(p7Var, "secure_storage_failed", B("req_id", string, "error", "KEY_INVALID"));
-                }
-            } catch (Exception e11) {
-                a8.g(e11, true);
-                if (!TextUtils.isEmpty("")) {
-                    x(p7Var, "secure_storage_failed", B("req_id", "", "error", "UNKNOWN_ERROR"));
-                }
-            }
-        }
-    }
-
-    public void U(String str, boolean z9) {
-        boolean z10;
-        boolean z11;
-        u0 u0Var = this.f51295a;
-        if (u0Var != null) {
-            boolean z12 = u0Var.E;
-        }
-        if (u0Var != null && u0Var.canGoBack()) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        u0 u0Var2 = this.f51295a;
-        if (u0Var2 != null && u0Var2.canGoForward()) {
-            z11 = false;
-        } else {
-            z11 = true;
-        }
-        J(z10, z11);
-        u0 u0Var3 = this.f51295a;
-        if (u0Var3 != null) {
-            u0Var3.f51249b = true;
-        }
-        if (this.N) {
-            g("setPageLoaded: already loaded");
-            return;
-        }
-        d4 d4Var = this.f51319s;
-        if (z9 && u0Var3 != null && d4Var != null) {
-            AnimatorSet animatorSet = new AnimatorSet();
-            Property property = View.ALPHA;
-            animatorSet.playTogether(ObjectAnimator.ofFloat(this.f51295a, property, 1.0f), ObjectAnimator.ofFloat(d4Var, property, 0.0f));
-            animatorSet.addListener(new u81(this, 13));
-            animatorSet.start();
-        } else {
-            if (u0Var3 != null) {
-                u0Var3.setAlpha(1.0f);
-            }
-            if (d4Var != null) {
-                d4Var.setAlpha(0.0f);
-                d4Var.setVisibility(8);
-            }
-        }
-        this.f51297b = str;
-        g("setPageLoaded: isPageLoaded = true!");
-        this.N = true;
-        this.f51299c.getClass();
-    }
-
-    public final void V(p7 p7Var, hi.m1 m1Var, String str, String str2, String str3) {
-        if (m1Var != null && this.U != null) {
-            try {
-                JSONObject jSONObject = new JSONObject(str);
-                String string = jSONObject.getString("req_id");
-                try {
-                    String optString = jSONObject.optString("key");
-                    if (optString == null) {
-                        x(p7Var, str3, B("req_id", string, "error", "KEY_INVALID"));
-                        return;
-                    }
-                    try {
-                        try {
-                            m1Var.n(optString, jSONObject.optString("value"));
-                            x(p7Var, str2, A(string, "req_id"));
-                        } catch (RuntimeException e10) {
-                            x(p7Var, str3, B("req_id", string, "error", e10.getMessage()));
-                        }
-                    } catch (Exception unused) {
-                        x(p7Var, str3, B("req_id", string, "error", "VALUE_INVALID"));
-                    }
-                } catch (Exception unused2) {
-                    x(p7Var, str3, B("req_id", string, "error", "KEY_INVALID"));
-                }
-            } catch (Exception e11) {
-                a8.g(e11, true);
-                if (!TextUtils.isEmpty("")) {
-                    x(p7Var, str3, B("req_id", "", "error", "UNKNOWN_ERROR"));
-                }
-            }
-        }
-    }
-
-    public final void W() {
-        u0 u0Var = this.f51295a;
-        if (u0Var != null && this.f51314o0) {
-            u0Var.removeJavascriptInterface("TelegramWebviewProxy");
-            if (!n9.a("WEB_MESSAGE_LISTENER")) {
-                g("Bot WebMessageListener is unsupported; native bridge disabled");
-                return;
-            }
-            Set singleton = Collections.singleton("*");
-            u0 u0Var2 = this.f51295a;
-            if (!u0Var2.R) {
-                d5.b.a(u0Var2, "TelegramWebviewProxyMessage", singleton, new n3(u0Var2, 4));
-                this.f51295a.R = true;
-            }
-            if (n9.a("DOCUMENT_START_SCRIPT")) {
-                u0 u0Var3 = this.f51295a;
-                if (u0Var3.S == null) {
-                    boolean z9 = d5.b.f8187a;
-                    if (e5.k.d.b()) {
-                        u0Var3.S = new d6.i((ScriptHandlerBoundaryInterface) af.b.a(ScriptHandlerBoundaryInterface.class, d5.b.c(u0Var3).f10720a.addDocumentStartJavaScript("window.TelegramWebviewProxy={postEvent:function(eventType,eventData){window.TelegramWebviewProxyMessage.postMessage(JSON.stringify({eventType:eventType,eventData:eventData}));}};", (String[]) singleton.toArray(new String[0]))), 19);
-                        return;
-                    }
-                    throw new UnsupportedOperationException("This method is not supported by the current version of the framework and the current WebView APK");
-                }
-            }
-        }
-    }
-
-    public final void X(u0 u0Var, Object obj) {
-        u0 u0Var2;
-        String str;
-        TLRPC.User user;
-        boolean z9;
-        String str2 = "";
-        u0 u0Var3 = this.f51295a;
-        if (u0Var3 != null) {
-            u0Var3.destroy();
-            removeView(this.f51295a);
-        }
-        if (u0Var != null) {
-            org.telegram.messenger.g0.E2(u0Var);
-        }
         try {
-            if (iz.J0 && !r()) {
-                z9 = true;
-            } else {
-                z9 = false;
+            NumberTextView numberTextView = this.f52869s;
+            if (numberTextView != null) {
+                numberTextView.setTextColor(getThemedColor(j6.f29243y8));
             }
-            WebView.setWebContentsDebuggingEnabled(z9);
-        } catch (Exception e10) {
-            a8.g(e10, true);
-        }
-        if (u0Var == null) {
-            Context context = getContext();
-            boolean z10 = this.f51314o0;
-            long j3 = 0;
-            if (z10 && (user = this.U) != null) {
-                j3 = user.f27109id;
+            org.telegram.ui.ActionBar.q0 q0Var = this.f52871x;
+            if (q0Var != null && q0Var.getSearchField() != null) {
+                this.f52871x.getSearchField().setCursorColor(getThemedColor(j6.G6));
             }
-            u0Var2 = new u0(context, z10, j3);
-        } else {
-            u0Var2 = u0Var;
-        }
-        this.f51295a = u0Var2;
-        if (!this.f51314o0) {
-            CookieManager cookieManager = CookieManager.getInstance();
-            cookieManager.setAcceptCookie(true);
-            cookieManager.setAcceptThirdPartyCookies(this.f51295a, true);
-            CookieManager.getInstance().flush();
-            this.f51295a.f51252f = this.f51323v0;
-        } else {
-            u0Var2.setBackgroundColor(j(m6.f27890d6));
-        }
-        if (!qp.s1(this.M).G6) {
-            this.f51295a.setLayerType(2, null);
-        }
-        this.f51295a.f(this, this.d);
-        this.f51295a.setCloseListener(this.D0);
-        WebSettings settings = this.f51295a.getSettings();
-        settings.setJavaScriptEnabled(true);
-        settings.setGeolocationEnabled(true);
-        settings.setDomStorageEnabled(true);
-        settings.setDatabaseEnabled(true);
-        settings.setSupportMultipleWindows(true);
-        settings.setAllowFileAccess(false);
-        settings.setAllowContentAccess(false);
-        settings.setAllowFileAccessFromFileURLs(false);
-        settings.setAllowUniversalAccessFromFileURLs(false);
-        if (!this.f51314o0) {
-            settings.setRenderPriority(WebSettings.RenderPriority.HIGH);
-            settings.setCacheMode(-1);
-            settings.setSaveFormData(true);
-            settings.setSavePassword(true);
-            settings.setSupportZoom(true);
-            settings.setBuiltInZoomControls(true);
-            settings.setDisplayZoomControls(false);
-            settings.setUseWideViewPort(true);
-            settings.setLoadWithOverviewMode(true);
-            if (Build.VERSION.SDK_INT >= 26) {
-                settings.setSafeBrowsingEnabled(true);
-            }
-        }
-        if (r()) {
-            settings.setMediaPlaybackRequiresUserGesture(false);
-        }
-        try {
-            String replace = settings.getUserAgentString().replace("; wv)", ")");
-            StringBuilder sb2 = new StringBuilder("(Linux; Android ");
-            String str3 = Build.VERSION.RELEASE;
-            sb2.append(str3);
-            sb2.append("; K)");
-            String replaceAll = replace.replaceAll("\\(Linux; Android.+;[^)]+\\)", sb2.toString()).replaceAll("Version/[\\d\\.]+ ", "");
-            if (this.f51314o0) {
-                PackageInfo packageInfo = org.telegram.messenger.t0.f25570b.getPackageManager().getPackageInfo(org.telegram.messenger.t0.f25570b.getPackageName(), 0);
-                int o4 = iz.o();
-                if (o4 == 0) {
-                    str = "LOW";
-                } else if (o4 == 1) {
-                    str = "AVERAGE";
-                } else {
-                    str = "HIGH";
-                }
-                StringBuilder sb3 = new StringBuilder();
-                sb3.append(replaceAll);
-                sb3.append(" Telegram-Android/");
-                sb3.append(packageInfo.versionName);
-                sb3.append(" (");
-                String str4 = Build.MANUFACTURER;
-                if (str4 != null) {
-                    if (str4.length() <= 1) {
-                        str2 = str4.toUpperCase();
-                    } else {
-                        str2 = str4.substring(0, 1).toUpperCase() + str4.substring(1).toLowerCase();
-                    }
-                }
-                sb3.append(str2);
-                sb3.append(" ");
-                sb3.append(Build.MODEL);
-                sb3.append("; Android ");
-                sb3.append(str3);
-                sb3.append("; SDK ");
-                sb3.append(Build.VERSION.SDK_INT);
-                sb3.append("; ");
-                sb3.append(str);
-                sb3.append(")");
-                replaceAll = sb3.toString();
-            }
-            settings.setUserAgentString(replaceAll);
         } catch (Exception e11) {
             a8.g(e11, true);
         }
-        settings.setTextSize(WebSettings.TextSize.NORMAL);
-        File file = new File(org.telegram.messenger.t0.h(), "webview_database");
-        if ((file.exists() && file.isDirectory()) || file.mkdirs()) {
-            settings.setDatabasePath(file.getAbsolutePath());
-        }
-        GeolocationPermissions.getInstance().clearAll();
-        this.f51295a.setVerticalScrollBarEnabled(false);
-        if (u0Var == null && this.f51314o0) {
-            this.f51295a.setAlpha(0.0f);
-        }
-        addView(this.f51295a);
-        if (this.f51314o0) {
-            if (obj instanceof BotWebViewContainer$BotWebViewProxy) {
-                this.f51318r0 = (BotWebViewContainer$BotWebViewProxy) obj;
-            }
-            if (this.f51318r0 == null) {
-                ?? obj2 = new Object();
-                obj2.f51013a = this;
-                this.f51318r0 = obj2;
-            }
-            this.f51318r0.f51013a = this;
-            W();
-        } else {
-            if (obj instanceof BotWebViewContainer$WebViewProxy) {
-                this.f51322u0 = (BotWebViewContainer$WebViewProxy) obj;
-            }
-            BotWebViewContainer$WebViewProxy botWebViewContainer$WebViewProxy = this.f51322u0;
-            if (botWebViewContainer$WebViewProxy == null) {
-                u0 u0Var4 = this.f51295a;
-                BotWebViewContainer$WebViewProxy botWebViewContainer$WebViewProxy2 = new BotWebViewContainer$WebViewProxy(u0Var4, this);
-                this.f51322u0 = botWebViewContainer$WebViewProxy2;
-                u0Var4.addJavascriptInterface(botWebViewContainer$WebViewProxy2, "TelegramWebviewProxy");
-            } else if (u0Var == null) {
-                this.f51295a.addJavascriptInterface(botWebViewContainer$WebViewProxy, "TelegramWebviewProxy");
-            }
-            this.f51322u0.f51014a = this;
-        }
-        K(this.f51295a);
-        Q0 = false;
-    }
-
-    public final void Y(int i7, org.telegram.ui.ActionBar.u1 u1Var, Runnable runnable) {
-        if (u1Var != null && !m(i7)) {
-            u1Var.setOnDismissListener(new u3(16, this, runnable));
-            this.f51300c0 = u1Var;
-            u1Var.f28560j0 = false;
-            u1Var.show();
-            if (this.L0 != i7) {
-                this.L0 = i7;
-                this.M0 = 0;
-                this.N0 = 0L;
-            }
-            this.M0++;
-        }
-    }
-
-    public final void Z(String str) {
-        String str2;
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(id.M0(2131743879, "UnknownError"));
-        if (str != null) {
-            str2 = ": ".concat(str);
-        } else {
-            str2 = "";
-        }
-        sb2.append(str2);
-        i(sb2.toString());
-    }
-
-    public final void c() {
-        if (this.f51295a == null && !this.h) {
-            try {
-                setupWebView(null);
-            } catch (Throwable th2) {
-                a8.g(th2, true);
-                this.f51319s.setVisibility(8);
-                this.h = true;
-                this.f51304f.setVisibility(0);
-                u0 u0Var = this.f51295a;
-                if (u0Var != null) {
-                    removeView(u0Var);
-                }
-            }
-        }
-    }
-
-    public final void d(p7 p7Var, hi.m1 m1Var, String str, String str2, String str3) {
-        if (m1Var != null && this.U != null) {
-            try {
-                String string = new JSONObject(str).getString("req_id");
-                try {
-                    m1Var.m(new JSONObject());
-                    x(p7Var, str2, A(string, "req_id"));
-                } catch (RuntimeException e10) {
-                    x(p7Var, str3, B("req_id", string, "error", e10.getMessage()));
-                }
-            } catch (Exception e11) {
-                a8.g(e11, true);
-                if (!TextUtils.isEmpty("")) {
-                    x(p7Var, str3, B("req_id", "", "error", "UNKNOWN_ERROR"));
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        r31 r31Var;
-        Uri[] uriArr;
-        if (i7 == qs.f25048n4) {
-            u0 u0Var = this.f51295a;
-            if (u0Var != null) {
-                u0Var.setBackgroundColor(j(m6.f27890d6));
-            }
-            if (!this.f51316q0) {
-                int i11 = m6.yj;
-                int j3 = j(i11);
-                this.f51315p0 = j3;
-                PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(j3, PorterDuff.Mode.SRC_IN);
-                d4 d4Var = this.f51319s;
-                d4Var.setColorFilter(porterDuffColorFilter);
-                rz rzVar = this.f51317r;
-                if (rzVar != null) {
-                    rzVar.f25394n = Integer.valueOf(this.f51315p0);
-                    this.f51317r.f(i11, this.f51302e, 1.0f, false);
-                }
-                d4Var.invalidate();
-            }
-            z();
-        } else if (i7 == qs.f24988c5) {
-            int intValue = ((Integer) objArr[0]).intValue();
-            int intValue2 = ((Integer) objArr[1]).intValue();
-            Intent intent = (Intent) objArr[2];
-            if (intValue == 3000 && this.f51328y != null) {
-                if (intValue2 == -1 && intent != null) {
-                    if (intent.getClipData() != null) {
-                        ClipData clipData = intent.getClipData();
-                        uriArr = new Uri[clipData.getItemCount()];
-                        for (int i12 = 0; i12 < clipData.getItemCount(); i12++) {
-                            uriArr[i12] = clipData.getItemAt(i12).getUri();
-                        }
-                    } else if (intent.getData() != null) {
-                        uriArr = new Uri[]{intent.getData()};
-                    }
-                    this.f51328y.onReceiveValue(uriArr);
-                    this.f51328y = null;
-                }
-                uriArr = null;
-                this.f51328y.onReceiveValue(uriArr);
-                this.f51328y = null;
-            }
-        } else if (i7 == qs.f24993d5) {
-            int intValue3 = ((Integer) objArr[0]).intValue();
-            String[] strArr = (String[]) objArr[1];
-            int[] iArr = (int[]) objArr[2];
-            if (intValue3 == 4000 && (r31Var = this.V) != null) {
-                r31Var.run();
-                this.V = null;
-            }
-        }
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f51319s) {
-            if (this.f51324w) {
-                canvas.save();
-                canvas.translate(0.0f, (org.telegram.ui.ActionBar.l.getCurrentActionBarHeight() - ((View) getParent()).getTranslationY()) / 2.0f);
-            }
-            boolean drawChild = super.drawChild(canvas, view, j3);
-            if (this.f51324w) {
-                canvas.restore();
-            }
-            if (!this.f51324w) {
-                RectF rectF = org.telegram.messenger.g0.P;
-                rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                this.f51312n.a(0.0f, canvas, rectF, this);
-                invalidate();
-            }
-            return drawChild;
-        } else if (view == this.f51304f) {
-            canvas.save();
-            canvas.translate(0.0f, (org.telegram.ui.ActionBar.l.getCurrentActionBarHeight() - ((View) getParent()).getTranslationY()) / 2.0f);
-            boolean drawChild2 = super.drawChild(canvas, view, j3);
-            canvas.restore();
-            return drawChild2;
-        } else {
-            if (view == this.f51295a) {
-                if (!org.telegram.messenger.g0.m0) {
-                    if (getLayerType() == 2 && !canvas.isHardwareAccelerated()) {
-                        return true;
-                    }
-                } else {
-                    return true;
-                }
-            }
-            return super.drawChild(canvas, view, j3);
-        }
-    }
-
-    public final void e() {
-        if (this.U == null) {
-            return;
-        }
-        hi.p pVar = this.f51309j0;
-        if (pVar == null) {
-            this.f51309j0 = hi.p.c(getContext(), this.M, this.U.f27109id);
-        } else {
-            pVar.h();
-        }
-    }
-
-    public final p7 f() {
-        u0 u0Var = this.f51295a;
-        long j3 = this.f51320s0;
-        boolean z9 = this.f51321t0;
-        String str = this.G0;
-        ?? obj = new Object();
-        obj.f9520c = this;
-        obj.d = u0Var;
-        obj.f9518a = j3;
-        obj.f9519b = z9;
-        obj.f9521e = str;
-        return obj;
-    }
-
-    public final void g(String str) {
-        a8.b("[webviewcontainer] #" + this.O0 + " " + str);
-    }
-
-    public BotWebViewContainer$BotWebViewProxy getBotProxy() {
-        return this.f51318r0;
-    }
-
-    public int getMinHeight() {
-        if (getParent() instanceof b4) {
-            b4 b4Var = (b4) getParent();
-            if (b4Var.J) {
-                return (int) ((b4Var.getMeasuredHeight() - b4Var.getOffsetY()) + this.f51330z0);
-            }
-            return 0;
-        }
-        return 0;
-    }
-
-    public String getOriginHost() {
-        u0 u0Var = this.f51295a;
-        if (u0Var == null) {
-            return null;
-        }
-        return k(u0Var.getUrl());
-    }
-
-    public BotWebViewContainer$WebViewProxy getProxy() {
-        return this.f51322u0;
-    }
-
-    public String getTrustedOrigin() {
-        return this.G0;
-    }
-
-    public String getUrlLoaded() {
-        return this.f51297b;
-    }
-
-    public u0 getWebView() {
-        return this.f51295a;
-    }
-
-    public final void h() {
-        g("destroyWebView preserving=" + this.B0);
-        u0 u0Var = this.f51295a;
-        if (u0Var != null) {
-            if (u0Var.getParent() != null) {
-                removeView(this.f51295a);
-            }
-            if (!this.B0) {
-                this.f51295a.destroy();
-                L(this.f51295a);
-            }
-            this.N = false;
-            if (this.f51309j0 != null) {
-                this.f51309j0 = null;
-            }
-            if (this.m0 != null) {
-                this.m0 = null;
-            }
-            if (this.f51313n0 != null) {
-                this.f51313n0 = null;
-            }
-            hi.r0 r0Var = this.f51310k0;
-            if (r0Var != null) {
-                r0Var.f14926f.remove(this.K0);
-                this.f51310k0 = null;
-                this.J0 = null;
-            }
-        }
-    }
-
-    public final void i(String str) {
-        new gc(this, this.f51302e).Q(2131624011, 36, str).j();
-    }
-
-    public final int j(int i7) {
-        h6 h6Var = this.f51302e;
-        if (h6Var != null) {
-            return h6Var.h(i7);
-        }
-        return m6.x0(null, i7, false);
-    }
-
-    public final void l(p7 p7Var, hi.m1 m1Var, String str, String str2, String str3) {
-        Object obj;
-        JSONObject jSONObject;
-        if (m1Var != null && this.U != null) {
-            try {
-                JSONObject jSONObject2 = new JSONObject(str);
-                String string = jSONObject2.getString("req_id");
-                try {
-                    String optString = jSONObject2.optString("key");
-                    if (optString == null) {
-                        x(p7Var, str3, B("req_id", string, "error", "KEY_INVALID"));
-                        return;
-                    }
-                    try {
-                        Pair f10 = m1Var.f(optString);
-                        if (m1Var.d && (obj = f10.first) == null) {
-                            Object obj2 = f10.second;
-                            try {
-                                jSONObject = new JSONObject();
-                                jSONObject.put("req_id", string);
-                                jSONObject.put("value", obj);
-                                jSONObject.put("can_restore", obj2);
-                            } catch (Exception unused) {
-                                jSONObject = null;
-                            }
-                            x(p7Var, str2, jSONObject);
-                            return;
-                        }
-                        x(p7Var, str2, B("req_id", string, "value", f10.first));
-                    } catch (RuntimeException e10) {
-                        x(p7Var, str3, B("req_id", string, "error", e10.getMessage()));
-                    }
-                } catch (Exception unused2) {
-                    x(p7Var, str3, B("req_id", string, "error", "KEY_INVALID"));
-                }
-            } catch (Exception e11) {
-                a8.g(e11, true);
-                if (!TextUtils.isEmpty("")) {
-                    x(p7Var, str3, B("req_id", "", "error", "UNKNOWN_ERROR"));
-                }
-            }
-        }
-    }
-
-    public final boolean m(int i7) {
-        if (this.f51300c0 != null || (this.N0 > 0 && System.currentTimeMillis() < this.N0)) {
-            return true;
-        }
-        if (this.L0 != i7 || this.M0 <= 3) {
-            return false;
-        }
-        this.N0 = System.currentTimeMillis() + 3000;
-        this.M0 = 0;
-        return true;
-    }
-
-    public final void n(boolean z9, boolean z10) {
-        boolean z11;
-        boolean z12;
-        invalidate();
-        if ((this.N || z10) && (z11 = this.f51314o0) && (getParent() instanceof b4)) {
-            b4 b4Var = (b4) getParent();
-            if (z9) {
-                if (b4Var.getSwipeOffsetY() == b4Var.getTopActionBarOffsetY() + (-b4Var.getOffsetY())) {
-                    z12 = true;
-                } else {
-                    z12 = false;
-                }
-                this.O = z12;
-            }
-            int max = Math.max(getMinHeight(), (int) (b4Var.getTopActionBarOffsetY() + ((b4Var.getMeasuredHeight() - b4Var.getOffsetY()) - b4Var.getSwipeOffsetY()) + this.f51330z0));
-            if (z10 || max != this.f51325w0 || this.f51327x0 != z9 || this.f51329y0 != this.O) {
-                this.f51325w0 = max;
-                this.f51327x0 = z9;
-                this.f51329y0 = this.O;
-                String str = "{height:" + (max / org.telegram.messenger.g0.f22566p) + ",is_state_stable:" + z9 + ",is_expanded:" + this.O + "}";
-                if (z11 && !q()) {
-                    g("notifyEvent viewport_changed dropped for untrusted document");
-                } else {
-                    qs.f(this.M).d(new z(this, a8.p0.p("window.Telegram.WebView.receiveEvent('viewport_changed', ", str, ");"), 0));
-                }
-            }
-        }
-    }
-
-    public final boolean o(p7 p7Var) {
-        boolean z9;
-        if (p7Var != null) {
-            String str = (String) p7Var.f9521e;
-            if (((x0) p7Var.f9520c) == this && ((u0) p7Var.d) == this.f51295a && p7Var.f9518a == this.f51320s0 && (z9 = p7Var.f9519b) == this.f51321t0) {
-                if (z9) {
-                    if (!TextUtils.isEmpty(str) && TextUtils.equals(str, this.G0) && TextUtils.equals(str, getOriginHost())) {
-                        return true;
-                    }
-                    return false;
-                }
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        g("attached");
-        qs.e().c(this, qs.f25048n4);
-        qs.e().c(this, qs.f24988c5);
-        qs.e().c(this, qs.f24993d5);
-        setTag(2131296351, new ch.v(this, 10));
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        g("detached");
-        qs.e().n(this, qs.f25048n4);
-        qs.e().n(this, qs.f24988c5);
-        qs.e().n(this, qs.f24993d5);
-        setTag(2131296351, null);
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        int i11 = this.A0;
-        if (i11 >= 0) {
-            i10 = View.MeasureSpec.makeMeasureSpec(i11, 1073741824);
-        }
-        super.onMeasure(i7, i10);
-        this.f51312n.f39383f = getMeasuredWidth();
-    }
-
-    @Override
-    public final void onSizeChanged(int i7, int i10, int i11, int i12) {
-        super.onSizeChanged(i7, i10, i11, i12);
-        if (!this.f51296a0) {
-            n(true, false);
-        }
-    }
-
-    public final boolean q() {
-        if (this.f51295a == null) {
-            return false;
-        }
-        if (this.f51321t0) {
-            if (TextUtils.isEmpty(this.G0) || !TextUtils.equals(this.G0, getOriginHost())) {
-                return false;
-            }
-            return true;
-        }
-        return true;
-    }
-
-    public final boolean r() {
-        if (this.P0 != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void s(int i7, long j3) {
-        TLRPC.TL_attachMenuBot tL_attachMenuBot;
-        TL_bots.BotInfo botInfo;
-        TL_bots.botAppSettings botappsettings;
-        TLRPC.TL_attachMenuBotIcon tL_attachMenuBotIcon;
-        TLRPC.User a22 = qp.s1(i7).a2(Long.valueOf(j3));
-        TLRPC.UserFull b22 = qp.s1(i7).b2(j3);
-        String n10 = t10.n(a22);
-        d4 d4Var = this.f51319s;
-        if (n10 != null && n10.equals("DurgerKingBot")) {
-            d4Var.setVisibility(0);
-            d4Var.setAlpha(1.0f);
-            d4Var.h(null, null, sz.h(2131624005, Integer.valueOf(j(m6.f27834a7))));
-            setupFlickerParams(false);
-            return;
-        }
-        ArrayList<TLRPC.TL_attachMenuBot> arrayList = ui.b0(i7).f25806b.bots;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (true) {
-            if (i10 < size) {
-                TLRPC.TL_attachMenuBot tL_attachMenuBot2 = arrayList.get(i10);
-                i10++;
-                tL_attachMenuBot = tL_attachMenuBot2;
-                if (tL_attachMenuBot.bot_id == j3) {
-                    break;
-                }
-            } else {
-                tL_attachMenuBot = null;
-                break;
-            }
-        }
-        boolean z9 = true;
-        if (tL_attachMenuBot != null) {
-            ArrayList<TLRPC.TL_attachMenuBotIcon> arrayList2 = tL_attachMenuBot.icons;
-            int size2 = arrayList2.size();
-            int i11 = 0;
-            while (true) {
-                if (i11 < size2) {
-                    TLRPC.TL_attachMenuBotIcon tL_attachMenuBotIcon2 = arrayList2.get(i11);
-                    i11++;
-                    tL_attachMenuBotIcon = tL_attachMenuBotIcon2;
-                    if (tL_attachMenuBotIcon.name.equals("placeholder_static")) {
-                        break;
-                    }
-                } else {
-                    tL_attachMenuBotIcon = null;
-                    break;
-                }
-            }
-            if (tL_attachMenuBotIcon == null) {
-                tL_attachMenuBotIcon = ui.k0(tL_attachMenuBot);
-            } else {
-                z9 = false;
-            }
-            if (tL_attachMenuBotIcon != null) {
-                d4Var.setVisibility(0);
-                d4Var.setAlpha(1.0f);
-                d4Var.j(hc.b(tL_attachMenuBotIcon.icon), null, null, tL_attachMenuBot);
-                setupFlickerParams(z9);
-                return;
-            }
-            return;
-        }
-        h6 h6Var = this.f51302e;
-        if (b22 != null && (botInfo = b22.bot_info) != null && (botappsettings = botInfo.app_settings) != null && botappsettings.placeholder_svg_path != null) {
-            d4Var.setVisibility(0);
-            d4Var.setAlpha(1.0f);
-            rz j10 = sz.j(512, 512, b22.bot_info.app_settings.placeholder_svg_path);
-            this.f51317r = j10;
-            if (j10 != null) {
-                j10.f25394n = Integer.valueOf(this.f51315p0);
-                this.f51317r.f(m6.yj, h6Var, 1.0f, false);
-            }
-            d4Var.h(null, null, this.f51317r);
-            setupFlickerParams(true);
-            return;
-        }
-        Path path = new Path();
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(106.66499f, 106.66499f, 240.355f, 240.355f);
-        Path.Direction direction = Path.Direction.CW;
-        path.addRoundRect(rectF, 18.0f, 18.0f, direction);
-        rectF.set(271.645f, 106.66499f, 405.335f, 240.355f);
-        path.addRoundRect(rectF, 18.0f, 18.0f, direction);
-        rectF.set(106.66499f, 271.645f, 240.355f, 405.335f);
-        path.addRoundRect(rectF, 18.0f, 18.0f, direction);
-        rectF.set(271.645f, 271.645f, 405.335f, 405.335f);
-        path.addRoundRect(rectF, 18.0f, 18.0f, direction);
-        d4Var.setVisibility(0);
-        d4Var.setAlpha(1.0f);
-        rz j11 = sz.j(512, 512, path);
-        this.f51317r = j11;
-        if (j11 != null) {
-            j11.f25394n = Integer.valueOf(this.f51315p0);
-            this.f51317r.f(m6.yj, h6Var, 1.0f, false);
-        }
-        d4Var.h(null, null, this.f51317r);
-        setupFlickerParams(true);
-    }
-
-    public void setBotUser(TLRPC.User user) {
-        this.U = user;
-    }
-
-    public void setDelegate(d0 d0Var) {
-        this.f51299c = d0Var;
-    }
-
-    public void setFlickerViewColor(int i7) {
-        int b10;
-        if (org.telegram.messenger.g0.B(i7) > 0.7f) {
-            b10 = m6.b(0.0f, -0.15f, i7);
-        } else {
-            b10 = m6.b(0.025f, 0.15f, i7);
-        }
-        if (this.f51315p0 == b10) {
-            return;
-        }
-        this.f51315p0 = b10;
-        PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(b10, PorterDuff.Mode.SRC_IN);
-        d4 d4Var = this.f51319s;
-        d4Var.setColorFilter(porterDuffColorFilter);
-        rz rzVar = this.f51317r;
-        if (rzVar != null) {
-            rzVar.f25394n = Integer.valueOf(this.f51315p0);
-            this.f51317r.f(m6.yj, this.f51302e, 1.0f, false);
-        }
-        this.f51316q0 = true;
-        d4Var.invalidate();
-        invalidate();
-    }
-
-    public void setForceHeight(int i7) {
-        if (this.A0 == i7) {
-            return;
-        }
-        this.A0 = i7;
-        requestLayout();
-    }
-
-    public void setIsBackButtonVisible(boolean z9) {
-        this.R = z9;
-    }
-
-    public void setOnCloseRequestedListener(Runnable runnable) {
-        this.D0 = runnable;
-        u0 u0Var = this.f51295a;
-        if (u0Var != null) {
-            u0Var.setCloseListener(runnable);
-        }
-    }
-
-    public void setOnVerifiedAge(z10 z10Var) {
-        this.P0 = z10Var;
-    }
-
-    public void setOpener(u0 u0Var) {
-        u0 u0Var2;
-        this.f51323v0 = u0Var;
-        if (!this.f51314o0 && (u0Var2 = this.f51295a) != null) {
-            u0Var2.f51252f = u0Var;
-        }
-    }
-
-    public void setParentActivity(Activity activity) {
-        this.W = activity;
-    }
-
-    public void setViewPortByMeasureSuppressed(boolean z9) {
-        this.f51296a0 = z9;
-    }
-
-    public void setViewPortHeightOffset(float f10) {
-        this.f51330z0 = f10;
-    }
-
-    public void setWasOpenedByBot(q4 q4Var) {
-        this.F0 = q4Var;
-    }
-
-    public void setWasOpenedByLinkIntent(boolean z9) {
-        this.E0 = z9;
-    }
-
-    public void setWebViewProgressListener(q0.a aVar) {
-        this.f51326x = aVar;
-    }
-
-    public void setWebViewScrollListener(w0 w0Var) {
-        this.d = w0Var;
-        u0 u0Var = this.f51295a;
-        if (u0Var != null) {
-            u0Var.f(this, w0Var);
-        }
-    }
-
-    public final void t(int i7, String str, boolean z9) {
-        String str2;
-        this.M = i7;
-        if (this.f51314o0) {
-            this.f51320s0++;
-            this.f51321t0 = z9;
-            if (z9) {
-                str2 = k(str);
-            } else {
-                str2 = null;
-            }
-            this.G0 = str2;
-            if (this.f51295a != null) {
-                W();
-            }
-        }
-        qs.f(i7).d(new z(this, str, 1));
-    }
-
-    @Override
-    public final void updateColors() {
-        d4 d4Var;
-        int j3;
-        try {
-            if (this.f51295a != null && (j3 = j(m6.f27890d6)) != this.C0) {
-                this.C0 = j3;
-                this.f51295a.setBackgroundColor(j3);
-            }
-            if (!this.f51316q0 && (d4Var = this.f51319s) != null) {
-                int i7 = this.f51315p0;
-                int i10 = m6.yj;
-                if (i7 != j(i10)) {
-                    int j10 = j(i10);
-                    this.f51315p0 = j10;
-                    d4Var.setColorFilter(new PorterDuffColorFilter(j10, PorterDuff.Mode.SRC_IN));
-                    rz rzVar = this.f51317r;
-                    if (rzVar != null) {
-                        rzVar.f25394n = Integer.valueOf(this.f51315p0);
-                    }
-                    d4Var.invalidate();
-                }
-            }
-        } catch (Exception e10) {
-            a8.g(e10, true);
-        }
-    }
-
-    public final void v(p7 p7Var) {
-        if (this.U != null) {
-            e();
-            hi.p pVar = this.f51309j0;
-            if (pVar == null) {
-                return;
-            }
-            try {
-                x(p7Var, "biometry_info_received", pVar.f());
-            } catch (Exception e10) {
-                a8.g(e10, true);
-            }
-        }
-    }
-
-    public final void x(p7 p7Var, String str, JSONObject jSONObject) {
-        if (!o(p7Var)) {
-            g("notifyEvent " + str + " dropped after document change");
-            return;
-        }
-        y(str, jSONObject);
-    }
-
-    public final void y(String str, JSONObject jSONObject) {
-        if (this.f51314o0 && !q()) {
-            g("notifyEvent " + str + " dropped for untrusted document");
-            return;
-        }
-        g("notifyEvent " + str);
-        qs.f(this.M).d(new z(this, "window.Telegram.WebView.receiveEvent('" + str + "', " + jSONObject + ");", 0));
-    }
-
-    public final void z() {
-        JSONObject jSONObject;
-        JSONObject u10;
-        try {
-            u10 = a3.u(this.f51302e, true);
-        } catch (Exception e10) {
-            a8.g(e10, true);
-        }
-        if (u10 != null) {
-            jSONObject = new JSONObject().put("theme_params", u10);
-            y("theme_changed", jSONObject);
-        }
-        jSONObject = new JSONObject();
-        y("theme_changed", jSONObject);
-    }
-
-    public void I() {
-    }
-
-    public void L(u0 u0Var) {
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-    }
-
-    public void setKeyboardFocusable(boolean z9) {
-    }
-
-    public void E(boolean z9, String str) {
-    }
-
-    public void J(boolean z9, boolean z10) {
     }
 }

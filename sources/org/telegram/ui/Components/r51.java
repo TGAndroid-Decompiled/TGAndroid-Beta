@@ -1,159 +1,113 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import java.io.File;
-import java.net.URLEncoder;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
+import java.util.ArrayList;
 public final class r51 {
-    public int f37510a;
-    public boolean f37511b;
-    public long f37512c;
-    public Uri d;
-    public long f37513e;
-    public Uri f37514f;
-    public TLRPC.Document f37515g;
-    public TLRPC.Document h;
-    public int f37516i;
-    public int f37517j;
-    public long f37518k;
-    public double f37519l;
-    public String f37520m;
+    public final boolean f38887a;
+    public final int f38888b;
+    public final int f38889c;
+    public final ArrayList d;
 
-    public static Uri a(int i7, int i10, TLRPC.Document document) {
-        StringBuilder n10 = jg.g.n(i7, "?account=", "&id=");
-        n10.append(document.f26966id);
-        n10.append("&hash=");
-        n10.append(document.access_hash);
-        n10.append("&dc=");
-        n10.append(document.dc_id);
-        n10.append("&size=");
-        n10.append(document.size);
-        n10.append("&mime=");
-        n10.append(URLEncoder.encode(document.mime_type, "UTF-8"));
-        n10.append("&rid=");
-        n10.append(i10);
-        n10.append("&name=");
-        n10.append(URLEncoder.encode(org.telegram.messenger.w7.B(document), "UTF-8"));
-        n10.append("&reference=");
-        byte[] bArr = document.file_reference;
-        if (bArr == null) {
-            bArr = new byte[0];
-        }
-        n10.append(Utilities.f(bArr));
-        String sb2 = n10.toString();
-        return Uri.parse("tg://" + org.telegram.messenger.w7.r(null, document) + sb2);
+    public r51(t51 t51Var) {
+        ArrayList arrayList = new ArrayList();
+        this.d = arrayList;
+        this.f38887a = t51Var.f39546b;
+        this.f38888b = t51Var.f39551i;
+        this.f38889c = t51Var.f39552j;
+        arrayList.add(t51Var);
     }
 
-    public static r51 d(int i7, TLRPC.Document document, TLRPC.Document document2, int i10, boolean z9) {
-        TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo;
+    public final t51 a() {
+        ArrayList arrayList = this.d;
+        t51 t51Var = null;
+        if (arrayList.isEmpty()) {
+            return null;
+        }
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            t51 t51Var2 = (t51) obj;
+            if (t51Var2.b()) {
+                return t51Var2;
+            }
+        }
+        long j3 = Long.MAX_VALUE;
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            t51 t51Var3 = (t51) arrayList.get(i10);
+            if (t51Var3.f39553k < j3 && u51.D0(t51Var3.f39555m)) {
+                j3 = t51Var3.f39553k;
+                t51Var = t51Var3;
+            }
+        }
+        if (t51Var != null) {
+            return t51Var;
+        }
+        return (t51) arrayList.get(0);
+    }
+
+    public final int b() {
+        int min = Math.min(this.f38888b, this.f38889c);
+        if (Math.abs(min - 2160) < 55) {
+            return 2160;
+        }
+        if (Math.abs(min - 1440) < 55) {
+            return 1440;
+        }
+        if (Math.abs(min - 1080) < 55) {
+            return 1080;
+        }
+        if (Math.abs(min - 720) < 55) {
+            return 720;
+        }
+        if (Math.abs(min - 480) < 55) {
+            return 480;
+        }
+        if (Math.abs(min - 360) < 55) {
+            return 360;
+        }
+        if (Math.abs(min - 240) < 55) {
+            return 240;
+        }
+        if (Math.abs(min - 144) < 55) {
+            return 144;
+        }
+        return min;
+    }
+
+    public final String toString() {
         String str;
-        String str2;
-        ?? obj = new Object();
-        int i11 = 0;
-        while (true) {
-            if (i11 < document.attributes.size()) {
-                TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i11);
-                if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
-                    tL_documentAttributeVideo = (TLRPC.TL_documentAttributeVideo) documentAttribute;
-                    break;
-                }
-                i11++;
+        boolean z10 = org.telegram.messenger.gz.R0;
+        boolean z11 = this.f38887a;
+        String str2 = "";
+        if (z10) {
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(this.f38888b);
+            sb2.append("x");
+            sb2.append(this.f38889c);
+            if (!z11) {
+                str = "";
             } else {
-                tL_documentAttributeVideo = null;
-                break;
+                str = " (" + org.telegram.messenger.hd.M0(2131746450, null) + ")";
             }
-        }
-        if (tL_documentAttributeVideo != null && (str2 = tL_documentAttributeVideo.video_codec) != null) {
-            str = str2.toLowerCase();
-        } else {
-            str = null;
-        }
-        obj.f37510a = i7;
-        obj.f37515g = document;
-        obj.f37512c = document.f26966id;
-        obj.d = a(i7, i10, document);
-        if (document2 != null) {
-            obj.h = document2;
-            obj.f37513e = document2.f26966id;
-            obj.f37514f = a(i7, i10, document2);
-            org.telegram.messenger.w7.G(i7);
-            File J = org.telegram.messenger.w7.J(document2, null, false, z9);
-            if (J != null && J.exists()) {
-                obj.f37514f = Uri.fromFile(J);
-            } else {
-                org.telegram.messenger.w7.G(i7);
-                File J2 = org.telegram.messenger.w7.J(document2, null, true, z9);
-                if (J2 != null && J2.exists()) {
-                    obj.f37514f = Uri.fromFile(J2);
-                }
+            sb2.append(str);
+            sb2.append("\n");
+            ArrayList arrayList = this.d;
+            sb2.append(org.telegram.messenger.g0.i0((long) ((t51) arrayList.get(0)).f39554l, false, false).replace(" ", ""));
+            sb2.append("/s");
+            if (((t51) arrayList.get(0)).f39555m != null) {
+                str2 = ", " + ((t51) arrayList.get(0)).f39555m;
             }
+            sb2.append(str2);
+            return sb2.toString();
         }
-        obj.f37520m = str;
-        long j3 = document.size;
-        obj.f37518k = j3;
-        if (tL_documentAttributeVideo != null) {
-            double d = tL_documentAttributeVideo.duration;
-            obj.f37516i = tL_documentAttributeVideo.f26967w;
-            obj.f37517j = tL_documentAttributeVideo.h;
-            obj.f37519l = j3 / d;
+        StringBuilder sb3 = new StringBuilder();
+        sb3.append(b());
+        sb3.append("p");
+        if (z11) {
+            str2 = " (" + org.telegram.messenger.hd.M0(2131746450, null) + ")";
         }
-        org.telegram.messenger.w7.G(i7);
-        File J3 = org.telegram.messenger.w7.J(document, null, false, z9);
-        if (J3 != null && J3.exists()) {
-            obj.d = Uri.fromFile(J3);
-            return obj;
-        }
-        org.telegram.messenger.w7.G(i7);
-        File J4 = org.telegram.messenger.w7.J(document, null, true, z9);
-        if (J4 != null && J4.exists()) {
-            obj.d = Uri.fromFile(J4);
-        }
-        return obj;
-    }
-
-    public final boolean b() {
-        Uri uri = this.d;
-        if (uri != null && "file".equalsIgnoreCase(uri.getScheme())) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean c() {
-        Uri uri = this.f37514f;
-        if (uri != null && "file".equalsIgnoreCase(uri.getScheme())) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void e(boolean z9) {
-        if (!b() && this.f37515g != null) {
-            org.telegram.messenger.w7.G(this.f37510a);
-            File J = org.telegram.messenger.w7.J(this.f37515g, null, false, z9);
-            if (J != null && J.exists()) {
-                this.d = Uri.fromFile(J);
-            } else {
-                org.telegram.messenger.w7.G(this.f37510a);
-                File J2 = org.telegram.messenger.w7.J(this.f37515g, null, true, z9);
-                if (J2 != null && J2.exists()) {
-                    this.d = Uri.fromFile(J2);
-                }
-            }
-        }
-        if (!c() && this.h != null) {
-            org.telegram.messenger.w7.G(this.f37510a);
-            File J3 = org.telegram.messenger.w7.J(this.h, null, false, z9);
-            if (J3 != null && J3.exists()) {
-                this.f37514f = Uri.fromFile(J3);
-                return;
-            }
-            org.telegram.messenger.w7.G(this.f37510a);
-            File J4 = org.telegram.messenger.w7.J(this.h, null, true, z9);
-            if (J4 != null && J4.exists()) {
-                this.f37514f = Uri.fromFile(J4);
-            }
-        }
+        sb3.append(str2);
+        return sb3.toString();
     }
 }

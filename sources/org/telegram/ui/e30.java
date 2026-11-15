@@ -1,29 +1,37 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class e30 implements DialogInterface.OnShowListener {
-    public final int f45112a;
-    public final org.telegram.ui.ActionBar.u1 f45113b;
-    public final EditTextBoldCursor f45114c;
-    public final Object d;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import java.util.ArrayList;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class e30 extends org.telegram.ui.ActionBar.g1 {
+    public final c40 f46538o;
 
-    public e30(Object obj, org.telegram.ui.ActionBar.u1 u1Var, EditTextBoldCursor editTextBoldCursor, int i7) {
-        this.f45112a = i7;
-        this.d = obj;
-        this.f45113b = u1Var;
-        this.f45114c = editTextBoldCursor;
+    public e30(c40 c40Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f46538o = c40Var;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f45112a) {
-            case 0:
-                ((k30) this.d).f47153b.v1(null, this.f45113b, this.f45114c, true);
-                return;
-            default:
-                ((f30) this.d).f45497r1.f47153b.v1(null, this.f45113b, this.f45114c, true);
-                return;
+    public final void dismiss() {
+        d(true);
+        c40 c40Var = this.f46538o;
+        if (c40Var.f45914e5 != this) {
+            return;
         }
+        c40Var.f45914e5 = null;
+        AnimatorSet animatorSet = c40Var.f45910d5;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            c40Var.f45910d5 = null;
+        }
+        c40Var.T1.X = true;
+        c40Var.f45910d5 = new AnimatorSet();
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(ObjectAnimator.ofInt(c40Var.V4, org.telegram.ui.Components.k6.f36298b, 0));
+        c40Var.f45910d5.playTogether(arrayList);
+        c40Var.f45910d5.setDuration(220L);
+        c40Var.f45910d5.addListener(new xx(this, 1));
+        c40Var.f45910d5.start();
     }
 }

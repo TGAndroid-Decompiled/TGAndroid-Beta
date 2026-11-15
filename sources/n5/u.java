@@ -6,10 +6,10 @@ import android.util.JsonToken;
 import java.io.BufferedReader;
 import java.io.IOException;
 public final class u {
-    public final long f20485a;
+    public final long f21049a;
 
     public u(long j3) {
-        this.f20485a = j3;
+        this.f21049a = j3;
     }
 
     public static u a(BufferedReader bufferedReader) {
@@ -35,18 +35,18 @@ public final class u {
         if (obj == this) {
             return true;
         }
-        if ((obj instanceof u) && this.f20485a == ((u) obj).f20485a) {
+        if ((obj instanceof u) && this.f21049a == ((u) obj).f21049a) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        long j3 = this.f20485a;
+        long j3 = this.f21049a;
         return ((int) (j3 ^ (j3 >>> 32))) ^ 1000003;
     }
 
     public final String toString() {
-        return p0.r(new StringBuilder("LogResponse{nextRequestWaitMillis="), this.f20485a, "}");
+        return p0.r(new StringBuilder("LogResponse{nextRequestWaitMillis="), this.f21049a, "}");
     }
 }

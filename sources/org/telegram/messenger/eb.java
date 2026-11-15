@@ -1,4 +1,3 @@
 package org.telegram.messenger;
-public interface eb {
-    void onClick();
+public final class eb extends gb {
 }

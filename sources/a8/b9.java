@@ -1,56 +1,56 @@
 package a8;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 public abstract class b9 {
-    public static String a(String str, Object... objArr) {
-        int length;
-        int length2;
-        int indexOf;
-        String m10;
-        int i7 = 0;
-        int i10 = 0;
-        while (true) {
-            length = objArr.length;
-            if (i10 >= length) {
-                break;
-            }
-            Object obj = objArr[i10];
-            if (obj == null) {
-                m10 = "null";
-            } else {
-                try {
-                    m10 = obj.toString();
-                } catch (Exception e10) {
-                    String D = p0.D(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(D), (Throwable) e10);
-                    m10 = org.telegram.ui.Cells.f1.m("<", D, " threw ", e10.getClass().getName(), ">");
+    public static String a(com.google.android.gms.internal.cast.u4 u4Var) {
+        StringBuilder sb2 = new StringBuilder(u4Var.j());
+        for (int i7 = 0; i7 < u4Var.j(); i7++) {
+            byte f10 = u4Var.f(i7);
+            if (f10 != 34) {
+                if (f10 != 39) {
+                    if (f10 != 92) {
+                        switch (f10) {
+                            case 7:
+                                sb2.append("\\a");
+                                continue;
+                            case 8:
+                                sb2.append("\\b");
+                                continue;
+                            case 9:
+                                sb2.append("\\t");
+                                continue;
+                            case 10:
+                                sb2.append("\\n");
+                                continue;
+                            case 11:
+                                sb2.append("\\v");
+                                continue;
+                            case 12:
+                                sb2.append("\\f");
+                                continue;
+                            case 13:
+                                sb2.append("\\r");
+                                continue;
+                            default:
+                                if (f10 >= 32 && f10 <= 126) {
+                                    sb2.append((char) f10);
+                                    continue;
+                                } else {
+                                    sb2.append('\\');
+                                    sb2.append((char) (((f10 >>> 6) & 3) + 48));
+                                    sb2.append((char) (((f10 >>> 3) & 7) + 48));
+                                    sb2.append((char) ((f10 & 7) + 48));
+                                    break;
+                                }
+                                break;
+                        }
+                    } else {
+                        sb2.append("\\\\");
+                    }
+                } else {
+                    sb2.append("\\'");
                 }
+            } else {
+                sb2.append("\\\"");
             }
-            objArr[i10] = m10;
-            i10++;
-        }
-        StringBuilder sb2 = new StringBuilder(str.length() + (length * 16));
-        int i11 = 0;
-        while (true) {
-            length2 = objArr.length;
-            if (i7 >= length2 || (indexOf = str.indexOf("%s", i11)) == -1) {
-                break;
-            }
-            sb2.append((CharSequence) str, i11, indexOf);
-            sb2.append(objArr[i7]);
-            i7++;
-            i11 = indexOf + 2;
-        }
-        sb2.append((CharSequence) str, i11, str.length());
-        if (i7 < length2) {
-            sb2.append(" [");
-            sb2.append(objArr[i7]);
-            for (int i12 = i7 + 1; i12 < objArr.length; i12++) {
-                sb2.append(", ");
-                sb2.append(objArr[i12]);
-            }
-            sb2.append(']');
         }
         return sb2.toString();
     }

@@ -1,33 +1,30 @@
 package org.telegram.ui.Components;
-public final class di0 implements Runnable {
-    public final int f32999a;
-    public final gi0 f33000b;
+public final class di0 extends rg.a {
+    public final ch.p0 f33955c;
 
-    public di0(gi0 gi0Var, int i7) {
-        this.f32999a = i7;
-        this.f33000b = gi0Var;
+    public di0(int i7, ch.p0 p0Var) {
+        super(i7, false);
+        this.f33955c = p0Var;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f32999a) {
-            case 0:
-                if (this.f33000b.f33903a.getImageReceiver().B() != null && !this.f33000b.f33903a.getImageReceiver().B().f40976k0 && !this.f33000b.f33903a.getImageReceiver().B().y()) {
-                    this.f33000b.f33903a.getImageReceiver().B().start();
-                }
-                this.f33000b.E = false;
-                return;
-            default:
-                gi0 gi0Var = this.f33000b;
-                ii0 ii0Var = gi0Var.P;
-                try {
-                    gi0Var.performHapticFeedback(0);
-                } catch (Exception unused) {
-                }
-                ii0Var.m0 = ii0Var.T.indexOf(gi0Var.f33906e);
-                ii0Var.f34661l0 = gi0Var.f33906e;
-                ii0Var.invalidate();
-                return;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (obj != null && di0.class == obj.getClass()) {
+            di0 di0Var = (di0) obj;
+            int i7 = this.f56015a;
+            int i10 = di0Var.f56015a;
+            if (i7 == i10 && (i7 == 0 || i7 == 3)) {
+                ch.p0 p0Var = this.f33955c;
+                if (p0Var != null && p0Var.equals(di0Var.f33955c)) {
+                    return true;
+                }
+                return false;
+            } else if (i7 == i10) {
+                return true;
+            }
+        }
+        return false;
     }
 }

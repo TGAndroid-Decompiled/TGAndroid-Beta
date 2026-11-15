@@ -3,15 +3,15 @@ package ug;
 import android.content.Context;
 import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.p10;
+import org.telegram.messenger.m10;
 public final class b extends a {
     public c d;
 
     @Override
-    public final v4.g0 a() {
-        c cVar = new c(p10.f24474s0, this.f56533a);
+    public final v4.h0 a() {
+        c cVar = new c(m10.f24934t0, this.f58029a);
         this.d = cVar;
-        cVar.f56545r = this;
+        cVar.f58052r = this;
         return cVar;
     }
 
@@ -22,15 +22,15 @@ public final class b extends a {
         Context context = getContext();
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
-        ArrayList arrayList = cVar.f56543f;
-        e eVar = new e(context, cVar.f56541c);
+        ArrayList arrayList = cVar.f58050f;
+        e eVar = new e(context, cVar.f58048c);
         int i11 = 0;
         for (int i12 = 0; i12 < arrayList.size(); i12++) {
             eVar.a((d) arrayList.get(i12));
             eVar.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight, Integer.MIN_VALUE));
-            ((d) arrayList.get(i12)).f56553e = i11;
+            ((d) arrayList.get(i12)).f58059e = i11;
             i11 += eVar.getMeasuredHeight();
         }
-        cVar.f56544n = i11;
+        cVar.f58051n = i11;
     }
 }

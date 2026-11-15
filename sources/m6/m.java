@@ -1,25 +1,25 @@
 package m6;
 
-import ab.a0;
+import ab.b0;
 import android.os.Bundle;
 import android.util.Log;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class m {
-    public final int f19920a;
-    public final TaskCompletionSource f19921b = new TaskCompletionSource();
-    public final int f19922c;
+    public final int f20512a;
+    public final TaskCompletionSource f20513b = new TaskCompletionSource();
+    public final int f20514c;
     public final Bundle d;
-    public final int f19923e;
+    public final int f20515e;
 
     public m(int i7, int i10, Bundle bundle, int i11) {
-        this.f19923e = i11;
-        this.f19920a = i7;
-        this.f19922c = i10;
+        this.f20515e = i11;
+        this.f20512a = i7;
+        this.f20514c = i10;
         this.d = bundle;
     }
 
     public final boolean a() {
-        switch (this.f19923e) {
+        switch (this.f20515e) {
             case 0:
                 return true;
             default:
@@ -38,13 +38,13 @@ public final class m {
             sb2.append(valueOf);
             Log.d("MessengerIpcClient", sb2.toString());
         }
-        this.f19921b.setResult(bundle);
+        this.f20513b.setResult(bundle);
     }
 
-    public final void c(a0 a0Var) {
+    public final void c(b0 b0Var) {
         if (Log.isLoggable("MessengerIpcClient", 3)) {
             String mVar = toString();
-            String obj = a0Var.toString();
+            String obj = b0Var.toString();
             StringBuilder sb2 = new StringBuilder(mVar.length() + 14 + obj.length());
             sb2.append("Failing ");
             sb2.append(mVar);
@@ -52,13 +52,13 @@ public final class m {
             sb2.append(obj);
             Log.d("MessengerIpcClient", sb2.toString());
         }
-        this.f19921b.setException(a0Var);
+        this.f20513b.setException(b0Var);
     }
 
     public final String toString() {
-        int i7 = this.f19922c;
+        int i7 = this.f20514c;
         int length = String.valueOf(i7).length();
-        int i10 = this.f19920a;
+        int i10 = this.f20512a;
         int length2 = String.valueOf(i10).length();
         boolean a10 = a();
         StringBuilder sb2 = new StringBuilder(length + 19 + length2 + 8 + String.valueOf(a10).length() + 1);

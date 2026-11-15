@@ -1,34 +1,82 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.cp;
-import org.telegram.ui.Components.m41;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.r41;
-import org.telegram.ui.Components.w31;
-import org.telegram.ui.Components.x31;
-import org.telegram.ui.xw0;
-public final class t6 extends w31 {
-    public static final int f30542b = 0;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+import android.text.style.ImageSpan;
+import org.telegram.messenger.hd;
+import org.telegram.ui.Components.w11;
+public final class t6 extends ImageSpan {
+    public static w11 f31679b;
+    public final int f31680a = 1;
 
-    static {
-        w31.h(new w31());
+    public t6(Drawable drawable) {
+        super(drawable);
     }
 
     @Override
-    public final void b(View view, x31 x31Var, boolean z9, m41 m41Var, r41 r41Var) {
-        Object obj = x31Var.G;
-        if (obj instanceof xw0) {
-            xw0 xw0Var = (xw0) obj;
-            ((v6) view).b(x31Var.f40156l, xw0Var.d, xw0Var.f51834e, z9);
-        } else if (obj instanceof cp) {
-            ((v6) view).a(x31Var.f40156l, ((cp) obj).f21917b, true, z9);
+    public void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+        switch (this.f31680a) {
+            case 0:
+                Drawable drawable = getDrawable();
+                canvas.save();
+                Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
+                int i14 = fontMetricsInt.descent;
+                canvas.translate(f10, ((i12 + i14) - ((i14 - fontMetricsInt.ascent) / 2)) - ((drawable.getBounds().bottom - drawable.getBounds().top) / 2));
+                if (hd.f24101a0) {
+                    canvas.scale(-1.0f, 1.0f, drawable.getIntrinsicWidth() / 2, drawable.getIntrinsicHeight() / 2);
+                }
+                drawable.draw(canvas);
+                canvas.restore();
+                return;
+            default:
+                super.draw(canvas, charSequence, i7, i10, f10, i11, i12, i13, paint);
+                return;
         }
     }
 
     @Override
-    public final View d(Context context, pj0 pj0Var, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
-        return new v6(context);
+    public int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
+        switch (this.f31680a) {
+            case 0:
+                Rect bounds = getDrawable().getBounds();
+                if (fontMetricsInt != null) {
+                    Paint.FontMetricsInt fontMetricsInt2 = paint.getFontMetricsInt();
+                    int i11 = fontMetricsInt2.descent;
+                    int i12 = fontMetricsInt2.ascent;
+                    int i13 = ((i11 - i12) / 2) + i12;
+                    int i14 = (bounds.bottom - bounds.top) / 2;
+                    int i15 = i13 - i14;
+                    fontMetricsInt.ascent = i15;
+                    fontMetricsInt.top = i15;
+                    int i16 = i13 + i14;
+                    fontMetricsInt.bottom = i16;
+                    fontMetricsInt.descent = i16;
+                }
+                return bounds.right;
+            default:
+                return super.getSize(paint, charSequence, i7, i10, fontMetricsInt);
+        }
+    }
+
+    @Override
+    public void updateDrawState(TextPaint textPaint) {
+        switch (this.f31680a) {
+            case 1:
+                float textSize = textPaint.getTextSize() * 0.89f;
+                int i7 = (int) (0.02f * textSize);
+                getDrawable().setBounds(0, i7, (int) textSize, ((int) (textSize * 1.25f)) + i7);
+                super.updateDrawState(textPaint);
+                return;
+            default:
+                super.updateDrawState(textPaint);
+                return;
+        }
+    }
+
+    public t6() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.t6.<init>():void");
     }
 }

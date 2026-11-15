@@ -2,11 +2,11 @@ package i2;
 
 import java.util.ArrayList;
 public final class t implements Comparable {
-    public long f15230b = -9223372036854775807L;
-    public final ArrayList f15229a = new ArrayList();
+    public long f15682b = -9223372036854775807L;
+    public final ArrayList f15681a = new ArrayList();
 
     @Override
     public final int compareTo(Object obj) {
-        return Long.compare(this.f15230b, ((t) obj).f15230b);
+        return Long.compare(this.f15682b, ((t) obj).f15682b);
     }
 }

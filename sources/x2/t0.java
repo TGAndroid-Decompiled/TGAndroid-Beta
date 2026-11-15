@@ -2,30 +2,30 @@ package x2;
 
 import java.io.IOException;
 public final class t0 implements b1 {
-    public final int f58488a;
-    public final v0 f58489b;
+    public final int f59670a;
+    public final v0 f59671b;
 
     public t0(v0 v0Var, int i7) {
-        this.f58489b = v0Var;
-        this.f58488a = i7;
+        this.f59671b = v0Var;
+        this.f59670a = i7;
     }
 
     @Override
     public final void a() {
-        int i7 = this.f58488a;
-        v0 v0Var = this.f58489b;
-        v0Var.L[i7].C();
-        b3.o oVar = v0Var.f58516y;
-        int X0 = v0Var.d.X0(v0Var.V);
-        IOException iOException = oVar.f2964c;
+        int i7 = this.f59670a;
+        v0 v0Var = this.f59671b;
+        v0Var.M[i7].C();
+        b3.o oVar = v0Var.f59699y;
+        int R4 = v0Var.d.R4(v0Var.W);
+        IOException iOException = oVar.f2918c;
         if (iOException == null) {
-            b3.k kVar = oVar.f2963b;
+            b3.k kVar = oVar.f2917b;
             if (kVar != null) {
-                if (X0 == Integer.MIN_VALUE) {
-                    X0 = kVar.f2952a;
+                if (R4 == Integer.MIN_VALUE) {
+                    R4 = kVar.f2906a;
                 }
-                IOException iOException2 = kVar.f2955e;
-                if (iOException2 != null && kVar.f2956f > X0) {
+                IOException iOException2 = kVar.f2909e;
+                if (iOException2 != null && kVar.f2910f > R4) {
                     throw iOException2;
                 }
                 return;
@@ -37,41 +37,41 @@ public final class t0 implements b1 {
 
     @Override
     public final boolean f() {
-        v0 v0Var = this.f58489b;
-        if (!v0Var.A() && v0Var.L[this.f58488a].A(v0Var.f58509g0)) {
+        v0 v0Var = this.f59671b;
+        if (!v0Var.E() && v0Var.M[this.f59670a].A(v0Var.f59692h0)) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final int l(long j3) {
-        v0 v0Var = this.f58489b;
-        if (v0Var.A()) {
+    public final int n(long j3) {
+        v0 v0Var = this.f59671b;
+        if (v0Var.E()) {
             return 0;
         }
-        int i7 = this.f58488a;
-        v0Var.v(i7);
-        a1 a1Var = v0Var.L[i7];
-        int x10 = a1Var.x(j3, v0Var.f58509g0);
+        int i7 = this.f59670a;
+        v0Var.z(i7);
+        a1 a1Var = v0Var.M[i7];
+        int x10 = a1Var.x(j3, v0Var.f59692h0);
         a1Var.L(x10);
         if (x10 == 0) {
-            v0Var.w(i7);
+            v0Var.A(i7);
         }
         return x10;
     }
 
     @Override
-    public final int m(wf.b bVar, k2.h hVar, int i7) {
-        v0 v0Var = this.f58489b;
-        if (v0Var.A()) {
+    public final int q(k8.a aVar, k2.h hVar, int i7) {
+        v0 v0Var = this.f59671b;
+        if (v0Var.E()) {
             return -3;
         }
-        int i10 = this.f58488a;
-        v0Var.v(i10);
-        int F = v0Var.L[i10].F(bVar, hVar, i7, v0Var.f58509g0);
+        int i10 = this.f59670a;
+        v0Var.z(i10);
+        int F = v0Var.M[i10].F(aVar, hVar, i7, v0Var.f59692h0);
         if (F == -3) {
-            v0Var.w(i10);
+            v0Var.A(i10);
         }
         return F;
     }

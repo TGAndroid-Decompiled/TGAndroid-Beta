@@ -1,12 +1,24 @@
 package pb;
+public final class s implements com.google.android.gms.common.api.n {
+    public final int f54976a;
+    public final n6.c[] f54977b;
 
-import java.util.concurrent.Executor;
-public final class s {
-    public final Executor f53570a;
-    public final Runnable f53571b;
+    public s(n6.c[] cVarArr, int i7) {
+        this.f54976a = i7;
+        this.f54977b = cVarArr;
+    }
 
-    public s(Runnable runnable, Executor executor) {
-        this.f53570a = executor;
-        this.f53571b = runnable;
+    @Override
+    public final n6.c[] c() {
+        int i7 = this.f54976a;
+        n6.c[] cVarArr = this.f54977b;
+        switch (i7) {
+            case 0:
+                n6.c[] cVarArr2 = j.f54954a;
+                return cVarArr;
+            default:
+                n6.c[] cVarArr3 = j.f54954a;
+                return cVarArr;
+        }
     }
 }

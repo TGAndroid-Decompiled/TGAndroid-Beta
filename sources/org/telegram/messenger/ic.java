@@ -1,68 +1,60 @@
 package org.telegram.messenger;
 
-import android.graphics.BitmapShader;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.zg0;
+import org.telegram.ui.Components.ch0;
 public final class ic {
-    public Paint A;
-    public Path B;
-    public boolean f23138a;
-    public float f23139b;
-    public long f23140c;
-    public int d;
-    public BitmapShader f23141e;
-    public org.telegram.ui.Components.u5 f23142f;
-    public zg0 f23143g;
-    public int[] h;
-    public BitmapShader f23144i;
-    public Drawable f23145j;
-    public BitmapShader f23146k;
-    public Drawable f23147l;
-    public Drawable f23148m;
-    public BitmapShader f23149n;
-    public Drawable f23150o;
-    public float f23151p;
-    public float f23152q;
-    public BitmapShader f23153r;
-    public float f23154s;
-    public float f23155t;
-    public float f23156u;
-    public float v;
-    public boolean f23157w;
-    public Drawable f23158x;
-    public RectF f23159y;
-    public ColorFilter f23160z;
+    public String f24372a;
+    public final boolean f24373b;
+    public Bitmap f24374c;
+    public Drawable d;
+    public int f24375e;
 
-    public final void a() {
-        this.f23142f = null;
-        this.f23143g = null;
-        for (int i7 = 0; i7 < 4; i7++) {
-            int[] iArr = this.h;
-            iArr[i7] = iArr[i7];
+    public ic(Bitmap bitmap, String str, int i7) {
+        this.f24374c = bitmap;
+        this.f24372a = str;
+        this.f24375e = i7;
+        if (str != null) {
+            fc.D().H(this.f24372a);
         }
-        this.f23145j = null;
-        this.f23144i = null;
-        this.f23147l = null;
-        this.f23146k = null;
-        this.f23148m = null;
-        this.f23149n = null;
-        this.f23141e = null;
-        this.f23150o = null;
-        this.f23158x = null;
-        this.f23160z = null;
     }
 
-    public final void b(Rect rect) {
-        if (rect != null) {
-            this.f23156u = rect.left;
-            this.v = rect.top;
-            this.f23155t = rect.width();
-            this.f23154s = rect.height();
+    public final void a() {
+        Bitmap bitmap;
+        if (this.f24372a == null) {
+            if (this.f24373b && (bitmap = this.f24374c) != null) {
+                bitmap.recycle();
+            }
+            this.f24374c = null;
+            this.d = null;
+            return;
         }
+        boolean p10 = fc.D().p(this.f24372a);
+        if (!fc.D().J(this.f24372a, false) && p10) {
+            Bitmap bitmap2 = this.f24374c;
+            if (bitmap2 != null) {
+                bitmap2.recycle();
+            } else {
+                Drawable drawable = this.d;
+                if (drawable != null) {
+                    if (drawable instanceof ch0) {
+                        ((ch0) drawable).C(false);
+                    } else if (drawable instanceof org.telegram.ui.Components.t5) {
+                        ((org.telegram.ui.Components.t5) drawable).u();
+                    } else if (drawable instanceof BitmapDrawable) {
+                        ((BitmapDrawable) drawable).getBitmap().recycle();
+                    }
+                }
+            }
+        }
+        this.f24372a = null;
+        this.f24374c = null;
+        this.d = null;
+    }
+
+    public ic(Bitmap bitmap) {
+        this.f24374c = bitmap;
+        this.f24373b = true;
     }
 }

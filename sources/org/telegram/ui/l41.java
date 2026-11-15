@@ -1,64 +1,35 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.Window;
-public final class l41 extends AnimatorListenerAdapter {
-    public final int f47513a;
-    public final n41 f47514b;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stats;
+public final class l41 {
+    public boolean f48830a;
+    public String f48831b;
+    public long f48832c;
+    public mg.b d;
+    public mg.b f48833e;
+    public String f48834f;
+    public String f48835g;
+    public boolean h;
+    public final int f48836i;
+    public final String f48837j;
+    public boolean f48838k;
+    public boolean f48839l;
+    public boolean f48840m;
+    public boolean f48841n;
+    public boolean f48842o;
 
-    public l41(n41 n41Var, int i7) {
-        this.f47513a = i7;
-        this.f47514b = n41Var;
+    public l41(String str, int i7) {
+        this.f48837j = str;
+        this.f48836i = i7;
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f47513a) {
-            case 0:
-                n41 n41Var = this.f47514b;
-                n41Var.f48114b.setVisibility(4);
-                lg.g gVar = n41Var.f48114b;
-                gVar.J = false;
-                lg.g gVar2 = n41Var.f48115c;
-                gVar2.J = true;
-                gVar.f18333y0 = 0;
-                gVar2.f18333y0 = 0;
-                Window window = n41Var.f48113a;
-                if (window != null) {
-                    window.clearFlags(16);
-                    return;
-                }
-                return;
-            case 1:
-                n41 n41Var2 = this.f47514b;
-                lg.g gVar3 = n41Var2.f48115c;
-                gVar3.setVisibility(4);
-                lg.g gVar4 = n41Var2.f48114b;
-                gVar4.f18333y0 = 0;
-                gVar3.f18333y0 = 0;
-                gVar4.J = true;
-                gVar3.J = false;
-                if (!(gVar4 instanceof lg.q)) {
-                    gVar4.f18326u0 = true;
-                    gVar4.x((gVar4.G0 * gVar4.f18306g0.f18349k) - lg.g.f18275k1);
-                    gVar4.c(true);
-                    gVar4.invalidate();
-                } else {
-                    gVar4.f18326u0 = false;
-                    gVar4.d();
-                }
-                Window window2 = n41Var2.f48113a;
-                if (window2 != null) {
-                    window2.clearFlags(16);
-                    return;
-                }
-                return;
-            default:
-                n41 n41Var3 = this.f47514b;
-                n41Var3.f48114b.f18333y0 = 0;
-                n41Var3.f48116e.setVisibility(8);
-                return;
+    public final void a(int i7, int i10, int i11, org.telegram.messenger.r10 r10Var) {
+        if (!this.f48838k) {
+            this.f48838k = true;
+            TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
+            tL_loadAsyncGraph.token = this.f48834f;
+            ConnectionsManager.getInstance(i7).bindRequestToGuid(ConnectionsManager.getInstance(i7).sendRequest(tL_loadAsyncGraph, new a31(2, this, r10Var), null, null, 0, i11, 1, true), i10);
         }
     }
 }

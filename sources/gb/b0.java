@@ -1,16 +1,16 @@
 package gb;
 public final class b0 {
     public static final a0 Companion = new Object();
-    public final int f13631a;
-    public final String f13632b;
+    public final int f12977a;
+    public final String f12978b;
 
     public b0(int i7, int i10, String str) {
         if (3 != (i7 & 3)) {
-            oe.k.a(i7, 3, z.f13788a.d());
+            oe.k.a(i7, 3, z.f13128a.d());
             throw null;
         }
-        this.f13631a = i10;
-        this.f13632b = str;
+        this.f12977a = i10;
+        this.f12978b = str;
     }
 
     public final boolean equals(Object obj) {
@@ -21,23 +21,23 @@ public final class b0 {
             return false;
         }
         b0 b0Var = (b0) obj;
-        if (this.f13631a == b0Var.f13631a && kotlin.jvm.internal.j.a(this.f13632b, b0Var.f13632b)) {
+        if (this.f12977a == b0Var.f12977a && kotlin.jvm.internal.j.a(this.f12978b, b0Var.f12978b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f13632b.hashCode() + (this.f13631a * 31);
+        return this.f12978b.hashCode() + (this.f12977a * 31);
     }
 
     public final String toString() {
-        return "ProcessData(pid=" + this.f13631a + ", uuid=" + this.f13632b + ')';
+        return "ProcessData(pid=" + this.f12977a + ", uuid=" + this.f12978b + ')';
     }
 
     public b0(int i7, String uuid) {
         kotlin.jvm.internal.j.e(uuid, "uuid");
-        this.f13631a = i7;
-        this.f13632b = uuid;
+        this.f12977a = i7;
+        this.f12978b = uuid;
     }
 }

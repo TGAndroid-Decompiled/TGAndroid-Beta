@@ -1,12 +1,12 @@
 package tg;
 public interface h {
-    void B(boolean z9);
+    void B(boolean z10);
 
     void C();
 
-    void d(boolean z9);
+    void d(boolean z10);
 
-    void e(boolean z9);
+    void e(boolean z10);
 
     void f(j jVar);
 
@@ -14,7 +14,7 @@ public interface h {
 
     void h();
 
-    void j(boolean z9);
+    void j(boolean z10);
 
     int[] n(j jVar);
 

@@ -1,56 +1,29 @@
 package org.telegram.messenger;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import java.util.Locale;
-import org.telegram.SQLite.SQLiteDatabase;
-import org.telegram.SQLite.SQLiteException;
+import org.telegram.tgnet.TLRPC;
 public final class lr implements Runnable {
-    public final int f23932a;
-    public final yr f23933b;
-    public final ArrayList f23934c;
-    public final long d;
+    public final vr f24867a;
+    public final String f24868b;
+    public final long f24869c;
+    public final TLRPC.Reaction d;
+    public final int f24870e;
+    public final int f24871f;
+    public final boolean h;
+    public final w10 f24872n;
 
-    public lr(yr yrVar, long j3, ArrayList arrayList, int i7) {
-        this.f23932a = i7;
-        this.f23933b = yrVar;
-        this.d = j3;
-        this.f23934c = arrayList;
-    }
-
-    private final void a() {
-        ArrayList arrayList = this.f23934c;
-        long j3 = this.d;
-        yr yrVar = this.f23933b;
-        yrVar.getClass();
-        try {
-            String join = TextUtils.join(", ", arrayList);
-            SQLiteDatabase sQLiteDatabase = yrVar.f26725b;
-            Locale locale = Locale.US;
-            sQLiteDatabase.executeFast("DELETE FROM topics WHERE did = " + j3 + " AND topic_id IN (" + join + ")").stepThis().dispose();
-            try {
-                SQLiteDatabase sQLiteDatabase2 = yrVar.f26725b;
-                sQLiteDatabase2.executeFast("DELETE FROM messages_v2 WHERE uid = " + j3 + " AND mid IN (SELECT mid FROM messages_topics WHERE uid = " + j3 + " AND topic_id IN (" + join + "))").stepThis().dispose();
-            } catch (SQLiteException e10) {
-                e10.printStackTrace();
-            }
-            SQLiteDatabase sQLiteDatabase3 = yrVar.f26725b;
-            Locale locale2 = Locale.US;
-            sQLiteDatabase3.executeFast("DELETE FROM messages_topics WHERE uid = " + j3 + " AND topic_id IN (" + join + ")").stepThis().dispose();
-        } catch (SQLiteException e11) {
-            e11.printStackTrace();
-        }
+    public lr(vr vrVar, String str, long j3, TLRPC.Reaction reaction, int i7, int i10, boolean z10, w10 w10Var) {
+        this.f24867a = vrVar;
+        this.f24868b = str;
+        this.f24869c = j3;
+        this.d = reaction;
+        this.f24870e = i7;
+        this.f24871f = i10;
+        this.h = z10;
+        this.f24872n = w10Var;
     }
 
     @Override
     public final void run() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.lr.run():void");
-    }
-
-    public lr(yr yrVar, ArrayList arrayList, long j3, int i7) {
-        this.f23932a = i7;
-        this.f23933b = yrVar;
-        this.f23934c = arrayList;
-        this.d = j3;
     }
 }

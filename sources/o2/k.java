@@ -8,14 +8,14 @@ public final class k extends y2.b {
     }
 
     @Override
-    public final long E() {
+    public final long S0() {
         a();
-        return this.d.d(this.f58885c);
+        return this.d.d(this.f60098c);
     }
 
     @Override
-    public final long w() {
+    public final long k0() {
         a();
-        return this.d.e(this.f58885c);
+        return this.d.e(this.f60098c);
     }
 }

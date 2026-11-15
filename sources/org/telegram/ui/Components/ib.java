@@ -1,78 +1,67 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.TextView;
-public final class ib extends w70 {
-    public final int L;
+import org.telegram.messenger.support.SparseLongArray;
+public final class ib extends fb implements org.telegram.messenger.is {
+    public final gb d;
+    public SparseLongArray f35542e;
+    public final org.telegram.ui.ActionBar.e2 f35543f;
+    public final int h;
+    public xb f35544n;
 
-    public ib(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, h6Var);
-        this.L = i7;
+    public ib(int i7, org.telegram.ui.ActionBar.e2 e2Var) {
+        super(e2Var.getContext(), e2Var.getResourceProvider());
+        this.f35543f = e2Var;
+        this.h = i7;
+        this.f34552b.setLayoutParams(c8.ja.i(-2.0f, -2.0f, 8388659, 56.0f, 6.0f, 8.0f, 0.0f));
+        this.f34551a.setLayoutParams(c8.ja.h(56.0f, 48.0f, 8388659));
+        gb gbVar = new gb(this, e2Var, getContext(), e2Var.getCurrentAccount(), e2Var.getResourceProvider());
+        this.d = gbVar;
+        gbVar.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(0.0f));
+        this.d.setDelegate(new hb(this));
+        this.d.setTop(true);
+        this.d.setClipChildren(false);
+        this.d.setClipToPadding(false);
+        this.d.setVisibility(0);
+        this.d.setBubbleOffset(-org.telegram.messenger.g0.L(80.0f));
+        this.d.setHint(org.telegram.messenger.hd.M0(2131745875, null));
+        addView(this.d, c8.ja.d(-2, 92.5f, 1, 0.0f, 36.0f, 0.0f, 0.0f));
+        this.d.p(null, null, true);
     }
 
     @Override
-    public int a() {
-        switch (this.L) {
-            case 4:
-                return 3;
-            default:
-                return super.a();
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        if (i7 == org.telegram.messenger.ns.f25524k3) {
+            this.f35542e = (SparseLongArray) objArr[0];
+        }
+    }
+
+    public final void f() {
+        if (this.d.getReactionsWindow() != null) {
+            this.d.e();
+            if (this.d.getReactionsWindow().f5008a != null) {
+                this.d.getReactionsWindow().f5008a.animate().alpha(0.0f).setDuration(180L).start();
+            }
         }
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.L) {
-            case 3:
-                if (getAlpha() < 0.9f) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            case 4:
-            default:
-                return super.dispatchTouchEvent(motionEvent);
-            case 5:
-                if (getAlpha() < 0.95f) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            case 6:
-                if (getAlpha() < 0.95f) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-        }
+    public int getMeasuredBackgroundHeight() {
+        return org.telegram.messenger.g0.L(30.0f) + this.f34552b.getMeasuredHeight();
     }
 
     @Override
-    public void onMeasure(int i7, int i10) {
-        switch (this.L) {
-            case 7:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
-                return;
-            default:
-                super.onMeasure(i7, i10);
-                return;
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        org.telegram.messenger.ns.f(org.telegram.messenger.m10.f24934t0).c(this, org.telegram.messenger.ns.f25524k3);
     }
 
     @Override
-    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        switch (this.L) {
-            case 0:
-                super.setText(org.telegram.messenger.i6.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
-                return;
-            case 1:
-                super.setText(org.telegram.messenger.i6.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
-                return;
-            case 2:
-                super.setText(org.telegram.messenger.i6.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
-                return;
-            default:
-                super.setText(charSequence, bufferType);
-                return;
-        }
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        org.telegram.messenger.ns.f(org.telegram.messenger.m10.f24934t0).n(this, org.telegram.messenger.ns.f25524k3);
+    }
+
+    public void setBulletin(xb xbVar) {
+        this.f35544n = xbVar;
     }
 }

@@ -1,17 +1,23 @@
 package org.telegram.ui;
-public final class z10 extends v4.k {
-    public final f40 F;
 
-    public z10(f40 f40Var) {
-        this.F = f40Var;
+import org.telegram.tgnet.TLRPC;
+public final class z10 extends q4 {
+    public final c40 V;
+
+    public z10(c40 c40Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.V = c40Var;
     }
 
     @Override
-    public final void P(v4.d1 d1Var) {
-        f40 f40Var = this.F;
-        f40Var.K1.invalidate();
-        f40Var.U3.invalidate();
-        f40Var.f28672b.invalidate();
-        f40.P0(f40Var);
+    public final void c() {
+        c40 c40Var = this.V;
+        org.telegram.messenger.c cVar = c40Var.f45951o1;
+        a20 a20Var = c40Var.f45942m1;
+        long dialogId = a20Var.getDialogId();
+        if (dialogId > 0) {
+            TLRPC.User a22 = org.telegram.messenger.np.s1(cVar.f22778a).a2(Long.valueOf(dialogId));
+            a20Var.H(null, org.telegram.messenger.gc.m(cVar.f22778a, 0, a22), org.telegram.messenger.gc.m(cVar.f22778a, 1, a22), false);
+        }
     }
 }

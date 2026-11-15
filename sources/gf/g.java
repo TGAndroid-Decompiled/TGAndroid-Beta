@@ -1,944 +1,222 @@
 package gf;
 
-import a8.r9;
-import android.content.ContentProviderClient;
-import android.content.Context;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Parcel;
-import android.os.RemoteException;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewConfiguration;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import fi.v9;
-import gb.a1;
+import a8.p0;
+import j$.util.DesugarCollections;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
-import jg.x1;
-import jg.y1;
-import l.d0;
-import l.w;
-import li.b2;
-import li.f2;
-import li.g1;
-import li.i0;
-import li.m3;
-import li.t3;
-import li.x;
-import org.json.JSONObject;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.a8;
-import org.telegram.messenger.ab;
-import org.telegram.messenger.c20;
-import org.telegram.messenger.g0;
-import org.telegram.messenger.gu;
-import org.telegram.messenger.h0;
-import org.telegram.messenger.hu;
-import org.telegram.messenger.id;
-import org.telegram.messenger.ij;
-import org.telegram.messenger.kv;
-import org.telegram.messenger.l0;
-import org.telegram.messenger.o0;
-import org.telegram.messenger.ta;
-import org.telegram.messenger.w10;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.Cells.h9;
-import org.telegram.ui.Cells.i9;
-import org.telegram.ui.Cells.l1;
-import org.telegram.ui.Cells.s7;
-import org.telegram.ui.Cells.t7;
-import org.telegram.ui.Cells.z8;
-import org.telegram.ui.Components.fm0;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.lm0;
-import org.telegram.ui.Components.s4;
-import org.telegram.ui.Components.xi0;
-import org.telegram.ui.Components.yl0;
-import org.telegram.ui.ThemeActivity;
-import org.telegram.ui.a00;
-import org.telegram.ui.d61;
-import org.telegram.ui.kw;
-import org.telegram.ui.uz;
-import w7.s;
-public final class g implements i6.a, a00, y1, com.google.android.gms.common.api.internal.p, im0, s4, i0, w, m.l, ce.c, o0.a, ta, ab, ue.a, lm0 {
-    public final int f13890a;
-    public Object f13891b;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import kf.r;
+import kf.t;
+public final class g {
+    public static final LinkedHashSet f13232p = new LinkedHashSet(Arrays.asList(kf.b.class, kf.i.class, kf.h.class, kf.j.class, t.class, kf.n.class, kf.l.class));
+    public static final Map f13233q;
+    public CharSequence f13234a;
+    public boolean d;
+    public boolean h;
+    public final List f13240i;
+    public final lf.b f13241j;
+    public final List f13242k;
+    public final f f13243l;
+    public final ArrayList f13245n;
+    public final LinkedHashSet f13246o;
+    public int f13235b = 0;
+    public int f13236c = 0;
+    public int f13237e = 0;
+    public int f13238f = 0;
+    public int f13239g = 0;
+    public final LinkedHashMap f13244m = new LinkedHashMap();
 
-    public g(int i7) {
-        this.f13890a = i7;
+    static {
+        HashMap hashMap = new HashMap();
+        hashMap.put(kf.b.class, new ff.a(1));
+        hashMap.put(kf.i.class, new ff.a(3));
+        hashMap.put(kf.h.class, new ff.a(2));
+        hashMap.put(kf.j.class, new ff.a(4));
+        hashMap.put(t.class, new ff.a(7));
+        hashMap.put(kf.n.class, new ff.a(6));
+        hashMap.put(kf.l.class, new ff.a(5));
+        f13233q = DesugarCollections.unmodifiableMap(hashMap);
     }
 
-    @Override
-    public boolean A(l.k kVar) {
-        m.i iVar = (m.i) this.f13891b;
-        if (kVar == iVar.f19129c) {
-            return false;
-        }
-        ((d0) kVar).A.getClass();
-        iVar.getClass();
-        w wVar = iVar.f19130e;
-        if (wVar == null) {
-            return false;
-        }
-        return wVar.A(kVar);
+    public g(ArrayList arrayList, lf.b bVar, ArrayList arrayList2) {
+        ArrayList arrayList3 = new ArrayList();
+        this.f13245n = arrayList3;
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        this.f13246o = linkedHashSet;
+        this.f13240i = arrayList;
+        this.f13241j = bVar;
+        this.f13242k = arrayList2;
+        f fVar = new f(0);
+        this.f13243l = fVar;
+        arrayList3.add(fVar);
+        linkedHashSet.add(fVar);
     }
 
-    @Override
-    public Object B(ce.d dVar, kd.c cVar) {
-        Object B = ((q4.q) this.f13891b).B(new a1(dVar, 1), cVar);
-        if (B == jd.a.f16646a) {
-            return B;
+    public final void a(mf.a aVar) {
+        while (!h().b(aVar.e())) {
+            e(h());
         }
-        return gd.k.f13831a;
+        h().e().b(aVar.e());
+        this.f13245n.add(aVar);
+        this.f13246o.add(aVar);
     }
 
-    public float C(int i7, int i10, int i11, int i12) {
-        float f10;
-        float f11;
-        cc.b bVar = (cc.b) this.f13891b;
-        float z9 = z(i7, i10, i11, i12);
-        int i13 = i7 - (i11 - i7);
-        int i14 = 0;
-        if (i13 < 0) {
-            f10 = i7 / (i7 - i13);
-            i13 = 0;
+    public final void b(p pVar) {
+        l lVar = pVar.f13291b;
+        lVar.a();
+        ArrayList arrayList = lVar.f13277c;
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            kf.m mVar = (kf.m) obj;
+            r rVar = pVar.f13290a;
+            mVar.g();
+            kf.p pVar2 = (kf.p) rVar.f17842e;
+            mVar.f17842e = pVar2;
+            if (pVar2 != null) {
+                pVar2.f17843f = mVar;
+            }
+            mVar.f17843f = rVar;
+            rVar.f17842e = mVar;
+            kf.p pVar3 = (kf.p) rVar.f17840b;
+            mVar.f17840b = pVar3;
+            if (((kf.p) mVar.f17842e) == null) {
+                pVar3.f17841c = mVar;
+            }
+            String str = mVar.f17837g;
+            LinkedHashMap linkedHashMap = this.f13244m;
+            if (!linkedHashMap.containsKey(str)) {
+                linkedHashMap.put(str, mVar);
+            }
+        }
+    }
+
+    public final void c() {
+        CharSequence subSequence;
+        if (this.d) {
+            CharSequence charSequence = this.f13234a;
+            CharSequence subSequence2 = charSequence.subSequence(this.f13235b + 1, charSequence.length());
+            int i7 = 4 - (this.f13236c % 4);
+            StringBuilder sb2 = new StringBuilder(subSequence2.length() + i7);
+            for (int i10 = 0; i10 < i7; i10++) {
+                sb2.append(' ');
+            }
+            sb2.append(subSequence2);
+            subSequence = sb2.toString();
         } else {
-            int i15 = bVar.f6047a;
-            if (i13 >= i15) {
-                int i16 = i15 - 1;
-                f10 = ((i15 - 1) - i7) / (i13 - i7);
-                i13 = i16;
-            } else {
-                f10 = 1.0f;
-            }
+            CharSequence charSequence2 = this.f13234a;
+            subSequence = charSequence2.subSequence(this.f13235b, charSequence2.length());
         }
-        float f12 = i10;
-        int i17 = (int) (f12 - ((i12 - i10) * f10));
-        if (i17 < 0) {
-            f11 = f12 / (i10 - i17);
-        } else {
-            int i18 = bVar.f6048b;
-            if (i17 >= i18) {
-                f11 = ((i18 - 1) - i10) / (i17 - i10);
-                i14 = i18 - 1;
-            } else {
-                i14 = i17;
-                f11 = 1.0f;
-            }
-        }
-        return (z(i7, i10, (int) (((i13 - i7) * f11) + i7), i14) + z9) - 1.0f;
+        h().a(subSequence);
     }
 
-    @Override
-    public Cursor C0(Uri uri, String[] strArr, String[] strArr2) {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f13891b;
-        if (contentProviderClient == null) {
-            return null;
-        }
-        try {
-            return contentProviderClient.query(uri, strArr, "query = ?", strArr2, null, null);
-        } catch (RemoteException e10) {
-            Log.w("FontsProvider", "Unable to query the content provider", e10);
-            return null;
-        }
-    }
-
-    @Override
-    public void D() {
-        int i7 = this.f13890a;
-    }
-
-    public void E() {
-        h6.h hVar = (h6.h) this.f13891b;
-        Iterator it = hVar.h.iterator();
-        if (!it.hasNext()) {
-            Iterator it2 = hVar.f14255i.iterator();
-            while (it2.hasNext()) {
-                ((h6.g) it2.next()).a();
-            }
+    public final void d() {
+        if (this.f13234a.charAt(this.f13235b) == '\t') {
+            this.f13235b++;
+            int i7 = this.f13236c;
+            this.f13236c = (4 - (i7 % 4)) + i7;
             return;
         }
-        it.next().getClass();
-        throw new ClassCastException();
+        this.f13235b++;
+        this.f13236c++;
     }
 
-    @Override
-    public void H0() {
-        hu huVar = (hu) this.f13891b;
-        hu.j0(huVar, null);
-        huVar.f22974a0 = null;
+    public final void e(mf.a aVar) {
+        if (h() == aVar) {
+            p0.z(1, this.f13245n);
+        }
+        if (aVar instanceof p) {
+            b((p) aVar);
+        }
+        aVar.d();
     }
 
-    @Override
-    public void I0(CharSequence charSequence) {
-        m3 m3Var = ((li.s4) this.f13891b).N;
-        if (m3Var != null) {
-            m3Var.getClass();
-            if (charSequence != null && charSequence.length() > 0) {
-                m3Var.f18704a.w4(charSequence.toString());
-            }
+    public final void f(List list) {
+        for (int size = list.size() - 1; size >= 0; size--) {
+            e((mf.a) list.get(size));
         }
     }
 
-    @Override
-    public void L(int i7, int i10, boolean z9) {
-        ((b2) this.f13891b).x0(i7, i10, z9);
-    }
-
-    @Override
-    public void L1() {
-        li.s4 s4Var = (li.s4) this.f13891b;
-        m3 m3Var = s4Var.N;
-        if (m3Var != null) {
-            li.a aVar = s4Var.f18994a;
-            t3.S1(m3Var.f18704a);
-        }
-    }
-
-    @Override
-    public void O(float f10, float f11) {
-        kv kvVar;
-        l1 l1Var;
-        hu huVar = (hu) this.f13891b;
-        gu guVar = huVar.f22974a0;
-        if (guVar != null && (l1Var = (kvVar = huVar.f22473a).F) != null) {
-            l1Var.b1(kvVar.E, guVar.f22728c);
-        }
-    }
-
-    @Override
-    public h9 S0() {
-        return (li.s4) this.f13891b;
-    }
-
-    @Override
-    public boolean U0(float f10, float f11) {
-        hu huVar = (hu) this.f13891b;
-        gu i02 = hu.i0(huVar, f10, f11);
-        i02 = (i02 == null || i02.f22727b) ? null : null;
-        huVar.f22974a0 = i02;
-        if (i02 != null) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public li.a V0() {
-        return ((li.s4) this.f13891b).f18994a;
-    }
-
-    @Override
-    public a0.h X0() {
-        switch (this.f13890a) {
-            case 7:
-                return null;
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    public void a(float f10) {
-        x xVar = (x) this.f13891b;
-        ij ijVar = xVar.P;
-        if (ijVar == null) {
-            return;
-        }
-        ijVar.f23226b0 = f10;
-        MediaController.B().i0(xVar.P, f10);
-    }
-
-    @Override
-    public boolean a1() {
-        li.s4 s4Var = (li.s4) this.f13891b;
-        m3 m3Var = s4Var.N;
-        if (m3Var != null) {
-            li.a aVar = s4Var.f18994a;
-            if (m3Var.f18704a.V4()) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public void accept(Object obj, Object obj2) {
-        l7.a aVar = new l7.a((TaskCompletionSource) obj2);
-        l7.i iVar = (l7.i) ((l7.c) obj).n();
-        String str = ((l7.b) this.f13891b).f18201l;
-        Parcel l1 = iVar.l1();
-        int i7 = l7.f.f18205a;
-        l1.writeStrongBinder(aVar);
-        l1.writeString(str);
-        iVar.m1(l1, 2);
-    }
-
-    @Override
-    public void b(g1 g1Var) {
-        m3 m3Var = ((li.s4) this.f13891b).N;
-        if (m3Var != null) {
-            t3 t3Var = m3Var.f18704a;
-            t3.Q1(t3Var, g1Var);
-            t3Var.f18893o3.r(g1Var, true);
-        }
-    }
-
-    @Override
-    public void c(l.k kVar, boolean z9) {
-        if (kVar instanceof d0) {
-            ((d0) kVar).f17650z.k().c(false);
-        }
-        w wVar = ((m.i) this.f13891b).f19130e;
-        if (wVar != null) {
-            wVar.c(kVar, z9);
-        }
-    }
-
-    @Override
-    public boolean c1(View view, float f10, float f11) {
-        hu huVar = (hu) this.f13891b;
-        if (huVar.f22974a0 != null) {
-            gu i02 = hu.i0(huVar, f10, f11);
-            gu guVar = huVar.f22974a0;
-            if (i02 == guVar) {
-                kv kvVar = huVar.f22473a;
-                l1 l1Var = kvVar.F;
-                if (l1Var != null) {
-                    l1Var.v1(kvVar.E, guVar.f22728c);
-                    return true;
-                }
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public void close() {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f13891b;
-        if (contentProviderClient != null) {
-            contentProviderClient.release();
-        }
-    }
-
-    @Override
-    public void d(float f10) {
-        ij ijVar = ((x) this.f13891b).P;
-        if (ijVar == null) {
-            return;
-        }
-        ijVar.f23226b0 = f10;
-    }
-
-    @Override
-    public void d1(int i7, int i10) {
-        li.s4 s4Var = (li.s4) this.f13891b;
-        m3 m3Var = s4Var.N;
-        if (m3Var != null) {
-            li.a aVar = s4Var.f18994a;
-            f2 f2Var = m3Var.f18704a.Q3;
-            if (f2Var != null) {
-                f2Var.f(i7, i10);
-            }
-        }
-    }
-
-    @Override
-    public boolean f(uz uzVar) {
-        return false;
-    }
-
-    @Override
-    public void g(ij ijVar) {
-        ii.d0 d0Var = (ii.d0) this.f13891b;
-        d0Var.f15511t1.presentFragment(fm0.M(d0Var.f28669a, ijVar));
-        d0Var.dismiss();
-    }
-
-    @Override
-    public CharSequence getContentDescription() {
-        w10 w10Var;
-        switch (this.f13890a) {
-            case 26:
-                return " ";
-            case 27:
-                t7 t7Var = (t7) this.f13891b;
-                try {
-                    StringBuilder sb2 = new StringBuilder();
-                    if (!TextUtils.isEmpty(t7Var.f30550s)) {
-                        sb2.append(t7Var.f30550s);
-                    }
-                    s7 s7Var = t7Var.f30549r;
-                    if (s7Var != null && (w10Var = s7Var.f30296e) != null) {
-                        CharSequence charSequence = (CharSequence) w10Var.d(0, Integer.valueOf(t7Var.f30547f));
-                        if (!TextUtils.isEmpty(charSequence)) {
-                            if (sb2.length() > 0) {
-                                sb2.append(", ");
-                            }
-                            sb2.append(charSequence);
-                        }
-                        CharSequence charSequence2 = (CharSequence) t7Var.f30549r.f30296e.d(-1, Integer.valueOf(t7Var.f30549r.b()));
-                        CharSequence charSequence3 = (CharSequence) t7Var.f30549r.f30296e.d(1, Integer.valueOf(t7Var.f30549r.a()));
-                        if (!TextUtils.isEmpty(charSequence2) && !TextUtils.isEmpty(charSequence3)) {
-                            if (sb2.length() > 0) {
-                                sb2.append(", ");
-                            }
-                            sb2.append(charSequence2);
-                            sb2.append(" – ");
-                            sb2.append(charSequence3);
-                        }
-                    }
-                    if (sb2.length() <= 0) {
-                        return null;
-                    }
-                    return sb2.toString();
-                } catch (Throwable th2) {
-                    a8.g(th2, true);
-                    return t7Var.f30550s;
-                }
-            default:
-                StringBuilder sb3 = new StringBuilder();
-                org.telegram.ui.Components.a8 a8Var = (org.telegram.ui.Components.a8) this.f13891b;
-                sb3.append(id.G(a8Var.f31765w2 / 60, "Minutes", new Object[0]));
-                sb3.append(' ');
-                sb3.append(id.G(a8Var.f31765w2 % 60, "Seconds", new Object[0]));
-                String sb4 = sb3.toString();
-                return id.a0("AccDescrPlayerDuration", null, 2131754806, sb4, id.G(a8Var.f31767x2 / 60, "Minutes", new Object[0]) + ' ' + id.G(a8Var.f31767x2 % 60, "Seconds", new Object[0]));
-        }
-    }
-
-    @Override
-    public long getLongPressDuration() {
-        return ViewConfiguration.getLongPressTimeout();
-    }
-
-    @Override
-    public boolean i() {
-        return false;
-    }
-
-    @Override
-    public void i1() {
-        li.s4 s4Var = (li.s4) this.f13891b;
-        m3 m3Var = s4Var.N;
-        if (m3Var != null) {
-            li.a aVar = s4Var.f18994a;
-            t3 t3Var = m3Var.f18704a;
-            f2 f2Var = t3Var.Q3;
-            if (f2Var != null) {
-                f2Var.g();
-            }
-            t3Var.f18893o3.onContentChanged();
-        }
-    }
-
-    public float j(hc.c cVar, hc.c cVar2) {
-        int i7 = (int) cVar.f3181b;
-        int i10 = (int) cVar2.f3181b;
-        float C = C((int) cVar.f3180a, i7, (int) cVar2.f3180a, i10);
-        float C2 = C((int) cVar2.f3180a, i10, (int) cVar.f3180a, i7);
-        if (Float.isNaN(C)) {
-            return C2 / 7.0f;
-        }
-        if (Float.isNaN(C2)) {
-            return C / 7.0f;
-        }
-        return (C + C2) / 14.0f;
-    }
-
-    @Override
-    public boolean j0() {
-        return true;
-    }
-
-    public hc.a k(float f10, float f11, int i7, int i10) {
-        int i11;
-        hc.a b10;
-        hc.a b11;
-        int i12 = (int) (f11 * f10);
-        int max = Math.max(0, i7 - i12);
-        cc.b bVar = (cc.b) this.f13891b;
-        int min = Math.min(bVar.f6047a - 1, i7 + i12) - max;
-        float f12 = 3.0f * f10;
-        if (min >= f12) {
-            int max2 = Math.max(0, i10 - i12);
-            int min2 = Math.min(bVar.f6048b - 1, i10 + i12) - max2;
-            if (min2 >= f12) {
-                cc.b bVar2 = (cc.b) this.f13891b;
-                hc.b bVar3 = new hc.b(bVar2, max, max2, min, min2, f10);
-                int i13 = bVar3.f14461e;
-                int i14 = bVar3.f14460c;
-                int i15 = i13 + i14;
-                int i16 = bVar3.f14462f;
-                int i17 = (i16 / 2) + bVar3.d;
-                int[] iArr = new int[3];
-                for (int i18 = 0; i18 < i16; i18++) {
-                    if ((i18 & 1) == 0) {
-                        i11 = (i18 + 1) / 2;
-                    } else {
-                        i11 = -((i18 + 1) / 2);
-                    }
-                    int i19 = i11 + i17;
-                    iArr[0] = 0;
-                    iArr[1] = 0;
-                    iArr[2] = 0;
-                    int i20 = i14;
-                    while (i20 < i15 && !bVar2.b(i20, i19)) {
-                        i20++;
-                    }
-                    int i21 = 0;
-                    while (i20 < i15) {
-                        if (bVar2.b(i20, i19)) {
-                            if (i21 == 1) {
-                                iArr[1] = iArr[1] + 1;
-                            } else if (i21 == 2) {
-                                if (bVar3.a(iArr) && (b11 = bVar3.b(i19, i20, iArr)) != null) {
-                                    return b11;
-                                }
-                                iArr[0] = iArr[2];
-                                iArr[1] = 1;
-                                iArr[2] = 0;
-                                i21 = 1;
-                            } else {
-                                i21++;
-                                iArr[i21] = iArr[i21] + 1;
-                            }
-                        } else {
-                            if (i21 == 1) {
-                                i21++;
-                            }
-                            iArr[i21] = iArr[i21] + 1;
-                        }
-                        i20++;
-                    }
-                    if (bVar3.a(iArr) && (b10 = bVar3.b(i19, i15, iArr)) != null) {
-                        return b10;
-                    }
-                }
-                ArrayList arrayList = bVar3.f14459b;
-                if (!arrayList.isEmpty()) {
-                    return (hc.a) arrayList.get(0);
-                }
-                throw bc.e.a();
-            }
-            throw bc.e.a();
-        }
-        throw bc.e.a();
-    }
-
-    @Override
-    public boolean k1(int i7) {
-        switch (this.f13890a) {
-            case 7:
-                if (i7 == ((yl0) this.f13891b).f16741d0) {
-                    return true;
-                }
-                return false;
-            default:
-                return true;
-        }
-    }
-
-    @Override
-    public void l(boolean z9, float f10) {
-        int[] iArr;
-        int round;
-        switch (this.f13890a) {
-            case 26:
-                d61 d61Var = (d61) ((org.telegram.ui.Cells.i0) this.f13891b);
-                int i7 = (int) (m6.f28123q * 100.0f);
-                int i10 = (int) (f10 * 100.0f);
-                m6.f28123q = f10;
-                if (i7 != i10) {
-                    ThemeActivity themeActivity = d61Var.f44910f.f46233e;
-                    xi0 xi0Var = (xi0) themeActivity.f42011b.K(themeActivity.f42019f0);
-                    if (xi0Var != null) {
-                        ((z8) xi0Var.f57052a).setText(id.a0("AutoNightBrightnessInfo", null, 2131753794, Integer.valueOf((int) (m6.f28123q * 100.0f))));
-                    }
-                    m6.F(true);
-                    return;
-                }
-                return;
-            case 27:
-                t7 t7Var = (t7) this.f13891b;
-                s7 s7Var = t7Var.f30549r;
-                if (s7Var != null && t7Var.f30548n != null) {
-                    if (s7Var.f30295c != null) {
-                        double length = f10 * (iArr.length - 1);
-                        int j3 = Utilities.j((int) Math.floor(length), t7Var.f30549r.f30295c.length - 1, 0);
-                        int j10 = Utilities.j((int) Math.ceil(length), t7Var.f30549r.f30295c.length - 1, 0);
-                        int[] iArr2 = t7Var.f30549r.f30295c;
-                        round = Math.round(g0.W1(Math.round(((float) (length - Math.floor(length))) * t7Var.f30549r.d) / t7Var.f30549r.d, iArr2[j3], iArr2[j10]));
-                    } else {
-                        round = Math.round(((t7Var.f30549r.a() - t7Var.f30549r.b()) * f10) + s7Var.b());
-                    }
-                    int i11 = t7Var.h;
-                    if (i11 != Integer.MIN_VALUE) {
-                        round = Math.max(round, i11);
-                    }
-                    int i12 = t7Var.f30547f;
-                    if (i12 != round) {
-                        if (t7Var.c(i12) != t7Var.c(round)) {
-                            g0.c4(t7Var.f30546e);
-                        }
-                        t7Var.f30547f = round;
-                        t7Var.e(round, true);
-                        c20 c20Var = t7Var.f30548n;
-                        if (c20Var != null) {
-                            c20Var.a(Integer.valueOf(t7Var.f30547f));
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                if (z9) {
-                    MediaController.B().i0(MediaController.B().f21300u0, f10);
-                }
-                ij ijVar = MediaController.B().f21300u0;
-                if (ijVar != null && ijVar.I3()) {
-                    ((org.telegram.ui.Components.a8) this.f13891b).b1(ijVar, false);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public void m1(ArrayList arrayList) {
-        boolean z9;
-        switch (this.f13890a) {
-            case 7:
-                yl0 yl0Var = (yl0) this.f13891b;
-                for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                    yl0Var.J.add(((x1) arrayList.get(i7)).f16981a);
-                }
-                kw kwVar = yl0Var.U;
-                if (kwVar != null) {
-                    if (yl0Var.D0 > 0) {
-                        z9 = true;
-                    } else {
-                        z9 = false;
-                    }
-                    kwVar.d(z9, false);
-                }
-                yl0Var.f();
-                return;
-            default:
-                return;
-        }
-    }
-
-    public boolean n() {
-        return ((h0) this.f13891b).f22784c;
-    }
-
-    public StringBuilder o() {
-        mf.a aVar = (mf.a) this.f13891b;
-        if (aVar instanceof q) {
-            StringBuilder sb2 = ((q) aVar).f13951b.f13936b;
-            if (sb2.length() != 0) {
-                return sb2;
-            }
-            return null;
-        }
-        return null;
-    }
-
-    @Override
-    public boolean o1() {
-        return true;
-    }
-
-    @Override
-    public void p(Bitmap bitmap) {
-        ((i6.h) this.f13891b).e(3, bitmap);
-    }
-
-    @Override
-    public void q(int i7) {
-        boolean z9;
-        switch (this.f13890a) {
-            case 7:
-                yl0 yl0Var = (yl0) this.f13891b;
-                yl0Var.D0--;
-                yl0Var.f16743e0 = i7;
-                if (yl0Var.f16745f0 != i7) {
-                    yl0Var.f16759s.clear();
-                }
-                if (yl0Var.f16746g0 != i7) {
-                    yl0Var.I.clear();
-                }
-                yl0Var.N = true;
-                kw kwVar = yl0Var.U;
-                if (kwVar != null) {
-                    if (yl0Var.D0 > 0) {
-                        z9 = true;
-                    } else {
-                        z9 = false;
-                    }
-                    kwVar.d(z9, true);
-                }
-                yl0Var.f();
-                kw kwVar2 = yl0Var.U;
-                if (kwVar2 != null) {
-                    kwVar2.c();
-                    return;
-                }
-                return;
-            default:
-                g0.h3(new v9(this, 24));
-                return;
-        }
-    }
-
-    @Override
-    public int q0() {
-        switch (this.f13890a) {
-            case 26:
-                return 0;
-            case 27:
-                s7 s7Var = ((t7) this.f13891b).f30549r;
-                if (s7Var == null) {
-                    return 0;
-                }
-                int[] iArr = s7Var.f30295c;
-                if (iArr != null) {
-                    return s7Var.d * (iArr.length - 1);
-                }
-                return s7Var.a() - s7Var.b();
-            default:
-                return 0;
-        }
-    }
-
-    @Override
-    public void s(float f10, float f11) {
-        hu huVar = (hu) this.f13891b;
-        gu i02 = hu.i0(huVar, f10, f11);
-        gu guVar = huVar.f22974a0;
-        if (i02 != guVar) {
-            guVar = null;
-        }
-        hu.j0(huVar, guVar);
-    }
-
-    @Override
-    public void t() {
-        li.s4 s4Var = (li.s4) this.f13891b;
-        m3 m3Var = s4Var.N;
-        if (m3Var != null) {
-            t3.T1(m3Var.f18704a, s4Var.f18994a);
-        }
-    }
-
-    @Override
-    public void t0() {
-        hu huVar = (hu) this.f13891b;
-        hu.j0(huVar, huVar.f22974a0);
-    }
-
-    @Override
-    public a0.h v0() {
-        switch (this.f13890a) {
-            case 7:
-                return null;
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    public i9 w0() {
-        m3 m3Var = ((li.s4) this.f13891b).N;
-        if (m3Var != null) {
-            return m3Var.f18704a.getTextSelectionHelper();
-        }
-        return null;
-    }
-
-    public ia.b y(JSONObject jSONObject) {
-        ia.d bVar;
-        int i7 = jSONObject.getInt("settings_version");
-        if (i7 != 3) {
-            Log.e("FirebaseCrashlytics", "Could not determine SettingsJsonTransform for settings version " + i7 + ". Using default settings values.", null);
-            bVar = new nb.a(11);
-        } else {
-            bVar = new pb.b(11);
-        }
-        return bVar.c((s) this.f13891b, jSONObject);
-    }
-
-    public float z(int i7, int i10, int i11, int i12) {
-        boolean z9;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        int i17;
-        int i18;
-        int i19;
-        int i20;
-        boolean z10;
-        g gVar;
-        int i21;
-        boolean z11 = true;
-        if (Math.abs(i12 - i10) > Math.abs(i11 - i7)) {
-            z9 = true;
-        } else {
-            z9 = false;
-        }
-        if (z9) {
-            i14 = i7;
-            i13 = i10;
-            i16 = i11;
-            i15 = i12;
-        } else {
-            i13 = i7;
-            i14 = i10;
-            i15 = i11;
-            i16 = i12;
-        }
-        int abs = Math.abs(i15 - i13);
-        int abs2 = Math.abs(i16 - i14);
-        int i22 = 2;
-        int i23 = (-abs) / 2;
-        int i24 = -1;
-        if (i13 < i15) {
-            i17 = 1;
-        } else {
-            i17 = -1;
-        }
-        if (i14 < i16) {
-            i24 = 1;
-        }
-        int i25 = i15 + i17;
-        int i26 = i13;
-        int i27 = i14;
-        int i28 = 0;
+    public final void g() {
+        int i7 = this.f13235b;
+        int i10 = this.f13236c;
+        this.h = true;
+        int length = this.f13234a.length();
         while (true) {
-            if (i26 != i25) {
-                if (z9) {
-                    i19 = i27;
-                } else {
-                    i19 = i26;
-                }
-                if (z9) {
-                    i20 = i26;
-                } else {
-                    i20 = i27;
-                }
-                boolean z12 = z9;
-                if (i28 == z11) {
-                    z10 = z11;
-                    i21 = abs;
-                    gVar = this;
-                } else {
-                    z10 = false;
-                    gVar = this;
-                    i21 = abs;
-                }
-                if (z10 == ((cc.b) gVar.f13891b).b(i19, i20)) {
-                    if (i28 == 2) {
-                        return r9.b(i26, i27, i13, i14);
-                    }
-                    i28++;
-                }
-                i23 += abs2;
-                if (i23 > 0) {
-                    if (i27 == i16) {
-                        i18 = 2;
-                        break;
-                    }
-                    i27 += i24;
-                    i23 -= i21;
-                }
-                i26 += i17;
-                abs = i21;
-                z9 = z12;
-                z11 = true;
-                i22 = 2;
-            } else {
-                i18 = i22;
+            if (i7 >= length) {
                 break;
             }
+            char charAt = this.f13234a.charAt(i7);
+            if (charAt != '\t') {
+                if (charAt != ' ') {
+                    this.h = false;
+                    break;
+                } else {
+                    i7++;
+                    i10++;
+                }
+            } else {
+                i7++;
+                i10 += 4 - (i10 % 4);
+            }
         }
-        if (i28 == i18) {
-            return r9.b(i25, i16, i13, i14);
+        this.f13237e = i7;
+        this.f13238f = i10;
+        this.f13239g = i10 - this.f13236c;
+    }
+
+    public final mf.a h() {
+        return (mf.a) i5.c.h(1, this.f13245n);
+    }
+
+    public final void i(java.lang.String r23) {
+        throw new UnsupportedOperationException("Method not decompiled: gf.g.i(java.lang.String):void");
+    }
+
+    public final void j(int i7) {
+        int i10;
+        int i11 = this.f13238f;
+        if (i7 >= i11) {
+            this.f13235b = this.f13237e;
+            this.f13236c = i11;
         }
-        return Float.NaN;
+        int length = this.f13234a.length();
+        while (true) {
+            i10 = this.f13236c;
+            if (i10 >= i7 || this.f13235b == length) {
+                break;
+            }
+            d();
+        }
+        if (i10 > i7) {
+            this.f13235b--;
+            this.f13236c = i7;
+            this.d = true;
+            return;
+        }
+        this.d = false;
     }
 
-    public g(Object obj, int i7) {
-        this.f13890a = i7;
-        this.f13891b = obj;
-    }
-
-    public g() {
-        this.f13890a = 9;
-        this.f13891b = new HashMap();
-    }
-
-    public g(String str, long j3) {
-        this.f13890a = 21;
-        this.f13891b = new l0(str, j3);
-    }
-
-    public g(String str, Set set) {
-        this.f13890a = 22;
-        this.f13891b = new o0(str, set);
-    }
-
-    public g(Context context, Uri uri) {
-        this.f13890a = 19;
-        this.f13891b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
-    }
-
-    public g(String str, boolean z9) {
-        this.f13890a = 20;
-        this.f13891b = new h0(str, z9);
-    }
-
-    private final void r() {
-    }
-
-    private final void u() {
-    }
-
-    private final void v() {
-    }
-
-    @Override
-    public void e() {
-    }
-
-    private final void x(ArrayList arrayList) {
-    }
-
-    @Override
-    public void h(ij ijVar, View view, int i7) {
-    }
-
-    @Override
-    public void l1(View view, float f10, float f11) {
-    }
-
-    @Override
-    public void m(View view, float f10, float f11) {
-    }
-
-    @Override
-    public void w(View view, float f10, float f11) {
+    public final void k(int i7) {
+        int i10 = this.f13237e;
+        if (i7 >= i10) {
+            this.f13235b = i10;
+            this.f13236c = this.f13238f;
+        }
+        int length = this.f13234a.length();
+        while (true) {
+            int i11 = this.f13235b;
+            if (i11 >= i7 || i11 == length) {
+                break;
+            }
+            d();
+        }
+        this.d = false;
     }
 }

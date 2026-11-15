@@ -1,138 +1,92 @@
 package sh;
 
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import c8.zc;
+import bi.q;
 import java.util.ArrayList;
-import org.telegram.messenger.g0;
-import org.telegram.messenger.id;
-import org.telegram.messenger.ij;
 import org.telegram.messenger.m5;
-import org.telegram.messenger.n0;
-import org.telegram.messenger.qp;
+import org.telegram.messenger.np;
+import org.telegram.messenger.s10;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public abstract class h {
-    public static int a(ij ijVar) {
-        TLRPC.MessageMedia messageMedia;
-        long B0;
-        int i7;
-        int i10 = 0;
-        if (ijVar.D == 17) {
-            TLRPC.Message message = ijVar.f23266k;
-            int i11 = ijVar.I1;
-            TLRPC.MessageMedia n1 = ij.n1(message);
-            if (TLRPC.TL_messageMediaPoll.class.isInstance(n1)) {
-                messageMedia = (TLRPC.MessageMedia) TLRPC.TL_messageMediaPoll.class.cast(n1);
-            } else {
-                messageMedia = null;
-            }
-            TLRPC.TL_messageMediaPoll tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) messageMedia;
-            if (tL_messageMediaPoll != null) {
-                TLRPC.Poll poll = tL_messageMediaPoll.poll;
-                if (poll.closed) {
-                    i10 = 8;
-                }
-                if (poll.subscribers_only) {
-                    TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
-                    if (messageFwdHeader != null) {
-                        B0 = m5.o(messageFwdHeader.from_id);
-                    } else {
-                        B0 = ij.B0(ijVar.f23266k);
-                    }
-                    TLRPC.Chat M0 = qp.s1(i11).M0(Long.valueOf(-B0));
-                    if (M0 != null) {
-                        if (M0.left || M0.kicked) {
-                            i10 |= 1;
-                        }
-                        TLRPC.MessageFwdHeader messageFwdHeader2 = message.fwd_from;
-                        if (messageFwdHeader2 != null) {
-                            i7 = messageFwdHeader2.date;
-                        } else {
-                            i7 = message.date;
-                        }
-                        if (i7 - M0.date < 86400) {
-                            i10 |= 2;
-                        }
-                    }
-                }
-                ArrayList<String> arrayList = tL_messageMediaPoll.poll.countries_iso2;
-                if (arrayList != null && !arrayList.isEmpty()) {
-                    if (!tL_messageMediaPoll.poll.countries_iso2.contains(((n0) qp.s1(i11).f24946x7.O.f13557b).f24122c)) {
-                        return i10 | 4;
-                    }
-                }
-                return i10;
-            }
-        }
-        return 0;
+import org.telegram.ui.Components.b41;
+import org.telegram.ui.Components.p41;
+public final class h implements s10 {
+    public final int f56882a;
+    public final m f56883b;
+
+    public h(m mVar, int i7) {
+        this.f56882a = i7;
+        this.f56883b = mVar;
     }
 
-    public static SpannableStringBuilder b(int i7, ij ijVar) {
-        TLRPC.MessageMedia messageMedia;
-        long B0;
-        int i10;
-        int i11;
-        if (ijVar.D == 17) {
-            TLRPC.Message message = ijVar.f23266k;
-            int i12 = ijVar.I1;
-            TLRPC.MessageMedia n1 = ij.n1(message);
-            if (TLRPC.TL_messageMediaPoll.class.isInstance(n1)) {
-                messageMedia = (TLRPC.MessageMedia) TLRPC.TL_messageMediaPoll.class.cast(n1);
-            } else {
-                messageMedia = null;
-            }
-            TLRPC.TL_messageMediaPoll tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) messageMedia;
-            if (tL_messageMediaPoll != null) {
-                if (zc.a(i7, 4)) {
-                    ArrayList arrayList = new ArrayList(tL_messageMediaPoll.poll.countries_iso2.size());
-                    ArrayList<String> arrayList2 = tL_messageMediaPoll.poll.countries_iso2;
-                    int size = arrayList2.size();
-                    int i13 = 0;
-                    while (i13 < size) {
-                        String str = arrayList2.get(i13);
-                        i13++;
-                        String str2 = str;
-                        String i02 = id.i0(2131750521, str2);
-                        if (!TextUtils.isEmpty(i02)) {
-                            str2 = i02;
-                        }
-                        arrayList.add(str2);
-                    }
-                    boolean z9 = tL_messageMediaPoll.poll.subscribers_only;
-                    if (arrayList.size() == 1) {
-                        if (z9) {
-                            i11 = 2131747117;
-                        } else {
-                            i11 = 2131747114;
-                        }
-                        return g0.X2(id.a0(null, null, i11, arrayList.get(0)));
-                    }
-                    StringBuffer stringBuffer = new StringBuffer();
-                    for (int i14 = 0; i14 < arrayList.size() - 1; i14++) {
-                        if (stringBuffer.length() > 0) {
-                            stringBuffer.append(", ");
-                        }
-                        stringBuffer.append((String) arrayList.get(i14));
-                    }
-                    if (z9) {
-                        i10 = 2131747116;
-                    } else {
-                        i10 = 2131747113;
-                    }
-                    return g0.X2(id.a0(null, null, i10, stringBuffer, jg.g.i(1, arrayList)));
-                } else if (zc.a(i7, 1)) {
-                    TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
-                    if (messageFwdHeader != null) {
-                        B0 = m5.o(messageFwdHeader.from_id);
-                    } else {
-                        B0 = ij.B0(ijVar.f23266k);
-                    }
-                    return g0.X2(id.a0(null, null, 2131747118, m5.u(qp.s1(i12).M0(Long.valueOf(-B0)))));
-                } else if (zc.a(i7, 2)) {
-                    return g0.X2(id.M0(2131747115, null));
+    @Override
+    public final void a(Object obj, Object obj2) {
+        int i7 = this.f56882a;
+        int i10 = 0;
+        boolean z10 = false;
+        m mVar = this.f56883b;
+        switch (i7) {
+            case 0:
+                ArrayList arrayList = (ArrayList) obj;
+                p41 p41Var = (p41) obj2;
+                arrayList.clear();
+                ArrayList arrayList2 = mVar.f56895j;
+                int size = arrayList2.size();
+                while (i10 < size) {
+                    Object obj3 = arrayList2.get(i10);
+                    i10++;
+                    TLRPC.MessagePeerVote messagePeerVote = (TLRPC.MessagePeerVote) obj3;
+                    long o4 = m5.o(messagePeerVote.peer);
+                    TLObject e22 = np.s1(mVar.f56888a).e2(o4);
+                    int i11 = messagePeerVote.date;
+                    q qVar = new q(mVar, o4, 5);
+                    int i12 = j.f56885b;
+                    b41 K = b41.K(j.class);
+                    K.G = e22;
+                    K.B = o4;
+                    K.f33194z = i11;
+                    K.D = qVar;
+                    arrayList.add(K);
                 }
-            }
+                if (!mVar.h) {
+                    if (arrayList2.isEmpty()) {
+                        int i13 = k.f56886b;
+                        arrayList.add(b41.K(k.class));
+                        arrayList.add(b41.K(k.class));
+                        arrayList.add(b41.K(k.class));
+                        arrayList.add(b41.K(k.class));
+                        arrayList.add(b41.K(k.class));
+                        return;
+                    }
+                    int i14 = l.f56887b;
+                    arrayList.add(b41.K(l.class));
+                    return;
+                }
+                return;
+            default:
+                TLRPC.TL_messages_votesList tL_messages_votesList = (TLRPC.TL_messages_votesList) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                int i15 = mVar.f56888a;
+                mVar.f56894i = false;
+                if (tL_messages_votesList != null) {
+                    np.s1(i15).Y3(tL_messages_votesList.users, false);
+                    np.s1(i15).S3(tL_messages_votesList.chats, false);
+                    String str = tL_messages_votesList.next_offset;
+                    mVar.f56893g = str;
+                    if (str == null) {
+                        z10 = true;
+                    }
+                    mVar.h = z10;
+                    mVar.f56895j.addAll(tL_messages_votesList.votes);
+                    q2.d dVar = mVar.f56891e;
+                    if (dVar != null) {
+                        dVar.run();
+                        return;
+                    }
+                    return;
+                }
+                mVar.f56893g = null;
+                mVar.h = true;
+                return;
         }
-        return null;
     }
 }

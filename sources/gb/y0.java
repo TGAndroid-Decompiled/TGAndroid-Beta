@@ -1,51 +1,15 @@
 package gb;
+public final class y0 implements ce.d {
+    public final int f13126a;
+    public final Object f13127b;
 
-import android.app.Activity;
-import android.app.Application;
-import android.os.Bundle;
-public final class y0 implements Application.ActivityLifecycleCallbacks {
-    public final f1 f13787a;
-
-    public y0(f1 sharedSessionRepository) {
-        kotlin.jvm.internal.j.e(sharedSessionRepository, "sharedSessionRepository");
-        this.f13787a = sharedSessionRepository;
+    public y0(Object obj, int i7) {
+        this.f13126a = i7;
+        this.f13127b = obj;
     }
 
     @Override
-    public final void onActivityCreated(Activity activity, Bundle bundle) {
-        kotlin.jvm.internal.j.e(activity, "activity");
-    }
-
-    @Override
-    public final void onActivityDestroyed(Activity activity) {
-        kotlin.jvm.internal.j.e(activity, "activity");
-    }
-
-    @Override
-    public final void onActivityPaused(Activity activity) {
-        kotlin.jvm.internal.j.e(activity, "activity");
-        this.f13787a.b();
-    }
-
-    @Override
-    public final void onActivityResumed(Activity activity) {
-        kotlin.jvm.internal.j.e(activity, "activity");
-        this.f13787a.c();
-    }
-
-    @Override
-    public final void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-        kotlin.jvm.internal.j.e(activity, "activity");
-        kotlin.jvm.internal.j.e(outState, "outState");
-    }
-
-    @Override
-    public final void onActivityStarted(Activity activity) {
-        kotlin.jvm.internal.j.e(activity, "activity");
-    }
-
-    @Override
-    public final void onActivityStopped(Activity activity) {
-        kotlin.jvm.internal.j.e(activity, "activity");
+    public final java.lang.Object a(java.lang.Object r5, id.c r6) {
+        throw new UnsupportedOperationException("Method not decompiled: gb.y0.a(java.lang.Object, id.c):java.lang.Object");
     }
 }

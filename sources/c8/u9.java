@@ -1,10 +1,24 @@
 package c8;
 public abstract class u9 {
-    public static final vd.c a(me.d dVar) {
-        kotlin.jvm.internal.j.e(dVar, "<this>");
-        if (dVar instanceof oe.o) {
-            return a(((oe.o) dVar).f20938a);
+    public final int f4704a = 1;
+
+    public int hashCode() {
+        switch (this.f4704a) {
+            case 1:
+                return toString().hashCode();
+            default:
+                return super.hashCode();
         }
-        return null;
+    }
+
+    public String toString() {
+        switch (this.f4704a) {
+            case 1:
+                String b10 = kotlin.jvm.internal.s.a(getClass()).b();
+                kotlin.jvm.internal.j.b(b10);
+                return b10;
+            default:
+                return super.toString();
+        }
     }
 }

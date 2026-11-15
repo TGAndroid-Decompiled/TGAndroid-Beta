@@ -1,28 +1,134 @@
 package org.telegram.ui;
+public final class ip0 extends org.telegram.ui.Components.u51 {
+    public final int f48112n0;
+    public final org.telegram.messenger.is f48113o0;
 
-import android.animation.ValueAnimator;
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-public final class ip0 extends ViewOutlineProvider {
-    public final int f46714a;
-    public final float f46715b;
-    public final Object f46716c;
-
-    public ip0(Object obj, float f10, int i7) {
-        this.f46714a = i7;
-        this.f46716c = obj;
-        this.f46715b = f10;
+    public ip0(org.telegram.messenger.is isVar, int i7) {
+        this.f48112n0 = i7;
+        this.f48113o0 = isVar;
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        switch (this.f46714a) {
+    public final void g0() {
+        switch (this.f48112n0) {
             case 0:
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / this.f46715b) * org.telegram.messenger.g0.L(10.0f) * ((Float) ((ValueAnimator) this.f46716c).getAnimatedValue()).floatValue());
+                super.g0();
+                PhotoViewer photoViewer = (PhotoViewer) this.f48113o0;
+                if (photoViewer.f42896u4 == 0) {
+                    PhotoViewer.R(photoViewer, false);
+                }
+                if (!photoViewer.O8) {
+                    d1.f.D(S());
+                    d1.f.x(false);
+                    return;
+                }
                 return;
             default:
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / this.f46715b) * org.telegram.messenger.g0.L(10.0f) * (1.0f - ((PhotoViewer) this.f46716c).W));
+                super.g0();
+                ((SecretMediaViewer) this.f48113o0).V.a(false, true);
+                return;
+        }
+    }
+
+    @Override
+    public final void h0() {
+        switch (this.f48112n0) {
+            case 0:
+                super.h0();
+                PhotoViewer photoViewer = (PhotoViewer) this.f48113o0;
+                PhotoViewer.R(photoViewer, true);
+                if (!photoViewer.O8) {
+                    d1.f.D(S());
+                    d1.f.x(true);
+                    return;
+                }
+                return;
+            default:
+                super.h0();
+                ((SecretMediaViewer) this.f48113o0).V.a(true, true);
+                return;
+        }
+    }
+
+    @Override
+    public void onRenderedFirstFrame() {
+        e2.w0 j3;
+        switch (this.f48112n0) {
+            case 0:
+                super.onRenderedFirstFrame();
+                PhotoViewer photoViewer = (PhotoViewer) this.f48113o0;
+                boolean z10 = true;
+                photoViewer.S = true;
+                if (photoViewer.E2) {
+                    photoViewer.f42763f0.invalidate();
+                }
+                photoViewer.y3();
+                if (!d1.f.u() && !photoViewer.f42865r) {
+                    z10 = false;
+                }
+                t0(z10);
+                if (!photoViewer.O8) {
+                    d1.f.D(S());
+                    l2.f0 f0Var = this.d;
+                    float f10 = 1.0f;
+                    if (f0Var != null && (j3 = f0Var.j()) != null) {
+                        f10 = j3.f10474a;
+                    }
+                    d1.f.z(f10);
+                    return;
+                }
+                return;
+            default:
+                super.onRenderedFirstFrame();
+                return;
+        }
+    }
+
+    @Override
+    public void p0(long j3) {
+        switch (this.f48112n0) {
+            case 0:
+                q0(j3, false);
+                PhotoViewer photoViewer = (PhotoViewer) this.f48113o0;
+                if (photoViewer.f42877s1) {
+                    PhotoViewer.S(photoViewer, j3);
+                }
+                if (!photoViewer.O8) {
+                    d1.f.D(j3);
+                    return;
+                }
+                return;
+            default:
+                super.p0(j3);
+                return;
+        }
+    }
+
+    @Override
+    public void u0(boolean z10) {
+        switch (this.f48112n0) {
+            case 1:
+                super.u0(z10);
+                ((SecretMediaViewer) this.f48113o0).V.a(z10, true);
+                return;
+            default:
+                super.u0(z10);
+                return;
+        }
+    }
+
+    @Override
+    public void v0(float f10) {
+        switch (this.f48112n0) {
+            case 0:
+                super.v0(f10);
+                if (!((PhotoViewer) this.f48113o0).O8) {
+                    d1.f.z(f10);
+                    return;
+                }
+                return;
+            default:
+                super.v0(f10);
                 return;
         }
     }

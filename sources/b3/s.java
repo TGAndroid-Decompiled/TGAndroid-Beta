@@ -1,6 +1,6 @@
 package b3;
 public final class s {
-    public int f2970a;
-    public int f2971b;
-    public float f2972c;
+    public int f2924a;
+    public int f2925b;
+    public float f2926c;
 }

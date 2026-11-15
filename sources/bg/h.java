@@ -1,10 +1,10 @@
 package bg;
 public final class h {
-    public final int f3287a;
-    public int f3288b;
-    public int f3289c;
+    public final int f3242a;
+    public int f3243b;
+    public int f3244c;
 
     public h(int i7) {
-        this.f3287a = i7;
+        this.f3242a = i7;
     }
 }

@@ -1,28 +1,10 @@
 package a8;
-
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Set;
 public abstract class d8 {
-    public static boolean a(h0 h0Var, Collection collection) {
-        collection.getClass();
-        if (collection instanceof c8.l) {
-            collection = ((c8.l) collection).zza();
-        }
-        boolean z9 = false;
-        if ((collection instanceof Set) && collection.size() > h0Var.size()) {
-            Iterator<E> it = h0Var.iterator();
-            while (it.hasNext()) {
-                if (collection.contains(it.next())) {
-                    it.remove();
-                    z9 = true;
-                }
+    public static void a(int i7, Object[] objArr) {
+        for (int i10 = 0; i10 < i7; i10++) {
+            if (objArr[i10] == null) {
+                throw new NullPointerException(i5.c.i(i10, "at index "));
             }
-            return z9;
         }
-        for (Object obj : collection) {
-            z9 |= h0Var.remove(obj);
-        }
-        return z9;
     }
 }

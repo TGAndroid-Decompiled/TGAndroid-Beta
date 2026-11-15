@@ -2,47 +2,47 @@ package te;
 
 import android.view.View;
 import android.view.animation.Interpolator;
-import org.telegram.ui.Components.voip.o1;
+import org.telegram.ui.Components.voip.s1;
 public final class a implements b {
-    public final int f55495a;
-    public final b f55496b;
-    public final Interpolator f55497c;
+    public final int f57078a;
+    public final b f57079b;
+    public final Interpolator f57080c;
     public final long d;
-    public float f55498e;
-    public boolean f55499f;
+    public float f57081e;
+    public boolean f57082f;
     public c h;
 
     public a(View view, Interpolator interpolator, long j3) {
-        this(0, new o1(view), interpolator, j3, false);
+        this(0, new s1(view), interpolator, j3, false);
     }
 
     @Override
-    public final void F(float f10, int i7) {
-        this.f55496b.F(f10, this.f55495a);
+    public final void E(float f10, int i7) {
+        this.f57079b.E(f10, this.f57078a);
     }
 
     @Override
-    public final void Y(int i7, float f10, float f11, c cVar) {
-        if (this.f55498e != f10) {
-            this.f55498e = f10;
-            this.f55496b.Y(this.f55495a, f10, -1.0f, null);
+    public final void G(int i7, float f10, float f11, c cVar) {
+        if (this.f57081e != f10) {
+            this.f57081e = f10;
+            this.f57079b.G(this.f57078a, f10, -1.0f, null);
         }
     }
 
-    public final void a(boolean z9, boolean z10) {
+    public final void a(boolean z10, boolean z11) {
         float f10;
         a aVar;
-        if (this.f55499f != z9 || !z10) {
-            this.f55499f = z9;
-            if (z9) {
+        if (this.f57082f != z10 || !z11) {
+            this.f57082f = z10;
+            if (z10) {
                 f10 = 1.0f;
             } else {
                 f10 = 0.0f;
             }
-            if (z10) {
+            if (z11) {
                 if (this.h == null) {
                     aVar = this;
-                    aVar.h = new c(0, aVar, this.f55497c, this.d, this.f55498e);
+                    aVar.h = new c(0, aVar, this.f57080c, this.d, this.f57081e);
                 } else {
                     aVar = this;
                 }
@@ -53,16 +53,16 @@ public final class a implements b {
             if (cVar != null) {
                 cVar.c(f10);
             }
-            float f11 = this.f55498e;
+            float f11 = this.f57081e;
             if (f11 != f10) {
                 int i7 = (f11 > f10 ? 1 : (f11 == f10 ? 0 : -1));
-                int i10 = this.f55495a;
-                b bVar = this.f55496b;
+                int i10 = this.f57078a;
+                b bVar = this.f57079b;
                 if (i7 != 0) {
-                    this.f55498e = f10;
-                    bVar.Y(i10, f10, -1.0f, null);
+                    this.f57081e = f10;
+                    bVar.G(i10, f10, -1.0f, null);
                 }
-                bVar.F(f10, i10);
+                bVar.E(f10, i10);
             }
         }
     }
@@ -71,12 +71,12 @@ public final class a implements b {
         this(i7, bVar, interpolator, j3, false);
     }
 
-    public a(int i7, b bVar, Interpolator interpolator, long j3, boolean z9) {
-        this.f55495a = i7;
-        this.f55496b = bVar;
-        this.f55497c = interpolator;
+    public a(int i7, b bVar, Interpolator interpolator, long j3, boolean z10) {
+        this.f57078a = i7;
+        this.f57079b = bVar;
+        this.f57080c = interpolator;
         this.d = j3;
-        this.f55499f = z9;
-        this.f55498e = z9 ? 1.0f : 0.0f;
+        this.f57082f = z10;
+        this.f57081e = z10 ? 1.0f : 0.0f;
     }
 }

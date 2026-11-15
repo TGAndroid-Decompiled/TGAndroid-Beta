@@ -1,28 +1,28 @@
 package f3;
-public abstract class v implements c0 {
-    public final c0 f11089a;
+public abstract class v implements b0 {
+    public final b0 f10891a;
 
-    public v(c0 c0Var) {
-        this.f11089a = c0Var;
+    public v(b0 b0Var) {
+        this.f10891a = b0Var;
     }
 
     @Override
     public final boolean d() {
-        return this.f11089a.d();
+        return this.f10891a.d();
     }
 
     @Override
     public final boolean e() {
-        return this.f11089a.e();
+        return this.f10891a.e();
     }
 
     @Override
-    public b0 f(long j3) {
-        return this.f11089a.f(j3);
+    public a0 f(long j3) {
+        return this.f10891a.f(j3);
     }
 
     @Override
     public long h() {
-        return this.f11089a.h();
+        return this.f10891a.h();
     }
 }

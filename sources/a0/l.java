@@ -12,13 +12,13 @@ public class l {
         int[] iArr;
         Object[] objArr;
         if (i7 == 0) {
-            iArr = b0.a.f2888a;
+            iArr = b0.a.f2842a;
         } else {
             iArr = new int[i7];
         }
         this.f29a = iArr;
         if (i7 == 0) {
-            objArr = b0.a.f2890c;
+            objArr = b0.a.f2844c;
         } else {
             objArr = new Object[i7 << 1];
         }
@@ -70,8 +70,8 @@ public class l {
 
     public final void clear() {
         if (this.f31c > 0) {
-            this.f29a = b0.a.f2888a;
-            this.f30b = b0.a.f2890c;
+            this.f29a = b0.a.f2842a;
+            this.f30b = b0.a.f2844c;
             this.f31c = 0;
         }
         if (this.f31c <= 0) {
@@ -176,7 +176,7 @@ public class l {
         if (i7 >= 0 && i7 < this.f31c) {
             return this.f30b[i7 << 1];
         }
-        throw new IllegalArgumentException(jg.g.j(i7, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(i5.c.i(i7, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final Object g(int i7) {
@@ -233,7 +233,7 @@ public class l {
             }
             throw new ConcurrentModificationException();
         }
-        throw new IllegalArgumentException(jg.g.j(i7, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(i5.c.i(i7, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public Object get(Object obj) {
@@ -260,7 +260,7 @@ public class l {
             objArr[i10] = obj;
             return obj2;
         }
-        throw new IllegalArgumentException(jg.g.j(i7, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(i5.c.i(i7, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final int hashCode() {
@@ -290,7 +290,7 @@ public class l {
         if (i7 >= 0 && i7 < this.f31c) {
             return this.f30b[(i7 << 1) + 1];
         }
-        throw new IllegalArgumentException(jg.g.j(i7, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(i5.c.i(i7, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final boolean isEmpty() {

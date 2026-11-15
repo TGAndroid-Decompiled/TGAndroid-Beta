@@ -16,7 +16,7 @@ import c8.vc;
 import c8.wc;
 import kotlin.jvm.internal.j;
 import v0.c;
-import v0.o;
+import v0.n;
 import w0.d;
 import w0.i;
 public abstract class a {
@@ -51,7 +51,7 @@ public abstract class a {
         return ge.b(serializableExtra.getMessage(), type);
     }
 
-    public static o d(Intent intent) {
+    public static n d(Intent intent) {
         j.e(intent, "intent");
         GetCredentialResponse getCredentialResponse = (GetCredentialResponse) intent.getParcelableExtra("android.service.credentials.extra.GET_CREDENTIAL_RESPONSE", GetCredentialResponse.class);
         if (getCredentialResponse == null) {
@@ -63,7 +63,7 @@ public abstract class a {
         j.d(type, "getType(...)");
         Bundle data = credential.getData();
         j.d(data, "getData(...)");
-        return new o(wc.a(type, data));
+        return new n(wc.a(type, data));
     }
 
     public static AccessibilityNodeInfo.AccessibilityAction e() {

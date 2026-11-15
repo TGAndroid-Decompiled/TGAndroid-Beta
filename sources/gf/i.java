@@ -1,63 +1,118 @@
 package gf;
 
-import c8.x0;
+import java.io.Serializable;
+import java.util.ArrayList;
 public final class i extends mf.a {
-    public final kf.h f13907a;
-    public String f13908b;
-    public final StringBuilder f13909c;
+    public final int f13250a;
+    public final kf.a f13251b;
+    public final Serializable f13252c;
 
-    public i(char c10, int i7, int i10) {
-        ?? pVar = new kf.p();
-        this.f13907a = pVar;
-        this.f13909c = new StringBuilder();
-        pVar.f17269g = c10;
-        pVar.h = i7;
-        pVar.f17270i = i10;
+    public i() {
+        this.f13250a = 1;
+        this.f13251b = new kf.p();
+        this.f13252c = new ArrayList();
     }
 
     @Override
-    public final void a(CharSequence charSequence) {
-        if (this.f13908b == null) {
-            this.f13908b = charSequence.toString();
-            return;
+    public void a(CharSequence charSequence) {
+        switch (this.f13250a) {
+            case 1:
+                ((ArrayList) this.f13252c).add(charSequence);
+                return;
+            default:
+                return;
         }
-        StringBuilder sb2 = this.f13909c;
-        sb2.append(charSequence);
-        sb2.append('\n');
     }
 
     @Override
-    public final void d() {
-        String a10 = jf.a.a(this.f13908b.trim());
-        kf.h hVar = this.f13907a;
-        hVar.f17271j = a10;
-        hVar.f17272k = this.f13909c.toString();
+    public void d() {
+        int i7;
+        boolean z10;
+        switch (this.f13250a) {
+            case 1:
+                ArrayList arrayList = (ArrayList) this.f13252c;
+                int size = arrayList.size() - 1;
+                while (true) {
+                    if (size >= 0) {
+                        CharSequence charSequence = (CharSequence) arrayList.get(size);
+                        int length = charSequence.length();
+                        int i10 = 0;
+                        while (true) {
+                            if (i10 < length) {
+                                char charAt = charSequence.charAt(i10);
+                                if (charAt != ' ') {
+                                    switch (charAt) {
+                                    }
+                                }
+                                i10++;
+                            } else {
+                                i10 = -1;
+                            }
+                        }
+                        if (i10 == -1) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        if (z10) {
+                            size--;
+                        }
+                    }
+                }
+                StringBuilder sb2 = new StringBuilder();
+                for (i7 = 0; i7 < size + 1; i7++) {
+                    sb2.append((CharSequence) arrayList.get(i7));
+                    sb2.append('\n');
+                }
+                ((kf.l) this.f13251b).f17836g = sb2.toString();
+                return;
+            default:
+                return;
+        }
     }
 
     @Override
     public final kf.a e() {
-        return this.f13907a;
+        switch (this.f13250a) {
+            case 0:
+                return (kf.i) this.f13251b;
+            default:
+                return (kf.l) this.f13251b;
+        }
     }
 
     @Override
-    public final a h(h hVar) {
-        int i7 = hVar.f13897e;
-        int i10 = hVar.f13895b;
-        CharSequence charSequence = hVar.f13894a;
-        int i11 = hVar.f13899g;
-        kf.h hVar2 = this.f13907a;
-        if (i11 < 4) {
-            char c10 = hVar2.f17269g;
-            int i12 = hVar2.h;
-            int b10 = x0.b(c10, i7, charSequence.length(), charSequence) - i7;
-            if (b10 >= i12 && x0.c(i7 + b10, charSequence.length(), charSequence) == charSequence.length()) {
-                return new a(-1, -1, true);
-            }
+    public void g(lf.a aVar) {
+        switch (this.f13250a) {
+            case 0:
+                aVar.a((String) this.f13252c, (kf.i) this.f13251b);
+                return;
+            default:
+                return;
         }
-        int length = charSequence.length();
-        for (int i13 = hVar2.f17270i; i13 > 0 && i10 < length && charSequence.charAt(i10) == ' '; i13--) {
-            i10++;
+    }
+
+    @Override
+    public final a h(g gVar) {
+        switch (this.f13250a) {
+            case 0:
+                return null;
+            default:
+                if (gVar.f13239g >= 4) {
+                    return new a(-1, gVar.f13236c + 4, false);
+                }
+                if (gVar.h) {
+                    return a.a(gVar.f13237e);
+                }
+                return null;
         }
-        return a.a(i10);
+    }
+
+    public i(int i7, String str) {
+        this.f13250a = 0;
+        ?? pVar = new kf.p();
+        this.f13251b = pVar;
+        pVar.f17832g = i7;
+        this.f13252c = str;
     }
 }

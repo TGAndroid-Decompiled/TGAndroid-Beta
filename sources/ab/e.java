@@ -7,10 +7,10 @@ import android.os.SystemClock;
 import android.util.Log;
 import java.util.concurrent.atomic.AtomicInteger;
 public abstract class e {
-    public static final AtomicInteger f919a = new AtomicInteger((int) SystemClock.elapsedRealtime());
+    public static final AtomicInteger f918a = new AtomicInteger((int) SystemClock.elapsedRealtime());
 
-    public static ab.k a(com.google.firebase.messaging.FirebaseMessagingService r18, d6.i r19) {
-        throw new UnsupportedOperationException("Method not decompiled: ab.e.a(com.google.firebase.messaging.FirebaseMessagingService, d6.i):ab.k");
+    public static ab.k a(com.google.firebase.messaging.FirebaseMessagingService r18, ab.w r19) {
+        throw new UnsupportedOperationException("Method not decompiled: ab.e.a(com.google.firebase.messaging.FirebaseMessagingService, ab.w):ab.k");
     }
 
     public static boolean b(Resources resources, int i7) {

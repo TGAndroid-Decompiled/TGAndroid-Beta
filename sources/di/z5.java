@@ -1,62 +1,95 @@
 package di;
 
-import java.util.HashMap;
-import org.telegram.messenger.c20;
-import org.telegram.messenger.support.LongSparseIntArray;
-import org.telegram.tgnet.tl.TL_stories;
-public final class z5 implements c20 {
-    public final int f9995a;
-    public final z6 f9996b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.view.View;
+import java.util.HashSet;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLObject;
+public final class z5 extends View implements org.telegram.ui.ActionBar.z5 {
+    public final ImageReceiver f9834a;
+    public final ImageReceiver f9835b;
+    public final Path f9836c;
+    public final Paint d;
 
-    public z5(z6 z6Var, int i7) {
-        this.f9995a = i7;
-        this.f9996b = z6Var;
+    public z5(Context context, TLObject tLObject, TLObject tLObject2) {
+        super(context);
+        Path path = new Path();
+        this.f9836c = path;
+        Paint paint = new Paint(1);
+        this.d = paint;
+        org.telegram.ui.ActionBar.p6 p6Var = org.telegram.ui.ActionBar.q6.f29534a;
+        org.telegram.ui.Components.t8 t8Var = new org.telegram.ui.Components.t8((org.telegram.ui.ActionBar.e6) null);
+        t8Var.l(tLObject);
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.f9834a = imageReceiver;
+        imageReceiver.J0(org.telegram.messenger.g0.L(30.0f));
+        imageReceiver.i0(tLObject, t8Var, null);
+        org.telegram.ui.Components.t8 t8Var2 = new org.telegram.ui.Components.t8((org.telegram.ui.ActionBar.e6) null);
+        t8Var2.l(tLObject2);
+        ImageReceiver imageReceiver2 = new ImageReceiver(this);
+        this.f9835b = imageReceiver2;
+        imageReceiver2.J0(org.telegram.messenger.g0.L(30.0f));
+        imageReceiver2.i0(tLObject2, t8Var2, null);
+        paint.setColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.E6, false));
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
+        path.rewind();
+        path.moveTo(0.0f, -org.telegram.messenger.g0.L(8.0f));
+        path.lineTo(org.telegram.messenger.g0.L(6.166f), 0.0f);
+        path.lineTo(0.0f, org.telegram.messenger.g0.L(8.0f));
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f9995a) {
-            case 0:
-                r6 r6Var = (r6) obj;
-                z6 z6Var = this.f9996b;
-                HashMap hashMap = z6Var.H;
-                int i7 = r6Var.f9696e;
-                int i10 = r6Var.f9697f;
-                long j3 = r6Var.d;
-                if (i7 == 0 && i10 > 0) {
-                    HashMap hashMap2 = (HashMap) hashMap.get(Long.valueOf(j3));
-                    if (hashMap2 != null) {
-                        hashMap2.remove(Integer.valueOf(i10));
-                        if (hashMap2.isEmpty()) {
-                            hashMap.remove(Long.valueOf(j3));
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                HashMap hashMap3 = z6Var.G[i7];
-                if (hashMap3 != null) {
-                    hashMap3.remove(Long.valueOf(j3));
-                    return;
-                }
-                return;
-            case 1:
-                this.f9996b.f10001f = (LongSparseIntArray) obj;
-                return;
-            default:
-                TL_stories.TL_stories_allStories tL_stories_allStories = (TL_stories.TL_stories_allStories) obj;
-                z6 z6Var2 = this.f9996b;
-                z6Var2.f10008n = false;
-                if (tL_stories_allStories != null) {
-                    z6Var2.b0(tL_stories_allStories, false, true, false);
-                    z6Var2.T(false);
-                    z6Var2.T(true);
-                    return;
-                }
-                z6Var2.q();
-                z6Var2.W();
-                return;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f9834a.P();
+        this.f9835b.P();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f9834a.R();
+        this.f9835b.R();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int width = (getWidth() / 2) - (org.telegram.messenger.g0.L(156.0f) / 2);
+        float height = (getHeight() / 2) - org.telegram.messenger.g0.L(30.0f);
+        ImageReceiver imageReceiver = this.f9834a;
+        imageReceiver.y0(width, height, org.telegram.messenger.g0.L(60.0f), org.telegram.messenger.g0.L(60.0f));
+        imageReceiver.h(canvas, null);
+        canvas.save();
+        canvas.translate((getWidth() / 2.0f) - (org.telegram.messenger.g0.L(6.166f) / 2.0f), getHeight() / 2.0f);
+        canvas.drawPath(this.f9836c, this.d);
+        canvas.restore();
+        ImageReceiver imageReceiver2 = this.f9835b;
+        imageReceiver2.y0(org.telegram.messenger.g0.L(96.0f) + width, height, org.telegram.messenger.g0.L(60.0f), org.telegram.messenger.g0.L(60.0f));
+        imageReceiver2.h(canvas, null);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(100.0f), 1073741824));
+    }
+
+    @Override
+    public final void updateColors() {
+        try {
+            this.d.setColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.E6, false));
+            invalidate();
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

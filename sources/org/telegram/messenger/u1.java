@@ -6,21 +6,21 @@ import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_account;
 public final class u1 extends TLObject {
-    public static final int f25725b = 0;
-    public ArrayList f25726a = new ArrayList();
+    public static final int f26770b = 0;
+    public ArrayList f26771a = new ArrayList();
 
     @Override
-    public final void readParams(InputSerializedData inputSerializedData, boolean z9) {
-        int readInt32 = inputSerializedData.readInt32(z9);
+    public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
+        int readInt32 = inputSerializedData.readInt32(z10);
         if (readInt32 != 481674261) {
-            if (z9) {
+            if (z10) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
             }
             return;
         }
-        int readInt322 = inputSerializedData.readInt32(z9);
+        int readInt322 = inputSerializedData.readInt32(z10);
         for (int i7 = 0; i7 < readInt322; i7++) {
-            this.f25726a.add(TL_account.TL_contactBirthday.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9));
+            this.f26771a.add(TL_account.TL_contactBirthday.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10));
         }
     }
 
@@ -28,10 +28,10 @@ public final class u1 extends TLObject {
     public final void serializeToStream(OutputSerializedData outputSerializedData) {
         outputSerializedData.writeInt32(290452237);
         outputSerializedData.writeInt32(481674261);
-        int size = this.f25726a.size();
+        int size = this.f26771a.size();
         outputSerializedData.writeInt32(size);
         for (int i7 = 0; i7 < size; i7++) {
-            ((TL_account.TL_contactBirthday) this.f25726a.get(i7)).serializeToStream(outputSerializedData);
+            ((TL_account.TL_contactBirthday) this.f26771a.get(i7)).serializeToStream(outputSerializedData);
         }
     }
 }

@@ -1,79 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.text.style.ReplacementSpan;
-public final class yo extends ReplacementSpan {
-    public final int f40626a;
-    public final Object f40627b;
+import org.telegram.tgnet.TLRPC;
+public final class yo implements org.telegram.ui.l71 {
+    public final ep f42051a;
 
-    public yo(Object obj, int i7) {
-        this.f40626a = i7;
-        this.f40627b = obj;
+    public yo(ep epVar) {
+        this.f42051a = epVar;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-        switch (this.f40626a) {
-            case 0:
-                Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
-                int i14 = ((fontMetricsInt.ascent + fontMetricsInt.descent) / 2) + i12;
-                Drawable drawable = (Drawable) this.f40627b;
-                int i15 = (int) f10;
-                drawable.setBounds(i15, i14 - org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(24.0f) + i15, org.telegram.messenger.g0.L(12.0f) + i14);
-                drawable.setAlpha(paint.getAlpha());
-                drawable.draw(canvas);
-                return;
-            case 1:
-            case 2:
-            case 3:
-            default:
-                return;
-        }
+    public final boolean Y0() {
+        return true;
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f40626a) {
-            case 0:
-                if (fontMetricsInt != null) {
-                    Paint.FontMetricsInt fontMetricsInt2 = paint.getFontMetricsInt();
-                    int i11 = fontMetricsInt2.ascent;
-                    int i12 = (fontMetricsInt2.descent + i11) / 2;
-                    int C = org.telegram.messenger.camera.q.C(12.0f, i12, i11);
-                    fontMetricsInt.top = C;
-                    fontMetricsInt.ascent = C;
-                    int b10 = org.telegram.messenger.k5.b(12.0f, i12, fontMetricsInt2.descent);
-                    fontMetricsInt.bottom = b10;
-                    fontMetricsInt.descent = b10;
-                }
-                return org.telegram.messenger.g0.L(32.0f);
-            case 1:
-                return ((l90) this.f40627b).f35621y;
-            case 2:
-                return (int) ((org.telegram.ui.tg0) this.f40627b).f50273i2;
-            case 3:
-                return (int) ((wg.f1) this.f40627b).f57738o2;
-            default:
-                return ((org.telegram.messenger.f6) this.f40627b).getSize(paint, charSequence, i7, i10, fontMetricsInt);
+    public final boolean a() {
+        return this.f42051a.H1;
+    }
+
+    @Override
+    public final void m1(boolean z10) {
+        TLRPC.WallPaper wallPaper;
+        ep epVar = this.f42051a;
+        org.telegram.ui.an anVar = epVar.f34401v1;
+        epVar.H1 = !epVar.H1;
+        if (epVar.G1 != null) {
+            epVar.J1 = true;
+            anVar.f45397v7 = true;
+            if (epVar.P0()) {
+                wallPaper = null;
+            } else {
+                wallPaper = epVar.f34398s1.f53546g;
+            }
+            TLRPC.WallPaper wallPaper2 = wallPaper;
+            org.telegram.ui.ActionBar.p3 p3Var = epVar.G1.f34022a;
+            if (p3Var.f29470a) {
+                epVar.f34398s1.r(null, wallPaper2, z10, Boolean.valueOf(epVar.H1), false);
+            } else {
+                epVar.f34398s1.r(p3Var, wallPaper2, z10, Boolean.valueOf(epVar.H1), false);
+            }
+            anVar.f45397v7 = false;
         }
-    }
-
-    public yo(zg0 zg0Var) {
-        this.f40626a = 0;
-        this.f40627b = zg0Var;
-    }
-
-    private final void a(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-    }
-
-    private final void b(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-    }
-
-    private final void c(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-    }
-
-    private final void d(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
     }
 }

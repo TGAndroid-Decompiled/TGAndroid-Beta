@@ -1,147 +1,162 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Bitmap;
-import android.graphics.RecordingCanvas;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.Shader;
-import android.os.Build;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import java.util.ArrayList;
-import javax.microedition.khronos.egl.EGLContext;
-public final class x9 {
-    public int f40258a;
-    public final View f40259b;
-    public final ArrayList f40260c;
-    public final ArrayList d;
-    public final ArrayList f40261e;
-    public final Object f40262f;
-    public EGLContext f40263g;
-    public final Object h;
-    public int f40264i;
-    public fi.ha f40265j;
-    public Object f40266k;
-    public Object f40267l;
-    public ca f40268m;
-    public final h2.c f40269n;
-    public Bitmap f40270o;
-    public int f40271p;
+public final class x9 extends Drawable {
+    public float f41627a = 1.0f;
+    public final Paint f41628b = new Paint(1);
+    public final Rect f41629c = new Rect();
+    public final Path d = new Path();
+    public final float f41630e;
+    public final float f41631f;
+    public final Drawable f41632g;
+    public final float h;
+    public final y9 f41633i;
 
-    public x9(View view) {
-        ArrayList arrayList = new ArrayList();
-        this.f40260c = arrayList;
-        this.d = new ArrayList();
-        this.f40261e = new ArrayList();
-        this.f40262f = new Object();
-        this.h = new Object();
-        this.f40269n = new h2.c(0, new wf(this, 14));
-        this.f40271p = 0;
-        this.f40259b = view;
-        if (view.isAttachedToWindow()) {
-            arrayList.clear();
-            for (View view2 = view; view2 != null; view2 = (View) view2.getParent()) {
-                arrayList.add(0, view2);
-                if (!(view2.getParent() instanceof View)) {
-                    break;
-                }
+    public x9(y9 y9Var, float f10, float f11, Drawable drawable, float f12) {
+        this.f41633i = y9Var;
+        this.f41630e = f10;
+        this.f41631f = f11;
+        this.f41632g = drawable;
+        this.h = f12;
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        Bitmap b10;
+        y9 y9Var = this.f41633i;
+        u9 u9Var = y9Var.f41939a;
+        Matrix matrix = y9Var.f41952p;
+        Paint paint = null;
+        if (u9Var != null && (b10 = u9Var.b()) != null) {
+            if (y9Var.f41951o == null || y9Var.f41950n != b10) {
+                y9Var.f41950n = b10;
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                BitmapShader bitmapShader = new BitmapShader(b10, tileMode, tileMode);
+                y9Var.f41951o = bitmapShader;
+                y9Var.h.setShader(bitmapShader);
             }
-        }
-        view.addOnAttachStateChangeListener(new bi.m6(this, 7));
-    }
-
-    public final void a(EGLContext eGLContext) {
-        synchronized (this.f40262f) {
-            try {
-                if (this.f40263g == null) {
-                    this.f40263g = eGLContext;
-                }
-            } catch (Throwable th2) {
-                throw th2;
+            matrix.reset();
+            matrix.postTranslate((-0.0f) - this.f41630e, (-0.0f) - this.f41631f);
+            View view = u9Var.f39968b;
+            if (view != null) {
+                matrix.preScale(view.getWidth() / b10.getWidth(), u9Var.f39968b.getHeight() / b10.getHeight());
             }
+            y9Var.f41951o.setLocalMatrix(matrix);
+            y9Var.h.setAlpha((int) (this.f41627a * 255.0f));
+            paint = y9Var.h;
         }
-    }
-
-    public final Bitmap b() {
-        Bitmap bitmap;
-        ca caVar = this.f40268m;
-        if (caVar == null) {
-            return this.f40270o;
-        }
-        synchronized (caVar.f32511n) {
-            try {
-                if (!caVar.f32514q) {
-                    bitmap = null;
-                } else {
-                    bitmap = caVar.f32513p;
-                }
-            } finally {
+        Paint paint2 = paint;
+        Rect bounds = getBounds();
+        Drawable drawable = this.f41632g;
+        Paint paint3 = this.f41628b;
+        float f10 = this.h;
+        if (paint2 == null && (u9Var == null || !u9Var.c())) {
+            if (drawable != null) {
+                drawable.setBounds(bounds);
+                drawable.draw(canvas);
+                return;
             }
-        }
-        if (bitmap == null) {
-            return this.f40270o;
-        }
-        return bitmap;
-    }
-
-    public final boolean c() {
-        if (this.f40267l != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void d() {
-        ArrayList arrayList = this.d;
-        int size = arrayList.size();
-        int i7 = 0;
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((ba) obj).f32175b.invalidate();
-        }
-        ArrayList arrayList2 = this.f40261e;
-        int size2 = arrayList2.size();
-        while (i7 < size2) {
-            Object obj2 = arrayList2.get(i7);
-            i7++;
-            ((Runnable) obj2).run();
-        }
-    }
-
-    public final void e() {
-        ca caVar = this.f40268m;
-        if (caVar != null) {
-            synchronized (caVar.f32511n) {
-                caVar.f32514q = false;
+            paint3.setColor(-14145495);
+            if (f10 > 0.0f) {
+                RectF rectF = org.telegram.messenger.g0.P;
+                rectF.set(bounds);
+                canvas.drawRoundRect(rectF, f10, f10, paint3);
+                return;
             }
-        }
-    }
-
-    public final void f(Bitmap bitmap, boolean z9) {
-        StringBuilder sb2 = new StringBuilder("");
-        int i7 = this.f40271p;
-        this.f40271p = i7 + 1;
-        sb2.append(i7);
-        this.f40270o = this.f40269n.s(bitmap, sb2.toString(), 0, 0, z9);
-    }
-
-    public final void g(fi.ha haVar, Object obj) {
-        this.f40265j = haVar;
-        this.f40266k = obj;
-        this.f40264i = -14737633;
-        if (obj != null && Build.VERSION.SDK_INT >= 31) {
-            RenderNode renderNode = (RenderNode) obj;
-            RenderNode renderNode2 = new RenderNode("blurRenderNode");
-            renderNode2.setRenderEffect(RenderEffect.createBlurEffect(org.telegram.messenger.g0.L(35.0f), org.telegram.messenger.g0.L(35.0f), Shader.TileMode.CLAMP));
-            renderNode2.setPosition(0, 0, renderNode.getWidth(), renderNode.getHeight());
-            RecordingCanvas beginRecording = renderNode2.beginRecording();
-            beginRecording.drawColor(-14737633);
-            beginRecording.drawRenderNode(renderNode);
-            renderNode2.endRecording();
-            this.f40267l = renderNode2;
+            canvas.drawRect(bounds, paint3);
             return;
         }
-        this.f40267l = null;
+        Path path = this.d;
+        if (drawable != null) {
+            canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
+            drawable.setBounds(bounds);
+            drawable.draw(canvas);
+            Rect rect = this.f41629c;
+            if (u9Var != null && u9Var.c()) {
+                canvas.save();
+                getPadding(rect);
+                RectF rectF2 = org.telegram.messenger.g0.P;
+                rectF2.set(bounds.left + rect.left, bounds.top + rect.top, bounds.right - rect.right, bounds.bottom - rect.bottom);
+                path.rewind();
+                path.addRoundRect(rectF2, f10, f10, Path.Direction.CW);
+                canvas.clipPath(path);
+                y9Var.b(canvas, false);
+                canvas.restore();
+            } else {
+                canvas.drawRect(bounds, paint2);
+            }
+            canvas.restore();
+            getPadding(rect);
+            RectF rectF3 = org.telegram.messenger.g0.P;
+            rectF3.set(bounds.left + rect.left, bounds.top + rect.top, bounds.right - rect.right, bounds.bottom - rect.bottom);
+            paint3.setColor(1711276032);
+            canvas.drawRoundRect(rectF3, f10, f10, paint3);
+            return;
+        }
+        int i7 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
+        if (i7 > 0) {
+            RectF rectF4 = org.telegram.messenger.g0.P;
+            rectF4.set(bounds);
+            if (u9Var != null && u9Var.c()) {
+                canvas.save();
+                path.rewind();
+                path.addRoundRect(rectF4, f10, f10, Path.Direction.CW);
+                canvas.clipPath(path);
+                y9Var.b(canvas, false);
+                canvas.restore();
+            } else {
+                canvas.drawRoundRect(rectF4, f10, f10, paint2);
+            }
+        } else if (u9Var != null && u9Var.c()) {
+            canvas.save();
+            canvas.clipRect(bounds);
+            y9Var.b(canvas, false);
+            canvas.restore();
+        } else {
+            canvas.drawRect(bounds, paint2);
+        }
+        paint3.setColor(1711276032);
+        if (i7 > 0) {
+            RectF rectF5 = org.telegram.messenger.g0.P;
+            rectF5.set(bounds);
+            canvas.drawRoundRect(rectF5, f10, f10, paint3);
+            return;
+        }
+        canvas.drawRect(bounds, paint3);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final boolean getPadding(Rect rect) {
+        Drawable drawable = this.f41632g;
+        if (drawable != null) {
+            return drawable.getPadding(rect);
+        }
+        rect.set(0, 0, 0, 0);
+        return true;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        this.f41627a = i7 / 255.0f;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

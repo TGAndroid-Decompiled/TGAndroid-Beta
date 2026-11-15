@@ -106,9 +106,9 @@ public class AccentedAtom extends Atom {
         return verticalBox;
     }
 
-    public AccentedAtom(Atom atom, Atom atom2, boolean z9) {
+    public AccentedAtom(Atom atom, Atom atom2, boolean z10) {
         this(atom, atom2);
-        this.changeSize = z9;
+        this.changeSize = z10;
     }
 
     public AccentedAtom(Atom atom, String str) {

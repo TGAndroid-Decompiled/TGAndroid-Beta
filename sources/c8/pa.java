@@ -1,30 +1,24 @@
 package c8;
+public enum pa implements u {
+    UNKNOWN_FORMAT(0),
+    NV16(1),
+    NV21(2),
+    YV12(3),
+    YUV_420_888(7),
+    JPEG(8),
+    BITMAP(4),
+    CM_SAMPLE_BUFFER_REF(5),
+    UI_IMAGE(6),
+    CV_PIXEL_BUFFER_REF(9);
+    
+    public final int f4630a;
 
-import java.util.Arrays;
-public final class pa {
-    public final oa f5808a;
-    public final Integer f5809b;
-
-    public pa(wf.b bVar) {
-        this.f5808a = (oa) bVar.f57666b;
-        this.f5809b = (Integer) bVar.f57667c;
+    pa(int i7) {
+        this.f4630a = i7;
     }
 
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof pa)) {
-            return false;
-        }
-        pa paVar = (pa) obj;
-        if (q6.m.k(this.f5808a, paVar.f5808a) && q6.m.k(this.f5809b, paVar.f5809b) && q6.m.k(null, null) && q6.m.k(null, null)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f5808a, this.f5809b, null, null});
+    @Override
+    public final int zza() {
+        return this.f4630a;
     }
 }

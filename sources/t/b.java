@@ -2,13 +2,12 @@ package t;
 
 import androidx.car.app.model.CarIcon;
 import androidx.core.graphics.drawable.IconCompat;
-import jg.g;
 public final class b {
-    public static final b f55355b = new b(new int[]{1, 2});
-    public final int[] f55356a;
+    public static final b f56937b = new b(new int[]{1, 2});
+    public final int[] f56938a;
 
     public b(int[] iArr) {
-        this.f55356a = iArr;
+        this.f56938a = iArr;
     }
 
     public final void a(CarIcon carIcon) {
@@ -16,7 +15,7 @@ public final class b {
             IconCompat icon = carIcon.getIcon();
             if (icon != null) {
                 int i7 = icon.i();
-                for (int i10 : this.f55356a) {
+                for (int i10 : this.f56938a) {
                     if (i7 == i10) {
                         if (i7 == 4 && !"content".equalsIgnoreCase(icon.j().getScheme())) {
                             throw new IllegalArgumentException("Unsupported URI scheme for: " + icon);
@@ -24,7 +23,7 @@ public final class b {
                         return;
                     }
                 }
-                throw new IllegalArgumentException(g.j(i7, "Custom icon type is not allowed: "));
+                throw new IllegalArgumentException(i5.c.i(i7, "Custom icon type is not allowed: "));
             }
             throw new IllegalStateException("Custom icon does not have a backing IconCompat");
         }

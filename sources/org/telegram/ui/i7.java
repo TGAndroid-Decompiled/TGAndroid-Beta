@@ -1,10 +1,10 @@
 package org.telegram.ui;
 public interface i7 {
-    void clear();
+    void N(s6 s6Var, ei.b bVar, boolean z10);
 
-    void d();
+    void clear();
 
     void dismiss();
 
-    void o(s6 s6Var, ci.b bVar, boolean z9);
+    void y();
 }

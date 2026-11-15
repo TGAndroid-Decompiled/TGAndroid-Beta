@@ -1,87 +1,85 @@
 package fi;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.SQLite.SQLiteDatabase;
-import org.telegram.SQLite.SQLitePreparedStatement;
-import org.telegram.messenger.yr;
-import org.telegram.tgnet.NativeByteBuffer;
-import org.telegram.tgnet.tl.TL_account;
+import c8.ka;
+import j$.util.Objects;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.ns;
+import org.telegram.messenger.voip.NativeInstance;
 public final class x0 implements Runnable {
-    public final int f13071a;
-    public final yr f13072b;
-    public final ArrayList f13073c;
+    public final int f12487a;
+    public final e1 f12488b;
 
-    public x0(yr yrVar, ArrayList arrayList, int i7) {
-        this.f13071a = i7;
-        this.f13072b = yrVar;
-        this.f13073c = arrayList;
+    public x0(e1 e1Var, int i7) {
+        this.f12487a = i7;
+        this.f12488b = e1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f13071a) {
+        switch (this.f12487a) {
             case 0:
-                yr yrVar = this.f13072b;
-                ArrayList arrayList = this.f13073c;
-                try {
-                    SQLiteDatabase sQLiteDatabase = yrVar.f26725b;
-                    if (sQLiteDatabase != null) {
-                        sQLiteDatabase.executeFast("DELETE FROM story_drafts WHERE id IN (" + TextUtils.join(", ", arrayList) + ")").stepThis().dispose();
-                        return;
-                    }
-                    return;
-                } catch (Exception e10) {
-                    org.telegram.messenger.a8.g(e10, true);
-                    return;
-                }
+                this.f12488b.p();
+                return;
             case 1:
-                yr yrVar2 = this.f13072b;
-                ArrayList arrayList2 = this.f13073c;
-                SQLitePreparedStatement sQLitePreparedStatement = null;
-                try {
-                    try {
-                        SQLiteDatabase sQLiteDatabase2 = yrVar2.f26725b;
-                        sQLiteDatabase2.executeFast("DELETE FROM business_links").stepThis().dispose();
-                        sQLitePreparedStatement = sQLiteDatabase2.executeFast("REPLACE INTO business_links VALUES(?, ?)");
-                        for (int i7 = 0; i7 < arrayList2.size(); i7++) {
-                            TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) arrayList2.get(i7);
-                            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tL_businessChatLink.getObjectSize());
-                            tL_businessChatLink.serializeToStream(nativeByteBuffer);
-                            sQLitePreparedStatement.requery();
-                            sQLitePreparedStatement.bindByteBuffer(1, nativeByteBuffer);
-                            sQLitePreparedStatement.bindInteger(2, i7);
-                            sQLitePreparedStatement.step();
-                        }
-                        if (sQLitePreparedStatement == null) {
-                            return;
-                        }
-                    } catch (Exception e11) {
-                        org.telegram.messenger.a8.g(e11, true);
-                        if (sQLitePreparedStatement == null) {
-                            return;
-                        }
-                    }
-                    sQLitePreparedStatement.dispose();
-                    return;
-                } catch (Throwable th2) {
-                    if (sQLitePreparedStatement != null) {
-                        sQLitePreparedStatement.dispose();
-                    }
-                    throw th2;
+                this.f12488b.q();
+                return;
+            case 2:
+                this.f12488b.t(true);
+                return;
+            case 3:
+                e1 e1Var = this.f12488b;
+                ns.f(e1Var.f11656e).k(176, Long.valueOf(e1Var.f11661w.f28061id));
+                e1Var.u(true);
+                return;
+            case 4:
+                this.f12488b.w();
+                return;
+            case 5:
+                this.f12488b.t(true);
+                return;
+            case 6:
+                e1 e1Var2 = this.f12488b;
+                if (e1Var2.F != null) {
+                    org.telegram.messenger.p5 p5Var = Utilities.f22416e;
+                    NativeInstance nativeInstance = e1Var2.F;
+                    Objects.requireNonNull(nativeInstance);
+                    p5Var.c(new org.telegram.messenger.voip.q0(nativeInstance, 3));
+                    e1Var2.N.clear();
+                    e1Var2.F = null;
                 }
+                e1Var2.k();
+                return;
+            case 7:
+                this.f12488b.t(true);
+                return;
+            case 8:
+                this.f12488b.t(true);
+                return;
+            case 9:
+                e1 e1Var3 = this.f12488b;
+                if (e1Var3.F != null) {
+                    org.telegram.messenger.p5 p5Var2 = Utilities.f22416e;
+                    NativeInstance nativeInstance2 = e1Var3.F;
+                    Objects.requireNonNull(nativeInstance2);
+                    p5Var2.c(new org.telegram.messenger.voip.q0(nativeInstance2, 3));
+                    e1Var3.N.clear();
+                    e1Var3.F = null;
+                }
+                e1Var3.k();
+                return;
+            case 10:
+                this.f12488b.p();
+                return;
+            case 11:
+                this.f12488b.q();
+                return;
             default:
-                yr yrVar3 = this.f13072b;
-                ArrayList arrayList3 = this.f13073c;
-                try {
-                    SQLiteDatabase sQLiteDatabase3 = yrVar3.f26725b;
-                    String join = TextUtils.join(", ", arrayList3);
-                    sQLiteDatabase3.executeFast("DELETE FROM quick_replies_messages WHERE topic_id IN (" + join + ")").stepThis().dispose();
-                    return;
-                } catch (Exception e12) {
-                    org.telegram.messenger.a8.g(e12, true);
+                e1 e1Var4 = this.f12488b;
+                if (!e1Var4.f11658n) {
+                    ka.b(new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, new ai.f0(e1Var4, 14));
                     return;
                 }
+                return;
         }
     }
 }

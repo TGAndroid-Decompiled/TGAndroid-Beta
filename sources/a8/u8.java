@@ -1,17 +1,24 @@
 package a8;
-public abstract class u8 {
-    public static int a(int i7, int i10) {
-        if (i10 >= 0) {
-            int i11 = i7 + (i7 >> 1) + 1;
-            if (i11 < i10) {
-                int highestOneBit = Integer.highestOneBit(i10 - 1);
-                i11 = highestOneBit + highestOneBit;
-            }
-            if (i11 < 0) {
-                return Integer.MAX_VALUE;
-            }
-            return i11;
+
+import java.util.Arrays;
+public final class u8 {
+    public final Float f656a;
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        throw new AssertionError("cannot store more than MAX_VALUE elements");
+        if (!(obj instanceof u8)) {
+            return false;
+        }
+        u8 u8Var = (u8) obj;
+        if (q6.m.k(null, null) && q6.m.k(this.f656a, u8Var.f656a) && q6.m.k(null, null)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{null, this.f656a, null});
     }
 }

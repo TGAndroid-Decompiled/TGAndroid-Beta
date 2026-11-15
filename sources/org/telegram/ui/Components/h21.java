@@ -1,10 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class h21 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
+import android.app.Activity;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public final class h21 extends p21 {
+    public final org.telegram.ui.uf U1;
+
+    public h21(Activity activity, String str, String str2, TLRPC.InputPeer inputPeer, int i7, TL_iv.RichMessage richMessage, org.telegram.ui.uf ufVar) {
+        super(activity, str, str2, null, inputPeer, i7, false, richMessage);
+        this.U1 = ufVar;
+    }
+
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f22567q.y * 0.33f), View.MeasureSpec.getSize(i10)), 1073741824));
+    public final void dismiss() {
+        super.dismiss();
+        this.U1.run();
     }
 }

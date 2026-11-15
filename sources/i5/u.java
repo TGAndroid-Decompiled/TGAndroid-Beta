@@ -1,49 +1,40 @@
 package i5;
 
-import a8.p0;
-import c8.jb;
+import c8.lb;
 import java.nio.ByteBuffer;
-import y7.i6;
-public final class u extends com.googlecode.mp4parser.c {
-    public static final i6 f15336f;
-    public static final i6 h;
-    public long[] f15337e;
+import org.telegram.ui.Components.ff;
+public final class u extends d {
+    public static final ff h;
+    public static final ff f15790n;
+    public long[] f15791f;
 
     static {
-        ze.a aVar = new ze.a(u.class, "SyncSampleBox.java");
-        aVar.e(aVar.d("getSampleNumber", "com.coremedia.iso.boxes.SyncSampleBox", "", "", "[J"));
-        f15336f = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SyncSampleBox", "", "", "java.lang.String"));
-        h = aVar.e(aVar.d("setSampleNumber", "com.coremedia.iso.boxes.SyncSampleBox", "[J", "sampleNumber", "void"));
+        ze.a aVar = new ze.a(u.class, "StaticChunkOffsetBox.java");
+        h = aVar.e(aVar.d("getChunkOffsets", "com.coremedia.iso.boxes.StaticChunkOffsetBox", "", "", "[J"));
+        f15790n = aVar.e(aVar.d("setChunkOffsets", "com.coremedia.iso.boxes.StaticChunkOffsetBox", "[J", "chunkOffsets", "void"));
     }
 
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
-        int a10 = jb.a(h5.b.i(byteBuffer));
-        this.f15337e = new long[a10];
+        int a10 = lb.a(h5.b.i(byteBuffer));
+        this.f15791f = new long[a10];
         for (int i7 = 0; i7 < a10; i7++) {
-            this.f15337e[i7] = h5.b.i(byteBuffer);
+            this.f15791f[i7] = h5.b.i(byteBuffer);
         }
     }
 
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
         i(byteBuffer);
-        byteBuffer.putInt(this.f15337e.length);
-        for (long j3 : this.f15337e) {
+        byteBuffer.putInt(this.f15791f.length);
+        for (long j3 : this.f15791f) {
             byteBuffer.putInt((int) j3);
         }
     }
 
     @Override
     public final long getContentSize() {
-        return (this.f15337e.length * 4) + 8;
-    }
-
-    public final String toString() {
-        ui.e b10 = ze.a.b(f15336f, this, this);
-        com.googlecode.mp4parser.g.a().getClass();
-        com.googlecode.mp4parser.g.b(b10);
-        return p0.n(this.f15337e.length, "]", new StringBuilder("SyncSampleBox[entryCount="));
+        return (this.f15791f.length * 4) + 8;
     }
 }

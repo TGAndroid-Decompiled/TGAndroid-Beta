@@ -1,28 +1,28 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class c7 implements org.telegram.ui.Components.bj0 {
-    public final org.telegram.ui.Components.pj0 f44266a;
-    public final d7 f44267b;
+public final class c7 implements org.telegram.ui.Components.gj0 {
+    public final org.telegram.ui.Components.uj0 f46039a;
+    public final d7 f46040b;
 
-    public c7(d7 d7Var, org.telegram.ui.Components.pj0 pj0Var) {
-        this.f44267b = d7Var;
-        this.f44266a = pj0Var;
+    public c7(d7 d7Var, org.telegram.ui.Components.uj0 uj0Var) {
+        this.f46040b = d7Var;
+        this.f46039a = uj0Var;
     }
 
     @Override
-    public final void c(int i7, View view) {
-        t7 t7Var = this.f44267b.f44915f;
-        org.telegram.ui.Components.pj0 pj0Var = this.f44266a;
-        f7 f7Var = (f7) pj0Var.getAdapter();
-        m7 m7Var = (m7) f7Var.f45631e.get(i7);
-        if (view instanceof org.telegram.ui.Cells.o7) {
-            t7.a(t7Var, m7Var, (o7) f7Var, pj0Var);
+    public final void b(int i7, View view) {
+        t7 t7Var = this.f46040b.f46326f;
+        org.telegram.ui.Components.uj0 uj0Var = this.f46039a;
+        f7 f7Var = (f7) uj0Var.getAdapter();
+        m7 m7Var = (m7) f7Var.f47020e.get(i7);
+        if (view instanceof org.telegram.ui.Cells.n7) {
+            t7.a(t7Var, m7Var, (o7) f7Var, uj0Var);
             return;
         }
-        i7 i7Var = t7Var.F;
+        i7 i7Var = t7Var.G;
         if (i7Var != null) {
-            i7Var.o(m7Var.f47808c, m7Var.d, false);
+            i7Var.N(m7Var.f49146c, m7Var.d, false);
         }
     }
 }

@@ -1,15 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-import android.view.View;
-public final class a6 extends Paint {
-    public final org.telegram.ui.ActionBar.h6 f31716a;
-    public final y4 f31717b;
+import java.util.ArrayList;
+public final class a6 extends r1.e {
+    public final int f32865a;
+    public final Object f32866b;
 
-    public a6(View view, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(3);
-        wq wqVar = wq.h;
-        this.f31716a = h6Var;
-        this.f31717b = new y4(view, 320L, wqVar);
+    public a6(Object obj, int i7) {
+        this.f32865a = i7;
+        this.f32866b = obj;
+    }
+
+    @Override
+    public final float a(Object obj) {
+        switch (this.f32865a) {
+            case 0:
+                Integer num = (Integer) obj;
+                int intValue = num.intValue();
+                ArrayList arrayList = ((AnimatedPhoneNumberEditText) this.f32866b).W1;
+                if (intValue < arrayList.size()) {
+                    return ((Float) arrayList.get(num.intValue())).floatValue() * 100.0f;
+                }
+                return 0.0f;
+            default:
+                return ((r1.f) this.f32866b).f55730a;
+        }
+    }
+
+    @Override
+    public final void b(Object obj, float f10) {
+        switch (this.f32865a) {
+            case 0:
+                Integer num = (Integer) obj;
+                int intValue = num.intValue();
+                AnimatedPhoneNumberEditText animatedPhoneNumberEditText = (AnimatedPhoneNumberEditText) this.f32866b;
+                ArrayList arrayList = animatedPhoneNumberEditText.W1;
+                if (intValue < arrayList.size()) {
+                    arrayList.set(num.intValue(), Float.valueOf(f10 / 100.0f));
+                    animatedPhoneNumberEditText.invalidate();
+                    return;
+                }
+                return;
+            default:
+                ((r1.f) this.f32866b).f55730a = f10;
+                return;
+        }
     }
 }

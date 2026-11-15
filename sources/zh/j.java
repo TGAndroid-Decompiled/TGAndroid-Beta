@@ -2,125 +2,140 @@ package zh;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.Point;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
-import bi.dd;
-import c8.ha;
-import org.telegram.messenger.ls;
-import org.telegram.messenger.qs;
-import org.telegram.messenger.t10;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.i6;
-import org.telegram.ui.Components.k9;
-import org.telegram.ui.Components.v8;
-import org.telegram.ui.Components.wp;
-public final class j extends LinearLayout implements ls {
-    public final k9 f60406a;
-    public final i6 f60407b;
-    public final i6 f60408c;
-    public final i6 d;
-    public final wp[] f60409e;
-    public boolean f60410f;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import org.telegram.messenger.g0;
+import org.telegram.messenger.i20;
+import org.telegram.messenger.k5;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+import org.telegram.ui.Cells.x9;
+import org.telegram.ui.Components.vf0;
+public final class j extends ViewGroup {
+    public final GestureDetector f61427a;
+    public final Path f61428b;
+    public final RectF f61429c;
+    public boolean d;
+    public final k f61430e;
 
-    public j(Context context, h6 h6Var) {
+    public j(k kVar, Context context) {
         super(context);
-        this.f60409e = new wp[1];
-        setOrientation(0);
-        i6 i6Var = new i6(context, false, false, false);
-        this.f60408c = i6Var;
-        int i7 = m6.G6;
-        t6.Y(i6Var, i7, h6Var);
-        i6Var.setTextSize(org.telegram.messenger.g0.L(15.0f));
-        i6Var.setPadding(org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f), 0);
-        i6Var.setEllipsizeByGradient(true);
-        i6 i6Var2 = new i6(context, false, false, false);
-        this.d = i6Var2;
-        t6.Y(i6Var2, m6.f28282y6, h6Var);
-        i6Var2.setTextSize(org.telegram.messenger.g0.L(15.0f));
-        k9 k9Var = new k9(context);
-        this.f60406a = k9Var;
-        i6 i6Var3 = new i6(context, false, false, false);
-        this.f60407b = i6Var3;
-        i6Var3.setTextSize(org.telegram.messenger.g0.L(15.0f));
-        i6Var3.setPadding(org.telegram.messenger.g0.L(20.0f), 0, 0, 0);
-        t6.Y(i6Var3, i7, h6Var);
-        i6Var3.setTypeface(org.telegram.messenger.g0.o());
-        i6Var3.setGravity(17);
-        addView(i6Var3, ha.p(66, -2, 0.0f, 16));
-        addView(k9Var, ha.p(32, 32, 0.0f, 16));
-        addView(i6Var, ha.p(0, -2, 1.0f, 16));
-        addView(i6Var2, ha.q(-2, -2, 0.0f, 16, 0, 0, 20, 0));
-    }
-
-    public final void a(long j3, boolean z9) {
-        this.d.c(dd.a1(false, jg.g.m((int) j3, ',', new StringBuilder("⭐️")), 0.78f, this.f60409e), z9, true);
-    }
-
-    public final void b(int i7, boolean z9, boolean z10) {
-        i6 i6Var = this.f60407b;
-        if (z9 && i7 <= 3) {
-            if (i7 == 1) {
-                i6Var.c(org.telegram.messenger.i6.o("🥇", i6Var.getPaint().getFontMetricsInt(), 20, null), z10, true);
-                return;
-            } else if (i7 == 2) {
-                i6Var.c(org.telegram.messenger.i6.o("🥈", i6Var.getPaint().getFontMetricsInt(), 20, null), z10, true);
-                return;
-            } else if (i7 == 3) {
-                i6Var.c(org.telegram.messenger.i6.o("🥉", i6Var.getPaint().getFontMetricsInt(), 20, null), z10, true);
-                return;
-            } else {
-                return;
-            }
-        }
-        if (i7 >= 10000) {
-            i6Var.setTextSize(org.telegram.messenger.g0.L(12.0f));
-        } else if (i7 >= 1000) {
-            i6Var.setTextSize(org.telegram.messenger.g0.L(14.0f));
-        } else {
-            i6Var.setTextSize(org.telegram.messenger.g0.L(15.0f));
-        }
-        i6Var.c(Integer.toString(i7), z10, true);
-    }
-
-    public final void c(TLRPC.User user) {
-        v8 v8Var = new v8((h6) null);
-        v8Var.r(user);
-        k9 k9Var = this.f60406a;
-        k9Var.e(user, v8Var);
-        k9Var.setRoundRadius(org.telegram.messenger.g0.L(16.0f));
-        this.f60408c.setText(t10.p(user));
-    }
-
-    @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        this.f60407b.invalidate();
+        this.f61430e = kVar;
+        this.f61427a = new GestureDetector(getContext(), new x9(2, this));
+        this.f61428b = new Path();
+        this.f61429c = new RectF();
+        this.d = true;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipPath(this.f61428b);
         super.dispatchDraw(canvas);
-        if (this.f60410f) {
-            canvas.drawLine(org.telegram.messenger.g0.L(112.0f), getMeasuredHeight() - 1, getMeasuredWidth() - org.telegram.messenger.g0.L(16.0f), getMeasuredHeight(), m6.f28013k0);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        this.f61430e.f61433c.draw(canvas);
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        int height = getHeight();
+        k kVar = this.f61430e;
+        int i13 = kVar.f61431a;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = kVar.f61435f;
+        int i14 = kVar.f61432b;
+        int d = (height - kVar.d()) / 2;
+        int width = getWidth();
+        vf0 vf0Var = kVar.h;
+        int measuredWidth = (width - vf0Var.getMeasuredWidth()) / 2;
+        vf0Var.layout(measuredWidth, d, vf0Var.getMeasuredWidth() + measuredWidth, vf0Var.getMeasuredHeight() + d);
+        i iVar = kVar.f61436n;
+        iVar.layout(vf0Var.getLeft(), vf0Var.getTop(), vf0Var.getRight(), iVar.getMeasuredHeight() + vf0Var.getTop());
+        int C = k5.C(12.0f, vf0Var.getMeasuredHeight(), d);
+        TextView textView = kVar.d;
+        textView.layout(g0.L(16.0f) + vf0Var.getLeft(), C, vf0Var.getRight() - g0.L(16.0f), textView.getMeasuredHeight() + C);
+        int measuredHeight = textView.getMeasuredHeight() + C;
+        TextView textView2 = kVar.f61434e;
+        int i15 = 8;
+        if (textView2.getVisibility() != 8) {
+            int L = g0.L(4.0f) + measuredHeight;
+            textView2.layout(textView.getLeft(), L, textView.getRight(), textView2.getMeasuredHeight() + L);
+            measuredHeight = textView2.getMeasuredHeight() + L;
         }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        qs.e().c(this, qs.f25022i4);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        qs.e().n(this, qs.f25022i4);
+        int L2 = g0.L(12.0f) + measuredHeight;
+        kVar.f61433c.setBounds(vf0Var.getLeft() - i14, vf0Var.getTop() - i13, vf0Var.getRight() + i14, i13 + L2);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.layout((vf0Var.getRight() - actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredWidth()) + i14, L2, vf0Var.getRight() + i14, actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredHeight() + L2);
+        if (actionBarPopupWindow$ActionBarPopupWindowLayout.getBottom() < i12) {
+            i15 = 0;
+        }
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setVisibility(i15);
+        int L3 = g0.L(6.0f);
+        float top = (L3 * 2) + vf0Var.getTop();
+        RectF rectF = this.f61429c;
+        rectF.set(vf0Var.getLeft(), vf0Var.getTop(), vf0Var.getRight(), top);
+        Path path = this.f61428b;
+        path.reset();
+        float f10 = L3;
+        Path.Direction direction = Path.Direction.CW;
+        path.addRoundRect(rectF, f10, f10, direction);
+        rectF.set(i7, vf0Var.getTop() + L3, i11, i12);
+        path.addRect(rectF, direction);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(52.0f), 1073741824));
+        setWillNotDraw(false);
+        super.onMeasure(i7, i10);
+        int A = i20.A(12.0f, 2, Math.min(Math.min(getMeasuredWidth(), getMeasuredHeight()), (int) (getMeasuredHeight() * 0.66d)));
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(A, Integer.MIN_VALUE);
+        k kVar = this.f61430e;
+        vf0 vf0Var = kVar.h;
+        vf0Var.measure(makeMeasureSpec, makeMeasureSpec);
+        kVar.f61436n.measure(makeMeasureSpec, makeMeasureSpec);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(A - (g0.L(16.0f) * 2), 1073741824);
+        kVar.d.measure(makeMeasureSpec2, View.MeasureSpec.makeMeasureSpec(0, 0));
+        kVar.f61434e.measure(makeMeasureSpec2, View.MeasureSpec.makeMeasureSpec(0, 0));
+        kVar.f61435f.measure(View.MeasureSpec.makeMeasureSpec((kVar.f61432b * 2) + vf0Var.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(0, 0));
+    }
+
+    @Override
+    public final void onSizeChanged(int i7, int i10, int i11, int i12) {
+        super.onSizeChanged(i7, i10, i11, i12);
+        Point point = g0.f23609q;
+        int i13 = point.x;
+        int i14 = point.y;
+        k kVar = this.f61430e;
+        if (i13 > i14) {
+            k.c(kVar);
+        }
+        if (i7 != i11 && i10 != i12) {
+            if (!this.d) {
+                kVar.f();
+            }
+            this.d = false;
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return this.f61427a.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.f61430e.f61433c && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

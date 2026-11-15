@@ -1,35 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class aa0 extends org.telegram.ui.Cells.q1 {
-    public final org.telegram.ui.x7 f31810ld;
+import android.view.View;
+public final class aa0 implements gj0 {
+    public final da0 f32939a;
 
-    public aa0(org.telegram.ui.x7 x7Var, Context context, int i7, h6.m mVar, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, i7, false, mVar, h6Var);
-        this.f31810ld = x7Var;
+    public aa0(da0 da0Var) {
+        this.f32939a = da0Var;
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        ((ca0) this.f31810ld.d).f32526f.invalidate();
-    }
-
-    @Override
-    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        super.onLayout(z9, i7, i10, i11, i12);
-        ca0.b((ca0) this.f31810ld.d, this);
-    }
-
-    @Override
-    public final void w3(org.telegram.messenger.ij ijVar, org.telegram.messenger.dj djVar, boolean z9, boolean z10, boolean z11, boolean z12) {
-        super.w3(ijVar, djVar, z9, z10, z11, z12);
-        ca0.b((ca0) this.f31810ld.d, this);
-    }
-
-    @Override
-    public final void invalidate(int i7, int i10, int i11, int i12) {
-        super.invalidate(i7, i10, i11, i12);
-        ((ca0) this.f31810ld.d).f32526f.invalidate();
+    public final void b(int i7, View view) {
+        da0 da0Var = this.f32939a;
+        if (da0Var.f33894a == 1 && da0Var.f33904r.f24404f.size() > 1) {
+            int e12 = ((org.telegram.messenger.gj) da0Var.f33904r.f24404f.get(i7)).e1();
+            boolean z10 = da0Var.f33904r.f24405g.get(e12, false);
+            boolean z11 = !z10;
+            if (da0Var.f33904r.f24405g.size() != 1 || !z10) {
+                if (z10) {
+                    da0Var.f33904r.f24405g.delete(e12);
+                } else {
+                    da0Var.f33904r.f24405g.put(e12, z11);
+                }
+                if (view instanceof org.telegram.ui.Cells.q1) {
+                    ((org.telegram.ui.Cells.q1) view).m3(z11, z11, true);
+                }
+                da0Var.l(true);
+            }
+        }
     }
 }

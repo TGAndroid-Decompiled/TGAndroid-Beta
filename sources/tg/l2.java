@@ -1,121 +1,45 @@
 package tg;
 
-import android.content.Context;
-import android.graphics.PointF;
-import android.view.ViewGroup;
-import c8.ha;
-import fi.sb;
-import org.telegram.ui.Components.ki0;
-public final class l2 extends j {
-    public final m0 f55834q0;
-    public boolean f55835r0;
-    public int f55836s0;
-    public int f55837t0;
-    public final sb f55838u0;
+import android.graphics.Insets;
+import android.graphics.Rect;
+import android.os.Build;
+import android.view.View;
+import android.view.WindowInsets;
+import org.telegram.ui.Components.m01;
+public final class l2 implements View.OnApplyWindowInsetsListener {
+    public final m2 f57419a;
 
-    public l2(Context context, PointF pointF, int i7, sb sbVar, float f10, int i10) {
-        super(context, pointF);
-        m0 m0Var = new m0(context, f10);
-        this.f55834q0 = m0Var;
-        m0Var.setMaxWidth(i10);
-        m0Var.e(0, this.f55836s0);
-        this.f55838u0 = sbVar;
-        String str = sbVar.f12823c;
-        String a10 = sbVar.a();
-        m0Var.d(i7, str);
-        m0Var.setText(a10);
-        m();
-        addView(m0Var, ha.e(-2, -2, 51));
-        setClipChildren(false);
-        setClipToPadding(false);
-        k();
+    public l2(m2 m2Var) {
+        this.f57419a = m2Var;
     }
 
     @Override
-    public final i a() {
-        return new j0(this, getContext());
-    }
-
-    public int getColor() {
-        return this.f55836s0;
-    }
-
-    @Override
-    public float getMaxScale() {
-        return 1.5f;
-    }
-
-    @Override
-    public ki0 getSelectionBounds() {
-        ViewGroup viewGroup = (ViewGroup) getParent();
-        if (viewGroup == null) {
-            return new Object();
+    public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+        WindowInsets windowInsets2;
+        int i7;
+        int i10;
+        int i11;
+        int i12;
+        m2 m2Var = this.f57419a;
+        m01 m01Var = m2Var.f57445b;
+        Rect rect = m2Var.h;
+        int i13 = Build.VERSION.SDK_INT;
+        if (i13 >= 30) {
+            Insets insets = windowInsets.getInsets(647);
+            i7 = insets.left;
+            i10 = insets.top;
+            i11 = insets.right;
+            i12 = insets.bottom;
+            rect.set(i7, i10, i11, i12);
+        } else {
+            rect.set(windowInsets.getStableInsetLeft(), windowInsets.getStableInsetTop(), windowInsets.getStableInsetRight(), windowInsets.getStableInsetBottom());
         }
-        float scaleX = viewGroup.getScaleX();
-        float scale = getScale();
-        float L = (org.telegram.messenger.g0.L(64.0f) / scaleX) + (scale * getMeasuredWidth());
-        float scale2 = getScale();
-        float L2 = (org.telegram.messenger.g0.L(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
-        float x10 = org.telegram.messenger.camera.q.x(L, 2.0f, getPositionX(), scaleX);
-        return new ki0(x10, org.telegram.messenger.camera.q.x(L2, 2.0f, getPositionY(), scaleX), ((L * scaleX) + x10) - x10, L2 * scaleX);
-    }
-
-    @Override
-    public float getStickyPaddingBottom() {
-        return this.f55834q0.J;
-    }
-
-    @Override
-    public float getStickyPaddingLeft() {
-        return this.f55834q0.I;
-    }
-
-    @Override
-    public float getStickyPaddingRight() {
-        return this.f55834q0.I;
-    }
-
-    @Override
-    public float getStickyPaddingTop() {
-        return this.f55834q0.J;
-    }
-
-    public int getType() {
-        return this.f55837t0;
-    }
-
-    public int getTypesCount() {
-        return this.f55834q0.getTypesCount() - (!this.f55835r0 ? 1 : 0);
-    }
-
-    @Override
-    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        super.onLayout(z9, i7, i10, i11, i12);
-        k();
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, i10);
-        k();
-    }
-
-    public void setColor(int i7) {
-        this.f55835r0 = true;
-        this.f55836s0 = i7;
-    }
-
-    @Override
-    public void setIsVideo(boolean z9) {
-        this.f55834q0.setIsVideo(true);
-    }
-
-    public void setMaxWidth(int i7) {
-        this.f55834q0.setMaxWidth(i7);
-    }
-
-    public void setType(int i7) {
-        this.f55837t0 = i7;
-        this.f55834q0.e(i7, this.f55836s0);
+        m01Var.setPadding(rect.left, rect.top, rect.right, rect.bottom);
+        m01Var.requestLayout();
+        if (i13 >= 30) {
+            windowInsets2 = WindowInsets.CONSUMED;
+            return windowInsets2;
+        }
+        return windowInsets.consumeSystemWindowInsets();
     }
 }

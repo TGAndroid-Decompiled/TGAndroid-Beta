@@ -5,27 +5,26 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import org.telegram.ui.Components.m;
+import org.telegram.ui.Components.cf;
 public final class h implements Iterable {
-    public final d f55518a;
-    public final c f55520c;
+    public final d f57101a;
+    public final c f57103c;
     public final g d;
-    public boolean f55522f;
-    public final ArrayList f55519b = new ArrayList();
-    public final ArrayList f55521e = new ArrayList();
+    public boolean f57105f;
+    public final ArrayList f57102b = new ArrayList();
+    public final ArrayList f57104e = new ArrayList();
 
     public h(d dVar, Interpolator interpolator, long j3) {
-        this.f55518a = dVar;
+        this.f57101a = dVar;
         this.d = new g(this, dVar);
         if (interpolator != null && j3 > 0) {
-            this.f55520c = new c(0, new m(this), interpolator, j3);
+            this.f57103c = new c(0, new cf(this), interpolator, j3);
         } else {
-            this.f55520c = null;
+            this.f57103c = null;
         }
     }
 
     public final void f(float f10) {
-        boolean z9;
         boolean z10;
         boolean z11;
         boolean z12;
@@ -34,77 +33,78 @@ public final class h implements Iterable {
         boolean z15;
         boolean z16;
         boolean z17;
+        boolean z18;
         g gVar = this.d;
-        boolean a10 = gVar.f55513b.a(f10);
+        boolean a10 = gVar.f57096b.a(f10);
         if (!gVar.d.a(f10) && !a10) {
-            z9 = false;
-        } else {
-            z9 = true;
-        }
-        if (!gVar.f55515e.a(f10) && !z9) {
             z10 = false;
         } else {
             z10 = true;
         }
-        if (!gVar.f55516f.a(f10) && !z10) {
+        if (!gVar.f57098e.a(f10) && !z10) {
             z11 = false;
         } else {
             z11 = true;
         }
-        if (!gVar.f55517g.a(f10) && !z11) {
+        if (!gVar.f57099f.a(f10) && !z11) {
             z12 = false;
         } else {
             z12 = true;
         }
-        if (!gVar.f55514c.a(f10) && !z12) {
+        if (!gVar.f57100g.a(f10) && !z12) {
             z13 = false;
         } else {
             z13 = true;
         }
-        if (!gVar.f55512a.B(f10) && !z13) {
+        if (!gVar.f57097c.a(f10) && !z13) {
             z14 = false;
         } else {
             z14 = true;
         }
-        ArrayList arrayList = this.f55519b;
+        if (!gVar.f57095a.s(f10) && !z14) {
+            z15 = false;
+        } else {
+            z15 = true;
+        }
+        ArrayList arrayList = this.f57102b;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
             e eVar = (e) obj;
-            boolean a11 = eVar.f55509c.a(f10);
+            boolean a11 = eVar.f57092c.a(f10);
             if (!eVar.d.a(f10) && !a11) {
-                z15 = false;
-            } else {
-                z15 = true;
-            }
-            if (!eVar.f55510e.a(f10) && !z15) {
                 z16 = false;
             } else {
                 z16 = true;
             }
-            if (!eVar.f55511f.a(f10) && !z16) {
+            if (!eVar.f57093e.a(f10) && !z16) {
                 z17 = false;
             } else {
                 z17 = true;
             }
-            Object obj2 = eVar.f55507a;
+            if (!eVar.f57094f.a(f10) && !z17) {
+                z18 = false;
+            } else {
+                z18 = true;
+            }
+            Object obj2 = eVar.f57090a;
             if (obj2 instanceof l) {
-                if (!((l) obj2).a(f10) && !z17) {
-                    z17 = false;
+                if (!((l) obj2).a(f10) && !z18) {
+                    z18 = false;
                 } else {
-                    z17 = true;
+                    z18 = true;
                 }
             }
-            if (!z17 && !z14) {
-                z14 = false;
+            if (!z18 && !z15) {
+                z15 = false;
             } else {
-                z14 = true;
+                z15 = true;
             }
         }
-        if (z14) {
-            this.f55518a.Y0();
+        if (z15) {
+            this.f57101a.b0();
             if (f10 == 1.0f) {
                 l(true);
             }
@@ -112,18 +112,18 @@ public final class h implements Iterable {
     }
 
     public final e i(int i7) {
-        return (e) this.f55519b.get(i7);
+        return (e) this.f57102b.get(i7);
     }
 
     @Override
     public final Iterator iterator() {
-        return this.f55519b.iterator();
+        return this.f57102b.iterator();
     }
 
-    public final void j(boolean z9) {
+    public final void j(boolean z10) {
         ArrayList arrayList;
-        boolean z10;
-        ArrayList arrayList2 = this.f55521e;
+        boolean z11;
+        ArrayList arrayList2 = this.f57104e;
         int size = arrayList2.size();
         int i7 = 0;
         int i10 = 0;
@@ -134,23 +134,23 @@ public final class h implements Iterable {
             Object obj = arrayList2.get(i13);
             i13++;
             e eVar = (e) obj;
-            Object obj2 = eVar.f55507a;
-            k kVar = eVar.f55511f;
-            l lVar = eVar.f55510e;
+            Object obj2 = eVar.f57090a;
+            k kVar = eVar.f57094f;
+            l lVar = eVar.f57093e;
             if (obj2 instanceof f) {
                 f fVar = (f) obj2;
-                if (eVar.f55508b == 0) {
-                    z10 = true;
+                if (eVar.f57091b == 0) {
+                    z11 = true;
                 } else {
-                    z10 = false;
+                    z11 = false;
                 }
                 arrayList2.size();
-                int b10 = fVar.b(z10);
+                int b10 = fVar.b(z11);
                 int width = fVar.getWidth();
                 int height = fVar.getHeight();
                 int i14 = b10 + width + i7;
                 int i15 = i10 + b10 + height;
-                if (z9 && eVar.c() > 0.0f) {
+                if (z10 && eVar.c() > 0.0f) {
                     float f10 = i7;
                     float f11 = i10;
                     float f12 = i14;
@@ -163,7 +163,7 @@ public final class h implements Iterable {
                     float f14 = b10;
                     if (kVar.b(f14)) {
                         k();
-                        kVar.f55526c = f14;
+                        kVar.f57109c = f14;
                     }
                 } else {
                     arrayList = arrayList2;
@@ -179,14 +179,14 @@ public final class h implements Iterable {
             }
             arrayList2 = arrayList;
         }
-        ArrayList arrayList3 = this.f55519b;
-        if (z9) {
+        ArrayList arrayList3 = this.f57102b;
+        if (z10) {
             int size2 = arrayList3.size();
             int i16 = 0;
             while (i16 < size2) {
                 Object obj3 = arrayList3.get(i16);
                 i16++;
-                Object obj4 = ((e) obj3).f55507a;
+                Object obj4 = ((e) obj3).f57090a;
             }
         }
         int size3 = arrayList3.size();
@@ -194,53 +194,53 @@ public final class h implements Iterable {
         while (i17 < size3) {
             Object obj5 = arrayList3.get(i17);
             i17++;
-            Object obj6 = ((e) obj5).f55507a;
+            Object obj6 = ((e) obj5).f57090a;
         }
         g gVar = this.d;
-        if (z9) {
-            k kVar2 = gVar.f55516f;
-            d dVar = gVar.f55512a;
-            k kVar3 = gVar.f55515e;
+        if (z10) {
+            k kVar2 = gVar.f57099f;
+            d dVar = gVar.f57095a;
+            k kVar3 = gVar.f57098e;
             k kVar4 = gVar.d;
-            k kVar5 = gVar.f55517g;
+            k kVar5 = gVar.f57100g;
             float f15 = i7;
             if (kVar2.b(f15)) {
                 k();
-                gVar.f55516f.f55526c = f15;
+                gVar.f57099f.f57109c = f15;
             }
             float f16 = i10;
             if (kVar5.b(f16)) {
                 k();
-                kVar5.f55526c = f16;
+                kVar5.f57109c = f16;
             }
             float f17 = i11;
             if (kVar4.b(f17)) {
                 k();
-                kVar4.f55526c = f17;
+                kVar4.f57109c = f17;
             }
             float f18 = i12;
             if (kVar3.b(f18)) {
                 k();
-                kVar3.f55526c = f18;
+                kVar3.f57109c = f18;
             }
-            if (dVar.A()) {
+            if (dVar.q()) {
                 k();
-                dVar.D();
+                dVar.v();
                 return;
             }
             return;
         }
-        gVar.f55516f.d(i7);
-        gVar.f55517g.d(i10);
+        gVar.f57099f.d(i7);
+        gVar.f57100g.d(i10);
         gVar.d.d(i11);
-        gVar.f55515e.d(i12);
-        gVar.f55512a.a();
+        gVar.f57098e.d(i12);
+        gVar.f57095a.a();
     }
 
     public final void k() {
-        if (!this.f55522f) {
-            this.f55522f = true;
-            c cVar = this.f55520c;
+        if (!this.f57105f) {
+            this.f57105f = true;
+            c cVar = this.f57103c;
             if (cVar != null) {
                 cVar.b();
                 l(false);
@@ -251,46 +251,46 @@ public final class h implements Iterable {
         }
     }
 
-    public final void l(boolean z9) {
-        ArrayList arrayList = this.f55519b;
-        boolean z10 = false;
+    public final void l(boolean z10) {
+        ArrayList arrayList = this.f57102b;
+        boolean z11 = false;
         for (int size = arrayList.size() - 1; size >= 0; size--) {
             e eVar = (e) arrayList.get(size);
-            eVar.a(z9);
+            eVar.a(z10);
             if (eVar.c() == 0.0f && eVar.h) {
                 arrayList.remove(size);
-                Object obj = eVar.f55507a;
+                Object obj = eVar.f57090a;
                 if (obj instanceof we.a) {
                     ((we.a) obj).a();
                 }
-                z10 = true;
+                z11 = true;
             }
         }
-        if (z10) {
+        if (z11) {
             arrayList.trimToSize();
         }
         g gVar = this.d;
-        gVar.f55513b.c(z9);
-        gVar.d.c(z9);
-        gVar.f55515e.c(z9);
-        gVar.f55516f.c(z9);
-        gVar.f55517g.c(z9);
-        gVar.f55514c.c(z9);
-        gVar.f55512a.l(z9);
+        gVar.f57096b.c(z10);
+        gVar.d.c(z10);
+        gVar.f57098e.c(z10);
+        gVar.f57099f.c(z10);
+        gVar.f57100g.c(z10);
+        gVar.f57097c.c(z10);
+        gVar.f57095a.n(z10);
     }
 
-    public final void m(List list, boolean z9) {
+    public final void m(List list, boolean z10) {
         boolean isEmpty;
-        boolean z10;
         boolean z11;
-        int i7;
         boolean z12;
+        int i7;
+        boolean z13;
         int i10;
-        c cVar = this.f55520c;
+        c cVar = this.f57103c;
         g gVar = this.d;
-        ArrayList arrayList = this.f55521e;
-        ArrayList arrayList2 = this.f55519b;
-        if (!z9) {
+        ArrayList arrayList = this.f57104e;
+        ArrayList arrayList2 = this.f57102b;
+        if (!z10) {
             if (cVar != null) {
                 cVar.b();
                 l(false);
@@ -299,7 +299,7 @@ public final class h implements Iterable {
                 l(false);
             }
             for (int size = arrayList2.size() - 1; size >= 0; size--) {
-                Object obj = ((e) arrayList2.get(size)).f55507a;
+                Object obj = ((e) arrayList2.get(size)).f57090a;
                 if (obj instanceof we.a) {
                     ((we.a) obj).a();
                 }
@@ -324,7 +324,7 @@ public final class h implements Iterable {
             }
             g.a(gVar, i10, false);
             j(false);
-            this.f55518a.Y0();
+            this.f57101a.b0();
             return;
         }
         if (list != null && !list.isEmpty()) {
@@ -342,55 +342,55 @@ public final class h implements Iterable {
         if (!isEmpty) {
             k();
             if (list != null && !list.isEmpty()) {
-                boolean z13 = false;
-                int i12 = 0;
                 boolean z14 = false;
+                int i12 = 0;
+                boolean z15 = false;
                 for (int i13 = 0; i13 < arrayList2.size(); i13++) {
                     e eVar2 = (e) arrayList2.get(i13);
-                    Object obj3 = eVar2.f55507a;
+                    Object obj3 = eVar2.f57090a;
                     k kVar = eVar2.d;
-                    k kVar2 = eVar2.f55509c;
+                    k kVar2 = eVar2.f57092c;
                     int indexOf = list.indexOf(obj3);
                     if (indexOf != -1) {
                         i12++;
                         float f10 = indexOf;
                         if (kVar2.b(f10)) {
                             k();
-                            kVar2.f55526c = f10;
+                            kVar2.f57109c = f10;
                         }
-                        if (eVar2.f55508b != indexOf) {
-                            eVar2.f55508b = indexOf;
-                            if (!z13 && eVar2.h) {
-                                z13 = false;
+                        if (eVar2.f57091b != indexOf) {
+                            eVar2.f57091b = indexOf;
+                            if (!z14 && eVar2.h) {
+                                z14 = false;
                             } else {
-                                z13 = true;
+                                z14 = true;
                             }
-                            z14 = true;
+                            z15 = true;
                         }
                         if (kVar.b(1.0f)) {
                             k();
-                            kVar.f55526c = 1.0f;
+                            kVar.f57109c = 1.0f;
                             eVar2.h = false;
                             arrayList.add(eVar2);
                             g.a(gVar, arrayList.size(), true);
-                            z13 = true;
+                            z14 = true;
                         }
                     } else if (kVar.b(0.0f)) {
                         k();
-                        kVar.f55526c = 0.0f;
+                        kVar.f57109c = 0.0f;
                         eVar2.h = true;
-                        if (z13) {
-                            z12 = arrayList.remove(eVar2);
+                        if (z14) {
+                            z13 = arrayList.remove(eVar2);
                         } else {
                             int binarySearch = Collections.binarySearch(arrayList, eVar2);
                             if (binarySearch >= 0) {
                                 arrayList.remove(binarySearch);
-                                z12 = true;
+                                z13 = true;
                             } else {
-                                z12 = false;
+                                z13 = false;
                             }
                         }
-                        if (z12) {
+                        if (z13) {
                             g.a(gVar, arrayList.size(), true);
                         } else {
                             throw new IllegalArgumentException();
@@ -399,7 +399,7 @@ public final class h implements Iterable {
                         continue;
                     }
                 }
-                if (z13) {
+                if (z14) {
                     Collections.sort(arrayList);
                 }
                 if (i12 < list.size()) {
@@ -413,7 +413,7 @@ public final class h implements Iterable {
                             while (i15 < size2) {
                                 Object obj5 = arrayList2.get(i15);
                                 i15++;
-                                if (((e) obj5).f55507a == null) {
+                                if (((e) obj5).f57090a == null) {
                                     break;
                                 }
                                 i7++;
@@ -426,7 +426,7 @@ public final class h implements Iterable {
                             while (i16 < size3) {
                                 Object obj6 = arrayList2.get(i16);
                                 i16++;
-                                if (obj4.equals(((e) obj6).f55507a)) {
+                                if (obj4.equals(((e) obj6).f57090a)) {
                                     break;
                                 }
                                 i7++;
@@ -435,11 +435,11 @@ public final class h implements Iterable {
                         }
                         if (i7 == -1) {
                             if (i14 != arrayList2.size()) {
-                                z14 = true;
+                                z15 = true;
                             }
                             k();
                             e eVar3 = new e(i14, obj4, false);
-                            eVar3.d.f55526c = 1.0f;
+                            eVar3.d.f57109c = 1.0f;
                             eVar3.h = false;
                             arrayList2.add(eVar3);
                             int binarySearch2 = Collections.binarySearch(arrayList, eVar3);
@@ -453,10 +453,10 @@ public final class h implements Iterable {
                         i14++;
                     }
                 }
-                z11 = z14;
-                z10 = true;
+                z12 = z15;
+                z11 = true;
             } else {
-                if (!this.f55522f) {
+                if (!this.f57105f) {
                     int size4 = arrayList2.size();
                     int i17 = 0;
                     while (true) {
@@ -471,7 +471,7 @@ public final class h implements Iterable {
                         }
                     }
                 }
-                if (this.f55522f) {
+                if (this.f57105f) {
                     int size5 = arrayList2.size();
                     int i18 = 0;
                     while (i18 < size5) {
@@ -480,7 +480,7 @@ public final class h implements Iterable {
                         e eVar4 = (e) obj8;
                         if (eVar4.d.b(0.0f)) {
                             k();
-                            eVar4.d.f55526c = 0.0f;
+                            eVar4.d.f57109c = 0.0f;
                             eVar4.h = true;
                             int binarySearch3 = Collections.binarySearch(arrayList, eVar4);
                             if (binarySearch3 >= 0) {
@@ -490,15 +490,15 @@ public final class h implements Iterable {
                         }
                     }
                 }
-                z10 = true;
-                z11 = false;
+                z11 = true;
+                z12 = false;
             }
-            if (z11) {
+            if (z12) {
                 Collections.sort(arrayList2);
             }
-            j(z10);
-            if (this.f55522f) {
-                this.f55522f = false;
+            j(z11);
+            if (this.f57105f) {
+                this.f57105f = false;
                 if (cVar != null) {
                     cVar.a(1.0f);
                 }
@@ -510,9 +510,9 @@ public final class h implements Iterable {
                     i19++;
                     e eVar5 = (e) obj9;
                     k kVar3 = eVar5.d;
-                    kVar3.f55525b = kVar3.f55524a;
-                    k kVar4 = eVar5.f55509c;
-                    kVar4.f55525b = kVar4.f55524a;
+                    kVar3.f57108b = kVar3.f57107a;
+                    k kVar4 = eVar5.f57092c;
+                    kVar4.f57108b = kVar4.f57107a;
                 }
             }
         }

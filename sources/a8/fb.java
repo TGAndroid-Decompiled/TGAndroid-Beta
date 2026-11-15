@@ -1,5 +1,4 @@
 package a8;
-
-import android.os.IInterface;
-public interface fb extends IInterface {
+public abstract class fb extends q implements gb {
+    public static final int f408b = 0;
 }

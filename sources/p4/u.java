@@ -1,8 +1,8 @@
 package p4;
 public interface u {
-    void a(int i7, e1 e1Var, e2.y0 y0Var, boolean z9, boolean z10);
+    void a(int i7, e1 e1Var, e2.y0 y0Var, boolean z10, boolean z11);
 
-    void b(int i7, l1 l1Var, boolean z9, boolean z10, int i10);
+    void b(int i7, l1 l1Var, boolean z10, boolean z11, int i10);
 
     void c(int i7);
 

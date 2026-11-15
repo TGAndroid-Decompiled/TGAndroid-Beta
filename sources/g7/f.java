@@ -1,16 +1,14 @@
 package g7;
 
-import android.os.IBinder;
 import android.os.IInterface;
-public abstract class f extends r7.a implements g {
-    public static g asInterface(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
-        }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.flags.IFlagProvider");
-        if (queryLocalInterface instanceof g) {
-            return (g) queryLocalInterface;
-        }
-        return new e(iBinder);
-    }
+public interface f extends IInterface {
+    boolean getBooleanFlagValue(String str, boolean z10, int i7);
+
+    int getIntFlagValue(String str, int i7, int i10);
+
+    long getLongFlagValue(String str, long j3, int i7);
+
+    String getStringFlagValue(String str, String str2, int i7);
+
+    void init(a7.a aVar);
 }

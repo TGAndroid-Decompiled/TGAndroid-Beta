@@ -1,18 +1,47 @@
 package org.telegram.ui;
-public final class h71 extends x71 {
-    public final cn f46242l2;
-    public final boolean f46243m2;
 
-    public h71(Object obj, cn cnVar, boolean z9) {
-        super(obj, null, true);
-        this.f46242l2 = cnVar;
-        this.f46243m2 = z9;
+import android.graphics.Bitmap;
+import android.graphics.Point;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import org.telegram.messenger.Utilities;
+public final class h71 extends mq0 {
+    public final org.telegram.messenger.ff f47637a;
+    public final i71 f47638b;
+
+    public h71(i71 i71Var, org.telegram.messenger.ff ffVar) {
+        this.f47638b = i71Var;
+        this.f47637a = ffVar;
     }
 
     @Override
-    public final void onFragmentClosed() {
-        super.onFragmentClosed();
-        an anVar = this.f46242l2.f44750za;
-        anVar.r(anVar.f43729f, anVar.f43730g, false, Boolean.valueOf(this.f46243m2), false);
+    public final void o(int i7, org.telegram.messenger.g20 g20Var, boolean z10, int i10, int i11, boolean z11) {
+        t71 t71Var = this.f47638b.f47937a;
+        org.telegram.messenger.ff ffVar = this.f47637a;
+        if (ffVar.h != null) {
+            File z12 = org.telegram.messenger.w7.z(4);
+            File file = new File(z12, Utilities.f22414b.nextInt() + ".jpg");
+            Point c12 = org.telegram.messenger.g0.c1();
+            Bitmap K = org.telegram.messenger.fc.K(ffVar.h, null, (float) c12.x, (float) c12.y, true);
+            try {
+                K.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
+            } catch (FileNotFoundException e10) {
+                e10.printStackTrace();
+            }
+            File file2 = new File(ffVar.h);
+            t71Var.D1 = new pc1(file2, file2, "");
+            t71Var.E1 = K;
+            t71Var.d2 = 0;
+            t71Var.f51477z0.requestLayout();
+            t71Var.g1(false);
+            t71Var.f51476y1 = null;
+            t71Var.n1();
+        }
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
     }
 }

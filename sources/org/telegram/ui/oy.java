@@ -1,21 +1,25 @@
 package org.telegram.ui;
-public final class oy implements Runnable {
-    public final int f48592a;
-    public final jz f48593b;
 
-    public oy(jz jzVar, int i7) {
-        this.f48592a = i7;
-        this.f48593b = jzVar;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class oy implements RequestDelegate {
+    public final int f50080a;
+    public final hz f50081b;
+
+    public oy(hz hzVar, int i7) {
+        this.f50080a = i7;
+        this.f50081b = hzVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f48592a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f50080a) {
             case 0:
-                jz.a0(this.f48593b);
+                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.voip.u(19, this.f50081b, tLObject));
                 return;
             default:
-                jz.b0(this.f48593b);
+                org.telegram.messenger.g0.h3(new tp(this.f50081b, tL_error, tLObject, 6));
                 return;
         }
     }

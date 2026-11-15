@@ -1,7 +1,7 @@
 package h9;
 
-import a8.ha;
-import a8.kb;
+import a8.ia;
+import a8.lb;
 import j$.util.Objects;
 import java.util.AbstractMap;
 import java.util.Collection;
@@ -10,13 +10,13 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class c extends a8.h0 {
-    public final int f14305b;
-    public final AbstractMap f14306c;
+    public final int f13662b;
+    public final AbstractMap f13663c;
 
     public c(AbstractMap abstractMap, int i7) {
         super(2);
-        this.f14305b = i7;
-        this.f14306c = abstractMap;
+        this.f13662b = i7;
+        this.f13663c = abstractMap;
     }
 
     @Override
@@ -26,9 +26,9 @@ public final class c extends a8.h0 {
 
     @Override
     public boolean contains(Object obj) {
-        switch (this.f14305b) {
+        switch (this.f13662b) {
             case 0:
-                Set entrySet = ((kb) this.f14306c).f513b.entrySet();
+                Set entrySet = ((lb) this.f13663c).f533b.entrySet();
                 entrySet.getClass();
                 try {
                     return entrySet.contains(obj);
@@ -52,7 +52,7 @@ public final class c extends a8.h0 {
             } catch (ClassCastException | NullPointerException unused) {
                 obj2 = null;
             }
-            if (ha.a(obj2, entry.getValue())) {
+            if (ia.a(obj2, entry.getValue())) {
                 if (obj2 != null || i().containsKey(key)) {
                     return true;
                 }
@@ -64,11 +64,11 @@ public final class c extends a8.h0 {
     }
 
     public final Map i() {
-        switch (this.f14305b) {
+        switch (this.f13662b) {
             case 0:
-                return (kb) this.f14306c;
+                return (lb) this.f13663c;
             default:
-                return (i1) this.f14306c;
+                return (h1) this.f13663c;
         }
     }
 
@@ -79,15 +79,15 @@ public final class c extends a8.h0 {
 
     @Override
     public final Iterator iterator() {
-        switch (this.f14305b) {
+        switch (this.f13662b) {
             case 0:
-                return new a8.d((kb) this.f14306c, (char) 0);
+                return new a8.d((lb) this.f13663c, (char) 0);
             default:
-                i1 i1Var = (i1) this.f14306c;
-                Iterator it = i1Var.f14332a.entrySet().iterator();
-                h1 h1Var = i1Var.f14333b;
-                h1Var.getClass();
-                return new w0(it, new f1(h1Var, 0));
+                h1 h1Var = (h1) this.f13663c;
+                Iterator it = h1Var.f13684a.entrySet().iterator();
+                g1 g1Var = h1Var.f13685b;
+                g1Var.getClass();
+                return new w0(it, new d6.i(g1Var, 24));
         }
     }
 
@@ -101,16 +101,16 @@ public final class c extends a8.h0 {
     @Override
     public boolean remove(Object obj) {
         Object obj2;
-        switch (this.f14305b) {
+        switch (this.f13662b) {
             case 0:
                 if (!contains(obj)) {
                     return false;
                 }
                 Map.Entry entry = (Map.Entry) obj;
                 Objects.requireNonNull(entry);
-                l1 l1Var = (l1) ((kb) this.f14306c).f515e;
+                k1 k1Var = (k1) ((lb) this.f13663c).f535e;
                 Object key = entry.getKey();
-                Map map = l1Var.f14347e;
+                Map map = k1Var.f13694e;
                 map.getClass();
                 try {
                     obj2 = map.remove(key);
@@ -121,7 +121,7 @@ public final class c extends a8.h0 {
                 if (collection != null) {
                     int size = collection.size();
                     collection.clear();
-                    l1Var.f14348f -= size;
+                    k1Var.f13695f -= size;
                 }
                 return true;
             default:
@@ -135,11 +135,11 @@ public final class c extends a8.h0 {
             collection.getClass();
             return super.removeAll(collection);
         } catch (UnsupportedOperationException unused) {
-            boolean z9 = false;
+            boolean z10 = false;
             for (Object obj : collection) {
-                z9 |= remove(obj);
+                z10 |= remove(obj);
             }
-            return z9;
+            return z10;
         }
     }
 

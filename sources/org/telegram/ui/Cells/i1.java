@@ -1,8 +1,8 @@
 package org.telegram.ui.Cells;
 
-import org.telegram.ui.Components.b41;
-import org.telegram.ui.Components.jm0;
-public final class i1 extends jm0 {
+import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.nm0;
+public final class i1 extends nm0 {
     public final q1 H;
 
     public i1(q1 q1Var, q1 q1Var2) {
@@ -11,7 +11,7 @@ public final class i1 extends jm0 {
     }
 
     @Override
-    public final void d(b41 b41Var) {
-        this.H.q3(b41Var);
+    public final void d(f41 f41Var) {
+        this.H.r3(f41Var);
     }
 }

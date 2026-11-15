@@ -6,47 +6,47 @@ import android.os.IBinder;
 import e0.i0;
 import e0.q;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.dt;
-import org.telegram.messenger.id;
-import org.telegram.messenger.ls;
-import org.telegram.messenger.p10;
-import org.telegram.messenger.qs;
+import org.telegram.messenger.at;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.is;
+import org.telegram.messenger.m10;
+import org.telegram.messenger.ns;
 import org.telegram.messenger.r2;
 import org.telegram.messenger.t0;
-public class StoryUploadingService extends Service implements ls {
-    public q f42006a;
-    public String f42007b;
-    public float f42008c;
+public class StoryUploadingService extends Service implements is {
+    public q f43381a;
+    public String f43382b;
+    public float f43383c;
     public int d = -1;
 
     public StoryUploadingService() {
-        qs.e().b(this, qs.B5);
+        ns.e().b(this, ns.B5);
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         String str;
-        boolean z9 = false;
-        if (i7 == qs.A5) {
-            String str2 = this.f42007b;
+        boolean z10 = false;
+        if (i7 == ns.A5) {
+            String str2 = this.f43382b;
             if (str2 != null && str2.equals((String) objArr[0])) {
                 float floatValue = ((Float) objArr[1]).floatValue();
-                this.f42008c = floatValue;
-                q qVar = this.f42006a;
+                this.f43383c = floatValue;
+                q qVar = this.f43381a;
                 int round = Math.round(floatValue * 100.0f);
-                if (this.f42008c <= 0.0f) {
-                    z9 = true;
+                if (this.f43383c <= 0.0f) {
+                    z10 = true;
                 }
-                qVar.f10110n = 100;
-                qVar.f10111o = round;
-                qVar.f10112p = z9;
+                qVar.f9941n = 100;
+                qVar.f9942o = round;
+                qVar.f9943p = z10;
                 try {
-                    new i0(t0.f25570b).e(null, 33, this.f42006a.b());
+                    new i0(t0.f26600b).e(null, 33, this.f43381a.b());
                 } catch (Throwable th2) {
                     a8.g(th2, true);
                 }
             }
-        } else if (i7 == qs.B5 && (str = this.f42007b) != null && str.equals((String) objArr[0])) {
+        } else if (i7 == ns.B5 && (str = this.f43382b) != null && str.equals((String) objArr[0])) {
             stopSelf();
         }
     }
@@ -63,66 +63,66 @@ public class StoryUploadingService extends Service implements ls {
             stopForeground(true);
         } catch (Exception unused) {
         }
-        new i0(t0.f25570b).b(33, null);
-        qs.e().n(this, qs.B5);
-        qs.f(this.d).n(this, qs.A5);
-        if (r2.f25216a) {
+        new i0(t0.f26600b).b(33, null);
+        ns.e().n(this, ns.B5);
+        ns.f(this.d).n(this, ns.A5);
+        if (r2.f26198a) {
             a8.b("upload story destroy");
         }
     }
 
     @Override
     public final int onStartCommand(Intent intent, int i7, int i10) {
-        int i11 = qs.A5;
-        this.f42007b = intent.getStringExtra("path");
+        int i11 = ns.A5;
+        this.f43382b = intent.getStringExtra("path");
         int i12 = this.d;
-        int intExtra = intent.getIntExtra("currentAccount", p10.f24474s0);
+        int intExtra = intent.getIntExtra("currentAccount", m10.f24934t0);
         this.d = intExtra;
-        if (!p10.r(intExtra)) {
+        if (!m10.r(intExtra)) {
             stopSelf();
             return 2;
         }
         if (i12 != this.d) {
             if (i12 != -1) {
-                qs.f(i12).n(this, i11);
+                ns.f(i12).n(this, i11);
             }
             int i13 = this.d;
             if (i13 != -1) {
-                qs.f(i13).b(this, i11);
+                ns.f(i13).b(this, i11);
             }
         }
-        if (this.f42007b == null) {
+        if (this.f43382b == null) {
             stopSelf();
             return 2;
         }
-        if (r2.f25216a) {
+        if (r2.f26198a) {
             a8.b("start upload story");
         }
-        if (this.f42006a == null) {
-            dt.i();
-            q qVar = new q(t0.f25570b, null);
-            this.f42006a = qVar;
+        if (this.f43381a == null) {
+            at.i();
+            q qVar = new q(t0.f26600b, null);
+            this.f43381a = qVar;
             qVar.F.icon = 17301640;
             qVar.F.when = System.currentTimeMillis();
-            q qVar2 = this.f42006a;
-            qVar2.f10120y = dt.f22079j0;
-            qVar2.g(id.M0(2131689472, null));
-            this.f42006a.p(id.M0(2131744451, null));
-            this.f42006a.f(id.M0(2131744451, null));
+            q qVar2 = this.f43381a;
+            qVar2.f9951y = at.f22557k0;
+            qVar2.g(hd.M0(2131689472, null));
+            this.f43381a.p(hd.M0(2131744451, null));
+            this.f43381a.f(hd.M0(2131744451, null));
         }
-        this.f42008c = 0.0f;
-        q qVar3 = this.f42006a;
+        this.f43383c = 0.0f;
+        q qVar3 = this.f43381a;
         int round = Math.round(0.0f);
-        qVar3.f10110n = 100;
-        qVar3.f10111o = round;
-        qVar3.f10112p = false;
+        qVar3.f9941n = 100;
+        qVar3.f9942o = round;
+        qVar3.f9943p = false;
         try {
-            startForeground(33, this.f42006a.b());
+            startForeground(33, this.f43381a.b());
         } catch (Throwable th2) {
             a8.g(th2, true);
         }
         try {
-            new i0(t0.f25570b).e(null, 33, this.f42006a.b());
+            new i0(t0.f26600b).e(null, 33, this.f43381a.b());
         } catch (Throwable th3) {
             a8.g(th3, true);
         }

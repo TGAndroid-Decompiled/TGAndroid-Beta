@@ -2,23 +2,51 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.View;
-public final class ox extends org.telegram.ui.Components.w31 {
-    public static final int f48589b = 0;
+import android.widget.FrameLayout;
+import org.telegram.tgnet.TLRPC;
+public final class ox extends org.telegram.ui.ActionBar.e2 {
+    public long f50073a;
+    public TLRPC.Chat f50074b;
+    public boolean f50075c;
+    public boolean d;
+    public boolean f50076e;
+    public bi.y4 f50077f;
+    public fi.b0 h;
 
-    static {
-        org.telegram.ui.Components.w31.h(new org.telegram.ui.Components.w31());
+    @Override
+    public final View createView(Context context) {
+        setHasOwnBackground(true);
+        this.simpleActionBar.setBackButtonImage(2131231240);
+        this.simpleActionBar.setActionBarMenuOnItemClick(new lx(this, 0));
+        this.simpleActionBar.setTitle(org.telegram.messenger.hd.M0(2131743981, null));
+        FrameLayout frameLayout = new FrameLayout(context);
+        bi.y4 y4Var = new bi.y4(this, new a5(this, 13), new zr(this, 9), null, 7);
+        this.f50077f = y4Var;
+        y4Var.r1();
+        this.f50077f.setSectionsDrawBackground(true);
+        frameLayout.addView(this.f50077f, c8.ja.e(-1, -1, 119));
+        this.fragmentView = frameLayout;
+        return frameLayout;
     }
 
     @Override
-    public final void b(View view, org.telegram.ui.Components.x31 x31Var, boolean z9, org.telegram.ui.Components.m41 m41Var, org.telegram.ui.Components.r41 r41Var) {
-        px pxVar = (px) view;
-        pxVar.f48856n = (org.telegram.messenger.c20) x31Var.G;
-        pxVar.f48857r = x31Var;
-        pxVar.b(x31Var.f40169z, false);
+    public final org.telegram.ui.Components.uj0 getListViewForSimpleGlass() {
+        return this.f50077f;
     }
 
     @Override
-    public final View d(Context context, org.telegram.ui.Components.pj0 pj0Var, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
-        return new px(context, h6Var);
+    public final boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
+    public final boolean onFragmentCreate() {
+        this.f50074b = getMessagesController().M0(Long.valueOf(-this.f50073a));
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public final boolean useSimpleActionBar() {
+        return true;
     }
 }

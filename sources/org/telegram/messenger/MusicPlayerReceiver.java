@@ -16,12 +16,12 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
                         if (keyCode != 88) {
                             if (keyCode != 126) {
                                 if (keyCode == 127) {
-                                    MediaController.B().R(MediaController.B().f21300u0, true);
+                                    MediaController.B().R(MediaController.B().f22377v0, true);
                                     return;
                                 }
                                 return;
                             }
-                            MediaController.B().S(MediaController.B().f21300u0);
+                            MediaController.B().S(MediaController.B().f22377v0);
                             return;
                         }
                         MediaController.B().V();
@@ -30,10 +30,10 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
                     MediaController.B().U(false);
                     return;
                 } else if (MediaController.B().H()) {
-                    MediaController.B().S(MediaController.B().f21300u0);
+                    MediaController.B().S(MediaController.B().f22377v0);
                     return;
                 } else {
-                    MediaController.B().R(MediaController.B().f21300u0, true);
+                    MediaController.B().R(MediaController.B().f22377v0, true);
                     return;
                 }
             }
@@ -94,26 +94,26 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
         }
         switch (c10) {
             case 0:
-                iz.E((iz.S0 + 1) % 3);
+                gz.E((gz.S0 + 1) % 3);
                 return;
             case 1:
                 MediaController.B().q(true, true, false, false);
                 return;
             case 2:
             case 5:
-                MediaController.B().R(MediaController.B().f21300u0, true);
+                MediaController.B().R(MediaController.B().f22377v0, true);
                 return;
             case 3:
                 MediaController.B().U(false);
                 return;
             case 4:
-                MediaController.B().S(MediaController.B().f21300u0);
+                MediaController.B().S(MediaController.B().f22377v0);
                 return;
             case 6:
                 MediaController.B().V();
                 return;
             case 7:
-                if (iz.N0) {
+                if (gz.N0) {
                     MediaController.B().l0(0);
                     return;
                 } else {

@@ -1,29 +1,29 @@
 package q7;
 public abstract class f0 {
-    public static final char[] f53984a = "0123456789abcdef".toCharArray();
+    public static final char[] f55421a = "0123456789abcdef".toCharArray();
 
     public final boolean equals(Object obj) {
-        boolean z9;
         boolean z10;
+        boolean z11;
         if (obj instanceof f0) {
-            byte[] bArr = ((e0) this).f53979b;
+            byte[] bArr = ((e0) this).f55416b;
             int length = bArr.length * 8;
-            byte[] bArr2 = ((e0) ((f0) obj)).f53979b;
+            byte[] bArr2 = ((e0) ((f0) obj)).f55416b;
             if (length == bArr2.length * 8) {
                 if (bArr.length == bArr2.length) {
-                    z9 = true;
+                    z10 = true;
                     for (int i7 = 0; i7 < bArr.length; i7++) {
                         if (bArr[i7] == bArr2[i7]) {
-                            z10 = true;
+                            z11 = true;
                         } else {
-                            z10 = false;
+                            z11 = false;
                         }
-                        z9 &= z10;
+                        z10 &= z11;
                     }
                 } else {
-                    z9 = false;
+                    z10 = false;
                 }
-                if (z9) {
+                if (z10) {
                     return true;
                 }
             }
@@ -32,7 +32,7 @@ public abstract class f0 {
     }
 
     public final int hashCode() {
-        byte[] bArr = ((e0) this).f53979b;
+        byte[] bArr = ((e0) this).f55416b;
         if (bArr.length * 8 >= 32) {
             int length = bArr.length;
             if (length >= 4) {
@@ -48,11 +48,11 @@ public abstract class f0 {
     }
 
     public final String toString() {
-        byte[] bArr = ((e0) this).f53979b;
+        byte[] bArr = ((e0) this).f55416b;
         int length = bArr.length;
         StringBuilder sb2 = new StringBuilder(length + length);
         for (byte b10 : bArr) {
-            char[] cArr = f53984a;
+            char[] cArr = f55421a;
             sb2.append(cArr[(b10 >> 4) & 15]);
             sb2.append(cArr[b10 & 15]);
         }

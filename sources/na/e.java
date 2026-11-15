@@ -4,7 +4,7 @@ public interface e {
 
     e b(c cVar, double d);
 
-    e c(c cVar, boolean z9);
+    e c(c cVar, boolean z10);
 
     e d(c cVar, int i7);
 

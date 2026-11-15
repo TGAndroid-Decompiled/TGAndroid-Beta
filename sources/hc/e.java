@@ -2,14 +2,14 @@ package hc;
 
 import java.util.ArrayList;
 public final class e {
-    public static final d f14465e = new Object();
-    public final cc.b f14466a;
-    public boolean f14468c;
-    public final ArrayList f14467b = new ArrayList();
+    public static final d f13820e = new Object();
+    public final cc.b f13821a;
+    public boolean f13823c;
+    public final ArrayList f13822b = new ArrayList();
     public final int[] d = new int[5];
 
     public e(cc.b bVar) {
-        this.f14466a = bVar;
+        this.f13821a = bVar;
     }
 
     public static float a(int[] iArr, int i7) {
@@ -40,8 +40,8 @@ public final class e {
     }
 
     public static double e(c cVar, c cVar2) {
-        double d = cVar.f3180a - cVar2.f3180a;
-        double d2 = cVar.f3181b - cVar2.f3181b;
+        double d = cVar.f3135a - cVar2.f3135a;
+        double d2 = cVar.f3136b - cVar2.f3136b;
         return (d2 * d2) + (d * d);
     }
 
@@ -50,7 +50,7 @@ public final class e {
     }
 
     public final boolean d() {
-        ArrayList arrayList = this.f14467b;
+        ArrayList arrayList = this.f13822b;
         int size = arrayList.size();
         int size2 = arrayList.size();
         float f10 = 0.0f;
@@ -63,7 +63,7 @@ public final class e {
             c cVar = (c) obj;
             if (cVar.d >= 2) {
                 i7++;
-                f11 += cVar.f14464c;
+                f11 += cVar.f13819c;
             }
         }
         if (i7 >= 3) {
@@ -73,7 +73,7 @@ public final class e {
             while (i11 < size3) {
                 Object obj2 = arrayList.get(i11);
                 i11++;
-                f10 += Math.abs(((c) obj2).f14464c - f12);
+                f10 += Math.abs(((c) obj2).f13819c - f12);
             }
             if (f10 <= f11 * 0.05f) {
                 return true;

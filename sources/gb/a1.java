@@ -1,15 +1,26 @@
 package gb;
-public final class a1 implements ce.d {
-    public final int f13627a;
-    public final Object f13628b;
 
-    public a1(Object obj, int i7) {
-        this.f13627a = i7;
-        this.f13628b = obj;
+import c8.l1;
+public final class a1 {
+    public static final a1 f12972a;
+    public static final a1 f12973b;
+    public static final a1[] f12974c;
+
+    static {
+        ?? r02 = new Enum("GENERAL", 0);
+        f12972a = r02;
+        ?? r12 = new Enum("FALLBACK", 1);
+        f12973b = r12;
+        a1[] a1VarArr = {r02, r12};
+        f12974c = a1VarArr;
+        l1.a(a1VarArr);
     }
 
-    @Override
-    public final java.lang.Object a(java.lang.Object r5, id.c r6) {
-        throw new UnsupportedOperationException("Method not decompiled: gb.a1.a(java.lang.Object, id.c):java.lang.Object");
+    public static a1 valueOf(String str) {
+        return (a1) Enum.valueOf(a1.class, str);
+    }
+
+    public static a1[] values() {
+        return (a1[]) f12974c.clone();
     }
 }

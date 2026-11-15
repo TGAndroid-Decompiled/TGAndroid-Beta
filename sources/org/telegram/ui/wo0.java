@@ -1,21 +1,15 @@
 package org.telegram.ui;
-public final class wo0 implements org.telegram.ui.Components.k20 {
-    public final PhotoViewer f51413a;
+public final class wo0 implements Runnable {
+    public final int f52966a;
+    public final PhotoViewer f52967b;
 
-    public wo0(PhotoViewer photoViewer) {
-        this.f51413a = photoViewer;
+    public wo0(PhotoViewer photoViewer, int i7) {
+        this.f52966a = i7;
+        this.f52967b = photoViewer;
     }
 
-    public final void a(int i7) {
-        PhotoViewer photoViewer = this.f51413a;
-        photoViewer.O4 = -1;
-        org.telegram.messenger.jc jcVar = photoViewer.f41423i5;
-        if (jcVar != null) {
-            jcVar.a();
-            photoViewer.f41423i5 = null;
-        }
-        photoViewer.f41439k5 = true;
-        photoViewer.y2(i7);
-        photoViewer.f41439k5 = false;
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.wo0.run():void");
     }
 }

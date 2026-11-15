@@ -49,14 +49,14 @@ public class GlGenericDrawer implements RendererCommon.GlDrawer {
         this("varying vec2 tc;\nattribute vec4 in_pos;\nattribute vec4 in_tc;\nuniform mat4 tex_mat;\nvoid main() {\n  gl_Position = in_pos;\n  tc = (tex_mat * in_tc).xy;\n}\n", str, shaderCallbacks);
     }
 
-    public static String createFragmentShaderString(String str, int i7, boolean z9) {
+    public static String createFragmentShaderString(String str, int i7, boolean z10) {
         String str2;
         StringBuilder sb2 = new StringBuilder();
         if (i7 == 0) {
             sb2.append("#extension GL_OES_EGL_image_external : require\n");
         }
         sb2.append("precision highp float;\n");
-        if (!z9) {
+        if (!z10) {
             sb2.append("varying vec2 tc;\n");
         }
         if (i7 == 2) {
@@ -71,7 +71,7 @@ public class GlGenericDrawer implements RendererCommon.GlDrawer {
             sb2.append("uniform ");
             sb2.append(str2);
             sb2.append(" tex;\n");
-            if (z9) {
+            if (z10) {
                 sb2.append("precision mediump float;\nvarying vec2 tc;\nconst mediump vec3 satLuminanceWeighting = vec3(0.2126, 0.7152, 0.0722);\nuniform float texelWidthOffset;\nuniform float texelHeightOffset;\nvoid main(){\nint rad = 3;\nint diameter = 2 * rad + 1;\nvec4 sampleTex = vec4(0, 0, 0, 0);\nvec3 col = vec3(0, 0, 0);\nfloat weightSum = 0.0;\nfor(int i = 0; i < diameter; i++) {\nvec2 offset = vec2(float(i - rad) * texelWidthOffset, float(i - rad) * texelHeightOffset);\nsampleTex = vec4(texture2D(tex, tc.st+offset));\nfloat index = float(i);\nfloat boxWeight = float(rad) + 1.0 - abs(index - float(rad));\ncol += sampleTex.rgb * boxWeight;\nweightSum += boxWeight;\n}\nvec3 result = col / weightSum;\nlowp float satLuminance = dot(result.rgb, satLuminanceWeighting);\nlowp vec3 greyScaleColor = vec3(satLuminance);\ngl_FragColor = vec4(clamp(mix(greyScaleColor, result.rgb, 1.1), 0.0, 1.0), 1.0);\n}\n");
             } else {
                 sb2.append(str.replace("sample(", "texture2D(tex, "));
@@ -114,17 +114,17 @@ public class GlGenericDrawer implements RendererCommon.GlDrawer {
     }
 
     private void prepareShader(int i7, float[] fArr, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
-        boolean z9;
+        boolean z10;
         float f10;
         if (i16 != 0) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
         GlShader glShader = this.currentShader[i7][i16];
         if (glShader == null) {
             try {
-                glShader = createShader(i7, z9);
+                glShader = createShader(i7, z10);
                 this.currentShader[i7][i16] = glShader;
                 glShader.useProgram();
                 if (i7 == 2) {
@@ -136,7 +136,7 @@ public class GlGenericDrawer implements RendererCommon.GlDrawer {
                 }
                 GlUtil.checkNoGLES2Error("Create shader");
                 this.shaderCallbacks.onNewShader(glShader);
-                if (z9) {
+                if (z10) {
                     this.texelLocation[i7][0] = glShader.getUniformLocation("texelWidthOffset");
                     this.texelLocation[i7][1] = glShader.getUniformLocation("texelHeightOffset");
                 }
@@ -150,7 +150,7 @@ public class GlGenericDrawer implements RendererCommon.GlDrawer {
         }
         GlShader glShader2 = glShader;
         glShader2.useProgram();
-        if (z9) {
+        if (z10) {
             int i17 = this.texelLocation[i7][0];
             float f11 = 0.0f;
             if (i16 == 1) {
@@ -174,13 +174,13 @@ public class GlGenericDrawer implements RendererCommon.GlDrawer {
         GlUtil.checkNoGLES2Error("Prepare shader");
     }
 
-    public GlShader createShader(int i7, boolean z9) {
-        return new GlShader(this.vertexShader, createFragmentShaderString(this.genericFragmentSource, i7, z9));
+    public GlShader createShader(int i7, boolean z10) {
+        return new GlShader(this.vertexShader, createFragmentShaderString(this.genericFragmentSource, i7, z10));
     }
 
     @Override
-    public void drawOes(int i7, int i10, int i11, int i12, int i13, float[] fArr, int i14, int i15, int i16, int i17, int i18, int i19, boolean z9) {
-        if (z9) {
+    public void drawOes(int i7, int i10, int i11, int i12, int i13, float[] fArr, int i14, int i15, int i16, int i17, int i18, int i19, boolean z10) {
+        if (z10) {
             ensureRenderTargetCreated(i10, i11, 1);
             this.textureMatrix = fArr;
             float f10 = this.renderTextureDownscale;
@@ -225,7 +225,7 @@ public class GlGenericDrawer implements RendererCommon.GlDrawer {
     }
 
     @Override
-    public void drawRgb(int i7, int i10, int i11, int i12, int i13, float[] fArr, int i14, int i15, int i16, int i17, int i18, int i19, boolean z9) {
+    public void drawRgb(int i7, int i10, int i11, int i12, int i13, float[] fArr, int i14, int i15, int i16, int i17, int i18, int i19, boolean z10) {
         prepareShader(1, fArr, i12, i13, i14, i15, i18, i19, 0);
         GLES20.glActiveTexture(33984);
         GLES20.glBindTexture(3553, i7);
@@ -235,8 +235,8 @@ public class GlGenericDrawer implements RendererCommon.GlDrawer {
     }
 
     @Override
-    public void drawYuv(int[] iArr, int i7, int i10, int i11, int i12, float[] fArr, int i13, int i14, int i15, int i16, int i17, int i18, boolean z9) {
-        if (z9 && i7 > 0 && i10 > 0) {
+    public void drawYuv(int[] iArr, int i7, int i10, int i11, int i12, float[] fArr, int i13, int i14, int i15, int i16, int i17, int i18, boolean z10) {
+        if (z10 && i7 > 0 && i10 > 0) {
             this.textureMatrix = fArr;
             ensureRenderTargetCreated(i7, i10, 1);
             float f10 = this.renderTextureDownscale;

@@ -1,52 +1,62 @@
 package org.telegram.messenger;
 
-import android.util.SparseIntArray;
 import java.util.ArrayList;
-import org.telegram.messenger.support.LongSparseIntArray;
-import org.telegram.ui.NotificationsSettingsActivity;
 public final class ek implements Runnable {
-    public final int f22249a;
-    public final ls f22250b;
-    public final Cloneable f22251c;
-    public final Cloneable d;
-    public final Cloneable f22252e;
-    public final Cloneable f22253f;
-    public final Cloneable h;
-    public final Cloneable f22254n;
-    public final Cloneable f22255r;
-    public final Object f22256s;
-    public final Cloneable f22257w;
+    public final int f23316a = 2;
+    public final np f23317b;
+    public final ArrayList f23318c;
+    public final long d;
+    public final long f23319e;
 
-    public ek(qp qpVar, LongSparseIntArray longSparseIntArray, LongSparseIntArray longSparseIntArray2, SparseIntArray sparseIntArray, a0.h hVar, a0.h hVar2, a0.h hVar3, a0.h hVar4, a0.h hVar5, LongSparseIntArray longSparseIntArray3, int i7) {
-        this.f22249a = i7;
-        this.f22250b = qpVar;
-        this.f22251c = longSparseIntArray;
-        this.d = longSparseIntArray2;
-        this.f22252e = sparseIntArray;
-        this.f22253f = hVar;
-        this.h = hVar2;
-        this.f22254n = hVar3;
-        this.f22255r = hVar4;
-        this.f22256s = hVar5;
-        this.f22257w = longSparseIntArray3;
+    public ek(np npVar, long j3, long j10, ArrayList arrayList) {
+        this.f23317b = npVar;
+        this.d = j3;
+        this.f23319e = j10;
+        this.f23318c = arrayList;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ek.run():void");
+        int i7 = this.f23316a;
+        np npVar = this.f23317b;
+        switch (i7) {
+            case 0:
+                long j3 = this.d;
+                ArrayList arrayList = this.f23318c;
+                npVar.getMessagesStorage().R1(j3, -j3, arrayList, npVar.getMessagesStorage().P0(j3, arrayList, false, true, 5, (int) this.f23319e));
+                return;
+            case 1:
+                np npVar2 = this.f23317b;
+                ArrayList arrayList2 = this.f23318c;
+                long j10 = this.d;
+                g0.h3(new dk(npVar2, arrayList2, j10, 1));
+                vr messagesStorage = npVar2.getMessagesStorage();
+                long j11 = this.f23319e;
+                messagesStorage.E(arrayList2, j11);
+                npVar2.getMessagesStorage().R1(j11, j10, arrayList2, npVar2.getMessagesStorage().P0(j11, arrayList2, false, true, 0, 0));
+                return;
+            default:
+                h00 h00Var = npVar.getMessagesController().f25383r7;
+                long j12 = this.d;
+                long j13 = this.f23319e;
+                h00Var.B(0, j12, j13, false);
+                npVar.getMessagesStorage().h2(0, j12, j13, false);
+                npVar.getNotificationCenter().k(302, Long.valueOf(j12), Long.valueOf(j13), 0, this.f23318c);
+                return;
+        }
     }
 
-    public ek(NotificationsSettingsActivity notificationsSettingsActivity, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5, ArrayList arrayList6, ArrayList arrayList7, ArrayList arrayList8, Runnable runnable) {
-        this.f22249a = 2;
-        this.f22250b = notificationsSettingsActivity;
-        this.f22251c = arrayList;
-        this.d = arrayList2;
-        this.f22257w = arrayList3;
-        this.f22252e = arrayList4;
-        this.f22253f = arrayList5;
-        this.h = arrayList6;
-        this.f22254n = arrayList7;
-        this.f22255r = arrayList8;
-        this.f22256s = runnable;
+    public ek(np npVar, long j3, ArrayList arrayList, long j10) {
+        this.f23317b = npVar;
+        this.d = j3;
+        this.f23318c = arrayList;
+        this.f23319e = j10;
+    }
+
+    public ek(np npVar, ArrayList arrayList, long j3, long j10) {
+        this.f23317b = npVar;
+        this.f23318c = arrayList;
+        this.d = j3;
+        this.f23319e = j10;
     }
 }

@@ -1,84 +1,116 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
+import android.graphics.Paint;
 import android.view.View;
-import android.view.ViewGroup;
-public abstract class w9 extends pj0 {
-    public int f39929e3;
-    public int f39930f3;
-    public boolean f39931g3;
-    public int f39932h3;
-    public boolean f39933i3;
+import java.util.ArrayList;
+import java.util.WeakHashMap;
+public final class w9 implements View.OnAttachStateChangeListener {
+    public final int f41315a;
+    public final Object f41316b;
+    public final Object f41317c;
 
-    public final void A1() {
-        if (getLayoutParams() == null) {
-            return;
+    public w9(int i7, Object obj, Object obj2) {
+        this.f41315a = i7;
+        this.f41317c = obj;
+        this.f41316b = obj2;
+    }
+
+    @Override
+    public final void onViewAttachedToWindow(View view) {
+        int i7 = this.f41315a;
+        Object obj = this.f41316b;
+        Object obj2 = this.f41317c;
+        switch (i7) {
+            case 0:
+                u9 u9Var = (u9) obj;
+                if (u9Var != null) {
+                    u9Var.d.add((y9) obj2);
+                    return;
+                }
+                return;
+            case 1:
+                oy0 oy0Var = (oy0) obj2;
+                oy0Var.f38111k = p5.update(oy0Var.f38112l, (View) obj, oy0Var.f38111k, oy0Var.f38104b);
+                return;
+            default:
+                org.telegram.ui.Wallet.c4 c4Var = (org.telegram.ui.Wallet.c4) obj2;
+                org.telegram.ui.Wallet.b4 b4Var = c4Var.f43593m;
+                if (b4Var != null) {
+                    b4Var.setPaused(!c4Var.f43594n);
+                }
+                c4Var.f43571a.isAttachedToWindow();
+                int i10 = c4Var.f43610v0;
+                if (-1 != i10) {
+                    if (i10 >= 0) {
+                        org.telegram.messenger.ns.f(i10).n(c4Var.f43614x0, 67);
+                    }
+                    c4Var.f43610v0 = -1;
+                    return;
+                }
+                return;
         }
-        if (org.telegram.messenger.iz.f()) {
-            this.f39929e3 = z1();
-            ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = -this.f39929e3;
-            return;
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        switch (this.f41315a) {
+            case 0:
+                y9 y9Var = (y9) this.f41317c;
+                u9 u9Var = (u9) this.f41316b;
+                if (u9Var != null) {
+                    ArrayList arrayList = u9Var.d;
+                    arrayList.remove(y9Var);
+                    if (u9Var.f39970e.isEmpty() && arrayList.isEmpty()) {
+                        u9Var.f39978n.o();
+                    }
+                }
+                y9Var.f41950n = null;
+                Paint paint = y9Var.h;
+                y9Var.f41951o = null;
+                paint.setShader(null);
+                return;
+            case 1:
+                p5.release((View) this.f41316b, ((oy0) this.f41317c).f38111k);
+                return;
+            default:
+                org.telegram.ui.Wallet.c4 c4Var = (org.telegram.ui.Wallet.c4) this.f41317c;
+                org.telegram.ui.Cells.t0 t0Var = c4Var.f43571a;
+                c4Var.f();
+                c4Var.M = false;
+                c4Var.N = 0L;
+                c4Var.k();
+                r1.g gVar = c4Var.Z;
+                if (gVar != null) {
+                    gVar.d();
+                    c4Var.Z = null;
+                }
+                c4Var.f43572a0 = 1.0f;
+                t0Var.invalidate();
+                if (t0Var.getParent() instanceof View) {
+                    ((View) t0Var.getParent()).invalidate();
+                }
+                c4Var.l();
+                org.telegram.ui.Wallet.i6 i6Var = c4Var.f43589k;
+                WeakHashMap weakHashMap = i6Var.f43979e;
+                weakHashMap.remove((org.telegram.ui.Cells.t0) this.f41316b);
+                if (weakHashMap.isEmpty()) {
+                    i6Var.a();
+                }
+                t0Var.isAttachedToWindow();
+                int i7 = c4Var.f43610v0;
+                if (-1 != i7) {
+                    if (i7 >= 0) {
+                        org.telegram.messenger.ns.f(i7).n(c4Var.f43614x0, 67);
+                    }
+                    c4Var.f43610v0 = -1;
+                }
+                org.telegram.ui.Wallet.b4 b4Var = c4Var.f43593m;
+                if (b4Var != null) {
+                    b4Var.setPaused(true);
+                }
+                c4Var.f43591l.stop();
+                c4Var.H = false;
+                return;
         }
-        this.f39929e3 = 0;
-        ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = 0;
-    }
-
-    @Override
-    public final void d(Canvas canvas, RectF rectF) {
-        this.f39933i3 = true;
-        super.d(canvas, rectF);
-        this.f39933i3 = false;
-    }
-
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        if (this.f39929e3 != 0 && !Y0()) {
-            canvas.clipRect(0, this.f39929e3, getMeasuredWidth(), getMeasuredHeight() + this.f39932h3);
-            super.dispatchDraw(canvas);
-            return;
-        }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view.getY() + view.getMeasuredHeight() < this.f39929e3 && !this.f39933i3 && !Y0()) {
-            return true;
-        }
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        A1();
-    }
-
-    @Override
-    public void onMeasure(int i7, int i10) {
-        this.f39931g3 = true;
-        A1();
-        super.setPadding(getPaddingLeft(), this.f39930f3 + this.f39929e3, getPaddingRight(), getPaddingBottom());
-        this.f39931g3 = false;
-        super.onMeasure(i7, i10);
-    }
-
-    @Override
-    public void requestLayout() {
-        if (this.f39931g3) {
-            return;
-        }
-        super.requestLayout();
-    }
-
-    @Override
-    public final void setPadding(int i7, int i10, int i11, int i12) {
-        this.f39930f3 = i10;
-        super.setPadding(i7, i10 + this.f39929e3, i11, i12);
-    }
-
-    public int z1() {
-        return org.telegram.messenger.g0.L(203.0f);
     }
 }

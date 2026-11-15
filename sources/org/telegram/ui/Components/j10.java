@@ -1,28 +1,66 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class j10 extends AnimatorListenerAdapter {
-    public final int f34815a;
-    public final p10 f34816b;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class j10 extends v4.o {
+    public final ArrayList f35832b;
+    public final ArrayList f35833c;
+    public final l10 d;
 
-    public j10(p10 p10Var, int i7) {
-        this.f34815a = i7;
-        this.f34816b = p10Var;
+    public j10(l10 l10Var, ArrayList arrayList, ArrayList arrayList2) {
+        this.d = l10Var;
+        this.f35832b = arrayList;
+        this.f35833c = arrayList2;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f34815a) {
-            case 0:
-                p10 p10Var = this.f34816b;
-                p10Var.f36765b.setVisibility(8);
-                p10Var.E = false;
-                p10Var.F = 0.0f;
-                return;
-            default:
-                this.f34816b.f36770e.setVisibility(8);
-                return;
+    public final boolean a(int i7, int i10) {
+        return true;
+    }
+
+    @Override
+    public final boolean b(int i7, int i10) {
+        TLRPC.GroupCallParticipant groupCallParticipant;
+        TLRPC.GroupCallParticipant groupCallParticipant2;
+        ArrayList arrayList = this.f35832b;
+        int size = arrayList.size();
+        l10 l10Var = this.d;
+        if (i7 < size && i10 < l10Var.f36695e.size()) {
+            return ((org.telegram.messenger.s3) arrayList.get(i7)).equals(l10Var.f36695e.get(i10));
         }
+        int size2 = i7 - arrayList.size();
+        int size3 = i10 - l10Var.f36695e.size();
+        ArrayList arrayList2 = this.f35833c;
+        if (size3 >= 0 && size3 < l10Var.f36696f.size() && size2 >= 0 && size2 < arrayList2.size()) {
+            if (org.telegram.messenger.gj.B1(((TLRPC.GroupCallParticipant) arrayList2.get(size2)).peer) != org.telegram.messenger.gj.B1(((TLRPC.GroupCallParticipant) l10Var.f36696f.get(size3)).peer)) {
+                return false;
+            }
+            return true;
+        }
+        if (i7 < arrayList.size()) {
+            groupCallParticipant = ((org.telegram.messenger.s3) arrayList.get(i7)).f26393a;
+        } else {
+            groupCallParticipant = (TLRPC.GroupCallParticipant) arrayList2.get(size2);
+        }
+        if (i10 < l10Var.f36695e.size()) {
+            groupCallParticipant2 = ((org.telegram.messenger.s3) l10Var.f36695e.get(i10)).f26393a;
+        } else {
+            groupCallParticipant2 = (TLRPC.GroupCallParticipant) l10Var.f36696f.get(size3);
+        }
+        if (org.telegram.messenger.gj.B1(groupCallParticipant.peer) != org.telegram.messenger.gj.B1(groupCallParticipant2.peer)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final int d() {
+        l10 l10Var = this.d;
+        return l10Var.f36696f.size() + l10Var.f36695e.size();
+    }
+
+    @Override
+    public final int e() {
+        return this.f35833c.size() + this.f35832b.size();
     }
 }

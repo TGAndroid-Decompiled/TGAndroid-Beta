@@ -1,20 +1,16 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class vq0 implements View.OnLayoutChangeListener {
-    public final ys0 f39716a;
+import android.content.Context;
+public final class vq0 extends ScrollSlidingTextTabStrip {
+    public final ys0 f41129q0;
 
-    public vq0(ys0 ys0Var) {
-        this.f39716a = ys0Var;
+    public vq0(ys0 ys0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        this.f41129q0 = ys0Var;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
-        ys0 ys0Var = this.f39716a;
-        org.telegram.ui.ActionBar.r0 r0Var = ys0Var.f40695p0;
-        if (r0Var == null) {
-            return;
-        }
-        ys0Var.f40695p0.setTranslationX(((View) r0Var.getParent()).getMeasuredWidth() - ys0Var.f40695p0.getRight());
+    public final int e(int i7) {
+        return this.f41129q0.h1(i7);
     }
 }

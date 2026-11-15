@@ -12,15 +12,15 @@ public class MusicBrowserService extends MediaBrowserService {
     public final void onCreate() {
         super.onCreate();
         t0.w();
-        setSessionToken((MediaSession.Token) ((android.support.v4.media.session.u) wz.a(this).f26414b.f1763b).f1795c.f1739b);
+        setSessionToken((MediaSession.Token) ((android.support.v4.media.session.u) uz.a(this).f26901b.f1706b).f1738c.f1682b);
     }
 
     @Override
     public final MediaBrowserService.BrowserRoot onGetRoot(String str, int i7, Bundle bundle) {
         if (str != null) {
             if (1000 != i7 && Process.myUid() != i7) {
-                HashSet hashSet = ft.f22472a;
-                if (i7 != 1000 && i7 != Process.myUid() && !ft.f22472a.contains(str)) {
+                HashSet hashSet = ct.f22932a;
+                if (i7 != 1000 && i7 != Process.myUid() && !ct.f22932a.contains(str)) {
                     PackageManager packageManager = getPackageManager();
                     try {
                         if (packageManager.checkPermission("android.permission.MEDIA_CONTENT_CONTROL", str) != 0) {
@@ -33,11 +33,11 @@ public class MusicBrowserService extends MediaBrowserService {
                     }
                 }
             }
-            wz.a(this).getClass();
-            if (wz.b()) {
+            uz.a(this).getClass();
+            if (uz.b()) {
                 return null;
             }
-            wz.a(this).getClass();
+            uz.a(this).getClass();
             Bundle bundle2 = new Bundle();
             bundle2.putBoolean("android.media.browse.CONTENT_STYLE_SUPPORTED", true);
             bundle2.putInt("android.media.browse.CONTENT_STYLE_BROWSABLE_HINT", 2);
@@ -49,10 +49,10 @@ public class MusicBrowserService extends MediaBrowserService {
 
     @Override
     public final void onLoadChildren(String str, MediaBrowserService.Result result) {
-        wz a10 = wz.a(this);
+        uz a10 = uz.a(this);
         a10.getClass();
-        if (wz.b()) {
-            Toast.makeText(getApplicationContext(), id.M0(2131751110, null), 1).show();
+        if (uz.b()) {
+            Toast.makeText(getApplicationContext(), hd.M0(2131751110, null), 1).show();
             stopSelf();
             result.detach();
             return;

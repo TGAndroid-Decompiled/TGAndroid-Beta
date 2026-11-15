@@ -1,58 +1,72 @@
 package org.telegram.ui.Components;
+public final class nd implements Runnable {
+    public final int f37560a;
+    public final ChatActivityEnterView f37561b;
 
-import android.graphics.RectF;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ProfileActivity;
-public final class nd implements s4, org.telegram.messenger.pc {
-    public final String f36292a;
-    public final boolean f36293b;
-    public final org.telegram.messenger.ls f36294c;
-    public final Object d;
-    public final Object f36295e;
-    public final Object f36296f;
-
-    public nd(ChatActivityEnterView chatActivityEnterView, TLRPC.Document document, String str, Object obj, org.telegram.messenger.ej ejVar, boolean z9) {
-        this.f36294c = chatActivityEnterView;
-        this.d = document;
-        this.f36292a = str;
-        this.f36295e = obj;
-        this.f36296f = ejVar;
-        this.f36293b = z9;
+    public nd(ChatActivityEnterView chatActivityEnterView, int i7) {
+        this.f37560a = i7;
+        this.f37561b = chatActivityEnterView;
     }
 
     @Override
-    public void L(int i7, int i10, boolean z9) {
-        ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f36294c;
-        TLRPC.Document document = (TLRPC.Document) this.d;
-        org.telegram.messenger.ej ejVar = (org.telegram.messenger.ej) this.f36296f;
-        int i11 = ChatActivityEnterView.s5;
-        chatActivityEnterView.a(document, this.f36292a, this.f36295e, ejVar, this.f36293b, z9, i7, i10);
-    }
-
-    @Override
-    public void a(String str) {
-        boolean z9;
-        TLRPC.Chat chat;
-        ProfileActivity profileActivity = (ProfileActivity) this.f36294c;
-        boolean[] zArr = (boolean[]) this.f36295e;
-        jg.c1 c1Var = (jg.c1) this.f36296f;
-        RectF rectF = ProfileActivity.V6;
-        ((String[]) this.d)[0] = str;
-        if (str != null && ((!str.equals(this.f36292a) || str.equals("und")) && ((this.f36293b && !org.telegram.ui.uy0.d0().contains(str)) || ((chat = profileActivity.D2) != null && ((chat.has_link || org.telegram.messenger.t3.t0(chat)) && ("uk".equals(str) || "ru".equals(str))))))) {
-            z9 = true;
-        } else {
-            z9 = false;
+    public final void run() {
+        int i7 = this.f37560a;
+        ChatActivityEnterView chatActivityEnterView = this.f37561b;
+        switch (i7) {
+            case 0:
+                int i10 = ChatActivityEnterView.N6;
+                chatActivityEnterView.Q1(true, true);
+                chatActivityEnterView.W = null;
+                return;
+            case 1:
+                int i11 = ChatActivityEnterView.N6;
+                chatActivityEnterView.q2();
+                return;
+            case 2:
+                xe xeVar = chatActivityEnterView.F0;
+                if (xeVar != null) {
+                    xeVar.setText("");
+                    return;
+                }
+                return;
+            case 3:
+                xe xeVar2 = chatActivityEnterView.F0;
+                if (xeVar2 != null) {
+                    xeVar2.setText("");
+                }
+                chatActivityEnterView.N(true);
+                return;
+            case 4:
+                int i12 = ChatActivityEnterView.N6;
+                chatActivityEnterView.m1();
+                return;
+            case 5:
+                chatActivityEnterView.T3 = false;
+                chatActivityEnterView.X0();
+                return;
+            case 6:
+                if (!chatActivityEnterView.G2) {
+                    chatActivityEnterView.N(true);
+                    return;
+                }
+                return;
+            case 7:
+                chatActivityEnterView.f32265q0.callOnClick();
+                return;
+            case 8:
+                chatActivityEnterView.f32265q0.callOnClick();
+                return;
+            case 9:
+                cg cgVar = chatActivityEnterView.H3;
+                if (cgVar != null) {
+                    cgVar.n1();
+                    return;
+                }
+                return;
+            default:
+                int i13 = ChatActivityEnterView.N6;
+                chatActivityEnterView.F();
+                return;
         }
-        zArr[0] = z9;
-        c1Var.run();
-    }
-
-    public nd(ProfileActivity profileActivity, String[] strArr, boolean[] zArr, String str, boolean z9, jg.c1 c1Var) {
-        this.f36294c = profileActivity;
-        this.d = strArr;
-        this.f36295e = zArr;
-        this.f36292a = str;
-        this.f36293b = z9;
-        this.f36296f = c1Var;
     }
 }

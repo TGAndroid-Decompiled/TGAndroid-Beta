@@ -1,36 +1,37 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
 public final class no extends x2 {
-    public final qp f24217e;
+    public final np f25223e;
 
-    public no(qp qpVar) {
-        this.f24217e = qpVar;
+    public no(np npVar) {
+        super(3600000);
+        this.f25223e = npVar;
     }
 
     @Override
-    public final void e(int i7, Object obj, v10 v10Var) {
-        Integer num = (Integer) obj;
-        this.f24217e.getMessagesStorage().f26723a.c(new lo(i7, (v2) v10Var, 0));
+    public final void e(int i7, Object obj, s10 s10Var) {
+        Void r42 = (Void) obj;
+        vr.a0(i7).f27220a.c(new x0(i7, s10Var, 7));
     }
 
     @Override
     public final void f(int i7, Object obj, long j3, w2 w2Var) {
-        Integer num = (Integer) obj;
-        TLRPC.TL_help_getAppConfig tL_help_getAppConfig = new TLRPC.TL_help_getAppConfig();
-        tL_help_getAppConfig.hash = (int) j3;
-        this.f24217e.getConnectionsManager().sendRequest(tL_help_getAppConfig, new mo(w2Var, 0));
+        Void r32 = (Void) obj;
+        TL_account.getWebBrowserSettings getwebbrowsersettings = new TL_account.getWebBrowserSettings();
+        getwebbrowsersettings.hash = j3;
+        this.f25223e.getConnectionsManager().sendRequestTyped(getwebbrowsersettings, new d3.b(1), new d(w2Var, 6));
     }
 
     @Override
     public final void g(int i7, Object obj, Object obj2) {
-        Integer num = (Integer) obj;
-        yr.a0(i7).f26723a.c(new x0(i7, (TLRPC.TL_help_appConfig) obj2, 5));
+        Void r42 = (Void) obj;
+        vr.a0(i7).f27220a.c(new x0(i7, (TL_account.TL_webBrowserSettings) obj2, 8));
     }
 
     @Override
     public final boolean j(Object obj) {
-        Integer num = (Integer) obj;
+        Void r12 = (Void) obj;
         return false;
     }
 }

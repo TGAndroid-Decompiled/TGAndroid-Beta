@@ -4,9 +4,9 @@ import android.content.SharedPreferences;
 import android.util.Pair;
 import java.util.HashMap;
 public abstract class x2 {
-    public final long f26439a;
-    public HashMap f26440b;
-    public HashMap f26441c;
+    public final long f27455a;
+    public HashMap f27456b;
+    public HashMap f27457c;
     public HashMap d;
 
     public x2() {
@@ -17,35 +17,35 @@ public abstract class x2 {
         if (!j(pair.second)) {
             return;
         }
-        if (this.f26440b == null) {
-            this.f26440b = new HashMap();
+        if (this.f27456b == null) {
+            this.f27456b = new HashMap();
         }
-        this.f26440b.put(pair, obj);
+        this.f27456b.put(pair, obj);
     }
 
     public boolean b(Object obj) {
         return false;
     }
 
-    public final void c(int i7, Object obj, c20 c20Var) {
+    public final void c(int i7, Object obj, z10 z10Var) {
         Object obj2;
         Pair pair = new Pair(Integer.valueOf(i7), obj);
-        HashMap hashMap = this.f26441c;
+        HashMap hashMap = this.f27457c;
         if (hashMap != null && hashMap.get(pair) != null) {
-            g0.h3(new ng(this, pair, c20Var, 11));
+            g0.h3(new mg(this, pair, z10Var, 11));
             return;
         }
-        HashMap hashMap2 = this.f26440b;
+        HashMap hashMap2 = this.f27456b;
         if (hashMap2 == null) {
             obj2 = null;
         } else {
             obj2 = hashMap2.get(pair);
         }
         if (obj2 != null && !i(pair)) {
-            c20Var.a(obj2);
+            z10Var.a(obj2);
             return;
         }
-        g0.h3(new ng(this, pair, c20Var, 11));
+        g0.h3(new mg(this, pair, z10Var, 11));
         e(i7, obj, new v2(this, pair, obj, i7));
     }
 
@@ -53,14 +53,14 @@ public abstract class x2 {
         if (this.d != null) {
             Pair pair = new Pair(Integer.valueOf(i7), num);
             this.d.remove(pair);
-            if (this instanceof po) {
+            if (this instanceof mo) {
                 h(pair.hashCode(), 0L);
             }
         }
     }
 
-    public void e(int i7, Object obj, v10 v10Var) {
-        ((v2) v10Var).a(0L, null);
+    public void e(int i7, Object obj, s10 s10Var) {
+        ((v2) s10Var).a(0L, null);
     }
 
     public abstract void f(int i7, Object obj, long j3, w2 w2Var);
@@ -73,12 +73,12 @@ public abstract class x2 {
         } else {
             l10 = null;
         }
-        if ((this instanceof po) && l10 == null) {
+        if ((this instanceof mo) && l10 == null) {
             int hashCode = pair.hashCode();
-            SharedPreferences sharedPreferences = ((po) this).f24610e.f24778e7;
+            SharedPreferences sharedPreferences = ((mo) this).f25078e.f25280f7;
             l10 = Long.valueOf(sharedPreferences.getLong("effects_last_" + hashCode, 0L));
         }
-        if (l10 != null && System.currentTimeMillis() - l10.longValue() < this.f26439a) {
+        if (l10 != null && System.currentTimeMillis() - l10.longValue() < this.f27455a) {
             return false;
         }
         return true;
@@ -89,7 +89,7 @@ public abstract class x2 {
     }
 
     public x2(int i7) {
-        this.f26439a = i7;
+        this.f27455a = i7;
     }
 
     public void h(int i7, long j3) {

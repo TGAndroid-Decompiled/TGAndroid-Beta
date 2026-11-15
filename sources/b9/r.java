@@ -2,28 +2,28 @@ package b9;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.xb;
+import c8.yb;
 public final class r extends r6.a {
     public static final Parcelable.Creator<r> CREATOR = new c(15);
-    public final int f3095a;
-    public final boolean f3096b;
-    public final boolean f3097c;
+    public final int f3051a;
+    public final boolean f3052b;
+    public final boolean f3053c;
 
-    public r(int i7, boolean z9, boolean z10) {
-        this.f3095a = i7;
-        this.f3096b = z9;
-        this.f3097c = z10;
+    public r(int i7, boolean z10, boolean z11) {
+        this.f3051a = i7;
+        this.f3052b = z10;
+        this.f3053c = z11;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = xb.r(parcel, 20293);
-        xb.q(parcel, 2, 4);
-        parcel.writeInt(this.f3095a);
-        xb.q(parcel, 3, 4);
-        parcel.writeInt(this.f3096b ? 1 : 0);
-        xb.q(parcel, 4, 4);
-        parcel.writeInt(this.f3097c ? 1 : 0);
-        xb.s(parcel, r10);
+        int r10 = yb.r(parcel, 20293);
+        yb.q(parcel, 2, 4);
+        parcel.writeInt(this.f3051a);
+        yb.q(parcel, 3, 4);
+        parcel.writeInt(this.f3052b ? 1 : 0);
+        yb.q(parcel, 4, 4);
+        parcel.writeInt(this.f3053c ? 1 : 0);
+        yb.s(parcel, r10);
     }
 }

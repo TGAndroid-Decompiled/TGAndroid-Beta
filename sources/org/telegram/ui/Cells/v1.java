@@ -7,19 +7,19 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.text.StaticLayout;
 import android.text.TextPaint;
-import org.telegram.messenger.id;
-import org.telegram.messenger.ij;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.hd;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.my0;
+import org.telegram.ui.Components.oy0;
 public final class v1 {
-    public final q1 f30631a;
-    public org.telegram.ui.Components.x8 f30632b;
-    public my0 f30633c;
+    public final q1 f31786a;
+    public org.telegram.ui.Components.v8 f31787b;
+    public oy0 f31788c;
     public int d;
-    public Drawable f30634e;
+    public Drawable f31789e;
 
     public v1(q1 q1Var) {
-        this.f30631a = q1Var;
+        this.f31786a = q1Var;
     }
 
     public final void a(Canvas canvas) {
@@ -34,156 +34,156 @@ public final class v1 {
         int i11;
         int i12;
         int i13;
-        q1 q1Var = this.f30631a;
-        boolean J4 = q1Var.P5.J4();
-        ij ijVar = q1Var.P5;
-        if (ijVar.f23266k.action instanceof TLRPC.TL_messageActionConferenceCall) {
-            if (ijVar.P3()) {
-                drawable = org.telegram.ui.ActionBar.m6.O4;
+        q1 q1Var = this.f31786a;
+        boolean J4 = q1Var.Q5.J4();
+        gj gjVar = q1Var.Q5;
+        if (gjVar.f23817k.action instanceof TLRPC.TL_messageActionConferenceCall) {
+            if (gjVar.P3()) {
+                drawable = org.telegram.ui.ActionBar.j6.O4;
             } else {
-                drawable = org.telegram.ui.ActionBar.m6.P4;
+                drawable = org.telegram.ui.ActionBar.j6.P4;
             }
-            if (this.f30634e == null) {
+            if (this.f31789e == null) {
                 Resources resources = q1Var.getContext().getResources();
-                if (q1Var.P5.J4()) {
+                if (q1Var.Q5.J4()) {
                     i13 = 2131231184;
                 } else {
                     i13 = 2131231091;
                 }
-                this.f30634e = resources.getDrawable(i13).mutate();
+                this.f31789e = resources.getDrawable(i13).mutate();
             }
-            if (q1Var.P5.P3()) {
-                i12 = org.telegram.ui.ActionBar.m6.Jb;
+            if (q1Var.Q5.P3()) {
+                i12 = org.telegram.ui.ActionBar.j6.Mb;
             } else {
-                i12 = org.telegram.ui.ActionBar.m6.f28156rd;
+                i12 = org.telegram.ui.ActionBar.j6.f29172ud;
             }
-            int w02 = org.telegram.ui.ActionBar.m6.w0(i12, q1Var.Pb);
+            int w02 = org.telegram.ui.ActionBar.j6.w0(i12, q1Var.Qb);
             if (this.d != w02) {
-                Drawable drawable3 = this.f30634e;
+                Drawable drawable3 = this.f31789e;
                 this.d = w02;
                 drawable3.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
             }
-            drawable2 = this.f30634e;
-        } else if (ijVar.P3()) {
-            drawable = org.telegram.ui.ActionBar.m6.O4;
-            if (q1Var.P5.J4()) {
-                q1Var.x2();
-                drawable2 = q1Var.Y1("drawableMsgOutCallVideo");
+            drawable2 = this.f31789e;
+        } else if (gjVar.P3()) {
+            drawable = org.telegram.ui.ActionBar.j6.O4;
+            if (q1Var.Q5.J4()) {
+                q1Var.y2();
+                drawable2 = q1Var.Z1("drawableMsgOutCallVideo");
             } else {
-                if (q1Var.x2()) {
+                if (q1Var.y2()) {
                     str = "drawableMsgOutCallAudioSelected";
                 } else {
                     str = "drawableMsgOutCallAudio";
                 }
-                drawable2 = q1Var.Y1(str);
+                drawable2 = q1Var.Z1(str);
             }
         } else {
-            TLRPC.PhoneCallDiscardReason phoneCallDiscardReason = q1Var.P5.f23266k.action.reason;
+            TLRPC.PhoneCallDiscardReason phoneCallDiscardReason = q1Var.Q5.f23817k.action.reason;
             if (!(phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonMissed) && !(phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonBusy)) {
-                drawable = org.telegram.ui.ActionBar.m6.Q4;
+                drawable = org.telegram.ui.ActionBar.j6.Q4;
             } else {
-                drawable = org.telegram.ui.ActionBar.m6.P4;
+                drawable = org.telegram.ui.ActionBar.j6.P4;
             }
-            if (q1Var.x2()) {
-                drawable2 = org.telegram.ui.ActionBar.m6.H4[J4 ? 1 : 0];
+            if (q1Var.y2()) {
+                drawable2 = org.telegram.ui.ActionBar.j6.H4[J4 ? 1 : 0];
             } else {
-                drawable2 = org.telegram.ui.ActionBar.m6.G4[J4 ? 1 : 0];
+                drawable2 = org.telegram.ui.ActionBar.j6.G4[J4 ? 1 : 0];
             }
         }
         Drawable drawable4 = drawable;
         Drawable drawable5 = drawable2;
-        if (q1Var.P5.P3()) {
-            org.telegram.ui.ActionBar.m6.O2.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Tc, q1Var.Pb));
-            TextPaint textPaint = org.telegram.ui.ActionBar.m6.S2;
-            if (q1Var.x2()) {
-                i11 = org.telegram.ui.ActionBar.m6.f27859bc;
+        if (q1Var.Q5.P3()) {
+            org.telegram.ui.ActionBar.j6.O2.setColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Wc, q1Var.Qb));
+            TextPaint textPaint = org.telegram.ui.ActionBar.j6.S2;
+            if (q1Var.y2()) {
+                i11 = org.telegram.ui.ActionBar.j6.f28873ec;
             } else {
-                i11 = org.telegram.ui.ActionBar.m6.f27951gc;
+                i11 = org.telegram.ui.ActionBar.j6.f28964jc;
             }
-            textPaint.setColor(org.telegram.ui.ActionBar.m6.w0(i11, q1Var.Pb));
+            textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(i11, q1Var.Qb));
         } else {
-            org.telegram.ui.ActionBar.m6.O2.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Sc, q1Var.Pb));
-            TextPaint textPaint2 = org.telegram.ui.ActionBar.m6.S2;
-            if (q1Var.x2()) {
-                i7 = org.telegram.ui.ActionBar.m6.f27880ce;
+            org.telegram.ui.ActionBar.j6.O2.setColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Vc, q1Var.Qb));
+            TextPaint textPaint2 = org.telegram.ui.ActionBar.j6.S2;
+            if (q1Var.y2()) {
+                i7 = org.telegram.ui.ActionBar.j6.fe;
             } else {
-                i7 = org.telegram.ui.ActionBar.m6.f27860be;
+                i7 = org.telegram.ui.ActionBar.j6.f28875ee;
             }
-            textPaint2.setColor(org.telegram.ui.ActionBar.m6.w0(i7, q1Var.Pb));
+            textPaint2.setColor(org.telegram.ui.ActionBar.j6.w0(i7, q1Var.Qb));
         }
-        q1Var.F9 = true;
-        if (q1Var.P5.P3()) {
-            L = org.telegram.messenger.g0.L(16.0f) + (q1Var.f29818c7 - q1Var.f29791a7);
-        } else if (q1Var.Y2()) {
+        q1Var.G9 = true;
+        if (q1Var.Q5.P3()) {
+            L = org.telegram.messenger.g0.L(16.0f) + (q1Var.f30949d7 - q1Var.f30923b7);
+        } else if (q1Var.Z2()) {
             L = org.telegram.messenger.g0.L(74.0f);
         } else {
             L = org.telegram.messenger.g0.L(25.0f);
         }
-        q1Var.R3 = L;
-        if (id.f23161a0) {
+        q1Var.S3 = L;
+        if (hd.f24101a0) {
             L = org.telegram.messenger.k5.C(12.0f, drawable5.getIntrinsicWidth(), L);
         }
         int i14 = L;
-        if (q1Var.f29950n2 != null) {
+        if (q1Var.f31087o2 != null) {
             canvas.save();
-            canvas.translate(i14, org.telegram.messenger.g0.L(12.0f) + q1Var.Ta);
-            q1Var.f29950n2.draw(canvas);
+            canvas.translate(i14, org.telegram.messenger.g0.L(12.0f) + q1Var.Ua);
+            q1Var.f31087o2.draw(canvas);
             canvas.restore();
         }
         float f11 = -19.0f;
-        if (q1Var.f29827d3 != null) {
+        if (q1Var.f30958e3 != null) {
             canvas.save();
-            if (id.f23161a0) {
+            if (hd.f24101a0) {
                 f10 = -19.0f;
             } else {
                 f10 = 19.0f;
             }
-            canvas.translate(org.telegram.messenger.g0.L(f10) + i14, org.telegram.messenger.g0.L(37.0f) + q1Var.Ta);
-            q1Var.f29827d3.draw(canvas);
+            canvas.translate(org.telegram.messenger.g0.L(f10) + i14, org.telegram.messenger.g0.L(37.0f) + q1Var.Ua);
+            q1Var.f30958e3.draw(canvas);
             canvas.restore();
         }
-        if (this.f30633c != null && this.f30632b != null) {
+        if (this.f31788c != null && this.f31787b != null) {
             canvas.save();
-            if (!id.f23161a0) {
+            if (!hd.f24101a0) {
                 f11 = 19.0f;
             }
-            canvas.translate(org.telegram.messenger.g0.L(6.0f) + org.telegram.messenger.g0.L(f11) + i14 + q1Var.f29840e3, org.telegram.messenger.g0.L(36.0f) + q1Var.Ta);
-            this.f30632b.g(canvas);
-            canvas.translate(this.f30632b.A + org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(8.0f));
-            this.f30633c.c(0.0f, 0.0f, 1.0f, org.telegram.ui.ActionBar.m6.S2.getColor(), canvas);
+            canvas.translate(org.telegram.messenger.g0.L(6.0f) + org.telegram.messenger.g0.L(f11) + i14 + q1Var.f30972f3, org.telegram.messenger.g0.L(36.0f) + q1Var.Ua);
+            this.f31787b.g(canvas);
+            canvas.translate(this.f31787b.A + org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(8.0f));
+            this.f31788c.c(0.0f, 0.0f, 1.0f, org.telegram.ui.ActionBar.j6.S2.getColor(), canvas);
             canvas.restore();
         }
         int i15 = 0;
-        if (id.f23161a0 && (staticLayout = q1Var.f29827d3) != null) {
+        if (hd.f24101a0 && (staticLayout = q1Var.f30958e3) != null) {
             i10 = staticLayout.getWidth() - drawable4.getIntrinsicWidth();
         } else {
             i10 = 0;
         }
-        z.s((i14 + i10) - org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(37.0f) + q1Var.Ta, drawable4);
+        z.s((i14 + i10) - org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(37.0f) + q1Var.Ua, drawable4);
         drawable4.draw(canvas);
-        Drawable drawable6 = q1Var.I2[0];
-        if (drawable6 != null && q1Var.K2[0] == 4) {
+        Drawable drawable6 = q1Var.J2[0];
+        if (drawable6 != null && q1Var.L2[0] == 4) {
             drawable6.draw(canvas);
         }
-        boolean z9 = q1Var.F;
-        if (!z9 && !q1Var.E) {
-            q1Var.S3 = org.telegram.messenger.g0.L(18.5f);
-        } else if (z9 && q1Var.E) {
-            q1Var.S3 = org.telegram.messenger.g0.L(18.0f);
-        } else if (!z9) {
-            q1Var.S3 = org.telegram.messenger.g0.L(17.0f);
+        boolean z10 = q1Var.G;
+        if (!z10 && !q1Var.F) {
+            q1Var.T3 = org.telegram.messenger.g0.L(18.5f);
+        } else if (z10 && q1Var.F) {
+            q1Var.T3 = org.telegram.messenger.g0.L(18.0f);
+        } else if (!z10) {
+            q1Var.T3 = org.telegram.messenger.g0.L(17.0f);
         } else {
-            q1Var.S3 = org.telegram.messenger.g0.L(19.0f);
+            q1Var.T3 = org.telegram.messenger.g0.L(19.0f);
         }
-        int i16 = q1Var.R3;
-        if (!id.f23161a0) {
-            i15 = q1Var.f29791a7 - org.telegram.messenger.g0.L(70.0f);
+        int i16 = q1Var.S3;
+        if (!hd.f24101a0) {
+            i15 = q1Var.f30923b7 - org.telegram.messenger.g0.L(70.0f);
         }
-        z.s(org.telegram.messenger.g0.L(!J4 ? 1 : 0) + i16 + i15, q1Var.S3, drawable5);
+        z.s(org.telegram.messenger.g0.L(!J4 ? 1 : 0) + i16 + i15, q1Var.T3, drawable5);
         drawable5.draw(canvas);
     }
 
-    public final void b(org.telegram.messenger.ij r31, boolean r32) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.v1.b(org.telegram.messenger.ij, boolean):void");
+    public final void b(org.telegram.messenger.gj r31, boolean r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.v1.b(org.telegram.messenger.gj, boolean):void");
     }
 }

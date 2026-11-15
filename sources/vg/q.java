@@ -1,26 +1,14 @@
 package vg;
-
-import android.opengl.EGL14;
-import android.opengl.EGLSurface;
-import android.view.Surface;
 public final class q {
-    public final r f57487a;
-    public final Surface f57488b;
-    public volatile boolean d;
-    public volatile p f57490e;
-    public int f57491f;
-    public int f57492g;
-    public boolean f57493i;
-    public boolean f57494j;
-    public volatile boolean f57489c = true;
-    public EGLSurface h = EGL14.EGL_NO_SURFACE;
-    public int f57495k = -1;
-    public float f57496l = -1.0f;
+    public final float f58960a;
+    public final float f58961b;
+    public final boolean f58962c;
+    public final boolean d;
 
-    public q(r rVar, Surface surface, int i7) {
-        this.f57487a = rVar;
-        this.f57488b = surface;
-        this.f57492g = i7;
-        this.f57491f = i7;
+    public q(float f10, float f11, boolean z10, boolean z11) {
+        this.f58960a = f10;
+        this.f58961b = f11;
+        this.f58962c = z10;
+        this.d = z11;
     }
 }

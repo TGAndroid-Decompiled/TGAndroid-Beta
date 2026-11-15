@@ -1,6 +1,6 @@
 package a1;
 
-import aa.u;
+import aa.t;
 import java.util.Collections;
 import java.util.Map;
 public final class e implements Runnable {
@@ -19,10 +19,10 @@ public final class e implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: a1.e.run():void");
     }
 
-    public e(u uVar, Throwable th2) {
+    public e(t tVar, Throwable th2) {
         this.f43a = 4;
         Map map = Collections.EMPTY_MAP;
-        this.f44b = uVar;
+        this.f44b = tVar;
         this.f45c = th2;
     }
 }

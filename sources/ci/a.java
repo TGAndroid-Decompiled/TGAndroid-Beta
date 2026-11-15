@@ -1,84 +1,67 @@
 package ci;
 
-import a8.ia;
-import d4.f;
-import i2.q;
-import i2.r;
-import java.nio.ByteBuffer;
-public final class a {
-    public boolean f6419a;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public abstract class a {
+    public static String[] f5249a = {"Rosewood", "Carmine", "Fire Engine", "Seal Brown", "Chestnut", "Coral Red", "Strawberry", "Chocolate", "Mystic Pearl", "Burnt Sienna", "Tomato", "Cappuccino", "Copper", "Carrot Juice", "Persimmon", "Desert Sand", "Orange", "Caramel", "Old Gold", "Mustard", "Satin Gold", "Amber", "Pure Gold", "Light Olive", "Khaki Green", "Lemongrass", "Malachite", "Camo Green", "Pistachio", "Shamrock Green", "Dark Green", "Ranger Green", "Hunter Green", "Mint Green", "Emerald", "Pine Green", "Gunship Green", "Pacific Green", "Tactical Pine", "Jade Green", "Aquamarine", "Pacific Cyan", "Deep Cyan", "Turquoise", "Moonstone", "Sky Blue", "Azure Blue", "Gunmetal", "Celtic Blue", "Sapphire", "Silver Blue", "Indigo Dye", "French Blue", "Navy Blue", "Cobalt Blue", "Marine Blue", "Midnight Blue", "Neon Blue", "Cyberpunk", "Electric Indigo", "Lavender", "Grape", "French Violet", "English Violet", "Purple", "Electric Purple", "Dark Lilac", "Fandango", "Mexican Pink", "Burgundy", "Raspberry", "Black", "Onyx Black", "Rifle Green", "Battleship Grey", "Feldgrau", "Steel Grey", "Roman Silver", "Platinum", "Ivory White"};
+    public static int[] f5250b = {-4752777, -2074806, -1024177, -10072763, -4296876, -2455189, -2257297, -6001064, -3110035, -2724036, -1672898, -5140354, -3111338, -2385817, -1595558, -5005438, -3040710, -3106510, -4879048, -2844659, -4220089, -2444475, -3364031, -4018332, -5394320, -5326758, -6966185, -9071539, -6836100, -7687837, -11443391, -10520503, -7360904, -8467582, -8862331, -9721476, -11171227, -9451629, -12287381, -11156324, -10440299, -10830170, -13519446, -10567496, -8474188, -10963768, -10636853, -11772573, -12207891, -10968120, -8346440, -11306607, -10708028, -9658659, -10450737, -11638628, -10720891, -9070855, -8024077, -5668621, -4748828, -6458175, -4038426, -5142853, -5346130, -3510074, -5145179, -1930570, -1874286, -6070682, -2065531, -13224136, -12170675, -10196644, -7566203, -7761272, -6839636, -6051659, -5067097, -4540751};
+    public static int[] f5251c = {-8303534, -5752773, -3917495, -12110290, -6731720, -3906225, -4760992, -9157573, -5220496, -4895955, -2863553, -8625322, -6462159, -3707057, -3840161, -8490149, -4165817, -4754383, -7050971, -3901678, -7506119, -5144534, -6784206, -7831995, -9732780, -11168955, -12740779, -11242687, -10714804, -11168955, -13941457, -12824773, -11828645, -12214694, -12410511, -12682896, -12753321, -12870524, -13671575, -12871305, -12145740, -12741190, -15166055, -12742002, -10976368, -11301950, -12285013, -13681854, -13072679, -11306558, -10453871, -12491655, -13143142, -10719543, -11443528, -12891270, -13287337, -9936156, -7970861, -10788136, -7710020, -8827488, -7254311, -7906671, -8108156, -6921516, -7579782, -6006645, -3585668, -9617078, -4826752, -15855857, -14144466, -11840959, -9671578, -10589341, -10259844, -8617846, -7830402, -6185577};
+    public static int[] d = {-11199454, -11599616, -9895927, -16120315, -10480376, -7794176, -5698548, -12711422, -6617818, -9762558, -8385792, -1321784, -10475263, -7462656, -5435904, -11516887, -6473465, -8571392, -11586814, -8772352, -10667264, -8769280, -9421824, -10925052, -13021157, -12162553, -16487674, -15321343, -14137573, -15570176, -16775935, -15719927, -14923489, -16618718, -16751310, -16037837, -16308707, -16752311, -16767452, -16496335, -16556185, -16620403, -16756913, -15641780, -15317678, -16293733, -16625548, -16513014, -16761211, -15907402, -15386805, -16573655, -16303268, -15582814, -15522692, -16709599, -16578024, -14145348, -12379994, -13163861, -10809173, -12711317, -11927158, -11263393, -12121017, -10350668, -10147758, -7469746, -9108944, -13368569, -7797192, -9672600, -16777216, -15789557, -13948384, -14932449, -13417134, -12630704, -12765139, -10068142};
+    public static int[] f5252e = {-1193267, -18515, -18522, -2835275, -80199, -9774, -11309, -1788244, -74272, -13136, -13123, -11914714, -730946, -10294, -6953, -858675, -7741, -9805, -8820, -8548, -72535, -4665, -6741, -660548, -2890053, -2559294, -4001858, -3151687, -2493751, -2753592, -4206167, -4733771, -2558498, -4325428, -4589095, -2558491, -4857644, -3735568, -4725037, -4260121, -3670530, -4788225, -3014659, -4327182, -2427395, -3282691, -4854529, -4799028, -4003841, -4071681, -3545868, -4006674, -4070407, -2891265, -4008971, -4469774, -4207392, -3154433, -2041345, -2565889, -1519105, -2048514, -1325057, -1652755, -799757, -1323265, -998174, -14357, -10522, -1590080, -10522, -7565423, -6381150, -3946563, -3158332, -2168351, -2104088, -2433054, -1447966, -658190};
+    public static final String[] f5253f = {"Black", "Onyx Black", "Gunmetal", "Midnight Blue", "Steel Grey", "Roman Silver", "Raspberry", "Carmine", "Fire Engine", "Burnt Sienna", "Tomato", "Copper", "Persimmon", "Orange", "Caramel", "Mustard", "Old Gold", "Satin Gold", "Amber", "Pure Gold", "Lemongrass", "Malachite", "Shamrock Green", "Mint Green", "Emerald", "Pacific Green", "Jade Green", "Deep Cyan", "Celtic Blue", "Cobalt Blue", "Neon Blue", "Cyberpunk", "Electric Indigo", "Lavender", "Grape", "French Violet", "Purple", "Electric Purple", "Fandango", "Mexican Pink", "Burgundy", "Rosewood", "Chestnut", "Coral Red", "Strawberry", "Mystic Pearl", "Carrot Juice", "Light Olive", "Khaki Green", "Camo Green", "Pistachio", "Hunter Green", "Pine Green", "Gunship Green", "Tactical Pine", "Aquamarine", "Pacific Cyan", "Turquoise", "Moonstone", "Sky Blue", "Azure Blue", "Sapphire", "Silver Blue", "Indigo Dye", "French Blue", "Navy Blue", "English Violet", "Dark Lilac", "Seal Brown", "Chocolate", "Cappuccino", "Desert Sand", "Dark Green", "Ranger Green", "Marine Blue", "Ivory White", "Platinum", "Battleship Grey", "Rifle Green", "Feldgrau"};
+    public static int[] f5254g;
+    public static int[] h;
 
-    public a(r rVar, q qVar) {
-        boolean z9;
-        boolean z10;
-        int i7;
-        int i10 = qVar.f15210a;
-        ByteBuffer byteBuffer = qVar.f15211b;
-        if (i10 != 6 && i10 != 3) {
-            z9 = false;
-        } else {
-            z9 = true;
-        }
-        ia.f(z9);
-        int min = Math.min(4, byteBuffer.remaining());
-        byte[] bArr = new byte[min];
-        byteBuffer.asReadOnlyBuffer().get(bArr);
-        f fVar = new f(bArr, min);
-        if (!rVar.f15212a) {
-            if (fVar.i()) {
-                this.f6419a = false;
-                return;
+    public static boolean a(ArrayList arrayList) {
+        if (arrayList != null && !arrayList.isEmpty()) {
+            int i7 = -1;
+            for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                if ("Black".equals(((TLRPC.TL_shareThemeBackdropOption) arrayList.get(i10)).name)) {
+                    i7 = i10;
+                }
             }
-            int j3 = fVar.j(2);
-            boolean i11 = fVar.i();
-            if (!rVar.f15213b) {
-                if (!i11) {
-                    this.f6419a = true;
-                    return;
+            if (i7 >= 0) {
+                int size = arrayList.size();
+                f5249a = new String[size];
+                f5250b = new int[size];
+                f5251c = new int[size];
+                d = new int[size];
+                f5252e = new int[size];
+                h = new int[size];
+                for (int i11 = 0; i11 < size; i11++) {
+                    TLRPC.TL_shareThemeBackdropOption tL_shareThemeBackdropOption = (TLRPC.TL_shareThemeBackdropOption) arrayList.get(i11);
+                    f5249a[i11] = tL_shareThemeBackdropOption.name;
+                    f5250b[i11] = tL_shareThemeBackdropOption.center_color | (-16777216);
+                    f5251c[i11] = tL_shareThemeBackdropOption.edge_color | (-16777216);
+                    d[i11] = tL_shareThemeBackdropOption.pattern_color | (-16777216);
+                    f5252e[i11] = tL_shareThemeBackdropOption.text_color | (-16777216);
+                    h[i11] = tL_shareThemeBackdropOption.backdrop_id;
                 }
-                if (j3 != 3 && j3 != 0) {
-                    z10 = fVar.i();
-                } else {
-                    z10 = true;
-                }
-                fVar.K();
-                if (rVar.d) {
-                    if (fVar.i()) {
-                        if (rVar.f15215e) {
-                            fVar.K();
-                        } else {
-                            throw new Exception();
-                        }
-                    }
-                    if (!rVar.f15214c) {
-                        if (j3 != 3) {
-                            fVar.K();
-                        }
-                        fVar.L(rVar.f15216f);
-                        if (j3 != 2 && j3 != 0 && !z10) {
-                            fVar.L(3);
-                        }
-                        if (j3 != 3 && j3 != 0) {
-                            i7 = fVar.j(8);
-                        } else {
-                            i7 = 255;
-                        }
-                        this.f6419a = i7 != 0;
-                        return;
-                    }
-                    throw new Exception();
-                }
-                throw new Exception();
+                f5254g = null;
+                int b10 = b("Neon Blue");
+                z0.H9 = i7;
+                z0.I9 = b10;
+                z0.G9 = null;
+                z0.F9 = null;
+                z0.E9 = null;
+                return true;
             }
-            throw new Exception();
         }
-        throw new Exception();
+        return false;
     }
 
-    public void a(boolean z9) {
-        if (this.f6419a == z9) {
-            return;
+    public static int b(String str) {
+        int i7 = 0;
+        while (true) {
+            String[] strArr = f5249a;
+            if (i7 < strArr.length) {
+                if (str.equals(strArr[i7])) {
+                    return i7;
+                }
+                i7++;
+            } else {
+                return -1;
+            }
         }
-        this.f6419a = z9;
     }
 }

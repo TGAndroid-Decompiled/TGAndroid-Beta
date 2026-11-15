@@ -1,20 +1,18 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.tgnet.TLRPC;
-public final class yu0 extends org.telegram.ui.Components.mo0 {
-    public final zu0 U2;
+import android.content.Context;
+public final class yu0 extends org.telegram.ui.Components.vf0 {
+    public final ProfileActivity f53634t1;
 
-    public yu0(zu0 zu0Var, Activity activity, String str) {
-        super(activity, null, str, false, null, false, null);
-        this.U2 = zu0Var;
+    public yu0(ProfileActivity profileActivity, Context context, long j3, org.telegram.ui.ActionBar.k kVar, ou0 ou0Var, xu0 xu0Var, org.telegram.ui.Components.rf0 rf0Var, org.telegram.ui.Components.nf0 nf0Var) {
+        super(context, j3, kVar, ou0Var, xu0Var, rf0Var, nf0Var);
+        this.f53634t1 = profileActivity;
     }
 
     @Override
-    public final void R0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z9) {
-        if (!z9) {
-            return;
-        }
-        org.telegram.messenger.g0.i3(new tn0(this, hVar, i7, 25), 250L);
+    public final void setCustomAvatarProgress(float f10) {
+        ProfileActivity profileActivity = this.f53634t1;
+        profileActivity.f43187r5 = f10;
+        profileActivity.P3();
     }
 }

@@ -1,83 +1,112 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-public final class fx extends v4.v {
-    public boolean d;
-    public final hx f45861e;
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+public final class fx extends FrameLayout {
+    public org.telegram.ui.Components.g9 f47211a;
+    public org.telegram.ui.Components.g9 f47212b;
+    public Drawable f47213c;
+    public Drawable d;
+    public final Drawable f47214e;
+    public Paint f47215f;
+    public RectF h;
+    public final ViewGroup[] f47216n;
+    public final gx f47217r;
 
-    public fx(hx hxVar) {
-        this.f45861e = hxVar;
-    }
-
-    @Override
-    public final void a(RecyclerView recyclerView, v4.d1 d1Var) {
-        super.a(recyclerView, d1Var);
-        d1Var.f57052a.setPressed(false);
-    }
-
-    @Override
-    public final int e(RecyclerView recyclerView, v4.d1 d1Var) {
-        if (d1Var.f57056f != 3) {
-            return v4.v.l(0, 0);
-        }
-        return v4.v.l(3, 0);
-    }
-
-    @Override
-    public final boolean n(RecyclerView recyclerView, v4.d1 d1Var, v4.d1 d1Var2) {
-        boolean z9;
-        boolean z10 = false;
-        if (d1Var.f57056f != d1Var2.f57056f) {
-            return false;
-        }
-        int b10 = d1Var.b();
-        int b11 = d1Var2.b();
-        hx hxVar = this.f45861e;
-        ex exVar = hxVar.f46436a;
-        hx hxVar2 = exVar.f45457f;
-        int i7 = hxVar2.f46441n;
-        ArrayList arrayList = hxVar2.f46439e;
-        int i10 = b10 - i7;
-        int i11 = b11 - i7;
-        int i12 = hxVar2.f46442r - i7;
-        if (i10 >= 0 && i11 >= 0 && i10 < i12 && i11 < i12) {
-            arrayList.set(i10, (Long) arrayList.get(i11));
-            arrayList.set(i11, (Long) arrayList.get(i10));
-            exVar.j(b10, b11);
-            org.telegram.ui.Cells.h4 h4Var = (org.telegram.ui.Cells.h4) d1Var.f57052a;
-            if (b11 != hxVar.f46442r - 1) {
-                z9 = true;
-            } else {
-                z9 = false;
+    public fx(gx gxVar, Context context) {
+        super(context);
+        this.f47217r = gxVar;
+        this.f47215f = new Paint(1);
+        this.h = new RectF();
+        this.f47216n = new ViewGroup[2];
+        int i7 = 0;
+        setWillNotDraw(false);
+        setPadding(0, org.telegram.messenger.g0.L(24.0f), 0, org.telegram.messenger.g0.L(24.0f));
+        LinearLayout f10 = org.telegram.messenger.k5.f(context, 1);
+        addView(f10, c8.ja.e(-2, -2, 17));
+        org.telegram.ui.Cells.t0 t0Var = new org.telegram.ui.Cells.t0(context);
+        t0Var.setCustomText(org.telegram.messenger.hd.M0(2131742869, null));
+        f10.addView(t0Var, c8.ja.t(-2, -2, 17, 0, 0, 0, 4));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.setBackgroundResource(2131232858);
+        f10.addView(linearLayout, c8.ja.t(-2, -2, 17, 10, 0, 10, 0));
+        gxVar.d = new ImageView(context);
+        int i10 = gxVar.f47545x;
+        if (i10 == 0) {
+            while (i7 < 2) {
+                this.f47216n[i7] = (ViewGroup) gxVar.getParentActivity().getLayoutInflater().inflate(2131492957, (ViewGroup) null);
+                linearLayout.addView(this.f47216n[i7], c8.ja.o(-1, -2));
+                i7++;
             }
-            h4Var.setDrawDivider(z9);
-            org.telegram.ui.Cells.h4 h4Var2 = (org.telegram.ui.Cells.h4) d1Var2.f57052a;
-            if (b10 != hxVar.f46442r - 1) {
-                z10 = true;
+            linearLayout.addView(gxVar.d, c8.ja.r(218, 160, 17));
+            gxVar.d.setImageResource(2131231003);
+        } else if (i10 == 1) {
+            while (i7 < 2) {
+                this.f47216n[i7] = (ViewGroup) gxVar.getParentActivity().getLayoutInflater().inflate(2131492900, (ViewGroup) null);
+                linearLayout.addView(this.f47216n[i7], c8.ja.o(160, -2));
+                i7++;
             }
-            h4Var2.setDrawDivider(z10);
-            this.d = true;
+            linearLayout.addView(gxVar.d, c8.ja.r(160, 160, 17));
+            gxVar.d.setImageResource(2131231031);
         }
-        return true;
+        a();
+        this.f47214e = org.telegram.ui.ActionBar.j6.Y0(context, 2131231230, org.telegram.ui.ActionBar.j6.f28813b7);
+    }
+
+    public final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.fx.a():void");
     }
 
     @Override
-    public final void p(v4.d1 d1Var, int i7) {
-        hx hxVar = this.f45861e;
-        if (i7 != 0) {
-            hxVar.f46437b.I0(false);
-            d1Var.f57052a.setPressed(true);
-        } else if (this.d) {
-            gx gxVar = hxVar.f46440f;
-            if (gxVar != null) {
-                gxVar.a();
-            }
-            this.d = false;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        org.telegram.ui.Components.g9 g9Var = this.f47211a;
+        if (g9Var != null) {
+            g9Var.dispose();
+            this.f47211a = null;
+        }
+        org.telegram.ui.Components.g9 g9Var2 = this.f47212b;
+        if (g9Var2 != null) {
+            g9Var2.dispose();
+            this.f47212b = null;
         }
     }
 
     @Override
-    public final void q(v4.d1 d1Var) {
+    public final void onDraw(android.graphics.Canvas r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.fx.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(264.0f), 1073741824));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final void dispatchSetPressed(boolean z10) {
     }
 }

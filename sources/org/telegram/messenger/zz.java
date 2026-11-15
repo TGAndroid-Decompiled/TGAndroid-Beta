@@ -1,28 +1,28 @@
 package org.telegram.messenger;
-public class zz {
-    public final String f26954c;
-    public int d;
-    public final a00 f26955e;
-    public long f26953b = -1;
-    public final long f26952a = System.currentTimeMillis();
+public final class zz implements Runnable {
+    public final int f28044a;
+    public final h00 f28045b;
+    public final long f28046c;
 
-    public zz(a00 a00Var, String str) {
-        this.f26955e = a00Var;
-        this.f26954c = str;
-        a00Var.f21365a++;
+    public zz(h00 h00Var, long j3, int i7) {
+        this.f28044a = i7;
+        this.f28045b = h00Var;
+        this.f28046c = j3;
     }
 
-    public String toString() {
-        String r10;
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(this.f26954c);
-        sb2.append(": ");
-        if (this.f26953b < 0) {
-            r10 = "not done";
-        } else {
-            r10 = a8.p0.r(new StringBuilder(), this.f26953b - this.f26952a, "ms");
+    @Override
+    public final void run() {
+        int i7 = this.f28044a;
+        long j3 = this.f28046c;
+        h00 h00Var = this.f28045b;
+        switch (i7) {
+            case 0:
+                h00Var.f24010c.put(j3, 0);
+                h00Var.getNotificationCenter().k(319, Long.valueOf(j3), Boolean.FALSE);
+                return;
+            default:
+                h00Var.n(0, j3, false);
+                return;
         }
-        sb2.append(r10);
-        return sb2.toString();
     }
 }

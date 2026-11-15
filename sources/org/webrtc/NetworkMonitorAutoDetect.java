@@ -45,8 +45,8 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
         private final int underlyingNetworkSubtypeForVpn;
         private final int underlyingNetworkTypeForVpn;
 
-        public NetworkState(boolean z9, int i7, int i10, int i11, int i12) {
-            this.connected = z9;
+        public NetworkState(boolean z10, int i7, int i10, int i11, int i12) {
+            this.connected = z10;
             this.type = i7;
             this.subtype = i10;
             this.underlyingNetworkTypeForVpn = i11;
@@ -233,8 +233,8 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
         this.observer.onConnectionTypeChanged(connectionType);
     }
 
-    private static NetworkChangeDetector.ConnectionType getConnectionType(boolean z9, int i7, int i10) {
-        if (z9) {
+    private static NetworkChangeDetector.ConnectionType getConnectionType(boolean z10, int i7, int i10) {
+        if (z10) {
             if (i7 == 0) {
                 switch (i10) {
                     case 1:

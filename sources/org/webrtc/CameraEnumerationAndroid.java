@@ -1,6 +1,7 @@
 package org.webrtc;
 
 import android.graphics.ImageFormat;
+import com.google.android.gms.internal.vision.e2;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -117,7 +118,7 @@ public class CameraEnumerationAndroid {
                 if (i10 < i11) {
                     return i10 * i12;
                 }
-                return com.google.android.recaptcha.internal.a.e(i10, i11, i13, i12 * i11);
+                return e2.v(i10, i11, i13, i12 * i11);
             }
 
             @Override

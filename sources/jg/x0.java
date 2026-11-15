@@ -1,27 +1,27 @@
 package jg;
 
 import android.location.Location;
-import org.telegram.messenger.cz;
+import org.telegram.messenger.az;
 import org.telegram.tgnet.TLRPC;
-public final class x0 implements cz {
-    public final i1 f16980a;
+public final class x0 implements az {
+    public final h1 f17332a;
 
-    public x0(i1 i1Var) {
-        this.f16980a = i1Var;
+    public x0(h1 h1Var) {
+        this.f17332a = h1Var;
     }
 
     @Override
-    public final void C() {
-        this.f16980a.Q();
+    public final void c() {
+        this.f17332a.Q();
     }
 
     @Override
-    public final void K(Location location) {
-        i1 i1Var = this.f16980a;
-        TLRPC.User user = i1Var.f16802w0;
+    public final void f(Location location) {
+        h1 h1Var = this.f17332a;
+        TLRPC.User user = h1Var.f17147x0;
         if (user != null && user.bot_inline_geo) {
-            i1Var.f16807z0 = location;
-            i1Var.T(true, user, i1Var.f16795r0, "");
+            h1Var.A0 = location;
+            h1Var.T(true, user, h1Var.f17140s0, "");
         }
     }
 }

@@ -1,94 +1,32 @@
 package org.telegram.ui.Components;
+public enum ff0 {
+    MESSAGE(2131746731, 2131231154, 2131232495),
+    NOTIFICATION_MUTE(2131746687, 2131231155, 2131232496),
+    NOTIFICATION_UNMUTE(2131746686, 2131231161, 2131232501),
+    DISCUSS(2131746740, 2131231154, 2131232495),
+    GIFT(2131746735, 2131231216, 2131231503),
+    SHARE(2131746729, 2131230863, 2131232364),
+    CALL(2131746741, 2131231151, 2131232492),
+    VIDEO(2131746727, 2131231162, 2131232502),
+    JOIN(2131746734, 2131231153, 2131232494),
+    REPORT(2131746730, 2131232676, 2131232334),
+    LEAVE(2131746733, 2131231620, 2131231620),
+    VOICE_CHAT(2131746726, 2131231633, 2131231633),
+    STREAM(2131746732, 2131231633, 2131231633),
+    STORY(2131746742, 2131231160, 2131232500),
+    STOP(2131746728, 2131231159, 2131232499),
+    SET_PHOTO(2131746737, 2131231156, 2131232497),
+    EDIT_USERNAME(2131746736, 2131231152, 2131232493),
+    EDIT_INFO(2131746739, 2131231152, 2131232493),
+    SETTINGS(2131745495, 2131231158, 2131232498);
+    
+    public final int f34595a;
+    public final int f34596b;
+    public final int f34597c;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.drawable.Drawable;
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.Locale;
-public final class ff0 extends zf0 {
-    public final Drawable Q;
-    public final Drawable R;
-    public final my0 S;
-    public my0 T;
-    public final Paint U;
-    public final Path V;
-    public float W;
-    public final DecimalFormat f33540a0;
-
-    public ff0(Context context) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.U = paint;
-        Path path = new Path();
-        this.V = path;
-        this.f33540a0 = new DecimalFormat("#,##0.#########", new DecimalFormatSymbols(Locale.US));
-        this.Q = jg.g.h(context, 2131232580);
-        this.R = jg.g.h(context, 2131232581);
-        this.S = new my0(org.telegram.messenger.id.M0(2131745155, null) + ":", 11.0f, null);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(org.telegram.messenger.g0.N(1.16f));
-        path.moveTo(0.0f, -org.telegram.messenger.g0.N(3.33f));
-        path.lineTo(org.telegram.messenger.g0.N(3.16f), 0.0f);
-        path.lineTo(0.0f, org.telegram.messenger.g0.N(3.33f));
-        setBalance(0L);
-    }
-
-    @Override
-    public final void b(Canvas canvas, float f10) {
-        Drawable drawable;
-        float height = getHeight() / 2.0f;
-        canvas.translate(0.0f, (-org.telegram.messenger.g0.L(20.0f)) * this.W);
-        float f11 = f10 * 0.85f;
-        this.S.c(0.0f, height, f11, this.E, canvas);
-        canvas.translate(this.S.k() + org.telegram.messenger.g0.L(4.0f), 0.0f);
-        if (!this.F && this.G < 0.8f) {
-            drawable = this.Q;
-        } else {
-            drawable = this.R;
-        }
-        int L = org.telegram.messenger.g0.L(13.0f);
-        int i7 = ((int) height) - (L / 2);
-        drawable.setBounds(0, i7, L, i7 + L);
-        drawable.setAlpha((int) (255.0f * f10));
-        drawable.draw(canvas);
-        canvas.translate(org.telegram.messenger.g0.L(2.0f) + L, 0.0f);
-        this.T.c(0.0f, height, f10, this.E, canvas);
-        canvas.translate(org.telegram.messenger.g0.N(4.8f) + this.T.k(), height);
-        int r12 = org.telegram.ui.ActionBar.m6.r1(f11, this.E);
-        Paint paint = this.U;
-        paint.setColor(r12);
-        canvas.drawPath(this.V, paint);
-    }
-
-    @Override
-    public final float c(float f10) {
-        my0 my0Var = this.S;
-        my0Var.f36144p = -1.0f;
-        this.T.f36144p = -1.0f;
-        float max = Math.max(0.0f, f10 - org.telegram.messenger.g0.L(43.0f));
-        my0Var.f36144p = Math.max(0.0f, max - this.T.k());
-        this.T.f36144p = Math.max(0.0f, max - my0Var.k());
-        return this.T.k() + my0Var.k() + org.telegram.messenger.g0.L(27.0f);
-    }
-
-    public void setBalance(long j3) {
-        String format = this.f33540a0.format(new BigDecimal(org.telegram.ui.Wallet.l0.p(j3, false)));
-        this.T = new my0(format, 11.0f, org.telegram.messenger.g0.o());
-        setContentDescription(org.telegram.messenger.id.M0(2131745155, null) + ": " + format);
-        invalidate();
-    }
-
-    public void setEjectProgress(float f10) {
-        if (this.W == f10) {
-            return;
-        }
-        this.W = f10;
-        invalidate();
+    ff0(int i7, int i10, int i11) {
+        this.f34595a = i7;
+        this.f34596b = i10;
+        this.f34597c = i11;
     }
 }

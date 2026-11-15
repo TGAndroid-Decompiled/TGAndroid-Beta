@@ -1,10 +1,10 @@
 package r5;
 public final class d {
-    public final long f54425a;
-    public final c f54426b;
+    public final long f55897a;
+    public final c f55898b;
 
     public d(long j3, c cVar) {
-        this.f54425a = j3;
-        this.f54426b = cVar;
+        this.f55897a = j3;
+        this.f55898b = cVar;
     }
 }

@@ -1,6 +1,12 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public abstract class yf0 extends View {
-    public static final org.telegram.messenger.q5 f40574a = new org.telegram.messenger.q5("profileBlurQueue", true);
+import android.graphics.Canvas;
+public interface yf0 {
+    void a(float f10);
+
+    void b(gx gxVar, Canvas canvas);
+
+    void c(float f10);
+
+    void d(int i7, int i10);
 }

@@ -1,43 +1,47 @@
 package org.telegram.ui.Components.voip;
+public final class v0 implements c5.h {
+    public int f40998a = 0;
+    public int f40999b;
+    public final x0 f41000c;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
-public final class v0 extends AnimatorListenerAdapter {
-    public final int f39587a;
-    public final z0 f39588b;
-
-    public v0(z0 z0Var, int i7) {
-        this.f39587a = i7;
-        this.f39588b = z0Var;
+    public v0(x0 x0Var) {
+        this.f41000c = x0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f39587a) {
-            case 0:
-                super.onAnimationEnd(animator);
-                z0 z0Var = this.f39588b;
-                if (z0Var.getParent() != null) {
-                    ((ViewGroup) z0Var.getParent()).removeView(z0Var);
-                    return;
-                }
-                return;
-            case 1:
-                z0 z0Var2 = this.f39588b;
-                if (z0Var2.getParent() != null) {
-                    ((ViewGroup) z0Var2.getParent()).removeView(z0Var2);
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationEnd(animator);
-                z0 z0Var3 = this.f39588b;
-                if (z0Var3.getParent() != null) {
-                    ((ViewGroup) z0Var3.getParent()).removeView(z0Var3);
-                    return;
-                }
-                return;
+    public final void a(int i7) {
+        int i10 = this.f40998a;
+        x0 x0Var = this.f41000c;
+        if (i10 == 0) {
+            if (i7 <= x0Var.E) {
+                x0Var.f41037n = 1;
+            } else {
+                x0Var.f41037n = 2;
+            }
+            x0.a(x0Var);
+        } else if (i7 <= x0Var.E) {
+            this.f40999b = 1;
+        } else {
+            this.f40999b = 2;
+        }
+    }
+
+    @Override
+    public final void b(float f10, int i7, int i10) {
+        x0 x0Var = this.f41000c;
+        x0Var.f41042y = i7;
+        x0Var.f41041x = f10;
+        x0Var.d();
+    }
+
+    @Override
+    public final void c(int i7) {
+        this.f40998a = i7;
+        if (i7 == 0) {
+            int i10 = this.f40999b;
+            x0 x0Var = this.f41000c;
+            x0Var.f41037n = i10;
+            x0.a(x0Var);
         }
     }
 }

@@ -1,14 +1,12 @@
 package l2;
 public final class n0 {
-    public final int f17966a;
-    public final int f17967b;
-    public final int f17968c;
-    public final x2.g1 d;
+    public final e2.l1 f19111a;
+    public final int f19112b;
+    public final long f19113c;
 
-    public n0(int i7, int i10, int i11, x2.g1 g1Var) {
-        this.f17966a = i7;
-        this.f17967b = i10;
-        this.f17968c = i11;
-        this.d = g1Var;
+    public n0(e2.l1 l1Var, int i7, long j3) {
+        this.f19111a = l1Var;
+        this.f19112b = i7;
+        this.f19113c = j3;
     }
 }

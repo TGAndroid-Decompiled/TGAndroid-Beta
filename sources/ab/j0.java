@@ -9,21 +9,21 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 public final class j0 {
     public static final long h = TimeUnit.HOURS.toSeconds(8);
-    public static final int f952i = 0;
-    public final Context f953a;
-    public final v f954b;
-    public final android.support.v4.media.session.a0 f955c;
-    public final ScheduledThreadPoolExecutor f956e;
-    public final h0 f958g;
+    public static final int f951i = 0;
+    public final Context f952a;
+    public final v f953b;
+    public final android.support.v4.media.session.a0 f954c;
+    public final ScheduledThreadPoolExecutor f955e;
+    public final h0 f957g;
     public final a0.f d = new a0.l(0);
-    public boolean f957f = false;
+    public boolean f956f = false;
 
     public j0(v vVar, h0 h0Var, android.support.v4.media.session.a0 a0Var, Context context, ScheduledThreadPoolExecutor scheduledThreadPoolExecutor) {
-        this.f954b = vVar;
-        this.f958g = h0Var;
-        this.f955c = a0Var;
-        this.f953a = context;
-        this.f956e = scheduledThreadPoolExecutor;
+        this.f953b = vVar;
+        this.f957g = h0Var;
+        this.f954c = a0Var;
+        this.f952a = context;
+        this.f955e = scheduledThreadPoolExecutor;
     }
 
     public static boolean a() {
@@ -39,7 +39,7 @@ public final class j0 {
     public final void b(g0 g0Var) {
         synchronized (this.d) {
             try {
-                String str = g0Var.f932c;
+                String str = g0Var.f931c;
                 if (!this.d.containsKey(str)) {
                     return;
                 }
@@ -57,8 +57,8 @@ public final class j0 {
         }
     }
 
-    public final synchronized void c(boolean z9) {
-        this.f957f = z9;
+    public final synchronized void c(boolean z10) {
+        this.f956f = z10;
     }
 
     public final boolean d() {
@@ -66,7 +66,7 @@ public final class j0 {
     }
 
     public final void e(long j3) {
-        this.f956e.schedule(new l0(this, this.f953a, this.f954b, Math.min(Math.max(30L, 2 * j3), h)), j3, TimeUnit.SECONDS);
+        this.f955e.schedule(new l0(this, this.f952a, this.f953b, Math.min(Math.max(30L, 2 * j3), h)), j3, TimeUnit.SECONDS);
         c(true);
     }
 }

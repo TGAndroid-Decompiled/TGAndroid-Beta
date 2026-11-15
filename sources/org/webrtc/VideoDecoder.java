@@ -9,8 +9,8 @@ public interface VideoDecoder {
         public final boolean isMissingFrames;
         public final long renderTimeMs;
 
-        public DecodeInfo(boolean z9, long j3) {
-            this.isMissingFrames = z9;
+        public DecodeInfo(boolean z10, long j3) {
+            this.isMissingFrames = z10;
             this.renderTimeMs = j3;
         }
     }

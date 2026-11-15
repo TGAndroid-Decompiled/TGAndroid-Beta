@@ -1,73 +1,78 @@
 package org.telegram.messenger;
 
-import android.net.Uri;
-import android.text.TextUtils;
 import java.util.ArrayList;
-import java.util.HashMap;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.e80;
-public final class nh implements ri, tr {
-    public final c1 f24197a;
-    public final Object f24198b;
-    public final Object f24199c;
-    public final Object d;
+import org.telegram.tgnet.tl.TL_account;
+public final class nh implements RequestDelegate {
+    public final int f25193a;
+    public final si f25194b;
+    public final int f25195c;
 
-    public nh(c1 c1Var, Object obj, Object obj2, Object obj3) {
-        this.f24197a = c1Var;
-        this.f24198b = obj;
-        this.f24199c = obj2;
-        this.d = obj3;
+    public nh(si siVar, int i7, int i10) {
+        this.f25193a = i10;
+        this.f25194b = siVar;
+        this.f25195c = i7;
     }
 
     @Override
-    public void e(String str, ArrayList arrayList) {
-        ui uiVar = (ui) this.f24197a;
-        si siVar = (si) this.f24198b;
-        ti tiVar = (ti) this.f24199c;
-        c20 c20Var = (c20) this.d;
-        HashMap hashMap = uiVar.P1;
-        if (!hashMap.containsKey(siVar)) {
-            return;
-        }
-        StringBuilder sb2 = new StringBuilder();
-        int size = arrayList.size();
-        int i7 = 0;
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            qi qiVar = (qi) obj;
-            if (!TextUtils.isEmpty(qiVar.f24705a) && !qiVar.f24705a.startsWith("animated_")) {
-                sb2.append(qiVar.f24705a);
-            }
-        }
-        TLRPC.TL_messages_searchStickers tL_messages_searchStickers = new TLRPC.TL_messages_searchStickers();
-        boolean z9 = siVar.f25484a;
-        String str2 = siVar.f25485b;
-        tL_messages_searchStickers.emojis = z9;
-        if (!TextUtils.isEmpty(str2)) {
-            tL_messages_searchStickers.lang_code.add(str2);
-        }
-        tL_messages_searchStickers.emoticon = sb2.toString();
-        tL_messages_searchStickers.f27075q = siVar.f25486c;
-        tL_messages_searchStickers.limit = 100;
-        if (tiVar != null) {
-            i7 = tiVar.f25634b.intValue();
-        }
-        tL_messages_searchStickers.offset = i7;
-        hashMap.put(siVar, Integer.valueOf(uiVar.getConnectionsManager().sendRequestTyped(tL_messages_searchStickers, new d3.b(1), new m9(uiVar, siVar, tiVar, c20Var, 1))));
-    }
-
-    @Override
-    public void run(long j3) {
-        gz gzVar = (gz) this.f24197a;
-        Uri uri = (Uri) this.f24198b;
-        ArrayList arrayList = (ArrayList) this.f24199c;
-        e80 e80Var = (e80) this.d;
-        if (j3 != 0) {
-            gzVar.Q(-j3, uri, arrayList, e80Var);
-        } else {
-            e80Var.run(0L);
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        ArrayList<TLRPC.Document> arrayList;
+        ArrayList<TLRPC.Document> arrayList2;
+        switch (this.f25193a) {
+            case 0:
+                si siVar = this.f25194b;
+                Long[] lArr = siVar.G0;
+                Long valueOf = Long.valueOf(System.currentTimeMillis() / 1000);
+                int i7 = this.f25195c;
+                lArr[i7] = valueOf;
+                if (tLObject instanceof TL_account.TL_emojiStatusesNotModified) {
+                    siVar.I0[i7] = false;
+                    return;
+                } else if (tLObject instanceof TL_account.TL_emojiStatuses) {
+                    TL_account.TL_emojiStatuses tL_emojiStatuses = (TL_account.TL_emojiStatuses) tLObject;
+                    siVar.E0[i7] = tL_emojiStatuses.hash;
+                    siVar.F0[i7] = tL_emojiStatuses.statuses;
+                    siVar.getMessagesStorage().f27220a.c(new l7(siVar, i7, tL_emojiStatuses, 8));
+                    g0.h3(new eg(siVar, 1));
+                    return;
+                } else {
+                    return;
+                }
+            case 1:
+                g0.h3(new cg(this.f25194b, tL_error, tLObject, this.f25195c, 0));
+                return;
+            case 2:
+                if (tLObject instanceof TLRPC.TL_messages_savedGifs) {
+                    arrayList = ((TLRPC.TL_messages_savedGifs) tLObject).gifs;
+                } else {
+                    arrayList = null;
+                }
+                this.f25194b.y1(this.f25195c, arrayList, true, 0, true);
+                return;
+            default:
+                int i10 = this.f25195c;
+                if (i10 != 3 && i10 != 7) {
+                    if (i10 == 2) {
+                        if (tLObject instanceof TLRPC.TL_messages_favedStickers) {
+                            arrayList2 = ((TLRPC.TL_messages_favedStickers) tLObject).stickers;
+                        }
+                        arrayList2 = null;
+                    } else {
+                        if (tLObject instanceof TLRPC.TL_messages_recentStickers) {
+                            arrayList2 = ((TLRPC.TL_messages_recentStickers) tLObject).stickers;
+                        }
+                        arrayList2 = null;
+                    }
+                } else {
+                    if (tLObject instanceof TLRPC.TL_messages_stickers) {
+                        arrayList2 = ((TLRPC.TL_messages_stickers) tLObject).stickers;
+                    }
+                    arrayList2 = null;
+                }
+                this.f25194b.y1(i10, arrayList2, false, 0, true);
+                return;
         }
     }
 }

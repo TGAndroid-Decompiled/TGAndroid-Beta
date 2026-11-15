@@ -1,26 +1,26 @@
 package t3;
 
-import a8.ga;
-import c8.ca;
+import a8.ha;
+import c8.ba;
 import e2.q0;
 import e2.s0;
-import h2.m0;
+import h2.l0;
 import h2.x;
 import h9.f0;
 import h9.i0;
-import h9.t1;
+import h9.s1;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
-public final class h extends ca {
-    public static final s0.b f55412b = new s0.b(18);
-    public final g f55413a;
+public final class h extends ba {
+    public static final r2.j f56995b = new r2.j(25);
+    public final g f56996a;
 
     public h(g gVar) {
-        this.f55413a = gVar;
+        this.f56996a = gVar;
     }
 
     public static a d(x xVar, int i7, int i10) {
@@ -33,14 +33,14 @@ public final class h extends ca {
         byte[] bArr = new byte[i11];
         xVar.k(0, i11, bArr);
         if (i10 == 2) {
-            str = "image/" + ga.c(new String(bArr, 0, 3, StandardCharsets.ISO_8859_1));
+            str = "image/" + ha.c(new String(bArr, 0, 3, StandardCharsets.ISO_8859_1));
             if ("image/jpg".equals(str)) {
                 str = "image/jpeg";
             }
             v = 2;
         } else {
             v = v(0, bArr);
-            String c10 = ga.c(new String(bArr, 0, v, StandardCharsets.ISO_8859_1));
+            String c10 = ha.c(new String(bArr, 0, v, StandardCharsets.ISO_8859_1));
             if (c10.indexOf(47) == -1) {
                 str = "image/".concat(c10);
             } else {
@@ -53,18 +53,18 @@ public final class h extends ca {
         String str2 = new String(bArr, i13, u10 - i13, s5);
         int r10 = r(A) + u10;
         if (i11 <= r10) {
-            copyOfRange = m0.f14115b;
+            copyOfRange = l0.f13472b;
         } else {
             copyOfRange = Arrays.copyOfRange(bArr, r10, i11);
         }
         return new a(i12, str, str2, copyOfRange);
     }
 
-    public static c e(x xVar, int i7, int i10, boolean z9, int i11, g gVar) {
+    public static c e(x xVar, int i7, int i10, boolean z10, int i11, g gVar) {
         long j3;
-        int i12 = xVar.f14165b;
-        int v = v(i12, xVar.f14164a);
-        String str = new String(xVar.f14164a, i12, v - i12, StandardCharsets.ISO_8859_1);
+        int i12 = xVar.f13522b;
+        int v = v(i12, xVar.f13521a);
+        String str = new String(xVar.f13521a, i12, v - i12, StandardCharsets.ISO_8859_1);
         xVar.N(v + 1);
         int m10 = xVar.m();
         int m11 = xVar.m();
@@ -80,8 +80,8 @@ public final class h extends ca {
         }
         ArrayList arrayList = new ArrayList();
         int i13 = i12 + i7;
-        while (xVar.f14165b < i13) {
-            i h = h(i10, xVar, z9, i11, gVar);
+        while (xVar.f13522b < i13) {
+            i h = h(i10, xVar, z10, i11, gVar);
             if (h != null) {
                 arrayList.add(h);
             }
@@ -89,41 +89,41 @@ public final class h extends ca {
         return new c(str, m10, m11, C, j3, (i[]) arrayList.toArray(new i[0]));
     }
 
-    public static d f(x xVar, int i7, int i10, boolean z9, int i11, g gVar) {
-        boolean z10;
+    public static d f(x xVar, int i7, int i10, boolean z10, int i11, g gVar) {
         boolean z11;
-        int i12 = xVar.f14165b;
-        int v = v(i12, xVar.f14164a);
-        String str = new String(xVar.f14164a, i12, v - i12, StandardCharsets.ISO_8859_1);
+        boolean z12;
+        int i12 = xVar.f13522b;
+        int v = v(i12, xVar.f13521a);
+        String str = new String(xVar.f13521a, i12, v - i12, StandardCharsets.ISO_8859_1);
         xVar.N(v + 1);
         int A = xVar.A();
         if ((A & 2) != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if ((A & 1) != 0) {
             z11 = true;
         } else {
             z11 = false;
         }
+        if ((A & 1) != 0) {
+            z12 = true;
+        } else {
+            z12 = false;
+        }
         int A2 = xVar.A();
         String[] strArr = new String[A2];
         for (int i13 = 0; i13 < A2; i13++) {
-            int i14 = xVar.f14165b;
-            int v10 = v(i14, xVar.f14164a);
-            strArr[i13] = new String(xVar.f14164a, i14, v10 - i14, StandardCharsets.ISO_8859_1);
+            int i14 = xVar.f13522b;
+            int v10 = v(i14, xVar.f13521a);
+            strArr[i13] = new String(xVar.f13521a, i14, v10 - i14, StandardCharsets.ISO_8859_1);
             xVar.N(v10 + 1);
         }
         ArrayList arrayList = new ArrayList();
         int i15 = i12 + i7;
-        while (xVar.f14165b < i15) {
-            i h = h(i10, xVar, z9, i11, gVar);
+        while (xVar.f13522b < i15) {
+            i h = h(i10, xVar, z10, i11, gVar);
             if (h != null) {
                 arrayList.add(h);
             }
         }
-        return new d(str, z10, z11, strArr, (i[]) arrayList.toArray(new i[0]));
+        return new d(str, z11, z12, strArr, (i[]) arrayList.toArray(new i[0]));
     }
 
     public static e g(int i7, x xVar) {
@@ -165,7 +165,7 @@ public final class h extends ca {
         String l11 = l(bArr, r10, u11, s5);
         int r11 = r(A) + u11;
         if (i10 <= r11) {
-            copyOfRange = m0.f14115b;
+            copyOfRange = l0.f13472b;
         } else {
             copyOfRange = Arrays.copyOfRange(bArr, r11, i10);
         }
@@ -200,7 +200,7 @@ public final class h extends ca {
         String str = new String(bArr, 0, v, StandardCharsets.ISO_8859_1);
         int i10 = v + 1;
         if (i7 <= i10) {
-            copyOfRange = m0.f14115b;
+            copyOfRange = l0.f13472b;
         } else {
             copyOfRange = Arrays.copyOfRange(bArr, i10, i7);
         }
@@ -225,7 +225,7 @@ public final class h extends ca {
         return new n(str, null, n(A, 0, bArr));
     }
 
-    public static t1 n(int i7, int i10, byte[] bArr) {
+    public static s1 n(int i7, int i10, byte[] bArr) {
         if (i10 >= bArr.length) {
             return i0.u("");
         }
@@ -236,7 +236,7 @@ public final class h extends ca {
             i10 = r(i7) + u10;
             u10 = u(i10, i7, bArr);
         }
-        t1 f10 = p10.f();
+        s1 f10 = p10.f();
         if (f10.isEmpty()) {
             return i0.u("");
         }
@@ -327,8 +327,8 @@ public final class h extends ca {
     }
 
     public static int w(int i7, x xVar) {
-        byte[] bArr = xVar.f14164a;
-        int i10 = xVar.f14165b;
+        byte[] bArr = xVar.f13521a;
+        int i10 = xVar.f13522b;
         int i11 = i10;
         while (true) {
             int i12 = i11 + 1;

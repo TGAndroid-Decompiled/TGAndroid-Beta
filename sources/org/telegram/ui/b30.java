@@ -1,26 +1,93 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class b30 extends org.telegram.ui.Components.mo0 {
-    public final f40 U2;
+import org.telegram.tgnet.tl.TL_phone;
+public final class b30 implements org.telegram.ui.ActionBar.q1, org.telegram.ui.Components.t60 {
+    public final h30 f45575a;
 
-    public b30(f40 f40Var, Context context, String str, String str2, String str3, String str4) {
-        super(context, null, str, str2, false, str3, str4, true);
-        this.U2 = f40Var;
+    public b30(h30 h30Var) {
+        this.f45575a = h30Var;
     }
 
     @Override
-    public final void R0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z9) {
-        if (!z9) {
-            return;
+    public void a(TLRPC.InputPeer inputPeer, boolean z10, boolean z11, boolean z12) {
+        TLObject M0;
+        c40 c40Var = this.f45575a.f47598b;
+        org.telegram.messenger.r3 r3Var = c40Var.V2;
+        org.telegram.messenger.c cVar = c40Var.f45951o1;
+        if (r3Var != null) {
+            boolean z13 = inputPeer instanceof TLRPC.TL_inputPeerUser;
+            if (z13) {
+                M0 = org.telegram.messenger.np.s1(cVar.f22778a).a2(Long.valueOf(inputPeer.user_id));
+            } else if (inputPeer instanceof TLRPC.TL_inputPeerChat) {
+                M0 = org.telegram.messenger.np.s1(cVar.f22778a).M0(Long.valueOf(inputPeer.chat_id));
+            } else {
+                M0 = org.telegram.messenger.np.s1(cVar.f22778a).M0(Long.valueOf(inputPeer.channel_id));
+            }
+            TLObject tLObject = M0;
+            if (c40Var.V2.j()) {
+                c40Var.n1().k(0L, 37, tLObject, c40Var.U2, null, null);
+                if (inputPeer instanceof TLRPC.TL_inputPeerChannel) {
+                    TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
+                    c40Var.f45985v2 = tL_peerChannel;
+                    tL_peerChannel.channel_id = inputPeer.channel_id;
+                } else if (z13) {
+                    TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                    c40Var.f45985v2 = tL_peerUser;
+                    tL_peerUser.user_id = inputPeer.user_id;
+                } else if (inputPeer instanceof TLRPC.TL_inputPeerChat) {
+                    TLRPC.TL_peerChat tL_peerChat = new TLRPC.TL_peerChat();
+                    c40Var.f45985v2 = tL_peerChat;
+                    tL_peerChat.chat_id = inputPeer.chat_id;
+                }
+                c40Var.T2 = inputPeer;
+                TLRPC.ChatFull N0 = org.telegram.messenger.np.s1(cVar.f22778a).N0(c40Var.l1());
+                if (N0 != null) {
+                    N0.groupcall_default_join_as = c40Var.f45985v2;
+                    if (N0 instanceof TLRPC.TL_chatFull) {
+                        N0.flags |= 32768;
+                    } else {
+                        N0.flags |= 67108864;
+                    }
+                }
+                TL_phone.saveDefaultGroupCallJoinAs savedefaultgroupcalljoinas = new TL_phone.saveDefaultGroupCallJoinAs();
+                savedefaultgroupcalljoinas.peer = org.telegram.messenger.np.l1(c40Var.U2);
+                savedefaultgroupcalljoinas.join_as = inputPeer;
+                ConnectionsManager.getInstance(cVar.f22778a).sendRequest(savedefaultgroupcalljoinas, new fi.m5(9));
+                c40Var.O1();
+            } else if (VoIPService.getSharedInstance() != null && z10) {
+                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) c40Var.V2.d.f(org.telegram.messenger.gj.B1(c40Var.f45985v2));
+                VoIPService.getSharedInstance().setGroupCallPeer(inputPeer);
+                c40Var.f45990w2 = tLObject;
+            }
         }
-        int m10 = hVar.m();
-        f40 f40Var = this.U2;
-        if (m10 == 1) {
-            f40Var.n1().m(((TLRPC.Dialog) hVar.n(0)).f26964id, Integer.valueOf(i7), 41);
-        } else {
-            f40Var.n1().k(0L, 41, Integer.valueOf(i7), Integer.valueOf(hVar.m()), null, null);
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        h30 h30Var = this.f45575a;
+        c40 c40Var = h30Var.f47598b;
+        org.telegram.messenger.r3 r3Var = c40Var.V2;
+        org.telegram.messenger.c cVar = c40Var.f45951o1;
+        if (r3Var.j()) {
+            int i10 = cVar.f22778a;
+            TLRPC.ChatFull N0 = org.telegram.messenger.np.s1(i10).N0(c40Var.l1());
+            if (N0 != null) {
+                N0.flags &= -2097153;
+                N0.call = null;
+                org.telegram.messenger.ns.f(i10).k(org.telegram.messenger.ns.f25595w2, Long.valueOf(c40Var.l1()), Long.valueOf(c40Var.V2.f26208b.f28061id), Boolean.FALSE);
+            }
+            TL_phone.discardGroupCall discardgroupcall = new TL_phone.discardGroupCall();
+            org.telegram.messenger.r3 r3Var2 = c40Var.V2;
+            discardgroupcall.call = r3Var2.g(r3Var2.f26207a);
+            ConnectionsManager.getInstance(i10).sendRequest(discardgroupcall, new l(h30Var, 9));
+        } else if (VoIPService.getSharedInstance() != null) {
+            VoIPService.getSharedInstance().hangUp(1);
         }
+        c40Var.dismiss();
+        org.telegram.messenger.ns.e().k(org.telegram.messenger.ns.f25588v2, new Object[0]);
     }
 }

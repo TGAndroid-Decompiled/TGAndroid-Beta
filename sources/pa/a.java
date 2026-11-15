@@ -2,18 +2,18 @@ package pa;
 
 import java.util.Map;
 public final class a implements na.d {
-    public final int f53518a;
+    public final int f54924a;
 
     @Override
     public final void a(Object obj, Object obj2) {
-        switch (this.f53518a) {
+        switch (this.f54924a) {
             case 0:
                 na.e eVar = (na.e) obj2;
                 throw new RuntimeException("Couldn't find encoder for type " + obj.getClass().getCanonicalName());
             case 1:
                 Map.Entry entry = (Map.Entry) obj;
                 na.e eVar2 = (na.e) obj2;
-                eVar2.a(qa.e.f54064g, entry.getKey());
+                eVar2.a(qa.e.f55501g, entry.getKey());
                 eVar2.a(qa.e.h, entry.getValue());
                 return;
             default:

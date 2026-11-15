@@ -7,23 +7,23 @@ import android.graphics.Shader;
 import android.os.Build;
 import java.lang.ref.WeakReference;
 public final class ua0 {
-    public final Shader.TileMode f38604a;
-    public final Matrix f38605b = new Matrix();
-    public boolean f38606c;
+    public final Shader.TileMode f39983a;
+    public final Matrix f39984b = new Matrix();
+    public boolean f39985c;
     public BitmapShader d;
-    public WeakReference f38607e;
+    public WeakReference f39986e;
 
     public ua0(Shader.TileMode tileMode) {
-        this.f38604a = tileMode;
+        this.f39983a = tileMode;
     }
 
-    public final void a(boolean z9) {
+    public final void a(boolean z10) {
         BitmapShader bitmapShader;
         int i7;
-        if (this.f38606c != z9) {
-            this.f38606c = z9;
+        if (this.f39985c != z10) {
+            this.f39985c = z10;
             if (Build.VERSION.SDK_INT >= 33 && (bitmapShader = this.d) != null) {
-                if (z9) {
+                if (z10) {
                     i7 = 1;
                 } else {
                     i7 = 2;
@@ -35,18 +35,18 @@ public final class ua0 {
 
     public final boolean b(Bitmap bitmap) {
         int i7;
-        WeakReference weakReference = this.f38607e;
+        WeakReference weakReference = this.f39986e;
         if (weakReference != null && weakReference.get() == bitmap) {
             return false;
         }
-        this.f38607e = new WeakReference(bitmap);
-        Shader.TileMode tileMode = this.f38604a;
+        this.f39986e = new WeakReference(bitmap);
+        Shader.TileMode tileMode = this.f39983a;
         BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
         this.d = bitmapShader;
-        bitmapShader.setLocalMatrix(this.f38605b);
+        bitmapShader.setLocalMatrix(this.f39984b);
         if (Build.VERSION.SDK_INT >= 33) {
             BitmapShader bitmapShader2 = this.d;
-            if (this.f38606c) {
+            if (this.f39985c) {
                 i7 = 1;
             } else {
                 i7 = 2;

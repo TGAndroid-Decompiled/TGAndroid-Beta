@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.WeakHashMap;
-import org.telegram.ui.vt;
+import org.telegram.ui.ut;
 public class s extends b0 {
     public boolean I;
     public int J;
@@ -26,30 +26,30 @@ public class s extends b0 {
         this.J = -1;
         this.M = new SparseIntArray();
         this.N = new SparseIntArray();
-        this.O = new vt(1);
+        this.O = new ut(1);
         this.P = new Rect();
         y1(i7);
     }
 
     @Override
-    public final void A0(a1 a1Var, z zVar, h2.f fVar) {
+    public final void A0(b1 b1Var, z zVar, h2.f fVar) {
         int i7 = this.J;
-        for (int i10 = 0; i10 < this.J && zVar.b(a1Var) && i7 > 0; i10++) {
+        for (int i10 = 0; i10 < this.J && zVar.b(b1Var) && i7 > 0; i10++) {
             int i11 = zVar.d;
-            fVar.b(i11, Math.max(0, zVar.f57216g));
+            fVar.b(i11, Math.max(0, zVar.f58691g));
             i7 -= this.O.i(i11);
-            zVar.d += zVar.f57214e;
+            zVar.d += zVar.f58689e;
         }
     }
 
     public final void A1() {
         int C;
         int F;
-        if (this.f57021o == 1) {
-            C = this.f57149m - E();
+        if (this.f58489o == 1) {
+            C = this.f58631m - E();
             F = D();
         } else {
-            C = this.f57150n - C();
+            C = this.f58632n - C();
             F = F();
         }
         int i7 = C - F;
@@ -57,22 +57,22 @@ public class s extends b0 {
     }
 
     @Override
-    public int I(v0 v0Var, a1 a1Var) {
-        if (this.f57021o == 0) {
+    public int I(w0 w0Var, b1 b1Var) {
+        if (this.f58489o == 0) {
             return this.J;
         }
-        if (a1Var.b() < 1) {
+        if (b1Var.b() < 1) {
             return 0;
         }
-        return t1(a1Var.b() - 1, v0Var, a1Var) + 1;
+        return t1(b1Var.b() - 1, w0Var, b1Var) + 1;
     }
 
     @Override
-    public final View Q0(v0 v0Var, a1 a1Var, int i7, int i10, int i11) {
+    public final View Q0(w0 w0Var, b1 b1Var, int i7, int i10, int i11) {
         int i12;
         G0();
-        int j3 = this.f57023q.j();
-        int f10 = this.f57023q.f();
+        int j3 = this.f58491q.j();
+        int f10 = this.f58491q.f();
         if (i10 > i7) {
             i12 = 1;
         } else {
@@ -82,13 +82,13 @@ public class s extends b0 {
         View view2 = null;
         while (i7 != i10) {
             View q10 = q(i7);
-            int H = n0.H(q10);
-            if (H >= 0 && H < i11 && u1(H, v0Var, a1Var) == 0) {
-                if (((o0) q10.getLayoutParams()).f57152a.j()) {
+            int H = o0.H(q10);
+            if (H >= 0 && H < i11 && u1(H, w0Var, b1Var) == 0) {
+                if (((p0) q10.getLayoutParams()).f58637a.j()) {
                     if (view2 == null) {
                         view2 = q10;
                     }
-                } else if (this.f57023q.d(q10) < f10 && this.f57023q.a(q10) >= j3) {
+                } else if (this.f58491q.d(q10) < f10 && this.f58491q.a(q10) >= j3) {
                     return q10;
                 } else {
                     if (view == null) {
@@ -105,224 +105,224 @@ public class s extends b0 {
     }
 
     @Override
-    public final android.view.View R(android.view.View r23, int r24, v4.v0 r25, v4.a1 r26) {
-        throw new UnsupportedOperationException("Method not decompiled: v4.s.R(android.view.View, int, v4.v0, v4.a1):android.view.View");
+    public final android.view.View R(android.view.View r23, int r24, v4.w0 r25, v4.b1 r26) {
+        throw new UnsupportedOperationException("Method not decompiled: v4.s.R(android.view.View, int, v4.w0, v4.b1):android.view.View");
     }
 
     @Override
-    public void U(v0 v0Var, a1 a1Var, View view, s0.d dVar) {
-        boolean z9;
+    public void U(w0 w0Var, b1 b1Var, View view, s0.c cVar) {
         boolean z10;
-        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f54612a;
+        boolean z11;
+        AccessibilityNodeInfo accessibilityNodeInfo = cVar.f56166a;
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
         if (!(layoutParams instanceof r)) {
-            T(view, dVar);
+            T(view, cVar);
             return;
         }
         r rVar = (r) layoutParams;
-        int t12 = t1(rVar.b(), v0Var, a1Var);
-        if (this.f57021o == 0) {
-            int i7 = rVar.f57164e;
-            int i10 = rVar.f57165f;
+        int t12 = t1(rVar.b(), w0Var, b1Var);
+        if (this.f58489o == 0) {
+            int i7 = rVar.f58645e;
+            int i10 = rVar.f58646f;
             int i11 = this.J;
             if (i11 > 1 && i10 == i11) {
-                z10 = true;
+                z11 = true;
             } else {
-                z10 = false;
+                z11 = false;
             }
-            accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(i7, i10, t12, 1, z10, false));
+            accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(i7, i10, t12, 1, z11, false));
             return;
         }
-        int i12 = rVar.f57164e;
-        int i13 = rVar.f57165f;
+        int i12 = rVar.f58645e;
+        int i13 = rVar.f58646f;
         int i14 = this.J;
         if (i14 > 1 && i13 == i14) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(t12, 1, i12, i13, z9, false));
+        accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(t12, 1, i12, i13, z10, false));
     }
 
     @Override
     public void V(RecyclerView recyclerView, int i7, int i10) {
         this.O.j();
-        ((SparseIntArray) this.O.f13339b).clear();
+        ((SparseIntArray) this.O.f12687b).clear();
     }
 
     @Override
     public void W(RecyclerView recyclerView) {
         this.O.j();
-        ((SparseIntArray) this.O.f13339b).clear();
+        ((SparseIntArray) this.O.f12687b).clear();
     }
 
     @Override
     public void X(RecyclerView recyclerView, int i7, int i10) {
         this.O.j();
-        ((SparseIntArray) this.O.f13339b).clear();
+        ((SparseIntArray) this.O.f12687b).clear();
     }
 
     @Override
     public void Y(RecyclerView recyclerView, int i7, int i10) {
         this.O.j();
-        ((SparseIntArray) this.O.f13339b).clear();
+        ((SparseIntArray) this.O.f12687b).clear();
     }
 
     @Override
-    public void Z0(v4.v0 r18, v4.a1 r19, v4.z r20, n2.j r21) {
-        throw new UnsupportedOperationException("Method not decompiled: v4.s.Z0(v4.v0, v4.a1, v4.z, n2.j):void");
+    public void Z0(v4.w0 r18, v4.b1 r19, v4.z r20, n2.j r21) {
+        throw new UnsupportedOperationException("Method not decompiled: v4.s.Z0(v4.w0, v4.b1, v4.z, n2.j):void");
     }
 
     @Override
     public void a0(RecyclerView recyclerView, int i7, int i10, Object obj) {
         this.O.j();
-        ((SparseIntArray) this.O.f13339b).clear();
+        ((SparseIntArray) this.O.f12687b).clear();
     }
 
     @Override
-    public final void a1(v0 v0Var, a1 a1Var, l2.o0 o0Var, int i7) {
-        boolean z9;
+    public final void a1(w0 w0Var, b1 b1Var, l2.l0 l0Var, int i7) {
+        boolean z10;
         A1();
-        if (a1Var.b() > 0 && !a1Var.f57011g) {
+        if (b1Var.b() > 0 && !b1Var.f58505g) {
             if (i7 == 1) {
-                z9 = true;
+                z10 = true;
             } else {
-                z9 = false;
+                z10 = false;
             }
-            int u12 = u1(o0Var.f17976b, v0Var, a1Var);
-            if (z9) {
+            int u12 = u1(l0Var.f19066b, w0Var, b1Var);
+            if (z10) {
                 while (u12 > 0) {
-                    int i10 = o0Var.f17976b;
+                    int i10 = l0Var.f19066b;
                     if (i10 <= 0) {
                         break;
                     }
                     int i11 = i10 - 1;
-                    o0Var.f17976b = i11;
-                    u12 = u1(i11, v0Var, a1Var);
+                    l0Var.f19066b = i11;
+                    u12 = u1(i11, w0Var, b1Var);
                 }
             } else {
-                int b10 = a1Var.b() - 1;
-                int i12 = o0Var.f17976b;
+                int b10 = b1Var.b() - 1;
+                int i12 = l0Var.f19066b;
                 while (i12 < b10) {
                     int i13 = i12 + 1;
-                    int u13 = u1(i13, v0Var, a1Var);
+                    int u13 = u1(i13, w0Var, b1Var);
                     if (u13 <= u12) {
                         break;
                     }
                     i12 = i13;
                     u12 = u13;
                 }
-                o0Var.f17976b = i12;
+                l0Var.f19066b = i12;
             }
         }
         r1();
     }
 
     @Override
-    public void b0(v0 v0Var, a1 a1Var) {
-        boolean z9 = a1Var.f57011g;
+    public void b0(w0 w0Var, b1 b1Var) {
+        boolean z10 = b1Var.f58505g;
         SparseIntArray sparseIntArray = this.N;
         SparseIntArray sparseIntArray2 = this.M;
-        if (z9) {
+        if (z10) {
             int r10 = r();
             for (int i7 = 0; i7 < r10; i7++) {
                 r rVar = (r) q(i7).getLayoutParams();
                 int b10 = rVar.b();
-                sparseIntArray2.put(b10, rVar.f57165f);
-                sparseIntArray.put(b10, rVar.f57164e);
+                sparseIntArray2.put(b10, rVar.f58646f);
+                sparseIntArray.put(b10, rVar.f58645e);
             }
         }
-        super.b0(v0Var, a1Var);
+        super.b0(w0Var, b1Var);
         sparseIntArray2.clear();
         sparseIntArray.clear();
     }
 
     @Override
-    public final void c0(a1 a1Var) {
-        super.c0(a1Var);
+    public final void c0(b1 b1Var) {
+        super.c0(b1Var);
         this.I = false;
     }
 
     @Override
-    public final boolean f(o0 o0Var) {
-        return o0Var instanceof r;
+    public final boolean f(p0 p0Var) {
+        return p0Var instanceof r;
     }
 
     @Override
-    public final int h(a1 a1Var) {
-        return C0(a1Var);
+    public final int h(b1 b1Var) {
+        return C0(b1Var);
     }
 
     @Override
-    public final int i(a1 a1Var) {
-        return D0(a1Var);
+    public final int i(b1 b1Var) {
+        return D0(b1Var);
     }
 
     @Override
-    public int k(a1 a1Var) {
-        return C0(a1Var);
+    public int k(b1 b1Var) {
+        return C0(b1Var);
     }
 
     @Override
-    public int l(a1 a1Var) {
-        return D0(a1Var);
+    public int l(b1 b1Var) {
+        return D0(b1Var);
     }
 
     @Override
-    public final void l1(boolean z9) {
+    public final void l1(boolean z10) {
         throw new UnsupportedOperationException("GridLayoutManager does not support stack from end. Consider using reverse layout");
     }
 
     @Override
-    public final int m0(int i7, v0 v0Var, a1 a1Var) {
+    public final int m0(int i7, w0 w0Var, b1 b1Var) {
         A1();
         r1();
-        return super.m0(i7, v0Var, a1Var);
+        return super.m0(i7, w0Var, b1Var);
     }
 
     @Override
-    public final o0 n() {
-        if (this.f57021o == 0) {
+    public final p0 n() {
+        if (this.f58489o == 0) {
             return new r(-2, -1);
         }
         return new r(-1, -2);
     }
 
     @Override
-    public final o0 o(Context context, AttributeSet attributeSet) {
-        ?? o0Var = new o0(context, attributeSet);
-        o0Var.f57164e = -1;
-        o0Var.f57165f = 0;
-        return o0Var;
+    public final p0 o(Context context, AttributeSet attributeSet) {
+        ?? p0Var = new p0(context, attributeSet);
+        p0Var.f58645e = -1;
+        p0Var.f58646f = 0;
+        return p0Var;
     }
 
     @Override
-    public int o0(int i7, v0 v0Var, a1 a1Var) {
+    public int o0(int i7, w0 w0Var, b1 b1Var) {
         A1();
         r1();
-        return super.o0(i7, v0Var, a1Var);
+        return super.o0(i7, w0Var, b1Var);
     }
 
     @Override
-    public final o0 p(ViewGroup.LayoutParams layoutParams) {
+    public final p0 p(ViewGroup.LayoutParams layoutParams) {
         if (layoutParams instanceof ViewGroup.MarginLayoutParams) {
-            ?? o0Var = new o0((ViewGroup.MarginLayoutParams) layoutParams);
-            o0Var.f57164e = -1;
-            o0Var.f57165f = 0;
-            return o0Var;
+            ?? p0Var = new p0((ViewGroup.MarginLayoutParams) layoutParams);
+            p0Var.f58645e = -1;
+            p0Var.f58646f = 0;
+            return p0Var;
         }
-        ?? o0Var2 = new o0(layoutParams);
-        o0Var2.f57164e = -1;
-        o0Var2.f57165f = 0;
-        return o0Var2;
+        ?? p0Var2 = new p0(layoutParams);
+        p0Var2.f58645e = -1;
+        p0Var2.f58646f = 0;
+        return p0Var2;
     }
 
-    public final void p1(int i7, v0 v0Var, a1 a1Var, boolean z9) {
+    public final void p1(int i7, w0 w0Var, b1 b1Var, boolean z10) {
         int i10;
         int i11;
         int i12;
         int i13 = 0;
-        if (z9) {
+        if (z10) {
             i12 = 1;
             i11 = i7;
             i10 = 0;
@@ -334,9 +334,9 @@ public class s extends b0 {
         while (i10 != i11) {
             View view = this.L[i10];
             r rVar = (r) view.getLayoutParams();
-            int v12 = v1(((o0) view.getLayoutParams()).b(), v0Var, a1Var);
-            rVar.f57165f = v12;
-            rVar.f57164e = i13;
+            int v12 = v1(((p0) view.getLayoutParams()).b(), w0Var, b1Var);
+            rVar.f58646f = v12;
+            rVar.f58645e = i13;
             i13 += v12;
             i10 += i12;
         }
@@ -375,22 +375,22 @@ public class s extends b0 {
         }
         int E = E() + D();
         int C = C() + F();
-        if (this.f57021o == 1) {
+        if (this.f58489o == 1) {
             int height = rect.height() + C;
-            RecyclerView recyclerView = this.f57140b;
-            WeakHashMap weakHashMap = r0.i0.f54202a;
-            g11 = n0.g(i10, height, recyclerView.getMinimumHeight());
+            RecyclerView recyclerView = this.f58622b;
+            WeakHashMap weakHashMap = r0.i0.f55671a;
+            g11 = o0.g(i10, height, recyclerView.getMinimumHeight());
             int[] iArr = this.K;
-            g10 = n0.g(i7, iArr[iArr.length - 1] + E, this.f57140b.getMinimumWidth());
+            g10 = o0.g(i7, iArr[iArr.length - 1] + E, this.f58622b.getMinimumWidth());
         } else {
             int width = rect.width() + E;
-            RecyclerView recyclerView2 = this.f57140b;
-            WeakHashMap weakHashMap2 = r0.i0.f54202a;
-            g10 = n0.g(i7, width, recyclerView2.getMinimumWidth());
+            RecyclerView recyclerView2 = this.f58622b;
+            WeakHashMap weakHashMap2 = r0.i0.f55671a;
+            g10 = o0.g(i7, width, recyclerView2.getMinimumWidth());
             int[] iArr2 = this.K;
-            g11 = n0.g(i10, iArr2[iArr2.length - 1] + C, this.f57140b.getMinimumHeight());
+            g11 = o0.g(i10, iArr2[iArr2.length - 1] + C, this.f58622b.getMinimumHeight());
         }
-        this.f57140b.setMeasuredDimension(g10, g11);
+        this.f58622b.setMeasuredDimension(g10, g11);
     }
 
     public final void r1() {
@@ -402,7 +402,7 @@ public class s extends b0 {
     }
 
     public final int s1(int i7, int i10) {
-        if (this.f57021o == 1 && Y0()) {
+        if (this.f58489o == 1 && Y0()) {
             int[] iArr = this.K;
             int i11 = this.J;
             return iArr[i11 - i7] - iArr[(i11 - i7) - i10];
@@ -411,11 +411,11 @@ public class s extends b0 {
         return iArr2[i10 + i7] - iArr2[i7];
     }
 
-    public final int t1(int i7, v0 v0Var, a1 a1Var) {
-        if (!a1Var.f57011g) {
+    public final int t1(int i7, w0 w0Var, b1 b1Var) {
+        if (!b1Var.f58505g) {
             return this.O.g(i7, this.J);
         }
-        int b10 = v0Var.b(i7);
+        int b10 = w0Var.b(i7);
         if (b10 == -1) {
             Log.w("GridLayoutManager", "Cannot find span size for pre layout position. " + i7);
             return 0;
@@ -424,25 +424,25 @@ public class s extends b0 {
     }
 
     @Override
-    public int u(v0 v0Var, a1 a1Var) {
-        if (this.f57021o == 1) {
+    public int u(w0 w0Var, b1 b1Var) {
+        if (this.f58489o == 1) {
             return this.J;
         }
-        if (a1Var.b() < 1) {
+        if (b1Var.b() < 1) {
             return 0;
         }
-        return t1(a1Var.b() - 1, v0Var, a1Var) + 1;
+        return t1(b1Var.b() - 1, w0Var, b1Var) + 1;
     }
 
-    public final int u1(int i7, v0 v0Var, a1 a1Var) {
-        if (!a1Var.f57011g) {
+    public final int u1(int i7, w0 w0Var, b1 b1Var) {
+        if (!b1Var.f58505g) {
             return this.O.h(i7, this.J);
         }
         int i10 = this.N.get(i7, -1);
         if (i10 != -1) {
             return i10;
         }
-        int b10 = v0Var.b(i7);
+        int b10 = w0Var.b(i7);
         if (b10 == -1) {
             Log.w("GridLayoutManager", "Cannot find span size for pre layout position. It is not cached, not in the adapter. Pos:" + i7);
             return 0;
@@ -450,15 +450,15 @@ public class s extends b0 {
         return this.O.h(b10, this.J);
     }
 
-    public final int v1(int i7, v0 v0Var, a1 a1Var) {
-        if (!a1Var.f57011g) {
+    public final int v1(int i7, w0 w0Var, b1 b1Var) {
+        if (!b1Var.f58505g) {
             return this.O.i(i7);
         }
         int i10 = this.M.get(i7, -1);
         if (i10 != -1) {
             return i10;
         }
-        int b10 = v0Var.b(i7);
+        int b10 = w0Var.b(i7);
         if (b10 == -1) {
             Log.w("GridLayoutManager", "Cannot find span size for pre layout position. It is not cached, not in the adapter. Pos:" + i7);
             return 1;
@@ -466,37 +466,37 @@ public class s extends b0 {
         return this.O.i(b10);
     }
 
-    public void w1(int i7, View view, boolean z9) {
+    public void w1(int i7, View view, boolean z10) {
         int i10;
         int i11;
         r rVar = (r) view.getLayoutParams();
-        Rect rect = rVar.f57153b;
+        Rect rect = rVar.f58638b;
         int i12 = rect.top + rect.bottom + ((ViewGroup.MarginLayoutParams) rVar).topMargin + ((ViewGroup.MarginLayoutParams) rVar).bottomMargin;
         int i13 = rect.left + rect.right + ((ViewGroup.MarginLayoutParams) rVar).leftMargin + ((ViewGroup.MarginLayoutParams) rVar).rightMargin;
-        int s12 = s1(rVar.f57164e, rVar.f57165f);
-        if (this.f57021o == 1) {
-            i11 = n0.s(false, s12, i7, i13, ((ViewGroup.MarginLayoutParams) rVar).width);
-            i10 = n0.s(true, this.f57023q.k(), this.f57148l, i12, ((ViewGroup.MarginLayoutParams) rVar).height);
+        int s12 = s1(rVar.f58645e, rVar.f58646f);
+        if (this.f58489o == 1) {
+            i11 = o0.s(false, s12, i7, i13, ((ViewGroup.MarginLayoutParams) rVar).width);
+            i10 = o0.s(true, this.f58491q.k(), this.f58630l, i12, ((ViewGroup.MarginLayoutParams) rVar).height);
         } else {
-            int s5 = n0.s(false, s12, i7, i12, ((ViewGroup.MarginLayoutParams) rVar).height);
-            int s9 = n0.s(true, this.f57023q.k(), this.f57147k, i13, ((ViewGroup.MarginLayoutParams) rVar).width);
+            int s5 = o0.s(false, s12, i7, i12, ((ViewGroup.MarginLayoutParams) rVar).height);
+            int s9 = o0.s(true, this.f58491q.k(), this.f58629k, i13, ((ViewGroup.MarginLayoutParams) rVar).width);
             i10 = s5;
             i11 = s9;
         }
-        x1(i11, i10, view, z9);
+        x1(i11, i10, view, z10);
     }
 
-    public final void x1(int i7, int i10, View view, boolean z9) {
+    public final void x1(int i7, int i10, View view, boolean z10) {
         boolean u02;
-        o0 o0Var = (o0) view.getLayoutParams();
-        if (z9) {
-            if (this.f57144g && n0.N(view.getMeasuredWidth(), i7, ((ViewGroup.MarginLayoutParams) o0Var).width) && n0.N(view.getMeasuredHeight(), i10, ((ViewGroup.MarginLayoutParams) o0Var).height)) {
+        p0 p0Var = (p0) view.getLayoutParams();
+        if (z10) {
+            if (this.f58626g && o0.N(view.getMeasuredWidth(), i7, ((ViewGroup.MarginLayoutParams) p0Var).width) && o0.N(view.getMeasuredHeight(), i10, ((ViewGroup.MarginLayoutParams) p0Var).height)) {
                 u02 = false;
             } else {
                 u02 = true;
             }
         } else {
-            u02 = u0(view, i7, i10, o0Var);
+            u02 = u0(view, i7, i10, p0Var);
         }
         if (u02) {
             view.measure(i7, i10);
@@ -522,20 +522,20 @@ public class s extends b0 {
             l0();
             return;
         }
-        throw new IllegalArgumentException(jg.g.j(i7, "Span count should be at least 1. Provided "));
+        throw new IllegalArgumentException(i5.c.i(i7, "Span count should be at least 1. Provided "));
     }
 
     public final void z1(g.p pVar) {
         this.O = pVar;
     }
 
-    public s(int i7, boolean z9) {
-        super(1, z9);
+    public s(int i7, boolean z10) {
+        super(1, z10);
         this.I = false;
         this.J = -1;
         this.M = new SparseIntArray();
         this.N = new SparseIntArray();
-        this.O = new vt(1);
+        this.O = new ut(1);
         this.P = new Rect();
         y1(i7);
     }

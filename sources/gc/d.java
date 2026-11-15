@@ -1,34 +1,58 @@
 package gc;
-public enum d {
-    TERMINATOR(new int[]{0, 0, 0}, 0),
-    NUMERIC(new int[]{10, 12, 14}, 1),
-    ALPHANUMERIC(new int[]{9, 11, 13}, 2),
-    STRUCTURED_APPEND(new int[]{0, 0, 0}, 3),
-    BYTE(new int[]{8, 16, 16}, 4),
-    ECI(new int[]{0, 0, 0}, 7),
-    KANJI(new int[]{8, 10, 12}, 8),
-    FNC1_FIRST_POSITION(new int[]{0, 0, 0}, 5),
-    FNC1_SECOND_POSITION(new int[]{0, 0, 0}, 9),
-    HANZI(new int[]{8, 10, 12}, 13);
-    
-    public final int[] f13810a;
-    public final int f13811b;
+public final class d {
+    public static final int[][] f13140c = {new int[]{21522, 0}, new int[]{20773, 1}, new int[]{24188, 2}, new int[]{23371, 3}, new int[]{17913, 4}, new int[]{16590, 5}, new int[]{20375, 6}, new int[]{19104, 7}, new int[]{30660, 8}, new int[]{29427, 9}, new int[]{32170, 10}, new int[]{30877, 11}, new int[]{26159, 12}, new int[]{25368, 13}, new int[]{27713, 14}, new int[]{26998, 15}, new int[]{5769, 16}, new int[]{5054, 17}, new int[]{7399, 18}, new int[]{6608, 19}, new int[]{1890, 20}, new int[]{597, 21}, new int[]{3340, 22}, new int[]{2107, 23}, new int[]{13663, 24}, new int[]{12392, 25}, new int[]{16177, 26}, new int[]{14854, 27}, new int[]{9396, 28}, new int[]{8579, 29}, new int[]{11994, 30}, new int[]{11245, 31}};
+    public final c f13141a;
+    public final byte f13142b;
 
-    d(int[] iArr, int i7) {
-        this.f13810a = iArr;
-        this.f13811b = i7;
+    public d(int i7) {
+        int i10 = (i7 >> 3) & 3;
+        if (i10 >= 0 && i10 < 4) {
+            this.f13141a = c.f13137e[i10];
+            this.f13142b = (byte) (i7 & 7);
+            return;
+        }
+        throw new IllegalArgumentException();
     }
 
-    public final int a(e eVar) {
-        char c10;
-        int i7 = eVar.f13814a;
-        if (i7 <= 9) {
-            c10 = 0;
-        } else if (i7 <= 26) {
-            c10 = 1;
-        } else {
-            c10 = 2;
+    public static d a(int i7, int i10) {
+        int bitCount;
+        int i11 = Integer.MAX_VALUE;
+        int i12 = 0;
+        for (int i13 = 0; i13 < 32; i13++) {
+            int[] iArr = f13140c[i13];
+            int i14 = iArr[0];
+            if (i14 != i7 && i14 != i10) {
+                int bitCount2 = Integer.bitCount(i7 ^ i14);
+                if (bitCount2 < i11) {
+                    i12 = iArr[1];
+                    i11 = bitCount2;
+                }
+                if (i7 != i10 && (bitCount = Integer.bitCount(i14 ^ i10)) < i11) {
+                    i12 = iArr[1];
+                    i11 = bitCount;
+                }
+            } else {
+                return new d(iArr[1]);
+            }
         }
-        return this.f13810a[c10];
+        if (i11 <= 3) {
+            return new d(i12);
+        }
+        return null;
+    }
+
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof d)) {
+            return false;
+        }
+        d dVar = (d) obj;
+        if (this.f13141a != dVar.f13141a || this.f13142b != dVar.f13142b) {
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return (this.f13141a.ordinal() << 3) | this.f13142b;
     }
 }

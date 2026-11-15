@@ -1,71 +1,41 @@
 package kg;
 
-import android.view.KeyEvent;
+import android.content.Context;
 import android.view.View;
-import android.widget.TextView;
-import di.s2;
-import org.telegram.messenger.c20;
-import org.telegram.messenger.id;
-public final class m1 implements TextView.OnEditorActionListener {
-    public final x0 f17441a;
-    public final int f17442b;
-    public final s1 f17443c;
-    public final TextView d;
-    public final s2 f17444e;
-    public final c20 f17445f;
-    public final org.telegram.ui.ActionBar.u1[] f17446g;
-    public final View h;
+import org.telegram.ui.ActionBar.o4;
+import org.telegram.ui.Components.st0;
+public final class m1 extends st0 {
+    public final int f17996g0;
 
-    public m1(x0 x0Var, int i7, s1 s1Var, TextView textView, s2 s2Var, c20 c20Var, org.telegram.ui.ActionBar.u1[] u1VarArr, View view) {
-        this.f17441a = x0Var;
-        this.f17442b = i7;
-        this.f17443c = s1Var;
-        this.d = textView;
-        this.f17444e = s2Var;
-        this.f17445f = c20Var;
-        this.f17446g = u1VarArr;
-        this.h = view;
+    public m1(Context context, o4 o4Var, int i7) {
+        super(context, o4Var);
+        this.f17996g0 = i7;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
-        int i10;
-        if (i7 != 6) {
-            return false;
+    public boolean O() {
+        switch (this.f17996g0) {
+            case 2:
+                return false;
+            case 3:
+                return false;
+            default:
+                return super.O();
         }
-        x0 x0Var = this.f17441a;
-        String obj = x0Var.getText().toString();
-        if (obj.length() > 0 && obj.length() <= 32) {
-            t1 f10 = t1.f(this.f17442b);
-            s1 s1Var = this.f17443c;
-            if (s1Var == null) {
-                i10 = -1;
-            } else {
-                i10 = s1Var.f17535a;
-            }
-            s1 d = f10.d(obj);
-            if (d != null && d.f17535a != i10) {
-                org.telegram.messenger.g0.F3(x0Var);
-                this.d.setText(id.M0(2131752662, null));
-                this.f17444e.a(Boolean.TRUE);
-                return true;
-            }
-            this.f17445f.a(obj);
-            org.telegram.ui.ActionBar.u1[] u1VarArr = this.f17446g;
-            org.telegram.ui.ActionBar.u1 u1Var = u1VarArr[0];
-            if (u1Var != null) {
-                u1Var.dismiss();
-            }
-            if (u1VarArr[0] == q1.f17514f) {
-                q1.f17514f = null;
-            }
-            View view = this.h;
-            if (view != null) {
-                view.requestFocus();
-            }
-            return true;
+    }
+
+    @Override
+    public void onMeasure(int i7, int i10) {
+        switch (this.f17996g0) {
+            case 0:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824));
+                return;
+            case 1:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824));
+                return;
+            default:
+                super.onMeasure(i7, i10);
+                return;
         }
-        org.telegram.messenger.g0.F3(x0Var);
-        return true;
     }
 }

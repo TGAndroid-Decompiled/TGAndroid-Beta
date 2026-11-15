@@ -14,9 +14,9 @@ public final class r extends zd.a implements s, g {
     }
 
     @Override
-    public final void Q(Throwable th2, boolean z9) {
-        if (!this.d.g(th2, false) && !z9) {
-            b0.m(this.f60045c, th2);
+    public final void Q(Throwable th2, boolean z10) {
+        if (!this.d.g(th2, false) && !z10) {
+            b0.m(this.f61246c, th2);
         }
     }
 
@@ -29,22 +29,22 @@ public final class r extends zd.a implements s, g {
     public final void T(q qVar) {
         c cVar = this.d;
         cVar.getClass();
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = c.f3194s;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = c.f3149s;
         while (!atomicReferenceFieldUpdater.compareAndSet(cVar, null, qVar)) {
             if (atomicReferenceFieldUpdater.get(cVar) != null) {
                 while (true) {
                     Object obj = atomicReferenceFieldUpdater.get(cVar);
-                    com.google.android.gms.internal.clearcut.e eVar = e.f3211q;
-                    if (obj == eVar) {
-                        com.google.android.gms.internal.clearcut.e eVar2 = e.f3212r;
-                        while (!atomicReferenceFieldUpdater.compareAndSet(cVar, eVar, eVar2)) {
-                            if (atomicReferenceFieldUpdater.get(cVar) != eVar) {
+                    aa.b0 b0Var = e.f3166q;
+                    if (obj == b0Var) {
+                        aa.b0 b0Var2 = e.f3167r;
+                        while (!atomicReferenceFieldUpdater.compareAndSet(cVar, b0Var, b0Var2)) {
+                            if (atomicReferenceFieldUpdater.get(cVar) != b0Var) {
                                 break;
                             }
                         }
                         qVar.invoke(cVar.m());
                         return;
-                    } else if (obj == e.f3212r) {
+                    } else if (obj == e.f3167r) {
                         throw new IllegalStateException("Another handler was already registered and successfully invoked");
                     } else {
                         throw new IllegalStateException(("Another handler is already registered: " + obj).toString());
@@ -61,7 +61,7 @@ public final class r extends zd.a implements s, g {
 
     @Override
     public final Object b(Object obj) {
-        return this.d.b(gd.k.f13831a);
+        return this.d.b(gd.k.f13173a);
     }
 
     @Override

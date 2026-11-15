@@ -1,32 +1,19 @@
 package c8;
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import org.telegram.ui.z80;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
 public abstract class ua {
-    public static boolean a(z80 z80Var) {
-        Context context = org.telegram.messenger.t0.f25570b;
-        int componentEnabledSetting = context.getPackageManager().getComponentEnabledSetting(z80Var.a(context));
-        if (componentEnabledSetting == 1 || (componentEnabledSetting == 0 && z80Var == z80.DEFAULT)) {
-            return true;
-        }
-        return false;
+    public static int a(w7.s sVar) {
+        sVar.getClass();
+        return Math.max(1, (int) Math.ceil(0.5f * org.telegram.messenger.g0.f23608p)) + (((int) Math.ceil(1.9f * org.telegram.messenger.g0.f23608p)) * 2);
     }
 
-    public static void b(z80 z80Var) {
-        z80[] values;
-        int i7;
-        Context context = org.telegram.messenger.t0.f25570b;
-        PackageManager packageManager = context.getPackageManager();
-        for (z80 z80Var2 : z80.values()) {
-            ComponentName a10 = z80Var2.a(context);
-            if (z80Var2 == z80Var) {
-                i7 = 1;
-            } else {
-                i7 = 2;
-            }
-            packageManager.setComponentEnabledSetting(a10, i7, 1);
-        }
+    public static void b(Canvas canvas, Bitmap bitmap, int i7, float f10, float f11, int i10, int i11, Paint paint) {
+        int min = Math.min(i7, bitmap.getWidth());
+        int i12 = (int) f10;
+        int i13 = (int) f11;
+        canvas.drawBitmap(bitmap, new Rect(0, i10, min, i10 + i11), new Rect(i12, i13, min + i12, i11 + i13), paint);
     }
 }

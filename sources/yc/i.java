@@ -1,6 +1,6 @@
 package yc;
 
-import a8.ua;
+import a8.va;
 import java.io.ByteArrayInputStream;
 import java.io.Closeable;
 import java.io.IOException;
@@ -12,11 +12,12 @@ import java.nio.charset.Charset;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import org.telegram.ui.ActionBar.v;
 public abstract class i {
     public static final Logger d;
-    public volatile ServerSocket f59396a;
-    public Thread f59397b;
-    public ua f59398c;
+    public volatile ServerSocket f60603a;
+    public Thread f60604b;
+    public va f60605c;
 
     static {
         Pattern.compile("([ |\t]*Content-Disposition[ |\t]*:)(.*)", 2);
@@ -42,7 +43,7 @@ public abstract class i {
             return new g(fVar, str, new ByteArrayInputStream(new byte[0]), 0L);
         }
         String str4 = "US-ASCII";
-        String str5 = bVar.f59366c;
+        String str5 = bVar.f60573c;
         if (str5 == null) {
             str3 = "US-ASCII";
         } else {
@@ -52,7 +53,7 @@ public abstract class i {
             if (!Charset.forName(str3).newEncoder().canEncode(str2) && str5 == null) {
                 bVar = new b(str + "; charset=UTF-8");
             }
-            String str6 = bVar.f59366c;
+            String str6 = bVar.f60573c;
             if (str6 != null) {
                 str4 = str6;
             }
@@ -61,7 +62,7 @@ public abstract class i {
             d.log(Level.SEVERE, "encoding problem, responding nothing", (Throwable) e10);
             bArr = new byte[0];
         }
-        return new g(fVar, bVar.f59364a, new ByteArrayInputStream(bArr), bArr.length);
+        return new g(fVar, bVar.f60571a, new ByteArrayInputStream(bArr), bArr.length);
     }
 
     public static final void d(Object obj) {
@@ -83,7 +84,7 @@ public abstract class i {
     }
 
     public static boolean g(g gVar) {
-        String str = gVar.f59388b;
+        String str = gVar.f60595b;
         if (str != null) {
             if (str.toLowerCase().contains("text/") || str.toLowerCase().contains("/json")) {
                 return true;
@@ -96,21 +97,21 @@ public abstract class i {
     public abstract g e(d dVar);
 
     public final void f() {
-        this.f59396a = new ServerSocket();
-        this.f59396a.setReuseAddress(true);
-        mi.g gVar = new mi.g(this);
-        Thread thread = new Thread(gVar);
-        this.f59397b = thread;
+        this.f60603a = new ServerSocket();
+        this.f60603a.setReuseAddress(true);
+        v vVar = new v(this);
+        Thread thread = new Thread(vVar);
+        this.f60604b = thread;
         thread.setDaemon(true);
-        this.f59397b.setName("NanoHttpd Main Listener");
-        this.f59397b.start();
-        while (!gVar.f20081b && ((IOException) gVar.f20082c) == null) {
+        this.f60604b.setName("NanoHttpd Main Listener");
+        this.f60604b.start();
+        while (!vVar.f29749b && ((IOException) vVar.f29750c) == null) {
             try {
                 Thread.sleep(10L);
             } catch (Throwable unused) {
             }
         }
-        IOException iOException = (IOException) gVar.f20082c;
+        IOException iOException = (IOException) vVar.f29750c;
         if (iOException == null) {
             return;
         }

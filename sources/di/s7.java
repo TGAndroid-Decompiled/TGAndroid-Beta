@@ -1,610 +1,4196 @@
 package di;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PathMeasure;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.text.SpannableStringBuilder;
-import android.text.TextPaint;
-import android.widget.TextView;
-import java.io.File;
 import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.gc;
-import org.telegram.messenger.hc;
-import org.telegram.messenger.id;
-import org.telegram.messenger.p10;
-import org.telegram.messenger.qp;
-import org.telegram.tgnet.ConnectionsManager;
+import java.util.List;
+import org.telegram.messenger.np;
+import org.telegram.messenger.ns;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.e10;
-import org.telegram.ui.Components.my0;
-import org.telegram.ui.Components.wp;
-public abstract class s7 {
-    public static e10 f9741b;
-    public static e10 f9742c;
-    public static e10 d;
-    public static Paint f9743e;
-    public static RectF f9744f;
-    public static Paint f9745g;
-    public static Paint h;
-    public static my0 f9746i;
-    public static int f9747j;
-    public static BitmapDrawable f9750m;
-    public static final e10[] f9740a = new e10[2];
-    public static final Paint[] f9748k = new Paint[2];
-    public static final int[] f9749l = new int[2];
-    public static final RectF f9751n = new RectF();
-    public static final androidx.emoji2.text.n f9752o = new androidx.emoji2.text.n(2);
-    public static final RectF f9753p = new RectF();
-    public static final Path f9754q = new Path();
-    public static final Matrix f9755r = new Matrix();
-    public static final PathMeasure f9756s = new PathMeasure();
-    public static final Path f9757t = new Path();
+import org.telegram.tgnet.Vector;
+import org.telegram.tgnet.tl.TL_stars;
+public final class s7 implements Runnable {
+    public final int f9400a;
+    public final v8 f9401b;
+    public final TLObject f9402c;
 
-    public static void a(org.telegram.ui.ActionBar.m5 m5Var) {
-        String M0 = id.M0(2131743800, null);
-        if (M0.indexOf("…") > 0) {
-            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(M0);
-            w9 w9Var = new w9();
-            valueOf.setSpan(w9Var, valueOf.length() - 1, valueOf.length(), 0);
-            w9Var.f9918a = m5Var;
-            w9Var.f9923n = true;
-            m5Var.l(valueOf, false);
-            return;
-        }
-        m5Var.l(M0, false);
+    public s7(v8 v8Var, TLObject tLObject, int i7) {
+        this.f9400a = i7;
+        this.f9401b = v8Var;
+        this.f9402c = tLObject;
     }
 
-    public static void b(TL_stories.StoryItem storyItem, TLRPC.User user) {
-        if (user != null && storyItem.dialogId == p10.i(p10.f24474s0).f24493n && !v(storyItem)) {
-            if (storyItem.views == null) {
-                storyItem.views = new TL_stories.TL_storyViews();
-            }
-            TL_stories.StoryViews storyViews = storyItem.views;
-            if (storyViews.views_count == 0) {
-                storyViews.views_count = 1;
-                storyViews.recent_viewers.add(Long.valueOf(user.f27109id));
-            }
-        }
-    }
-
-    public static void c(org.telegram.ui.ActionBar.h6 h6Var) {
-        if (f9743e == null) {
-            Paint paint = new Paint(1);
-            f9743e = paint;
-            paint.setStyle(Paint.Style.STROKE);
-            f9743e.setStrokeWidth(org.telegram.messenger.g0.N(1.3f));
-            f9743e.setStrokeCap(Paint.Cap.ROUND);
-        }
-        int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f27890d6, h6Var);
-        if (f9747j != w02) {
-            f9747j = w02;
-            float B = org.telegram.messenger.g0.B(w02);
-            if (B < 0.721f) {
-                if (B < 0.25f) {
-                    f9743e.setColor(i0.a.f(0.2f, w02, -1));
-                    return;
-                } else {
-                    f9743e.setColor(i0.a.f(0.44f, w02, -1));
-                    return;
-                }
-            }
-            f9743e.setColor(i0.a.f(0.2f, w02, -16777216));
-        }
-    }
-
-    public static void d(org.telegram.ui.ActionBar.h6 h6Var, boolean z9) {
-        int i7;
-        Paint[] paintArr = f9748k;
-        if (paintArr[z9 ? 1 : 0] == null) {
-            Paint paint = new Paint(1);
-            paintArr[z9 ? 1 : 0] = paint;
-            paint.setStyle(Paint.Style.STROKE);
-            paintArr[z9 ? 1 : 0].setStrokeWidth(org.telegram.messenger.g0.N(1.3f));
-            paintArr[z9 ? 1 : 0].setStrokeCap(Paint.Cap.ROUND);
-        }
-        if (!z9) {
-            i7 = org.telegram.ui.ActionBar.m6.f28170s8;
-        } else {
-            i7 = org.telegram.ui.ActionBar.m6.M8;
-        }
-        int w02 = org.telegram.ui.ActionBar.m6.w0(i7, h6Var);
-        int[] iArr = f9749l;
-        if (iArr[z9 ? 1 : 0] != w02) {
-            iArr[z9 ? 1 : 0] = w02;
-            float B = org.telegram.messenger.g0.B(w02);
-            if (B < 0.721f) {
-                if (B < 0.25f) {
-                    paintArr[z9 ? 1 : 0].setColor(i0.a.f(0.2f, w02, -1));
-                    return;
-                } else {
-                    paintArr[z9 ? 1 : 0].setColor(i0.a.f(0.44f, w02, -1));
-                    return;
-                }
-            }
-            paintArr[z9 ? 1 : 0].setColor(i0.a.f(0.2f, w02, -16777216));
-        }
-    }
-
-    public static SpannableStringBuilder e(Object[] objArr, int i7, boolean z9) {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) "d ").append((CharSequence) id.a0(null, null, i7, objArr));
-        wp wpVar = new wp(2131232233, 0);
-        if (z9) {
-            wpVar.H = 0.8f;
-            wpVar.I = 0.8f;
-        } else {
-            wpVar.f40037n = -1;
-        }
-        spannableStringBuilder.setSpan(wpVar, 0, 1, 0);
-        return spannableStringBuilder;
-    }
-
-    public static SpannableStringBuilder f() {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) "d ").append((CharSequence) id.M0(2131744735, null));
-        spannableStringBuilder.setSpan(new wp(2131232248, 0), 0, 1, 0);
-        return spannableStringBuilder;
-    }
-
-    public static void g(Canvas canvas, RectF rectF, Paint paint, float f10, float f11, float f12, float f13) {
-        float f14;
-        boolean z9;
-        float f15 = f11 - f10;
-        if (f10 < f12 && f11 < f12 + f15) {
-            f14 = f10;
-            canvas.drawArc(rectF, f14, Math.min(f11, f12) - f10, false, paint);
-            z9 = true;
-        } else {
-            f14 = f10;
-            z9 = false;
-        }
-        float max = Math.max(f14, f13);
-        float min = Math.min(f11, f12 + 360.0f);
-        if (min < max) {
-            if (!z9) {
-                if (f14 <= f12 || f11 >= f13) {
-                    canvas.drawArc(rectF, f14, f15, false, paint);
+    @Override
+    public final void run() {
+        boolean z10;
+        switch (this.f9400a) {
+            case 0:
+                v8 v8Var = this.f9401b;
+                int i7 = v8Var.f9598a;
+                v8Var.A = false;
+                TLObject tLObject = this.f9402c;
+                if (tLObject instanceof TL_stars.StarsStatus) {
+                    TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject;
+                    np.s1(i7).Y3(starsStatus.users, false);
+                    np.s1(i7).S3(starsStatus.chats, false);
+                    v8Var.f9620z.addAll(starsStatus.subscriptions);
+                    v8Var.i0(starsStatus.balance);
+                    ns.f(i7).k(223, new Object[0]);
                     return;
                 }
                 return;
-            }
-            return;
-        }
-        canvas.drawArc(rectF, max, min - max, false, paint);
-    }
-
-    public static void h(long j3, Canvas canvas, ImageReceiver imageReceiver, o7 o7Var) {
-        boolean z9;
-        boolean K = qp.s1(p10.f24474s0).P1().K(j3);
-        if (p10.i(p10.f24474s0).e() != j3 && K) {
-            z9 = true;
-        } else {
-            z9 = false;
-        }
-        i(j3, canvas, imageReceiver, z9, o7Var);
-    }
-
-    public static void i(long r30, android.graphics.Canvas r32, org.telegram.messenger.ImageReceiver r33, boolean r34, di.o7 r35) {
-        throw new UnsupportedOperationException("Method not decompiled: di.s7.i(long, android.graphics.Canvas, org.telegram.messenger.ImageReceiver, boolean, di.o7):void");
-    }
-
-    public static void j(Canvas canvas, o7 o7Var, Paint paint, boolean z9) {
-        RectF rectF = f9751n;
-        if (z9) {
-            RectF rectF2 = f9753p;
-            rectF2.set(rectF);
-            rectF2.inset(org.telegram.messenger.g0.L(0.5f), org.telegram.messenger.g0.L(0.5f));
-            canvas.drawRoundRect(rectF2, org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(18.0f), paint);
-            return;
-        }
-        float f10 = o7Var.f9450f;
-        if (f10 == 0.0f) {
-            canvas.drawCircle(rectF.centerX(), rectF.centerY(), rectF.width() / 2.0f, paint);
-        } else {
-            canvas.drawArc(rectF, (f10 / 2.0f) + 360.0f, 360.0f - f10, false, paint);
-        }
-    }
-
-    public static void k(float f10, float f11, Canvas canvas, RectF rectF, boolean z9) {
-        Canvas canvas2;
-        if (f9746i == null) {
-            f9746i = new my0(id.M0(2131748825, null), 9.66f, org.telegram.messenger.g0.o());
-        }
-        if (f9745g == null) {
-            Paint paint = new Paint(1);
-            f9745g = paint;
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        }
-        if (h == null) {
-            h = new Paint(1);
-        }
-        if (f9744f == null) {
-            f9744f = new RectF();
-        }
-        h.setColor(org.telegram.ui.ActionBar.m6.r1(f10, org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.cl, false)));
-        float W1 = org.telegram.messenger.g0.W1(f11, org.telegram.messenger.g0.L(4.66f), org.telegram.messenger.g0.L(7.0f));
-        float W12 = org.telegram.messenger.g0.W1(f11, org.telegram.messenger.g0.L(15.0f), org.telegram.messenger.g0.L(18.0f));
-        float L = org.telegram.messenger.g0.L(2.0f);
-        canvas.save();
-        float k10 = ((f9746i.k() + W1) + W1) / 2.0f;
-        float f12 = 0.8f * W12;
-        float f13 = W12 * 0.2f;
-        f9744f.set((rectF.centerX() - k10) - L, (rectF.bottom - f12) - L, rectF.centerX() + k10 + L, rectF.bottom + f13 + L);
-        float T1 = org.telegram.messenger.g0.T1(0.7f, 1.0f, f10);
-        canvas.scale(T1, T1, f9744f.centerX(), f9744f.centerY());
-        RectF rectF2 = f9744f;
-        org.telegram.messenger.g0.j3(rectF2, f10, rectF2.centerX(), rectF2.centerY());
-        RectF rectF3 = f9744f;
-        canvas.drawRoundRect(rectF3, rectF3.height() / 2.0f, f9744f.height() / 2.0f, f9745g);
-        if (z9) {
-            f9744f.set(rectF.centerX() - k10, rectF.bottom - f12, rectF.centerX() + k10, rectF.bottom + f13);
-            RectF rectF4 = f9744f;
-            canvas.drawRoundRect(rectF4, rectF4.height() / 2.0f, f9744f.height() / 2.0f, h);
-            my0 my0Var = f9746i;
-            RectF rectF5 = f9744f;
-            canvas2 = canvas;
-            my0Var.c(rectF5.left + W1, rectF5.centerY(), f10, -1, canvas2);
-        } else {
-            canvas2 = canvas;
-        }
-        canvas2.restore();
-    }
-
-    public static void l(Canvas canvas, RectF rectF, Paint paint, float f10, float f11, o7 o7Var, boolean z9) {
-        if (z9) {
-            float height = rectF.height() * 0.32f;
-            float f12 = ((((int) f10) / 90) * 90) + 90;
-            float f13 = (-199.0f) + f12;
-            Path path = f9754q;
-            path.rewind();
-            path.addRoundRect(rectF, height, height, Path.Direction.CW);
-            Matrix matrix = f9755r;
-            matrix.reset();
-            matrix.postRotate(f12, rectF.centerX(), rectF.centerY());
-            path.transform(matrix);
-            PathMeasure pathMeasure = f9756s;
-            pathMeasure.setPath(path, false);
-            float length = pathMeasure.getLength();
-            Path path2 = f9757t;
-            path2.reset();
-            pathMeasure.getSegment(((f10 - f13) / 360.0f) * length, length * ((f11 - f13) / 360.0f), path2, true);
-            path2.rLineTo(0.0f, 0.0f);
-            canvas.drawPath(path2, paint);
-        } else if (o7Var.f9454k) {
-            boolean z10 = o7Var.f9456m;
-            if (!z10 && !o7Var.f9455l) {
-                if (f10 < 90.0f) {
-                    float f14 = o7Var.f9450f;
-                    g(canvas, rectF, paint, f10, f11, (-f14) / 2.0f, f14 / 2.0f);
+            case 1:
+                v8 v8Var2 = this.f9401b;
+                int i10 = v8Var2.f9598a;
+                v8Var2.f9618x = false;
+                TLObject tLObject2 = this.f9402c;
+                if (tLObject2 instanceof TL_stars.StarsStatus) {
+                    TL_stars.StarsStatus starsStatus2 = (TL_stars.StarsStatus) tLObject2;
+                    np.s1(i10).Y3(starsStatus2.users, false);
+                    np.s1(i10).S3(starsStatus2.chats, false);
+                    v8Var2.v.addAll(starsStatus2.subscriptions);
+                    if ((starsStatus2.flags & 4) == 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    v8Var2.f9619y = z10;
+                    v8Var2.f9617w = starsStatus2.subscriptions_next_offset;
+                    v8Var2.i0(starsStatus2.balance);
+                    ns.f(i10).k(223, new Object[0]);
                     return;
                 }
-                float f15 = o7Var.f9450f;
-                g(canvas, rectF, paint, f10, f11, ((-f15) / 2.0f) + 180.0f, (f15 / 2.0f) + 180.0f);
-            } else if (o7Var.f9455l) {
-                float f16 = o7Var.f9450f;
-                g(canvas, rectF, paint, f10, f11, ((-f16) / 2.0f) + 180.0f, (f16 / 2.0f) + 180.0f);
-            } else if (z10) {
-                float f17 = o7Var.f9450f;
-                g(canvas, rectF, paint, f10, f11, (-f17) / 2.0f, f17 / 2.0f);
-            } else {
-                canvas.drawArc(rectF, f10, f11 - f10, false, paint);
-            }
-        } else if (o7Var.f9455l) {
-            float f18 = o7Var.f9450f;
-            g(canvas, rectF, paint, f10, f11, ((-f18) / 2.0f) + 180.0f, (f18 / 2.0f) + 180.0f);
-        } else if (f10 < 90.0f) {
-            g(canvas, rectF, paint, f10, f11, o7Var.f9451g, o7Var.h);
-        } else {
-            g(canvas, rectF, paint, f10, f11, -o7Var.f9452i, o7Var.f9453j);
-        }
-    }
-
-    public static void m(android.graphics.Canvas r23, di.z6 r24, org.telegram.messenger.ImageReceiver r25, di.o7 r26, android.graphics.Paint r27, android.graphics.Paint r28, android.graphics.Paint r29, android.graphics.Paint r30, boolean r31) {
-        throw new UnsupportedOperationException("Method not decompiled: di.s7.m(android.graphics.Canvas, di.z6, org.telegram.messenger.ImageReceiver, di.o7, android.graphics.Paint, android.graphics.Paint, android.graphics.Paint, android.graphics.Paint, boolean):void");
-    }
-
-    public static p7 n(TL_stories.PeerStories peerStories, Runnable runnable) {
-        TL_stories.StoryItem storyItem;
-        TLRPC.Photo photo;
-        ArrayList<TLRPC.PhotoSize> arrayList;
-        TLRPC.Photo photo2;
-        ArrayList<TLRPC.PhotoSize> arrayList2;
-        TLRPC.Document document;
-        int lastIndexOf;
-        if (peerStories != null && !peerStories.stories.isEmpty() && org.telegram.messenger.m5.o(peerStories.peer) != p10.i(p10.f24474s0).f24493n) {
-            z6 z6Var = qp.s1(p10.f24474s0).f24799h0;
-            int i7 = z6Var.f10001f.get(org.telegram.messenger.m5.o(peerStories.peer));
-            int i10 = 0;
-            while (true) {
-                if (i10 < peerStories.stories.size()) {
-                    if (peerStories.stories.get(i10).f27199id > i7) {
-                        storyItem = peerStories.stories.get(i10);
-                        break;
-                    }
-                    i10++;
-                } else {
-                    storyItem = null;
-                    break;
-                }
-            }
-            if (storyItem == null) {
-                storyItem = peerStories.stories.get(0);
-            }
-            TL_stories.StoryItem storyItem2 = storyItem;
-            TLRPC.MessageMedia messageMedia = storyItem2.media;
-            if (messageMedia != null && messageMedia.document != null) {
-                org.telegram.messenger.w7.G(p10.f24474s0);
-                File J = org.telegram.messenger.w7.J(storyItem2.media.document, "", false, true);
-                if (J != null && J.exists()) {
-                    runnable.run();
-                    return null;
-                }
-                org.telegram.messenger.w7.G(p10.f24474s0);
-                File J2 = org.telegram.messenger.w7.J(storyItem2.media.document, "", true, true);
-                if (J2 != null) {
-                    try {
-                        if (J2.getName().lastIndexOf(".") > 0) {
-                            File file = new File(J2.getParentFile(), J2.getName().substring(0, lastIndexOf) + ".temp");
-                            if (file.exists() && file.length() > 0) {
-                                runnable.run();
-                                return null;
+                return;
+            case 2:
+                ArrayList arrayList = new ArrayList();
+                final ArrayList arrayList2 = new ArrayList();
+                TLObject tLObject3 = this.f9402c;
+                boolean z11 = tLObject3 instanceof Vector;
+                final v8 v8Var3 = this.f9401b;
+                if (z11) {
+                    ArrayList<T> arrayList3 = ((Vector) tLObject3).objects;
+                    int size = arrayList3.size();
+                    int i11 = 0;
+                    while (i11 < size) {
+                        Object obj = arrayList3.get(i11);
+                        i11++;
+                        if (obj instanceof TL_stars.TL_starsTopupOption) {
+                            TL_stars.TL_starsTopupOption tL_starsTopupOption = (TL_stars.TL_starsTopupOption) obj;
+                            arrayList.add(tL_starsTopupOption);
+                            if (tL_starsTopupOption.store_product != null && !org.telegram.messenger.r2.b()) {
+                                arrayList2.add(tL_starsTopupOption);
+                                tL_starsTopupOption.loadingStorePrice = true;
                             }
                         }
-                    } catch (Exception unused) {
                     }
+                    v8Var3.f9604i = true;
                 }
-            } else {
-                if (messageMedia != null) {
-                    photo = messageMedia.photo;
-                } else {
-                    photo = null;
-                }
-                if (photo != null && (arrayList = photo.sizes) != null) {
-                    TLRPC.PhotoSize w10 = org.telegram.messenger.w7.w(arrayList, Integer.MAX_VALUE, false, null, false);
-                    org.telegram.messenger.w7.G(p10.f24474s0);
-                    File J3 = org.telegram.messenger.w7.J(w10, "", false, true);
-                    if (J3 != null && J3.exists()) {
+                v8Var3.f9605j = arrayList;
+                v8Var3.h = false;
+                ns.f(v8Var3.f9598a).k(218, new Object[0]);
+                if (!arrayList2.isEmpty()) {
+                    Runnable runnable = new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r3) {
+                                case 0:
+                                    ArrayList arrayList4 = new ArrayList();
+                                    int i12 = 0;
+                                    while (true) {
+                                        final ArrayList arrayList5 = arrayList2;
+                                        if (i12 < arrayList5.size()) {
+                                            f5.a aVar = new f5.a();
+                                            aVar.f10926c = "inapp";
+                                            aVar.f10925b = ((TL_stars.TL_starsTopupOption) arrayList5.get(i12)).store_product;
+                                            arrayList4.add(aVar.a());
+                                            i12++;
+                                        } else {
+                                            org.telegram.messenger.r1 i13 = org.telegram.messenger.r1.i();
+                                            final v8 v8Var4 = v8Var3;
+                                            i13.o(arrayList4, new org.telegram.messenger.q1() {
+                                                @Override
+                                                public final void a(final f5.f fVar, final List list) {
+                                                    switch (r3) {
+                                                        case 0:
+                                                            final v8 v8Var5 = v8Var4;
+                                                            final ArrayList arrayList6 = arrayList5;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i14 = fVar.f10978a;
+                                                                            if (i14 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i14)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i15 = 0; i15 < list2.size(); i15++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i15);
+                                                                                    int i16 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList7 = arrayList6;
+                                                                                        if (i16 < arrayList7.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList7.get(i16)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption = (TL_stars.TL_starsGiftOption) arrayList7.get(i16);
+                                                                                            } else {
+                                                                                                i16++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var6 = v8Var5;
+                                                                            if (v8Var6.f9608m != null) {
+                                                                                for (int i17 = 0; i17 < v8Var6.f9608m.size(); i17++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v8Var6.f9608m.get(i17);
+                                                                                    if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
+                                                                                        tL_starsGiftOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var6.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList8 = arrayList6;
+                                                                                        if (i20 < arrayList8.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList8.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList8.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var7 = v8Var5;
+                                                                            if (v8Var7.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var7.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v8Var7.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var7.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList9 = arrayList6;
+                                                                                        if (i24 < arrayList9.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList9.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList9.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var5;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                        case 1:
+                                                            final v8 v8Var6 = v8Var4;
+                                                            final ArrayList arrayList7 = arrayList5;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i14 = fVar.f10978a;
+                                                                            if (i14 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i14)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i15 = 0; i15 < list2.size(); i15++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i15);
+                                                                                    int i16 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList72 = arrayList7;
+                                                                                        if (i16 < arrayList72.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList72.get(i16)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption = (TL_stars.TL_starsGiftOption) arrayList72.get(i16);
+                                                                                            } else {
+                                                                                                i16++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var62 = v8Var6;
+                                                                            if (v8Var62.f9608m != null) {
+                                                                                for (int i17 = 0; i17 < v8Var62.f9608m.size(); i17++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v8Var62.f9608m.get(i17);
+                                                                                    if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
+                                                                                        tL_starsGiftOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var62.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList8 = arrayList7;
+                                                                                        if (i20 < arrayList8.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList8.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList8.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var7 = v8Var6;
+                                                                            if (v8Var7.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var7.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v8Var7.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var7.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList9 = arrayList7;
+                                                                                        if (i24 < arrayList9.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList9.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList9.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var6;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                        default:
+                                                            final v8 v8Var7 = v8Var4;
+                                                            final ArrayList arrayList8 = arrayList5;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i14 = fVar.f10978a;
+                                                                            if (i14 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i14)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i15 = 0; i15 < list2.size(); i15++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i15);
+                                                                                    int i16 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList72 = arrayList8;
+                                                                                        if (i16 < arrayList72.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList72.get(i16)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption = (TL_stars.TL_starsGiftOption) arrayList72.get(i16);
+                                                                                            } else {
+                                                                                                i16++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var62 = v8Var7;
+                                                                            if (v8Var62.f9608m != null) {
+                                                                                for (int i17 = 0; i17 < v8Var62.f9608m.size(); i17++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v8Var62.f9608m.get(i17);
+                                                                                    if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
+                                                                                        tL_starsGiftOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var62.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList82 = arrayList8;
+                                                                                        if (i20 < arrayList82.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList82.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList82.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var7;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList9 = arrayList8;
+                                                                                        if (i24 < arrayList9.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList9.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList9.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var7;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                    }
+                                                }
+                                            });
+                                            return;
+                                        }
+                                    }
+                                case 1:
+                                    ArrayList arrayList6 = new ArrayList();
+                                    int i14 = 0;
+                                    while (true) {
+                                        final ArrayList arrayList7 = arrayList2;
+                                        if (i14 < arrayList7.size()) {
+                                            f5.a aVar2 = new f5.a();
+                                            aVar2.f10926c = "inapp";
+                                            aVar2.f10925b = ((TL_stars.TL_starsGiftOption) arrayList7.get(i14)).store_product;
+                                            arrayList6.add(aVar2.a());
+                                            i14++;
+                                        } else {
+                                            org.telegram.messenger.r1 i15 = org.telegram.messenger.r1.i();
+                                            final v8 v8Var5 = v8Var3;
+                                            i15.o(arrayList6, new org.telegram.messenger.q1() {
+                                                @Override
+                                                public final void a(final f5.f fVar, final List list) {
+                                                    switch (r3) {
+                                                        case 0:
+                                                            final v8 v8Var52 = v8Var5;
+                                                            final ArrayList arrayList62 = arrayList7;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i16 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList72 = arrayList62;
+                                                                                        if (i16 < arrayList72.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList72.get(i16)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption = (TL_stars.TL_starsGiftOption) arrayList72.get(i16);
+                                                                                            } else {
+                                                                                                i16++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var62 = v8Var52;
+                                                                            if (v8Var62.f9608m != null) {
+                                                                                for (int i17 = 0; i17 < v8Var62.f9608m.size(); i17++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v8Var62.f9608m.get(i17);
+                                                                                    if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
+                                                                                        tL_starsGiftOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var62.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList82 = arrayList62;
+                                                                                        if (i20 < arrayList82.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList82.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList82.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var52;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList9 = arrayList62;
+                                                                                        if (i24 < arrayList9.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList9.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList9.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var52;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                        case 1:
+                                                            final v8 v8Var6 = v8Var5;
+                                                            final ArrayList arrayList72 = arrayList7;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i16 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList722 = arrayList72;
+                                                                                        if (i16 < arrayList722.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i16)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption = (TL_stars.TL_starsGiftOption) arrayList722.get(i16);
+                                                                                            } else {
+                                                                                                i16++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var62 = v8Var6;
+                                                                            if (v8Var62.f9608m != null) {
+                                                                                for (int i17 = 0; i17 < v8Var62.f9608m.size(); i17++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v8Var62.f9608m.get(i17);
+                                                                                    if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
+                                                                                        tL_starsGiftOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var62.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList82 = arrayList72;
+                                                                                        if (i20 < arrayList82.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList82.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList82.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var6;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList9 = arrayList72;
+                                                                                        if (i24 < arrayList9.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList9.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList9.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var6;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                        default:
+                                                            final v8 v8Var7 = v8Var5;
+                                                            final ArrayList arrayList8 = arrayList7;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i16 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList722 = arrayList8;
+                                                                                        if (i16 < arrayList722.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i16)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption = (TL_stars.TL_starsGiftOption) arrayList722.get(i16);
+                                                                                            } else {
+                                                                                                i16++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var62 = v8Var7;
+                                                                            if (v8Var62.f9608m != null) {
+                                                                                for (int i17 = 0; i17 < v8Var62.f9608m.size(); i17++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v8Var62.f9608m.get(i17);
+                                                                                    if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
+                                                                                        tL_starsGiftOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var62.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList82 = arrayList8;
+                                                                                        if (i20 < arrayList82.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList82.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList82.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var7;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList9 = arrayList8;
+                                                                                        if (i24 < arrayList9.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList9.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList9.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var7;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                    }
+                                                }
+                                            });
+                                            return;
+                                        }
+                                    }
+                                default:
+                                    ArrayList arrayList8 = new ArrayList();
+                                    int i16 = 0;
+                                    while (true) {
+                                        final ArrayList arrayList9 = arrayList2;
+                                        if (i16 < arrayList9.size()) {
+                                            f5.a aVar3 = new f5.a();
+                                            aVar3.f10926c = "inapp";
+                                            aVar3.f10925b = ((TL_stars.TL_starsGiveawayOption) arrayList9.get(i16)).store_product;
+                                            arrayList8.add(aVar3.a());
+                                            i16++;
+                                        } else {
+                                            org.telegram.messenger.r1 i17 = org.telegram.messenger.r1.i();
+                                            final v8 v8Var6 = v8Var3;
+                                            i17.o(arrayList8, new org.telegram.messenger.q1() {
+                                                @Override
+                                                public final void a(final f5.f fVar, final List list) {
+                                                    switch (r3) {
+                                                        case 0:
+                                                            final v8 v8Var52 = v8Var6;
+                                                            final ArrayList arrayList62 = arrayList9;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i162 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList722 = arrayList62;
+                                                                                        if (i162 < arrayList722.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i162)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption = (TL_stars.TL_starsGiftOption) arrayList722.get(i162);
+                                                                                            } else {
+                                                                                                i162++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var62 = v8Var52;
+                                                                            if (v8Var62.f9608m != null) {
+                                                                                for (int i172 = 0; i172 < v8Var62.f9608m.size(); i172++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v8Var62.f9608m.get(i172);
+                                                                                    if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
+                                                                                        tL_starsGiftOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var62.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList82 = arrayList62;
+                                                                                        if (i20 < arrayList82.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList82.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList82.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var52;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList92 = arrayList62;
+                                                                                        if (i24 < arrayList92.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var52;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                        case 1:
+                                                            final v8 v8Var62 = v8Var6;
+                                                            final ArrayList arrayList72 = arrayList9;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i162 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList722 = arrayList72;
+                                                                                        if (i162 < arrayList722.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i162)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption = (TL_stars.TL_starsGiftOption) arrayList722.get(i162);
+                                                                                            } else {
+                                                                                                i162++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var622 = v8Var62;
+                                                                            if (v8Var622.f9608m != null) {
+                                                                                for (int i172 = 0; i172 < v8Var622.f9608m.size(); i172++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v8Var622.f9608m.get(i172);
+                                                                                    if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
+                                                                                        tL_starsGiftOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var622.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList82 = arrayList72;
+                                                                                        if (i20 < arrayList82.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList82.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList82.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var62;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList92 = arrayList72;
+                                                                                        if (i24 < arrayList92.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var62;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                        default:
+                                                            final v8 v8Var7 = v8Var6;
+                                                            final ArrayList arrayList82 = arrayList9;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i162 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList722 = arrayList82;
+                                                                                        if (i162 < arrayList722.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i162)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption = (TL_stars.TL_starsGiftOption) arrayList722.get(i162);
+                                                                                            } else {
+                                                                                                i162++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var622 = v8Var7;
+                                                                            if (v8Var622.f9608m != null) {
+                                                                                for (int i172 = 0; i172 < v8Var622.f9608m.size(); i172++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) v8Var622.f9608m.get(i172);
+                                                                                    if (tL_starsGiftOption2 != null && tL_starsGiftOption2.loadingStorePrice) {
+                                                                                        tL_starsGiftOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var622.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList822 = arrayList82;
+                                                                                        if (i20 < arrayList822.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var7;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList92 = arrayList82;
+                                                                                        if (i24 < arrayList92.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var7;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                    }
+                                                }
+                                            });
+                                            return;
+                                        }
+                                    }
+                            }
+                        }
+                    };
+                    if (!org.telegram.messenger.r1.i().k()) {
+                        org.telegram.messenger.r1.i().f26196i.add(runnable);
+                        return;
+                    } else {
                         runnable.run();
-                        return null;
+                        return;
                     }
-                } else {
-                    runnable.run();
-                    return null;
                 }
-            }
-            long o4 = org.telegram.messenger.m5.o(peerStories.peer);
-            ?? obj = new Object();
-            obj.f9519b = false;
-            obj.f9518a = o4;
-            obj.f9520c = z6Var;
-            obj.d = new z0(20, obj, runnable);
-            z0 z0Var = new z0(21, r0, obj);
-            Runnable[] runnableArr = {z0Var};
-            org.telegram.messenger.g0.i3(z0Var, 3000L);
-            n7 n7Var = new n7(runnableArr, obj);
-            obj.f9521e = n7Var;
-            n7Var.f21241z1 = true;
-            n7Var.P();
-            String s5 = s();
-            TLRPC.MessageMedia messageMedia2 = storyItem2.media;
-            if (messageMedia2 != null && (document = messageMedia2.document) != null) {
-                ((n7) obj.f9521e).r0(hc.b(document), rf.b.r(s5, "_pframe"), null, null, null, 0L, null, storyItem2, 0);
-            } else {
-                if (messageMedia2 != null) {
-                    photo2 = messageMedia2.photo;
-                } else {
-                    photo2 = null;
+                return;
+            case 3:
+                ArrayList arrayList4 = new ArrayList();
+                final ArrayList arrayList5 = new ArrayList();
+                TLObject tLObject4 = this.f9402c;
+                boolean z12 = tLObject4 instanceof Vector;
+                final v8 v8Var4 = this.f9401b;
+                if (z12) {
+                    ArrayList<T> arrayList6 = ((Vector) tLObject4).objects;
+                    int size2 = arrayList6.size();
+                    int i12 = 0;
+                    while (i12 < size2) {
+                        Object obj2 = arrayList6.get(i12);
+                        i12++;
+                        if (obj2 instanceof TL_stars.TL_starsGiftOption) {
+                            TL_stars.TL_starsGiftOption tL_starsGiftOption = (TL_stars.TL_starsGiftOption) obj2;
+                            arrayList4.add(tL_starsGiftOption);
+                            if (tL_starsGiftOption.store_product != null && !org.telegram.messenger.r2.b()) {
+                                arrayList5.add(tL_starsGiftOption);
+                                tL_starsGiftOption.loadingStorePrice = true;
+                            }
+                        }
+                    }
+                    v8Var4.f9607l = true;
                 }
-                if (photo2 != null && (arrayList2 = photo2.sizes) != null) {
-                    ((n7) obj.f9521e).u0(null, null, hc.i(org.telegram.messenger.w7.w(arrayList2, Integer.MAX_VALUE, false, null, false), photo2), s5, null, null, null, 0L, null, storyItem2, 0);
-                } else {
-                    ((z0) obj.d).run();
-                    return null;
+                v8Var4.f9608m = arrayList4;
+                v8Var4.f9606k = false;
+                ns.f(v8Var4.f9598a).k(219, new Object[0]);
+                if (!arrayList5.isEmpty()) {
+                    Runnable runnable2 = new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r3) {
+                                case 0:
+                                    ArrayList arrayList42 = new ArrayList();
+                                    int i122 = 0;
+                                    while (true) {
+                                        final ArrayList arrayList52 = arrayList5;
+                                        if (i122 < arrayList52.size()) {
+                                            f5.a aVar = new f5.a();
+                                            aVar.f10926c = "inapp";
+                                            aVar.f10925b = ((TL_stars.TL_starsTopupOption) arrayList52.get(i122)).store_product;
+                                            arrayList42.add(aVar.a());
+                                            i122++;
+                                        } else {
+                                            org.telegram.messenger.r1 i13 = org.telegram.messenger.r1.i();
+                                            final v8 v8Var42 = v8Var4;
+                                            i13.o(arrayList42, new org.telegram.messenger.q1() {
+                                                @Override
+                                                public final void a(final f5.f fVar, final List list) {
+                                                    switch (r3) {
+                                                        case 0:
+                                                            final v8 v8Var52 = v8Var42;
+                                                            final ArrayList arrayList62 = arrayList52;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i162 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList722 = arrayList62;
+                                                                                        if (i162 < arrayList722.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i162)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i162);
+                                                                                            } else {
+                                                                                                i162++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption2 != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption2.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption2.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var622 = v8Var52;
+                                                                            if (v8Var622.f9608m != null) {
+                                                                                for (int i172 = 0; i172 < v8Var622.f9608m.size(); i172++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v8Var622.f9608m.get(i172);
+                                                                                    if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
+                                                                                        tL_starsGiftOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var622.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList822 = arrayList62;
+                                                                                        if (i20 < arrayList822.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var52;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList92 = arrayList62;
+                                                                                        if (i24 < arrayList92.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var52;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                        case 1:
+                                                            final v8 v8Var62 = v8Var42;
+                                                            final ArrayList arrayList72 = arrayList52;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i162 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList722 = arrayList72;
+                                                                                        if (i162 < arrayList722.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i162)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i162);
+                                                                                            } else {
+                                                                                                i162++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption2 != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption2.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption2.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var622 = v8Var62;
+                                                                            if (v8Var622.f9608m != null) {
+                                                                                for (int i172 = 0; i172 < v8Var622.f9608m.size(); i172++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v8Var622.f9608m.get(i172);
+                                                                                    if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
+                                                                                        tL_starsGiftOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var622.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList822 = arrayList72;
+                                                                                        if (i20 < arrayList822.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var62;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList92 = arrayList72;
+                                                                                        if (i24 < arrayList92.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var62;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                        default:
+                                                            final v8 v8Var7 = v8Var42;
+                                                            final ArrayList arrayList82 = arrayList52;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i162 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList722 = arrayList82;
+                                                                                        if (i162 < arrayList722.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i162)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i162);
+                                                                                            } else {
+                                                                                                i162++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption2 != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption2.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption2.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var622 = v8Var7;
+                                                                            if (v8Var622.f9608m != null) {
+                                                                                for (int i172 = 0; i172 < v8Var622.f9608m.size(); i172++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v8Var622.f9608m.get(i172);
+                                                                                    if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
+                                                                                        tL_starsGiftOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var622.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList822 = arrayList82;
+                                                                                        if (i20 < arrayList822.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var7;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList92 = arrayList82;
+                                                                                        if (i24 < arrayList92.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var7;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                    }
+                                                }
+                                            });
+                                            return;
+                                        }
+                                    }
+                                case 1:
+                                    ArrayList arrayList62 = new ArrayList();
+                                    int i14 = 0;
+                                    while (true) {
+                                        final ArrayList arrayList7 = arrayList5;
+                                        if (i14 < arrayList7.size()) {
+                                            f5.a aVar2 = new f5.a();
+                                            aVar2.f10926c = "inapp";
+                                            aVar2.f10925b = ((TL_stars.TL_starsGiftOption) arrayList7.get(i14)).store_product;
+                                            arrayList62.add(aVar2.a());
+                                            i14++;
+                                        } else {
+                                            org.telegram.messenger.r1 i15 = org.telegram.messenger.r1.i();
+                                            final v8 v8Var5 = v8Var4;
+                                            i15.o(arrayList62, new org.telegram.messenger.q1() {
+                                                @Override
+                                                public final void a(final f5.f fVar, final List list) {
+                                                    switch (r3) {
+                                                        case 0:
+                                                            final v8 v8Var52 = v8Var5;
+                                                            final ArrayList arrayList622 = arrayList7;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i162 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList722 = arrayList622;
+                                                                                        if (i162 < arrayList722.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i162)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i162);
+                                                                                            } else {
+                                                                                                i162++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption2 != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption2.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption2.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var622 = v8Var52;
+                                                                            if (v8Var622.f9608m != null) {
+                                                                                for (int i172 = 0; i172 < v8Var622.f9608m.size(); i172++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v8Var622.f9608m.get(i172);
+                                                                                    if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
+                                                                                        tL_starsGiftOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var622.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList822 = arrayList622;
+                                                                                        if (i20 < arrayList822.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var52;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList92 = arrayList622;
+                                                                                        if (i24 < arrayList92.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var52;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                        case 1:
+                                                            final v8 v8Var62 = v8Var5;
+                                                            final ArrayList arrayList72 = arrayList7;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i162 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList722 = arrayList72;
+                                                                                        if (i162 < arrayList722.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i162)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i162);
+                                                                                            } else {
+                                                                                                i162++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption2 != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption2.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption2.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var622 = v8Var62;
+                                                                            if (v8Var622.f9608m != null) {
+                                                                                for (int i172 = 0; i172 < v8Var622.f9608m.size(); i172++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v8Var622.f9608m.get(i172);
+                                                                                    if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
+                                                                                        tL_starsGiftOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var622.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList822 = arrayList72;
+                                                                                        if (i20 < arrayList822.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var62;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList92 = arrayList72;
+                                                                                        if (i24 < arrayList92.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var62;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                        default:
+                                                            final v8 v8Var7 = v8Var5;
+                                                            final ArrayList arrayList82 = arrayList7;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i162 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList722 = arrayList82;
+                                                                                        if (i162 < arrayList722.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i162)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i162);
+                                                                                            } else {
+                                                                                                i162++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption2 != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption2.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption2.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var622 = v8Var7;
+                                                                            if (v8Var622.f9608m != null) {
+                                                                                for (int i172 = 0; i172 < v8Var622.f9608m.size(); i172++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v8Var622.f9608m.get(i172);
+                                                                                    if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
+                                                                                        tL_starsGiftOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var622.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList822 = arrayList82;
+                                                                                        if (i20 < arrayList822.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var7;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList92 = arrayList82;
+                                                                                        if (i24 < arrayList92.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var7;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                    }
+                                                }
+                                            });
+                                            return;
+                                        }
+                                    }
+                                default:
+                                    ArrayList arrayList8 = new ArrayList();
+                                    int i16 = 0;
+                                    while (true) {
+                                        final ArrayList arrayList9 = arrayList5;
+                                        if (i16 < arrayList9.size()) {
+                                            f5.a aVar3 = new f5.a();
+                                            aVar3.f10926c = "inapp";
+                                            aVar3.f10925b = ((TL_stars.TL_starsGiveawayOption) arrayList9.get(i16)).store_product;
+                                            arrayList8.add(aVar3.a());
+                                            i16++;
+                                        } else {
+                                            org.telegram.messenger.r1 i17 = org.telegram.messenger.r1.i();
+                                            final v8 v8Var6 = v8Var4;
+                                            i17.o(arrayList8, new org.telegram.messenger.q1() {
+                                                @Override
+                                                public final void a(final f5.f fVar, final List list) {
+                                                    switch (r3) {
+                                                        case 0:
+                                                            final v8 v8Var52 = v8Var6;
+                                                            final ArrayList arrayList622 = arrayList9;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i162 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList722 = arrayList622;
+                                                                                        if (i162 < arrayList722.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i162)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i162);
+                                                                                            } else {
+                                                                                                i162++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption2 != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption2.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption2.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var622 = v8Var52;
+                                                                            if (v8Var622.f9608m != null) {
+                                                                                for (int i172 = 0; i172 < v8Var622.f9608m.size(); i172++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v8Var622.f9608m.get(i172);
+                                                                                    if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
+                                                                                        tL_starsGiftOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var622.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList822 = arrayList622;
+                                                                                        if (i20 < arrayList822.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var52;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList92 = arrayList622;
+                                                                                        if (i24 < arrayList92.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var52;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                        case 1:
+                                                            final v8 v8Var62 = v8Var6;
+                                                            final ArrayList arrayList72 = arrayList9;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i162 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList722 = arrayList72;
+                                                                                        if (i162 < arrayList722.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i162)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i162);
+                                                                                            } else {
+                                                                                                i162++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption2 != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption2.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption2.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var622 = v8Var62;
+                                                                            if (v8Var622.f9608m != null) {
+                                                                                for (int i172 = 0; i172 < v8Var622.f9608m.size(); i172++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v8Var622.f9608m.get(i172);
+                                                                                    if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
+                                                                                        tL_starsGiftOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var622.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList822 = arrayList72;
+                                                                                        if (i20 < arrayList822.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var62;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList92 = arrayList72;
+                                                                                        if (i24 < arrayList92.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var62;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                        default:
+                                                            final v8 v8Var7 = v8Var6;
+                                                            final ArrayList arrayList82 = arrayList9;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i162 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList722 = arrayList82;
+                                                                                        if (i162 < arrayList722.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i162)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i162);
+                                                                                            } else {
+                                                                                                i162++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption2 != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption2.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption2.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var622 = v8Var7;
+                                                                            if (v8Var622.f9608m != null) {
+                                                                                for (int i172 = 0; i172 < v8Var622.f9608m.size(); i172++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v8Var622.f9608m.get(i172);
+                                                                                    if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
+                                                                                        tL_starsGiftOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var622.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList822 = arrayList82;
+                                                                                        if (i20 < arrayList822.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var7;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption2 != null && tL_starsGiveawayOption2.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption2.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList92 = arrayList82;
+                                                                                        if (i24 < arrayList92.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var7;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                    }
+                                                }
+                                            });
+                                            return;
+                                        }
+                                    }
+                            }
+                        }
+                    };
+                    if (!org.telegram.messenger.r1.i().k()) {
+                        org.telegram.messenger.r1.i().f26196i.add(runnable2);
+                        return;
+                    } else {
+                        runnable2.run();
+                        return;
+                    }
                 }
-            }
-            return obj;
-        }
-        runnable.run();
-        return null;
-    }
-
-    public static Paint o(ImageReceiver imageReceiver) {
-        if (f9741b == null) {
-            e10 e10Var = new e10();
-            f9741b = e10Var;
-            e10Var.f33127a = true;
-            e10Var.f33128b = true;
-            e10Var.d(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Zk, false), org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.al, false), 0, 0);
-            f9741b.f33129c.setStrokeWidth(org.telegram.messenger.g0.N(2.0f));
-            f9741b.f33129c.setStyle(Paint.Style.STROKE);
-            f9741b.f33129c.setStrokeCap(Paint.Cap.ROUND);
-        }
-        f9741b.b(imageReceiver.K0, imageReceiver.L0, imageReceiver.y(), imageReceiver.A());
-        return f9741b.f33129c;
-    }
-
-    public static Drawable p() {
-        if (f9750m == null) {
-            Bitmap createBitmap = Bitmap.createBitmap(360, 180, Bitmap.Config.ARGB_8888);
-            createBitmap.eraseColor(-7829368);
-            Canvas canvas = new Canvas(createBitmap);
-            TextPaint textPaint = new TextPaint(1);
-            textPaint.setTextSize(15.0f);
-            textPaint.setTextAlign(Paint.Align.CENTER);
-            textPaint.setColor(i0.a.o(-16777216, 100));
-            canvas.drawText("expired", 180.0f, 86.0f, textPaint);
-            canvas.drawText("story", 180.0f, 106.0f, textPaint);
-            f9750m = new BitmapDrawable(createBitmap);
-        }
-        return f9750m;
-    }
-
-    public static Paint q(ImageReceiver imageReceiver) {
-        if (f9742c == null) {
-            e10 e10Var = new e10();
-            f9742c = e10Var;
-            e10Var.f33127a = true;
-            e10Var.f33128b = true;
-            e10Var.d(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.bl, false), org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.cl, false), 0, 0);
-            f9742c.f33129c.setStrokeWidth(org.telegram.messenger.g0.N(2.0f));
-            f9742c.f33129c.setStyle(Paint.Style.STROKE);
-            f9742c.f33129c.setStrokeCap(Paint.Cap.ROUND);
-        }
-        f9742c.b(imageReceiver.K0, imageReceiver.L0, imageReceiver.y(), imageReceiver.A());
-        return f9742c.f33129c;
-    }
-
-    public static int r(z6 z6Var, long j3) {
-        TLRPC.TL_recentStory tL_recentStory;
-        TLRPC.TL_recentStory tL_recentStory2;
-        int i7 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-        if (i7 == 0) {
-            return 0;
-        }
-        if (i7 > 0) {
-            TLRPC.User a22 = qp.s1(p10.f24474s0).a2(Long.valueOf(j3));
-            if (j3 == p10.i(p10.f24474s0).f24493n || a22 == null || (tL_recentStory2 = a22.stories_max_id) == null || tL_recentStory2.max_id <= 0 || a22.stories_unavailable) {
-                return 0;
-            }
-            int i10 = z6Var.f10001f.get(j3, 0);
-            TLRPC.TL_recentStory tL_recentStory3 = a22.stories_max_id;
-            if (tL_recentStory3.live) {
-                return 3;
-            }
-            if (tL_recentStory3.max_id <= i10) {
-                return 2;
-            }
-            return 1;
-        }
-        TLRPC.Chat M0 = qp.s1(p10.f24474s0).M0(Long.valueOf(-j3));
-        if (M0 == null || (tL_recentStory = M0.stories_max_id) == null || tL_recentStory.max_id <= 0 || M0.stories_unavailable) {
-            return 0;
-        }
-        int i11 = z6Var.f10001f.get(j3, 0);
-        TLRPC.TL_recentStory tL_recentStory4 = M0.stories_max_id;
-        if (tL_recentStory4.live) {
-            return 3;
-        }
-        if (tL_recentStory4.max_id <= i11) {
-            return 2;
-        }
-        return 1;
-    }
-
-    public static String s() {
-        int max = (int) (Math.max(org.telegram.messenger.g0.c1().x, org.telegram.messenger.g0.c1().y) / org.telegram.messenger.g0.f22566p);
-        return com.google.android.recaptcha.internal.a.j(max, "_", max);
-    }
-
-    public static Paint t(ImageReceiver imageReceiver, boolean z9) {
-        e10[] e10VarArr = f9740a;
-        if (e10VarArr[z9 ? 1 : 0] == null) {
-            e10 e10Var = new e10();
-            e10VarArr[z9 ? 1 : 0] = e10Var;
-            e10Var.f33127a = true;
-            e10Var.f33128b = true;
-            if (z9) {
-                e10Var.d(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Xk, false), org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Yk, false), 0, 0);
-            } else {
-                e10Var.d(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Vk, false), org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Wk, false), 0, 0);
-            }
-            e10VarArr[z9 ? 1 : 0].f33129c.setStrokeWidth(org.telegram.messenger.g0.N(2.0f));
-            e10VarArr[z9 ? 1 : 0].f33129c.setStyle(Paint.Style.STROKE);
-            e10VarArr[z9 ? 1 : 0].f33129c.setStrokeCap(Paint.Cap.ROUND);
-        }
-        e10VarArr[z9 ? 1 : 0].b(imageReceiver.K0, imageReceiver.L0, imageReceiver.y(), imageReceiver.A());
-        return e10VarArr[z9 ? 1 : 0].f33129c;
-    }
-
-    public static CharSequence u(TextView textView, boolean z9) {
-        String M0;
-        if (z9) {
-            M0 = id.M0(2131744672, null);
-        } else {
-            M0 = id.M0(2131743800, null);
-        }
-        if (M0.indexOf("…") > 0) {
-            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(M0);
-            w9 w9Var = new w9();
-            valueOf.setSpan(w9Var, valueOf.length() - 1, valueOf.length(), 0);
-            w9Var.f9918a = textView;
-            w9Var.f9923n = false;
-            return valueOf;
-        }
-        return M0;
-    }
-
-    public static boolean v(TL_stories.StoryItem storyItem) {
-        if (storyItem == null || ConnectionsManager.getInstance(p10.f24474s0).getCurrentTime() <= storyItem.expire_date + 86400) {
-            return false;
-        }
-        return true;
-    }
-
-    public static boolean w(int i7, TL_stories.StoryItem storyItem) {
-        if (ConnectionsManager.getInstance(i7).getCurrentTime() > storyItem.expire_date) {
-            return true;
-        }
-        return false;
-    }
-
-    public static void x(ImageReceiver imageReceiver, TL_stories.StoryItem storyItem) {
-        TLRPC.Photo photo;
-        ArrayList<TLRPC.PhotoSize> arrayList;
-        TLRPC.Document document;
-        if (storyItem == null) {
-            return;
-        }
-        TLRPC.MessageMedia messageMedia = storyItem.media;
-        if (messageMedia != null && (document = messageMedia.document) != null) {
-            imageReceiver.r0(hc.c(org.telegram.messenger.w7.w(document.thumbs, Integer.MAX_VALUE, false, null, false), storyItem.media.document), "320_320", null, null, gc.m(storyItem.media.document.thumbs), 0L, null, storyItem, 0);
-            imageReceiver.a(new v9(storyItem));
-            return;
-        }
-        if (messageMedia != null) {
-            photo = messageMedia.photo;
-        } else {
-            photo = null;
-        }
-        if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported) {
-            Bitmap createBitmap = Bitmap.createBitmap(10, 10, Bitmap.Config.ARGB_8888);
-            createBitmap.eraseColor(i0.a.f(0.2f, -16777216, -1));
-            imageReceiver.v0(createBitmap);
-            imageReceiver.a(new v9(storyItem));
-        } else if (photo != null && (arrayList = photo.sizes) != null) {
-            imageReceiver.u0(null, null, hc.i(org.telegram.messenger.w7.w(arrayList, Integer.MAX_VALUE, false, null, false), photo), "320_320", null, null, gc.m(photo.sizes), 0L, null, storyItem, 0);
-            imageReceiver.a(new v9(storyItem));
-        } else {
-            imageReceiver.f();
-        }
-    }
-
-    public static void y(ImageReceiver imageReceiver, TL_stories.StoryItem storyItem) {
-        ArrayList<TLRPC.PhotoSize> arrayList;
-        if (storyItem == null) {
-            return;
-        }
-        TLRPC.MessageMedia messageMedia = storyItem.media;
-        TLRPC.Document document = messageMedia.document;
-        if (document != null) {
-            imageReceiver.r0(hc.c(org.telegram.messenger.w7.w(document.thumbs, 1000, false, null, false), storyItem.media.document), "100_100", null, null, gc.m(storyItem.media.document.thumbs), 0L, null, storyItem, 0);
-            return;
-        }
-        TLRPC.Photo photo = messageMedia.photo;
-        if (photo != null && (arrayList = photo.sizes) != null) {
-            imageReceiver.u0(null, null, hc.i(org.telegram.messenger.w7.w(arrayList, 1000, false, null, false), photo), "100_100", null, null, gc.m(photo.sizes), 0L, null, storyItem, 0);
-        } else {
-            imageReceiver.f();
+                return;
+            case 4:
+                ArrayList arrayList7 = new ArrayList();
+                final ArrayList arrayList8 = new ArrayList();
+                TLObject tLObject5 = this.f9402c;
+                boolean z13 = tLObject5 instanceof Vector;
+                final v8 v8Var5 = this.f9401b;
+                if (z13) {
+                    ArrayList<T> arrayList9 = ((Vector) tLObject5).objects;
+                    int size3 = arrayList9.size();
+                    int i13 = 0;
+                    while (i13 < size3) {
+                        Object obj3 = arrayList9.get(i13);
+                        i13++;
+                        if (obj3 instanceof TL_stars.TL_starsGiveawayOption) {
+                            TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) obj3;
+                            arrayList7.add(tL_starsGiveawayOption);
+                            if (tL_starsGiveawayOption.store_product != null && !org.telegram.messenger.r2.b()) {
+                                arrayList8.add(tL_starsGiveawayOption);
+                                tL_starsGiveawayOption.loadingStorePrice = true;
+                            }
+                        }
+                    }
+                    v8Var5.f9610o = true;
+                }
+                v8Var5.f9611p = arrayList7;
+                v8Var5.f9609n = false;
+                ns.f(v8Var5.f9598a).k(220, new Object[0]);
+                if (!arrayList8.isEmpty()) {
+                    Runnable runnable3 = new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r3) {
+                                case 0:
+                                    ArrayList arrayList42 = new ArrayList();
+                                    int i122 = 0;
+                                    while (true) {
+                                        final ArrayList arrayList52 = arrayList8;
+                                        if (i122 < arrayList52.size()) {
+                                            f5.a aVar = new f5.a();
+                                            aVar.f10926c = "inapp";
+                                            aVar.f10925b = ((TL_stars.TL_starsTopupOption) arrayList52.get(i122)).store_product;
+                                            arrayList42.add(aVar.a());
+                                            i122++;
+                                        } else {
+                                            org.telegram.messenger.r1 i132 = org.telegram.messenger.r1.i();
+                                            final v8 v8Var42 = v8Var5;
+                                            i132.o(arrayList42, new org.telegram.messenger.q1() {
+                                                @Override
+                                                public final void a(final f5.f fVar, final List list) {
+                                                    switch (r3) {
+                                                        case 0:
+                                                            final v8 v8Var52 = v8Var42;
+                                                            final ArrayList arrayList622 = arrayList52;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i162 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList722 = arrayList622;
+                                                                                        if (i162 < arrayList722.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i162)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i162);
+                                                                                            } else {
+                                                                                                i162++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption2 != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption2.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption2.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var622 = v8Var52;
+                                                                            if (v8Var622.f9608m != null) {
+                                                                                for (int i172 = 0; i172 < v8Var622.f9608m.size(); i172++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v8Var622.f9608m.get(i172);
+                                                                                    if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
+                                                                                        tL_starsGiftOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var622.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList822 = arrayList622;
+                                                                                        if (i20 < arrayList822.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption2 != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption2.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption2.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var52;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList92 = arrayList622;
+                                                                                        if (i24 < arrayList92.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var52;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                        case 1:
+                                                            final v8 v8Var62 = v8Var42;
+                                                            final ArrayList arrayList72 = arrayList52;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i162 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList722 = arrayList72;
+                                                                                        if (i162 < arrayList722.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i162)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i162);
+                                                                                            } else {
+                                                                                                i162++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption2 != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption2.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption2.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var622 = v8Var62;
+                                                                            if (v8Var622.f9608m != null) {
+                                                                                for (int i172 = 0; i172 < v8Var622.f9608m.size(); i172++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v8Var622.f9608m.get(i172);
+                                                                                    if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
+                                                                                        tL_starsGiftOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var622.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList822 = arrayList72;
+                                                                                        if (i20 < arrayList822.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption2 != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption2.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption2.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var62;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList92 = arrayList72;
+                                                                                        if (i24 < arrayList92.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var62;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                        default:
+                                                            final v8 v8Var7 = v8Var42;
+                                                            final ArrayList arrayList82 = arrayList52;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i162 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList722 = arrayList82;
+                                                                                        if (i162 < arrayList722.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i162)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i162);
+                                                                                            } else {
+                                                                                                i162++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption2 != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption2.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption2.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var622 = v8Var7;
+                                                                            if (v8Var622.f9608m != null) {
+                                                                                for (int i172 = 0; i172 < v8Var622.f9608m.size(); i172++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v8Var622.f9608m.get(i172);
+                                                                                    if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
+                                                                                        tL_starsGiftOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var622.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList822 = arrayList82;
+                                                                                        if (i20 < arrayList822.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption2 != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption2.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption2.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var7;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList92 = arrayList82;
+                                                                                        if (i24 < arrayList92.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var7;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                    }
+                                                }
+                                            });
+                                            return;
+                                        }
+                                    }
+                                case 1:
+                                    ArrayList arrayList62 = new ArrayList();
+                                    int i14 = 0;
+                                    while (true) {
+                                        final ArrayList arrayList72 = arrayList8;
+                                        if (i14 < arrayList72.size()) {
+                                            f5.a aVar2 = new f5.a();
+                                            aVar2.f10926c = "inapp";
+                                            aVar2.f10925b = ((TL_stars.TL_starsGiftOption) arrayList72.get(i14)).store_product;
+                                            arrayList62.add(aVar2.a());
+                                            i14++;
+                                        } else {
+                                            org.telegram.messenger.r1 i15 = org.telegram.messenger.r1.i();
+                                            final v8 v8Var52 = v8Var5;
+                                            i15.o(arrayList62, new org.telegram.messenger.q1() {
+                                                @Override
+                                                public final void a(final f5.f fVar, final List list) {
+                                                    switch (r3) {
+                                                        case 0:
+                                                            final v8 v8Var522 = v8Var52;
+                                                            final ArrayList arrayList622 = arrayList72;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i162 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList722 = arrayList622;
+                                                                                        if (i162 < arrayList722.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList722.get(i162)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList722.get(i162);
+                                                                                            } else {
+                                                                                                i162++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption2 != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption2.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption2.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var622 = v8Var522;
+                                                                            if (v8Var622.f9608m != null) {
+                                                                                for (int i172 = 0; i172 < v8Var622.f9608m.size(); i172++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v8Var622.f9608m.get(i172);
+                                                                                    if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
+                                                                                        tL_starsGiftOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var622.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList822 = arrayList622;
+                                                                                        if (i20 < arrayList822.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption2 != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption2.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption2.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var522;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList92 = arrayList622;
+                                                                                        if (i24 < arrayList92.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var522;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                        case 1:
+                                                            final v8 v8Var62 = v8Var52;
+                                                            final ArrayList arrayList722 = arrayList72;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i162 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList7222 = arrayList722;
+                                                                                        if (i162 < arrayList7222.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList7222.get(i162)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList7222.get(i162);
+                                                                                            } else {
+                                                                                                i162++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption2 != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption2.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption2.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var622 = v8Var62;
+                                                                            if (v8Var622.f9608m != null) {
+                                                                                for (int i172 = 0; i172 < v8Var622.f9608m.size(); i172++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v8Var622.f9608m.get(i172);
+                                                                                    if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
+                                                                                        tL_starsGiftOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var622.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList822 = arrayList722;
+                                                                                        if (i20 < arrayList822.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption2 != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption2.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption2.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var62;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList92 = arrayList722;
+                                                                                        if (i24 < arrayList92.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var62;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                        default:
+                                                            final v8 v8Var7 = v8Var52;
+                                                            final ArrayList arrayList82 = arrayList72;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i162 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList7222 = arrayList82;
+                                                                                        if (i162 < arrayList7222.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList7222.get(i162)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList7222.get(i162);
+                                                                                            } else {
+                                                                                                i162++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption2 != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption2.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption2.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var622 = v8Var7;
+                                                                            if (v8Var622.f9608m != null) {
+                                                                                for (int i172 = 0; i172 < v8Var622.f9608m.size(); i172++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v8Var622.f9608m.get(i172);
+                                                                                    if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
+                                                                                        tL_starsGiftOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var622.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList822 = arrayList82;
+                                                                                        if (i20 < arrayList822.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption2 != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption2.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption2.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var7;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList92 = arrayList82;
+                                                                                        if (i24 < arrayList92.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList92.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList92.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var7;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                    }
+                                                }
+                                            });
+                                            return;
+                                        }
+                                    }
+                                default:
+                                    ArrayList arrayList82 = new ArrayList();
+                                    int i16 = 0;
+                                    while (true) {
+                                        final ArrayList arrayList92 = arrayList8;
+                                        if (i16 < arrayList92.size()) {
+                                            f5.a aVar3 = new f5.a();
+                                            aVar3.f10926c = "inapp";
+                                            aVar3.f10925b = ((TL_stars.TL_starsGiveawayOption) arrayList92.get(i16)).store_product;
+                                            arrayList82.add(aVar3.a());
+                                            i16++;
+                                        } else {
+                                            org.telegram.messenger.r1 i17 = org.telegram.messenger.r1.i();
+                                            final v8 v8Var6 = v8Var5;
+                                            i17.o(arrayList82, new org.telegram.messenger.q1() {
+                                                @Override
+                                                public final void a(final f5.f fVar, final List list) {
+                                                    switch (r3) {
+                                                        case 0:
+                                                            final v8 v8Var522 = v8Var6;
+                                                            final ArrayList arrayList622 = arrayList92;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i162 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList7222 = arrayList622;
+                                                                                        if (i162 < arrayList7222.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList7222.get(i162)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList7222.get(i162);
+                                                                                            } else {
+                                                                                                i162++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption2 != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption2.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption2.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var622 = v8Var522;
+                                                                            if (v8Var622.f9608m != null) {
+                                                                                for (int i172 = 0; i172 < v8Var622.f9608m.size(); i172++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v8Var622.f9608m.get(i172);
+                                                                                    if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
+                                                                                        tL_starsGiftOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var622.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList822 = arrayList622;
+                                                                                        if (i20 < arrayList822.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption2 != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption2.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption2.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var522;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList922 = arrayList622;
+                                                                                        if (i24 < arrayList922.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList922.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList922.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var522;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                        case 1:
+                                                            final v8 v8Var62 = v8Var6;
+                                                            final ArrayList arrayList722 = arrayList92;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i162 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList7222 = arrayList722;
+                                                                                        if (i162 < arrayList7222.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList7222.get(i162)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList7222.get(i162);
+                                                                                            } else {
+                                                                                                i162++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption2 != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption2.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption2.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var622 = v8Var62;
+                                                                            if (v8Var622.f9608m != null) {
+                                                                                for (int i172 = 0; i172 < v8Var622.f9608m.size(); i172++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v8Var622.f9608m.get(i172);
+                                                                                    if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
+                                                                                        tL_starsGiftOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var622.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList822 = arrayList722;
+                                                                                        if (i20 < arrayList822.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList822.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) arrayList822.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption2 != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption2.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption2.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var62;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList922 = arrayList722;
+                                                                                        if (i24 < arrayList922.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList922.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList922.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var62;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                        default:
+                                                            final v8 v8Var7 = v8Var6;
+                                                            final ArrayList arrayList822 = arrayList92;
+                                                            org.telegram.messenger.g0.h3(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption2;
+                                                                    f5.i a10;
+                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption2;
+                                                                    f5.i a11;
+                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption2;
+                                                                    f5.i a12;
+                                                                    switch (r5) {
+                                                                        case 0:
+                                                                            int i142 = fVar.f10978a;
+                                                                            if (i142 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i142)));
+                                                                                return;
+                                                                            }
+                                                                            List list2 = list;
+                                                                            if (list2 != null) {
+                                                                                for (int i152 = 0; i152 < list2.size(); i152++) {
+                                                                                    f5.m mVar = (f5.m) list2.get(i152);
+                                                                                    int i162 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList7222 = arrayList822;
+                                                                                        if (i162 < arrayList7222.size()) {
+                                                                                            if (((TL_stars.TL_starsGiftOption) arrayList7222.get(i162)).store_product.equals(mVar.f10996c)) {
+                                                                                                tL_starsGiftOption2 = (TL_stars.TL_starsGiftOption) arrayList7222.get(i162);
+                                                                                            } else {
+                                                                                                i162++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiftOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiftOption2 != null && (a10 = mVar.a()) != null) {
+                                                                                        tL_starsGiftOption2.currency = a10.f10984c;
+                                                                                        tL_starsGiftOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiftOption2.currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiftOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var622 = v8Var7;
+                                                                            if (v8Var622.f9608m != null) {
+                                                                                for (int i172 = 0; i172 < v8Var622.f9608m.size(); i172++) {
+                                                                                    TL_stars.TL_starsGiftOption tL_starsGiftOption22 = (TL_stars.TL_starsGiftOption) v8Var622.f9608m.get(i172);
+                                                                                    if (tL_starsGiftOption22 != null && tL_starsGiftOption22.loadingStorePrice) {
+                                                                                        tL_starsGiftOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var622.f9598a).k(219, new Object[0]);
+                                                                            return;
+                                                                        case 1:
+                                                                            int i18 = fVar.f10978a;
+                                                                            if (i18 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i18)));
+                                                                                return;
+                                                                            }
+                                                                            List list3 = list;
+                                                                            if (list3 != null) {
+                                                                                for (int i19 = 0; i19 < list3.size(); i19++) {
+                                                                                    f5.m mVar2 = (f5.m) list3.get(i19);
+                                                                                    int i20 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList8222 = arrayList822;
+                                                                                        if (i20 < arrayList8222.size()) {
+                                                                                            if (((TL_stars.TL_starsGiveawayOption) arrayList8222.get(i20)).store_product.equals(mVar2.f10996c)) {
+                                                                                                tL_starsGiveawayOption2 = (TL_stars.TL_starsGiveawayOption) arrayList8222.get(i20);
+                                                                                            } else {
+                                                                                                i20++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsGiveawayOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsGiveawayOption2 != null && (a11 = mVar2.a()) != null) {
+                                                                                        tL_starsGiveawayOption2.currency = a11.f10984c;
+                                                                                        tL_starsGiveawayOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsGiveawayOption2.currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsGiveawayOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var72 = v8Var7;
+                                                                            if (v8Var72.f9611p != null) {
+                                                                                for (int i21 = 0; i21 < v8Var72.f9611p.size(); i21++) {
+                                                                                    TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption22 = (TL_stars.TL_starsGiveawayOption) v8Var72.f9611p.get(i21);
+                                                                                    if (tL_starsGiveawayOption22 != null && tL_starsGiveawayOption22.loadingStorePrice) {
+                                                                                        tL_starsGiveawayOption22.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var72.f9598a).k(220, new Object[0]);
+                                                                            return;
+                                                                        default:
+                                                                            int i22 = fVar.f10978a;
+                                                                            if (i22 != 0) {
+                                                                                v8.e("BILLING_".concat(org.telegram.messenger.r1.j(i22)));
+                                                                                return;
+                                                                            }
+                                                                            List list4 = list;
+                                                                            if (list4 != null) {
+                                                                                for (int i23 = 0; i23 < list4.size(); i23++) {
+                                                                                    f5.m mVar3 = (f5.m) list4.get(i23);
+                                                                                    int i24 = 0;
+                                                                                    while (true) {
+                                                                                        ArrayList arrayList922 = arrayList822;
+                                                                                        if (i24 < arrayList922.size()) {
+                                                                                            if (((TL_stars.TL_starsTopupOption) arrayList922.get(i24)).store_product.equals(mVar3.f10996c)) {
+                                                                                                tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) arrayList922.get(i24);
+                                                                                            } else {
+                                                                                                i24++;
+                                                                                            }
+                                                                                        } else {
+                                                                                            tL_starsTopupOption2 = null;
+                                                                                        }
+                                                                                    }
+                                                                                    if (tL_starsTopupOption2 != null && (a12 = mVar3.a()) != null) {
+                                                                                        tL_starsTopupOption2.currency = a12.f10984c;
+                                                                                        tL_starsTopupOption2.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(tL_starsTopupOption2.currency)) * (a12.f10983b / Math.pow(10.0d, 6.0d)));
+                                                                                        tL_starsTopupOption2.loadingStorePrice = false;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            v8 v8Var8 = v8Var7;
+                                                                            if (v8Var8.f9605j != null) {
+                                                                                for (int i25 = 0; i25 < v8Var8.f9605j.size(); i25++) {
+                                                                                    TL_stars.TL_starsTopupOption tL_starsTopupOption3 = (TL_stars.TL_starsTopupOption) v8Var8.f9605j.get(i25);
+                                                                                    if (tL_starsTopupOption3 != null && tL_starsTopupOption3.loadingStorePrice) {
+                                                                                        tL_starsTopupOption3.missingStorePrice = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            ns.f(v8Var8.f9598a).k(218, new Object[0]);
+                                                                            return;
+                                                                    }
+                                                                }
+                                                            });
+                                                            return;
+                                                    }
+                                                }
+                                            });
+                                            return;
+                                        }
+                                    }
+                            }
+                        }
+                    };
+                    if (!org.telegram.messenger.r1.i().k()) {
+                        org.telegram.messenger.r1.i().f26196i.add(runnable3);
+                        return;
+                    } else {
+                        runnable3.run();
+                        return;
+                    }
+                }
+                return;
+            default:
+                np.s1(this.f9401b.f9598a).O3((TLRPC.Updates) this.f9402c, false);
+                return;
         }
     }
 }

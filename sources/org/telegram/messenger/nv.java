@@ -1,118 +1,98 @@
 package org.telegram.messenger;
 
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.TextUtils;
-import java.util.ArrayList;
-import java.util.IdentityHashMap;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.tl.TL_iv;
-public final class nv {
-    public final TL_iv.RichText f24235a;
-    public final IdentityHashMap f24236b;
-    public final int f24237c;
-    public final int d;
-
-    public nv(TL_iv.RichText richText, IdentityHashMap identityHashMap, int i7, int i10) {
-        this.f24235a = richText;
-        this.f24236b = identityHashMap;
-        this.f24237c = i7;
-        this.d = i10;
-    }
-
-    public static nv a(kv kvVar, h2.j0 j0Var) {
-        IdentityHashMap identityHashMap = new IdentityHashMap();
-        cu cuVar = (cu) j0Var.f14101c;
-        SpannableStringBuilder o4 = kvVar.o(cuVar.f21939a, cuVar.f21940b, identityHashMap);
-        Spanned spanned = (Spanned) j0Var.d;
-        int spanEnd = spanned.getSpanEnd(cuVar);
-        int i7 = j0Var.f14100b;
-        int i10 = spanEnd - i7;
-        if (o4.length() == i10 && TextUtils.regionMatches(o4, 0, spanned, i7, i10)) {
-            return new nv(cuVar.f21939a, identityHashMap, o4.length(), cuVar.f21940b);
+import java.math.BigInteger;
+import java.util.regex.Pattern;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public abstract class nv {
+    public static byte[] a(BigInteger bigInteger) {
+        byte[] byteArray = bigInteger.toByteArray();
+        if (byteArray.length > 256) {
+            byte[] bArr = new byte[256];
+            System.arraycopy(byteArray, 1, bArr, 0, 256);
+            return bArr;
+        } else if (byteArray.length < 256) {
+            byte[] bArr2 = new byte[256];
+            System.arraycopy(byteArray, 0, bArr2, 256 - byteArray.length, byteArray.length);
+            for (int i7 = 0; i7 < 256 - byteArray.length; i7++) {
+                bArr2[i7] = 0;
+            }
+            return bArr2;
+        } else {
+            return byteArray;
         }
-        a8.d("RichQuote: laid out text doesn't match the formatted one");
-        return null;
     }
 
-    public final TL_iv.RichText b(int i7, int i10) {
-        int max = Math.max(0, i7);
-        int i11 = this.f24237c;
-        int min = Math.min(i11, i10);
-        if (max >= min) {
+    public static byte[] b(byte[] bArr, TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) {
+        byte[] bArr2 = tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f28180p;
+        int i7 = tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f28179g;
+        Pattern pattern = Utilities.f22413a;
+        if (!ConnectionsManager.native_isGoodPrime(bArr2, i7)) {
             return null;
         }
-        TL_iv.RichText richText = this.f24235a;
-        if (max == 0 && min == i11) {
-            return richText;
-        }
-        return c(richText, max, min);
+        BigInteger valueOf = BigInteger.valueOf(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f28179g);
+        a(valueOf);
+        return a(valueOf.modPow(new BigInteger(1, c(bArr, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow)), new BigInteger(1, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f28180p)));
     }
 
-    public final TL_iv.RichText c(TL_iv.RichText richText, int i7, int i10) {
-        int[] iArr;
-        int i11;
-        int i12;
-        if (richText != null && (iArr = (int[]) this.f24236b.get(richText)) != null && (i11 = iArr[0]) != (i12 = iArr[1]) && i12 > i7 && i11 < i10) {
-            if (i7 > i11 || i12 > i10) {
-                if (richText instanceof TL_iv.textPlain) {
-                    String str = ((TL_iv.textPlain) richText).text;
-                    if (str != null && str.length() == i12 - i11) {
-                        int max = Math.max(i7, i11) - i11;
-                        int min = Math.min(i10, i12) - i11;
-                        if (max > 0 && max < str.length() && Character.isLowSurrogate(str.charAt(max))) {
-                            max--;
+    public static byte[] c(byte[] bArr, TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) {
+        byte[] bArr2 = tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.salt1;
+        byte[] q10 = Utilities.q(bArr2, bArr, bArr2);
+        byte[] bArr3 = tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.salt2;
+        byte[] m10 = Utilities.m(Utilities.q(bArr3, q10, bArr3), tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.salt1);
+        byte[] bArr4 = tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.salt2;
+        return Utilities.q(bArr4, m10, bArr4);
+    }
+
+    public static TLRPC.TL_inputCheckPasswordSRP d(byte[] bArr, long j3, byte[] bArr2, TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) {
+        byte[] a10;
+        byte[] bArr3;
+        byte[] bArr4;
+        byte[] bArr5;
+        if (bArr != null && bArr2 != null && bArr2.length != 0) {
+            byte[] bArr6 = tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f28180p;
+            int i7 = tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f28179g;
+            Pattern pattern = Utilities.f22413a;
+            if (ConnectionsManager.native_isGoodPrime(bArr6, i7)) {
+                BigInteger valueOf = BigInteger.valueOf(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f28179g);
+                byte[] a11 = a(valueOf);
+                BigInteger bigInteger = new BigInteger(1, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f28180p);
+                BigInteger bigInteger2 = new BigInteger(1, Utilities.q(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f28180p, a11));
+                BigInteger bigInteger3 = new BigInteger(1, bArr);
+                byte[] bArr7 = new byte[256];
+                Utilities.f22414b.nextBytes(bArr7);
+                BigInteger bigInteger4 = new BigInteger(1, bArr7);
+                byte[] a12 = a(valueOf.modPow(bigInteger4, bigInteger));
+                BigInteger bigInteger5 = new BigInteger(1, bArr2);
+                BigInteger bigInteger6 = BigInteger.ZERO;
+                if (bigInteger5.compareTo(bigInteger6) > 0 && bigInteger5.compareTo(bigInteger) < 0) {
+                    byte[] a13 = a(bigInteger5);
+                    BigInteger bigInteger7 = new BigInteger(1, Utilities.q(a12, a13));
+                    if (bigInteger7.compareTo(bigInteger6) != 0) {
+                        BigInteger subtract = bigInteger5.subtract(bigInteger2.multiply(valueOf.modPow(bigInteger3, bigInteger)).mod(bigInteger));
+                        if (subtract.compareTo(bigInteger6) < 0) {
+                            subtract = subtract.add(bigInteger);
                         }
-                        if (min > 0 && min < str.length() && Character.isLowSurrogate(str.charAt(min))) {
-                            min++;
-                        }
-                        TL_iv.textPlain textplain = new TL_iv.textPlain();
-                        textplain.text = str.substring(max, min);
-                        return textplain;
-                    }
-                } else if (richText instanceof TL_iv.textConcat) {
-                    ArrayList<TL_iv.RichText> arrayList = new ArrayList<>();
-                    ArrayList<TL_iv.RichText> arrayList2 = richText.texts;
-                    int size = arrayList2.size();
-                    int i13 = 0;
-                    while (i13 < size) {
-                        TL_iv.RichText richText2 = arrayList2.get(i13);
-                        i13++;
-                        TL_iv.RichText c10 = c(richText2, i7, i10);
-                        if (c10 != null) {
-                            arrayList.add(c10);
-                        }
-                    }
-                    if (!arrayList.isEmpty()) {
-                        if (arrayList.size() == 1) {
-                            return arrayList.get(0);
-                        }
-                        TL_iv.textConcat textconcat = new TL_iv.textConcat();
-                        textconcat.texts = arrayList;
-                        return textconcat;
-                    }
-                } else {
-                    if (!(richText instanceof TL_iv.textMath) && !(richText instanceof TL_iv.textCustomEmoji) && !(richText instanceof TL_iv.textDate) && !(richText instanceof TL_iv.textDiff) && !(richText instanceof TL_iv.textButton)) {
-                        TL_iv.RichText richText3 = richText.text;
-                        if (richText3 != null) {
-                            TL_iv.RichText c11 = c(richText3, i7, i10);
-                            if (c11 != null) {
-                                try {
-                                    richText = (TL_iv.RichText) TLObject.deepCopy(richText, new ch(9));
-                                } catch (Exception e10) {
-                                    a8.g(e10, true);
-                                    richText = null;
-                                }
-                                if (richText != null) {
-                                    richText.text = c11;
-                                }
+                        if (Utilities.w(subtract, bigInteger)) {
+                            byte[] o4 = Utilities.o(a10.length, a(subtract.modPow(bigInteger4.add(bigInteger7.multiply(bigInteger3)), bigInteger)));
+                            byte[] o10 = Utilities.o(bArr3.length, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f28180p);
+                            byte[] o11 = Utilities.o(a11.length, a11);
+                            for (int i10 = 0; i10 < o10.length; i10++) {
+                                o10[i10] = (byte) (o11[i10] ^ o10[i10]);
                             }
+                            TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP = new TLRPC.TL_inputCheckPasswordSRP();
+                            tL_inputCheckPasswordSRP.M1 = Utilities.q(o10, Utilities.o(bArr4.length, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.salt1), Utilities.o(bArr5.length, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.salt2), a12, a13, o4);
+                            tL_inputCheckPasswordSRP.A = a12;
+                            tL_inputCheckPasswordSRP.srp_id = j3;
+                            return tL_inputCheckPasswordSRP;
                         }
+                        return null;
                     }
-                    return richText;
+                    return null;
                 }
+                return null;
             }
-            return richText;
+            return null;
         }
         return null;
     }

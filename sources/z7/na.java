@@ -6,45 +6,42 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 public final class na implements ka {
-    public final u9.n f59914a;
-    public final ja f59915b;
+    public final u9.m f61114a;
+    public final ja f61115b;
 
     public na(Context context, ja jaVar) {
-        this.f59915b = jaVar;
-        m5.a aVar = m5.a.f19877e;
-        o5.s.b(context);
-        o5.q c10 = o5.s.a().c(aVar);
+        this.f61115b = jaVar;
+        m5.a aVar = m5.a.f20466e;
+        o5.t.b(context);
+        o5.r c10 = o5.t.a().c(aVar);
         if (m5.a.d.contains(new l5.c("json"))) {
-            new u9.n(new a8.xa(c10, 6));
+            new u9.m(new a8.ya(c10, 6));
         }
-        this.f59914a = new u9.n(new a8.xa(c10, 7));
+        this.f61114a = new u9.m(new a8.ya(c10, 7));
     }
 
     @Override
-    public final void a(sg.i0 i0Var) {
+    public final void a(sg.h0 h0Var) {
         f fVar;
         na.d dVar;
-        ja jaVar = this.f59915b;
+        ja jaVar = this.f61115b;
         jaVar.getClass();
-        o5.r rVar = (o5.r) this.f59914a.get();
+        o5.s sVar = (o5.s) this.f61114a.get();
         jaVar.getClass();
-        qa qaVar = qa.f59937c;
-        y7.d6 d6Var = (y7.d6) i0Var.f55091b;
-        ((a8.s9) i0Var.f55092c).h = false;
-        a8.s9 s9Var = (a8.s9) i0Var.f55092c;
-        s9Var.f640f = Boolean.FALSE;
-        d6Var.f59009a = new m9(s9Var);
+        qa qaVar = qa.f61137c;
+        y7.f7 f7Var = (y7.f7) h0Var.f56642b;
+        ((a8.u9) h0Var.f56643c).h = false;
+        a8.u9 u9Var = (a8.u9) h0Var.f56643c;
+        u9Var.f661f = Boolean.FALSE;
+        f7Var.f60245a = new m9(u9Var);
         try {
             qa.b();
-            l7 l7Var = new l7(d6Var);
-            ?? obj = new Object();
-            obj.f59009a = new HashMap();
-            obj.f59010b = new HashMap();
-            obj.f59011c = e.f59752c;
-            qaVar.a(obj);
-            HashMap hashMap = new HashMap((HashMap) obj.f59009a);
-            HashMap hashMap2 = new HashMap((HashMap) obj.f59010b);
-            e eVar = (e) obj.f59011c;
+            l7 l7Var = new l7(f7Var);
+            y7.f7 f7Var2 = new y7.f7(1);
+            qaVar.a(f7Var2);
+            HashMap hashMap = new HashMap((HashMap) f7Var2.f60245a);
+            HashMap hashMap2 = new HashMap((HashMap) f7Var2.f60246b);
+            e eVar = (e) f7Var2.f60247c;
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             try {
                 fVar = new f(byteArrayOutputStream, hashMap, hashMap2, eVar);
@@ -53,7 +50,7 @@ public final class na implements ka {
             }
             if (dVar != null) {
                 dVar.a(l7Var, fVar);
-                rVar.a(new l5.a(null, byteArrayOutputStream.toByteArray(), l5.d.f18179b, null), new ni.a(3));
+                sVar.a(new l5.a(null, byteArrayOutputStream.toByteArray(), l5.d.f19309b, null), new n2.a0(7));
                 return;
             }
             throw new RuntimeException("No encoder for ".concat(String.valueOf(l7.class)));

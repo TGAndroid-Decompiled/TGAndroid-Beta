@@ -1,137 +1,57 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Matrix;
-import android.graphics.Paint;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RadialGradient;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Animatable;
-import android.graphics.drawable.Drawable;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import java.util.Arrays;
-public final class xz0 extends ImageView {
-    public static final org.telegram.ui.Cells.g1 f40439x = new org.telegram.ui.Cells.g1(Float.class, "radius", 3);
-    public final Paint f40440a;
-    public final Matrix f40441b;
-    public RadialGradient f40442c;
-    public boolean d;
-    public float f40443e;
-    public float f40444f;
-    public float h;
-    public ch0 f40445n;
-    public ColorFilter f40446r;
-    public final int[] f40447s;
-    public final int[] f40448w;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class xz0 extends FrameLayout {
+    public final ImageView f41815a;
+    public final vz0 f41816b;
+    public final ThemeEditorView.EditorAlert f41817c;
 
-    public xz0(Context context) {
+    public xz0(ThemeEditorView.EditorAlert editorAlert, Context context) {
         super(context);
-        this.f40440a = new Paint(1);
-        this.f40441b = new Matrix();
-        this.f40447s = new int[2];
-        this.f40448w = new int[2];
-    }
-
-    public static void a(Bitmap bitmap, org.telegram.ui.ActionBar.o3 o3Var, ch0 ch0Var) {
-        Drawable drawable = ch0Var.getDrawable();
-        if (drawable != null && ch0Var.isAttachedToWindow() && bitmap.isMutable()) {
-            int[] iArr = new int[2];
-            RectF rectF = new RectF(drawable.getBounds());
-            ch0Var.getImageMatrix().mapRect(rectF);
-            ch0Var.getLocationInWindow(iArr);
-            rectF.offset(ch0Var.getPaddingLeft() + iArr[0], ch0Var.getPaddingTop() + iArr[1]);
-            if (o3Var != null) {
-                o3Var.getLocationInWindow(iArr);
-                rectF.offset(-iArr[0], -iArr[1]);
-            }
-            int max = Math.max(1, ((int) Math.floor(rectF.left)) - 1);
-            int min = Math.min(bitmap.getWidth(), ((int) Math.ceil(rectF.right)) + 1);
-            int max2 = Math.max(0, ((int) Math.floor(rectF.top)) - 1);
-            int min2 = Math.min(bitmap.getHeight(), ((int) Math.ceil(rectF.bottom)) + 1);
-            if (max < min && max2 < min2) {
-                int i7 = min - max;
-                int[] iArr2 = new int[i7];
-                for (int i10 = max2; i10 < min2; i10++) {
-                    Arrays.fill(iArr2, bitmap.getPixel(max - 1, i10));
-                    bitmap.setPixels(iArr2, 0, i7, max, i10, i7, 1);
-                }
-            }
-        }
-    }
-
-    public final void b(float f10, float f11, boolean z9) {
-        PorterDuff.Mode mode;
-        this.f40443e = f10;
-        this.f40444f = f11;
-        this.d = z9;
-        RadialGradient radialGradient = this.f40442c;
-        Paint paint = this.f40440a;
-        if (radialGradient == null) {
-            RadialGradient radialGradient2 = new RadialGradient(0.0f, 0.0f, 100.0f, new int[]{-16777216, -16777216, 0}, new float[]{0.0f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
-            this.f40442c = radialGradient2;
-            paint.setShader(radialGradient2);
-        }
-        if (z9) {
-            mode = PorterDuff.Mode.DST_OUT;
-        } else {
-            mode = PorterDuff.Mode.DST_IN;
-        }
-        paint.setXfermode(new PorterDuffXfermode(mode));
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Drawable drawable;
-        if (this.f40442c == null) {
-            super.onDraw(canvas);
-        } else if (this.h < 1.0f && !this.d) {
-        } else {
-            int saveLayer = canvas.saveLayer(0.0f, 0.0f, getWidth(), getHeight(), null);
-            super.onDraw(canvas);
-            ch0 ch0Var = this.f40445n;
-            if (ch0Var != null) {
-                drawable = ch0Var.getDrawable();
-            } else {
-                drawable = null;
-            }
-            if (drawable != null && this.f40445n.isAttachedToWindow()) {
-                ch0 ch0Var2 = this.f40445n;
-                int[] iArr = this.f40447s;
-                ch0Var2.getLocationInWindow(iArr);
-                int[] iArr2 = this.f40448w;
-                getLocationInWindow(iArr2);
-                ColorFilter colorFilter = drawable.getColorFilter();
-                canvas.save();
-                canvas.translate(this.f40445n.getPaddingLeft() + (iArr[0] - iArr2[0]), this.f40445n.getPaddingTop() + (iArr[1] - iArr2[1]));
-                canvas.concat(this.f40445n.getImageMatrix());
-                drawable.setColorFilter(this.f40446r);
-                drawable.draw(canvas);
-                drawable.setColorFilter(colorFilter);
-                canvas.restore();
-                if ((drawable instanceof Animatable) && ((Animatable) drawable).isRunning()) {
-                    invalidate();
-                }
-            }
-            float f10 = this.h;
-            if (f10 >= 1.0f) {
-                float f11 = f10 / 100.0f;
-                Matrix matrix = this.f40441b;
-                matrix.setScale(f11, f11);
-                matrix.postTranslate(this.f40443e, this.f40444f);
-                this.f40442c.setLocalMatrix(matrix);
-                canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.f40440a);
-            }
-            canvas.restoreToCount(saveLayer);
-        }
-    }
-
-    public void setRadius(float f10) {
-        this.h = f10;
-        invalidate();
+        this.f41817c = editorAlert;
+        View view = new View(context);
+        view.setBackgroundDrawable(org.telegram.ui.ActionBar.j6.d0(org.telegram.messenger.g0.L(18.0f), -854795));
+        addView(view, c8.ja.d(-1, 36.0f, 51, 14.0f, 11.0f, 14.0f, 0.0f));
+        ImageView imageView = new ImageView(context);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        imageView.setImageResource(2131232738);
+        imageView.setColorFilter(new PorterDuffColorFilter(-6182737, PorterDuff.Mode.MULTIPLY));
+        addView(imageView, c8.ja.d(36, 36.0f, 51, 16.0f, 11.0f, 0.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f41815a = imageView2;
+        imageView2.setScaleType(scaleType);
+        wp wpVar = new wp();
+        imageView2.setImageDrawable(wpVar);
+        wpVar.f41418f = org.telegram.messenger.g0.L(7.0f);
+        imageView2.setScaleX(0.1f);
+        imageView2.setScaleY(0.1f);
+        imageView2.setAlpha(0.0f);
+        addView(imageView2, c8.ja.d(36, 36.0f, 53, 14.0f, 11.0f, 14.0f, 0.0f));
+        imageView2.setOnClickListener(new y60(this, 18));
+        vz0 vz0Var = new vz0(this, context);
+        this.f41816b = vz0Var;
+        vz0Var.setTextSize(1, 16.0f);
+        vz0Var.setHintTextColor(-6774617);
+        vz0Var.setTextColor(-14540254);
+        vz0Var.setBackgroundDrawable(null);
+        vz0Var.setPadding(0, 0, 0, 0);
+        vz0Var.setMaxLines(1);
+        vz0Var.setLines(1);
+        vz0Var.setSingleLine(true);
+        vz0Var.setImeOptions(268435459);
+        vz0Var.setHint(org.telegram.messenger.hd.M0(2131745836, null));
+        vz0Var.setCursorColor(-11491093);
+        vz0Var.setCursorSize(org.telegram.messenger.g0.L(20.0f));
+        vz0Var.setCursorWidth(1.5f);
+        addView(vz0Var, c8.ja.d(-1, 40.0f, 51, 54.0f, 9.0f, 46.0f, 0.0f));
+        vz0Var.addTextChangedListener(new wz0(this));
+        vz0Var.setOnEditorActionListener(new q0(this, 10));
     }
 }

@@ -3,19 +3,19 @@ package org.telegram.messenger.car;
 import androidx.car.app.m;
 import androidx.lifecycle.e;
 import androidx.lifecycle.t;
-import org.telegram.messenger.ls;
-import org.telegram.messenger.qs;
-public class MusicSongsScreen extends m implements e, ls {
+import org.telegram.messenger.is;
+import org.telegram.messenger.ns;
+public class MusicSongsScreen extends m implements e, is {
     @Override
     public final void a(t tVar) {
-        qs.e().c(this, qs.f25014h2);
-        qs.e().c(this, qs.f25008g2);
-        qs.e().c(this, qs.f24987c4);
+        ns.e().c(this, ns.f25506h2);
+        ns.e().c(this, ns.f25500g2);
+        ns.e().c(this, ns.f25479c4);
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == qs.f24987c4) {
+        if (i7 == ns.f25479c4) {
             throw null;
         }
         throw null;
@@ -23,9 +23,9 @@ public class MusicSongsScreen extends m implements e, ls {
 
     @Override
     public final void e(t tVar) {
-        qs.e().n(this, qs.f25014h2);
-        qs.e().n(this, qs.f25008g2);
-        qs.e().n(this, qs.f24987c4);
+        ns.e().n(this, ns.f25506h2);
+        ns.e().n(this, ns.f25500g2);
+        ns.e().n(this, ns.f25479c4);
     }
 
     @Override

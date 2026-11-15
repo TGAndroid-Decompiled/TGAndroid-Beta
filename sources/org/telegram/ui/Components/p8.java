@@ -1,89 +1,135 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
 import android.view.View;
-import java.util.ArrayList;
-public final class p8 extends pj0 {
-    public final ArrayList f36833e3;
-    public final int f36834f3;
-    public int f36835g3;
-    public final org.telegram.ui.x7 f36836h3;
-    public o8 f36837i3;
-    public final s8 j3;
+import android.widget.FrameLayout;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLRPC;
+public abstract class p8 extends FrameLayout {
+    public float E;
+    public float F;
+    public final q8 G;
+    public long f38238a;
+    public TLRPC.Document f38239b;
+    public final fi.v3 f38240c;
+    public final i10 d;
+    public final i10 f38241e;
+    public float f38242f;
+    public m8 h;
+    public boolean f38243n;
+    public final PorterDuffColorFilter f38244r;
+    public final u5 f38245s;
+    public boolean f38246w;
+    public float f38247x;
+    public float f38248y;
 
-    public p8(s8 s8Var, Activity activity) {
-        super(activity, null);
-        this.j3 = s8Var;
-        this.f36833e3 = new ArrayList();
-        this.f36834f3 = 200;
-        this.f36835g3 = -1;
-        v4.b0 b0Var = new v4.b0();
-        b0Var.j1(0);
-        setLayoutManager(b0Var);
-        for (int i7 = 0; i7 < 7; i7++) {
-            ?? obj = new Object();
-            int i10 = this.f36834f3;
-            this.f36834f3 = i10 + 1;
-            obj.f36533a = i10;
-            int[] iArr = s8.f37885c0[i7];
-            obj.f36535c = iArr[0];
-            obj.d = iArr[1];
-            obj.f36536e = iArr[2];
-            obj.f36537f = iArr[3];
-            this.f36833e3.add(obj);
+    public p8(q8 q8Var, Context context) {
+        super(context);
+        this.G = q8Var;
+        this.d = new i10();
+        this.f38241e = new i10();
+        this.f38242f = 1.0f;
+        this.f38244r = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+        this.f38245s = new u5(this, 200L, er.f34421g);
+        this.f38247x = -1.0f;
+        fi.v3 v3Var = new fi.v3(7, context, this);
+        this.f38240c = v3Var;
+        v3Var.getImageReceiver().X(1);
+        v3Var.getImageReceiver().S0 = true;
+        setClipChildren(false);
+        addView(v3Var, c8.ja.e(70, 70, 17));
+    }
+
+    public final void a(Canvas canvas, float f10, float f11, float f12, float f13, Paint paint) {
+        float f14 = this.f38245s.f39903c;
+        if (f14 == 0.0f) {
+            canvas.drawCircle(f10, f11, f13, paint);
+            return;
         }
-        for (int i11 = 0; i11 < 30; i11++) {
-            ?? obj2 = new Object();
-            int i12 = this.f36834f3;
-            this.f36834f3 = i12 + 1;
-            obj2.f36533a = i12;
-            int[] iArr2 = s8.f37886d0[i11];
-            obj2.f36535c = iArr2[0];
-            obj2.d = iArr2[1];
-            obj2.f36536e = 0;
-            obj2.f36537f = 0;
-            obj2.f36534b = true;
-            this.f36833e3.add(obj2);
+        float T1 = org.telegram.messenger.g0.T1(f12, 0.0f, f14);
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(f10 - f13, f11 - f13, f10 + f13, f11 + f13);
+        canvas.drawRoundRect(rectF, T1, T1, paint);
+    }
+
+    public final void b(m8 m8Var, boolean z10) {
+        m8 m8Var2 = this.h;
+        if (m8Var2 != null) {
+            this.f38241e.d(m8Var2.f37163c, m8Var2.d, m8Var2.f37164e, m8Var2.f37165f);
+            this.f38242f = 0.0f;
+            this.G.f38570n = true;
         }
-        setPadding(org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f), 0);
-        setClipToPadding(false);
-        this.f36965f1 = true;
-        setOnItemClickListener(new j(this, 2));
-        org.telegram.ui.x7 x7Var = new org.telegram.ui.x7(this, 2);
-        this.f36836h3 = x7Var;
-        setAdapter(x7Var);
-        setOverScrollMode(1);
+        this.h = m8Var;
+        this.f38243n = z10;
+        org.telegram.messenger.ns.e().k(org.telegram.messenger.ns.f25564r4, new Object[0]);
+        invalidate();
+    }
+
+    @Override
+    public final void dispatchDraw(android.graphics.Canvas r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.p8.dispatchDraw(android.graphics.Canvas):void");
+    }
+
+    public long getDuration() {
+        fi.v3 v3Var = this.f38240c;
+        ImageReceiver imageReceiver = v3Var.getImageReceiver();
+        g5 g5Var = v3Var.f35511e;
+        if (g5Var != null) {
+            imageReceiver = g5Var.f34809k;
+        }
+        if (imageReceiver != null && imageReceiver.B() != null) {
+            return imageReceiver.B().r();
+        }
+        return 5000L;
+    }
+
+    public ImageReceiver getImageReceiver() {
+        fi.v3 v3Var = this.f38240c;
+        ImageReceiver imageReceiver = v3Var.getImageReceiver();
+        g5 g5Var = v3Var.f35511e;
+        if (g5Var != null) {
+            fi.u2 u2Var = g5Var.f34809k;
+            g5Var.setColorFilter(this.f38244r);
+            return u2Var;
+        }
+        return imageReceiver;
+    }
+
+    @Override
+    public void invalidate() {
+        super.invalidate();
+        this.G.fragmentView.invalidate();
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        int size = View.MeasureSpec.getSize(i7) / this.f36836h3.b();
-        s8 s8Var = this.j3;
-        s8Var.P = size;
-        if (size < org.telegram.messenger.g0.L(39.0f)) {
-            s8Var.P = org.telegram.messenger.g0.L(39.0f);
-        } else if (s8Var.P > org.telegram.messenger.g0.L(150.0f)) {
-            s8Var.P = org.telegram.messenger.g0.L(48.0f);
+        if (this.G.V) {
+            super.onMeasure(i7, i10);
+        } else {
+            super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(140.0f), 1073741824));
         }
-        super.onMeasure(i7, i10);
     }
 
-    public final void z1(o8 o8Var) {
-        int i7 = 0;
-        while (true) {
-            ArrayList arrayList = this.f36833e3;
-            if (i7 < arrayList.size()) {
-                if (((o8) arrayList.get(i7)).equals(o8Var)) {
-                    this.f36835g3 = ((o8) arrayList.get(i7)).f36533a;
-                    break;
-                }
-                i7++;
-            } else {
-                this.f36837i3 = o8Var;
-                this.f36835g3 = 1;
-                break;
-            }
+    public void setExpanded(boolean z10) {
+        fi.u2 u2Var;
+        if (this.f38246w == z10) {
+            return;
         }
-        this.f36836h3.f();
+        this.f38246w = z10;
+        if (z10) {
+            fi.v3 v3Var = this.f38240c;
+            g5 g5Var = v3Var.f35511e;
+            if (g5Var != null && (u2Var = g5Var.f34809k) != null) {
+                u2Var.P0(false);
+            }
+            v3Var.f35508a.P0(false);
+        }
+        org.telegram.messenger.ns.e().k(org.telegram.messenger.ns.f25564r4, new Object[0]);
+        invalidate();
     }
 }

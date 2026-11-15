@@ -1,5 +1,6 @@
 package q7;
 
+import com.google.android.gms.internal.vision.e2;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Arrays;
@@ -29,7 +30,7 @@ public abstract class c1 implements Comparable {
         if (cls.isInstance(this)) {
             return (c1) cls.cast(this);
         }
-        throw new Exception(com.google.android.recaptcha.internal.a.l("Expected a ", cls.getName(), " value, but got ", getClass().getName()));
+        throw new Exception(e2.l("Expected a ", cls.getName(), " value, but got ", getClass().getName()));
     }
 
     public abstract int zza();

@@ -1,6 +1,8 @@
 package sg;
 
-import java.util.ArrayList;
+import android.graphics.fonts.Font;
 public final class x {
-    public ArrayList f55269a;
+    public Font f56820a;
+    public String f56821b;
+    public String f56822c;
 }

@@ -1,28 +1,126 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.voip.VoIPService;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class l10 implements Runnable {
-    public final m10 f35485a;
+public final class l10 extends tj0 {
+    public org.telegram.messenger.r3 f36694c;
+    public final int d;
+    public ArrayList h;
+    public org.telegram.ui.y10 f36697n;
+    public final org.telegram.ui.c40 f36698r;
+    public final ArrayList f36695e = new ArrayList();
+    public final ArrayList f36696f = new ArrayList();
+    public boolean f36699s = false;
 
-    public l10(m10 m10Var) {
-        this.f35485a = m10Var;
+    public l10(org.telegram.messenger.r3 r3Var, int i7, org.telegram.ui.c40 c40Var) {
+        this.f36694c = r3Var;
+        this.d = i7;
+        this.f36698r = c40Var;
     }
 
     @Override
-    public final void run() {
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance != null && sharedInstance.isMicMute()) {
-            TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) sharedInstance.groupCall.d.f(sharedInstance.getSelfId());
-            if (groupCallParticipant == null || groupCallParticipant.can_self_unmute || !groupCallParticipant.muted || org.telegram.messenger.t3.w(14, sharedInstance.getChat())) {
-                m10 m10Var = this.f35485a;
-                org.telegram.messenger.g0.i3(m10Var.f35791f, 90L);
-                try {
-                    m10Var.performHapticFeedback(3, 2);
-                } catch (Exception unused) {
+    public final boolean D(v4.e1 e1Var) {
+        return false;
+    }
+
+    public final void E(ArrayList arrayList, org.telegram.ui.y10 y10Var) {
+        this.h = arrayList;
+        this.f36697n = y10Var;
+    }
+
+    public final void F(org.telegram.ui.u10 u10Var, boolean z10) {
+        this.f36699s = z10;
+        for (int i7 = 0; i7 < u10Var.getChildCount(); i7++) {
+            View childAt = u10Var.getChildAt(i7);
+            if (childAt instanceof k10) {
+                k10 k10Var = (k10) childAt;
+                if (k10Var.getVideoParticipant() != null) {
+                    k10Var.b(z10);
                 }
-                m10Var.f35789c = true;
             }
         }
+    }
+
+    public final void G(uj0 uj0Var, boolean z10) {
+        if (this.f36694c == null) {
+            return;
+        }
+        ArrayList arrayList = this.f36695e;
+        ArrayList arrayList2 = this.f36696f;
+        if (z10) {
+            ArrayList arrayList3 = new ArrayList(arrayList2);
+            ArrayList arrayList4 = new ArrayList(arrayList);
+            arrayList2.clear();
+            org.telegram.messenger.r3 r3Var = this.f36694c;
+            if (!r3Var.f26208b.rtmp_stream) {
+                arrayList2.addAll(r3Var.f26212g);
+            }
+            arrayList.clear();
+            org.telegram.messenger.r3 r3Var2 = this.f36694c;
+            if (!r3Var2.f26208b.rtmp_stream) {
+                arrayList.addAll(r3Var2.f26211f);
+            }
+            v4.o.c(new j10(this, arrayList4, arrayList3), true).c(this);
+            org.telegram.messenger.g0.a4(uj0Var);
+            return;
+        }
+        arrayList2.clear();
+        org.telegram.messenger.r3 r3Var3 = this.f36694c;
+        if (!r3Var3.f26208b.rtmp_stream) {
+            arrayList2.addAll(r3Var3.f26212g);
+        }
+        arrayList.clear();
+        org.telegram.messenger.r3 r3Var4 = this.f36694c;
+        if (!r3Var4.f26208b.rtmp_stream) {
+            arrayList.addAll(r3Var4.f26211f);
+        }
+        f();
+    }
+
+    @Override
+    public final int b() {
+        return this.f36696f.size() + this.f36695e.size();
+    }
+
+    @Override
+    public final void t(v4.e1 e1Var, int i7) {
+        TLRPC.GroupCallParticipant groupCallParticipant;
+        org.telegram.messenger.s3 s3Var;
+        k10 k10Var = (k10) e1Var.f58535a;
+        org.telegram.messenger.s3 s3Var2 = k10Var.f36229f;
+        ArrayList arrayList = this.f36695e;
+        if (i7 < arrayList.size()) {
+            s3Var = (org.telegram.messenger.s3) arrayList.get(i7);
+            groupCallParticipant = ((org.telegram.messenger.s3) arrayList.get(i7)).f26393a;
+        } else {
+            int size = i7 - arrayList.size();
+            ArrayList arrayList2 = this.f36696f;
+            if (size < arrayList2.size()) {
+                groupCallParticipant = (TLRPC.GroupCallParticipant) arrayList2.get(i7 - arrayList.size());
+                s3Var = null;
+            } else {
+                return;
+            }
+        }
+        k10Var.e(s3Var, groupCallParticipant);
+        if (s3Var2 != null && !s3Var2.equals(s3Var) && k10Var.L && k10Var.getRenderer() != null) {
+            k10Var.b(false);
+            if (s3Var != null) {
+                k10Var.b(true);
+            }
+        } else if (k10Var.L) {
+            if (k10Var.getRenderer() == null && s3Var != null && this.f36699s) {
+                k10Var.b(true);
+            } else if (k10Var.getRenderer() != null && s3Var == null) {
+                k10Var.b(false);
+            }
+        }
+    }
+
+    @Override
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
+        return new v4.e1(new k10(this, viewGroup.getContext()));
     }
 }

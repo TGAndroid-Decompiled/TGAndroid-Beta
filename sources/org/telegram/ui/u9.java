@@ -1,15 +1,31 @@
 package org.telegram.ui;
 
-import com.google.android.gms.cast.MediaError;
-public final class u9 extends h6.g {
-    @Override
-    public final void b(MediaError mediaError) {
-        org.telegram.messenger.a8.d("Chromecast Media Error: " + mediaError);
+import com.google.android.gms.common.api.Status;
+public final class u9 implements com.google.android.gms.common.api.o {
+    public final int f51829a;
+
+    public u9(int i7) {
+        this.f51829a = i7;
     }
 
     @Override
-    public final void g() {
-        org.telegram.messenger.a8.b("onStatusUpdated");
-        d1.f.C();
+    public final void a(Status status) {
+        switch (this.f51829a) {
+            case 0:
+                d1.f.f7332b.decrementAndGet();
+                return;
+            case 1:
+                d1.f.f7332b.decrementAndGet();
+                return;
+            case 2:
+                d1.f.f7332b.decrementAndGet();
+                return;
+            case 3:
+                d1.f.f7332b.decrementAndGet();
+                return;
+            default:
+                d1.f.f7332b.decrementAndGet();
+                return;
+        }
     }
 }

@@ -2,221 +2,462 @@ package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import org.telegram.messenger.ImageReceiver;
+import android.os.SystemClock;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.TLRPC;
 public final class nc extends Drawable {
-    public final int f36287a;
-    public final Object f36288b;
-    public final Object f36289c;
+    public static final lc H = new lc(0);
+    public int B;
+    public int C;
+    public int D;
+    public float h;
+    public float f37534i;
+    public float f37535j;
+    public float f37536k;
+    public float f37537l;
+    public float f37538m;
+    public float f37539n;
+    public float f37540o;
+    public float f37541p;
+    public final mc f37542q;
+    public final mc f37543r;
+    public float f37544s;
+    public long f37545t;
+    public boolean f37546u;
+    public float v;
+    public float f37547w;
+    public float f37548x;
+    public final float f37528a = org.telegram.messenger.g0.L(18.0f);
+    public final float f37529b = org.telegram.messenger.g0.L(22.0f);
+    public final float f37530c = 2.4f;
+    public final float d = org.telegram.messenger.g0.L(12.0f);
+    public final float f37531e = org.telegram.messenger.g0.L(1.5f);
+    public final float f37532f = 3600.0f;
+    public final float f37533g = 0.25f;
+    public final Path f37549y = new Path();
+    public final float[] f37550z = new float[4];
+    public int A = -1;
+    public float E = 1.0f;
+    public final dg F = new dg(this, 16);
+    public int G = 255;
 
-    public nc(int i7, Object obj, Object obj2) {
-        this.f36287a = i7;
-        this.f36288b = obj;
-        this.f36289c = obj2;
+    public nc() {
+        mc mcVar = new mc();
+        this.f37542q = mcVar;
+        mcVar.f37196a = 1.0f;
+        mcVar.f37197b = 0.0f;
+        mcVar.f37198c = org.telegram.messenger.g0.L(0.5f);
+        mcVar.d = org.telegram.messenger.g0.L(8.5f);
+        mcVar.f37199e = 1.0f;
+        mcVar.f37200f = 1.0f;
+        mcVar.f37201g = 61;
+        mc mcVar2 = new mc();
+        this.f37543r = mcVar2;
+        mcVar2.f37196a = 0.82f;
+        mcVar2.f37197b = 0.6f;
+        mcVar2.f37198c = org.telegram.messenger.g0.L(0.0f);
+        mcVar2.d = org.telegram.messenger.g0.L(4.25f);
+        mcVar2.f37199e = 0.55f;
+        mcVar2.f37200f = 0.55f;
+        mcVar2.f37201g = 128;
+        g(0, false);
+    }
+
+    public static int e(int i7) {
+        if (i7 != 0) {
+            if (i7 != 1) {
+                if (i7 != 3) {
+                    return org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Sh, false);
+                }
+                return i0.a.f(0.5f, i0.a.f(0.5f, org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Zh, false), org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28803ai, false)), org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28823bi, false));
+            }
+            return i0.a.f(0.5f, org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Qh, false), org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Rh, false));
+        }
+        return i0.a.f(0.5f, org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Oh, false), org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Ph, false));
+    }
+
+    public final void a(int i7) {
+        this.B = i7;
+        mc mcVar = this.f37542q;
+        mcVar.h = i7;
+        mc mcVar2 = this.f37543r;
+        mcVar2.h = i7;
+        mcVar.a();
+        mcVar2.a();
+    }
+
+    public final void b(float f10, float f11, float f12, float[] fArr) {
+        double d = f12;
+        float cos = (float) Math.cos(d);
+        float sin = (float) Math.sin(d);
+        float f13 = this.f37535j;
+        fArr[0] = (f13 * cos) + f10;
+        fArr[1] = (f13 * sin) + f11;
+        fArr[2] = -sin;
+        fArr[3] = cos;
+    }
+
+    public final void c(Canvas canvas, mc mcVar, float f10, float f11, float f12) {
+        int i7;
+        int i10;
+        char c10;
+        int i11;
+        int i12 = mcVar.f37216x;
+        if (i12 == 0) {
+            return;
+        }
+        float f13 = mcVar.f37198c;
+        float f14 = this.v;
+        float f15 = ((mcVar.d - f13) * f14) + f13;
+        float f16 = 1.0f;
+        float f17 = 0.0f;
+        float B = com.google.android.gms.internal.vision.e2.B(f14, 1.0f, 0.0f, this.d * mcVar.f37199e);
+        float[] fArr = mcVar.f37214u;
+        float[] fArr2 = mcVar.v;
+        float[] fArr3 = mcVar.f37215w;
+        int i13 = 0;
+        for (int i14 = 0; i14 < i12; i14++) {
+            float interpolation = H.getInterpolation(mcVar.f37208o[i14]);
+            float f18 = 1.0f - interpolation;
+            fArr[i14] = (mcVar.f37205l[i14] * interpolation) + (mcVar.f37204k[i14] * f18);
+            fArr3[i14] = (mcVar.f37207n[i14] * interpolation) + (mcVar.f37206m[i14] * f18);
+        }
+        float f19 = this.f37533g;
+        char c11 = 2;
+        if (f19 > 0.0f) {
+            int i15 = 0;
+            while (i15 < 2) {
+                int i16 = 0;
+                while (i16 < i12) {
+                    int i17 = i16 == 0 ? i12 - 1 : i16 - 1;
+                    float f20 = f16;
+                    int i18 = i16 + 1;
+                    if (i18 == i12) {
+                        i11 = 0;
+                    } else {
+                        i11 = i18;
+                    }
+                    float f21 = f17;
+                    float f22 = fArr[i16];
+                    fArr2[i16] = com.google.android.gms.internal.vision.e2.z((fArr[i17] + fArr[i11]) * 0.5f, f22, f19, f22);
+                    i16 = i18;
+                    f16 = f20;
+                    f17 = f21;
+                }
+                float f23 = f16;
+                i15++;
+                float[] fArr4 = fArr2;
+                fArr2 = fArr;
+                fArr = fArr4;
+                f16 = f23;
+            }
+        }
+        float f24 = f16;
+        float f25 = f17;
+        int i19 = 0;
+        while (i19 < i12) {
+            float f26 = (i19 / i12) + fArr3[i19];
+            float floor = (f26 - ((float) Math.floor(f26))) * this.f37541p;
+            float f27 = this.f37538m;
+            int i20 = (floor > f27 ? 1 : (floor == f27 ? 0 : -1));
+            float[] fArr5 = this.f37550z;
+            if (i20 < 0) {
+                fArr5[i13] = (-this.f37536k) + floor;
+                fArr5[1] = -this.f37534i;
+                fArr5[c11] = f24;
+                fArr5[3] = f25;
+                i10 = i13;
+                c10 = c11;
+            } else {
+                float f28 = floor - f27;
+                float f29 = this.f37540o;
+                int i21 = (f28 > f29 ? 1 : (f28 == f29 ? 0 : -1));
+                i10 = i13;
+                float f30 = this.f37530c;
+                if (i21 < 0) {
+                    c10 = c11;
+                    b(this.f37536k, -this.f37537l, (f28 / (f30 * this.f37535j)) - 1.5707964f, fArr5);
+                } else {
+                    c10 = c11;
+                    float f31 = f28 - f29;
+                    float f32 = this.f37539n;
+                    if (f31 < f32) {
+                        fArr5[i10] = this.h;
+                        fArr5[1] = (-this.f37537l) + f31;
+                        fArr5[c10] = f25;
+                        fArr5[3] = f24;
+                    } else {
+                        float f33 = f31 - f32;
+                        if (f33 < f29) {
+                            b(this.f37536k, this.f37537l, f33 / (f30 * this.f37535j), fArr5);
+                        } else {
+                            float f34 = f33 - f29;
+                            if (f34 < f27) {
+                                fArr5[i10] = this.f37536k - f34;
+                                fArr5[1] = this.f37534i;
+                                fArr5[c10] = -1.0f;
+                                fArr5[3] = f25;
+                            } else {
+                                float f35 = f34 - f27;
+                                if (f35 < f29) {
+                                    b(-this.f37536k, this.f37537l, (f35 / (f30 * this.f37535j)) + 1.5707964f, fArr5);
+                                } else {
+                                    float f36 = f35 - f29;
+                                    if (f36 < f32) {
+                                        fArr5[i10] = -this.h;
+                                        fArr5[1] = this.f37537l - f36;
+                                        fArr5[c10] = f25;
+                                        fArr5[3] = -1.0f;
+                                    } else {
+                                        b(-this.f37536k, -this.f37537l, ((f36 - f32) / (f30 * this.f37535j)) + 3.1415927f, fArr5);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            float f37 = fArr5[3];
+            float f38 = (fArr[i19] * B) + f15 + f12;
+            mcVar.f37210q[i19] = (f37 * f38) + f10 + fArr5[i10];
+            mcVar.f37211r[i19] = ((-fArr5[c10]) * f38) + f11 + fArr5[1];
+            mcVar.f37212s[i19] = fArr5[c10];
+            mcVar.f37213t[i19] = fArr5[3];
+            i19++;
+            c11 = c10;
+            i13 = i10;
+        }
+        int i22 = i13;
+        Path path = this.f37549y;
+        path.rewind();
+        path.moveTo(mcVar.f37210q[i22], mcVar.f37211r[i22]);
+        int i23 = i22;
+        while (i23 < i12) {
+            int i24 = i23 + 1;
+            if (i24 < i12) {
+                i7 = i24;
+            } else {
+                i7 = i22;
+            }
+            float[] fArr6 = mcVar.f37210q;
+            float f39 = fArr6[i7] - fArr6[i23];
+            float[] fArr7 = mcVar.f37211r;
+            float f40 = fArr7[i7] - fArr7[i23];
+            float sqrt = ((float) Math.sqrt((f40 * f40) + (f39 * f39))) / 3.0f;
+            float[] fArr8 = mcVar.f37210q;
+            float f41 = fArr8[i23];
+            float[] fArr9 = mcVar.f37212s;
+            float f42 = (fArr9[i23] * sqrt) + f41;
+            float[] fArr10 = mcVar.f37211r;
+            float f43 = fArr10[i23];
+            float[] fArr11 = mcVar.f37213t;
+            float f44 = fArr8[i7];
+            float f45 = fArr10[i7];
+            path.cubicTo(f42, (fArr11[i23] * sqrt) + f43, f44 - (fArr9[i7] * sqrt), f45 - (fArr11[i7] * sqrt), f44, f45);
+            i23 = i24;
+        }
+        path.close();
+        canvas.drawPath(path, mcVar.f37202i);
+    }
+
+    public final float d() {
+        mc mcVar = this.f37542q;
+        float f10 = mcVar.d;
+        float f11 = mcVar.f37200f;
+        float f12 = this.f37531e;
+        float f13 = (f11 * f12) + f10;
+        float f14 = mcVar.f37199e;
+        float f15 = this.d;
+        float f16 = (f14 * f15) + f13;
+        mc mcVar2 = this.f37543r;
+        float f17 = mcVar2.d;
+        return Math.max(f16, (f15 * mcVar2.f37199e) + (f12 * mcVar2.f37200f) + f17);
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        float offsetY;
-        switch (this.f36287a) {
-            case 0:
-                oc ocVar = (oc) this.f36289c;
-                if (ocVar.f36569c > 1) {
-                    ocVar.c(canvas, ocVar.f36579o);
-                    return;
-                } else {
-                    ocVar.c(canvas, (Paint) this.f36288b);
-                    return;
-                }
-            case 1:
-                Paint paint = (Paint) this.f36288b;
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f36289c;
-                if (chatActivityEnterView.U0 != null) {
-                    paint.setAlpha(Math.round(chatActivityEnterView.C3 * 102.0f));
-                    float width = chatActivityEnterView.getWidth();
-                    float y10 = (chatActivityEnterView.U0.getY() - chatActivityEnterView.getHeight()) + org.telegram.ui.ActionBar.m6.f27979i3.getIntrinsicHeight();
-                    we weVar = chatActivityEnterView.E0;
-                    if (weVar == null) {
-                        offsetY = 0.0f;
-                    } else {
-                        offsetY = weVar.getOffsetY();
+        long min;
+        Rect bounds = getBounds();
+        if (!bounds.isEmpty() && this.h >= 1.0f) {
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            if (!this.f37546u && this.E >= 1.0f) {
+                min = 0;
+            } else {
+                min = Math.min(40L, Math.max(0L, elapsedRealtime - this.f37545t));
+            }
+            this.f37545t = elapsedRealtime;
+            boolean e10 = org.telegram.messenger.qc.e(512);
+            mc mcVar = this.f37543r;
+            mc mcVar2 = this.f37542q;
+            if (e10 && min > 0) {
+                float f10 = this.f37547w;
+                float f11 = this.v;
+                if (f10 != f11) {
+                    float f12 = this.f37548x;
+                    float f13 = (((float) min) * f12) + f11;
+                    this.v = f13;
+                    if (f12 > 0.0f) {
+                        if (f13 > f10) {
+                            this.v = f10;
+                        }
+                    } else if (f13 < f10) {
+                        this.v = f10;
                     }
-                    canvas.drawRect(0.0f, 0.0f, width, y10 + offsetY, paint);
-                    return;
                 }
-                return;
-            case 2:
-                Paint paint2 = (Paint) this.f36289c;
-                canvas.drawRect(getBounds(), (Paint) this.f36288b);
-                int L = org.telegram.messenger.g0.L(9.0f);
-                int width2 = getBounds().width() / L;
-                int height = getBounds().height() / L;
-                int i7 = getBounds().left;
-                int i10 = getBounds().top;
-                int i11 = 0;
-                int i12 = 0;
-                while (i12 < width2) {
-                    i12++;
-                    float f10 = (L * i12) + i7;
-                    canvas.drawLine(f10, i10, f10, getBounds().height() + i10, paint2);
+                this.f37544s = com.google.android.gms.internal.vision.e2.c((float) min, this.f37532f, 6.2831855f, this.f37544s);
+                mcVar2.d(this.v);
+                mcVar.d(this.v);
+            }
+            float f14 = this.E;
+            if (f14 < 1.0f && min > 0) {
+                float f15 = (((float) min) / 250.0f) + f14;
+                this.E = f15;
+                if (f15 > 1.0f) {
+                    this.E = 1.0f;
                 }
-                while (i11 < height) {
-                    i11++;
-                    float f11 = (L * i11) + i10;
-                    canvas.drawLine(i7, f11, getBounds().width() + i7, f11, paint2);
-                }
-                return;
-            case 3:
-                ((my0) this.f36288b).c(getBounds().centerX() - (((my0) this.f36288b).f36133c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.G6, (org.telegram.ui.ActionBar.h6) this.f36289c), canvas);
-                return;
-            default:
-                ImageReceiver imageReceiver = (ImageReceiver) this.f36288b;
-                imageReceiver.h(canvas, null);
-                Drawable drawable = (Drawable) this.f36289c;
-                int intrinsicWidth = (int) (drawable.getIntrinsicWidth() * 0.8f);
-                int intrinsicHeight = (int) (drawable.getIntrinsicHeight() * 0.8f);
-                int A = (int) com.google.android.recaptcha.internal.a.A(imageReceiver.M0, intrinsicWidth, 2.0f, imageReceiver.K0);
-                int interpolation = (int) ((((imageReceiver.N0 / 2.0f) - intrinsicHeight) + imageReceiver.L0) - ((1.0f - wq.f40050k.getInterpolation(imageReceiver.f21202h1)) * org.telegram.messenger.g0.L(16.0f)));
-                drawable.setAlpha((int) (imageReceiver.getAlpha() * Math.min(1.0f, imageReceiver.f21202h1 * 5.0f) * 255.0f));
-                drawable.setBounds(A, interpolation, intrinsicWidth + A, intrinsicHeight + interpolation);
-                drawable.draw(canvas);
-                return;
+                a(i0.a.f(this.E, this.C, this.D));
+            }
+            float exactCenterX = bounds.exactCenterX();
+            float exactCenterY = bounds.exactCenterY();
+            float f16 = 1.0f - (this.v * 0.7f);
+            float f17 = mcVar2.f37200f;
+            float f18 = this.f37531e;
+            float B = com.google.android.gms.internal.vision.e2.B((float) Math.sin(this.f37544s), 0.5f, 0.5f, f17 * f18 * f16);
+            float B2 = com.google.android.gms.internal.vision.e2.B((float) Math.sin(this.f37544s + mcVar.f37197b), 0.5f, 0.5f, f18 * mcVar.f37200f * f16);
+            c(canvas, this.f37542q, exactCenterX, exactCenterY, B);
+            c(canvas, this.f37543r, exactCenterX, exactCenterY, B2);
+            if (this.E < 1.0f) {
+                invalidateSelf();
+            }
         }
     }
 
-    @Override
-    public int getAlpha() {
-        switch (this.f36287a) {
-            case 4:
-                return (int) (((ImageReceiver) this.f36288b).getAlpha() * 255.0f);
-            default:
-                return super.getAlpha();
+    public final void f(float f10) {
+        float f11;
+        this.f37547w = f10;
+        if (!org.telegram.messenger.qc.e(512)) {
+            return;
         }
+        float f12 = this.f37547w - this.v;
+        if (f12 > 0.0f) {
+            f11 = 400.0f;
+        } else {
+            f11 = 500.0f;
+        }
+        this.f37548x = f12 / ((f11 * 0.55f) + 100.0f);
+    }
+
+    public final void g(int i7, boolean z10) {
+        if (i7 == this.A && this.E >= 1.0f) {
+            return;
+        }
+        this.A = i7;
+        int e10 = e(i7);
+        if (z10 && this.B != 0 && org.telegram.messenger.qc.e(512)) {
+            this.C = this.B;
+            this.D = e10;
+            this.E = 0.0f;
+        } else {
+            this.E = 1.0f;
+            a(e10);
+        }
+        invalidateSelf();
     }
 
     @Override
-    public int getIntrinsicHeight() {
-        switch (this.f36287a) {
-            case 2:
-                return 0;
-            default:
-                return super.getIntrinsicHeight();
-        }
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        switch (this.f36287a) {
-            case 2:
-                return 0;
-            default:
-                return super.getIntrinsicWidth();
-        }
+    public final int getAlpha() {
+        return this.G;
     }
 
     @Override
     public final int getOpacity() {
-        switch (this.f36287a) {
-            case 0:
-                return -2;
-            case 1:
-                return -2;
-            case 2:
-                return 0;
-            case 3:
-                return -2;
-            default:
-                return 0;
+        return -3;
+    }
+
+    public final void h(boolean z10) {
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance == null) {
+            return;
         }
+        int callState = sharedInstance.getCallState();
+        if (!sharedInstance.isSwitchingStream() && (callState == 1 || callState == 2 || callState == 6 || callState == 5)) {
+            g(2, z10);
+            return;
+        }
+        org.telegram.messenger.r3 r3Var = sharedInstance.groupCall;
+        if (r3Var != null) {
+            TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) r3Var.d.f(sharedInstance.getSelfId());
+            if ((groupCallParticipant != null && !groupCallParticipant.can_self_unmute && groupCallParticipant.muted && !org.telegram.messenger.t3.w(14, sharedInstance.getChat())) || sharedInstance.groupCall.f26208b.rtmp_stream) {
+                sharedInstance.setMicMute(true, false, false);
+                g(3, z10);
+                return;
+            }
+            g(sharedInstance.isMicMute() ? 1 : 0, z10);
+            return;
+        }
+        g(sharedInstance.isMicMute() ? 1 : 0, z10);
     }
 
     @Override
-    public void onBoundsChange(Rect rect) {
-        switch (this.f36287a) {
-            case 4:
-                ((ImageReceiver) this.f36288b).y0(org.telegram.messenger.g0.L(2.0f) + rect.left, org.telegram.messenger.g0.L(2.0f) + rect.top, org.telegram.messenger.camera.q.w(2.0f, rect.left, rect.right - org.telegram.messenger.g0.L(2.0f)), org.telegram.messenger.camera.q.w(2.0f, rect.top, rect.bottom - org.telegram.messenger.g0.L(2.0f)));
-                return;
-            default:
-                super.onBoundsChange(rect);
-                return;
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        Rect bounds = getBounds();
+        if (!bounds.isEmpty()) {
+            float d = d() + org.telegram.messenger.g0.L(1.0f);
+            float min = (Math.min(bounds.width(), bounds.height()) / 2.0f) - org.telegram.messenger.g0.L(2.0f);
+            if (d > min) {
+                d = Math.max(0.0f, min);
+            }
+            this.h = (bounds.width() / 2.0f) - d;
+            float height = (bounds.height() / 2.0f) - d;
+            this.f37534i = height;
+            float f10 = this.h;
+            if (f10 >= 1.0f && height >= 1.0f) {
+                float min2 = Math.min(this.f37528a, Math.min(f10, height));
+                this.f37535j = min2;
+                float f11 = this.h - min2;
+                this.f37536k = f11;
+                float f12 = this.f37534i - min2;
+                this.f37537l = f12;
+                float f13 = f11 * 2.0f;
+                this.f37538m = f13;
+                float f14 = f12 * 2.0f;
+                this.f37539n = f14;
+                float f15 = this.f37530c * 1.5707964f * min2;
+                this.f37540o = f15;
+                float f16 = (f14 * 2.0f) + (f13 * 2.0f);
+                this.f37541p = (f15 * 4.0f) + f16;
+                int max = Math.max(12, Math.min(80, Math.round(((min2 * 6.2831855f) + f16) / this.f37529b)));
+                mc mcVar = this.f37542q;
+                if (max != mcVar.f37216x) {
+                    mcVar.c(max);
+                    this.f37543r.c(max);
+                }
+            }
         }
     }
 
     @Override
     public final void setAlpha(int i7) {
-        switch (this.f36287a) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-                return;
-            default:
-                ((ImageReceiver) this.f36288b).setAlpha(i7 / 255.0f);
-                return;
+        if (this.G != i7) {
+            this.G = i7;
+            mc mcVar = this.f37542q;
+            mcVar.f37217y = i7;
+            mcVar.a();
+            mc mcVar2 = this.f37543r;
+            mcVar2.f37217y = i7;
+            mcVar2.a();
+            invalidateSelf();
         }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        int i7 = this.f36287a;
-    }
-
-    public nc(boolean z9) {
-        this.f36287a = 2;
-        Paint paint = new Paint();
-        this.f36288b = paint;
-        Paint paint2 = new Paint();
-        this.f36289c = paint2;
-        paint2.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
-        if (z9) {
-            paint.setColor(-14865331);
-            paint2.setColor(-15854042);
-            return;
-        }
-        paint.setColor(-2172970);
-        paint2.setColor(-3752002);
-    }
-
-    public nc(oc ocVar, Paint paint) {
-        this.f36287a = 0;
-        this.f36289c = ocVar;
-        this.f36288b = paint;
-    }
-
-    public nc(ChatActivityEnterView chatActivityEnterView) {
-        this.f36287a = 1;
-        this.f36289c = chatActivityEnterView;
-        Paint paint = new Paint();
-        this.f36288b = paint;
-        paint.setColor(0);
-    }
-
-    private final void a(int i7) {
-    }
-
-    private final void b(int i7) {
-    }
-
-    private final void c(int i7) {
-    }
-
-    private final void d(int i7) {
-    }
-
-    private final void e(ColorFilter colorFilter) {
-    }
-
-    private final void f(ColorFilter colorFilter) {
-    }
-
-    private final void g(ColorFilter colorFilter) {
-    }
-
-    private final void h(ColorFilter colorFilter) {
-    }
-
-    private final void i(ColorFilter colorFilter) {
+        this.f37542q.f37202i.setColorFilter(colorFilter);
+        this.f37543r.f37202i.setColorFilter(colorFilter);
+        invalidateSelf();
     }
 }

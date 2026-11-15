@@ -5,15 +5,15 @@ import android.graphics.SurfaceTexture;
 import android.view.Surface;
 public final class n extends Surface {
     public static int d;
-    public static boolean f8063e;
-    public final boolean f8064a;
-    public final m f8065b;
-    public boolean f8066c;
+    public static boolean f7449e;
+    public final boolean f7450a;
+    public final m f7451b;
+    public boolean f7452c;
 
-    public n(m mVar, SurfaceTexture surfaceTexture, boolean z9) {
+    public n(m mVar, SurfaceTexture surfaceTexture, boolean z10) {
         super(surfaceTexture);
-        this.f8065b = mVar;
-        this.f8064a = z9;
+        this.f7451b = mVar;
+        this.f7450a = z10;
     }
 
     public static int a(android.content.Context r5) {
@@ -21,34 +21,34 @@ public final class n extends Surface {
     }
 
     public static synchronized boolean b(Context context) {
-        boolean z9;
+        boolean z10;
         synchronized (n.class) {
             try {
-                z9 = true;
-                if (!f8063e) {
+                z10 = true;
+                if (!f7449e) {
                     d = a(context);
-                    f8063e = true;
+                    f7449e = true;
                 }
                 if (d == 0) {
-                    z9 = false;
+                    z10 = false;
                 }
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        return z9;
+        return z10;
     }
 
     @Override
     public final void release() {
         super.release();
-        synchronized (this.f8065b) {
+        synchronized (this.f7451b) {
             try {
-                if (!this.f8066c) {
-                    m mVar = this.f8065b;
-                    mVar.f8060b.getClass();
-                    mVar.f8060b.sendEmptyMessage(2);
-                    this.f8066c = true;
+                if (!this.f7452c) {
+                    m mVar = this.f7451b;
+                    mVar.f7446b.getClass();
+                    mVar.f7446b.sendEmptyMessage(2);
+                    this.f7452c = true;
                 }
             } catch (Throwable th2) {
                 throw th2;

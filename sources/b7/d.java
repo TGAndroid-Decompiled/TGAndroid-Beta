@@ -1,18 +1,18 @@
 package b7;
 public final class d {
-    public int f2991a;
-    public int f2992b;
-    public int f2993c;
+    public int f2945a;
+    public int f2946b;
+    public int f2947c;
 
     public d() {
-        this.f2991a = 0;
-        this.f2992b = 0;
-        this.f2993c = 0;
+        this.f2945a = 0;
+        this.f2946b = 0;
+        this.f2947c = 0;
     }
 
     public d(int i7, int i10, int i11) {
-        this.f2991a = i7;
-        this.f2992b = i10;
-        this.f2993c = i11;
+        this.f2945a = i7;
+        this.f2946b = i10;
+        this.f2947c = i11;
     }
 }

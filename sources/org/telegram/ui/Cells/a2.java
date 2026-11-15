@@ -5,28 +5,28 @@ import android.graphics.Canvas;
 import android.graphics.drawable.ShapeDrawable;
 import android.view.View;
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.oe0;
-import org.telegram.ui.Components.qe0;
-import org.telegram.ui.Components.z41;
-import org.telegram.ui.x90;
-public final class a2 extends org.telegram.ui.Components.i6 {
-    public final int f28885s;
-    public Object f28886w;
+import org.telegram.ui.Components.b51;
+import org.telegram.ui.Components.re0;
+import org.telegram.ui.Components.te0;
+import org.telegram.ui.v90;
+public final class a2 extends org.telegram.ui.Components.h6 {
+    public final int f29988s;
+    public Object f29989w;
 
-    public a2(Context context, boolean z9, boolean z10, boolean z11) {
-        super(context, z9, z10, z11);
-        this.f28885s = 3;
+    public a2(Context context, boolean z10, boolean z11, boolean z12) {
+        super(context, z10, z11, z12);
+        this.f29988s = 3;
     }
 
     @Override
     public void invalidate() {
-        switch (this.f28885s) {
+        switch (this.f29988s) {
             case 1:
                 super.invalidate();
-                oe0 oe0Var = (oe0) this.f28886w;
-                qe0 qe0Var = oe0Var.d;
-                if (oe0Var == qe0Var.l1.getPinnedHeader()) {
-                    qe0Var.l1.invalidate();
+                re0 re0Var = (re0) this.f29989w;
+                te0 te0Var = re0Var.d;
+                if (re0Var == te0Var.f39680m1.getPinnedHeader()) {
+                    te0Var.f39680m1.invalidate();
                     return;
                 }
                 return;
@@ -39,10 +39,10 @@ public final class a2 extends org.telegram.ui.Components.i6 {
     @Override
     public void onDraw(Canvas canvas) {
         int r12;
-        switch (this.f28885s) {
+        switch (this.f29988s) {
             case 0:
                 super.onDraw(canvas);
-                ((c2) this.f28886w).f();
+                ((c2) this.f29989w).f();
                 return;
             case 1:
             default:
@@ -53,12 +53,12 @@ public final class a2 extends org.telegram.ui.Components.i6 {
                 canvas.translate(org.telegram.messenger.g0.L(15.0f), 0.0f);
                 super.onDraw(canvas);
                 canvas.translate(((getMeasuredWidth() - d()) / 2.0f) - org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(11.0f));
-                ((z41) this.f28886w).f40854b.draw(canvas);
+                ((b51) this.f29989w).f33202b.draw(canvas);
                 canvas.restore();
                 return;
             case 3:
-                ShapeDrawable shapeDrawable = (ShapeDrawable) this.f28886w;
-                if (shapeDrawable != null && shapeDrawable.getPaint().getColor() != (r12 = org.telegram.ui.ActionBar.m6.r1(0.15f, org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.L6, false)))) {
+                ShapeDrawable shapeDrawable = (ShapeDrawable) this.f29989w;
+                if (shapeDrawable != null && shapeDrawable.getPaint().getColor() != (r12 = org.telegram.ui.ActionBar.j6.r1(0.15f, org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.L6, false)))) {
                     shapeDrawable.getPaint().setColor(r12);
                 }
                 shapeDrawable.setBounds(0, 0, (int) (getDrawable().c() + getPaddingLeft() + getPaddingRight()), getMeasuredHeight());
@@ -70,14 +70,14 @@ public final class a2 extends org.telegram.ui.Components.i6 {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f28885s) {
+        switch (this.f29988s) {
             case 4:
-                x90 x90Var = (x90) this.f28886w;
+                v90 v90Var = (v90) this.f29989w;
                 int size = View.MeasureSpec.getSize(i7);
                 if (size <= 0) {
-                    size = org.telegram.messenger.g0.f22567q.x - org.telegram.messenger.g0.L(20.0f);
+                    size = org.telegram.messenger.g0.f23609q.x - org.telegram.messenger.g0.L(20.0f);
                 }
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ((size - x90Var.d.getPaint().measureText(x90Var.d.getText().toString())) - x90Var.f51647f.getPaint().measureText(x90Var.f51647f.getText().toString())), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(24.0f), 1073741824));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ((size - v90Var.d.getPaint().measureText(v90Var.d.getText().toString())) - v90Var.f52170f.getPaint().measureText(v90Var.f52170f.getText().toString())), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(24.0f), 1073741824));
                 return;
             default:
                 super.onMeasure(i7, i10);
@@ -87,11 +87,11 @@ public final class a2 extends org.telegram.ui.Components.i6 {
 
     @Override
     public boolean post(Runnable runnable) {
-        switch (this.f28885s) {
+        switch (this.f29988s) {
             case 1:
-                qe0 qe0Var = ((oe0) this.f28886w).d;
-                o8 o8Var = qe0.L1;
-                return qe0Var.f28672b.post(runnable);
+                te0 te0Var = ((re0) this.f29989w).d;
+                n8 n8Var = te0.M1;
+                return te0Var.f29682b.post(runnable);
             default:
                 return super.post(runnable);
         }
@@ -99,11 +99,11 @@ public final class a2 extends org.telegram.ui.Components.i6 {
 
     @Override
     public boolean postDelayed(Runnable runnable, long j3) {
-        switch (this.f28885s) {
+        switch (this.f29988s) {
             case 1:
-                qe0 qe0Var = ((oe0) this.f28886w).d;
-                o8 o8Var = qe0.L1;
-                return qe0Var.f28672b.postDelayed(runnable, j3);
+                te0 te0Var = ((re0) this.f29989w).d;
+                n8 n8Var = te0.M1;
+                return te0Var.f29682b.postDelayed(runnable, j3);
             default:
                 return super.postDelayed(runnable, j3);
         }
@@ -111,19 +111,19 @@ public final class a2 extends org.telegram.ui.Components.i6 {
 
     public a2(FrameLayout frameLayout, Context context, int i7) {
         super(context, false, false, false);
-        this.f28885s = i7;
-        this.f28886w = frameLayout;
+        this.f29988s = i7;
+        this.f29989w = frameLayout;
     }
 
-    public a2(z41 z41Var, Context context) {
+    public a2(b51 b51Var, Context context) {
         super(context, true, true, true);
-        this.f28885s = 2;
-        this.f28886w = z41Var;
+        this.f29988s = 2;
+        this.f29989w = b51Var;
     }
 
-    public a2(x90 x90Var, Context context) {
+    public a2(v90 v90Var, Context context) {
         super(context, false, true, true);
-        this.f28885s = 4;
-        this.f28886w = x90Var;
+        this.f29988s = 4;
+        this.f29989w = v90Var;
     }
 }

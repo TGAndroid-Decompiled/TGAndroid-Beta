@@ -1,266 +1,108 @@
 package di;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.ij;
-import org.telegram.messenger.qp;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_bots;
-import org.telegram.tgnet.tl.TL_stories;
-public final class k6 extends r6 {
-    public boolean C;
-    public boolean D;
-    public final String E;
-    public int F;
-    public final ArrayList G;
-    public final ArrayList H;
-    public int I;
+import android.content.DialogInterface;
+import java.util.Arrays;
+import org.telegram.messenger.s10;
+import org.telegram.messenger.z10;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.di0;
+public final class k6 implements DialogInterface.OnDismissListener {
+    public final int f8911a;
+    public final Object f8912b;
+    public final boolean[] f8913c;
+    public final Object d;
+    public final Object f8914e;
 
-    public k6(int i7, long j3, String str, z5 z5Var) {
-        super(i7, j3, 4, -1, z5Var);
-        this.G = new ArrayList();
-        this.H = new ArrayList();
-        this.I = 0;
-        this.E = str;
+    public k6(v8 v8Var, z10 z10Var, boolean[] zArr, boolean[] zArr2, Object obj, int i7) {
+        this.f8911a = i7;
+        this.f8912b = z10Var;
+        this.f8913c = zArr;
+        this.d = zArr2;
+        this.f8914e = obj;
     }
 
     @Override
-    public final void C(ArrayList arrayList, boolean z9) {
-        ArrayList arrayList2 = new ArrayList();
-        ArrayList arrayList3 = new ArrayList();
-        TL_bots.reorderPreviewMedias reorderpreviewmedias = new TL_bots.reorderPreviewMedias();
-        int i7 = this.f9695c;
-        reorderpreviewmedias.bot = qp.s1(i7).o1(this.d);
-        reorderpreviewmedias.lang_code = this.E;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            Integer num = (Integer) obj;
-            ij f10 = f(num.intValue());
-            if (f10 != null) {
-                reorderpreviewmedias.order.add(qp.Z4(f10.f23270l.media));
-                arrayList2.add(f10);
-                arrayList3.add(num);
-            }
-        }
-        ConnectionsManager.getInstance(i7).sendRequest(reorderpreviewmedias, null);
-        ArrayList arrayList4 = this.H;
-        if (arrayList4.isEmpty()) {
-            arrayList4.add(new ArrayList());
-        }
-        ((ArrayList) arrayList4.get(0)).clear();
-        ((ArrayList) arrayList4.get(0)).addAll(arrayList3);
-        ArrayList arrayList5 = this.f9699i;
-        arrayList5.clear();
-        arrayList5.addAll(arrayList2);
-    }
-
-    public final void F(ArrayList arrayList) {
-        int i7 = 0;
-        while (true) {
-            ArrayList arrayList2 = this.f9699i;
-            if (i7 >= arrayList2.size()) {
-                break;
-            }
-            ij ijVar = (ij) arrayList2.get(i7);
-            int i10 = 0;
-            while (true) {
-                if (i10 >= arrayList.size()) {
-                    break;
-                } else if (qp.t0(ijVar.f23270l.media, (TLRPC.MessageMedia) arrayList.get(i10))) {
-                    arrayList2.remove(i7);
-                    ArrayList arrayList3 = this.H;
-                    if (!arrayList3.isEmpty() && ijVar.e1() < ((ArrayList) arrayList3.get(0)).size()) {
-                        ((ArrayList) arrayList3.get(0)).remove(ijVar.e1());
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f8911a) {
+            case 0:
+                z10 z10Var = (z10) this.f8912b;
+                boolean[] zArr = (boolean[]) this.d;
+                s10 s10Var = (s10) this.f8914e;
+                if (z10Var != null && !this.f8913c[0]) {
+                    z10Var.a(Boolean.FALSE);
+                    if (!zArr[0]) {
+                        s10Var.a("cancelled", 0L);
+                        zArr[0] = true;
+                        return;
                     }
-                    i7--;
-                } else {
-                    i10++;
+                    return;
                 }
-            }
-            i7++;
-        }
-        TL_bots.deletePreviewMedia deletepreviewmedia = new TL_bots.deletePreviewMedia();
-        int i11 = this.f9695c;
-        deletepreviewmedia.bot = qp.s1(i11).o1(this.d);
-        for (int i12 = 0; i12 < arrayList.size(); i12++) {
-            deletepreviewmedia.media.add(qp.Z4((TLRPC.MessageMedia) arrayList.get(i12)));
-        }
-        ConnectionsManager.getInstance(i11).sendRequest(deletepreviewmedia, null);
-        o6 o6Var = this.f9707q;
-        org.telegram.messenger.g0.r(o6Var);
-        org.telegram.messenger.g0.h3(o6Var);
-    }
-
-    public final void G(TLRPC.InputMedia inputMedia, TL_bots.botPreviewMedia botpreviewmedia) {
-        ArrayList arrayList;
-        ij ijVar;
-        int e12;
-        TL_stories.StoryItem storyItem;
-        TLRPC.MessageMedia messageMedia;
-        TLRPC.Document document;
-        int i7 = 0;
-        while (true) {
-            arrayList = this.f9699i;
-            if (i7 < arrayList.size()) {
-                ijVar = (ij) arrayList.get(i7);
-                if (inputMedia != null && (storyItem = ijVar.f23270l) != null && (messageMedia = storyItem.media) != null) {
-                    if (inputMedia instanceof TLRPC.TL_inputMediaPhoto) {
-                        TLRPC.Photo photo = messageMedia.photo;
-                        if (photo != null && photo.f26984id == ((TLRPC.TL_inputMediaPhoto) inputMedia).f27023id.f26979id) {
-                            break;
-                        }
-                    } else if ((inputMedia instanceof TLRPC.TL_inputMediaDocument) && (document = messageMedia.document) != null && document.f26966id == ((TLRPC.TL_inputMediaDocument) inputMedia).f27021id.f26972id) {
-                        break;
+                return;
+            case 1:
+                z10 z10Var2 = (z10) this.f8912b;
+                boolean[] zArr2 = (boolean[]) this.d;
+                z10 z10Var3 = (z10) this.f8914e;
+                if (z10Var2 != null && !this.f8913c[0]) {
+                    z10Var2.a(Boolean.FALSE);
+                    if (!zArr2[0] && z10Var3 != null) {
+                        z10Var3.a("cancelled");
+                        zArr2[0] = true;
+                        return;
                     }
+                    return;
                 }
-                i7++;
-            } else {
-                ijVar = null;
-                i7 = 0;
-                break;
-            }
-        }
-        ArrayList arrayList2 = this.H;
-        if (ijVar != null) {
-            arrayList.remove(ijVar);
-            if (arrayList2.isEmpty()) {
-                arrayList2.add(new ArrayList());
-            }
-            if (i7 > 0 && i7 < ((ArrayList) arrayList2.get(0)).size()) {
-                ((ArrayList) arrayList2.get(0)).remove(i7);
-            }
-        }
-        j6 j6Var = new j6(this, this.d, botpreviewmedia);
-        ij ijVar2 = new ij(this.f9695c, j6Var);
-        TLRPC.Message message = ijVar2.f23266k;
-        if (ijVar == null) {
-            e12 = this.I;
-            this.I = e12 + 1;
-        } else {
-            e12 = ijVar.e1();
-        }
-        message.f26981id = e12;
-        j6Var.f27199id = e12;
-        ijVar2.f23262j = this;
-        ijVar2.r0(false);
-        if (arrayList2.isEmpty()) {
-            arrayList2.add(new ArrayList());
-        }
-        ((ArrayList) arrayList2.get(0)).add(i7, Integer.valueOf(ijVar2.e1()));
-        arrayList.add(i7, ijVar2);
-        o6 o6Var = this.f9707q;
-        org.telegram.messenger.g0.r(o6Var);
-        org.telegram.messenger.g0.h3(o6Var);
-    }
-
-    public final boolean H(Runnable runnable) {
-        TL_bots.getPreviewMedias getpreviewmedias;
-        if (!this.C && !this.D) {
-            long j3 = this.d;
-            String str = this.E;
-            int i7 = this.f9695c;
-            if (str != null) {
-                TL_bots.getPreviewInfo getpreviewinfo = new TL_bots.getPreviewInfo();
-                getpreviewinfo.bot = qp.s1(i7).o1(j3);
-                getpreviewinfo.lang_code = str;
-                getpreviewmedias = getpreviewinfo;
-            } else {
-                TL_bots.getPreviewMedias getpreviewmedias2 = new TL_bots.getPreviewMedias();
-                getpreviewmedias2.bot = qp.s1(i7).o1(j3);
-                getpreviewmedias = getpreviewmedias2;
-            }
-            this.C = true;
-            this.F = ConnectionsManager.getInstance(i7).sendRequest(getpreviewmedias, new bi.j(9, this, runnable));
-            return true;
-        }
-        return false;
-    }
-
-    public final void I(TL_bots.botPreviewMedia botpreviewmedia) {
-        j6 j6Var = new j6(this, this.d, botpreviewmedia);
-        ij ijVar = new ij(this.f9695c, j6Var);
-        TLRPC.Message message = ijVar.f23266k;
-        int i7 = this.I;
-        this.I = i7 + 1;
-        message.f26981id = i7;
-        j6Var.f27199id = i7;
-        ijVar.f23262j = this;
-        ijVar.r0(false);
-        ArrayList arrayList = this.H;
-        if (arrayList.isEmpty()) {
-            arrayList.add(new ArrayList());
-        }
-        ((ArrayList) arrayList.get(0)).add(0, Integer.valueOf(ijVar.e1()));
-        this.f9699i.add(0, ijVar);
-        o6 o6Var = this.f9707q;
-        org.telegram.messenger.g0.r(o6Var);
-        org.telegram.messenger.g0.h3(o6Var);
-    }
-
-    @Override
-    public final ij f(int i7) {
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.f9699i;
-            if (i10 < arrayList.size()) {
-                if (((ij) arrayList.get(i10)).e1() == i7) {
-                    return (ij) arrayList.get(i10);
+                return;
+            case 2:
+                TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr = (TL_wallet.inputTonConnectOauthSession[]) this.f8912b;
+                org.telegram.ui.ActionBar.u2[] u2VarArr = (org.telegram.ui.ActionBar.u2[]) this.d;
+                org.telegram.ui.ActionBar.u2[] u2VarArr2 = (org.telegram.ui.ActionBar.u2[]) this.f8914e;
+                this.f8913c[0] = true;
+                TL_wallet.inputTonConnectOauthSession inputtonconnectoauthsession = inputtonconnectoauthsessionArr[0];
+                if (inputtonconnectoauthsession != null) {
+                    Arrays.fill(inputtonconnectoauthsession.challenge_answer, (byte) 0);
+                    inputtonconnectoauthsessionArr[0] = null;
                 }
-                i10++;
-            } else {
-                return null;
-            }
+                org.telegram.ui.ActionBar.u2 u2Var = u2VarArr[0];
+                if (u2Var != null) {
+                    u2Var.dismiss();
+                    u2VarArr[0] = null;
+                }
+                di0.f46411a = null;
+                org.telegram.ui.ActionBar.u2 u2Var2 = u2VarArr2[0];
+                if (u2Var2 != null) {
+                    u2Var2.dismiss();
+                    u2VarArr2[0] = null;
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.web.v0 v0Var = (org.telegram.ui.web.v0) this.f8912b;
+                fi.i7 i7Var = (fi.i7) this.d;
+                String str = (String) this.f8914e;
+                v0Var.getClass();
+                boolean[] zArr3 = this.f8913c;
+                if (!zArr3[0]) {
+                    zArr3[0] = true;
+                    v0Var.x(i7Var, "requested_chat_failed", org.telegram.ui.web.v0.A(str, "req_id"));
+                    return;
+                }
+                return;
         }
     }
 
-    @Override
-    public final int g() {
-        return this.f9699i.size();
+    public k6(org.telegram.ui.web.v0 v0Var, boolean[] zArr, fi.i7 i7Var, String str) {
+        this.f8911a = 3;
+        this.f8912b = v0Var;
+        this.f8913c = zArr;
+        this.d = i7Var;
+        this.f8914e = str;
     }
 
-    @Override
-    public final ArrayList h() {
-        return this.H;
-    }
-
-    @Override
-    public final int i() {
-        return this.f9699i.size();
-    }
-
-    @Override
-    public final boolean k() {
-        return this.C;
-    }
-
-    @Override
-    public final boolean l() {
-        return false;
-    }
-
-    @Override
-    public final boolean q(int i7, List list, boolean z9) {
-        return H(null);
-    }
-
-    @Override
-    public final boolean r(int i7) {
-        return false;
-    }
-
-    @Override
-    public final void j() {
-    }
-
-    @Override
-    public final void s() {
-    }
-
-    @Override
-    public final void x() {
+    public k6(boolean[] zArr, TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr, org.telegram.ui.ActionBar.u2[] u2VarArr, org.telegram.ui.ActionBar.u2[] u2VarArr2) {
+        this.f8911a = 2;
+        this.f8913c = zArr;
+        this.f8912b = inputtonconnectoauthsessionArr;
+        this.d = u2VarArr;
+        this.f8914e = u2VarArr2;
     }
 }

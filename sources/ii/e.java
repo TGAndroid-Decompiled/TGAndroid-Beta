@@ -1,77 +1,127 @@
 package ii;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import c8.ha;
-import java.util.HashSet;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.Components.k9;
-public final class e extends FrameLayout implements c6 {
-    public final k9 f15518a;
-    public final h6 f15519b;
-    public final TextView f15520c;
-    public final TextView d;
+import di.v8;
+import di.wa;
+import hi.q4;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.is;
+import org.telegram.messenger.ns;
+import org.telegram.ui.ActionBar.e2;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.fa;
+import org.telegram.ui.Components.ja;
+import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.tj0;
+import org.telegram.ui.Components.uj0;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.Wallet.w6;
+import org.telegram.ui.an;
+import org.telegram.ui.qj;
+public final class e extends ja implements is {
+    public final cg.a T1;
+    public final wa U1;
+    public final FrameLayout V1;
+    public Runnable W1;
+    public int X1;
+    public p41 Y1;
 
-    public e(Context context, h6 h6Var) {
-        super(context);
-        this.f15519b = h6Var;
-        k9 k9Var = new k9(context);
-        this.f15518a = k9Var;
-        k9Var.setRoundRadius(org.telegram.messenger.g0.L(20.0f));
-        addView(k9Var, ha.d(72, 72.0f, 49, 0.0f, 36.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(context);
-        this.f15520c = textView;
-        textView.setTypeface(org.telegram.messenger.g0.o());
-        textView.setTextSize(1, 20.0f);
-        textView.setGravity(17);
-        addView(textView, ha.d(-1, -2.0f, 49, 24.0f, 123.0f, 24.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.d = textView2;
-        textView2.setTextSize(1, 14.0f);
-        textView2.setGravity(17);
-        textView2.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
-        addView(textView2, ha.d(-1, -2.0f, 49, 32.0f, 157.0f, 32.0f, 0.0f));
-        updateColors();
+    public e(android.content.Context r16, org.telegram.ui.ActionBar.e6 r17, cg.a r18, boolean r19, java.lang.Runnable r20) {
+        throw new UnsupportedOperationException("Method not decompiled: ii.e.<init>(android.content.Context, org.telegram.ui.ActionBar.e6, cg.a, boolean, java.lang.Runnable):void");
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(m6.G6));
-        hashSet.add(Integer.valueOf(m6.f28300z6));
+    public final void L() {
+        super.L();
+        ns.f(this.f29679a).n(this, ns.f25589v3);
+        ns.f(this.f29679a).n(this, ns.f25610y3);
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        Drawable drawable = m6.S0;
-        k9 k9Var = this.f15518a;
-        bg.s.a(canvas, drawable, (k9Var.getWidth() / 2.0f) + k9Var.getLeft(), (k9Var.getHeight() / 2.0f) + k9Var.getTop(), k9Var.getHeight());
+    public final tj0 L0(uj0 uj0Var) {
+        p41 p41Var = new p41(this.f35936o1, getContext(), this.f29679a, 0, true, new q4(this, 5), this.J0);
+        this.Y1 = p41Var;
+        return p41Var;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(218.0f), 1073741824));
-    }
-
-    public void setSubtitle(CharSequence charSequence) {
-        this.d.setText(charSequence);
-    }
-
-    public void setTitle(CharSequence charSequence) {
-        this.f15520c.setText(charSequence);
+    public final CharSequence O0() {
+        wa waVar = this.U1;
+        if (waVar == null) {
+            return null;
+        }
+        return ((TextView) waVar.f9709c).getText();
     }
 
     @Override
-    public final void updateColors() {
-        int i7 = m6.G6;
-        h6 h6Var = this.f15519b;
-        this.f15520c.setTextColor(m6.w0(i7, h6Var));
-        this.d.setTextColor(m6.w0(m6.f28300z6, h6Var));
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        Runnable runnable;
+        if (i7 == ns.f25589v3 || i7 == ns.f25610y3) {
+            p41 p41Var = this.Y1;
+            if (p41Var != null) {
+                p41Var.O(true);
+            }
+            cg.a s5 = v8.y(this.f29679a, true).s();
+            cg.a aVar = this.T1;
+            ((TextView) this.U1.f9709c).setText(hd.a0(null, null, 2131744045, cg.a.i(aVar.f4986b - s5.f4986b, cg.b.f4988b).d()));
+            fa faVar = this.f35937p1;
+            if (faVar != null) {
+                faVar.setTitle(O0());
+            }
+            if (s5.f4986b >= aVar.f4986b && (runnable = this.W1) != null) {
+                runnable.run();
+                this.W1 = null;
+                dismiss();
+            }
+        }
+    }
+
+    @Override
+    public final void dismiss() {
+        super.dismiss();
+        wa waVar = this.U1;
+        if (waVar != null) {
+            ((w6) waVar.f9708b).setPaused(true);
+        }
+    }
+
+    @Override
+    public final void s0() {
+        super.s0();
+        try {
+            int w02 = j6.w0(j6.f28922h5, this.J0);
+            if (w02 != this.X1) {
+                this.X1 = w02;
+                v0(w02);
+            }
+        } catch (Exception e10) {
+            a8.g(e10, true);
+        }
+    }
+
+    @Override
+    public final void show() {
+        qj qjVar;
+        if (v8.y(this.f29679a, true).s().f4986b >= this.T1.f4986b) {
+            Runnable runnable = this.W1;
+            if (runnable != null) {
+                runnable.run();
+                this.W1 = null;
+                return;
+            }
+            return;
+        }
+        e2 Q = LaunchActivity.Q();
+        if (Q instanceof an) {
+            an anVar = (an) Q;
+            if (anVar.V9() && (qjVar = anVar.f45118a0) != null) {
+                qjVar.S();
+            }
+        }
+        super.show();
+        ns.f(this.f29679a).c(this, ns.f25589v3);
+        ns.f(this.f29679a).c(this, ns.f25610y3);
     }
 }

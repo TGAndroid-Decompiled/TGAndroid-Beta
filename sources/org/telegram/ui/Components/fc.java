@@ -1,82 +1,80 @@
 package org.telegram.ui.Components;
-public final class fc {
-    public static final fc D;
-    public static final fc E;
-    public static final fc F;
-    public static final fc G;
-    public static final fc H;
-    public static final fc I;
-    public static final fc[] J;
-    public static final fc f33512e;
-    public static final fc f33513f;
-    public static final fc h;
-    public static final fc f33514n;
-    public static final fc f33515r;
-    public static final fc f33516s;
-    public static final fc f33517w;
-    public static final fc f33518x;
-    public static final fc f33519y;
-    public final String f33520a;
-    public final int f33521b;
-    public final boolean f33522c;
-    public final ec d;
 
-    static {
-        ec ecVar = ec.SAVED_TO_GALLERY;
-        fc fcVar = new fc("PHOTO", 0, "PhotoSavedHint", 2131747264, ecVar);
-        f33512e = fcVar;
-        fc fcVar2 = new fc("PHOTOS", 1, "PhotosSavedHint", ecVar);
-        f33513f = fcVar2;
-        fc fcVar3 = new fc("VIDEO", 2, "VideoSavedHint", 2131743585, ecVar);
-        h = fcVar3;
-        fc fcVar4 = new fc("VIDEOS", 3, "VideosSavedHint", ecVar);
-        f33514n = fcVar4;
-        fc fcVar5 = new fc("LIVEPHOTO", 4, "LivePhotoSavedHint", 2131748834, ecVar);
-        f33515r = fcVar5;
-        fc fcVar6 = new fc("LIVEPHOTOS", 5, "LivePhotosSavedHint", ecVar);
-        f33516s = fcVar6;
-        fc fcVar7 = new fc("MEDIA", 6, "MediaSavedHint", ecVar);
-        f33517w = fcVar7;
-        ec ecVar2 = ec.SAVED_TO_DOWNLOADS;
-        fc fcVar8 = new fc("PHOTO_TO_DOWNLOADS", 7, "PhotoSavedToDownloadsHintLinked", 2131747263, ecVar2);
-        f33518x = fcVar8;
-        fc fcVar9 = new fc("VIDEO_TO_DOWNLOADS", 8, "VideoSavedToDownloadsHintLinked", 2131743584, ecVar2);
-        f33519y = fcVar9;
-        fc fcVar10 = new fc("GIF", 9, "GifSavedHint", 2131750470, ec.SAVED_TO_GIFS);
-        D = fcVar10;
-        fc fcVar11 = new fc("GIF_TO_DOWNLOADS", 10, "GifSavedToDownloadsHintLinked", 2131750469, ecVar2);
-        E = fcVar11;
-        ec ecVar3 = ec.SAVED_TO_MUSIC;
-        fc fcVar12 = new fc("AUDIO", 11, "AudioSavedHint", 2131753908, ecVar3);
-        F = fcVar12;
-        fc fcVar13 = new fc("AUDIOS", 12, "AudiosSavedHint", ecVar3);
-        G = fcVar13;
-        fc fcVar14 = new fc("UNKNOWN", 13, "FileSavedHintLinked", 2131750828, ecVar2);
-        H = fcVar14;
-        fc fcVar15 = new fc("UNKNOWNS", 14, "FilesSavedHintLinked", ecVar2);
-        I = fcVar15;
-        J = new fc[]{fcVar, fcVar2, fcVar3, fcVar4, fcVar5, fcVar6, fcVar7, fcVar8, fcVar9, fcVar10, fcVar11, fcVar12, fcVar13, fcVar14, fcVar15};
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.SpannableString;
+import android.text.style.ReplacementSpan;
+public final class fc extends ReplacementSpan {
+    public final org.telegram.ui.ActionBar.e6 f34554a;
+    public final Paint f34555b = new Paint(1);
+    public final oy0 f34556c;
+    public final Runnable d;
+    public dc f34557e;
+    public Integer f34558f;
+
+    public fc(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.e6 e6Var) {
+        this.f34554a = e6Var;
+        this.d = runnable;
+        this.f34556c = new oy0(charSequence, 12.0f, null);
     }
 
-    public fc(String str, int i7, String str2, int i10, ec ecVar) {
-        this.f33520a = str2;
-        this.f33521b = i10;
-        this.d = ecVar;
-        this.f33522c = false;
+    public static SpannableString b(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.e6 e6Var, Integer num) {
+        SpannableString spannableString = new SpannableString("btn");
+        fc fcVar = new fc(charSequence, runnable, e6Var);
+        spannableString.setSpan(fcVar, 0, spannableString.length(), 33);
+        fcVar.f34558f = num;
+        return spannableString;
     }
 
-    public static fc valueOf(String str) {
-        return (fc) Enum.valueOf(fc.class, str);
+    public final int a() {
+        return (int) (this.f34556c.f38105c + org.telegram.messenger.g0.L(14.0f));
     }
 
-    public static fc[] values() {
-        return (fc[]) J.clone();
+    public final void c(ec ecVar, boolean z10) {
+        if (this.f34557e == null) {
+            this.f34557e = new dc(ecVar);
+        }
+        this.f34557e.c(z10);
     }
 
-    public fc(String str, int i7, String str2, ec ecVar) {
-        this.f33520a = str2;
-        this.d = ecVar;
-        this.f33521b = 0;
-        this.f33522c = true;
+    @Override
+    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+        float a10;
+        int w02;
+        float N = org.telegram.messenger.g0.N(17.0f);
+        float f11 = (i11 + i13) / 2.0f;
+        RectF rectF = org.telegram.messenger.g0.P;
+        float f12 = N / 2.0f;
+        rectF.set(f10, f11 - f12, a() + f10, f11 + f12);
+        dc dcVar = this.f34557e;
+        if (dcVar == null) {
+            a10 = 1.0f;
+        } else {
+            a10 = dcVar.a(0.025f);
+        }
+        canvas.save();
+        canvas.scale(a10, a10, rectF.centerX(), rectF.centerY());
+        Integer num = this.f34558f;
+        if (num != null) {
+            w02 = num.intValue();
+        } else {
+            w02 = org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Fi, this.f34554a);
+        }
+        int i14 = w02;
+        int r12 = org.telegram.ui.ActionBar.j6.r1(0.15f, i14);
+        Paint paint2 = this.f34555b;
+        paint2.setColor(r12);
+        canvas.drawRoundRect(rectF, f12, f12, paint2);
+        this.f34556c.c(f10 + org.telegram.messenger.g0.L(7.0f), f11, 1.0f, i14, canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
+        if (fontMetricsInt != null) {
+            paint.getFontMetricsInt(fontMetricsInt);
+        }
+        return a();
     }
 }

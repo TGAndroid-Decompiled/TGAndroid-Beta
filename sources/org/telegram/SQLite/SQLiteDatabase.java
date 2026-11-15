@@ -3,7 +3,7 @@ package org.telegram.SQLite;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.r2;
 import org.telegram.messenger.t0;
-import rf.b;
+import r.b;
 public class SQLiteDatabase {
     private boolean inTransaction;
     private boolean isOpen = true;
@@ -15,7 +15,7 @@ public class SQLiteDatabase {
 
     public void beginTransaction() {
         if (this.inTransaction) {
-            boolean z9 = r2.f25216a;
+            boolean z10 = r2.f26198a;
             commitTransaction();
         }
         this.inTransaction = true;
@@ -37,7 +37,7 @@ public class SQLiteDatabase {
                 commitTransaction();
                 closedb(this.sqliteHandle);
             } catch (SQLiteException e10) {
-                if (r2.f25216a) {
+                if (r2.f26198a) {
                     a8.e(e10.getMessage(), e10);
                 }
             }
@@ -76,7 +76,7 @@ public class SQLiteDatabase {
 
     public void explainQuery(String str, Object... objArr) {
         checkOpened();
-        SQLiteCursor query = new SQLitePreparedStatement(this, b.i("EXPLAIN QUERY PLAN ", str)).query(objArr);
+        SQLiteCursor query = new SQLitePreparedStatement(this, b.k("EXPLAIN QUERY PLAN ", str)).query(objArr);
         while (query.next()) {
             int columnCount = query.getColumnCount();
             StringBuilder sb2 = new StringBuilder();

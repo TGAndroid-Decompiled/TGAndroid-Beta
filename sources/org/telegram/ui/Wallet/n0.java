@@ -2,84 +2,84 @@ package org.telegram.ui.Wallet;
 
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.ok0;
+import org.telegram.ui.xi0;
 public final class n0 {
-    public static final long[] f42842j = {500, 1000, 3000, 5000, 10000};
-    public final int f42843a;
-    public final String f42844b;
-    public final ok0 f42845c;
+    public static final long[] f44167j = {500, 1000, 3000, 5000, 10000};
+    public final int f44168a;
+    public final String f44169b;
+    public final xi0 f44170c;
     public boolean d;
-    public int f42846e;
-    public int f42847f;
-    public int f42848g = -1;
+    public int f44171e;
+    public int f44172f;
+    public int f44173g = -1;
     public final m0 h = new Runnable(this) {
-        public final n0 f42808b;
+        public final n0 f44143b;
 
         {
-            this.f42808b = this;
+            this.f44143b = this;
         }
 
         @Override
         public final void run() {
             switch (r2) {
                 case 0:
-                    n0 n0Var = this.f42808b;
+                    n0 n0Var = this.f44143b;
                     if (n0Var.d) {
-                        n0Var.f42846e++;
-                        if (n0Var.f42848g >= 0) {
-                            ConnectionsManager.getInstance(n0Var.f42843a).cancelRequest(n0Var.f42848g, true);
-                            n0Var.f42848g = -1;
+                        n0Var.f44171e++;
+                        if (n0Var.f44173g >= 0) {
+                            ConnectionsManager.getInstance(n0Var.f44168a).cancelRequest(n0Var.f44173g, true);
+                            n0Var.f44173g = -1;
                         }
                         n0Var.a();
                         return;
                     }
                     return;
                 default:
-                    n0 n0Var2 = this.f42808b;
+                    n0 n0Var2 = this.f44143b;
                     if (n0Var2.d) {
-                        int i7 = n0Var2.f42846e + 1;
-                        n0Var2.f42846e = i7;
+                        int i7 = n0Var2.f44171e + 1;
+                        n0Var2.f44171e = i7;
                         TL_wallet.getTransactionsByMsgHash gettransactionsbymsghash = new TL_wallet.getTransactionsByMsgHash();
-                        gettransactionsbymsghash.msg_hash.add(n0Var2.f42844b);
+                        gettransactionsbymsghash.msg_hash.add(n0Var2.f44169b);
                         org.telegram.messenger.g0.i3(n0Var2.h, 30000L);
-                        n0Var2.f42848g = ConnectionsManager.getInstance(n0Var2.f42843a).sendRequestTyped(gettransactionsbymsghash, new d3.b(1), new org.telegram.ui.Components.p(n0Var2, i7, 1));
+                        n0Var2.f44173g = ConnectionsManager.getInstance(n0Var2.f44168a).sendRequestTyped(gettransactionsbymsghash, new d3.b(1), new org.telegram.ui.Components.o(n0Var2, i7, 1));
                         return;
                     }
                     return;
             }
         }
     };
-    public final m0 f42849i = new Runnable(this) {
-        public final n0 f42808b;
+    public final m0 f44174i = new Runnable(this) {
+        public final n0 f44143b;
 
         {
-            this.f42808b = this;
+            this.f44143b = this;
         }
 
         @Override
         public final void run() {
             switch (r2) {
                 case 0:
-                    n0 n0Var = this.f42808b;
+                    n0 n0Var = this.f44143b;
                     if (n0Var.d) {
-                        n0Var.f42846e++;
-                        if (n0Var.f42848g >= 0) {
-                            ConnectionsManager.getInstance(n0Var.f42843a).cancelRequest(n0Var.f42848g, true);
-                            n0Var.f42848g = -1;
+                        n0Var.f44171e++;
+                        if (n0Var.f44173g >= 0) {
+                            ConnectionsManager.getInstance(n0Var.f44168a).cancelRequest(n0Var.f44173g, true);
+                            n0Var.f44173g = -1;
                         }
                         n0Var.a();
                         return;
                     }
                     return;
                 default:
-                    n0 n0Var2 = this.f42808b;
+                    n0 n0Var2 = this.f44143b;
                     if (n0Var2.d) {
-                        int i7 = n0Var2.f42846e + 1;
-                        n0Var2.f42846e = i7;
+                        int i7 = n0Var2.f44171e + 1;
+                        n0Var2.f44171e = i7;
                         TL_wallet.getTransactionsByMsgHash gettransactionsbymsghash = new TL_wallet.getTransactionsByMsgHash();
-                        gettransactionsbymsghash.msg_hash.add(n0Var2.f42844b);
+                        gettransactionsbymsghash.msg_hash.add(n0Var2.f44169b);
                         org.telegram.messenger.g0.i3(n0Var2.h, 30000L);
-                        n0Var2.f42848g = ConnectionsManager.getInstance(n0Var2.f42843a).sendRequestTyped(gettransactionsbymsghash, new d3.b(1), new org.telegram.ui.Components.p(n0Var2, i7, 1));
+                        n0Var2.f44173g = ConnectionsManager.getInstance(n0Var2.f44168a).sendRequestTyped(gettransactionsbymsghash, new d3.b(1), new org.telegram.ui.Components.o(n0Var2, i7, 1));
                         return;
                     }
                     return;
@@ -87,32 +87,32 @@ public final class n0 {
         }
     };
 
-    public n0(int i7, String str, ok0 ok0Var) {
-        this.f42843a = i7;
-        this.f42844b = str;
-        this.f42845c = ok0Var;
+    public n0(int i7, String str, xi0 xi0Var) {
+        this.f44168a = i7;
+        this.f44169b = str;
+        this.f44170c = xi0Var;
     }
 
     public final void a() {
         if (!this.d) {
             return;
         }
-        int i7 = this.f42847f;
-        long j3 = f42842j[i7];
+        int i7 = this.f44172f;
+        long j3 = f44167j[i7];
         if (i7 < 4) {
-            this.f42847f = i7 + 1;
+            this.f44172f = i7 + 1;
         }
-        org.telegram.messenger.g0.i3(this.f42849i, j3);
+        org.telegram.messenger.g0.i3(this.f44174i, j3);
     }
 
     public final void b() {
         this.d = false;
-        this.f42846e++;
-        org.telegram.messenger.g0.r(this.f42849i);
+        this.f44171e++;
+        org.telegram.messenger.g0.r(this.f44174i);
         org.telegram.messenger.g0.r(this.h);
-        if (this.f42848g >= 0) {
-            ConnectionsManager.getInstance(this.f42843a).cancelRequest(this.f42848g, true);
-            this.f42848g = -1;
+        if (this.f44173g >= 0) {
+            ConnectionsManager.getInstance(this.f44168a).cancelRequest(this.f44173g, true);
+            this.f44173g = -1;
         }
     }
 }

@@ -4,13 +4,13 @@ import com.google.android.gms.cast.framework.media.internal.ResourceProvider;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 public abstract class h {
-    public static ClassLoader f3005a;
-    public static Thread f3006b;
+    public static ClassLoader f2959a;
+    public static Thread f2960b;
 
     public static int a(String str) {
         Integer num;
         try {
-            Map map = ResourceProvider.f6523a;
+            Map map = ResourceProvider.f5902a;
             num = (Integer) ResourceProvider.class.getMethod("findResourceByName", String.class).invoke(null, str);
         } catch (ClassNotFoundException | IllegalAccessException | NoSuchMethodException | InvocationTargetException unused) {
         }

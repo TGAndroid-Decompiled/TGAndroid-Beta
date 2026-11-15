@@ -1,20 +1,20 @@
 package da;
 public final class p implements na.d {
-    public static final p f8466a = new Object();
-    public static final na.c f8467b = na.c.c("type");
-    public static final na.c f8468c = na.c.c("reason");
+    public static final p f7850a = new Object();
+    public static final na.c f7851b = na.c.c("type");
+    public static final na.c f7852c = na.c.c("reason");
     public static final na.c d = na.c.c("frames");
-    public static final na.c f8469e = na.c.c("causedBy");
-    public static final na.c f8470f = na.c.c("overflowCount");
+    public static final na.c f7853e = na.c.c("causedBy");
+    public static final na.c f7854f = na.c.c("overflowCount");
 
     @Override
     public final void a(Object obj, Object obj2) {
         na.e eVar = (na.e) obj2;
         y0 y0Var = (y0) ((e2) obj);
-        eVar.a(f8467b, y0Var.f8568a);
-        eVar.a(f8468c, y0Var.f8569b);
-        eVar.a(d, y0Var.f8570c);
-        eVar.a(f8469e, y0Var.d);
-        eVar.d(f8470f, y0Var.f8571e);
+        eVar.a(f7851b, y0Var.f7952a);
+        eVar.a(f7852c, y0Var.f7953b);
+        eVar.a(d, y0Var.f7954c);
+        eVar.a(f7853e, y0Var.d);
+        eVar.d(f7854f, y0Var.f7955e);
     }
 }

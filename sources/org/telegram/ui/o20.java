@@ -1,45 +1,42 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
-import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.voip.VoIPService;
-public final class o20 implements org.telegram.ui.ActionBar.q2 {
-    public final f40 f48377a;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.TextView;
+public final class o20 extends TextView {
+    public final RectF f49771a;
+    public final Paint f49772b;
 
-    public o20(f40 f40Var) {
-        this.f48377a = f40Var;
+    public o20(LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f49771a = new RectF();
+        Paint paint = new Paint(1);
+        this.f49772b = paint;
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(-16711936);
     }
 
     @Override
-    public final void v() {
-        CountDownLatch groupCallBottomSheetLatch;
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance != null && (groupCallBottomSheetLatch = sharedInstance.getGroupCallBottomSheetLatch()) != null) {
-            groupCallBottomSheetLatch.countDown();
-        }
-        f40 f40Var = this.f48377a;
-        if (f40Var.f45612z3 == 6) {
-            SharedPreferences e12 = org.telegram.messenger.qp.e1();
-            if (!e12.getBoolean("reminderhint", false)) {
-                e12.edit().putBoolean("reminderhint", true).commit();
-                if (f40Var.f45531h2 == null) {
-                    org.telegram.ui.Components.y20 y20Var = new org.telegram.ui.Components.y20(f40Var.getContext(), 8);
-                    f40Var.f45531h2 = y20Var;
-                    y20Var.setAlpha(0.0f);
-                    f40Var.f45531h2.setVisibility(4);
-                    f40Var.f45531h2.setShowingDuration(4000L);
-                    f40Var.f28672b.addView(f40Var.f45531h2, c8.ha.d(-2, -2.0f, 51, 19.0f, 0.0f, 19.0f, 0.0f));
-                    f40Var.f45531h2.setText(org.telegram.messenger.id.M0(2131743438, null));
-                    f40Var.f45531h2.b();
-                }
-                f40Var.f45531h2.setExtraTranslationY(-org.telegram.messenger.g0.f22561m);
-                f40Var.f45531h2.c(f40Var.f45592v1);
-            }
-        }
+    public final void dispatchDraw(Canvas canvas) {
+        RectF rectF = this.f49771a;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), this.f49772b);
+        super.dispatchDraw(canvas);
     }
 
     @Override
-    public final boolean x() {
-        return true;
+    public final void onDraw(Canvas canvas) {
+        Paint paint = this.f49772b;
+        paint.setColor(-16711936);
+        RectF rectF = this.f49771a;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), paint);
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, i10);
     }
 }

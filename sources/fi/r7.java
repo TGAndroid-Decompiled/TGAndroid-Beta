@@ -1,387 +1,108 @@
 package fi;
 
-import org.telegram.ui.Components.bc;
-public final class r7 implements org.telegram.ui.Components.za {
-    public final int f12750a;
+import a8.sa;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.media.AudioManager;
+import android.os.Build;
+import android.view.KeyEvent;
+import android.view.View;
+public final class r7 extends View {
+    public Paint f12283a;
+    public boolean f12284b;
+    public sa f12285c;
+    public org.telegram.ui.Components.u5 d;
+    public org.telegram.ui.Components.u5 f12286e;
+    public float f12287f;
 
-    public r7(int i7) {
-        this.f12750a = i7;
+    public final void a(boolean z10) {
+        sa saVar = this.f12285c;
+        AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
+        int streamMaxVolume = audioManager.getStreamMaxVolume(3);
+        int streamVolume = audioManager.getStreamVolume(3);
+        float f10 = streamMaxVolume;
+        int max = (int) Math.max(1.0f, f10 / 15.0f);
+        if (z10) {
+            int i7 = streamVolume + max;
+            if (i7 <= streamMaxVolume) {
+                streamMaxVolume = i7;
+            }
+        } else {
+            streamMaxVolume = streamVolume - max;
+            if (streamMaxVolume < 0) {
+                streamMaxVolume = 0;
+            }
+        }
+        audioManager.setStreamVolume(3, streamMaxVolume, 0);
+        float f11 = streamMaxVolume / f10;
+        this.f12287f = f11;
+        if (!this.f12284b) {
+            this.f12286e.e(true, f11);
+        }
+        invalidate();
+        this.f12284b = true;
+        org.telegram.messenger.g0.r(saVar);
+        org.telegram.messenger.g0.i3(saVar, 2000L);
     }
 
-    @Override
-    public final boolean a() {
-        switch (this.f12750a) {
-            case 0:
-                return true;
-            case 1:
-                return true;
-            case 2:
-                return true;
-            case 3:
-                return true;
-            case 4:
-                return true;
-            case 5:
-                return true;
-            case 6:
-                return true;
-            case 7:
-                return true;
-            case 8:
-                return true;
-            case 9:
-                return true;
-            case 10:
-                return true;
-            case 11:
-                return true;
-            case 12:
-                return true;
-            case 13:
-                return true;
-            case 14:
-                return true;
-            case 15:
-                return true;
-            default:
-                return true;
+    public final void b() {
+        int i7;
+        sa saVar = this.f12285c;
+        AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
+        int streamMaxVolume = audioManager.getStreamMaxVolume(3);
+        if (Build.VERSION.SDK_INT >= 28) {
+            i7 = audioManager.getStreamMinVolume(3);
+        } else {
+            i7 = 0;
+        }
+        int streamVolume = audioManager.getStreamVolume(3);
+        if (streamVolume <= i7) {
+            a(true);
+        } else if (!this.f12284b) {
+            float f10 = streamVolume / streamMaxVolume;
+            this.f12287f = f10;
+            this.f12286e.e(true, f10);
+            this.f12284b = true;
+            invalidate();
+            org.telegram.messenger.g0.r(saVar);
+            org.telegram.messenger.g0.i3(saVar, 2000L);
         }
     }
 
     @Override
-    public final void b(bc bcVar) {
-        int i7 = this.f12750a;
-    }
-
-    @Override
-    public final void c(float f10) {
-        int i7 = this.f12750a;
-    }
-
-    @Override
-    public final void d(bc bcVar) {
-        int i7 = this.f12750a;
-    }
-
-    @Override
-    public final boolean e() {
-        switch (this.f12750a) {
-            case 0:
-                return true;
-            case 1:
-                return true;
-            case 2:
-                return true;
-            case 3:
-                return true;
-            case 4:
-                return true;
-            case 5:
-                return true;
-            case 6:
-                return true;
-            case 7:
-                return true;
-            case 8:
-                return true;
-            case 9:
-                return true;
-            case 10:
-                return true;
-            case 11:
-                return true;
-            case 12:
-                return true;
-            case 13:
-                return true;
-            case 14:
-                return true;
-            case 15:
-                return true;
-            default:
-                return true;
+    public final void onDraw(Canvas canvas) {
+        float f10;
+        Paint paint = this.f12283a;
+        super.onDraw(canvas);
+        org.telegram.ui.Components.u5 u5Var = this.f12286e;
+        u5Var.e(false, this.f12287f);
+        org.telegram.ui.Components.u5 u5Var2 = this.d;
+        if (this.f12284b) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
+        }
+        u5Var2.e(false, f10);
+        if (u5Var2.f39903c != 0.0f) {
+            float measuredHeight = getMeasuredHeight() / 2.0f;
+            paint.setAlpha((int) (u5Var2.f39903c * 255.0f));
+            RectF rectF = org.telegram.messenger.g0.P;
+            rectF.set(0.0f, 0.0f, getMeasuredWidth() * u5Var.f39903c, getMeasuredHeight());
+            canvas.drawRoundRect(rectF, measuredHeight, measuredHeight, paint);
         }
     }
 
     @Override
-    public final int f(int i7) {
-        int i10;
-        int L;
-        switch (this.f12750a) {
-            case 0:
-                return 0;
-            case 1:
-                return 0;
-            case 2:
-                return 0;
-            case 3:
-                return 0;
-            case 4:
-                i10 = org.telegram.messenger.g0.f22562n;
-                L = org.telegram.messenger.g0.L(64.0f);
-                break;
-            case 5:
-                i10 = org.telegram.messenger.g0.f22562n;
-                L = org.telegram.messenger.g0.L(60.0f);
-                break;
-            case 6:
-                return 0;
-            case 7:
-                return org.telegram.messenger.g0.L(51.0f);
-            case 8:
-                return org.telegram.messenger.g0.L(74.0f);
-            case 9:
-                return org.telegram.messenger.g0.L(80.0f);
-            case 10:
-                i10 = org.telegram.messenger.g0.f22562n;
-                L = org.telegram.messenger.g0.L(16.0f);
-                break;
-            case 11:
-                return org.telegram.messenger.g0.L(62.0f);
-            case 12:
-                return org.telegram.messenger.g0.L(64.0f);
-            case 13:
-                return 0;
-            case 14:
-                return 0;
-            case 15:
-                return org.telegram.messenger.g0.L(68.0f);
-            default:
-                return org.telegram.messenger.g0.L(64.0f);
+    public final boolean onKeyDown(int i7, KeyEvent keyEvent) {
+        if (keyEvent.getAction() == 0 && i7 == 24) {
+            a(true);
+            return true;
+        } else if (keyEvent.getAction() == 0 && i7 == 25) {
+            a(false);
+            return true;
+        } else {
+            return super.onKeyDown(i7, keyEvent);
         }
-        return L + i10;
-    }
-
-    @Override
-    public final boolean g(int i7) {
-        switch (this.f12750a) {
-            case 0:
-                return false;
-            case 1:
-                return true;
-            case 2:
-                return true;
-            case 3:
-                return false;
-            case 4:
-                return false;
-            case 5:
-                return false;
-            case 6:
-                return false;
-            case 7:
-                return false;
-            case 8:
-                return false;
-            case 9:
-                return false;
-            case 10:
-                return false;
-            case 11:
-                return true;
-            case 12:
-                return false;
-            case 13:
-                return false;
-            case 14:
-                return false;
-            case 15:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public final int h(int i7) {
-        switch (this.f12750a) {
-            case 0:
-                return org.telegram.messenger.g0.f22561m;
-            case 1:
-                return 0;
-            case 2:
-                return org.telegram.messenger.g0.L(56.0f);
-            case 3:
-                return org.telegram.messenger.g0.f22561m;
-            case 4:
-                return 0;
-            case 5:
-                return 0;
-            case 6:
-                return org.telegram.messenger.g0.f22561m;
-            case 7:
-                return 0;
-            case 8:
-                return 0;
-            case 9:
-                return 0;
-            case 10:
-                return 0;
-            case 11:
-                return 0;
-            case 12:
-                return 0;
-            case 13:
-                return org.telegram.messenger.g0.f22561m;
-            case 14:
-                return org.telegram.messenger.g0.f22561m;
-            case 15:
-                return 0;
-            default:
-                return 0;
-        }
-    }
-
-    private final void A(bc bcVar) {
-    }
-
-    private final void B(bc bcVar) {
-    }
-
-    private final void C(bc bcVar) {
-    }
-
-    private final void D(bc bcVar) {
-    }
-
-    private final void E(bc bcVar) {
-    }
-
-    private final void F(bc bcVar) {
-    }
-
-    private final void G(bc bcVar) {
-    }
-
-    private final void H(bc bcVar) {
-    }
-
-    private final void I(bc bcVar) {
-    }
-
-    private final void J(bc bcVar) {
-    }
-
-    private final void K(bc bcVar) {
-    }
-
-    private final void L(bc bcVar) {
-    }
-
-    private final void M(bc bcVar) {
-    }
-
-    private final void N(bc bcVar) {
-    }
-
-    private final void O(bc bcVar) {
-    }
-
-    private final void P(bc bcVar) {
-    }
-
-    private final void Q(bc bcVar) {
-    }
-
-    private final void R(bc bcVar) {
-    }
-
-    private final void S(bc bcVar) {
-    }
-
-    private final void T(bc bcVar) {
-    }
-
-    private final void U(bc bcVar) {
-    }
-
-    private final void V(bc bcVar) {
-    }
-
-    private final void W(bc bcVar) {
-    }
-
-    private final void X(bc bcVar) {
-    }
-
-    private final void Y(bc bcVar) {
-    }
-
-    private final void Z(bc bcVar) {
-    }
-
-    private final void a0(bc bcVar) {
-    }
-
-    private final void b0(bc bcVar) {
-    }
-
-    private final void c0(bc bcVar) {
-    }
-
-    private final void d0(bc bcVar) {
-    }
-
-    private final void e0(bc bcVar) {
-    }
-
-    private final void f0(bc bcVar) {
-    }
-
-    private final void g0(bc bcVar) {
-    }
-
-    private final void i(float f10) {
-    }
-
-    private final void j(float f10) {
-    }
-
-    private final void k(float f10) {
-    }
-
-    private final void l(float f10) {
-    }
-
-    private final void m(float f10) {
-    }
-
-    private final void n(float f10) {
-    }
-
-    private final void o(float f10) {
-    }
-
-    private final void p(float f10) {
-    }
-
-    private final void q(float f10) {
-    }
-
-    private final void r(float f10) {
-    }
-
-    private final void s(float f10) {
-    }
-
-    private final void t(float f10) {
-    }
-
-    private final void u(float f10) {
-    }
-
-    private final void v(float f10) {
-    }
-
-    private final void w(float f10) {
-    }
-
-    private final void x(float f10) {
-    }
-
-    private final void y(float f10) {
-    }
-
-    private final void z(bc bcVar) {
     }
 }

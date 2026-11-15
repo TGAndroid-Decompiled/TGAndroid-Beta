@@ -1,49 +1,36 @@
 package org.telegram.ui.web;
+public final class h0 implements Runnable {
+    public final int f52622a;
+    public final i0 f52623b;
 
-import android.view.View;
-import android.webkit.WebView;
-public final class h0 implements View.OnLongClickListener {
-    public final u0 f51089a;
-
-    public h0(u0 u0Var) {
-        this.f51089a = u0Var;
+    public h0(i0 i0Var, int i7) {
+        this.f52622a = i7;
+        this.f52623b = i0Var;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        WebView.HitTestResult hitTestResult = this.f51089a.getHitTestResult();
-        if (hitTestResult.getType() == 7) {
-            final String extra = hitTestResult.getExtra();
-            org.telegram.messenger.g0.h3(new Runnable(this) {
-                public final h0 f51062b;
-
-                {
-                    this.f51062b = this;
+    public final void run() {
+        switch (this.f52622a) {
+            case 0:
+                s0 s0Var = this.f52623b.f52635e;
+                v0 v0Var = s0Var.R;
+                if (v0Var != null) {
+                    s0Var.h = false;
+                    v0Var.E(false, null);
+                    return;
                 }
-
-                @Override
-                public final void run() {
-                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.f0.run():void");
+                return;
+            case 1:
+                s0 s0Var2 = this.f52623b.f52635e;
+                v0 v0Var2 = s0Var2.R;
+                if (v0Var2 != null) {
+                    v0Var2.J(!s0Var2.canGoBack(), !s0Var2.canGoForward());
+                    return;
                 }
-            });
-            return true;
-        } else if (hitTestResult.getType() == 5) {
-            final String extra2 = hitTestResult.getExtra();
-            org.telegram.messenger.g0.h3(new Runnable(this) {
-                public final h0 f51062b;
-
-                {
-                    this.f51062b = this;
-                }
-
-                @Override
-                public final void run() {
-                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.f0.run():void");
-                }
-            });
-            return true;
-        } else {
-            return false;
+                return;
+            default:
+                vf.c.t(this.f52623b.f52635e.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
+                return;
         }
     }
 }

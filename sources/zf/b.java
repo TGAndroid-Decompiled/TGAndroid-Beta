@@ -8,18 +8,18 @@ import android.os.IInterface;
 import android.os.Looper;
 import android.os.Parcel;
 public final class b extends Binder implements IInterface {
-    public final Handler f60154a;
-    public final sa.d f60155b;
+    public final Handler f61355a;
+    public final pb.b f61356b;
 
-    public b(sa.d dVar) {
-        this.f60155b = dVar;
+    public b(pb.b bVar) {
+        this.f61356b = bVar;
         attachInterface(this, "android.support.customtabs.ICustomTabsCallback");
-        this.f60154a = new Handler(Looper.getMainLooper());
+        this.f61355a = new Handler(Looper.getMainLooper());
     }
 
     @Override
     public final boolean onTransact(int i7, Parcel parcel, Parcel parcel2, int i10) {
-        Handler handler = this.f60154a;
+        Handler handler = this.f61355a;
         Bundle bundle = null;
         if (i7 != 2) {
             if (i7 != 3) {

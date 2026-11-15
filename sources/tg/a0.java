@@ -6,21 +6,20 @@ import android.view.KeyEvent;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.ej;
-import org.telegram.messenger.f6;
-import org.telegram.messenger.i6;
-import org.telegram.messenger.id;
+import org.telegram.messenger.cj;
+import org.telegram.messenger.g6;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.j6;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.n3;
-import org.telegram.ui.Components.hx;
-import org.telegram.ui.Components.q5;
-import org.telegram.ui.Components.t31;
-public final class a0 implements hx {
-    public final g0 f55566a;
+import org.telegram.ui.Components.mx;
+import org.telegram.ui.Components.p5;
+import org.telegram.ui.Components.x31;
+public final class a0 implements mx {
+    public final g0 f57149a;
 
     public a0(g0 g0Var) {
-        this.f55566a = g0Var;
+        this.f57149a = g0Var;
     }
 
     @Override
@@ -60,7 +59,7 @@ public final class a0 implements hx {
 
     @Override
     public final boolean k() {
-        b editText = ((k2) this.f55566a.B0).getEditText();
+        b editText = ((o2) this.f57149a.C0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -70,11 +69,11 @@ public final class a0 implements hx {
 
     @Override
     public final void l(String str) {
-        k2 k2Var;
+        o2 o2Var;
         b editText;
-        f6[] f6VarArr;
-        j jVar = this.f55566a.B0;
-        if (!(jVar instanceof k2) || (editText = (k2Var = (k2) jVar).getEditText()) == null) {
+        g6[] g6VarArr;
+        j jVar = this.f57149a.C0;
+        if (!(jVar instanceof o2) || (editText = (o2Var = (o2) jVar).getEditText()) == null) {
             return;
         }
         int selectionEnd = editText.getSelectionEnd();
@@ -82,10 +81,10 @@ public final class a0 implements hx {
             selectionEnd = 0;
         }
         try {
-            CharSequence m10 = i6.m(str, k2Var.getFontMetricsInt(), false, null, 0);
-            if ((m10 instanceof Spanned) && (f6VarArr = (f6[]) ((Spanned) m10).getSpans(0, m10.length(), f6.class)) != null) {
-                for (f6 f6Var : f6VarArr) {
-                    f6Var.f22374b = 0.85f;
+            CharSequence m10 = j6.m(str, o2Var.getFontMetricsInt(), false, null, 0);
+            if ((m10 instanceof Spanned) && (g6VarArr = (g6[]) ((Spanned) m10).getSpans(0, m10.length(), g6.class)) != null) {
+                for (g6 g6Var : g6VarArr) {
+                    g6Var.f23694b = 0.85f;
                 }
             }
             editText.setText(editText.getText().insert(selectionEnd, m10));
@@ -100,14 +99,14 @@ public final class a0 implements hx {
 
     @Override
     public final void n() {
-        g0 g0Var = this.f55566a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, g0Var.getContext(), g0Var.f55716z1);
-        String M0 = id.M0(2131752068, null);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27300a;
-        u1Var.R = M0;
-        u1Var.T = id.M0(2131752069, null);
-        alertDialog$Builder.k(id.M0(2131752099, null), new n3(this, 22));
-        alertDialog$Builder.h(id.M0(2131752589, null), null);
+        g0 g0Var = this.f57149a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, g0Var.getContext(), g0Var.A1);
+        String M0 = hd.M0(2131752068, null);
+        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28392a;
+        t1Var.S = M0;
+        t1Var.U = hd.M0(2131752069, null);
+        alertDialog$Builder.k(hd.M0(2131752099, null), new org.telegram.ui.ActionBar.z(this, 27));
+        alertDialog$Builder.h(hd.M0(2131752589, null), null);
         alertDialog$Builder.p();
     }
 
@@ -117,9 +116,9 @@ public final class a0 implements hx {
     }
 
     @Override
-    public final void x(long j3, TLRPC.Document document, String str, boolean z9) {
-        q5 q5Var;
-        b editText = ((k2) this.f55566a.B0).getEditText();
+    public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
+        p5 p5Var;
+        b editText = ((o2) this.f57149a.C0).getEditText();
         if (editText == null) {
             return;
         }
@@ -130,11 +129,11 @@ public final class a0 implements hx {
         try {
             SpannableString spannableString = new SpannableString(str);
             if (document != null) {
-                q5Var = new q5(document, editText.getPaint().getFontMetricsInt());
+                p5Var = new p5(document, editText.getPaint().getFontMetricsInt());
             } else {
-                q5Var = new q5(j3, editText.getPaint().getFontMetricsInt());
+                p5Var = new p5(j3, editText.getPaint().getFontMetricsInt());
             }
-            spannableString.setSpan(q5Var, 0, spannableString.length(), 33);
+            spannableString.setSpan(p5Var, 0, spannableString.length(), 33);
             editText.setText(editText.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();
             editText.setSelection(length, length);
@@ -159,7 +158,7 @@ public final class a0 implements hx {
     }
 
     @Override
-    public final void o(t31 t31Var) {
+    public final void o(x31 x31Var) {
     }
 
     @Override
@@ -195,14 +194,14 @@ public final class a0 implements hx {
     }
 
     @Override
-    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z9) {
+    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10) {
     }
 
     @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, ej ejVar, boolean z9, int i7) {
+    public final void m(View view, TLRPC.Document document, String str, Object obj, cj cjVar, boolean z10, int i7) {
     }
 
     @Override
-    public final void v(View view, Object obj, String str, Object obj2, boolean z9, int i7, int i10) {
+    public final void v(View view, Object obj, String str, Object obj2, boolean z10, int i7, int i10) {
     }
 }

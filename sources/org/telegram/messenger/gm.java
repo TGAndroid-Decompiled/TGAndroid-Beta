@@ -1,29 +1,45 @@
 package org.telegram.messenger;
+public final class gm implements Runnable {
+    public final int f23883a;
+    public final Object f23884b;
+    public final long f23885c;
+    public final Object d;
+    public final Object f23886e;
 
-import android.content.DialogInterface;
-public final class gm implements DialogInterface.OnCancelListener {
-    public final int f22697a;
-    public final c1 f22698b;
-    public final int f22699c;
+    public gm(Object obj, Object obj2, long j3, Object obj3, int i7) {
+        this.f23883a = i7;
+        this.f23884b = obj;
+        this.d = obj2;
+        this.f23885c = j3;
+        this.f23886e = obj3;
+    }
 
-    public gm(c1 c1Var, int i7, int i10) {
-        this.f22697a = i10;
-        this.f22698b = c1Var;
-        this.f22699c = i7;
+    private final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.gm.a():void");
+    }
+
+    private final void b() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.gm.b():void");
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f22697a) {
-            case 0:
-                ((qp) this.f22698b).getConnectionsManager().cancelRequest(this.f22699c, true);
-                return;
-            case 1:
-                ((qp) this.f22698b).getConnectionsManager().cancelRequest(this.f22699c, true);
-                return;
-            default:
-                ((dw) this.f22698b).getConnectionsManager().cancelRequest(this.f22699c, true);
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.gm.run():void");
+    }
+
+    public gm(Object obj, Object obj2, Object obj3, long j3, int i7) {
+        this.f23883a = i7;
+        this.f23884b = obj;
+        this.d = obj2;
+        this.f23886e = obj3;
+        this.f23885c = j3;
+    }
+
+    public gm(c1 c1Var, long j3, Object obj, Object obj2, int i7) {
+        this.f23883a = i7;
+        this.f23884b = c1Var;
+        this.f23885c = j3;
+        this.d = obj;
+        this.f23886e = obj2;
     }
 }

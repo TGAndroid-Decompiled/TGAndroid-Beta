@@ -1,42 +1,32 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.ViewPropertyAnimator;
-import android.widget.TextView;
-public final class up0 extends zh.d2 {
-    public final ys0 V;
+public final class up0 extends vs0 {
+    public final ys0 H;
 
-    public up0(ys0 ys0Var, org.telegram.ui.ActionBar.f2 f2Var, Context context, int i7, long j3, org.telegram.ui.ActionBar.h6 h6Var, dh.c cVar) {
-        super(f2Var, context, i7, j3, h6Var, cVar);
-        this.V = ys0Var;
+    public up0(ys0 ys0Var, Context context) {
+        super(ys0Var, context, 0, true);
+        this.H = ys0Var;
     }
 
     @Override
-    public final void q(boolean z9) {
-        float f10;
-        float f11;
-        ys0 ys0Var = this.V;
-        TextView textView = ys0Var.f40706s0;
-        textView.setVisibility(0);
-        ViewPropertyAnimator animate = textView.animate();
-        float f12 = 1.0f;
-        if (z9) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
+    public final void f() {
+        boolean z10;
+        super.f();
+        ys0 ys0Var = this.H;
+        tr0 g02 = ys0Var.g0(9);
+        if (g02 != null && g02.f39795n.getVisibility() == 0) {
+            ys0Var.f42103i0.f();
         }
-        ViewPropertyAnimator alpha = animate.alpha(f10);
-        if (z9) {
-            f11 = 1.0f;
-        } else {
-            f11 = 0.4f;
+        if (g02 != null) {
+            pq0 pq0Var = g02.f39798w;
+            fi.k6 k6Var = this.f41146s;
+            if (k6Var != null && (k6Var.k() || (ys0Var.t0() && this.f41146s.g() > 0))) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            pq0Var.e(z10, true);
         }
-        ViewPropertyAnimator scaleX = alpha.scaleX(f11);
-        if (!z9) {
-            f12 = 0.4f;
-        }
-        scaleX.scaleY(f12).withEndAction(new tp0(0, this, z9)).start();
-        ys0Var.I1(true);
-        ys0Var.W0();
     }
 }

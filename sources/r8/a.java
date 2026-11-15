@@ -12,21 +12,21 @@ import android.util.Log;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.k;
 import com.google.android.gms.common.api.l;
-import m.q3;
+import m.o3;
 import q6.m;
 import q6.w;
 public final class a extends q6.h implements com.google.android.gms.common.api.c {
     public final boolean F;
-    public final q3 G;
+    public final o3 G;
     public final Bundle H;
     public final Integer I;
 
-    public a(Context context, Looper looper, q3 q3Var, Bundle bundle, k kVar, l lVar) {
-        super(context, looper, 44, q3Var, kVar, lVar, 0);
+    public a(Context context, Looper looper, o3 o3Var, Bundle bundle, k kVar, l lVar) {
+        super(context, looper, 44, o3Var, kVar, lVar, 0);
         this.F = true;
-        this.G = q3Var;
+        this.G = o3Var;
         this.H = bundle;
-        this.I = (Integer) q3Var.f19238g;
+        this.I = (Integer) o3Var.f19799g;
     }
 
     public final void B(c cVar) {
@@ -51,7 +51,7 @@ public final class a extends q6.h implements com.google.android.gms.common.api.c
         } catch (RemoteException e10) {
             Log.w("SignInClientImpl", "Remote service probably died when signIn is called");
             try {
-                cVar.V0(new h(1, new n6.a(8, null, null), null));
+                cVar.W0(new h(1, new n6.a(8, null, null), null));
             } catch (RemoteException unused) {
                 Log.wtf("SignInClientImpl", "ISignInCallbacks#onSignInComplete should be executed from the same process, unexpected RemoteException.", e10);
             }
@@ -82,11 +82,11 @@ public final class a extends q6.h implements com.google.android.gms.common.api.c
 
     @Override
     public final Bundle m() {
-        q3 q3Var = this.G;
-        boolean equals = this.h.getPackageName().equals((String) q3Var.d);
+        o3 o3Var = this.G;
+        boolean equals = this.h.getPackageName().equals((String) o3Var.d);
         Bundle bundle = this.H;
         if (!equals) {
-            bundle.putString("com.google.android.gms.signin.internal.realClientPackageName", (String) q3Var.d);
+            bundle.putString("com.google.android.gms.signin.internal.realClientPackageName", (String) o3Var.d);
         }
         return bundle;
     }

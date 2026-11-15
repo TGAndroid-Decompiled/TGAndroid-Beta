@@ -4,10 +4,10 @@ public class XArrowAtom extends Atom {
     private Atom over;
     private Atom under;
 
-    public XArrowAtom(Atom atom, Atom atom2, boolean z9) {
+    public XArrowAtom(Atom atom, Atom atom2, boolean z10) {
         this.over = atom;
         this.under = atom2;
-        this.left = z9;
+        this.left = z10;
     }
 
     @Override

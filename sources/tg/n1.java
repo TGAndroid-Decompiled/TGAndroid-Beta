@@ -10,63 +10,64 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
-import c8.ha;
+import c8.ja;
 import c8.ke;
 import com.google.mlkit.vision.segmentation.subject.internal.zzd;
-import fi.e7;
+import hi.d7;
+import org.telegram.messenger.i20;
 import org.telegram.messenger.w7;
-import org.telegram.messenger.ye;
+import org.telegram.messenger.xe;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.n3;
-import org.telegram.ui.Components.ki0;
+import org.telegram.ui.Components.er;
+import org.telegram.ui.Components.m01;
 import org.telegram.ui.Components.nt0;
-import org.telegram.ui.Components.v5;
-import org.telegram.ui.Components.w41;
-import org.telegram.ui.Components.wq;
+import org.telegram.ui.Components.pi0;
+import org.telegram.ui.Components.u5;
+import org.telegram.ui.Wallet.k8;
 public final class n1 extends j {
-    public final Bitmap A0;
-    public boolean B0;
+    public final m01 A0;
+    public final Bitmap B0;
     public boolean C0;
-    public final Rect D0;
+    public boolean D0;
     public final Rect E0;
-    public final Paint F0;
-    public ye G0;
-    public final TLObject f55871q0;
-    public final String f55872r0;
-    public final int f55873s0;
-    public boolean f55874t0;
-    public final v5 f55875u0;
-    public final nt0 f55876v0;
-    public final int f55877w0;
-    public boolean f55878x0;
-    public final v5 f55879y0;
-    public final w41 f55880z0;
+    public final Rect F0;
+    public final Paint G0;
+    public xe H0;
+    public final TLObject f57463r0;
+    public final String f57464s0;
+    public final int f57465t0;
+    public boolean f57466u0;
+    public final u5 f57467v0;
+    public final nt0 f57468w0;
+    public final int f57469x0;
+    public boolean f57470y0;
+    public final u5 f57471z0;
 
     public n1(Context context, PointF pointF, nt0 nt0Var, String str, int i7) {
         super(context, pointF);
-        this.f55873s0 = -1;
-        this.f55874t0 = false;
-        this.f55878x0 = false;
+        this.f57465t0 = -1;
+        this.f57466u0 = false;
+        this.f57470y0 = false;
         new Rect();
         new RectF();
         new Paint(3);
-        this.D0 = new Rect();
         this.E0 = new Rect();
-        this.F0 = new Paint(3);
+        this.F0 = new Rect();
+        this.G0 = new Paint(3);
         setRotation(0.0f);
         setScale(1.0f);
-        this.f55872r0 = str;
-        this.f55876v0 = nt0Var;
-        w41 w41Var = new w41(this, context);
-        this.f55880z0 = w41Var;
-        addView(w41Var, ha.c(-1.0f, -1));
-        wq wqVar = wq.h;
-        this.f55875u0 = new v5(w41Var, 0L, 500L, wqVar);
-        this.f55879y0 = new v5(w41Var, 0L, 350L, wqVar);
-        this.f55877w0 = i7;
-        Bitmap q10 = e7.q(new ab.t(str, 2), 1920, 1920, 0, false);
-        this.A0 = q10;
+        this.f57464s0 = str;
+        this.f57468w0 = nt0Var;
+        m01 m01Var = new m01(this, context);
+        this.A0 = m01Var;
+        addView(m01Var, ja.c(-1.0f, -1));
+        er erVar = er.h;
+        this.f57467v0 = new u5(m01Var, 0L, 500L, erVar);
+        this.f57471z0 = new u5(m01Var, 0L, 350L, erVar);
+        this.f57469x0 = i7;
+        Bitmap q10 = d7.q(new ab.t(str, 2), 1920, 1920, 0, false);
+        this.B0 = q10;
         if (q10 != null) {
             s(q10);
         }
@@ -74,9 +75,9 @@ public final class n1 extends j {
     }
 
     private String getImageFilter() {
-        Point point = org.telegram.messenger.g0.f22567q;
-        int round = Math.round((Math.min(point.x, point.y) * 0.8f) / org.telegram.messenger.g0.f22566p);
-        return com.google.android.recaptcha.internal.a.j(round, "_", round);
+        Point point = org.telegram.messenger.g0.f23609q;
+        int round = Math.round((Math.min(point.x, point.y) * 0.8f) / org.telegram.messenger.g0.f23608p);
+        return com.google.android.gms.internal.vision.e2.j(round, "_", round);
     }
 
     @Override
@@ -85,15 +86,15 @@ public final class n1 extends j {
     }
 
     public int getAnchor() {
-        return this.f55873s0;
+        return this.f57465t0;
     }
 
     public nt0 getBaseSize() {
-        return this.f55876v0;
+        return this.f57468w0;
     }
 
     public int getContentHeight() {
-        Bitmap bitmap = this.A0;
+        Bitmap bitmap = this.B0;
         if (bitmap == null) {
             return 1;
         }
@@ -101,7 +102,7 @@ public final class n1 extends j {
     }
 
     public int getContentWidth() {
-        Bitmap bitmap = this.A0;
+        Bitmap bitmap = this.B0;
         if (bitmap == null) {
             return 1;
         }
@@ -109,7 +110,7 @@ public final class n1 extends j {
     }
 
     public int getOrientation() {
-        return this.f55877w0;
+        return this.f57469x0;
     }
 
     public Bitmap getSegmentedOutBitmap() {
@@ -117,7 +118,7 @@ public final class n1 extends j {
     }
 
     @Override
-    public ki0 getSelectionBounds() {
+    public pi0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
@@ -130,19 +131,19 @@ public final class n1 extends j {
         getMeasuredHeight();
         getScale();
         org.telegram.messenger.g0.L(64.0f);
-        float x10 = org.telegram.messenger.camera.q.x(L, 2.0f, getPositionX(), scaleX);
-        return new ki0(x10, org.telegram.messenger.camera.q.x(L2, 2.0f, getPositionY(), scaleX), ((((org.telegram.messenger.g0.L(64.0f) / scaleX) + scale2) * scaleX) + x10) - x10, L2 * scaleX);
+        float x10 = i20.x(L, 2.0f, getPositionX(), scaleX);
+        return new pi0(x10, i20.x(L2, 2.0f, getPositionY(), scaleX), ((((org.telegram.messenger.g0.L(64.0f) / scaleX) + scale2) * scaleX) + x10) - x10, L2 * scaleX);
     }
 
     @Override
     public final void k() {
-        nt0 nt0Var = this.f55876v0;
-        float f10 = nt0Var.f36392a / 2.0f;
-        float f11 = nt0Var.f36393b / 2.0f;
-        ye yeVar = this.G0;
-        if (yeVar != null) {
-            f10 *= yeVar.f26642e;
-            f11 *= yeVar.f26643f;
+        nt0 nt0Var = this.f57468w0;
+        float f10 = nt0Var.f37713a / 2.0f;
+        float f11 = nt0Var.f37714b / 2.0f;
+        xe xeVar = this.H0;
+        if (xeVar != null) {
+            f10 *= xeVar.f27491e;
+            f11 *= xeVar.f27492f;
         }
         setX(getPositionX() - f10);
         setY(getPositionY() - f11);
@@ -161,19 +162,19 @@ public final class n1 extends j {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        nt0 nt0Var = this.f55876v0;
-        float f10 = nt0Var.f36392a;
-        float f11 = nt0Var.f36393b;
-        ye yeVar = this.G0;
-        if (yeVar != null) {
-            f10 *= yeVar.f26642e;
-            f11 *= yeVar.f26643f;
+        nt0 nt0Var = this.f57468w0;
+        float f10 = nt0Var.f37713a;
+        float f11 = nt0Var.f37714b;
+        xe xeVar = this.H0;
+        if (xeVar != null) {
+            f10 *= xeVar.f27491e;
+            f11 *= xeVar.f27492f;
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) f10, 1073741824), View.MeasureSpec.makeMeasureSpec((int) f11, 1073741824));
     }
 
     public final String q(int i7) {
-        TLObject tLObject = this.f55871q0;
+        TLObject tLObject = this.f57463r0;
         if (tLObject instanceof TLRPC.Photo) {
             TLRPC.PhotoSize w10 = w7.w(((TLRPC.Photo) tLObject).sizes, 1000, false, null, false);
             try {
@@ -182,64 +183,64 @@ public final class n1 extends j {
             } catch (Exception unused) {
             }
         }
-        return this.f55872r0;
+        return this.f57464s0;
     }
 
-    public final void r(boolean z9) {
-        boolean z10 = !this.f55874t0;
-        this.f55874t0 = z10;
-        if (!z9) {
-            this.f55875u0.f(z10, true);
+    public final void r(boolean z10) {
+        boolean z11 = !this.f57466u0;
+        this.f57466u0 = z11;
+        if (!z10) {
+            this.f57467v0.f(z11, true);
         }
-        w41 w41Var = this.f55880z0;
-        if (w41Var != null) {
-            w41Var.invalidate();
+        m01 m01Var = this.A0;
+        if (m01Var != null) {
+            m01Var.invalidate();
         }
     }
 
     public final void s(Bitmap bitmap) {
-        if (!this.C0 && !this.B0 && bitmap != null && Build.VERSION.SDK_INT >= 24) {
+        if (!this.D0 && !this.C0 && bitmap != null && Build.VERSION.SDK_INT >= 24) {
             ia.a aVar = new ia.a();
-            aVar.f15412a = true;
+            aVar.f15865a = true;
             zzd a10 = ke.a(new zb.d(aVar));
-            this.B0 = true;
-            a10.g(ub.a.a(this.f55877w0, bitmap)).addOnSuccessListener(new n3(this, 23)).addOnFailureListener(new org.telegram.ui.web.a0(9, this, bitmap));
+            this.C0 = true;
+            a10.g(ub.a.a(this.f57469x0, bitmap)).addOnSuccessListener(new org.telegram.ui.ActionBar.z(this, 28)).addOnFailureListener(new k8(15, this, bitmap));
         }
     }
 
-    public final void t(boolean z9) {
-        boolean z10 = !this.f55878x0;
-        this.f55878x0 = z10;
-        if (!z9) {
-            this.f55879y0.f(z10, true);
+    public final void t(boolean z10) {
+        boolean z11 = !this.f57470y0;
+        this.f57470y0 = z11;
+        if (!z10) {
+            this.f57471z0.f(z11, true);
         }
-        w41 w41Var = this.f55880z0;
-        if (w41Var != null) {
-            w41Var.invalidate();
+        m01 m01Var = this.A0;
+        if (m01Var != null) {
+            m01Var.invalidate();
         }
     }
 
     public n1(Context context, PointF pointF, nt0 nt0Var, TLObject tLObject) {
         super(context, pointF);
-        this.f55873s0 = -1;
-        this.f55874t0 = false;
-        this.f55878x0 = false;
+        this.f57465t0 = -1;
+        this.f57466u0 = false;
+        this.f57470y0 = false;
         new Rect();
         new RectF();
         new Paint(3);
-        this.D0 = new Rect();
         this.E0 = new Rect();
-        this.F0 = new Paint(3);
+        this.F0 = new Rect();
+        this.G0 = new Paint(3);
         setRotation(0.0f);
         setScale(1.0f);
-        this.f55871q0 = tLObject;
-        this.f55876v0 = nt0Var;
-        w41 w41Var = new w41(this, context);
-        this.f55880z0 = w41Var;
-        addView(w41Var, ha.c(-1.0f, -1));
-        wq wqVar = wq.h;
-        this.f55875u0 = new v5(w41Var, 0L, 500L, wqVar);
-        this.f55879y0 = new v5(w41Var, 0L, 350L, wqVar);
+        this.f57463r0 = tLObject;
+        this.f57468w0 = nt0Var;
+        m01 m01Var = new m01(this, context);
+        this.A0 = m01Var;
+        addView(m01Var, ja.c(-1.0f, -1));
+        er erVar = er.h;
+        this.f57467v0 = new u5(m01Var, 0L, 500L, erVar);
+        this.f57471z0 = new u5(m01Var, 0L, 350L, erVar);
         k();
     }
 }

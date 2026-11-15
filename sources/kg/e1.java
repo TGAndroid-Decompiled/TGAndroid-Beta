@@ -3,52 +3,54 @@ package kg;
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
-import c8.ha;
-import di.r4;
-import fi.v9;
+import bi.x4;
+import c8.ja;
+import di.z6;
+import hi.h4;
+import hi.q4;
 import java.util.ArrayList;
 import org.telegram.messenger.a8;
-import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Cells.r8;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.r41;
-public final class e1 extends f2 {
-    public final CharSequence f17358a;
-    public final ArrayList f17359b;
-    public final int f17360c;
+import org.telegram.ui.ActionBar.e2;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.q6;
+import org.telegram.ui.Cells.q8;
+import org.telegram.ui.Components.u41;
+import org.telegram.ui.Components.uj0;
+public final class e1 extends e2 {
+    public final CharSequence f17917a;
+    public final ArrayList f17918b;
+    public final int f17919c;
     public final int d;
-    public final int f17361e;
-    public v9 f17362f;
-    public ha.b h;
-    public r41 f17363n;
-    public boolean f17364r;
+    public final int f17920e;
+    public hi.e1 f17921f;
+    public h4 h;
+    public u41 f17922n;
+    public boolean f17923r;
 
     public e1(CharSequence charSequence, ArrayList arrayList, int i7, int i10, int i11) {
         super(null);
-        this.f17358a = charSequence;
-        this.f17359b = arrayList;
-        this.f17360c = i7;
+        this.f17917a = charSequence;
+        this.f17918b = arrayList;
+        this.f17919c = i7;
         this.d = i10;
-        this.f17361e = i11;
-        this.f17364r = !arrayList.isEmpty();
+        this.f17920e = i11;
+        this.f17923r = !arrayList.isEmpty();
     }
 
     public final boolean Z() {
-        ArrayList arrayList = this.f17359b;
-        if (arrayList.size() != 1 || ((b1) arrayList.get(0)).f17316a != 0 || ((b1) arrayList.get(0)).f17317b != 1439) {
+        ArrayList arrayList = this.f17918b;
+        if (arrayList.size() != 1 || ((b1) arrayList.get(0)).f17875a != 0 || ((b1) arrayList.get(0)).f17876b != 1439) {
             return false;
         }
         return true;
     }
 
     public final boolean a0() {
-        ArrayList arrayList = this.f17359b;
-        if (arrayList.size() >= this.f17361e) {
+        ArrayList arrayList = this.f17918b;
+        if (arrayList.size() >= this.f17920e) {
             return false;
         }
-        if (!arrayList.isEmpty() && !Z() && ((b1) jg.g.i(1, arrayList)).f17317b >= Math.min(1438, this.d - 2)) {
+        if (!arrayList.isEmpty() && !Z() && ((b1) i5.c.h(1, arrayList)).f17876b >= Math.min(1438, this.d - 2)) {
             return false;
         }
         return true;
@@ -58,21 +60,21 @@ public final class e1 extends f2 {
     public final View createView(Context context) {
         setHasOwnBackground(true);
         this.simpleActionBar.setBackButtonImage(2131231240);
-        this.simpleActionBar.setTitle(this.f17358a);
-        this.simpleActionBar.setActionBarMenuOnItemClick(new bi.s(this, 17));
+        this.simpleActionBar.setTitle(this.f17917a);
+        this.simpleActionBar.setActionBarMenuOnItemClick(new x4(this, 10));
         FrameLayout frameLayout = new FrameLayout(context);
-        r41 r41Var = new r41(this, new hi.u1(this, 12), new r4(this, 25), null);
-        this.f17363n = r41Var;
-        r41Var.r1();
-        this.f17363n.setSectionsDrawBackground(true);
-        frameLayout.addView(this.f17363n, ha.c(-1.0f, -1));
+        u41 u41Var = new u41(this, new q4(this, 14), new z6(this, 26), null);
+        this.f17922n = u41Var;
+        u41Var.r1();
+        this.f17922n.setSectionsDrawBackground(true);
+        frameLayout.addView(this.f17922n, ja.c(-1.0f, -1));
         this.fragmentView = frameLayout;
         return frameLayout;
     }
 
     @Override
-    public final pj0 getListViewForSimpleGlass() {
-        return this.f17363n;
+    public final uj0 getListViewForSimpleGlass() {
+        return this.f17922n;
     }
 
     @Override
@@ -82,9 +84,9 @@ public final class e1 extends f2 {
 
     @Override
     public final void onBecomeFullyHidden() {
-        ha.b bVar = this.h;
-        if (bVar != null) {
-            bVar.run();
+        h4 h4Var = this.h;
+        if (h4Var != null) {
+            h4Var.run();
         }
         super.onBecomeFullyHidden();
     }
@@ -92,13 +94,13 @@ public final class e1 extends f2 {
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        if (!this.f17364r) {
-            ArrayList arrayList = this.f17359b;
+        if (!this.f17923r) {
+            ArrayList arrayList = this.f17918b;
             if (!arrayList.isEmpty()) {
                 arrayList.clear();
-                v9 v9Var = this.f17362f;
-                if (v9Var != null) {
-                    v9Var.run();
+                hi.e1 e1Var = this.f17921f;
+                if (e1Var != null) {
+                    e1Var.run();
                 }
             }
         }
@@ -109,16 +111,16 @@ public final class e1 extends f2 {
         int i7;
         super.onThemeColorsChanged();
         try {
-            if (this.f17363n != null) {
-                for (int i10 = 0; i10 < this.f17363n.getChildCount(); i10++) {
-                    View childAt = this.f17363n.getChildAt(i10);
-                    if ((childAt instanceof r8) && ((r8) childAt).f30223b == -1) {
-                        if (this.f17364r) {
-                            i7 = m6.f27928f6;
+            if (this.f17922n != null) {
+                for (int i10 = 0; i10 < this.f17922n.getChildCount(); i10++) {
+                    View childAt = this.f17922n.getChildAt(i10);
+                    if ((childAt instanceof q8) && ((q8) childAt).f31308b == -1) {
+                        if (this.f17923r) {
+                            i7 = j6.f28887f6;
                         } else {
-                            i7 = m6.f27909e6;
+                            i7 = j6.f28868e6;
                         }
-                        t6.h(i7, childAt, null);
+                        q6.h(i7, childAt, null);
                     }
                 }
             }

@@ -1,49 +1,23 @@
 package org.telegram.ui.Wallet;
 
-import android.graphics.Rect;
-import android.view.View;
-import java.util.ArrayList;
-public final class s7 implements View.OnLayoutChangeListener {
-    public final int f43160a;
-    public final Object f43161b;
+import android.view.animation.OvershootInterpolator;
+public final class s7 implements Runnable {
+    public final int f44488a;
+    public final p7 f44489b;
 
-    public s7(Object obj, int i7) {
-        this.f43160a = i7;
-        this.f43161b = obj;
+    public s7(p7 p7Var, int i7) {
+        this.f44488a = i7;
+        this.f44489b = p7Var;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
-        switch (this.f43160a) {
+    public final void run() {
+        switch (this.f44488a) {
             case 0:
-                d8 d8Var = (d8) this.f43161b;
-                d8Var.getClass();
-                if (i11 - i7 != i15 - i13 || i12 - i10 != i16 - i14) {
-                    for (c8 c8Var : d8Var.f42389f.values()) {
-                        c8Var.K = false;
-                    }
-                    d8Var.f0();
-                    return;
-                }
+                this.f44489b.animate().rotation(0.0f).setDuration(120L).start();
                 return;
             default:
-                g8 g8Var = (g8) this.f43161b;
-                if (i12 - i10 < i16 - i14) {
-                    ArrayList arrayList = g8Var.f42545w;
-                    int size = arrayList.size();
-                    int i17 = 0;
-                    while (i17 < size) {
-                        Object obj = arrayList.get(i17);
-                        i17++;
-                        pa paVar = (pa) obj;
-                        if (paVar.hasFocus()) {
-                            paVar.requestRectangleOnScreen(new Rect(0, 0, paVar.getWidth(), paVar.getHeight()), true);
-                            return;
-                        }
-                    }
-                    return;
-                }
-                g8Var.getClass();
+                this.f44489b.animate().scaleX(1.0f).scaleY(1.0f).setDuration(260L).setInterpolator(new OvershootInterpolator(2.0f)).start();
                 return;
         }
     }

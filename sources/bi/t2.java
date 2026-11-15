@@ -1,42 +1,46 @@
 package bi;
 
-import org.telegram.messenger.c20;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class t2 implements RequestDelegate {
-    public final int f4730a = 1;
-    public final k7 f4731b;
-    public final long f4732c;
-    public final long d;
-    public final long f4733e;
-    public final Object f4734f;
+import di.k8;
+import java.util.ArrayList;
+import org.telegram.messenger.np;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.wp0;
+public final class t2 implements Runnable {
+    public final int f3874a;
+    public final wp0 f3875b;
 
-    public t2(k7 k7Var, long j3, long j10, c20 c20Var, long j11) {
-        this.f4731b = k7Var;
-        this.f4732c = j3;
-        this.d = j10;
-        this.f4734f = c20Var;
-        this.f4733e = j11;
+    public t2(wp0 wp0Var, int i7) {
+        this.f3874a = i7;
+        this.f3875b = wp0Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f4730a) {
+    public final void run() {
+        switch (this.f3874a) {
             case 0:
-                org.telegram.messenger.g0.h3(new c3(this.f4731b, (org.telegram.ui.ActionBar.u1) this.f4734f, tLObject, this.f4732c, this.d, this.f4733e, tL_error));
+                k8 k8Var = this.f3875b.f3610e;
+                k8Var.getClass();
+                TL_stars.reorderStarGiftCollections reorderstargiftcollections = new TL_stars.reorderStarGiftCollections();
+                int i7 = k8Var.f8920a;
+                reorderstargiftcollections.peer = np.s1(i7).j1(k8Var.f8921b);
+                ArrayList arrayList = k8Var.f8923e;
+                int size = arrayList.size();
+                int i10 = 0;
+                while (i10 < size) {
+                    Object obj = arrayList.get(i10);
+                    i10++;
+                    reorderstargiftcollections.order.add(Integer.valueOf(((TL_stars.TL_starGiftCollection) obj).collection_id));
+                }
+                ConnectionsManager.getInstance(i7).sendRequest(reorderstargiftcollections, null);
+                k8Var.j();
+                return;
+            case 1:
+                this.f3875b.setReorderingCollections(true);
                 return;
             default:
-                org.telegram.messenger.g0.h3(new c3(this.f4731b, tLObject, this.f4732c, this.d, (c20) this.f4734f, tL_error, this.f4733e));
+                this.f3875b.a();
                 return;
         }
-    }
-
-    public t2(k7 k7Var, org.telegram.ui.ActionBar.u1 u1Var, long j3, long j10, long j11) {
-        this.f4731b = k7Var;
-        this.f4734f = u1Var;
-        this.f4732c = j3;
-        this.d = j10;
-        this.f4733e = j11;
     }
 }

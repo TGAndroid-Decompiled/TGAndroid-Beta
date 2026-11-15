@@ -2,23 +2,23 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-public final class tk0 implements il0 {
-    public final kl0 f50293a;
+public final class tk0 implements hl0 {
+    public final jl0 f51605a;
 
-    public tk0(kl0 kl0Var) {
-        this.f50293a = kl0Var;
+    public tk0(jl0 jl0Var) {
+        this.f51605a = jl0Var;
     }
 
     @Override
-    public final boolean c(String str, String str2, boolean z9, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
+    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
         return false;
     }
 
     @Override
     public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
-        kl0 kl0Var = this.f50293a;
-        kl0Var.I0 = tL_payments_validateRequestedInfo;
-        kl0Var.H0(tL_payments_validateRequestedInfo.info);
+        jl0 jl0Var = this.f51605a;
+        jl0Var.J0 = tL_payments_validateRequestedInfo;
+        jl0Var.H0(tL_payments_validateRequestedInfo.info);
     }
 
     @Override

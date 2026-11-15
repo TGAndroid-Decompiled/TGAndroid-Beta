@@ -1,8 +1,8 @@
 package org.telegram.ui.Components;
 public interface ft0 {
-    void F(boolean z9);
+    void F(boolean z10);
 
-    float Y0();
+    float U0();
 
-    int e1();
+    int b1();
 }

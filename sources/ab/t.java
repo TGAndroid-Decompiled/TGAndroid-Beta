@@ -8,30 +8,30 @@ import android.util.Pair;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
-import fi.c7;
+import hi.b7;
 import java.util.concurrent.ExecutionException;
-public final class t implements Continuation, c7 {
-    public final int f997a;
-    public final String f998b;
+public final class t implements Continuation, b7 {
+    public final int f996a;
+    public final String f997b;
 
     public t(r7 r7Var, String str) {
-        this.f997a = 1;
-        this.f998b = str;
+        this.f996a = 1;
+        this.f997b = str;
     }
 
     @Override
-    public Bitmap c(BitmapFactory.Options options) {
-        return BitmapFactory.decodeFile(this.f998b, options);
+    public Bitmap d(BitmapFactory.Options options) {
+        return BitmapFactory.decodeFile(this.f997b, options);
     }
 
     @Override
     public Object then(Task task) {
-        switch (this.f997a) {
+        switch (this.f996a) {
             case 0:
                 if (task.isSuccessful()) {
                     String str = (String) task.getResult();
                     if (!TextUtils.isEmpty(str)) {
-                        String str2 = this.f998b;
+                        String str2 = this.f997b;
                         if (str.endsWith(str2)) {
                             return str2;
                         }
@@ -41,14 +41,14 @@ public final class t implements Continuation, c7 {
                 throw new ExecutionException(task.getException());
             default:
                 if (!task.isSuccessful()) {
-                    return Tasks.forException(r7.q(task));
+                    return Tasks.forException(r7.s(task));
                 }
-                return Tasks.forResult(new Pair((String) task.getResult(), this.f998b));
+                return Tasks.forResult(new Pair((String) task.getResult(), this.f997b));
         }
     }
 
     public t(String str, int i7) {
-        this.f997a = i7;
-        this.f998b = str;
+        this.f996a = i7;
+        this.f997b = str;
     }
 }

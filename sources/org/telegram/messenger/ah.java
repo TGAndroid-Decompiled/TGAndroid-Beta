@@ -1,36 +1,23 @@
 package org.telegram.messenger;
 
-import org.telegram.SQLite.SQLitePreparedStatement;
-public final class ah implements Runnable {
-    public final ui f21439a;
-    public final long f21440b;
-    public final int f21441c;
-    public final double d;
+import org.telegram.tgnet.RequestDelegate;
+public final class ah implements RequestDelegate {
+    public final int f22508a;
+    public final int f22509b;
+    public final String f22510c;
+    public final String d;
+    public final c1 f22511e;
 
-    public ah(ui uiVar, long j3, int i7, double d) {
-        this.f21439a = uiVar;
-        this.f21440b = j3;
-        this.f21441c = i7;
-        this.d = d;
+    public ah(c1 c1Var, int i7, String str, String str2, int i10) {
+        this.f22508a = i10;
+        this.f22511e = c1Var;
+        this.f22509b = i7;
+        this.f22510c = str;
+        this.d = str2;
     }
 
     @Override
-    public final void run() {
-        ui uiVar = this.f21439a;
-        long j3 = this.f21440b;
-        int i7 = this.f21441c;
-        double d = this.d;
-        try {
-            SQLitePreparedStatement executeFast = uiVar.getMessagesStorage().f26725b.executeFast("REPLACE INTO chat_hints VALUES(?, ?, ?, ?)");
-            executeFast.requery();
-            executeFast.bindLong(1, j3);
-            executeFast.bindInteger(2, i7);
-            executeFast.bindDouble(3, d);
-            executeFast.bindInteger(4, ((int) System.currentTimeMillis()) / 1000);
-            executeFast.step();
-            executeFast.dispose();
-        } catch (Exception e10) {
-            a8.g(e10, true);
-        }
+    public final void run(org.telegram.tgnet.TLObject r17, org.telegram.tgnet.TLRPC.TL_error r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ah.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 }

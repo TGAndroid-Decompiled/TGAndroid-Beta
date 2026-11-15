@@ -3,9 +3,9 @@ package rh;
 import android.view.View;
 import r0.k1;
 public interface c {
-    void P();
+    void Q();
 
-    View R();
+    View S();
 
     void m(k1 k1Var);
 

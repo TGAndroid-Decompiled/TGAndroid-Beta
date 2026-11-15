@@ -1,9 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.widget.TextView;
-public final class k4 extends w70 {
+import android.content.Context;
+import android.os.Vibrator;
+import android.text.Spanned;
+public final class k4 extends xp {
+    public final Context f36275b;
+
+    public k4(Context context) {
+        super(255);
+        this.f36275b = context;
+    }
+
     @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(org.telegram.messenger.i6.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
+    public final CharSequence filter(CharSequence charSequence, int i7, int i10, Spanned spanned, int i11, int i12) {
+        Vibrator vibrator;
+        CharSequence filter = super.filter(charSequence, i7, i10, spanned, i11, i12);
+        if (filter != null && charSequence != null && filter.length() != charSequence.length() && (vibrator = (Vibrator) this.f36275b.getSystemService("vibrator")) != null) {
+            vibrator.vibrate(200L);
+        }
+        return filter;
     }
 }

@@ -1,23 +1,15 @@
 package q2;
+public final class d implements Runnable {
+    public final int f55163a;
+    public final Object f55164b;
 
-import android.os.Handler;
-import h2.m0;
-import org.telegram.ui.ActionBar.p5;
-public final class d implements l {
-    public final j f53728a;
-    public g f53729b;
-    public boolean f53730c;
-    public final e d;
-
-    public d(e eVar, j jVar) {
-        this.d = eVar;
-        this.f53728a = jVar;
+    public d(Object obj, int i7) {
+        this.f55163a = i7;
+        this.f55164b = obj;
     }
 
     @Override
-    public final void release() {
-        Handler handler = this.d.J;
-        handler.getClass();
-        m0.W(handler, new p5(this, 18));
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: q2.d.run():void");
     }
 }

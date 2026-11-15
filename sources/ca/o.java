@@ -3,22 +3,22 @@ package ca;
 import java.io.File;
 import java.nio.charset.Charset;
 public final class o implements d {
-    public static final Charset f6033c = Charset.forName("UTF-8");
-    public final File f6034a;
-    public m f6035b;
+    public static final Charset f4855c = Charset.forName("UTF-8");
+    public final File f4856a;
+    public m f4857b;
 
     public o(File file) {
-        this.f6034a = file;
+        this.f4856a = file;
     }
 
     @Override
     public final void b() {
-        aa.g.b(this.f6035b, "There was a problem closing the Crashlytics log file.");
-        this.f6035b = null;
+        aa.g.b(this.f4857b, "There was a problem closing the Crashlytics log file.");
+        this.f4857b = null;
     }
 
     @Override
-    public final java.lang.String m() {
-        throw new UnsupportedOperationException("Method not decompiled: ca.o.m():java.lang.String");
+    public final java.lang.String n() {
+        throw new UnsupportedOperationException("Method not decompiled: ca.o.n():java.lang.String");
     }
 }

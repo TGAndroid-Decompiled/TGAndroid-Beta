@@ -1,484 +1,173 @@
 package org.telegram.ui.Components.voip;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.SurfaceTexture;
-import android.os.SystemClock;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.a8;
-import org.telegram.messenger.ls;
-import org.telegram.messenger.p10;
-import org.telegram.messenger.qs;
-import org.telegram.messenger.r3;
-import org.telegram.messenger.s3;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.dt;
-import org.telegram.ui.Components.ex;
-import org.telegram.ui.Components.qm0;
-import org.telegram.ui.Components.us;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.f40;
-import org.webrtc.VideoFrame;
-public final class g1 implements ti.m, ls {
-    public static g1 f39226w;
-    public ti.o f39227a;
-    public TLRPC.GroupCallParticipant f39229c;
-    public boolean d;
-    public q0 f39230e;
-    public f1 f39231f;
-    public e1 h;
-    public final int f39233r;
-    public long f39234s;
-    public final d1 f39228b = new d1(this);
-    public final dt f39232n = new dt(this, 20);
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import c8.ja;
+import di.k4;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.fh0;
+import org.telegram.ui.pb1;
+public final class g1 extends FrameLayout {
+    public final fh0 f40617a;
+    public final fh0 f40618b;
+    public final org.telegram.ui.Cells.y f40619c;
+    public org.telegram.ui.Components.f1 d;
+    public f1 f40620e;
+    public int f40621f;
 
-    public g1(int i7) {
-        this.f39233r = i7;
-        qs.f(i7).b(this, qs.f25103w2);
-        qs.f(i7).b(this, qs.B2);
+    public g1(Context context) {
+        super(context);
+        this.f40621f = 0;
+        setWillNotDraw(false);
+        ?? imageView = new ImageView(context);
+        this.f40617a = imageView;
+        ?? imageView2 = new ImageView(context);
+        this.f40618b = imageView2;
+        imageView.f(2131624225, 37, 37, null);
+        imageView2.f(2131624215, 37, 37, null);
+        imageView2.setAlpha(0.0f);
+        addView((View) imageView, ja.c(37.0f, 37));
+        addView((View) imageView2, ja.c(37.0f, 37));
+        org.telegram.ui.Cells.y j02 = j6.j0(org.telegram.messenger.g0.L(37.0f), 0, i0.a.o(-1, 76));
+        this.f40619c = j02;
+        j02.setCallback(this);
+        setClickable(true);
     }
 
-    public static r3 d() {
-        r3 r3Var;
-        TLRPC.GroupCall groupCall;
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance != null) {
-            r3Var = sharedInstance.groupCall;
-        } else {
-            r3Var = null;
-        }
-        if (sharedInstance == null || r3Var == null || (groupCall = r3Var.f25226b) == null || !groupCall.rtmp_stream || sharedInstance.isHangingUp()) {
-            return null;
-        }
-        return r3Var;
-    }
-
-    public static boolean i() {
-        ti.o oVar;
-        g1 g1Var = f39226w;
-        if (g1Var != null && (oVar = g1Var.f39227a) != null && oVar.e()) {
-            return true;
-        }
-        return false;
-    }
-
-    public static void k(Activity activity) {
-        ti.p g10;
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         int i7;
-        if (d() != null) {
-            if (f39226w == null) {
-                VoIPService sharedInstance = VoIPService.getSharedInstance();
-                if (sharedInstance != null) {
-                    i7 = sharedInstance.getAccount();
-                } else {
-                    i7 = p10.f24474s0;
+        f1 f1Var;
+        int action = motionEvent.getAction();
+        int i10 = 0;
+        if (action != 0) {
+            if (action != 1) {
+                if (action == 3 && (f1Var = this.f40620e) != null) {
+                    g1[] g1VarArr = (g1[]) ((k4) ((org.telegram.ui.ActionBar.z) f1Var).f29898b).d;
+                    int length = g1VarArr.length;
+                    while (i10 < length) {
+                        g1 g1Var = g1VarArr[i10];
+                        fh0 fh0Var = g1Var.f40617a;
+                        fh0 fh0Var2 = g1Var.f40618b;
+                        fh0Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+                        fh0Var2.animate().alpha(0.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+                        i10++;
+                    }
                 }
-                f39226w = new g1(i7);
-            }
-            g1 g1Var = f39226w;
-            ti.o oVar = g1Var.f39227a;
-            if (oVar == null || !oVar.d()) {
-                g1Var.f39227a = l2.i.d().k(g1Var);
-            }
-            ti.o oVar2 = g1Var.f39227a;
-            if (oVar2.f56136c != 0 || (g10 = oVar2.g(activity, null, true)) == null) {
-                return;
-            }
-            q0 q0Var = new q0(g10);
-            g1Var.f39230e = q0Var;
-            g1Var.f39228b.f39149a = q0Var;
-            g1Var.a();
-            g1Var.f39234s = SystemClock.elapsedRealtime();
-            dt dtVar = g1Var.f39232n;
-            org.telegram.messenger.g0.r(dtVar);
-            org.telegram.messenger.g0.i3(dtVar, 700L);
-            f40 f40Var = f40.f45501x5;
-            if (f40Var != null) {
-                f40Var.dismiss();
-            }
-            org.telegram.messenger.g0.h3(new us(13));
-        }
-    }
-
-    public static void n(boolean z9) {
-        int i7;
-        f40 f40Var = f40.f45501x5;
-        if (f40Var != null && f40Var.getWindow() != null) {
-            View decorView = f40Var.getWindow().getDecorView();
-            if (z9) {
-                i7 = 4;
             } else {
-                i7 = 0;
-            }
-            decorView.setVisibility(i7);
-        }
-    }
-
-    public static void o() {
-        int i7;
-        if (d() == null) {
-            g1 g1Var = f39226w;
-            if (g1Var != null) {
-                f39226w = null;
-                int i10 = g1Var.f39233r;
-                qs.f(i10).n(g1Var, qs.f25103w2);
-                qs.f(i10).n(g1Var, qs.B2);
-                ti.o oVar = g1Var.f39227a;
-                if (oVar != null) {
-                    g1Var.f39227a = null;
-                    oVar.f();
+                f1 f1Var2 = this.f40620e;
+                if (f1Var2 != null) {
+                    g1[] g1VarArr2 = (g1[]) ((k4) ((org.telegram.ui.ActionBar.z) f1Var2).f29898b).d;
+                    for (int i11 = 0; i11 <= this.f40621f; i11++) {
+                        g1 g1Var2 = g1VarArr2[i11];
+                        fh0 fh0Var3 = g1Var2.f40617a;
+                        fh0 fh0Var4 = g1Var2.f40618b;
+                        fh0Var3.animate().scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+                        fh0Var4.animate().scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+                    }
                 }
-                g1Var.m();
-                return;
+                if (this.d != null) {
+                    int[] iArr = new int[2];
+                    getLocationOnScreen(iArr);
+                    int i12 = iArr[0];
+                    int i13 = iArr[1];
+                    org.telegram.ui.Components.f1 f1Var3 = this.d;
+                    float width = (getWidth() / 2.0f) + i12;
+                    float height = (getHeight() / 2.0f) + i13;
+                    int i14 = this.f40621f + 1;
+                    k4 k4Var = (k4) f1Var3.f34472b;
+                    Context context = (Context) f1Var3.f34473c;
+                    if (i14 >= 4) {
+                        ?? imageView = new ImageView(context);
+                        int L = org.telegram.messenger.g0.L(133.0f);
+                        imageView.f(2131624175, 133, 133, null);
+                        int[] iArr2 = new int[2];
+                        k4Var.getLocationOnScreen(iArr2);
+                        int i15 = iArr2[0];
+                        int i16 = iArr2[1];
+                        k4Var.addView((View) imageView, ja.c(133.0f, 133));
+                        float f10 = L / 2.0f;
+                        imageView.setTranslationX((width - i15) - f10);
+                        imageView.setTranslationY((height - i16) - f10);
+                        imageView.setOnAnimationEndListener(new e1(k4Var, imageView, 0));
+                        imageView.d();
+                    }
+                    pb1 pb1Var = (pb1) k4Var.f8909e;
+                    if (pb1Var != null) {
+                        pb1Var.f50239b.M = i14;
+                    }
+                }
             }
-            return;
-        }
-        if (f39226w == null) {
-            VoIPService sharedInstance = VoIPService.getSharedInstance();
-            if (sharedInstance != null) {
-                i7 = sharedInstance.getAccount();
-            } else {
-                i7 = p10.f24474s0;
-            }
-            f39226w = new g1(i7);
-        }
-        g1 g1Var2 = f39226w;
-        ti.o oVar2 = g1Var2.f39227a;
-        if (oVar2 == null || !oVar2.d()) {
-            g1Var2.f39227a = l2.i.d().k(g1Var2);
-        }
-        f39226w.a();
-        f39226w.f39227a.c();
-    }
-
-    @Override
-    public final void B(View view) {
-        n(true);
-    }
-
-    @Override
-    public final void C(SurfaceTexture surfaceTexture) {
-        q0 q0Var = this.f39230e;
-        this.f39230e = null;
-        this.f39228b.f39149a = null;
-        a();
-        if (q0Var != null) {
-            q0Var.a();
-        }
-        surfaceTexture.release();
-    }
-
-    @Override
-    public final View D() {
-        return null;
-    }
-
-    @Override
-    public final boolean E() {
-        f40 f40Var = f40.f45501x5;
-        if (f40Var != null && f40.f45502y5 && f40Var.u1()) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int I() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.g1.I():int");
-    }
-
-    @Override
-    public final boolean K() {
-        if (d() != null) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean L() {
-        return false;
-    }
-
-    @Override
-    public final e2.c1 M() {
-        return null;
-    }
-
-    @Override
-    public final boolean P() {
-        return false;
-    }
-
-    @Override
-    public final void Q() {
-        this.f39227a = null;
-        if (this.f39231f != null) {
-            n(false);
-        }
-        m();
-        org.telegram.messenger.g0.h3(new us(13));
-        org.telegram.messenger.g0.h3(new us(12));
-    }
-
-    @Override
-    public final boolean R(boolean z9, float f10, qm0 qm0Var) {
-        return false;
-    }
-
-    @Override
-    public final void S(View view) {
-        f1 f1Var = (f1) view;
-        this.f39231f = f1Var;
-        if (!f1Var.f39198b) {
-            f1Var.f39198b = true;
-            org.telegram.messenger.g0.i3(f1Var.f39200e, 500L);
-        }
-        f1Var.a();
-        this.f39228b.f39150b = this.f39231f.f39197a.d;
-        a();
-    }
-
-    @Override
-    public final void T() {
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        LaunchActivity launchActivity = LaunchActivity.G1;
-        if (sharedInstance != null && launchActivity != null && d() != null) {
-            if (f40.f45501x5 == null) {
-                f40.e1(launchActivity, org.telegram.messenger.c.a(sharedInstance.getAccount()), null, null, false, null);
-            }
-            if (this.f39227a != null) {
-                q0 q0Var = this.f39230e;
-                this.f39230e = null;
-                this.f39228b.f39149a = null;
-                this.f39227a.a(new ex(7, this, q0Var));
-                org.telegram.messenger.g0.h3(new us(13));
-                return;
-            }
-            return;
-        }
-        ti.o oVar = this.f39227a;
-        if (oVar != null) {
-            oVar.b();
-        }
-    }
-
-    @Override
-    public final int U() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.g1.U():int");
-    }
-
-    @Override
-    public final float V() {
-        return 0.0f;
-    }
-
-    public final void a() {
-        boolean z9;
-        TLRPC.GroupCallParticipant groupCallParticipant;
-        String str;
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        r3 d = d();
-        boolean z10 = false;
-        if (this.f39228b.f39149a == null && this.f39228b.f39150b == null) {
-            z9 = false;
         } else {
-            z9 = true;
-        }
-        if (z9 && d != null && !d.f25229f.isEmpty()) {
-            s3 s3Var = (s3) d.f25229f.get(0);
-            groupCallParticipant = s3Var.f25413a;
-            z10 = s3Var.f25414b;
-        } else {
-            groupCallParticipant = null;
-        }
-        TLRPC.GroupCallParticipant groupCallParticipant2 = this.f39229c;
-        if (groupCallParticipant != groupCallParticipant2 || z10 != this.d) {
-            if (groupCallParticipant2 != null) {
-                VoIPService sharedInstance2 = VoIPService.getSharedInstance();
-                if (sharedInstance2 != null) {
-                    sharedInstance2.removeExtraRemoteSink(this.f39229c, this.d, this.f39228b);
+            f1 f1Var4 = this.f40620e;
+            if (f1Var4 != null) {
+                g1[] g1VarArr3 = (g1[]) ((k4) ((org.telegram.ui.ActionBar.z) f1Var4).f29898b).d;
+                while (true) {
+                    i7 = this.f40621f;
+                    if (i10 > i7) {
+                        break;
+                    }
+                    g1 g1Var3 = g1VarArr3[i10];
+                    fh0 fh0Var5 = g1Var3.f40617a;
+                    fh0 fh0Var6 = g1Var3.f40618b;
+                    fh0Var5.animate().alpha(0.0f).scaleX(0.8f).scaleY(0.8f).setDuration(250L).start();
+                    fh0Var6.animate().alpha(1.0f).scaleX(0.8f).scaleY(0.8f).setDuration(250L).start();
+                    i10++;
                 }
-                this.f39229c = null;
-            }
-            if (groupCallParticipant != null && sharedInstance != null && sharedInstance.addExtraRemoteSink(groupCallParticipant, z10, this.f39228b)) {
-                this.f39229c = groupCallParticipant;
-                this.d = z10;
-                StringBuilder sb2 = new StringBuilder("bound ");
-                if (z10) {
-                    str = groupCallParticipant.presentationEndpoint;
-                } else {
-                    str = groupCallParticipant.videoEndpoint;
-                }
-                sb2.append(str);
-                String sb3 = sb2.toString();
-                if (org.telegram.messenger.r2.f25216a) {
-                    a8.b("rtmp pip: " + sb3);
+                for (int i17 = i7 + 1; i17 < g1VarArr3.length; i17++) {
+                    g1 g1Var4 = g1VarArr3[i17];
+                    fh0 fh0Var7 = g1Var4.f40617a;
+                    fh0 fh0Var8 = g1Var4.f40618b;
+                    fh0Var7.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+                    fh0Var8.animate().alpha(0.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                 }
             }
         }
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == qs.f25103w2 || i7 == qs.B2) {
-            a();
-            f1 f1Var = this.f39231f;
-            if (f1Var != null) {
-                f1Var.a();
-            }
+    public final void drawableStateChanged() {
+        super.drawableStateChanged();
+        org.telegram.ui.Cells.y yVar = this.f40619c;
+        if (yVar != null) {
+            yVar.setState(getDrawableState());
         }
     }
 
     @Override
-    public final void e(View view) {
-        n(false);
-        f1 f1Var = this.f39231f;
-        if (view == f1Var) {
-            f1Var.f39198b = false;
-            org.telegram.messenger.g0.r(f1Var.f39200e);
-            this.f39231f = null;
-            this.f39228b.f39150b = null;
-            a();
+    public final void jumpDrawablesToCurrentState() {
+        super.jumpDrawablesToCurrentState();
+        org.telegram.ui.Cells.y yVar = this.f40619c;
+        if (yVar != null) {
+            yVar.jumpToCurrentState();
         }
     }
 
     @Override
-    public final boolean e0() {
-        return false;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        int width = getWidth();
+        int height = getHeight();
+        org.telegram.ui.Cells.y yVar = this.f40619c;
+        yVar.setBounds(0, 0, width, height);
+        yVar.draw(canvas);
+    }
+
+    public void setAllStarsProvider(f1 f1Var) {
+        this.f40620e = f1Var;
     }
 
     @Override
-    public final void g(ti.p pVar) {
-        q0 q0Var = new q0(pVar);
-        this.f39230e = q0Var;
-        this.f39228b.f39149a = q0Var;
-        a();
-        this.f39234s = SystemClock.elapsedRealtime();
-        dt dtVar = this.f39232n;
-        org.telegram.messenger.g0.r(dtVar);
-        org.telegram.messenger.g0.i3(dtVar, 700L);
-    }
-
-    @Override
-    public final long getDuration() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean h() {
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (this.f40619c != drawable && !super.verifyDrawable(drawable)) {
+            return false;
+        }
         return true;
-    }
-
-    @Override
-    public final int j() {
-        return 10;
-    }
-
-    @Override
-    public final long l() {
-        return 0L;
-    }
-
-    public final void m() {
-        org.telegram.messenger.g0.r(this.f39232n);
-        e1 e1Var = this.h;
-        if (e1Var != null) {
-            e1Var.f39178a.R();
-            VideoFrame videoFrame = e1Var.f39179b;
-            if (videoFrame != null) {
-                videoFrame.release();
-                e1Var.f39179b = null;
-            }
-            this.h = null;
-        }
-        this.f39228b.f39149a = null;
-        this.f39228b.f39150b = null;
-        q0 q0Var = this.f39230e;
-        if (q0Var != null) {
-            q0Var.a();
-            this.f39230e = null;
-        }
-        if (this.f39229c != null) {
-            VoIPService sharedInstance = VoIPService.getSharedInstance();
-            if (sharedInstance != null) {
-                sharedInstance.removeExtraRemoteSink(this.f39229c, this.d, this.f39228b);
-            }
-            this.f39229c = null;
-        }
-    }
-
-    @Override
-    public final boolean r() {
-        return true;
-    }
-
-    @Override
-    public final boolean u() {
-        return false;
-    }
-
-    @Override
-    public final void v(Rect rect) {
-        rect.setEmpty();
-    }
-
-    @Override
-    public final View x(LaunchActivity launchActivity) {
-        return new f1(this, launchActivity);
-    }
-
-    @Override
-    public final void y(View view) {
-        if (view == this.f39231f) {
-            n(false);
-        }
-        f1 f1Var = this.f39231f;
-        if (view == f1Var) {
-            f1Var.f39198b = false;
-            org.telegram.messenger.g0.r(f1Var.f39200e);
-            this.f39231f = null;
-            this.f39228b.f39150b = null;
-            a();
-        }
-        f1 f1Var2 = (f1) view;
-        f1Var2.f39198b = false;
-        org.telegram.messenger.g0.r(f1Var2.f39200e);
-        f1Var2.f39197a.d.release();
-    }
-
-    @Override
-    public final void J(float f10) {
-    }
-
-    @Override
-    public final void c(long j3) {
-    }
-
-    @Override
-    public final void f0(int i7) {
-    }
-
-    @Override
-    public final void F() {
-    }
-
-    @Override
-    public final void b() {
-    }
-
-    @Override
-    public final void f() {
-    }
-
-    @Override
-    public final void Z(int i7, ArrayList arrayList) {
-    }
-
-    @Override
-    public final void c0(Canvas canvas, int i7, int i10) {
     }
 }

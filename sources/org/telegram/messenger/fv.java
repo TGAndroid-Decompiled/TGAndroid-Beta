@@ -1,47 +1,62 @@
 package org.telegram.messenger;
 
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.Region;
 import android.view.View;
-public final class fv {
-    public float f22484a;
-    public boolean f22485b;
-    public float f22486c;
-    public float d;
-    public float f22487e;
-    public ValueAnimator f22488f;
-    public final Path f22489g = new Path();
+import java.util.ArrayList;
+public final class fv implements Runnable {
+    public final int f23553a = 0;
+    public final hv f23554b;
+    public final iv f23555c;
+    public final View d;
 
-    public final void a(Canvas canvas) {
-        if (this.f22484a > 0.0f) {
-            Path path = this.f22489g;
-            path.rewind();
-            path.addCircle(this.f22486c, this.d, this.f22487e * this.f22484a, Path.Direction.CW);
-            canvas.clipPath(path, Region.Op.DIFFERENCE);
+    public fv(hv hvVar, View view, iv ivVar) {
+        this.f23554b = hvVar;
+        this.d = view;
+        this.f23555c = ivVar;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f23553a) {
+            case 0:
+                hv hvVar = this.f23554b;
+                hvVar.getClass();
+                View view = this.d;
+                if (view != null) {
+                    view.post(new fv(hvVar, this.f23555c, view));
+                    return;
+                }
+                return;
+            default:
+                hv hvVar2 = this.f23554b;
+                iv ivVar = this.f23555c;
+                if (ivVar != null) {
+                    hvVar2.getClass();
+                    gj gjVar = ivVar.f24441b;
+                    if (gjVar != null) {
+                        gjVar.N0 = true;
+                    }
+                    ArrayList arrayList = ivVar.f24451n;
+                    int size = arrayList.size();
+                    int i7 = 0;
+                    while (i7 < size) {
+                        Object obj = arrayList.get(i7);
+                        i7++;
+                        org.telegram.ui.Cells.s9 s9Var = (org.telegram.ui.Cells.s9) obj;
+                        if (s9Var instanceof hv) {
+                            ((hv) s9Var).f24230x.clear();
+                        }
+                    }
+                } else {
+                    hvVar2.f24230x.clear();
+                }
+                this.d.invalidate();
+                return;
         }
     }
 
-    public final boolean b() {
-        if (this.f22485b && this.f22484a >= 1.0f) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void c(View view, float f10, float f11, float f12, float f13) {
-        if (!this.f22485b && this.f22488f == null) {
-            this.f22486c = f10;
-            this.d = f11;
-            this.f22487e = (float) Math.sqrt((f13 * f13) + (f12 * f12));
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.f22488f = ofFloat;
-            ofFloat.setDuration(Utilities.i(this.f22487e * 0.3f, 550.0f, 250.0f));
-            this.f22488f.setInterpolator(org.telegram.ui.Components.wq.f40049j);
-            this.f22488f.addUpdateListener(new q(2, this, view));
-            this.f22488f.addListener(new ah.l(12, this, view));
-            this.f22488f.start();
-        }
+    public fv(hv hvVar, iv ivVar, View view) {
+        this.f23554b = hvVar;
+        this.f23555c = ivVar;
+        this.d = view;
     }
 }

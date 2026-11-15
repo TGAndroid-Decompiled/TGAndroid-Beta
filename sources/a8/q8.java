@@ -1,6 +1,13 @@
 package a8;
 public abstract class q8 {
-    public static int a(int i7) {
-        return (int) (Integer.rotateLeft((int) (i7 * (-862048943)), 15) * 461845907);
+    public final int f596a = 1;
+
+    public String toString() {
+        switch (this.f596a) {
+            case 1:
+                return ((com.google.android.gms.internal.cast.k4) this).f6282b.toString();
+            default:
+                return super.toString();
+        }
     }
 }

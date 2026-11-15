@@ -1,33 +1,31 @@
 package fi;
 
-import android.view.KeyEvent;
-import org.telegram.messenger.y10;
-import org.telegram.tgnet.TLRPC;
-public final class o4 implements org.telegram.ui.ActionBar.e1, y10 {
-    public final o5 f12515a;
+import android.text.TextUtils;
+import j$.util.Objects;
+public final class o4 {
+    public boolean f12115a = true;
+    public boolean f12116b;
+    public String f12117c;
 
-    public o4(o5 o5Var) {
-        this.f12515a = o5Var;
+    public final boolean equals(Object obj) {
+        boolean z10;
+        if (this != obj) {
+            if (obj != null && o4.class == obj.getClass()) {
+                o4 o4Var = (o4) obj;
+                if ((TextUtils.isEmpty(this.f12117c) && TextUtils.isEmpty(o4Var.f12117c)) || Objects.equals(this.f12117c, o4Var.f12117c)) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (this.f12115a != o4Var.f12115a || this.f12116b != o4Var.f12116b || !z10) {
+                }
+            }
+            return false;
+        }
+        return true;
     }
 
-    @Override
-    public void j(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.g1 g1Var;
-        o5 o5Var = this.f12515a;
-        o5Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (g1Var = o5Var.f12544q1) != null && g1Var.isShowing()) {
-            o5Var.f12544q1.d(true);
-        }
-    }
-
-    @Override
-    public void k(Object obj, TLRPC.Document document, Boolean bool) {
-        o5 o5Var = this.f12515a;
-        o5Var.U1 = true;
-        f5 k02 = o5Var.k0(obj, document);
-        if (bool.booleanValue()) {
-            k02.setScale(1.5f);
-        }
-        o5Var.b0(k02);
+    public final int hashCode() {
+        return Objects.hash(Boolean.valueOf(this.f12115a), Boolean.valueOf(this.f12116b), this.f12117c);
     }
 }

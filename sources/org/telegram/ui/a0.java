@@ -1,94 +1,65 @@
 package org.telegram.ui;
 
-import android.view.WindowManager;
+import org.telegram.ui.web.HttpGetFileTask;
 public final class a0 implements Runnable {
-    public final int f43509a;
-    public final g4 f43510b;
+    public final int f44891a;
+    public final float f44892b;
+    public final Object f44893c;
 
-    public a0(g4 g4Var, int i7) {
-        this.f43509a = i7;
-        this.f43510b = g4Var;
+    public a0(Object obj, float f10, int i7) {
+        this.f44891a = i7;
+        this.f44893c = obj;
+        this.f44892b = f10;
     }
 
     @Override
     public final void run() {
-        float f10;
-        switch (this.f43509a) {
+        switch (this.f44891a) {
             case 0:
-                g4 g4Var = this.f43510b;
-                try {
-                    if (g4Var.f45957f0.getParent() != null) {
-                        ((WindowManager) g4Var.L.getSystemService("window")).removeView(g4Var.f45957f0);
-                        return;
-                    }
-                    return;
-                } catch (Exception e10) {
-                    org.telegram.messenger.a8.g(e10, true);
-                    return;
-                }
+                ((g4) this.f44893c).f47324i0.N.c(true, this.f44892b);
+                return;
             case 1:
-                g4 g4Var2 = this.f43510b;
-                k0 k0Var = g4Var2.f45958g0;
-                if (k0Var != null && g4Var2.f45957f0 != null) {
-                    k0Var.setLayerType(0, null);
-                    g4Var2.Z = 0;
-                    org.telegram.messenger.g0.v1(g4Var2.L.getCurrentFocus());
+                org.telegram.ui.Components.qa qaVar = (org.telegram.ui.Components.qa) this.f44893c;
+                if (qaVar.f38592a.getTranslationX() == this.f44892b) {
+                    qaVar.E.b();
                     return;
                 }
                 return;
             case 2:
-                this.f43510b.d0();
+                org.telegram.ui.Components.voip.a1 a1Var = (org.telegram.ui.Components.voip.a1) this.f44893c;
+                float f10 = this.f44892b;
+                yb1 yb1Var = a1Var.f40488c;
+                if (f10 > 0.0f) {
+                    int i7 = yb1Var.f40547x;
+                    if (i7 < 2) {
+                        yb1Var.c(i7 + 1, true);
+                    }
+                } else {
+                    int i10 = yb1Var.f40547x;
+                    if (i10 > 0) {
+                        yb1Var.c(i10 - 1, true);
+                    }
+                }
+                a1Var.f40487b = false;
                 return;
             case 3:
-                g4 g4Var3 = this.f43510b;
-                float currentProgress = 0.7f - g4Var3.f45959h0.f51127d0.getCurrentProgress();
-                if (currentProgress > 0.0f) {
-                    if (currentProgress < 0.25f) {
-                        f10 = 0.01f;
-                    } else {
-                        f10 = 0.02f;
-                    }
-                    org.telegram.ui.Components.h70 h70Var = g4Var3.f45959h0.f51127d0;
-                    h70Var.a(true, h70Var.getCurrentProgress() + f10);
-                    org.telegram.messenger.g0.i3(g4Var3.f45961j0, 100L);
-                    return;
-                }
-                return;
-            case 4:
-                org.telegram.messenger.g0.h3(new a0(this.f43510b, 2));
-                return;
-            case 5:
-                org.telegram.messenger.g0.h3(new a0(this.f43510b, 2));
-                return;
-            case 6:
-                this.f43510b.K.a(true);
-                return;
-            case 7:
-                this.f43510b.K.a(true);
-                return;
-            case 8:
-                this.f43510b.a0();
-                return;
-            case 9:
-                this.f43510b.f0();
-                return;
-            case 10:
-                g4 g4Var4 = this.f43510b;
-                k0 k0Var2 = g4Var4.f45958g0;
-                if (k0Var2 != null) {
-                    k0Var2.setLayerType(0, null);
-                    g4Var4.Z = 0;
-                    g4Var4.K();
-                    return;
-                }
+                HttpGetFileTask.b((HttpGetFileTask) this.f44893c, this.f44892b);
                 return;
             default:
-                org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
-                if (T != 0) {
-                    ?? obj = new Object();
-                    obj.f27388a = true;
-                    T.showAsSheet(new org.telegram.ui.web.o1(new q(this.f43510b, 3)), obj);
-                    return;
+                org.telegram.utils.twidget.l1 l1Var = (org.telegram.utils.twidget.l1) this.f44893c;
+                float f11 = this.f44892b;
+                if (!l1Var.f54318w) {
+                    l1Var.f54299a.removeCallbacks(l1Var.Q);
+                    int i11 = (f11 > 0.0f ? 1 : (f11 == 0.0f ? 0 : -1));
+                    if (i11 > 0) {
+                        l1Var.f54299a.postDelayed(l1Var.Q, (long) Math.ceil(f11));
+                        return;
+                    } else if (i11 == 0) {
+                        l1Var.d();
+                        return;
+                    } else {
+                        return;
+                    }
                 }
                 return;
         }

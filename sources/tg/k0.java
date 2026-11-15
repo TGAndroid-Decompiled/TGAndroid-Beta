@@ -3,26 +3,27 @@ package tg;
 import android.content.Context;
 import android.graphics.PointF;
 import android.view.ViewGroup;
-import c8.ha;
-import org.telegram.ui.Components.ki0;
+import c8.ja;
+import org.telegram.messenger.i20;
+import org.telegram.ui.Components.pi0;
 public final class k0 extends j {
-    public final i0 f55811q0;
-    public int f55812r0;
-    public int f55813s0;
-    public boolean f55814t0;
-    public h0 f55815u0;
+    public final i0 f57405r0;
+    public int f57406s0;
+    public int f57407t0;
+    public boolean f57408u0;
+    public h0 f57409v0;
 
     public k0(Context context, PointF pointF, int i7, h0 h0Var, float f10, int i10) {
         super(context, pointF);
         i0 i0Var = new i0(context, f10);
-        this.f55811q0 = i0Var;
+        this.f57405r0 = i0Var;
         i0Var.setMaxWidth(i10);
-        this.f55815u0 = h0Var;
+        this.f57409v0 = h0Var;
         i0Var.b(i7, h0Var, false);
         m();
-        this.f55813s0 = 3;
-        i0Var.c(3, this.f55812r0);
-        addView(i0Var, ha.e(-2, -2, 51));
+        this.f57407t0 = 3;
+        i0Var.c(3, this.f57406s0);
+        addView(i0Var, ja.e(-2, -2, 51));
         setClipChildren(false);
         setClipToPadding(false);
         k();
@@ -34,7 +35,7 @@ public final class k0 extends j {
     }
 
     public int getColor() {
-        return this.f55812r0;
+        return this.f57406s0;
     }
 
     @Override
@@ -43,15 +44,15 @@ public final class k0 extends j {
     }
 
     public int getNextType() {
-        int i7 = this.f55813s0 + 1;
+        int i7 = this.f57407t0 + 1;
         if (i7 == 4) {
-            return !this.f55814t0 ? 1 : 0;
+            return !this.f57408u0 ? 1 : 0;
         }
         return i7;
     }
 
     @Override
-    public ki0 getSelectionBounds() {
+    public pi0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
@@ -61,37 +62,37 @@ public final class k0 extends j {
         float L = (org.telegram.messenger.g0.L(64.0f) / scaleX) + (scale * getMeasuredWidth());
         float scale2 = getScale();
         float L2 = (org.telegram.messenger.g0.L(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
-        float x10 = org.telegram.messenger.camera.q.x(L, 2.0f, getPositionX(), scaleX);
-        return new ki0(x10, org.telegram.messenger.camera.q.x(L2, 2.0f, getPositionY(), scaleX), ((L * scaleX) + x10) - x10, L2 * scaleX);
+        float x10 = i20.x(L, 2.0f, getPositionX(), scaleX);
+        return new pi0(x10, i20.x(L2, 2.0f, getPositionY(), scaleX), ((L * scaleX) + x10) - x10, L2 * scaleX);
     }
 
     @Override
     public float getStickyPaddingBottom() {
-        return this.f55811q0.h;
+        return this.f57405r0.h;
     }
 
     @Override
     public float getStickyPaddingLeft() {
-        return this.f55811q0.f55747f;
+        return this.f57405r0.f57345f;
     }
 
     @Override
     public float getStickyPaddingRight() {
-        return this.f55811q0.f55747f;
+        return this.f57405r0.f57345f;
     }
 
     @Override
     public float getStickyPaddingTop() {
-        return this.f55811q0.h;
+        return this.f57405r0.h;
     }
 
     public int getType() {
-        return this.f55813s0;
+        return this.f57407t0;
     }
 
     @Override
-    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        super.onLayout(z9, i7, i10, i11, i12);
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        super.onLayout(z10, i7, i10, i11, i12);
         k();
     }
 
@@ -102,16 +103,16 @@ public final class k0 extends j {
     }
 
     public void setColor(int i7) {
-        this.f55814t0 = true;
-        this.f55812r0 = i7;
+        this.f57408u0 = true;
+        this.f57406s0 = i7;
     }
 
     public void setMaxWidth(int i7) {
-        this.f55811q0.setMaxWidth(i7);
+        this.f57405r0.setMaxWidth(i7);
     }
 
     public void setType(int i7) {
-        this.f55813s0 = i7;
-        this.f55811q0.c(i7, this.f55812r0);
+        this.f57407t0 = i7;
+        this.f57405r0.c(i7, this.f57406s0);
     }
 }

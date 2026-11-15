@@ -1,18 +1,18 @@
 package h9;
 
-import a8.ia;
+import a8.ja;
 import j$.util.Objects;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Set;
 import java.util.SortedSet;
 public abstract class t0 extends d0 implements Set, j$.util.Set {
-    public static final int f14397c = 0;
-    public transient i0 f14398b;
+    public static final int f13752c = 0;
+    public transient i0 f13753b;
 
     public static int o(int i7) {
         int max = Math.max(i7, 2);
-        boolean z9 = true;
+        boolean z10 = true;
         if (max < 751619276) {
             int highestOneBit = Integer.highestOneBit(max - 1) << 1;
             while (highestOneBit * 0.7d < max) {
@@ -21,9 +21,9 @@ public abstract class t0 extends d0 implements Set, j$.util.Set {
             return highestOneBit;
         }
         if (max >= 1073741824) {
-            z9 = false;
+            z10 = false;
         }
-        ia.e("collection too large", z9);
+        ja.e("collection too large", z10);
         return 1073741824;
     }
 
@@ -56,14 +56,14 @@ public abstract class t0 extends d0 implements Set, j$.util.Set {
                             }
                         }
                     } else {
-                        throw new NullPointerException(jg.g.j(i13, "at index "));
+                        throw new NullPointerException(i5.c.i(i13, "at index "));
                     }
                 }
                 Arrays.fill(objArr, i12, i7, (Object) null);
                 if (i12 == 1) {
                     Object obj3 = objArr[0];
                     Objects.requireNonNull(obj3);
-                    return new f2(obj3);
+                    return new e2(obj3);
                 } else if (o(i12) < o4 / 2) {
                     return p(i12, objArr);
                 } else {
@@ -71,14 +71,14 @@ public abstract class t0 extends d0 implements Set, j$.util.Set {
                     if (i12 < (length >> 1) + (length >> 2)) {
                         objArr = Arrays.copyOf(objArr, i12);
                     }
-                    return new a2(i11, i10, i12, objArr, objArr2);
+                    return new z1(i11, i10, i12, objArr, objArr2);
                 }
             }
             Object obj4 = objArr[0];
             Objects.requireNonNull(obj4);
-            return new f2(obj4);
+            return new e2(obj4);
         }
-        return a2.f14290s;
+        return z1.f13781s;
     }
 
     public static t0 q(Collection collection) {
@@ -93,13 +93,13 @@ public abstract class t0 extends d0 implements Set, j$.util.Set {
     }
 
     public static t0 s(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object... objArr) {
-        boolean z9;
+        boolean z10;
         if (objArr.length <= 2147483641) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        ia.e("the total number of elements must fit in an int", z9);
+        ja.e("the total number of elements must fit in an int", z10);
         int length = objArr.length + 6;
         Object[] objArr2 = new Object[length];
         objArr2[0] = obj;
@@ -117,7 +117,7 @@ public abstract class t0 extends d0 implements Set, j$.util.Set {
         if (obj == this) {
             return true;
         }
-        if ((obj instanceof t0) && (this instanceof a2) && (((t0) obj) instanceof a2) && hashCode() != obj.hashCode()) {
+        if ((obj instanceof t0) && (this instanceof z1) && (((t0) obj) instanceof z1) && hashCode() != obj.hashCode()) {
             return false;
         }
         return o.k(this, obj);
@@ -125,10 +125,10 @@ public abstract class t0 extends d0 implements Set, j$.util.Set {
 
     @Override
     public i0 f() {
-        i0 i0Var = this.f14398b;
+        i0 i0Var = this.f13753b;
         if (i0Var == null) {
             i0 r10 = r();
-            this.f14398b = r10;
+            this.f13753b = r10;
             return r10;
         }
         return i0Var;
@@ -140,8 +140,8 @@ public abstract class t0 extends d0 implements Set, j$.util.Set {
     }
 
     public i0 r() {
-        Object[] array = toArray(d0.f14313a);
-        g0 g0Var = i0.f14331b;
+        Object[] array = toArray(d0.f13670a);
+        g0 g0Var = i0.f13686b;
         return i0.o(array.length, array);
     }
 }

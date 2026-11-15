@@ -1,10 +1,10 @@
 package f3;
 public final class c {
-    public boolean f10999a;
-    public int f11000b;
-    public int f11001c;
+    public boolean f10801a;
+    public int f10802b;
+    public int f10803c;
     public boolean d;
-    public int f11002e;
-    public int f11003f;
-    public int f11004g;
+    public int f10804e;
+    public int f10805f;
+    public int f10806g;
 }

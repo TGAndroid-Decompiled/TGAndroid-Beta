@@ -1,43 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class lw0 extends pj0 {
-    public boolean f35749e3;
-    public boolean f35750f3;
-    public final ow0 f35751g3;
+import android.animation.ValueAnimator;
+import android.text.StaticLayout;
+public final class lw0 {
+    public final EditTextBoldCursor f36910a;
+    public StaticLayout f36911b;
+    public StaticLayout f36912c;
+    public StaticLayout d;
+    public boolean f36913e;
+    public boolean f36914f;
+    public boolean f36915g;
+    public float h;
+    public float f36916i;
+    public ValueAnimator f36917j;
 
-    public lw0(ow0 ow0Var, Context context) {
-        super(context, null);
-        this.f35751g3 = ow0Var;
-    }
-
-    @Override
-    public final void l0(int i7) {
-        boolean canScrollHorizontally = canScrollHorizontally(-1);
-        boolean canScrollHorizontally2 = canScrollHorizontally(1);
-        if (this.f35749e3 == canScrollHorizontally && this.f35750f3 == canScrollHorizontally2) {
-            return;
-        }
-        bi.e5 e5Var = this.f35751g3.d;
-        if (e5Var != null) {
-            e5Var.invalidate();
-        }
-        this.f35749e3 = canScrollHorizontally;
-        this.f35750f3 = canScrollHorizontally2;
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ls previewDelegate;
-        org.telegram.ui.ns p10 = org.telegram.ui.ns.p();
-        ow0 ow0Var = this.f35751g3;
-        lw0 lw0Var = ow0Var.f36708e;
-        previewDelegate = ow0Var.getPreviewDelegate();
-        boolean q10 = p10.q(motionEvent, lw0Var, previewDelegate, this.f36980n2);
-        if (!super.onInterceptTouchEvent(motionEvent) && !q10) {
-            return false;
-        }
-        return true;
+    public lw0(EditTextBoldCursor editTextBoldCursor) {
+        this.f36910a = editTextBoldCursor;
     }
 }

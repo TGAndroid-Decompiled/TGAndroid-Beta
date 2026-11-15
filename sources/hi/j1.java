@@ -1,72 +1,51 @@
 package hi;
 
-import j$.util.function.Predicate$CC;
-import java.util.HashSet;
-import java.util.function.Predicate;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class j1 implements Predicate {
-    public final int f14739a;
-    public final Object f14740b;
+import android.content.Context;
+import android.view.View;
+import org.telegram.ui.Components.n61;
+public final class j1 extends n61 {
+    public final boolean f14452a;
+    public final Context f14453b;
+    public final i2 f14454c;
 
-    public j1(Object obj, int i7) {
-        this.f14739a = i7;
-        this.f14740b = obj;
-    }
-
-    public Predicate and(Predicate predicate) {
-        int i7 = this.f14739a;
-        return Predicate$CC.$default$and(this, predicate);
-    }
-
-    public Predicate negate() {
-        switch (this.f14739a) {
-            case 0:
-                return Predicate$CC.$default$negate(this);
-            case 1:
-                return Predicate$CC.$default$negate(this);
-            default:
-                return Predicate$CC.$default$negate(this);
-        }
-    }
-
-    public Predicate or(Predicate predicate) {
-        int i7 = this.f14739a;
-        return Predicate$CC.$default$or(this, predicate);
+    public j1(i2 i2Var, boolean z10, Context context) {
+        this.f14454c = i2Var;
+        this.f14452a = z10;
+        this.f14453b = context;
     }
 
     @Override
-    public final boolean test(Object obj) {
-        boolean contains;
-        boolean z9;
-        switch (this.f14739a) {
-            case 0:
-                contains = ((HashSet) this.f14740b).contains(Long.valueOf(((l1) obj).f14781b));
-                break;
-            case 1:
-                contains = ((HashSet) this.f14740b).contains(Long.valueOf(((l1) obj).f14781b));
-                break;
-            default:
-                zh.g1 g1Var = (zh.g1) this.f14740b;
-                TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
-                if (starGift instanceof TL_stars.TL_starGiftUnique) {
-                    z9 = g1Var.V1.disallow_unique_stargifts;
-                } else {
-                    g1Var.getClass();
-                    if (starGift.limited) {
-                        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings = g1Var.V1;
-                        if (!disallowedGiftsSettings.disallow_limited_stargifts) {
-                            return true;
-                        }
-                        if (starGift.can_upgrade && !disallowedGiftsSettings.disallow_unique_stargifts) {
-                            return true;
-                        }
-                        return false;
-                    }
-                    z9 = g1Var.V1.disallow_unlimited_stargifts;
-                }
-                return true ^ z9;
+    public final void b(View view, int i7, int i10) {
+        u1 u1Var = (u1) view;
+        if (this.f14452a) {
+            i7 = 1;
         }
-        return !contains;
+        u1Var.a(i7);
+    }
+
+    @Override
+    public final View d(int i7) {
+        Context context = this.f14453b;
+        i2 i2Var = this.f14454c;
+        if (i7 == 1) {
+            return new t1(i2Var, context);
+        }
+        return new y1(i2Var, context);
+    }
+
+    @Override
+    public final int e() {
+        if (this.f14452a) {
+            return 1;
+        }
+        return 3;
+    }
+
+    @Override
+    public final int h(int i7) {
+        if (i7 != 0 && i7 != 1) {
+            return 1;
+        }
+        return 0;
     }
 }

@@ -1,151 +1,65 @@
 package org.telegram.ui.ActionBar;
 
+import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import org.telegram.messenger.iz;
-import org.telegram.ui.Components.m41;
-public final class s1 implements h6 {
-    public final int f28481a;
-    public final Object f28482b;
+import android.graphics.drawable.GradientDrawable;
+import android.view.View;
+import java.util.HashSet;
+import org.telegram.ui.Components.fh0;
+public final class s1 extends Drawable implements z5 {
+    public final View f29582a;
+    public final GradientDrawable f29583b;
+    public final int f29584c;
+    public final int d;
+    public final e6 f29585e;
 
-    public s1(Object obj, int i7) {
-        this.f28481a = i7;
-        this.f28482b = obj;
+    public s1(fh0 fh0Var, int i7, int i10, int i11, e6 e6Var) {
+        this.f29582a = fh0Var;
+        this.f29584c = i10;
+        this.d = i11;
+        this.f29585e = e6Var;
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        this.f29583b = gradientDrawable;
+        gradientDrawable.setColor(i7);
+        gradientDrawable.setCornerRadius(org.telegram.messenger.g0.L(128.0f));
     }
 
     @Override
-    public final boolean a() {
-        switch (this.f28481a) {
-            case 0:
-            case 1:
-            default:
-                return m6.I.q();
+    public final void draw(Canvas canvas) {
+        View view = this.f29582a;
+        int width = view.getWidth();
+        int i7 = this.f29584c;
+        GradientDrawable gradientDrawable = this.f29583b;
+        gradientDrawable.setBounds((int) ((width - i7) / 2.0f), (int) ((view.getHeight() - i7) / 2.0f), (int) ((view.getWidth() + i7) / 2.0f), (int) ((view.getHeight() + i7) / 2.0f));
+        gradientDrawable.draw(canvas);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return this.f29583b.getOpacity();
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        this.f29583b.setAlpha(i7);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f29583b.setColorFilter(colorFilter);
+    }
+
+    @Override
+    public final void updateColors() {
+        int i7 = this.d;
+        if (i7 >= 0) {
+            this.f29583b.setColor(j6.w0(i7, this.f29585e));
+            invalidateSelf();
         }
     }
 
     @Override
-    public final void b(float f10, float f11, int i7, int i10) {
-        switch (this.f28481a) {
-            case 0:
-                m6.r(f10, f11, i7, i10);
-                return;
-            case 1:
-                m6.r(f10, f11, i7, i10);
-                return;
-            default:
-                m6.r(f10, f11, i7, i10);
-                return;
-        }
-    }
-
-    @Override
-    public final ColorFilter c() {
-        switch (this.f28481a) {
-            case 0:
-                return m6.f28222v3;
-            case 1:
-                return m6.f28222v3;
-            default:
-                return m6.f28222v3;
-        }
-    }
-
-    @Override
-    public final Paint d(String str) {
-        switch (this.f28481a) {
-            case 0:
-                return m6.V0(str);
-            case 1:
-                return m6.V0(str);
-            default:
-                return m6.V0(str);
-        }
-    }
-
-    @Override
-    public final boolean e() {
-        switch (this.f28481a) {
-            case 0:
-                return iz.H0;
-            case 1:
-                return iz.H0;
-            default:
-                return iz.H0;
-        }
-    }
-
-    @Override
-    public final int f(int i7) {
-        switch (this.f28481a) {
-            case 0:
-                return h(i7);
-            case 1:
-                return h(i7);
-            default:
-                return h(i7);
-        }
-    }
-
-    @Override
-    public final boolean g() {
-        switch (this.f28481a) {
-            case 0:
-                return false;
-            case 1:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public final Drawable getDrawable(String str) {
-        switch (this.f28481a) {
-            case 0:
-                return null;
-            case 1:
-                return null;
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    public final int h(int i7) {
-        switch (this.f28481a) {
-            case 0:
-                return ((u1) this.f28482b).f(i7);
-            case 1:
-                return ((f2) this.f28482b).getThemedColor(i7);
-            default:
-                return ((m41) this.f28482b).I(i7);
-        }
-    }
-
-    @Override
-    public final void i(int i7, int i10) {
-        int i11 = this.f28481a;
-    }
-
-    @Override
-    public final int j(int i7) {
-        switch (this.f28481a) {
-            case 0:
-                return h(i7);
-            case 1:
-                return h(i7);
-            default:
-                return h(i7);
-        }
-    }
-
-    private final void k(int i7, int i10) {
-    }
-
-    private final void l(int i7, int i10) {
-    }
-
-    private final void m(int i7, int i10) {
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

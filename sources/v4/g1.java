@@ -1,36 +1,64 @@
 package v4;
 
-import android.content.Context;
-import android.util.DisplayMetrics;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Wallet.v5;
-public final class g1 extends c0 {
-    public final v5 f57087r;
+import java.util.ArrayList;
+public abstract class g1 extends m0 {
+    public boolean f58564m;
+    public boolean f58565n;
 
-    public g1(v5 v5Var, Context context) {
-        super(context);
-        this.f57087r = v5Var;
+    public g1() {
+        this.f58606a = null;
+        this.f58607b = new ArrayList();
+        this.f58608c = 120L;
+        this.d = 120L;
+        this.f58609e = 250L;
+        this.f58610f = 250L;
+        this.f58611g = 250L;
+        this.f58615l = 0L;
+        this.f58564m = true;
     }
 
     @Override
-    public final void g(View view, y0 y0Var) {
-        RecyclerView recyclerView = this.f57087r.f43256a;
-        if (recyclerView != null) {
-            n0 layoutManager = recyclerView.getLayoutManager();
-            layoutManager.getClass();
-            int[] iArr = {0, n0.z(view) - layoutManager.F()};
-            int i7 = iArr[0];
-            int i10 = iArr[1];
-            int m10 = m(Math.max(Math.abs(i7), Math.abs(i10)));
-            if (m10 > 0) {
-                y0Var.b(i7, i10, m10, this.f57036j);
-            }
+    public boolean a(e1 e1Var, e2.r0 r0Var, e2.r0 r0Var2) {
+        int i7;
+        int i10;
+        if (r0Var != null && ((i7 = r0Var.f10369a) != (i10 = r0Var2.f10369a) || r0Var.f10370b != r0Var2.f10370b || this.f58565n)) {
+            return r(e1Var, r0Var, i7, r0Var.f10370b, i10, r0Var2.f10370b);
         }
+        p(e1Var);
+        return true;
     }
 
-    @Override
-    public final float l(DisplayMetrics displayMetrics) {
-        return 100.0f / displayMetrics.densityDpi;
+    public abstract void p(e1 e1Var);
+
+    public abstract boolean q(e1 e1Var, e1 e1Var2, e2.r0 r0Var, int i7, int i10, int i11, int i12);
+
+    public abstract boolean r(e1 e1Var, e2.r0 r0Var, int i7, int i10, int i11, int i12);
+
+    public abstract void s(e1 e1Var, e2.r0 r0Var);
+
+    public boolean t(e1 e1Var) {
+        if (this.f58564m && !e1Var.h()) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void u(e1 e1Var) {
+        w(e1Var);
+        d(e1Var);
+    }
+
+    public final void v(e1 e1Var) {
+        x(e1Var);
+        d(e1Var);
+    }
+
+    public void y() {
+    }
+
+    public void w(e1 e1Var) {
+    }
+
+    public void x(e1 e1Var) {
     }
 }

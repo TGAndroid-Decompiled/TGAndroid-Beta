@@ -1,31 +1,26 @@
 package ai;
 
-import android.graphics.Canvas;
-import org.telegram.ui.Components.pj0;
-public final class r extends pj0 {
-    public aa.k f1606e3;
-    public k0 f1607f3;
+import org.telegram.ui.Dictation.DictationAsr;
+public final class r implements Runnable {
+    public final int f1491a;
+    public final boolean[] f1492b;
+
+    public r(int i7, boolean[] zArr) {
+        this.f1491a = i7;
+        this.f1492b = zArr;
+    }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        int i7;
-        if (this.f1607f3 != null) {
-            canvas2 = canvas;
-            i7 = canvas2.saveLayer(0.0f, 0.0f, getWidth(), getHeight(), null);
-        } else {
-            canvas2 = canvas;
-            i7 = -1;
-        }
-        aa.k kVar = this.f1606e3;
-        if (kVar != null) {
-            kVar.accept(canvas2);
-        }
-        super.dispatchDraw(canvas2);
-        k0 k0Var = this.f1607f3;
-        if (k0Var != null) {
-            k0Var.accept(canvas2);
-            canvas2.restoreToCount(i7);
+    public final void run() {
+        switch (this.f1491a) {
+            case 0:
+                boolean[] zArr = this.f1492b;
+                s[] sVarArr = DictationAsr.f42579a;
+                zArr[0] = true;
+                return;
+            default:
+                this.f1492b[0] = true;
+                return;
         }
     }
 }

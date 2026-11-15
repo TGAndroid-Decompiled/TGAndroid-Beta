@@ -1,98 +1,47 @@
 package org.telegram.messenger;
 
-import android.graphics.Bitmap;
+import android.animation.ValueAnimator;
 import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
+import android.graphics.Path;
+import android.graphics.Region;
 import android.view.View;
-import org.telegram.ui.Components.t41;
-public final class dv extends fu implements Drawable.Callback {
-    public final t41 W;
-    public final int X;
-    public final int Y;
-    public final int Z;
-    public final int f22123a0;
-    public pb.b f22124b0;
-    public Bitmap f22125c0;
+public final class dv {
+    public float f23157a;
+    public boolean f23158b;
+    public float f23159c;
+    public float d;
+    public float f23160e;
+    public ValueAnimator f23161f;
+    public final Path f23162g = new Path();
 
-    public dv(kv kvVar, Rect rect, int i7, int i10, int i11) {
-        super(kvVar, rect, i7);
-        this.Z = i10;
-        this.f22123a0 = i11;
-        t41 t41Var = new t41();
-        this.W = t41Var;
-        t41Var.setCallback(this);
-        t41Var.f38175n = id.M0(2131743831, null);
-        t41Var.f38176o = id.M0(2131743832, null);
-        t41Var.f38177p = id.M0(2131743826, null);
-        t41Var.f38171j = new ds(kvVar, 7);
-        int i12 = this.f22475c;
-        this.X = i12;
-        this.Y = t41Var.a(i12);
+    public final void a(Canvas canvas) {
+        if (this.f23157a > 0.0f) {
+            Path path = this.f23162g;
+            path.rewind();
+            path.addCircle(this.f23159c, this.d, this.f23160e * this.f23157a, Path.Direction.CW);
+            canvas.clipPath(path, Region.Op.DIFFERENCE);
+        }
     }
 
-    @Override
-    public final int I() {
-        Rect rect = this.f22474b;
-        return rect.top + this.Y + rect.bottom;
-    }
-
-    @Override
-    public final boolean Y(MotionEvent motionEvent) {
-        View view = this.V;
-        if (view != null) {
-            return this.W.f38170i.a(view, motionEvent);
+    public final boolean b() {
+        if (this.f23158b && this.f23157a >= 1.0f) {
+            return true;
         }
         return false;
     }
 
-    public final float i0(org.telegram.ui.Cells.x1 x1Var) {
-        int i7;
-        if (x1Var != null) {
-            kv kvVar = this.f22473a;
-            if (kvVar.f23783s || kvVar.f23785u) {
-                i7 = g0.W1(Math.max(0.0f, Math.min(1.0f, x1Var.L1)), this.P, this.N);
-                return i7;
-            }
+    public final void c(View view, float f10, float f11, float f12, float f13) {
+        if (!this.f23158b && this.f23161f == null) {
+            this.f23159c = f10;
+            this.d = f11;
+            this.f23160e = (float) Math.sqrt((f13 * f13) + (f12 * f12));
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.f23161f = ofFloat;
+            ofFloat.setDuration(Utilities.i(this.f23160e * 0.3f, 550.0f, 250.0f));
+            this.f23161f.setInterpolator(org.telegram.ui.Components.er.f34423j);
+            this.f23161f.addUpdateListener(new q(2, this, view));
+            this.f23161f.addListener(new ah.l(12, this, view));
+            this.f23161f.start();
         }
-        i7 = this.N;
-        return i7;
-    }
-
-    @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        View view = this.V;
-        if (view != null) {
-            view.invalidate();
-        }
-    }
-
-    public final float j0(org.telegram.ui.Cells.x1 x1Var) {
-        if (x1Var != null) {
-            kv kvVar = this.f22473a;
-            if (kvVar.f23783s || kvVar.f23785u) {
-                return g0.T1(this.O, this.M, Math.max(0.0f, Math.min(1.0f, x1Var.L1)));
-            }
-        }
-        return this.M;
-    }
-
-    @Override
-    public final void q(Canvas canvas) {
-        Rect rect = this.f22474b;
-        int i7 = rect.left;
-        int i10 = rect.top;
-        t41 t41Var = this.W;
-        t41Var.setBounds(i7, i10, this.X + i7, this.Y + i10);
-        t41Var.draw(canvas);
-    }
-
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-    }
-
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
     }
 }

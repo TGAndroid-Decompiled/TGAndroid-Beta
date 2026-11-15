@@ -1,43 +1,87 @@
 package gf;
-public final class q extends mf.a {
-    public final kf.r f13950a = new kf.p();
-    public final m f13951b = new m();
 
-    @Override
-    public final void a(java.lang.CharSequence r12) {
-        throw new UnsupportedOperationException("Method not decompiled: gf.q.a(java.lang.CharSequence):void");
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.ListIterator;
+import kf.s;
+public final class q implements nf.a {
+    public final char f13292a;
+    public int f13293b = 0;
+    public final LinkedList f13294c = new LinkedList();
+
+    public q(char c10) {
+        this.f13292a = c10;
     }
 
     @Override
-    public final boolean c() {
-        return true;
-    }
-
-    @Override
-    public final void d() {
-        if (this.f13951b.f13936b.length() == 0) {
-            this.f13950a.g();
+    public final void a(s sVar, s sVar2, int i7) {
+        nf.a aVar;
+        LinkedList linkedList = this.f13294c;
+        Iterator it = linkedList.iterator();
+        while (true) {
+            if (it.hasNext()) {
+                aVar = (nf.a) it.next();
+                if (aVar.d() <= i7) {
+                    break;
+                }
+            } else {
+                aVar = (nf.a) linkedList.getFirst();
+                break;
+            }
         }
+        aVar.a(sVar, sVar2, i7);
     }
 
     @Override
-    public final kf.a e() {
-        return this.f13950a;
+    public final char b() {
+        return this.f13292a;
     }
 
     @Override
-    public final void g(lf.a aVar) {
-        StringBuilder sb2 = this.f13951b.f13936b;
-        if (sb2.length() > 0) {
-            aVar.a(sb2.toString(), this.f13950a);
+    public final int c(e eVar, e eVar2) {
+        nf.a aVar;
+        int i7 = eVar.f13229g;
+        LinkedList linkedList = this.f13294c;
+        Iterator it = linkedList.iterator();
+        while (true) {
+            if (it.hasNext()) {
+                aVar = (nf.a) it.next();
+                if (aVar.d() <= i7) {
+                    break;
+                }
+            } else {
+                aVar = (nf.a) linkedList.getFirst();
+                break;
+            }
         }
+        return aVar.c(eVar, eVar2);
     }
 
     @Override
-    public final a h(h hVar) {
-        if (!hVar.h) {
-            return a.a(hVar.f13895b);
+    public final int d() {
+        return this.f13293b;
+    }
+
+    @Override
+    public final char e() {
+        return this.f13292a;
+    }
+
+    public final void f(nf.a aVar) {
+        int d = aVar.d();
+        LinkedList linkedList = this.f13294c;
+        ListIterator listIterator = linkedList.listIterator();
+        while (listIterator.hasNext()) {
+            int d2 = ((nf.a) listIterator.next()).d();
+            if (d > d2) {
+                listIterator.previous();
+                listIterator.add(aVar);
+                return;
+            } else if (d == d2) {
+                throw new IllegalArgumentException("Cannot add two delimiter processors for char '" + this.f13292a + "' and minimum length " + d);
+            }
         }
-        return null;
+        linkedList.add(aVar);
+        this.f13293b = d;
     }
 }

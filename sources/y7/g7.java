@@ -1,3 +1,4 @@
 package y7;
-public abstract class g7 {
+public final class g7 {
+    public final String f60255a;
 }

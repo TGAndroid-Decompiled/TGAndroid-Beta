@@ -4,12 +4,12 @@ import java.util.Comparator;
 public final class u extends w {
     public static w f(int i7) {
         if (i7 < 0) {
-            return w.f14410b;
+            return w.f13764b;
         }
         if (i7 > 0) {
-            return w.f14411c;
+            return w.f13765c;
         }
-        return w.f14409a;
+        return w.f13763a;
     }
 
     @Override
@@ -23,13 +23,13 @@ public final class u extends w {
     }
 
     @Override
-    public final w c(boolean z9, boolean z10) {
-        return f(Boolean.compare(z9, z10));
+    public final w c(boolean z10, boolean z11) {
+        return f(Boolean.compare(z10, z11));
     }
 
     @Override
-    public final w d(boolean z9, boolean z10) {
-        return f(Boolean.compare(z10, z9));
+    public final w d(boolean z10, boolean z11) {
+        return f(Boolean.compare(z11, z10));
     }
 
     @Override

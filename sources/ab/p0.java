@@ -11,23 +11,23 @@ import java.util.ArrayDeque;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 public final class p0 implements ServiceConnection {
-    public final Context f983a;
-    public final Intent f984b;
-    public final ScheduledThreadPoolExecutor f985c;
+    public final Context f982a;
+    public final Intent f983b;
+    public final ScheduledThreadPoolExecutor f984c;
     public final ArrayDeque d;
-    public n0 f986e;
-    public boolean f987f;
+    public n0 f985e;
+    public boolean f986f;
 
     public p0(Context context) {
-        ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(1, new f5.r("Firebase-FirebaseInstanceIdServiceConnection"));
+        ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(1, new f5.s("Firebase-FirebaseInstanceIdServiceConnection"));
         scheduledThreadPoolExecutor.setKeepAliveTime(40L, TimeUnit.SECONDS);
         scheduledThreadPoolExecutor.allowCoreThreadTimeOut(true);
         this.d = new ArrayDeque();
-        this.f987f = false;
+        this.f986f = false;
         Context applicationContext = context.getApplicationContext();
-        this.f983a = applicationContext;
-        this.f984b = new Intent("com.google.firebase.MESSAGING_EVENT").setPackage(applicationContext.getPackageName());
-        this.f985c = scheduledThreadPoolExecutor;
+        this.f982a = applicationContext;
+        this.f983b = new Intent("com.google.firebase.MESSAGING_EVENT").setPackage(applicationContext.getPackageName());
+        this.f984c = scheduledThreadPoolExecutor;
     }
 
     public final synchronized void a() {
@@ -39,12 +39,12 @@ public final class p0 implements ServiceConnection {
                 if (Log.isLoggable("FirebaseMessaging", 3)) {
                     Log.d("FirebaseMessaging", "found intent to be delivered");
                 }
-                n0 n0Var = this.f986e;
+                n0 n0Var = this.f985e;
                 if (n0Var != null && n0Var.isBinderAlive()) {
                     if (Log.isLoggable("FirebaseMessaging", 3)) {
                         Log.d("FirebaseMessaging", "binder is alive, sending the intent.");
                     }
-                    this.f986e.a((o0) this.d.poll());
+                    this.f985e.a((o0) this.d.poll());
                 } else {
                     c();
                     return;
@@ -62,14 +62,14 @@ public final class p0 implements ServiceConnection {
                 Log.d("FirebaseMessaging", "new intent queued in the bind-strategy delivery");
             }
             o0Var = new o0(intent);
-            ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = this.f985c;
-            o0Var.f980b.getTask().addOnCompleteListener(scheduledThreadPoolExecutor, new a1.c(scheduledThreadPoolExecutor.schedule(new a3.f(o0Var, 2), 20L, TimeUnit.SECONDS), 7));
+            ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = this.f984c;
+            o0Var.f979b.getTask().addOnCompleteListener(scheduledThreadPoolExecutor, new a1.c(scheduledThreadPoolExecutor.schedule(new a3.f(o0Var, 2), 20L, TimeUnit.SECONDS), 7));
             this.d.add(o0Var);
             a();
         } catch (Throwable th2) {
             throw th2;
         }
-        return o0Var.f980b.getTask();
+        return o0Var.f979b.getTask();
     }
 
     public final void c() {
@@ -82,16 +82,16 @@ public final class p0 implements ServiceConnection {
             if (Log.isLoggable("FirebaseMessaging", 3)) {
                 Log.d("FirebaseMessaging", "onServiceConnected: " + componentName);
             }
-            this.f987f = false;
+            this.f986f = false;
             if (!(iBinder instanceof n0)) {
                 Log.e("FirebaseMessaging", "Invalid service connection: " + iBinder);
                 ArrayDeque arrayDeque = this.d;
                 while (!arrayDeque.isEmpty()) {
-                    ((o0) arrayDeque.poll()).f980b.trySetResult(null);
+                    ((o0) arrayDeque.poll()).f979b.trySetResult(null);
                 }
                 return;
             }
-            this.f986e = (n0) iBinder;
+            this.f985e = (n0) iBinder;
             a();
         } catch (Throwable th2) {
             throw th2;

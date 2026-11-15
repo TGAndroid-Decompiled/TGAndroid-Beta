@@ -1,36 +1,39 @@
 package org.telegram.ui;
 
-import android.text.style.URLSpan;
 import android.view.View;
-public final class ff implements org.telegram.messenger.d20 {
-    public final int f45726a;
-    public final Object f45727b;
-    public final Object f45728c;
+import java.util.ArrayList;
+public final class ff implements View.OnClickListener {
+    public final int f47131a;
+    public final an f47132b;
+    public final ArrayList f47133c;
 
-    public ff(int i7, Object obj, Object obj2) {
-        this.f45726a = i7;
-        this.f45727b = obj;
-        this.f45728c = obj2;
+    public ff(an anVar, ArrayList arrayList, int i7) {
+        this.f47131a = i7;
+        this.f47132b = anVar;
+        this.f47133c = arrayList;
     }
 
     @Override
-    public final Object a(Object obj) {
-        org.telegram.ui.Cells.q1 q1Var;
-        switch (this.f45726a) {
+    public final void onClick(View view) {
+        switch (this.f47131a) {
             case 0:
-                cn cnVar = (cn) this.f45727b;
-                View view = (View) this.f45728c;
-                URLSpan uRLSpan = (URLSpan) obj;
-                org.telegram.messenger.ij ijVar = cnVar.f44669t5;
-                if (view instanceof org.telegram.ui.Cells.q1) {
-                    q1Var = (org.telegram.ui.Cells.q1) view;
-                } else {
-                    q1Var = null;
-                }
-                cnVar.k8(uRLSpan, false, ijVar, q1Var);
-                return Boolean.TRUE;
+                an anVar = this.f47132b;
+                xh xhVar = new xh(anVar, anVar, anVar.getParentActivity(), anVar.Aa, this.f47133c);
+                boolean V9 = anVar.V9();
+                xhVar.f29700i0 = V9;
+                xhVar.f29707n = V9;
+                xhVar.f29710p0 = false;
+                anVar.P7(false);
+                anVar.showDialog(xhVar);
+                return;
             default:
-                return th.c.d((View) obj, (String) this.f45727b, (String) this.f45728c, null, null);
+                an anVar2 = this.f47132b;
+                if (anVar2.getParentActivity() != null && anVar2.getParentActivity() != null) {
+                    new org.telegram.ui.Components.wu(anVar2, anVar2.getParentActivity(), anVar2.Aa, this.f47133c).show();
+                    anVar2.P7(true);
+                    return;
+                }
+                return;
         }
     }
 }

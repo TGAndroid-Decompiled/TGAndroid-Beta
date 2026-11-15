@@ -1,13 +1,8 @@
 package org.telegram.ui;
-public final class ek extends rn {
-    public boolean T0;
+public final class ek {
+    public final an f46801a;
 
-    @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.T0) {
-            n0();
-            this.T0 = true;
-        }
+    public ek(an anVar) {
+        this.f46801a = anVar;
     }
 }

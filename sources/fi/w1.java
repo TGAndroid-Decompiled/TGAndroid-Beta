@@ -1,62 +1,46 @@
 package fi;
 
-import android.content.Context;
-import org.telegram.ui.Components.av;
-public final class w1 extends av {
-    public final z1 f13027g0;
+import org.telegram.messenger.np;
+import org.telegram.messenger.z10;
+import org.telegram.tgnet.tl.TL_stories;
+public final class w1 implements z10 {
+    public final int f12456a;
+    public final b4 f12457b;
 
-    public w1(z1 z1Var, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, h6Var, false, false, false, true, 0, null, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f28225v6, h6Var), false);
-        this.f13027g0 = z1Var;
+    public w1(b4 b4Var, int i7) {
+        this.f12456a = i7;
+        this.f12457b = b4Var;
     }
 
     @Override
-    public final boolean h(int i7) {
-        int i10;
-        int paddingTop;
-        d2 d2Var;
-        z1 z1Var = this.f13027g0;
-        m1 m1Var = z1Var.f13237b;
-        y1 y1Var = z1Var.f13238c;
-        e2 e2Var = z1Var.f13240f;
-        int i11 = 0;
-        if (this.d) {
-            return false;
-        }
-        if (e2Var != null && (d2Var = e2Var.h) != null) {
-            if (d2Var.getSelectedCategory() != null) {
-                m1.z1(m1Var, 0, 0);
-                e2Var.h.I1(null);
-            }
-            e2Var.h.G1();
-            e2Var.b();
-        }
-        if (y1Var != null) {
-            y1Var.D(null);
-        }
-        while (true) {
-            if (i11 < y1Var.D.size()) {
-                i10 = y1Var.D.keyAt(i11);
-                if (y1Var.D.valueAt(i11) == i7) {
-                    break;
+    public final void a(Object obj) {
+        switch (this.f12456a) {
+            case 0:
+                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
+                b4 b4Var = this.f12457b;
+                if (tL_premium_boostsStatus == null) {
+                    i9 i9Var = b4Var.f11522t0;
+                    if (i9Var != null) {
+                        i9Var.f11856k1 = false;
+                        i9Var.V();
+                        return;
+                    }
+                    return;
                 }
-                i11++;
-            } else {
-                i10 = -1;
-                break;
-            }
+                b4Var.f11525t3 = tL_premium_boostsStatus;
+                np.s1(b4Var.f11497m2).G0().b(b4Var.l1, tL_premium_boostsStatus, new ai.u1(12, b4Var, tL_premium_boostsStatus));
+                return;
+            default:
+                long longValue = ((Long) obj).longValue();
+                b4 b4Var2 = this.f12457b;
+                b4Var2.f11533v3 = longValue;
+                k2 k2Var = b4Var2.L1;
+                if (k2Var != null) {
+                    k2Var.N(true);
+                    b4Var2.L1.l2();
+                }
+                b4Var2.p0(true);
+                return;
         }
-        if (i10 >= 0) {
-            float f10 = z1Var.f13241n;
-            if (f10 >= 0.0f) {
-                paddingTop = m1Var.getPaddingTop();
-            } else {
-                f10 = z1Var.b();
-                z1Var.f13241n = f10;
-                paddingTop = m1Var.getPaddingTop();
-            }
-            m1.z1(m1Var, i10, ((int) (f10 + paddingTop)) - org.telegram.messenger.g0.L(102.0f));
-        }
-        return true;
     }
 }

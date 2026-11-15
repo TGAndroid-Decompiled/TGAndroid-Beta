@@ -1,83 +1,94 @@
 package org.telegram.ui;
 
-import android.view.ViewPropertyAnimator;
-import android.widget.TextView;
-public final class zy extends org.telegram.ui.Cells.n4 {
-    public final jz D;
-    public final TextView f52705r;
-    public final bi.rc f52706s;
-    public int f52707w;
-    public final org.telegram.ui.Components.y4 f52708x;
-    public boolean f52709y;
+import android.text.TextUtils;
+import android.view.View;
+import org.telegram.tgnet.tl.TL_chatlists;
+public final class zy extends rg.a {
+    public View.OnClickListener f54060c;
+    public CharSequence d;
+    public String f54061e;
+    public boolean f54062f;
+    public boolean f54063g;
+    public long h;
+    public String f54064i;
+    public int f54065j;
+    public int f54066k;
+    public boolean f54067l;
+    public TL_chatlists.TL_exportedChatlistInvite f54068m;
 
-    public zy(org.telegram.ui.jz r13, android.content.Context r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zy.<init>(org.telegram.ui.jz, android.content.Context):void");
+    public static zy b(int i7, String str, boolean z10) {
+        ?? aVar = new rg.a(4, false);
+        aVar.f54066k = i7;
+        aVar.d = str;
+        aVar.f54067l = z10;
+        return aVar;
     }
 
-    public final void d(int i7, boolean z9) {
-        int i10;
-        boolean z10;
-        float f10;
-        jz jzVar = this.D;
-        if (jzVar.getUserConfig().q()) {
-            i10 = 2131750620;
+    public static zy c(int i7, String str, String str2, boolean z10) {
+        ?? aVar = new rg.a(1, false);
+        aVar.f54063g = z10;
+        aVar.d = str;
+        aVar.f54064i = str2;
+        aVar.f54065j = i7;
+        return aVar;
+    }
+
+    public static zy d(String str) {
+        int i7;
+        if (TextUtils.isEmpty(str)) {
+            i7 = 3;
         } else {
-            i10 = 2131750619;
+            i7 = 6;
         }
-        String M0 = org.telegram.messenger.id.M0(i10, null);
-        TextView textView = this.f52705r;
-        textView.setText(M0);
-        int i11 = 0;
-        if (i7 < 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (!z10) {
-            int[] iArr = org.telegram.ui.ActionBar.m6.f28151r8;
-            i11 = jzVar.getThemedColor(iArr[i7 % iArr.length]);
-        }
-        this.f52707w = i11;
-        bi.rc rcVar = this.f52706s;
-        if (!z10) {
-            rcVar.setEmojiColor(i11);
-        }
-        if (!z9) {
-            this.f52708x.a(this.f52707w, true);
-        }
-        if (z10 != this.f52709y) {
-            this.f52709y = z10;
-            ViewPropertyAnimator animate = textView.animate();
-            float f11 = 0.0f;
-            if (z10) {
-                f10 = 1.0f;
+        ?? aVar = new rg.a(i7, false);
+        aVar.d = str;
+        return aVar;
+    }
+
+    public final boolean equals(Object obj) {
+        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite;
+        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite2;
+        if (this != obj) {
+            if (obj != null && zy.class == obj.getClass()) {
+                zy zyVar = (zy) obj;
+                int i7 = this.f56015a;
+                if (i7 == zyVar.f56015a) {
+                    if (i7 == 11) {
+                        if (!TextUtils.equals(this.d, zyVar.d) || !TextUtils.equals(this.f54061e, zyVar.f54061e)) {
+                            return false;
+                        }
+                    } else if ((i7 != 0 && i7 != 1 && i7 != 3 && i7 != 4) || TextUtils.equals(this.d, zyVar.d)) {
+                        int i10 = this.f56015a;
+                        if (i10 == 0) {
+                            if (this.f54062f != zyVar.f54062f) {
+                                return false;
+                            }
+                        } else if (i10 == 1) {
+                            if (this.h != zyVar.h || !TextUtils.equals(this.f54064i, zyVar.f54064i) || this.f54065j != zyVar.f54065j) {
+                                return false;
+                            }
+                        } else if (i10 == 7 && (tL_exportedChatlistInvite = this.f54068m) != (tL_exportedChatlistInvite2 = zyVar.f54068m)) {
+                            if (TextUtils.equals(tL_exportedChatlistInvite.url, tL_exportedChatlistInvite2.url)) {
+                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite3 = this.f54068m;
+                                boolean z10 = tL_exportedChatlistInvite3.revoked;
+                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite4 = zyVar.f54068m;
+                                if (z10 != tL_exportedChatlistInvite4.revoked || !TextUtils.equals(tL_exportedChatlistInvite3.title, tL_exportedChatlistInvite4.title) || this.f54068m.peers.size() != zyVar.f54068m.peers.size()) {
+                                    return false;
+                                }
+                            } else {
+                                return false;
+                            }
+                        }
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
             } else {
-                f10 = 0.0f;
+                return false;
             }
-            ViewPropertyAnimator duration = animate.alpha(f10).setDuration(320L);
-            org.telegram.ui.Components.wq wqVar = org.telegram.ui.Components.wq.h;
-            duration.setInterpolator(wqVar).start();
-            ViewPropertyAnimator animate2 = rcVar.animate();
-            if (!z10) {
-                f11 = 1.0f;
-            }
-            animate2.alpha(f11).setDuration(320L).setInterpolator(wqVar).start();
         }
-    }
-
-    public final void e(CharSequence charSequence, boolean z9) {
-        if (charSequence == null) {
-            charSequence = "";
-        }
-        boolean z10 = false;
-        if (charSequence.length() > 12) {
-            charSequence = charSequence.subSequence(0, 12);
-        }
-        bi.rc rcVar = this.f52706s;
-        CharSequence m10 = org.telegram.messenger.i6.m(charSequence, rcVar.getPaint().getFontMetricsInt(), false, null, 0);
-        if (z9 && !org.telegram.messenger.id.f23161a0) {
-            z10 = true;
-        }
-        rcVar.c(m10, z10, true);
+        return true;
     }
 }

@@ -1,27 +1,68 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class p01 {
-    public TLRPC.TL_forumTopic f36747a;
-    public org.telegram.messenger.uv f36748b;
-    public final s01 f36749c;
+import java.util.ArrayList;
+public final class p01 extends v4.o {
+    public final int f38140b = 1;
+    public ArrayList f38141c;
+    public ArrayList d;
 
-    public p01(s01 s01Var) {
-        this.f36749c = s01Var;
+    public p01() {
     }
 
-    public final long a() {
-        org.telegram.messenger.uv uvVar = this.f36748b;
-        if (uvVar != null) {
-            return uvVar.f25900a;
+    @Override
+    public final boolean a(int i7, int i10) {
+        switch (this.f38140b) {
+            case 0:
+                r01 r01Var = (r01) this.f38141c.get(i7);
+                throw null;
+            default:
+                rg.a aVar = (rg.a) this.f38141c.get(i7);
+                rg.a aVar2 = (rg.a) this.d.get(i10);
+                if (aVar.f56015a != aVar2.f56015a) {
+                    return false;
+                }
+                return aVar.a(aVar2);
         }
-        TLRPC.TL_forumTopic tL_forumTopic = this.f36747a;
-        if (tL_forumTopic == null) {
-            return 0L;
+    }
+
+    @Override
+    public final boolean b(int i7, int i10) {
+        switch (this.f38140b) {
+            case 0:
+                r01 r01Var = (r01) this.f38141c.get(i7);
+                throw null;
+            default:
+                rg.a aVar = (rg.a) this.f38141c.get(i7);
+                rg.a aVar2 = (rg.a) this.d.get(i10);
+                if (aVar.f56015a != aVar2.f56015a) {
+                    return false;
+                }
+                return aVar.equals(aVar2);
         }
-        if (this.f36749c.f37795c) {
-            return org.telegram.messenger.m5.o(tL_forumTopic.from_id);
+    }
+
+    @Override
+    public final int d() {
+        switch (this.f38140b) {
+            case 0:
+                return this.d.size();
+            default:
+                return this.d.size();
         }
-        return tL_forumTopic.f27012id;
+    }
+
+    @Override
+    public final int e() {
+        switch (this.f38140b) {
+            case 0:
+                return this.f38141c.size();
+            default:
+                return this.f38141c.size();
+        }
+    }
+
+    public p01(ArrayList arrayList, ArrayList arrayList2) {
+        this.f38141c = arrayList;
+        this.d = arrayList2;
     }
 }

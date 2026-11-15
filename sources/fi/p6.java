@@ -1,18 +1,22 @@
 package fi;
+public final class p6 implements Runnable {
+    public final int f12177a;
+    public final r6 f12178b;
 
-import org.telegram.messenger.ImageReceiver;
-public abstract class p6 {
-    public final String f12601a;
-
-    public p6(String str) {
-        this.f12601a = str;
+    public p6(r6 r6Var, int i7) {
+        this.f12177a = i7;
+        this.f12178b = r6Var;
     }
 
-    public abstract String a();
-
-    public abstract String b();
-
-    public abstract void c(org.telegram.ui.ActionBar.f2 f2Var);
-
-    public abstract void d(ImageReceiver imageReceiver);
+    @Override
+    public final void run() {
+        switch (this.f12177a) {
+            case 0:
+                this.f12178b.e();
+                return;
+            default:
+                this.f12178b.b();
+                return;
+        }
+    }
 }

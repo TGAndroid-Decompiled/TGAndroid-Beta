@@ -1,43 +1,27 @@
 package org.telegram.ui.Components;
+public final class y1 implements Runnable {
+    public final int f41839a;
+    public final org.telegram.ui.ActionBar.t1 f41840b;
 
-import android.content.DialogInterface;
-public final class y1 implements DialogInterface.OnDismissListener {
-    public final int f40456a = 0;
-    public final boolean[] f40457b;
-    public final Runnable f40458c;
-
-    public y1(Runnable runnable, boolean[] zArr) {
-        this.f40458c = runnable;
-        this.f40457b = zArr;
+    public y1(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        this.f41839a = i7;
+        this.f41840b = t1Var;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f40456a) {
+    public final void run() {
+        switch (this.f41839a) {
             case 0:
-                Runnable runnable = this.f40458c;
-                if (runnable != null && this.f40457b[0]) {
-                    runnable.run();
+                try {
+                    this.f41840b.dismiss();
+                    return;
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
                     return;
                 }
-                return;
             default:
-                boolean[] zArr = this.f40457b;
-                if (!zArr[0]) {
-                    zArr[0] = true;
-                    Runnable runnable2 = this.f40458c;
-                    if (runnable2 != null) {
-                        runnable2.run();
-                        return;
-                    }
-                    return;
-                }
+                this.f41840b.dismiss();
                 return;
         }
-    }
-
-    public y1(boolean[] zArr, Runnable runnable) {
-        this.f40457b = zArr;
-        this.f40458c = runnable;
     }
 }

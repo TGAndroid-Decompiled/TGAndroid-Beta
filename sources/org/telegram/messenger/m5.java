@@ -7,7 +7,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public abstract class m5 {
     public static boolean A() {
-        TLRPC.User a22 = qp.s1(p10.f24474s0).a2(0L);
+        TLRPC.User a22 = np.s1(m10.f24934t0).a2(0L);
         if (a22 == null) {
             return false;
         }
@@ -54,45 +54,45 @@ public abstract class m5 {
         return 2305843009213693952L | i7;
     }
 
-    public static String H(ImageReceiver imageReceiver, org.telegram.ui.Components.v8 v8Var, TLObject tLObject) {
+    public static String H(ImageReceiver imageReceiver, org.telegram.ui.Components.t8 t8Var, TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) tLObject;
-            if (t10.z(user)) {
-                String M0 = id.M0(2131746266, null);
-                if (v8Var != null) {
-                    v8Var.g(12);
+            if (q10.z(user)) {
+                String M0 = hd.M0(2131746266, null);
+                if (t8Var != null) {
+                    t8Var.g(12);
                 }
                 if (imageReceiver != null) {
-                    imageReceiver.i0(null, v8Var, null);
+                    imageReceiver.i0(null, t8Var, null);
                 }
                 return M0;
-            } else if (t10.B(user)) {
-                String M02 = id.M0(2131745901, null);
-                if (v8Var != null) {
-                    v8Var.g(1);
+            } else if (q10.B(user)) {
+                String M02 = hd.M0(2131745901, null);
+                if (t8Var != null) {
+                    t8Var.g(1);
                 }
                 if (imageReceiver != null) {
-                    imageReceiver.i0(null, v8Var, null);
+                    imageReceiver.i0(null, t8Var, null);
                 }
                 return M02;
             } else {
-                String p10 = t10.p(user);
-                if (v8Var != null) {
-                    v8Var.r(user);
+                String p10 = q10.p(user);
+                if (t8Var != null) {
+                    t8Var.r(user);
                 }
                 if (imageReceiver != null) {
-                    imageReceiver.i0(tLObject, v8Var, null);
+                    imageReceiver.i0(tLObject, t8Var, null);
                 }
                 return p10;
             }
         } else if (tLObject instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) tLObject;
             String str = chat.title;
-            if (v8Var != null) {
-                v8Var.q(chat);
+            if (t8Var != null) {
+                t8Var.q(chat);
             }
             if (imageReceiver != null) {
-                imageReceiver.i0(tLObject, v8Var, null);
+                imageReceiver.i0(tLObject, t8Var, null);
             }
             return str;
         } else {
@@ -170,10 +170,10 @@ public abstract class m5 {
 
     public static long d(TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
-            return ((TLRPC.User) tLObject).f27109id;
+            return ((TLRPC.User) tLObject).f28200id;
         }
         if (tLObject instanceof TLRPC.Chat) {
-            return -((TLRPC.Chat) tLObject).f26960id;
+            return -((TLRPC.Chat) tLObject).f28051id;
         }
         return 0L;
     }
@@ -249,12 +249,12 @@ public abstract class m5 {
     }
 
     public static String l(int i7, long j3) {
-        return m(qp.s1(i7).e2(j3));
+        return m(np.s1(i7).e2(j3));
     }
 
     public static String m(TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
-            return g0.F2(g0.D2(t10.p((TLRPC.User) tLObject)));
+            return g0.F2(g0.D2(q10.p((TLRPC.User) tLObject)));
         }
         if (tLObject instanceof TLRPC.Chat) {
             return ((TLRPC.Chat) tLObject).title;
@@ -339,16 +339,16 @@ public abstract class m5 {
     }
 
     public static String s(int i7, long j3) {
-        return u(qp.s1(i7).e2(j3));
+        return u(np.s1(i7).e2(j3));
     }
 
     public static String t(long j3) {
-        return u(qp.s1(p10.f24474s0).e2(j3));
+        return u(np.s1(m10.f24934t0).e2(j3));
     }
 
     public static String u(TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
-            return g0.F2(g0.D2(t10.k((TLRPC.User) tLObject)));
+            return g0.F2(g0.D2(q10.k((TLRPC.User) tLObject)));
         }
         if (tLObject instanceof TLRPC.Chat) {
             return g0.F2(g0.D2(((TLRPC.Chat) tLObject).title));
@@ -389,48 +389,48 @@ public abstract class m5 {
     }
 
     public static String w(long j3) {
-        int i7 = p10.f24474s0;
-        TLObject e22 = qp.s1(i7).e2(j3);
+        int i7 = m10.f24934t0;
+        TLObject e22 = np.s1(i7).e2(j3);
         if (e22 instanceof TLRPC.User) {
-            return id.d0(i7, (TLRPC.User) e22, null, null);
+            return hd.d0(i7, (TLRPC.User) e22, null, null);
         }
         if (e22 instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) e22;
             if (chat.participants_count > 1) {
                 if (t3.V(chat)) {
-                    return id.H(',', "Subscribers", chat.participants_count);
+                    return hd.H(',', "Subscribers", chat.participants_count);
                 }
-                return id.H(',', "Members", chat.participants_count);
+                return hd.H(',', "Members", chat.participants_count);
             } else if (t3.V(chat)) {
-                return id.M0(2131751390, null);
+                return hd.M0(2131751390, null);
             } else {
-                return id.M0(2131754876, null);
+                return hd.M0(2131754876, null);
             }
         }
         return "";
     }
 
     public static void x(TLRPC.Dialog dialog) {
-        if (dialog != null && dialog.f26964id == 0) {
+        if (dialog != null && dialog.f28055id == 0) {
             if (dialog instanceof TLRPC.TL_dialog) {
                 TLRPC.Peer peer = dialog.peer;
                 if (peer != null) {
                     long j3 = peer.user_id;
                     if (j3 != 0) {
-                        dialog.f26964id = j3;
+                        dialog.f28055id = j3;
                         return;
                     }
                     long j10 = peer.chat_id;
                     if (j10 != 0) {
-                        dialog.f26964id = -j10;
+                        dialog.f28055id = -j10;
                     } else {
-                        dialog.f26964id = -peer.channel_id;
+                        dialog.f28055id = -peer.channel_id;
                     }
                 }
             } else if (dialog instanceof TLRPC.TL_dialogFolder) {
-                dialog.f26964id = 2305843009213693952L | ((TLRPC.TL_dialogFolder) dialog).folder.f27011id;
+                dialog.f28055id = 2305843009213693952L | ((TLRPC.TL_dialogFolder) dialog).folder.f28102id;
             } else if (dialog instanceof TLRPC.TL_dialogCommunity) {
-                dialog.f26964id = -dialog.community_id;
+                dialog.f28055id = -dialog.community_id;
             }
         }
     }

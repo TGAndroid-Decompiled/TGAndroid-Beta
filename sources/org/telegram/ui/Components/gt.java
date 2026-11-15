@@ -1,19 +1,25 @@
 package org.telegram.ui.Components;
+public final class gt implements Runnable {
+    public final int f35052a;
+    public final kt f35053b;
 
-import android.app.Dialog;
-import android.content.Context;
-public final class gt extends Dialog {
-    public final bi.w4 f33974a;
-
-    public gt(bi.w4 w4Var, Context context) {
-        super(context);
-        this.f33974a = w4Var;
+    public gt(kt ktVar, int i7) {
+        this.f35052a = i7;
+        this.f35053b = ktVar;
     }
 
     @Override
-    public final void dismiss() {
-        ht htVar = (ht) this.f33974a.f4964b;
-        htVar.f34459a.k(false);
-        htVar.f34459a.e();
+    public final void run() {
+        switch (this.f35052a) {
+            case 0:
+                kt ktVar = this.f35053b;
+                ktVar.post(new gt(ktVar, 1));
+                return;
+            default:
+                kt ktVar2 = this.f35053b;
+                ktVar2.h();
+                ktVar2.d();
+                return;
+        }
     }
 }

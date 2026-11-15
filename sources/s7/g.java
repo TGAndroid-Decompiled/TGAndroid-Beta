@@ -2,15 +2,15 @@ package s7;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.xb;
+import c8.yb;
 import java.util.ArrayList;
 import q4.x;
 public final class g extends r6.a {
-    public final String f54955a;
-    public final k f54956b;
-    public final int f54957c;
+    public final String f56511a;
+    public final k f56512b;
+    public final int f56513c;
     public final byte[] d;
-    public static final int f54954e = Integer.parseInt("-1");
+    public static final int f56510e = Integer.parseInt("-1");
     public static final Parcelable.Creator<g> CREATOR = new x(18);
 
     static {
@@ -24,12 +24,12 @@ public final class g extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = xb.r(parcel, 20293);
-        xb.l(parcel, 1, this.f54955a);
-        xb.k(parcel, 3, this.f54956b, i7);
-        xb.q(parcel, 4, 4);
-        parcel.writeInt(this.f54957c);
-        xb.c(parcel, 5, this.d);
-        xb.s(parcel, r10);
+        int r10 = yb.r(parcel, 20293);
+        yb.l(parcel, 1, this.f56511a);
+        yb.k(parcel, 3, this.f56512b, i7);
+        yb.q(parcel, 4, 4);
+        parcel.writeInt(this.f56513c);
+        yb.c(parcel, 5, this.d);
+        yb.s(parcel, r10);
     }
 }

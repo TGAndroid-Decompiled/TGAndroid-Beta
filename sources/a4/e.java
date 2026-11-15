@@ -4,11 +4,11 @@ import e2.t0;
 import f3.o;
 import f3.p;
 import f3.q;
-import h2.m0;
+import h2.l0;
 import h2.x;
 import h9.g0;
 import h9.i0;
-import h9.t1;
+import h9.s1;
 import java.util.List;
 public final class e implements o {
     public q f163a;
@@ -49,7 +49,7 @@ public final class e implements o {
                 long j11 = (jVar.f185i * j10) / 1000000;
                 jVar.f182e = j11;
                 h hVar = jVar.d;
-                String str = m0.f14114a;
+                String str = l0.f13471a;
                 hVar.v0(j11);
                 jVar.h = 2;
             }
@@ -58,8 +58,8 @@ public final class e implements o {
 
     @Override
     public final List e() {
-        g0 g0Var = i0.f14331b;
-        return t1.f14399e;
+        g0 g0Var = i0.f13686b;
+        return s1.f13749e;
     }
 
     @Override
@@ -68,12 +68,12 @@ public final class e implements o {
     }
 
     public final boolean g(p pVar) {
-        boolean z9;
+        boolean z10;
         g gVar = new g();
         if (gVar.a(pVar, true) && (gVar.f170a & 2) == 2) {
             int min = Math.min(gVar.f173e, 8);
             x xVar = new x(min);
-            pVar.b(0, min, xVar.f14164a);
+            pVar.c(0, min, xVar.f13521a);
             xVar.N(0);
             if (xVar.a() >= 5 && xVar.A() == 127 && xVar.C() == 1179402563) {
                 this.f164b = new j();
@@ -81,11 +81,11 @@ public final class e implements o {
             }
             xVar.N(0);
             try {
-                z9 = f3.b.w(1, xVar, true);
+                z10 = f3.b.w(1, xVar, true);
             } catch (t0 unused) {
-                z9 = false;
+                z10 = false;
             }
-            if (z9) {
+            if (z10) {
                 this.f164b = new j();
             } else {
                 xVar.N(0);

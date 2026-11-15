@@ -1,22 +1,17 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import java.util.regex.Pattern;
-public final class lu extends b41 {
-    public final mu f35741e;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+public final class lu extends po0 {
+    public final wu V2;
 
-    public lu(mu muVar, String str) {
-        super(str, (uy0) null);
-        this.f35741e = muVar;
+    public lu(wu wuVar, Context context, String str, String str2, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, null, str, false, str2, false, e6Var);
+        this.V2 = wuVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        mu muVar = this.f35741e;
-        qu quVar = muVar.f36103y;
-        Pattern pattern = qu.P1;
-        org.telegram.messenger.qp.s1(quVar.f28669a).y3(getURL(), muVar.f36103y.f37396m1, 1, null);
-        muVar.f36103y.L0();
-        muVar.f36103y.dismiss();
+    public final void R0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        org.telegram.messenger.g0.i3(new org.telegram.ui.f0(this, hVar, i7, 9), 100L);
     }
 }

@@ -56,9 +56,9 @@ public final class h extends z {
         hVar.value_ = hVar2;
     }
 
-    public static void q(h hVar, boolean z9) {
+    public static void q(h hVar, boolean z10) {
         hVar.valueCase_ = 1;
-        hVar.value_ = Boolean.valueOf(z9);
+        hVar.value_ = Boolean.valueOf(z10);
     }
 
     public static void r(h hVar, float f10) {
@@ -165,7 +165,7 @@ public final class h extends z {
         if (this.valueCase_ == 8) {
             return (androidx.datastore.preferences.protobuf.h) this.value_;
         }
-        return androidx.datastore.preferences.protobuf.h.f2188c;
+        return androidx.datastore.preferences.protobuf.h.f2136c;
     }
 
     public final double w() {

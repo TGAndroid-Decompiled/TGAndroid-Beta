@@ -1,199 +1,187 @@
 package org.telegram.utils.twidget;
 
-import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.text.Layout;
-public final class m1 extends Layout {
-    public final l1 f52924a;
+import android.text.TextPaint;
+import java.util.Locale;
+import org.json.JSONObject;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.gz;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.hk0;
+public abstract class m1 {
+    public static final int[] f54332a = {j6.f29112ra, j6.Vc, j6.f28875ee, j6.Xc, j6.Nd};
+    public static final int[] f54333b = {j6.f29113rb, j6.Wc, j6.f28964jc, j6.Yc, j6.Tb};
+    public static final int[] f54334c = {j6.f29170ub, j6.f29189vb, j6.f29208wb};
 
-    public m1(l1 l1Var) {
-        super(l1Var.f52908a, n1.f52939b, Math.max(1, l1Var.d), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f);
-        this.f52924a = l1Var;
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-    }
-
-    @Override
-    public final int getBottomPadding() {
-        return 0;
-    }
-
-    @Override
-    public final int getEllipsisCount(int i7) {
-        return 0;
-    }
-
-    @Override
-    public final int getEllipsisStart(int i7) {
-        return 0;
-    }
-
-    @Override
-    public final boolean getLineContainsTab(int i7) {
-        return false;
-    }
-
-    @Override
-    public final int getLineCount() {
-        return this.f52924a.f52913g.length;
-    }
-
-    @Override
-    public final int getLineDescent(int i7) {
-        return 0;
-    }
-
-    @Override
-    public final Layout.Directions getLineDirections(int i7) {
-        return null;
-    }
-
-    @Override
-    public final int getLineForOffset(int i7) {
-        int i10 = 0;
-        while (true) {
-            l1 l1Var = this.f52924a;
-            float[][] fArr = l1Var.f52913g;
-            if (i10 < fArr.length) {
-                int i11 = i10 + 1;
-                if (i7 < l1Var.f52911e[i11]) {
-                    return i10;
-                }
-                i10 = i11;
+    public static String a(e6 e6Var, boolean z10) {
+        boolean q10;
+        int[] iArr;
+        int i7;
+        Object obj;
+        String str = "light";
+        if (e6Var != null) {
+            q10 = e6Var.a();
+        } else {
+            q10 = j6.I.q();
+        }
+        if (z10) {
+            iArr = f54333b;
+        } else {
+            iArr = f54332a;
+        }
+        try {
+            int b10 = b(e6Var, z10);
+            if (q10) {
+                i7 = -16777216;
             } else {
-                return fArr.length - 1;
+                i7 = -1;
             }
+            int w10 = j6.w(i7, b10);
+            int w02 = j6.w0(iArr[1], e6Var);
+            int w03 = j6.w0(iArr[2], e6Var);
+            int w04 = j6.w0(iArr[3], e6Var);
+            int w05 = j6.w0(iArr[4], e6Var);
+            int w06 = j6.w0(j6.Fi, e6Var);
+            int w07 = j6.w0(j6.Ji, e6Var);
+            int w11 = j6.w(w10, j6.r1(0.1f, w05));
+            JSONObject jSONObject = new JSONObject();
+            jSONObject.put("bg_color", c(w10, w10));
+            jSONObject.put("text_color", c(w02, w10));
+            jSONObject.put("hint_color", c(w03, w10));
+            jSONObject.put("link_color", c(w04, w10));
+            jSONObject.put("button_color", c(w06, w10));
+            jSONObject.put("button_text_color", c(w07, w06));
+            jSONObject.put("secondary_bg_color", c(w11, w10));
+            jSONObject.put("accent_text_color", c(w05, w10));
+            jSONObject.put("subtitle_text_color", c(w03, w10));
+            jSONObject.put("destructive_text_color", c(j6.w0(j6.f29070p7, e6Var), w10));
+            jSONObject.put("section_bg_color", c(w10, w10));
+            jSONObject.put("section_header_text_color", c(w05, w10));
+            jSONObject.put("section_separator_color", c(j6.r1(0.12f, w02), w10));
+            jSONObject.put("header_bg_color", c(w11, w10));
+            jSONObject.put("bottom_bar_bg_color", c(w11, w10));
+            JSONObject jSONObject2 = new JSONObject();
+            jSONObject2.put("text", c(w05, w10));
+            JSONObject jSONObject3 = new JSONObject();
+            if (!q10) {
+                obj = "light";
+            } else {
+                obj = "dark";
+            }
+            jSONObject3.put("colorScheme", obj);
+            jSONObject3.put("params", jSONObject);
+            jSONObject3.put("button", jSONObject2);
+            jSONObject3.put("text", e());
+            return jSONObject3.toString();
+        } catch (Exception e10) {
+            a8.g(e10, true);
+            StringBuilder sb2 = new StringBuilder("{\"colorScheme\":\"");
+            if (q10) {
+                str = "dark";
+            }
+            return a8.p0.s(sb2, str, "\"}");
         }
     }
 
-    @Override
-    public final float getLineLeft(int i7) {
-        float[][] fArr = this.f52924a.f52913g;
-        return fArr[Math.max(0, Math.min(i7, fArr.length - 1))][0];
+    public static int b(e6 e6Var, boolean z10) {
+        int i7;
+        int i10;
+        int i11;
+        if (z10) {
+            i7 = f54333b[0];
+        } else {
+            i7 = f54332a[0];
+        }
+        int w02 = j6.w0(i7, e6Var);
+        if (z10) {
+            int[] iArr = f54334c;
+            int i12 = iArr[0];
+            if (e6Var != null) {
+                i10 = e6Var.j(i12);
+            } else {
+                i10 = j6.lm.get(i12);
+            }
+            if (i10 != 0) {
+                int red = Color.red(w02);
+                int green = Color.green(w02);
+                int blue = Color.blue(w02);
+                int i13 = 1;
+                for (int i14 : iArr) {
+                    if (e6Var != null) {
+                        i11 = e6Var.j(i14);
+                    } else {
+                        i11 = j6.lm.get(i14);
+                    }
+                    if (i11 != 0) {
+                        int red2 = Color.red(i11) + red;
+                        int green2 = Color.green(i11) + green;
+                        i13++;
+                        blue = Color.blue(i11) + blue;
+                        green = green2;
+                        red = red2;
+                    }
+                }
+                return Color.argb(Color.alpha(w02), red / i13, green / i13, blue / i13);
+            }
+        }
+        return w02;
     }
 
-    @Override
-    public final float getLineMax(int i7) {
-        return getLineRight(i7);
+    public static String c(int i7, int i10) {
+        int w10 = j6.w(i10, i7);
+        return String.format(Locale.US, "#%02x%02x%02x", Integer.valueOf(Color.red(w10)), Integer.valueOf(Color.green(w10)), Integer.valueOf(Color.blue(w10)));
     }
 
-    @Override
-    public final float getLineRight(int i7) {
-        float[][] fArr = this.f52924a.f52913g;
-        float[] fArr2 = fArr[Math.max(0, Math.min(i7, fArr.length - 1))];
-        return fArr2[fArr2.length - 1];
-    }
-
-    @Override
-    public final int getLineStart(int i7) {
-        l1 l1Var = this.f52924a;
-        return l1Var.f52911e[Math.max(0, Math.min(i7, l1Var.f52913g.length))];
-    }
-
-    @Override
-    public final int getLineTop(int i7) {
-        l1 l1Var = this.f52924a;
-        return l1Var.f52912f[Math.max(0, Math.min(i7, l1Var.f52913g.length))];
-    }
-
-    @Override
-    public final float getLineWidth(int i7) {
-        return getLineRight(i7) - getLineLeft(i7);
-    }
-
-    @Override
-    public final int getOffsetForHorizontal(int i7, float f10) {
-        l1 l1Var = this.f52924a;
-        int max = Math.max(0, Math.min(i7, l1Var.f52913g.length - 1));
-        float[] fArr = l1Var.f52913g[max];
-        int[] iArr = l1Var.f52911e;
-        int i10 = iArr[max + 1] - iArr[max];
+    public static int d(e6 e6Var, boolean z10) {
+        int i7;
+        int[] iArr;
+        int[] iArr2;
+        int i10;
         int i11 = 0;
-        for (int i12 = 0; i12 <= i10 && i12 < fArr.length; i12++) {
-            if (i12 < i10) {
-                int i13 = i12 + 1;
-                if (f10 >= (fArr[i12] + fArr[i13]) / 2.0f) {
-                    i11 = i13;
+        if (e6Var == null ? j6.I.q() : e6Var.a()) {
+            i7 = 1;
+        } else {
+            i7 = 0;
+        }
+        if (z10) {
+            iArr = f54333b;
+        } else {
+            iArr = f54332a;
+        }
+        for (int i12 : iArr) {
+            i7 = (i7 * 31) + j6.w0(i12, e6Var);
+        }
+        if (z10) {
+            for (int i13 : f54334c) {
+                int i14 = i7 * 31;
+                if (e6Var != null) {
+                    i10 = e6Var.j(i13);
+                } else {
+                    i10 = j6.lm.get(i13);
                 }
+                i7 = i14 + i10;
             }
         }
-        if (i11 == i10 && i10 > 0 && max < l1Var.f52913g.length - 1 && Character.isWhitespace(l1Var.f52908a.charAt((l1Var.f52911e[max] + i10) - 1))) {
-            i11--;
+        int w02 = (((j6.w0(j6.f29070p7, e6Var) + ((j6.w0(j6.Ji, e6Var) + ((j6.w0(j6.Fi, e6Var) + (i7 * 31)) * 31)) * 31)) * 31) + gz.W0) * 31;
+        TextPaint textPaint = j6.f29046o2;
+        if (textPaint != null) {
+            i11 = Float.floatToIntBits(textPaint.getTextSize());
         }
-        return l1Var.f52911e[max] + i11;
+        return hk0.j0() + ((w02 + i11) * 31);
     }
 
-    @Override
-    public final int getParagraphDirection(int i7) {
-        return 1;
-    }
-
-    @Override
-    public final float getPrimaryHorizontal(int i7) {
-        int lineForOffset = getLineForOffset(i7);
-        l1 l1Var = this.f52924a;
-        float[] fArr = l1Var.f52913g[lineForOffset];
-        return fArr[Math.max(0, Math.min(i7 - l1Var.f52911e[lineForOffset], fArr.length - 1))];
-    }
-
-    @Override
-    public final float getSecondaryHorizontal(int i7) {
-        return getPrimaryHorizontal(i7);
-    }
-
-    @Override
-    public final void getSelectionPath(int i7, int i10, Path path) {
-        float lineLeft;
-        float lineRight;
-        Path path2;
-        path.reset();
-        if (i7 != i10) {
-            if (i10 < i7) {
-                i10 = i7;
-                i7 = i10;
-            }
-            int lineForOffset = getLineForOffset(i7);
-            int lineForOffset2 = getLineForOffset(i10);
-            int i11 = lineForOffset;
-            while (i11 <= lineForOffset2) {
-                if (i11 == lineForOffset) {
-                    lineLeft = getPrimaryHorizontal(i7);
-                } else {
-                    lineLeft = getLineLeft(i11);
-                }
-                float f10 = lineLeft;
-                if (i11 == lineForOffset2) {
-                    lineRight = getPrimaryHorizontal(i10);
-                } else {
-                    lineRight = getLineRight(i11);
-                }
-                float f11 = lineRight;
-                if (f11 > f10) {
-                    path2 = path;
-                    path2.addRect(f10, getLineTop(i11), f11, getLineTop(i11 + 1), Path.Direction.CW);
-                } else {
-                    path2 = path;
-                }
-                i11++;
-                path = path2;
-            }
+    public static JSONObject e() {
+        JSONObject jSONObject = new JSONObject();
+        jSONObject.put("fontSize", gz.W0);
+        TextPaint textPaint = j6.f29046o2;
+        if (textPaint != null && textPaint.getTextSize() > 0.0f) {
+            Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
+            jSONObject.put("lineHeight", Math.round(Math.max(1.0f, Math.min(3.0f, ((fontMetrics.descent - fontMetrics.ascent) + fontMetrics.leading) / textPaint.getTextSize())) * 100.0f) / 100.0d);
         }
-    }
-
-    @Override
-    public final int getTopPadding() {
-        return 0;
-    }
-
-    @Override
-    public final boolean isRtlCharAt(int i7) {
-        return false;
-    }
-
-    @Override
-    public final void draw(Canvas canvas, Path path, Paint paint, int i7) {
+        int round = Math.round(hk0.j0() / org.telegram.messenger.g0.f23608p);
+        jSONObject.put("padding", "8px " + round + "px");
+        return jSONObject;
     }
 }

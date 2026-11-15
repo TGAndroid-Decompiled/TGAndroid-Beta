@@ -1,17 +1,17 @@
 package c0;
 public final class k extends h {
-    public final l f5246n;
+    public final l f4062n;
 
     public k(l lVar) {
-        this.f5246n = lVar;
+        this.f4062n = lVar;
     }
 
     @Override
     public final String i() {
-        i iVar = (i) this.f5246n.f5247a.get();
+        i iVar = (i) this.f4062n.f4063a.get();
         if (iVar == null) {
             return "Completer object has been garbage collected, future will fail soon";
         }
-        return "tag=[" + iVar.f5243a + "]";
+        return "tag=[" + iVar.f4059a + "]";
     }
 }

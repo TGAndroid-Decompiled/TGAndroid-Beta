@@ -1,133 +1,30 @@
 package org.telegram.ui;
 
-import android.graphics.RectF;
-import android.view.TextureView;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class su0 implements org.telegram.ui.ActionBar.o0, gr0, gh.a, org.telegram.ui.Components.e8 {
-    public final ProfileActivity f49960a;
+public final class su0 implements RequestDelegate {
+    public final int f51277a;
+    public final uu0 f51278b;
 
-    public su0(ProfileActivity profileActivity) {
-        this.f49960a = profileActivity;
+    public su0(uu0 uu0Var, int i7) {
+        this.f51277a = i7;
+        this.f51278b = uu0Var;
     }
 
     @Override
-    public int A() {
-        ProfileActivity profileActivity = this.f49960a;
-        gh.e eVar = profileActivity.I5;
-        return i0.a.f(profileActivity.l4(), 553648127, eVar.a(eVar.f13972c));
-    }
-
-    @Override
-    public int C0() {
-        return 0;
-    }
-
-    @Override
-    public void I(org.telegram.messenger.ij ijVar) {
-        org.telegram.ui.Components.kf0 kf0Var = this.f49960a.m0;
-        if (kf0Var != null && kf0Var.f35305a) {
-            kf0Var.K.e(true, 0.0f);
-            kf0Var.invalidate();
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f51277a) {
+            case 0:
+                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
+                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
+                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
+                uu0 uu0Var = this.f51278b;
+                uu0Var.f52032c.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new su0(uu0Var, 1));
+                return;
+            default:
+                this.f51278b.f52032c.getMessagesController().R2(true);
+                return;
         }
-    }
-
-    @Override
-    public void I0(org.telegram.messenger.ij ijVar) {
-        ProfileActivity profileActivity = this.f49960a;
-        profileActivity.f41689a.I0(true);
-        yv0 yv0Var = profileActivity.N;
-        if (yv0Var != null && yv0Var.getCurrentListView() != null) {
-            profileActivity.N.getCurrentListView().I0(true);
-        }
-        profileActivity.f41707c1.setBackgroundColor(i0.a.f(0.1f, profileActivity.f4(profileActivity.V4.f46730f), org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f27834a7, profileActivity.f41867z0)));
-    }
-
-    @Override
-    public int M() {
-        return 0;
-    }
-
-    @Override
-    public int O() {
-        ProfileActivity profileActivity = this.f49960a;
-        gh.e eVar = profileActivity.I5;
-        return i0.a.f(profileActivity.l4(), 352321535, eVar.a(eVar.d));
-    }
-
-    @Override
-    public int R0() {
-        ProfileActivity profileActivity = this.f49960a;
-        gh.e eVar = profileActivity.I5;
-        return org.telegram.ui.ActionBar.m6.r1(profileActivity.l4(), eVar.a(eVar.f13971b));
-    }
-
-    @Override
-    public void X0(int i7, int i10) {
-        int i11;
-        RectF rectF = ProfileActivity.V6;
-        ProfileActivity profileActivity = this.f49960a;
-        long a10 = profileActivity.a();
-        profileActivity.getMessagesController().I4(i7, a10);
-        if (profileActivity.f41831u2 == null && profileActivity.f41825t2 == null) {
-            return;
-        }
-        UndoView undoView = profileActivity.L;
-        TLRPC.User a22 = profileActivity.getMessagesController().a2(Long.valueOf(a10));
-        TLRPC.UserFull userFull = profileActivity.f41831u2;
-        if (userFull != null) {
-            i11 = userFull.ttl_period;
-        } else {
-            i11 = profileActivity.f41825t2.ttl_period;
-        }
-        undoView.k(a10, i10, a22, Integer.valueOf(i11), null, null);
-    }
-
-    @Override
-    public void dismiss() {
-        this.f49960a.S0.U(null, null);
-    }
-
-    @Override
-    public int e1() {
-        ProfileActivity profileActivity = this.f49960a;
-        gh.e eVar = profileActivity.I5;
-        return org.telegram.ui.ActionBar.m6.r1(profileActivity.l4(), eVar.a(eVar.f13973e));
-    }
-
-    @Override
-    public void i1() {
-        this.f49960a.presentFragment(new p4());
-        dismiss();
-    }
-
-    @Override
-    public float j0() {
-        return -1.0f;
-    }
-
-    @Override
-    public TextureView l0() {
-        return null;
-    }
-
-    @Override
-    public void n() {
-        RectF rectF = ProfileActivity.V6;
-        org.telegram.ui.Components.jk0.d(new a5(this.f49960a, 19));
-    }
-
-    @Override
-    public float o0() {
-        return -1.0f;
-    }
-
-    @Override
-    public float v0() {
-        return 0.0f;
-    }
-
-    @Override
-    public void i() {
     }
 }

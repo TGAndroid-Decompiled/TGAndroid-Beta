@@ -3,26 +3,26 @@ package a8;
 import java.util.Map;
 import java.util.Set;
 public abstract class h implements y {
-    public transient b f459a;
-    public transient kb f460b;
+    public transient b f462a;
+    public transient lb f463b;
 
     public final Map a() {
-        kb kbVar = this.f460b;
-        if (kbVar == null) {
+        lb lbVar = this.f463b;
+        if (lbVar == null) {
             i iVar = (i) this;
-            kb kbVar2 = new kb(iVar, iVar.f482c, 0);
-            this.f460b = kbVar2;
-            return kbVar2;
+            lb lbVar2 = new lb(iVar, iVar.f486c, 0);
+            this.f463b = lbVar2;
+            return lbVar2;
         }
-        return kbVar;
+        return lbVar;
     }
 
     public final Set b() {
-        b bVar = this.f459a;
+        b bVar = this.f462a;
         if (bVar == null) {
             i iVar = (i) this;
-            b bVar2 = new b(iVar, iVar.f482c);
-            this.f459a = bVar2;
+            b bVar2 = new b(iVar, iVar.f486c);
+            this.f462a = bVar2;
             return bVar2;
         }
         return bVar;
@@ -39,10 +39,10 @@ public abstract class h implements y {
     }
 
     public final int hashCode() {
-        return ((kb) a()).f513b.hashCode();
+        return ((lb) a()).f533b.hashCode();
     }
 
     public final String toString() {
-        return ((kb) a()).f513b.toString();
+        return ((lb) a()).f533b.toString();
     }
 }

@@ -1,147 +1,24 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-public final class f81 extends FrameLayout {
-    public final int f45656a;
-    public final i81 f45657b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class f81 extends AnimatorListenerAdapter {
+    public final int f47087a;
+    public final g81 f47088b;
 
-    public f81(i81 i81Var, Context context, int i7) {
-        super(context);
-        this.f45656a = i7;
-        this.f45657b = i81Var;
+    public f81(g81 g81Var, int i7) {
+        this.f47087a = i7;
+        this.f47088b = g81Var;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        org.telegram.ui.Cells.q1 q1Var;
-        switch (this.f45656a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f47087a) {
             case 0:
-                i81 i81Var = this.f45657b;
-                if (i81Var.f46573y > 0.0f && i81Var.f46571w != null) {
-                    i81Var.f46572x.reset();
-                    float width = getWidth() / i81Var.f46569r.getWidth();
-                    i81Var.f46572x.postScale(width, width);
-                    i81Var.f46570s.setLocalMatrix(i81Var.f46572x);
-                    i81Var.f46571w.setAlpha((int) (i81Var.f46573y * 255.0f));
-                    canvas2 = canvas;
-                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), i81Var.f46571w);
-                } else {
-                    canvas2 = canvas;
-                }
-                if (i81Var.N && (q1Var = i81Var.K) != null) {
-                    q1Var.f29804b6 = i81Var.O;
-                    q1Var.invalidate();
-                    i81Var.N = false;
-                }
-                super.dispatchDraw(canvas2);
+                this.f47088b.f47387b.f48902s.setVisibility(8);
                 return;
             default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-        switch (this.f45656a) {
-            case 0:
-                if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-                    this.f45657b.c(true);
-                    return true;
-                }
-                return super.dispatchKeyEventPreIme(keyEvent);
-            default:
-                return super.dispatchKeyEventPreIme(keyEvent);
-        }
-    }
-
-    @Override
-    public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f45656a) {
-            case 1:
-                i81 i81Var = this.f45657b;
-                if (view != i81Var.J && view != i81Var.I) {
-                    return super.drawChild(canvas, view, j3);
-                }
-                canvas.save();
-                canvas.clipRect(0.0f, org.telegram.messenger.g0.T1(i81Var.L, 0.0f, i81Var.f46573y), getWidth(), org.telegram.messenger.g0.T1(i81Var.M, getHeight(), i81Var.f46573y));
-                boolean drawChild = super.drawChild(canvas, view, j3);
-                canvas.restore();
-                return drawChild;
-            default:
-                return super.drawChild(canvas, view, j3);
-        }
-    }
-
-    @Override
-    public void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        switch (this.f45656a) {
-            case 0:
-                super.onLayout(z9, i7, i10, i11, i12);
-                this.f45657b.d();
-                return;
-            default:
-                super.onLayout(z9, i7, i10, i11, i12);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i7, int i10) {
-        switch (this.f45656a) {
-            case 2:
-                int size = View.MeasureSpec.getSize(i7);
-                int size2 = View.MeasureSpec.getSize(i10);
-                i81 i81Var = this.f45657b;
-                i81Var.e();
-                for (int i11 = 0; i11 < getChildCount(); i11++) {
-                    View childAt = getChildAt(i11);
-                    ViewGroup viewGroup = i81Var.S;
-                    if (childAt == viewGroup) {
-                        float f10 = i81Var.T;
-                        if (f10 > 0.0f) {
-                            viewGroup.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f10), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                        }
-                    }
-                    ViewGroup viewGroup2 = i81Var.Q;
-                    if (childAt == viewGroup2) {
-                        float f11 = i81Var.R;
-                        if (f11 > 0.0f) {
-                            viewGroup2.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f11), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                        }
-                    }
-                    org.telegram.ui.Components.ii0 ii0Var = i81Var.P;
-                    if (childAt == ii0Var) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(ii0Var.getTotalWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                    } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                    }
-                }
-                setMeasuredDimension(size, size2);
-                return;
-            default:
-                super.onMeasure(i7, i10);
-                return;
-        }
-    }
-
-    @Override
-    public void onSizeChanged(int i7, int i10, int i11, int i12) {
-        switch (this.f45656a) {
-            case 0:
-                super.onSizeChanged(i7, i10, i11, i12);
-                i81 i81Var = this.f45657b;
-                ih.d.c(i81Var.E, i81Var.f46560b);
-                i81Var.F.d();
-                return;
-            default:
-                super.onSizeChanged(i7, i10, i11, i12);
+                this.f47088b.f47387b.f48895a.setVisibility(8);
                 return;
         }
     }

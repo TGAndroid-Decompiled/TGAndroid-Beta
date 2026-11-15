@@ -1,82 +1,16 @@
 package bi;
 
-import android.text.SpannableStringBuilder;
-import org.telegram.ui.Components.wp;
-public final class d implements Runnable {
-    public final int f3630a;
-    public final z f3631b;
+import android.content.Context;
+import android.widget.FrameLayout;
+public final class d extends FrameLayout {
+    public static final int f3434c = 0;
+    public final org.telegram.ui.ActionBar.e6 f3435a;
+    public final int f3436b;
 
-    public d(z zVar, int i7) {
-        this.f3630a = i7;
-        this.f3631b = zVar;
-    }
-
-    @Override
-    public final void run() {
-        boolean z9;
-        String H;
-        int i7 = this.f3630a;
-        z zVar = this.f3631b;
-        switch (i7) {
-            case 0:
-                d dVar = zVar.f5136s0;
-                int currentTime = zVar.getConnectionsManager().getCurrentTime();
-                w wVar = zVar.f5112a0;
-                if (zVar.Y <= 0 && zVar.P <= currentTime) {
-                    z9 = false;
-                } else {
-                    z9 = true;
-                }
-                wVar.setEnabled(z9);
-                if (currentTime < zVar.P) {
-                    zVar.f5112a0.i(org.telegram.messenger.id.M0(2131752968, null), true, true);
-                    if (zVar.f5134r0 == null) {
-                        zVar.f5134r0 = new SpannableStringBuilder("l");
-                        wp wpVar = new wp(2131231976, 0);
-                        wpVar.f40037n = 1;
-                        zVar.f5134r0.setSpan(wpVar, 0, 1, 33);
-                    }
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    spannableStringBuilder.append((CharSequence) zVar.f5134r0).append((CharSequence) z.w0(zVar.P - currentTime));
-                    zVar.f5112a0.g(spannableStringBuilder, true);
-                    org.telegram.ui.Components.bc bcVar = zVar.f5125j0;
-                    if (bcVar != null) {
-                        org.telegram.ui.Components.fb fbVar = bcVar.f32199e;
-                        if ((fbVar instanceof org.telegram.ui.Components.jb) && fbVar.isAttachedToWindow()) {
-                            org.telegram.messenger.k5.r(null, null, 2131752952, new Object[]{z.w0(zVar.P - currentTime)}, ((org.telegram.ui.Components.jb) zVar.f5125j0.f32199e).f34883b);
-                        }
-                    }
-                    org.telegram.messenger.g0.r(dVar);
-                    org.telegram.messenger.g0.i3(dVar, 1000L);
-                    return;
-                }
-                zVar.f5112a0.g(null, true);
-                w wVar2 = zVar.f5112a0;
-                if (zVar.X) {
-                    H = org.telegram.messenger.id.M0(2131752969, null);
-                } else {
-                    H = org.telegram.messenger.id.H(' ', "BotStarsButtonWithdrawShort", (int) zVar.Y);
-                }
-                wVar2.i(dd.Y0(false, H, zVar.f5116c0), true, true);
-                return;
-            case 1:
-                z.b0(zVar);
-                return;
-            case 2:
-                vf.c.t(zVar.getParentActivity(), org.telegram.messenger.id.M0(2131752956, null));
-                return;
-            case 3:
-                z.Z(zVar);
-                return;
-            case 4:
-                vf.c.t(zVar.getParentActivity(), org.telegram.messenger.id.M0(2131753029, null));
-                return;
-            case 5:
-                vf.c.t(zVar.getParentActivity(), org.telegram.messenger.id.M0(2131753049, null));
-                return;
-            default:
-                zVar.f5114b0.setLoading(false);
-                return;
-        }
+    public d(int i7, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.f3436b = i7;
+        this.f3435a = e6Var;
+        setPadding(org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(9.0f));
     }
 }

@@ -1,37 +1,37 @@
 package j2;
 
-import a8.ia;
+import a8.ja;
 import java.io.InputStream;
 public final class k extends InputStream {
-    public final h f16438a;
-    public final m f16439b;
+    public final h f16792a;
+    public final m f16793b;
     public boolean d = false;
-    public boolean f16441e = false;
-    public final byte[] f16440c = new byte[1];
+    public boolean f16795e = false;
+    public final byte[] f16794c = new byte[1];
 
     public k(h hVar, m mVar) {
-        this.f16438a = hVar;
-        this.f16439b = mVar;
+        this.f16792a = hVar;
+        this.f16793b = mVar;
     }
 
     public final void a() {
         if (!this.d) {
-            this.f16438a.open(this.f16439b);
+            this.f16792a.open(this.f16793b);
             this.d = true;
         }
     }
 
     @Override
     public final void close() {
-        if (!this.f16441e) {
-            this.f16438a.close();
-            this.f16441e = true;
+        if (!this.f16795e) {
+            this.f16792a.close();
+            this.f16795e = true;
         }
     }
 
     @Override
     public final int read() {
-        byte[] bArr = this.f16440c;
+        byte[] bArr = this.f16794c;
         if (read(bArr, 0, bArr.length) == -1) {
             return -1;
         }
@@ -45,9 +45,9 @@ public final class k extends InputStream {
 
     @Override
     public final int read(byte[] bArr, int i7, int i10) {
-        ia.p(!this.f16441e);
+        ja.p(!this.f16795e);
         a();
-        int read = this.f16438a.read(bArr, i7, i10);
+        int read = this.f16792a.read(bArr, i7, i10);
         if (read == -1) {
             return -1;
         }

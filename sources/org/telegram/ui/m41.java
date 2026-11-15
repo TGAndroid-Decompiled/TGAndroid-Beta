@@ -1,46 +1,197 @@
 package org.telegram.ui;
 
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Typeface;
-import android.text.TextPaint;
+import android.util.SparseIntArray;
 import android.view.View;
-public final class m41 {
-    public final org.telegram.ui.Components.kz f47789a;
-    public ng.f f47790b;
-    public final int f47791c;
-    public final n41 d;
+public final class m41 extends v4.o {
+    public int f49107b;
+    public final e41 f49108c;
+    public final v4.b0 d;
+    public final SparseIntArray f49109e = new SparseIntArray();
+    public int f49110f = -1;
+    public int f49111g = -1;
+    public int h = -1;
+    public int f49112i = -1;
+    public int f49113j = -1;
+    public int f49114k = -1;
+    public int f49115l = -1;
+    public int f49116m = -1;
+    public int f49117n = -1;
+    public int f49118o = -1;
+    public int f49119p = -1;
+    public int f49120q = -1;
+    public int f49121r = -1;
+    public int f49122s = -1;
+    public int f49123t = -1;
+    public int f49124u = -1;
+    public int v = -1;
+    public int f49125w = -1;
+    public int f49126x = -1;
+    public int f49127y = -1;
 
-    public m41(n41 n41Var, int i7) {
-        this.d = n41Var;
-        this.f47791c = i7;
-        ?? view = new View(n41Var.getContext());
-        view.f35465c = true;
-        TextPaint textPaint = new TextPaint(1);
-        view.f35466e = textPaint;
-        view.f35467f = new Paint(1);
-        Paint paint = new Paint(1);
-        view.h = paint;
-        Paint paint2 = new Paint(1);
-        view.f35468n = paint2;
-        view.f35472x = org.telegram.messenger.g0.L(35.0f);
-        view.f35473y = org.telegram.messenger.g0.L(22.0f);
-        view.D = org.telegram.messenger.g0.L(8.0f);
-        view.E = org.telegram.messenger.g0.L(3.5f);
-        view.F = new RectF();
-        view.G = 0.0f;
-        textPaint.setTextSize(org.telegram.messenger.g0.L(14.0f));
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        textPaint.setTypeface(Typeface.create("sans-serif-medium", 0));
-        paint.setStrokeWidth(org.telegram.messenger.g0.N(1.5f));
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint2.setStyle(style);
-        paint2.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-        this.f47789a = view;
-        view.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), 0);
-        n41Var.h.addView(view);
-        n41Var.f48118n.add(this);
+    public m41(e41 e41Var, v4.b0 b0Var) {
+        this.f49108c = e41Var;
+        this.d = b0Var;
+    }
+
+    @Override
+    public final boolean a(int i7, int i10) {
+        if (this.f49109e.get(i7) == this.f49108c.d(i10)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean b(int i7, int i10) {
+        SparseIntArray sparseIntArray = this.f49109e;
+        int i11 = sparseIntArray.get(i7);
+        e41 e41Var = this.f49108c;
+        if (i11 == 13 && e41Var.d(i10) == 13) {
+            return true;
+        }
+        if (sparseIntArray.get(i7) == 10 && e41Var.d(i10) == 10) {
+            return true;
+        }
+        int i12 = this.f49126x;
+        if (i7 >= i12 && i7 <= this.f49127y) {
+            if (i7 - i12 == i10 - e41Var.J) {
+                return true;
+            }
+            return false;
+        } else if (i7 == this.f49110f && i10 == e41Var.f46554e) {
+            return true;
+        } else {
+            if (i7 == this.f49111g && i10 == e41Var.h) {
+                return true;
+            }
+            if (i7 == this.h && i10 == e41Var.f46558r) {
+                return true;
+            }
+            if (i7 == this.f49112i && i10 == e41Var.f46559s) {
+                return true;
+            }
+            if (i7 == this.f49113j && i10 == e41Var.f46560w) {
+                return true;
+            }
+            if (i7 == this.f49114k && i10 == e41Var.f46561x) {
+                return true;
+            }
+            if (i7 == this.f49115l && i10 == e41Var.f46562y) {
+                return true;
+            }
+            if (i7 == this.f49116m && i10 == e41Var.f46557n) {
+                return true;
+            }
+            if (i7 == this.f49117n && i10 == e41Var.E) {
+                return true;
+            }
+            if (i7 == this.f49121r && i10 == e41Var.L) {
+                return true;
+            }
+            if (i7 == this.f49122s && i10 == e41Var.M) {
+                return true;
+            }
+            if (i7 == this.f49123t && i10 == e41Var.N) {
+                return true;
+            }
+            if (i7 == this.f49124u && i10 == e41Var.O) {
+                return true;
+            }
+            if (i7 == this.v && i10 == e41Var.P) {
+                return true;
+            }
+            if (i7 == this.f49125w && i10 == e41Var.Q) {
+                return true;
+            }
+            if (i7 == this.f49118o && i10 == e41Var.F) {
+                return true;
+            }
+            if (i7 == this.f49119p && i10 == e41Var.G) {
+                return true;
+            }
+            if (i7 == this.f49120q && i10 == e41Var.H) {
+                return true;
+            }
+            return false;
+        }
+    }
+
+    @Override
+    public final int d() {
+        return this.f49108c.f46553d0;
+    }
+
+    @Override
+    public final int e() {
+        return this.f49107b;
+    }
+
+    public final void f() {
+        int i7;
+        long j3;
+        View m10;
+        SparseIntArray sparseIntArray = this.f49109e;
+        sparseIntArray.clear();
+        e41 e41Var = this.f49108c;
+        this.f49107b = e41Var.f46553d0;
+        int i10 = 0;
+        for (int i11 = 0; i11 < this.f49107b; i11++) {
+            sparseIntArray.put(i11, e41Var.d(i11));
+        }
+        this.f49110f = e41Var.f46554e;
+        this.f49111g = e41Var.h;
+        this.h = e41Var.f46558r;
+        this.f49112i = e41Var.f46559s;
+        this.f49113j = e41Var.f46560w;
+        this.f49114k = e41Var.f46561x;
+        this.f49115l = e41Var.f46562y;
+        this.f49116m = e41Var.f46557n;
+        this.f49117n = e41Var.E;
+        this.f49126x = e41Var.J;
+        this.f49127y = e41Var.K;
+        this.f49118o = e41Var.F;
+        this.f49119p = e41Var.G;
+        this.f49120q = e41Var.H;
+        this.f49121r = e41Var.L;
+        this.f49122s = e41Var.M;
+        this.f49123t = e41Var.N;
+        this.f49124u = e41Var.O;
+        this.v = e41Var.P;
+        this.f49125w = e41Var.Q;
+        e41Var.E();
+        v4.b0 b0Var = this.d;
+        int L0 = b0Var.L0();
+        int N0 = b0Var.N0();
+        while (true) {
+            if (L0 <= N0) {
+                if (e41Var.c(L0) != -1 && (m10 = b0Var.m(L0)) != null) {
+                    j3 = e41Var.c(L0);
+                    i7 = m10.getTop();
+                    break;
+                }
+                L0++;
+            } else {
+                i7 = 0;
+                j3 = -1;
+                break;
+            }
+        }
+        v4.o.c(this, true).c(e41Var);
+        if (j3 != -1) {
+            while (true) {
+                if (i10 < e41Var.f46553d0) {
+                    if (e41Var.c(i10) == j3) {
+                        break;
+                    }
+                    i10++;
+                } else {
+                    i10 = -1;
+                    break;
+                }
+            }
+            if (i10 > 0) {
+                b0Var.h1(i10, i7);
+            }
+        }
     }
 }

@@ -15,7 +15,7 @@ public final class e extends d implements ListIterator {
         f fVar = this.f372e;
         boolean isEmpty = fVar.isEmpty();
         b();
-        ((ListIterator) this.f358b).add(obj);
+        ((ListIterator) this.f364b).add(obj);
         ((i) fVar.h).d++;
         if (isEmpty) {
             fVar.k();
@@ -25,35 +25,35 @@ public final class e extends d implements ListIterator {
     @Override
     public final boolean hasPrevious() {
         b();
-        return ((ListIterator) this.f358b).hasPrevious();
+        return ((ListIterator) this.f364b).hasPrevious();
     }
 
     @Override
     public final int nextIndex() {
         b();
-        return ((ListIterator) this.f358b).nextIndex();
+        return ((ListIterator) this.f364b).nextIndex();
     }
 
     @Override
     public final Object previous() {
         b();
-        return ((ListIterator) this.f358b).previous();
+        return ((ListIterator) this.f364b).previous();
     }
 
     @Override
     public final int previousIndex() {
         b();
-        return ((ListIterator) this.f358b).previousIndex();
+        return ((ListIterator) this.f364b).previousIndex();
     }
 
     @Override
     public final void set(Object obj) {
         b();
-        ((ListIterator) this.f358b).set(obj);
+        ((ListIterator) this.f364b).set(obj);
     }
 
     public e(f fVar, int i7) {
-        super(fVar, ((List) fVar.f388c).listIterator(i7));
+        super(fVar, ((List) fVar.f393c).listIterator(i7));
         this.f372e = fVar;
     }
 }

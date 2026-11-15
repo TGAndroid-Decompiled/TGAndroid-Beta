@@ -1,90 +1,54 @@
 package org.telegram.messenger;
+public final class ze implements Runnable {
+    public final int f27917a;
+    public final bf f27918b;
+    public final int f27919c;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public abstract class ze {
-    public ye A;
-    public CharSequence f26848a;
-    public boolean f26849b;
-    public String f26850c;
-    public long d;
-    public TLRPC.Photo f26851e;
-    public ij f26852f;
-    public String f26853g;
-    public String h;
-    public String f26854i;
-    public String f26855j;
-    public String f26856k;
-    public String f26857l;
-    public long f26858m;
-    public ArrayList f26859n;
-    public hf f26860o;
-    public ArrayList f26861p;
-    public ArrayList f26862q;
-    public ArrayList f26863r;
-    public j20 f26864s;
-    public long f26865t;
-    public boolean f26866u;
-    public boolean v;
-    public boolean f26867w;
-    public int f26868x;
-    public long f26869y;
-    public Boolean f26870z;
-
-    public abstract String a();
-
-    public final boolean b() {
-        ArrayList arrayList;
-        if (!this.f26849b) {
-            return false;
-        }
-        j20 j20Var = this.f26864s;
-        if (j20Var != null && (j20Var.f23494t || j20Var.f23475a > 0 || j20Var.f23477b > 0)) {
-            return true;
-        }
-        ye yeVar = this.A;
-        if ((yeVar == null || yeVar.b()) && this.f26860o == null && this.f26855j == null && (((arrayList = this.f26861p) == null || arrayList.isEmpty()) && this.f26853g == null)) {
-            return false;
-        }
-        return true;
+    public ze(bf bfVar, int i7, int i10) {
+        this.f27917a = i10;
+        this.f27918b = bfVar;
+        this.f27919c = i7;
     }
 
-    public final boolean c() {
-        Boolean bool = this.f26870z;
-        if (bool == null) {
-            return iz.f23410h1;
+    @Override
+    public final void run() {
+        switch (this.f27917a) {
+            case 0:
+                bf bfVar = this.f27918b;
+                try {
+                    bfVar.f22690b.o(this.f27919c);
+                    return;
+                } catch (Exception e10) {
+                    a8.g(e10, true);
+                    return;
+                }
+            case 1:
+                bf bfVar2 = this.f27918b;
+                try {
+                    bfVar2.f22690b.o(this.f27919c);
+                    return;
+                } catch (Exception e11) {
+                    a8.g(e11, true);
+                    return;
+                }
+            case 2:
+                bf bfVar3 = this.f27918b;
+                try {
+                    bfVar3.f22690b.o(this.f27919c);
+                    return;
+                } catch (Exception e12) {
+                    a8.g(e12, true);
+                    return;
+                }
+            default:
+                bf bfVar4 = this.f27918b;
+                try {
+                    bfVar4.f22690b.o(this.f27919c);
+                    return;
+                } catch (Exception e13) {
+                    a8.g(e13, true);
+                    return;
+                }
         }
-        return bool.booleanValue();
-    }
-
-    public boolean d() {
-        if ((this instanceof gf) && ((gf) this).d()) {
-            return true;
-        }
-        return false;
-    }
-
-    public void e() {
-        this.f26848a = null;
-        this.f26853g = null;
-        this.f26851e = null;
-        this.f26852f = null;
-        this.f26850c = null;
-        this.f26854i = null;
-        this.h = null;
-        this.f26855j = null;
-        this.f26857l = null;
-        this.f26856k = null;
-        this.f26866u = false;
-        this.v = false;
-        this.f26867w = false;
-        this.f26868x = 0;
-        this.f26861p = null;
-        this.f26864s = null;
-        this.f26859n = null;
-        this.f26860o = null;
-        this.f26863r = null;
-        this.A = null;
-        this.f26870z = null;
     }
 }

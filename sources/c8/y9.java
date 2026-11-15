@@ -1,12 +1,18 @@
 package c8;
 
-import android.content.res.Configuration;
 import android.os.Build;
 public abstract class y9 {
-    public static n0.c a(Configuration configuration) {
-        if (Build.VERSION.SDK_INT >= 24) {
-            return new n0.c(new n0.f(androidx.emoji2.text.w.f(configuration)));
+    public static boolean a(int i7) {
+        if (i7 == 8 || i7 == 7) {
+            return true;
         }
-        return n0.c.a(configuration.locale);
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 >= 31 && (i7 == 26 || i7 == 27)) {
+            return true;
+        }
+        if (i10 >= 33 && i7 == 30) {
+            return true;
+        }
+        return false;
     }
 }

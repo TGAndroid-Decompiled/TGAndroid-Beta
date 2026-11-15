@@ -1,16 +1,16 @@
 package jg;
 
 import java.util.Comparator;
-import org.telegram.messenger.qp;
+import org.telegram.messenger.np;
 public final class d implements Comparator {
-    public final int f16688a;
-    public final qp f16689b;
-    public final int f16690c;
+    public final int f17045a;
+    public final np f17046b;
+    public final int f17047c;
 
-    public d(qp qpVar, int i7, int i10) {
-        this.f16688a = i10;
-        this.f16689b = qpVar;
-        this.f16690c = i7;
+    public d(np npVar, int i7, int i10) {
+        this.f17045a = i10;
+        this.f17046b = npVar;
+        this.f17047c = i7;
     }
 
     @Override

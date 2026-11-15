@@ -1,19 +1,56 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class p60 extends pj0 {
-    public final t60 f36804e3;
+import android.view.View;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class p60 extends LinearLayout {
+    public boolean f38227a;
+    public final v60 f38228b;
 
-    public p60(t60 t60Var, Context context) {
-        super(context, null);
-        this.f36804e3 = t60Var;
+    public p60(v60 v60Var, Context context) {
+        super(context);
+        this.f38228b = v60Var;
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.f36804e3.f38222t1) {
-            return;
+    public final void onMeasure(int i7, int i10) {
+        int size;
+        v60 v60Var = this.f38228b;
+        ArrayList arrayList = v60Var.f40283t1;
+        if (v60Var.f40286w1 == 0) {
+            int size2 = View.MeasureSpec.getSize(i7);
+            int L = org.telegram.messenger.g0.L(95.0f) * arrayList.size();
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) v60Var.f40280q1.getLayoutParams();
+            if (L > size2) {
+                layoutParams.width = -1;
+                layoutParams.gravity = 51;
+                if (!this.f38227a) {
+                    TLRPC.Peer peer = v60Var.f40287x1;
+                    if (peer != null) {
+                        arrayList.remove(peer);
+                        arrayList.add(0, v60Var.f40287x1);
+                    }
+                    this.f38227a = true;
+                }
+            } else {
+                layoutParams.width = -2;
+                layoutParams.gravity = 49;
+                if (!this.f38227a) {
+                    if (v60Var.f40287x1 != null) {
+                        if (arrayList.size() % 2 == 0) {
+                            size = Math.max(0, (arrayList.size() / 2) - 1);
+                        } else {
+                            size = arrayList.size() / 2;
+                        }
+                        arrayList.remove(v60Var.f40287x1);
+                        arrayList.add(size, v60Var.f40287x1);
+                    }
+                    this.f38227a = true;
+                }
+            }
         }
-        super.requestLayout();
+        super.onMeasure(i7, i10);
     }
 }

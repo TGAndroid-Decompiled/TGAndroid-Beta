@@ -1,42 +1,24 @@
 package a8;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Looper;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
+import java.util.List;
 public abstract class u7 {
-    public static b9.j0 a(Context context, GoogleSignInOptions googleSignInOptions) {
-        q6.m.g(googleSignInOptions);
-        return new com.google.android.gms.common.api.j(context, z5.a.f59714a, googleSignInOptions, new com.google.android.gms.common.api.i(new sa.d(6), Looper.getMainLooper()));
+    public static void a(c4.d dVar, int i7, h2.j jVar) {
+        long i10 = dVar.i(i7);
+        List q10 = dVar.q(i10);
+        if (!q10.isEmpty()) {
+            if (i7 != dVar.u() - 1) {
+                long i11 = dVar.i(i7 + 1) - dVar.i(i7);
+                if (i11 > 0) {
+                    jVar.accept(new c4.a(i10, i11, q10));
+                    return;
+                }
+                return;
+            }
+            throw new IllegalStateException();
+        }
     }
 
-    public static Task b(Intent intent) {
-        c6.b bVar;
-        GoogleSignInAccount googleSignInAccount;
-        org.telegram.messenger.d1 d1Var = d6.h.f8209a;
-        Status status = Status.h;
-        if (intent == null) {
-            bVar = new c6.b(null, status);
-        } else {
-            Status status2 = (Status) intent.getParcelableExtra("googleSignInStatus");
-            GoogleSignInAccount googleSignInAccount2 = (GoogleSignInAccount) intent.getParcelableExtra("googleSignInAccount");
-            if (googleSignInAccount2 == null) {
-                if (status2 != null) {
-                    status = status2;
-                }
-                bVar = new c6.b(null, status);
-            } else {
-                bVar = new c6.b(googleSignInAccount2, Status.f6528e);
-            }
-        }
-        Status status3 = bVar.f5365a;
-        if (status3.b() && (googleSignInAccount = bVar.f5366b) != null) {
-            return Tasks.forResult(googleSignInAccount);
-        }
-        return Tasks.forException(q6.m.l(status3));
+    public static void b(c4.d r12, c4.l r13, h2.j r14) {
+        throw new UnsupportedOperationException("Method not decompiled: a8.u7.b(c4.d, c4.l, h2.j):void");
     }
 }

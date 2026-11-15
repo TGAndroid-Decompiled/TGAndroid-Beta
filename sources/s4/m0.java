@@ -9,22 +9,22 @@ import android.os.RemoteException;
 import android.util.Log;
 import android.util.SparseArray;
 public final class m0 implements IBinder.DeathRecipient {
-    public final Messenger f54862a;
-    public final g.c f54863b;
-    public final Messenger f54864c;
-    public int f54866f;
-    public int f54867g;
-    public final r0 f54868i;
+    public final Messenger f56416a;
+    public final g.c f56417b;
+    public final Messenger f56418c;
+    public int f56420f;
+    public int f56421g;
+    public final r0 f56422i;
     public int d = 1;
-    public int f54865e = 1;
+    public int f56419e = 1;
     public final SparseArray h = new SparseArray();
 
     public m0(r0 r0Var, Messenger messenger) {
-        this.f54868i = r0Var;
-        this.f54862a = messenger;
+        this.f56422i = r0Var;
+        this.f56416a = messenger;
         g.c cVar = new g.c(this);
-        this.f54863b = cVar;
-        this.f54864c = new Messenger(cVar);
+        this.f56417b = cVar;
+        this.f56418c = new Messenger(cVar);
     }
 
     public final void a(int i7) {
@@ -40,9 +40,9 @@ public final class m0 implements IBinder.DeathRecipient {
         obtain.arg2 = i11;
         obtain.obj = bundle;
         obtain.setData(bundle2);
-        obtain.replyTo = this.f54864c;
+        obtain.replyTo = this.f56418c;
         try {
-            this.f54862a.send(obtain);
+            this.f56416a.send(obtain);
             return true;
         } catch (DeadObjectException unused) {
             return false;
@@ -57,18 +57,18 @@ public final class m0 implements IBinder.DeathRecipient {
 
     @Override
     public final void binderDied() {
-        this.f54868i.f54898s.post(new l0(this, 1));
+        this.f56422i.f56452s.post(new l0(this, 1));
     }
 
     public final void c(int i7, int i10) {
-        Bundle f10 = rf.b.f(i10, "volume");
+        Bundle f10 = r.b.f(i10, "volume");
         int i11 = this.d;
         this.d = i11 + 1;
         b(7, i11, i7, null, f10);
     }
 
     public final void d(int i7, int i10) {
-        Bundle f10 = rf.b.f(i10, "volume");
+        Bundle f10 = r.b.f(i10, "volume");
         int i11 = this.d;
         this.d = i11 + 1;
         b(8, i11, i7, null, f10);

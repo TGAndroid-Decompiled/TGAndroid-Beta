@@ -13,21 +13,21 @@ import java.lang.reflect.InvocationTargetException;
 import w7.s;
 public final class f {
     public static Boolean d = null;
-    public static String f2996e = null;
-    public static boolean f2997f = false;
-    public static int f2998g = -1;
+    public static String f2950e = null;
+    public static boolean f2951f = false;
+    public static int f2952g = -1;
     public static Boolean h;
-    public static m f3002l;
-    public static n f3003m;
-    public final Context f3004a;
-    public static final ThreadLocal f2999i = new ThreadLocal();
-    public static final j f3000j = new j(0);
-    public static final qb.a f3001k = new qb.a(4);
-    public static final sa.d f2994b = new sa.d(4);
-    public static final s f2995c = new s(4, false);
+    public static m f2956l;
+    public static n f2957m;
+    public final Context f2958a;
+    public static final ThreadLocal f2953i = new ThreadLocal();
+    public static final j f2954j = new j(0);
+    public static final sa.d f2955k = new sa.d(4);
+    public static final s f2948b = new s(4);
+    public static final nb.a f2949c = new nb.a(5);
 
     public f(Context context) {
-        this.f3004a = context;
+        this.f2958a = context;
     }
 
     public static int a(Context context, String str) {
@@ -80,7 +80,7 @@ public final class f {
         if (bool.equals(null) || bool.equals(h)) {
             return true;
         }
-        boolean z9 = false;
+        boolean z10 = false;
         if (h == null) {
             PackageManager packageManager = context.getPackageManager();
             if (Build.VERSION.SDK_INT >= 29) {
@@ -89,19 +89,19 @@ public final class f {
                 i7 = 0;
             }
             ProviderInfo resolveContentProvider = packageManager.resolveContentProvider("com.google.android.gms.chimera", i7);
-            if (n6.e.f20506b.d(context, 10000000) == 0 && resolveContentProvider != null && "com.google.android.gms".equals(resolveContentProvider.packageName)) {
-                z9 = true;
+            if (n6.e.f21070b.d(context, 10000000) == 0 && resolveContentProvider != null && "com.google.android.gms".equals(resolveContentProvider.packageName)) {
+                z10 = true;
             }
-            h = Boolean.valueOf(z9);
-            if (z9 && (applicationInfo = resolveContentProvider.applicationInfo) != null && (applicationInfo.flags & 129) == 0) {
+            h = Boolean.valueOf(z10);
+            if (z10 && (applicationInfo = resolveContentProvider.applicationInfo) != null && (applicationInfo.flags & 129) == 0) {
                 Log.i("DynamiteModule", "Non-system-image GmsCore APK, forcing V1");
-                f2997f = true;
+                f2951f = true;
             }
         }
-        if (!z9) {
+        if (!z10) {
             Log.e("DynamiteModule", "Invalid GmsCore APK, remote loading disabled.");
         }
-        return z9;
+        return z10;
     }
 
     public static int f(android.content.Context r14, java.lang.String r15, boolean r16, boolean r17) {
@@ -120,7 +120,7 @@ public final class f {
                     nVar = new a8.a(iBinder, "com.google.android.gms.dynamite.IDynamiteLoaderV2", 9);
                 }
             }
-            f3003m = nVar;
+            f2957m = nVar;
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e10) {
             throw new Exception("Failed to instantiate dynamite loader", e10);
         }
@@ -129,7 +129,7 @@ public final class f {
     public static m h(Context context) {
         m mVar;
         synchronized (f.class) {
-            m mVar2 = f3002l;
+            m mVar2 = f2956l;
             if (mVar2 != null) {
                 return mVar2;
             }
@@ -146,7 +146,7 @@ public final class f {
                     }
                 }
                 if (mVar != 0) {
-                    f3002l = mVar;
+                    f2956l = mVar;
                     return mVar;
                 }
             } catch (Exception e10) {
@@ -162,7 +162,7 @@ public final class f {
 
     public final IBinder b(String str) {
         try {
-            return (IBinder) this.f3004a.getClassLoader().loadClass(str).newInstance();
+            return (IBinder) this.f2958a.getClassLoader().loadClass(str).newInstance();
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e10) {
             throw new Exception("Failed to instantiate module class: ".concat(str), e10);
         }

@@ -1,29 +1,42 @@
 package org.telegram.messenger;
-public final class nd implements Runnable {
-    public final int f24188a;
-    public final sd f24189b;
-    public final Integer f24190c;
 
-    public nd(sd sdVar, Integer num, int i7) {
-        this.f24188a = i7;
-        this.f24189b = sdVar;
-        this.f24190c = num;
+import java.util.ArrayList;
+public final class nd implements Runnable {
+    public final int f25184a;
+    public final rd f25185b;
+    public final ArrayList f25186c;
+
+    public nd(rd rdVar, ArrayList arrayList, int i7) {
+        this.f25184a = i7;
+        this.f25185b = rdVar;
+        this.f25186c = arrayList;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f24188a;
-        Integer num = this.f24190c;
-        sd sdVar = this.f24189b;
-        switch (i7) {
+        switch (this.f25184a) {
             case 0:
-                if (!sdVar.f25460b.isEmpty()) {
-                    g0.h3(new nd(sdVar, num, 1));
-                    return;
+                rd rdVar = this.f25185b;
+                ArrayList arrayList = rdVar.f26270b;
+                ArrayList arrayList2 = this.f25186c;
+                arrayList.addAll(arrayList2);
+                for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                    qd qdVar = (qd) arrayList.get(i7);
+                    rdVar.f26269a.k(qdVar, qdVar.f26078a);
                 }
+                g0.h3(new nd(rdVar, arrayList2, 1));
                 return;
             default:
-                sdVar.getNotificationCenter().k(76, num);
+                rd rdVar2 = this.f25185b;
+                ArrayList arrayList3 = rdVar2.J;
+                ArrayList arrayList4 = this.f25186c;
+                arrayList3.addAll(arrayList4);
+                for (int i10 = 0; i10 < arrayList4.size(); i10++) {
+                    qd qdVar2 = (qd) arrayList4.get(i10);
+                    rdVar2.K.k(qdVar2, qdVar2.f26078a);
+                }
+                rd.q();
+                ns.e().k(280, new Object[0]);
                 return;
         }
     }

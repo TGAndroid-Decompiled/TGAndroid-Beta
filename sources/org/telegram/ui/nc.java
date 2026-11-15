@@ -1,57 +1,30 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
+import android.widget.Toast;
+import java.util.List;
+import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-public final class nc extends org.telegram.ui.Components.oj0 {
-    public final int f48183c;
-    public final org.telegram.ui.ActionBar.h6 d;
-    public final pc f48184e;
+public final class nc implements ResultCallback {
+    public final int f49542a;
+    public final oc f49543b;
 
-    public nc(pc pcVar, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
-        this.f48184e = pcVar;
-        this.f48183c = i7;
-        this.d = h6Var;
+    public nc(oc ocVar, int i7) {
+        this.f49543b = ocVar;
+        this.f49542a = i7;
     }
 
     @Override
-    public final boolean D(v4.d1 d1Var) {
-        return true;
+    public final void onComplete(Object obj) {
+        org.telegram.messenger.ns.f(this.f49542a).d(new u5(12, this, (List) obj));
     }
 
     @Override
-    public final int b() {
-        return this.f48184e.f48742c.size();
+    public final void onError(Throwable th2) {
+        org.telegram.tgnet.k.a(this, th2);
     }
 
     @Override
-    public final void t(v4.d1 r21, int r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.nc.t(v4.d1, int):void");
-    }
-
-    @Override
-    public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        return new v4.d1(new org.telegram.ui.Components.zz0(this.f48183c, 3, viewGroup.getContext(), this.d));
-    }
-
-    @Override
-    public final void y(v4.d1 d1Var) {
-        TLRPC.WallPaper wallPaper;
-        pc pcVar = this.f48184e;
-        ArrayList arrayList = pcVar.f48742c;
-        int b10 = d1Var.b();
-        View view = d1Var.f57052a;
-        if (b10 >= 0 && b10 < arrayList.size()) {
-            org.telegram.ui.Components.uo uoVar = (org.telegram.ui.Components.uo) arrayList.get(b10);
-            org.telegram.ui.Components.zz0 zz0Var = (org.telegram.ui.Components.zz0) view;
-            zz0Var.g(uoVar.d, false);
-            if (uoVar.f38725a.f28486b) {
-                wallPaper = null;
-            } else {
-                wallPaper = pcVar.f48748w;
-            }
-            zz0Var.setFallbackWallpaper(wallPaper);
-        }
+    public final void onError(TLRPC.TL_error tL_error) {
+        Toast.makeText(this.f49543b.getContext(), tL_error.text, 0).show();
     }
 }

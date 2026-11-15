@@ -1,66 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.ui.StickersActivity;
-public final class h4 extends b41 {
-    public final int f34155e;
-    public Object f34156f;
+import android.content.Context;
+public final class h4 extends ib0 {
+    public final int[] f35161z0;
 
-    public h4(Object obj, int i7) {
-        super("@stickers", (uy0) null);
-        this.f34155e = i7;
-        this.f34156f = obj;
+    public h4(Context context, org.telegram.ui.ActionBar.e6 e6Var, int[] iArr) {
+        super(context, e6Var);
+        this.f35161z0 = iArr;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i7;
-        int i10;
-        switch (this.f34155e) {
-            case 0:
-                ((org.telegram.ui.ActionBar.f2) this.f34156f).dismissCurrentDialog();
-                super.onClick(view);
-                return;
-            case 1:
-                yv0 yv0Var = (yv0) this.f34156f;
-                org.telegram.messenger.qp.s1(yv0Var.f28669a).y3(getURL(), yv0Var.F1, 1, null);
-                yv0Var.dismiss();
-                return;
-            case 2:
-                org.telegram.messenger.g0.g(getURL());
-                gc.a0((kg.v) this.f34156f).k(false).j();
-                return;
-            case 3:
-                org.telegram.ui.p50 p50Var = ((org.telegram.ui.n50) this.f34156f).d;
-                i7 = ((org.telegram.ui.ActionBar.f2) p50Var).currentAccount;
-                org.telegram.messenger.qp.s1(i7).y3("stickers", p50Var, 1, null);
-                return;
-            case 4:
-                ((org.telegram.ui.nj0) this.f34156f).f48219a.dismissCurrentDialog();
-                super.onClick(view);
-                return;
-            default:
-                StickersActivity stickersActivity = (StickersActivity) this.f34156f;
-                i10 = ((org.telegram.ui.ActionBar.f2) stickersActivity).currentAccount;
-                org.telegram.messenger.qp.s1(i10).y3("stickers", stickersActivity, 3, null);
-                return;
+    public final CharSequence d(int i7) {
+        int i10 = this.f35161z0[i7];
+        if (i10 == 0) {
+            return org.telegram.messenger.hd.M0(2131748307, null);
         }
-    }
-
-    public h4(String str, int i7, Object obj) {
-        super(str, (uy0) null);
-        this.f34155e = i7;
-        this.f34156f = obj;
-    }
-
-    public h4(String str, uy0 uy0Var) {
-        super(str, uy0Var);
-        this.f34155e = 2;
-    }
-
-    public h4(String str, org.telegram.ui.ActionBar.f2 f2Var) {
-        super(str, (uy0) null);
-        this.f34155e = 0;
-        this.f34156f = f2Var;
+        if (i10 < 60) {
+            return org.telegram.messenger.hd.G(i10, "Minutes", new Object[0]);
+        }
+        if (i10 < 1440) {
+            return org.telegram.messenger.hd.G(i10 / 60, "Hours", new Object[0]);
+        }
+        if (i10 < 10080) {
+            return org.telegram.messenger.hd.G(i10 / 1440, "Days", new Object[0]);
+        }
+        if (i10 < 44640) {
+            return org.telegram.messenger.hd.G(i10 / 10080, "Weeks", new Object[0]);
+        }
+        if (i10 < 525600) {
+            return org.telegram.messenger.hd.G(i10 / 44640, "Months", new Object[0]);
+        }
+        return org.telegram.messenger.hd.G(i10 / 525600, "Years", new Object[0]);
     }
 }

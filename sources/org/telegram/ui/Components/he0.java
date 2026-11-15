@@ -1,71 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.view.animation.AnimationUtils;
-public final class he0 extends Drawable {
-    public final Paint f34321a;
-    public final int f34322b;
-    public boolean f34323c;
-    public float d;
-    public long f34324e;
-    public View f34325f;
-    public int f34326g = 255;
-    public float h = 300.0f;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+import org.telegram.ui.LaunchActivity;
+public final class he0 extends FrameLayout {
+    public float f35229a;
+    public float f35230b;
+    public boolean f35231c;
+    public boolean d;
+    public final PipRoundVideoView f35232e;
 
-    public he0(int i7) {
-        this.f34322b = org.telegram.messenger.g0.L(i7);
-        Paint paint = new Paint(1);
-        this.f34321a = paint;
-        paint.setColor(-1);
+    public he0(PipRoundVideoView pipRoundVideoView, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f35232e = pipRoundVideoView;
     }
 
-    public final void a(boolean z9, boolean z10) {
-        float f10;
-        if (this.f34323c != z9) {
-            this.f34323c = z9;
-            if (!z10) {
-                if (z9) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
-                }
-                this.d = f10;
-            }
-            this.f34324e = AnimationUtils.currentAnimationTimeMillis();
-            invalidateSelf();
+    @Override
+    public final void onDraw(Canvas canvas) {
+        hi.k3 k3Var = org.telegram.ui.ActionBar.j6.f28975k3;
+        if (k3Var != null) {
+            k3Var.setAlpha((int) (getAlpha() * 255.0f));
+            org.telegram.ui.ActionBar.j6.f28975k3.setBounds(org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(125.0f), org.telegram.messenger.g0.L(125.0f));
+            org.telegram.ui.ActionBar.j6.f28975k3.draw(canvas);
+            org.telegram.ui.ActionBar.j6.S1.setColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f29112ra, false));
+            org.telegram.ui.ActionBar.j6.S1.setAlpha((int) (getAlpha() * 255.0f));
+            canvas.drawCircle(org.telegram.messenger.g0.L(63.0f), org.telegram.messenger.g0.L(63.0f), org.telegram.messenger.g0.L(59.5f), org.telegram.ui.ActionBar.j6.S1);
         }
     }
 
     @Override
-    public final void draw(android.graphics.Canvas r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.he0.draw(android.graphics.Canvas):void");
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            this.f35229a = motionEvent.getRawX();
+            this.f35230b = motionEvent.getRawY();
+            this.d = true;
+        }
+        return true;
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return this.f34322b;
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f34322b;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-        this.f34326g = i7;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f34321a.setColorFilter(colorFilter);
+    public final boolean onTouchEvent(android.view.MotionEvent r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.he0.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

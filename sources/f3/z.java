@@ -1,71 +1,80 @@
 package f3;
 
-import a8.ia;
-import h2.m0;
-public final class z implements c0 {
-    public final f5.u f11107a;
-    public final f5.u f11108b;
-    public long f11109c;
+import java.io.Serializable;
+public final class z {
+    public int f10911a;
+    public int f10912b;
+    public int f10913c;
+    public int d;
+    public int f10914e;
+    public int f10915f;
+    public Serializable f10916g;
 
-    public z(long j3, long[] jArr, long[] jArr2) {
-        boolean z9;
-        if (jArr.length == jArr2.length) {
-            z9 = true;
+    public boolean a(int i7) {
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        if ((i7 & (-2097152)) != -2097152 || (i10 = (i7 >>> 19) & 3) == 1 || (i11 = (i7 >>> 17) & 3) == 0 || (i12 = (i7 >>> 12) & 15) == 0 || i12 == 15 || (i13 = (i7 >>> 10) & 3) == 3) {
+            return false;
+        }
+        this.f10911a = i10;
+        this.f10916g = b.f10795s[3 - i11];
+        int i16 = b.f10796t[i13];
+        this.f10913c = i16;
+        int i17 = 2;
+        if (i10 == 2) {
+            this.f10913c = i16 / 2;
+        } else if (i10 == 0) {
+            this.f10913c = i16 / 4;
+        }
+        int i18 = (i7 >>> 9) & 1;
+        int i19 = 1152;
+        if (i11 != 1) {
+            if (i11 != 2) {
+                if (i11 == 3) {
+                    i19 = 384;
+                } else {
+                    throw new IllegalArgumentException();
+                }
+            }
+        } else if (i10 != 3) {
+            i19 = 576;
+        }
+        this.f10915f = i19;
+        if (i11 == 3) {
+            if (i10 == 3) {
+                i15 = b.f10797u[i12 - 1];
+            } else {
+                i15 = b.v[i12 - 1];
+            }
+            this.f10914e = i15;
+            this.f10912b = (((i15 * 12) / this.f10913c) + i18) * 4;
         } else {
-            z9 = false;
+            int i20 = 144;
+            if (i10 == 3) {
+                if (i11 == 2) {
+                    i14 = b.f10798w[i12 - 1];
+                } else {
+                    i14 = b.f10799x[i12 - 1];
+                }
+                this.f10914e = i14;
+                this.f10912b = ((i14 * 144) / this.f10913c) + i18;
+            } else {
+                int i21 = b.f10800y[i12 - 1];
+                this.f10914e = i21;
+                if (i11 == 1) {
+                    i20 = 72;
+                }
+                this.f10912b = ((i20 * i21) / this.f10913c) + i18;
+            }
         }
-        ia.f(z9);
-        int length = jArr2.length;
-        if (length > 0 && jArr2[0] > 0) {
-            int i7 = length + 1;
-            f5.u uVar = new f5.u(i7, 7);
-            this.f11107a = uVar;
-            f5.u uVar2 = new f5.u(i7, 7);
-            this.f11108b = uVar2;
-            uVar.c(0L);
-            uVar2.c(0L);
-        } else {
-            this.f11107a = new f5.u(length, 7);
-            this.f11108b = new f5.u(length, 7);
+        if (((i7 >> 6) & 3) == 3) {
+            i17 = 1;
         }
-        this.f11107a.d(jArr);
-        this.f11108b.d(jArr2);
-        this.f11109c = j3;
-    }
-
-    @Override
-    public final boolean d() {
-        if (this.f11108b.f11195b > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean e() {
-        return false;
-    }
-
-    @Override
-    public final b0 f(long j3) {
-        f5.u uVar = this.f11108b;
-        if (uVar.f11195b == 0) {
-            d0 d0Var = d0.f11015c;
-            return new b0(d0Var, d0Var);
-        }
-        int c10 = m0.c(uVar, j3);
-        long m10 = uVar.m(c10);
-        f5.u uVar2 = this.f11107a;
-        d0 d0Var2 = new d0(m10, uVar2.m(c10));
-        if (m10 != j3 && c10 != uVar.f11195b - 1) {
-            int i7 = c10 + 1;
-            return new b0(d0Var2, new d0(uVar.m(i7), uVar2.m(i7)));
-        }
-        return new b0(d0Var2, d0Var2);
-    }
-
-    @Override
-    public final long h() {
-        return this.f11109c;
+        this.d = i17;
+        return true;
     }
 }

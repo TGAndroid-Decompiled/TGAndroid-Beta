@@ -1,49 +1,38 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class gn implements e8 {
-    public final org.telegram.ui.ActionBar.g1[] f33936a;
-    public final jn f33937b;
+import android.content.Context;
+import android.view.ActionMode;
+import android.view.Menu;
+public final class gn extends org.telegram.ui.Cells.z5 {
+    public final org.telegram.ui.l4 G;
 
-    public gn(jn jnVar, org.telegram.ui.ActionBar.g1[] g1VarArr) {
-        this.f33937b = jnVar;
-        this.f33936a = g1VarArr;
+    public gn(org.telegram.ui.l4 l4Var, Context context, int i7) {
+        super(context, i7, null, null);
+        this.G = l4Var;
     }
 
     @Override
-    public final void X0(int i7, int i10) {
-        int i11;
-        org.telegram.ui.cn cnVar = this.f33937b.G;
-        if (cnVar != null) {
-            cnVar.getMessagesController().I4(i7, cnVar.a());
-            TLRPC.ChatFull chatFull = cnVar.f44620p8;
-            TLRPC.UserFull userFull = cnVar.f44633q8;
-            if (userFull != null || chatFull != null) {
-                cnVar.g8();
-                UndoView undoView = cnVar.M3;
-                if (undoView != null) {
-                    long a10 = cnVar.a();
-                    TLRPC.User j3 = cnVar.j();
-                    if (userFull != null) {
-                        i11 = userFull.ttl_period;
-                    } else {
-                        i11 = chatFull.ttl_period;
-                    }
-                    undoView.k(a10, i10, j3, Integer.valueOf(i11), null, null);
-                }
+    public final void h(bi.u uVar, ActionMode actionMode) {
+        if (uVar.isFocused() && uVar.hasSelection()) {
+            Menu menu = actionMode.getMenu();
+            if (menu.findItem(16908321) != null) {
+                org.telegram.ui.an.C8(menu, ((org.telegram.ui.an) ((jn) this.G.f48827e).f33607b.f36436a2).h, false, true, true, true);
             }
         }
     }
 
     @Override
-    public final void dismiss() {
-        org.telegram.ui.ActionBar.g1 g1Var = this.f33936a[0];
-        if (g1Var != null) {
-            g1Var.dismiss();
-        }
+    public final void j(boolean z10) {
+        jn.R((jn) this.G.f48827e, this, z10);
     }
 
     @Override
-    public final void i1() {
+    public final void k(org.telegram.ui.Cells.z5 z5Var) {
+        jn.S((jn) this.G.f48827e, z5Var);
+    }
+
+    @Override
+    public final void l(bi.u uVar) {
+        ((jn) this.G.f48827e).f33607b.h1(uVar, true);
     }
 }

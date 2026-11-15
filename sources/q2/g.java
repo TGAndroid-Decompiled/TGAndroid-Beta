@@ -1,20 +1,11 @@
 package q2;
 
-import java.util.UUID;
-public interface g {
-    UUID a();
+import java.io.IOException;
+public final class g extends IOException {
+    public final int f55179a;
 
-    void b(j jVar);
-
-    void c(j jVar);
-
-    boolean d();
-
-    int e();
-
-    boolean f(String str);
-
-    f g();
-
-    k2.b h();
+    public g(int i7, Throwable th2) {
+        super(th2);
+        this.f55179a = i7;
+    }
 }

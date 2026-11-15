@@ -1,36 +1,65 @@
 package org.telegram.ui;
 
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
 public final class k8 implements View.OnClickListener {
-    public final int f47214a;
-    public final i9 f47215b;
+    public final int f48642a;
+    public final boolean[] f48643b;
 
-    public k8(i9 i9Var, int i7) {
-        this.f47214a = i7;
-        this.f47215b = i9Var;
+    public k8(int i7, boolean[] zArr) {
+        this.f48642a = i7;
+        this.f48643b = zArr;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f47214a) {
+        switch (this.f48642a) {
             case 0:
-                Long l10 = (Long) view.getTag();
-                i9 i9Var = this.f47215b;
-                org.telegram.messenger.r3 g12 = i9Var.getMessagesController().g1(l10.longValue(), false, null);
-                TLRPC.Chat M0 = i9Var.getMessagesController().M0(l10);
-                i9Var.M = M0;
-                if (g12 != null) {
-                    org.telegram.ui.Components.voip.y1.l(M0, null, false, null, i9Var.getParentActivity(), i9Var, i9Var.getAccountInstance());
+                boolean[] zArr = this.f48643b;
+                boolean z10 = !zArr[0];
+                zArr[0] = z10;
+                ((org.telegram.ui.Cells.c2) view).c(z10, true);
+                return;
+            case 1:
+                boolean[] zArr2 = this.f48643b;
+                boolean z11 = !zArr2[1];
+                zArr2[1] = z11;
+                ((org.telegram.ui.Cells.c2) view).c(z11, true);
+                return;
+            case 2:
+                boolean[] zArr3 = this.f48643b;
+                boolean z12 = !zArr3[0];
+                zArr3[0] = z12;
+                ((org.telegram.ui.Cells.c2) view).c(z12, true);
+                return;
+            case 3:
+                boolean[] zArr4 = this.f48643b;
+                boolean z13 = !zArr4[0];
+                zArr4[0] = z13;
+                ((org.telegram.ui.Cells.c2) view).c(z13, true);
+                return;
+            case 4:
+                if (view.isEnabled()) {
+                    boolean[] zArr5 = this.f48643b;
+                    boolean z14 = !zArr5[0];
+                    zArr5[0] = z14;
+                    ((org.telegram.ui.Cells.c2) view).c(z14, true);
                     return;
                 }
-                i9Var.N = l10;
-                i9Var.getMessagesController().V2(0, l10.longValue(), true);
+                return;
+            case 5:
+                boolean[] zArr6 = this.f48643b;
+                boolean z15 = !zArr6[0];
+                zArr6[0] = z15;
+                ((org.telegram.ui.Cells.c2) view).c(z15, true);
                 return;
             default:
-                i9 i9Var2 = this.f47215b;
-                i9Var2.getClass();
-                i9.l0(i9Var2);
+                if (view.isEnabled()) {
+                    boolean[] zArr7 = this.f48643b;
+                    boolean z16 = !zArr7[0];
+                    zArr7[0] = z16;
+                    ((org.telegram.ui.Cells.c2) view).c(z16, true);
+                    return;
+                }
                 return;
         }
     }

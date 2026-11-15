@@ -1,156 +1,112 @@
 package ai;
 
-import android.content.res.Resources;
-import android.graphics.BlendMode;
-import android.graphics.BlendModeColorFilter;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Region;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
-import android.graphics.Shader;
-import android.os.Build;
-import android.view.RoundedCorner;
-import android.view.View;
-import android.view.WindowInsets;
-public abstract class a0 {
-    public static float f1120a = -1.0f;
+import org.telegram.ui.Components.ChatActivityEnterView;
+import org.telegram.ui.Components.ae;
+import org.telegram.ui.Components.er;
+import org.telegram.ui.Components.xe;
+public final class a0 implements Runnable {
+    public final int f1114a;
+    public final m0 f1115b;
 
-    public static Canvas a(int i7, int i10, Object obj) {
-        RenderNode e10 = ni.a.e(obj);
-        e10.setPosition(0, 0, i7, i10);
-        return e10.beginRecording();
+    public a0(m0 m0Var, int i7) {
+        this.f1114a = i7;
+        this.f1115b = m0Var;
     }
 
-    public static void b(Canvas canvas, Path path) {
-        if (Build.VERSION.SDK_INT >= 26) {
-            canvas.clipOutPath(path);
-        } else {
-            canvas.clipPath(path, Region.Op.DIFFERENCE);
-        }
-    }
-
-    public static void c(Canvas canvas, Object obj) {
-        canvas.drawRenderNode(ni.a.e(obj));
-    }
-
-    public static void d(Object obj) {
-        ni.a.e(obj).endRecording();
-    }
-
-    public static boolean e(Object obj) {
-        if (obj != null && ni.a.e(obj).hasDisplayList()) {
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean f() {
-        if (Build.VERSION.SDK_INT >= 31) {
-            return true;
-        }
-        return false;
-    }
-
-    public static float g(View view) {
-        float f10;
-        int identifier;
-        WindowInsets windowInsets;
-        float f11;
-        if (Build.VERSION.SDK_INT >= 31) {
-            if (view != null) {
-                windowInsets = view.getRootWindowInsets();
-            } else {
-                windowInsets = null;
-            }
-            if (windowInsets == null) {
-                f11 = -1.0f;
-            } else {
-                RoundedCorner roundedCorner = windowInsets.getRoundedCorner(0);
-                if (roundedCorner != null) {
-                    f11 = roundedCorner.getRadius();
-                } else {
-                    f11 = 0.0f;
+    @Override
+    public final void run() {
+        p0 p0Var;
+        p0 p0Var2;
+        p0 p0Var3;
+        switch (this.f1114a) {
+            case 0:
+                m0 m0Var = this.f1115b;
+                if (!m0Var.k() && (p0Var = m0Var.f1380s) != null) {
+                    p0Var.setShown(false);
+                    return;
                 }
-            }
-            if (f11 >= 0.0f) {
-                return f11;
-            }
-        }
-        if (f1120a < 0.0f) {
-            try {
-                Resources system = Resources.getSystem();
-                int identifier2 = system.getIdentifier("rounded_corner_radius_top", "dimen", "android");
-                if (identifier2 != 0) {
-                    f10 = system.getDimensionPixelSize(identifier2);
-                } else {
-                    f10 = 0.0f;
-                }
-                if (f10 <= 0.0f && (identifier = system.getIdentifier("rounded_corner_radius", "dimen", "android")) != 0) {
-                    f10 = system.getDimensionPixelSize(identifier);
-                }
-            } catch (Exception unused) {
-                f10 = 0.0f;
-            }
-            f1120a = Math.max(0.0f, f10);
-        }
-        return f1120a;
-    }
-
-    public static void h(Object obj, float f10) {
-        ni.a.e(obj).setAlpha(f10);
-    }
-
-    public static void i(int i7, Paint paint) {
-        BlendMode blendMode;
-        switch (i7) {
+                return;
             case 1:
-                blendMode = BlendMode.PLUS;
-                break;
+                m0 m0Var2 = this.f1115b;
+                if (!m0Var2.k() && (p0Var2 = m0Var2.f1380s) != null) {
+                    p0Var2.e();
+                    return;
+                }
+                return;
             case 2:
-                blendMode = BlendMode.SCREEN;
-                break;
+                xe xeVar = this.f1115b.f1365f.f32967b.F0;
+                if (xeVar != null) {
+                    xeVar.requestFocus();
+                    return;
+                }
+                return;
             case 3:
-                blendMode = BlendMode.COLOR_DODGE;
-                break;
+                ChatActivityEnterView chatActivityEnterView = this.f1115b.f1365f.f32967b;
+                chatActivityEnterView.f32325y1 = 0L;
+                chatActivityEnterView.f32332z1 = null;
+                return;
             case 4:
-                blendMode = BlendMode.OVERLAY;
-                break;
+                m0 m0Var3 = this.f1115b;
+                ae aeVar = m0Var3.f1365f;
+                String t6 = m0Var3.t();
+                f0 f0Var = new f0(m0Var3, 0);
+                aeVar.getClass();
+                ChatActivityEnterView chatActivityEnterView2 = aeVar.f32967b;
+                org.telegram.ui.Components.d0 d0Var = new org.telegram.ui.Components.d0(chatActivityEnterView2.getContext(), chatActivityEnterView2.E4);
+                d0Var.s1(t6);
+                d0Var.f33751f2 = f0Var;
+                d0Var.show();
+                return;
             case 5:
-                blendMode = BlendMode.SOFT_LIGHT;
-                break;
+                xe xeVar2 = this.f1115b.f1365f.f32967b.F0;
+                if (xeVar2 != null) {
+                    xeVar2.requestFocus();
+                    return;
+                }
+                return;
             case 6:
-                blendMode = BlendMode.COLOR_BURN;
-                break;
+                m0 m0Var4 = this.f1115b;
+                if (m0Var4.f1378r == 3 && (p0Var3 = m0Var4.f1380s) != null) {
+                    p0Var3.e();
+                    return;
+                }
+                return;
+            case 7:
+                m0 m0Var5 = this.f1115b;
+                int i7 = m0Var5.f1378r;
+                if (i7 == 3 || i7 == 4) {
+                    m0Var5.f1385w.setIsland(true);
+                    return;
+                }
+                return;
+            case 8:
+                m0 m0Var6 = this.f1115b;
+                if (m0Var6.f1378r == 1) {
+                    m0Var6.B(true);
+                    return;
+                }
+                return;
+            case 9:
+                m0 m0Var7 = this.f1115b;
+                if (m0Var7.f1378r == 1) {
+                    m0Var7.B(false);
+                    return;
+                }
+                return;
+            case 10:
+                er erVar = er.h;
+                m0 m0Var8 = this.f1115b;
+                m0Var8.b(0.0f, 320L, erVar);
+                org.telegram.messenger.g0.i3(new a0(m0Var8, 1), 360L);
+                return;
             default:
-                blendMode = null;
-                break;
+                m0 m0Var9 = this.f1115b;
+                if (!m0Var9.k()) {
+                    m0Var9.f1365f.f32967b.A1(null, true);
+                    m0Var9.b(0.0f, 240L, er.f34421g);
+                    return;
+                }
+                return;
         }
-        paint.setBlendMode(blendMode);
-    }
-
-    public static void j(Object obj, float f10) {
-        RenderEffect renderEffect;
-        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        RenderNode renderNode = (RenderNode) obj;
-        if (f10 > 0.0f) {
-            renderEffect = RenderEffect.createBlurEffect(f10, f10, tileMode);
-        } else {
-            renderEffect = null;
-        }
-        renderNode.setRenderEffect(renderEffect);
-    }
-
-    public static void k(Object obj, float f10, float[] fArr) {
-        ni.a.e(obj).setRenderEffect(RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(fArr), RenderEffect.createBlurEffect(f10, f10, Shader.TileMode.CLAMP)));
-    }
-
-    public static ColorFilter l(int i7) {
-        BlendMode blendMode;
-        blendMode = BlendMode.SRC_IN;
-        return new BlendModeColorFilter(i7, blendMode);
     }
 }

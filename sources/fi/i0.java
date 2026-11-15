@@ -1,66 +1,54 @@
 package fi;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.ui.BubbleActivity;
-public final class i0 extends View {
-    public final Paint f12160a;
-    public final Path f12161b;
-    public final RectF f12162c;
-    public final Matrix d;
-    public final Matrix f12163e;
-    public final Matrix f12164f;
-    public final Matrix h;
-    public final Matrix f12165n;
-    public final Matrix f12166r;
-    public final j0 f12167s;
+import android.util.SparseIntArray;
+public final class i0 extends b {
+    public final int f11812g;
 
-    public i0(j0 j0Var, Context context) {
-        super(context);
-        this.f12167s = j0Var;
-        this.f12160a = new Paint(1);
-        this.f12161b = new Path();
-        this.f12162c = new RectF();
-        this.d = new Matrix();
-        this.f12163e = new Matrix();
-        this.f12164f = new Matrix();
-        this.h = new Matrix();
-        this.f12165n = new Matrix();
-        this.f12166r = new Matrix();
-    }
-
-    private float getContainerHeight() {
-        float f10;
-        if (!(getContext() instanceof BubbleActivity)) {
-            f10 = org.telegram.messenger.g0.f22561m;
-        } else {
-            f10 = 0.0f;
-        }
-        return ((getHeight() - f10) - this.f12167s.f12205f.D) - org.telegram.messenger.g0.L(32.0f);
-    }
-
-    private float getContainerWidth() {
-        return getWidth() - org.telegram.messenger.g0.L(32.0f);
-    }
-
-    public final void a(android.graphics.Matrix r14, boolean r15) {
-        throw new UnsupportedOperationException("Method not decompiled: fi.i0.a(android.graphics.Matrix, boolean):void");
-    }
-
-    public final void b(android.graphics.Canvas r19, boolean r20) {
-        throw new UnsupportedOperationException("Method not decompiled: fi.i0.b(android.graphics.Canvas, boolean):void");
+    public i0(int i7) {
+        this.f11812g = i7;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        if (this.f12167s.f12211y == null) {
-            return;
+    public void k() {
+        switch (this.f11812g) {
+            case 0:
+                this.f11443b.put(org.telegram.ui.ActionBar.j6.f28850d7, 352321535);
+                return;
+            case 1:
+                this.f11443b.append(org.telegram.ui.ActionBar.j6.f28922h5, -14671840);
+                return;
+            case 2:
+                int i7 = org.telegram.ui.ActionBar.j6.f28792a7;
+                int i10 = org.telegram.ui.ActionBar.j6.f28922h5;
+                int h = h(i10);
+                SparseIntArray sparseIntArray = this.f11443b;
+                sparseIntArray.put(i7, h);
+                sparseIntArray.put(org.telegram.ui.ActionBar.j6.f28850d7, -15264235);
+                sparseIntArray.put(org.telegram.ui.ActionBar.j6.Oe, org.telegram.ui.ActionBar.j6.r1(0.45f, -1));
+                sparseIntArray.put(org.telegram.ui.ActionBar.j6.f28940i5, 352321535);
+                sparseIntArray.put(org.telegram.ui.ActionBar.j6.f29269zf, h(i10));
+                return;
+            default:
+                return;
         }
-        b(canvas, false);
+    }
+
+    public i0() {
+        this.f11812g = 3;
+        this.f11443b.put(org.telegram.ui.ActionBar.j6.f28849d6, -14537933);
+        this.f11443b.put(org.telegram.ui.ActionBar.j6.f28922h5, -14537933);
+        this.f11443b.put(org.telegram.ui.ActionBar.j6.f28792a7, -13616313);
+        this.f11443b.put(org.telegram.ui.ActionBar.j6.f28869e7, -14142917);
+        this.f11443b.put(org.telegram.ui.ActionBar.j6.f28888f7, -8090220);
+        this.f11443b.put(org.telegram.ui.ActionBar.j6.Ti, -14142917);
+        this.f11443b.put(org.telegram.ui.ActionBar.j6.G8, -13616313);
+        this.f11443b.put(org.telegram.ui.ActionBar.j6.H8, -14733761);
+        this.f11443b.put(org.telegram.ui.ActionBar.j6.F8, -1);
+        this.f11443b.put(org.telegram.ui.ActionBar.j6.E8, -1);
+        this.f11443b.put(org.telegram.ui.ActionBar.j6.wj, -231982259);
+        this.f11443b.put(org.telegram.ui.ActionBar.j6.f29184v6, -11683585);
+        this.f11443b.put(org.telegram.ui.ActionBar.j6.f29165u6, -10637330);
+        this.f11443b.put(org.telegram.ui.ActionBar.j6.W6, -12692893);
+        this.f11443b.put(org.telegram.ui.ActionBar.j6.i7, -15033089);
     }
 }

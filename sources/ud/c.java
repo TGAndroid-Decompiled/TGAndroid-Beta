@@ -8,16 +8,16 @@ public final class c extends a {
 
     public final boolean equals(Object obj) {
         if (obj instanceof c) {
-            char c10 = this.f56523a;
-            char c11 = this.f56524b;
+            char c10 = this.f58019a;
+            char c11 = this.f58020b;
             if (j.f(c10, c11) > 0) {
                 c cVar = (c) obj;
-                if (j.f(cVar.f56523a, cVar.f56524b) > 0) {
+                if (j.f(cVar.f58019a, cVar.f58020b) > 0) {
                     return true;
                 }
             }
             c cVar2 = (c) obj;
-            if (c10 == cVar2.f56523a && c11 == cVar2.f56524b) {
+            if (c10 == cVar2.f58019a && c11 == cVar2.f58020b) {
                 return true;
             }
             return false;
@@ -26,8 +26,8 @@ public final class c extends a {
     }
 
     public final int hashCode() {
-        char c10 = this.f56523a;
-        char c11 = this.f56524b;
+        char c10 = this.f58019a;
+        char c11 = this.f58020b;
         if (j.f(c10, c11) > 0) {
             return -1;
         }
@@ -35,6 +35,6 @@ public final class c extends a {
     }
 
     public final String toString() {
-        return this.f56523a + ".." + this.f56524b;
+        return this.f58019a + ".." + this.f58020b;
     }
 }

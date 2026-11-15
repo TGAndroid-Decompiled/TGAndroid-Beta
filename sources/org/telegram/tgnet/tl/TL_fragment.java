@@ -6,7 +6,7 @@ import org.telegram.tgnet.TLObject;
 public class TL_fragment {
 
     public static class InputCollectible extends TLObject {
-        public static InputCollectible TLdeserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
+        public static InputCollectible TLdeserialize(InputSerializedData inputSerializedData, int i7, boolean z10) {
             TLObject tL_inputCollectiblePhone;
             if (i7 != -1562241884) {
                 if (i7 != -476815191) {
@@ -17,7 +17,7 @@ public class TL_fragment {
             } else {
                 tL_inputCollectiblePhone = new TL_inputCollectiblePhone();
             }
-            return (InputCollectible) TLObject.TLdeserialize(InputCollectible.class, tL_inputCollectiblePhone, inputSerializedData, i7, z9);
+            return (InputCollectible) TLObject.TLdeserialize(InputCollectible.class, tL_inputCollectiblePhone, inputSerializedData, i7, z10);
         }
     }
 
@@ -30,24 +30,24 @@ public class TL_fragment {
         public int purchase_date;
         public String url;
 
-        public static TL_collectibleInfo TLdeserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
+        public static TL_collectibleInfo TLdeserialize(InputSerializedData inputSerializedData, int i7, boolean z10) {
             TL_collectibleInfo tL_collectibleInfo;
             if (1857945489 != i7) {
                 tL_collectibleInfo = null;
             } else {
                 tL_collectibleInfo = new TL_collectibleInfo();
             }
-            return (TL_collectibleInfo) TLObject.TLdeserialize(TL_collectibleInfo.class, tL_collectibleInfo, inputSerializedData, i7, z9);
+            return (TL_collectibleInfo) TLObject.TLdeserialize(TL_collectibleInfo.class, tL_collectibleInfo, inputSerializedData, i7, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z9) {
-            this.purchase_date = inputSerializedData.readInt32(z9);
-            this.currency = inputSerializedData.readString(z9);
-            this.amount = inputSerializedData.readInt64(z9);
-            this.crypto_currency = inputSerializedData.readString(z9);
-            this.crypto_amount = inputSerializedData.readInt64(z9);
-            this.url = inputSerializedData.readString(z9);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.purchase_date = inputSerializedData.readInt32(z10);
+            this.currency = inputSerializedData.readString(z10);
+            this.amount = inputSerializedData.readInt64(z10);
+            this.crypto_currency = inputSerializedData.readString(z10);
+            this.crypto_amount = inputSerializedData.readInt64(z10);
+            this.url = inputSerializedData.readString(z10);
         }
 
         @Override
@@ -67,8 +67,8 @@ public class TL_fragment {
         public InputCollectible collectible;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i7, boolean z9) {
-            return TL_collectibleInfo.TLdeserialize(inputSerializedData, i7, z9);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i7, boolean z10) {
+            return TL_collectibleInfo.TLdeserialize(inputSerializedData, i7, z10);
         }
 
         @Override
@@ -83,8 +83,8 @@ public class TL_fragment {
         public String phone;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z9) {
-            this.phone = inputSerializedData.readString(z9);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.phone = inputSerializedData.readString(z10);
         }
 
         @Override
@@ -99,8 +99,8 @@ public class TL_fragment {
         public String username;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z9) {
-            this.username = inputSerializedData.readString(z9);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.username = inputSerializedData.readString(z10);
         }
 
         @Override

@@ -1,9 +1,9 @@
 package l3;
 
-import bi.b1;
-public final class a extends b1 {
-    public static final int[] f18107e = {5512, 11025, 22050, 44100};
-    public boolean f18108b;
-    public boolean f18109c;
+import com.google.android.gms.common.api.q;
+public final class a extends q {
+    public static final int[] f19237e = {5512, 11025, 22050, 44100};
+    public boolean f19238b;
+    public boolean f19239c;
     public int d;
 }

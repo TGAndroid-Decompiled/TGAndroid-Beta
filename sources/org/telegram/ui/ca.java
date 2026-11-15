@@ -3,26 +3,26 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class ca implements org.telegram.ui.Components.bj0 {
-    public final la f44284a;
+public final class ca implements org.telegram.ui.Components.gj0 {
+    public final la f46061a;
 
     public ca(la laVar) {
-        this.f44284a = laVar;
+        this.f46061a = laVar;
     }
 
     @Override
-    public final void c(int i7, View view) {
+    public final void b(int i7, View view) {
         int i10;
         int i11;
         int i12;
-        boolean z9 = view instanceof ia;
-        la laVar = this.f44284a;
-        if (z9) {
+        boolean z10 = view instanceof ia;
+        la laVar = this.f46061a;
+        if (z10) {
             ia iaVar = (ia) view;
-            TLRPC.TL_username tL_username = iaVar.f46595w;
-            if (tL_username != null && !iaVar.f46593r) {
-                if (tL_username.editable && laVar.f47565y == 0) {
-                    laVar.f47556b.y0(0);
+            TLRPC.TL_username tL_username = iaVar.f48005w;
+            if (tL_username != null && !iaVar.f48003r) {
+                if (tL_username.editable && laVar.f48920y == 0) {
+                    laVar.f48911b.y0(0);
                     laVar.j0(true);
                     return;
                 }
@@ -32,22 +32,22 @@ public final class ca implements org.telegram.ui.Components.bj0 {
                 } else {
                     i10 = 2131743671;
                 }
-                String M0 = org.telegram.messenger.id.M0(i10, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27300a;
-                u1Var.R = M0;
+                String M0 = org.telegram.messenger.hd.M0(i10, null);
+                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28392a;
+                t1Var.S = M0;
                 if (tL_username.active) {
                     i11 = 2131743662;
                 } else {
                     i11 = 2131743669;
                 }
-                u1Var.T = org.telegram.messenger.id.M0(i11, null);
+                t1Var.U = org.telegram.messenger.hd.M0(i11, null);
                 if (tL_username.active) {
                     i12 = 2131749325;
                 } else {
                     i12 = 2131745353;
                 }
-                alertDialog$Builder.k(org.telegram.messenger.id.M0(i12, null), new bg.f0(this, tL_username, i7, view, 1));
-                alertDialog$Builder.h(org.telegram.messenger.id.M0(2131752589, null), new org.telegram.messenger.ch(18));
+                alertDialog$Builder.k(org.telegram.messenger.hd.M0(i12, null), new bg.f0(this, tL_username, i7, view, 1));
+                alertDialog$Builder.h(org.telegram.messenger.hd.M0(2131752589, null), new org.telegram.messenger.fd(22));
                 alertDialog$Builder.p();
             }
         } else if (view instanceof ga) {

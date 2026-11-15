@@ -5,19 +5,19 @@ import android.util.Log;
 import com.google.firebase.components.ComponentRegistrar;
 import java.lang.reflect.InvocationTargetException;
 public final class c implements ua.b {
-    public final int f56469a;
-    public final Object f56470b;
+    public final int f57968a;
+    public final Object f57969b;
 
     public c(Object obj, int i7) {
-        this.f56469a = i7;
-        this.f56470b = obj;
+        this.f57968a = i7;
+        this.f57969b = obj;
     }
 
     @Override
     public final Object get() {
-        switch (this.f56469a) {
+        switch (this.f57968a) {
             case 0:
-                String str = (String) this.f56470b;
+                String str = (String) this.f57969b;
                 try {
                     Class<?> cls = Class.forName(str);
                     if (ComponentRegistrar.class.isAssignableFrom(cls)) {
@@ -32,14 +32,14 @@ public final class c implements ua.b {
                 } catch (InstantiationException e11) {
                     throw new RuntimeException(p0.p("Could not instantiate ", str, "."), e11);
                 } catch (NoSuchMethodException e12) {
-                    throw new RuntimeException(rf.b.i("Could not instantiate ", str), e12);
+                    throw new RuntimeException(r.b.k("Could not instantiate ", str), e12);
                 } catch (InvocationTargetException e13) {
-                    throw new RuntimeException(rf.b.i("Could not instantiate ", str), e13);
+                    throw new RuntimeException(r.b.k("Could not instantiate ", str), e13);
                 }
             case 1:
-                return (ComponentRegistrar) this.f56470b;
+                return (ComponentRegistrar) this.f57969b;
             default:
-                return new wa.c((o9.g) this.f56470b);
+                return new wa.c((o9.g) this.f57969b);
         }
     }
 }

@@ -9,43 +9,43 @@ import android.hardware.fingerprint.FingerprintManager;
 import android.os.CancellationSignal;
 import android.os.Handler;
 import android.os.Looper;
-import c8.va;
+import c8.xa;
 import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.id;
+import org.telegram.messenger.hd;
 import org.telegram.ui.LaunchActivity;
 public final class u0 {
-    public final CountDownLatch f43202a = new CountDownLatch(1);
-    public volatile boolean f43203b;
-    public String f43204c;
+    public final CountDownLatch f44537a = new CountDownLatch(1);
+    public volatile boolean f44538b;
+    public String f44539c;
     public String d;
-    public LaunchActivity f43205e;
-    public boolean f43206f;
-    public int f43207g;
+    public LaunchActivity f44540e;
+    public boolean f44541f;
+    public int f44542g;
     public CancellationSignal h;
-    public AlertDialog f43208i;
+    public AlertDialog f44543i;
 
     public final void a() {
-        if (!this.f43206f && f()) {
-            this.f43206f = true;
+        if (!this.f44541f && f()) {
+            this.f44541f = true;
             e();
             try {
-                KeyguardManager keyguardManager = (KeyguardManager) this.f43205e.getSystemService("keyguard");
+                KeyguardManager keyguardManager = (KeyguardManager) this.f44540e.getSystemService("keyguard");
                 Intent intent = null;
                 if (keyguardManager != null) {
-                    intent = keyguardManager.createConfirmDeviceCredentialIntent(id.M0(2131742970, null), null);
+                    intent = keyguardManager.createConfirmDeviceCredentialIntent(hd.M0(2131742970, null), null);
                 }
                 if (intent == null) {
                     c("AUTH_UNAVAILABLE");
                     return;
                 }
-                int i7 = va.f5914a;
+                int i7 = xa.f4777a;
                 int i10 = i7 + 1;
-                va.f5914a = i10;
-                this.f43207g = i7;
+                xa.f4777a = i10;
+                this.f44542g = i7;
                 if (i10 > 22399) {
-                    va.f5914a = 22336;
+                    xa.f4777a = 22336;
                 }
-                this.f43205e.startActivityForResult(intent, i7);
+                this.f44540e.startActivityForResult(intent, i7);
             } catch (Exception e10) {
                 org.telegram.messenger.a8.g(e10, true);
                 c("AUTH_UNAVAILABLE");
@@ -54,42 +54,42 @@ public final class u0 {
     }
 
     public final void b() {
-        FingerprintManager fingerprintManager = (FingerprintManager) this.f43205e.getSystemService("fingerprint");
+        FingerprintManager fingerprintManager = (FingerprintManager) this.f44540e.getSystemService("fingerprint");
         if (fingerprintManager != null && fingerprintManager.isHardwareDetected() && fingerprintManager.hasEnrolledFingerprints()) {
             this.h = new CancellationSignal();
-            this.f43208i = new AlertDialog.Builder(this.f43205e).setTitle(id.M0(2131742970, null)).setMessage(id.M0(2131742989, null)).setNegativeButton(id.M0(2131752589, null), new DialogInterface.OnClickListener(this) {
-                public final u0 f43100b;
+            this.f44543i = new AlertDialog.Builder(this.f44540e).setTitle(hd.M0(2131742970, null)).setMessage(hd.M0(2131742989, null)).setNegativeButton(hd.M0(2131752589, null), new DialogInterface.OnClickListener(this) {
+                public final u0 f44419b;
 
                 {
-                    this.f43100b = this;
+                    this.f44419b = this;
                 }
 
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i7) {
                     switch (r2) {
                         case 0:
-                            this.f43100b.c("AUTH_CANCELED");
+                            this.f44419b.c("AUTH_CANCELED");
                             return;
                         default:
-                            this.f43100b.a();
+                            this.f44419b.a();
                             return;
                     }
                 }
-            }).setPositiveButton(id.M0(2131742965, null), new DialogInterface.OnClickListener(this) {
-                public final u0 f43100b;
+            }).setPositiveButton(hd.M0(2131742965, null), new DialogInterface.OnClickListener(this) {
+                public final u0 f44419b;
 
                 {
-                    this.f43100b = this;
+                    this.f44419b = this;
                 }
 
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i7) {
                     switch (r2) {
                         case 0:
-                            this.f43100b.c("AUTH_CANCELED");
+                            this.f44419b.c("AUTH_CANCELED");
                             return;
                         default:
-                            this.f43100b.a();
+                            this.f44419b.a();
                             return;
                     }
                 }
@@ -106,17 +106,17 @@ public final class u0 {
     }
 
     public final void c(String str) {
-        CountDownLatch countDownLatch = this.f43202a;
+        CountDownLatch countDownLatch = this.f44537a;
         if (countDownLatch.getCount() == 0) {
             return;
         }
-        this.f43204c = str;
+        this.f44539c = str;
         countDownLatch.countDown();
     }
 
     public final void d() {
         this.h = new CancellationSignal();
-        new BiometricPrompt.Builder(this.f43205e).setTitle(id.M0(2131742970, null)).setAllowedAuthenticators(32783).build().authenticate(this.h, this.f43205e.getMainExecutor(), new t0(this));
+        new BiometricPrompt.Builder(this.f44540e).setTitle(hd.M0(2131742970, null)).setAllowedAuthenticators(32783).build().authenticate(this.h, this.f44540e.getMainExecutor(), new t0(this));
     }
 
     public final void e() {
@@ -129,18 +129,18 @@ public final class u0 {
             org.telegram.messenger.a8.g(e10, true);
         }
         try {
-            AlertDialog alertDialog = this.f43208i;
+            AlertDialog alertDialog = this.f44543i;
             if (alertDialog != null) {
                 alertDialog.dismiss();
             }
         } catch (Exception e11) {
             org.telegram.messenger.a8.g(e11, true);
         }
-        this.f43208i = null;
+        this.f44543i = null;
     }
 
     public final boolean f() {
-        if (!this.f43203b && this.f43202a.getCount() != 0) {
+        if (!this.f44538b && this.f44537a.getCount() != 0) {
             return true;
         }
         return false;

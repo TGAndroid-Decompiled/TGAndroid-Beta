@@ -1,9 +1,9 @@
 package z7;
 public final class l2 implements na.d {
-    public static final l2 f59863a = new Object();
+    public static final l2 f61063a = new Object();
 
     static {
-        rf.b.q(rf.b.l(d.class, new a(1)));
+        r.b.u(r.b.o(d.class, new a(1)));
     }
 
     @Override

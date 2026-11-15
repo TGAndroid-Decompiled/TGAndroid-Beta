@@ -1,35 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-import java.util.ArrayList;
-public final class n01 extends oj0 {
-    public final ArrayList f36185c = new ArrayList();
-    public String d;
-    public final s01 f36186e;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class n01 extends Drawable {
+    public final Paint f37423a = new Paint(1);
+    public final RectF f37424b = new RectF();
+    public final int f37425c;
+    public final v01 d;
 
-    public n01(s01 s01Var) {
-        this.f36186e = s01Var;
+    public n01(v01 v01Var, int i7) {
+        this.d = v01Var;
+        this.f37425c = i7;
     }
 
     @Override
-    public final boolean D(v4.d1 d1Var) {
-        return true;
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        RectF rectF = this.f37424b;
+        rectF.set(bounds);
+        int i7 = this.f37425c;
+        rectF.inset(i7, i7);
+        float height = rectF.height() / 2.0f;
+        int w02 = org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.O5, this.d.f40215e);
+        Paint paint = this.f37423a;
+        paint.setColor(w02);
+        canvas.drawRoundRect(rectF, height, height, paint);
     }
 
     @Override
-    public final int b() {
-        return this.f36185c.size();
+    public final int getOpacity() {
+        return -3;
     }
 
     @Override
-    public final void t(v4.d1 r35, int r36) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.n01.t(v4.d1, int):void");
+    public final void setAlpha(int i7) {
     }
 
     @Override
-    public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        r01 r01Var = new r01(this.f36186e, viewGroup.getContext());
-        r01Var.setLayoutParams(new v4.o0(-1, -2));
-        return new v4.d1(r01Var);
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

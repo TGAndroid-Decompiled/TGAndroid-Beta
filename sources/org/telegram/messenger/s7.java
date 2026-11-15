@@ -2,26 +2,26 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class s7 implements Runnable {
-    public final int f25424a;
-    public final w7 f25425b;
-    public final TLRPC.Document f25426c;
+    public final int f26404a;
+    public final w7 f26405b;
+    public final TLRPC.Document f26406c;
     public final boolean d;
 
-    public s7(w7 w7Var, TLRPC.Document document, boolean z9, int i7) {
-        this.f25424a = i7;
-        this.f25425b = w7Var;
-        this.f25426c = document;
-        this.d = z9;
+    public s7(w7 w7Var, TLRPC.Document document, boolean z10, int i7) {
+        this.f26404a = i7;
+        this.f26405b = w7Var;
+        this.f26406c = document;
+        this.d = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f25424a) {
+        switch (this.f26404a) {
             case 0:
-                this.f25425b.d0(this.f25426c, this.d);
+                this.f26405b.d0(this.f26406c, this.d);
                 return;
             default:
-                this.f25425b.a0(this.f25426c, this.d);
+                this.f26405b.a0(this.f26406c, this.d);
                 return;
         }
     }

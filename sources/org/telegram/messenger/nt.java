@@ -1,86 +1,72 @@
 package org.telegram.messenger;
 
-import android.content.Context;
-import android.content.DialogInterface;
-import android.os.Bundle;
-import android.util.Base64;
-import org.json.JSONObject;
+import android.content.SharedPreferences;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.wd0;
-public final class nt implements v0.g {
-    public final wd0 f24232a;
-    public final Context f24233b;
-    public final int f24234c;
+public final class nt implements is {
+    public static final nt f25635c;
+    public static final List d;
+    public boolean f25636a;
+    public as f25637b;
 
-    public nt(wd0 wd0Var, Context context, int i7) {
-        this.f24232a = wd0Var;
-        this.f24233b = context;
-        this.f24234c = i7;
+    static {
+        ?? obj = new Object();
+        obj.f25637b = new as((Object) obj, 2);
+        f25635c = obj;
+        d = Arrays.asList(5, 10, 15, 30, 60);
     }
 
-    @Override
-    public final void a(Object obj) {
-        w0.i iVar = (w0.i) obj;
-        boolean z9 = iVar instanceof w0.k;
-        wd0 wd0Var = this.f24232a;
-        if (z9) {
-            wd0Var.a(0L, null, "EMPTY");
-        } else if (iVar instanceof w0.g) {
-            wd0Var.a(0L, null, "CANCELLED");
-        } else if (iVar instanceof w0.j) {
-            wd0Var.a(0L, null, "CANCELLED");
-        } else if (iVar != null) {
-            wd0Var.a(0L, null, iVar.getMessage());
+    public final void a() {
+        this.f25636a = false;
+        if (gz.f23931a1) {
+            ArrayList arrayList = new ArrayList(gz.f24000z1);
+            Collections.sort(arrayList, new gl(12));
+            int size = arrayList.size();
+            int i7 = 0;
+            while (i7 < size) {
+                Object obj = arrayList.get(i7);
+                i7++;
+                fz fzVar = (fz) obj;
+                if (fzVar != gz.B1 && !fzVar.f23577c && fzVar.d) {
+                    SharedPreferences.Editor edit = np.e1().edit();
+                    edit.putBoolean("proxy_enabled", true);
+                    fzVar.f23575a.i(edit);
+                    edit.apply();
+                    gz.B1 = fzVar;
+                    ns.e().k(ns.A4, new Object[0]);
+                    ns.e().k(ns.C4, new Object[0]);
+                    ConnectionsManager.setProxySettings(true, gz.B1.f23575a);
+                    return;
+                }
+            }
         }
     }
 
     @Override
-    public final void onResult(Object obj) {
-        final wd0 wd0Var = this.f24232a;
-        bi.b1 b1Var = ((v0.o) obj).f56984a;
-        TL_account.finishPasskeyLogin finishpasskeylogin = new TL_account.finishPasskeyLogin();
-        finishpasskeylogin.credential = new TL_account.inputPasskeyCredentialPublicKey();
-        try {
-            JSONObject jSONObject = new JSONObject(((Bundle) b1Var.f3503a).getString("androidx.credentials.BUNDLE_KEY_AUTHENTICATION_RESPONSE_JSON"));
-            finishpasskeylogin.credential.f27171id = jSONObject.getString("id");
-            finishpasskeylogin.credential.raw_id = jSONObject.getString("rawId");
-            JSONObject jSONObject2 = jSONObject.getJSONObject("response");
-            TL_account.inputPasskeyResponseLogin inputpasskeyresponselogin = new TL_account.inputPasskeyResponseLogin();
-            TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
-            inputpasskeyresponselogin.client_data = tL_dataJSON;
-            tL_dataJSON.data = new String(Base64.decode(jSONObject2.getString("clientDataJSON"), 8));
-            inputpasskeyresponselogin.authenticator_data = Base64.decode(jSONObject2.getString("authenticatorData"), 8);
-            inputpasskeyresponselogin.signature = Base64.decode(jSONObject2.getString("signature"), 8);
-            String str = new String(Base64.decode(jSONObject2.getString("userHandle"), 8));
-            inputpasskeyresponselogin.user_handle = str;
-            int parseInt = Integer.parseInt(str.split(":")[0]);
-            final long parseLong = Long.parseLong(inputpasskeyresponselogin.user_handle.split(":")[1]);
-            finishpasskeylogin.credential.response = inputpasskeyresponselogin;
-            org.telegram.ui.ActionBar.u1 u1Var = new org.telegram.ui.ActionBar.u1(3, this.f24233b, null);
-            u1Var.r(500L);
-            int i7 = this.f24234c;
-            if (parseInt != ConnectionsManager.getInstance(i7).getCurrentDatacenterId()) {
-                int currentDatacenterId = ConnectionsManager.getInstance(i7).getCurrentDatacenterId();
-                long currentAuthKeyId = ConnectionsManager.getInstance(i7).getCurrentAuthKeyId();
-                ConnectionsManager.getInstance(i7).setDefaultDatacenterId(parseInt);
-                finishpasskeylogin.flags = 1 | finishpasskeylogin.flags;
-                finishpasskeylogin.from_dc_id = currentDatacenterId;
-                finishpasskeylogin.from_auth_key_id = currentAuthKeyId;
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        as asVar = this.f25637b;
+        if (i7 == ns.B4) {
+            int i11 = gz.f23929a;
+            if (np.e1().getBoolean("proxy_enabled", false) && gz.B1 != null && gz.f23931a1 && gz.f24000z1.size() > 1 && this.f25636a) {
+                a();
             }
-            final int sendRequestTyped = ConnectionsManager.getInstance(i7).sendRequestTyped(finishpasskeylogin, new d3.b(1), new q9(u1Var, wd0Var, parseLong, 3), parseInt, 72);
-            final int i10 = this.f24234c;
-            u1Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                @Override
-                public final void onCancel(DialogInterface dialogInterface) {
-                    ConnectionsManager.getInstance(i10).cancelRequest(sendRequestTyped, true);
-                    wd0Var.a(Long.valueOf(parseLong), null, "CANCELLED");
+        } else if (i7 == ns.A4) {
+            g0.r(asVar);
+        } else if (i7 == ns.T1 && i10 == m10.f24934t0) {
+            int i12 = gz.f23929a;
+            if (((np.e1().getBoolean("proxy_enabled", false) && gz.B1 != null) || gz.f23931a1) && gz.f24000z1.size() > 1) {
+                if (ConnectionsManager.getInstance(i10).getConnectionState() == 4) {
+                    if (!this.f25636a) {
+                        g0.i3(asVar, ((Integer) d.get(gz.f23934b1)).intValue() * 1000);
+                        return;
+                    }
+                    return;
                 }
-            });
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            wd0Var.a(0L, null, e10.getMessage());
+                g0.r(asVar);
+            }
         }
     }
 }

@@ -1,33 +1,33 @@
 package e2;
 
-import a8.ia;
+import a8.ja;
 import java.util.Locale;
 public final class w0 {
     public static final w0 d = new w0(1.0f, 1.0f);
-    public static final String f10641e;
-    public static final String f10642f;
-    public final float f10643a;
-    public final float f10644b;
-    public final int f10645c;
+    public static final String f10472e;
+    public static final String f10473f;
+    public final float f10474a;
+    public final float f10475b;
+    public final int f10476c;
 
     static {
-        String str = h2.m0.f14114a;
-        f10641e = Integer.toString(0, 36);
-        f10642f = Integer.toString(1, 36);
+        String str = h2.l0.f13471a;
+        f10472e = Integer.toString(0, 36);
+        f10473f = Integer.toString(1, 36);
     }
 
     public w0(float f10, float f11) {
-        boolean z9;
+        boolean z10;
         if (f10 > 0.0f) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        ia.f(z9);
-        ia.f(f11 > 0.0f);
-        this.f10643a = f10;
-        this.f10644b = f11;
-        this.f10645c = Math.round(f10 * 1000.0f);
+        ja.f(z10);
+        ja.f(f11 > 0.0f);
+        this.f10474a = f10;
+        this.f10475b = f11;
+        this.f10476c = Math.round(f10 * 1000.0f);
     }
 
     public final boolean equals(Object obj) {
@@ -36,7 +36,7 @@ public final class w0 {
         }
         if (obj != null && w0.class == obj.getClass()) {
             w0 w0Var = (w0) obj;
-            if (this.f10643a == w0Var.f10643a && this.f10644b == w0Var.f10644b) {
+            if (this.f10474a == w0Var.f10474a && this.f10475b == w0Var.f10475b) {
                 return true;
             }
         }
@@ -44,12 +44,12 @@ public final class w0 {
     }
 
     public final int hashCode() {
-        return Float.floatToRawIntBits(this.f10644b) + ((Float.floatToRawIntBits(this.f10643a) + 527) * 31);
+        return Float.floatToRawIntBits(this.f10475b) + ((Float.floatToRawIntBits(this.f10474a) + 527) * 31);
     }
 
     public final String toString() {
-        Object[] objArr = {Float.valueOf(this.f10643a), Float.valueOf(this.f10644b)};
-        String str = h2.m0.f14114a;
+        Object[] objArr = {Float.valueOf(this.f10474a), Float.valueOf(this.f10475b)};
+        String str = h2.l0.f13471a;
         return String.format(Locale.US, "PlaybackParameters(speed=%.2f, pitch=%.2f)", objArr);
     }
 }

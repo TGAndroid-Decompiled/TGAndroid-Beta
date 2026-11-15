@@ -1,29 +1,29 @@
 package m4;
 
-import f3.j0;
-import l2.o0;
+import f3.i0;
+import l2.l0;
 public final class n implements i {
-    public static final float[] f19717l = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 1.0f};
-    public final c0 f19718a;
-    public final h2.x f19719b;
-    public final boolean[] f19720c = new boolean[4];
+    public static final float[] f20306l = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 1.0f};
+    public final c0 f20307a;
+    public final h2.x f20308b;
+    public final boolean[] f20309c = new boolean[4];
     public final l d;
-    public final o0 f19721e;
-    public m f19722f;
-    public long f19723g;
+    public final l0 f20310e;
+    public m f20311f;
+    public long f20312g;
     public String h;
-    public j0 f19724i;
-    public boolean f19725j;
-    public long f19726k;
+    public i0 f20313i;
+    public boolean f20314j;
+    public long f20315k;
 
     public n(c0 c0Var) {
-        this.f19718a = c0Var;
+        this.f20307a = c0Var;
         ?? obj = new Object();
-        obj.f19710e = new byte[128];
+        obj.f20299e = new byte[128];
         this.d = obj;
-        this.f19726k = -9223372036854775807L;
-        this.f19721e = new o0(178);
-        this.f19719b = new h2.x();
+        this.f20315k = -9223372036854775807L;
+        this.f20310e = new l0(178);
+        this.f20308b = new h2.x();
     }
 
     @Override
@@ -33,53 +33,53 @@ public final class n implements i {
 
     @Override
     public final void d() {
-        i2.o.b(this.f19720c);
+        i2.o.b(this.f20309c);
         l lVar = this.d;
-        lVar.f19707a = false;
-        lVar.f19709c = 0;
-        lVar.f19708b = 0;
-        m mVar = this.f19722f;
+        lVar.f20296a = false;
+        lVar.f20298c = 0;
+        lVar.f20297b = 0;
+        m mVar = this.f20311f;
         if (mVar != null) {
-            mVar.f19712b = false;
-            mVar.f19713c = false;
+            mVar.f20301b = false;
+            mVar.f20302c = false;
             mVar.d = false;
-            mVar.f19714e = -1;
+            mVar.f20303e = -1;
         }
-        o0 o0Var = this.f19721e;
-        if (o0Var != null) {
-            o0Var.g();
+        l0 l0Var = this.f20310e;
+        if (l0Var != null) {
+            l0Var.g();
         }
-        this.f19723g = 0L;
-        this.f19726k = -9223372036854775807L;
+        this.f20312g = 0L;
+        this.f20315k = -9223372036854775807L;
     }
 
     @Override
-    public final void e(boolean z9) {
-        this.f19722f.getClass();
-        if (z9) {
-            this.f19722f.b(0, this.f19723g, this.f19725j);
-            m mVar = this.f19722f;
-            mVar.f19712b = false;
-            mVar.f19713c = false;
+    public final void e(boolean z10) {
+        this.f20311f.getClass();
+        if (z10) {
+            this.f20311f.b(0, this.f20312g, this.f20314j);
+            m mVar = this.f20311f;
+            mVar.f20301b = false;
+            mVar.f20302c = false;
             mVar.d = false;
-            mVar.f19714e = -1;
+            mVar.f20303e = -1;
         }
     }
 
     @Override
     public final void f(int i7, long j3) {
-        this.f19726k = j3;
+        this.f20315k = j3;
     }
 
     @Override
-    public final void g(f3.q qVar, g0 g0Var) {
-        g0Var.b();
-        g0Var.c();
-        this.h = (String) g0Var.f19679e;
-        g0Var.c();
-        j0 O1 = qVar.O1(g0Var.f19678c, 2);
-        this.f19724i = O1;
-        this.f19722f = new m(O1);
-        this.f19718a.b(qVar, g0Var);
+    public final void g(f3.q qVar, f0 f0Var) {
+        f0Var.b();
+        f0Var.c();
+        this.h = (String) f0Var.f20253e;
+        f0Var.c();
+        i0 d2 = qVar.d2(f0Var.f20252c, 2);
+        this.f20313i = d2;
+        this.f20311f = new m(d2);
+        this.f20307a.b(qVar, f0Var);
     }
 }

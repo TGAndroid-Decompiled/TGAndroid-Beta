@@ -2,26 +2,26 @@ package ch;
 
 import android.animation.ValueAnimator;
 public final class a implements ValueAnimator.AnimatorUpdateListener {
-    public final int f6168a;
-    public final b f6169b;
-    public final d0 f6170c;
+    public final int f4990a;
+    public final b f4991b;
+    public final e0 f4992c;
 
-    public a(b bVar, d0 d0Var, int i7) {
-        this.f6168a = i7;
-        this.f6169b = bVar;
-        this.f6170c = d0Var;
+    public a(b bVar, e0 e0Var, int i7) {
+        this.f4990a = i7;
+        this.f4991b = bVar;
+        this.f4992c = e0Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f6168a) {
+        switch (this.f4990a) {
             case 0:
-                this.f6169b.f6185f = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                this.f6170c.invalidate();
+                this.f4991b.f5007f = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                this.f4992c.invalidate();
                 return;
             default:
-                this.f6169b.f6185f = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                this.f6170c.invalidate();
+                this.f4991b.f5007f = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                this.f4992c.invalidate();
                 return;
         }
     }

@@ -1,247 +1,89 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.LaunchActivity;
-public final class er implements org.telegram.messenger.f20, cj0, org.telegram.messenger.tr {
-    public final int f33326a;
-    public final kr f33327b;
+import android.graphics.PointF;
+import android.view.animation.Interpolator;
+import android.view.animation.PathInterpolator;
+public final class er implements Interpolator {
+    public static final er f34420f = new er(0.25d, 0.1d, 0.25d, 1.0d);
+    public static final er f34421g = new er(0.0d, 0.0d, 0.58d, 1.0d);
+    public static final er h = new er(0.23d, 1.0d, 0.32d, 1.0d);
+    public static final er f34422i = new er(0.42d, 0.0d, 1.0d, 1.0d);
+    public static final er f34423j = new er(0.42d, 0.0d, 0.58d, 1.0d);
+    public static final er f34424k = new er(0.34d, 1.56d, 0.64d, 1.0d);
+    public static final PathInterpolator f34425l;
+    public final PointF f34426a;
+    public final PointF f34427b;
+    public final PointF f34428c;
+    public final PointF d;
+    public final PointF f34429e;
 
-    public er(kr krVar, int i7) {
-        this.f33326a = i7;
-        this.f33327b = krVar;
+    static {
+        new PathInterpolator(c8.j0.d("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1"));
+        new PathInterpolator(0.05f, 0.7f, 0.1f, 1.0f);
+        new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
+        f34425l = new PathInterpolator(0.0f, 0.0f, 0.0f, 1.0f);
     }
 
-    @Override
-    public void a(int r18, org.telegram.tgnet.TLObject r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.er.a(int, org.telegram.tgnet.TLObject):void");
-    }
-
-    @Override
-    public void f(float f10, float f11, int i7, View view) {
-        boolean z9;
-        boolean[] zArr;
-        kr krVar = this.f33327b;
-        x31 G = krVar.S1.G(i7 - 1);
-        if (G != null) {
-            jr jrVar = krVar.f35398f2;
-            jr jrVar2 = krVar.f35397e2;
-            jr jrVar3 = krVar.d2;
-            jr jrVar4 = krVar.f35399g2;
-            TLRPC.TL_chatBannedRights tL_chatBannedRights = krVar.f35410r2;
-            int i10 = G.d;
-            if (i10 == 103) {
-                boolean z10 = !krVar.f35403k2;
-                krVar.f35403k2 = z10;
-                ((org.telegram.ui.Cells.q8) view).setChecked(z10);
+    public er(float f10, float f11, float f12, float f13) {
+        PointF pointF = new PointF(f10, f11);
+        PointF pointF2 = new PointF(f12, f13);
+        this.f34428c = new PointF();
+        this.d = new PointF();
+        this.f34429e = new PointF();
+        float f14 = pointF.x;
+        if (f14 >= 0.0f && f14 <= 1.0f) {
+            float f15 = pointF2.x;
+            if (f15 >= 0.0f && f15 <= 1.0f) {
+                this.f34426a = pointF;
+                this.f34427b = pointF2;
                 return;
             }
-            int i11 = G.f54543a;
-            if (i11 == 37) {
-                int i12 = i10 >>> 24;
-                int i13 = 16777215 & i10;
-                if (i12 == 0) {
-                    jrVar3.g(i13);
-                } else if (i12 == 1) {
-                    jrVar2.g(i13);
-                    krVar.g1();
-                } else if (i10 == 3) {
-                    jrVar.g(i13);
-                    krVar.g1();
-                } else if (i12 == 2) {
-                    jrVar4.g(i13);
-                }
-            } else if (i11 != 36 && i11 != 35) {
-                if (i11 == 39) {
-                    if (G.f40164t) {
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(krVar.getContext());
-                        String M0 = org.telegram.messenger.id.M0(2131743719, null);
-                        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27300a;
-                        u1Var.R = M0;
-                        u1Var.T = org.telegram.messenger.id.M0(2131743718, null);
-                        alertDialog$Builder.k(org.telegram.messenger.id.M0(2131747831, null), null);
-                        u1Var.show();
-                        return;
-                    }
-                    if (i10 == 2) {
-                        tL_chatBannedRights.invite_users = !tL_chatBannedRights.invite_users;
-                        krVar.h1();
-                    } else if (i10 == 3) {
-                        tL_chatBannedRights.pin_messages = !tL_chatBannedRights.pin_messages;
-                        krVar.h1();
-                    } else if (i10 == 4) {
-                        tL_chatBannedRights.change_info = !tL_chatBannedRights.change_info;
-                        krVar.h1();
-                    } else if (i10 == 5) {
-                        tL_chatBannedRights.manage_topics = !tL_chatBannedRights.manage_topics;
-                        krVar.h1();
-                    } else if (i10 == 0) {
-                        tL_chatBannedRights.send_plain = !tL_chatBannedRights.send_plain;
-                        krVar.h1();
-                    }
-                    krVar.S1.O(true);
-                } else if (i11 == 40) {
-                    krVar.f35412t2 = !krVar.f35412t2;
-                    krVar.X0();
-                    krVar.S1.O(true);
-                    krVar.I0();
-                } else if (i10 == 100) {
-                    krVar.f35415w2 = false;
-                    boolean z11 = !krVar.f35416x2;
-                    krVar.f35416x2 = z11;
-                    krVar.f35417y2 = z11;
-                    krVar.X0();
-                    krVar.S1.O(true);
-                    krVar.I0();
-                    krVar.g1();
-                } else if (i11 == 38) {
-                    boolean z12 = krVar.f35395b2;
-                    krVar.f35395b2 = !z12;
-                    if (!z12) {
-                        zArr = krVar.f35401i2;
-                    } else {
-                        zArr = krVar.f35400h2;
-                    }
-                    if (jrVar4.f35052g != 0) {
-                        jrVar4.f35050e = zArr;
-                        jrVar4.h();
-                        jrVar4.i();
-                    }
-                    krVar.S1.O(true);
-                    krVar.h1();
-                }
-            } else if (i10 == 0) {
-                jrVar3.f();
-            } else if (i10 == 1) {
-                jrVar2.f();
-                krVar.g1();
-            } else if (i10 == 3) {
-                jrVar.f();
-                krVar.g1();
-            } else if (i10 == 2) {
-                jrVar4.f();
-            } else if (i11 == 35) {
-                if (G.f40164t) {
-                    AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(krVar.getContext());
-                    String M02 = org.telegram.messenger.id.M0(2131743719, null);
-                    org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder2.f27300a;
-                    u1Var2.R = M02;
-                    u1Var2.T = org.telegram.messenger.id.M0(2131743718, null);
-                    alertDialog$Builder2.k(org.telegram.messenger.id.M0(2131747831, null), null);
-                    u1Var2.show();
-                    return;
-                }
-                if (i10 == 6) {
-                    z9 = true;
-                    tL_chatBannedRights.send_photos = !tL_chatBannedRights.send_photos;
-                    krVar.h1();
-                } else {
-                    z9 = true;
-                    if (i10 == 7) {
-                        tL_chatBannedRights.send_videos = !tL_chatBannedRights.send_videos;
-                        krVar.h1();
-                    } else if (i10 == 9) {
-                        tL_chatBannedRights.send_audios = !tL_chatBannedRights.send_audios;
-                        krVar.h1();
-                    } else if (i10 == 8) {
-                        tL_chatBannedRights.send_docs = !tL_chatBannedRights.send_docs;
-                        krVar.h1();
-                    } else if (i10 == 11) {
-                        tL_chatBannedRights.send_roundvideos = !tL_chatBannedRights.send_roundvideos;
-                        krVar.h1();
-                    } else if (i10 == 10) {
-                        tL_chatBannedRights.send_voices = !tL_chatBannedRights.send_voices;
-                        krVar.h1();
-                    } else if (i10 == 15) {
-                        tL_chatBannedRights.send_reactions = !tL_chatBannedRights.send_reactions;
-                        krVar.h1();
-                    } else {
-                        if (i10 == 12) {
-                            boolean z13 = !tL_chatBannedRights.send_stickers;
-                            tL_chatBannedRights.send_inline = z13;
-                            tL_chatBannedRights.send_gifs = z13;
-                            tL_chatBannedRights.send_games = z13;
-                            tL_chatBannedRights.send_stickers = z13;
-                            krVar.h1();
-                        } else if (i10 == 14) {
-                            if (!tL_chatBannedRights.send_plain && !krVar.f35409q2.send_plain) {
-                                tL_chatBannedRights.embed_links = !tL_chatBannedRights.embed_links;
-                                krVar.h1();
-                            } else {
-                                int i14 = 0;
-                                while (true) {
-                                    if (i14 >= krVar.S1.D.size()) {
-                                        break;
-                                    }
-                                    x31 G2 = krVar.S1.G(i14);
-                                    if (G2.f54543a == 39 && G2.d == 0) {
-                                        v4.d1 K = krVar.n1.K(i14 + 1);
-                                        if (K != null) {
-                                            View view2 = K.f57052a;
-                                            float f12 = -krVar.A2;
-                                            krVar.A2 = f12;
-                                            org.telegram.messenger.g0.G3(f12, view2, null);
-                                        }
-                                    } else {
-                                        i14++;
-                                    }
-                                }
-                                org.telegram.messenger.p2.APP_ERROR.a();
-                                return;
-                            }
-                        } else if (i10 == 13) {
-                            z9 = true;
-                            tL_chatBannedRights.send_polls = !tL_chatBannedRights.send_polls;
-                            krVar.h1();
-                        } else {
-                            z9 = true;
-                            if (i10 == 101) {
-                                krVar.f35416x2 = !krVar.f35416x2;
-                                krVar.g1();
-                            } else if (i10 == 102) {
-                                krVar.f35417y2 = !krVar.f35417y2;
-                                krVar.c1();
-                            }
-                        }
-                        z9 = true;
-                    }
-                }
-                krVar.S1.O(z9);
+            throw new IllegalArgumentException("endX value must be in the range [0, 1]");
+        }
+        throw new IllegalArgumentException("startX value must be in the range [0, 1]");
+    }
+
+    @Override
+    public final float getInterpolation(float f10) {
+        PointF pointF;
+        PointF pointF2;
+        PointF pointF3;
+        PointF pointF4;
+        PointF pointF5;
+        int i7 = 1;
+        float f11 = f10;
+        while (true) {
+            pointF = this.f34427b;
+            pointF2 = this.f34426a;
+            pointF3 = this.f34428c;
+            pointF4 = this.d;
+            pointF5 = this.f34429e;
+            if (i7 >= 14) {
+                break;
             }
+            float f12 = pointF2.x * 3.0f;
+            pointF5.x = f12;
+            float f13 = ((pointF.x - pointF2.x) * 3.0f) - f12;
+            pointF4.x = f13;
+            float f14 = (1.0f - pointF5.x) - f13;
+            pointF3.x = f14;
+            float f15 = (((((f14 * f11) + pointF4.x) * f11) + pointF5.x) * f11) - f10;
+            if (Math.abs(f15) < 0.001d) {
+                break;
+            }
+            f11 -= f15 / (((((pointF3.x * 3.0f) * f11) + (pointF4.x * 2.0f)) * f11) + pointF5.x);
+            i7++;
         }
+        float f16 = pointF2.y * 3.0f;
+        pointF5.y = f16;
+        float f17 = ((pointF.y - pointF2.y) * 3.0f) - f16;
+        pointF4.y = f17;
+        float f18 = (1.0f - pointF5.y) - f17;
+        pointF3.y = f18;
+        return ((((f18 * f11) + pointF4.y) * f11) + pointF5.y) * f11;
     }
 
-    @Override
-    public boolean f1(View view) {
-        return false;
-    }
-
-    @Override
-    public void run(long j3) {
-        switch (this.f33326a) {
-            case 5:
-                kr krVar = this.f33327b;
-                krVar.getClass();
-                org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
-                if (Q != null) {
-                    Q.presentFragment(org.telegram.ui.cn.ta(j3));
-                }
-                krVar.dismiss();
-                return;
-            default:
-                kr krVar2 = this.f33327b;
-                krVar2.getClass();
-                org.telegram.ui.ActionBar.f2 Q2 = LaunchActivity.Q();
-                if (Q2 != null) {
-                    Q2.presentFragment(org.telegram.ui.cn.ta(j3));
-                }
-                krVar2.dismiss();
-                return;
-        }
-    }
-
-    @Override
-    public void r0(View view, float f10, float f11) {
+    public er(double d, double d2, double d10, double d11) {
+        this((float) d, (float) d2, (float) d10, (float) d11);
     }
 }

@@ -1,28 +1,62 @@
 package l2;
-public final class q1 {
-    public static final q1 f18000c = new q1(0, false);
-    public final int f18001a;
-    public final boolean f18002b;
 
-    public q1(int i7, boolean z9) {
-        this.f18001a = i7;
-        this.f18002b = z9;
+import android.os.SystemClock;
+public final class q1 implements t0 {
+    public long f19166a;
+    public long f19167b;
+    public boolean f19168c;
+    public Object d;
+    public Object f19169e;
+
+    @Override
+    public long a() {
+        long j3;
+        long j10 = this.f19166a;
+        if (this.f19168c) {
+            ((h2.g0) this.d).getClass();
+            long elapsedRealtime = SystemClock.elapsedRealtime() - this.f19167b;
+            e2.w0 w0Var = (e2.w0) this.f19169e;
+            if (w0Var.f10474a == 1.0f) {
+                j3 = h2.l0.S(elapsedRealtime);
+            } else {
+                j3 = elapsedRealtime * w0Var.f10476c;
+            }
+            return j3 + j10;
+        }
+        return j10;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && q1.class == obj.getClass()) {
-            q1 q1Var = (q1) obj;
-            if (this.f18001a == q1Var.f18001a && this.f18002b == q1Var.f18002b) {
-                return true;
-            }
-        }
+    @Override
+    public boolean b() {
         return false;
     }
 
-    public final int hashCode() {
-        return (this.f18001a << 1) + (this.f18002b ? 1 : 0);
+    public void c(long j3) {
+        this.f19166a = j3;
+        if (this.f19168c) {
+            ((h2.g0) this.d).getClass();
+            this.f19167b = SystemClock.elapsedRealtime();
+        }
+    }
+
+    public void d() {
+        if (!this.f19168c) {
+            ((h2.g0) this.d).getClass();
+            this.f19167b = SystemClock.elapsedRealtime();
+            this.f19168c = true;
+        }
+    }
+
+    @Override
+    public void e(e2.w0 w0Var) {
+        if (this.f19168c) {
+            c(a());
+        }
+        this.f19169e = w0Var;
+    }
+
+    @Override
+    public e2.w0 j() {
+        return (e2.w0) this.f19169e;
     }
 }

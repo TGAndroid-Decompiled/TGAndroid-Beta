@@ -8,21 +8,21 @@ import android.text.TextUtils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class SmsReceiver extends BroadcastReceiver {
-    public static final int f21337a = 0;
+    public static final int f22412a = 0;
 
     @Override
     public final void onReceive(Context context, Intent intent) {
-        boolean z9;
+        boolean z10;
         if (intent != null) {
             try {
                 String str = "";
-                SharedPreferences sharedPreferences = t0.f25570b.getSharedPreferences("mainconfig", 0);
+                SharedPreferences sharedPreferences = t0.f26600b.getSharedPreferences("mainconfig", 0);
                 String string = sharedPreferences.getString("sms_hash", null);
                 if ("com.google.android.gms.auth.api.phone.SMS_RETRIEVED".equals(intent.getAction())) {
-                    synchronized (g0.f22557k) {
-                        z9 = g0.f22555j;
+                    synchronized (g0.f23599k) {
+                        z10 = g0.f23597j;
                     }
-                    if (z9) {
+                    if (z10) {
                         str = (String) intent.getExtras().get("com.google.android.gms.auth.api.phone.EXTRA_SMS_MESSAGE");
                     } else {
                         return;

@@ -1,6 +1,6 @@
 package te;
 public interface f {
-    int b(boolean z9);
+    int b(boolean z10);
 
     int getHeight();
 

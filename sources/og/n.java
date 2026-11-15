@@ -1,10 +1,10 @@
 package og;
 public interface n {
-    void H(boolean z9);
+    void D0();
 
-    void Z(boolean z9);
+    void F();
 
-    void c0();
+    void M(boolean z10);
 
-    void w();
+    void m0(boolean z10);
 }

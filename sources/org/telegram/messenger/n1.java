@@ -1,26 +1,26 @@
 package org.telegram.messenger;
 public final class n1 implements Runnable {
-    public final int f24125a;
-    public final org.telegram.ui.ActionBar.u1[] f24126b;
+    public final int f25136a;
+    public final org.telegram.ui.ActionBar.t1[] f25137b;
 
-    public n1(org.telegram.ui.ActionBar.u1[] u1VarArr, int i7) {
-        this.f24125a = i7;
-        this.f24126b = u1VarArr;
+    public n1(org.telegram.ui.ActionBar.t1[] t1VarArr, int i7) {
+        this.f25136a = i7;
+        this.f25137b = t1VarArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f24125a) {
+        switch (this.f25136a) {
             case 0:
-                org.telegram.ui.ActionBar.u1[] u1VarArr = this.f24126b;
-                org.telegram.ui.ActionBar.u1 u1Var = new org.telegram.ui.ActionBar.u1(3, t0.f25570b, null);
-                u1VarArr[0] = u1Var;
-                u1Var.r(500L);
+                org.telegram.ui.ActionBar.t1[] t1VarArr = this.f25137b;
+                org.telegram.ui.ActionBar.t1 t1Var = new org.telegram.ui.ActionBar.t1(3, t0.f26600b, null);
+                t1VarArr[0] = t1Var;
+                t1Var.r(500L);
                 return;
             default:
-                org.telegram.ui.ActionBar.u1 u1Var2 = this.f24126b[0];
-                if (u1Var2 != null) {
-                    u1Var2.dismiss();
+                org.telegram.ui.ActionBar.t1 t1Var2 = this.f25137b[0];
+                if (t1Var2 != null) {
+                    t1Var2.dismiss();
                     return;
                 }
                 return;

@@ -1,20 +1,20 @@
 package e5;
 
-import a8.w9;
+import a8.y9;
 import java.lang.reflect.InvocationTargetException;
 import org.chromium.support_lib_boundary.WebViewProviderFactoryBoundaryInterface;
 public abstract class l {
-    public static final n f10719a;
+    public static final n f10550a;
 
     static {
-        d6.i iVar;
+        ob.c cVar;
         try {
-            iVar = new d6.i((WebViewProviderFactoryBoundaryInterface) af.b.a(WebViewProviderFactoryBoundaryInterface.class, w9.a()), 20);
+            cVar = new ob.c((WebViewProviderFactoryBoundaryInterface) af.b.a(WebViewProviderFactoryBoundaryInterface.class, y9.a()), 17);
         } catch (ClassNotFoundException unused) {
-            iVar = new Object();
+            cVar = new Object();
         } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e10) {
             throw new RuntimeException(e10);
         }
-        f10719a = iVar;
+        f10550a = cVar;
     }
 }

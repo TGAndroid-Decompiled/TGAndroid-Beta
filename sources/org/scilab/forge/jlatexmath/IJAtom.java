@@ -2,8 +2,8 @@ package org.scilab.forge.jlatexmath;
 public class IJAtom extends Atom {
     private boolean upper;
 
-    public IJAtom(boolean z9) {
-        this.upper = z9;
+    public IJAtom(boolean z10) {
+        this.upper = z10;
     }
 
     @Override

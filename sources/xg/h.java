@@ -5,68 +5,67 @@ import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.m5;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ik0;
-import wg.a1;
-import wg.z0;
+import org.telegram.ui.sc1;
+import wg.x0;
 public final class h extends rg.a {
-    public TLRPC.User f58738c;
+    public TLRPC.User f59922c;
     public TLRPC.InputPeer d;
-    public TLRPC.Chat f58739e;
-    public TLRPC.TL_help_country f58740f;
-    public CharSequence f58741g;
+    public TLRPC.Chat f59923e;
+    public TLRPC.TL_help_country f59924f;
+    public CharSequence f59925g;
     public CharSequence h;
-    public int f58742i;
-    public int f58743j;
-    public boolean f58744k;
-    public int f58745l;
-    public ik0 f58746m;
-    public a1 f58747n;
-    public z0 f58748o;
-    public z0 f58749p;
-    public View f58750q;
-    public Drawable f58751r;
+    public int f59926i;
+    public int f59927j;
+    public boolean f59928k;
+    public int f59929l;
+    public sc1 f59930m;
+    public sc1 f59931n;
+    public x0 f59932o;
+    public x0 f59933p;
+    public View f59934q;
+    public Drawable f59935r;
 
-    public h(int i7, boolean z9) {
-        super(i7, z9);
-        this.f58745l = -1;
+    public h(int i7, boolean z10) {
+        super(i7, z10);
+        this.f59929l = -1;
     }
 
     public static h b(CharSequence charSequence) {
         h hVar = new h(8, false);
-        hVar.f58741g = charSequence;
+        hVar.f59925g = charSequence;
         return hVar;
     }
 
-    public static h c(TLRPC.User user, boolean z9) {
+    public static h c(TLRPC.User user, boolean z10) {
         h hVar = new h(3, true);
-        hVar.f58738c = user;
+        hVar.f59922c = user;
         hVar.d = null;
-        hVar.f58739e = null;
-        hVar.f58744k = z9;
+        hVar.f59923e = null;
+        hVar.f59928k = z10;
         return hVar;
     }
 
     @Override
     public final boolean a(rg.a aVar) {
-        boolean z9;
         boolean z10;
+        boolean z11;
         if (this != aVar) {
             if (h.class == aVar.getClass()) {
                 h hVar = (h) aVar;
-                if (this.f58744k == hVar.f58744k) {
-                    if (this.f54543a == 8) {
+                if (this.f59928k == hVar.f59928k) {
+                    if (this.f56015a == 8) {
                         if (TextUtils.equals(this.h, hVar.h)) {
-                            if (this.f58746m == null) {
-                                z9 = true;
-                            } else {
-                                z9 = false;
-                            }
-                            if (hVar.f58746m == null) {
+                            if (this.f59930m == null) {
                                 z10 = true;
                             } else {
                                 z10 = false;
                             }
-                            if (z9 == z10) {
+                            if (hVar.f59930m == null) {
+                                z11 = true;
+                            } else {
+                                z11 = false;
+                            }
+                            if (z10 == z11) {
                             }
                         }
                     }
@@ -82,18 +81,18 @@ public final class h extends rg.a {
         if (this != obj) {
             if (obj != null && h.class == obj.getClass()) {
                 h hVar = (h) obj;
-                int i7 = this.f54543a;
-                if (i7 == hVar.f54543a) {
-                    if (i7 != -1 || this.f58745l == hVar.f58745l) {
+                int i7 = this.f56015a;
+                if (i7 == hVar.f56015a) {
+                    if (i7 != -1 || this.f59929l == hVar.f59929l) {
                         if (i7 == 3) {
-                            TLRPC.User user = this.f58738c;
+                            TLRPC.User user = this.f59922c;
                             long j10 = 0;
                             if (user != null) {
-                                j3 = user.f27109id;
+                                j3 = user.f28200id;
                             } else {
-                                TLRPC.Chat chat = this.f58739e;
+                                TLRPC.Chat chat = this.f59923e;
                                 if (chat != null) {
-                                    j3 = -chat.f26960id;
+                                    j3 = -chat.f28051id;
                                 } else {
                                     TLRPC.InputPeer inputPeer = this.d;
                                     if (inputPeer != null) {
@@ -103,13 +102,13 @@ public final class h extends rg.a {
                                     }
                                 }
                             }
-                            TLRPC.User user2 = hVar.f58738c;
+                            TLRPC.User user2 = hVar.f59922c;
                             if (user2 != null) {
-                                j10 = user2.f27109id;
+                                j10 = user2.f28200id;
                             } else {
-                                TLRPC.Chat chat2 = hVar.f58739e;
+                                TLRPC.Chat chat2 = hVar.f59923e;
                                 if (chat2 != null) {
-                                    j10 = -chat2.f26960id;
+                                    j10 = -chat2.f28051id;
                                 } else {
                                     TLRPC.InputPeer inputPeer2 = hVar.d;
                                     if (inputPeer2 != null) {
@@ -121,12 +120,12 @@ public final class h extends rg.a {
                                 return false;
                             }
                         }
-                        int i10 = this.f54543a;
-                        if (i10 != 6 || this.f58740f == hVar.f58740f) {
-                            if (i10 != 7 || TextUtils.equals(this.f58741g, hVar.f58741g)) {
-                                if (this.f54543a != 8 || TextUtils.equals(this.f58741g, hVar.f58741g)) {
-                                    if (this.f54543a != 9 || (TextUtils.equals(this.f58741g, hVar.f58741g) && this.f58742i == hVar.f58742i && this.f58743j == hVar.f58743j)) {
-                                        if (this.f54543a != 10 || this.f58750q == hVar.f58750q) {
+                        int i10 = this.f56015a;
+                        if (i10 != 6 || this.f59924f == hVar.f59924f) {
+                            if (i10 != 7 || TextUtils.equals(this.f59925g, hVar.f59925g)) {
+                                if (this.f56015a != 8 || TextUtils.equals(this.f59925g, hVar.f59925g)) {
+                                    if (this.f56015a != 9 || (TextUtils.equals(this.f59925g, hVar.f59925g) && this.f59926i == hVar.f59926i && this.f59927j == hVar.f59927j)) {
+                                        if (this.f56015a != 10 || this.f59934q == hVar.f59934q) {
                                             return true;
                                         }
                                         return false;

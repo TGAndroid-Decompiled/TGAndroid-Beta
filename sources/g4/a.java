@@ -1,9 +1,9 @@
 package g4;
 
-import a8.ia;
+import a8.ja;
 import a8.p0;
 import c4.m;
-import h2.m0;
+import h2.l0;
 import h2.x;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -14,26 +14,26 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class a implements m {
     public static final Pattern h = Pattern.compile("(?:(\\d+):)?(\\d+):(\\d+)[:.](\\d+)");
-    public final boolean f13493a;
-    public final e4.b f13494b;
+    public final boolean f12842a;
+    public final e4.b f12843b;
     public LinkedHashMap d;
-    public float f13496e = -3.4028235E38f;
-    public float f13497f = -3.4028235E38f;
-    public final x f13495c = new x();
+    public float f12845e = -3.4028235E38f;
+    public float f12846f = -3.4028235E38f;
+    public final x f12844c = new x();
 
     public a(List list) {
         if (list != null && !list.isEmpty()) {
-            this.f13493a = true;
-            String r10 = m0.r((byte[]) list.get(0));
-            ia.f(r10.startsWith("Format:"));
+            this.f12842a = true;
+            String r10 = l0.r((byte[]) list.get(0));
+            ja.f(r10.startsWith("Format:"));
             e4.b b10 = e4.b.b(r10);
             b10.getClass();
-            this.f13494b = b10;
+            this.f12843b = b10;
             b(new x((byte[]) list.get(1)), StandardCharsets.UTF_8);
             return;
         }
-        this.f13493a = false;
-        this.f13494b = null;
+        this.f12842a = false;
+        this.f12843b = null;
     }
 
     public static int a(long j3, ArrayList arrayList, ArrayList arrayList2) {
@@ -65,18 +65,23 @@ public final class a implements m {
         return i7;
     }
 
-    public static long d(String str) {
+    public static long c(String str) {
         Matcher matcher = h.matcher(str.trim());
         if (!matcher.matches()) {
             return -9223372036854775807L;
         }
         String group = matcher.group(1);
-        String str2 = m0.f14114a;
+        String str2 = l0.f13471a;
         return (Long.parseLong(matcher.group(4)) * 10000) + (Long.parseLong(matcher.group(3)) * 1000000) + (Long.parseLong(matcher.group(2)) * 60000000) + (Long.parseLong(group) * 3600000000L);
     }
 
     @Override
-    public final int P() {
+    public final void K(byte[] r44, int r45, int r46, c4.l r47, h2.j r48) {
+        throw new UnsupportedOperationException("Method not decompiled: g4.a.K(byte[], int, int, c4.l, h2.j):void");
+    }
+
+    @Override
+    public final int Q() {
         return 1;
     }
 
@@ -85,13 +90,8 @@ public final class a implements m {
     }
 
     @Override
-    public final c4.d c(int i7, int i10, byte[] bArr) {
+    public final c4.d x(int i7, int i10, byte[] bArr) {
         return p0.a(this, bArr, i10);
-    }
-
-    @Override
-    public final void z(byte[] r44, int r45, int r46, c4.l r47, h2.j r48) {
-        throw new UnsupportedOperationException("Method not decompiled: g4.a.z(byte[], int, int, c4.l, h2.j):void");
     }
 
     @Override

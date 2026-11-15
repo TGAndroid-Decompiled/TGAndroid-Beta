@@ -1,93 +1,139 @@
 package si;
 
-import android.content.Context;
-import android.util.SparseArray;
-import android.util.SparseIntArray;
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import org.telegram.tgnet.SerializedData;
-public final class b {
-    public static SparseIntArray f55350b;
-    public static final b f55351c = new b();
-    public final SparseArray f55352a;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import c8.hc;
+public final class b extends hc {
+    public final boolean f56902a;
+    public final Paint f56903b = new Paint();
+    public final Paint f56904c;
+    public final Paint d;
+    public int f56905e;
+    public int f56906f;
+    public final f f56907g;
 
-    public b() {
-        this.f55352a = new SparseArray();
+    public b(f fVar, boolean z10) {
+        this.f56907g = fVar;
+        Paint paint = new Paint(1);
+        this.f56904c = paint;
+        this.d = new Paint(1);
+        this.f56905e = -1;
+        this.f56906f = -1;
+        this.f56902a = z10;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
     }
 
-    public static SparseArray a(Context context, String str, SparseArray sparseArray) {
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(context.getAssets().open(str));
-        try {
-            SerializedData serializedData = new SerializedData(bufferedInputStream);
-            int readInt32 = serializedData.readInt32(true);
-            int i7 = 0;
-            if (sparseArray == null) {
-                sparseArray = new SparseArray(readInt32);
-                while (i7 < readInt32) {
-                    sparseArray.append(serializedData.readInt32(true), serializedData.readString(true));
-                    i7++;
-                }
-            } else {
-                while (i7 < readInt32) {
-                    sparseArray.put(serializedData.readInt32(true), serializedData.readString(true));
-                    i7++;
-                }
-            }
-            bufferedInputStream.close();
-            return sparseArray;
-        } catch (Throwable th2) {
-            try {
-                bufferedInputStream.close();
-            } catch (Throwable th3) {
-                th2.addSuppressed(th3);
-            }
-            throw th2;
-        }
+    @Override
+    public final void b() {
+        this.f56905e = -1;
     }
 
-    public final String b(String str) {
-        if (str != null) {
-            return (String) this.f55352a.get(str.hashCode());
-        }
-        return null;
-    }
-
-    public final String c(int i7, Context context, String str) {
-        String str2;
-        if (str != null) {
-            str2 = b(str);
+    @Override
+    public final void c(Canvas canvas) {
+        boolean z10;
+        Paint paint;
+        boolean z11;
+        boolean z12;
+        f fVar;
+        float f10;
+        float f11;
+        f fVar2 = this.f56907g;
+        Rect bounds = fVar2.getBounds();
+        int width = bounds.width();
+        int height = bounds.height();
+        float f12 = width;
+        int ceil = (int) Math.ceil(f12 / 5.0f);
+        float f13 = height;
+        int ceil2 = (int) Math.ceil(f13 / 5.0f);
+        boolean z13 = this.f56902a;
+        if (z13) {
+            z10 = fVar2.f56930w;
         } else {
-            str2 = null;
+            z10 = fVar2.f56931x;
         }
-        if (str2 == null && i7 != 0) {
-            if (context != null && i7 != 0) {
-                if (f55350b == null) {
-                    try {
-                        BufferedInputStream bufferedInputStream = new BufferedInputStream(context.getResources().getAssets().open("string_resource_ids.bin"));
-                        SerializedData serializedData = new SerializedData(bufferedInputStream);
-                        int readInt32 = serializedData.readInt32(true);
-                        SparseIntArray sparseIntArray = new SparseIntArray(readInt32);
-                        for (int i10 = 0; i10 < readInt32; i10++) {
-                            sparseIntArray.append(serializedData.readInt32(true), serializedData.readInt32(true));
-                        }
-                        bufferedInputStream.close();
-                        f55350b = sparseIntArray;
-                    } catch (IOException e10) {
-                        throw new RuntimeException(e10);
-                    }
-                }
-                int i11 = f55350b.get(i7);
-                if (i11 != 0) {
-                    return (String) this.f55352a.get(i11);
-                }
+        Paint paint2 = this.f56904c;
+        Paint paint3 = this.d;
+        if (!z10 && this.f56905e == width && this.f56906f == height) {
+            fVar = fVar2;
+            paint = paint3;
+            z11 = z13;
+        } else {
+            int i7 = fVar2.f56932y;
+            if (i7 != 1 && i7 != 4) {
+                f13 = f12;
             }
-            return null;
+            if (z13) {
+                g gVar = fVar2.E;
+                gVar.getClass();
+                float f14 = 0;
+                paint = paint3;
+                z11 = z13;
+                z12 = false;
+                paint2.setShader(f.k(fVar2, gVar, f13, f14, -1, 5));
+                g gVar2 = fVar2.F;
+                gVar2.getClass();
+                paint.setShader(f.k(fVar2, gVar2, f13, f14, fVar2.I, 5));
+                fVar = fVar2;
+            } else {
+                paint = paint3;
+                z11 = z13;
+                z12 = false;
+                g gVar3 = fVar2.G;
+                gVar3.getClass();
+                fVar = fVar2;
+                paint.setShader(f.k(fVar2, gVar3, f13, 0, fVar2.K, 5));
+            }
+            this.f56905e = width;
+            this.f56906f = height;
+            if (z11) {
+                fVar.f56930w = z12;
+            } else {
+                fVar.f56931x = z12;
+            }
         }
-        return str2;
+        canvas.save();
+        canvas.scale(5.0f, 5.0f);
+        float f15 = ceil;
+        float f16 = ceil2;
+        int saveLayer = canvas.saveLayer(0.0f, 0.0f, f15, f16, this.f56903b);
+        if (z11) {
+            canvas.drawColor((fVar.I & 16777215) | (-16777216));
+            canvas.save();
+            canvas.scale(0.2f, 0.2f);
+            float f17 = fVar.d;
+            float f18 = bounds.left + f17;
+            float f19 = fVar.f56098e;
+            float f20 = bounds.top + f19;
+            canvas.translate(-f18, -f20);
+            fVar.f56926f.b0(f18, f20, bounds.right + f17, f19 + bounds.bottom, canvas);
+            canvas.restore();
+            f10 = f15;
+            f11 = f16;
+            canvas.drawRect(0.0f, 0.0f, f10, f11, paint2);
+        } else {
+            f10 = f15;
+            f11 = f16;
+        }
+        canvas.drawRect(0.0f, 0.0f, f10, f11, paint);
+        canvas.restoreToCount(saveLayer);
+        canvas.restore();
     }
 
-    public b(a aVar) {
-        SparseArray sparseArray = aVar.f55349a;
-        this.f55352a = sparseArray == null ? new SparseArray() : sparseArray;
+    @Override
+    public final boolean d() {
+        return false;
+    }
+
+    @Override
+    public final void e(float f10) {
+        this.f56903b.setAlpha(Math.round(f10 * 255.0f));
+    }
+
+    @Override
+    public final void a(Rect rect, RectF rectF) {
     }
 }

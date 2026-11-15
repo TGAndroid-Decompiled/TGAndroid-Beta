@@ -1,22 +1,13 @@
 package org.telegram.ui.Components;
 
-import java.util.regex.Pattern;
-public final class l80 extends ed.h {
-    public static final Pattern f35602e = Pattern.compile("\\$([^\\s\\$][^\\$]*?)(?<!\\s)\\$(?![0-9])");
+import java.util.ArrayList;
+public final class l80 {
+    public final ad.a f36740a;
+    public final int f36741b;
+    public final ArrayList f36742c = new ArrayList();
 
-    @Override
-    public final kf.p b() {
-        String a10 = a(f35602e);
-        if (a10 == null) {
-            return null;
-        }
-        ?? pVar = new kf.p();
-        pVar.f60044g = com.google.android.recaptcha.internal.a.k(a10, 1, 1);
-        return pVar;
-    }
-
-    @Override
-    public final char d() {
-        return '$';
+    public l80(ad.a aVar, int i7) {
+        this.f36740a = aVar;
+        this.f36741b = i7;
     }
 }

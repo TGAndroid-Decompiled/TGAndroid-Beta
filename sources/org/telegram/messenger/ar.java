@@ -1,45 +1,17 @@
 package org.telegram.messenger;
+public final class ar implements Runnable {
+    public final int f22552a;
+    public final vr f22553b;
+    public final boolean f22554c;
 
-import java.util.Comparator;
-import org.telegram.messenger.support.LongSparseIntArray;
-public final class ar implements Comparator {
-    public final int f21511a;
-    public final LongSparseIntArray f21512b;
-
-    public ar(LongSparseIntArray longSparseIntArray, int i7) {
-        this.f21511a = i7;
-        this.f21512b = longSparseIntArray;
+    public ar(vr vrVar, boolean z10, int i7) {
+        this.f22552a = i7;
+        this.f22553b = vrVar;
+        this.f22554c = z10;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        Long l10 = (Long) obj;
-        Long l11 = (Long) obj2;
-        switch (this.f21511a) {
-            case 0:
-                long longValue = l10.longValue();
-                LongSparseIntArray longSparseIntArray = this.f21512b;
-                int i7 = longSparseIntArray.get(longValue);
-                int i10 = longSparseIntArray.get(l11.longValue());
-                if (i7 > i10) {
-                    return 1;
-                }
-                if (i7 < i10) {
-                    return -1;
-                }
-                return 0;
-            default:
-                long longValue2 = l10.longValue();
-                LongSparseIntArray longSparseIntArray2 = this.f21512b;
-                int i11 = longSparseIntArray2.get(longValue2);
-                int i12 = longSparseIntArray2.get(l11.longValue());
-                if (i11 < i12) {
-                    return 1;
-                }
-                if (i11 > i12) {
-                    return -1;
-                }
-                return 0;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ar.run():void");
     }
 }

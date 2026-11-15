@@ -1,22 +1,22 @@
 package v4;
 public final class i {
-    public d1 f57096a;
-    public d1 f57097b;
-    public final int f57098c;
+    public e1 f58573a;
+    public e1 f58574b;
+    public final int f58575c;
     public final int d;
-    public final int f57099e;
-    public final int f57100f;
+    public final int f58576e;
+    public final int f58577f;
 
-    public i(d1 d1Var, d1 d1Var2, int i7, int i10, int i11, int i12) {
-        this.f57096a = d1Var;
-        this.f57097b = d1Var2;
-        this.f57098c = i7;
+    public i(e1 e1Var, e1 e1Var2, int i7, int i10, int i11, int i12) {
+        this.f58573a = e1Var;
+        this.f58574b = e1Var2;
+        this.f58575c = i7;
         this.d = i10;
-        this.f57099e = i11;
-        this.f57100f = i12;
+        this.f58576e = i11;
+        this.f58577f = i12;
     }
 
     public final String toString() {
-        return "ChangeInfo{oldHolder=" + this.f57096a + ", newHolder=" + this.f57097b + ", fromX=" + this.f57098c + ", fromY=" + this.d + ", toX=" + this.f57099e + ", toY=" + this.f57100f + '}';
+        return "ChangeInfo{oldHolder=" + this.f58573a + ", newHolder=" + this.f58574b + ", fromX=" + this.f58575c + ", fromY=" + this.d + ", toX=" + this.f58576e + ", toY=" + this.f58577f + '}';
     }
 }

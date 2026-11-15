@@ -1,26 +1,19 @@
 package org.telegram.ui.Components;
-public final class go0 implements Runnable {
-    public final int f33942a;
-    public final jo0 f33943b;
-    public final int f33944c;
-    public final String d;
 
-    public go0(jo0 jo0Var, int i7, String str) {
-        this.f33942a = 1;
-        this.f33943b = jo0Var;
-        this.f33944c = i7;
-        this.d = str;
+import android.content.Context;
+public final class go0 extends org.telegram.ui.Cells.c7 {
+    public final io0 O;
+
+    public go0(io0 io0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(0, context, e6Var);
+        this.O = io0Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.go0.run():void");
-    }
-
-    public go0(jo0 jo0Var, String str, int i7, int i10) {
-        this.f33942a = i10;
-        this.f33943b = jo0Var;
-        this.d = str;
-        this.f33944c = i7;
+    public final String a() {
+        if (this.O.f35689f.W1) {
+            return org.telegram.messenger.hd.M0(2131746184, null);
+        }
+        return org.telegram.messenger.hd.M0(2131750488, null);
     }
 }

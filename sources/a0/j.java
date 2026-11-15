@@ -3,8 +3,8 @@ package a0;
 import java.util.LinkedHashMap;
 public class j {
     public final int f22a;
-    public final d6.i f23b;
-    public final nb.a f24c;
+    public final ob.c f23b;
+    public final pb.b f24c;
     public int d;
     public int f25e;
     public int f26f;
@@ -12,8 +12,8 @@ public class j {
     public j(int i7) {
         this.f22a = i7;
         if (i7 > 0) {
-            this.f23b = new d6.i(9);
-            this.f24c = new nb.a(4);
+            this.f23b = new ob.c(7);
+            this.f24c = new pb.b(4);
             return;
         }
         throw new IllegalArgumentException("maxSize <= 0");
@@ -22,9 +22,9 @@ public class j {
     public final Object a(Object key) {
         kotlin.jvm.internal.j.e(key, "key");
         synchronized (this.f24c) {
-            d6.i iVar = this.f23b;
-            iVar.getClass();
-            Object obj = ((LinkedHashMap) iVar.f8212b).get(key);
+            ob.c cVar = this.f23b;
+            cVar.getClass();
+            Object obj = ((LinkedHashMap) cVar.f21417b).get(key);
             if (obj != null) {
                 this.f25e++;
                 return obj;
@@ -39,9 +39,9 @@ public class j {
         kotlin.jvm.internal.j.e(key, "key");
         synchronized (this.f24c) {
             this.d++;
-            d6.i iVar = this.f23b;
-            iVar.getClass();
-            put = ((LinkedHashMap) iVar.f8212b).put(key, obj);
+            ob.c cVar = this.f23b;
+            cVar.getClass();
+            put = ((LinkedHashMap) cVar.f21417b).put(key, obj);
             if (put != null) {
                 this.d--;
             }

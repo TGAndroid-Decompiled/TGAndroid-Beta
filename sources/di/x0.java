@@ -1,85 +1,33 @@
 package di;
 
-import c8.ia;
-import j$.util.Objects;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.qs;
-import org.telegram.messenger.voip.NativeInstance;
-public final class x0 implements Runnable {
-    public final int f9925a;
-    public final g1 f9926b;
+import java.util.function.ToDoubleFunction;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.z51;
+public final class x0 implements ToDoubleFunction {
+    public final int f9713a;
 
-    public x0(g1 g1Var, int i7) {
-        this.f9925a = i7;
-        this.f9926b = g1Var;
+    public x0(int i7) {
+        this.f9713a = i7;
     }
 
     @Override
-    public final void run() {
-        switch (this.f9925a) {
+    public final double applyAsDouble(Object obj) {
+        switch (this.f9713a) {
             case 0:
-                this.f9926b.p();
-                return;
+                return i1.e1((TL_stars.starGiftAttributeBackdrop) obj);
             case 1:
-                this.f9926b.q();
-                return;
+                return i1.e1((TL_stars.starGiftAttributePattern) obj);
             case 2:
-                this.f9926b.t(true);
-                return;
+                return i1.e1((TL_stars.starGiftAttributeModel) obj);
             case 3:
-                g1 g1Var = this.f9926b;
-                qs.f(g1Var.f9005e).k(176, Long.valueOf(g1Var.f9010w.f26970id));
-                g1Var.u(true);
-                return;
+                return ((z51) obj).f42253a;
             case 4:
-                this.f9926b.w();
-                return;
+                return ((TLRPC.TL_topPeer) obj).rating;
             case 5:
-                this.f9926b.t(true);
-                return;
-            case 6:
-                g1 g1Var2 = this.f9926b;
-                if (g1Var2.E != null) {
-                    org.telegram.messenger.p5 p5Var = Utilities.f21341e;
-                    NativeInstance nativeInstance = g1Var2.E;
-                    Objects.requireNonNull(nativeInstance);
-                    p5Var.c(new org.telegram.messenger.voip.p0(nativeInstance, 3));
-                    g1Var2.M.clear();
-                    g1Var2.E = null;
-                }
-                g1Var2.k();
-                return;
-            case 7:
-                this.f9926b.t(true);
-                return;
-            case 8:
-                this.f9926b.t(true);
-                return;
-            case 9:
-                g1 g1Var3 = this.f9926b;
-                if (g1Var3.E != null) {
-                    org.telegram.messenger.p5 p5Var2 = Utilities.f21341e;
-                    NativeInstance nativeInstance2 = g1Var3.E;
-                    Objects.requireNonNull(nativeInstance2);
-                    p5Var2.c(new org.telegram.messenger.voip.p0(nativeInstance2, 3));
-                    g1Var3.M.clear();
-                    g1Var3.E = null;
-                }
-                g1Var3.k();
-                return;
-            case 10:
-                this.f9926b.p();
-                return;
-            case 11:
-                this.f9926b.q();
-                return;
+                return ((TLRPC.TL_topPeer) obj).rating;
             default:
-                g1 g1Var4 = this.f9926b;
-                if (!g1Var4.f9007n) {
-                    ia.b(new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, new ai.i(g1Var4, 10));
-                    return;
-                }
-                return;
+                return ((TLRPC.TL_topPeer) obj).rating;
         }
     }
 }

@@ -1,45 +1,66 @@
 package org.telegram.messenger;
 
+import android.os.Bundle;
+import com.google.android.gms.tasks.CancellationToken;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import java.util.concurrent.CancellationException;
+import org.json.JSONObject;
 import org.telegram.tgnet.ConnectionsManager;
-public final class g9 implements Runnable {
-    public final int f22635a;
-    public final int f22636b;
-    public final int f22637c;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.jd0;
+public final class g9 implements v0.g {
+    public final CancellationToken f23705a;
+    public final TaskCompletionSource f23706b;
+    public final jd0 f23707c;
+    public final int d;
+    public final Runnable[] f23708e;
 
-    public g9(int i7, int i10, int i11) {
-        this.f22635a = i11;
-        this.f22636b = i7;
-        this.f22637c = i10;
+    public g9(CancellationToken cancellationToken, TaskCompletionSource taskCompletionSource, jd0 jd0Var, int i7, Runnable[] runnableArr) {
+        this.f23705a = cancellationToken;
+        this.f23706b = taskCompletionSource;
+        this.f23707c = jd0Var;
+        this.d = i7;
+        this.f23708e = runnableArr;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f22635a;
-        int i10 = this.f22637c;
-        int i11 = this.f22636b;
-        switch (i7) {
-            case 0:
-                ConnectionsManager.getInstance(i11).cancelRequest(i10, true);
-                return;
-            case 1:
-                ConnectionsManager.getInstance(i11).cancelRequest(i10, true);
-                return;
-            case 2:
-                String[] strArr = MediaController.V1;
-                qs.f(i11).k(156, Integer.valueOf(i10));
-                return;
-            case 3:
-                ConnectionsManager.getInstance(i11).cancelRequest(i10, true);
-                return;
-            case 4:
-                ConnectionsManager.lambda$onConnectionStateChanged$15(i11, i10);
-                return;
-            case 5:
-                ConnectionsManager.lambda$onRequestNewServerIpAndPort$18(i11, i10);
-                return;
-            default:
-                ConnectionsManager.getInstance(i11).cancelRequest(i10, true);
-                return;
+    public final void a(Object obj) {
+        w0.i iVar = (w0.i) obj;
+        if (this.f23705a.isCancellationRequested()) {
+            return;
+        }
+        boolean z10 = iVar instanceof w0.k;
+        TaskCompletionSource taskCompletionSource = this.f23706b;
+        if (z10) {
+            taskCompletionSource.trySetException(new Exception("EMPTY"));
+        } else if (!(iVar instanceof w0.g) && !(iVar instanceof w0.j)) {
+            taskCompletionSource.trySetException(iVar);
+        } else {
+            taskCompletionSource.trySetException(new CancellationException());
+        }
+    }
+
+    @Override
+    public final void onResult(Object obj) {
+        v0.n nVar = (v0.n) obj;
+        TaskCompletionSource taskCompletionSource = this.f23706b;
+        CancellationToken cancellationToken = this.f23705a;
+        if (!cancellationToken.isCancellationRequested()) {
+            try {
+                String string = new JSONObject(((Bundle) nVar.f58458a.f6112a).getString("androidx.credentials.BUNDLE_KEY_REQUEST_JSON")).getJSONObject("data").getJSONObject("vp_token").getJSONArray("firebase").getString(0);
+                this.f23707c.run();
+                TLRPC.TL_auth_finishFirebasePnvLogin tL_auth_finishFirebasePnvLogin = new TLRPC.TL_auth_finishFirebasePnvLogin();
+                tL_auth_finishFirebasePnvLogin.google_token = string;
+                int i7 = this.d;
+                f9 f9Var = new f9(i7, ConnectionsManager.getInstance(i7).sendRequestTyped(tL_auth_finishFirebasePnvLogin, new d3.b(1), new x3(1, cancellationToken, taskCompletionSource), 8), 1);
+                Runnable[] runnableArr = this.f23708e;
+                runnableArr[0] = f9Var;
+                if (cancellationToken.isCancellationRequested()) {
+                    runnableArr[0].run();
+                }
+            } catch (Exception e10) {
+                taskCompletionSource.trySetException(e10);
+            }
         }
     }
 }

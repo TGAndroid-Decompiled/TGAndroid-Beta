@@ -1,44 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.widget.EditText;
-import androidx.recyclerview.widget.RecyclerView;
-public final class l01 extends v4.s0 {
-    public final int f35479a;
-    public final long f35480b;
-    public final s01 f35481c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class l01 extends AnimatorListenerAdapter {
+    public final int f36687a;
+    public final v01 f36688b;
 
-    public l01(s01 s01Var, int i7, long j3) {
-        this.f35481c = s01Var;
-        this.f35479a = i7;
-        this.f35480b = j3;
+    public l01(v01 v01Var, int i7) {
+        this.f36687a = i7;
+        this.f36688b = v01Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i7) {
-        EditText editText = this.f35481c.f37811w;
-        if (i7 == 1 && editText.hasFocus()) {
-            org.telegram.messenger.g0.v1(editText);
-            editText.clearFocus();
-        }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        s01 s01Var = this.f35481c;
-        s01Var.i();
-        v4.b0 b0Var = (v4.b0) recyclerView.getLayoutManager();
-        if (b0Var != null && b0Var.N0() >= s01Var.f37810s.f36185c.size() - 3) {
-            boolean z9 = s01Var.d;
-            int i11 = this.f35479a;
-            if (z9) {
-                org.telegram.messenger.qp.s1(i11).G1().g(false);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f36687a) {
+            case 0:
+                v01 v01Var = this.f36688b;
+                if (v01Var.U == animator) {
+                    v01Var.U = null;
+                    return;
+                }
                 return;
-            }
-            org.telegram.messenger.k00 k00Var = org.telegram.messenger.qp.s1(i11).f24881q7;
-            long j3 = -this.f35480b;
-            if (!k00Var.e(j3)) {
-                k00Var.o(j3);
-            }
+            case 1:
+                v01 v01Var2 = this.f36688b;
+                if (v01Var2.f40219g0 == animator) {
+                    v01Var2.f40219g0 = null;
+                }
+                v01Var2.b(1.0f);
+                return;
+            default:
+                v01 v01Var3 = this.f36688b;
+                if (v01Var3.K == animator) {
+                    v01Var3.K = null;
+                    return;
+                }
+                return;
         }
     }
 }

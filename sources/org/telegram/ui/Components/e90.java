@@ -1,42 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class e90 extends v4.m0 {
-    public final f90 f33195a;
+import org.telegram.tgnet.TLRPC;
+public final class e90 extends org.telegram.ui.mq0 {
+    public final i90 f34262a;
 
-    public e90(f90 f90Var) {
-        this.f33195a = f90Var;
+    public e90(i90 i90Var) {
+        this.f34262a = i90Var;
     }
 
     @Override
-    public final void e(Rect rect, View view, RecyclerView recyclerView, v4.a1 a1Var) {
-        int R;
-        int i7 = 0;
-        rect.left = 0;
-        rect.right = 0;
-        rect.top = 0;
-        rect.bottom = 0;
-        v4.n0 layoutManager = recyclerView.getLayoutManager();
-        g90 g90Var = this.f33195a.f33508i3;
-        if (layoutManager == g90Var.d && (R = RecyclerView.R(view)) != 0 && !g90Var.f33850f.N()) {
-            if (g90Var.f33850f.I() == null && g90Var.f33850f.U == null) {
-                rect.top = org.telegram.messenger.g0.L(2.0f);
-            } else if (R != 0) {
-                R--;
-                z80 z80Var = g90Var.d;
-                z80Var.B1();
-                if (R > z80Var.U) {
-                    rect.top = org.telegram.messenger.g0.L(2.0f);
-                }
-            } else {
-                return;
+    public final org.telegram.ui.uq0 E(org.telegram.messenger.gj r5, org.telegram.tgnet.TLRPC.FileLocation r6, int r7, boolean r8, boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.e90.E(org.telegram.messenger.gj, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.uq0");
+    }
+
+    @Override
+    public final void o(int i7, org.telegram.messenger.g20 g20Var, boolean z10, int i10, int i11, boolean z11) {
+        if (i7 >= 0) {
+            i90 i90Var = this.f34262a;
+            if (i7 < i90Var.Q.size()) {
+                i90Var.f35529y.r((TLRPC.BotInlineResult) i90Var.Q.get(i7), z10, i10);
             }
-            if (!g90Var.d.E1(R)) {
-                i7 = org.telegram.messenger.g0.L(2.0f);
-            }
-            rect.right = i7;
         }
     }
 }

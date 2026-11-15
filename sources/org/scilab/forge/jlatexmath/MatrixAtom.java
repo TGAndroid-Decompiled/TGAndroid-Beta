@@ -27,12 +27,12 @@ public class MatrixAtom extends Atom {
     private static final Box nullBox = new StrutBox(0.0f, 0.0f, 0.0f, 0.0f);
     private static SpaceAtom align = new SpaceAtom(2);
 
-    public MatrixAtom(boolean z9, ArrayOfAtoms arrayOfAtoms, String str, boolean z10) {
+    public MatrixAtom(boolean z10, ArrayOfAtoms arrayOfAtoms, String str, boolean z11) {
         this.vlines = new HashMap();
-        this.isPartial = z9;
+        this.isPartial = z10;
         this.matrix = arrayOfAtoms;
         this.type = 0;
-        this.spaceAround = z10;
+        this.spaceAround = z11;
         parsePositions(new StringBuffer(str));
     }
 
@@ -168,7 +168,7 @@ public class MatrixAtom extends Atom {
         boolean hasRightVline;
         float[] fArr2;
         int i10;
-        boolean z9;
+        boolean z10;
         int i11;
         Atom atom;
         Box createBox;
@@ -306,7 +306,7 @@ public class MatrixAtom extends Atom {
                             if (i21 >= 1) {
                                 i10 = i21;
                                 if (matrixAtom.matrix.array.get(i10 - 1).get(i22) instanceof HlineAtom) {
-                                    z9 = false;
+                                    z10 = false;
                                     horizontalBox2.add(new StrutBox(0.0f, defaultRuleThickness * 2.0f, 0.0f, 0.0f));
                                     hlineAtom.setShift(((-createBox2.getHeight()) / 2.0f) + defaultRuleThickness);
                                     horizontalBox2.add(hlineAtom.createBox(teXEnvironment2));
@@ -320,7 +320,7 @@ public class MatrixAtom extends Atom {
                             } else {
                                 i10 = i21;
                             }
-                            z9 = false;
+                            z10 = false;
                             hlineAtom.setShift((-createBox2.getHeight()) / 2.0f);
                             horizontalBox2.add(hlineAtom.createBox(teXEnvironment2));
                             i22 = i13;
@@ -447,24 +447,24 @@ public class MatrixAtom extends Atom {
         throw new UnsupportedOperationException("Method not decompiled: org.scilab.forge.jlatexmath.MatrixAtom.getColumnSep(org.scilab.forge.jlatexmath.TeXEnvironment, float):org.scilab.forge.jlatexmath.Box[]");
     }
 
-    public MatrixAtom(boolean z9, ArrayOfAtoms arrayOfAtoms, String str) {
-        this(z9, arrayOfAtoms, str, false);
+    public MatrixAtom(boolean z10, ArrayOfAtoms arrayOfAtoms, String str) {
+        this(z10, arrayOfAtoms, str, false);
     }
 
     public MatrixAtom(ArrayOfAtoms arrayOfAtoms, String str) {
         this(false, arrayOfAtoms, str);
     }
 
-    public MatrixAtom(boolean z9, ArrayOfAtoms arrayOfAtoms, int i7) {
-        this(z9, arrayOfAtoms, i7, false);
+    public MatrixAtom(boolean z10, ArrayOfAtoms arrayOfAtoms, int i7) {
+        this(z10, arrayOfAtoms, i7, false);
     }
 
-    public MatrixAtom(boolean z9, ArrayOfAtoms arrayOfAtoms, int i7, boolean z10) {
+    public MatrixAtom(boolean z10, ArrayOfAtoms arrayOfAtoms, int i7, boolean z11) {
         this.vlines = new HashMap();
-        this.isPartial = z9;
+        this.isPartial = z10;
         this.matrix = arrayOfAtoms;
         this.type = i7;
-        this.spaceAround = z10;
+        this.spaceAround = z11;
         if (i7 != 1 && i7 != 5) {
             this.position = new int[arrayOfAtoms.col];
             int i10 = 0;
@@ -489,16 +489,16 @@ public class MatrixAtom extends Atom {
         }
     }
 
-    public MatrixAtom(boolean z9, ArrayOfAtoms arrayOfAtoms, int i7, int i10) {
-        this(z9, arrayOfAtoms, i7, i10, true);
+    public MatrixAtom(boolean z10, ArrayOfAtoms arrayOfAtoms, int i7, int i10) {
+        this(z10, arrayOfAtoms, i7, i10, true);
     }
 
-    public MatrixAtom(boolean z9, ArrayOfAtoms arrayOfAtoms, int i7, int i10, boolean z10) {
+    public MatrixAtom(boolean z10, ArrayOfAtoms arrayOfAtoms, int i7, int i10, boolean z11) {
         this.vlines = new HashMap();
-        this.isPartial = z9;
+        this.isPartial = z10;
         this.matrix = arrayOfAtoms;
         this.type = i7;
-        this.spaceAround = z10;
+        this.spaceAround = z11;
         this.position = new int[arrayOfAtoms.col];
         for (int i11 = 0; i11 < this.matrix.col; i11++) {
             this.position[i11] = i10;

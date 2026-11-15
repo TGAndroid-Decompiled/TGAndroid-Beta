@@ -5,20 +5,20 @@ import android.os.Parcel;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.Status;
 public final class f extends q implements j {
-    public final int f8206b;
-    public final g f8207c;
+    public final int f7589b;
+    public final g f7590c;
 
     public f(g gVar, int i7) {
         super("com.google.android.gms.auth.api.signin.internal.ISignInCallbacks", 7);
-        this.f8206b = i7;
-        this.f8207c = gVar;
+        this.f7589b = i7;
+        this.f7590c = gVar;
     }
 
     @Override
-    public void g0(Status status) {
-        switch (this.f8206b) {
+    public void h0(Status status) {
+        switch (this.f7589b) {
             case 1:
-                this.f8207c.a(status);
+                this.f7590c.a(status);
                 return;
             default:
                 throw new UnsupportedOperationException();
@@ -35,11 +35,11 @@ public final class f extends q implements j {
                 throw new UnsupportedOperationException();
             case 102:
                 l7.f.b(parcel);
-                r0((Status) l7.f.a(parcel, Status.CREATOR));
+                s0((Status) l7.f.a(parcel, Status.CREATOR));
                 break;
             case 103:
                 l7.f.b(parcel);
-                g0((Status) l7.f.a(parcel, Status.CREATOR));
+                h0((Status) l7.f.a(parcel, Status.CREATOR));
                 break;
             default:
                 return false;
@@ -49,10 +49,10 @@ public final class f extends q implements j {
     }
 
     @Override
-    public void r0(Status status) {
-        switch (this.f8206b) {
+    public void s0(Status status) {
+        switch (this.f7589b) {
             case 0:
-                this.f8207c.a(status);
+                this.f7590c.a(status);
                 return;
             default:
                 throw new UnsupportedOperationException();

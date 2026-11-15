@@ -1,144 +1,109 @@
 package org.telegram.ui;
 
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.widget.TextView;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class ac0 extends org.telegram.ui.Components.xt0 {
-    public final fe0 D;
-    public final EditTextBoldCursor f43634a;
-    public final TextView f43635b;
-    public final TextView f43636c;
-    public final TextView d;
-    public final org.telegram.ui.Components.ch0 f43637e;
-    public Bundle f43638f;
-    public boolean h;
-    public TL_account.Password f43639n;
-    public String f43640r;
-    public String f43641s;
-    public String f43642w;
-    public String f43643x;
-    public final org.telegram.ui.Components.lb0 f43644y;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ac0 implements Runnable {
+    public final int f44990a = 0;
+    public final dc0 f44991b;
+    public final TLRPC.TL_error f44992c;
+    public final Bundle d;
+    public final TLObject f44993e;
 
-    public ac0(org.telegram.ui.fe0 r22, android.content.Context r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ac0.<init>(org.telegram.ui.fe0, android.content.Context):void");
+    public ac0(dc0 dc0Var, TLObject tLObject, Bundle bundle, TLRPC.TL_error tL_error) {
+        this.f44991b = dc0Var;
+        this.f44993e = tLObject;
+        this.d = bundle;
+        this.f44992c = tL_error;
     }
 
     @Override
-    public final boolean b() {
-        return true;
-    }
-
-    @Override
-    public final boolean c(boolean z9) {
-        this.h = false;
-        this.D.C1(true, true);
-        this.f43638f = null;
-        return true;
-    }
-
-    @Override
-    public final void d() {
-        this.h = false;
-    }
-
-    @Override
-    public String getHeaderName() {
-        return org.telegram.messenger.id.M0(2131748726, "LoginPassword");
-    }
-
-    @Override
-    public final void h(String str) {
-        if (!this.h && this.f43639n != null) {
-            String obj = this.f43634a.getText().toString();
-            if (obj.length() == 0) {
-                fe0 fe0Var = this.D;
-                if (fe0Var.getParentActivity() == null) {
+    public final void run() {
+        String str;
+        int i7 = this.f44990a;
+        TLObject tLObject = this.f44993e;
+        Bundle bundle = this.d;
+        TLRPC.TL_error tL_error = this.f44992c;
+        dc0 dc0Var = this.f44991b;
+        switch (i7) {
+            case 0:
+                ce0 ce0Var = dc0Var.f46357b0;
+                dc0Var.N = false;
+                dc0Var.f46364w.invalidate();
+                if (tLObject != null) {
+                    dc0Var.T = bundle;
+                    TLRPC.TL_auth_sentCode tL_auth_sentCode = (TLRPC.TL_auth_sentCode) tLObject;
+                    dc0Var.U = tL_auth_sentCode;
+                    ce0Var.y1(bundle, tL_auth_sentCode, true);
+                    return;
+                } else if (tL_error != null && (str = tL_error.text) != null) {
+                    if (str.contains("PHONE_NUMBER_INVALID")) {
+                        ce0Var.D1(org.telegram.messenger.hd.M0(2131746071, null), org.telegram.messenger.hd.M0(2131749179, null));
+                        return;
+                    } else if (!tL_error.text.contains("PHONE_CODE_EMPTY") && !tL_error.text.contains("PHONE_CODE_INVALID")) {
+                        if (tL_error.text.contains("PHONE_CODE_EXPIRED")) {
+                            dc0Var.c(true);
+                            ce0Var.M1(0, true, null, true);
+                            ce0Var.D1(org.telegram.messenger.hd.M0(2131746071, null), org.telegram.messenger.hd.M0(2131752021, null));
+                            return;
+                        } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                            ce0Var.D1(org.telegram.messenger.hd.M0(2131746071, null), org.telegram.messenger.hd.M0(2131750687, null));
+                            return;
+                        } else if (tL_error.code != -1000) {
+                            String M0 = org.telegram.messenger.hd.M0(2131746071, null);
+                            StringBuilder sb2 = new StringBuilder();
+                            org.telegram.ui.Cells.y0.r(null, 2131751105, sb2, "\n");
+                            sb2.append(tL_error.text);
+                            ce0Var.D1(M0, sb2.toString());
+                            return;
+                        } else {
+                            return;
+                        }
+                    } else {
+                        ce0Var.D1(org.telegram.messenger.hd.M0(2131746071, null), org.telegram.messenger.hd.M0(2131749183, null));
+                        return;
+                    }
+                } else {
                     return;
                 }
-                fe0.c1(fe0Var, this.f43644y, true);
+            default:
+                ce0 ce0Var2 = dc0Var.f46357b0;
+                dc0Var.S = false;
+                if (tL_error == null) {
+                    ce0Var2.y1(bundle, (TLRPC.TL_auth_sentCode) tLObject, true);
+                } else {
+                    String str2 = tL_error.text;
+                    if (str2 != null) {
+                        if (str2.contains("PHONE_NUMBER_INVALID")) {
+                            ce0Var2.D1(org.telegram.messenger.hd.M0(2131746071, null), org.telegram.messenger.hd.M0(2131749179, null));
+                        } else if (!tL_error.text.contains("PHONE_CODE_EMPTY") && !tL_error.text.contains("PHONE_CODE_INVALID")) {
+                            if (tL_error.text.contains("PHONE_CODE_EXPIRED")) {
+                                dc0Var.c(true);
+                                ce0Var2.M1(0, true, null, true);
+                                ce0Var2.D1(org.telegram.messenger.hd.M0(2131746071, null), org.telegram.messenger.hd.M0(2131752021, null));
+                            } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                                ce0Var2.D1(org.telegram.messenger.hd.M0(2131746071, null), org.telegram.messenger.hd.M0(2131750687, null));
+                            } else if (tL_error.code != -1000) {
+                                String M02 = org.telegram.messenger.hd.M0(2131746071, null);
+                                StringBuilder sb3 = new StringBuilder();
+                                org.telegram.ui.Cells.y0.r(null, 2131751105, sb3, "\n");
+                                sb3.append(tL_error.text);
+                                ce0Var2.D1(M02, sb3.toString());
+                            }
+                        } else {
+                            ce0Var2.D1(org.telegram.messenger.hd.M0(2131746071, null), org.telegram.messenger.hd.M0(2131749183, null));
+                        }
+                    }
+                }
+                ce0Var2.C1(false, true);
                 return;
-            }
-            this.h = true;
-            this.D.F1(0, true);
-            Utilities.f21341e.c(new f10(27, this, obj));
         }
     }
 
-    @Override
-    public final void j() {
-        org.telegram.messenger.g0.i3(new kz(this, 22), fe0.f45691y0);
-    }
-
-    @Override
-    public final void k(Bundle bundle) {
-        Bundle bundle2 = bundle.getBundle("passview_params");
-        this.f43638f = bundle2;
-        if (bundle2 != null) {
-            m(bundle2, true);
-        }
-        String string = bundle.getString("passview_code");
-        if (string != null) {
-            this.f43634a.setText(string);
-        }
-    }
-
-    @Override
-    public final void l(Bundle bundle) {
-        String obj = this.f43634a.getText().toString();
-        if (obj.length() != 0) {
-            bundle.putString("passview_code", obj);
-        }
-        Bundle bundle2 = this.f43638f;
-        if (bundle2 != null) {
-            bundle.putBundle("passview_params", bundle2);
-        }
-    }
-
-    @Override
-    public final void m(Bundle bundle, boolean z9) {
-        if (bundle == null) {
-            return;
-        }
-        boolean isEmpty = bundle.isEmpty();
-        EditTextBoldCursor editTextBoldCursor = this.f43634a;
-        if (isEmpty) {
-            org.telegram.messenger.g0.v1(editTextBoldCursor);
-            return;
-        }
-        editTextBoldCursor.setText("");
-        this.f43638f = bundle;
-        String string = bundle.getString("password");
-        this.f43640r = string;
-        if (string != null) {
-            SerializedData serializedData = new SerializedData(Utilities.v(string));
-            this.f43639n = TL_account.Password.TLdeserialize(serializedData, serializedData.readInt32(false), false);
-        }
-        this.f43641s = bundle.getString("phoneFormated");
-        this.f43642w = bundle.getString("phoneHash");
-        this.f43643x = bundle.getString("code");
-        TL_account.Password password = this.f43639n;
-        if (password != null && !TextUtils.isEmpty(password.hint)) {
-            editTextBoldCursor.setHint(this.f43639n.hint);
-        } else {
-            editTextBoldCursor.setHint((CharSequence) null);
-        }
-    }
-
-    @Override
-    public final void updateColors() {
-        int i7 = org.telegram.ui.ActionBar.m6.G6;
-        this.d.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, i7, false));
-        this.f43635b.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.D6, false));
-        int x02 = org.telegram.ui.ActionBar.m6.x0(null, i7, false);
-        EditTextBoldCursor editTextBoldCursor = this.f43634a;
-        editTextBoldCursor.setTextColor(x02);
-        editTextBoldCursor.setCursorColor(org.telegram.ui.ActionBar.m6.x0(null, i7, false));
-        editTextBoldCursor.setHintTextColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.H6, false));
-        this.f43636c.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f28130q6, false));
-        this.f43644y.f();
+    public ac0(dc0 dc0Var, TLRPC.TL_error tL_error, Bundle bundle, TLObject tLObject) {
+        this.f44991b = dc0Var;
+        this.f44992c = tL_error;
+        this.d = bundle;
+        this.f44993e = tLObject;
     }
 }

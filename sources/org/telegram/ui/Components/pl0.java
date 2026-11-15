@@ -1,144 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
+import android.view.KeyEvent;
 import android.view.View;
-public final class pl0 extends View {
-    public ol0 f37009a;
-    public final v5 f37010b;
-    public final fh.g f37011c;
-    public ch.o0 d;
-    public boolean f37012e;
-    public final Path f37013f;
-    public final RectF h;
-    public final RectF f37014n;
-    public boolean f37015r;
-    public final ql0 f37016s;
+import android.widget.TextView;
+import org.telegram.tgnet.TLRPC;
+public final class pl0 implements TextView.OnEditorActionListener {
+    public final ol0 f38327a;
+    public final int f38328b;
+    public final TLRPC.Reaction f38329c;
+    public final org.telegram.ui.ActionBar.t1[] d;
+    public final View f38330e;
 
-    public pl0(ql0 ql0Var, Context context) {
-        super(context);
-        this.f37016s = ql0Var;
-        this.f37010b = new v5(this, 0L, 260L, wq.h);
-        this.f37013f = new Path();
-        this.h = new RectF();
-        this.f37014n = new RectF();
-        c8.ka.a(this);
-        dh.c cVar = ql0Var.f37329w;
-        if (cVar != null) {
-            fh.g c10 = cVar.c(this, null, false);
-            c10.p(ql0Var.f37330x);
-            c10.u(org.telegram.messenger.g0.L(5.0f));
-            c10.f11543s = false;
-            fh.e eVar = c10.f11540f0;
-            if (eVar != null) {
-                eVar.g(false);
-            }
-            org.telegram.messenger.camera.q.p(c10, org.telegram.messenger.g0.L(6.0f), 4.0f);
-            this.f37011c = c10;
-        }
-    }
-
-    public final void a(boolean z9, boolean z10) {
-        if (this.f37012e == z9) {
-            return;
-        }
-        this.f37012e = z9;
-        ol0 ol0Var = this.f37009a;
-        if (ol0Var != null) {
-            ol0Var.f6330o = z9;
-            v5 v5Var = this.f37010b;
-            if (z10) {
-                ol0Var.h = ol0Var.M;
-                ol0Var.f6321f = ol0Var.N;
-                ol0Var.f6323g = ol0Var.O;
-                v5Var.e(true, 0.0f);
-            } else {
-                v5Var.e(true, 1.0f);
-            }
-            invalidate();
-        }
+    public pl0(ol0 ol0Var, int i7, TLRPC.Reaction reaction, org.telegram.ui.ActionBar.t1[] t1VarArr, View view) {
+        this.f38327a = ol0Var;
+        this.f38328b = i7;
+        this.f38329c = reaction;
+        this.d = t1VarArr;
+        this.f38330e = view;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        if (!this.f37015r) {
-            ol0 ol0Var = this.f37009a;
-            if (ol0Var != null) {
-                ol0Var.a();
-            }
-            this.f37015r = true;
+    public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
+        if (i7 != 6) {
+            return false;
         }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        if (this.f37015r) {
-            ol0 ol0Var = this.f37009a;
-            if (ol0Var != null) {
-                ol0Var.b();
-            }
-            this.f37015r = false;
+        ol0 ol0Var = this.f38327a;
+        String obj = ol0Var.getText().toString();
+        if (obj.length() > 12) {
+            org.telegram.messenger.g0.E3(ol0Var);
+            return true;
         }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int i7;
-        ql0 ql0Var = this.f37016s;
-        Paint paint = ql0Var.f37331y;
-        int width = (getWidth() - this.f37009a.f6340z) / 2;
-        int height = getHeight();
-        ol0 ol0Var = this.f37009a;
-        int i10 = ol0Var.A;
-        int i11 = (height - i10) / 2;
-        fh.g gVar = this.f37011c;
-        if (gVar != null) {
-            Rect rect = org.telegram.messenger.g0.Q;
-            rect.set(width, i11, ol0Var.f6340z + width, i10 + i11);
-            RectF rectF = this.f37014n;
-            rectF.set(rect);
-            RectF rectF2 = this.h;
-            boolean equals = rectF.equals(rectF2);
-            Path path = this.f37013f;
-            if (!equals) {
-                rectF2.set(rectF);
-                ch.p0.h(rectF2, rectF, path);
-            }
-            rect.inset(-org.telegram.messenger.g0.L(4.0f), -org.telegram.messenger.g0.L(4.0f));
-            rect.right = org.telegram.messenger.g0.L(1.0f) + rect.right;
-            gVar.setBounds(rect);
-            canvas.save();
-            canvas.clipPath(path);
-            gVar.draw(canvas);
-            org.telegram.ui.ActionBar.h6 h6Var = ql0Var.f37323c;
-            if (h6Var == null ? org.telegram.ui.ActionBar.m6.I.q() : h6Var.a()) {
-                i7 = 687865855;
-            } else {
-                i7 = -1;
-            }
-            paint.setColor(i7);
-            canvas.drawPath(path, paint);
-            canvas.restore();
+        org.telegram.messenger.np.s1(this.f38328b).l4(ch.p0.d(this.f38329c), obj);
+        org.telegram.ui.ActionBar.t1[] t1VarArr = this.d;
+        org.telegram.ui.ActionBar.t1 t1Var = t1VarArr[0];
+        if (t1Var != null) {
+            t1Var.dismiss();
         }
-        this.f37009a.d(canvas, width, i11, this.f37010b.e(false, 1.0f), 1.0f, false, false, 0.0f);
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        int L;
-        int L2 = org.telegram.messenger.g0.L(8.67f);
-        ol0 ol0Var = this.f37009a;
-        if (ol0Var != null) {
-            L = ol0Var.f6340z;
-        } else {
-            L = org.telegram.messenger.g0.L(44.33f);
+        if (t1VarArr[0] == ul0.I) {
+            ul0.I = null;
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(L2 + L, 1073741824), i10);
+        View view = this.f38330e;
+        if (view != null) {
+            view.requestFocus();
+        }
+        return true;
     }
 }

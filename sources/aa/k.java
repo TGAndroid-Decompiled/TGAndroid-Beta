@@ -1,6 +1,5 @@
 package aa;
 
-import ai.s0;
 import android.content.res.ColorStateList;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -13,43 +12,45 @@ import android.graphics.drawable.RippleDrawable;
 import android.os.ProfilingResult;
 import android.util.Log;
 import android.view.View;
+import ci.i0;
 import da.k0;
 import da.l0;
 import j$.util.function.Consumer$CC;
 import java.io.IOException;
 import java.util.WeakHashMap;
 import java.util.function.Consumer;
+import org.telegram.messenger.g0;
 public final class k implements Consumer {
-    public final int f819a;
-    public final Object f820b;
-    public final Object f821c;
+    public final int f818a;
+    public final Object f819b;
+    public final Object f820c;
 
     public k(int i7, Object obj, Object obj2) {
-        this.f819a = i7;
-        this.f821c = obj;
-        this.f820b = obj2;
+        this.f818a = i7;
+        this.f820c = obj;
+        this.f819b = obj2;
     }
 
     @Override
     public final void accept(Object obj) {
-        ai.r rVar;
-        ai.d dVar;
+        ci.m mVar;
+        ci.c cVar;
         float f10;
         float f11;
         float[] fArr;
-        switch (this.f819a) {
+        switch (this.f818a) {
             case 0:
-                q.a((q) this.f821c, (String) this.f820b, (ProfilingResult) obj);
+                p.a((p) this.f820c, (String) this.f819b, (ProfilingResult) obj);
                 return;
             case 1:
-                String str = (String) this.f820b;
-                ga.b bVar = ((f0) this.f821c).f805b;
+                String str = (String) this.f819b;
+                ga.b bVar = ((e0) this.f820c).f801b;
                 int intValue = ((Integer) obj).intValue();
                 if (((byte) 1) == 1) {
                     k0 k0Var = new k0(new l0(intValue));
                     try {
-                        ga.b.f13611g.getClass();
-                        ga.b.g(bVar.f13614b.b(str, "profiling-manager-info"), ea.a.f10731a.u(k0Var));
+                        ga.b.f12956g.getClass();
+                        ga.b.g(bVar.f12959b.b(str, "profiling-manager-info"), ea.a.f10562a.o(k0Var));
                         return;
                     } catch (IOException e10) {
                         Log.w("FirebaseCrashlytics", "Could not persist Profiling Manager info " + str, e10);
@@ -58,61 +59,61 @@ public final class k implements Consumer {
                 }
                 throw new IllegalStateException("Missing required properties: trigger");
             default:
-                s0 s0Var = (s0) this.f821c;
-                ai.r rVar2 = (ai.r) this.f820b;
+                i0 i0Var = (i0) this.f820c;
+                ci.m mVar2 = (ci.m) this.f819b;
                 Canvas canvas = (Canvas) obj;
-                ai.d dVar2 = s0Var.f1640y;
-                RectF rectF = dVar2.M;
-                WeakHashMap weakHashMap = dVar2.N;
-                Paint paint = dVar2.f1143c;
-                long b10 = ai.d.b();
+                ci.c cVar2 = i0Var.f5412y;
+                RectF rectF = cVar2.N;
+                WeakHashMap weakHashMap = cVar2.O;
+                Paint paint = cVar2.f5312c;
+                long b10 = ci.c.b();
                 int i7 = 0;
-                while (i7 < rVar2.getChildCount()) {
-                    View childAt = rVar2.getChildAt(i7);
-                    if (!(childAt instanceof ai.q) || childAt.getVisibility() != 0) {
-                        rVar = rVar2;
+                while (i7 < mVar2.getChildCount()) {
+                    View childAt = mVar2.getChildAt(i7);
+                    if (!(childAt instanceof ci.l) || childAt.getVisibility() != 0) {
+                        mVar = mVar2;
                     } else {
                         if (!weakHashMap.containsKey(childAt)) {
                             weakHashMap.put(childAt, Boolean.TRUE);
                             GradientDrawable gradientDrawable = new GradientDrawable();
                             f11 = 2.5f;
                             gradientDrawable.setColor(-1);
-                            gradientDrawable.setCornerRadius(org.telegram.messenger.g0.L(10.0f));
+                            gradientDrawable.setCornerRadius(g0.L(10.0f));
                             f10 = 10.0f;
-                            rVar = rVar2;
-                            childAt.setBackground(new RippleDrawable(ColorStateList.valueOf(788529151), null, new InsetDrawable((Drawable) gradientDrawable, (int) org.telegram.messenger.g0.N(2.5f))));
+                            mVar = mVar2;
+                            childAt.setBackground(new RippleDrawable(ColorStateList.valueOf(788529151), null, new InsetDrawable((Drawable) gradientDrawable, (int) g0.N(2.5f))));
                         } else {
-                            rVar = rVar2;
+                            mVar = mVar2;
                             f10 = 10.0f;
                             f11 = 2.5f;
                         }
-                        String key = ((ai.q) childAt).getKey();
-                        if (key != null && (fArr = (float[]) dVar2.f1149n.get(key)) != null) {
-                            float c10 = ai.d.c(fArr, b10);
+                        String key = ((ci.l) childAt).getKey();
+                        if (key != null && (fArr = (float[]) cVar2.f5319n.get(key)) != null) {
+                            float c10 = ci.c.c(fArr, b10);
                             if (c10 > 0.004f) {
                                 float translationX = childAt.getTranslationX() + childAt.getLeft();
                                 float translationY = childAt.getTranslationY() + childAt.getTop();
-                                float N = (int) org.telegram.messenger.g0.N(f11);
-                                dVar = dVar2;
+                                float N = (int) g0.N(f11);
+                                cVar = cVar2;
                                 rectF.set(translationX + N, translationY + N, (translationX + childAt.getWidth()) - N, (translationY + childAt.getHeight()) - N);
                                 if (!childAt.isPressed()) {
                                     paint.setColor(788529151);
                                     paint.setAlpha((int) (Color.alpha(788529151) * c10));
-                                    canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(f10), org.telegram.messenger.g0.L(f10), paint);
+                                    canvas.drawRoundRect(rectF, g0.L(f10), g0.L(f10), paint);
                                 }
                                 i7++;
-                                rVar2 = rVar;
-                                dVar2 = dVar;
+                                mVar2 = mVar;
+                                cVar2 = cVar;
                             }
                         }
                     }
-                    dVar = dVar2;
+                    cVar = cVar2;
                     i7++;
-                    rVar2 = rVar;
-                    dVar2 = dVar;
+                    mVar2 = mVar;
+                    cVar2 = cVar;
                 }
-                if (!s0Var.d.I.isEmpty()) {
-                    s0Var.f1640y.invalidate();
+                if (!i0Var.d.J.isEmpty()) {
+                    i0Var.f5412y.invalidate();
                     return;
                 }
                 return;
@@ -120,7 +121,7 @@ public final class k implements Consumer {
     }
 
     public Consumer andThen(Consumer consumer) {
-        int i7 = this.f819a;
+        int i7 = this.f818a;
         return Consumer$CC.$default$andThen(this, consumer);
     }
 }

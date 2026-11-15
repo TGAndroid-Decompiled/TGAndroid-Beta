@@ -1,37 +1,45 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class c50 implements View.OnClickListener {
-    public final int f32458a;
-    public final TLRPC.User f32459b;
-    public final String f32460c;
-    public final boolean d;
-    public final boolean f32461e;
-    public final boolean f32462f;
-    public final oj0 h;
+public final class c50 extends uj0 {
+    public int f33506f3;
+    public final p50 f33507g3;
 
-    public c50(oj0 oj0Var, TLRPC.User user, String str, boolean z9, boolean z10, boolean z11, int i7) {
-        this.f32458a = i7;
-        this.h = oj0Var;
-        this.f32459b = user;
-        this.f32460c = str;
-        this.d = z9;
-        this.f32461e = z10;
-        this.f32462f = z11;
+    public c50(p50 p50Var, Context context) {
+        super(context, null);
+        this.f33507g3 = p50Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f32458a) {
-            case 0:
-                m50 m50Var = ((h50) this.h).f34183c;
-                ey0.b(m50Var.getContext(), m50Var.f28669a, -m50Var.f35854a2, this.f32459b, this.f32460c, this.d, this.f32461e, this.f32462f, m50Var.I0);
-                return;
-            default:
-                ys0 ys0Var = ((lr0) this.h).f35735f;
-                ey0.b(ys0Var.getContext(), ys0Var.f40719x1.getCurrentAccount(), ys0Var.l1, this.f32459b, this.f32460c, this.d, this.f32461e, this.f32462f, ys0Var.H1);
-                return;
+    public final void onMeasure(int i7, int i10) {
+        p50 p50Var = this.f33507g3;
+        c50 c50Var = p50Var.Q1;
+        if (this.f33506f3 != View.MeasureSpec.getSize(i10)) {
+            this.f33506f3 = View.MeasureSpec.getSize(i10);
+            p50Var.V1 = true;
+            c50Var.setPadding(0, 0, 0, 0);
+            p50Var.V1 = false;
+            measure(i7, View.MeasureSpec.makeMeasureSpec(i10, Integer.MIN_VALUE));
+            int measuredHeight = getMeasuredHeight();
+            int i11 = this.f33506f3;
+            int i12 = (int) ((i11 / 5.0f) * 2.0f);
+            if (i12 < org.telegram.messenger.g0.L(60.0f) + (i11 - measuredHeight)) {
+                i12 = this.f33506f3 - measuredHeight;
+            }
+            p50Var.V1 = true;
+            c50Var.setPadding(0, i12, 0, 0);
+            p50Var.V1 = false;
+            measure(i7, View.MeasureSpec.makeMeasureSpec(i10, Integer.MIN_VALUE));
         }
+        super.onMeasure(i7, i10);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f33507g3.V1) {
+            return;
+        }
+        super.requestLayout();
     }
 }

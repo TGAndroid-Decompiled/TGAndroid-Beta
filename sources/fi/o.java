@@ -1,35 +1,31 @@
 package fi;
 
-import org.telegram.messenger.c20;
-public final class o implements c20 {
-    public final int f12507a;
-    public final la f12508b;
+import android.animation.ValueAnimator;
+import org.telegram.ui.qv;
+public final class o implements Runnable {
+    public final int f12096a;
+    public final p f12097b;
 
-    public o(la laVar, int i7) {
-        this.f12507a = i7;
-        this.f12508b = laVar;
+    public o(p pVar, int i7) {
+        this.f12096a = i7;
+        this.f12097b = pVar;
     }
 
     @Override
-    public final void a(Object obj) {
-        Integer num = (Integer) obj;
-        switch (this.f12507a) {
+    public final void run() {
+        switch (this.f12096a) {
             case 0:
-                int intValue = num.intValue();
-                la laVar = this.f12508b;
-                laVar.setPeriod(intValue);
-                c20 c20Var = laVar.A1;
-                if (c20Var != null) {
-                    c20Var.a(num);
-                    return;
+                qv qvVar = this.f12097b.f12148c0;
+                ValueAnimator valueAnimator = qvVar.f12199k0;
+                if (valueAnimator != null) {
+                    valueAnimator.start();
                 }
+                qvVar.f12200l0 = null;
                 return;
             default:
-                c20 c20Var2 = this.f12508b.B1;
-                if (c20Var2 != null) {
-                    c20Var2.a(num);
-                    return;
-                }
+                p pVar = this.f12097b;
+                pVar.f12155x = false;
+                pVar.invalidate();
                 return;
         }
     }

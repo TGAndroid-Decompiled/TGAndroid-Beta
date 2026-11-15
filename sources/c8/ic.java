@@ -1,16 +1,10 @@
 package c8;
 
-import android.util.Log;
+import android.text.InputFilter;
 public abstract class ic {
-    public static void a(String str) {
-        boolean isLoggable;
-        if (Log.isLoggable("FirebaseAppIndex", 3)) {
-            isLoggable = true;
-        } else {
-            isLoggable = Log.isLoggable("FirebaseAppIndex", 3);
-        }
-        if (isLoggable) {
-            Log.d("FirebaseAppIndex", str);
-        }
-    }
+    public abstract InputFilter[] a(InputFilter[] inputFilterArr);
+
+    public abstract void b(boolean z10);
+
+    public abstract void c(boolean z10);
 }

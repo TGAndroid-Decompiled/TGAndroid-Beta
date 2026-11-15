@@ -1,28 +1,46 @@
 package di;
 
-import android.animation.ValueAnimator;
-public final class b9 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f8861a;
-    public final e9 f8862b;
+import org.telegram.ui.Components.et0;
+public final class b9 implements te.b, et0 {
+    public final int f8257a;
+    public final mb f8258b;
 
-    public b9(e9 e9Var, int i7) {
-        this.f8861a = i7;
-        this.f8862b = e9Var;
+    public b9(mb mbVar, int i7) {
+        this.f8257a = i7;
+        this.f8258b = mbVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f8861a) {
+    public void E(float f10, int i7) {
+        int i10 = this.f8257a;
+    }
+
+    @Override
+    public void G(int i7, float f10, float f11, te.c cVar) {
+        switch (this.f8257a) {
             case 0:
-                q9 q9Var = this.f8862b.f8980r0;
-                q9Var.X = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                q9.i(q9Var);
+                this.f8258b.r1();
+                return;
+            case 1:
+                this.f8258b.r1();
                 return;
             default:
-                q9 q9Var2 = this.f8862b.f8980r0;
-                q9Var2.W = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                q9.i(q9Var2);
+                this.f8258b.X.setAlpha(f10);
                 return;
         }
+    }
+
+    @Override
+    public int b() {
+        return this.f8258b.f9066b0;
+    }
+
+    private final void a(float f10, int i7) {
+    }
+
+    private final void c(float f10, int i7) {
+    }
+
+    private final void d(float f10, int i7) {
     }
 }

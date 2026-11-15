@@ -3,33 +3,33 @@ package h2;
 import e2.i1;
 import java.util.HashMap;
 public final class e0 {
-    public Object f14074a;
-    public Object f14075b;
-    public Object f14076c;
+    public Object f13432a;
+    public Object f13433b;
+    public Object f13434c;
     public Object d;
-    public Object f14077e = new i1();
-    public Object f14078f;
-    public Object f14079g;
+    public Object f13435e = new i1();
+    public Object f13436f;
+    public Object f13437g;
     public Object h;
-    public Object f14080i;
-    public Object f14081j;
+    public Object f13438i;
+    public Object f13439j;
 
-    public e0(l2.i0 i0Var, l2.c0 c0Var, g0 g0Var, int i7, int i10, int i11, int i12) {
-        this.f14074a = i0Var;
-        this.f14076c = c0Var;
+    public e0(l2.f0 f0Var, l2.z zVar, g0 g0Var, int i7, int i10, int i11, int i12) {
+        this.f13432a = f0Var;
+        this.f13434c = zVar;
         this.d = g0Var;
-        this.f14078f = g0Var.a(i0Var.f17887t, new n(this, 1));
-        this.f14079g = new a0(this, i7);
+        this.f13436f = g0Var.a(f0Var.f18982t, new n(this, 1));
+        this.f13437g = new a0(this, i7);
         this.h = new b0(this, i10);
-        this.f14080i = new c0(this, i11);
-        this.f14081j = new d0(this, i12);
-        z zVar = new z(this, 0);
-        this.f14075b = zVar;
-        i0Var.f17874m.a(zVar);
+        this.f13438i = new c0(this, i11);
+        this.f13439j = new d0(this, i12);
+        z zVar2 = new z(this, 0);
+        this.f13433b = zVar2;
+        f0Var.f18969m.a(zVar2);
     }
 
     public void a(String str, String str2) {
-        HashMap hashMap = (HashMap) this.f14078f;
+        HashMap hashMap = (HashMap) this.f13436f;
         if (hashMap != null) {
             hashMap.put(str, str2);
             return;
@@ -39,25 +39,25 @@ public final class e0 {
 
     public o5.h b() {
         String str;
-        if (((String) this.f14074a) == null) {
+        if (((String) this.f13432a) == null) {
             str = " transportName";
         } else {
             str = "";
         }
-        if (((o5.l) this.f14076c) == null) {
+        if (((o5.m) this.f13434c) == null) {
             str = str.concat(" encodedPayload");
         }
         if (((Long) this.d) == null) {
-            str = rf.b.r(str, " eventMillis");
+            str = r.b.v(str, " eventMillis");
         }
-        if (((Long) this.f14077e) == null) {
-            str = rf.b.r(str, " uptimeMillis");
+        if (((Long) this.f13435e) == null) {
+            str = r.b.v(str, " uptimeMillis");
         }
-        if (((HashMap) this.f14078f) == null) {
-            str = rf.b.r(str, " autoMetadata");
+        if (((HashMap) this.f13436f) == null) {
+            str = r.b.v(str, " autoMetadata");
         }
         if (str.isEmpty()) {
-            return new o5.h((String) this.f14074a, (Integer) this.f14075b, (o5.l) this.f14076c, ((Long) this.d).longValue(), ((Long) this.f14077e).longValue(), (HashMap) this.f14078f, (Integer) this.f14079g, (String) this.h, (byte[]) this.f14080i, (byte[]) this.f14081j);
+            return new o5.h((String) this.f13432a, (Integer) this.f13433b, (o5.m) this.f13434c, ((Long) this.d).longValue(), ((Long) this.f13435e).longValue(), (HashMap) this.f13436f, (Integer) this.f13437g, (String) this.h, (byte[]) this.f13438i, (byte[]) this.f13439j);
         }
         throw new IllegalStateException("Missing required properties:".concat(str));
     }

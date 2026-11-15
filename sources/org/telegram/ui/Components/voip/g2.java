@@ -1,25 +1,14 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class g2 extends AnimatorListenerAdapter {
-    public final int f39235a;
-    public final h2 f39236b;
-
-    public g2(h2 h2Var, int i7) {
-        this.f39235a = i7;
-        this.f39236b = h2Var;
+import org.telegram.ui.Components.ih;
+import org.webrtc.RendererCommon;
+public final class g2 implements RendererCommon.RendererEvents {
+    @Override
+    public final void onFrameResolutionChanged(int i7, int i10, int i11) {
+        org.telegram.messenger.g0.h3(new ih(19));
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f39235a) {
-            case 0:
-                this.f39236b.f39254b.setVisibility(8);
-                return;
-            default:
-                this.f39236b.f39255c.setVisibility(8);
-                return;
-        }
+    public final void onFirstFrameRendered() {
     }
 }

@@ -2,45 +2,30 @@ package fi;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.view.View;
-public final class m2 extends View {
-    public final int f12415a;
-    public final p2 f12416b;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import org.telegram.ui.Components.i90;
+public final class m2 extends i90 {
+    public final b4 W;
 
-    public m2(p2 p2Var, Context context, int i7) {
-        super(context);
-        this.f12415a = i7;
-        this.f12416b = p2Var;
+    public m2(b4 b4Var, Context context, long j3, org.telegram.ui.ActionBar.e2 e2Var, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, j3, 0L, e2Var, e6Var);
+        this.W = b4Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        switch (this.f12415a) {
-            case 0:
-                p2 p2Var = this.f12416b;
-                p2Var.f12590q.reset();
-                p2Var.b(canvas, true);
-                return;
-            default:
-                p2 p2Var2 = this.f12416b;
-                p2Var2.f12590q.reset();
-                p2Var2.f12590q.postTranslate(-getX(), (-getY()) + org.telegram.messenger.g0.f22561m);
-                p2Var2.f12590q.postScale(1.0f / getScaleX(), 1.0f / getScaleY(), getPivotX(), getPivotY());
-                p2Var2.b(canvas, false);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i7, int i10) {
-        switch (this.f12415a) {
-            case 0:
-                super.onMeasure(i7, i10);
-                this.f12416b.g();
-                return;
-            default:
-                super.onMeasure(i7, i10);
-                return;
+    public final void f(Canvas canvas, Rect rect, float f10) {
+        b4 b4Var = this.W;
+        a8.b8 b8Var = b4Var.f11547z1;
+        b8Var.k(getX(), -getY(), getX() + getMeasuredWidth(), (-getY()) + getMeasuredHeight());
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(rect);
+        rectF.offset(0.0f, 0.0f);
+        canvas.drawRoundRect(rectF, f10, f10, (Paint) b8Var.f341a);
+        canvas.drawRoundRect(rectF, f10, f10, b4Var.X1);
+        if (rectF.top < getMeasuredHeight() - 1) {
+            canvas.drawRect(0.0f, getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight() - 1, b4Var.f11493l0.d("paintDivider"));
         }
     }
 }

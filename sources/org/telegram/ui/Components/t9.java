@@ -1,160 +1,84 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.app.Activity;
 import android.graphics.Canvas;
-import android.graphics.drawable.GradientDrawable;
-import android.util.Property;
+import android.graphics.RectF;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import java.util.HashSet;
-import org.telegram.tgnet.TLRPC;
-public final class t9 extends FrameLayout implements org.telegram.messenger.ls, org.telegram.ui.ActionBar.c6 {
-    public boolean D;
-    public int E;
-    public int F;
-    public TextView f38234a;
-    public TextView f38235b;
-    public bi.e5 f38236c;
-    public bi.e5 d;
-    public dh0 f38237e;
-    public ScrollView f38238f;
-    public AnimatorSet h;
-    public TLRPC.TL_help_appUpdate f38239n;
-    public String f38240r;
-    public int f38241s;
-    public int f38242w;
-    public GradientDrawable f38243x;
-    public GradientDrawable f38244y;
+import android.view.ViewGroup;
+public abstract class t9 extends uj0 {
+    public int f39612f3;
+    public int f39613g3;
+    public boolean f39614h3;
+    public int f39615i3;
+    public boolean j3;
 
-    public final void a(boolean z9) {
-        bi.e5 e5Var = this.d;
-        TextView textView = this.f38235b;
-        bi.e5 e5Var2 = this.f38236c;
-        AnimatorSet animatorSet = this.h;
-        if (animatorSet != null) {
-            animatorSet.cancel();
+    public final void A1() {
+        if (getLayoutParams() == null) {
+            return;
         }
-        this.h = new AnimatorSet();
-        Property property = View.ALPHA;
-        Property property2 = View.SCALE_Y;
-        Property property3 = View.SCALE_X;
-        if (z9) {
-            e5Var2.setVisibility(0);
-            e5Var.setEnabled(false);
-            this.h.playTogether(ObjectAnimator.ofFloat(textView, property3, 0.1f), ObjectAnimator.ofFloat(textView, property2, 0.1f), ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(e5Var2, property3, 1.0f), ObjectAnimator.ofFloat(e5Var2, property2, 1.0f), ObjectAnimator.ofFloat(e5Var2, property, 1.0f));
-        } else {
-            textView.setVisibility(0);
-            e5Var.setEnabled(true);
-            this.h.playTogether(ObjectAnimator.ofFloat(e5Var2, property3, 0.1f), ObjectAnimator.ofFloat(e5Var2, property2, 0.1f), ObjectAnimator.ofFloat(e5Var2, property, 0.0f), ObjectAnimator.ofFloat(textView, property3, 1.0f), ObjectAnimator.ofFloat(textView, property2, 1.0f), ObjectAnimator.ofFloat(textView, property, 1.0f));
+        if (org.telegram.messenger.gz.f()) {
+            this.f39612f3 = z1();
+            ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = -this.f39612f3;
+            return;
         }
-        this.h.addListener(new s9(0, this, z9));
-        this.h.setDuration(150L);
-        this.h.start();
+        this.f39612f3 = 0;
+        ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = 0;
     }
 
     @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.qs.Y1) {
-            String str = (String) objArr[0];
-            String str2 = this.f38240r;
-            if (str2 != null && str2.equals(str)) {
-                a(false);
-                org.telegram.messenger.t0.f25569a.v((Activity) getContext(), this.f38239n.document);
-            }
-        } else if (i7 == org.telegram.messenger.qs.Z1) {
-            String str3 = (String) objArr[0];
-            String str4 = this.f38240r;
-            if (str4 != null && str4.equals(str3)) {
-                a(false);
-            }
-        } else if (i7 == org.telegram.messenger.qs.X1) {
-            String str5 = (String) objArr[0];
-            String str6 = this.f38240r;
-            if (str6 != null && str6.equals(str5)) {
-                this.f38237e.e(true, Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())));
-            }
-        }
+    public final void d(Canvas canvas, RectF rectF) {
+        this.j3 = true;
+        super.d(canvas, rectF);
+        this.j3 = false;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
+    public void dispatchDraw(Canvas canvas) {
+        if (this.f39612f3 != 0 && !Y0()) {
+            canvas.clipRect(0, this.f39612f3, getMeasuredWidth(), getMeasuredHeight() + this.f39615i3);
+            super.dispatchDraw(canvas);
+            return;
+        }
         super.dispatchDraw(canvas);
-        GradientDrawable gradientDrawable = this.f38243x;
-        ScrollView scrollView = this.f38238f;
-        gradientDrawable.setBounds(scrollView.getLeft(), scrollView.getTop(), scrollView.getRight(), org.telegram.messenger.g0.L(16.0f) + scrollView.getTop());
-        gradientDrawable.draw(canvas);
-        GradientDrawable gradientDrawable2 = this.f38244y;
-        gradientDrawable2.setBounds(scrollView.getLeft(), scrollView.getBottom() - org.telegram.messenger.g0.L(18.0f), scrollView.getRight(), scrollView.getBottom());
-        gradientDrawable2.draw(canvas);
     }
 
     @Override
-    public void setVisibility(int i7) {
-        super.setVisibility(i7);
-        if (i7 == 8) {
-            org.telegram.messenger.qs.f(this.f38241s).n(this, org.telegram.messenger.qs.Y1);
-            org.telegram.messenger.qs.f(this.f38241s).n(this, org.telegram.messenger.qs.Z1);
-            org.telegram.messenger.qs.f(this.f38241s).n(this, org.telegram.messenger.qs.X1);
+    public boolean drawChild(Canvas canvas, View view, long j3) {
+        if (view.getY() + view.getMeasuredHeight() < this.f39612f3 && !this.j3 && !Y0()) {
+            return true;
         }
+        return super.drawChild(canvas, view, j3);
     }
 
     @Override
-    public final void updateColors() {
-        boolean z9;
-        boolean z10;
-        int x02;
-        ScrollView scrollView;
-        GradientDrawable gradientDrawable = this.f38244y;
-        GradientDrawable gradientDrawable2 = this.f38243x;
-        try {
-            int x03 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f27890d6, false);
-            if (this.D) {
-                if (x03 != this.E) {
-                }
-                x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f28170s8, false);
-                scrollView = this.f38238f;
-                if (scrollView != null && (!this.D || x02 != this.F)) {
-                    this.F = x02;
-                    org.telegram.messenger.g0.z3(scrollView, x02);
-                }
-                this.D = true;
-                invalidate();
-            }
-            this.E = x03;
-            if (gradientDrawable2 != null) {
-                z9 = true;
-            } else {
-                z9 = false;
-            }
-            if (z9) {
-                gradientDrawable2.setColors(new int[]{x03, 0});
-            }
-            if (gradientDrawable != null) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (z10) {
-                gradientDrawable.setColors(new int[]{x03, 0});
-            }
-            x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f28170s8, false);
-            scrollView = this.f38238f;
-            if (scrollView != null) {
-                this.F = x02;
-                org.telegram.messenger.g0.z3(scrollView, x02);
-            }
-            this.D = true;
-            invalidate();
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        A1();
+    }
+
+    @Override
+    public void onMeasure(int i7, int i10) {
+        this.f39614h3 = true;
+        A1();
+        super.setPadding(getPaddingLeft(), this.f39613g3 + this.f39612f3, getPaddingRight(), getPaddingBottom());
+        this.f39614h3 = false;
+        super.onMeasure(i7, i10);
+    }
+
+    @Override
+    public void requestLayout() {
+        if (this.f39614h3) {
+            return;
         }
+        super.requestLayout();
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void setPadding(int i7, int i10, int i11, int i12) {
+        this.f39613g3 = i10;
+        super.setPadding(i7, i10 + this.f39612f3, i11, i12);
+    }
+
+    public int z1() {
+        return org.telegram.messenger.g0.L(203.0f);
     }
 }

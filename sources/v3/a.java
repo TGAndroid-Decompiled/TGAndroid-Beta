@@ -3,20 +3,20 @@ package v3;
 import a8.p0;
 import h2.x;
 public final class a extends b {
-    public final int f56990a;
-    public final long f56991b;
-    public final long f56992c;
+    public final int f58464a;
+    public final long f58465b;
+    public final long f58466c;
 
     public a(long j3, int i7, long j10) {
-        this.f56990a = i7;
+        this.f58464a = i7;
         switch (i7) {
             case 1:
-                this.f56991b = j3;
-                this.f56992c = j10;
+                this.f58465b = j3;
+                this.f58466c = j10;
                 return;
             default:
-                this.f56991b = j10;
-                this.f56992c = j3;
+                this.f58465b = j10;
+                this.f58466c = j3;
                 return;
         }
     }
@@ -31,17 +31,17 @@ public final class a extends b {
 
     @Override
     public final String toString() {
-        switch (this.f56990a) {
+        switch (this.f58464a) {
             case 0:
                 StringBuilder sb2 = new StringBuilder("SCTE-35 PrivateCommand { ptsAdjustment=");
-                sb2.append(this.f56991b);
+                sb2.append(this.f58465b);
                 sb2.append(", identifier= ");
-                return p0.r(sb2, this.f56992c, " }");
+                return p0.r(sb2, this.f58466c, " }");
             default:
                 StringBuilder sb3 = new StringBuilder("SCTE-35 TimeSignalCommand { ptsTime=");
-                sb3.append(this.f56991b);
+                sb3.append(this.f58465b);
                 sb3.append(", playbackPositionUs= ");
-                return p0.r(sb3, this.f56992c, " }");
+                return p0.r(sb3, this.f58466c, " }");
         }
     }
 }

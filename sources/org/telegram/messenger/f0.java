@@ -4,18 +4,18 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.Calendar;
 public final class f0 {
-    public int f22341c;
-    public final ArrayList f22339a = new ArrayList();
-    public String f22340b = "";
+    public int f23399c;
+    public final ArrayList f23397a = new ArrayList();
+    public String f23398b = "";
     public boolean d = true;
 
-    public final String a(boolean z9) {
-        int indexOf = this.f22340b.indexOf(58);
+    public final String a(boolean z10) {
+        int indexOf = this.f23398b.indexOf(58);
         if (indexOf >= 0) {
-            String substring = this.f22340b.substring(0, indexOf);
-            if (this.f22341c == 20) {
+            String substring = this.f23398b.substring(0, indexOf);
+            if (this.f23399c == 20) {
                 String[] split = substring.substring(2).split(";");
-                if (z9) {
+                if (z10) {
                     return split[0];
                 }
                 if (split.length > 1) {
@@ -36,12 +36,12 @@ public final class f0 {
 
     public final String[] b() {
         byte[] H;
-        int indexOf = this.f22340b.indexOf(58);
+        int indexOf = this.f23398b.indexOf(58);
         if (indexOf < 0) {
             return new String[0];
         }
-        String substring = this.f22340b.substring(0, indexOf);
-        String substring2 = this.f22340b.substring(indexOf + 1);
+        String substring = this.f23398b.substring(0, indexOf);
+        String substring2 = this.f23398b.substring(indexOf + 1);
         String str = null;
         String str2 = "UTF-8";
         for (String str3 : substring.split(";")) {
@@ -66,18 +66,18 @@ public final class f0 {
         return split2;
     }
 
-    public final String c(boolean z9) {
+    public final String c(boolean z10) {
         byte[] H;
         StringBuilder sb2 = new StringBuilder();
-        int indexOf = this.f22340b.indexOf(58);
+        int indexOf = this.f23398b.indexOf(58);
         if (indexOf < 0) {
             return "";
         }
         if (sb2.length() > 0) {
             sb2.append(", ");
         }
-        String substring = this.f22340b.substring(0, indexOf);
-        String substring2 = this.f22340b.substring(indexOf + 1);
+        String substring = this.f23398b.substring(0, indexOf);
+        String substring2 = this.f23398b.substring(indexOf + 1);
         String str = null;
         String str2 = "UTF-8";
         for (String str3 : substring.split(";")) {
@@ -91,7 +91,7 @@ public final class f0 {
             }
         }
         String[] split2 = substring2.split(";");
-        boolean z10 = false;
+        boolean z11 = false;
         for (int i7 = 0; i7 < split2.length; i7++) {
             if (!TextUtils.isEmpty(split2[i7])) {
                 if (str != null && str.equalsIgnoreCase("QUOTED-PRINTABLE") && (H = g0.H(g0.h1(split2[i7]))) != null && H.length != 0) {
@@ -100,21 +100,21 @@ public final class f0 {
                     } catch (Exception unused) {
                     }
                 }
-                if (z10 && sb2.length() > 0) {
+                if (z11 && sb2.length() > 0) {
                     sb2.append(" ");
                 }
                 sb2.append(split2[i7]);
-                if (!z10) {
+                if (!z11) {
                     if (split2[i7].length() > 0) {
-                        z10 = true;
+                        z11 = true;
                     } else {
-                        z10 = false;
+                        z11 = false;
                     }
                 }
             }
         }
-        if (z9) {
-            int i10 = this.f22341c;
+        if (z10) {
+            int i10 = this.f23399c;
             if (i10 == 0) {
                 return pf.b.c().b(sb2.toString());
             }
@@ -127,7 +127,7 @@ public final class f0 {
                         calendar.set(1, Utilities.z(split4[0]).intValue());
                         calendar.set(2, Utilities.z(split4[1]).intValue() - 1);
                         calendar.set(5, Utilities.z(split4[2]).intValue());
-                        return id.E0().D0().format(calendar.getTime());
+                        return hd.E0().D0().format(calendar.getTime());
                     }
                 }
             }

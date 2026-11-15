@@ -1,59 +1,25 @@
 package org.telegram.ui.Components;
+public final class w0 implements Runnable {
+    public final int f41207a;
+    public final s4 f41208b;
+    public final org.telegram.ui.ActionBar.t1 f41209c;
+    public final org.telegram.ui.ActionBar.e2 d;
 
-import android.view.View;
-public final class w0 implements View.OnClickListener {
-    public final int f39849a;
-    public final boolean[] f39850b;
-
-    public w0(int i7, boolean[] zArr) {
-        this.f39849a = i7;
-        this.f39850b = zArr;
+    public w0(s4 s4Var, org.telegram.ui.ActionBar.t1 t1Var, org.telegram.ui.ActionBar.e2 e2Var, int i7) {
+        this.f41207a = i7;
+        this.f41208b = s4Var;
+        this.f41209c = t1Var;
+        this.d = e2Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f39849a) {
+    public final void run() {
+        switch (this.f41207a) {
             case 0:
-                boolean[] zArr = this.f39850b;
-                boolean z9 = !zArr[0];
-                zArr[0] = z9;
-                ((org.telegram.ui.Cells.c2) view).c(z9, true);
-                return;
-            case 1:
-                boolean[] zArr2 = this.f39850b;
-                boolean z10 = !zArr2[0];
-                zArr2[0] = z10;
-                ((org.telegram.ui.Cells.c2) view).c(z10, true);
-                return;
-            case 2:
-                boolean[] zArr3 = this.f39850b;
-                boolean z11 = !zArr3[0];
-                zArr3[0] = z11;
-                ((org.telegram.ui.Cells.c2) view).c(z11, true);
-                return;
-            case 3:
-                boolean[] zArr4 = this.f39850b;
-                boolean z12 = !zArr4[0];
-                zArr4[0] = z12;
-                ((org.telegram.ui.Cells.c2) view).c(z12, true);
-                return;
-            case 4:
-                boolean[] zArr5 = this.f39850b;
-                boolean z13 = !zArr5[0];
-                zArr5[0] = z13;
-                ((org.telegram.ui.Cells.c2) view).c(z13, true);
-                return;
-            case 5:
-                boolean[] zArr6 = this.f39850b;
-                boolean z14 = !zArr6[0];
-                zArr6[0] = z14;
-                ((org.telegram.ui.Cells.c2) view).c(z14, true);
+                org.telegram.messenger.g0.h3(new w0(this.f41208b, this.f41209c, this.d, 1));
                 return;
             default:
-                boolean[] zArr7 = this.f39850b;
-                boolean z15 = !zArr7[0];
-                zArr7[0] = z15;
-                ((org.telegram.ui.Cells.c2) view).c(z15, true);
+                t4.b0(this.f41208b, this.f41209c, this.d);
                 return;
         }
     }

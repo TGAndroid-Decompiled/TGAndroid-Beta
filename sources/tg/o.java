@@ -2,26 +2,26 @@ package tg;
 
 import android.animation.ValueAnimator;
 public final class o implements ValueAnimator.AnimatorUpdateListener {
-    public final int f55881a;
-    public final g0 f55882b;
+    public final int f57472a;
+    public final g0 f57473b;
 
     public o(g0 g0Var, int i7) {
-        this.f55881a = i7;
-        this.f55882b = g0Var;
+        this.f57472a = i7;
+        this.f57473b = g0Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f55881a) {
+        switch (this.f57472a) {
             case 0:
-                g0 g0Var = this.f55882b;
+                g0 g0Var = this.f57473b;
                 g0Var.getClass();
-                g0Var.O1.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                g0Var.P1.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                g0 g0Var2 = this.f55882b;
+                g0 g0Var2 = this.f57473b;
                 g0Var2.getClass();
-                g0Var2.O1.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                g0Var2.P1.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
         }
     }

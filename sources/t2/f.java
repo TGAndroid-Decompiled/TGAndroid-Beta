@@ -1,55 +1,53 @@
 package t2;
 
-import a8.ia;
+import a8.ja;
 import android.graphics.Bitmap;
 import android.os.Trace;
-import androidx.biometric.t;
+import androidx.emoji2.text.n;
 import e2.u;
 import java.util.ArrayDeque;
-import jg.g;
 import k2.h;
-import l2.k0;
-import li.z;
+import l2.h0;
 public final class f extends l2.b {
-    public final t I;
-    public final h J;
-    public final ArrayDeque K;
-    public boolean L;
+    public final n J;
+    public final h K;
+    public final ArrayDeque L;
     public boolean M;
-    public e N;
-    public long O;
+    public boolean N;
+    public e O;
     public long P;
-    public int Q;
+    public long Q;
     public int R;
-    public u S;
-    public b T;
-    public h U;
-    public d V;
-    public k0 W;
-    public Bitmap X;
-    public boolean Y;
-    public z Z;
-    public z f55391a0;
-    public int f55392b0;
-    public boolean f55393c0;
+    public int S;
+    public u T;
+    public b U;
+    public h V;
+    public d W;
+    public h0 X;
+    public Bitmap Y;
+    public boolean Z;
+    public m5.b f56973a0;
+    public m5.b f56974b0;
+    public int f56975c0;
+    public boolean f56976d0;
 
-    public f(t tVar) {
+    public f(n nVar) {
         super(4);
-        this.I = tVar;
-        this.V = d.f55387a;
-        this.J = new h(0, 0);
-        this.N = e.f55388c;
-        this.K = new ArrayDeque();
+        this.J = nVar;
+        this.W = d.f56969a;
+        this.K = new h(0, 0);
+        this.O = e.f56970c;
+        this.L = new ArrayDeque();
+        this.Q = -9223372036854775807L;
         this.P = -9223372036854775807L;
-        this.O = -9223372036854775807L;
-        this.Q = 0;
-        this.R = 1;
+        this.R = 0;
+        this.S = 1;
     }
 
     @Override
     public final int C(u uVar) {
-        this.I.getClass();
-        return t.d(uVar);
+        this.J.getClass();
+        return n.d(uVar);
     }
 
     public final boolean F(long r13) {
@@ -61,33 +59,33 @@ public final class f extends l2.b {
     }
 
     public final void H() {
-        if (!this.f55393c0) {
+        if (!this.f56976d0) {
             return;
         }
-        u uVar = this.S;
+        u uVar = this.T;
         uVar.getClass();
-        t tVar = this.I;
-        tVar.getClass();
-        int d = t.d(uVar);
-        if (d != g.b(4, 0, 0, 0) && d != g.b(3, 0, 0, 0)) {
-            throw d(new Exception("Provided decoder factory can't create decoder for format."), this.S, false, 4005);
+        n nVar = this.J;
+        nVar.getClass();
+        int d = n.d(uVar);
+        if (d != i5.c.a(4, 0, 0, 0) && d != i5.c.a(3, 0, 0, 0)) {
+            throw d(new Exception("Provided decoder factory can't create decoder for format."), this.T, false, 4005);
         }
-        b bVar = this.T;
+        b bVar = this.U;
         if (bVar != null) {
             bVar.release();
         }
-        this.T = new b(tVar.f2020a);
-        this.f55393c0 = false;
+        this.U = new b(nVar.f2266a);
+        this.f56976d0 = false;
     }
 
     public final void I() {
-        this.U = null;
-        this.Q = 0;
-        this.P = -9223372036854775807L;
-        b bVar = this.T;
+        this.V = null;
+        this.R = 0;
+        this.Q = -9223372036854775807L;
+        b bVar = this.U;
         if (bVar != null) {
             bVar.release();
-            this.T = null;
+            this.U = null;
         }
     }
 
@@ -98,7 +96,7 @@ public final class f extends l2.b {
             if (i7 != 23) {
                 return;
             }
-            this.W = (k0) obj;
+            this.X = (h0) obj;
             return;
         }
         if (obj instanceof d) {
@@ -107,9 +105,9 @@ public final class f extends l2.b {
             dVar = null;
         }
         if (dVar == null) {
-            dVar = d.f55387a;
+            dVar = d.f56969a;
         }
-        this.V = dVar;
+        this.W = dVar;
     }
 
     @Override
@@ -119,14 +117,14 @@ public final class f extends l2.b {
 
     @Override
     public final boolean l() {
-        return this.M;
+        return this.N;
     }
 
     @Override
     public final boolean m() {
-        int i7 = this.R;
+        int i7 = this.S;
         if (i7 != 3) {
-            if (i7 != 0 || !this.Y) {
+            if (i7 != 0 || !this.Z) {
                 return false;
             }
             return true;
@@ -136,33 +134,33 @@ public final class f extends l2.b {
 
     @Override
     public final void n() {
-        this.S = null;
-        this.N = e.f55388c;
-        this.K.clear();
+        this.T = null;
+        this.O = e.f56970c;
+        this.L.clear();
         I();
-        this.V.getClass();
+        this.W.getClass();
     }
 
     @Override
-    public final void o(boolean z9, boolean z10) {
-        this.R = z10 ? 1 : 0;
+    public final void o(boolean z10, boolean z11) {
+        this.S = z11 ? 1 : 0;
     }
 
     @Override
-    public final void p(long j3, boolean z9, boolean z10) {
-        this.R = Math.min(this.R, 1);
+    public final void p(long j3, boolean z10, boolean z11) {
+        this.S = Math.min(this.S, 1);
+        this.N = false;
         this.M = false;
-        this.L = false;
-        this.X = null;
-        this.Z = null;
-        this.f55391a0 = null;
-        this.Y = false;
-        this.U = null;
-        b bVar = this.T;
+        this.Y = null;
+        this.f56973a0 = null;
+        this.f56974b0 = null;
+        this.Z = false;
+        this.V = null;
+        b bVar = this.U;
         if (bVar != null) {
             bVar.flush();
         }
-        this.K.clear();
+        this.L.clear();
     }
 
     @Override
@@ -173,7 +171,7 @@ public final class f extends l2.b {
     @Override
     public final void r() {
         I();
-        this.R = Math.min(this.R, 1);
+        this.S = Math.min(this.S, 1);
     }
 
     @Override
@@ -183,28 +181,28 @@ public final class f extends l2.b {
 
     @Override
     public final void x(long j3, long j10) {
-        if (!this.M) {
-            if (this.S == null) {
-                wf.b bVar = this.f17762c;
-                bVar.A();
-                h hVar = this.J;
+        if (!this.N) {
+            if (this.T == null) {
+                k8.a aVar = this.f18890c;
+                aVar.x0();
+                h hVar = this.K;
                 hVar.clear();
-                int w10 = w(bVar, hVar, 2);
+                int w10 = w(aVar, hVar, 2);
                 if (w10 == -5) {
-                    u uVar = (u) bVar.f57667c;
+                    u uVar = (u) aVar.f17789c;
                     uVar.getClass();
-                    this.S = uVar;
-                    this.f55393c0 = true;
+                    this.T = uVar;
+                    this.f56976d0 = true;
                 } else if (w10 == -4) {
-                    ia.p(hVar.isEndOfStream());
-                    this.L = true;
+                    ja.p(hVar.isEndOfStream());
                     this.M = true;
+                    this.N = true;
                     return;
                 } else {
                     return;
                 }
             }
-            if (this.T == null) {
+            if (this.U == null) {
                 H();
             }
             try {

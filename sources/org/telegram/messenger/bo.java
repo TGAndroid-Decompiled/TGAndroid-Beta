@@ -1,100 +1,19 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
 public final class bo implements RequestDelegate {
-    public final int f21719a;
-    public final int f21720b;
-    public final Object f21721c;
-    public final Object d;
+    public final int f22740a;
+    public final c1 f22741b;
+    public final int f22742c;
 
-    public bo(Object obj, int i7, Object obj2, int i10) {
-        this.f21719a = i10;
-        this.f21721c = obj;
-        this.f21720b = i7;
-        this.d = obj2;
+    public bo(c1 c1Var, int i7, int i10) {
+        this.f22740a = i10;
+        this.f22741b = c1Var;
+        this.f22742c = i7;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f21719a) {
-            case 0:
-                qp qpVar = (qp) this.f21721c;
-                String str = (String) this.d;
-                if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    boolean z9 = r2.f25216a;
-                    int i7 = this.f21720b;
-                    if (z9) {
-                        a8.b("account " + qpVar.currentAccount + " registered for push, push type: " + i7);
-                    }
-                    qpVar.getUserConfig().d = true;
-                    iz.f23406g = str;
-                    iz.f23403f = i7;
-                    qpVar.getUserConfig().v(false);
-                }
-                g0.h3(new vj(qpVar, 4));
-                return;
-            case 1:
-                i7 i7Var = (i7) this.f21721c;
-                h7 h7Var = (h7) this.d;
-                i7Var.f23128z0 = false;
-                boolean z10 = tLObject instanceof Vector;
-                int i10 = this.f21720b;
-                if (z10) {
-                    Vector vector = (Vector) tLObject;
-                    if (!vector.objects.isEmpty()) {
-                        if (i7Var.f23111q0 == null) {
-                            i7Var.f23111q0 = new HashMap();
-                        }
-                        for (int i11 = 0; i11 < vector.objects.size(); i11++) {
-                            TLRPC.TL_fileHash tL_fileHash = (TLRPC.TL_fileHash) vector.objects.get(i11);
-                            i7Var.f23111q0.put(Long.valueOf(tL_fileHash.offset), tL_fileHash);
-                        }
-                    }
-                    i7Var.s(i10);
-                    return;
-                } else if (tL_error != null) {
-                    if (!tL_error.text.equals("FILE_TOKEN_INVALID") && !tL_error.text.equals("REQUEST_TOKEN_INVALID")) {
-                        i7Var.j(0, false);
-                        return;
-                    }
-                    i7Var.f23119u0 = false;
-                    i7Var.e(h7Var, false, false);
-                    i7Var.s(i10);
-                    return;
-                } else {
-                    return;
-                }
-            case 2:
-                g0.h3(new l7((ui) this.f21721c, (TLRPC.StickerSet) this.d, this.f21720b, 9));
-                return;
-            case 3:
-                ui uiVar = (ui) this.f21721c;
-                c20 c20Var = (c20) this.d;
-                boolean z11 = tLObject instanceof TLRPC.TL_messages_stickerSet;
-                int i12 = this.f21720b;
-                if (z11) {
-                    ArrayList arrayList = new ArrayList();
-                    arrayList.add((TLRPC.TL_messages_stickerSet) tLObject);
-                    uiVar.z1(i12, arrayList, false, (int) (System.currentTimeMillis() / 1000), ui.q(arrayList), new rf(c20Var, 4));
-                    return;
-                }
-                uiVar.z1(i12, null, false, (int) (System.currentTimeMillis() / 1000), 0L, new rf(c20Var, 5));
-                return;
-            default:
-                g0.h3(new dg((qp) this.f21721c, tLObject, this.f21720b, (so) this.d));
-                return;
-        }
-    }
-
-    public bo(ui uiVar, TLRPC.StickerSet stickerSet, int i7) {
-        this.f21719a = 2;
-        this.f21721c = uiVar;
-        this.d = stickerSet;
-        this.f21720b = i7;
+    public final void run(org.telegram.tgnet.TLObject r20, org.telegram.tgnet.TLRPC.TL_error r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.bo.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 }

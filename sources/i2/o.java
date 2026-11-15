@@ -1,6 +1,6 @@
 package i2;
 
-import a8.ia;
+import a8.ja;
 import j$.util.Objects;
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
@@ -8,9 +8,9 @@ import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.Arrays;
 public abstract class o {
-    public static final byte[] f15207a = {0, 0, 0, 1};
-    public static final float[] f15208b = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 2.1818182f, 1.8181819f, 2.909091f, 2.4242425f, 1.6363636f, 1.3636364f, 1.939394f, 1.6161616f, 1.3333334f, 1.5f, 2.0f};
-    public static final Object f15209c = new Object();
+    public static final byte[] f15659a = {0, 0, 0, 1};
+    public static final float[] f15660b = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 2.1818182f, 1.8181819f, 2.909091f, 2.4242425f, 1.6363636f, 1.3636364f, 1.939394f, 1.6161616f, 1.3333334f, 1.5f, 2.0f};
+    public static final Object f15661c = new Object();
     public static int[] d = new int[10];
 
     public static ArrayList a(byte[] bArr) {
@@ -28,17 +28,17 @@ public abstract class o {
     }
 
     public static int c(byte[] bArr, int i7, int i10, boolean[] zArr) {
-        boolean z9;
         boolean z10;
         boolean z11;
+        boolean z12;
         int i11 = i10 - i7;
-        boolean z12 = false;
+        boolean z13 = false;
         if (i11 >= 0) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        ia.p(z9);
+        ja.p(z10);
         if (i11 == 0) {
             return i10;
         }
@@ -67,28 +67,28 @@ public abstract class o {
                 i13 += 3;
             }
             if (i11 <= 2 ? !(i11 != 2 ? !zArr[1] || bArr[i12] != 1 : !zArr[2] || bArr[i10 - 2] != 0 || bArr[i12] != 1) : !(bArr[i10 - 3] != 0 || bArr[i10 - 2] != 0 || bArr[i12] != 1)) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            zArr[0] = z10;
-            if (i11 <= 1 ? !(!zArr[2] || bArr[i12] != 0) : !(bArr[i10 - 2] != 0 || bArr[i12] != 0)) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            zArr[1] = z11;
-            if (bArr[i12] == 0) {
+            zArr[0] = z11;
+            if (i11 <= 1 ? !(!zArr[2] || bArr[i12] != 0) : !(bArr[i10 - 2] != 0 || bArr[i12] != 0)) {
                 z12 = true;
+            } else {
+                z12 = false;
             }
-            zArr[2] = z12;
+            zArr[1] = z12;
+            if (bArr[i12] == 0) {
+                z13 = true;
+            }
+            zArr[2] = z13;
             return i10;
         }
     }
 
     public static String d(e2.u uVar) {
-        String str = uVar.f10620s;
-        String str2 = uVar.f10612k;
+        String str = uVar.f10451s;
+        String str2 = uVar.f10443k;
         if (Objects.equals(str, "video/dolby-vision") && str2 != null) {
             if (!str2.startsWith("dva1") && !str2.startsWith("dvav")) {
                 if (str2.startsWith("dvh1") || str2.startsWith("dvhe")) {
@@ -98,7 +98,7 @@ public abstract class o {
                 return "video/avc";
             }
         }
-        return uVar.f10620s;
+        return uVar.f10451s;
     }
 
     public static long e(byte b10, byte b11) {
@@ -130,16 +130,16 @@ public abstract class o {
 
     public static boolean f(byte[] bArr, int i7, e2.u uVar) {
         int i10;
-        if (Objects.equals(uVar.f10620s, "video/avc")) {
+        if (Objects.equals(uVar.f10451s, "video/avc")) {
             byte b10 = bArr[4];
             if (((b10 & 96) >> 5) == 0 && ((i10 = b10 & 31) == 1 || i10 == 9 || i10 == 14)) {
                 return false;
             }
-        } else if (Objects.equals(uVar.f10620s, "video/hevc")) {
+        } else if (Objects.equals(uVar.f10451s, "video/hevc")) {
             b7.d h = h(new s(bArr, 4, i7 + 4));
-            int i11 = h.f2991a;
+            int i11 = h.f2945a;
             if (i11 != 35) {
-                if (i11 <= 14 && i11 % 2 == 0 && h.f2993c == uVar.J - 1) {
+                if (i11 <= 14 && i11 % 2 == 0 && h.f2947c == uVar.J - 1) {
                     return false;
                 }
             } else {
@@ -253,12 +253,12 @@ public abstract class o {
         return null;
     }
 
-    public static i2.k k(byte[] r32, int r33, int r34, ui.e r35) {
-        throw new UnsupportedOperationException("Method not decompiled: i2.o.k(byte[], int, int, ui.e):i2.k");
+    public static i2.k k(byte[] r32, int r33, int r34, xi.e r35) {
+        throw new UnsupportedOperationException("Method not decompiled: i2.o.k(byte[], int, int, xi.e):i2.k");
     }
 
-    public static ui.e l(int r40, int r41, byte[] r42) {
-        throw new UnsupportedOperationException("Method not decompiled: i2.o.l(int, int, byte[]):ui.e");
+    public static xi.e l(int r40, int r41, byte[] r42) {
+        throw new UnsupportedOperationException("Method not decompiled: i2.o.l(int, int, byte[]):xi.e");
     }
 
     public static i2.n m(int r30, int r31, byte[] r32) {
@@ -314,7 +314,7 @@ public abstract class o {
 
     public static int p(int i7, byte[] bArr) {
         int i10;
-        synchronized (f15209c) {
+        synchronized (f15661c) {
             int i11 = 0;
             int i12 = 0;
             while (i11 < i7) {

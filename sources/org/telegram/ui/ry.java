@@ -1,22 +1,22 @@
 package org.telegram.ui;
-public final class ry implements Runnable {
-    public final int f49593a;
-    public final fi.m3 f49594b;
 
-    public ry(fi.m3 m3Var, int i7) {
-        this.f49593a = i7;
-        this.f49594b = m3Var;
-    }
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.text.style.ImageSpan;
+public final class ry extends ImageSpan {
+    public int f51052a;
 
     @Override
-    public final void run() {
-        switch (this.f49593a) {
-            case 0:
-                org.telegram.messenger.g0.E2(this.f49594b);
-                return;
-            default:
-                this.f49594b.f(true);
-                return;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+        if (paint.getColor() != this.f51052a && getDrawable() != null) {
+            Drawable drawable = getDrawable();
+            int color = paint.getColor();
+            this.f51052a = color;
+            drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
         }
+        super.draw(canvas, charSequence, i7, i10, f10, i11, i12, i13, paint);
     }
 }

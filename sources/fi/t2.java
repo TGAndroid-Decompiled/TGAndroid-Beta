@@ -1,24 +1,10 @@
 package fi;
 
-import android.animation.ValueAnimator;
-public final class t2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f12846a;
-    public final u2 f12847b;
-
-    public t2(u2 u2Var, int i7) {
-        this.f12846a = i7;
-        this.f12847b = u2Var;
-    }
-
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class t2 implements RequestDelegate {
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f12846a) {
-            case 0:
-                ((f3) this.f12847b.f12886c).invalidate();
-                return;
-            default:
-                ((f3) this.f12847b.f12886c).invalidate();
-                return;
-        }
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 }

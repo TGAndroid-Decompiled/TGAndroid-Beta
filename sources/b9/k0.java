@@ -1,47 +1,86 @@
 package b9;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import c8.xb;
-public final class k0 extends r6.a {
-    public static final Parcelable.Creator<k0> CREATOR = new c(27);
-    public final int f3067a;
-    public final String f3068b;
-    public final byte[] f3069c;
-    public final String d;
+import android.content.Context;
+import android.content.Intent;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.internal.BasePendingResult;
+import com.google.android.gms.tasks.Task;
+public final class k0 extends com.google.android.gms.common.api.j {
+    public static int f3024l = 1;
 
-    public k0(int i7, String str, String str2, byte[] bArr) {
-        this.f3067a = i7;
-        this.f3068b = str;
-        this.f3069c = bArr;
-        this.d = str2;
+    public k0(Context context, com.google.android.gms.common.api.i iVar) {
+        super(context, a9.c.f754a, a9.b.f753a, iVar);
     }
 
-    public final String toString() {
-        Object valueOf;
-        byte[] bArr = this.f3069c;
-        if (bArr == null) {
-            valueOf = "null";
-        } else {
-            valueOf = Integer.valueOf(bArr.length);
+    public Intent f() {
+        int h = h();
+        int i7 = h - 1;
+        if (h != 0) {
+            com.google.android.gms.common.api.b bVar = this.f6105e;
+            Context context = this.f6102a;
+            if (i7 != 2) {
+                if (i7 != 3) {
+                    d6.h.f7592a.a("getNoImplementationSignInIntent()", new Object[0]);
+                    Intent a10 = d6.h.a(context, (GoogleSignInOptions) bVar);
+                    a10.setAction("com.google.android.gms.auth.NO_IMPL");
+                    return a10;
+                }
+                return d6.h.a(context, (GoogleSignInOptions) bVar);
+            }
+            d6.h.f7592a.a("getFallbackSignInIntent()", new Object[0]);
+            Intent a11 = d6.h.a(context, (GoogleSignInOptions) bVar);
+            a11.setAction("com.google.android.gms.auth.APPAUTH_SIGN_IN");
+            return a11;
         }
-        String obj = valueOf.toString();
-        StringBuilder sb2 = new StringBuilder("MessageEventParcelable[");
-        sb2.append(this.f3067a);
-        sb2.append(",");
-        sb2.append(this.f3068b);
-        sb2.append(", size=");
-        return a8.p0.s(sb2, obj, "]");
+        throw null;
     }
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = xb.r(parcel, 20293);
-        xb.q(parcel, 2, 4);
-        parcel.writeInt(this.f3067a);
-        xb.l(parcel, 3, this.f3068b);
-        xb.c(parcel, 4, this.f3069c);
-        xb.l(parcel, 5, this.d);
-        xb.s(parcel, r10);
+    public Task g() {
+        boolean z10;
+        BasePendingResult basePendingResult;
+        if (h() == 3) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        d6.h.f7592a.a("Signing out", new Object[0]);
+        d6.h.b(this.f6102a);
+        com.google.android.gms.common.api.internal.p0 p0Var = this.f6108i;
+        if (z10) {
+            BasePendingResult sVar = new com.google.android.gms.common.api.internal.s(p0Var, 0);
+            sVar.a(Status.f5907e);
+            basePendingResult = sVar;
+        } else {
+            d6.g gVar = new d6.g(p0Var, 0);
+            p0Var.f6063b.d(1, gVar);
+            basePendingResult = gVar;
+        }
+        return q6.m.m(basePendingResult, new qb.a(22));
+    }
+
+    public synchronized int h() {
+        int i7;
+        try {
+            i7 = f3024l;
+            if (i7 == 1) {
+                Context context = this.f6102a;
+                n6.d dVar = n6.d.f21067e;
+                int d = dVar.d(context, 12451000);
+                if (d == 0) {
+                    i7 = 4;
+                    f3024l = 4;
+                } else if (dVar.b(d, context, null) == null && b7.f.a(context, "com.google.android.gms.auth.api.fallback") != 0) {
+                    i7 = 3;
+                    f3024l = 3;
+                } else {
+                    i7 = 2;
+                    f3024l = 2;
+                }
+            }
+        } catch (Throwable th2) {
+            throw th2;
+        }
+        return i7;
     }
 }

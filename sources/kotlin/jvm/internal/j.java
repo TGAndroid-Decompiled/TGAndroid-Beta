@@ -1,12 +1,13 @@
 package kotlin.jvm.internal;
 
 import a8.p0;
+import com.google.android.gms.internal.vision.e2;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 public abstract class j {
-    public static final Object[] f17611a = new Object[0];
+    public static final Object[] f18750a = new Object[0];
 
     public static boolean a(Object obj, Object obj2) {
         if (obj == null) {
@@ -57,7 +58,7 @@ public abstract class j {
                 i7++;
             }
             StackTraceElement stackTraceElement = stackTrace[i7];
-            StringBuilder n10 = com.google.android.recaptcha.internal.a.n("Parameter specified as non-null is null: method ", stackTraceElement.getClassName(), ".", stackTraceElement.getMethodName(), ", parameter ");
+            StringBuilder n10 = e2.n("Parameter specified as non-null is null: method ", stackTraceElement.getClassName(), ".", stackTraceElement.getMethodName(), ", parameter ");
             n10.append(str);
             NullPointerException nullPointerException = new NullPointerException(n10.toString());
             g(nullPointerException, j.class.getName());
@@ -125,7 +126,7 @@ public abstract class j {
                 }
             }
         }
-        return f17611a;
+        return f18750a;
     }
 
     public static final Object[] j(Collection collection, Object[] objArr) {

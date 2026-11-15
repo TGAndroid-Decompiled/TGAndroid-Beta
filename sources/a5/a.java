@@ -13,7 +13,8 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.InflateException;
 import android.view.animation.AnimationUtils;
-import c8.i0;
+import c8.j0;
+import com.google.android.gms.internal.vision.e2;
 import java.util.ArrayList;
 import org.xmlpull.v1.XmlPullParser;
 public abstract class a {
@@ -34,11 +35,11 @@ public abstract class a {
     }
 
     public static PropertyValuesHolder b(TypedArray typedArray, int i7, int i10, int i11, String str) {
-        boolean z9;
-        int i12;
         boolean z10;
-        int i13;
+        int i12;
         boolean z11;
+        int i13;
+        boolean z12;
         g gVar;
         int i14;
         int i15;
@@ -49,52 +50,52 @@ public abstract class a {
         float f12;
         TypedValue peekValue = typedArray.peekValue(i10);
         if (peekValue != null) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        if (z9) {
+        if (z10) {
             i12 = peekValue.type;
         } else {
             i12 = 0;
         }
         TypedValue peekValue2 = typedArray.peekValue(i11);
         if (peekValue2 != null) {
-            z10 = true;
+            z11 = true;
         } else {
-            z10 = false;
+            z11 = false;
         }
-        if (z10) {
+        if (z11) {
             i13 = peekValue2.type;
         } else {
             i13 = 0;
         }
         if (i7 == 4) {
-            if ((z9 && c(i12)) || (z10 && c(i13))) {
+            if ((z10 && c(i12)) || (z11 && c(i13))) {
                 i7 = 3;
             } else {
                 i7 = 0;
             }
         }
         if (i7 == 0) {
-            z11 = true;
+            z12 = true;
         } else {
-            z11 = false;
+            z12 = false;
         }
         PropertyValuesHolder propertyValuesHolder = null;
         if (i7 == 2) {
             String string = typedArray.getString(i10);
             String string2 = typedArray.getString(i11);
-            i0.d[] c10 = i0.c(string);
-            i0.d[] c11 = i0.c(string2);
+            i0.e[] c10 = j0.c(string);
+            i0.e[] c11 = j0.c(string2);
             if (c10 != null || c11 != null) {
                 if (c10 != null) {
                     ?? obj = new Object();
                     if (c11 != null) {
-                        if (i0.a(c10, c11)) {
+                        if (j0.a(c10, c11)) {
                             return PropertyValuesHolder.ofObject(str, (TypeEvaluator) obj, c10, c11);
                         }
-                        throw new InflateException(com.google.android.recaptcha.internal.a.l(" Can't morph from ", string, " to ", string2));
+                        throw new InflateException(e2.l(" Can't morph from ", string, " to ", string2));
                     }
                     return PropertyValuesHolder.ofObject(str, (TypeEvaluator) obj, c10);
                 } else if (c11 != null) {
@@ -108,14 +109,14 @@ public abstract class a {
         } else {
             gVar = null;
         }
-        if (z11) {
-            if (z9) {
+        if (z12) {
+            if (z10) {
                 if (i12 == 5) {
                     f11 = typedArray.getDimension(i10, 0.0f);
                 } else {
                     f11 = typedArray.getFloat(i10, 0.0f);
                 }
-                if (z10) {
+                if (z11) {
                     if (i13 == 5) {
                         f12 = typedArray.getDimension(i11, 0.0f);
                     } else {
@@ -134,7 +135,7 @@ public abstract class a {
                 ofFloat = PropertyValuesHolder.ofFloat(str, f10);
             }
             propertyValuesHolder = ofFloat;
-        } else if (z9) {
+        } else if (z10) {
             if (i12 == 5) {
                 i15 = (int) typedArray.getDimension(i10, 0.0f);
             } else if (c(i12)) {
@@ -142,7 +143,7 @@ public abstract class a {
             } else {
                 i15 = typedArray.getInt(i10, 0);
             }
-            if (z10) {
+            if (z11) {
                 if (i13 == 5) {
                     i16 = (int) typedArray.getDimension(i11, 0.0f);
                 } else if (c(i13)) {
@@ -154,7 +155,7 @@ public abstract class a {
             } else {
                 propertyValuesHolder = PropertyValuesHolder.ofInt(str, i15);
             }
-        } else if (z10) {
+        } else if (z11) {
             if (i13 == 5) {
                 i14 = (int) typedArray.getDimension(i11, 0.0f);
             } else if (c(i13)) {
@@ -189,9 +190,9 @@ public abstract class a {
         ValueAnimator valueAnimator3;
         PropertyValuesHolder propertyValuesHolder;
         PropertyValuesHolder propertyValuesHolder2;
-        boolean z9;
-        int i15;
         boolean z10;
+        int i15;
+        boolean z11;
         int i16;
         TypedArray f10 = h0.b.f(resources, theme, attributeSet, f205g);
         TypedArray f11 = h0.b.f(resources, theme, attributeSet, f208k);
@@ -220,27 +221,27 @@ public abstract class a {
             if (i10 == 4) {
                 TypedValue peekValue = f10.peekValue(5);
                 if (peekValue != null) {
-                    z9 = true;
+                    z10 = true;
                 } else {
-                    z9 = false;
+                    z10 = false;
                 }
-                if (z9) {
+                if (z10) {
                     i15 = peekValue.type;
                 } else {
                     i15 = 0;
                 }
                 TypedValue peekValue2 = f10.peekValue(6);
                 if (peekValue2 != null) {
-                    z10 = true;
+                    z11 = true;
                 } else {
-                    z10 = false;
+                    z11 = false;
                 }
-                if (z10) {
+                if (z11) {
                     i16 = peekValue2.type;
                 } else {
                     i16 = 0;
                 }
-                if ((z9 && c(i15)) || (z10 && c(i16))) {
+                if ((z10 && c(i15)) || (z11 && c(i16))) {
                     i10 = 3;
                 } else {
                     i10 = 0;
@@ -276,7 +277,7 @@ public abstract class a {
                 if (b12 == null && b13 == null) {
                     throw new InflateException(f11.getPositionDescription() + " propertyXName or propertyYName is needed for PathData");
                 }
-                Path d2 = i0.d(b11);
+                Path d2 = j0.d(b11);
                 PathMeasure pathMeasure = new PathMeasure(d2, false);
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(Float.valueOf(0.0f));

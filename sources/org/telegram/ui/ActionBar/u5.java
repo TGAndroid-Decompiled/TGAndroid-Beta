@@ -1,24 +1,130 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Point;
-import c8.ea;
-import org.telegram.messenger.qs;
-public final class u5 extends ea {
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class u5 extends Drawable {
+    public final int f29745a = 1;
+    public final int f29746b;
+    public final int f29747c;
+    public Object d;
+
+    public u5(int i7, int i10, int i11) {
+        this.f29746b = i7;
+        this.f29747c = i11;
+        Paint paint = new Paint(1);
+        this.d = paint;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(i7);
+        paint.setColor(i10);
+    }
+
     @Override
-    public final void b(int i7, int i10) {
-        boolean z9;
-        Point point = org.telegram.messenger.g0.f22567q;
-        boolean z10 = true;
-        if (point.x <= point.y) {
-            z9 = true;
-        } else {
-            z9 = false;
+    public final void draw(Canvas canvas) {
+        int i7;
+        float f10;
+        switch (this.f29745a) {
+            case 0:
+                Rect bounds = getBounds();
+                canvas.drawCircle(bounds.centerX(), bounds.centerY(), this.f29747c / 2.0f, (Paint) this.d);
+                return;
+            default:
+                Rect bounds2 = getBounds();
+                int i10 = this.f29747c;
+                int i11 = this.f29746b;
+                if (i11 == 7) {
+                    if (((RectF) this.d) == null) {
+                        this.d = new RectF();
+                    }
+                    ((RectF) this.d).set(bounds2);
+                    if (i10 <= 0) {
+                        f10 = org.telegram.messenger.g0.L(6.0f);
+                    } else {
+                        f10 = i10;
+                    }
+                    canvas.drawRoundRect((RectF) this.d, f10, f10, j6.f29253z);
+                    return;
+                }
+                if (i11 != 1 && i11 != 6) {
+                    if (i11 == 3) {
+                        i7 = Math.max(bounds2.width(), bounds2.height()) / 2;
+                    } else {
+                        i7 = (int) Math.ceil(Math.sqrt(((bounds2.top - bounds2.centerY()) * (bounds2.top - bounds2.centerY())) + ((bounds2.left - bounds2.centerX()) * (bounds2.left - bounds2.centerX()))));
+                    }
+                } else {
+                    if (i10 <= 0) {
+                        i10 = org.telegram.messenger.g0.L(20.0f);
+                    }
+                    i7 = i10;
+                }
+                canvas.drawCircle(bounds2.centerX(), bounds2.centerY(), i7, j6.f29253z);
+                return;
         }
-        if (i7 > i10) {
-            z10 = false;
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        switch (this.f29745a) {
+            case 0:
+                return this.f29747c + this.f29746b;
+            default:
+                return super.getIntrinsicHeight();
         }
-        if (z9 == z10) {
-            qs.e().k(qs.f25126z4, new Object[0]);
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        switch (this.f29745a) {
+            case 0:
+                return this.f29747c + this.f29746b;
+            default:
+                return super.getIntrinsicWidth();
         }
+    }
+
+    @Override
+    public final int getOpacity() {
+        switch (this.f29745a) {
+            case 0:
+                return -2;
+            default:
+                return 0;
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        switch (this.f29745a) {
+            case 0:
+                ((Paint) this.d).setAlpha(i7);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        switch (this.f29745a) {
+            case 0:
+                ((Paint) this.d).setColorFilter(colorFilter);
+                return;
+            default:
+                return;
+        }
+    }
+
+    public u5(int i7, int i10) {
+        this.f29746b = i7;
+        this.f29747c = i10;
+    }
+
+    private final void a(int i7) {
+    }
+
+    private final void b(ColorFilter colorFilter) {
     }
 }

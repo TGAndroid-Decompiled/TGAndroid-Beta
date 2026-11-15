@@ -83,7 +83,7 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
         if (this.virtualDisplay == null) {
             return;
         }
-        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new jg.r(this, i7, i10, 14));
+        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new jg.q(this, i7, i10, 15));
     }
 
     @Override

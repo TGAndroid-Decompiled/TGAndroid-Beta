@@ -2,41 +2,41 @@ package kg;
 
 import android.content.Context;
 import android.text.Editable;
-import fi.w3;
-import org.telegram.ui.ActionBar.h6;
+import bi.v3;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.Cells.k3;
 public final class l extends k3 {
-    public final int E;
-    public final m F;
+    public final int F;
+    public final n G;
 
-    public l(m mVar, Context context, String str, int i7, h6 h6Var, int i10) {
-        super(context, str, false, false, i7, h6Var);
-        this.E = i10;
+    public l(n nVar, Context context, String str, int i7, e6 e6Var, int i10) {
+        super(context, str, false, false, i7, e6Var);
+        this.F = i10;
         switch (i10) {
             case 1:
-                this.F = mVar;
-                super(context, str, true, false, i7, h6Var);
+                this.G = nVar;
+                super(context, str, true, false, i7, e6Var);
                 return;
             default:
-                this.F = mVar;
+                this.G = nVar;
                 return;
         }
     }
 
     @Override
-    public final void a(boolean z9) {
-        w3 w3Var;
-        w3 w3Var2;
-        switch (this.E) {
+    public final void a(boolean z10) {
+        v3 v3Var;
+        v3 v3Var2;
+        switch (this.F) {
             case 0:
-                if (z9 && (w3Var = this.F.f36518a) != null) {
-                    w3Var.y0(2);
+                if (z10 && (v3Var = this.G.f38882a) != null) {
+                    v3Var.y0(2);
                     return;
                 }
                 return;
             default:
-                if (z9 && (w3Var2 = this.F.f36518a) != null) {
-                    w3Var2.y0(3);
+                if (z10 && (v3Var2 = this.G.f38882a) != null) {
+                    v3Var2.y0(3);
                     return;
                 }
                 return;
@@ -45,16 +45,16 @@ public final class l extends k3 {
 
     @Override
     public final void b(Editable editable) {
-        switch (this.E) {
+        switch (this.F) {
             case 0:
-                m mVar = this.F;
-                mVar.f17433n.d(mVar.f17435s.getText().toString(), mVar.f17436w.getText().toString());
-                mVar.j0(true);
+                n nVar = this.G;
+                nVar.f17999n.d(nVar.f18001s.getText().toString(), nVar.f18002w.getText().toString());
+                nVar.j0(true);
                 return;
             default:
-                m mVar2 = this.F;
-                mVar2.f17433n.d(mVar2.f17435s.getText().toString(), mVar2.f17436w.getText().toString());
-                mVar2.j0(true);
+                n nVar2 = this.G;
+                nVar2.f17999n.d(nVar2.f18001s.getText().toString(), nVar2.f18002w.getText().toString());
+                nVar2.j0(true);
                 return;
         }
     }

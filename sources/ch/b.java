@@ -8,54 +8,54 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.style.ReplacementSpan;
-import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
+import org.telegram.messenger.hd;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.j6;
 public final class b extends ReplacementSpan {
-    public final TextPaint f6181a;
-    public final RectF f6182b;
-    public StaticLayout f6183c;
+    public final TextPaint f5003a;
+    public final RectF f5004b;
+    public StaticLayout f5005c;
     public float d;
-    public float f6184e;
-    public int f6185f;
-    public final h6 h;
+    public float f5006e;
+    public int f5007f;
+    public final e6 h;
 
-    public b(h6 h6Var) {
+    public b(e6 e6Var) {
         TextPaint textPaint = new TextPaint(1);
-        this.f6181a = textPaint;
-        this.f6182b = new RectF();
-        this.h = h6Var;
+        this.f5003a = textPaint;
+        this.f5004b = new RectF();
+        this.h = e6Var;
         textPaint.setTextSize(org.telegram.messenger.g0.L(15.0f));
-        textPaint.setColor(m6.w0(m6.C6, h6Var));
+        textPaint.setColor(j6.w0(j6.C6, e6Var));
     }
 
     public final void a() {
         Layout.Alignment alignment;
-        if (this.f6183c == null) {
-            String M0 = id.M0(2131746408, null);
-            int i7 = org.telegram.messenger.g0.f22567q.x;
-            if (id.f23161a0) {
+        if (this.f5005c == null) {
+            String M0 = hd.M0(2131746408, null);
+            int i7 = org.telegram.messenger.g0.f23609q.x;
+            if (hd.f24101a0) {
                 alignment = Layout.Alignment.ALIGN_OPPOSITE;
             } else {
                 alignment = Layout.Alignment.ALIGN_NORMAL;
             }
-            StaticLayout staticLayout = new StaticLayout(M0, this.f6181a, i7, alignment, 1.0f, 0.0f, false);
-            this.f6183c = staticLayout;
+            StaticLayout staticLayout = new StaticLayout(M0, this.f5003a, i7, alignment, 1.0f, 0.0f, false);
+            this.f5005c = staticLayout;
             this.d = staticLayout.getLineWidth(0);
-            this.f6184e = this.f6183c.getHeight();
+            this.f5006e = this.f5005c.getHeight();
         }
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
         a();
-        this.f6181a.setColor(m6.w0(m6.C6, this.h));
+        this.f5003a.setColor(j6.w0(j6.C6, this.h));
         Rect clipBounds = canvas.getClipBounds();
-        RectF rectF = this.f6182b;
+        RectF rectF = this.f5004b;
         rectF.set(clipBounds);
-        canvas.saveLayerAlpha(rectF, this.f6185f, 31);
-        canvas.translate(f10 + org.telegram.messenger.g0.L(4.0f), (((i13 - i11) / 2.0f) + i11) - (this.f6184e / 2.0f));
-        this.f6183c.draw(canvas);
+        canvas.saveLayerAlpha(rectF, this.f5007f, 31);
+        canvas.translate(f10 + org.telegram.messenger.g0.L(4.0f), (((i13 - i11) / 2.0f) + i11) - (this.f5006e / 2.0f));
+        this.f5005c.draw(canvas);
         canvas.restore();
     }
 

@@ -16,87 +16,87 @@ import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
-import org.telegram.ui.Components.my0;
+import org.telegram.ui.Components.oy0;
 public final class h2 extends View {
-    public final RectF D;
     public final RectF E;
-    public final org.telegram.ui.Components.hc F;
-    public final RectF G;
+    public final RectF F;
+    public final org.telegram.ui.Components.dc G;
     public final RectF H;
-    public final org.telegram.ui.Components.hc I;
-    public final long J;
-    public boolean K;
-    public final org.telegram.ui.Components.v5 L;
-    public boolean M;
-    public final org.telegram.ui.Components.v5 N;
-    public boolean O;
-    public final org.telegram.ui.Components.v5 P;
-    public final my0 Q;
-    public final my0 R;
-    public final h6.m S;
-    public my0 T;
-    public Drawable U;
+    public final RectF I;
+    public final org.telegram.ui.Components.dc J;
+    public final long K;
+    public boolean L;
+    public final org.telegram.ui.Components.u5 M;
+    public boolean N;
+    public final org.telegram.ui.Components.u5 O;
+    public boolean P;
+    public final org.telegram.ui.Components.u5 Q;
+    public final oy0 R;
+    public final oy0 S;
+    public final h6.m T;
+    public oy0 U;
     public Drawable V;
-    public RenderNode W;
-    public final Paint f22799a;
-    public final a f22800a0;
-    public final Paint f22801b;
-    public Runnable f22802b0;
-    public final Paint f22803c;
-    public Runnable f22804c0;
+    public Drawable W;
+    public final Paint f24028a;
+    public RenderNode f24029a0;
+    public final Paint f24030b;
+    public final a f24031b0;
+    public final Paint f24032c;
+    public Runnable f24033c0;
     public final Path d;
-    public Runnable f22805d0;
-    public final Paint f22806e;
-    public Object f22807e0;
-    public final Path f22808f;
-    public WebView f22809f0;
-    public int f22810g0;
+    public Runnable f24034d0;
+    public final Paint f24035e;
+    public Runnable f24036e0;
+    public final Path f24037f;
+    public Object f24038f0;
+    public WebView f24039g0;
     public final RectF h;
-    public final RectF f22811n;
-    public final org.telegram.ui.Components.hc f22812r;
-    public final RectF f22813s;
-    public final RectF f22814w;
-    public final org.telegram.ui.Components.hc f22815x;
-    public final RectF f22816y;
+    public int f24040h0;
+    public final RectF f24041n;
+    public final org.telegram.ui.Components.dc f24042r;
+    public final RectF f24043s;
+    public final RectF f24044w;
+    public final org.telegram.ui.Components.dc f24045x;
+    public final RectF f24046y;
 
     public h2(Context context) {
         super(context);
-        this.f22799a = new Paint(1);
-        this.f22801b = new Paint(1);
+        this.f24028a = new Paint(1);
+        this.f24030b = new Paint(1);
         Paint paint = new Paint(1);
-        this.f22803c = paint;
+        this.f24032c = paint;
         this.d = new Path();
         Paint paint2 = new Paint(1);
-        this.f22806e = paint2;
+        this.f24035e = paint2;
         Path path = new Path();
-        this.f22808f = path;
+        this.f24037f = path;
         this.h = new RectF();
-        this.f22811n = new RectF();
-        this.f22812r = new org.telegram.ui.Components.hc((View) null);
-        this.f22813s = new RectF();
-        this.f22814w = new RectF();
-        this.f22815x = new org.telegram.ui.Components.hc(this);
-        this.f22816y = new RectF();
-        this.D = new RectF();
+        this.f24041n = new RectF();
+        this.f24042r = new org.telegram.ui.Components.dc((View) null);
+        this.f24043s = new RectF();
+        this.f24044w = new RectF();
+        this.f24045x = new org.telegram.ui.Components.dc(this);
+        this.f24046y = new RectF();
         this.E = new RectF();
-        this.F = new org.telegram.ui.Components.hc(this);
-        this.G = new RectF();
+        this.F = new RectF();
+        this.G = new org.telegram.ui.Components.dc(this);
         this.H = new RectF();
-        this.I = new org.telegram.ui.Components.hc(this);
-        org.telegram.ui.Components.wq wqVar = org.telegram.ui.Components.wq.h;
-        this.L = new org.telegram.ui.Components.v5(this, 0L, 320L, wqVar);
-        this.M = true;
-        this.N = new org.telegram.ui.Components.v5(this, 0L, 420L, wqVar);
-        this.O = false;
-        this.P = new org.telegram.ui.Components.v5(this, 0L, 420L, wqVar);
-        this.S = new h6.m(28);
-        this.f22800a0 = new a(this, 2);
-        this.J = System.currentTimeMillis();
+        this.I = new RectF();
+        this.J = new org.telegram.ui.Components.dc(this);
+        org.telegram.ui.Components.er erVar = org.telegram.ui.Components.er.h;
+        this.M = new org.telegram.ui.Components.u5(this, 0L, 320L, erVar);
+        this.N = true;
+        this.O = new org.telegram.ui.Components.u5(this, 0L, 420L, erVar);
+        this.P = false;
+        this.Q = new org.telegram.ui.Components.u5(this, 0L, 420L, erVar);
+        this.T = new h6.m(29);
+        this.f24031b0 = new a(this, 2);
+        this.K = System.currentTimeMillis();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        this.Q = new my0(id.M0(2131753063, null), 13.0f, g0.o());
-        this.R = new my0(id.M0(2131753062, null), 13.0f, g0.o());
+        this.R = new oy0(hd.M0(2131753063, null), 13.0f, g0.o());
+        this.S = new oy0(hd.M0(2131753062, null), 13.0f, g0.o());
         paint2.setPathEffect(new CornerPathEffect(g0.L(1.0f)));
         path.rewind();
         path.moveTo(-g0.N(1.33f), g0.N(0.16f));
@@ -109,27 +109,27 @@ public final class h2 extends View {
         path.close();
     }
 
-    public final org.telegram.ui.Components.hc a(int i7) {
+    public final org.telegram.ui.Components.dc a(int i7) {
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {
-                    return this.f22812r;
+                    return this.f24042r;
                 }
-                return this.I;
+                return this.J;
             }
-            return this.F;
+            return this.G;
         }
-        return this.f22815x;
+        return this.f24045x;
     }
 
     public final int b(MotionEvent motionEvent) {
-        if (this.f22814w.contains(motionEvent.getX(), motionEvent.getY())) {
+        if (this.f24044w.contains(motionEvent.getX(), motionEvent.getY())) {
             return 1;
         }
-        if (this.E.contains(motionEvent.getX(), motionEvent.getY())) {
+        if (this.F.contains(motionEvent.getX(), motionEvent.getY())) {
             return 2;
         }
-        if (this.H.contains(motionEvent.getX(), motionEvent.getY())) {
+        if (this.I.contains(motionEvent.getX(), motionEvent.getY())) {
             return 3;
         }
         return 0;
@@ -145,9 +145,9 @@ public final class h2 extends View {
         float f14;
         WebView webView;
         super.onDraw(canvas);
-        Paint paint = this.f22801b;
+        Paint paint = this.f24030b;
         paint.setColor(-1);
-        Paint paint2 = this.f22803c;
+        Paint paint2 = this.f24032c;
         paint2.setColor(-1);
         paint2.setStrokeWidth(g0.L(2.0f));
         Path path = this.d;
@@ -157,35 +157,35 @@ public final class h2 extends View {
         float L2 = rectF.top + g0.L(8.0f);
         float width2 = (getWidth() - rectF.right) - g0.L(8.0f);
         float L3 = rectF.top + g0.L(38.0f);
-        RectF rectF2 = this.f22816y;
+        RectF rectF2 = this.f24046y;
         rectF2.set(width, L2, width2, L3);
         float f15 = rectF2.left;
         float f16 = rectF2.top;
         float centerX = rectF2.centerX();
         float f17 = rectF2.bottom;
-        RectF rectF3 = this.D;
+        RectF rectF3 = this.E;
         rectF3.set(f15, f16, centerX, f17);
-        this.E.set(rectF3.left - g0.L(8.0f), rectF3.top - g0.L(8.0f), rectF3.right, rectF3.bottom + g0.L(8.0f));
+        this.F.set(rectF3.left - g0.L(8.0f), rectF3.top - g0.L(8.0f), rectF3.right, rectF3.bottom + g0.L(8.0f));
         float centerX2 = rectF2.centerX();
         float f18 = rectF2.top;
         float f19 = rectF2.right;
         float f20 = rectF2.bottom;
-        RectF rectF4 = this.G;
+        RectF rectF4 = this.H;
         rectF4.set(centerX2, f18, f19, f20);
-        this.H.set(rectF4.left, rectF4.top - g0.L(8.0f), rectF4.right + g0.L(8.0f), rectF4.bottom + g0.L(8.0f));
+        this.I.set(rectF4.left, rectF4.top - g0.L(8.0f), rectF4.right + g0.L(8.0f), rectF4.bottom + g0.L(8.0f));
         Path.Direction direction = Path.Direction.CW;
         path.addRoundRect(rectF2, g0.L(15.0f), g0.L(15.0f), direction);
-        float d = this.L.d(this.K);
-        float d2 = this.N.d(this.M);
+        float d = this.M.d(this.L);
+        float d2 = this.O.d(this.N);
         float L4 = (rectF2.left - g0.L(18.0f)) - (rectF.left + g0.L(38.0f));
-        my0 my0Var = this.T;
-        if (my0Var == null) {
+        oy0 oy0Var = this.U;
+        if (oy0Var == null) {
             f10 = 18.0f;
             L = 0.0f;
         } else {
-            float f21 = my0Var.f36133c;
+            float f21 = oy0Var.f38105c;
             f10 = 18.0f;
-            if (this.U != null) {
+            if (this.V != null) {
                 f11 = 30.0f;
             } else {
                 f11 = 12.0f;
@@ -193,49 +193,49 @@ public final class h2 extends View {
             L = f21 + g0.L(f11);
         }
         float min = Math.min(L4, L);
-        float T1 = g0.T1(g0.T1(this.R.f36133c, this.Q.f36133c, d) + g0.L(12.0f), min, d2);
-        RectF rectF5 = this.f22811n;
+        float T1 = g0.T1(g0.T1(this.S.f38105c, this.R.f38105c, d) + g0.L(12.0f), min, d2);
+        RectF rectF5 = this.f24041n;
         rectF5.set(rectF.left + g0.L(8.0f), rectF.top + g0.L(8.0f), rectF.left + g0.L(38.0f) + T1, rectF.top + g0.L(38.0f));
         float f22 = rectF5.left;
         float f23 = rectF5.bottom;
-        RectF rectF6 = this.f22813s;
+        RectF rectF6 = this.f24043s;
         rectF6.set(f22, rectF5.top, g0.L(30.0f) + f22, f23);
-        RectF rectF7 = this.f22814w;
+        RectF rectF7 = this.f24044w;
         rectF7.set(rectF6);
         rectF7.right = g0.T1(rectF5.right, rectF6.left + g0.L(30.0f), d2);
         rectF7.inset(-g0.L(8.0f), -g0.L(8.0f));
         path.addRoundRect(rectF5, g0.L(15.0f), g0.L(15.0f), direction);
-        Object obj = this.f22807e0;
-        Paint paint3 = this.f22799a;
-        if (obj != null && Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated() && ((webView = this.f22809f0) == null || webView.getLayerType() == 2)) {
-            if (this.W == null) {
+        Object obj = this.f24038f0;
+        Paint paint3 = this.f24028a;
+        if (obj != null && Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated() && ((webView = this.f24039g0) == null || webView.getLayerType() == 2)) {
+            if (this.f24029a0 == null) {
                 RenderNode renderNode = new RenderNode("bot_fullscreen_blur");
-                this.W = renderNode;
+                this.f24029a0 = renderNode;
                 renderNode.setRenderEffect(RenderEffect.createBlurEffect(g0.L(f10), g0.L(f10), Shader.TileMode.CLAMP));
             }
-            RenderNode e10 = ni.a.e(this.f22807e0);
-            this.W.setPosition(0, 0, jg.g.e(16.0f, e10.getWidth(), 1), Math.max(1, (int) Math.min(rectF.top + g0.L(46.0f), e10.getHeight())));
-            RecordingCanvas beginRecording = this.W.beginRecording();
+            RenderNode d10 = n2.a0.d(this.f24038f0);
+            this.f24029a0.setPosition(0, 0, i5.c.d(16.0f, d10.getWidth(), 1), Math.max(1, (int) Math.min(rectF.top + g0.L(46.0f), d10.getHeight())));
+            RecordingCanvas beginRecording = this.f24029a0.beginRecording();
             beginRecording.translate(-g0.L(8.0f), 0.0f);
-            beginRecording.drawRenderNode(e10);
-            this.W.endRecording();
+            beginRecording.drawRenderNode(d10);
+            this.f24029a0.endRecording();
             canvas.save();
             canvas.clipPath(path);
             canvas.save();
             canvas.translate(g0.L(8.0f), 0.0f);
-            canvas.drawRenderNode(this.W);
+            canvas.drawRenderNode(this.f24029a0);
             canvas.restore();
-            paint3.setColor(org.telegram.ui.ActionBar.m6.r1(0.22f, -16777216));
+            paint3.setColor(org.telegram.ui.ActionBar.j6.r1(0.22f, -16777216));
             canvas.drawPaint(paint3);
             canvas.restore();
         } else {
-            paint3.setColor(org.telegram.ui.ActionBar.m6.r1(0.35f, -16777216));
+            paint3.setColor(org.telegram.ui.ActionBar.j6.r1(0.35f, -16777216));
             canvas.drawPath(path, paint3);
         }
         canvas.save();
         canvas.translate(rectF6.centerX(), rectF6.centerY());
-        org.telegram.ui.Components.hc hcVar = this.f22815x;
-        float a10 = hcVar.a(0.1f);
+        org.telegram.ui.Components.dc dcVar = this.f24045x;
+        float a10 = dcVar.a(0.1f);
         canvas.scale(a10, a10);
         canvas.translate((-g0.L(6.5f)) * d, 0.0f);
         float T12 = g0.T1(g0.L(4.66f), g0.L(5.5f), d);
@@ -249,38 +249,38 @@ public final class h2 extends View {
         canvas.restore();
         Canvas canvas2 = canvas;
         canvas2.saveLayerAlpha((rectF5.left + g0.L(30.0f)) - g0.L(10.0f), rectF5.top, rectF5.right, rectF5.bottom, 255, 31);
-        if (d2 > 0.0f && this.T != null) {
+        if (d2 > 0.0f && this.U != null) {
             canvas2.save();
-            canvas2.translate(com.google.android.recaptcha.internal.a.v(1.0f, d2, min, rectF5.left + g0.L(30.0f)), rectF5.centerY());
-            my0 my0Var2 = this.T;
+            canvas2.translate(com.google.android.gms.internal.vision.e2.t(1.0f, d2, min, rectF5.left + g0.L(30.0f)), rectF5.centerY());
+            oy0 oy0Var2 = this.U;
             float f25 = rectF5.right;
-            if (this.U != null) {
+            if (this.V != null) {
                 f14 = 30.0f;
             } else {
                 f14 = 12.0f;
             }
-            my0Var2.f36144p = ((f25 - g0.L(f14)) - (rectF5.left + g0.L(30.0f))) + 2.0f;
+            oy0Var2.f38116p = ((f25 - g0.L(f14)) - (rectF5.left + g0.L(30.0f))) + 2.0f;
             f13 = 1.0f;
-            my0Var2.c(0.0f, 0.0f, d2, -1, canvas);
+            oy0Var2.c(0.0f, 0.0f, d2, -1, canvas);
             f12 = d2;
             canvas2 = canvas;
-            canvas2.translate(this.T.k() + g0.L(5.0f), 0.0f);
+            canvas2.translate(this.U.k() + g0.L(5.0f), 0.0f);
             int L5 = g0.L(16.0f);
-            Drawable drawable = this.U;
+            Drawable drawable = this.V;
             if (drawable != null) {
                 drawable.setBounds(0, (-L5) / 2, L5, L5 / 2);
-                this.U.setAlpha((int) (75.0f * f12));
-                this.U.draw(canvas2);
+                this.V.setAlpha((int) (75.0f * f12));
+                this.V.draw(canvas2);
             }
-            Drawable drawable2 = this.V;
+            Drawable drawable2 = this.W;
             if (drawable2 != null) {
                 drawable2.setBounds(0, (-L5) / 2, L5, L5 / 2);
-                this.V.setAlpha((int) (255.0f * f12));
-                this.V.draw(canvas2);
+                this.W.setAlpha((int) (255.0f * f12));
+                this.W.draw(canvas2);
             }
             RectF rectF8 = g0.P;
             rectF8.set((rectF5.left + g0.L(30.0f)) - g0.L(10.0f), rectF5.top, rectF5.left + g0.L(30.0f), rectF5.bottom);
-            this.S.m(canvas2, rectF8, 2, 1.0f);
+            this.T.m(canvas2, rectF8, 2, 1.0f);
             canvas2.restore();
         } else {
             f12 = d2;
@@ -288,14 +288,14 @@ public final class h2 extends View {
         }
         if (f12 < f13) {
             canvas2.save();
-            float a11 = hcVar.a(0.1f);
+            float a11 = dcVar.a(0.1f);
             canvas2.scale(a11, a11, rectF6.centerX(), rectF6.centerY());
             float f26 = f13 - d;
             if (f26 > 0.0f) {
-                this.R.c(((rectF6.left + g0.L(30.0f)) - (g0.L(12.0f) * d)) + (g0.L(32.0f) * f12), rectF6.centerY(), (f13 - f12) * f26, -1, canvas);
+                this.S.c(((rectF6.left + g0.L(30.0f)) - (g0.L(12.0f) * d)) + (g0.L(32.0f) * f12), rectF6.centerY(), (f13 - f12) * f26, -1, canvas);
             }
             if (i7 > 0) {
-                this.Q.c((g0.L(12.0f) * f26) + rectF6.left + g0.L(30.0f) + (g0.L(32.0f) * f12), rectF6.centerY(), (f13 - f12) * d, -1, canvas);
+                this.R.c((g0.L(12.0f) * f26) + rectF6.left + g0.L(30.0f) + (g0.L(32.0f) * f12), rectF6.centerY(), (f13 - f12) * d, -1, canvas);
                 canvas2 = canvas;
             } else {
                 canvas2 = canvas;
@@ -305,7 +305,7 @@ public final class h2 extends View {
         canvas2.restore();
         canvas2.save();
         canvas2.translate(rectF3.centerX() + g0.L(2.0f), rectF3.centerY());
-        float a12 = this.F.a(0.1f);
+        float a12 = this.G.a(0.1f);
         canvas2.scale(a12, a12);
         float L6 = g0.L(6.0f);
         float L7 = g0.L(3.0f);
@@ -315,32 +315,32 @@ public final class h2 extends View {
         canvas.restore();
         canvas.save();
         canvas.translate(rectF4.centerX() + g0.L(f13), rectF4.centerY());
-        float a13 = this.I.a(0.1f);
+        float a13 = this.J.a(0.1f);
         canvas.scale(a13, a13);
         canvas.drawCircle(0.0f, -g0.L(5.0f), g0.L(1.66f), paint);
         canvas.drawCircle(0.0f, 0.0f, g0.L(1.66f), paint);
         canvas.drawCircle(0.0f, g0.L(5.0f), g0.L(1.66f), paint);
-        float d10 = this.P.d(this.O);
-        if (d10 > 0.0f) {
+        float d11 = this.Q.d(this.P);
+        if (d11 > 0.0f) {
             canvas.translate(-g0.N(8.166f), g0.N(3.5f));
-            float f28 = (d10 * 0.5f) + 0.5f;
+            float f28 = (d11 * 0.5f) + 0.5f;
             canvas.scale(f28, f28);
-            int r12 = org.telegram.ui.ActionBar.m6.r1(0.4f, -1);
-            Paint paint4 = this.f22806e;
+            int r12 = org.telegram.ui.ActionBar.j6.r1(0.4f, -1);
+            Paint paint4 = this.f24035e;
             paint4.setColor(r12);
-            Path path2 = this.f22808f;
+            Path path2 = this.f24037f;
             canvas.drawPath(path2, paint4);
-            float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.J) % 450)) / 450.0f;
+            float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.K) % 450)) / 450.0f;
             float f29 = 0.5f + currentTimeMillis;
             canvas.save();
             canvas.clipRect(-g0.L(5.0f), g0.T1(-g0.N(3.5f), g0.N(3.5f), currentTimeMillis), g0.L(5.0f), g0.T1(-g0.N(3.5f), g0.N(3.5f), f29));
-            paint4.setColor(org.telegram.ui.ActionBar.m6.r1(f13, -1));
+            paint4.setColor(org.telegram.ui.ActionBar.j6.r1(f13, -1));
             canvas.drawPath(path2, paint4);
             canvas.restore();
             if (f29 > f13) {
                 canvas.save();
                 canvas.clipRect(-g0.L(5.0f), g0.T1(-g0.N(3.5f), g0.N(3.5f), 0.0f), g0.L(5.0f), g0.T1(-g0.N(3.5f), g0.N(3.5f), f29 - f13));
-                paint4.setColor(org.telegram.ui.ActionBar.m6.r1(f13, -1));
+                paint4.setColor(org.telegram.ui.ActionBar.j6.r1(f13, -1));
                 canvas.drawPath(path2, paint4);
                 canvas.restore();
             }
@@ -355,46 +355,46 @@ public final class h2 extends View {
         Runnable runnable2;
         Runnable runnable3;
         if (motionEvent.getAction() == 0) {
-            a(this.f22810g0).c(false);
+            a(this.f24040h0).c(false);
             int b10 = b(motionEvent);
-            this.f22810g0 = b10;
+            this.f24040h0 = b10;
             a(b10).c(true);
         } else if (motionEvent.getAction() == 2) {
-            if (b(motionEvent) != this.f22810g0) {
-                this.f22810g0 = 0;
+            if (b(motionEvent) != this.f24040h0) {
+                this.f24040h0 = 0;
                 a(0).c(false);
             }
         } else if (motionEvent.getAction() == 1) {
-            int i7 = this.f22810g0;
-            if (i7 == 1 && (runnable3 = this.f22802b0) != null) {
+            int i7 = this.f24040h0;
+            if (i7 == 1 && (runnable3 = this.f24033c0) != null) {
                 runnable3.run();
-            } else if (i7 == 2 && (runnable2 = this.f22804c0) != null) {
+            } else if (i7 == 2 && (runnable2 = this.f24034d0) != null) {
                 runnable2.run();
-            } else if (i7 == 3 && (runnable = this.f22805d0) != null) {
+            } else if (i7 == 3 && (runnable = this.f24036e0) != null) {
                 runnable.run();
             }
-            a(this.f22810g0).c(false);
-            this.f22810g0 = 0;
+            a(this.f24040h0).c(false);
+            this.f24040h0 = 0;
         } else if (motionEvent.getAction() == 3) {
-            a(this.f22810g0).c(false);
-            this.f22810g0 = 0;
+            a(this.f24040h0).c(false);
+            this.f24040h0 = 0;
         }
-        if (this.f22810g0 != 0) {
+        if (this.f24040h0 != 0) {
             return true;
         }
         return false;
     }
 
-    public void setBack(boolean z9) {
-        this.K = z9;
+    public void setBack(boolean z10) {
+        this.L = z10;
         invalidate();
     }
 
-    public void setDownloading(boolean z9) {
-        if (this.O == z9) {
+    public void setDownloading(boolean z10) {
+        if (this.P == z10) {
             return;
         }
-        this.O = z9;
+        this.P = z10;
         invalidate();
     }
 
@@ -403,23 +403,23 @@ public final class h2 extends View {
     }
 
     public void setOnCloseClickListener(Runnable runnable) {
-        this.f22802b0 = runnable;
+        this.f24033c0 = runnable;
     }
 
     public void setOnCollapseClickListener(Runnable runnable) {
-        this.f22804c0 = runnable;
+        this.f24034d0 = runnable;
     }
 
     public void setOnMenuClickListener(Runnable runnable) {
-        this.f22805d0 = runnable;
+        this.f24036e0 = runnable;
     }
 
     public void setParentRenderNode(Object obj) {
-        this.f22807e0 = obj;
+        this.f24038f0 = obj;
     }
 
     public void setWebView(WebView webView) {
-        this.f22809f0 = webView;
+        this.f24039g0 = webView;
     }
 
     public void setInsets(Rect rect) {

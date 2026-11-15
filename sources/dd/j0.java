@@ -7,26 +7,26 @@ public enum j0 extends b2 {
     @Override
     public final void d(l lVar, a aVar) {
         char d = aVar.d();
-        g0 g0Var = b2.R;
+        g0 g0Var = b2.S;
         if (d != 0) {
             if (d != '-') {
                 if (d != '<') {
                     if (d != '>') {
                         if (d != 65535) {
                             lVar.f(d);
-                            lVar.f8658c = g0Var;
+                            lVar.f8042c = g0Var;
                             return;
                         }
                         lVar.l(this);
-                        lVar.f8658c = b2.f8605a;
+                        lVar.f8042c = b2.f7989a;
                         return;
                     }
                     lVar.f(d);
-                    lVar.f8658c = b2.f8614f;
+                    lVar.f8042c = b2.f7998f;
                     return;
                 }
                 lVar.f(d);
-                lVar.f8658c = b2.U;
+                lVar.f8042c = b2.V;
                 return;
             }
             lVar.f(d);
@@ -34,6 +34,6 @@ public enum j0 extends b2 {
         }
         lVar.m(this);
         lVar.f((char) 65533);
-        lVar.f8658c = g0Var;
+        lVar.f8042c = g0Var;
     }
 }

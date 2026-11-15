@@ -1,22 +1,14 @@
 package g7;
 
-import java.util.ArrayList;
+import f5.k;
 public final class c {
-    public final ArrayList f13575a;
+    public static final c f12922b;
+    public final k f12923a = new k(1);
 
-    public wf.e a(int i7) {
-        return (wf.e) this.f13575a.get(i7);
-    }
-
-    public c() {
-        this.f13575a = new ArrayList();
-        new ArrayList();
-        new ArrayList();
-    }
-
-    public c(wf.e eVar) {
-        ArrayList arrayList = new ArrayList(1);
-        this.f13575a = arrayList;
-        arrayList.add(eVar);
+    static {
+        c cVar = new c();
+        synchronized (c.class) {
+            f12922b = cVar;
+        }
     }
 }

@@ -1,7 +1,14 @@
 package org.telegram.ui;
-public final class xm0 extends v4.s {
-    @Override
-    public final boolean y0() {
-        return false;
-    }
+
+import android.text.Editable;
+public interface xm0 {
+    void A(Editable editable);
+
+    void d0();
+
+    boolean e();
+
+    void t0(int i7, boolean z10, boolean z11);
+
+    void y();
 }

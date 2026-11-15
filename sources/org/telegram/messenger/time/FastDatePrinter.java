@@ -162,9 +162,9 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         private final int mStyle;
         private final TimeZone mTimeZone;
 
-        public TimeZoneDisplayKey(TimeZone timeZone, boolean z9, int i7, Locale locale) {
+        public TimeZoneDisplayKey(TimeZone timeZone, boolean z10, int i7, Locale locale) {
             this.mTimeZone = timeZone;
-            if (z9) {
+            if (z10) {
                 this.mStyle = Integer.MIN_VALUE | i7;
             } else {
                 this.mStyle = i7;
@@ -225,8 +225,8 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         static final TimeZoneNumberRule INSTANCE_NO_COLON = new TimeZoneNumberRule(false);
         final boolean mColon;
 
-        public TimeZoneNumberRule(boolean z9) {
-            this.mColon = z9;
+        public TimeZoneNumberRule(boolean z10) {
+            this.mColon = z10;
         }
 
         @Override
@@ -388,12 +388,12 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         return applyRules(calendar, new StringBuffer(this.mMaxLengthEstimate)).toString();
     }
 
-    public static String getTimeZoneDisplay(TimeZone timeZone, boolean z9, int i7, Locale locale) {
-        TimeZoneDisplayKey timeZoneDisplayKey = new TimeZoneDisplayKey(timeZone, z9, i7, locale);
+    public static String getTimeZoneDisplay(TimeZone timeZone, boolean z10, int i7, Locale locale) {
+        TimeZoneDisplayKey timeZoneDisplayKey = new TimeZoneDisplayKey(timeZone, z10, i7, locale);
         ConcurrentMap<TimeZoneDisplayKey, String> concurrentMap = cTimeZoneDisplayCache;
         String str = concurrentMap.get(timeZoneDisplayKey);
         if (str == null) {
-            String displayName = timeZone.getDisplayName(z9, i7, locale);
+            String displayName = timeZone.getDisplayName(z10, i7, locale);
             String putIfAbsent = concurrentMap.putIfAbsent(timeZoneDisplayKey, displayName);
             if (putIfAbsent != null) {
                 return putIfAbsent;
@@ -737,7 +737,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
             }
         } else {
             sb2.append('\'');
-            boolean z9 = false;
+            boolean z10 = false;
             while (i7 < length) {
                 char charAt2 = str.charAt(i7);
                 if (charAt2 == '\'') {
@@ -746,9 +746,9 @@ public class FastDatePrinter implements DatePrinter, Serializable {
                         sb2.append(charAt2);
                         i7 = i11;
                     } else {
-                        z9 = !z9;
+                        z10 = !z10;
                     }
-                } else if (!z9 && ((charAt2 >= 'A' && charAt2 <= 'Z') || (charAt2 >= 'a' && charAt2 <= 'z'))) {
+                } else if (!z10 && ((charAt2 >= 'A' && charAt2 <= 'Z') || (charAt2 >= 'a' && charAt2 <= 'z'))) {
                     i7--;
                     break;
                 } else {

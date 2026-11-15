@@ -1,30 +1,30 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.View;
-import java.util.ArrayList;
-public abstract class m61 {
-    public abstract void b(View view, int i7, int i10);
+public final class m61 extends AnimatorListenerAdapter {
+    public boolean f37118a;
+    public final View f37119b;
+    public final float f37120c;
+    public final w61 d;
 
-    public boolean c(int i7) {
-        return false;
+    public m61(w61 w61Var, View view, float f10) {
+        this.d = w61Var;
+        this.f37119b = view;
+        this.f37120c = f10;
     }
 
-    public abstract View d(int i7);
-
-    public abstract int e();
-
-    public CharSequence g(int i7) {
-        return "";
+    @Override
+    public final void onAnimationCancel(Animator animator) {
+        super.onAnimationCancel(animator);
+        this.f37118a = true;
     }
 
-    public int h(int i7) {
-        return 0;
-    }
-
-    public void a(ArrayList arrayList) {
-    }
-
-    public int f(int i7) {
-        return i7;
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        if (!this.f37118a) {
+            this.d.D(this.f37119b, this.f37120c);
+        }
     }
 }

@@ -9,7 +9,7 @@ public class FcscoreAtom extends Atom {
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         int i7;
-        boolean z9;
+        boolean z10;
         float factor = SpaceAtom.getFactor(5, teXEnvironment) * 12.0f;
         int i10 = this.N;
         if (i10 == 5) {
@@ -21,11 +21,11 @@ public class FcscoreAtom extends Atom {
         float f11 = 0.07f * factor;
         float f12 = factor * 0.125f;
         if (i10 == 5) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        return new FcscoreBox(i7, f10, f11, f12, z9);
+        return new FcscoreBox(i7, f10, f11, f12, z10);
     }
 
     @Override

@@ -1,59 +1,35 @@
 package fi;
 
-import android.content.Context;
-import org.telegram.ui.Components.gw;
-import org.telegram.ui.Components.gy;
-import org.telegram.ui.i01;
-import org.telegram.ui.t11;
-public final class j1 extends mi.m {
-    public final int f12212q;
-    public final Object f12213r;
+import android.animation.ValueAnimator;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+public final class j1 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f11891a;
+    public final l1 f11892b;
 
-    public j1(int i7, Context context, Object obj) {
-        super(context, 2);
-        this.f12212q = i7;
-        this.f12213r = obj;
+    public j1(l1 l1Var, int i7) {
+        this.f11891a = i7;
+        this.f11892b = l1Var;
     }
 
     @Override
-    public void e() {
-        switch (this.f12212q) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f11891a) {
             case 0:
-                ((m1) this.f12213r).f12409i3 = true;
-                return;
-            case 1:
-                ((gy) this.f12213r).f34025f0 = true;
-                return;
-            case 2:
-            case 3:
-            default:
-                return;
-            case 4:
-                ((t11) this.f12213r).f50071x1 = true;
-                return;
-        }
-    }
-
-    @Override
-    public final void i() {
-        switch (this.f12212q) {
-            case 0:
-                ((m1) this.f12213r).f12409i3 = false;
-                return;
-            case 1:
-                ((gy) this.f12213r).f34025f0 = false;
-                return;
-            case 2:
-                ((gw) this.f12213r).Q.f34025f0 = false;
-                return;
-            case 3:
-                ((i01) this.f12213r).R.f50071x1 = false;
-                return;
-            case 4:
-                ((t11) this.f12213r).f50071x1 = false;
+                this.f11892b.d.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                ((i01) this.f12213r).R.f50071x1 = false;
+                l1 l1Var = this.f11892b;
+                l1Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                l1Var.f11983n = floatValue;
+                View view = l1Var.f11979b;
+                view.setAlpha(1.0f - floatValue);
+                view.setScaleX(1.0f - l1Var.f11983n);
+                view.setScaleY(1.0f - l1Var.f11983n);
+                l1Var.f11980c.setColorFilter(new PorterDuffColorFilter(i0.a.f(l1Var.f11983n, -1, -2960428), PorterDuff.Mode.SRC_IN));
+                l1Var.f11978a.invalidate();
                 return;
         }
     }

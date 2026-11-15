@@ -1,26 +1,28 @@
 package bi;
 public final class d3 implements Runnable {
-    public final int f3645a;
-    public final Object f3646b;
-    public final long f3647c;
-    public final Object d;
+    public final int f3439a;
+    public final c4 f3440b;
+    public final int f3441c;
 
-    public d3(Object obj, long j3, Object obj2, int i7) {
-        this.f3645a = i7;
-        this.f3646b = obj;
-        this.f3647c = j3;
-        this.d = obj2;
+    public d3(c4 c4Var, int i7, int i10) {
+        this.f3439a = i10;
+        this.f3440b = c4Var;
+        this.f3441c = i7;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: bi.d3.run():void");
-    }
-
-    public d3(Object obj, Object obj2, long j3, int i7) {
-        this.f3645a = i7;
-        this.f3646b = obj;
-        this.d = obj2;
-        this.f3647c = j3;
+        switch (this.f3439a) {
+            case 0:
+                this.f3440b.f3413f.scrollBy(0, this.f3441c);
+                return;
+            default:
+                v3 v3Var = this.f3440b.f3413f;
+                if (v3Var != null) {
+                    v3Var.setSpanCount(this.f3441c);
+                    return;
+                }
+                return;
+        }
     }
 }

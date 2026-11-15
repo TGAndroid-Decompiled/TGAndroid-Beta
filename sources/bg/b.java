@@ -14,9 +14,9 @@ public abstract class b {
             return;
         }
         try {
-            InputStream open = org.telegram.messenger.t0.f25570b.getAssets().open("currencies.json");
-            String str = h2.m0.f14114a;
-            JSONObject jSONObject = new JSONObject(new String(i9.f.b(open), g9.j.f13592a));
+            InputStream open = org.telegram.messenger.t0.f26600b.getAssets().open("currencies.json");
+            String str = h2.l0.f13471a;
+            JSONObject jSONObject = new JSONObject(new String(i9.f.b(open), g9.j.f12938a));
             Iterator<String> keys = jSONObject.keys();
             while (keys.hasNext()) {
                 String next = keys.next();
@@ -33,22 +33,22 @@ public abstract class b {
         SerializedData serializedData = new SerializedData(Utilities.v(str));
         a a10 = a.a(serializedData.readInt32(true), serializedData);
         serializedData.cleanup();
-        if (a10.f3234c != null) {
+        if (a10.f3189c != null) {
             a8.b("BillingUtilities.getPurpose: got purpose from received obfuscated profile id");
-            return a10.f3234c;
+            return a10.f3189c;
         }
         SerializedData serializedData2 = new SerializedData(8);
-        serializedData2.writeInt64(a10.f3233b);
+        serializedData2.writeInt64(a10.f3188b);
         String f10 = Utilities.f(serializedData2.toByteArray());
         serializedData2.cleanup();
         a8.b("BillingUtilities.getPurpose: searching purpose under ".concat(f10));
-        String string = org.telegram.messenger.t0.f25570b.getSharedPreferences("purchases", 0).getString(f10, null);
+        String string = org.telegram.messenger.t0.f26600b.getSharedPreferences("purchases", 0).getString(f10, null);
         if (string != null) {
             a8.b("BillingUtilities.getPurpose: got {" + string + "} under " + f10);
             SerializedData serializedData3 = new SerializedData(Utilities.v(string));
             a a11 = a.a(serializedData3.readInt32(true), serializedData3);
             serializedData3.cleanup();
-            return a11.f3234c;
+            return a11.f3189c;
         }
         a8.b("BillingUtilities.getPurpose: purpose under " + f10 + " not found");
         throw new RuntimeException(a8.p0.p("no purpose under ", f10, " found :("));

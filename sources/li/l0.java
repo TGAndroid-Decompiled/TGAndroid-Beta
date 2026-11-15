@@ -1,91 +1,210 @@
 package li;
 
+import android.text.SpannableStringBuilder;
+import c8.zc;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.telegram.messenger.id;
-public final class l0 {
-    public static ArrayList d;
-    public final int f18682a;
-    public final String f18683b;
-    public final List f18684c;
-
-    public l0(int i7, String str, String... strArr) {
-        this.f18682a = i7;
-        this.f18683b = str;
-        this.f18684c = Arrays.asList(strArr);
+import org.telegram.messenger.gj;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.jl;
+import org.telegram.messenger.m5;
+import org.telegram.messenger.np;
+import org.telegram.messenger.t3;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_communities;
+import org.telegram.ui.ActionBar.e2;
+import org.telegram.ui.ActionBar.t1;
+import org.telegram.ui.Components.cc;
+public abstract class l0 {
+    public static SpannableStringBuilder a(gj gjVar, String str, String str2, boolean z10, boolean z11) {
+        boolean z12;
+        boolean z13;
+        int i7;
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        TLRPC.Message message = gjVar.f23817k;
+        TLRPC.TL_messageActionChangeCommunity tL_messageActionChangeCommunity = (TLRPC.TL_messageActionChangeCommunity) message.action;
+        if (m5.o(message.peer_id) == m5.o(message.from_id)) {
+            z12 = true;
+        } else {
+            z12 = false;
+        }
+        if (tL_messageActionChangeCommunity.community_id == 0) {
+            z13 = true;
+        } else {
+            z13 = false;
+        }
+        if (z12) {
+            if (z13) {
+                if (z11) {
+                    i14 = 2131751868;
+                } else if (z10) {
+                    i14 = 2131751862;
+                } else {
+                    i14 = 2131751856;
+                }
+                return org.telegram.messenger.g0.X2(hd.M0(i14, null));
+            }
+            if (z11) {
+                i13 = 2131751870;
+            } else if (z10) {
+                i13 = 2131751864;
+            } else {
+                i13 = 2131751858;
+            }
+            return org.telegram.messenger.g0.X2(hd.a0(null, null, i13, str));
+        } else if (gjVar.N3()) {
+            if (z13) {
+                if (z11) {
+                    i12 = 2131751866;
+                } else if (z10) {
+                    i12 = 2131751860;
+                } else {
+                    i12 = 2131751854;
+                }
+                return org.telegram.messenger.g0.X2(hd.M0(i12, null));
+            }
+            if (z11) {
+                i11 = 2131751867;
+            } else if (z10) {
+                i11 = 2131751861;
+            } else {
+                i11 = 2131751855;
+            }
+            return org.telegram.messenger.g0.X2(hd.a0(null, null, i11, str));
+        } else if (z13) {
+            if (z11) {
+                i10 = 2131751869;
+            } else if (z10) {
+                i10 = 2131751863;
+            } else {
+                i10 = 2131751857;
+            }
+            return org.telegram.messenger.g0.X2(hd.a0(null, null, i10, str2));
+        } else {
+            if (z11) {
+                i7 = 2131751871;
+            } else if (z10) {
+                i7 = 2131751865;
+            } else {
+                i7 = 2131751859;
+            }
+            return org.telegram.messenger.g0.X2(hd.a0(null, null, i7, str2, str));
+        }
     }
 
-    public static ArrayList a(String str) {
-        String trim;
-        if (str == null) {
-            trim = "";
+    public static int b(int i7, long j3) {
+        TLRPC.Chat M0;
+        long j10;
+        TLRPC.User user;
+        TLRPC.ChatFull N0;
+        ArrayList<TL_communities.CommunityPeer> arrayList;
+        TLRPC.Dialog dialog = null;
+        if (j3 > 0) {
+            TLRPC.User a22 = np.s1(i7).a2(Long.valueOf(j3));
+            if (a22 == null) {
+                return 0;
+            }
+            j10 = a22.linked_community_id;
+            user = a22;
+            M0 = null;
         } else {
-            trim = str.trim();
+            M0 = np.s1(i7).M0(Long.valueOf(-j3));
+            if (M0 == null) {
+                return 0;
+            }
+            j10 = M0.linked_community_id;
+            user = null;
         }
-        if (trim.startsWith("/")) {
-            trim = trim.substring(1);
-        }
-        String lowerCase = trim.toLowerCase();
-        ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = d;
-        if (arrayList2 == null) {
-            ArrayList arrayList3 = new ArrayList();
-            d = arrayList3;
-            arrayList3.add(new l0(2131231558, id.M0(2131754030, null), "#", "/h1", "/header", "/title", "/heading"));
-            d.add(new l0(2131231559, id.M0(2131754029, null), "##", "/h2"));
-            d.add(new l0(2131231560, id.M0(2131754028, null), "###", "/h3"));
-            d.add(new l0(2131231561, id.M0(2131754027, null), "####", "/h4"));
-            d.add(new l0(2131231562, id.M0(2131754026, null), "#####", "/h5"));
-            d.add(new l0(2131231563, id.M0(2131754025, null), "######", "/h6"));
-            d.add(new l0(2131231580, id.M0(2131753996, null), "|", "/quote"));
-            d.add(new l0(2131231579, id.M0(2131753997, null), "/pullquote"));
-            d.add(new l0(2131231551, id.M0(2131754055, null), "```", "/code", "/pre", "/preformatted"));
-            d.add(new l0(2131231554, id.M0(2131754032, null), "/footer"));
-            d.add(new l0(2131231564, id.M0(2131754051, null), "-", "/list"));
-            d.add(new l0(2131231576, id.M0(2131754048, null), "1."));
-            d.add(new l0(2131231597, id.M0(2131754004, null), "[]", "/todo", "/checklist"));
-            d.add(new l0(2131231552, id.M0(2131754046, null), ">", "/toggle", "/details"));
-            d.add(new l0(2131231548, id.M0(2131746011, null), "/button"));
-            d.add(new l0(2131231584, id.M0(2131754047, null), "/table"));
-            d.add(new l0(2131231569, id.M0(2131754049, null), "/math", "/latex", "/expression"));
-            d.add(new l0(2131231553, id.M0(2131754053, null), "---"));
-            d.add(new l0(2131231570, id.M0(2131754052, null), "/image", "/pic", "/picture", "/photo", "/img", "/media"));
-            d.add(new l0(2131231570, id.M0(2131754045, null), "/video", "/vid", "/media"));
-            d.add(new l0(2131231546, id.M0(2131754054, null), "/audio", "/music", "/media"));
-            d.add(new l0(2131231568, id.M0(2131754050, null), "/map", "/location", "/venue"));
-            arrayList2 = d;
-        }
-        int size = arrayList2.size();
-        int i7 = 0;
-        while (i7 < size) {
-            Object obj = arrayList2.get(i7);
-            i7++;
-            l0 l0Var = (l0) obj;
-            if (!lowerCase.isEmpty()) {
-                String[] split = l0Var.f18683b.toLowerCase().split(" ");
-                int length = split.length;
-                int i10 = 0;
-                while (true) {
-                    if (i10 < length) {
-                        if (split[i10].startsWith(lowerCase)) {
-                            break;
-                        }
-                        i10++;
-                    } else {
-                        for (String str2 : l0Var.f18684c) {
-                            String lowerCase2 = str2.toLowerCase();
-                            if (lowerCase2.startsWith("/")) {
-                                lowerCase2 = lowerCase2.substring(1);
-                            }
-                            if (lowerCase2.startsWith(lowerCase)) {
-                            }
-                        }
+        if (j10 != 0 && (N0 = np.s1(i7).N0(j10)) != null && (arrayList = N0.linked_peers) != null) {
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                TL_communities.CommunityPeer communityPeer = arrayList.get(i10);
+                i10++;
+                TL_communities.CommunityPeer communityPeer2 = communityPeer;
+                if (m5.o(communityPeer2.peer) == j3) {
+                    if (user != null) {
+                        dialog = np.s1(i7).S0(user.f28200id);
                     }
+                    return c(M0, dialog, user, communityPeer2);
                 }
             }
-            arrayList.add(l0Var);
         }
-        return arrayList;
+        return 0;
+    }
+
+    public static int c(TLRPC.Chat chat, TLRPC.Dialog dialog, TLRPC.User user, TL_communities.CommunityPeer communityPeer) {
+        if (user != null) {
+            if (dialog == null) {
+                return 2;
+            }
+        } else if (chat != null) {
+            if (!t3.j0(chat)) {
+                if (!t3.t0(chat) && !communityPeer.can_view_history) {
+                    if (zc.a(communityPeer.flags, 1) && !communityPeer.visible) {
+                        return 4;
+                    }
+                    return 3;
+                }
+                return 2;
+            }
+        } else {
+            return 0;
+        }
+        return 1;
+    }
+
+    public static void d(org.telegram.ui.ActionBar.e2 r8, long r9, int r11) {
+        throw new UnsupportedOperationException("Method not decompiled: li.l0.d(org.telegram.ui.ActionBar.e2, long, int):void");
+    }
+
+    public static void e(t1[] t1VarArr, e2 e2Var, int i7, TLRPC.Chat chat) {
+        if (t1VarArr[0] != null) {
+            return;
+        }
+        np s12 = np.s1(i7);
+        di.k0 k0Var = new di.k0(t1VarArr, e2Var, i7, chat);
+        TLRPC.TL_channels_getAdminedPublicChannels tL_channels_getAdminedPublicChannels = new TLRPC.TL_channels_getAdminedPublicChannels();
+        tL_channels_getAdminedPublicChannels.for_community_peer = true;
+        int sendRequestTyped = s12.getConnectionsManager().sendRequestTyped(tL_channels_getAdminedPublicChannels, new d3.b(1), new jl(s12, k0Var, 0));
+        ConnectionsManager.getInstance(i7).bindRequestToGuid(sendRequestTyped, e2Var.getClassGuid());
+        t1 t1Var = new t1(3, e2Var.getContext(), null);
+        t1VarArr[0] = t1Var;
+        t1Var.r(500L);
+        t1VarArr[0].setOnCancelListener(new e0(i7, sendRequestTyped, t1VarArr, 0));
+    }
+
+    public static void f(cc ccVar, int i7, boolean z10) {
+        int i10;
+        int i11;
+        String M0;
+        int i12;
+        if (i7 == 2) {
+            i10 = 2131624293;
+        } else {
+            i10 = 2131623990;
+        }
+        if (i7 == 2) {
+            i11 = 24;
+        } else {
+            i11 = 36;
+        }
+        if (i7 == 0) {
+            M0 = hd.M0(2131751943, null);
+        } else if (i7 == 1) {
+            if (z10) {
+                i12 = 2131751942;
+            } else {
+                i12 = 2131751941;
+            }
+            M0 = hd.M0(i12, null);
+        } else {
+            M0 = hd.M0(2131751940, null);
+        }
+        ccVar.G(i10, i11, M0).j();
     }
 }

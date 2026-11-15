@@ -2,110 +2,72 @@ package gh;
 
 import android.graphics.Color;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.sc;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.t6;
+import org.telegram.messenger.qc;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.q6;
 public class b implements a {
-    public final h6 f13960a;
-    public final int f13961b;
-    public final float f13962c;
+    public final e6 f13300a;
+    public final int f13301b;
+    public final float f13302c;
     public int d;
-    public int f13963e;
-    public int f13964f;
+    public int f13303e;
+    public int f13304f;
     public int h;
-    public int f13965n;
-    public int f13966r;
+    public int f13305n;
+    public int f13306r;
 
-    public b(int i7, h6 h6Var) {
-        this(h6Var, i7, sc.e(262144) ? 0.85f : 0.76f);
+    public b(int i7, e6 e6Var) {
+        this(e6Var, i7, qc.e(262144) ? 0.85f : 0.76f);
     }
 
     @Override
-    public int A() {
+    public final float A1() {
+        return g0.N(0.6f);
+    }
+
+    @Override
+    public int A2() {
         a();
-        if (b() && Color.alpha(m6.w0(this.f13965n, this.f13960a)) != 0) {
-            return 0;
-        }
-        return this.f13964f;
+        return this.d;
     }
 
     @Override
-    public final int C0() {
+    public final int D1() {
         if (b()) {
-            return m6.w0(m6.ya, this.f13960a);
+            return j6.w0(j6.ya, this.f13300a);
         }
         return 0;
     }
 
     @Override
-    public final int M() {
+    public final int M0() {
         if (b()) {
-            return m6.w0(this.f13965n, this.f13960a);
+            return j6.w0(this.f13305n, this.f13300a);
         }
         return 0;
     }
 
     @Override
-    public int O() {
+    public int U0() {
         a();
-        if (b() && Color.alpha(m6.w0(this.f13965n, this.f13960a)) != 0) {
+        if (b() && Color.alpha(j6.w0(this.f13305n, this.f13300a)) != 0) {
             return 0;
         }
         return this.h;
     }
 
     @Override
-    public int R0() {
+    public int W1() {
         a();
         if (b()) {
-            return m6.w0(m6.f28267xa, this.f13960a);
+            return j6.w0(j6.f29226xa, this.f13300a);
         }
-        return this.f13963e;
-    }
-
-    public final void a() {
-        if (this.f13966r != t6.f28531b) {
-            d();
-        }
-    }
-
-    public final boolean b() {
-        if (this.f13965n >= 0 && m6.i1(this.f13960a)) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean c() {
-        if (g0.B(m6.w0(this.f13961b, this.f13960a)) < 0.721f) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void d() {
-        this.f13966r = t6.f28531b;
-        this.d = m6.r1(this.f13962c, m6.w0(this.f13961b, this.f13960a));
-        if (c()) {
-            this.f13964f = 687865855;
-            this.h = 352321535;
-            this.f13963e = 0;
-            return;
-        }
-        this.f13964f = -1;
-        this.h = -1;
-        this.f13963e = 536870912;
+        return this.f13303e;
     }
 
     @Override
-    public int e1() {
-        a();
-        return this.d;
-    }
-
-    @Override
-    public final float j0() {
+    public final float Y0() {
         if (b()) {
             return g0.N(1.0f);
         }
@@ -113,24 +75,62 @@ public class b implements a {
     }
 
     @Override
-    public final float o0() {
+    public final float Z0() {
         if (b()) {
             return g0.N(2.25f);
         }
         return -1.0f;
     }
 
-    @Override
-    public final float v0() {
-        return g0.N(0.6f);
+    public final void a() {
+        if (this.f13306r != q6.f29535b) {
+            d();
+        }
     }
 
-    public b(h6 h6Var, int i7, float f10) {
-        this.f13965n = -1;
-        this.f13966r = t6.f28531b;
-        this.f13960a = h6Var;
-        this.f13961b = i7;
-        this.f13962c = f10;
+    public final boolean b() {
+        if (this.f13305n >= 0 && j6.i1(this.f13300a)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean c() {
+        if (g0.B(j6.w0(this.f13301b, this.f13300a)) < 0.721f) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void d() {
+        this.f13306r = q6.f29535b;
+        this.d = j6.r1(this.f13302c, j6.w0(this.f13301b, this.f13300a));
+        if (c()) {
+            this.f13304f = 687865855;
+            this.h = 352321535;
+            this.f13303e = 0;
+            return;
+        }
+        this.f13304f = -1;
+        this.h = -1;
+        this.f13303e = 536870912;
+    }
+
+    @Override
+    public int t0() {
+        a();
+        if (b() && Color.alpha(j6.w0(this.f13305n, this.f13300a)) != 0) {
+            return 0;
+        }
+        return this.f13304f;
+    }
+
+    public b(e6 e6Var, int i7, float f10) {
+        this.f13305n = -1;
+        this.f13306r = q6.f29535b;
+        this.f13300a = e6Var;
+        this.f13301b = i7;
+        this.f13302c = f10;
         d();
     }
 }

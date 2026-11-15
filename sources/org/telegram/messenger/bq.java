@@ -1,13 +1,15 @@
 package org.telegram.messenger;
-public final class bq implements Runnable {
-    public final int f21722a;
-    public final yr f21723b;
-    public final a0.h f21724c;
 
-    public bq(yr yrVar, a0.h hVar, int i7) {
-        this.f21722a = i7;
-        this.f21723b = yrVar;
-        this.f21724c = hVar;
+import org.telegram.tgnet.TLRPC;
+public final class bq implements Runnable {
+    public final int f22743a;
+    public final vr f22744b;
+    public final TLRPC.EncryptedChat f22745c;
+
+    public bq(vr vrVar, TLRPC.EncryptedChat encryptedChat, int i7) {
+        this.f22743a = i7;
+        this.f22744b = vrVar;
+        this.f22745c = encryptedChat;
     }
 
     @Override

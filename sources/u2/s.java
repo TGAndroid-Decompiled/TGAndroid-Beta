@@ -1,15 +1,16 @@
 package u2;
 
 import android.text.TextUtils;
+import com.google.android.gms.internal.vision.e2;
 public final class s {
-    public final String f56315a;
-    public final boolean f56316b;
-    public final boolean f56317c;
+    public final String f57814a;
+    public final boolean f57815b;
+    public final boolean f57816c;
 
-    public s(String str, boolean z9, boolean z10) {
-        this.f56315a = str;
-        this.f56316b = z9;
-        this.f56317c = z10;
+    public s(String str, boolean z10, boolean z11) {
+        this.f57814a = str;
+        this.f57815b = z10;
+        this.f57816c = z11;
     }
 
     public final boolean equals(Object obj) {
@@ -18,7 +19,7 @@ public final class s {
         }
         if (obj != null && obj.getClass() == s.class) {
             s sVar = (s) obj;
-            if (TextUtils.equals(this.f56315a, sVar.f56315a) && this.f56316b == sVar.f56316b && this.f56317c == sVar.f56317c) {
+            if (TextUtils.equals(this.f57814a, sVar.f57814a) && this.f57815b == sVar.f57815b && this.f57816c == sVar.f57816c) {
                 return true;
             }
         }
@@ -27,15 +28,15 @@ public final class s {
 
     public final int hashCode() {
         int i7;
-        int h = com.google.android.recaptcha.internal.a.h(31, 31, this.f56315a);
+        int h = e2.h(31, 31, this.f57814a);
         int i10 = 1237;
-        if (this.f56316b) {
+        if (this.f57815b) {
             i7 = 1231;
         } else {
             i7 = 1237;
         }
         int i11 = (h + i7) * 31;
-        if (this.f56317c) {
+        if (this.f57816c) {
             i10 = 1231;
         }
         return i11 + i10;

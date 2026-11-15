@@ -1,19 +1,19 @@
 package g9;
 public final class b extends g {
-    public static final b f13581c = new b("CharMatcher.any()", 0);
+    public static final b f12927c = new b("CharMatcher.any()", 0);
     public static final b d = new b("CharMatcher.ascii()", 1);
-    public static final b f13582e = new b("CharMatcher.javaIsoControl()", 2);
-    public static final b f13583f = new b("CharMatcher.none()", 3);
-    public final int f13584b;
+    public static final b f12928e = new b("CharMatcher.javaIsoControl()", 2);
+    public static final b f12929f = new b("CharMatcher.none()", 3);
+    public final int f12930b;
 
     public b(String str, int i7) {
         super(str);
-        this.f13584b = i7;
+        this.f12930b = i7;
     }
 
     @Override
     public final boolean c(char c10) {
-        switch (this.f13584b) {
+        switch (this.f12930b) {
             case 0:
                 return true;
             case 1:
@@ -33,11 +33,11 @@ public final class b extends g {
 
     @Override
     public i d() {
-        switch (this.f13584b) {
+        switch (this.f12930b) {
             case 0:
-                return f13583f;
+                return f12929f;
             case 3:
-                return f13581c;
+                return f12927c;
             default:
                 return super.d();
         }

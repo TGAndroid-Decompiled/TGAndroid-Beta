@@ -1,54 +1,59 @@
 package bi;
 
-import java.util.ArrayList;
-import org.telegram.messenger.qp;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_payments;
-public final class k0 {
-    public final int f4125a;
-    public final long f4126b;
-    public int f4127c;
-    public boolean d;
-    public final ArrayList f4128e = new ArrayList();
-    public long f4129f;
-    public boolean f4130g;
-    public boolean h;
-    public int f4131i;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.widget.TextView;
+public final class k0 extends di.w5 {
+    public final Path E0;
+    public final float[] F0;
+    public final m0 G0;
 
-    public k0(int i7, long j3) {
-        this.f4130g = false;
-        this.h = false;
-        this.f4125a = i7;
-        this.f4126b = j3;
-        if (System.currentTimeMillis() - this.f4129f > 900000) {
-            this.f4127c = 0;
-            this.h = false;
-            this.d = false;
-            if (this.f4131i != 0) {
-                ConnectionsManager.getInstance(i7).cancelRequest(this.f4131i, true);
-                this.f4131i = 0;
-            }
-            this.f4130g = false;
-            a();
+    public k0(m0 m0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var, b0 b0Var, o oVar, o oVar2, o oVar3, o oVar4, o oVar5, o oVar6) {
+        super(context, e6Var, b0Var, oVar, null, oVar2, oVar3, oVar4, oVar5, oVar6);
+        this.G0 = m0Var;
+        this.E0 = new Path();
+        this.F0 = new float[8];
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipPath(this.E0);
+        super.dispatchDraw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final int getFinalHeight() {
+        return org.telegram.messenger.g0.L(288.0f);
+    }
+
+    @Override
+    public final float getRealHeight() {
+        return org.telegram.messenger.g0.L(288.0f);
+    }
+
+    @Override
+    public final void k(int i7) {
+        m0 m0Var = this.G0;
+        TextView textView = m0Var.X1;
+        if (textView != null && org.telegram.ui.ActionBar.j6.H1(textView.getBackground(), i7, false)) {
+            m0Var.X1.invalidate();
         }
     }
 
-    public final void a() {
-        if (!this.f4130g && !this.h && !this.d) {
-            this.f4129f = System.currentTimeMillis();
-            this.f4130g = true;
-            TL_payments.getConnectedStarRefBots getconnectedstarrefbots = new TL_payments.getConnectedStarRefBots();
-            int i7 = this.f4125a;
-            getconnectedstarrefbots.peer = qp.s1(i7).j1(this.f4126b);
-            getconnectedstarrefbots.limit = 20;
-            ArrayList arrayList = this.f4128e;
-            if (!arrayList.isEmpty()) {
-                TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) jg.g.i(1, arrayList);
-                getconnectedstarrefbots.flags |= 4;
-                getconnectedstarrefbots.offset_date = connectedbotstarref.date;
-                getconnectedstarrefbots.offset_link = connectedbotstarref.url;
-            }
-            this.f4131i = ConnectionsManager.getInstance(i7).sendRequest(getconnectedstarrefbots, new j0(this, 0));
-        }
+    @Override
+    public final void onSizeChanged(int i7, int i10, int i11, int i12) {
+        super.onSizeChanged(i7, i10, i11, i12);
+        float L = org.telegram.messenger.g0.L(12.0f);
+        float[] fArr = this.F0;
+        fArr[3] = L;
+        fArr[2] = L;
+        fArr[1] = L;
+        fArr[0] = L;
+        Path path = this.E0;
+        path.rewind();
+        path.addRoundRect(0.0f, 0.0f, i7, i10, this.F0, Path.Direction.CW);
     }
 }

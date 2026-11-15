@@ -18,15 +18,15 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import m9.u;
 public final class l implements ServiceConnection {
-    public int f19915a = 0;
-    public final Messenger f19916b;
-    public j2.n f19917c;
+    public int f20507a = 0;
+    public final Messenger f20508b;
+    public k8.a f20509c;
     public final ArrayDeque d;
-    public final SparseArray f19918e;
-    public final n f19919f;
+    public final SparseArray f20510e;
+    public final n f20511f;
 
     public l(n nVar) {
-        this.f19919f = nVar;
+        this.f20511f = nVar;
         Handler handler = new Handler(Looper.getMainLooper(), new Handler.Callback() {
             @Override
             public final boolean handleMessage(Message message) {
@@ -40,7 +40,7 @@ public final class l implements ServiceConnection {
                 l lVar = l.this;
                 synchronized (lVar) {
                     try {
-                        SparseArray sparseArray = lVar.f19918e;
+                        SparseArray sparseArray = lVar.f20510e;
                         m mVar = (m) sparseArray.get(i7);
                         if (mVar == 0) {
                             StringBuilder sb3 = new StringBuilder(String.valueOf(i7).length() + 39);
@@ -56,7 +56,7 @@ public final class l implements ServiceConnection {
                             mVar.c(new Exception("Not supported by GmsCore", null));
                             return true;
                         }
-                        switch (mVar.f19923e) {
+                        switch (mVar.f20515e) {
                             case 0:
                                 if (data.getBoolean("ack", false)) {
                                     mVar.b(null);
@@ -78,22 +78,22 @@ public final class l implements ServiceConnection {
             }
         });
         Looper.getMainLooper();
-        this.f19916b = new Messenger(handler);
+        this.f20508b = new Messenger(handler);
         this.d = new ArrayDeque();
-        this.f19918e = new SparseArray();
+        this.f20510e = new SparseArray();
     }
 
     public final synchronized boolean a(m mVar) {
         Throwable th2;
         int i7;
-        boolean z9;
+        boolean z10;
         w6.a a10;
         n nVar;
         Context context;
         try {
             try {
-                i7 = this.f19915a;
-                z9 = false;
+                i7 = this.f20507a;
+                z10 = false;
             } catch (Throwable th3) {
                 th = th3;
                 th2 = th;
@@ -106,27 +106,27 @@ public final class l implements ServiceConnection {
                             return false;
                         }
                         this.d.add(mVar);
-                        ((ScheduledExecutorService) this.f19919f.f19927c).execute(new j(this, 1));
+                        ((ScheduledExecutorService) this.f20511f.f20519c).execute(new j(this, 1));
                         return true;
                     }
                     this.d.add(mVar);
                     return true;
                 }
                 this.d.add(mVar);
-                if (this.f19915a == 0) {
-                    z9 = true;
+                if (this.f20507a == 0) {
+                    z10 = true;
                 }
-                q6.m.j(z9);
+                q6.m.j(z10);
                 if (Log.isLoggable("MessengerIpcClient", 2)) {
                     Log.v("MessengerIpcClient", "Starting bind to GmsCore");
                 }
-                this.f19915a = 1;
+                this.f20507a = 1;
                 Intent intent = new Intent("com.google.android.c2dm.intent.REGISTER");
                 intent.setPackage("com.google.android.gms");
                 try {
                     a10 = w6.a.a();
-                    nVar = this.f19919f;
-                    context = (Context) nVar.f19926b;
+                    nVar = this.f20511f;
+                    context = (Context) nVar.f20518b;
                 } catch (SecurityException e10) {
                     e = e10;
                 }
@@ -134,7 +134,7 @@ public final class l implements ServiceConnection {
                     if (!a10.c(context, context.getClass().getName(), intent, this, 1, null)) {
                         b("Unable to bind to service");
                     } else {
-                        ((ScheduledExecutorService) nVar.f19927c).schedule(new j(this, 0), 30L, TimeUnit.SECONDS);
+                        ((ScheduledExecutorService) nVar.f20519c).schedule(new j(this, 0), 30L, TimeUnit.SECONDS);
                     }
                 } catch (SecurityException e11) {
                     e = e11;
@@ -160,20 +160,20 @@ public final class l implements ServiceConnection {
             if (Log.isLoggable("MessengerIpcClient", 3)) {
                 Log.d("MessengerIpcClient", "Disconnected: ".concat(String.valueOf(str)));
             }
-            int i7 = this.f19915a;
+            int i7 = this.f20507a;
             if (i7 != 0) {
                 if (i7 != 1 && i7 != 2) {
                     if (i7 != 3) {
                         return;
                     }
-                    this.f19915a = 4;
+                    this.f20507a = 4;
                     return;
                 }
                 if (Log.isLoggable("MessengerIpcClient", 2)) {
                     Log.v("MessengerIpcClient", "Unbinding service");
                 }
-                this.f19915a = 4;
-                w6.a.a().b((Context) this.f19919f.f19926b, this);
+                this.f20507a = 4;
+                w6.a.a().b((Context) this.f20511f.f20518b, this);
                 ?? exc = new Exception(str, securityException);
                 ArrayDeque arrayDeque = this.d;
                 Iterator it = arrayDeque.iterator();
@@ -183,7 +183,7 @@ public final class l implements ServiceConnection {
                 arrayDeque.clear();
                 int i10 = 0;
                 while (true) {
-                    SparseArray sparseArray = this.f19918e;
+                    SparseArray sparseArray = this.f20510e;
                     if (i10 < sparseArray.size()) {
                         ((m) sparseArray.valueAt(i10)).c(exc);
                         i10++;
@@ -202,12 +202,12 @@ public final class l implements ServiceConnection {
 
     public final synchronized void d() {
         try {
-            if (this.f19915a == 2 && this.d.isEmpty() && this.f19918e.size() == 0) {
+            if (this.f20507a == 2 && this.d.isEmpty() && this.f20510e.size() == 0) {
                 if (Log.isLoggable("MessengerIpcClient", 2)) {
                     Log.v("MessengerIpcClient", "Finished handling requests, unbinding");
                 }
-                this.f19915a = 3;
-                w6.a.a().b((Context) this.f19919f.f19926b, this);
+                this.f20507a = 3;
+                w6.a.a().b((Context) this.f20511f.f20518b, this);
             }
         } catch (Throwable th2) {
             throw th2;
@@ -219,7 +219,7 @@ public final class l implements ServiceConnection {
         if (Log.isLoggable("MessengerIpcClient", 2)) {
             Log.v("MessengerIpcClient", "Service connected");
         }
-        ((ScheduledExecutorService) this.f19919f.f19927c).execute(new u(22, this, iBinder));
+        ((ScheduledExecutorService) this.f20511f.f20519c).execute(new u(22, this, iBinder));
     }
 
     @Override
@@ -227,6 +227,6 @@ public final class l implements ServiceConnection {
         if (Log.isLoggable("MessengerIpcClient", 2)) {
             Log.v("MessengerIpcClient", "Service disconnected");
         }
-        ((ScheduledExecutorService) this.f19919f.f19927c).execute(new j(this, 2));
+        ((ScheduledExecutorService) this.f20511f.f20519c).execute(new j(this, 2));
     }
 }

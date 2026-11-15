@@ -2,24 +2,24 @@ package bg;
 
 import java.util.Map;
 import java.util.function.ToIntFunction;
-import org.telegram.messenger.ij;
-import org.telegram.messenger.s9;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.r9;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.w5;
+import org.telegram.ui.Components.v5;
 public final class d implements ToIntFunction {
-    public final int f3266a;
+    public final int f3221a;
 
     public d(int i7) {
-        this.f3266a = i7;
+        this.f3221a = i7;
     }
 
     @Override
     public final int applyAsInt(Object obj) {
-        switch (this.f3266a) {
+        switch (this.f3221a) {
             case 0:
-                return ((h) obj).f3287a;
+                return ((h) obj).f3242a;
             case 1:
                 return ((TL_stars.StarGift) obj).sold_out ? 1 : 0;
             case 2:
@@ -43,28 +43,28 @@ public final class d implements ToIntFunction {
             case 8:
                 return ((TL_stories.StoryItem) obj).date;
             case 9:
-                return -((TL_stories.StoryItem) jg.g.i(1, ((TL_stories.PeerStories) obj).stories)).date;
+                return -((TL_stories.StoryItem) i5.c.h(1, ((TL_stories.PeerStories) obj).stories)).date;
             case 10:
                 return ((Integer) ((Object[]) obj)[1]).intValue();
             case 11:
-                return ((s9) obj).f25441e.bid_date;
+                return ((r9) obj).f26261e.bid_date;
             case 12:
                 return Integer.parseInt((String) obj);
             case 13:
-                return ((ij) obj).e1();
+                return ((gj) obj).e1();
             case 14:
                 return -((TLRPC.TL_forumTopic) obj).top_message;
             case 15:
-                return ((TLRPC.Message) obj).f26981id;
+                return ((TLRPC.Message) obj).f28072id;
             case 16:
-                return ((TLRPC.Message) obj).f26981id;
+                return ((TLRPC.Message) obj).f28072id;
             case 17:
-                return ((w5) obj).d;
+                return ((v5) obj).d;
             case 18:
-                return ((w5) obj).f39884e;
+                return ((v5) obj).f40269e;
             case 19:
                 ad.c cVar = (ad.c) obj;
-                return cVar.d - cVar.f1036b;
+                return cVar.d - cVar.f1034b;
             case 20:
                 TLRPC.MessagePeerReaction messagePeerReaction = (TLRPC.MessagePeerReaction) obj;
                 int i7 = messagePeerReaction.date;

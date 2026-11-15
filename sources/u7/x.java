@@ -1,3 +1,8 @@
 package u7;
-public final class x extends a8.a {
+
+import android.os.IInterface;
+public interface x extends IInterface {
+    void Q0(u uVar);
+
+    void zze();
 }

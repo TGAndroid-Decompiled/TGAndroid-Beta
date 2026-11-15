@@ -1,42 +1,20 @@
 package org.telegram.ui.Components;
-public final class q41 extends v4.k {
-    public final r41 F;
 
-    public q41(r41 r41Var) {
-        this.F = r41Var;
+import android.view.View;
+import java.io.Serializable;
+public final class q41 implements org.telegram.messenger.x10, org.telegram.messenger.y10 {
+    public final r41 f38519a;
+
+    @Override
+    public Boolean a(b41 b41Var, View view, Integer num, Float f10, Float f11) {
+        return Boolean.valueOf(this.f38519a.c0(b41Var, view));
     }
 
     @Override
-    public final void M() {
-        r41 r41Var = this.F;
-        if (r41Var.b1()) {
-            r41Var.invalidate();
-        }
-        r41Var.F1();
-    }
-
-    @Override
-    public final void O() {
-        r41 r41Var = this.F;
-        if (r41Var.b1()) {
-            r41Var.invalidate();
-        }
-        r41Var.F1();
-    }
-
-    @Override
-    public final void P(v4.d1 d1Var) {
-        r41 r41Var = this.F;
-        r41Var.invalidate();
-        r41Var.F1();
-    }
-
-    @Override
-    public final void Q() {
-        r41 r41Var = this.F;
-        if (r41Var.b1()) {
-            r41Var.invalidate();
-        }
-        r41Var.F1();
+    public void m(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        Integer num = (Integer) number;
+        Float f10 = (Float) serializable;
+        Float f11 = (Float) serializable2;
+        this.f38519a.b0((b41) obj, (View) obj2);
     }
 }

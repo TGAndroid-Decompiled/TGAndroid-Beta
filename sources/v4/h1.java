@@ -1,71 +1,36 @@
 package v4;
-public final class h1 {
-    public int f57092a;
-    public int f57093b;
-    public int f57094c;
-    public int d;
-    public int f57095e;
 
-    public final boolean a() {
-        int i7;
-        int i10;
-        int i11;
-        int i12 = this.f57092a;
-        int i13 = 2;
-        if ((i12 & 7) != 0) {
-            int i14 = this.d;
-            int i15 = this.f57093b;
-            if (i14 > i15) {
-                i11 = 1;
-            } else if (i14 == i15) {
-                i11 = 2;
-            } else {
-                i11 = 4;
-            }
-            if ((i11 & i12) == 0) {
-                return false;
-            }
-        }
-        if ((i12 & 112) != 0) {
-            int i16 = this.d;
-            int i17 = this.f57094c;
-            if (i16 > i17) {
-                i10 = 1;
-            } else if (i16 == i17) {
-                i10 = 2;
-            } else {
-                i10 = 4;
-            }
-            if (((i10 << 4) & i12) == 0) {
-                return false;
+import android.content.Context;
+import android.util.DisplayMetrics;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.ui.Wallet.u5;
+public final class h1 extends c0 {
+    public final u5 f58572r;
+
+    public h1(u5 u5Var, Context context) {
+        super(context);
+        this.f58572r = u5Var;
+    }
+
+    @Override
+    public final void g(View view, z0 z0Var) {
+        RecyclerView recyclerView = this.f58572r.f44554a;
+        if (recyclerView != null) {
+            o0 layoutManager = recyclerView.getLayoutManager();
+            layoutManager.getClass();
+            int[] iArr = {0, o0.z(view) - layoutManager.F()};
+            int i7 = iArr[0];
+            int i10 = iArr[1];
+            int m10 = m(Math.max(Math.abs(i7), Math.abs(i10)));
+            if (m10 > 0) {
+                z0Var.b(i7, i10, m10, this.f58516j);
             }
         }
-        if ((i12 & 1792) != 0) {
-            int i18 = this.f57095e;
-            int i19 = this.f57093b;
-            if (i18 > i19) {
-                i7 = 1;
-            } else if (i18 == i19) {
-                i7 = 2;
-            } else {
-                i7 = 4;
-            }
-            if (((i7 << 8) & i12) == 0) {
-                return false;
-            }
-        }
-        if ((i12 & 28672) != 0) {
-            int i20 = this.f57095e;
-            int i21 = this.f57094c;
-            if (i20 > i21) {
-                i13 = 1;
-            } else if (i20 != i21) {
-                i13 = 4;
-            }
-            if ((i12 & (i13 << 12)) == 0) {
-                return false;
-            }
-        }
-        return true;
+    }
+
+    @Override
+    public final float l(DisplayMetrics displayMetrics) {
+        return 100.0f / displayMetrics.densityDpi;
     }
 }

@@ -1,6 +1,8 @@
 package org.telegram.messenger;
+public final class ba implements ta {
+    public final gc.b f22676a;
 
-import com.google.android.gms.location.LocationRequest;
-public final class ba implements sa {
-    public LocationRequest f21638a;
+    public ba(gc.b bVar) {
+        this.f22676a = bVar;
+    }
 }

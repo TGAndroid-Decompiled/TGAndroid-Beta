@@ -4,14 +4,14 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 public abstract class xt0 extends LinearLayout {
     public boolean a() {
-        return this instanceof org.telegram.ui.rb0;
+        return this instanceof org.telegram.ui.ob0;
     }
 
     public boolean b() {
-        return this instanceof org.telegram.ui.rb0;
+        return this instanceof org.telegram.ui.ob0;
     }
 
-    public boolean c(boolean z9) {
+    public boolean c(boolean z10) {
         return true;
     }
 
@@ -46,6 +46,6 @@ public abstract class xt0 extends LinearLayout {
     public void updateColors() {
     }
 
-    public void m(Bundle bundle, boolean z9) {
+    public void m(Bundle bundle, boolean z10) {
     }
 }

@@ -1,9 +1,15 @@
 package c8;
+
+import android.view.View;
+import android.view.ViewParent;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.widget.TextView;
 public abstract class n1 {
-    public static boolean a(char c10) {
-        if (c10 != ' ' && c10 != '\t' && c10 != '\n' && c10 != '\r' && c10 != '\f') {
-            return false;
+    public static void a(EditorInfo editorInfo, InputConnection inputConnection, TextView textView) {
+        if (inputConnection != null && editorInfo.hintText == null) {
+            for (ViewParent parent = textView.getParent(); parent instanceof View; parent = parent.getParent()) {
+            }
         }
-        return true;
     }
 }

@@ -6,12 +6,12 @@ public final class q implements b1 {
     }
 
     @Override
-    public final int l(long j3) {
+    public final int n(long j3) {
         return 0;
     }
 
     @Override
-    public final int m(wf.b bVar, k2.h hVar, int i7) {
+    public final int q(k8.a aVar, k2.h hVar, int i7) {
         hVar.setFlags(4);
         return -4;
     }

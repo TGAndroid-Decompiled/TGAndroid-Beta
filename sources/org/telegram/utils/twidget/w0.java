@@ -1,143 +1,238 @@
 package org.telegram.utils.twidget;
 
-import a8.r7;
-import android.graphics.BlendMode;
-import android.graphics.Canvas;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Matrix;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RecordingCanvas;
-import android.graphics.RectF;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
-import android.graphics.Shader;
+import android.icu.text.DateFormat;
+import android.icu.util.TimeZone;
+import java.util.Locale;
+import org.json.JSONObject;
 public abstract class w0 {
-    public static void a(z0 z0Var, a4.k kVar, i iVar, int i7, r7 r7Var, RectF rectF, float[] fArr, y0 y0Var, float f10) {
-        RenderEffect c10 = c(r7Var, f10, Shader.TileMode.CLAMP);
-        Matrix matrix = new Matrix();
-        if (c10 != null && ((Matrix) kVar.d).invert(matrix) && !rectF.isEmpty()) {
-            RenderNode renderNode = new RenderNode("widget-backdrop");
-            int floor = (int) Math.floor(rectF.left * f10);
-            int floor2 = (int) Math.floor(rectF.top * f10);
-            renderNode.setPosition(floor, floor2, (int) Math.ceil(rectF.right * f10), (int) Math.ceil(rectF.bottom * f10));
-            RecordingCanvas beginRecording = renderNode.beginRecording();
-            beginRecording.translate(-floor, -floor2);
-            beginRecording.scale(f10, f10);
-            beginRecording.concat(matrix);
-            z0Var.d(beginRecording, iVar, i7, y0Var, f10, false);
-            renderNode.endRecording();
-            renderNode.setRenderEffect(c10);
-            Canvas canvas = (Canvas) kVar.f192c;
-            canvas.save();
-            Path path = z0Var.f53027f;
-            path.rewind();
-            if (fArr == null) {
-                path.addRect(rectF, Path.Direction.CW);
-            } else {
-                path.addRoundRect(rectF, fArr, Path.Direction.CW);
-            }
-            canvas.clipPath(path);
-            canvas.drawColor(0, PorterDuff.Mode.CLEAR);
-            float f11 = 1.0f / f10;
-            canvas.scale(f11, f11);
-            canvas.drawRenderNode(renderNode);
-            canvas.restore();
-        }
-    }
-
-    public static Canvas b(x0 x0Var, RectF rectF, r7 r7Var, float f10) {
-        Shader.TileMode tileMode;
-        tileMode = Shader.TileMode.DECAL;
-        RenderEffect c10 = c(r7Var, f10, tileMode);
-        if (c10 == null) {
-            return null;
-        }
-        RenderNode renderNode = new RenderNode("widget-filter");
-        x0Var.d = ((int) Math.floor(rectF.left * f10)) - 1;
-        int floor = ((int) Math.floor(rectF.top * f10)) - 1;
-        x0Var.f53016e = floor;
-        renderNode.setPosition(x0Var.d, floor, ((int) Math.ceil(rectF.right * f10)) + 1, ((int) Math.ceil(rectF.bottom * f10)) + 1);
-        renderNode.setRenderEffect(c10);
-        x0Var.f53015c = renderNode;
-        RecordingCanvas beginRecording = renderNode.beginRecording();
-        beginRecording.translate(-x0Var.d, -x0Var.f53016e);
-        beginRecording.scale(f10, f10);
-        return beginRecording;
-    }
-
-    public static RenderEffect c(r7 r7Var, float f10, Shader.TileMode tileMode) {
-        float f11;
-        float f12;
-        BlendMode blendMode;
-        Shader.TileMode tileMode2;
-        RenderEffect renderEffect = null;
-        int i7 = 0;
-        while (true) {
-            int[] iArr = (int[]) r7Var.f614b;
-            if (i7 < iArr.length) {
-                float f13 = ((float[]) r7Var.d)[i7];
-                int i10 = iArr[i7];
-                if (i10 != 0) {
-                    if (i10 != 1) {
-                        if (i10 == 9) {
-                            if (renderEffect == null) {
-                                renderEffect = RenderEffect.createOffsetEffect(0.0f, 0.0f);
-                            }
-                            RenderEffect createOffsetEffect = RenderEffect.createOffsetEffect(((float[]) r7Var.f616e)[i7] * f10, ((float[]) r7Var.f617f)[i7] * f10, RenderEffect.createColorFilterEffect(new PorterDuffColorFilter(((int[]) r7Var.f615c)[i7], PorterDuff.Mode.SRC_IN), renderEffect));
-                            float f14 = (f13 / 2.0f) * f10;
-                            if (f14 > 0.5f) {
-                                f12 = (f14 - 0.5f) / 0.57735f;
-                            } else {
-                                f12 = 0.0f;
-                            }
-                            if (f12 > 0.0f) {
-                                tileMode2 = Shader.TileMode.DECAL;
-                                createOffsetEffect = RenderEffect.createBlurEffect(f12, f12, createOffsetEffect, tileMode2);
-                            }
-                            blendMode = BlendMode.SRC_OVER;
-                            renderEffect = RenderEffect.createBlendModeEffect(createOffsetEffect, renderEffect, blendMode);
-                        }
-                    } else if (renderEffect == null) {
-                        ColorMatrix colorMatrix = new ColorMatrix();
-                        colorMatrix.setScale(f13, f13, f13, 1.0f);
-                        renderEffect = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
-                    } else {
-                        ColorMatrix colorMatrix2 = new ColorMatrix();
-                        colorMatrix2.setScale(f13, f13, f13, 1.0f);
-                        renderEffect = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix2), renderEffect);
-                    }
-                } else {
-                    float f15 = f13 * f10;
-                    if (f15 > 0.5f) {
-                        f11 = (f15 - 0.5f) / 0.57735f;
-                    } else {
-                        f11 = 0.0f;
-                    }
-                    if (f11 > 0.0f) {
-                        if (renderEffect == null) {
-                            renderEffect = RenderEffect.createBlurEffect(f11, f11, tileMode);
-                        } else {
-                            renderEffect = RenderEffect.createBlurEffect(f11, f11, renderEffect, tileMode);
-                        }
-                    }
+    public static DateFormat a(JSONObject jSONObject, String str, Locale locale) {
+        boolean z10;
+        int i7;
+        boolean z11;
+        DateFormat dateFormat;
+        String str2;
+        String str3;
+        String str4;
+        String str5;
+        String str6;
+        String str7;
+        String optString = jSONObject.optString("dateStyle");
+        optString.getClass();
+        int i10 = 2;
+        boolean z12 = true;
+        switch (optString.hashCode()) {
+            case -1078030475:
+                if (optString.equals("medium")) {
+                    z10 = false;
+                    break;
                 }
-                i7++;
-            } else {
-                return renderEffect;
-            }
+                z10 = true;
+                break;
+            case 3154575:
+                if (optString.equals("full")) {
+                    z10 = true;
+                    break;
+                }
+                z10 = true;
+                break;
+            case 3327612:
+                if (optString.equals("long")) {
+                    z10 = true;
+                    break;
+                }
+                z10 = true;
+                break;
+            case 109413500:
+                if (optString.equals("short")) {
+                    z10 = true;
+                    break;
+                }
+                z10 = true;
+                break;
+            default:
+                z10 = true;
+                break;
         }
+        switch (z10) {
+            case false:
+                i7 = 2;
+                break;
+            case true:
+                i7 = 0;
+                break;
+            case true:
+                i7 = 1;
+                break;
+            case true:
+                i7 = 3;
+                break;
+            default:
+                i7 = -1;
+                break;
+        }
+        String optString2 = jSONObject.optString("timeStyle");
+        optString2.getClass();
+        switch (optString2.hashCode()) {
+            case -1078030475:
+                if (optString2.equals("medium")) {
+                    z11 = false;
+                    break;
+                }
+                z11 = true;
+                break;
+            case 3154575:
+                if (optString2.equals("full")) {
+                    z11 = true;
+                    break;
+                }
+                z11 = true;
+                break;
+            case 3327612:
+                if (optString2.equals("long")) {
+                    z11 = true;
+                    break;
+                }
+                z11 = true;
+                break;
+            case 109413500:
+                if (optString2.equals("short")) {
+                    z11 = true;
+                    break;
+                }
+                z11 = true;
+                break;
+            default:
+                z11 = true;
+                break;
+        }
+        switch (z11) {
+            case false:
+                break;
+            case true:
+                i10 = 0;
+                break;
+            case true:
+                i10 = 1;
+                break;
+            case true:
+                i10 = 3;
+                break;
+            default:
+                i10 = -1;
+                break;
+        }
+        if (i7 >= 0 && i10 >= 0) {
+            dateFormat = DateFormat.getDateTimeInstance(i7, i10, locale);
+        } else if (i7 >= 0) {
+            dateFormat = DateFormat.getDateInstance(i7, locale);
+        } else if (i10 >= 0) {
+            dateFormat = DateFormat.getTimeInstance(i10, locale);
+        } else {
+            dateFormat = null;
+        }
+        if (dateFormat == null) {
+            StringBuilder sb2 = new StringBuilder();
+            String optString3 = jSONObject.optString("era");
+            if (!optString3.isEmpty()) {
+                if (optString3.equals("long")) {
+                    str7 = "GGGG";
+                } else if (optString3.equals("narrow")) {
+                    str7 = "GGGGG";
+                } else {
+                    str7 = "G";
+                }
+                sb2.append(str7);
+            }
+            String optString4 = jSONObject.optString("year");
+            if (!optString4.isEmpty()) {
+                if (optString4.equals("2-digit")) {
+                    str6 = "yy";
+                } else {
+                    str6 = "y";
+                }
+                sb2.append(str6);
+            }
+            String optString5 = jSONObject.optString("month");
+            if (!optString5.isEmpty()) {
+                if (optString5.equals("long")) {
+                    str5 = "MMMM";
+                } else if (optString5.equals("short")) {
+                    str5 = "MMM";
+                } else if (optString5.equals("narrow")) {
+                    str5 = "MMMMM";
+                } else if (optString5.equals("2-digit")) {
+                    str5 = "MM";
+                } else {
+                    str5 = "M";
+                }
+                sb2.append(str5);
+            }
+            String optString6 = jSONObject.optString("weekday");
+            if (!optString6.isEmpty()) {
+                if (optString6.equals("long")) {
+                    str4 = "EEEE";
+                } else if (optString6.equals("narrow")) {
+                    str4 = "EEEEE";
+                } else {
+                    str4 = "EEE";
+                }
+                sb2.append(str4);
+            }
+            String optString7 = jSONObject.optString("day");
+            if (!optString7.isEmpty()) {
+                if (optString7.equals("2-digit")) {
+                    str3 = "dd";
+                } else {
+                    str3 = "d";
+                }
+                sb2.append(str3);
+            }
+            String optString8 = jSONObject.optString("hour");
+            if (!optString8.isEmpty()) {
+                sb2.append(c(jSONObject, optString8.equals("2-digit")));
+            }
+            if (jSONObject.has("minute")) {
+                sb2.append("mm");
+            }
+            if (jSONObject.has("second")) {
+                sb2.append("ss");
+            }
+            if (sb2.length() == 0) {
+                boolean equals = str.equals("toLocaleTimeString");
+                if (!str.equals("toLocaleTimeString") && !str.equals("toLocaleString")) {
+                    z12 = false;
+                }
+                if (!equals) {
+                    sb2.append("yMd");
+                }
+                if (z12) {
+                    sb2.append(c(jSONObject, false));
+                    sb2.append("mmss");
+                }
+            }
+            String optString9 = jSONObject.optString("timeZoneName");
+            if (!optString9.isEmpty()) {
+                if (optString9.equals("long")) {
+                    str2 = "zzzz";
+                } else {
+                    str2 = "z";
+                }
+                sb2.append(str2);
+            }
+            dateFormat = DateFormat.getInstanceForSkeleton(sb2.toString(), locale);
+        }
+        String optString10 = jSONObject.optString("timeZone");
+        if (!optString10.isEmpty()) {
+            dateFormat.setTimeZone(TimeZone.getTimeZone(optString10));
+        }
+        return dateFormat;
     }
 
-    public static void d(x0 x0Var, float f10) {
-        RenderNode e10 = ni.a.e(x0Var.f53015c);
-        e10.endRecording();
-        x0Var.f53013a.save();
-        float f11 = 1.0f / f10;
-        x0Var.f53013a.scale(f11, f11);
-        x0Var.f53013a.drawRenderNode(e10);
-        x0Var.f53013a.restore();
+    public static java.lang.String b(java.lang.String r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.w0.b(java.lang.String):java.lang.String");
+    }
+
+    public static java.lang.String c(org.json.JSONObject r4, boolean r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.w0.c(org.json.JSONObject, boolean):java.lang.String");
     }
 }

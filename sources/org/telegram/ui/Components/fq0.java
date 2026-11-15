@@ -1,52 +1,13 @@
 package org.telegram.ui.Components;
+public final class fq0 extends org.telegram.ui.mq0 {
+    public final ys0 f34680a;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class fq0 extends v4.m0 {
-    public final zp0 f33635a;
-
-    public fq0(zp0 zp0Var) {
-        this.f33635a = zp0Var;
+    public fq0(ys0 ys0Var) {
+        this.f34680a = ys0Var;
     }
 
     @Override
-    public final void e(Rect rect, View view, RecyclerView recyclerView, v4.a1 a1Var) {
-        boolean z9;
-        boolean z10;
-        if (view instanceof org.telegram.ui.Cells.o7) {
-            org.telegram.ui.Cells.o7 o7Var = (org.telegram.ui.Cells.o7) view;
-            zp0 zp0Var = this.f33635a;
-            zp0Var.f38386n.getClass();
-            int R = RecyclerView.R(o7Var);
-            int i7 = zp0Var.f38387r.J;
-            boolean z11 = true;
-            if (R < i7) {
-                z9 = true;
-            } else {
-                z9 = false;
-            }
-            o7Var.f29676a0 = z9;
-            int i10 = R % i7;
-            if (i10 == 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            o7Var.V = z10;
-            if (i10 != i7 - 1) {
-                z11 = false;
-            }
-            o7Var.W = z11;
-            rect.left = 0;
-            rect.top = 0;
-            rect.bottom = 0;
-            rect.right = 0;
-            return;
-        }
-        rect.left = 0;
-        rect.top = 0;
-        rect.bottom = 0;
-        rect.right = 0;
+    public final org.telegram.ui.uq0 E(org.telegram.messenger.gj r19, org.telegram.tgnet.TLRPC.FileLocation r20, int r21, boolean r22, boolean r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.fq0.E(org.telegram.messenger.gj, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.uq0");
     }
 }

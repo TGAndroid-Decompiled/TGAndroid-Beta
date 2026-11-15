@@ -1,36 +1,70 @@
 package u7;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import c8.xb;
-import com.google.android.gms.location.LocationRequest;
-public final class l extends r6.a {
-    public static final Parcelable.Creator<l> CREATOR = new m(0);
-    public final LocationRequest f56390a;
+import android.content.Context;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Looper;
+import m.o3;
+public final class l extends q6.h {
+    public final a0.l F;
+    public final a0.l G;
+    public final a0.l H;
 
-    public l(com.google.android.gms.location.LocationRequest r26, java.util.ArrayList r27, boolean r28, boolean r29, java.lang.String r30, boolean r31, boolean r32, java.lang.String r33, long r34) {
-        throw new UnsupportedOperationException("Method not decompiled: u7.l.<init>(com.google.android.gms.location.LocationRequest, java.util.ArrayList, boolean, boolean, java.lang.String, boolean, boolean, java.lang.String, long):void");
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof l) {
-            return q6.m.k(this.f56390a, ((l) obj).f56390a);
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.f56390a.hashCode();
-    }
-
-    public final String toString() {
-        return this.f56390a.toString();
+    public l(Context context, Looper looper, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar, o3 o3Var) {
+        super(context, looper, 23, o3Var, kVar, lVar, 0);
+        this.F = new a0.l(0);
+        this.G = new a0.l(0);
+        this.H = new a0.l(0);
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = xb.r(parcel, 20293);
-        xb.k(parcel, 1, this.f56390a, i7);
-        xb.s(parcel, r10);
+    public final int d() {
+        return 11717000;
+    }
+
+    @Override
+    public final IInterface i(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
+        }
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.location.internal.IGoogleLocationManagerService");
+        if (queryLocalInterface instanceof y) {
+            return (y) queryLocalInterface;
+        }
+        return new a8.a(iBinder, "com.google.android.gms.location.internal.IGoogleLocationManagerService", 10);
+    }
+
+    @Override
+    public final n6.c[] k() {
+        return j8.h.f16951a;
+    }
+
+    @Override
+    public final String o() {
+        return "com.google.android.gms.location.internal.IGoogleLocationManagerService";
+    }
+
+    @Override
+    public final String p() {
+        return "com.google.android.location.internal.GoogleLocationManagerService.START";
+    }
+
+    @Override
+    public final void v(int i7) {
+        super.v(i7);
+        synchronized (this.F) {
+            this.F.clear();
+        }
+        synchronized (this.G) {
+            this.G.clear();
+        }
+        synchronized (this.H) {
+            this.H.clear();
+        }
+    }
+
+    @Override
+    public final boolean x() {
+        return true;
     }
 }

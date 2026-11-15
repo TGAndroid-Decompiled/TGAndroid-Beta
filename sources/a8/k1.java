@@ -1,34 +1,21 @@
 package a8;
 
-import android.os.Build;
+import android.os.Parcel;
+import android.os.Parcelable;
 public abstract class k1 {
-    public static boolean a(int i7) {
-        if ((i7 & 32768) != 0) {
-            return true;
+    public static Object a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() != 0) {
+            return creator.createFromParcel(parcel);
         }
-        return false;
+        return null;
     }
 
-    public static boolean b(int i7) {
-        if (i7 != 15 && i7 != 255) {
-            if (i7 != 32768) {
-                if (i7 != 32783) {
-                    if (i7 != 33023 && i7 != 0) {
-                        return false;
-                    }
-                    return true;
-                }
-                int i10 = Build.VERSION.SDK_INT;
-                if (i10 >= 28 && i10 <= 29) {
-                    return false;
-                }
-                return true;
-            } else if (Build.VERSION.SDK_INT < 30) {
-                return false;
-            } else {
-                return true;
-            }
+    public static void b(Parcel parcel, Parcelable parcelable) {
+        if (parcelable != null) {
+            parcel.writeInt(1);
+            parcelable.writeToParcel(parcel, 1);
+            return;
         }
-        return true;
+        parcel.writeInt(0);
     }
 }

@@ -1,6 +1,6 @@
 package h9;
 
-import a8.kb;
+import a8.lb;
 import j$.util.DesugarCollections;
 import java.util.Collection;
 import java.util.Iterator;
@@ -12,16 +12,16 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.SortedSet;
 public final class e extends h implements NavigableMap {
-    public final l1 f14318n;
+    public final k1 f13673n;
 
-    public e(l1 l1Var, NavigableMap navigableMap) {
-        super(l1Var, navigableMap);
-        this.f14318n = l1Var;
+    public e(k1 k1Var, NavigableMap navigableMap) {
+        super(k1Var, navigableMap);
+        this.f13673n = k1Var;
     }
 
     @Override
     public final SortedSet c() {
-        return new f(this.f14318n, e());
+        return new f(this.f13673n, e());
     }
 
     @Override
@@ -50,7 +50,7 @@ public final class e extends h implements NavigableMap {
 
     @Override
     public final NavigableMap descendingMap() {
-        return new e(this.f14318n, e().descendingMap());
+        return new e(this.f13673n, e().descendingMap());
     }
 
     public final e0 f(Iterator it) {
@@ -58,7 +58,7 @@ public final class e extends h implements NavigableMap {
             return null;
         }
         Map.Entry entry = (Map.Entry) it.next();
-        Collection h = this.f14318n.h();
+        Collection h = this.f13673n.h();
         h.addAll((Collection) entry.getValue());
         it.remove();
         return new e0(entry.getKey(), DesugarCollections.unmodifiableList((List) h));
@@ -89,7 +89,7 @@ public final class e extends h implements NavigableMap {
 
     @Override
     public final NavigableMap e() {
-        return (NavigableMap) ((SortedMap) this.f513b);
+        return (NavigableMap) ((SortedMap) this.f533b);
     }
 
     @Override
@@ -151,7 +151,7 @@ public final class e extends h implements NavigableMap {
 
     @Override
     public final Map.Entry pollLastEntry() {
-        return f(((c) ((kb) descendingMap()).entrySet()).iterator());
+        return f(((c) ((lb) descendingMap()).entrySet()).iterator());
     }
 
     @Override
@@ -165,17 +165,17 @@ public final class e extends h implements NavigableMap {
     }
 
     @Override
-    public final NavigableMap headMap(Object obj, boolean z9) {
-        return new e(this.f14318n, e().headMap(obj, z9));
+    public final NavigableMap headMap(Object obj, boolean z10) {
+        return new e(this.f13673n, e().headMap(obj, z10));
     }
 
     @Override
-    public final NavigableMap subMap(Object obj, boolean z9, Object obj2, boolean z10) {
-        return new e(this.f14318n, e().subMap(obj, z9, obj2, z10));
+    public final NavigableMap subMap(Object obj, boolean z10, Object obj2, boolean z11) {
+        return new e(this.f13673n, e().subMap(obj, z10, obj2, z11));
     }
 
     @Override
-    public final NavigableMap tailMap(Object obj, boolean z9) {
-        return new e(this.f14318n, e().tailMap(obj, z9));
+    public final NavigableMap tailMap(Object obj, boolean z10) {
+        return new e(this.f13673n, e().tailMap(obj, z10));
     }
 }

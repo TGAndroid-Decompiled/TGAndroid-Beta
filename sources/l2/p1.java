@@ -1,93 +1,54 @@
 package l2;
 
-import java.util.HashMap;
-public final class p1 extends a {
-    public final int h;
-    public final int f17988i;
-    public final int[] f17989j;
-    public final int[] f17990k;
-    public final e2.l1[] f17991l;
-    public final Object[] f17992m;
-    public final HashMap f17993n;
+import a8.ja;
+public final class p1 {
+    public static final p1 f19160c;
+    public static final p1 d;
+    public static final p1 f19161e;
+    public static final p1 f19162f;
+    public final long f19163a;
+    public final long f19164b;
 
-    public p1(e2.l1[] l1VarArr, Object[] objArr, x2.g1 g1Var) {
-        super(g1Var);
-        int length = l1VarArr.length;
-        this.f17991l = l1VarArr;
-        this.f17989j = new int[length];
-        this.f17990k = new int[length];
-        this.f17992m = objArr;
-        this.f17993n = new HashMap();
-        int length2 = l1VarArr.length;
-        int i7 = 0;
-        int i10 = 0;
-        int i11 = 0;
-        int i12 = 0;
-        while (i7 < length2) {
-            e2.l1 l1Var = l1VarArr[i7];
-            this.f17991l[i12] = l1Var;
-            this.f17990k[i12] = i10;
-            this.f17989j[i12] = i11;
-            i10 += l1Var.o();
-            i11 += this.f17991l[i12].h();
-            this.f17993n.put(objArr[i12], Integer.valueOf(i12));
-            i7++;
-            i12++;
+    static {
+        p1 p1Var = new p1(0L, 0L);
+        f19160c = p1Var;
+        d = new p1(Long.MAX_VALUE, Long.MAX_VALUE);
+        f19161e = new p1(Long.MAX_VALUE, 0L);
+        new p1(0L, Long.MAX_VALUE);
+        f19162f = p1Var;
+    }
+
+    public p1(long j3, long j10) {
+        boolean z10;
+        if (j3 >= 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        this.h = i10;
-        this.f17988i = i11;
+        ja.f(z10);
+        ja.f(j10 >= 0);
+        this.f19163a = j3;
+        this.f19164b = j10;
     }
 
-    @Override
-    public final int h() {
-        return this.f17988i;
+    public final long a(long r17, long r19, long r21) {
+        throw new UnsupportedOperationException("Method not decompiled: l2.p1.a(long, long, long):long");
     }
 
-    @Override
-    public final int o() {
-        return this.h;
-    }
-
-    @Override
-    public final int q(Object obj) {
-        Integer num = (Integer) this.f17993n.get(obj);
-        if (num == null) {
-            return -1;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        return num.intValue();
+        if (obj != null && p1.class == obj.getClass()) {
+            p1 p1Var = (p1) obj;
+            if (this.f19163a == p1Var.f19163a && this.f19164b == p1Var.f19164b) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    @Override
-    public final int r(int i7) {
-        return h2.m0.e(this.f17989j, i7 + 1, false, false);
-    }
-
-    @Override
-    public final int s(int i7) {
-        return h2.m0.e(this.f17990k, i7 + 1, false, false);
-    }
-
-    @Override
-    public final Object t(int i7) {
-        return this.f17992m[i7];
-    }
-
-    @Override
-    public final int u(int i7) {
-        return this.f17989j[i7];
-    }
-
-    @Override
-    public final int v(int i7) {
-        return this.f17990k[i7];
-    }
-
-    @Override
-    public final e2.l1 x(int i7) {
-        return this.f17991l[i7];
-    }
-
-    public p1(java.util.ArrayList r8, x2.g1 r9) {
-        throw new UnsupportedOperationException("Method not decompiled: l2.p1.<init>(java.util.ArrayList, x2.g1):void");
+    public final int hashCode() {
+        return (((int) this.f19163a) * 31) + ((int) this.f19164b);
     }
 }

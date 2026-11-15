@@ -1,146 +1,52 @@
 package bi;
 
-import android.os.Bundle;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.c20;
-import org.telegram.messenger.qp;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.cn;
-import org.telegram.ui.e51;
-public final class c3 implements Runnable {
-    public final int f3561a = 1;
-    public final k7 f3562b;
-    public final TLObject f3563c;
-    public final long d;
-    public final long f3564e;
-    public final TLRPC.TL_error f3565f;
-    public final long h;
-    public final Object f3566n;
+import android.view.View;
+import android.widget.FrameLayout;
+import hi.sa;
+import org.telegram.ui.Components.wp0;
+import org.telegram.ui.Components.ys0;
+public final class c3 implements View.OnClickListener {
+    public final int f3406a;
+    public final boolean f3407b;
+    public final int f3408c;
+    public final FrameLayout d;
 
-    public c3(k7 k7Var, TLObject tLObject, long j3, long j10, c20 c20Var, TLRPC.TL_error tL_error, long j11) {
-        this.f3562b = k7Var;
-        this.f3563c = tLObject;
-        this.d = j3;
-        this.f3564e = j10;
-        this.f3566n = c20Var;
-        this.f3565f = tL_error;
-        this.h = j11;
+    public c3(FrameLayout frameLayout, boolean z10, int i7, int i10) {
+        this.f3406a = i10;
+        this.d = frameLayout;
+        this.f3407b = z10;
+        this.f3408c = i7;
     }
 
     @Override
-    public final void run() {
-        switch (this.f3561a) {
+    public final void onClick(View view) {
+        switch (this.f3406a) {
             case 0:
-                k7 k7Var = this.f3562b;
-                TLObject tLObject = this.f3563c;
-                long j3 = this.d;
-                long j10 = this.f3564e;
-                long j11 = this.h;
-                TLRPC.TL_error tL_error = this.f3565f;
-                ((org.telegram.ui.ActionBar.u1) this.f3566n).c(400L);
-                org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
-                if (T != null) {
-                    if (tLObject instanceof TLRPC.TL_boolTrue) {
-                        k7Var.dismiss();
-                        ea.y(k7Var.f28669a, false).P(j3);
-                        if (j3 >= 0) {
-                            TLRPC.UserFull b22 = qp.s1(k7Var.f28669a).b2(j10);
-                            if (b22 != null) {
-                                int max = Math.max(0, b22.stargifts_count - 1);
-                                b22.stargifts_count = max;
-                                if (max <= 0) {
-                                    b22.flags2 &= -257;
-                                }
-                            }
-                            ea.y(k7Var.f28669a, false).O();
-                            ea.y(k7Var.f28669a, false).S(true);
-                            if (!(T instanceof dd)) {
-                                dd ddVar = new dd();
-                                ddVar.whenFullyVisible(new r3(ddVar, j11, 0));
-                                T.presentFragment(ddVar);
-                                return;
-                            }
-                            org.telegram.ui.Components.gc.a0(T).I(2131624226, org.telegram.messenger.id.M0(2131750221, null), org.telegram.messenger.id.H(',', "Gift2Converted", (int) j11)).k(true);
-                            return;
-                        }
-                        Bundle bundle = new Bundle();
-                        bundle.putLong("chat_id", -j3);
-                        bundle.putBoolean("start_from_monetization", true);
-                        e51 e51Var = new e51(bundle);
-                        n0.g(k7Var.f28669a).h(j3, true);
-                        n0.g(k7Var.f28669a).l(j3);
-                        e51Var.whenFullyVisible(new r3(e51Var, j11, 1));
-                        T.presentFragment(e51Var);
-                        return;
-                    } else if (tL_error != null) {
-                        k7Var.k().t(org.telegram.messenger.id.a0(null, null, 2131743878, tL_error.text), null).k(false);
-                        return;
-                    } else {
-                        k7Var.k().t(org.telegram.messenger.id.M0(2131743879, null), null).k(false);
-                        return;
-                    }
+                wp0 wp0Var = (wp0) this.d;
+                if (wp0Var.f3610e.h() && wp0Var.h.getCurrentPosition() != 0) {
+                    wp0Var.a();
+                    return;
                 }
+                boolean z10 = this.f3407b;
+                int i7 = this.f3408c;
+                if (z10) {
+                    s2 s2Var = new s2(wp0Var.getContext(), i7, wp0Var.f3609c, null, null);
+                    s2Var.e1(org.telegram.messenger.v1.a(i7).c(wp0Var.f3609c));
+                    s2Var.show();
+                    return;
+                }
+                wg.c1.l1(2, org.telegram.messenger.v1.a(i7).b());
                 return;
             default:
-                k7 k7Var2 = this.f3562b;
-                TLObject tLObject2 = this.f3563c;
-                long j12 = this.d;
-                long j13 = this.f3564e;
-                c20 c20Var = (c20) this.f3566n;
-                TLRPC.TL_error tL_error2 = this.f3565f;
-                long j14 = this.h;
-                if (tLObject2 instanceof TLRPC.TL_payments_paymentResult) {
-                    TLRPC.TL_payments_paymentResult tL_payments_paymentResult = (TLRPC.TL_payments_paymentResult) tLObject2;
-                    qp.s1(k7Var2.f28669a).Y3(tL_payments_paymentResult.updates.users, false);
-                    qp.s1(k7Var2.f28669a).S3(tL_payments_paymentResult.updates.chats, false);
-                    ea.y(k7Var2.f28669a, false).S(false);
-                    ea.y(k7Var2.f28669a, false).P(j12);
-                    ea.y(k7Var2.f28669a, false).P(j13);
-                    ea.y(k7Var2.f28669a, false).O();
-                    c20Var.a(null);
-                    org.telegram.ui.ActionBar.f2 T2 = LaunchActivity.T();
-                    if (T2 != null) {
-                        if (j12 >= 0 && j13 >= 0) {
-                            cn ta2 = cn.ta(j12);
-                            ta2.whenFullyVisible(new s3(k7Var2, ta2, j12, 1));
-                            T2.presentFragment(ta2);
-                        } else {
-                            org.telegram.ui.Components.bc I = org.telegram.ui.Components.gc.a0(T2).I(2131624028, org.telegram.messenger.id.M0(2131749897, null), org.telegram.messenger.g0.X2(org.telegram.messenger.id.a0(null, null, 2131749898, k7Var2.y1(), org.telegram.messenger.m5.t(j12))));
-                            I.f32213t = true;
-                            I.j();
-                        }
-                    }
-                    Utilities.d.c(new c4(k7Var2, tL_payments_paymentResult, 1));
-                    return;
-                } else if (tL_error2 != null && "BALANCE_TOO_LOW".equals(tL_error2.text)) {
-                    if (qp.s1(k7Var2.f28669a).f24821j7) {
-                        k7Var2.f4170f2.setLoading(false);
-                        ea.c0(k7Var2.getContext(), k7Var2.I0);
-                        return;
-                    }
-                    ea y10 = ea.y(k7Var2.f28669a, false);
-                    h4 h4Var = new h4(k7Var2, j14, j12, c20Var, 0);
-                    y10.f3807e = false;
-                    y10.q(h4Var, false, true);
-                    y10.f3807e = true;
-                    return;
-                } else {
-                    c20Var.a(tL_error2);
-                    k7Var2.k().f0(tL_error2, false);
+                ys0 ys0Var = (ys0) this.d;
+                org.telegram.ui.ActionBar.e2 e2Var = ys0Var.f42150y1;
+                if (this.f3407b) {
+                    ys0Var.a1(e2Var, ys0Var.f42114m1, this.f3408c);
                     return;
                 }
+                e2Var.getMessagesController().f25280f7.edit().putBoolean("story_keep", true).apply();
+                sa.D(e2Var.getParentActivity(), e2Var.getCurrentAccount()).Q(null);
+                return;
         }
-    }
-
-    public c3(k7 k7Var, org.telegram.ui.ActionBar.u1 u1Var, TLObject tLObject, long j3, long j10, long j11, TLRPC.TL_error tL_error) {
-        this.f3562b = k7Var;
-        this.f3566n = u1Var;
-        this.f3563c = tLObject;
-        this.d = j3;
-        this.f3564e = j10;
-        this.h = j11;
-        this.f3565f = tL_error;
     }
 }

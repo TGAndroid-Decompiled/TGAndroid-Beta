@@ -1,180 +1,231 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.text.TextUtils;
-import java.io.IOException;
-import java.io.RandomAccessFile;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.drawable.Drawable;
+import android.text.Editable;
+import android.text.Layout;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.LeadingMarginSpan;
+import android.text.style.MetricAffectingSpan;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.TreeSet;
 import org.telegram.messenger.Utilities;
-public class xg0 extends zg0 {
-    public volatile RLottieNative U0;
-    public boolean V0;
-    public boolean W0;
-    public volatile boolean X0;
-    public boolean Y0;
-    public final int Z0;
-    public int f40306a1;
+public final class xg0 implements LeadingMarginSpan {
+    public final float[] E;
+    public final Path F;
+    public final Paint G;
+    public final float[] H;
+    public final Path I;
+    public int J;
+    public e0.g K;
+    public SpannableString L;
+    public final boolean f41684a;
+    public boolean f41685b = true;
+    public int f41686c;
+    public int d;
+    public boolean f41687e;
+    public boolean f41688f;
+    public boolean h;
+    public boolean f41689n;
+    public boolean f41690r;
+    public final wg0 f41691s;
+    public oi.u5 f41692w;
+    public final Drawable f41693x;
+    public final Paint f41694y;
 
-    public xg0(String str, int i7, int i10) {
-        super(i7, i10);
-        String str2;
-        this.Z0 = -1;
-        this.J = 1;
-        if ("🎲".equals(str)) {
-            str2 = org.telegram.messenger.g0.y2(null, 2131623998);
-            this.Z0 = 60;
-        } else if ("🎯".equals(str)) {
-            str2 = org.telegram.messenger.g0.y2(null, 2131623995);
-        } else {
-            str2 = null;
-        }
-        getPaint().setFlags(2);
-        if (TextUtils.isEmpty(str2)) {
-            return;
-        }
-        this.m0 = RLottieNative.b(str2, this.f40968e, null, null);
+    public xg0(boolean z10, boolean z11, wg0 wg0Var) {
+        Paint paint = new Paint(1);
+        this.f41694y = paint;
+        this.E = new float[8];
+        this.F = new Path();
+        Paint paint2 = new Paint(1);
+        this.G = paint2;
+        this.H = new float[8];
+        this.I = new Path();
+        this.J = -1;
+        this.f41684a = z10;
+        this.f41691s = wg0Var;
+        this.f41687e = z11;
+        this.f41693x = i5.c.g(org.telegram.messenger.t0.f26600b, 2131231966);
+        paint2.setColor(this.J);
+        paint.setColor(i0.a.o(this.J, 30));
     }
 
-    @Override
-    public int B(Bitmap bitmap, boolean z9) {
-        RLottieNative rLottieNative;
-        int i7 = this.J;
-        if (i7 == 1) {
-            rLottieNative = this.m0;
-        } else if (i7 == 2) {
-            rLottieNative = this.U0;
-            if (this.X0) {
-                this.f40962a0 = this.f40306a1 - 1;
+    public static void a(SpannableStringBuilder spannableStringBuilder) {
+        int i7;
+        int i10;
+        int i11;
+        TreeSet treeSet = new TreeSet();
+        HashMap hashMap = new HashMap();
+        wg0[] wg0VarArr = (wg0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), wg0.class);
+        int i12 = 0;
+        while (true) {
+            int i13 = 1;
+            if (i12 >= wg0VarArr.length) {
+                break;
             }
-        } else {
-            rLottieNative = this.m0;
+            wg0 wg0Var = wg0VarArr[i12];
+            int spanStart = spannableStringBuilder.getSpanStart(wg0Var);
+            int spanEnd = spannableStringBuilder.getSpanEnd(wg0Var);
+            treeSet.add(Integer.valueOf(spanStart));
+            Integer valueOf = Integer.valueOf(spanStart);
+            if (hashMap.containsKey(Integer.valueOf(spanStart))) {
+                i10 = ((Integer) hashMap.get(Integer.valueOf(spanStart))).intValue();
+            } else {
+                i10 = 0;
+            }
+            if (wg0Var.f41341a.f41687e) {
+                i13 = 16;
+            }
+            hashMap.put(valueOf, Integer.valueOf(i13 | i10));
+            treeSet.add(Integer.valueOf(spanEnd));
+            Integer valueOf2 = Integer.valueOf(spanEnd);
+            if (hashMap.containsKey(Integer.valueOf(spanEnd))) {
+                i11 = ((Integer) hashMap.get(Integer.valueOf(spanEnd))).intValue();
+            } else {
+                i11 = 0;
+            }
+            hashMap.put(valueOf2, Integer.valueOf(i11 | 2));
+            spannableStringBuilder.removeSpan(wg0Var);
+            spannableStringBuilder.removeSpan(wg0Var.f41341a);
+            i12++;
         }
-        if (rLottieNative.c(this.f40962a0, bitmap, z9) < 0) {
-            return 2;
-        }
-        return 1;
-    }
-
-    @Override
-    public void C(boolean z9) {
-        this.f40976k0 = false;
-        this.f40977l0 = true;
-        n();
-        l();
-        if (!this.Y0 && !this.V0) {
-            if (this.P == null && !this.f40993x0) {
-                D(z9);
-                bg.i iVar = this.B0;
-                if (iVar != null) {
-                    RandomAccessFile randomAccessFile = iVar.f3316s;
-                    if (randomAccessFile != null) {
-                        try {
-                            randomAccessFile.close();
-                        } catch (IOException e10) {
-                            e10.printStackTrace();
-                        }
-                        iVar.f3316s = null;
-                    }
-                    iVar.f3315r = true;
-                    this.B0 = null;
+        Iterator it = treeSet.iterator();
+        int i14 = 0;
+        int i15 = 0;
+        boolean z10 = false;
+        while (it.hasNext()) {
+            Integer num = (Integer) it.next();
+            int intValue = num.intValue();
+            int intValue2 = ((Integer) hashMap.get(num)).intValue();
+            if (i14 != intValue) {
+                int i16 = intValue - 1;
+                if (i16 >= 0 && i16 < spannableStringBuilder.length() && spannableStringBuilder.charAt(i16) == '\n') {
+                    i7 = intValue - 1;
+                } else {
+                    i7 = intValue;
                 }
-                E();
-                return;
+                if (i15 > 0) {
+                    c(spannableStringBuilder, i14, i7, z10);
+                }
+                i14 = intValue + 1;
+                if (i14 >= spannableStringBuilder.length() || spannableStringBuilder.charAt(intValue) != '\n') {
+                    i14 = intValue;
+                }
             }
-            this.V = true;
-            return;
+            if ((intValue2 & 2) != 0) {
+                i15--;
+            }
+            if ((intValue2 & 1) != 0 || (intValue2 & 16) != 0) {
+                i15++;
+                if ((intValue2 & 16) != 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+            }
         }
-        this.W0 = true;
+        if (i14 < spannableStringBuilder.length() && i15 > 0) {
+            c(spannableStringBuilder, i14, spannableStringBuilder.length(), z10);
+        }
     }
 
-    @Override
-    public final void D(boolean z9) {
-        RLottieNative rLottieNative = this.m0;
-        RLottieNative rLottieNative2 = this.U0;
-        this.m0 = null;
-        this.U0 = null;
-        if (rLottieNative == null && rLottieNative2 == null) {
+    public static void b(Spannable spannable, int i7, int i10, boolean z10) {
+        xg0[] xg0VarArr = (xg0[]) spannable.getSpans(i7, i10, xg0.class);
+        if (xg0VarArr != null && xg0VarArr.length > 0) {
             return;
         }
-        r80 r80Var = new r80(6, rLottieNative, rLottieNative2);
-        if (z9) {
-            org.telegram.messenger.r5.a(r80Var);
+        int j3 = Utilities.j(i7, spannable.length(), 0);
+        int j10 = Utilities.j(i10, spannable.length(), 0);
+        ?? metricAffectingSpan = new MetricAffectingSpan();
+        xg0 xg0Var = new xg0(false, z10, metricAffectingSpan);
+        metricAffectingSpan.f41341a = xg0Var;
+        xg0Var.f41686c = j3;
+        xg0Var.d = j10;
+        spannable.setSpan(metricAffectingSpan, j3, j10, 33);
+        spannable.setSpan(xg0Var, j3, j10, 33);
+    }
+
+    public static int c(Editable editable, int i7, int i10, boolean z10) {
+        if (editable == 0) {
+            return -1;
+        }
+        int j3 = Utilities.j(i7, editable.length(), 0);
+        int j10 = Utilities.j(i10, editable.length(), 0);
+        if (j3 > 0 && editable.charAt(j3 - 1) != '\n') {
+            editable.insert(j3, "\n");
+            j3++;
+            j10++;
+        }
+        int i11 = j10 + 1;
+        if (j10 >= editable.length() || editable.charAt(j10) != '\n') {
+            editable.insert(j10, "\n");
+        }
+        ?? metricAffectingSpan = new MetricAffectingSpan();
+        xg0 xg0Var = new xg0(true, z10, metricAffectingSpan);
+        metricAffectingSpan.f41341a = xg0Var;
+        xg0Var.f41686c = j3;
+        xg0Var.d = j10;
+        editable.setSpan(xg0Var, Utilities.j(j3, editable.length(), 0), Utilities.j(j10, editable.length(), 0), 33);
+        editable.setSpan(metricAffectingSpan, Utilities.j(j3, editable.length(), 0), Utilities.j(j10, editable.length(), 0), 33);
+        editable.insert(Utilities.j(j10, editable.length(), 0), "\ufeff");
+        editable.delete(Utilities.j(j10, editable.length(), 0), Utilities.j(i11, editable.length(), 0));
+        return i11;
+    }
+
+    public static java.util.ArrayList d(org.telegram.ui.Components.kt r19, android.text.Layout r20, java.util.ArrayList r21, boolean[] r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.xg0.d(org.telegram.ui.Components.kt, android.text.Layout, java.util.ArrayList, boolean[]):java.util.ArrayList");
+    }
+
+    public static ArrayList e(Layout layout, ArrayList arrayList) {
+        xg0[] xg0VarArr;
+        if (layout == null) {
+            if (arrayList != null) {
+                arrayList.clear();
+                return arrayList;
+            }
         } else {
-            Utilities.f21341e.c(r80Var);
+            CharSequence text = layout.getText();
+            if (text != null && (text instanceof Spanned)) {
+                Spanned spanned = (Spanned) text;
+                if (arrayList != null) {
+                    arrayList.clear();
+                }
+                for (xg0 xg0Var : (xg0[]) spanned.getSpans(0, spanned.length(), xg0.class)) {
+                    boolean z10 = xg0Var.f41689n;
+                    tg0 tg0Var = new tg0(null, layout, spanned, xg0Var);
+                    if (arrayList == null) {
+                        arrayList = new ArrayList();
+                    }
+                    arrayList.add(tg0Var);
+                }
+                return arrayList;
+            } else if (arrayList != null) {
+                arrayList.clear();
+            }
         }
+        return arrayList;
     }
 
     @Override
-    public void i() {
-        int i7 = this.J;
-        if (i7 == 1) {
-            int i10 = this.f40962a0 + 1;
-            int i11 = this.Z0;
-            if (i11 == -1) {
-                i11 = this.f40968e[0];
-            }
-            if (i10 < i11) {
-                this.f40962a0 = i10;
-                return;
-            }
-            this.f40962a0 = 0;
-            this.N = false;
-            if (this.U0 != null) {
-                this.J = 2;
-            }
-            if (this.D) {
-                this.f40994y = null;
-                this.D = false;
-            }
-        } else if (i7 == 2) {
-            int i12 = this.f40962a0 + 1;
-            if (i12 < this.f40306a1) {
-                this.f40962a0 = i12;
-                return;
-            }
-            this.N = true;
-            this.M++;
+    public final int getLeadingMargin(boolean z10) {
+        float f10;
+        if (this.f41685b) {
+            f10 = 8.0f;
+        } else {
+            f10 = 10.0f;
         }
+        return org.telegram.messenger.g0.L(f10);
     }
 
     @Override
-    public int j() {
-        if (this.f40977l0) {
-            return 3;
-        }
-        if (this.m0 == null || (this.J == 2 && this.U0 == null)) {
-            return 2;
-        }
-        return 1;
-    }
-
-    @Override
-    public void p() {
-        if (this.V) {
-            n();
-            if (this.P == null && this.m0 != null) {
-                D(true);
-            }
-        }
-        if (this.m0 == null && this.U0 == null && this.B0 == null) {
-            E();
-            return;
-        }
-        this.T = true;
-        if (!v()) {
-            stop();
-        }
-        if (this.f40976k0) {
-            I();
-        }
-    }
-
-    @Override
-    public final boolean w() {
-        return this.Y0;
-    }
-
-    @Override
-    public final boolean z() {
-        return false;
+    public final void drawLeadingMargin(Canvas canvas, Paint paint, int i7, int i10, int i11, int i12, int i13, CharSequence charSequence, int i14, int i15, boolean z10, Layout layout) {
     }
 }

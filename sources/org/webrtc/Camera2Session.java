@@ -11,7 +11,7 @@ import android.hardware.camera2.CaptureRequest;
 import android.os.Handler;
 import android.util.Range;
 import android.view.Surface;
-import di.g1;
+import fi.e1;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -66,7 +66,7 @@ public class Camera2Session implements CameraSession {
                     if (i7 != 3) {
                         if (i7 != 4) {
                             if (i7 != 5) {
-                                return jg.g.j(i7, "Unknown camera error: ");
+                                return i5.c.i(i7, "Unknown camera error: ");
                             }
                             return "Camera service has encountered a fatal error.";
                         }
@@ -88,16 +88,16 @@ public class Camera2Session implements CameraSession {
 
         @Override
         public void onDisconnected(CameraDevice cameraDevice) {
-            boolean z9;
+            boolean z10;
             Camera2Session.this.checkIsOnCameraThread();
             if (Camera2Session.this.captureSession == null && Camera2Session.this.state != SessionState.STOPPED) {
-                z9 = true;
+                z10 = true;
             } else {
-                z9 = false;
+                z10 = false;
             }
             Camera2Session.this.state = SessionState.STOPPED;
             Camera2Session.this.stopInternal();
-            if (z9) {
+            if (z10) {
                 Camera2Session.this.callback.onFailure(CameraSession.FailureType.DISCONNECTED, "Camera disconnected / evicted.");
             } else {
                 Camera2Session.this.events.onCameraDisconnected(Camera2Session.this);
@@ -266,7 +266,7 @@ public class Camera2Session implements CameraSession {
 
     public int getFrameOrientation() {
         int orientation;
-        if (g1.W != null) {
+        if (e1.X != null) {
             orientation = 0;
         } else {
             orientation = this.orientationHelper.getOrientation();
@@ -291,17 +291,17 @@ public class Camera2Session implements CameraSession {
     }
 
     public void reportError(String str) {
-        boolean z9;
+        boolean z10;
         checkIsOnCameraThread();
         Logging.e("Camera2Session", "Error: " + str);
         if (this.captureSession == null && this.state != SessionState.STOPPED) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
         this.state = SessionState.STOPPED;
         stopInternal();
-        if (z9) {
+        if (z10) {
             this.callback.onFailure(CameraSession.FailureType.ERROR, str);
         } else {
             this.events.onCameraError(this, str);
@@ -309,7 +309,7 @@ public class Camera2Session implements CameraSession {
     }
 
     private void start() {
-        boolean z9;
+        boolean z10;
         checkIsOnCameraThread();
         Logging.d("Camera2Session", "start");
         try {
@@ -317,11 +317,11 @@ public class Camera2Session implements CameraSession {
             this.orientationHelper.start();
             this.cameraOrientation = ((Integer) this.cameraCharacteristics.get(CameraCharacteristics.SENSOR_ORIENTATION)).intValue();
             if (((Integer) this.cameraCharacteristics.get(CameraCharacteristics.LENS_FACING)).intValue() == 0) {
-                z9 = true;
+                z10 = true;
             } else {
-                z9 = false;
+                z10 = false;
             }
-            this.isCameraFrontFacing = z9;
+            this.isCameraFrontFacing = z10;
             findCaptureFormat();
             openCamera();
         } catch (Throwable th2) {

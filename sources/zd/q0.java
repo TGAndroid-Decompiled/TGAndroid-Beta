@@ -1,11 +1,11 @@
 package zd;
 public abstract class q0 implements Runnable, Comparable, l0 {
     private volatile Object _heap;
-    public long f60115a;
-    public int f60116b = -1;
+    public long f61316a;
+    public int f61317b = -1;
 
     public q0(long j3) {
-        this.f60115a = j3;
+        this.f61316a = j3;
     }
 
     public final ee.u b() {
@@ -18,41 +18,41 @@ public abstract class q0 implements Runnable, Comparable, l0 {
 
     public final int c(long j3, r0 r0Var, s0 s0Var) {
         q0 q0Var;
-        boolean z9;
+        boolean z10;
         synchronized (this) {
-            if (this._heap == b0.f60052b) {
+            if (this._heap == b0.f61253b) {
                 return 2;
             }
             synchronized (r0Var) {
-                q0[] q0VarArr = r0Var.f10803a;
+                q0[] q0VarArr = r0Var.f10634a;
                 if (q0VarArr != null) {
                     q0Var = q0VarArr[0];
                 } else {
                     q0Var = null;
                 }
-                if (s0.f60119r.get(s0Var) != 0) {
-                    z9 = true;
+                if (s0.f61320r.get(s0Var) != 0) {
+                    z10 = true;
                 } else {
-                    z9 = false;
+                    z10 = false;
                 }
-                if (z9) {
+                if (z10) {
                     return 1;
                 }
                 if (q0Var == null) {
-                    r0Var.f60117c = j3;
+                    r0Var.f61318c = j3;
                 } else {
-                    long j10 = q0Var.f60115a;
+                    long j10 = q0Var.f61316a;
                     if (j10 - j3 < 0) {
                         j3 = j10;
                     }
-                    if (j3 - r0Var.f60117c > 0) {
-                        r0Var.f60117c = j3;
+                    if (j3 - r0Var.f61318c > 0) {
+                        r0Var.f61318c = j3;
                     }
                 }
-                long j11 = this.f60115a;
-                long j12 = r0Var.f60117c;
+                long j11 = this.f61316a;
+                long j12 = r0Var.f61318c;
                 if (j11 - j12 < 0) {
-                    this.f60115a = j12;
+                    this.f61316a = j12;
                 }
                 r0Var.a(this);
                 return 0;
@@ -62,7 +62,7 @@ public abstract class q0 implements Runnable, Comparable, l0 {
 
     @Override
     public final int compareTo(Object obj) {
-        int i7 = ((this.f60115a - ((q0) obj).f60115a) > 0L ? 1 : ((this.f60115a - ((q0) obj).f60115a) == 0L ? 0 : -1));
+        int i7 = ((this.f61316a - ((q0) obj).f61316a) > 0L ? 1 : ((this.f61316a - ((q0) obj).f61316a) == 0L ? 0 : -1));
         if (i7 > 0) {
             return 1;
         }
@@ -73,7 +73,7 @@ public abstract class q0 implements Runnable, Comparable, l0 {
     }
 
     public final void d(r0 r0Var) {
-        if (this._heap != b0.f60052b) {
+        if (this._heap != b0.f61253b) {
             this._heap = r0Var;
             return;
         }
@@ -86,8 +86,8 @@ public abstract class q0 implements Runnable, Comparable, l0 {
         synchronized (this) {
             try {
                 Object obj = this._heap;
-                com.google.android.gms.internal.clearcut.e eVar = b0.f60052b;
-                if (obj == eVar) {
+                aa.b0 b0Var = b0.f61253b;
+                if (obj == b0Var) {
                     return;
                 }
                 if (obj instanceof r0) {
@@ -98,7 +98,7 @@ public abstract class q0 implements Runnable, Comparable, l0 {
                 if (r0Var != null) {
                     r0Var.b(this);
                 }
-                this._heap = eVar;
+                this._heap = b0Var;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -106,6 +106,6 @@ public abstract class q0 implements Runnable, Comparable, l0 {
     }
 
     public String toString() {
-        return "Delayed[nanos=" + this.f60115a + ']';
+        return "Delayed[nanos=" + this.f61316a + ']';
     }
 }

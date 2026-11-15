@@ -1,18 +1,18 @@
 package org.telegram.messenger;
 public final class t7 {
-    public final boolean f25594a;
-    public final String f25595b;
-    public final boolean f25596c;
+    public final boolean f26627a;
+    public final String f26628b;
+    public final boolean f26629c;
     public final w7 d;
 
-    public t7(w7 w7Var, boolean z9, String str, boolean z10) {
+    public t7(w7 w7Var, boolean z10, String str, boolean z11) {
         this.d = w7Var;
-        this.f25594a = z9;
-        this.f25595b = str;
-        this.f25596c = z10;
+        this.f26627a = z10;
+        this.f26628b = str;
+        this.f26629c = z11;
     }
 
     public final void a() {
-        w7.J.c(new h2.o0(this, this.f25594a, this.f25595b, this.f25596c));
+        w7.K.c(new h2.n0(this, this.f26627a, this.f26628b, this.f26629c));
     }
 }

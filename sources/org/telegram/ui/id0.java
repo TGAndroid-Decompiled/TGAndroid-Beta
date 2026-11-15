@@ -1,26 +1,21 @@
 package org.telegram.ui;
+public final class id0 implements Runnable {
+    public final int f48034a;
+    public final r3 f48035b;
 
-import java.util.TimerTask;
-public final class id0 extends TimerTask {
-    public final int f46621a;
-    public final jd0 f46622b;
-
-    public id0(jd0 jd0Var, int i7) {
-        this.f46621a = i7;
-        this.f46622b = jd0Var;
+    public id0(r3 r3Var, int i7) {
+        this.f48034a = i7;
+        this.f48035b = r3Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f46621a) {
+        switch (this.f48034a) {
             case 0:
-                org.telegram.messenger.g0.h3(new kz(this, 26));
+                org.telegram.messenger.g0.h3(new id0(this.f48035b, 1));
                 return;
             default:
-                if (this.f46622b.T != null) {
-                    org.telegram.messenger.g0.h3(new kz(this, 27));
-                    return;
-                }
+                this.f48035b.a("CANCELLED");
                 return;
         }
     }

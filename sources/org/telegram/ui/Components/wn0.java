@@ -1,56 +1,77 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-public final class wn0 implements View.OnTouchListener {
-    public final int f40023a;
-    public final Rect f40024b;
-    public final mo0 f40025c;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+public final class wn0 implements TextWatcher {
+    public final int f41408a;
+    public final po0 f41409b;
 
-    public wn0(mo0 mo0Var, int i7) {
-        this.f40023a = i7;
-        switch (i7) {
-            case 1:
-                this.f40025c = mo0Var;
-                this.f40024b = new Rect();
+    public wn0(po0 po0Var, int i7) {
+        this.f41408a = i7;
+        this.f41409b = po0Var;
+    }
+
+    @Override
+    public final void afterTextChanged(Editable editable) {
+        switch (this.f41408a) {
+            case 0:
+                org.telegram.messenger.g0.h3(new wa0(this, 28));
                 return;
             default:
-                this.f40025c = mo0Var;
-                this.f40024b = new Rect();
+                po0 po0Var = this.f41409b;
+                io0 io0Var = po0Var.G1;
+                cv0 cv0Var = po0Var.M1;
+                v00 v00Var = po0Var.f38367u2;
+                if (!TextUtils.isEmpty(v00Var.f40202r.getText())) {
+                    po0Var.K0(false);
+                }
+                if (po0Var.f38371w2) {
+                    String obj = v00Var.f40202r.getText().toString();
+                    if (obj.length() != 0) {
+                        if (cv0Var != null) {
+                            cv0Var.d.setText(org.telegram.messenger.hd.M0(2131748167, null));
+                        }
+                    } else if (po0Var.B1.getAdapter() != io0Var) {
+                        int J0 = po0.J0(po0Var);
+                        cv0Var.d.setText(org.telegram.messenger.hd.M0(2131748167, null));
+                        cv0Var.e(false, true);
+                        po0Var.K0(false);
+                        io0Var.f();
+                        if (J0 > 0) {
+                            po0Var.D1.h1(0, -J0);
+                        }
+                    }
+                    mo0 mo0Var = po0Var.I1;
+                    if (mo0Var != null) {
+                        mo0Var.E(obj);
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        mo0 mo0Var;
-        org.telegram.ui.ActionBar.g1 g1Var;
-        mo0 mo0Var2;
-        org.telegram.ui.ActionBar.g1 g1Var2;
-        switch (this.f40023a) {
-            case 0:
-                if (motionEvent.getActionMasked() == 0 && (g1Var = (mo0Var = this.f40025c).E2) != null && g1Var.isShowing()) {
-                    Rect rect = this.f40024b;
-                    view.getHitRect(rect);
-                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        mo0Var.E2.d(true);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            default:
-                if (motionEvent.getActionMasked() == 0 && (g1Var2 = (mo0Var2 = this.f40025c).E2) != null && g1Var2.isShowing()) {
-                    Rect rect2 = this.f40024b;
-                    view.getHitRect(rect2);
-                    if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        mo0Var2.E2.d(true);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-        }
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        int i12 = this.f41408a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        int i12 = this.f41408a;
+    }
+
+    private final void a(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void b(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
     }
 }

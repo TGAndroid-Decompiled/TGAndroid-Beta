@@ -1,34 +1,45 @@
 package aa;
+public final class z {
+    public final String f886a;
+    public final String f887b;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
-public final class z implements ThreadFactory {
-    public final int f887a;
-    public final Number f888b;
-
-    public z() {
-        this.f887a = 1;
-        this.f888b = new AtomicInteger(0);
+    public z(String str, String str2) {
+        this.f886a = str;
+        this.f887b = str2;
     }
 
-    @Override
-    public final Thread newThread(Runnable runnable) {
-        switch (this.f887a) {
-            case 0:
-                Thread newThread = Executors.defaultThreadFactory().newThread(new y(runnable));
-                newThread.setName("awaitEvenIfOnMainThread task continuation executor" + ((AtomicLong) this.f888b).getAndIncrement());
-                return newThread;
-            default:
-                Thread thread = new Thread(runnable);
-                thread.setName("arch_disk_io_" + ((AtomicInteger) this.f888b).getAndIncrement());
-                return thread;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (!(obj instanceof z)) {
+            return false;
+        }
+        z zVar = (z) obj;
+        if (kotlin.jvm.internal.j.a(this.f886a, zVar.f886a) && kotlin.jvm.internal.j.a(this.f887b, zVar.f887b)) {
+            return true;
+        }
+        return false;
     }
 
-    public z(AtomicLong atomicLong) {
-        this.f887a = 0;
-        this.f888b = atomicLong;
+    public final int hashCode() {
+        int hashCode;
+        int i7 = 0;
+        String str = this.f886a;
+        if (str == null) {
+            hashCode = 0;
+        } else {
+            hashCode = str.hashCode();
+        }
+        int i10 = hashCode * 31;
+        String str2 = this.f887b;
+        if (str2 != null) {
+            i7 = str2.hashCode();
+        }
+        return i10 + i7;
+    }
+
+    public final String toString() {
+        return "FirebaseInstallationId(fid=" + this.f886a + ", authToken=" + this.f887b + ')';
     }
 }

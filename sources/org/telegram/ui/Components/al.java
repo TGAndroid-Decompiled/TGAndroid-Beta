@@ -1,61 +1,73 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-import java.util.ArrayList;
-public final class al implements q0.a {
-    public final int f31875a;
-    public final Object f31876b;
-    public final boolean f31877c;
+import androidx.recyclerview.widget.RecyclerView;
+public final class al extends v4.t0 {
+    public final int f33007a;
+    public final dl f33008b;
 
-    public al(int i7, Object obj, boolean z9) {
-        this.f31875a = i7;
-        this.f31876b = obj;
-        this.f31877c = z9;
+    public al(dl dlVar, int i7) {
+        this.f33007a = i7;
+        this.f33008b = dlVar;
     }
 
     @Override
-    public final void accept(Object obj) {
-        bc bcVar;
-        int i7 = this.f31875a;
-        boolean z9 = false;
-        boolean z10 = this.f31877c;
-        Object obj2 = this.f31876b;
-        switch (i7) {
+    public final void a(RecyclerView recyclerView, int i7) {
+        boolean z10;
+        cj0 cj0Var;
+        switch (this.f33007a) {
             case 0:
-                ArrayList arrayList = (ArrayList) obj2;
-                View view = (View) obj;
-                boolean z11 = ChatAttachAlertPhotoLayout.f31204q1;
-                if (view instanceof org.telegram.ui.Cells.q5) {
-                    org.telegram.ui.Cells.q5 q5Var = (org.telegram.ui.Cells.q5) view;
-                    org.telegram.messenger.gf photoEntry = q5Var.getPhotoEntry();
-                    if (photoEntry != null && arrayList.contains(Integer.valueOf(photoEntry.C)) && z10) {
-                        z9 = true;
-                    }
-                    q5Var.setHasSpoiler(z9);
-                    return;
+                dl dlVar = this.f33008b;
+                di.c1 c1Var = dlVar.M;
+                if (i7 != 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
                 }
-                return;
-            case 1:
-                ArrayList arrayList2 = (ArrayList) obj2;
-                View view2 = (View) obj;
-                boolean z12 = ChatAttachAlertPhotoLayout.f31204q1;
-                if (view2 instanceof org.telegram.ui.Cells.q5) {
-                    org.telegram.ui.Cells.q5 q5Var2 = (org.telegram.ui.Cells.q5) view2;
-                    org.telegram.messenger.gf photoEntry2 = q5Var2.getPhotoEntry();
-                    if (photoEntry2 != null && arrayList2.contains(Integer.valueOf(photoEntry2.C)) && z10) {
-                        z9 = true;
+                dlVar.I = z10;
+                if (!z10 && dlVar.G != null) {
+                    dlVar.G = null;
+                }
+                if (i7 == 0) {
+                    int L = org.telegram.messenger.g0.L(13.0f);
+                    ki kiVar = dlVar.f33607b;
+                    int i10 = kiVar.f29716t0;
+                    if (((kiVar.Z3[0] - i10) - L) + i10 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (cj0Var = (cj0) c1Var.K(0)) != null) {
+                        View view = cj0Var.f58535a;
+                        if (view.getTop() > 0) {
+                            c1Var.w0(0, view.getTop(), null);
+                            return;
+                        }
+                        return;
                     }
-                    q5Var2.setHighQuality(z9);
                     return;
                 }
                 return;
             default:
-                Float f10 = (Float) obj;
-                za zaVar = ((ua) obj2).f38603b.f32209p;
-                if (zaVar != null && !z10) {
-                    zaVar.c(bcVar.f32199e.getHeight() - f10.floatValue());
+                if (i7 == 1) {
+                    dl dlVar2 = this.f33008b;
+                    if (dlVar2.f33977d0 && dlVar2.f33978e0) {
+                        org.telegram.messenger.g0.v1(dlVar2.f33607b.getCurrentFocus());
+                        return;
+                    }
                     return;
                 }
+                return;
+        }
+    }
+
+    @Override
+    public void b(RecyclerView recyclerView, int i7, int i10) {
+        switch (this.f33007a) {
+            case 0:
+                dl dlVar = this.f33008b;
+                dlVar.i0();
+                if (dlVar.G != null) {
+                    dlVar.H += i10;
+                }
+                dlVar.f33607b.M1(dlVar, i10);
+                return;
+            default:
                 return;
         }
     }

@@ -1,325 +1,549 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.text.Layout;
+import android.util.Pair;
 import android.view.View;
-import org.telegram.tgnet.tl.TL_iv;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 public final class fx0 {
-    public hx0 f33664a;
-    public ex0 f33665b;
-    public TL_iv.pageTableCell f33666c;
-    public final int d;
-    public int f33667e;
-    public int f33668f;
-    public int f33669g;
-    public int h;
-    public int f33670i;
-    public int f33671j;
-    public int f33672k;
-    public int f33673l;
-    public int f33674m;
-    public int f33675n;
-    public int f33676o;
-    public int f33677p;
-    public int f33678q;
-    public int f33679r = -1;
-    public final mx0 f33680s;
+    public final boolean f34714a;
+    public h6.m d;
+    public h6.m f34718f;
+    public h6.m h;
+    public int[] f34721j;
+    public int[] f34723l;
+    public dx0[] f34725n;
+    public int[] f34727p;
+    public boolean f34729r;
+    public int[] f34731t;
+    public final px0 f34734x;
+    public int f34715b = Integer.MIN_VALUE;
+    public int f34716c = Integer.MIN_VALUE;
+    public boolean f34717e = false;
+    public boolean f34719g = false;
+    public boolean f34720i = false;
+    public boolean f34722k = false;
+    public boolean f34724m = false;
+    public boolean f34726o = false;
+    public boolean f34728q = false;
+    public boolean f34730s = false;
+    public boolean f34732u = true;
+    public final lx0 v = new lx0(0);
+    public final lx0 f34733w = new lx0(-100000);
 
-    public fx0(mx0 mx0Var, int i7) {
-        this.f33680s = mx0Var;
-        this.d = i7;
+    public fx0(px0 px0Var, boolean z10) {
+        this.f34734x = px0Var;
+        this.f34714a = z10;
     }
 
-    public final void a(Canvas canvas, View view, boolean z9) {
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        boolean z13;
+    public static void j(ArrayList arrayList, jx0 jx0Var, lx0 lx0Var, boolean z10) {
+        if (jx0Var.a() != 0) {
+            if (z10) {
+                int size = arrayList.size();
+                int i7 = 0;
+                while (i7 < size) {
+                    Object obj = arrayList.get(i7);
+                    i7++;
+                    if (((dx0) obj).f34096a.equals(jx0Var)) {
+                        return;
+                    }
+                }
+            }
+            arrayList.add(new dx0(jx0Var, lx0Var));
+        }
+    }
+
+    public static boolean m(int[] iArr, dx0 dx0Var) {
+        if (dx0Var.f34098c) {
+            jx0 jx0Var = dx0Var.f34096a;
+            int i7 = jx0Var.f36198a;
+            int i10 = jx0Var.f36199b;
+            int i11 = iArr[i7] + dx0Var.f34097b.f36927a;
+            if (i11 > iArr[i10]) {
+                iArr[i10] = i11;
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final void a(h6.m mVar, boolean z10) {
+        for (lx0 lx0Var : (lx0[]) ((Object[]) mVar.d)) {
+            lx0Var.f36927a = Integer.MIN_VALUE;
+        }
+        gx0[] gx0VarArr = (gx0[]) ((Object[]) f().d);
+        for (int i7 = 0; i7 < gx0VarArr.length; i7++) {
+            int d = gx0VarArr[i7].d(z10);
+            lx0 lx0Var2 = (lx0) ((Object[]) mVar.d)[((int[]) mVar.f13624b)[i7]];
+            int i10 = lx0Var2.f36927a;
+            if (!z10) {
+                d = -d;
+            }
+            lx0Var2.f36927a = Math.max(i10, d);
+        }
+    }
+
+    public final void b(boolean z10) {
+        int[] iArr;
+        mx0 mx0Var;
+        int i7;
+        if (z10) {
+            iArr = this.f34721j;
+        } else {
+            iArr = this.f34723l;
+        }
+        px0 px0Var = this.f34734x;
+        int childCount = px0Var.getChildCount();
+        for (int i10 = 0; i10 < childCount; i10++) {
+            ix0 d = px0Var.d(i10);
+            kx0 kx0Var = d.f35760a;
+            boolean z11 = this.f34714a;
+            if (z11) {
+                mx0Var = kx0Var.f36649b;
+            } else {
+                mx0Var = kx0Var.f36648a;
+            }
+            jx0 jx0Var = mx0Var.f37403b;
+            if (z10) {
+                i7 = jx0Var.f36198a;
+            } else {
+                i7 = jx0Var.f36199b;
+            }
+            iArr[i7] = Math.max(iArr[i7], px0Var.f(d, z11, z10));
+        }
+    }
+
+    public final h6.m c(boolean z10) {
+        jx0 jx0Var;
+        ex0 ex0Var = new ex0(jx0.class, lx0.class);
+        mx0[] mx0VarArr = (mx0[]) ((Object[]) f().f13625c);
+        int length = mx0VarArr.length;
+        for (int i7 = 0; i7 < length; i7++) {
+            if (z10) {
+                jx0Var = mx0VarArr[i7].f37403b;
+            } else {
+                jx0 jx0Var2 = mx0VarArr[i7].f37403b;
+                jx0Var = new jx0(jx0Var2.f36199b, jx0Var2.f36198a);
+            }
+            ?? obj = new Object();
+            obj.f36927a = Integer.MIN_VALUE;
+            ex0Var.add(Pair.create(jx0Var, obj));
+        }
+        return ex0Var.f();
+    }
+
+    public final dx0[] d() {
+        if (this.f34725n == null) {
+            ArrayList arrayList = new ArrayList();
+            ArrayList arrayList2 = new ArrayList();
+            if (this.f34718f == null) {
+                this.f34718f = c(true);
+            }
+            if (!this.f34719g) {
+                a(this.f34718f, true);
+                this.f34719g = true;
+            }
+            h6.m mVar = this.f34718f;
+            int i7 = 0;
+            while (true) {
+                jx0[] jx0VarArr = (jx0[]) ((Object[]) mVar.f13625c);
+                if (i7 >= jx0VarArr.length) {
+                    break;
+                }
+                j(arrayList, jx0VarArr[i7], ((lx0[]) ((Object[]) mVar.d))[i7], false);
+                i7++;
+            }
+            if (this.h == null) {
+                this.h = c(false);
+            }
+            if (!this.f34720i) {
+                a(this.h, false);
+                this.f34720i = true;
+            }
+            h6.m mVar2 = this.h;
+            int i10 = 0;
+            while (true) {
+                jx0[] jx0VarArr2 = (jx0[]) ((Object[]) mVar2.f13625c);
+                if (i10 >= jx0VarArr2.length) {
+                    break;
+                }
+                j(arrayList2, jx0VarArr2[i10], ((lx0[]) ((Object[]) mVar2.d))[i10], false);
+                i10++;
+            }
+            if (this.f34732u) {
+                int i11 = 0;
+                while (i11 < e()) {
+                    int i12 = i11 + 1;
+                    j(arrayList, new jx0(i11, i12), new lx0(0), true);
+                    i11 = i12;
+                }
+            }
+            int e10 = e();
+            j(arrayList, new jx0(0, e10), this.v, false);
+            j(arrayList2, new jx0(e10, 0), this.f34733w, false);
+            dx0[] q10 = q(arrayList);
+            dx0[] q11 = q(arrayList2);
+            Object[] objArr = (Object[]) Array.newInstance(dx0[].class.getComponentType(), q10.length + q11.length);
+            System.arraycopy(q10, 0, objArr, 0, q10.length);
+            System.arraycopy(q11, 0, objArr, q10.length, q11.length);
+            this.f34725n = (dx0[]) objArr;
+        }
+        if (!this.f34726o) {
+            if (this.f34718f == null) {
+                this.f34718f = c(true);
+            }
+            if (!this.f34719g) {
+                a(this.f34718f, true);
+                this.f34719g = true;
+            }
+            if (this.h == null) {
+                this.h = c(false);
+            }
+            if (!this.f34720i) {
+                a(this.h, false);
+                this.f34720i = true;
+            }
+            this.f34726o = true;
+        }
+        return this.f34725n;
+    }
+
+    public final int e() {
+        int max = Math.max(this.f34715b, h());
+        if (max <= 1024) {
+            return max;
+        }
+        px0.g("Table grid count out of bounds");
+        throw null;
+    }
+
+    public final h6.m f() {
+        mx0 mx0Var;
         int i7;
         int i10;
         int i11;
-        Paint paint;
-        int i12;
-        Paint paint2;
-        int i13;
-        float f10;
-        float f11;
-        float f12;
-        float f13;
-        RectF rectF;
-        int i14;
-        int i15;
-        int i16;
-        org.telegram.ui.Cells.i9 i9Var;
-        Canvas canvas2 = canvas;
-        if (this.f33666c != null) {
-            int i17 = this.f33677p + this.f33672k;
-            mx0 mx0Var = this.f33680s;
-            int i18 = mx0Var.D;
-            Path path = mx0Var.L;
-            lx0 lx0Var = mx0Var.O;
-            float[] fArr = mx0Var.N;
-            RectF rectF2 = mx0Var.M;
-            if (i17 == i18) {
-                z10 = true;
-            } else {
-                z10 = false;
+        mx0 mx0Var2;
+        gx0 gx0Var;
+        h6.m mVar = this.d;
+        boolean z10 = this.f34714a;
+        px0 px0Var = this.f34734x;
+        if (mVar == null) {
+            ex0 ex0Var = new ex0(mx0.class, gx0.class);
+            int childCount = px0Var.getChildCount();
+            for (int i12 = 0; i12 < childCount; i12++) {
+                kx0 kx0Var = px0Var.d(i12).f35760a;
+                if (z10) {
+                    mx0Var2 = kx0Var.f36649b;
+                } else {
+                    mx0Var2 = kx0Var.f36648a;
+                }
+                switch (mx0.a(mx0Var2, z10).f33426a) {
+                    case 3:
+                        gx0Var = new gx0();
+                        break;
+                    default:
+                        gx0Var = new gx0();
+                        break;
+                }
+                ex0Var.add(Pair.create(mx0Var2, gx0Var));
             }
-            if (this.f33678q + this.f33673l == mx0Var.E) {
-                z11 = true;
-            } else {
-                z11 = false;
+            this.d = ex0Var.f();
+        }
+        if (!this.f34717e) {
+            for (gx0 gx0Var2 : (gx0[]) ((Object[]) this.d.d)) {
+                gx0Var2.c();
             }
-            int L = org.telegram.messenger.g0.L(8.0f);
-            boolean z14 = this.f33666c.header;
-            if (z14 || (mx0Var.H && this.f33664a.f34478a.f35103b.f34004a % 2 == 0)) {
-                int i19 = this.f33677p;
-                if (i19 == 0 && this.f33678q == 0) {
-                    float f14 = L;
-                    fArr[1] = f14;
-                    fArr[0] = f14;
-                    z12 = true;
+            int childCount2 = px0Var.getChildCount();
+            for (int i13 = 0; i13 < childCount2; i13++) {
+                ix0 d = px0Var.d(i13);
+                kx0 kx0Var2 = d.f35760a;
+                if (z10) {
+                    mx0Var = kx0Var2.f36649b;
                 } else {
-                    fArr[1] = 0.0f;
-                    fArr[0] = 0.0f;
-                    z12 = false;
+                    mx0Var = kx0Var2.f36648a;
                 }
-                if (z10 && this.f33678q == 0) {
-                    float f15 = L;
-                    fArr[3] = f15;
-                    fArr[2] = f15;
-                    z12 = true;
+                if (z10) {
+                    i7 = d.f35768k;
                 } else {
-                    fArr[3] = 0.0f;
-                    fArr[2] = 0.0f;
+                    i7 = d.f35769l;
                 }
-                if (z10 && z11) {
-                    float f16 = L;
-                    fArr[5] = f16;
-                    fArr[4] = f16;
-                    z12 = true;
+                int e10 = px0Var.e(d, z10, false) + px0Var.e(d, z10, true) + i7;
+                float f10 = mx0Var.d;
+                if (f10 == 0.0f) {
+                    i10 = 0;
                 } else {
-                    fArr[5] = 0.0f;
-                    fArr[4] = 0.0f;
+                    i10 = this.f34731t[i13];
                 }
-                if (i19 == 0 && z11) {
-                    float f17 = L;
-                    fArr[7] = f17;
-                    fArr[6] = f17;
-                    z13 = true;
+                int i14 = e10 + i10;
+                h6.m mVar2 = this.d;
+                gx0 gx0Var3 = (gx0) ((Object[]) mVar2.d)[((int[]) mVar2.f13624b)[i13]];
+                int i15 = gx0Var3.f35082c;
+                if (mx0Var.f37404c == px0.T && f10 == 0.0f) {
+                    i11 = 0;
                 } else {
-                    fArr[7] = 0.0f;
-                    fArr[6] = 0.0f;
-                    z13 = z12;
+                    i11 = 2;
                 }
-                if (z13) {
-                    rectF2.set(i19, this.f33678q, i19 + this.f33672k, i11 + this.f33673l);
-                    path.reset();
-                    path.addRoundRect(rectF2, fArr, Path.Direction.CW);
-                    if (this.f33666c.header) {
-                        canvas2.drawPath(path, lx0Var.getHeaderPaint());
+                gx0Var3.f35082c = i11 & i15;
+                int a10 = mx0.a(mx0Var, z10).a(d, i14);
+                gx0Var3.b(a10, i14 - a10);
+            }
+            this.f34717e = true;
+        }
+        return this.d;
+    }
+
+    public final int[] g() {
+        mx0 mx0Var;
+        boolean z10;
+        mx0 mx0Var2;
+        if (this.f34727p == null) {
+            this.f34727p = new int[e() + 1];
+        }
+        if (!this.f34728q) {
+            int[] iArr = this.f34727p;
+            boolean z11 = this.f34730s;
+            float f10 = 0.0f;
+            boolean z12 = this.f34714a;
+            px0 px0Var = this.f34734x;
+            if (!z11) {
+                int childCount = px0Var.getChildCount();
+                int i7 = 0;
+                while (true) {
+                    if (i7 < childCount) {
+                        kx0 kx0Var = px0Var.d(i7).f35760a;
+                        if (z12) {
+                            mx0Var2 = kx0Var.f36649b;
+                        } else {
+                            mx0Var2 = kx0Var.f36648a;
+                        }
+                        if (mx0Var2.d != 0.0f) {
+                            z10 = true;
+                            break;
+                        }
+                        i7++;
                     } else {
-                        canvas2.drawPath(path, lx0Var.getStripPaint());
+                        z10 = false;
+                        break;
                     }
-                } else if (z14) {
-                    canvas2.drawRect(i19, this.f33678q, i19 + this.f33672k, i10 + this.f33673l, lx0Var.getHeaderPaint());
-                    canvas2 = canvas;
-                } else {
-                    canvas2 = canvas;
-                    canvas2.drawRect(i19, this.f33678q, this.f33672k + i19, i7 + this.f33673l, lx0Var.getStripPaint());
+                }
+                this.f34729r = z10;
+                this.f34730s = true;
+            }
+            if (!this.f34729r) {
+                p(d(), iArr, true);
+            } else {
+                if (this.f34731t == null) {
+                    this.f34731t = new int[px0Var.getChildCount()];
+                }
+                Arrays.fill(this.f34731t, 0);
+                p(d(), iArr, true);
+                int childCount2 = (px0Var.getChildCount() * this.v.f36927a) + 1;
+                if (childCount2 >= 2) {
+                    int childCount3 = px0Var.getChildCount();
+                    for (int i10 = 0; i10 < childCount3; i10++) {
+                        kx0 kx0Var2 = px0Var.d(i10).f35760a;
+                        if (z12) {
+                            mx0Var = kx0Var2.f36649b;
+                        } else {
+                            mx0Var = kx0Var2.f36648a;
+                        }
+                        f10 += mx0Var.d;
+                    }
+                    int i11 = -1;
+                    boolean z13 = true;
+                    int i12 = 0;
+                    while (i12 < childCount2) {
+                        int i13 = (int) ((i12 + childCount2) / 2);
+                        l();
+                        o(f10, i13);
+                        boolean p10 = p(d(), iArr, false);
+                        if (p10) {
+                            i12 = i13 + 1;
+                            i11 = i13;
+                        } else {
+                            childCount2 = i13;
+                        }
+                        z13 = p10;
+                    }
+                    if (i11 > 0 && !z13) {
+                        l();
+                        o(f10, i11);
+                        p(d(), iArr, true);
+                    }
                 }
             }
-            if (z9 && this.f33665b != null) {
-                canvas2.save();
-                canvas2.translate(b(), c());
-                if (this.f33679r >= 0 && (i9Var = mx0Var.f36112a) != null) {
-                    i9Var.Z(canvas2, (org.telegram.ui.Cells.h9) mx0Var.getParent().getParent(), this.f33679r);
-                }
-                this.f33665b.d(canvas2, view);
-                canvas2.restore();
-            }
-            if (mx0Var.G) {
-                Paint linePaint = lx0Var.getLinePaint();
-                Paint linePaint2 = lx0Var.getLinePaint();
-                float strokeWidth = linePaint.getStrokeWidth() / 2.0f;
-                float strokeWidth2 = linePaint2.getStrokeWidth() / 2.0f;
-                int i20 = this.f33677p;
-                if (i20 == 0) {
-                    int i21 = this.f33678q;
-                    float f18 = i21;
-                    float f19 = this.f33673l + i21;
-                    if (i21 == 0) {
-                        f18 += L;
-                    }
-                    float f20 = f18;
-                    if (f19 == mx0Var.E) {
-                        f19 -= L;
-                    }
-                    float f21 = i20 + strokeWidth;
-                    canvas2.drawLine(f21, f20, f21, f19, linePaint);
-                    paint = linePaint;
-                    paint2 = linePaint2;
-                } else {
-                    paint = linePaint;
-                    float f22 = i20 - strokeWidth2;
-                    paint2 = linePaint2;
-                    canvas.drawLine(f22, this.f33678q, f22, i12 + this.f33673l, paint2);
-                }
-                int i22 = this.f33678q;
-                if (i22 == 0) {
-                    int i23 = this.f33677p;
-                    float f23 = i23;
-                    float f24 = this.f33672k + i23;
-                    if (i23 == 0) {
-                        f23 += L;
-                    }
-                    float f25 = f23;
-                    if (f24 == mx0Var.D) {
-                        f24 -= L;
-                    }
-                    float f26 = i22 + strokeWidth;
-                    canvas.drawLine(f25, f26, f24, f26, paint);
-                } else {
-                    float f27 = i22 - strokeWidth2;
-                    canvas.drawLine(this.f33677p, f27, i13 + this.f33672k, f27, paint2);
-                }
-                if (z10 && (i16 = this.f33678q) == 0) {
-                    f10 = i16 + L;
-                } else {
-                    f10 = this.f33678q - strokeWidth;
-                }
-                float f28 = f10;
-                if (z10 && z11) {
-                    f11 = (this.f33678q + this.f33673l) - L;
-                } else {
-                    f11 = (this.f33678q + this.f33673l) - strokeWidth;
-                }
-                float f29 = (this.f33677p + this.f33672k) - strokeWidth;
-                Paint paint3 = paint;
-                canvas.drawLine(f29, f28, f29, f11, paint3);
-                int i24 = this.f33677p;
-                if (i24 == 0 && z11) {
-                    f12 = i24 + L;
-                } else {
-                    f12 = i24 - strokeWidth;
-                }
-                if (z10 && z11) {
-                    f13 = (i24 + this.f33672k) - L;
-                } else {
-                    f13 = (i24 + this.f33672k) - strokeWidth;
-                }
-                float f30 = (this.f33678q + this.f33673l) - strokeWidth;
-                canvas.drawLine(f12, f30, f13, f30, paint3);
-                int i25 = this.f33677p;
-                if (i25 == 0 && (i15 = this.f33678q) == 0) {
-                    float f31 = i25 + strokeWidth;
-                    float f32 = i15 + strokeWidth;
-                    float f33 = L * 2;
-                    rectF2.set(f31, f32, f31 + f33, f33 + f32);
-                    rectF = rectF2;
-                    canvas.drawArc(rectF, -180.0f, 90.0f, false, paint3);
-                } else {
-                    rectF = rectF2;
-                }
-                if (z10 && (i14 = this.f33678q) == 0) {
-                    float f34 = (this.f33677p + this.f33672k) - strokeWidth;
-                    float f35 = L * 2;
-                    float f36 = i14 + strokeWidth;
-                    rectF.set(f34 - f35, f36, f34, f35 + f36);
-                    canvas.drawArc(rectF, 0.0f, -90.0f, false, paint3);
-                }
-                int i26 = this.f33677p;
-                if (i26 == 0 && z11) {
-                    float f37 = i26 + strokeWidth;
-                    float f38 = (this.f33678q + this.f33673l) - strokeWidth;
-                    float f39 = L * 2;
-                    rectF.set(f37, f38 - f39, f39 + f37, f38);
-                    canvas.drawArc(rectF, 180.0f, -90.0f, false, paint3);
-                }
-                if (z10 && z11) {
-                    float f40 = (this.f33677p + this.f33672k) - strokeWidth;
-                    float f41 = L * 2;
-                    float f42 = (this.f33678q + this.f33673l) - strokeWidth;
-                    rectF.set(f40 - f41, f42 - f41, f40, f42);
-                    canvas.drawArc(rectF, 0.0f, 90.0f, false, paint3);
+            if (!this.f34732u) {
+                int i14 = iArr[0];
+                int length = iArr.length;
+                for (int i15 = 0; i15 < length; i15++) {
+                    iArr[i15] = iArr[i15] - i14;
                 }
             }
+            this.f34728q = true;
         }
+        return this.f34727p;
     }
 
-    public final int b() {
-        return this.f33677p + this.f33669g;
-    }
-
-    public final int c() {
-        return this.f33678q + this.h;
-    }
-
-    public final void d(int r3, int r4, boolean r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.fx0.d(int, int, boolean):void");
-    }
-
-    public final void e(ex0 ex0Var) {
-        Layout layout;
-        int min;
-        this.f33665b = ex0Var;
-        if (ex0Var != null) {
-            layout = ex0Var.a();
-        } else {
-            layout = null;
-        }
-        if (layout != null) {
-            this.f33667e = 0;
-            this.f33670i = 0;
-            int lineCount = layout.getLineCount();
-            for (int i7 = 0; i7 < lineCount; i7++) {
-                float lineLeft = layout.getLineLeft(i7);
-                if (i7 == 0) {
-                    min = (int) Math.ceil(lineLeft);
+    public final int h() {
+        mx0 mx0Var;
+        int i7 = Integer.MIN_VALUE;
+        if (this.f34716c == Integer.MIN_VALUE) {
+            px0 px0Var = this.f34734x;
+            int childCount = px0Var.getChildCount();
+            int i10 = -1;
+            for (int i11 = 0; i11 < childCount; i11++) {
+                kx0 kx0Var = px0Var.d(i11).f35760a;
+                if (this.f34714a) {
+                    mx0Var = kx0Var.f36649b;
                 } else {
-                    min = Math.min(this.f33670i, (int) Math.ceil(lineLeft));
+                    mx0Var = kx0Var.f36648a;
                 }
-                this.f33670i = min;
-                this.f33667e = (int) Math.ceil(Math.max(layout.getLineWidth(i7), this.f33667e));
+                jx0 jx0Var = mx0Var.f37403b;
+                i10 = Math.max(Math.max(Math.max(i10, jx0Var.f36198a), jx0Var.f36199b), jx0Var.a());
             }
-            this.f33668f = layout.getHeight();
-            return;
+            if (i10 != -1) {
+                i7 = i10;
+            }
+            this.f34716c = Math.max(0, i7);
         }
-        this.f33670i = 0;
-        this.f33667e = 0;
-        this.f33668f = 0;
+        return this.f34716c;
     }
 
-    public final void f() {
-        int i7 = -this.f33670i;
-        this.f33669g = i7;
-        TL_iv.pageTableCell pagetablecell = this.f33666c;
-        boolean z9 = pagetablecell.align_right;
-        mx0 mx0Var = this.f33680s;
-        if (z9) {
-            this.f33669g = ((this.f33672k - this.f33667e) - mx0Var.f36120w) + i7;
-        } else if (pagetablecell.align_center) {
-            this.f33669g = Math.round((this.f33672k - this.f33667e) / 2.0f) + i7;
-        } else {
-            this.f33669g = i7 + mx0Var.f36120w;
+    public final int i(int i7) {
+        int mode = View.MeasureSpec.getMode(i7);
+        int size = View.MeasureSpec.getSize(i7);
+        lx0 lx0Var = this.f34733w;
+        lx0 lx0Var2 = this.v;
+        if (mode != Integer.MIN_VALUE) {
+            if (mode != 0) {
+                if (mode != 1073741824) {
+                    return 0;
+                }
+                lx0Var2.f36927a = size;
+                lx0Var.f36927a = -size;
+                this.f34728q = false;
+                return g()[e()];
+            }
+            lx0Var2.f36927a = 0;
+            lx0Var.f36927a = -100000;
+            this.f34728q = false;
+            return g()[e()];
+        }
+        lx0Var2.f36927a = 0;
+        lx0Var.f36927a = -size;
+        this.f34728q = false;
+        return g()[e()];
+    }
+
+    public final void k() {
+        this.f34716c = Integer.MIN_VALUE;
+        this.d = null;
+        this.f34718f = null;
+        this.h = null;
+        this.f34721j = null;
+        this.f34723l = null;
+        this.f34725n = null;
+        this.f34727p = null;
+        this.f34731t = null;
+        this.f34730s = false;
+        l();
+    }
+
+    public final void l() {
+        this.f34717e = false;
+        this.f34719g = false;
+        this.f34720i = false;
+        this.f34722k = false;
+        this.f34724m = false;
+        this.f34726o = false;
+        this.f34728q = false;
+    }
+
+    public final void n(int i7) {
+        String str;
+        if (i7 != Integer.MIN_VALUE && i7 < h()) {
+            if (this.f34714a) {
+                str = "column";
+            } else {
+                str = "row";
+            }
+            px0.g(str.concat("Count must be greater than or equal to the maximum of all grid indices (and spans) defined in the LayoutParams of each child"));
+            throw null;
+        }
+        this.f34715b = i7;
+    }
+
+    public final void o(float f10, int i7) {
+        mx0 mx0Var;
+        Arrays.fill(this.f34731t, 0);
+        px0 px0Var = this.f34734x;
+        int childCount = px0Var.getChildCount();
+        for (int i10 = 0; i10 < childCount; i10++) {
+            kx0 kx0Var = px0Var.d(i10).f35760a;
+            if (this.f34714a) {
+                mx0Var = kx0Var.f36649b;
+            } else {
+                mx0Var = kx0Var.f36648a;
+            }
+            float f11 = mx0Var.d;
+            if (f11 != 0.0f) {
+                int round = Math.round((i7 * f11) / f10);
+                this.f34731t[i10] = round;
+                i7 -= round;
+                f10 -= f11;
+            }
         }
     }
 
-    public final void g() {
-        TL_iv.pageTableCell pagetablecell = this.f33666c;
-        if (pagetablecell.valign_middle) {
-            this.h = (this.f33673l - this.f33668f) / 2;
-            return;
+    public final boolean p(dx0[] dx0VarArr, int[] iArr, boolean z10) {
+        int e10 = e() + 1;
+        loop0: for (int i7 = 0; i7 < dx0VarArr.length; i7++) {
+            Arrays.fill(iArr, 0);
+            for (int i10 = 0; i10 < e10; i10++) {
+                boolean z11 = false;
+                for (dx0 dx0Var : dx0VarArr) {
+                    z11 |= m(iArr, dx0Var);
+                }
+                if (!z11) {
+                    break loop0;
+                }
+            }
+            if (!z10) {
+                return false;
+            }
+            boolean[] zArr = new boolean[dx0VarArr.length];
+            for (int i11 = 0; i11 < e10; i11++) {
+                int length = dx0VarArr.length;
+                for (int i12 = 0; i12 < length; i12++) {
+                    zArr[i12] = zArr[i12] | m(iArr, dx0VarArr[i12]);
+                }
+            }
+            int i13 = 0;
+            while (true) {
+                if (i13 >= dx0VarArr.length) {
+                    break;
+                }
+                if (zArr[i13]) {
+                    dx0 dx0Var2 = dx0VarArr[i13];
+                    jx0 jx0Var = dx0Var2.f34096a;
+                    if (jx0Var.f36198a >= jx0Var.f36199b) {
+                        dx0Var2.f34098c = false;
+                        break;
+                    }
+                }
+                i13++;
+            }
         }
-        boolean z9 = pagetablecell.valign_bottom;
-        mx0 mx0Var = this.f33680s;
-        if (z9) {
-            this.h = (this.f33673l - this.f33668f) - mx0Var.f36119s;
-        } else {
-            this.h = mx0Var.f36118r;
+        return true;
+    }
+
+    public final dx0[] q(ArrayList arrayList) {
+        a4.k kVar = new a4.k(this, (dx0[]) arrayList.toArray(new dx0[0]));
+        int length = ((dx0[][]) kVar.d).length;
+        for (int i7 = 0; i7 < length; i7++) {
+            kVar.w(i7);
         }
+        return (dx0[]) kVar.f192c;
     }
 }

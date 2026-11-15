@@ -1,126 +1,83 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-public final class xy extends rg.b {
-    public final yy d;
+import android.view.ViewPropertyAnimator;
+import android.widget.TextView;
+public final class xy extends org.telegram.ui.Cells.n4 {
+    public final hz E;
+    public final TextView f53346r;
+    public final di.ab f53347s;
+    public int f53348w;
+    public final org.telegram.ui.Components.x4 f53349x;
+    public boolean f53350y;
 
-    public xy(yy yyVar) {
-        this.d = yyVar;
+    public xy(org.telegram.ui.hz r13, android.content.Context r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.xy.<init>(org.telegram.ui.hz, android.content.Context):void");
     }
 
-    @Override
-    public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f57056f;
-        if (i7 != 8 && i7 != 7) {
-            return false;
-        }
-        return true;
-    }
-
-    public final v4.g0 F() {
-        return this.d.n1.getAdapter();
-    }
-
-    @Override
-    public final int b() {
-        return this.d.Z1.size();
-    }
-
-    @Override
-    public final int d(int i7) {
-        return ((bz) this.d.Z1.get(i7)).f54543a;
-    }
-
-    @Override
-    public final void f() {
-        F().f();
-    }
-
-    @Override
-    public final void g(int i7) {
-        F().g(i7 + 1);
-    }
-
-    @Override
-    public final void j(int i7, int i10) {
-        F().j(i7 + 1, i10);
-    }
-
-    @Override
-    public final void k(int i7, int i10) {
-        F().k(i7 + 1, i10);
-    }
-
-    @Override
-    public final void n(int i7, int i10, Object obj) {
-        F().n(i7 + 1, i10, obj);
-    }
-
-    @Override
-    public final void o(int i7, int i10) {
-        F().o(i7 + 1, i10);
-    }
-
-    @Override
-    public final void p(int i7, int i10) {
-        F().p(i7 + 1, i10);
-    }
-
-    @Override
-    public final void t(v4.d1 d1Var, int i7) {
-        boolean z9;
+    public final void d(int i7, boolean z10) {
         int i10;
-        int i11 = d1Var.f57056f;
-        View view = d1Var.f57052a;
-        ArrayList arrayList = this.d.Z1;
-        bz bzVar = (bz) arrayList.get(i7);
-        int i12 = i7 + 1;
-        if (i12 < arrayList.size() && (i10 = ((bz) arrayList.get(i12)).f54543a) != 3 && i10 != 6) {
-            z9 = true;
+        boolean z11;
+        float f10;
+        hz hzVar = this.E;
+        if (hzVar.getUserConfig().q()) {
+            i10 = 2131750620;
         } else {
-            z9 = false;
+            i10 = 2131750619;
         }
-        if (i11 == 7) {
-            ((dz) view).e(bzVar.f44183m, z9);
-        } else if (i11 != 6 && i11 != 3) {
-            if (i11 != 0 && i11 == 8) {
-                uy uyVar = (uy) view;
-                uyVar.f50583a.setText(org.telegram.messenger.id.M0(2131751714, null));
-                if (uyVar.f50585c != z9) {
-                    uyVar.f50585c = z9;
-                    uyVar.setWillNotDraw(!z9);
-                }
-            }
+        String M0 = org.telegram.messenger.hd.M0(i10, null);
+        TextView textView = this.f53346r;
+        textView.setText(M0);
+        int i11 = 0;
+        if (i7 < 0) {
+            z11 = true;
         } else {
-            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) view;
-            if (i11 == 6) {
-                z8Var.setFixedSize(0);
-                z8Var.setText(bzVar.d);
-                return;
+            z11 = false;
+        }
+        if (!z11) {
+            int[] iArr = org.telegram.ui.ActionBar.j6.f29110r8;
+            i11 = hzVar.getThemedColor(iArr[i7 % iArr.length]);
+        }
+        this.f53348w = i11;
+        di.ab abVar = this.f53347s;
+        if (!z11) {
+            abVar.setEmojiColor(i11);
+        }
+        if (!z10) {
+            this.f53349x.a(this.f53348w, true);
+        }
+        if (z11 != this.f53350y) {
+            this.f53350y = z11;
+            ViewPropertyAnimator animate = textView.animate();
+            float f11 = 0.0f;
+            if (z11) {
+                f10 = 1.0f;
+            } else {
+                f10 = 0.0f;
             }
-            z8Var.setFixedSize(12);
-            z8Var.setText("");
+            ViewPropertyAnimator duration = animate.alpha(f10).setDuration(320L);
+            org.telegram.ui.Components.er erVar = org.telegram.ui.Components.er.h;
+            duration.setInterpolator(erVar).start();
+            ViewPropertyAnimator animate2 = abVar.animate();
+            if (!z11) {
+                f11 = 1.0f;
+            }
+            animate2.alpha(f11).setDuration(320L).setInterpolator(erVar).start();
         }
     }
 
-    @Override
-    public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        View z8Var;
-        yy yyVar = this.d;
-        if (i7 == 8) {
-            z8Var = new uy(yyVar.getContext());
-            org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f27963h5, z8Var, null);
-        } else if (i7 == 7) {
-            z8Var = new wy(this, yyVar.getContext(), yyVar.f28669a, yyVar.T1.f26074a);
-            org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f27963h5, z8Var, null);
-        } else if (i7 != 6 && i7 != 3) {
-            z8Var = new k0(yyVar, yyVar.getContext());
-        } else {
-            z8Var = new org.telegram.ui.Cells.z8(yyVar.getContext());
-            org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f27834a7, z8Var, null);
+    public final void e(CharSequence charSequence, boolean z10) {
+        if (charSequence == null) {
+            charSequence = "";
         }
-        return new v4.d1(z8Var);
+        boolean z11 = false;
+        if (charSequence.length() > 12) {
+            charSequence = charSequence.subSequence(0, 12);
+        }
+        di.ab abVar = this.f53347s;
+        CharSequence m10 = org.telegram.messenger.j6.m(charSequence, abVar.getPaint().getFontMetricsInt(), false, null, 0);
+        if (z10 && !org.telegram.messenger.hd.f24101a0) {
+            z11 = true;
+        }
+        abVar.c(m10, z11, true);
     }
 }

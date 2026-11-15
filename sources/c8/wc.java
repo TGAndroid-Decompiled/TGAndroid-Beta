@@ -3,7 +3,7 @@ package c8;
 import android.os.Bundle;
 import org.json.JSONObject;
 public abstract class wc {
-    public static bi.b1 a(String str, Bundle data) {
+    public static com.google.android.gms.common.api.q a(String str, Bundle data) {
         kotlin.jvm.internal.j.e(data, "data");
         try {
             switch (str.hashCode()) {
@@ -12,11 +12,11 @@ public abstract class wc {
                         try {
                             String string = data.getString("androidx.credentials.BUNDLE_KEY_REQUEST_JSON");
                             kotlin.jvm.internal.j.b(string);
-                            bi.b1 b1Var = new bi.b1("androidx.credentials.TYPE_DIGITAL_CREDENTIAL", data);
+                            com.google.android.gms.common.api.q qVar = new com.google.android.gms.common.api.q("androidx.credentials.TYPE_DIGITAL_CREDENTIAL", data);
                             if (string.length() != 0) {
                                 try {
                                     new JSONObject(string);
-                                    return b1Var;
+                                    return qVar;
                                 } catch (Exception unused) {
                                 }
                             }
@@ -30,11 +30,11 @@ public abstract class wc {
                     if (str.equals("androidx.credentials.TYPE_RESTORE_CREDENTIAL")) {
                         String string2 = data.getString("androidx.credentials.BUNDLE_KEY_GET_RESTORE_CREDENTIAL_RESPONSE");
                         if (string2 != null) {
-                            bi.b1 b1Var2 = new bi.b1("androidx.credentials.TYPE_RESTORE_CREDENTIAL", data);
+                            com.google.android.gms.common.api.q qVar2 = new com.google.android.gms.common.api.q("androidx.credentials.TYPE_RESTORE_CREDENTIAL", data);
                             if (string2.length() != 0) {
                                 try {
                                     new JSONObject(string2);
-                                    return b1Var2;
+                                    return qVar2;
                                 } catch (Exception unused3) {
                                 }
                             }
@@ -50,7 +50,7 @@ public abstract class wc {
                             String string4 = data.getString("androidx.credentials.BUNDLE_KEY_PASSWORD");
                             kotlin.jvm.internal.j.b(string3);
                             kotlin.jvm.internal.j.b(string4);
-                            return new v0.m(string4, 2, data);
+                            return new v0.l(string4, 2, data);
                         } catch (Exception unused4) {
                             throw new Exception();
                         }
@@ -61,7 +61,7 @@ public abstract class wc {
                         try {
                             String string5 = data.getString("androidx.credentials.BUNDLE_KEY_AUTHENTICATION_RESPONSE_JSON");
                             kotlin.jvm.internal.j.b(string5);
-                            return new v0.m(string5, 3, data);
+                            return new v0.l(string5, 3, data);
                         } catch (Exception unused5) {
                             throw new Exception();
                         }
@@ -71,7 +71,7 @@ public abstract class wc {
                     throw new Exception();
             }
         } catch (z0.a unused6) {
-            return new v0.m(str, 0, data);
+            return new v0.l(str, 0, data);
         }
     }
 }

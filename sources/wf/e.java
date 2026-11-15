@@ -3,14 +3,14 @@ package wf;
 import android.net.Uri;
 import f6.l;
 public final class e {
-    public final String f57679a;
-    public final l f57680b;
-    public final Uri f57681c;
+    public final String f59120a;
+    public final l f59121b;
+    public final Uri f59122c;
     public final String d;
-    public final int f57682e;
-    public final int f57683f;
+    public final int f59123e;
+    public final int f59124f;
 
-    public e(v4.v0 r8) {
-        throw new UnsupportedOperationException("Method not decompiled: wf.e.<init>(v4.v0):void");
+    public e(v4.w0 r8) {
+        throw new UnsupportedOperationException("Method not decompiled: wf.e.<init>(v4.w0):void");
     }
 }

@@ -3,21 +3,21 @@ package xd;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 public final class b implements Iterator {
-    public final CharSequence f58692a;
-    public int f58693b;
-    public int f58694c;
+    public final CharSequence f59876a;
+    public int f59877b;
+    public int f59878c;
     public int d;
-    public int f58695e;
+    public int f59879e;
 
     public b(CharSequence string) {
         kotlin.jvm.internal.j.e(string, "string");
-        this.f58692a = string;
+        this.f59876a = string;
     }
 
     @Override
     public final boolean hasNext() {
         int i7;
-        int i10 = this.f58693b;
+        int i10 = this.f59877b;
         if (i10 != 0) {
             if (i10 != 1) {
                 return false;
@@ -25,27 +25,27 @@ public final class b implements Iterator {
             return true;
         }
         int i11 = 2;
-        if (this.f58695e < 0) {
-            this.f58693b = 2;
+        if (this.f59879e < 0) {
+            this.f59877b = 2;
             return false;
         }
-        CharSequence charSequence = this.f58692a;
+        CharSequence charSequence = this.f59876a;
         int length = charSequence.length();
         int length2 = charSequence.length();
-        for (int i12 = this.f58694c; i12 < length2; i12++) {
+        for (int i12 = this.f59878c; i12 < length2; i12++) {
             char charAt = charSequence.charAt(i12);
             if (charAt == '\n' || charAt == '\r') {
                 i11 = (charAt == '\r' && (i7 = i12 + 1) < charSequence.length() && charSequence.charAt(i7) == '\n') ? 1 : 1;
                 length = i12;
-                this.f58693b = 1;
-                this.f58695e = i11;
+                this.f59877b = 1;
+                this.f59879e = i11;
                 this.d = length;
                 return true;
             }
         }
         i11 = -1;
-        this.f58693b = 1;
-        this.f58695e = i11;
+        this.f59877b = 1;
+        this.f59879e = i11;
         this.d = length;
         return true;
     }
@@ -53,11 +53,11 @@ public final class b implements Iterator {
     @Override
     public final Object next() {
         if (hasNext()) {
-            this.f58693b = 0;
+            this.f59877b = 0;
             int i7 = this.d;
-            int i10 = this.f58694c;
-            this.f58694c = this.f58695e + i7;
-            return this.f58692a.subSequence(i10, i7).toString();
+            int i10 = this.f59878c;
+            this.f59878c = this.f59879e + i7;
+            return this.f59876a.subSequence(i10, i7).toString();
         }
         throw new NoSuchElementException();
     }

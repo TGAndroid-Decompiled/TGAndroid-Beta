@@ -9,9 +9,9 @@ import java.util.Comparator;
 import java.util.UUID;
 public final class r implements Comparator, Parcelable {
     public static final Parcelable.Creator<r> CREATOR = new p(0);
-    public final q[] f10535a;
-    public int f10536b;
-    public final String f10537c;
+    public final q[] f10366a;
+    public int f10367b;
+    public final String f10368c;
     public final int d;
 
     public r(String str, ArrayList arrayList) {
@@ -19,24 +19,24 @@ public final class r implements Comparator, Parcelable {
     }
 
     public final r a(String str) {
-        if (Objects.equals(this.f10537c, str)) {
+        if (Objects.equals(this.f10368c, str)) {
             return this;
         }
-        return new r(str, false, this.f10535a);
+        return new r(str, false, this.f10366a);
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
         q qVar = (q) obj;
         q qVar2 = (q) obj2;
-        UUID uuid = l.f10344b;
-        if (uuid.equals(qVar.f10486b)) {
-            if (uuid.equals(qVar2.f10486b)) {
+        UUID uuid = l.f10175b;
+        if (uuid.equals(qVar.f10317b)) {
+            if (uuid.equals(qVar2.f10317b)) {
                 return 0;
             }
             return 1;
         }
-        return qVar.f10486b.compareTo(qVar2.f10486b);
+        return qVar.f10317b.compareTo(qVar2.f10317b);
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class r implements Comparator, Parcelable {
         }
         if (obj != null && r.class == obj.getClass()) {
             r rVar = (r) obj;
-            if (Objects.equals(this.f10537c, rVar.f10537c) && Arrays.equals(this.f10535a, rVar.f10535a)) {
+            if (Objects.equals(this.f10368c, rVar.f10368c) && Arrays.equals(this.f10366a, rVar.f10366a)) {
                 return true;
             }
         }
@@ -60,37 +60,37 @@ public final class r implements Comparator, Parcelable {
 
     public final int hashCode() {
         int hashCode;
-        if (this.f10536b == 0) {
-            String str = this.f10537c;
+        if (this.f10367b == 0) {
+            String str = this.f10368c;
             if (str == null) {
                 hashCode = 0;
             } else {
                 hashCode = str.hashCode();
             }
-            this.f10536b = (hashCode * 31) + Arrays.hashCode(this.f10535a);
+            this.f10367b = (hashCode * 31) + Arrays.hashCode(this.f10366a);
         }
-        return this.f10536b;
+        return this.f10367b;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        parcel.writeString(this.f10537c);
-        parcel.writeTypedArray(this.f10535a, 0);
+        parcel.writeString(this.f10368c);
+        parcel.writeTypedArray(this.f10366a, 0);
     }
 
-    public r(String str, boolean z9, q... qVarArr) {
-        this.f10537c = str;
-        qVarArr = z9 ? (q[]) qVarArr.clone() : qVarArr;
-        this.f10535a = qVarArr;
+    public r(String str, boolean z10, q... qVarArr) {
+        this.f10368c = str;
+        qVarArr = z10 ? (q[]) qVarArr.clone() : qVarArr;
+        this.f10366a = qVarArr;
         this.d = qVarArr.length;
         Arrays.sort(qVarArr, this);
     }
 
     public r(Parcel parcel) {
-        this.f10537c = parcel.readString();
+        this.f10368c = parcel.readString();
         q[] qVarArr = (q[]) parcel.createTypedArray(q.CREATOR);
-        String str = h2.m0.f14114a;
-        this.f10535a = qVarArr;
+        String str = h2.l0.f13471a;
+        this.f10366a = qVarArr;
         this.d = qVarArr.length;
     }
 }

@@ -5,20 +5,18 @@ import android.os.RemoteException;
 import q6.m;
 import v7.i;
 public final class f {
-    public final v7.a f19947a;
+    public final v7.a f20539a;
 
     public f(v7.a aVar) {
         m.g(aVar);
-        this.f19947a = aVar;
+        this.f20539a = aVar;
     }
 
-    public final void a(k8.a aVar) {
-        v7.a aVar2 = this.f19947a;
+    public final void a(ia.d dVar) {
         try {
-            a7.a aVar3 = aVar.f17230a;
-            i iVar = (i) aVar2;
+            i iVar = (i) this.f20539a;
             Parcel p12 = iVar.p1();
-            v7.b.c(p12, aVar3);
+            v7.b.c(p12, (a7.a) dVar.f15881b);
             iVar.t1(p12, 18);
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
@@ -26,22 +24,22 @@ public final class f {
     }
 
     public final boolean equals(Object obj) {
-        boolean z9 = false;
+        boolean z10 = false;
         if (!(obj instanceof f)) {
             return false;
         }
         try {
-            v7.a aVar = this.f19947a;
-            v7.a aVar2 = ((f) obj).f19947a;
+            v7.a aVar = this.f20539a;
+            v7.a aVar2 = ((f) obj).f20539a;
             i iVar = (i) aVar;
             Parcel p12 = iVar.p1();
             v7.b.c(p12, aVar2);
             Parcel o12 = iVar.o1(p12, 16);
             if (o12.readInt() != 0) {
-                z9 = true;
+                z10 = true;
             }
             o12.recycle();
-            return z9;
+            return z10;
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
         }
@@ -49,7 +47,7 @@ public final class f {
 
     public final int hashCode() {
         try {
-            i iVar = (i) this.f19947a;
+            i iVar = (i) this.f20539a;
             Parcel o12 = iVar.o1(iVar.p1(), 17);
             int readInt = o12.readInt();
             o12.recycle();

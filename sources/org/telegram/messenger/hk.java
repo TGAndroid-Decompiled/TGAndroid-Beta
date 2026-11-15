@@ -1,95 +1,142 @@
 package org.telegram.messenger;
 
-import android.support.v4.media.MediaDescriptionCompat;
-import android.support.v4.media.session.MediaSessionCompat$QueueItem;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Locale;
-import org.telegram.SQLite.SQLiteCursor;
-import org.telegram.SQLite.SQLiteDatabase;
-import org.telegram.tgnet.NativeByteBuffer;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class hk implements Runnable {
-    public final int f22926a;
-    public final Object f22927b;
-    public final long f22928c;
+import org.telegram.tgnet.tl.TL_bots;
+public final class hk implements z10 {
+    public final int f24163a = 2;
+    public final np f24164b;
+    public final Object f24165c;
     public final int d;
-    public final Object f22929e;
+    public final Object f24166e;
+    public final Object f24167f;
+    public final Object f24168g;
 
-    public hk(int i7, int i10, long j3, Object obj, Object obj2) {
-        this.f22926a = i10;
-        this.f22927b = obj;
-        this.f22929e = obj2;
-        this.f22928c = j3;
+    public hk(np npVar, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i7, TLRPC.Chat chat, Runnable runnable) {
+        this.f24164b = npVar;
+        this.f24166e = tL_messages_invitedUsers;
+        this.f24167f = iArr;
         this.d = i7;
-    }
-
-    private final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.hk.a():void");
-    }
-
-    private final void b() {
-        wz wzVar = (wz) this.f22927b;
-        yr yrVar = (yr) this.f22929e;
-        long j3 = this.f22928c;
-        int i7 = this.d;
-        ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = new ArrayList();
-        try {
-            SQLiteDatabase sQLiteDatabase = yrVar.f26725b;
-            Locale locale = Locale.US;
-            SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT data, mid FROM media_v4 WHERE uid = " + j3 + " AND mid > 0 AND type = 4 ORDER BY date DESC, mid DESC", new Object[0]);
-            while (queryFinalized.next()) {
-                NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
-                if (byteBufferValue != null) {
-                    TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
-                    TLdeserialize.readAttachPath(byteBufferValue, p10.i(i7).f24493n);
-                    byteBufferValue.reuse();
-                    if (ij.K3(TLdeserialize)) {
-                        TLdeserialize.f26981id = queryFinalized.intValue(1);
-                        TLdeserialize.dialog_id = j3;
-                        ij ijVar = new ij(i7, TLdeserialize, false, true);
-                        arrayList.add(ijVar);
-                        arrayList2.add(new MediaSessionCompat$QueueItem(null, new MediaDescriptionCompat(j3 + "_" + arrayList.size(), ijVar.y1(true), ijVar.w1(true), null, null, null, null, null), arrayList2.size()));
-                    }
-                }
-            }
-            queryFinalized.dispose();
-            Collections.reverse(arrayList);
-            Collections.reverse(arrayList2);
-        } catch (Exception e10) {
-            a8.g(e10, true);
-        }
-        g0.h3(new z1(wzVar, i7, j3, arrayList, arrayList2, 6));
+        this.f24168g = chat;
+        this.f24165c = runnable;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.hk.run():void");
+    public final void a(Object obj) {
+        int i7 = this.f24163a;
+        Object obj2 = this.f24165c;
+        Object obj3 = this.f24168g;
+        int i10 = this.d;
+        Object obj4 = this.f24167f;
+        Object obj5 = this.f24166e;
+        np npVar = this.f24164b;
+        switch (i7) {
+            case 0:
+                vf.b bVar = (vf.b) obj5;
+                org.telegram.ui.ActionBar.t1[] t1VarArr = (org.telegram.ui.ActionBar.t1[]) obj4;
+                org.telegram.ui.ActionBar.e2 e2Var = (org.telegram.ui.ActionBar.e2) obj3;
+                boolean[] zArr = (boolean[]) obj2;
+                Long l10 = (Long) obj;
+                try {
+                    if (bVar != null) {
+                        bVar.b();
+                    } else {
+                        t1VarArr[0].dismiss();
+                    }
+                } catch (Exception unused) {
+                }
+                t1VarArr[0] = null;
+                e2Var.setVisibleDialog(null);
+                if (!zArr[0]) {
+                    if (l10 != null) {
+                        if (l10.longValue() < 0) {
+                            npVar.z3(null, npVar.M0(Long.valueOf(-l10.longValue())), e2Var, 1);
+                            return;
+                        } else {
+                            npVar.z3(npVar.a2(l10), null, e2Var, i10);
+                            return;
+                        }
+                    } else if (e2Var.getParentActivity() != null) {
+                        try {
+                            if (e2Var instanceof org.telegram.ui.an) {
+                                ((org.telegram.ui.an) e2Var).Xb();
+                            }
+                            org.telegram.ui.Components.cc.a0(e2Var).t(hd.M0(2131748134, null), null).j();
+                            return;
+                        } catch (Exception e10) {
+                            a8.g(e10, true);
+                            return;
+                        }
+                    } else {
+                        return;
+                    }
+                }
+                return;
+            case 1:
+                boolean[] zArr2 = (boolean[]) obj2;
+                TL_bots.BotInfo[] botInfoArr = (TL_bots.BotInfo[]) obj5;
+                TLRPC.User user = (TLRPC.User) obj4;
+                tl tlVar = (tl) obj3;
+                TL_bots.BotInfo botInfo = (TL_bots.BotInfo) obj;
+                if (!zArr2[0]) {
+                    botInfoArr[0] = botInfo;
+                    if (botInfo == null) {
+                        TLRPC.UserFull b22 = npVar.b2(user.f28200id);
+                        if (b22 == null) {
+                            if (!zArr2[0]) {
+                                npVar.W2(user, i10, true, new d3(zArr2, botInfoArr, tlVar, 5));
+                                return;
+                            }
+                            return;
+                        }
+                        botInfoArr[0] = b22.bot_info;
+                        tlVar.run();
+                        return;
+                    }
+                    tlVar.run();
+                    return;
+                }
+                return;
+            default:
+                TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = (TLRPC.TL_messages_invitedUsers) obj5;
+                int[] iArr = (int[]) obj4;
+                TLRPC.Chat chat = (TLRPC.Chat) obj3;
+                Runnable runnable = (Runnable) obj2;
+                TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers2 = (TLRPC.TL_messages_invitedUsers) obj;
+                npVar.getClass();
+                if (tL_messages_invitedUsers2 != null) {
+                    tL_messages_invitedUsers.missing_invitees.addAll(tL_messages_invitedUsers2.missing_invitees);
+                }
+                int i11 = iArr[0] + 1;
+                iArr[0] = i11;
+                if (i11 >= i10) {
+                    if (!tL_messages_invitedUsers.missing_invitees.isEmpty()) {
+                        g0.h3(new mg(npVar, chat, tL_messages_invitedUsers, 2));
+                    }
+                    if (runnable != null) {
+                        runnable.run();
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
     }
 
-    public hk(c1 c1Var, long j3, int i7, Object obj, int i10) {
-        this.f22926a = i10;
-        this.f22927b = c1Var;
-        this.f22928c = j3;
-        this.d = i7;
-        this.f22929e = obj;
-    }
-
-    public hk(c1 c1Var, long j3, TLObject tLObject, int i7, int i10) {
-        this.f22926a = i10;
-        this.f22927b = c1Var;
-        this.f22928c = j3;
-        this.f22929e = tLObject;
+    public hk(np npVar, vf.b bVar, org.telegram.ui.ActionBar.t1[] t1VarArr, org.telegram.ui.ActionBar.e2 e2Var, boolean[] zArr, int i7) {
+        this.f24164b = npVar;
+        this.f24166e = bVar;
+        this.f24167f = t1VarArr;
+        this.f24168g = e2Var;
+        this.f24165c = zArr;
         this.d = i7;
     }
 
-    public hk(yr yrVar, int i7, long j3, TLObject tLObject, int i10) {
-        this.f22926a = i10;
-        this.f22927b = yrVar;
+    public hk(np npVar, boolean[] zArr, TL_bots.BotInfo[] botInfoArr, TLRPC.User user, int i7, tl tlVar) {
+        this.f24164b = npVar;
+        this.f24165c = zArr;
+        this.f24166e = botInfoArr;
+        this.f24167f = user;
         this.d = i7;
-        this.f22928c = j3;
-        this.f22929e = tLObject;
+        this.f24168g = tlVar;
     }
 }

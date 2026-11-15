@@ -1,243 +1,194 @@
 package ab;
 
-import a8.c1;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.RemoteInput;
 import android.content.Context;
-import android.content.SharedPreferences;
-import com.google.android.gms.tasks.OnSuccessListener;
-import di.h7;
-import di.z6;
-import h9.t1;
-import java.util.ArrayList;
+import android.content.LocusId;
+import android.graphics.Insets;
+import android.media.AudioAttributes;
+import android.media.AudioFormat;
+import android.media.AudioTrack;
+import android.media.MediaCodecInfo;
+import android.os.Binder;
+import android.os.Build;
+import android.util.Log;
+import c8.oc;
+import e2.s0;
+import h9.g2;
+import h9.s1;
+import h9.t0;
 import java.util.List;
-import org.telegram.messenger.bp;
-import org.telegram.messenger.id;
-import org.telegram.messenger.m5;
-import org.telegram.messenger.support.LongSparseIntArray;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.r1;
-import org.telegram.ui.ActionBar.u1;
-import org.telegram.ui.Cells.w1;
-import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.b70;
-import org.telegram.ui.Components.h6;
-import org.telegram.ui.Components.x60;
-import org.telegram.ui.cn;
-import org.telegram.ui.f40;
-import org.telegram.ui.jz;
-import org.telegram.ui.k30;
-import org.telegram.ui.lb1;
-import org.telegram.ui.sj;
-import org.telegram.ui.y6;
-import p4.a1;
-import p4.g1;
-public final class y implements OnSuccessListener, h7, lb1, r1, bg.p, bp, a1, h2.j, xh.j {
-    public final int f1007a;
-    public final boolean f1008b;
-    public final Object f1009c;
-
-    public y(int i7, Object obj, boolean z9) {
-        this.f1007a = i7;
-        this.f1009c = obj;
-        this.f1008b = z9;
+public abstract class y {
+    public static void a(AudioAttributes.Builder builder, boolean z10) {
+        builder.setHapticChannelsMuted(z10);
     }
 
-    @Override
-    public boolean a(TLRPC.TL_error tL_error) {
-        b70 b70Var = (b70) this.f1009c;
-        if (tL_error != null && "INVITE_REQUEST_SENT".equals(tL_error.text)) {
-            b70Var.setOnDismissListener(new x60(0, b70Var, this.f1008b));
+    public static int b(MediaCodecInfo.VideoCapabilities videoCapabilities, int i7, int i10, double d) {
+        boolean z10;
+        int i11;
+        List<MediaCodecInfo.VideoCapabilities.PerformancePoint> supportedPerformancePoints = videoCapabilities.getSupportedPerformancePoints();
+        if (supportedPerformancePoints != null && !supportedPerformancePoints.isEmpty()) {
+            MediaCodecInfo.VideoCapabilities.PerformancePoint performancePoint = new MediaCodecInfo.VideoCapabilities.PerformancePoint(i7, i10, (int) d);
+            int i12 = 0;
+            while (true) {
+                z10 = true;
+                if (i12 < supportedPerformancePoints.size()) {
+                    if (u2.i.b(supportedPerformancePoints.get(i12)).covers(performancePoint)) {
+                        i11 = 2;
+                        break;
+                    }
+                    i12++;
+                } else {
+                    i11 = 1;
+                    break;
+                }
+            }
+            if (i11 == 1 && oc.f4614a == null) {
+                int i13 = Build.VERSION.SDK_INT;
+                if (i13 < 37) {
+                    int c10 = c(true);
+                    if (i13 < 35) {
+                        oc.f4614a = Boolean.valueOf(z10);
+                        if (z10) {
+                        }
+                    } else {
+                        oc.f4614a = Boolean.valueOf(z10);
+                        if (z10) {
+                        }
+                    }
+                }
+                z10 = false;
+                oc.f4614a = Boolean.valueOf(z10);
+                if (z10) {
+                }
+            }
+            return i11;
         }
-        b70Var.dismiss();
+        return 0;
+    }
+
+    public static int c(boolean z10) {
+        Iterable e10;
+        MediaCodecInfo.VideoCapabilities videoCapabilities;
+        List<MediaCodecInfo.VideoCapabilities.PerformancePoint> supportedPerformancePoints;
+        try {
+            e2.t tVar = new e2.t();
+            tVar.f10399r = s0.n("video/avc");
+            e2.u uVar = new e2.u(tVar);
+            String str = uVar.f10451s;
+            if (str != null) {
+                List e11 = u2.w.e(str, z10, false);
+                String c10 = u2.w.c(uVar);
+                if (c10 == null) {
+                    e10 = s1.f13749e;
+                } else {
+                    e10 = u2.w.e(c10, z10, false);
+                }
+                h9.f0 p10 = h9.i0.p();
+                p10.d(e11);
+                p10.d(e10);
+                s1 f10 = p10.f();
+                for (int i7 = 0; i7 < f10.d; i7++) {
+                    if (((u2.o) f10.get(i7)).d != null && (videoCapabilities = ((u2.o) f10.get(i7)).d.getVideoCapabilities()) != null && (supportedPerformancePoints = videoCapabilities.getSupportedPerformancePoints()) != null && !supportedPerformancePoints.isEmpty()) {
+                        MediaCodecInfo.VideoCapabilities.PerformancePoint performancePoint = new MediaCodecInfo.VideoCapabilities.PerformancePoint(1280, 720, 60);
+                        for (int i10 = 0; i10 < supportedPerformancePoints.size(); i10++) {
+                            if (u2.i.b(supportedPerformancePoints.get(i10)).covers(performancePoint)) {
+                                return 2;
+                            }
+                        }
+                        return 1;
+                    }
+                }
+            }
+        } catch (u2.t unused) {
+        }
+        return 0;
+    }
+
+    public static s1 d(e2.e eVar) {
+        h9.f0 p10 = h9.i0.p();
+        h9.l0 l0Var = n2.b.h;
+        t0 t0Var = l0Var.f13700b;
+        if (t0Var == null) {
+            t0Var = l0Var.d();
+            l0Var.f13700b = t0Var;
+        }
+        g2 it = t0Var.iterator();
+        while (it.hasNext()) {
+            Integer num = (Integer) it.next();
+            int intValue = num.intValue();
+            if (Build.VERSION.SDK_INT >= h2.l0.s(intValue) && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setChannelMask(12).setEncoding(intValue).setSampleRate(48000).build(), eVar.b())) {
+                p10.c(num);
+            }
+        }
+        p10.c(2);
+        return p10.f();
+    }
+
+    public static int e(int i7, int i10, e2.e eVar) {
+        for (int i11 = 10; i11 > 0; i11--) {
+            int t6 = h2.l0.t(i11);
+            if (t6 != 0 && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setEncoding(i7).setSampleRate(i10).setChannelMask(t6).build(), eVar.b())) {
+                return i11;
+            }
+        }
+        return 0;
+    }
+
+    public static String f(Context context) {
+        return context.getOpPackageName();
+    }
+
+    public static void g(android.content.Context r7) {
+        throw new UnsupportedOperationException("Method not decompiled: ab.y.g(android.content.Context):void");
+    }
+
+    public static boolean h(Context context) {
+        if (Build.VERSION.SDK_INT >= 29) {
+            if (Binder.getCallingUid() == context.getApplicationInfo().uid) {
+                if ("com.google.android.gms".equals(((NotificationManager) context.getSystemService(NotificationManager.class)).getNotificationDelegate())) {
+                    if (Log.isLoggable("FirebaseMessaging", 3)) {
+                        Log.d("FirebaseMessaging", "GMS core is set for proxying");
+                        return true;
+                    }
+                    return true;
+                }
+            } else {
+                Log.e("FirebaseMessaging", "error retrieving notification delegate for package " + context.getPackageName());
+                return false;
+            }
+        } else if (Log.isLoggable("FirebaseMessaging", 3)) {
+            Log.d("FirebaseMessaging", "Platform doesn't support proxying.");
+        }
         return false;
     }
 
-    @Override
-    public void accept(Object obj) {
-        ((g1) obj).D((e2.e) this.f1009c, this.f1008b);
+    public static Insets i(int i7, int i10, int i11, int i12) {
+        return Insets.of(i7, i10, i11, i12);
     }
 
-    @Override
-    public void b(boolean z9) {
-        di.q qVar = (di.q) this.f1009c;
-        if (!this.f1008b && z9) {
-            boolean z10 = true;
-            if (qVar.f9533b != 1) {
-                z10 = false;
-            }
-            z6 z6Var = qVar.f9555s;
-            if (z10) {
-                if (!z6Var.f10019z) {
-                    return;
-                }
-            } else if (!z6Var.f10010p) {
-                return;
-            }
-            z6Var.T(z10);
-        }
+    public static void j(Notification.Builder builder, boolean z10) {
+        builder.setAllowSystemGeneratedContextualActions(z10);
     }
 
-    @Override
-    public void c(int i7, ArrayList arrayList) {
-        switch (this.f1007a) {
-            case 2:
-                kg.a0 a0Var = (kg.a0) this.f1009c;
-                ArrayList arrayList2 = a0Var.f17297k;
-                ArrayList arrayList3 = a0Var.f17296j;
-                int i10 = 0;
-                if (this.f1008b) {
-                    a0Var.f17293f = i7;
-                    arrayList3.clear();
-                    arrayList3.addAll(arrayList);
-                    while (i10 < arrayList3.size()) {
-                        arrayList2.remove(arrayList3.get(i10));
-                        i10++;
-                    }
-                } else {
-                    a0Var.f17294g = i7;
-                    arrayList2.clear();
-                    arrayList2.addAll(arrayList);
-                    while (i10 < arrayList2.size()) {
-                        arrayList3.remove(arrayList2.get(i10));
-                        i10++;
-                    }
-                }
-                a0Var.f17292e.run();
-                return;
-            default:
-                jz jzVar = (jz) this.f1009c;
-                LongSparseIntArray longSparseIntArray = jzVar.H;
-                jzVar.D = i7;
-                if (this.f1008b) {
-                    jzVar.u0(jzVar.F, arrayList, true);
-                    jzVar.F = arrayList;
-                    for (int i11 = 0; i11 < jzVar.F.size(); i11++) {
-                        jzVar.G.remove(jzVar.F.get(i11));
-                    }
-                    ArrayList arrayList4 = new ArrayList();
-                    int size = longSparseIntArray.size();
-                    for (int i12 = 0; i12 < size; i12++) {
-                        long keyAt = longSparseIntArray.keyAt(i12);
-                        Long valueOf = Long.valueOf(keyAt);
-                        if (!m5.C(keyAt) && !jzVar.F.contains(valueOf)) {
-                            arrayList4.add(valueOf);
-                        }
-                    }
-                    int size2 = arrayList4.size();
-                    for (int i13 = 0; i13 < size2; i13++) {
-                        longSparseIntArray.delete(((Long) arrayList4.get(i13)).longValue());
-                    }
-                } else {
-                    jzVar.u0(jzVar.G, arrayList, false);
-                    jzVar.G = arrayList;
-                    for (int i14 = 0; i14 < jzVar.G.size(); i14++) {
-                        Long l10 = (Long) jzVar.G.get(i14);
-                        jzVar.F.remove(l10);
-                        longSparseIntArray.delete(l10.longValue());
-                    }
-                }
-                jzVar.p0();
-                jzVar.o0(false);
-                jzVar.C0();
-                return;
-        }
+    public static void k(AudioAttributes.Builder builder, int i7) {
+        builder.setAllowedCapturePolicy(i7);
     }
 
-    @Override
-    public void g(u1 u1Var, int i7) {
-        int i10;
-        switch (this.f1007a) {
-            case 3:
-                y6.d0((y6) this.f1009c, this.f1008b);
-                return;
-            case 4:
-            default:
-                f40 f40Var = ((k30) this.f1009c).f47153b;
-                f40Var.U2.A(0, null);
-                UndoView n1 = f40Var.n1();
-                if (this.f1008b) {
-                    i10 = 101;
-                } else {
-                    i10 = 40;
-                }
-                n1.j(i10, 0L, null);
-                return;
-            case 5:
-                cn cnVar = (cn) this.f1009c;
-                sj sjVar = cnVar.Z;
-                if (sjVar != null) {
-                    if (this.f1008b) {
-                        cnVar.finishFragment();
-                        return;
-                    } else {
-                        sjVar.x();
-                        return;
-                    }
-                }
-                return;
-        }
+    public static void l(Notification.Builder builder, Notification.BubbleMetadata bubbleMetadata) {
+        builder.setBubbleMetadata(bubbleMetadata);
     }
 
-    @Override
-    public void j(long j3) {
-        h6 h6Var = ((w1) this.f1009c).f30715a.f30093y3;
-        if (h6Var != null) {
-            h6Var.t(id.M((int) j3, this.f1008b), true, true);
-        }
+    public static void m(Notification.Action.Builder builder) {
+        builder.setContextual(false);
     }
 
-    @Override
-    public Object l(p4.d0 d0Var, p4.v vVar, int i7) {
-        int o02;
-        long l10;
-        int o03;
-        long l11;
-        switch (this.f1007a) {
-            case 9:
-                t1 u10 = h9.i0.u((e2.l0) this.f1009c);
-                boolean z9 = this.f1008b;
-                if (z9) {
-                    o02 = -1;
-                } else {
-                    o02 = d0Var.f53229t.o0();
-                }
-                int i10 = o02;
-                if (z9) {
-                    l10 = -9223372036854775807L;
-                } else {
-                    l10 = d0Var.f53229t.l();
-                }
-                return d0Var.q(vVar, u10, i10, l10);
-            default:
-                List list = (List) this.f1009c;
-                boolean z10 = this.f1008b;
-                if (z10) {
-                    o03 = -1;
-                } else {
-                    o03 = d0Var.f53229t.o0();
-                }
-                int i11 = o03;
-                if (z10) {
-                    l11 = -9223372036854775807L;
-                } else {
-                    l11 = d0Var.f53229t.l();
-                }
-                return d0Var.q(vVar, list, i11, l11);
-        }
+    public static void n(RemoteInput.Builder builder) {
+        builder.setEditChoicesBeforeSending(0);
     }
 
-    @Override
-    public void m(xh.f fVar, float f10, float f11) {
-        xh.l lVar = (xh.l) this.f1009c;
-        if (!lVar.d && !lVar.f58847e && !lVar.f58848f && this.f1008b) {
-            lVar.c(f10, f11);
-        }
-    }
-
-    @Override
-    public void onSuccess(Object obj) {
-        Void r32 = (Void) obj;
-        SharedPreferences.Editor edit = c1.a((Context) this.f1009c).edit();
-        edit.putBoolean("proxy_retention", this.f1008b);
-        edit.apply();
+    public static void o(Notification.Builder builder, Object obj) {
+        builder.setLocusId((LocusId) obj);
     }
 }

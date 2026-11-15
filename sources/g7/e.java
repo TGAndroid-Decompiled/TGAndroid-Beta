@@ -2,15 +2,15 @@ package g7;
 
 import android.os.IBinder;
 import android.os.IInterface;
-public final class e implements g, IInterface {
-    public final IBinder f13578a;
-
-    public e(IBinder iBinder) {
-        this.f13578a = iBinder;
-    }
-
-    @Override
-    public final IBinder asBinder() {
-        return this.f13578a;
+public abstract class e extends r7.a implements f {
+    public static f asInterface(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
+        }
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.flags.IFlagProvider");
+        if (queryLocalInterface instanceof f) {
+            return (f) queryLocalInterface;
+        }
+        return new d(iBinder);
     }
 }

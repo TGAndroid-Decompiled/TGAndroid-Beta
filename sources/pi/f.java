@@ -1,208 +1,89 @@
 package pi;
 
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.os.Build;
-import bg.c0;
-import c8.ob;
-import oi.r;
-import org.telegram.ui.ActionBar.m6;
-public final class f extends oi.e {
-    public g D;
-    public g E;
-    public g F;
-    public ri.c G;
-    public int H;
-    public int I;
-    public int J;
-    public int K;
-    public final RectF L;
-    public final ri.a f53680f;
-    public final a h;
-    public final ob f53681n;
-    public final ob f53682r;
-    public ob f53683s;
-    public boolean f53684w = true;
-    public boolean f53685x = true;
-    public int f53686y = 1;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import java.util.ArrayList;
+import v4.e1;
+public final class f extends AnimatorListenerAdapter {
+    public final int f55087a = 1;
+    public final View f55088b;
+    public final e1 f55089c;
+    public final k d;
 
-    public f(ri.a aVar) {
-        a aVar2;
-        ob bVar;
-        g gVar = g.f53687b;
-        this.D = gVar;
-        this.E = gVar;
-        this.F = gVar;
-        this.I = 255;
-        this.K = 255;
-        this.L = new RectF();
-        this.f53680f = aVar;
-        if (aVar instanceof a) {
-            aVar2 = (a) aVar;
-        } else {
-            aVar2 = null;
-        }
-        this.h = aVar2;
-        if (aVar instanceof ri.e) {
-            if (Build.VERSION.SDK_INT >= 29) {
-                bVar = new c(this);
-            } else {
-                bVar = new b(this, false);
-            }
-            this.f53681n = bVar;
-            this.f53682r = bVar;
-        } else {
-            int i7 = Build.VERSION.SDK_INT;
-            if (i7 >= 33) {
-                this.f53681n = new e(this);
-                this.f53682r = new c(this);
-            } else if (i7 >= 31) {
-                this.f53681n = new d(this);
-                this.f53682r = new c(this);
-            } else {
-                this.f53681n = new b(this, true);
-                this.f53682r = new b(this, false);
-            }
-        }
-        g(this.f21080b);
-    }
-
-    public static LinearGradient k(f fVar, g gVar, float f10, float f11, int i7, int i10) {
-        int i11;
-        if (gVar == null) {
-            i11 = -1;
-        } else {
-            i11 = gVar.f53688a;
-        }
-        boolean z9 = false;
-        float f12 = 0;
-        float f13 = f10 - f12;
-        float f14 = 0.0f;
-        float max = Math.max(0.0f, f13 - f11);
-        if (i11 != -1) {
-            max = Math.min(i11, max);
-        }
-        float f15 = 1.0f;
-        float f16 = 1.0f / i10;
-        int i12 = fVar.f53686y;
-        if (i12 == 1 || i12 == 2) {
-            z9 = true;
-        }
-        if (z9) {
-            f12 = f13;
-        }
-        if (z9) {
-            f14 = -0.0f;
-        }
-        float f17 = (f12 + f14) * f16;
-        if (z9) {
-            f15 = -1.0f;
-        }
-        float max2 = (Math.max(max * f16, 0.001f) * f15) + f17;
-        int[] iArr = new int[8];
-        c0.a(c0.f3259i, i7, iArr);
-        int i13 = fVar.f53686y;
-        if (i13 != 1 && i13 != 4) {
-            return new LinearGradient(max2, 0.0f, f17, 0.0f, iArr, (float[]) null, Shader.TileMode.CLAMP);
-        }
-        return new LinearGradient(0.0f, max2, 0.0f, f17, iArr, (float[]) null, Shader.TileMode.CLAMP);
-    }
-
-    public static float l(float f10, int i7, int i10) {
-        float f11;
-        float f12;
-        return (((float) Math.floor((f10 - f11) / f12)) * i10) + i7;
+    public f(k kVar, e1 e1Var, View view) {
+        this.d = kVar;
+        this.f55089c = e1Var;
+        this.f55088b = view;
     }
 
     @Override
-    public final void a() {
-        Rect bounds = getBounds();
-        if (bounds.isEmpty()) {
-            this.f53683s.b();
-            return;
-        }
-        RectF rectF = this.L;
-        rectF.set(bounds);
-        rectF.offset(this.d, this.f21082e);
-        this.f53683s.a(bounds, rectF);
-    }
-
-    @Override
-    public final void draw(android.graphics.Canvas r3) {
-        throw new UnsupportedOperationException("Method not decompiled: pi.f.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean e() {
-        return this.f53683s.d();
-    }
-
-    @Override
-    public final void f(int i7) {
-        this.f53683s.e(i7 / 255.0f);
-        invalidateSelf();
-    }
-
-    @Override
-    public final void g(r rVar) {
-        ob obVar;
-        boolean z9 = rVar.f21127a;
-        ob obVar2 = this.f53682r;
-        if (z9) {
-            obVar = this.f53681n;
-        } else {
-            obVar = obVar2;
-        }
-        ob obVar3 = this.f53683s;
-        if (obVar3 != obVar) {
-            if (obVar3 != null) {
-                obVar3.b();
-            }
-            this.f53683s = obVar;
-            obVar.e(this.f21081c / 255.0f);
-            if (this.f53683s == obVar2) {
-                this.f53685x = true;
-            } else {
-                this.f53684w = true;
-            }
-            invalidateSelf();
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f55087a) {
+            case 0:
+                this.f55088b.setAlpha(1.0f);
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
     }
 
     @Override
-    public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final boolean j() {
-        ob obVar = this.f53683s;
-        obVar.getClass();
-        return !(obVar instanceof b);
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        this.f53684w = true;
-        this.f53685x = true;
-    }
-
-    @Override
-    public final void updateColors() {
-        ri.c cVar = this.G;
-        if (cVar != null) {
-            this.H = m6.r1(this.I / 255.0f, cVar.f54575b);
-            this.J = m6.r1(this.K / 255.0f, this.G.f54575b);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f55087a) {
+            case 0:
+                animator.removeAllListeners();
+                View view = this.f55088b;
+                view.setAlpha(1.0f);
+                view.setScaleX(1.0f);
+                view.setScaleY(1.0f);
+                view.setTranslationY(0.0f);
+                view.setTranslationY(0.0f);
+                k kVar = this.d;
+                ArrayList arrayList = kVar.f58595y;
+                e1 e1Var = this.f55089c;
+                if (arrayList.remove(e1Var)) {
+                    kVar.u(e1Var);
+                    kVar.G();
+                    return;
+                }
+                return;
+            default:
+                animator.removeAllListeners();
+                View view2 = this.f55088b;
+                view2.setAlpha(1.0f);
+                view2.setScaleX(1.0f);
+                view2.setScaleY(1.0f);
+                view2.setTranslationX(0.0f);
+                view2.setTranslationY(0.0f);
+                k kVar2 = this.d;
+                ArrayList arrayList2 = kVar2.A;
+                e1 e1Var2 = this.f55089c;
+                if (arrayList2.remove(e1Var2)) {
+                    kVar2.d(e1Var2);
+                    kVar2.G();
+                    return;
+                }
+                return;
         }
-        this.f53684w = true;
-        this.f53685x = true;
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void onAnimationStart(Animator animator) {
+        switch (this.f55087a) {
+            case 0:
+                this.d.getClass();
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
+        }
+    }
+
+    public f(k kVar, View view, e1 e1Var) {
+        this.d = kVar;
+        this.f55088b = view;
+        this.f55089c = e1Var;
     }
 }

@@ -1,23 +1,171 @@
 package i5;
 
-import a8.p0;
-import y7.i6;
-public abstract class c extends com.googlecode.mp4parser.c {
-    public static final i6 f15285e;
-
-    static {
-        ze.a aVar = new ze.a(c.class, "ChunkOffsetBox.java");
-        f15285e = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.ChunkOffsetBox", "", "", "java.lang.String"));
+import ab.c0;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.TextView;
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.g0;
+import org.telegram.messenger.hd;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.q1;
+import org.telegram.ui.Components.cj0;
+import v4.e1;
+import v4.p0;
+public abstract class c {
+    public static boolean A(String str, String str2, String str3) {
+        return str3.contains(str + str2);
     }
 
-    public final String toString() {
-        ui.e b10 = ze.a.b(f15285e, this, this);
+    public static int B(int i7, int i10, int i11, int i12) {
+        return Math.max(i12, Math.min(Math.max(i7, i10), i11));
+    }
+
+    public static void C(String str, int i7, AlertDialog$Builder alertDialog$Builder, q1 q1Var) {
+        alertDialog$Builder.k(hd.M0(i7, str), q1Var);
+        alertDialog$Builder.p();
+    }
+
+    public static int D(int i7, int i10, int i11, int i12) {
+        return Math.max(i12, Math.min(Math.min(i7, i10), i11));
+    }
+
+    public static int a(int i7, int i10, int i11, int i12) {
+        return i7 | i10 | i11 | 128 | i12;
+    }
+
+    public static boolean b(int i7, boolean z10) {
+        int i10 = i7 & 7;
+        if (i10 != 4) {
+            if (!z10 || i10 != 3) {
+                return false;
+            }
+            return true;
+        }
+        return true;
+    }
+
+    public static double c(double d, double d2, double d10) {
+        return (Math.cos(d) * d2) + d10;
+    }
+
+    public static int d(float f10, int i7, int i10) {
+        return Math.max(i10, i7 - g0.L(f10));
+    }
+
+    public static int e(int i7, int i10, int i11, int i12) {
+        return ((i7 - i10) / i11) + i12;
+    }
+
+    public static int f(int i7, int i10, ArrayList arrayList) {
+        return i10 - (arrayList.size() + i7);
+    }
+
+    public static Drawable g(Context context, int i7) {
+        return context.getResources().getDrawable(i7).mutate();
+    }
+
+    public static Object h(int i7, ArrayList arrayList) {
+        return arrayList.get(arrayList.size() - i7);
+    }
+
+    public static String i(int i7, String str) {
+        return str + i7;
+    }
+
+    public static String j(int i7, String str, String str2) {
+        return str + i7 + str2;
+    }
+
+    public static String k(int i7, String str, StringBuilder sb2) {
+        sb2.append(hd.M0(i7, str));
+        return sb2.toString();
+    }
+
+    public static String l(long j3, char c10, StringBuilder sb2) {
+        sb2.append(hd.E(j3, c10));
+        return sb2.toString();
+    }
+
+    public static StringBuilder m(int i7, String str, String str2) {
+        StringBuilder sb2 = new StringBuilder(str);
+        sb2.append(i7);
+        sb2.append(str2);
+        return sb2;
+    }
+
+    public static StringBuilder n(String str, int i7, String str2, int i10, String str3) {
+        StringBuilder sb2 = new StringBuilder(str);
+        sb2.append(i7);
+        sb2.append(str2);
+        sb2.append(i10);
+        sb2.append(str3);
+        return sb2;
+    }
+
+    public static HashMap o(Class cls, qa.a aVar) {
+        HashMap hashMap = new HashMap();
+        hashMap.put(cls, aVar);
+        return hashMap;
+    }
+
+    public static Map p(HashMap hashMap) {
+        return DesugarCollections.unmodifiableMap(new HashMap(hashMap));
+    }
+
+    public static cj0 q(View view, View view2, int i7, int i10) {
+        view.setLayoutParams(new p0(i7, i10));
+        return new e1(view2);
+    }
+
+    public static void r(int i7, StringBuilder sb2) {
+        sb2.append(i7);
+        a8.b(sb2.toString());
+    }
+
+    public static void s(int i7, HashMap hashMap, String str, int i10, String str2) {
+        hashMap.put(Integer.valueOf(i7), str);
+        hashMap.put(Integer.valueOf(i10), str2);
+    }
+
+    public static void t(long j3, StringBuilder sb2) {
+        sb2.append(j3);
+        a8.b(sb2.toString());
+    }
+
+    public static void u(c0 c0Var) {
         com.googlecode.mp4parser.g.a().getClass();
-        com.googlecode.mp4parser.g.b(b10);
-        StringBuilder sb2 = new StringBuilder(getClass().getSimpleName());
-        sb2.append("[entryCount=");
-        t tVar = (t) this;
-        com.google.android.recaptcha.internal.a.t(ze.a.b(t.h, tVar, tVar));
-        return p0.n(tVar.f15335f.length, "]", sb2);
+        com.googlecode.mp4parser.g.b(c0Var);
+    }
+
+    public static void v(TextView textView, int i7, float f10) {
+        textView.setTextSize(i7, f10);
+        textView.setTypeface(g0.o());
+    }
+
+    public static void w(TextView textView, int i7, float f10, String str, int i10) {
+        textView.setTextSize(i7, f10);
+        textView.setText(hd.M0(i10, str));
+    }
+
+    public static void x(String str, int i7, AlertDialog$Builder alertDialog$Builder, q1 q1Var) {
+        alertDialog$Builder.h(hd.M0(i7, str), q1Var);
+        alertDialog$Builder.p();
+    }
+
+    public static void y(StringBuilder sb2, int i7, String str, int i10, String str2) {
+        sb2.append(i7);
+        sb2.append(str);
+        sb2.append(i10);
+        sb2.append(str2);
+    }
+
+    public static void z(jg.m mVar, int i7, ArrayList arrayList) {
+        arrayList.add(new jg.k(mVar, i7));
     }
 }

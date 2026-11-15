@@ -1,12 +1,12 @@
 package c8;
 public final class ta {
-    public final Long f5855a;
-    public final eb f5856b;
-    public final Boolean f5857c;
+    public final Long f4678a;
+    public final eb f4679b;
+    public final Boolean f4680c;
 
     public ta(android.support.v4.media.session.a0 a0Var) {
-        this.f5855a = (Long) a0Var.f1763b;
-        this.f5856b = (eb) a0Var.f1764c;
-        this.f5857c = (Boolean) a0Var.d;
+        this.f4678a = (Long) a0Var.f1706b;
+        this.f4679b = (eb) a0Var.f1707c;
+        this.f4680c = (Boolean) a0Var.d;
     }
 }

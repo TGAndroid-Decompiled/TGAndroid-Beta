@@ -1,13 +1,13 @@
 package org.scilab.forge.jlatexmath;
 
 import a8.p0;
-import com.google.android.recaptcha.internal.a;
+import com.google.android.gms.internal.vision.e2;
 import java.lang.Character;
 import java.util.Map;
 import java.util.StringTokenizer;
 import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.dynamic.DynamicAtom;
-import rf.b;
+import r.b;
 import ru.noties.jlatexmath.awt.Color;
 public class PredefMacros {
     static {
@@ -165,19 +165,19 @@ public class PredefMacros {
     }
 
     public static final Atom IJ_macro(TeXParser teXParser, String[] strArr) {
-        boolean z9 = false;
+        boolean z10 = false;
         if (strArr[0].charAt(0) == 'I') {
-            z9 = true;
+            z10 = true;
         }
-        return new IJAtom(z9);
+        return new IJAtom(z10);
     }
 
     public static final Atom LCaron_macro(TeXParser teXParser, String[] strArr) {
-        boolean z9 = false;
+        boolean z10 = false;
         if (strArr[0].charAt(0) == 'L') {
-            z9 = true;
+            z10 = true;
         }
-        return new LCaronAtom(z9);
+        return new LCaronAtom(z10);
     }
 
     public static final Atom LaTeX_macro(TeXParser teXParser, String[] strArr) {
@@ -189,11 +189,11 @@ public class PredefMacros {
     }
 
     public static final Atom TStroke_macro(TeXParser teXParser, String[] strArr) {
-        boolean z9 = false;
+        boolean z10 = false;
         if (strArr[0].charAt(0) == 'T') {
-            z9 = true;
+            z10 = true;
         }
-        return new TStrokeAtom(z9);
+        return new TStrokeAtom(z10);
     }
 
     public static final Atom T_macro(TeXParser teXParser, String[] strArr) {
@@ -823,7 +823,7 @@ public class PredefMacros {
 
     public static final Atom genfrac_macro(TeXParser teXParser, String[] strArr) {
         SymbolAtom symbolAtom;
-        boolean z9;
+        boolean z10;
         int i7;
         Atom atom;
         Atom atom2 = new TeXFormula(teXParser, strArr[1], false).root;
@@ -840,10 +840,10 @@ public class PredefMacros {
         float[] length = SpaceAtom.getLength(strArr[3]);
         String str = strArr[3];
         if (str != null && str.length() != 0 && length.length != 1) {
-            z9 = true;
+            z10 = true;
         } else {
             length = new float[]{0.0f, 0.0f};
-            z9 = false;
+            z10 = false;
         }
         if (strArr[4].length() != 0) {
             i7 = Integer.parseInt(strArr[4]);
@@ -854,7 +854,7 @@ public class PredefMacros {
         TeXFormula teXFormula2 = new TeXFormula(teXParser, strArr[6], false);
         Atom atom4 = teXFormula.root;
         if (atom4 != null && (atom = teXFormula2.root) != null) {
-            FractionAtom fractionAtom = new FractionAtom(atom4, atom, z9, (int) length[0], length[1]);
+            FractionAtom fractionAtom = new FractionAtom(atom4, atom, z10, (int) length[0], length[1]);
             RowAtom rowAtom = new RowAtom();
             rowAtom.add(new StyleAtom(i7 * 2, new FencedAtom(fractionAtom, symbolAtom, symbolAtom2)));
             return rowAtom;
@@ -1345,7 +1345,7 @@ public class PredefMacros {
             NewCommandMacro.addNewCommand(str.substring(1), strArr[2], valueOf.intValue(), strArr[4]);
             return null;
         }
-        throw new ParseException(b.i("Invalid name for the command :", str));
+        throw new ParseException(b.k("Invalid name for the command :", str));
     }
 
     public static final Atom newenvironment_macro(TeXParser teXParser, String[] strArr) {
@@ -1511,7 +1511,7 @@ public class PredefMacros {
             NewCommandMacro.addReNewCommand(str.substring(1), strArr[2], valueOf.intValue());
             return null;
         }
-        throw new ParseException(b.i("Invalid name for the command :", str));
+        throw new ParseException(b.k("Invalid name for the command :", str));
     }
 
     public static final Atom renewenvironment_macro(TeXParser teXParser, String[] strArr) {
@@ -1528,13 +1528,13 @@ public class PredefMacros {
 
     public static final Atom resizebox_macro(TeXParser teXParser, String[] strArr) {
         Atom atom = new TeXFormula(teXParser, strArr[3]).root;
-        boolean z9 = true;
+        boolean z10 = true;
         String str = strArr[1];
         String str2 = strArr[2];
         if (!str.equals("!") && !strArr[2].equals("!")) {
-            z9 = false;
+            z10 = false;
         }
-        return new ResizeAtom(atom, str, str2, z9);
+        return new ResizeAtom(atom, str, str2, z10);
     }
 
     public static final Atom rm_macro(TeXParser teXParser, String[] strArr) {
@@ -1557,7 +1557,7 @@ public class PredefMacros {
         String str = "";
         for (int i7 = 0; i7 < 13; i7++) {
             while (parseInt >= iArr[i7]) {
-                StringBuilder m10 = a.m(str);
+                StringBuilder m10 = e2.m(str);
                 m10.append(strArr2[i7]);
                 str = m10.toString();
                 parseInt -= iArr[i7];

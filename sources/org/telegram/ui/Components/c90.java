@@ -1,25 +1,33 @@
 package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
-public final class c90 extends org.telegram.ui.qq0 {
-    public final g90 f32499a;
+public final class c90 extends g.p {
+    public final i90 f33530c;
 
-    public c90(g90 g90Var) {
-        this.f32499a = g90Var;
+    public c90(i90 i90Var) {
+        this.f33530c = i90Var;
     }
 
     @Override
-    public final org.telegram.ui.zq0 E(org.telegram.messenger.ij r5, org.telegram.tgnet.TLRPC.FileLocation r6, int r7, boolean r8, boolean r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.c90.E(org.telegram.messenger.ij, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.zq0");
-    }
-
-    @Override
-    public final void o(int i7, org.telegram.messenger.j20 j20Var, boolean z9, int i10, int i11, boolean z10) {
-        if (i7 >= 0) {
-            g90 g90Var = this.f32499a;
-            if (i7 < g90Var.P.size()) {
-                g90Var.f33856y.M((TLRPC.BotInlineResult) g90Var.P.get(i7), z9, i10);
+    public final int i(int i7) {
+        i90 i90Var = this.f33530c;
+        jg.h1 h1Var = i90Var.f35523f;
+        if (i7 != 0) {
+            int i10 = i7 - 1;
+            Object J = h1Var.J(i10);
+            if (J instanceof TLRPC.TL_inlineBotSwitchPM) {
+                return 100;
             }
+            if (J instanceof TLRPC.Document) {
+                return 20;
+            }
+            if (h1Var.I() != null || h1Var.V != null) {
+                i7 = i10;
+            }
+            b90 b90Var = i90Var.d;
+            b90Var.B1();
+            return b90Var.R.get(i7);
         }
+        return 100;
     }
 }

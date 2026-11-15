@@ -1,30 +1,41 @@
 package di;
-public final class f6 implements Runnable {
-    public final int f8998a;
-    public final z6 f8999b;
 
-    public f6(z6 z6Var, int i7) {
-        this.f8998a = i7;
-        this.f8999b = z6Var;
+import java.util.ArrayList;
+import org.telegram.ui.Components.ch0;
+public final class f6 implements Runnable {
+    public final int f8535a;
+    public final h6 f8536b;
+
+    public f6(h6 h6Var, int i7) {
+        this.f8535a = i7;
+        this.f8536b = h6Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f8998a) {
+        switch (this.f8535a) {
             case 0:
-                z6 z6Var = this.f8999b;
-                z6Var.R = false;
-                z6Var.S = null;
+                h6 h6Var = this.f8536b;
+                h6Var.f8695r = false;
+                h6Var.invalidate();
+                h6Var.a();
+                h6Var.c();
                 return;
             case 1:
-                z6 z6Var2 = this.f8999b;
-                z6Var2.f10013s = true;
-                z6Var2.f10006l.edit().putBoolean("read_loaded", true).apply();
+                this.f8536b.invalidate();
                 return;
             default:
-                z6 z6Var3 = this.f8999b;
-                z6Var3.R = false;
-                z6Var3.S = null;
+                h6 h6Var2 = this.f8536b;
+                h6Var2.setMessageCell(null);
+                ArrayList arrayList = h6Var2.K;
+                int size = arrayList.size();
+                int i7 = 0;
+                while (i7 < size) {
+                    Object obj = arrayList.get(i7);
+                    i7++;
+                    ((ch0) obj).C(true);
+                }
+                arrayList.clear();
                 return;
         }
     }

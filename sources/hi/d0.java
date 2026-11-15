@@ -1,146 +1,156 @@
 package hi;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
+import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.widget.ImageView;
-import fi.v9;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.Components.cp;
-import org.telegram.ui.Components.v5;
-import org.telegram.ui.Components.wq;
-import org.telegram.ui.Components.zg0;
-public final class d0 extends Drawable {
-    public final ImageView f14602a;
-    public final Paint f14603b;
-    public final RectF f14604c;
-    public final long d;
-    public final Drawable f14605e;
-    public boolean f14606f;
-    public float f14607g;
-    public boolean h;
-    public final v5 f14608i;
-    public final v5 f14609j;
-    public final v5 f14610k;
-    public zg0 f14611l;
+import android.net.Uri;
+import android.view.TextureView;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Components.er;
+public final class d0 {
+    public int f14072a;
+    public final org.telegram.ui.Components.u5 f14073b;
+    public final ImageReceiver f14074c;
+    public c0 d;
+    public TextureView f14075e;
+    public boolean f14076f;
+    public s h;
+    public boolean f14082m;
+    public d7 f14083n;
+    public ValueAnimator f14084o;
+    public final e0 f14085p;
+    public volatile long f14077g = -1;
+    public boolean f14078i = false;
+    public final RectF f14079j = new RectF();
+    public final RectF f14080k = new RectF();
+    public float f14081l = 1.0f;
 
-    public d0(Context context, ImageView imageView) {
-        Paint paint = new Paint(1);
-        this.f14603b = paint;
-        this.f14604c = new RectF();
-        this.h = false;
-        v9 v9Var = new v9(this, 11);
-        wq wqVar = wq.h;
-        this.f14608i = new v5(v9Var, 320L, wqVar, 0);
-        this.f14609j = new v5(new v9(this, 11), 320L, wqVar, 0);
-        this.f14610k = new v5(new v9(this, 11), 320L, wqVar, 0);
-        this.f14602a = imageView;
-        this.d = System.currentTimeMillis();
-        this.f14605e = jg.g.h(context, 2131232686);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
+    public d0(e0 e0Var) {
+        this.f14085p = e0Var;
+        this.f14073b = new org.telegram.ui.Components.u5(e0Var, 0L, 1200L, er.f34421g);
+        this.f14074c = new ImageReceiver(e0Var);
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
+    public final void a(d7 d7Var) {
+        String str;
         float f10;
-        float f11;
-        zg0 zg0Var;
-        int i7;
-        Canvas canvas2 = canvas;
-        Rect bounds = getBounds();
-        int centerX = bounds.centerX();
-        int centerY = bounds.centerY();
-        float d = this.f14610k.d(this.h);
-        float f12 = 0.0f;
-        char c10 = 2;
-        if (d < 1.0f) {
-            float f13 = 1.0f - d;
-            float f14 = (0.4f * f13) + 0.6f;
-            canvas2.save();
-            float f15 = centerX;
-            float f16 = centerY;
-            canvas2.scale(f14, f14, f15, f16);
-            Drawable drawable = this.f14605e;
-            drawable.setBounds(org.telegram.ui.Cells.f1.z(2, centerX, drawable), org.telegram.ui.Cells.f1.y(2, centerY, drawable), org.telegram.ui.Cells.f1.w(2, centerX, drawable), org.telegram.ui.Cells.f1.f(2, centerY, drawable));
-            drawable.setAlpha((int) (f13 * 255.0f));
-            drawable.draw(canvas2);
-            float L = org.telegram.messenger.g0.L(14.0f);
-            int r12 = m6.r1(0.2f * f13, -1);
-            Paint paint = this.f14603b;
-            paint.setColor(r12);
-            canvas2.drawCircle(f15, f16, L, paint);
-            float f17 = f13 * 1.0f;
-            paint.setColor(m6.r1(f17, -1));
-            float f18 = f15 - L;
-            f11 = 255.0f;
-            float f19 = f16 - L;
-            float f20 = f15 + L;
-            float f21 = f16 + L;
-            RectF rectF = this.f14604c;
-            rectF.set(f18, f19, f20, f21);
-            float d2 = this.f14608i.d(this.f14606f);
-            paint.setColor(m6.r1((1.0f - d2) * f13 * 0.15f, -1));
-            long currentTimeMillis = System.currentTimeMillis();
-            long j3 = this.d;
-            canvas2.drawArc(rectF, (-(((((float) ((currentTimeMillis - j3) % 600)) / 600.0f) - 1.0f) * 360.0f)) - 90.0f, -90.0f, false, paint);
-            float currentTimeMillis2 = (((float) (System.currentTimeMillis() - j3)) * 0.45f) % 5400.0f;
-            float max = Math.max(0.0f, ((1520.0f * currentTimeMillis2) / 5400.0f) - 20.0f);
-            int i10 = 0;
-            while (i10 < 4) {
-                x1.a aVar = cp.h;
-                float f22 = f12;
-                aVar.getInterpolation((currentTimeMillis2 - (i10 * 1350)) / 667.0f);
-                max += aVar.getInterpolation((currentTimeMillis2 - (i7 + 667)) / 667.0f) * 250.0f;
-                i10++;
-                f12 = f22;
-                c10 = c10;
-            }
-            f10 = f12;
-            paint.setColor(m6.r1(f17, -1));
-            canvas2 = canvas;
-            canvas2.drawArc(rectF, (-90.0f) - max, Math.max(0.02f, this.f14609j.e(false, this.f14607g)) * (-360.0f) * d2, false, paint);
-            invalidateSelf();
-            canvas2.restore();
+        c0 c0Var = this.d;
+        if (c0Var != null) {
+            c0Var.pause();
+            this.d.release(null);
+            this.d = null;
+        }
+        TextureView textureView = this.f14075e;
+        if (textureView != null) {
+            org.telegram.messenger.g0.E2(textureView);
+            this.f14075e = null;
+        }
+        this.f14076f = false;
+        this.f14083n = d7Var;
+        StringBuilder sb2 = new StringBuilder();
+        Point point = org.telegram.messenger.g0.f23609q;
+        sb2.append((int) Math.ceil(point.x / org.telegram.messenger.g0.f23608p));
+        sb2.append("_");
+        sb2.append((int) Math.ceil(point.y / org.telegram.messenger.g0.f23608p));
+        if (d7Var != null && d7Var.K) {
+            str = "_g";
         } else {
+            str = "";
+        }
+        String s5 = a8.p0.s(sb2, str, "_exif");
+        d7 d7Var2 = this.f14083n;
+        e0 e0Var = this.f14085p;
+        ImageReceiver imageReceiver = this.f14074c;
+        if (d7Var2 == null) {
+            imageReceiver.f();
+        } else if (d7Var2.K) {
+            Bitmap bitmap = d7Var2.M0;
+            if (bitmap != null) {
+                imageReceiver.v0(bitmap);
+            } else {
+                Bitmap bitmap2 = d7Var2.f14128b1;
+                if (bitmap2 != null) {
+                    imageReceiver.v0(bitmap2);
+                } else {
+                    String str2 = d7Var2.N;
+                    if (str2 != null) {
+                        imageReceiver.o0(str2, s5, null, null, 0L);
+                    } else {
+                        imageReceiver.f();
+                    }
+                }
+            }
+            TextureView textureView2 = new TextureView(e0Var.getContext());
+            this.f14075e = textureView2;
+            e0Var.addView(textureView2);
+            c0 c0Var2 = new c0(this, 0);
+            this.d = c0Var2;
+            c0Var2.allowMultipleInstances(true);
+            this.d.with(this.f14075e);
+            this.d.preparePlayer(Uri.fromFile(this.f14083n.L), false, 1.0f);
+            c0 c0Var3 = this.d;
+            if (!e0Var.f14222w0) {
+                d7 d7Var3 = this.f14083n;
+                if (!d7Var3.Y && e0Var.f14211o0) {
+                    f10 = d7Var3.P;
+                    c0Var3.setVolume(f10);
+                    if (!e0Var.f14211o0 && !e0Var.f14215r0) {
+                        this.d.pause();
+                    } else {
+                        this.d.play();
+                    }
+                }
+            }
             f10 = 0.0f;
-            f11 = 255.0f;
+            c0Var3.setVolume(f10);
+            if (!e0Var.f14211o0) {
+            }
+            this.d.play();
+        } else {
+            imageReceiver.o0(d7Var2.L.getAbsolutePath(), s5, null, null, 0L);
         }
-        if (d > f10 && (zg0Var = this.f14611l) != null) {
-            int i11 = zg0Var.f40963b / 2;
-            int i12 = zg0Var.f40965c / 2;
-            zg0Var.setBounds(centerX - i11, centerY - i12, i11 + centerX, i12 + centerY);
-            this.f14611l.setAlpha((int) (d * f11));
-            this.f14611l.draw(canvas2);
+        e0Var.invalidate();
+    }
+
+    public final void b(s sVar, boolean z10) {
+        s sVar2 = this.h;
+        if (sVar != null) {
+            this.h = sVar;
         }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return org.telegram.messenger.g0.L(40.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return org.telegram.messenger.g0.L(40.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+        ValueAnimator valueAnimator = this.f14084o;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.f14084o = null;
+        }
+        RectF rectF = this.f14080k;
+        e0 e0Var = this.f14085p;
+        if (z10) {
+            boolean z11 = this.f14078i;
+            RectF rectF2 = this.f14079j;
+            if (!z11) {
+                e0.a(e0Var, rectF2, sVar);
+            } else {
+                org.telegram.messenger.g0.Z1(rectF2, rectF, this.f14081l, rectF2);
+            }
+            if (sVar == null) {
+                e0.a(e0Var, rectF, sVar2);
+            } else {
+                e0Var.k(rectF, sVar);
+            }
+            this.f14081l = 0.0f;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.f14084o = ofFloat;
+            ofFloat.addUpdateListener(new fi.f4(this, 2));
+            this.f14084o.addListener(new ai.i0(this, 19));
+            this.f14084o.setInterpolator(er.h);
+            this.f14084o.setDuration(360L);
+            this.f14084o.start();
+        } else {
+            e0Var.k(rectF, sVar);
+            this.f14081l = 1.0f;
+        }
+        e0Var.invalidate();
+        this.f14078i = true;
     }
 }

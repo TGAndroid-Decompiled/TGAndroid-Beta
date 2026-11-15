@@ -1,3 +1,3 @@
 package r;
-public interface c {
+public final class c {
 }

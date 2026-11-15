@@ -1,33 +1,68 @@
 package c5;
 
-import a8.p0;
 import android.os.Parcel;
 import android.os.Parcelable;
-public final class j extends j1.b {
-    public static final Parcelable.Creator<j> CREATOR = new i(0);
-    public int f5324c;
-    public Parcelable d;
-    public final ClassLoader f5325e;
+import m.i3;
+import m.v2;
+import v4.y0;
+public final class j implements Parcelable.ClassLoaderCreator {
+    public final int f4143a;
 
-    public j(Parcel parcel, ClassLoader classLoader) {
-        super(parcel, classLoader);
-        classLoader = classLoader == null ? j.class.getClassLoader() : classLoader;
-        this.f5324c = parcel.readInt();
-        this.d = parcel.readParcelable(classLoader);
-        this.f5325e = classLoader;
-    }
-
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("FragmentPager.SavedState{");
-        sb2.append(Integer.toHexString(System.identityHashCode(this)));
-        sb2.append(" position=");
-        return p0.n(this.f5324c, "}", sb2);
+    public j(int i7) {
+        this.f4143a = i7;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i7) {
-        super.writeToParcel(parcel, i7);
-        parcel.writeInt(this.f5324c);
-        parcel.writeParcelable(this.d, i7);
+    public final Object createFromParcel(Parcel parcel, ClassLoader classLoader) {
+        switch (this.f4143a) {
+            case 0:
+                return new k(parcel, classLoader);
+            case 1:
+                if (parcel.readParcelable(classLoader) == null) {
+                    return j1.b.f16758b;
+                }
+                throw new IllegalStateException("superState must be null");
+            case 2:
+                return new v2(parcel, classLoader);
+            case 3:
+                return new i3(parcel, classLoader);
+            default:
+                return new y0(parcel, classLoader);
+        }
+    }
+
+    @Override
+    public final Object[] newArray(int i7) {
+        switch (this.f4143a) {
+            case 0:
+                return new k[i7];
+            case 1:
+                return new j1.b[i7];
+            case 2:
+                return new v2[i7];
+            case 3:
+                return new i3[i7];
+            default:
+                return new y0[i7];
+        }
+    }
+
+    @Override
+    public final Object createFromParcel(Parcel parcel) {
+        switch (this.f4143a) {
+            case 0:
+                return new k(parcel, null);
+            case 1:
+                if (parcel.readParcelable(null) == null) {
+                    return j1.b.f16758b;
+                }
+                throw new IllegalStateException("superState must be null");
+            case 2:
+                return new v2(parcel, null);
+            case 3:
+                return new i3(parcel, null);
+            default:
+                return new y0(parcel, null);
+        }
     }
 }

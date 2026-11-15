@@ -1,38 +1,26 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.ui.LanguageSelectActivity;
-import org.telegram.ui.LaunchActivity;
-public final class x0 implements org.telegram.ui.ActionBar.r1 {
-    public final int f40122a;
-    public final LaunchActivity f40123b;
+import android.view.View;
+public final class x0 implements View.OnClickListener {
+    public final int f41492a;
+    public final org.telegram.ui.Cells.c2 f41493b;
 
-    public x0(LaunchActivity launchActivity, int i7) {
-        this.f40122a = i7;
-        this.f40123b = launchActivity;
+    public x0(org.telegram.ui.Cells.c2 c2Var, int i7) {
+        this.f41492a = i7;
+        this.f41493b = c2Var;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f40122a) {
+    public final void onClick(View view) {
+        switch (this.f41492a) {
             case 0:
-                this.f40123b.t0(new LanguageSelectActivity());
-                return;
-            case 1:
-                this.f40123b.t0(new org.telegram.ui.y6());
+                org.telegram.ui.Cells.c2 c2Var = this.f41493b;
+                c2Var.c(!c2Var.b(), true);
                 return;
             default:
-                LaunchActivity launchActivity = this.f40123b;
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25570b.getPackageName()));
-                    launchActivity.startActivity(intent);
-                    return;
-                } catch (Exception e10) {
-                    org.telegram.messenger.a8.g(e10, true);
-                    return;
-                }
+                org.telegram.ui.Cells.c2 c2Var2 = this.f41493b;
+                c2Var2.c(!c2Var2.b(), true);
+                return;
         }
     }
 }

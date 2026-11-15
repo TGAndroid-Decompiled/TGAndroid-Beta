@@ -1,36 +1,34 @@
 package org.telegram.messenger;
 public final class yb implements Runnable {
-    public final int f26628a;
-    public final bc f26629b;
+    public final int f27692a;
+    public final ac f27693b;
+    public final Boolean f27694c;
 
-    public yb(bc bcVar, int i7) {
-        this.f26628a = i7;
-        this.f26629b = bcVar;
+    public yb(ac acVar, Boolean bool, int i7) {
+        this.f27692a = i7;
+        this.f27693b = acVar;
+        this.f27694c = bool;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f26628a;
-        bc bcVar = this.f26629b;
+        int i7 = this.f27692a;
+        Boolean bool = this.f27694c;
+        ac acVar = this.f27693b;
         switch (i7) {
             case 0:
-                gc gcVar = bcVar.h;
-                ThreadLocal threadLocal = gc.I;
-                gcVar.V(true);
-                return;
-            case 1:
-                bcVar.h.f22657u.remove(bcVar.f21640a.f25754e);
-                g0.h3(new yb(bcVar, 3));
-                return;
-            case 2:
-                gc gcVar2 = bcVar.h;
-                ThreadLocal threadLocal2 = gc.I;
-                gcVar2.V(true);
+                acVar.h.f23478u.remove(acVar.f22486a.f26637e);
+                g0.h3(new yb(acVar, bool, 1));
                 return;
             default:
-                ub ubVar = bcVar.f21640a;
-                qs.f(ubVar.f25763o).k(143, ubVar.f25754e, 1);
-                return;
+                tb tbVar = acVar.f22486a;
+                if (bool.booleanValue()) {
+                    ns.f(tbVar.f26646o).k(142, tbVar.f26637e, tbVar.f26647p);
+                    return;
+                } else {
+                    ns.f(tbVar.f26646o).k(143, tbVar.f26637e, 2);
+                    return;
+                }
         }
     }
 }

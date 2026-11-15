@@ -2,18 +2,18 @@ package n3;
 
 import h9.f0;
 import h9.i0;
-import h9.t1;
+import h9.s1;
 import org.xmlpull.v1.XmlPullParser;
 public abstract class d {
-    public static final String[] f20380a = {"Camera:MotionPhoto", "GCamera:MotionPhoto", "Camera:MicroVideo", "GCamera:MicroVideo"};
-    public static final String[] f20381b = {"Camera:MotionPhotoPresentationTimestampUs", "GCamera:MotionPhotoPresentationTimestampUs", "Camera:MicroVideoPresentationTimestampUs", "GCamera:MicroVideoPresentationTimestampUs"};
-    public static final String[] f20382c = {"Camera:MicroVideoOffset", "GCamera:MicroVideoOffset"};
+    public static final String[] f20944a = {"Camera:MotionPhoto", "GCamera:MotionPhoto", "Camera:MicroVideo", "GCamera:MicroVideo"};
+    public static final String[] f20945b = {"Camera:MotionPhotoPresentationTimestampUs", "GCamera:MotionPhotoPresentationTimestampUs", "Camera:MicroVideoPresentationTimestampUs", "GCamera:MicroVideoPresentationTimestampUs"};
+    public static final String[] f20946c = {"Camera:MicroVideoOffset", "GCamera:MicroVideoOffset"};
 
-    public static a8.ua a(java.lang.String r21) {
-        throw new UnsupportedOperationException("Method not decompiled: n3.d.a(java.lang.String):a8.ua");
+    public static a8.va a(java.lang.String r21) {
+        throw new UnsupportedOperationException("Method not decompiled: n3.d.a(java.lang.String):a8.va");
     }
 
-    public static t1 b(XmlPullParser xmlPullParser, String str, String str2) {
+    public static s1 b(XmlPullParser xmlPullParser, String str, String str2) {
         long j3;
         f0 p10 = i0.p();
         String concat = str.concat(":Item");
@@ -41,7 +41,7 @@ public abstract class d {
                     }
                     p10.c(new c(f10, f11, j3, j10));
                 } else {
-                    return t1.f14399e;
+                    return s1.f13749e;
                 }
             }
         } while (!h2.a.h(xmlPullParser, concat2));

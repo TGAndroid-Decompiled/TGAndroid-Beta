@@ -3,27 +3,27 @@ package org.telegram.ui.Components;
 import android.graphics.Bitmap;
 import java.lang.ref.WeakReference;
 import org.telegram.messenger.Utilities;
-public final class au0 extends xg0 {
-    public int f31997b1;
-    public int f31998c1;
-    public int f31999d1;
-    public Bitmap f32000e1;
-    public final RLottieNative[] f32001f1;
-    public final int[] f32002g1;
-    public final int[] f32003h1;
-    public final RLottieNative[] f32004i1;
-    public final int[] f32005j1;
-    public final int[] f32006k1;
-    public boolean l1;
+public final class au0 extends ah0 {
+    public int f33062c1;
+    public int f33063d1;
+    public int f33064e1;
+    public Bitmap f33065f1;
+    public final RLottieNative[] f33066g1;
+    public final int[] f33067h1;
+    public final int[] f33068i1;
+    public final RLottieNative[] f33069j1;
+    public final int[] f33070k1;
+    public final int[] l1;
+    public boolean f33071m1;
 
     public au0(String str, int i7, int i10) {
         super(str, i7, i10);
-        this.f32001f1 = new RLottieNative[5];
-        this.f32002g1 = new int[5];
-        this.f32003h1 = new int[5];
-        this.f32004i1 = new RLottieNative[3];
-        this.f32005j1 = new int[3];
-        this.f32006k1 = new int[3];
+        this.f33066g1 = new RLottieNative[5];
+        this.f33067h1 = new int[5];
+        this.f33068i1 = new int[5];
+        this.f33069j1 = new RLottieNative[3];
+        this.f33070k1 = new int[3];
+        this.l1 = new int[3];
     }
 
     public static int X(int i7) {
@@ -40,87 +40,87 @@ public final class au0 extends xg0 {
     }
 
     @Override
-    public final int B(Bitmap bitmap, boolean z9) {
+    public final int B(Bitmap bitmap, boolean z10) {
         Runnable runnable;
-        boolean z10;
-        if (this.f32000e1 == null) {
+        boolean z11;
+        if (this.f33065f1 == null) {
             try {
-                this.f32000e1 = Bitmap.createBitmap(this.f40963b, this.f40965c, Bitmap.Config.ARGB_8888);
+                this.f33065f1 = Bitmap.createBitmap(this.f33572b, this.f33574c, Bitmap.Config.ARGB_8888);
             } catch (Throwable th2) {
                 org.telegram.messenger.a8.g(th2, true);
                 return 2;
             }
         }
         int i7 = -1;
-        if (this.J == 1) {
+        if (this.K == 1) {
             int i10 = 0;
             while (true) {
-                RLottieNative[] rLottieNativeArr = this.f32001f1;
+                RLottieNative[] rLottieNativeArr = this.f33066g1;
                 if (i10 >= rLottieNativeArr.length) {
                     break;
                 }
                 RLottieNative rLottieNative = rLottieNativeArr[i10];
-                int i11 = this.f32003h1[i10];
-                Bitmap bitmap2 = this.f32000e1;
+                int i11 = this.f33068i1[i10];
+                Bitmap bitmap2 = this.f33065f1;
                 if (i10 == 0) {
-                    z10 = true;
+                    z11 = true;
                 } else {
-                    z10 = false;
+                    z11 = false;
                 }
-                i7 = rLottieNative.c(i11, bitmap2, z10);
+                i7 = rLottieNative.c(i11, bitmap2, z11);
                 if (i10 != 0) {
-                    int[] iArr = this.f32003h1;
+                    int[] iArr = this.f33068i1;
                     int i12 = iArr[i10] + 1;
-                    if (i12 < this.f32002g1[i10]) {
+                    if (i12 < this.f33067h1[i10]) {
                         iArr[i10] = i12;
                     } else if (i10 != 4) {
                         iArr[i10] = 0;
-                        this.N = false;
-                        if (this.U0 != null) {
-                            this.J = 2;
+                        this.O = false;
+                        if (this.V0 != null) {
+                            this.K = 2;
                         }
                     }
                 }
                 i10++;
             }
         } else {
-            if (this.X0) {
+            if (this.Y0) {
                 int i13 = 0;
                 while (true) {
-                    int[] iArr2 = this.f32006k1;
+                    int[] iArr2 = this.l1;
                     if (i13 >= iArr2.length) {
                         break;
                     }
-                    iArr2[i13] = this.f32005j1[i13] - 1;
+                    iArr2[i13] = this.f33070k1[i13] - 1;
                     i13++;
                 }
             }
-            if (this.l1) {
-                int[] iArr3 = this.f32003h1;
+            if (this.f33071m1) {
+                int[] iArr3 = this.f33068i1;
                 int i14 = iArr3[0] + 1;
-                if (i14 < this.f32002g1[0]) {
+                if (i14 < this.f33067h1[0]) {
                     iArr3[0] = i14;
                 } else {
                     iArr3[0] = -1;
                 }
             }
-            this.f32001f1[0].c(Math.max(this.f32003h1[0], 0), this.f32000e1, true);
+            this.f33066g1[0].c(Math.max(this.f33068i1[0], 0), this.f33065f1, true);
             int i15 = 0;
             while (true) {
-                RLottieNative[] rLottieNativeArr2 = this.f32004i1;
+                RLottieNative[] rLottieNativeArr2 = this.f33069j1;
                 if (i15 >= rLottieNativeArr2.length) {
                     break;
                 }
                 RLottieNative rLottieNative2 = rLottieNativeArr2[i15];
-                int i16 = this.f32006k1[i15];
+                int i16 = this.l1[i15];
                 if (i16 < 0) {
-                    i16 = this.f32005j1[i15] - 1;
+                    i16 = this.f33070k1[i15] - 1;
                 }
-                rLottieNative2.c(i16, this.f32000e1, false);
-                if (!this.N) {
-                    int[] iArr4 = this.f32006k1;
+                rLottieNative2.c(i16, this.f33065f1, false);
+                if (!this.O) {
+                    int[] iArr4 = this.l1;
                     int i17 = iArr4[i15] + 1;
-                    if (i17 < this.f32005j1[i15]) {
+                    if (i17 < this.f33070k1[i15]) {
                         iArr4[i15] = i17;
                     } else {
                         iArr4[i15] = -1;
@@ -128,24 +128,24 @@ public final class au0 extends xg0 {
                 }
                 i15++;
             }
-            int c10 = this.f32001f1[4].c(this.f32003h1[4], this.f32000e1, false);
-            int[] iArr5 = this.f32003h1;
+            int c10 = this.f33066g1[4].c(this.f33068i1[4], this.f33065f1, false);
+            int[] iArr5 = this.f33068i1;
             int i18 = iArr5[4] + 1;
-            if (i18 < this.f32002g1[4]) {
+            if (i18 < this.f33067h1[4]) {
                 iArr5[4] = i18;
             }
-            int[] iArr6 = this.f32006k1;
+            int[] iArr6 = this.l1;
             if (iArr6[0] == -1 && iArr6[1] == -1 && iArr6[2] == -1) {
-                this.N = true;
-                this.M++;
+                this.O = true;
+                this.N++;
             }
-            int i19 = this.f31997b1;
-            int i20 = this.f31999d1;
-            if (i19 == i20 && i20 == this.f31998c1) {
-                if (this.f32006k1[0] == this.f32005j1[0] - 100) {
-                    this.l1 = true;
+            int i19 = this.f33062c1;
+            int i20 = this.f33064e1;
+            if (i19 == i20 && i20 == this.f33063d1) {
+                if (this.l1[0] == this.f33070k1[0] - 100) {
+                    this.f33071m1 = true;
                     if (i19 == 5) {
-                        WeakReference weakReference = this.H;
+                        WeakReference weakReference = this.I;
                         if (weakReference == null) {
                             runnable = null;
                         } else {
@@ -157,63 +157,63 @@ public final class au0 extends xg0 {
                     }
                 }
             } else {
-                this.f32003h1[0] = -1;
+                this.f33068i1[0] = -1;
             }
             i7 = c10;
         }
         if (i7 < 0) {
             return 2;
         }
-        Utilities.copyBitmaps(this.f32000e1, bitmap);
+        Utilities.copyBitmaps(this.f33065f1, bitmap);
         return 1;
     }
 
     @Override
-    public final void C(boolean z9) {
-        this.f40976k0 = false;
-        this.f40977l0 = true;
+    public final void C(boolean z10) {
+        this.f33586l0 = false;
+        this.m0 = true;
         n();
         l();
-        if (!this.Y0 && !this.V0) {
-            if (this.P == null) {
+        if (!this.Z0 && !this.W0) {
+            if (this.Q == null) {
                 W(true);
                 E();
                 return;
             }
-            this.V = true;
+            this.W = true;
             return;
         }
-        this.W0 = true;
+        this.X0 = true;
     }
 
-    public final void W(boolean z9) {
+    public final void W(boolean z10) {
         int i7 = 0;
         int i10 = 0;
         while (true) {
-            RLottieNative[] rLottieNativeArr = this.f32001f1;
+            RLottieNative[] rLottieNativeArr = this.f33066g1;
             if (i10 >= rLottieNativeArr.length) {
                 break;
             }
             RLottieNative rLottieNative = rLottieNativeArr[i10];
             if (rLottieNative != null) {
-                if (z9 && rLottieNative == this.m0) {
-                    this.m0 = null;
+                if (z10 && rLottieNative == this.f33588n0) {
+                    this.f33588n0 = null;
                 }
-                this.f32001f1[i10].d();
-                this.f32001f1[i10] = null;
+                this.f33066g1[i10].d();
+                this.f33066g1[i10] = null;
             }
             i10++;
         }
         while (true) {
-            RLottieNative[] rLottieNativeArr2 = this.f32004i1;
+            RLottieNative[] rLottieNativeArr2 = this.f33069j1;
             if (i7 < rLottieNativeArr2.length) {
                 RLottieNative rLottieNative2 = rLottieNativeArr2[i7];
                 if (rLottieNative2 != null) {
-                    if (z9 && rLottieNative2 == this.U0) {
-                        this.U0 = null;
+                    if (z10 && rLottieNative2 == this.V0) {
+                        this.V0 = null;
                     }
-                    this.f32004i1[i7].d();
-                    this.f32004i1[i7] = null;
+                    this.f33069j1[i7].d();
+                    this.f33069j1[i7] = null;
                 }
                 i7++;
             } else {
@@ -224,10 +224,10 @@ public final class au0 extends xg0 {
 
     @Override
     public final int j() {
-        if (this.f40977l0) {
+        if (this.m0) {
             return 3;
         }
-        if (this.m0 == null || (this.J == 2 && this.U0 == null)) {
+        if (this.f33588n0 == null || (this.K == 2 && this.V0 == null)) {
             return 2;
         }
         return 1;
@@ -235,17 +235,17 @@ public final class au0 extends xg0 {
 
     @Override
     public final void p() {
-        if (this.V) {
+        if (this.W) {
             n();
-            if (this.P == null) {
+            if (this.Q == null) {
                 W(false);
             }
         }
-        if (this.m0 == null && this.U0 == null) {
+        if (this.f33588n0 == null && this.V0 == null) {
             E();
             return;
         }
-        this.T = true;
+        this.U = true;
         if (!v()) {
             stop();
         }

@@ -1,47 +1,188 @@
 package hi;
 
 import android.animation.ValueAnimator;
-public final class n2 implements ValueAnimator.AnimatorUpdateListener {
-    public final boolean f14812a;
-    public final float f14813b;
-    public final float f14814c;
-    public final float d;
-    public final float f14815e;
-    public final a3 f14816f;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorSpace;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.RadialGradient;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.os.Build;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.er;
+import org.telegram.ui.LaunchActivity;
+public final class n2 {
+    public final Context f14739a;
+    public final k2 f14740b;
+    public final k2 f14741c;
+    public final WindowManager f14742e;
+    public final View f14743f;
+    public final WindowManager.LayoutParams f14744g;
+    public ValueAnimator f14745i;
+    public int f14746j;
+    public int f14747k;
+    public int f14748l;
+    public float f14749m;
+    public int f14750n;
+    public RadialGradient f14754r;
+    public final Paint f14755s;
+    public final ArrayList d = new ArrayList();
+    public float h = 0.0f;
+    public float f14751o = 0.75f;
+    public float f14752p = 1.0f;
+    public final Matrix f14753q = new Matrix();
 
-    public n2(a3 a3Var, boolean z9, float f10, float f11, float f12, float f13) {
-        this.f14816f = a3Var;
-        this.f14812a = z9;
-        this.f14813b = f10;
-        this.f14814c = f11;
-        this.d = f12;
-        this.f14815e = f13;
+    public n2(Context context, WindowManager windowManager, View view, WindowManager.LayoutParams layoutParams) {
+        Paint paint = new Paint(1);
+        this.f14755s = paint;
+        this.f14739a = context;
+        this.f14742e = windowManager;
+        this.f14743f = view;
+        this.f14744g = layoutParams;
+        this.f14740b = new k2(this, context, 0);
+        this.f14741c = new k2(this, context, 1);
+        paint.setAlpha(0);
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        a3 a3Var = this.f14816f;
-        s2 s2Var = a3Var.D;
-        x2 x2Var = a3Var.X;
-        r2 r2Var = a3Var.f14543x;
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        a3Var.f14524h0 = floatValue;
-        if (!this.f14812a) {
-            floatValue = 1.0f - floatValue;
+    public static int f(float f10) {
+        if (f10 < 0.5f) {
+            return i0.a.f(Utilities.i(f10 / 0.5f, 1.0f, 0.0f), -7544833, -1);
         }
-        a3Var.f14523g0 = floatValue;
-        x2Var.setAlpha(1.0f - floatValue);
-        x2Var.setTranslationY((-org.telegram.ui.ActionBar.l.getCurrentActionBarHeight()) * a3Var.f14523g0);
-        float f10 = this.f14813b;
-        float f11 = a3Var.f14524h0;
-        float f12 = this.f14814c;
-        r2Var.setTranslationY(org.telegram.messenger.g0.T1(f10, f12, f11));
-        r2Var.setTranslationX(org.telegram.messenger.g0.T1(this.d, 0.0f, a3Var.f14524h0));
-        a3Var.m0.setTranslationX(org.telegram.messenger.g0.T1(this.f14815e, 0.0f, a3Var.f14524h0));
-        a3Var.f14530n0.setAlpha(a3Var.f14523g0);
-        a3Var.f14521f.invalidate();
-        s2Var.setViewPortHeightOffset(r2Var.getTranslationY() - f12);
-        s2Var.n(false, false);
-        a3Var.H();
+        return i0.a.f(Utilities.i((f10 - 0.5f) / 0.5f, 1.0f, 0.0f), -1, -70004);
+    }
+
+    public final void a(m2 m2Var) {
+        m2Var.setInvert(this.h);
+        this.d.add(m2Var);
+    }
+
+    public final void b(Canvas canvas, boolean z10) {
+        if (this.f14754r != null) {
+            g();
+            this.f14754r.setLocalMatrix(this.f14753q);
+            Paint paint = this.f14755s;
+            if (z10) {
+                canvas.drawRect(0.0f, 0.0f, this.f14746j, this.f14747k, paint);
+                return;
+            }
+            RectF rectF = org.telegram.messenger.g0.P;
+            k2 k2Var = this.f14741c;
+            rectF.set(0.0f, 0.0f, k2Var.getMeasuredWidth(), k2Var.getMeasuredHeight());
+            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(12.0f) - 2, org.telegram.messenger.g0.L(12.0f) - 2, paint);
+        }
+    }
+
+    public final void c(o9 o9Var) {
+        h(this.f14752p);
+        e(1.0f, 320L, o9Var);
+    }
+
+    public final void d() {
+        h(-1.0f);
+        e(0.0f, 240L, null);
+    }
+
+    public final void e(float f10, long j3, Runnable runnable) {
+        ValueAnimator valueAnimator = this.f14745i;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.f14745i = null;
+        }
+        if (j3 <= 0) {
+            this.h = f10;
+            i();
+            if (runnable != null) {
+                runnable.run();
+                return;
+            }
+            return;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.h, f10);
+        this.f14745i = ofFloat;
+        ofFloat.addUpdateListener(new ah.h(this, 28));
+        this.f14745i.addListener(new di.g6(this, f10, runnable, 2));
+        this.f14745i.setDuration(j3);
+        this.f14745i.setInterpolator(er.f34422i);
+        this.f14745i.start();
+    }
+
+    public final void g() {
+        int i7 = this.f14748l;
+        int i10 = this.f14750n;
+        k2 k2Var = this.f14740b;
+        if (i7 != i10 || this.f14746j != k2Var.getMeasuredWidth() || this.f14747k != k2Var.getMeasuredHeight() || Math.abs(this.f14749m - this.h) > 0.005f) {
+            this.f14748l = this.f14750n;
+            this.f14746j = k2Var.getMeasuredWidth();
+            int measuredHeight = k2Var.getMeasuredHeight();
+            this.f14747k = measuredHeight;
+            this.f14749m = this.h;
+            if (this.f14746j > 0 && measuredHeight > 0) {
+                if (Build.VERSION.SDK_INT >= 29) {
+                    int i11 = this.f14746j;
+                    int i12 = this.f14747k;
+                    float min = (2.0f - this.h) * (Math.min(i11, i12) / 2.0f) * 1.35f;
+                    ColorSpace.Named named = ColorSpace.Named.EXTENDED_SRGB;
+                    float[] fArr = {org.telegram.messenger.g0.T1(0.9f, 0.22f, this.h), 1.0f};
+                    Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                    this.f14754r = android.support.v4.media.session.w.b(i11 * 0.5f, i12 * 0.4f, min, new long[]{Color.valueOf(Color.red(this.f14750n) / 255.0f, Color.green(this.f14750n) / 255.0f, Color.blue(this.f14750n) / 255.0f, 0.0f, ColorSpace.get(named)).pack(), Color.valueOf(Color.red(this.f14750n) / 255.0f, Color.green(this.f14750n) / 255.0f, Color.blue(this.f14750n) / 255.0f, 1.0f, ColorSpace.get(named)).pack()}, fArr);
+                } else {
+                    int i13 = this.f14746j;
+                    int i14 = this.f14747k;
+                    this.f14754r = new RadialGradient(i13 * 0.5f, i14 * 0.4f, (2.0f - this.h) * (Math.min(i13, i14) / 2.0f) * 1.35f, new int[]{i0.a.o(this.f14750n, 0), this.f14750n}, new float[]{org.telegram.messenger.g0.T1(0.9f, 0.22f, this.h), 1.0f}, Shader.TileMode.CLAMP);
+                }
+                this.f14755s.setShader(this.f14754r);
+                k2Var.invalidate();
+                this.f14741c.invalidate();
+            }
+        }
+    }
+
+    public final void h(float f10) {
+        Window window;
+        WindowManager.LayoutParams layoutParams;
+        View view = this.f14743f;
+        if (view != null && (layoutParams = this.f14744g) != null) {
+            layoutParams.screenBrightness = f10;
+            WindowManager windowManager = this.f14742e;
+            if (windowManager != null) {
+                windowManager.updateViewLayout(view, layoutParams);
+                return;
+            }
+            return;
+        }
+        Activity W = org.telegram.messenger.g0.W(this.f14739a);
+        if (W == null) {
+            W = LaunchActivity.H1;
+        }
+        if (W != null && !W.isFinishing() && (window = W.getWindow()) != null) {
+            WindowManager.LayoutParams attributes = window.getAttributes();
+            attributes.screenBrightness = f10;
+            window.setAttributes(attributes);
+        }
+    }
+
+    public final void i() {
+        int i7 = 0;
+        while (true) {
+            ArrayList arrayList = this.d;
+            if (i7 < arrayList.size()) {
+                ((m2) arrayList.get(i7)).setInvert(this.h);
+                ((m2) arrayList.get(i7)).invalidate();
+                i7++;
+            } else {
+                this.f14755s.setAlpha((int) (this.f14752p * 255.0f * this.h));
+                this.f14740b.invalidate();
+                this.f14741c.invalidate();
+                return;
+            }
+        }
     }
 }

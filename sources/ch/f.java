@@ -5,47 +5,46 @@ import android.graphics.PorterDuff;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import bi.l1;
-import c8.ha;
-import org.telegram.messenger.c20;
-import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.h6;
+import c8.ja;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.z10;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.ActionBar.q6;
 public final class f extends FrameLayout {
-    public static final int f6240e = 0;
-    public final e f6241a;
-    public boolean f6242b;
-    public boolean f6243c;
-    public c20 d;
+    public static final int f5060e = 0;
+    public final e f5061a;
+    public boolean f5062b;
+    public boolean f5063c;
+    public z10 d;
 
-    public f(Activity activity, h6 h6Var) {
+    public f(Activity activity, e6 e6Var) {
         super(activity);
         int x02;
         e eVar = new e(this, activity);
-        this.f6241a = eVar;
+        this.f5061a = eVar;
         eVar.setHapticFeedbackEnabled(true);
-        eVar.setImageResource(2131232739);
-        t6.s(eVar, m6.Gf, h6Var, PorterDuff.Mode.MULTIPLY);
+        eVar.setImageResource(2131232740);
+        q6.s(eVar, j6.Jf, e6Var, PorterDuff.Mode.MULTIPLY);
         eVar.setScaleType(ImageView.ScaleType.CENTER);
-        eVar.setContentDescription(id.M0(2131754920, null));
+        eVar.setContentDescription(hd.M0(2131754920, null));
         eVar.setFocusable(true);
-        eVar.setOnClickListener(new l1(1));
-        addView(eVar, ha.e(36, 36, 17));
-        int x03 = m6.x0(null, m6.f27982i6, false);
+        eVar.setOnClickListener(new bi.o(3));
+        addView(eVar, ja.e(36, 36, 17));
+        int x03 = j6.x0(null, j6.f28941i6, false);
         int L = org.telegram.messenger.g0.L(36.0f);
-        int i7 = m6.f27890d6;
-        if (h6Var != null) {
-            x02 = h6Var.h(i7);
+        int i7 = j6.f28849d6;
+        if (e6Var != null) {
+            x02 = e6Var.h(i7);
         } else {
-            x02 = m6.x0(null, i7, false);
+            x02 = j6.x0(null, i7, false);
         }
-        org.telegram.ui.Cells.y j02 = m6.j0(L, x02, x03);
-        p6 M = t6.M(i7);
+        org.telegram.ui.Cells.y j02 = j6.j0(L, x02, x03);
+        m6 M = q6.M(i7);
         eVar.setBackground(j02);
-        t6.j(eVar, j02, M, null, h6Var);
-        eVar.setOutlineProvider(new bg.r0(18));
+        q6.j(eVar, j02, M, null, e6Var);
+        eVar.setOutlineProvider(new bg.q0(18));
         eVar.setElevation(org.telegram.messenger.g0.L(1.0f));
         eVar.setClipToOutline(true);
         setClickable(true);
@@ -56,7 +55,7 @@ public final class f extends FrameLayout {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(42.0f), 1073741824));
     }
 
-    public void setOnBackspace(c20 c20Var) {
-        this.d = c20Var;
+    public void setOnBackspace(z10 z10Var) {
+        this.d = z10Var;
     }
 }

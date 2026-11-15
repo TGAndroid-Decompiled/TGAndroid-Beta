@@ -2,7 +2,7 @@ package a6;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.xb;
+import c8.yb;
 import j$.util.Objects;
 import java.util.Arrays;
 import q6.m;
@@ -12,12 +12,12 @@ public final class c extends r6.a {
     public final byte[] f282b;
     public final String f283c;
 
-    public c(boolean z9, byte[] bArr, String str) {
-        if (z9) {
+    public c(boolean z10, byte[] bArr, String str) {
+        if (z10) {
             m.g(bArr);
             m.g(str);
         }
-        this.f281a = z9;
+        this.f281a = z10;
         this.f282b = bArr;
         this.f283c = str;
     }
@@ -42,11 +42,11 @@ public final class c extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = xb.r(parcel, 20293);
-        xb.q(parcel, 1, 4);
+        int r10 = yb.r(parcel, 20293);
+        yb.q(parcel, 1, 4);
         parcel.writeInt(this.f281a ? 1 : 0);
-        xb.c(parcel, 2, this.f282b);
-        xb.l(parcel, 3, this.f283c);
-        xb.s(parcel, r10);
+        yb.c(parcel, 2, this.f282b);
+        yb.l(parcel, 3, this.f283c);
+        yb.s(parcel, r10);
     }
 }

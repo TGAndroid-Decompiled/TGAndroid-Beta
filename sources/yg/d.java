@@ -1,16 +1,16 @@
 package yg;
 
 import android.content.Context;
-import c8.ha;
+import c8.ja;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.messenger.hd;
+import org.telegram.ui.ActionBar.e6;
 public class d extends c {
-    public static final int f59457w = 0;
-    public int f59458s;
+    public static final int f60661w = 0;
+    public int f60662s;
 
-    public d(Context context, h6 h6Var) {
-        super(context, h6Var);
+    public d(Context context, e6 e6Var) {
+        super(context, e6Var);
         this.d.setTypeface(g0.o());
     }
 
@@ -29,55 +29,55 @@ public class d extends c {
         float f12;
         float f13;
         int i12 = 3;
-        if (id.f23161a0) {
+        if (hd.f24101a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
-        this.f59441c.setLayoutParams(ha.d(40, 40.0f, i7 | 16, 57.0f, 0.0f, 57.0f, 0.0f));
-        boolean z9 = id.f23161a0;
-        if (z9) {
+        this.f60645c.setLayoutParams(ja.d(40, 40.0f, i7 | 16, 57.0f, 0.0f, 57.0f, 0.0f));
+        boolean z10 = hd.f24101a0;
+        if (z10) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         int i13 = i10 | 16;
-        if (z9) {
+        if (z10) {
             f10 = 20.0f;
         } else {
             f10 = 109.0f;
         }
-        if (z9) {
+        if (z10) {
             f11 = 109.0f;
         } else {
             f11 = 20.0f;
         }
-        this.d.setLayoutParams(ha.d(-1, -2.0f, i13, f10, 0.0f, f11, 0.0f));
-        boolean z10 = id.f23161a0;
-        if (z10) {
+        this.d.setLayoutParams(ja.d(-1, -2.0f, i13, f10, 0.0f, f11, 0.0f));
+        boolean z11 = hd.f24101a0;
+        if (z11) {
             i11 = 5;
         } else {
             i11 = 3;
         }
         int i14 = i11 | 16;
-        if (z10) {
+        if (z11) {
             f12 = 20.0f;
         } else {
             f12 = 109.0f;
         }
-        if (z10) {
+        if (z11) {
             f13 = 109.0f;
         } else {
             f13 = 20.0f;
         }
-        this.f59442e.setLayoutParams(ha.d(-1, -2.0f, i14, f12, 0.0f, f13, 0.0f));
-        if (id.f23161a0) {
+        this.f60646e.setLayoutParams(ja.d(-1, -2.0f, i14, f12, 0.0f, f13, 0.0f));
+        if (hd.f24101a0) {
             i12 = 5;
         }
-        this.f59443f.setLayoutParams(ha.d(22, 22.0f, i12 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
+        this.f60647f.setLayoutParams(ja.d(22, 22.0f, i12 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
     }
 
     public int getSelectedType() {
-        return this.f59458s;
+        return this.f60662s;
     }
 }

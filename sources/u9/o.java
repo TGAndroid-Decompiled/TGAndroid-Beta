@@ -1,37 +1,42 @@
 package u9;
 
-import j$.util.DesugarCollections;
-import j$.util.concurrent.ConcurrentHashMap;
-import java.util.Collections;
-import java.util.Set;
+import org.telegram.ui.Wallet.k8;
 public final class o implements ua.b {
-    public volatile Set f56494a;
-    public volatile Set f56495b;
+    public static final r2.j f57992c = new r2.j(28);
+    public static final ab.m d = new ab.m(2);
+    public ua.a f57993a;
+    public volatile ua.b f57994b;
 
-    public final synchronized void a() {
-        try {
-            for (ua.b bVar : this.f56494a) {
-                this.f56495b.add(bVar.get());
+    public o(r2.j jVar, ua.b bVar) {
+        this.f57993a = jVar;
+        this.f57994b = bVar;
+    }
+
+    public final void a(ua.a aVar) {
+        ua.b bVar;
+        ua.b bVar2;
+        ua.b bVar3 = this.f57994b;
+        ab.m mVar = d;
+        if (bVar3 != mVar) {
+            aVar.b(bVar3);
+            return;
+        }
+        synchronized (this) {
+            bVar = this.f57994b;
+            if (bVar != mVar) {
+                bVar2 = bVar;
+            } else {
+                this.f57993a = new k8(19, this.f57993a, aVar);
+                bVar2 = null;
             }
-            this.f56494a = null;
-        } catch (Throwable th2) {
-            throw th2;
+        }
+        if (bVar2 != null) {
+            aVar.b(bVar);
         }
     }
 
     @Override
     public final Object get() {
-        if (this.f56495b == null) {
-            synchronized (this) {
-                try {
-                    if (this.f56495b == null) {
-                        this.f56495b = Collections.newSetFromMap(new ConcurrentHashMap());
-                        a();
-                    }
-                } finally {
-                }
-            }
-        }
-        return DesugarCollections.unmodifiableSet(this.f56495b);
+        return this.f57994b.get();
     }
 }

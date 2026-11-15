@@ -1,27 +1,37 @@
 package gb;
 
-import android.content.Context;
+import android.os.Build;
 import java.io.File;
-public final class q implements rd.a {
-    public final int f13744a;
-    public final Context f13745b;
-
-    public q(Context context, int i7) {
-        this.f13744a = i7;
-        this.f13745b = context;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.attribute.FileAttribute;
+public final class q {
+    public static m1.b0 a(m1.y0 y0Var, hi.l0 l0Var, ee.c cVar, rd.a aVar) {
+        hd.n nVar = hd.n.f13831a;
+        try {
+            System.loadLibrary("datastore_shared_counter");
+            return new m1.b0(new m1.f0(y0Var, new m1.y(cVar, 1), aVar), c8.d0.a(new be.l(nVar, (id.c) null, 8)), l0Var, cVar);
+        } catch (SecurityException | UnsatisfiedLinkError unused) {
+            return new m1.b0(new m1.f0(y0Var, m1.e0.f19960b, aVar), c8.d0.a(new be.l(nVar, (id.c) null, 8)), l0Var, cVar);
+        }
     }
 
-    @Override
-    public final Object invoke() {
-        switch (this.f13744a) {
-            case 0:
-                File a10 = c8.c1.a(this.f13745b, "firebaseSessions/sessionConfigsDataStore.data");
-                r.b(a10);
-                return a10;
-            default:
-                File a11 = c8.c1.a(this.f13745b, "firebaseSessions/sessionDataStore.data");
-                r.b(a11);
-                return a11;
+    public static void b(File file) {
+        File parentFile = file.getParentFile();
+        if (parentFile != null) {
+            if (parentFile.exists() && !parentFile.isDirectory() && kotlin.jvm.internal.j.a(parentFile.getName(), "firebaseSessions") && !parentFile.delete()) {
+                throw new IOException("Failed to delete conflicting file: " + parentFile);
+            } else if (!parentFile.isDirectory()) {
+                if (Build.VERSION.SDK_INT >= 26) {
+                    try {
+                        Files.createDirectories(parentFile.toPath(), new FileAttribute[0]);
+                    } catch (Exception e10) {
+                        throw new IOException("Failed to create directory: " + parentFile, e10);
+                    }
+                } else if (!parentFile.mkdirs() && !parentFile.isDirectory()) {
+                    throw new IOException("Failed to create directory: " + parentFile);
+                }
+            }
         }
     }
 }

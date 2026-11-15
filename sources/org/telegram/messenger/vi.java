@@ -1,70 +1,57 @@
 package org.telegram.messenger;
 
-import android.text.TextUtils;
-import android.util.LongSparseArray;
+import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_update;
-public final class vi extends c1 {
-    public static final vi[] f25994b = new vi[4];
-    public final LongSparseArray f25995a;
-
-    public vi(int i7) {
-        super(i7);
-        this.f25995a = new LongSparseArray();
+public abstract class vi {
+    public static void a(TLRPC.Message message, TLRPC.TL_message tL_message) {
+        tL_message.voiceTranscription = message.voiceTranscription;
+        tL_message.voiceTranscriptionOpen = message.voiceTranscriptionOpen;
+        tL_message.voiceTranscriptionFinal = message.voiceTranscriptionFinal;
+        tL_message.voiceTranscriptionForce = message.voiceTranscriptionForce;
+        tL_message.voiceTranscriptionRated = message.voiceTranscriptionRated;
+        tL_message.voiceTranscriptionId = message.voiceTranscriptionId;
+        tL_message.voiceTranscriptionLocal = message.voiceTranscriptionLocal;
+        tL_message.voiceTranscriptionWords = message.voiceTranscriptionWords;
+        tL_message.premiumEffectWasPlayed = message.premiumEffectWasPlayed;
+        tL_message.originalLanguage = message.originalLanguage;
+        tL_message.translatedToLanguage = message.translatedToLanguage;
+        tL_message.translatedPoll = message.translatedPoll;
+        tL_message.translatedText = message.translatedText;
+        tL_message.translatedRichMessage = message.translatedRichMessage;
+        tL_message.errorAllowedPriceStars = message.errorAllowedPriceStars;
+        tL_message.errorNewPriceStars = message.errorNewPriceStars;
+        tL_message.translatedVoiceTranscription = message.translatedVoiceTranscription;
+        tL_message.summarizedOpen = message.summarizedOpen;
+        tL_message.summaryText = message.summaryText;
+        tL_message.translatedSummaryText = message.translatedSummaryText;
+        tL_message.translatedSummaryLanguage = message.translatedSummaryLanguage;
     }
 
-    public static vi b(int i7) {
-        vi viVar;
-        vi[] viVarArr = f25994b;
-        vi viVar2 = viVarArr[i7];
-        if (viVar2 == null) {
-            synchronized (vi.class) {
-                try {
-                    viVar = viVarArr[i7];
-                    if (viVar == null) {
-                        viVar = new vi(i7);
-                        viVarArr[i7] = viVar;
-                    }
-                } catch (Throwable th2) {
-                    throw th2;
-                }
-            }
-            return viVar;
+    public static void b(TLRPC.Message message, NativeByteBuffer nativeByteBuffer) {
+        if (nativeByteBuffer == null) {
+            return;
         }
-        return viVar2;
+        int readInt32 = nativeByteBuffer.readInt32(true);
+        if (readInt32 == 1) {
+            new ui(message).readParams(nativeByteBuffer, true);
+            return;
+        }
+        throw new RuntimeException(i5.c.i(readInt32, "can't read params version = "));
     }
 
-    public final int a(long j3, String str, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, LongSparseArray longSparseArray, bi.t4 t4Var) {
-        boolean isEmpty = TextUtils.isEmpty(str);
-        TLRPC.TL_messages_getChatInviteImporters tL_messages_getChatInviteImporters = new TLRPC.TL_messages_getChatInviteImporters();
-        tL_messages_getChatInviteImporters.peer = qp.s1(this.currentAccount).j1(-j3);
-        tL_messages_getChatInviteImporters.requested = true;
-        tL_messages_getChatInviteImporters.limit = 30;
-        if (!isEmpty) {
-            tL_messages_getChatInviteImporters.f27049q = str;
-            tL_messages_getChatInviteImporters.flags |= 4;
+    public static NativeByteBuffer c(TLRPC.Message message) {
+        TLRPC.MessageAction messageAction = message.action;
+        if ((!(messageAction instanceof TLRPC.TL_messageActionGramTransfer) || !((TLRPC.TL_messageActionGramTransfer) messageAction).comment_encrypted_preparing) && message.voiceTranscription == null && message.translatedVoiceTranscription == null && !message.voiceTranscriptionOpen && !message.summarizedOpen && message.summaryText == null && message.translatedSummaryLanguage == null && message.translatedSummaryText == null && !message.voiceTranscriptionFinal && !message.voiceTranscriptionRated && !message.voiceTranscriptionForce && message.voiceTranscriptionId == 0 && !message.voiceTranscriptionLocal && message.voiceTranscriptionWords == null && !message.premiumEffectWasPlayed && message.originalLanguage == null && message.translatedToLanguage == null && message.translatedPoll == null && message.translatedText == null && message.translatedRichMessage == null && message.errorAllowedPriceStars == 0 && message.errorNewPriceStars == 0) {
+            return null;
         }
-        if (tL_chatInviteImporter == null) {
-            tL_messages_getChatInviteImporters.offset_user = new TLRPC.TL_inputUserEmpty();
-        } else {
-            tL_messages_getChatInviteImporters.offset_user = getMessagesController().q1((TLRPC.User) longSparseArray.get(tL_chatInviteImporter.user_id));
-            tL_messages_getChatInviteImporters.offset_date = tL_chatInviteImporter.date;
-        }
-        return getConnectionsManager().sendRequest(tL_messages_getChatInviteImporters, new y3(this, tL_chatInviteImporter, isEmpty, j3, t4Var, 1));
-    }
-
-    public final void c(TL_update.TL_updatePendingJoinRequests tL_updatePendingJoinRequests) {
-        long j3 = -ij.B1(tL_updatePendingJoinRequests.peer);
-        this.f25995a.put(j3, null);
-        TLRPC.ChatFull N0 = getMessagesController().N0(j3);
-        if (N0 != null) {
-            N0.requests_pending = tL_updatePendingJoinRequests.requests_pending;
-            N0.recent_requesters = tL_updatePendingJoinRequests.recent_requesters;
-            N0.flags |= 131072;
-            getMessagesStorage().N1(N0, false);
-            qs notificationCenter = getNotificationCenter();
-            Boolean bool = Boolean.FALSE;
-            notificationCenter.k(qs.T, N0, 0, bool, bool);
+        ui uiVar = new ui(message);
+        try {
+            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(uiVar.getObjectSize());
+            uiVar.serializeToStream(nativeByteBuffer);
+            return nativeByteBuffer;
+        } catch (Exception e10) {
+            e10.printStackTrace();
+            return null;
         }
     }
 }

@@ -1,44 +1,262 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.SerializedData;
+import java.util.ArrayList;
+import java.util.Arrays;
+import org.telegram.tgnet.TLRPC;
 public final class cp {
-    public final String f21916a;
-    public final String[] f21917b;
-    public final String f21918c;
-    public int d;
+    public boolean f22914b;
+    public int f22915c;
+    public boolean d;
+    public int f22916e;
+    public int f22917f;
+    public int f22913a = 0;
+    public final int[] f22918g = new int[6];
+    public final int[] h = new int[6];
 
-    public cp(String str, String[] strArr, String str2) {
-        this.f21916a = str;
-        this.f21917b = strArr;
-        this.f21918c = str2;
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof cp)) {
-            return false;
+    public static cp a(TLRPC.EmojiStatus emojiStatus) {
+        if (!(emojiStatus instanceof TLRPC.TL_emojiStatusCollectible)) {
+            return null;
         }
-        return this.f21916a.equals(((cp) obj).f21916a);
+        TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
+        cp cpVar = new cp();
+        cpVar.f22915c = -1;
+        cpVar.d = true;
+        int i7 = tL_emojiStatusCollectible.edge_color;
+        int[] iArr = cpVar.f22918g;
+        iArr[0] = i7 | (-16777216);
+        int i10 = tL_emojiStatusCollectible.center_color;
+        iArr[1] = i10 | (-16777216);
+        iArr[2] = i7 | (-16777216);
+        iArr[3] = i10 | (-16777216);
+        int i11 = tL_emojiStatusCollectible.text_color;
+        iArr[4] = i11 | (-16777216);
+        iArr[5] = i11 | (-16777216);
+        System.arraycopy(iArr, 0, cpVar.h, 0, 6);
+        cpVar.f22913a = tL_emojiStatusCollectible.pattern_color | (-16777216);
+        return cpVar;
     }
 
-    public final String toString() {
-        int i7;
-        SerializedData serializedData = new SerializedData();
-        serializedData.writeInt32(this.d);
-        serializedData.writeInt32(0);
-        serializedData.writeString(this.f21916a);
-        String[] strArr = this.f21917b;
-        if (strArr != null) {
-            i7 = strArr.length;
+    public static cp b(TLRPC.TL_help_peerColorOption tL_help_peerColorOption) {
+        if (tL_help_peerColorOption == null) {
+            return null;
+        }
+        cp cpVar = new cp();
+        cpVar.f22915c = tL_help_peerColorOption.color_id;
+        cpVar.d = tL_help_peerColorOption.hidden;
+        int i7 = tL_help_peerColorOption.flags;
+        if ((i7 & 8) != 0) {
+            cpVar.f22916e = tL_help_peerColorOption.channel_min_level;
+        }
+        if ((i7 & 16) != 0) {
+            cpVar.f22917f = tL_help_peerColorOption.group_min_level;
+        }
+        System.arraycopy(p(tL_help_peerColorOption.colors), 0, cpVar.f22918g, 0, 6);
+        System.arraycopy(p(tL_help_peerColorOption.dark_colors), 0, cpVar.h, 0, 6);
+        return cpVar;
+    }
+
+    public static int[] p(TLRPC.help_PeerColorSet help_peercolorset) {
+        ArrayList<Integer> arrayList;
+        int[] iArr = new int[6];
+        iArr[0] = 0;
+        iArr[1] = 0;
+        iArr[2] = 0;
+        iArr[3] = 0;
+        iArr[4] = 0;
+        iArr[5] = 0;
+        if (help_peercolorset instanceof TLRPC.TL_help_peerColorSet) {
+            arrayList = ((TLRPC.TL_help_peerColorSet) help_peercolorset).colors;
+        } else if (help_peercolorset instanceof TLRPC.TL_help_peerColorProfileSet) {
+            TLRPC.TL_help_peerColorProfileSet tL_help_peerColorProfileSet = (TLRPC.TL_help_peerColorProfileSet) help_peercolorset;
+            ArrayList<Integer> arrayList2 = tL_help_peerColorProfileSet.palette_colors;
+            ArrayList<Integer> arrayList3 = tL_help_peerColorProfileSet.bg_colors;
+            ArrayList<Integer> arrayList4 = tL_help_peerColorProfileSet.story_colors;
+            ArrayList<Integer> arrayList5 = new ArrayList<>();
+            if (arrayList2 != null) {
+                for (int i7 = 0; i7 < Math.min(2, arrayList2.size()); i7++) {
+                    arrayList5.add(arrayList2.get(i7));
+                }
+            }
+            if (arrayList3 != null) {
+                for (int i10 = 0; i10 < Math.min(2, arrayList3.size()); i10++) {
+                    arrayList5.add(arrayList3.get(i10));
+                }
+            }
+            if (arrayList4 != null) {
+                for (int i11 = 0; i11 < Math.min(2, arrayList4.size()); i11++) {
+                    arrayList5.add(arrayList4.get(i11));
+                }
+            }
+            arrayList = arrayList5;
         } else {
-            i7 = 0;
+            arrayList = null;
         }
-        serializedData.writeInt32(i7);
-        if (strArr != null) {
-            for (String str : strArr) {
-                serializedData.writeString(str);
+        if (arrayList != null) {
+            if (arrayList.size() > 0) {
+                Arrays.fill(iArr, arrayList.get(0).intValue() | (-16777216));
+            }
+            for (int i12 = 0; i12 < Math.min(6, arrayList.size()); i12++) {
+                iArr[i12] = arrayList.get(i12).intValue() | (-16777216);
             }
         }
-        serializedData.writeString(this.f21918c);
-        return Utilities.f(serializedData.toByteArray());
+        return iArr;
+    }
+
+    public final int c(boolean z10) {
+        if (o(z10)) {
+            return j(z10);
+        }
+        return h(z10);
+    }
+
+    public final int d(boolean z10) {
+        int[] iArr;
+        if (o(z10)) {
+            if (z10) {
+                iArr = this.h;
+            } else {
+                iArr = this.f22918g;
+            }
+            return iArr[3];
+        }
+        return h(z10);
+    }
+
+    public final int e(int i7, org.telegram.ui.ActionBar.e6 e6Var) {
+        boolean q10;
+        int[] iArr;
+        int i10;
+        if (i7 >= 0 && i7 <= 5) {
+            if (this.f22914b && (i10 = this.f22915c) >= 0 && i10 < 7) {
+                return org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f29110r8[i10], e6Var);
+            }
+            if (e6Var != null) {
+                q10 = e6Var.a();
+            } else {
+                q10 = org.telegram.ui.ActionBar.j6.I.q();
+            }
+            if (q10) {
+                iArr = this.h;
+            } else {
+                iArr = this.f22918g;
+            }
+            return iArr[i7];
+        }
+        return 0;
+    }
+
+    public final int f() {
+        int[] iArr;
+        if (org.telegram.ui.ActionBar.j6.I.q()) {
+            iArr = this.h;
+        } else {
+            iArr = this.f22918g;
+        }
+        return iArr[0];
+    }
+
+    public final int g() {
+        int[] iArr;
+        if (org.telegram.ui.ActionBar.j6.I.q()) {
+            iArr = this.h;
+        } else {
+            iArr = this.f22918g;
+        }
+        return iArr[1];
+    }
+
+    public final int h(boolean z10) {
+        int[] iArr;
+        if (z10) {
+            iArr = this.h;
+        } else {
+            iArr = this.f22918g;
+        }
+        return iArr[1];
+    }
+
+    public final int i() {
+        int[] iArr;
+        if (org.telegram.ui.ActionBar.j6.I.q()) {
+            iArr = this.h;
+        } else {
+            iArr = this.f22918g;
+        }
+        return iArr[2];
+    }
+
+    public final int j(boolean z10) {
+        int[] iArr;
+        if (z10) {
+            iArr = this.h;
+        } else {
+            iArr = this.f22918g;
+        }
+        return iArr[2];
+    }
+
+    public final int k() {
+        int[] iArr;
+        if (org.telegram.ui.ActionBar.j6.I.q()) {
+            iArr = this.h;
+        } else {
+            iArr = this.f22918g;
+        }
+        return iArr[4];
+    }
+
+    public final int l(boolean z10) {
+        if (z10) {
+            return this.f22917f;
+        }
+        return this.f22916e;
+    }
+
+    public final int m(boolean z10) {
+        int[] iArr;
+        if (o(z10)) {
+            if (z10) {
+                iArr = this.h;
+            } else {
+                iArr = this.f22918g;
+            }
+            return iArr[4];
+        }
+        return j(z10);
+    }
+
+    public final int n(boolean z10) {
+        boolean o4 = o(z10);
+        int[] iArr = this.f22918g;
+        int[] iArr2 = this.h;
+        if (o4) {
+            if (z10) {
+                iArr = iArr2;
+            }
+            return iArr[5];
+        }
+        if (z10) {
+            iArr = iArr2;
+        }
+        return iArr[3];
+    }
+
+    public final boolean o(boolean z10) {
+        int[] iArr;
+        int[] iArr2 = this.f22918g;
+        int[] iArr3 = this.h;
+        if (z10) {
+            iArr = iArr3;
+        } else {
+            iArr = iArr2;
+        }
+        int i7 = iArr[5];
+        if (z10) {
+            iArr2 = iArr3;
+        }
+        if (i7 == iArr2[0]) {
+            return false;
+        }
+        return true;
     }
 }

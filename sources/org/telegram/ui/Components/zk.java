@@ -1,0 +1,24 @@
+package org.telegram.ui.Components;
+
+import android.content.Context;
+import android.view.View;
+public final class zk extends v4.c0 {
+    public final kg.c0 f42398r;
+
+    public zk(kg.c0 c0Var, Context context) {
+        super(context);
+        this.f42398r = c0Var;
+    }
+
+    @Override
+    public final int k(int i7, View view) {
+        int k10 = super.k(i7, view);
+        dl dlVar = (dl) this.f42398r.V;
+        return k10 - (dlVar.M.getPaddingTop() - (dlVar.f33992r0 - dlVar.f33990q0));
+    }
+
+    @Override
+    public final int m(int i7) {
+        return super.m(i7) * 4;
+    }
+}

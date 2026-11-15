@@ -1,38 +1,42 @@
 package org.telegram.ui.Components;
 
+import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-public final class zi implements Runnable {
-    public final int f41007a;
-    public final aj f41008b;
-    public final String f41009c;
-    public final int d;
+import org.telegram.tgnet.TLRPC;
+public final class zi implements ij0, dj {
+    public final mj f42367a;
 
-    public zi(aj ajVar, String str, int i7, int i10) {
-        this.f41007a = i10;
-        this.f41008b = ajVar;
-        this.f41009c = str;
-        this.d = i7;
+    public zi(mj mjVar) {
+        this.f42367a = mjVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f41007a) {
-            case 0:
-                aj ajVar = this.f41008b;
-                String str = this.f41009c;
-                int i7 = this.d;
-                ajVar.getClass();
-                org.telegram.messenger.g0.h3(new zi(ajVar, str, i7, 1));
-                return;
-            default:
-                aj ajVar2 = this.f41008b;
-                String str2 = this.f41009c;
-                int i10 = this.d;
-                ajVar2.getClass();
-                int i11 = org.telegram.messenger.p10.f24474s0;
-                Utilities.f21343g.c(new li.g0(ajVar2, str2, new ArrayList(org.telegram.messenger.g5.r(i11).Y.values()), new ArrayList(org.telegram.messenger.g5.r(i11).f22612e0), i11, i10));
-                return;
+    public void a(TLRPC.User user, boolean z10, int i7, long j3) {
+        mj mjVar = this.f42367a;
+        mjVar.f33607b.a(true);
+        mjVar.K.a(user, z10, i7, j3);
+    }
+
+    @Override
+    public boolean b(int i7, View view) {
+        Object O;
+        mj mjVar = this.f42367a;
+        v4.h0 adapter = mjVar.f37305s.getAdapter();
+        ij ijVar = mjVar.G;
+        if (adapter == ijVar) {
+            O = ijVar.E(i7);
+        } else {
+            gj gjVar = mjVar.F;
+            O = gjVar.O(gjVar.S(i7), gjVar.Q(i7));
         }
+        if (O != null) {
+            mjVar.Q((lj) view, O);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void c(ArrayList arrayList, String str, boolean z10, int i7, long j3, boolean z11) {
     }
 }

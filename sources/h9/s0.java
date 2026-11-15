@@ -14,20 +14,20 @@ public final class s0 extends b0 {
     }
 
     public final t0 g() {
-        int i7 = this.f14300b;
+        int i7 = this.f13656b;
         if (i7 != 0) {
             if (i7 != 1) {
-                t0 p10 = t0.p(i7, this.f14299a);
-                this.f14300b = p10.size();
-                this.f14301c = true;
+                t0 p10 = t0.p(i7, this.f13655a);
+                this.f13656b = p10.size();
+                this.f13657c = true;
                 return p10;
             }
-            Object obj = this.f14299a[0];
+            Object obj = this.f13655a[0];
             Objects.requireNonNull(obj);
-            int i10 = t0.f14397c;
-            return new f2(obj);
+            int i10 = t0.f13752c;
+            return new e2(obj);
         }
-        int i11 = t0.f14397c;
-        return a2.f14290s;
+        int i11 = t0.f13752c;
+        return z1.f13781s;
     }
 }

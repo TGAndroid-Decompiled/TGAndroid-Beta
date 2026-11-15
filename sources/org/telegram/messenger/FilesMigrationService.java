@@ -22,21 +22,21 @@ import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.function.Consumer;
-import org.telegram.ui.Components.cv0;
+import org.telegram.ui.Components.dv0;
 public class FilesMigrationService extends Service {
-    public static boolean f21176c = false;
+    public static boolean f22250c = false;
     public static boolean d = false;
-    public static c9 f21177e = null;
-    public static boolean f21178f = false;
-    public int f21179a;
-    public int f21180b;
+    public static b9 f22251e = null;
+    public static boolean f22252f = false;
+    public int f22253a;
+    public int f22254b;
 
-    public static void a(org.telegram.ui.zw zwVar) {
-        SharedPreferences sharedPreferences = t0.f25570b.getSharedPreferences("systemConfig", 0);
-        if (Environment.isExternalStorageLegacy() && !sharedPreferences.getBoolean("migration_to_scoped_storage_finished", false) && sharedPreferences.getInt("migration_to_scoped_storage_count", 0) < 5 && !f21178f && f21177e == null && !d) {
+    public static void a(org.telegram.ui.yw ywVar) {
+        SharedPreferences sharedPreferences = t0.f26600b.getSharedPreferences("systemConfig", 0);
+        if (Environment.isExternalStorageLegacy() && !sharedPreferences.getBoolean("migration_to_scoped_storage_finished", false) && sharedPreferences.getInt("migration_to_scoped_storage_count", 0) < 5 && !f22252f && f22251e == null && !d) {
             if (Build.VERSION.SDK_INT >= 30) {
                 File externalStorageDirectory = Environment.getExternalStorageDirectory();
-                if (!TextUtils.isEmpty(iz.f23409h0)) {
+                if (!TextUtils.isEmpty(gz.f23949h0)) {
                     ArrayList d12 = g0.d1();
                     int size = d12.size();
                     int i7 = 0;
@@ -45,53 +45,53 @@ public class FilesMigrationService extends Service {
                             break;
                         }
                         File file = (File) d12.get(i7);
-                        if (file.getAbsolutePath().startsWith(iz.f23409h0)) {
+                        if (file.getAbsolutePath().startsWith(gz.f23949h0)) {
                             externalStorageDirectory = file;
                             break;
                         }
                         i7++;
                     }
                 }
-                f21176c = new File(externalStorageDirectory, "Telegram").exists();
+                f22250c = new File(externalStorageDirectory, "Telegram").exists();
             }
-            if (f21176c) {
-                c9 c9Var = new c9((Context) zwVar.getParentActivity(), false);
-                c9Var.f21795m1 = zwVar;
-                c9Var.setCanceledOnTouchOutside(false);
-                Activity parentActivity = zwVar.getParentActivity();
+            if (f22250c) {
+                b9 b9Var = new b9((Context) ywVar.getParentActivity(), false);
+                b9Var.n1 = ywVar;
+                b9Var.setCanceledOnTouchOutside(false);
+                Activity parentActivity = ywVar.getParentActivity();
                 LinearLayout e10 = k5.e(parentActivity, 1);
-                cv0 cv0Var = new cv0(parentActivity, c9Var.f28669a);
-                cv0Var.setStickerNum(7);
-                cv0Var.getImageReceiver().W(1);
-                e10.addView(cv0Var, c8.ha.t(144, 144, 1, 0, 16, 0, 0));
+                dv0 dv0Var = new dv0(parentActivity, b9Var.f29679a);
+                dv0Var.setStickerNum(7);
+                dv0Var.getImageReceiver().W(1);
+                e10.addView(dv0Var, c8.ja.t(144, 144, 1, 0, 16, 0, 0));
                 TextView textView = new TextView(parentActivity);
                 textView.setGravity(8388611);
-                int i10 = org.telegram.ui.ActionBar.m6.f27998j5;
-                k5.n(textView, i10, null, 1, 20.0f);
-                textView.setText(id.M0(2131748431, null));
-                e10.addView(textView, c8.ha.d(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
+                int i10 = org.telegram.ui.ActionBar.j6.f28957j5;
+                k5.m(textView, i10, null, 1, 20.0f);
+                textView.setText(hd.M0(2131748431, null));
+                e10.addView(textView, c8.ja.d(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
                 TextView textView2 = new TextView(parentActivity);
                 textView2.setGravity(8388611);
                 textView2.setTextSize(1, 15.0f);
-                org.telegram.ui.ActionBar.t6.U(textView2, i10, null);
-                textView2.setText(g0.X2(id.M0(2131748432, null)));
-                e10.addView(textView2, c8.ha.d(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
+                org.telegram.ui.ActionBar.q6.U(textView2, i10, null);
+                textView2.setText(g0.X2(hd.M0(2131748432, null)));
+                e10.addView(textView2, c8.ja.d(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
                 TextView textView3 = new TextView(parentActivity);
                 textView3.setPadding(g0.L(34.0f), 0, g0.L(34.0f), 0);
                 textView3.setGravity(17);
                 textView3.setTextSize(1, 14.0f);
                 textView3.setTypeface(g0.o());
-                textView3.setText(id.M0(2131748433, null));
-                org.telegram.ui.ActionBar.t6.U(textView3, org.telegram.ui.ActionBar.m6.Gi, null);
-                textView3.setBackground(org.telegram.ui.ActionBar.b6.f(org.telegram.ui.ActionBar.m6.Ci, 6.0f));
-                e10.addView(textView3, c8.ha.d(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
-                textView3.setOnClickListener(new b9(c9Var, 0));
+                textView3.setText(hd.M0(2131748433, null));
+                org.telegram.ui.ActionBar.q6.U(textView3, org.telegram.ui.ActionBar.j6.Ji, null);
+                textView3.setBackground(org.telegram.ui.ActionBar.y5.f(org.telegram.ui.ActionBar.j6.Fi, 6.0f));
+                e10.addView(textView3, c8.ja.d(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
+                textView3.setOnClickListener(new a9(b9Var, 0));
                 ScrollView scrollView = new ScrollView(parentActivity);
                 scrollView.addView(e10);
-                c9Var.N = scrollView;
-                f21177e = c9Var;
-                c9Var.show();
-                f21178f = true;
+                b9Var.O = scrollView;
+                f22251e = b9Var;
+                b9Var.show();
+                f22252f = true;
                 sharedPreferences.edit().putInt("migration_to_scoped_storage_count", sharedPreferences.getInt("migration_to_scoped_storage_count", 0) + 1).apply();
                 return;
             }
@@ -125,7 +125,7 @@ public class FilesMigrationService extends Service {
                         @Override
                         public final void accept(Object obj) {
                             Path path = (Path) obj;
-                            boolean z9 = FilesMigrationService.f21176c;
+                            boolean z10 = FilesMigrationService.f22250c;
                             File file3 = new File(file2, path.getFileName().toString());
                             boolean isDirectory = Files.isDirectory(path, new LinkOption[0]);
                             FilesMigrationService filesMigrationService = FilesMigrationService.this;
@@ -143,9 +143,9 @@ public class FilesMigrationService extends Service {
                                     a8.g(e11, true);
                                 }
                             }
-                            filesMigrationService.f21180b++;
-                            if (System.currentTimeMillis() > 20 || filesMigrationService.f21180b >= filesMigrationService.f21179a - 1) {
-                                g0.h3(new x0(filesMigrationService, filesMigrationService.f21180b, 2));
+                            filesMigrationService.f22254b++;
+                            if (System.currentTimeMillis() > 20 || filesMigrationService.f22254b >= filesMigrationService.f22253a - 1) {
+                                g0.h3(new x0(filesMigrationService, filesMigrationService.f22254b, 2));
                             }
                         }
 
@@ -173,8 +173,8 @@ public class FilesMigrationService extends Service {
 
     @Override
     public final int onStartCommand(Intent intent, int i7, int i10) {
-        dt.i();
-        Notification build = z8.b(this, dt.f22079j0).setContentTitle(id.M0(2131748430, null)).setAutoCancel(false).setSmallIcon(2131232452).build();
+        at.i();
+        Notification build = f9.b.b(this, at.f22557k0).setContentTitle(hd.M0(2131748430, null)).setAutoCancel(false).setSmallIcon(2131232453).build();
         d = true;
         new k2.k(this).start();
         try {

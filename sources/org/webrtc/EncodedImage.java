@@ -91,7 +91,7 @@ public class EncodedImage implements RefCounted {
                     return frameType;
                 }
             }
-            throw new IllegalArgumentException(jg.g.j(i7, "Unknown native frame type: "));
+            throw new IllegalArgumentException(i5.c.i(i7, "Unknown native frame type: "));
         }
 
         public int getNative() {

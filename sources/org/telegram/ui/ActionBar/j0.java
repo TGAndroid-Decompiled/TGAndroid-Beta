@@ -2,58 +2,58 @@ package org.telegram.ui.ActionBar;
 
 import android.transition.Transition;
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.r00;
+import org.telegram.ui.Components.v00;
 public final class j0 implements Transition.TransitionListener {
-    public final int f27564a;
-    public final FrameLayout f27565b;
+    public final int f28720a;
+    public final FrameLayout f28721b;
 
     public j0(int i7, FrameLayout frameLayout) {
-        this.f27564a = i7;
-        this.f27565b = frameLayout;
+        this.f28720a = i7;
+        this.f28721b = frameLayout;
     }
 
     @Override
     public final void onTransitionCancel(Transition transition) {
-        switch (this.f27564a) {
+        switch (this.f28720a) {
             case 0:
-                ((r0) this.f27565b).f28441i0.e();
+                ((q0) this.f28721b).f29509j0.e();
                 return;
             default:
-                ((r00) this.f27565b).E.e();
+                ((v00) this.f28721b).F.e();
                 return;
         }
     }
 
     @Override
     public final void onTransitionEnd(Transition transition) {
-        switch (this.f27564a) {
+        switch (this.f28720a) {
             case 0:
-                ((r0) this.f27565b).f28441i0.e();
+                ((q0) this.f28721b).f29509j0.e();
                 return;
             default:
-                ((r00) this.f27565b).E.e();
+                ((v00) this.f28721b).F.e();
                 return;
         }
     }
 
     @Override
     public final void onTransitionPause(Transition transition) {
-        int i7 = this.f27564a;
+        int i7 = this.f28720a;
     }
 
     @Override
     public final void onTransitionResume(Transition transition) {
-        int i7 = this.f27564a;
+        int i7 = this.f28720a;
     }
 
     @Override
     public final void onTransitionStart(Transition transition) {
-        switch (this.f27564a) {
+        switch (this.f28720a) {
             case 0:
-                ((r0) this.f27565b).f28441i0.d();
+                ((q0) this.f28721b).f29509j0.d();
                 return;
             default:
-                ((r00) this.f27565b).E.d();
+                ((v00) this.f28721b).F.d();
                 return;
         }
     }

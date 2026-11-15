@@ -1,42 +1,69 @@
 package org.telegram.ui.web;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.view.View;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.w31;
-import org.telegram.ui.Components.x31;
-public final class f extends w31 {
-    public static final int f51060b = 0;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+import org.telegram.ui.Components.oy0;
+public final class f extends Drawable {
+    public final int f52599a;
+    public final oy0 f52600b;
+    public final h f52601c;
 
-    static {
-        w31.h(new w31());
-    }
-
-    @Override
-    public final void b(android.view.View r27, org.telegram.ui.Components.x31 r28, boolean r29, org.telegram.ui.Components.m41 r30, org.telegram.ui.Components.r41 r31) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.f.b(android.view.View, org.telegram.ui.Components.x31, boolean, org.telegram.ui.Components.m41, org.telegram.ui.Components.r41):void");
-    }
-
-    @Override
-    public final boolean c(x31 x31Var, x31 x31Var2) {
-        if (x31Var.H == x31Var2.H && TextUtils.equals(x31Var.f40157m, x31Var2.f40157m)) {
-            return true;
+    public f(h hVar, String str, int i7) {
+        this.f52599a = i7;
+        switch (i7) {
+            case 1:
+                this.f52601c = hVar;
+                this.f52600b = new oy0(str, 14.0f, org.telegram.messenger.g0.o());
+                return;
+            default:
+                this.f52601c = hVar;
+                this.f52600b = new oy0(str, 14.0f, org.telegram.messenger.g0.o());
+                return;
         }
-        return false;
     }
 
     @Override
-    public final View d(Context context, pj0 pj0Var, int i7, h6 h6Var) {
-        return new g(context, h6Var);
-    }
-
-    @Override
-    public final boolean e(x31 x31Var, x31 x31Var2) {
-        if (x31Var.H == x31Var2.H && TextUtils.isEmpty(x31Var.f40157m) == TextUtils.isEmpty(x31Var2.f40157m)) {
-            return true;
+    public final void draw(Canvas canvas) {
+        switch (this.f52599a) {
+            case 0:
+                this.f52600b.c(getBounds().centerX() - (this.f52600b.f38105c / 2.0f), getBounds().centerY(), 1.0f, this.f52601c.f52619s, canvas);
+                return;
+            default:
+                this.f52600b.c(getBounds().centerX() - (this.f52600b.f38105c / 2.0f), getBounds().centerY(), 1.0f, this.f52601c.f52619s, canvas);
+                return;
         }
-        return false;
+    }
+
+    @Override
+    public final int getOpacity() {
+        switch (this.f52599a) {
+            case 0:
+                return -2;
+            default:
+                return -2;
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        int i10 = this.f52599a;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        int i7 = this.f52599a;
+    }
+
+    private final void a(int i7) {
+    }
+
+    private final void b(int i7) {
+    }
+
+    private final void c(ColorFilter colorFilter) {
+    }
+
+    private final void d(ColorFilter colorFilter) {
     }
 }

@@ -1,5 +1,5 @@
 package a3;
-public final class e implements g9.m {
+public final class e implements g9.l {
     public final s f79a;
     public final n f80b;
 

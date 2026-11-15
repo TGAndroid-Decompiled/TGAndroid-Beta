@@ -1,82 +1,51 @@
 package fi;
 
-import android.app.Activity;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.p10;
-import org.telegram.messenger.v10;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.cn;
-public final class d5 extends cn {
-    public final v10 f11792td;
-    public final o5 f11793ud;
+import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
+import android.view.GestureDetector;
+import android.view.animation.OvershootInterpolator;
+import android.widget.Scroller;
+import java.util.ArrayList;
+public final class d5 extends h4 {
+    public final i9 O;
+    public final k5 P;
 
-    public d5(o5 o5Var, v10 v10Var) {
-        super(null);
-        this.f11793ud = o5Var;
-        this.f11792td = v10Var;
+    public d5(Context context, k5 k5Var, i9 i9Var) {
+        super(context);
+        this.P = k5Var;
+        this.O = i9Var;
+        this.f11772x = -1;
+        this.F = new ArrayList();
+        this.G = new ArrayList();
+        this.H = new ArrayList();
+        this.J = new GestureDetector(new e4(this));
+        this.d = new Scroller(context, new OvershootInterpolator());
+        this.I = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{0, i0.a.o(-16777216, 160)});
     }
 
     @Override
-    public final boolean U9() {
-        return false;
-    }
-
-    @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final void d(TLRPC.MessageMedia messageMedia, int i7, boolean z9, int i10, long j3) {
-        TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint;
-        TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint2;
-        if (messageMedia instanceof TLRPC.TL_messageMediaGeo) {
-            tL_mediaAreaGeoPoint2 = new TL_stories.TL_mediaAreaGeoPoint();
-            tL_mediaAreaGeoPoint2.geo = messageMedia.geo;
-        } else if (messageMedia instanceof TLRPC.TL_messageMediaVenue) {
-            TLRPC.TL_messageMediaVenue tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) messageMedia;
-            long j10 = tL_messageMediaVenue.query_id;
-            if (j10 != -1 && j10 != -2) {
-                TL_stories.TL_inputMediaAreaVenue tL_inputMediaAreaVenue = new TL_stories.TL_inputMediaAreaVenue();
-                tL_inputMediaAreaVenue.query_id = tL_messageMediaVenue.query_id;
-                tL_inputMediaAreaVenue.result_id = tL_messageMediaVenue.result_id;
-                tL_mediaAreaGeoPoint = tL_inputMediaAreaVenue;
-            } else {
-                TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint3 = new TL_stories.TL_mediaAreaGeoPoint();
-                tL_mediaAreaGeoPoint3.geo = messageMedia.geo;
-                TL_stories.TL_geoPointAddress tL_geoPointAddress = tL_messageMediaVenue.geoAddress;
-                tL_mediaAreaGeoPoint3.address = tL_geoPointAddress;
-                if (tL_geoPointAddress != null) {
-                    tL_mediaAreaGeoPoint3.flags |= 1;
+    public final void b(int i7) {
+        e9 e9Var;
+        k5 k5Var = this.P;
+        e5 e5Var = k5Var.F;
+        if (!k5Var.f11936x) {
+            if (e5Var.getCurrentItem() != i7) {
+                try {
+                    e5Var.x(i7, false);
+                } catch (Throwable th2) {
+                    org.telegram.messenger.a8.g(th2, true);
+                    e5Var.getAdapter().g();
+                    e5Var.x(i7, false);
                 }
-                Utilities.f21341e.c(new f2.h(6, messageMedia, tL_mediaAreaGeoPoint3));
-                tL_mediaAreaGeoPoint = tL_mediaAreaGeoPoint3;
             }
-            tL_mediaAreaGeoPoint2 = tL_mediaAreaGeoPoint;
-        } else {
-            return;
+            i9 i9Var = this.O;
+            if (i9Var.O0 != null && (e9Var = i9Var.f11875u0) != null) {
+                if (i7 < 10) {
+                    e9Var.c(false);
+                } else if (i7 >= this.F.size() - 10) {
+                    i9Var.f11875u0.c(true);
+                }
+            }
         }
-        this.f11792td.a(messageMedia, tL_mediaAreaGeoPoint2);
-    }
-
-    @Override
-    public final Activity getParentActivity() {
-        return org.telegram.messenger.g0.W(this.f11793ud.getContext());
-    }
-
-    @Override
-    public final org.telegram.ui.ActionBar.h6 getResourceProvider() {
-        return this.f11793ud.f12542p1;
-    }
-
-    @Override
-    public final boolean isLightStatusBar() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.User j() {
-        return p10.i(this.currentAccount).f();
     }
 }

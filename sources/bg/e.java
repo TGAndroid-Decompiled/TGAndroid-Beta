@@ -2,21 +2,21 @@ package bg;
 
 import android.graphics.Bitmap;
 import java.util.ArrayList;
-import org.telegram.messenger.qs;
+import org.telegram.messenger.ns;
 public final class e implements Runnable {
-    public final int f3269a;
-    public final ArrayList f3270b;
+    public final int f3224a;
+    public final ArrayList f3225b;
 
     public e(int i7, ArrayList arrayList) {
-        this.f3269a = i7;
-        this.f3270b = arrayList;
+        this.f3224a = i7;
+        this.f3225b = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f3269a) {
+        switch (this.f3224a) {
             case 0:
-                ArrayList arrayList = this.f3270b;
+                ArrayList arrayList = this.f3225b;
                 int size = arrayList.size();
                 int i7 = 0;
                 while (i7 < size) {
@@ -26,9 +26,9 @@ public final class e implements Runnable {
                 }
                 return;
             default:
-                sg.b0.h = this.f3270b;
-                sg.b0.f55028i = false;
-                qs.e().k(331, new Object[0]);
+                sg.a0.h = this.f3225b;
+                sg.a0.f56579i = false;
+                ns.e().k(331, new Object[0]);
                 return;
         }
     }

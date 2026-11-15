@@ -1,146 +1,93 @@
 package fi;
 
-import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.oy;
-import org.telegram.ui.Components.ry;
-import org.telegram.ui.Components.t51;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.ns;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.tl.TL_stories;
 public final class w5 implements Runnable {
-    public final int f13033a;
-    public final y5 f13034b;
+    public final int f12461a = 0;
+    public final boolean f12462b;
+    public final long f12463c;
+    public final long d;
+    public final Object f12464e;
+    public final Object f12465f;
+    public final Object h;
 
-    public w5(y5 y5Var, int i7) {
-        this.f13033a = i7;
-        this.f13034b = y5Var;
+    public w5(s6 s6Var, long j3, boolean z10, TL_stories.PeerStories peerStories, long j10, TLObject tLObject) {
+        this.f12464e = s6Var;
+        this.f12463c = j3;
+        this.f12462b = z10;
+        this.f12465f = peerStories;
+        this.d = j10;
+        this.h = tLObject;
     }
 
     @Override
     public final void run() {
-        boolean z9;
-        switch (this.f13033a) {
+        org.telegram.messenger.y8 y8Var;
+        switch (this.f12461a) {
             case 0:
-                this.f13034b.r();
-                return;
-            case 1:
-                this.f13034b.r();
-                return;
-            case 2:
-                this.f13034b.m(0L);
-                return;
-            case 3:
-                y5 y5Var = this.f13034b;
-                w5 w5Var = y5Var.K;
-                t51 t51Var = y5Var.f13171e;
-                if (t51Var != null && y5Var.F != null) {
-                    long S = t51Var.S();
-                    if (y5Var.getDuration() > 1) {
-                        float duration = ((float) S) / ((float) y5Var.getDuration());
-                        boolean z10 = false;
-                        if (!y5Var.F.f12025m1) {
-                            e7 e7Var = y5Var.d;
-                            if ((duration < e7Var.Z || duration > e7Var.f11881a0) && System.currentTimeMillis() - y5Var.J > 500) {
-                                y5Var.J = System.currentTimeMillis();
-                                t51 t51Var2 = y5Var.f13171e;
-                                long duration2 = y5Var.d.Z * ((float) y5Var.getDuration());
-                                t51Var2.q0(duration2, false);
-                                y5Var.w(true);
-                                y5Var.y(true);
-                                S = duration2;
-                                y5Var.F.setProgress(y5Var.f13171e.S());
+                s6 s6Var = (s6) this.f12464e;
+                long j3 = this.f12463c;
+                boolean z10 = this.f12462b;
+                TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.f12465f;
+                long j10 = this.d;
+                TLObject tLObject = (TLObject) this.h;
+                s6Var.D.remove(Long.valueOf(j3));
+                if (!z10) {
+                    peerStories = s6Var.y(j10);
+                }
+                if (peerStories != null) {
+                    if (tLObject instanceof TL_stories.TL_stories_stories) {
+                        TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
+                        for (int i7 = 0; i7 < tL_stories_stories.stories.size(); i7++) {
+                            for (int i10 = 0; i10 < peerStories.stories.size(); i10++) {
+                                if (peerStories.stories.get(i10).f28290id == tL_stories_stories.stories.get(i7).f28290id) {
+                                    peerStories.stories.set(i10, tL_stories_stories.stories.get(i7));
+                                    s6Var.Z(j10, tL_stories_stories.stories.get(i7));
+                                }
                             }
                         }
-                        if (S < y5Var.I) {
-                            z9 = true;
-                        } else {
-                            z9 = false;
-                        }
-                        y5Var.w(z9);
-                        if (S < y5Var.I) {
-                            z10 = true;
-                        }
-                        y5Var.y(z10);
-                        y5Var.F.setProgress(y5Var.f13171e.S());
-                    } else {
-                        y5Var.F.setProgress(y5Var.f13171e.S());
-                    }
-                    if (y5Var.f13171e.d0()) {
-                        org.telegram.messenger.g0.r(w5Var);
-                        org.telegram.messenger.g0.i3(w5Var, 1000.0f / org.telegram.messenger.g0.f22568r);
-                    }
-                    y5Var.I = S;
-                    return;
-                }
-                return;
-            case 4:
-                y5 y5Var2 = this.f13034b;
-                w5 w5Var2 = y5Var2.L;
-                if (y5Var2.D != null && y5Var2.f13171e == null && y5Var2.f13197y == null && y5Var2.F != null && !y5Var2.j()) {
-                    long S2 = y5Var2.D.S();
-                    e7 e7Var2 = y5Var2.d;
-                    if (e7Var2 != null) {
-                        float f10 = (float) S2;
-                        float f11 = e7Var2.E;
-                        float f12 = (float) e7Var2.C;
-                        if ((f10 < f11 * f12 || f10 > e7Var2.F * f12) && System.currentTimeMillis() - y5Var2.J > 500) {
-                            y5Var2.J = System.currentTimeMillis();
-                            t51 t51Var3 = y5Var2.D;
-                            e7 e7Var3 = y5Var2.d;
-                            long j3 = e7Var3.E * ((float) e7Var3.C);
-                            t51Var3.q0(j3, false);
-                            S2 = j3;
+                        if (!z10) {
+                            f7 f7Var = s6Var.f12327k;
+                            f7Var.f11709b.f27220a.c(new d7(f7Var, peerStories, 0));
                         }
                     }
-                    y5Var2.F.setProgress(S2);
-                    if (y5Var2.D.d0()) {
-                        org.telegram.messenger.g0.r(w5Var2);
-                        org.telegram.messenger.g0.i3(w5Var2, 1000.0f / org.telegram.messenger.g0.f22568r);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 5:
-                y5 y5Var3 = this.f13034b;
-                w5 w5Var3 = y5Var3.M;
-                if (y5Var3.f13197y != null && y5Var3.f13171e == null && !y5Var3.j() && y5Var3.F != null) {
-                    long S3 = y5Var3.f13197y.S();
-                    e7 e7Var4 = y5Var3.d;
-                    if (e7Var4 != null) {
-                        float f13 = (float) S3;
-                        float f14 = e7Var4.f11919s0;
-                        float f15 = (float) e7Var4.f11915q0;
-                        if ((f13 < f14 * f15 || f13 > e7Var4.f11921t0 * f15) && System.currentTimeMillis() - y5Var3.J > 500) {
-                            y5Var3.J = System.currentTimeMillis();
-                            t51 t51Var4 = y5Var3.f13197y;
-                            e7 e7Var5 = y5Var3.d;
-                            long j10 = e7Var5.f11919s0 * ((float) e7Var5.f11915q0);
-                            t51Var4.q0(j10, false);
-                            y5Var3.w(true);
-                            S3 = j10;
-                        }
-                    }
-                    y5Var3.F.setProgress(S3);
-                    if (y5Var3.f13197y.d0()) {
-                        org.telegram.messenger.g0.r(w5Var3);
-                        org.telegram.messenger.g0.i3(w5Var3, 1000.0f / org.telegram.messenger.g0.f22568r);
-                        return;
-                    }
+                    ns.f(s6Var.f12319a).k(324, new Object[0]);
                     return;
                 }
                 return;
             default:
-                y5 y5Var4 = this.f13034b;
-                i51 i51Var = y5Var4.f13181n;
-                if (i51Var != null) {
-                    ry ryVar = i51Var.f34534b;
-                    if (ryVar != null) {
-                        ryVar.postRunnable(new oy(ryVar, 0));
-                    }
-                    i51Var.f34533a = null;
-                    y5Var4.removeView(y5Var4.f13181n);
-                    y5Var4.f13181n = null;
+                org.telegram.messenger.w7 w7Var = (org.telegram.messenger.w7) this.f12464e;
+                boolean z11 = this.f12462b;
+                String str = (String) this.f12465f;
+                long j11 = this.f12463c;
+                long j12 = this.d;
+                Float f10 = (Float) this.h;
+                if (z11) {
+                    y8Var = (org.telegram.messenger.y8) w7Var.f27312n.get(str);
+                } else {
+                    y8Var = (org.telegram.messenger.y8) w7Var.h.get(str);
+                }
+                org.telegram.messenger.y8 y8Var2 = y8Var;
+                if (y8Var2 != null) {
+                    Utilities.d.c(new org.telegram.messenger.t8(y8Var2, f10, j12, j11));
+                    return;
+                } else if (j12 != 0) {
+                    w7Var.f27317y.put(str, Long.valueOf(j12));
+                    return;
+                } else {
                     return;
                 }
-                return;
         }
+    }
+
+    public w5(org.telegram.messenger.w7 w7Var, boolean z10, String str, long j3, long j10, Float f10) {
+        this.f12464e = w7Var;
+        this.f12462b = z10;
+        this.f12465f = str;
+        this.f12463c = j3;
+        this.d = j10;
+        this.h = f10;
     }
 }

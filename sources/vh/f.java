@@ -1,44 +1,32 @@
 package vh;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.m41;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.r41;
-import org.telegram.ui.Components.w31;
-import org.telegram.ui.Components.x31;
-public final class f extends w31 {
-    public static final int f57519b = 0;
+import android.graphics.Canvas;
+import androidx.recyclerview.widget.RecyclerView;
+import bg.c0;
+import org.telegram.messenger.g0;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.j6;
+import v4.n0;
+public final class f extends n0 {
+    public final c0 f58994a = new c0(2);
+    public final e6 f58995b;
+    public final h f58996c;
 
-    static {
-        w31.h(new w31());
+    public f(h hVar, e6 e6Var) {
+        this.f58996c = hVar;
+        this.f58995b = e6Var;
     }
 
     @Override
-    public final void b(View view, x31 x31Var, boolean z9, m41 m41Var, r41 r41Var) {
-        ah.c cVar = (ah.c) view;
-        cVar.f1062w = (TLRPC.TL_help_country) x31Var.G;
-        cVar.f();
-        cVar.setDivider(z9);
-        cVar.c(x31Var.f40150e, false);
-    }
-
-    @Override
-    public final boolean c(x31 x31Var, x31 x31Var2) {
-        return x31Var.I(x31Var2);
-    }
-
-    @Override
-    public final View d(Context context, pj0 pj0Var, int i7, h6 h6Var) {
-        ah.c cVar = new ah.c(context, h6Var);
-        cVar.setBackground(null);
-        return cVar;
-    }
-
-    @Override
-    public final boolean e(x31 x31Var, x31 x31Var2) {
-        return x31Var.J(x31Var2);
+    public final void g(Canvas canvas, RecyclerView recyclerView) {
+        h hVar = this.f58996c;
+        int max = Math.max(0, g0.L(80.0f) + ((int) hVar.f59001c2.getTranslationY()) + ((int) hVar.T1.f57087f));
+        int w02 = j6.w0(j6.f28922h5, this.f58995b);
+        c0 c0Var = this.f58994a;
+        c0Var.b(w02);
+        c0Var.setBounds(0, max, recyclerView.getWidth(), g0.L(8.0f) + max);
+        c0Var.draw(canvas);
+        hVar.e1();
+        hVar.f1();
     }
 }

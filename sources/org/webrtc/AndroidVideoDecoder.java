@@ -76,12 +76,12 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
             this.frameInfos = new LinkedBlockingDeque();
             return;
         }
-        throw new IllegalArgumentException(jg.g.j(i7, "Unsupported color format: "));
+        throw new IllegalArgumentException(i5.c.i(i7, "Unsupported color format: "));
     }
 
     private VideoFrame.Buffer copyI420Buffer(ByteBuffer byteBuffer, int i7, int i10, int i11, int i12) {
         int i13;
-        boolean z9;
+        boolean z10;
         if (i7 % 2 == 0) {
             int i14 = (i11 + 1) / 2;
             if (i10 % 2 == 0) {
@@ -101,7 +101,7 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
             try {
                 byteBuffer.limit(i17);
                 byteBuffer.position(0);
-                z9 = true;
+                z10 = true;
                 try {
                     copyPlane(byteBuffer.slice(), i7, allocateI420Buffer.getDataY(), allocateI420Buffer.getStrideY(), i11, i12);
                     byteBuffer.limit(i20);
@@ -125,15 +125,15 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
                     return allocateI420Buffer;
                 } catch (Throwable th2) {
                     th = th2;
-                    a8.g(th, z9);
+                    a8.g(th, z10);
                     return allocateI420Buffer;
                 }
             } catch (Throwable th3) {
                 th = th3;
-                z9 = true;
+                z10 = true;
             }
         } else {
-            throw new AssertionError(jg.g.j(i7, "Stride is not divisible by two: "));
+            throw new AssertionError(i5.c.i(i7, "Stride is not divisible by two: "));
         }
     }
 
@@ -366,7 +366,7 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
         int i10;
         VideoCodecStatus reinitDecode;
         this.decoderThreadChecker.checkIsOnValidThread();
-        boolean z9 = false;
+        boolean z10 = false;
         if (this.codec != null && this.callback != null) {
             ByteBuffer byteBuffer = encodedImage.buffer;
             if (byteBuffer == null) {
@@ -427,9 +427,9 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
         }
         StringBuilder sb2 = new StringBuilder("decode uninitalized, codec: ");
         if (this.codec != null) {
-            z9 = true;
+            z10 = true;
         }
-        sb2.append(z9);
+        sb2.append(z10);
         sb2.append(", callback: ");
         sb2.append(this.callback);
         Logging.d("AndroidVideoDecoder", sb2.toString());

@@ -1,12 +1,520 @@
 package z2;
 
-import w7.s;
-public interface e {
-    public static final d f59583a;
+import a3.l;
+import a8.ja;
+import a8.ka;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.os.Parcel;
+import c4.f;
+import c4.i;
+import c4.j;
+import e2.s0;
+import e2.u;
+import f5.k;
+import h2.l0;
+import h9.i0;
+import h9.s1;
+import j$.util.Objects;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import k2.h;
+import l2.f0;
+import l2.w;
+import l2.z;
+import x2.b1;
+public final class e extends l2.b implements Handler.Callback {
+    public final sa.d J;
+    public final h K;
+    public a L;
+    public final d M;
+    public boolean N;
+    public int O;
+    public c4.e P;
+    public i Q;
+    public j R;
+    public j S;
+    public int T;
+    public final Handler U;
+    public final z V;
+    public final k8.a W;
+    public boolean X;
+    public boolean Y;
+    public u Z;
+    public long f60784a0;
+    public long f60785b0;
 
-    static {
-        ?? obj = new Object();
-        obj.f59582b = new s(5, false);
-        f59583a = obj;
+    public e(z zVar, Looper looper) {
+        super(3);
+        Handler handler;
+        x9.d dVar = d.D;
+        this.V = zVar;
+        if (looper == null) {
+            handler = null;
+        } else {
+            String str = l0.f13471a;
+            handler = new Handler(looper, this);
+        }
+        this.U = handler;
+        this.M = dVar;
+        this.J = new sa.d(5);
+        this.K = new h(1, 0);
+        this.W = new k8.a(1, false);
+        this.f60785b0 = -9223372036854775807L;
+        this.f60784a0 = -9223372036854775807L;
+    }
+
+    @Override
+    public final int C(u uVar) {
+        int i7;
+        boolean equals = Objects.equals(uVar.f10451s, "application/x-media3-cues");
+        String str = uVar.f10451s;
+        if (!equals) {
+            x9.d dVar = (x9.d) this.M;
+            dVar.getClass();
+            if (!((nb.a) dVar.f59858a).L(uVar) && !Objects.equals(str, "application/cea-608") && !Objects.equals(str, "application/x-mp4-cea-608") && !Objects.equals(str, "application/cea-708")) {
+                if (s0.l(str)) {
+                    return i5.c.a(1, 0, 0, 0);
+                }
+                return i5.c.a(0, 0, 0, 0);
+            }
+        }
+        if (uVar.T == 0) {
+            i7 = 4;
+        } else {
+            i7 = 2;
+        }
+        return i5.c.a(i7, 0, 0, 0);
+    }
+
+    public final void F() {
+        boolean z10;
+        if (!Objects.equals(this.Z.f10451s, "application/cea-608") && !Objects.equals(this.Z.f10451s, "application/x-mp4-cea-608") && !Objects.equals(this.Z.f10451s, "application/cea-708")) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        String str = this.Z.f10451s;
+        if (z10) {
+            return;
+        }
+        throw new IllegalStateException(ka.a("Legacy decoding is disabled, can't handle %s samples (expected %s).", str, "application/x-media3-cues"));
+    }
+
+    public final long G() {
+        if (this.T == -1) {
+            return Long.MAX_VALUE;
+        }
+        this.R.getClass();
+        if (this.T >= this.R.u()) {
+            return Long.MAX_VALUE;
+        }
+        return this.R.i(this.T);
+    }
+
+    public final long H(long j3) {
+        boolean z10;
+        if (j3 != -9223372036854775807L) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        ja.p(z10);
+        return j3 - this.f18896w;
+    }
+
+    public final void I() {
+        throw new UnsupportedOperationException("Method not decompiled: z2.e.I():void");
+    }
+
+    public final void J(g2.c cVar) {
+        s1 s1Var = cVar.f12807a;
+        z zVar = this.V;
+        zVar.f19233a.f18969m.e(27, new w(0, s1Var));
+        f0 f0Var = zVar.f19233a;
+        f0Var.f18955e0 = cVar;
+        f0Var.f18969m.e(27, new ki.e(cVar, 5));
+    }
+
+    public final void K() {
+        this.Q = null;
+        this.T = -1;
+        j jVar = this.R;
+        if (jVar != null) {
+            jVar.release();
+            this.R = null;
+        }
+        j jVar2 = this.S;
+        if (jVar2 != null) {
+            jVar2.release();
+            this.S = null;
+        }
+    }
+
+    @Override
+    public final boolean handleMessage(Message message) {
+        if (message.what == 1) {
+            J((g2.c) message.obj);
+            return true;
+        }
+        throw new IllegalStateException();
+    }
+
+    @Override
+    public final String i() {
+        return "TextRenderer";
+    }
+
+    @Override
+    public final boolean l() {
+        return this.Y;
+    }
+
+    @Override
+    public final boolean m() {
+        u uVar = this.Z;
+        if (uVar != null) {
+            if (Objects.equals(uVar.f10451s, "application/x-media3-cues")) {
+                a aVar = this.L;
+                aVar.getClass();
+                if (aVar.a(this.f60784a0) == Long.MIN_VALUE) {
+                    try {
+                        b1 b1Var = this.f18894r;
+                        b1Var.getClass();
+                        b1Var.a();
+                        return true;
+                    } catch (IOException unused) {
+                        return false;
+                    }
+                }
+            } else if (!this.Y) {
+                if (this.X) {
+                    j jVar = this.R;
+                    long j3 = this.f60784a0;
+                    if (jVar == null || jVar.u() <= 0 || jVar.i(jVar.u() - 1) <= j3) {
+                        j jVar2 = this.S;
+                        long j10 = this.f60784a0;
+                        if ((jVar2 == null || jVar2.u() <= 0 || jVar2.i(jVar2.u() - 1) <= j10) && this.Q != null) {
+                            return false;
+                        }
+                    }
+                }
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public final void n() {
+        this.Z = null;
+        this.f60785b0 = -9223372036854775807L;
+        g2.c cVar = new g2.c(H(this.f60784a0), s1.f13749e);
+        Handler handler = this.U;
+        if (handler != null) {
+            handler.obtainMessage(1, cVar).sendToTarget();
+        } else {
+            J(cVar);
+        }
+        this.f60784a0 = -9223372036854775807L;
+        if (this.P != null) {
+            K();
+            c4.e eVar = this.P;
+            eVar.getClass();
+            eVar.release();
+            this.P = null;
+            this.O = 0;
+        }
+    }
+
+    @Override
+    public final void p(long j3, boolean z10, boolean z11) {
+        this.f60784a0 = j3;
+        a aVar = this.L;
+        if (aVar != null) {
+            aVar.clear();
+        }
+        g2.c cVar = new g2.c(H(this.f60784a0), s1.f13749e);
+        Handler handler = this.U;
+        if (handler != null) {
+            handler.obtainMessage(1, cVar).sendToTarget();
+        } else {
+            J(cVar);
+        }
+        this.X = false;
+        this.Y = false;
+        this.f60785b0 = -9223372036854775807L;
+        u uVar = this.Z;
+        if (uVar != null && !Objects.equals(uVar.f10451s, "application/x-media3-cues")) {
+            if (this.O != 0) {
+                K();
+                c4.e eVar = this.P;
+                eVar.getClass();
+                eVar.release();
+                this.P = null;
+                this.O = 0;
+                I();
+                return;
+            }
+            K();
+            c4.e eVar2 = this.P;
+            eVar2.getClass();
+            eVar2.flush();
+            eVar2.a(this.f18897x);
+        }
+    }
+
+    @Override
+    public final void u(u[] uVarArr, long j3, long j10, x2.f0 f0Var) {
+        a kVar;
+        u uVar = uVarArr[0];
+        this.Z = uVar;
+        if (!Objects.equals(uVar.f10451s, "application/x-media3-cues")) {
+            F();
+            if (this.P != null) {
+                this.O = 1;
+                return;
+            } else {
+                I();
+                return;
+            }
+        }
+        if (this.Z.Q == 1) {
+            kVar = new c();
+        } else {
+            kVar = new k(4);
+        }
+        this.L = kVar;
+    }
+
+    @Override
+    public final void x(long j3, long j10) {
+        boolean z10;
+        long j11;
+        if (this.E) {
+            long j12 = this.f60785b0;
+            if (j12 != -9223372036854775807L && j3 >= j12) {
+                K();
+                this.Y = true;
+            }
+        }
+        if (!this.Y) {
+            u uVar = this.Z;
+            uVar.getClass();
+            boolean equals = Objects.equals(uVar.f10451s, "application/x-media3-cues");
+            Handler handler = this.U;
+            k8.a aVar = this.W;
+            boolean z11 = false;
+            if (equals) {
+                this.L.getClass();
+                if (!this.X) {
+                    h hVar = this.K;
+                    if (w(aVar, hVar, 0) == -4) {
+                        if (hVar.isEndOfStream()) {
+                            this.X = true;
+                        } else {
+                            hVar.c();
+                            ByteBuffer byteBuffer = hVar.f17732c;
+                            byteBuffer.getClass();
+                            long j13 = hVar.f17733e;
+                            byte[] array = byteBuffer.array();
+                            int arrayOffset = byteBuffer.arrayOffset();
+                            int limit = byteBuffer.limit();
+                            this.J.getClass();
+                            Parcel obtain = Parcel.obtain();
+                            obtain.unmarshall(array, arrayOffset, limit);
+                            obtain.setDataPosition(0);
+                            Bundle readBundle = obtain.readBundle(Bundle.class.getClassLoader());
+                            obtain.recycle();
+                            ArrayList parcelableArrayList = readBundle.getParcelableArrayList("c");
+                            parcelableArrayList.getClass();
+                            c4.a aVar2 = new c4.a(j13, readBundle.getLong("d"), h2.e.b(new l(23), parcelableArrayList));
+                            hVar.clear();
+                            z11 = this.L.c(aVar2, j3);
+                        }
+                    }
+                }
+                long a10 = this.L.a(this.f60784a0);
+                int i7 = (a10 > Long.MIN_VALUE ? 1 : (a10 == Long.MIN_VALUE ? 0 : -1));
+                if (i7 == 0 && this.X && !z11) {
+                    this.Y = true;
+                }
+                if (i7 != 0 && a10 <= j3) {
+                    z11 = true;
+                }
+                if (z11) {
+                    i0 b10 = this.L.b(j3);
+                    long d = this.L.d(j3);
+                    g2.c cVar = new g2.c(H(d), b10);
+                    if (handler != null) {
+                        handler.obtainMessage(1, cVar).sendToTarget();
+                    } else {
+                        J(cVar);
+                    }
+                    this.L.e(d);
+                }
+                this.f60784a0 = j3;
+                return;
+            }
+            F();
+            this.f60784a0 = j3;
+            if (this.S == null) {
+                c4.e eVar = this.P;
+                eVar.getClass();
+                eVar.b(j3);
+                try {
+                    c4.e eVar2 = this.P;
+                    eVar2.getClass();
+                    this.S = (j) eVar2.c();
+                } catch (f e10) {
+                    h2.a.d("TextRenderer", "Subtitle decoding failed. streamFormat=" + this.Z, e10);
+                    g2.c cVar2 = new g2.c(H(this.f60784a0), s1.f13749e);
+                    if (handler != null) {
+                        handler.obtainMessage(1, cVar2).sendToTarget();
+                    } else {
+                        J(cVar2);
+                    }
+                    K();
+                    c4.e eVar3 = this.P;
+                    eVar3.getClass();
+                    eVar3.release();
+                    this.P = null;
+                    this.O = 0;
+                    I();
+                    return;
+                }
+            }
+            if (this.f18893n == 2) {
+                if (this.R != null) {
+                    long G = G();
+                    z10 = false;
+                    while (G <= j3) {
+                        this.T++;
+                        G = G();
+                        z10 = true;
+                    }
+                } else {
+                    z10 = false;
+                }
+                j jVar = this.S;
+                if (jVar != null) {
+                    if (jVar.isEndOfStream()) {
+                        if (!z10 && G() == Long.MAX_VALUE) {
+                            if (this.O == 2) {
+                                K();
+                                c4.e eVar4 = this.P;
+                                eVar4.getClass();
+                                eVar4.release();
+                                this.P = null;
+                                this.O = 0;
+                                I();
+                            } else {
+                                K();
+                                this.Y = true;
+                            }
+                        }
+                    } else if (jVar.timeUs <= j3) {
+                        j jVar2 = this.R;
+                        if (jVar2 != null) {
+                            jVar2.release();
+                        }
+                        this.T = jVar.d(j3);
+                        this.R = jVar;
+                        this.S = null;
+                        z10 = true;
+                    }
+                }
+                if (z10) {
+                    this.R.getClass();
+                    int d2 = this.R.d(j3);
+                    if (d2 != 0 && this.R.u() != 0) {
+                        if (d2 == -1) {
+                            j jVar3 = this.R;
+                            j11 = jVar3.i(jVar3.u() - 1);
+                        } else {
+                            j11 = this.R.i(d2 - 1);
+                        }
+                    } else {
+                        j11 = this.R.timeUs;
+                    }
+                    g2.c cVar3 = new g2.c(H(j11), this.R.q(j3));
+                    if (handler != null) {
+                        handler.obtainMessage(1, cVar3).sendToTarget();
+                    } else {
+                        J(cVar3);
+                    }
+                }
+                if (this.O != 2) {
+                    while (!this.X) {
+                        try {
+                            i iVar = this.Q;
+                            if (iVar == null) {
+                                c4.e eVar5 = this.P;
+                                eVar5.getClass();
+                                iVar = (i) eVar5.d();
+                                if (iVar != null) {
+                                    this.Q = iVar;
+                                } else {
+                                    return;
+                                }
+                            }
+                            if (this.O == 1) {
+                                iVar.setFlags(4);
+                                c4.e eVar6 = this.P;
+                                eVar6.getClass();
+                                eVar6.e(iVar);
+                                this.Q = null;
+                                this.O = 2;
+                                return;
+                            }
+                            int w10 = w(aVar, iVar, 0);
+                            if (w10 == -4) {
+                                if (iVar.isEndOfStream()) {
+                                    this.X = true;
+                                    this.N = false;
+                                } else {
+                                    u uVar2 = (u) aVar.f17789c;
+                                    if (uVar2 != null) {
+                                        iVar.f4108r = uVar2.f10455x;
+                                        iVar.c();
+                                        this.N &= !iVar.isKeyFrame();
+                                    } else {
+                                        return;
+                                    }
+                                }
+                                if (!this.N) {
+                                    c4.e eVar7 = this.P;
+                                    eVar7.getClass();
+                                    eVar7.e(iVar);
+                                    this.Q = null;
+                                }
+                            } else if (w10 == -3) {
+                                return;
+                            }
+                        } catch (f e11) {
+                            h2.a.d("TextRenderer", "Subtitle decoding failed. streamFormat=" + this.Z, e11);
+                            g2.c cVar4 = new g2.c(H(this.f60784a0), s1.f13749e);
+                            if (handler != null) {
+                                handler.obtainMessage(1, cVar4).sendToTarget();
+                            } else {
+                                J(cVar4);
+                            }
+                            K();
+                            c4.e eVar8 = this.P;
+                            eVar8.getClass();
+                            eVar8.release();
+                            this.P = null;
+                            this.O = 0;
+                            I();
+                            return;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

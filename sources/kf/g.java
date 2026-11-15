@@ -1,23 +1,23 @@
 package kf;
 
-import c8.b1;
+import c8.d1;
 public final class g extends p {
-    public final int f17268g;
+    public final int f17827g;
 
     @Override
-    public final void a(b1 b1Var) {
-        switch (this.f17268g) {
+    public final void a(d1 d1Var) {
+        switch (this.f17827g) {
             case 0:
-                b1Var.e(this);
+                d1Var.e(this);
                 return;
             case 1:
-                b1Var.r(this);
+                d1Var.r(this);
                 return;
             case 2:
-                b1Var.t(this);
+                d1Var.t(this);
                 return;
             default:
-                b1Var.u(this);
+                d1Var.u(this);
                 return;
         }
     }

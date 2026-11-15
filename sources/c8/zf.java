@@ -3,19 +3,19 @@ package c8;
 import java.util.List;
 import java.util.ListIterator;
 public final class zf extends a8.d implements ListIterator {
-    public final a8.f f5996e;
+    public final a8.f f4818e;
 
     public zf(a8.f fVar) {
         super(fVar, (byte) 0);
-        this.f5996e = fVar;
+        this.f4818e = fVar;
     }
 
     @Override
     public final void add(Object obj) {
-        a8.f fVar = this.f5996e;
+        a8.f fVar = this.f4818e;
         boolean isEmpty = fVar.isEmpty();
         b();
-        ((ListIterator) this.f358b).add(obj);
+        ((ListIterator) this.f364b).add(obj);
         if (isEmpty) {
             fVar.k();
         }
@@ -24,35 +24,35 @@ public final class zf extends a8.d implements ListIterator {
     @Override
     public final boolean hasPrevious() {
         b();
-        return ((ListIterator) this.f358b).hasPrevious();
+        return ((ListIterator) this.f364b).hasPrevious();
     }
 
     @Override
     public final int nextIndex() {
         b();
-        return ((ListIterator) this.f358b).nextIndex();
+        return ((ListIterator) this.f364b).nextIndex();
     }
 
     @Override
     public final Object previous() {
         b();
-        return ((ListIterator) this.f358b).previous();
+        return ((ListIterator) this.f364b).previous();
     }
 
     @Override
     public final int previousIndex() {
         b();
-        return ((ListIterator) this.f358b).previousIndex();
+        return ((ListIterator) this.f364b).previousIndex();
     }
 
     @Override
     public final void set(Object obj) {
         b();
-        ((ListIterator) this.f358b).set(obj);
+        ((ListIterator) this.f364b).set(obj);
     }
 
     public zf(a8.f fVar, int i7) {
-        super(fVar, ((List) fVar.f388c).listIterator(i7), (byte) 0);
-        this.f5996e = fVar;
+        super(fVar, ((List) fVar.f393c).listIterator(i7), (byte) 0);
+        this.f4818e = fVar;
     }
 }

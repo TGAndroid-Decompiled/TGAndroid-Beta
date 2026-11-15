@@ -1,7 +1,7 @@
 package f2;
 public final class e {
-    public int f10904a;
-    public e2.e f10905b;
-    public boolean f10906c;
+    public int f10715a;
+    public e2.e f10716b;
+    public boolean f10717c;
     public boolean d;
 }

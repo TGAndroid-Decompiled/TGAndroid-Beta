@@ -4,13 +4,14 @@ import android.util.Pair;
 import android.util.SparseArray;
 import e2.s0;
 import e2.t0;
-import f3.j0;
+import e2.u;
+import f3.f0;
+import f3.i0;
 import h2.k0;
-import h2.m0;
+import h2.l0;
 import h2.x;
 import h9.g0;
-import h9.i0;
-import h9.t1;
+import h9.s1;
 import j$.util.DesugarCollections;
 import java.math.RoundingMode;
 import java.util.ArrayDeque;
@@ -19,10 +20,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.UUID;
-import m4.d0;
 public final class h implements f3.o {
     public static final byte[] O = {-94, 57, 79, 82, 90, -101, 79, 20, -94, 68, 108, 66, 124, 100, -115, -12};
-    public static final e2.u P;
+    public static final u P;
     public long A;
     public long B;
     public g C;
@@ -32,63 +32,63 @@ public final class h implements f3.o {
     public boolean G;
     public boolean H;
     public f3.q I;
-    public j0[] J;
-    public j0[] K;
+    public i0[] J;
+    public i0[] K;
     public boolean L;
     public boolean M;
     public long N;
-    public final c4.k f59611a;
-    public final int f59612b;
-    public final List f59613c;
+    public final c4.k f60812a;
+    public final int f60813b;
+    public final List f60814c;
     public final byte[] h;
-    public final x f59617i;
-    public final k0 f59618j;
-    public final h2.c f59623o;
-    public final j0 f59624p;
-    public final aa.n f59625q;
-    public t1 f59626r;
-    public int f59627s;
-    public int f59628t;
-    public long f59629u;
+    public final x f60818i;
+    public final k0 f60819j;
+    public final h2.c f60824o;
+    public final i0 f60825p;
+    public final cb.c f60826q;
+    public s1 f60827r;
+    public int f60828s;
+    public int f60829t;
+    public long f60830u;
     public int v;
-    public x f59630w;
-    public long f59631x;
-    public int f59632y;
-    public long f59633z;
-    public final d0 f59619k = new d0(20);
-    public final x f59620l = new x(16);
-    public final x f59614e = new x(i2.o.f15207a);
-    public final x f59615f = new x(6);
-    public final x f59616g = new x();
-    public final ArrayDeque f59621m = new ArrayDeque();
-    public final ArrayDeque f59622n = new ArrayDeque();
+    public x f60831w;
+    public long f60832x;
+    public int f60833y;
+    public long f60834z;
+    public final k8.a f60820k = new k8.a(24);
+    public final x f60821l = new x(16);
+    public final x f60815e = new x(i2.o.f15659a);
+    public final x f60816f = new x(6);
+    public final x f60817g = new x();
+    public final ArrayDeque f60822m = new ArrayDeque();
+    public final ArrayDeque f60823n = new ArrayDeque();
     public final SparseArray d = new SparseArray();
 
     static {
         e2.t tVar = new e2.t();
-        tVar.f10568r = s0.n("application/x-emsg");
-        P = new e2.u(tVar);
+        tVar.f10399r = s0.n("application/x-emsg");
+        P = new u(tVar);
     }
 
     public h(c4.k kVar, int i7, k0 k0Var, List list, o2.o oVar) {
-        this.f59611a = kVar;
-        this.f59612b = i7;
-        this.f59618j = k0Var;
-        this.f59613c = DesugarCollections.unmodifiableList(list);
-        this.f59624p = oVar;
+        this.f60812a = kVar;
+        this.f60813b = i7;
+        this.f60819j = k0Var;
+        this.f60814c = DesugarCollections.unmodifiableList(list);
+        this.f60825p = oVar;
         byte[] bArr = new byte[16];
         this.h = bArr;
-        this.f59617i = new x(bArr);
-        g0 g0Var = i0.f14331b;
-        this.f59626r = t1.f14399e;
+        this.f60818i = new x(bArr);
+        g0 g0Var = h9.i0.f13686b;
+        this.f60827r = s1.f13749e;
         this.A = -9223372036854775807L;
-        this.f59633z = -9223372036854775807L;
+        this.f60834z = -9223372036854775807L;
         this.B = -9223372036854775807L;
-        this.I = f3.q.f11074q;
-        this.J = new j0[0];
-        this.K = new j0[0];
-        this.f59623o = new h2.c(new e(this));
-        this.f59625q = new aa.n(17);
+        this.I = f3.q.f10876q;
+        this.J = new i0[0];
+        this.K = new i0[0];
+        this.f60824o = new h2.c(new e(this));
+        this.f60826q = new cb.c(21);
         this.N = -1L;
     }
 
@@ -111,16 +111,16 @@ public final class h implements f3.o {
         ArrayList arrayList = null;
         for (int i7 = 0; i7 < size; i7++) {
             i2.d dVar = (i2.d) list.get(i7);
-            if (dVar.f8653b == 1886614376) {
+            if (dVar.f8037b == 1886614376) {
                 if (arrayList == null) {
                     arrayList = new ArrayList();
                 }
-                byte[] bArr = dVar.f15155c.f14164a;
-                m6.n i10 = q.i(bArr);
+                byte[] bArr = dVar.f15607c.f13521a;
+                m6.n i10 = p.i(bArr);
                 if (i10 == null) {
                     uuid = null;
                 } else {
-                    uuid = (UUID) i10.f19926b;
+                    uuid = (UUID) i10.f20518b;
                 }
                 if (uuid == null) {
                     h2.a.l("FragmentedMp4Extractor", "Skipped pssh atom (failed to extract uuid)");
@@ -135,37 +135,37 @@ public final class h implements f3.o {
         return new e2.r(null, false, (e2.q[]) arrayList.toArray(new e2.q[0]));
     }
 
-    public static void j(x xVar, int i7, t tVar) {
-        boolean z9;
+    public static void j(x xVar, int i7, s sVar) {
+        boolean z10;
         xVar.N(i7 + 8);
         int m10 = xVar.m();
-        byte[] bArr = c.f59592a;
+        byte[] bArr = c.f60793a;
         if ((m10 & 1) == 0) {
             if ((m10 & 2) != 0) {
-                z9 = true;
+                z10 = true;
             } else {
-                z9 = false;
+                z10 = false;
             }
             int E = xVar.E();
             if (E == 0) {
-                Arrays.fill(tVar.f59700l, 0, tVar.f59694e, false);
+                Arrays.fill(sVar.f60900l, 0, sVar.f60894e, false);
                 return;
             }
-            int i10 = tVar.f59694e;
-            x xVar2 = tVar.f59702n;
+            int i10 = sVar.f60894e;
+            x xVar2 = sVar.f60902n;
             if (E == i10) {
-                Arrays.fill(tVar.f59700l, 0, E, z9);
+                Arrays.fill(sVar.f60900l, 0, E, z10);
                 xVar2.K(xVar.a());
-                tVar.f59699k = true;
-                tVar.f59703o = true;
-                xVar.k(0, xVar2.f14166c, xVar2.f14164a);
+                sVar.f60899k = true;
+                sVar.f60903o = true;
+                xVar.k(0, xVar2.f13523c, xVar2.f13521a);
                 xVar2.N(0);
-                tVar.f59703o = false;
+                sVar.f60903o = false;
                 return;
             }
-            StringBuilder n10 = jg.g.n(E, "Senc sample count ", " is different from fragment sample count");
-            n10.append(tVar.f59694e);
-            throw t0.a(null, n10.toString());
+            StringBuilder m11 = i5.c.m(E, "Senc sample count ", " is different from fragment sample count");
+            m11.append(sVar.f60894e);
+            throw t0.a(null, m11.toString());
         }
         throw t0.c("Overriding TrackEncryptionBox parameters is unsupported.");
     }
@@ -186,8 +186,8 @@ public final class h implements f3.o {
             G2 = xVar2.G();
         }
         long j10 = G2 + j3;
-        String str = m0.f14114a;
-        long a02 = m0.a0(G, 1000000L, C, RoundingMode.DOWN);
+        String str = l0.f13471a;
+        long a02 = l0.a0(G, 1000000L, C, RoundingMode.DOWN);
         xVar2.O(2);
         int H = xVar2.H();
         int[] iArr = new int[H];
@@ -207,7 +207,7 @@ public final class h implements f3.o {
                 G += C2;
                 long[] jArr4 = jArr2;
                 long[] jArr5 = jArr3;
-                long a03 = m0.a0(G, 1000000L, C, RoundingMode.DOWN);
+                long a03 = l0.a0(G, 1000000L, C, RoundingMode.DOWN);
                 jArr4[i7] = a03 - jArr5[i7];
                 xVar2.O(4);
                 j11 += iArr[i7];
@@ -226,15 +226,15 @@ public final class h implements f3.o {
 
     @Override
     public final boolean b(f3.p pVar) {
-        t1 t1Var;
-        f3.g0 m10 = q.m(pVar, true, false);
+        s1 s1Var;
+        f0 m10 = p.m(pVar, true, false);
         if (m10 != null) {
-            t1Var = i0.u(m10);
+            s1Var = h9.i0.u(m10);
         } else {
-            g0 g0Var = i0.f14331b;
-            t1Var = t1.f14399e;
+            g0 g0Var = h9.i0.f13686b;
+            s1Var = s1.f13749e;
         }
-        this.f59626r = t1Var;
+        this.f60827r = s1Var;
         if (m10 == null) {
             return true;
         }
@@ -244,39 +244,39 @@ public final class h implements f3.o {
     @Override
     public final void c(f3.q qVar) {
         int i7;
-        int i10 = this.f59612b;
+        int i10 = this.f60813b;
         if ((i10 & 32) == 0) {
-            qVar = new ab.q(qVar, this.f59611a);
+            qVar = new ab.q(qVar, this.f60812a);
         }
         this.I = qVar;
         h();
-        j0[] j0VarArr = new j0[2];
-        this.J = j0VarArr;
+        i0[] i0VarArr = new i0[2];
+        this.J = i0VarArr;
         int i11 = 0;
-        j0 j0Var = this.f59624p;
-        if (j0Var != null) {
-            j0VarArr[0] = j0Var;
+        i0 i0Var = this.f60825p;
+        if (i0Var != null) {
+            i0VarArr[0] = i0Var;
             i7 = 1;
         } else {
             i7 = 0;
         }
         int i12 = 100;
         if ((i10 & 4) != 0) {
-            j0VarArr[i7] = this.I.O1(100, 5);
+            i0VarArr[i7] = this.I.d2(100, 5);
             i12 = 101;
             i7++;
         }
-        j0[] j0VarArr2 = (j0[]) m0.U(i7, this.J);
-        this.J = j0VarArr2;
-        for (j0 j0Var2 : j0VarArr2) {
-            j0Var2.g(P);
+        i0[] i0VarArr2 = (i0[]) l0.U(i7, this.J);
+        this.J = i0VarArr2;
+        for (i0 i0Var2 : i0VarArr2) {
+            i0Var2.g(P);
         }
-        List list = this.f59613c;
-        this.K = new j0[list.size()];
+        List list = this.f60814c;
+        this.K = new i0[list.size()];
         while (i11 < this.K.length) {
-            j0 O1 = this.I.O1(i12, 3);
-            O1.g((e2.u) list.get(i11));
-            this.K[i11] = O1;
+            i0 d2 = this.I.d2(i12, 3);
+            d2.g((u) list.get(i11));
+            this.K[i11] = d2;
             i11++;
             i12++;
         }
@@ -289,17 +289,17 @@ public final class h implements f3.o {
         for (int i7 = 0; i7 < size; i7++) {
             ((g) sparseArray.valueAt(i7)).e();
         }
-        this.f59622n.clear();
-        this.f59632y = 0;
-        ((PriorityQueue) this.f59623o.f14062e).clear();
-        this.f59633z = j10;
-        this.f59621m.clear();
+        this.f60823n.clear();
+        this.f60833y = 0;
+        ((PriorityQueue) this.f60824o.f13420e).clear();
+        this.f60834z = j10;
+        this.f60822m.clear();
         h();
     }
 
     @Override
     public final List e() {
-        return this.f59626r;
+        return this.f60827r;
     }
 
     @Override
@@ -308,7 +308,7 @@ public final class h implements f3.o {
     }
 
     public final void h() {
-        this.f59627s = 0;
+        this.f60828s = 0;
         this.v = 0;
     }
 

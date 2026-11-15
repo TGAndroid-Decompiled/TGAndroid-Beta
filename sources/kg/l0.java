@@ -1,63 +1,63 @@
 package kg;
 
 import java.util.ArrayList;
-import org.telegram.messenger.qp;
+import org.telegram.messenger.np;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.cb1;
+import org.telegram.ui.xa1;
 public final class l0 implements RequestDelegate {
-    public final int f17425a = 0;
-    public final boolean f17426b;
-    public final Object f17427c;
+    public final int f17985a = 0;
+    public final boolean f17986b;
+    public final Object f17987c;
     public final Object d;
-    public final Object f17428e;
-    public final TLObject f17429f;
+    public final Object f17988e;
+    public final TLObject f17989f;
 
-    public l0(q0 q0Var, int[] iArr, ArrayList arrayList, boolean z9, TLRPC.User user) {
-        this.f17427c = q0Var;
+    public l0(q0 q0Var, int[] iArr, ArrayList arrayList, boolean z10, TLRPC.User user) {
+        this.f17987c = q0Var;
         this.d = iArr;
-        this.f17428e = arrayList;
-        this.f17426b = z9;
-        this.f17429f = user;
+        this.f17988e = arrayList;
+        this.f17986b = z10;
+        this.f17989f = user;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17425a) {
+        switch (this.f17985a) {
             case 0:
-                org.telegram.messenger.g0.h3(new o0((q0) this.f17427c, tL_error, tLObject, (int[]) this.d, (ArrayList) this.f17428e, this.f17426b, (TLRPC.User) this.f17429f));
+                org.telegram.messenger.g0.h3(new o0((q0) this.f17987c, tL_error, tLObject, (int[]) this.d, (ArrayList) this.f17988e, this.f17986b, (TLRPC.User) this.f17989f));
                 return;
             case 1:
-                org.telegram.messenger.g0.h3(new o0((cb1) this.f17427c, tL_error, this.f17426b, tLObject, (byte[]) this.d, (String) this.f17428e, (TL_account.passwordInputSettings) this.f17429f));
+                org.telegram.messenger.g0.h3(new o0((xa1) this.f17987c, tL_error, this.f17986b, tLObject, (byte[]) this.d, (String) this.f17988e, (TL_account.passwordInputSettings) this.f17989f));
                 return;
             default:
-                yh.m mVar = (yh.m) this.f17427c;
+                zh.l lVar = (zh.l) this.f17987c;
                 TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) this.d;
-                TLRPC.User user = (TLRPC.User) this.f17429f;
-                TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest = (TLRPC.TL_messages_hideChatJoinRequest) this.f17428e;
+                TLRPC.User user = (TLRPC.User) this.f17989f;
+                TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest = (TLRPC.TL_messages_hideChatJoinRequest) this.f17988e;
                 if (tL_error == null) {
-                    qp.s1(mVar.f59558k).O3((TLRPC.TL_updates) tLObject, false);
+                    np.s1(lVar.f61450k).O3((TLRPC.TL_updates) tLObject, false);
                 }
-                org.telegram.messenger.g0.h3(new o0(mVar, tL_error, tLObject, tL_chatInviteImporter, this.f17426b, user, tL_messages_hideChatJoinRequest));
+                org.telegram.messenger.g0.h3(new o0(lVar, tL_error, tLObject, tL_chatInviteImporter, this.f17986b, user, tL_messages_hideChatJoinRequest));
                 return;
         }
     }
 
-    public l0(cb1 cb1Var, boolean z9, byte[] bArr, String str, TL_account.passwordInputSettings passwordinputsettings) {
-        this.f17427c = cb1Var;
-        this.f17426b = z9;
+    public l0(xa1 xa1Var, boolean z10, byte[] bArr, String str, TL_account.passwordInputSettings passwordinputsettings) {
+        this.f17987c = xa1Var;
+        this.f17986b = z10;
         this.d = bArr;
-        this.f17428e = str;
-        this.f17429f = passwordinputsettings;
+        this.f17988e = str;
+        this.f17989f = passwordinputsettings;
     }
 
-    public l0(yh.m mVar, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z9, TLRPC.User user, TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest) {
-        this.f17427c = mVar;
+    public l0(zh.l lVar, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z10, TLRPC.User user, TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest) {
+        this.f17987c = lVar;
         this.d = tL_chatInviteImporter;
-        this.f17426b = z9;
-        this.f17429f = user;
-        this.f17428e = tL_messages_hideChatJoinRequest;
+        this.f17986b = z10;
+        this.f17989f = user;
+        this.f17988e = tL_messages_hideChatJoinRequest;
     }
 }

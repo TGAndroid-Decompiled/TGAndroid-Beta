@@ -1,35 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PrivacyControlActivity;
 public final class c1 implements Runnable {
-    public final int f32413a;
-    public final org.telegram.ui.ActionBar.u1 f32414b;
-    public final Context f32415c;
+    public final int f33455a;
+    public final ArrayList f33456b;
 
-    public c1(int i7, Context context, org.telegram.ui.ActionBar.u1 u1Var) {
-        this.f32413a = i7;
-        this.f32414b = u1Var;
-        this.f32415c = context;
+    public c1(int i7, ArrayList arrayList) {
+        this.f33455a = i7;
+        this.f33456b = arrayList;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f32413a;
-        Context context = this.f32415c;
-        org.telegram.ui.ActionBar.u1 u1Var = this.f32414b;
-        switch (i7) {
+        org.telegram.ui.ActionBar.e2 Q;
+        switch (this.f33455a) {
             case 0:
-                if (u1Var != null) {
-                    u1Var.dismiss();
+                if (this.f33456b != null && (Q = LaunchActivity.Q()) != 0) {
+                    ?? obj = new Object();
+                    obj.f28476a = true;
+                    Q.showAsSheet(new PrivacyControlActivity(11, false), obj);
+                    return;
                 }
-                vf.c.t(context, org.telegram.messenger.id.M0(2131752895, null));
                 return;
             default:
-                if (u1Var != null) {
-                    u1Var.dismiss();
+                int i7 = 0;
+                while (true) {
+                    ArrayList arrayList = this.f33456b;
+                    if (i7 < arrayList.size()) {
+                        ((View) arrayList.get(i7)).setVisibility(8);
+                        if (arrayList.get(i7) instanceof org.telegram.ui.Cells.q1) {
+                            ((org.telegram.ui.Cells.q1) arrayList.get(i7)).k3(false, false);
+                            ((org.telegram.ui.Cells.q1) arrayList.get(i7)).m3(false, false, false);
+                        }
+                        i7++;
+                    } else {
+                        return;
+                    }
                 }
-                vf.c.t(context, org.telegram.messenger.id.M0(2131752895, null));
-                return;
         }
     }
 }

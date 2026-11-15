@@ -5,13 +5,13 @@ import android.os.IBinder;
 import android.os.Parcel;
 import android.util.Log;
 public final class d0 extends a8.q {
-    public d f53872b;
-    public final int f53873c;
+    public d f55309b;
+    public final int f55310c;
 
     public d0(d dVar, int i7) {
         super("com.google.android.gms.common.internal.IGmsCallbacks", 9);
-        this.f53872b = dVar;
-        this.f53873c = i7;
+        this.f55309b = dVar;
+        this.f55310c = i7;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class d0 extends a8.q {
                 IBinder readStrongBinder = parcel.readStrongBinder();
                 h0 h0Var = (h0) p7.g.a(parcel, h0.CREATOR);
                 p7.g.c(parcel);
-                d dVar = this.f53872b;
+                d dVar = this.f55309b;
                 m.h(dVar, "onPostInitCompleteWithConnectionInfo can be called only once per call togetRemoteService");
                 m.g(h0Var);
                 dVar.B = h0Var;
@@ -36,25 +36,25 @@ public final class d0 extends a8.q {
                     if (fVar == null) {
                         oVar = null;
                     } else {
-                        oVar = fVar.f53878a;
+                        oVar = fVar.f55315a;
                     }
                     synchronized (a10) {
                         if (oVar == null) {
-                            oVar = n.f53929c;
+                            oVar = n.f55366c;
                         } else {
-                            o oVar2 = (o) a10.f53930a;
+                            o oVar2 = (o) a10.f55367a;
                             if (oVar2 != null) {
-                                if (oVar2.f53931a < oVar.f53931a) {
+                                if (oVar2.f55368a < oVar.f55368a) {
                                 }
                             }
                         }
-                        a10.f53930a = oVar;
+                        a10.f55367a = oVar;
                     }
                 }
-                Bundle bundle = h0Var.f53896a;
-                m.h(this.f53872b, "onPostInitComplete can be called only once per call to getRemoteService");
-                this.f53872b.w(readInt, readStrongBinder, bundle, this.f53873c);
-                this.f53872b = null;
+                Bundle bundle = h0Var.f55333a;
+                m.h(this.f55309b, "onPostInitComplete can be called only once per call to getRemoteService");
+                this.f55309b.w(readInt, readStrongBinder, bundle, this.f55310c);
+                this.f55309b = null;
             } else {
                 parcel.readInt();
                 Bundle bundle2 = (Bundle) p7.g.a(parcel, Bundle.CREATOR);
@@ -63,9 +63,9 @@ public final class d0 extends a8.q {
             }
         } else {
             p7.g.c(parcel);
-            m.h(this.f53872b, "onPostInitComplete can be called only once per call to getRemoteService");
-            this.f53872b.w(parcel.readInt(), parcel.readStrongBinder(), (Bundle) p7.g.a(parcel, Bundle.CREATOR), this.f53873c);
-            this.f53872b = null;
+            m.h(this.f55309b, "onPostInitComplete can be called only once per call to getRemoteService");
+            this.f55309b.w(parcel.readInt(), parcel.readStrongBinder(), (Bundle) p7.g.a(parcel, Bundle.CREATOR), this.f55310c);
+            this.f55309b = null;
         }
         parcel2.writeNoException();
         return true;

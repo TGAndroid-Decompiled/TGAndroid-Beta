@@ -6,10 +6,10 @@ import android.content.Intent;
 import android.os.CancellationSignal;
 import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
 import androidx.credentials.playservices.controllers.identityauth.HiddenActivity;
-import c8.a1;
-import c8.qb;
+import c8.c1;
+import c8.rb;
 import c8.vc;
-import di.z0;
+import di.s2;
 import gd.k;
 import j7.f;
 import j7.h;
@@ -24,17 +24,17 @@ import q1.e;
 import rd.l;
 import v0.g;
 public final class b implements l {
-    public final int f10136a;
-    public final Object f10137b;
-    public final Object f10138c;
+    public final int f9967a;
+    public final Object f9968b;
+    public final Object f9969c;
     public final Object d;
-    public final Object f10139e;
+    public final Object f9970e;
 
     public b(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f10136a = i7;
-        this.f10137b = obj;
-        this.f10139e = obj2;
-        this.f10138c = obj3;
+        this.f9967a = i7;
+        this.f9968b = obj;
+        this.f9970e = obj2;
+        this.f9969c = obj3;
         this.d = obj4;
     }
 
@@ -42,16 +42,16 @@ public final class b implements l {
     public final Object invoke(Object obj) {
         long j3;
         Object obj2;
-        switch (this.f10136a) {
+        switch (this.f9967a) {
             case 0:
-                CancellationSignal cancellationSignal = (CancellationSignal) this.f10137b;
-                d dVar = (d) this.f10139e;
-                Context context = dVar.f10143e;
-                Executor executor = (Executor) this.f10138c;
+                CancellationSignal cancellationSignal = (CancellationSignal) this.f9968b;
+                d dVar = (d) this.f9970e;
+                Context context = dVar.f9974e;
+                Executor executor = (Executor) this.f9969c;
                 g gVar = (g) this.d;
                 f fVar = (f) obj;
-                PendingIntent pendingIntent = fVar.f16561a;
-                h hVar = fVar.f16562b;
+                PendingIntent pendingIntent = fVar.f16914a;
+                h hVar = fVar.f16915b;
                 if (pendingIntent == null && hVar == null) {
                     CredentialProviderPlayServicesImpl.Companion.getClass();
                     if (!a1.g.a(cancellationSignal)) {
@@ -60,14 +60,14 @@ public final class b implements l {
                 } else {
                     if (pendingIntent != null) {
                         Intent intent = new Intent(context, HiddenActivity.class);
-                        b1.d.a(dVar.f10146i, intent, "CREATE_PUBLIC_KEY_CREDENTIAL");
+                        b1.d.a(dVar.f9977i, intent, "CREATE_PUBLIC_KEY_CREDENTIAL");
                         intent.putExtra("EXTRA_FLOW_PENDING_INTENT", pendingIntent);
                         try {
                             context.startActivity(intent);
                         } catch (Exception unused) {
                             CredentialProviderPlayServicesImpl.Companion.getClass();
                             if (!a1.g.a(cancellationSignal)) {
-                                Executor executor2 = dVar.f10145g;
+                                Executor executor2 = dVar.f9976g;
                                 if (executor2 != null) {
                                     executor2.execute(new a(dVar, 0));
                                 } else {
@@ -78,11 +78,11 @@ public final class b implements l {
                         }
                     }
                     if (hVar != null) {
-                        v0.c a10 = vc.a(hVar.f16568a, hVar.f16569b);
+                        v0.c a10 = vc.a(hVar.f16921a, hVar.f16922b);
                         if (a10 instanceof v0.f) {
                             CredentialProviderPlayServicesImpl.Companion.getClass();
                             if (!a1.g.a(cancellationSignal)) {
-                                executor.execute(new z0(27, gVar, (v0.f) a10));
+                                executor.execute(new s2(15, gVar, (v0.f) a10));
                             }
                         }
                     }
@@ -93,19 +93,19 @@ public final class b implements l {
                         }
                     }
                 }
-                return k.f13831a;
+                return k.f13173a;
             case 1:
-                CancellationSignal cancellationSignal2 = (CancellationSignal) this.f10137b;
-                f1.a aVar = (f1.a) this.f10139e;
-                Context context2 = aVar.f10888e;
-                Executor executor3 = (Executor) this.f10138c;
+                CancellationSignal cancellationSignal2 = (CancellationSignal) this.f9968b;
+                f1.a aVar = (f1.a) this.f9970e;
+                Context context2 = aVar.f10699e;
+                Executor executor3 = (Executor) this.f9969c;
                 g gVar2 = (g) this.d;
                 m mVar = (m) obj;
                 CredentialProviderPlayServicesImpl.Companion.getClass();
                 if (!a1.g.a(cancellationSignal2)) {
                     Intent intent2 = new Intent(context2, HiddenActivity.class);
-                    b1.d.a(aVar.f10891i, intent2, "BEGIN_SIGN_IN");
-                    intent2.putExtra("EXTRA_FLOW_PENDING_INTENT", mVar.f16578a);
+                    b1.d.a(aVar.f10702i, intent2, "BEGIN_SIGN_IN");
+                    intent2.putExtra("EXTRA_FLOW_PENDING_INTENT", mVar.f16931a);
                     try {
                         context2.startActivity(intent2);
                     } catch (Exception unused2) {
@@ -115,30 +115,30 @@ public final class b implements l {
                         }
                     }
                 }
-                return k.f13831a;
+                return k.f13173a;
             default:
-                String str = (String) this.f10139e;
-                String str2 = (String) this.f10138c;
+                String str = (String) this.f9970e;
+                String str2 = (String) this.f9969c;
                 e eVar = (e) this.d;
                 q1.b bVar = (q1.b) obj;
-                ((sa.h) this.f10137b).getClass();
-                e eVar2 = sa.h.f55007c;
+                ((sa.h) this.f9968b).getClass();
+                e eVar2 = sa.h.f56563c;
                 e eVar3 = sa.h.d;
                 String str3 = "";
-                if (((String) a1.a(bVar, eVar3, "")).equals(str)) {
+                if (((String) c1.a(bVar, eVar3, "")).equals(str)) {
                     e d = sa.h.d(bVar, str);
-                    if (d != null && !d.f53698a.equals(str2)) {
+                    if (d != null && !d.f55133a.equals(str2)) {
                         sa.h.f(bVar, str);
-                        HashSet hashSet = new HashSet((Collection) a1.a(bVar, eVar, new HashSet()));
+                        HashSet hashSet = new HashSet((Collection) c1.a(bVar, eVar, new HashSet()));
                         hashSet.add(str);
                         bVar.e(eVar, hashSet);
                     }
                     return null;
                 }
-                long longValue = ((Long) a1.a(bVar, eVar2, 0L)).longValue();
+                long longValue = ((Long) c1.a(bVar, eVar2, 0L)).longValue();
                 long j10 = 1;
                 if (longValue + 1 == 30) {
-                    long longValue2 = ((Long) a1.a(bVar, eVar2, 0L)).longValue();
+                    long longValue2 = ((Long) c1.a(bVar, eVar2, 0L)).longValue();
                     Set hashSet2 = new HashSet();
                     String str4 = null;
                     for (Map.Entry entry : bVar.a().entrySet()) {
@@ -147,7 +147,7 @@ public final class b implements l {
                             for (String str5 : set) {
                                 long j11 = j10;
                                 if (str4 == null || str4.compareTo(str5) > 0) {
-                                    str3 = ((e) entry.getKey()).f53698a;
+                                    str3 = ((e) entry.getKey()).f55133a;
                                     hashSet2 = set;
                                     str4 = str5;
                                 }
@@ -160,14 +160,14 @@ public final class b implements l {
                     obj2 = null;
                     HashSet hashSet3 = new HashSet(hashSet2);
                     hashSet3.remove(str4);
-                    bVar.e(qb.b(str3), hashSet3);
+                    bVar.e(rb.b(str3), hashSet3);
                     longValue = longValue2 - j3;
                     bVar.e(eVar2, Long.valueOf(longValue));
                 } else {
                     j3 = 1;
                     obj2 = null;
                 }
-                HashSet hashSet4 = new HashSet((Collection) a1.a(bVar, eVar, new HashSet()));
+                HashSet hashSet4 = new HashSet((Collection) c1.a(bVar, eVar, new HashSet()));
                 hashSet4.add(str);
                 bVar.e(eVar, hashSet4);
                 bVar.e(eVar2, Long.valueOf(longValue + j3));

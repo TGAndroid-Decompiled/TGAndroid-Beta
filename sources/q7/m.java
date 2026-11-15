@@ -9,24 +9,24 @@ import java.util.ListIterator;
 import java.util.RandomAccess;
 import java.util.function.UnaryOperator;
 public abstract class m extends h implements List, RandomAccess, j$.util.List {
-    public static final i f54012b = new i(x.f54046e, 0);
+    public static final i f55449b = new i(x.f55483e, 0);
 
     public static x o(int i7, Object[] objArr) {
         if (i7 == 0) {
-            return x.f54046e;
+            return x.f55483e;
         }
         return new x(i7, objArr);
     }
 
     public static x p(Object[] objArr) {
         if (objArr.length == 0) {
-            return x.f54046e;
+            return x.f55483e;
         }
         Object[] objArr2 = (Object[]) objArr.clone();
         int length = objArr2.length;
         for (int i7 = 0; i7 < length; i7++) {
             if (objArr2[i7] == null) {
-                throw new NullPointerException(jg.g.j(i7, "at index "));
+                throw new NullPointerException(i5.c.i(i7, "at index "));
             }
         }
         return o(length, objArr2);
@@ -160,7 +160,7 @@ public abstract class m extends h implements List, RandomAccess, j$.util.List {
             return this;
         }
         if (i11 == 0) {
-            return x.f54046e;
+            return x.f55483e;
         }
         return new l(this, i7, i11);
     }
@@ -170,7 +170,7 @@ public abstract class m extends h implements List, RandomAccess, j$.util.List {
         int size = size();
         if (i7 >= 0 && i7 <= size) {
             if (isEmpty()) {
-                return f54012b;
+                return f55449b;
             }
             return new i(this, i7);
         }

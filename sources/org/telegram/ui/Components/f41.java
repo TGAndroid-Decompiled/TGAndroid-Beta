@@ -1,31 +1,56 @@
 package org.telegram.ui.Components;
 
+import android.net.Uri;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
 import android.view.View;
-public final class f41 implements View.OnClickListener {
-    public final int f33458a;
-    public final UndoView f33459b;
+import org.telegram.tgnet.TLObject;
+public class f41 extends URLSpan {
+    public final boolean f34517a;
+    public final wy0 f34518b;
+    public TLObject f34519c;
+    public String d;
 
-    public f41(UndoView undoView, int i7) {
-        this.f33458a = i7;
-        this.f33459b = undoView;
+    public f41(String str) {
+        this(str, (wy0) null);
     }
 
     @Override
-    public final void onClick(View view) {
-        int i7 = this.f33458a;
-        UndoView undoView = this.f33459b;
-        switch (i7) {
-            case 0:
-                int i10 = UndoView.f31609i0;
-                if (undoView.a()) {
-                    undoView.d(1, false);
-                    return;
-                }
-                return;
-            default:
-                int i11 = UndoView.f31609i0;
-                undoView.d(1, false);
-                return;
+    public void onClick(View view) {
+        String url = getURL();
+        if (url.startsWith("@")) {
+            vf.c.q(view.getContext(), Uri.parse("https://t.me/" + url.substring(1)), true, true);
+            return;
         }
+        vf.c.t(view.getContext(), url);
+    }
+
+    @Override
+    public void updateDrawState(TextPaint textPaint) {
+        boolean z10;
+        int i7 = textPaint.linkColor;
+        int color = textPaint.getColor();
+        super.updateDrawState(textPaint);
+        wy0 wy0Var = this.f34518b;
+        if (wy0Var != null) {
+            wy0Var.a(textPaint);
+        }
+        if (i7 == color && !this.f34517a) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        textPaint.setUnderlineText(z10);
+    }
+
+    public f41(String str, int i7) {
+        this(str, (wy0) null);
+        this.f34517a = true;
+    }
+
+    public f41(String str, wy0 wy0Var) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.f34517a = false;
+        this.f34518b = wy0Var;
     }
 }

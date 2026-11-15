@@ -1,19 +1,19 @@
 package org.scilab.forge.jlatexmath;
 public class CharAtom extends CharSymbol {
-    private final char f21134c;
+    private final char f22208c;
     private boolean mathMode;
     private String textStyle;
 
-    public CharAtom(char c10, String str, boolean z9) {
-        this.f21134c = c10;
+    public CharAtom(char c10, String str, boolean z10) {
+        this.f22208c = c10;
         this.textStyle = str;
-        this.mathMode = z9;
+        this.mathMode = z10;
     }
 
-    private Char getChar(TeXFont teXFont, int i7, boolean z9) {
-        char c10 = this.f21134c;
-        if (z9 && Character.isLowerCase(c10)) {
-            c10 = Character.toUpperCase(this.f21134c);
+    private Char getChar(TeXFont teXFont, int i7, boolean z10) {
+        char c10 = this.f22208c;
+        if (z10 && Character.isLowerCase(c10)) {
+            c10 = Character.toUpperCase(this.f22208c);
         }
         String str = this.textStyle;
         if (str == null) {
@@ -30,7 +30,7 @@ public class CharAtom extends CharSymbol {
         }
         boolean smallCap = teXEnvironment.getSmallCap();
         CharBox charBox = new CharBox(getChar(teXEnvironment.getTeXFont(), teXEnvironment.getStyle(), smallCap));
-        if (smallCap && Character.isLowerCase(this.f21134c)) {
+        if (smallCap && Character.isLowerCase(this.f22208c)) {
             return new ScaleBox(charBox, 0.800000011920929d, 0.800000011920929d);
         }
         return charBox;
@@ -42,7 +42,7 @@ public class CharAtom extends CharSymbol {
     }
 
     public char getCharacter() {
-        return this.f21134c;
+        return this.f22208c;
     }
 
     public boolean isMathMode() {
@@ -50,7 +50,7 @@ public class CharAtom extends CharSymbol {
     }
 
     public String toString() {
-        return "CharAtom: '" + this.f21134c + "'";
+        return "CharAtom: '" + this.f22208c + "'";
     }
 
     public CharAtom(char c10, String str) {

@@ -1,39 +1,35 @@
 package org.telegram.ui;
+public final class kk implements Runnable {
+    public final int f48714a;
+    public final lk f48715b;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-public final class kk implements org.telegram.ui.Components.hi0 {
-    public final cn f47318a;
-
-    public kk(cn cnVar) {
-        this.f47318a = cnVar;
+    public kk(lk lkVar, int i7) {
+        this.f48714a = i7;
+        this.f48715b = lkVar;
     }
 
     @Override
-    public final boolean E() {
-        return false;
-    }
-
-    @Override
-    public final boolean U() {
-        return false;
-    }
-
-    @Override
-    public final void i(android.view.View r24, ch.o0 r25, boolean r26, boolean r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kk.i(android.view.View, ch.o0, boolean, boolean):void");
-    }
-
-    @Override
-    public final boolean v() {
-        return true;
-    }
-
-    @Override
-    public final void M() {
-    }
-
-    @Override
-    public final void L(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i7, boolean z9) {
+    public final void run() {
+        switch (this.f48714a) {
+            case 0:
+                qj qjVar = this.f48715b.I.f45118a0;
+                if (qjVar != null) {
+                    qjVar.W0();
+                    return;
+                }
+                return;
+            default:
+                qj qjVar2 = this.f48715b.I.f45118a0;
+                if (qjVar2 != null) {
+                    qjVar2.U0 = false;
+                    org.telegram.ui.Components.sf sfVar = qjVar2.V0;
+                    if (sfVar != null) {
+                        sfVar.u(false);
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
     }
 }

@@ -5,44 +5,44 @@ import android.graphics.Path;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public abstract class t5 {
-    public static rz a(int i7) {
+    public static pz a(int i7) {
         try {
-            rz rzVar = new rz();
-            kz kzVar = new kz(256.0f, 256.0f, 204.8f);
-            rzVar.f25383a.add(kzVar);
-            rzVar.f25384b.put(kzVar, new Paint(1));
-            rzVar.f25386e = 512;
-            rzVar.f25387f = 512;
-            rzVar.f(i7, null, 0.65f, false);
-            return rzVar;
+            pz pzVar = new pz();
+            iz izVar = new iz(256.0f, 256.0f, 204.8f);
+            pzVar.f26026a.add(izVar);
+            pzVar.f26027b.put(izVar, new Paint(1));
+            pzVar.f26029e = 512;
+            pzVar.f26030f = 512;
+            pzVar.f(i7, null, 0.65f, false);
+            return pzVar;
         } catch (Exception e10) {
             a8.g(e10, true);
             return null;
         }
     }
 
-    public static rz b(int i7) {
+    public static pz b(int i7) {
         Path path = new Path();
         path.addRect(0.0f, 0.0f, 512.0f, 512.0f, Path.Direction.CW);
         path.close();
-        rz rzVar = new rz();
-        rzVar.f25383a.add(path);
-        rzVar.f25384b.put(path, new Paint(1));
-        rzVar.f25386e = 512;
-        rzVar.f25387f = 512;
-        rzVar.f(i7, null, 1.0f, false);
-        return rzVar;
+        pz pzVar = new pz();
+        pzVar.f26026a.add(path);
+        pzVar.f26027b.put(path, new Paint(1));
+        pzVar.f26029e = 512;
+        pzVar.f26030f = 512;
+        pzVar.f(i7, null, 1.0f, false);
+        return pzVar;
     }
 
-    public static rz c(float f10, int i7) {
-        rz h = sz.h(2131624084, -65536);
+    public static pz c(float f10, int i7) {
+        pz h = qz.h(2131624085, -65536);
         if (h != null) {
             h.f(i7, null, f10, false);
         }
         return h;
     }
 
-    public static rz d(ArrayList arrayList, int i7, float f10, boolean z9) {
+    public static pz d(ArrayList arrayList, int i7, float f10, boolean z10) {
         int size = arrayList.size();
         int i10 = 512;
         int i11 = 512;
@@ -51,26 +51,26 @@ public abstract class t5 {
             TLRPC.PhotoSize photoSize = (TLRPC.PhotoSize) arrayList.get(i12);
             if (photoSize instanceof TLRPC.TL_photoPathSize) {
                 tL_photoPathSize = (TLRPC.TL_photoPathSize) photoSize;
-            } else if ((photoSize instanceof TLRPC.TL_photoSize) && z9) {
-                i10 = photoSize.f26985w;
+            } else if ((photoSize instanceof TLRPC.TL_photoSize) && z10) {
+                i10 = photoSize.f28076w;
                 i11 = photoSize.h;
             }
         }
         if (tL_photoPathSize == null || i10 == 0 || i11 == 0) {
             return null;
         }
-        rz j3 = sz.j(i10, i11, tL_photoPathSize.svgPath);
+        pz j3 = qz.j(i10, i11, tL_photoPathSize.svgPath);
         if (j3 != null) {
             j3.f(i7, null, f10, false);
         }
         return j3;
     }
 
-    public static rz e(TLRPC.Document document, int i7, float f10) {
+    public static pz e(TLRPC.Document document, int i7, float f10) {
         return f(document, i7, f10, null);
     }
 
-    public static rz f(TLRPC.Document document, int i7, float f10, org.telegram.ui.ActionBar.h6 h6Var) {
+    public static pz f(TLRPC.Document document, int i7, float f10, org.telegram.ui.ActionBar.e6 e6Var) {
         int i10;
         int i11;
         if (document != null) {
@@ -82,7 +82,7 @@ public abstract class t5 {
                     for (int i13 = 0; i13 < size2; i13++) {
                         TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i13);
                         if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                            i10 = documentAttribute.f26967w;
+                            i10 = documentAttribute.f28058w;
                             i11 = documentAttribute.h;
                             break;
                         }
@@ -90,9 +90,9 @@ public abstract class t5 {
                     i10 = 512;
                     i11 = 512;
                     if (i10 != 0 && i11 != 0) {
-                        rz j3 = sz.j((int) (i10 * 1.0f), (int) (i11 * 1.0f), ((TLRPC.TL_photoPathSize) photoSize).svgPath);
+                        pz j3 = qz.j((int) (i10 * 1.0f), (int) (i11 * 1.0f), ((TLRPC.TL_photoPathSize) photoSize).svgPath);
                         if (j3 != null) {
-                            j3.f(i7, h6Var, f10, false);
+                            j3.f(i7, e6Var, f10, false);
                         }
                         return j3;
                     }

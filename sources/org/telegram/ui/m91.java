@@ -1,34 +1,25 @@
 package org.telegram.ui;
-public final class m91 implements Runnable {
-    public final int f47866a;
-    public final n91 f47867b;
 
-    public m91(n91 n91Var, int i7) {
-        this.f47866a = i7;
-        this.f47867b = n91Var;
+import org.telegram.tgnet.TLRPC;
+public final class m91 extends rg.a {
+    public final TLRPC.TL_forumTopic f49191c;
+
+    public m91(int i7, TLRPC.TL_forumTopic tL_forumTopic) {
+        super(i7, true);
+        this.f49191c = tL_forumTopic;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f47866a) {
-            case 0:
-                n91 n91Var = this.f47867b;
-                n91Var.F = null;
-                if (n91Var.G != -1) {
-                    n91Var.H.getNotificationCenter().j(n91Var.G);
-                    n91Var.G = -1;
-                    return;
-                }
-                return;
-            default:
-                n91 n91Var2 = this.f47867b;
-                n91Var2.F = null;
-                if (n91Var2.G != -1) {
-                    n91Var2.H.getNotificationCenter().j(n91Var2.G);
-                    n91Var2.G = -1;
-                    return;
-                }
-                return;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (obj != null && m91.class == obj.getClass()) {
+            m91 m91Var = (m91) obj;
+            int i7 = this.f56015a;
+            if (i7 == m91Var.f56015a && i7 == 0 && this.f49191c.f28103id == m91Var.f49191c.f28103id) {
+                return true;
+            }
+        }
+        return false;
     }
 }

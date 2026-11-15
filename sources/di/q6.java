@@ -1,23 +1,31 @@
 package di;
 
-import java.util.List;
-import org.telegram.messenger.d20;
-public final class q6 implements d20 {
-    public final r6 f9584a;
-    public final boolean f9585b;
-    public final int f9586c;
-    public final List d;
+import org.telegram.messenger.s10;
+public final class q6 implements Runnable {
+    public final int f9272a;
+    public final s10 f9273b;
 
-    public q6(r6 r6Var, boolean z9, int i7, List list) {
-        this.f9584a = r6Var;
-        this.f9585b = z9;
-        this.f9586c = i7;
-        this.d = list;
+    public q6(s10 s10Var, int i7) {
+        this.f9272a = i7;
+        this.f9273b = s10Var;
     }
 
     @Override
-    public final Object a(Object obj) {
-        Integer num = (Integer) obj;
-        return Boolean.valueOf(this.f9584a.q(this.f9586c, this.d, this.f9585b));
+    public final void run() {
+        switch (this.f9272a) {
+            case 0:
+                this.f9273b.a(Boolean.FALSE, null);
+                return;
+            case 1:
+                this.f9273b.a(Boolean.FALSE, "PRODUCT_NOT_FOUND");
+                return;
+            case 2:
+                this.f9273b.a(Boolean.FALSE, "PRODUCT_NO_ONETIME_OFFER_DETAILS");
+                return;
+            default:
+                org.telegram.messenger.a8.b("StarsController.buy onCanceled");
+                org.telegram.messenger.g0.h3(new q6(this.f9273b, 0));
+                return;
+        }
     }
 }

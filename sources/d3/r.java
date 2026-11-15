@@ -1,9 +1,14 @@
 package d3;
 
-import a8.ka;
 import e2.u1;
-public final class r implements u1 {
-    static {
-        ka.a(new q(0));
+public final class r {
+    public final q f7460a = new Object();
+
+    public final void a() {
+        try {
+            ((r) Class.forName("androidx.media3.effect.SingleInputVideoGraph$Factory").getConstructor(u1.class).newInstance(this.f7460a)).a();
+        } catch (Exception e10) {
+            throw new IllegalStateException(e10);
+        }
     }
 }

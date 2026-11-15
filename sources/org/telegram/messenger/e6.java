@@ -1,11 +1,5 @@
 package org.telegram.messenger;
-
-import android.graphics.drawable.Drawable;
-public abstract class e6 extends Drawable {
-    public boolean f22195a = false;
-    public int f22196b = 268435456;
-
-    public abstract boolean a();
-
-    public abstract void b();
+public final class e6 {
+    public byte f23267a;
+    public short f23268b;
 }

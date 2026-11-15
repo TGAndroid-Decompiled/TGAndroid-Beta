@@ -67,10 +67,10 @@ public class RowAtom extends Atom implements Row {
             if (listIterator.hasNext()) {
                 Atom next = listIterator.next();
                 i7++;
-                boolean z9 = false;
+                boolean z10 = false;
                 while (next instanceof BreakMarkAtom) {
-                    if (!z9) {
-                        z9 = true;
+                    if (!z10) {
+                        z10 = true;
                     }
                     if (!listIterator.hasNext()) {
                         break;
@@ -126,7 +126,7 @@ public class RowAtom extends Atom implements Row {
                 if (dummy2.isCharInMathMode() && (createBox instanceof CharBox)) {
                     ((CharBox) createBox).addItalicCorrectionToWidth();
                 }
-                if (z9 || ((next instanceof CharAtom) && Character.isDigit(((CharAtom) next).getCharacter()))) {
+                if (z10 || ((next instanceof CharAtom) && Character.isDigit(((CharAtom) next).getCharacter()))) {
                     horizontalBox.addBreakPosition(horizontalBox.children.size());
                 }
                 horizontalBox.add(createBox);

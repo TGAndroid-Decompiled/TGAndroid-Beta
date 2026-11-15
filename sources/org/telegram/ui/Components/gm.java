@@ -1,199 +1,145 @@
 package org.telegram.ui.Components;
 
-import android.text.SpannableString;
-import android.view.KeyEvent;
-import android.view.View;
+import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class gm implements hx {
-    public final an f33935a;
+import java.util.HashMap;
+public final class gm {
+    public long f35009i;
+    public cm f35011k;
+    public float f35014n;
+    public float f35015o;
+    public float f35016p;
+    public float f35017q;
+    public float f35018r;
+    public float f35019s;
+    public oy0 f35021u;
+    public long v;
+    public final org.telegram.ui.ActionBar.r4 f35023x;
+    public final m.b3 f35024y;
+    public final hm f35025z;
+    public float f35003a = 0.0f;
+    public int f35004b = 0;
+    public long f35005c = 0;
+    public float d = 0.0f;
+    public float f35006e = 0.0f;
+    public float f35007f = 0.0f;
+    public float f35008g = 0.0f;
+    public final ArrayList h = new ArrayList();
+    public final er f35010j = er.f34423j;
+    public final int f35012l = org.telegram.messenger.g0.L(4.0f);
+    public final int f35013m = org.telegram.messenger.g0.L(2.0f) / 2;
+    public final RectF f35020t = new RectF();
+    public final Paint f35022w = new Paint(1);
 
-    public gm(an anVar) {
-        this.f33935a = anVar;
-    }
-
-    @Override
-    public final boolean A() {
-        return false;
-    }
-
-    @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final int f() {
-        return 0;
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final void i(int i7) {
-        boolean z9;
-        if (i7 != 0) {
-            z9 = true;
+    public gm(hm hmVar) {
+        Drawable drawable;
+        this.f35025z = hmVar;
+        org.telegram.ui.ActionBar.e6 e6Var = hmVar.Q.f35662n;
+        if (e6Var != null) {
+            drawable = e6Var.getDrawable("drawableMsgOutMedia");
         } else {
-            z9 = false;
+            drawable = null;
         }
-        an anVar = this.f33935a;
-        anVar.f31903h1 = z9;
-        anVar.f38656b.f32634o3.requestLayout();
+        this.f35023x = (org.telegram.ui.ActionBar.r4) (drawable == null ? org.telegram.ui.ActionBar.j6.R0("drawableMsgOutMedia") : drawable);
+        this.f35024y = new m.b3();
     }
 
-    @Override
-    public final boolean j() {
-        return false;
-    }
-
-    @Override
-    public final boolean k() {
-        EditTextBoldCursor editField;
-        org.telegram.ui.Cells.a6 a6Var = this.f33935a.f31901g1;
-        if (a6Var == null || (editField = a6Var.getEditField()) == null) {
-            return false;
-        }
-        editField.dispatchKeyEvent(new KeyEvent(0, 67));
-        return true;
-    }
-
-    @Override
-    public final void l(String str) {
-        EditTextBoldCursor editField;
-        org.telegram.ui.Cells.a6 a6Var = this.f33935a.f31901g1;
-        if (a6Var == null || (editField = a6Var.getEditField()) == null) {
+    public static void a(gm gmVar, cm cmVar, boolean z10) {
+        long j3;
+        ArrayList arrayList = gmVar.h;
+        gmVar.f35011k = cmVar;
+        if (cmVar == null) {
             return;
         }
-        int selectionEnd = editField.getSelectionEnd();
-        if (selectionEnd < 0) {
-            selectionEnd = 0;
+        HashMap hashMap = (HashMap) cmVar.f33635g;
+        cmVar.a();
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j10 = elapsedRealtime - gmVar.f35005c;
+        long j11 = 200;
+        if (j10 < 200) {
+            float f10 = ((float) j10) / 200.0f;
+            gmVar.f35008g = org.telegram.messenger.g0.T1(gmVar.f35008g, gmVar.f35006e, f10);
+            gmVar.f35007f = org.telegram.messenger.g0.T1(gmVar.f35007f, gmVar.d, f10);
+        } else {
+            gmVar.f35008g = gmVar.f35006e;
+            gmVar.f35007f = gmVar.d;
         }
-        try {
-            CharSequence m10 = org.telegram.messenger.i6.m(str, editField.getPaint().getFontMetricsInt(), false, null, 0);
-            editField.setText(editField.getText().insert(selectionEnd, m10));
-            int length = selectionEnd + m10.length();
-            editField.setSelection(length, length);
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+        gmVar.d = cmVar.f33631b / 1000.0f;
+        gmVar.f35006e = cmVar.f33630a;
+        if (z10) {
+            j3 = elapsedRealtime;
+        } else {
+            j3 = 0;
         }
-    }
-
-    @Override
-    public final void n() {
-        an anVar = this.f33935a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, anVar.getContext(), anVar.f38655a);
-        String M0 = org.telegram.messenger.id.M0(2131752068, null);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27300a;
-        u1Var.R = M0;
-        u1Var.T = org.telegram.messenger.id.M0(2131752069, null);
-        alertDialog$Builder.k(org.telegram.messenger.id.M0(2131752099, null), new t(this, 24));
-        alertDialog$Builder.h(org.telegram.messenger.id.M0(2131752589, null), null);
-        alertDialog$Builder.p();
-    }
-
-    @Override
-    public final float p() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void x(long j3, TLRPC.Document document, String str, boolean z9) {
-        EditTextBoldCursor editField;
-        q5 q5Var;
-        org.telegram.ui.Cells.a6 a6Var = this.f33935a.f31901g1;
-        if (a6Var == null || (editField = a6Var.getEditField()) == null) {
-            return;
-        }
-        int selectionEnd = editField.getSelectionEnd();
-        if (selectionEnd < 0) {
-            selectionEnd = 0;
-        }
-        try {
-            SpannableString spannableString = new SpannableString(str);
-            if (document != null) {
-                q5Var = new q5(document, editField.getPaint().getFontMetricsInt());
-            } else {
-                q5Var = new q5(j3, editField.getPaint().getFontMetricsInt());
+        gmVar.f35005c = j3;
+        gmVar.f35009i = 0L;
+        ArrayList arrayList2 = new ArrayList(hashMap.keySet());
+        int size = arrayList2.size();
+        int i7 = 0;
+        while (true) {
+            fm fmVar = null;
+            if (i7 >= size) {
+                break;
             }
-            q5Var.cacheType = 3;
-            spannableString.setSpan(q5Var, 0, spannableString.length(), 33);
-            editField.setText(editField.getText().insert(selectionEnd, spannableString));
-            int length = selectionEnd + spannableString.length();
-            editField.setSelection(length, length);
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+            org.telegram.messenger.ff ffVar = (org.telegram.messenger.ff) arrayList2.get(i7);
+            org.telegram.messenger.yi yiVar = (org.telegram.messenger.yi) hashMap.get(ffVar);
+            long j12 = j11;
+            int i10 = i7;
+            gmVar.f35009i = Math.max(gmVar.f35009i, ffVar.N);
+            int size2 = arrayList.size();
+            int i11 = 0;
+            while (true) {
+                if (i11 >= size2) {
+                    break;
+                }
+                fm fmVar2 = (fm) arrayList.get(i11);
+                if (fmVar2.f34625b == ffVar) {
+                    fmVar = fmVar2;
+                    break;
+                }
+                i11++;
+            }
+            if (fmVar == null) {
+                fm fmVar3 = new fm(gmVar);
+                fm.a(fmVar3, ffVar);
+                fm.b(fmVar3, cmVar, yiVar, z10);
+                arrayList.add(fmVar3);
+            } else {
+                fm.b(fmVar, cmVar, yiVar, z10);
+            }
+            i7 = i10 + 1;
+            j11 = j12;
         }
+        long j13 = j11;
+        int size3 = arrayList.size();
+        int i12 = 0;
+        while (i12 < size3) {
+            fm fmVar4 = (fm) arrayList.get(i12);
+            if (!hashMap.containsKey(fmVar4.f34625b)) {
+                if (fmVar4.f34632k <= 0.0f && fmVar4.h + j13 <= elapsedRealtime) {
+                    xh.e eVar = fmVar4.f34640s;
+                    if (eVar != null) {
+                        eVar.b(fmVar4.O.f35025z);
+                        fmVar4.f34640s = null;
+                    }
+                    arrayList.remove(i12);
+                    i12--;
+                    size3--;
+                } else {
+                    fm.b(fmVar4, null, null, z10);
+                }
+            }
+            i12++;
+        }
+        gmVar.f35025z.invalidate();
     }
 
-    @Override
-    public final boolean z() {
-        return this.f33935a.f31903h1;
-    }
-
-    @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void o(t31 t31Var) {
-    }
-
-    @Override
-    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void s(int i7) {
-    }
-
-    @Override
-    public final void t(ArrayList arrayList) {
-    }
-
-    @Override
-    public final void y(long j3) {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void w() {
-    }
-
-    @Override
-    public final void e(Object obj, Object obj2) {
-    }
-
-    @Override
-    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z9) {
-    }
-
-    @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.ej ejVar, boolean z9, int i7) {
-    }
-
-    @Override
-    public final void v(View view, Object obj, String str, Object obj2, boolean z9, int i7, int i10) {
+    public final float b() {
+        Point point = org.telegram.messenger.g0.f23609q;
+        return this.f35025z.Q.getPreviewScale() * org.telegram.messenger.g0.T1(this.f35008g, this.f35006e, this.f35010j.getInterpolation(Math.min(1.0f, ((float) (SystemClock.elapsedRealtime() - this.f35005c)) / 200.0f))) * Math.max(point.x, point.y) * 0.5f;
     }
 }

@@ -1,38 +1,21 @@
 package a8;
-
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import org.telegram.messenger.Utilities;
 public abstract class ba {
-    public static float[] f340a;
-
-    public static int a(int i7, boolean z9) {
-        float f10;
-        if (f340a == null) {
-            f340a = new float[3];
+    public static final Object a(ee.q qVar, ee.q qVar2, rd.p pVar) {
+        Object vVar;
+        Object D;
+        try {
+            kotlin.jvm.internal.u.a(2, pVar);
+            vVar = pVar.invoke(qVar2, qVar);
+        } catch (Throwable th2) {
+            vVar = new zd.v(th2, false);
         }
-        Color.colorToHSV(i7, f340a);
-        float[] fArr = f340a;
-        float f11 = fArr[2];
-        if (z9) {
-            f10 = -0.05f;
-        } else {
-            f10 = 0.07f;
-        }
-        fArr[2] = Utilities.i(f11 + f10, 0.85f, 0.15f);
-        float[] fArr2 = f340a;
-        float f12 = fArr2[1];
-        if (f12 > 0.1f && f12 <= 0.95f) {
-            if (f12 <= 0.5f) {
-                fArr2[1] = Utilities.i(f12 + 0.2f, 1.0f, 0.0f);
-            } else if (f12 > 0.8f) {
-                fArr2[1] = Utilities.i(f12 - 0.4f, 1.0f, 0.0f);
+        jd.a aVar = jd.a.f16999a;
+        if (vVar != aVar && (D = qVar.D(vVar)) != zd.b0.f61255e) {
+            if (!(D instanceof zd.v)) {
+                return zd.b0.w(D);
             }
+            throw ((zd.v) D).f61329a;
         }
-        return Color.HSVToColor(f340a);
-    }
-
-    public static int[] b(Bitmap bitmap, boolean z9) {
-        return new int[]{a(bitmap.getPixel(bitmap.getWidth() / 2, (int) (bitmap.getHeight() * 0.1f)), z9), a(bitmap.getPixel(bitmap.getWidth() / 2, (int) (bitmap.getHeight() * 0.9f)), z9)};
+        return aVar;
     }
 }

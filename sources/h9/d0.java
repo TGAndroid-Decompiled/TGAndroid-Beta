@@ -14,7 +14,7 @@ import java.util.function.IntFunction;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 public abstract class d0 extends AbstractCollection implements Serializable, Collection {
-    public static final Object[] f14313a = new Object[0];
+    public static final Object[] f13670a = new Object[0];
 
     @Override
     public final boolean add(Object obj) {
@@ -36,11 +36,11 @@ public abstract class d0 extends AbstractCollection implements Serializable, Col
 
     public i0 f() {
         if (isEmpty()) {
-            g0 g0Var = i0.f14331b;
-            return t1.f14399e;
+            g0 g0Var = i0.f13686b;
+            return s1.f13749e;
         }
-        Object[] array = toArray(f14313a);
-        g0 g0Var2 = i0.f14331b;
+        Object[] array = toArray(f13670a);
+        g0 g0Var2 = i0.f13686b;
         return i0.o(array.length, array);
     }
 
@@ -50,7 +50,7 @@ public abstract class d0 extends AbstractCollection implements Serializable, Col
     }
 
     public int i(int i7, Object[] objArr) {
-        h2 it = iterator();
+        g2 it = iterator();
         while (it.hasNext()) {
             objArr[i7] = it.next();
             i7++;
@@ -73,7 +73,7 @@ public abstract class d0 extends AbstractCollection implements Serializable, Col
     public abstract boolean m();
 
     @Override
-    public abstract h2 iterator();
+    public abstract g2 iterator();
 
     @Override
     public Stream parallelStream() {
@@ -134,7 +134,7 @@ public abstract class d0 extends AbstractCollection implements Serializable, Col
 
     @Override
     public final Object[] toArray() {
-        return toArray(f14313a);
+        return toArray(f13670a);
     }
 
     @Override

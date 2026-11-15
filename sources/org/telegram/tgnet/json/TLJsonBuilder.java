@@ -37,8 +37,8 @@ public class TLJsonBuilder {
         }
     }
 
-    public void writeBoolean(String str, boolean z9) {
-        write(str, Boolean.valueOf(z9));
+    public void writeBoolean(String str, boolean z10) {
+        write(str, Boolean.valueOf(z10));
     }
 
     public void writeInt32(String str, int i7) {

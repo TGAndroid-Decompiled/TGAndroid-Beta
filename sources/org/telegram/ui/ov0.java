@@ -1,23 +1,27 @@
 package org.telegram.ui;
-public final class ov0 extends qq0 {
-    public final ProfileActivity f48586a;
 
-    public ov0(ProfileActivity profileActivity) {
-        this.f48586a = profileActivity;
+import org.telegram.tgnet.TLRPC;
+public final class ov0 implements jp {
+    public final yw f50068a;
+    public final pv0 f50069b;
+
+    public ov0(pv0 pv0Var, yw ywVar) {
+        this.f50069b = pv0Var;
+        this.f50068a = ywVar;
     }
 
     @Override
-    public final org.telegram.ui.zq0 E(org.telegram.messenger.ij r17, org.telegram.tgnet.TLRPC.FileLocation r18, int r19, boolean r20, boolean r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ov0.E(org.telegram.messenger.ij, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.zq0");
+    public final void b(int i7, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        ProfileActivity profileActivity = this.f50069b.f50383b;
+        profileActivity.N1 = true;
+        this.f50068a.removeSelfFromStack();
+        org.telegram.messenger.ns notificationCenter = profileActivity.getNotificationCenter();
+        int i10 = org.telegram.messenger.ns.f25572t;
+        notificationCenter.n(profileActivity, i10);
+        profileActivity.getNotificationCenter().k(i10, new Object[0]);
     }
 
     @Override
-    public final void G() {
-        this.f48586a.f41720e0.getImageReceiver().O0(true, true);
-    }
-
-    @Override
-    public final void f(String str, String str2, boolean z9) {
-        this.f48586a.f41801q0.p(str, str2, z9);
+    public final void a(TLRPC.User user) {
     }
 }

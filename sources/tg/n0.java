@@ -3,26 +3,27 @@ package tg;
 import android.content.Context;
 import android.graphics.PointF;
 import android.view.ViewGroup;
-import c8.ha;
+import c8.ja;
+import org.telegram.messenger.i20;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ki0;
+import org.telegram.ui.Components.pi0;
 public final class n0 extends j {
-    public final m0 f55865q0;
-    public boolean f55866r0;
-    public int f55867s0;
-    public int f55868t0;
-    public TLRPC.MessageMedia f55869u0;
-    public TL_stories.MediaArea f55870v0;
+    public final m0 f57457r0;
+    public boolean f57458s0;
+    public int f57459t0;
+    public int f57460u0;
+    public TLRPC.MessageMedia f57461v0;
+    public TL_stories.MediaArea f57462w0;
 
     public n0(Context context, PointF pointF, int i7, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea, float f10, int i10) {
         super(context, pointF);
         m0 m0Var = new m0(context, f10);
-        this.f55865q0 = m0Var;
+        this.f57457r0 = m0Var;
         m0Var.setMaxWidth(i10);
         r(i7, messageMedia, mediaArea);
-        m0Var.e(0, this.f55867s0);
-        addView(m0Var, ha.e(-2, -2, 51));
+        m0Var.e(0, this.f57459t0);
+        addView(m0Var, ja.e(-2, -2, 51));
         setClipChildren(false);
         setClipToPadding(false);
         k();
@@ -37,7 +38,7 @@ public final class n0 extends j {
         String str4 = "";
         String n10 = a8.p0.n((int) floor, "°", new StringBuilder(""));
         double floor2 = Math.floor((abs - floor) * 60.0d);
-        StringBuilder m10 = com.google.android.recaptcha.internal.a.m(n10);
+        StringBuilder m10 = com.google.android.gms.internal.vision.e2.m(n10);
         if (floor2 > 0.0d) {
             str = "";
         } else {
@@ -52,7 +53,7 @@ public final class n0 extends j {
         m10.append(str2);
         String n11 = a8.p0.n((int) floor2, "'", m10);
         double floor3 = Math.floor(Math.floor(floor2) * 60.0d);
-        StringBuilder m11 = com.google.android.recaptcha.internal.a.m(n11);
+        StringBuilder m11 = com.google.android.gms.internal.vision.e2.m(n11);
         if (floor3 > 0.0d) {
             str3 = "";
         } else {
@@ -72,7 +73,7 @@ public final class n0 extends j {
     }
 
     public int getColor() {
-        return this.f55867s0;
+        return this.f57459t0;
     }
 
     @Override
@@ -81,7 +82,7 @@ public final class n0 extends j {
     }
 
     @Override
-    public ki0 getSelectionBounds() {
+    public pi0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
@@ -91,41 +92,41 @@ public final class n0 extends j {
         float L = (org.telegram.messenger.g0.L(64.0f) / scaleX) + (scale * getMeasuredWidth());
         float scale2 = getScale();
         float L2 = (org.telegram.messenger.g0.L(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
-        float x10 = org.telegram.messenger.camera.q.x(L, 2.0f, getPositionX(), scaleX);
-        return new ki0(x10, org.telegram.messenger.camera.q.x(L2, 2.0f, getPositionY(), scaleX), ((L * scaleX) + x10) - x10, L2 * scaleX);
+        float x10 = i20.x(L, 2.0f, getPositionX(), scaleX);
+        return new pi0(x10, i20.x(L2, 2.0f, getPositionY(), scaleX), ((L * scaleX) + x10) - x10, L2 * scaleX);
     }
 
     @Override
     public float getStickyPaddingBottom() {
-        return this.f55865q0.J;
+        return this.f57457r0.K;
     }
 
     @Override
     public float getStickyPaddingLeft() {
-        return this.f55865q0.I;
+        return this.f57457r0.J;
     }
 
     @Override
     public float getStickyPaddingRight() {
-        return this.f55865q0.I;
+        return this.f57457r0.J;
     }
 
     @Override
     public float getStickyPaddingTop() {
-        return this.f55865q0.J;
+        return this.f57457r0.K;
     }
 
     public int getType() {
-        return this.f55868t0;
+        return this.f57460u0;
     }
 
     public int getTypesCount() {
-        return this.f55865q0.getTypesCount() - (!this.f55866r0 ? 1 : 0);
+        return this.f57457r0.getTypesCount() - (!this.f57458s0 ? 1 : 0);
     }
 
     @Override
-    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        super.onLayout(z9, i7, i10, i11, i12);
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        super.onLayout(z10, i7, i10, i11, i12);
         k();
     }
 
@@ -139,8 +140,8 @@ public final class n0 extends j {
         String str;
         String str2;
         String str3;
-        this.f55869u0 = messageMedia;
-        this.f55870v0 = mediaArea;
+        this.f57461v0 = messageMedia;
+        this.f57462w0 = mediaArea;
         String str4 = null;
         if (messageMedia instanceof TLRPC.TL_messageMediaGeo) {
             TLRPC.GeoPoint geoPoint = messageMedia.geo;
@@ -170,23 +171,23 @@ public final class n0 extends j {
         } else {
             str = "";
         }
-        m0 m0Var = this.f55865q0;
+        m0 m0Var = this.f57457r0;
         m0Var.d(i7, str4);
         m0Var.setText(str);
         m();
     }
 
     public void setColor(int i7) {
-        this.f55866r0 = true;
-        this.f55867s0 = i7;
+        this.f57458s0 = true;
+        this.f57459t0 = i7;
     }
 
     public void setMaxWidth(int i7) {
-        this.f55865q0.setMaxWidth(i7);
+        this.f57457r0.setMaxWidth(i7);
     }
 
     public void setType(int i7) {
-        this.f55868t0 = i7;
-        this.f55865q0.e(i7, this.f55867s0);
+        this.f57460u0 = i7;
+        this.f57457r0.e(i7, this.f57459t0);
     }
 }

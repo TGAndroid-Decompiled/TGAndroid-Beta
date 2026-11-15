@@ -2,7 +2,8 @@ package org.telegram.messenger.voip;
 
 import android.text.TextUtils;
 import android.util.LongSparseArray;
-import bi.h3;
+import bi.r1;
+import di.o2;
 import j$.util.DesugarArrays;
 import j$.util.stream.Collectors;
 import java.util.ArrayList;
@@ -10,20 +11,20 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
-import li.j3;
+import oi.u4;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.a8;
+import org.telegram.messenger.m10;
 import org.telegram.messenger.m5;
-import org.telegram.messenger.p10;
-import org.telegram.messenger.qp;
-import org.telegram.messenger.qs;
+import org.telegram.messenger.np;
+import org.telegram.messenger.ns;
 import org.telegram.messenger.r3;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.Cells.f1;
+import org.telegram.ui.Cells.y0;
 public class ConferenceCall {
     public static final int PERMISSION_ADD = 1;
     public static final int PERMISSION_REMOVE = 2;
@@ -268,22 +269,22 @@ public class ConferenceCall {
     public static native byte[] key_to_public_key(long j3);
 
     public void lambda$checkEmojiHash$0() {
-        qs.f(this.currentAccount).k(qs.R3, new Object[0]);
+        ns.f(this.currentAccount).k(ns.R3, new Object[0]);
     }
 
     public void lambda$checkParticipants$1() {
         VoIPService sharedInstance;
         r3 r3Var;
         TLRPC.GroupCall groupCall;
-        if (this.groupCall != null && (sharedInstance = VoIPService.getSharedInstance()) != null && (r3Var = sharedInstance.groupCall) != null && (groupCall = r3Var.f25226b) != null && groupCall.f26970id == this.groupCall.f26970id) {
-            updateParticipants(r3Var.f25228e, false);
-            sharedInstance.groupCall.f25234l.clear();
+        if (this.groupCall != null && (sharedInstance = VoIPService.getSharedInstance()) != null && (r3Var = sharedInstance.groupCall) != null && (groupCall = r3Var.f26208b) != null && groupCall.f28061id == this.groupCall.f28061id) {
+            updateParticipants(r3Var.f26210e, false);
+            sharedInstance.groupCall.f26216l.clear();
             r3 r3Var2 = sharedInstance.groupCall;
-            r3Var2.f25234l.addAll(sharedInstance.conference.getShadyLeftParticipants(r3Var2.f25228e));
-            sharedInstance.groupCall.f25235m.clear();
+            r3Var2.f26216l.addAll(sharedInstance.conference.getShadyLeftParticipants(r3Var2.f26210e));
+            sharedInstance.groupCall.f26217m.clear();
             r3 r3Var3 = sharedInstance.groupCall;
-            r3Var3.f25235m.addAll(sharedInstance.conference.getShadyJoiningParticipants(r3Var3.f25228e));
-            qs.f(this.currentAccount).k(qs.f25103w2, 0L, Long.valueOf(this.groupCall.f26970id), Boolean.FALSE);
+            r3Var3.f26217m.addAll(sharedInstance.conference.getShadyJoiningParticipants(r3Var3.f26210e));
+            ns.f(this.currentAccount).k(ns.f25595w2, 0L, Long.valueOf(this.groupCall.f28061id), Boolean.FALSE);
         }
     }
 
@@ -315,11 +316,11 @@ public class ConferenceCall {
     }
 
     public static String lambda$poll$9(CallParticipant callParticipant) {
-        return "[" + callParticipant.user_id + "]: " + m5.l(p10.f24474s0, callParticipant.user_id);
+        return "[" + callParticipant.user_id + "]: " + m5.l(m10.f24934t0, callParticipant.user_id);
     }
 
     public void lambda$processUpdates$4(TLObject tLObject) {
-        qp.s1(this.currentAccount).O3((TLRPC.Updates) tLObject, false);
+        np.s1(this.currentAccount).O3((TLRPC.Updates) tLObject, false);
     }
 
     public void lambda$pull_outbound$5(long j3, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -338,7 +339,7 @@ public class ConferenceCall {
     }
 
     public void lambda$requestLastBlock$3(long j3, Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
-        org.telegram.messenger.g0.h3(new bi.i0(j3, runnable, this, tLObject, tL_error));
+        org.telegram.messenger.g0.h3(new r1(this, j3, tLObject, tL_error, runnable, 9));
     }
 
     public void lambda$updateParticipants$10(long j3, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -393,19 +394,19 @@ public class ConferenceCall {
             return false;
         }
         TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-        ArrayList z02 = qp.z0(updates, TL_update.TL_updateGroupCallChainBlocks.class);
+        ArrayList z02 = np.z0(updates, TL_update.TL_updateGroupCallChainBlocks.class);
         int size = z02.size();
-        boolean z9 = false;
+        boolean z10 = false;
         int i7 = 0;
         while (i7 < size) {
             Object obj = z02.get(i7);
             i7++;
             if (applyUpdate(num, (TL_update.TL_updateGroupCallChainBlocks) obj, false, l10)) {
-                z9 = true;
+                z10 = true;
             }
         }
-        Utilities.d.c(new j3(19, this, updates));
-        return z9;
+        Utilities.d.c(new u4(7, this, updates));
+        return z10;
     }
 
     private void pull_outbound() {
@@ -429,9 +430,9 @@ public class ConferenceCall {
                 long j3 = max;
                 byte[] bArr = this.blocksQueue[i7].get(j3);
                 if (bArr == null) {
-                    StringBuilder o4 = jg.g.o("[tde2e] {subchain: ", i7, "} got into hole (might be the end) in ", i7, " subchain at #");
-                    jg.g.x(o4, max, ", when our last_offset[", i7, "] = ");
-                    jg.g.s(this.last_offset[i7], o4);
+                    StringBuilder n10 = i5.c.n("[tde2e] {subchain: ", i7, "} got into hole (might be the end) in ", i7, " subchain at #");
+                    i5.c.y(n10, max, ", when our last_offset[", i7, "] = ");
+                    i5.c.r(this.last_offset[i7], n10);
                     this.last_offset[i7] = max;
                     return;
                 }
@@ -468,10 +469,10 @@ public class ConferenceCall {
         }
     }
 
-    public boolean applyUpdate(Integer num, TL_update.TL_updateGroupCallChainBlocks tL_updateGroupCallChainBlocks, boolean z9, Long l10) {
+    public boolean applyUpdate(Integer num, TL_update.TL_updateGroupCallChainBlocks tL_updateGroupCallChainBlocks, boolean z10, Long l10) {
         String str;
-        boolean z10;
         boolean z11;
+        boolean z12;
         if (this.destroyed) {
             a8.b("[tde2e] conference.applyUpdate but destroyed!");
             return false;
@@ -481,11 +482,11 @@ public class ConferenceCall {
             if (groupCall == null) {
                 a8.b("[tde2e] received updateGroupCallChainBlocks but we dont have groupcall yet!");
                 return false;
-            } else if (tL_updateGroupCallChainBlocks.call.f26977id != groupCall.f26970id) {
+            } else if (tL_updateGroupCallChainBlocks.call.f28068id != groupCall.f28061id) {
                 StringBuilder sb2 = new StringBuilder("[tde2e] received updateGroupCallChainBlocks for ");
-                sb2.append(tL_updateGroupCallChainBlocks.call.f26977id);
+                sb2.append(tL_updateGroupCallChainBlocks.call.f28068id);
                 sb2.append(" but we have ");
-                jg.g.u(this.groupCall.f26970id, sb2);
+                i5.c.t(this.groupCall.f28061id, sb2);
                 return false;
             } else {
                 StringBuilder sb3 = new StringBuilder("[tde2e] received update with ");
@@ -501,7 +502,7 @@ public class ConferenceCall {
                 } else {
                     str = "";
                 }
-                f1.u(str, sb3);
+                y0.t(str, sb3);
                 int i7 = tL_updateGroupCallChainBlocks.sub_chain_id;
                 int i10 = tL_updateGroupCallChainBlocks.next_offset;
                 if (i7 == 0 || i7 == 1) {
@@ -530,17 +531,17 @@ public class ConferenceCall {
                     }
                     if (this.last_offset[i7] != -1) {
                         if (this.call_id >= 0) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        readQueue(i7);
-                        if (this.call_id >= 0) {
                             z11 = true;
                         } else {
                             z11 = false;
                         }
-                        if (i7 == 0 && !z10 && z11) {
+                        readQueue(i7);
+                        if (this.call_id >= 0) {
+                            z12 = true;
+                        } else {
+                            z12 = false;
+                        }
+                        if (i7 == 0 && !z11 && z12) {
                             readQueue(1);
                         }
                     }
@@ -550,7 +551,7 @@ public class ConferenceCall {
                 }
                 checkEmojiHash();
                 checkParticipants();
-                if (z9 && tL_updateGroupCallChainBlocks.blocks.size() > 0) {
+                if (z10 && tL_updateGroupCallChainBlocks.blocks.size() > 0) {
                     forcePoll();
                 }
                 if (tL_updateGroupCallChainBlocks.blocks.size() > 0) {
@@ -824,7 +825,7 @@ public class ConferenceCall {
         getgroupcallchainblocks.sub_chain_id = 0;
         getgroupcallchainblocks.offset = -1;
         getgroupcallchainblocks.limit = 1;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcallchainblocks, new h3(this, currentTimeMillis, runnable, 4));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcallchainblocks, new o2(this, currentTimeMillis, runnable, 4));
     }
 
     public void reset() {
@@ -848,7 +849,7 @@ public class ConferenceCall {
         init();
     }
 
-    public void updateParticipants(ArrayList<TLRPC.GroupCallParticipant> arrayList, boolean z9) {
+    public void updateParticipants(ArrayList<TLRPC.GroupCallParticipant> arrayList, boolean z10) {
         if (this.destroyed) {
             a8.b("[tde2e] conference.updateParticipants but destroyed!");
             return;
@@ -901,7 +902,7 @@ public class ConferenceCall {
                 a8.g(e10, true);
             }
         }
-        if (z9) {
+        if (z10) {
             forcePoll();
         }
     }

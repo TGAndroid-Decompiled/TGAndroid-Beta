@@ -1,17 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.webkit.JavascriptInterface;
-public final class ut {
-    public final vt f38744a;
+import android.view.View;
+public final class ut implements Runnable {
+    public final int f40157a;
+    public final View f40158b;
 
-    public ut(vt vtVar) {
-        this.f38744a = vtVar;
+    public ut(int i7, View view) {
+        this.f40157a = i7;
+        this.f40158b = view;
     }
 
-    @JavascriptInterface
-    public void postEvent(String str, String str2) {
-        if ("loaded".equals(str)) {
-            org.telegram.messenger.g0.h3(new gp(this, 10));
+    @Override
+    public final void run() {
+        switch (this.f40157a) {
+            case 0:
+                this.f40158b.callOnClick();
+                return;
+            default:
+                this.f40158b.invalidate();
+                return;
         }
     }
 }

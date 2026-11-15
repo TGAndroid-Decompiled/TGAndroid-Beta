@@ -1,142 +1,61 @@
 package di;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import fi.gb;
-import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.ui.Components.wq;
-public final class g3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f9015a;
-    public final Object f9016b;
-    public final Object f9017c;
-    public final Object d;
+import android.text.TextUtils;
+import org.telegram.messenger.z10;
+import org.telegram.ui.LaunchActivity;
+public final class g3 implements z10 {
+    public final int f8592a;
+    public final c6 f8593b;
+    public final vf.b f8594c;
+    public final wg.c1 d;
 
-    public g3(Object obj, Object obj2, Object obj3, int i7) {
-        this.f9015a = i7;
-        this.f9016b = obj;
-        this.f9017c = obj2;
-        this.d = obj3;
+    public g3(c6 c6Var, vf.b bVar, wg.c1 c1Var, int i7) {
+        this.f8592a = i7;
+        this.f8593b = c6Var;
+        this.f8594c = bVar;
+        this.d = c1Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float f10;
-        float f11;
-        switch (this.f9015a) {
+    public final void a(Object obj) {
+        org.telegram.ui.Components.cc k10;
+        org.telegram.ui.Components.cc k11;
+        String str = (String) obj;
+        switch (this.f8592a) {
             case 0:
-                boolean[] zArr = (boolean[]) this.d;
-                j4 j4Var = ((i3) this.f9016b).f9108a;
-                j4Var.f9180e3 = ((Float) ((ValueAnimator) this.f9017c).getAnimatedValue()).floatValue();
-                j4Var.invalidate();
-                if (j4Var.f9180e3 > 0.8f && !zArr[0]) {
-                    zArr[0] = true;
-                    j4Var.Z2 = true;
-                    try {
-                        j4Var.performHapticFeedback(3);
-                        return;
-                    } catch (Exception unused) {
-                        return;
-                    }
-                }
-                return;
-            case 1:
-                fi.o5 o5Var = (fi.o5) this.f9016b;
-                View view = (View) this.f9017c;
-                View view2 = (View) this.d;
-                o5Var.J0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o5Var.F0.invalidate();
-                o5Var.C0.invalidate();
-                o5Var.D0.invalidate();
-                for (int i7 = 0; i7 < o5Var.F0.getChildCount(); i7++) {
-                    View childAt = o5Var.F0.getChildAt(i7);
-                    if (i7 == o5Var.I0) {
-                        f10 = o5Var.J0;
-                    } else if (i7 == o5Var.H0) {
-                        f10 = 1.0f - o5Var.J0;
+                this.f8594c.b();
+                c6 c6Var = this.f8593b;
+                wg.c1 c1Var = this.d;
+                if (str != null) {
+                    if (c1Var != null) {
+                        k10 = new org.telegram.ui.Components.cc(c1Var.f29685c, c6Var.J0);
                     } else {
-                        f10 = 0.0f;
+                        k10 = c6Var.k();
                     }
-                    childAt.setAlpha((f10 * 0.4f) + 0.6f);
-                }
-                float interpolation = wq.f40046f.getInterpolation(o5Var.J0);
-                if (view != null && view2 != null) {
-                    float f12 = 1.0f - interpolation;
-                    float f13 = (f12 * 0.4f) + 0.6f;
-                    view.setScaleX(f13);
-                    view.setScaleY(f13);
-                    view.setTranslationY((Math.min(interpolation, 0.25f) * org.telegram.messenger.g0.L(16.0f)) / 0.25f);
-                    view.setAlpha(1.0f - (Math.min(interpolation, 0.25f) / 0.25f));
-                    float f14 = (interpolation * 0.4f) + 0.6f;
-                    view2.setScaleX(f14);
-                    view2.setScaleY(f14);
-                    view2.setTranslationY((Math.min(f12, 0.25f) * (-org.telegram.messenger.g0.L(16.0f))) / 0.25f);
-                    view2.setAlpha(1.0f - (Math.min(f12, 0.25f) / 0.25f));
+                    k10.e0(str, false);
                     return;
                 }
-                return;
-            case 2:
-                gb gbVar = (gb) this.f9016b;
-                AtomicBoolean atomicBoolean = (AtomicBoolean) this.f9017c;
-                fi.u uVar = (fi.u) this.d;
-                gbVar.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                Math.abs(floatValue - 0.5f);
-                if (floatValue >= 0.5f && !atomicBoolean.get()) {
-                    atomicBoolean.set(true);
-                    gbVar.setDrawable(uVar);
+                if (c1Var != null) {
+                    c1Var.dismiss();
+                }
+                c6Var.dismiss();
+                org.telegram.ui.ActionBar.e2 T = LaunchActivity.T();
+                if (T instanceof org.telegram.ui.Wallet.y5) {
+                    ((org.telegram.ui.Wallet.y5) T).P0();
                     return;
                 }
-                return;
-            case 3:
-                mi.k kVar = (mi.k) this.f9016b;
-                org.telegram.ui.Cells.x1 x1Var = (org.telegram.ui.Cells.x1) this.f9017c;
-                org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) this.d;
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (kVar.f20098l) {
-                    x1Var.f30813h0 = (-kVar.f20105s) * floatValue2;
-                    x1Var.f30818i0 = (-kVar.f20106t) * floatValue2;
-                    x1Var.f30827k0 = (-kVar.f20107u) * floatValue2;
-                    x1Var.f30823j0 = (-kVar.v) * floatValue2;
-                } else {
-                    x1Var.f30813h0 = ((-kVar.f20105s) * floatValue2) - q1Var.getAnimationOffsetX();
-                    x1Var.f30818i0 = ((-kVar.f20106t) * floatValue2) - q1Var.getAnimationOffsetX();
-                    x1Var.f30827k0 = ((-kVar.f20107u) * floatValue2) - q1Var.getTranslationY();
-                    x1Var.f30823j0 = ((-kVar.v) * floatValue2) - q1Var.getTranslationY();
-                }
-                q1Var.invalidate();
                 return;
             default:
-                tg.g0 g0Var = (tg.g0) this.f9016b;
-                View view3 = (View) this.f9017c;
-                View view4 = (View) this.d;
-                g0Var.R0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                g0Var.O0.invalidate();
-                g0Var.L0.invalidate();
-                g0Var.M0.invalidate();
-                for (int i10 = 0; i10 < g0Var.O0.getChildCount(); i10++) {
-                    View childAt2 = g0Var.O0.getChildAt(i10);
-                    if (i10 == g0Var.Q0) {
-                        f11 = g0Var.R0;
-                    } else if (i10 == g0Var.P0) {
-                        f11 = 1.0f - g0Var.R0;
+                this.f8594c.c(false);
+                if (!TextUtils.isEmpty(str)) {
+                    c6 c6Var2 = this.f8593b;
+                    wg.c1 c1Var2 = this.d;
+                    if (c1Var2 != null) {
+                        k11 = new org.telegram.ui.Components.cc(c1Var2.f29685c, c6Var2.J0);
                     } else {
-                        f11 = 0.0f;
+                        k11 = c6Var2.k();
                     }
-                    childAt2.setAlpha((f11 * 0.4f) + 0.6f);
-                }
-                float interpolation2 = wq.f40046f.getInterpolation(g0Var.R0);
-                if (view3 != null && view4 != null) {
-                    float f15 = 1.0f - interpolation2;
-                    float f16 = (f15 * 0.4f) + 0.6f;
-                    view3.setScaleX(f16);
-                    view3.setScaleY(f16);
-                    view3.setTranslationY((Math.min(interpolation2, 0.25f) * org.telegram.messenger.g0.L(16.0f)) / 0.25f);
-                    view3.setAlpha(1.0f - (Math.min(interpolation2, 0.25f) / 0.25f));
-                    float f17 = (interpolation2 * 0.4f) + 0.6f;
-                    view4.setScaleX(f17);
-                    view4.setScaleY(f17);
-                    view4.setTranslationY((Math.min(f15, 0.25f) * (-org.telegram.messenger.g0.L(16.0f))) / 0.25f);
-                    view4.setAlpha(1.0f - (Math.min(f15, 0.25f) / 0.25f));
+                    k11.e0(str, false);
                     return;
                 }
                 return;

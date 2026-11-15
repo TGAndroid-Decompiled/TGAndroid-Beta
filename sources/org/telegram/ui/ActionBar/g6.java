@@ -1,188 +1,169 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.SparseIntArray;
-import bi.u7;
+import c8.i9;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.a8;
-import org.telegram.messenger.ls;
-import org.telegram.messenger.p10;
-import org.telegram.messenger.qs;
-import org.telegram.messenger.sz;
-import org.telegram.ui.Components.j9;
-import org.telegram.ui.Components.qa0;
-public final class g6 implements ls {
-    public static g6 f27506c;
-    public int f27507a;
-    public HashMap f27508b;
+import java.util.Locale;
+import org.telegram.messenger.i20;
+import org.telegram.tgnet.TLRPC;
+public final class g6 {
+    public int f28602a;
+    public i6 f28603b;
+    public int f28604c;
+    public int d;
+    public int f28605e;
+    public int f28606f;
+    public int f28607g;
+    public int h;
+    public boolean f28608i;
+    public long f28609j;
+    public long f28610k;
+    public long f28611l;
+    public long f28612m;
+    public float f28615p;
+    public boolean f28616q;
+    public TLRPC.TL_theme f28617r;
+    public TLRPC.TL_wallPaper f28618s;
+    public int f28619t;
+    public String f28620u;
+    public String v;
+    public TLRPC.InputFile f28621w;
+    public TLRPC.InputFile f28622x;
+    public b6 f28623y;
+    public boolean f28624z;
+    public int f28613n = 45;
+    public String f28614o = "";
+    public final float[] A = new float[3];
 
-    public static void a(boolean z9) {
-        String str;
-        ArrayList arrayList;
-        if (f27506c != null && !z9) {
-            return;
-        }
-        ArrayList arrayList2 = null;
-        for (int i7 = 0; i7 < 5; i7++) {
-            if (i7 != 0) {
-                if (i7 != 1) {
-                    if (i7 != 2) {
-                        if (i7 != 3) {
-                            str = "Night";
-                        } else {
-                            str = "Day";
-                        }
-                    } else {
-                        str = "Arctic Blue";
-                    }
-                } else {
-                    str = "Dark Blue";
-                }
-            } else {
-                str = "Blue";
-            }
-            l6 l6Var = (l6) m6.H.get(str);
-            if (l6Var != null && (arrayList = l6Var.f27768b0) != null && !arrayList.isEmpty()) {
-                int size = l6Var.f27768b0.size();
-                for (int i10 = 0; i10 < size; i10++) {
-                    j6 j6Var = (j6) l6Var.f27768b0.get(i10);
-                    if (j6Var.f27609a != m6.f28066n && !TextUtils.isEmpty(j6Var.f27621o)) {
-                        if (arrayList2 == null) {
-                            arrayList2 = new ArrayList();
-                        }
-                        arrayList2.add(j6Var);
-                    }
+    public static int a(SparseIntArray sparseIntArray, int... iArr) {
+        int i7 = 0;
+        int i10 = 0;
+        int i11 = 0;
+        int i12 = 0;
+        for (int i13 = 0; i13 < iArr.length; i13++) {
+            if (sparseIntArray.indexOfKey(iArr[i13]) >= 0) {
+                try {
+                    int i14 = sparseIntArray.get(iArr[i13]);
+                    i10 += Color.red(i14);
+                    i11 += Color.green(i14);
+                    i12 += Color.blue(i14);
+                    i7++;
+                } catch (Exception unused) {
                 }
             }
         }
-        ?? obj = new Object();
-        obj.f27507a = p10.f24474s0;
-        if (arrayList2 != null) {
-            Utilities.f21341e.c(new c(3, obj, arrayList2));
+        if (i7 == 0) {
+            return 0;
         }
-        f27506c = obj;
+        return Color.argb(255, i10 / i7, i11 / i7, i12 / i7);
     }
 
-    public static Bitmap b(Bitmap bitmap, boolean z9, File file, j6 j6Var) {
-        Bitmap bitmap2;
-        int V0;
-        Bitmap n1;
-        int i7;
+    public static int c(SparseIntArray sparseIntArray, int i7) {
         int i10;
-        int i11;
-        try {
-            File e10 = j6Var.e();
-            Drawable drawable = null;
-            if (e10 == null) {
+        int indexOfKey = sparseIntArray.indexOfKey(i7);
+        if (indexOfKey < 0 && (i10 = j6.im.get(i7, -1)) >= 0) {
+            indexOfKey = sparseIntArray.indexOfKey(i10);
+        }
+        if (indexOfKey >= 0) {
+            return sparseIntArray.valueAt(indexOfKey);
+        }
+        return j6.hm[i7];
+    }
+
+    public static void h(SparseIntArray sparseIntArray) {
+        for (int i7 = j6.f29094qb; i7 < j6.f29227xb; i7++) {
+            sparseIntArray.delete(i7);
+            sparseIntArray.put(i7, j6.hm[i7]);
+        }
+        for (int i10 = j6.f29245yb; i10 < j6.Kc; i10++) {
+            sparseIntArray.delete(i10);
+            sparseIntArray.put(i10, j6.hm[i10]);
+        }
+        for (int i11 = j6.Lc; i11 < j6.Tc; i11++) {
+            sparseIntArray.delete(i11);
+            sparseIntArray.put(i11, j6.hm[i11]);
+        }
+    }
+
+    public final int b(int i7, int i10) {
+        float[] fArr = this.A;
+        Color.colorToHSV(i10, fArr);
+        float f10 = fArr[0];
+        Color.colorToHSV(i7, fArr);
+        float f11 = fArr[1];
+        if (f11 <= 0.0f) {
+            fArr[0] = f10;
+        }
+        fArr[1] = i20.z(f11, 0.6f, 1.0f, 0.0f);
+        fArr[2] = Math.max(0.0f, Math.min(1.0f, fArr[2] - 0.05f));
+        return Color.HSVToColor(30, fArr);
+    }
+
+    public final boolean d(android.util.SparseIntArray r21, android.util.SparseIntArray r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.g6.d(android.util.SparseIntArray, android.util.SparseIntArray):boolean");
+    }
+
+    public final File e() {
+        if (this.f28602a < 100) {
+            if (TextUtils.isEmpty(this.f28614o)) {
                 return null;
             }
-            l6 l6Var = j6Var.f27610b;
-            SparseIntArray T0 = m6.T0(null, l6Var.d, null);
-            m6.H(T0, l6Var);
-            int i12 = j6Var.f27611c;
-            int i13 = (int) j6Var.f27616j;
-            long j3 = j6Var.f27617k;
-            int i14 = (int) j3;
-            if (i14 == 0 && j3 == 0) {
-                if (i13 != 0) {
-                    i12 = i13;
-                }
-                int i15 = T0.get(m6.Ce);
-                if (i15 != 0) {
-                    i14 = m6.C(l6Var, i12, i15);
-                }
-            } else {
-                i12 = 0;
-            }
-            long j10 = j6Var.f27618l;
-            int i16 = (int) j10;
-            if (i16 == 0 && j10 == 0 && (i11 = T0.get(m6.De)) != 0) {
-                i16 = m6.C(l6Var, i12, i11);
-            }
-            long j11 = j6Var.f27619m;
-            int i17 = (int) j11;
-            if (i17 == 0 && j11 == 0 && (i10 = T0.get(m6.Ee)) != 0) {
-                i17 = m6.C(l6Var, i12, i10);
-            }
-            if (i13 == 0 && (i7 = T0.get(m6.Be)) != 0) {
-                i13 = m6.C(l6Var, i12, i7);
-            }
-            if (i16 != 0) {
-                V0 = qa0.g(i13, i14, i16, i17);
-            } else if (i14 != 0) {
-                Drawable j9Var = new j9(j9.d(j6Var.f27620n), new int[]{i13, i14});
-                V0 = org.telegram.messenger.g0.V0(org.telegram.messenger.g0.w0(i13, i14), false);
-                drawable = j9Var;
-            } else {
-                drawable = new ColorDrawable(i13);
-                V0 = org.telegram.messenger.g0.V0(i13, false);
-            }
-            if (bitmap == null) {
-                Point point = org.telegram.messenger.g0.f22567q;
-                int min = Math.min(point.x, point.y);
-                int max = Math.max(point.x, point.y);
-                if (z9) {
-                    n1 = sz.f(file, min, max, 2);
-                } else {
-                    n1 = m6.n1(new FileInputStream(file), 0);
-                }
-                bitmap2 = n1;
-            } else {
-                bitmap2 = bitmap;
-            }
-            try {
-                if (drawable != null) {
-                    Bitmap createBitmap = Bitmap.createBitmap(bitmap2.getWidth(), bitmap2.getHeight(), Bitmap.Config.ARGB_8888);
-                    Canvas canvas = new Canvas(createBitmap);
-                    drawable.setBounds(0, 0, bitmap2.getWidth(), bitmap2.getHeight());
-                    drawable.draw(canvas);
-                    Paint paint = new Paint(2);
-                    paint.setColorFilter(new PorterDuffColorFilter(V0, PorterDuff.Mode.SRC_IN));
-                    paint.setAlpha((int) (Math.abs(j6Var.f27622p) * 255.0f));
-                    canvas.drawBitmap(bitmap2, 0.0f, 0.0f, paint);
-                    createBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(e10));
-                    return bitmap2;
-                }
-                FileOutputStream fileOutputStream = new FileOutputStream(e10);
-                bitmap2.compress(Bitmap.CompressFormat.PNG, 87, fileOutputStream);
-                fileOutputStream.close();
-                return bitmap2;
-            } catch (Throwable th2) {
-                th = th2;
-                a8.g(th, true);
-                return bitmap2;
-            }
-        } catch (Throwable th3) {
-            th = th3;
-            bitmap2 = bitmap;
+            File h = org.telegram.messenger.t0.h();
+            Locale locale = Locale.US;
+            String m10 = this.f28603b.m();
+            int i7 = this.f28602a;
+            String str = this.f28614o;
+            return new File(h, m10 + "_" + i7 + "_" + str + "_v5.jpg");
+        } else if (TextUtils.isEmpty(this.f28614o)) {
+            return null;
+        } else {
+            File h7 = org.telegram.messenger.t0.h();
+            Locale locale2 = Locale.US;
+            String m11 = this.f28603b.m();
+            int i10 = this.f28602a;
+            String str2 = this.f28614o;
+            return new File(h7, m11 + "_" + i10 + "_" + str2 + "_v8_debug.jpg");
         }
     }
 
-    @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        HashMap hashMap = this.f27508b;
-        if (hashMap != null) {
-            if (i7 == qs.Y1) {
-                f6 f6Var = (f6) hashMap.remove((String) objArr[0]);
-                if (f6Var != null) {
-                    Utilities.f21341e.c(new c(4, this, f6Var));
-                }
-            } else if (i7 == qs.Z1 && hashMap.remove((String) objArr[0]) != null) {
-                org.telegram.messenger.g0.h3(new u7((Object) this, (Object) null, false, 13));
+    public final int f(int i7, int i10, boolean z10) {
+        int f10 = i0.a.f(0.25f, i7, i10);
+        float[] fArr = this.A;
+        Color.colorToHSV(f10, fArr);
+        float f11 = 0.1f;
+        fArr[1] = Math.max(0.0f, Math.min(1.0f, fArr[1] - 0.1f));
+        float f12 = fArr[2];
+        if (!z10) {
+            f11 = 0.0f;
+        }
+        fArr[2] = i20.z(f12, f11, 1.0f, 0.0f);
+        return Color.HSVToColor(51, fArr);
+    }
+
+    public final int g(int i7, float f10, boolean z10) {
+        if (z10) {
+            return 520093695;
+        }
+        float[] fArr = this.A;
+        Color.colorToHSV(i7, fArr);
+        if (fArr[1] > 0.0f) {
+            float f11 = fArr[2];
+            if (f11 < 1.0f && f11 > 0.0f) {
+                fArr[0] = i9.a(fArr[0] + 0.22f, 0.0f, 1.0f);
+                fArr[1] = i9.a(fArr[1] - 0.35f, 0.0f, 1.0f);
+                fArr[2] = i9.a(fArr[2] - 0.65f, 0.0f, 1.0f);
+                return Color.HSVToColor(90, fArr);
             }
         }
+        fArr[0] = f10;
+        fArr[1] = 0.2f;
+        fArr[2] = i9.a(fArr[2] - 0.65f, 0.0f, 1.0f);
+        return Color.HSVToColor(90, fArr);
+    }
+
+    public final int i(int r7, int r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.g6.i(int, int):int");
     }
 }

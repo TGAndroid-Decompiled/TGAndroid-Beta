@@ -1,43 +1,25 @@
 package fi;
-public final class n implements Runnable {
-    public final int f12472a;
-    public final la f12473b;
 
-    public n(la laVar, int i7) {
-        this.f12472a = i7;
-        this.f12473b = laVar;
+import j$.util.Objects;
+public final class n extends rg.a {
+    public final long f12049c;
+
+    public n(long j3) {
+        super(0, false);
+        this.f12049c = j3;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f12472a) {
-            case 0:
-                this.f12473b.n();
-                return;
-            case 1:
-                la laVar = this.f12473b;
-                laVar.J0 = false;
-                laVar.K0 = Integer.MIN_VALUE;
-                laVar.invalidate();
-                laVar.R0.setVisibility(0);
-                laVar.S0.setVisibility(0);
-                return;
-            default:
-                va vaVar = this.f12473b.R1;
-                ja jaVar = vaVar.X0;
-                if (jaVar != null) {
-                    jaVar.O = false;
-                    jaVar.c();
-                    ja jaVar2 = vaVar.X0;
-                    jaVar2.m(0L);
-                    fb fbVar = jaVar2.F;
-                    if (fbVar != null) {
-                        fbVar.setProgress(0L);
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if ((obj instanceof n) && this.f12049c == ((n) obj).f12049c) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(Long.valueOf(this.f12049c));
     }
 }

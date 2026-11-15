@@ -1,105 +1,28 @@
 package bi;
 
-import org.telegram.messenger.qp;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class s4 implements RequestDelegate {
-    public final int f4669a;
-    public final k7 f4670b;
+import android.view.View;
+import java.io.Serializable;
+import org.telegram.messenger.x10;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.b41;
+public final class s4 implements di.j4, x10 {
+    public final a6 f3864a;
 
-    public s4(k7 k7Var, int i7) {
-        this.f4669a = i7;
-        this.f4670b = k7Var;
+    public s4(a6 a6Var) {
+        this.f3864a = a6Var;
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f4669a) {
-            case 0:
-                final k7 k7Var = this.f4670b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                k7 k7Var2 = k7Var;
-                                z1 z1Var = k7Var2.f4190p3;
-                                k7Var2.f4184m3 = false;
-                                TLObject tLObject2 = tLObject;
-                                if (tLObject2 instanceof TLRPC.PaymentForm) {
-                                    TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) tLObject2;
-                                    qp.s1(k7Var2.f28669a).Y3(paymentForm.users, false);
-                                    k7Var2.f4186n3 = paymentForm;
-                                    org.telegram.messenger.g0.r(z1Var);
-                                    org.telegram.messenger.g0.h3(z1Var);
-                                    return;
-                                }
-                                org.telegram.ui.Components.bc Y = k7Var2.k().Y(tL_error);
-                                Y.f32213t = true;
-                                Y.j();
-                                return;
-                            default:
-                                k7 k7Var3 = k7Var;
-                                k7Var3.f4184m3 = false;
-                                TLObject tLObject3 = tLObject;
-                                if (tLObject3 instanceof TLRPC.PaymentForm) {
-                                    TLRPC.PaymentForm paymentForm2 = (TLRPC.PaymentForm) tLObject3;
-                                    qp.s1(k7Var3.f28669a).Y3(paymentForm2.users, false);
-                                    k7Var3.f4186n3 = paymentForm2;
-                                    k7Var3.Z1();
-                                    return;
-                                }
-                                org.telegram.ui.Components.bc Y2 = k7Var3.k().Y(tL_error);
-                                Y2.f32213t = true;
-                                Y2.j();
-                                return;
-                        }
-                    }
-                });
-                return;
-            default:
-                final k7 k7Var2 = this.f4670b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                k7 k7Var22 = k7Var2;
-                                z1 z1Var = k7Var22.f4190p3;
-                                k7Var22.f4184m3 = false;
-                                TLObject tLObject2 = tLObject;
-                                if (tLObject2 instanceof TLRPC.PaymentForm) {
-                                    TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) tLObject2;
-                                    qp.s1(k7Var22.f28669a).Y3(paymentForm.users, false);
-                                    k7Var22.f4186n3 = paymentForm;
-                                    org.telegram.messenger.g0.r(z1Var);
-                                    org.telegram.messenger.g0.h3(z1Var);
-                                    return;
-                                }
-                                org.telegram.ui.Components.bc Y = k7Var22.k().Y(tL_error);
-                                Y.f32213t = true;
-                                Y.j();
-                                return;
-                            default:
-                                k7 k7Var3 = k7Var2;
-                                k7Var3.f4184m3 = false;
-                                TLObject tLObject3 = tLObject;
-                                if (tLObject3 instanceof TLRPC.PaymentForm) {
-                                    TLRPC.PaymentForm paymentForm2 = (TLRPC.PaymentForm) tLObject3;
-                                    qp.s1(k7Var3.f28669a).Y3(paymentForm2.users, false);
-                                    k7Var3.f4186n3 = paymentForm2;
-                                    k7Var3.Z1();
-                                    return;
-                                }
-                                org.telegram.ui.Components.bc Y2 = k7Var3.k().Y(tL_error);
-                                Y2.f32213t = true;
-                                Y2.j();
-                                return;
-                        }
-                    }
-                });
-                return;
-        }
+    public void c(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, boolean z10) {
+        a6.b0(this.f3864a, tL_starGiftUnique, j3, z10);
+    }
+
+    @Override
+    public void m(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        View view = (View) obj2;
+        Integer num = (Integer) number;
+        Float f10 = (Float) serializable;
+        Float f11 = (Float) serializable2;
+        a6.e0(this.f3864a, (b41) obj);
     }
 }

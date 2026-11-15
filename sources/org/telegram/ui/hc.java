@@ -1,96 +1,79 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.View;
-public final class hc extends View {
-    public final Paint f46296a;
-    public final Paint f46297b;
-    public final Paint f46298c;
-    public final Paint d;
-    public final Path f46299e;
-    public final Path f46300f;
-    public boolean h;
-    public boolean f46301n;
-    public final org.telegram.ui.Components.hc f46302r;
-    public boolean f46303s;
-    public final org.telegram.ui.Components.v5 f46304w;
-    public final ic f46305x;
+import android.app.Activity;
+import android.view.MotionEvent;
+import android.view.ViewParent;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import java.util.HashSet;
+public final class hc extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
+    public final org.telegram.ui.ActionBar.e6 f47666a;
+    public final b61 f47667b;
+    public final v4.b0 f47668c;
+    public final int d;
+    public int f47669e;
 
-    public hc(ic icVar, Context context) {
-        super(context);
-        this.f46305x = icVar;
-        Paint paint = new Paint(1);
-        this.f46296a = paint;
-        this.f46297b = new Paint(1);
-        this.f46298c = new Paint(1);
-        this.d = new Paint(1);
-        this.f46299e = new Path();
-        this.f46300f = new Path();
-        this.f46302r = new org.telegram.ui.Components.hc(this);
-        this.f46304w = new org.telegram.ui.Components.v5(this, 0L, 320L, org.telegram.ui.Components.wq.h);
-        paint.setStyle(Paint.Style.STROKE);
+    public hc(int i7, Activity activity, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(activity);
+        this.d = i7;
+        this.f47666a = e6Var;
+        b61 b61Var = new b61(3, activity, e6Var);
+        this.f47667b = b61Var;
+        b61Var.setPadding(org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(6.0f), 0);
+        b61Var.setClipToPadding(false);
+        b61Var.setAdapter(new fc(this, activity, e6Var, i7));
+        v4.b0 b0Var = new v4.b0();
+        this.f47668c = b0Var;
+        b0Var.j1(0);
+        b61Var.setLayoutManager(b0Var);
+        addView(b61Var, c8.ja.c(-1.0f, -1));
     }
 
-    public final void a(org.telegram.messenger.fp r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.hc.a(org.telegram.messenger.fp):void");
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        float a10 = this.f46302r.a(0.05f);
-        canvas.scale(a10, a10, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-        canvas.save();
-        canvas.clipPath(this.f46299e);
-        canvas.drawPaint(this.f46297b);
-        if (this.h) {
-            canvas.drawPath(this.f46300f, this.f46298c);
+    public final void a(int i7, boolean z10) {
+        org.telegram.messenger.dp dpVar = org.telegram.messenger.np.s1(this.d).f25380r4;
+        int i10 = 0;
+        if (dpVar != null) {
+            ArrayList arrayList = dpVar.f23118c;
+            int i11 = 0;
+            while (true) {
+                if (i11 >= arrayList.size()) {
+                    break;
+                } else if (((org.telegram.messenger.cp) arrayList.get(i11)).f22915c == i7) {
+                    i10 = i11;
+                    break;
+                } else {
+                    i11++;
+                }
+            }
         }
-        canvas.restore();
-        if (this.f46301n) {
-            canvas.save();
-            RectF rectF = org.telegram.messenger.g0.P;
-            rectF.set((getMeasuredWidth() - org.telegram.messenger.g0.L(12.4f)) / 2.0f, (getMeasuredHeight() - org.telegram.messenger.g0.L(12.4f)) / 2.0f, (org.telegram.messenger.g0.L(12.4f) + getMeasuredWidth()) / 2.0f, (org.telegram.messenger.g0.L(12.4f) + getMeasuredHeight()) / 2.0f);
-            canvas.rotate(45.0f, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(2.33f), org.telegram.messenger.g0.L(2.33f), this.d);
-            canvas.restore();
+        if (i10 != this.f47669e) {
+            this.f47669e = i10;
+            if (!z10) {
+                this.f47668c.h1(i10, (org.telegram.messenger.g0.f23609q.x - org.telegram.messenger.g0.L(56.0f)) / 2);
+            }
+            org.telegram.messenger.g0.d0(this.f47667b, new di.t7(4, this, z10));
         }
-        float d = this.f46304w.d(this.f46303s);
-        if (d > 0.0f) {
-            float N = org.telegram.messenger.g0.N(2.0f);
-            Paint paint = this.f46296a;
-            paint.setStrokeWidth(N);
-            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, org.telegram.messenger.g0.T1((paint.getStrokeWidth() * 0.5f) + org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(20.0f) - (paint.getStrokeWidth() * 2.0f), d), paint);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (getParent() != null) {
+            ViewParent parent = getParent();
+            boolean z10 = true;
+            if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
+                z10 = false;
+            }
+            parent.requestDisallowInterceptTouchEvent(z10);
         }
-        canvas.restore();
+        return super.onInterceptTouchEvent(motionEvent);
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        setMeasuredDimension(org.telegram.messenger.g0.L(56.0f), org.telegram.messenger.g0.L(56.0f));
-        Path path = this.f46299e;
-        path.rewind();
-        path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, org.telegram.messenger.g0.L(20.0f), Path.Direction.CW);
-        Path path2 = this.f46300f;
-        path2.rewind();
-        path2.moveTo(getMeasuredWidth(), 0.0f);
-        path2.lineTo(getMeasuredWidth(), getMeasuredHeight());
-        path2.lineTo(0.0f, getMeasuredHeight());
-        path2.close();
+    public final void updateColors() {
+        org.telegram.messenger.g0.d0(this.f47667b, new li.v(12, this, org.telegram.messenger.np.s1(this.d).f25380r4));
     }
 
     @Override
-    public final void setBackgroundColor(int i7) {
-        this.f46296a.setColor(i7);
-    }
-
-    @Override
-    public final void setPressed(boolean z9) {
-        super.setPressed(z9);
-        this.f46302r.c(z9);
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

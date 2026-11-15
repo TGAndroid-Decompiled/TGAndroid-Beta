@@ -1,27 +1,45 @@
 package org.telegram.ui.Components;
-public final class cm implements Runnable {
-    public final int f32707a;
-    public final an f32708b;
-    public final int f32709c;
 
-    public cm(an anVar, int i7, int i10) {
-        this.f32707a = i10;
-        this.f32708b = anVar;
-        this.f32709c = i7;
+import android.content.Context;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class cm {
+    public float f33630a;
+    public int f33631b;
+    public int f33632c;
+    public int d;
+    public final Object f33633e;
+    public final Object f33634f;
+    public Object f33635g;
+    public final Object h;
+
+    public cm(Context context, org.telegram.messenger.ou ouVar) {
+        this.f33631b = -1;
+        this.f33632c = -1;
+        this.d = -1;
+        this.h = new int[]{Integer.MAX_VALUE, 0};
+        this.f33633e = context;
+        this.f33634f = ouVar;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f32707a) {
-            case 0:
-                this.f32708b.j0(this.f32709c, null);
-                return;
-            case 1:
-                this.f32708b.g0(this.f32709c);
-                return;
-            default:
-                this.f32708b.j0(this.f32709c, null);
-                return;
+    public static float b(int i7, int i10, float[] fArr) {
+        float f10 = 0.0f;
+        while (i7 < i10) {
+            f10 += fArr[i7];
+            i7++;
         }
+        return 1000.0f / f10;
+    }
+
+    public void a() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.cm.a():void");
+    }
+
+    public cm(im imVar, ArrayList arrayList) {
+        this.h = imVar;
+        this.f33633e = new ArrayList();
+        this.f33635g = new HashMap();
+        this.f33634f = arrayList;
+        a();
     }
 }

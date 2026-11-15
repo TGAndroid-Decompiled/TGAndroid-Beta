@@ -1,58 +1,15 @@
 package org.telegram.ui.Components;
+public final class uc implements Runnable {
+    public final int f39993a;
+    public final ChatActivityEnterView f39994b;
 
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import androidx.mediarouter.app.MediaRouteButton;
-import java.lang.reflect.Field;
-public abstract class uc extends MediaRouteButton {
-    public boolean f38620a;
-
-    public final void a() {
-        boolean b10 = b();
-        if (this.f38620a != b10) {
-            this.f38620a = b10;
-            c(b10);
-        }
-    }
-
-    public final boolean b() {
-        Field declaredField;
-        try {
-            declaredField = MediaRouteButton.class.getDeclaredField("mConnectionState");
-            declaredField.setAccessible(true);
-        } catch (Exception unused) {
-        }
-        if (((Integer) declaredField.get(this)).intValue() <= 0) {
-            return false;
-        }
-        return true;
-    }
-
-    public abstract void c(boolean z9);
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        a();
+    public uc(ChatActivityEnterView chatActivityEnterView, int i7) {
+        this.f39993a = i7;
+        this.f39994b = chatActivityEnterView;
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        a();
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        a();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        a();
-    }
-
-    @Override
-    public void setBackground(Drawable drawable) {
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.uc.run():void");
     }
 }

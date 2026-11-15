@@ -1,24 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.location.Location;
-public final class ok implements q0.a {
-    public final int f36625a;
-    public final vk f36626b;
+import android.text.Editable;
+import android.text.TextWatcher;
+public final class ok implements TextWatcher {
+    public final qk f38006a;
 
-    public ok(vk vkVar, int i7) {
-        this.f36625a = i7;
-        this.f36626b = vkVar;
+    public ok(qk qkVar) {
+        this.f38006a = qkVar;
     }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f36625a) {
-            case 0:
-                vk.Z(this.f36626b, (org.telegram.messenger.fa) obj);
-                return;
-            default:
-                vk.W(this.f36626b, (Location) obj);
-                return;
-        }
+    public final void afterTextChanged(Editable editable) {
+        this.f38006a.i0();
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 }

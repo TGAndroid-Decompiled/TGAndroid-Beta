@@ -1,60 +1,45 @@
 package oi;
 
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public abstract class e extends Drawable {
-    public final Rect f21079a = new Rect();
-    public r f21080b = q.f();
-    public int f21081c = 255;
-    public float d;
-    public float f21082e;
+import java.util.ArrayList;
+import org.telegram.messenger.gj;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.ui.Components.cl;
+import org.telegram.ui.Components.ki;
+import org.telegram.ui.Components.si;
+public final class e implements cl, si {
+    public final o f21646a;
+    public final ki f21647b;
 
-    public abstract void a();
-
-    public void b(Rect rect) {
-        rect.set(getBounds());
+    public e(o oVar, ki kiVar) {
+        this.f21646a = oVar;
+        this.f21647b = kiVar;
     }
-
-    public int c() {
-        return 0;
-    }
-
-    public int d() {
-        return 0;
-    }
-
-    public abstract boolean e();
-
-    public abstract void f(int i7);
-
-    public abstract void g(r rVar);
 
     @Override
-    public final int getAlpha() {
-        return this.f21081c;
-    }
-
-    public final void i(float f10, float f11) {
-        if (this.d == f10 && this.f21082e == f11) {
+    public void d(TLRPC.MessageMedia messageMedia, int i7, boolean z10, int i10, long j3) {
+        o oVar = this.f21646a;
+        oVar.getClass();
+        ki kiVar = this.f21647b;
+        if (messageMedia != null && messageMedia.geo != null) {
+            TL_iv.pageBlockMap pageblockmap = new TL_iv.pageBlockMap();
+            pageblockmap.geo = messageMedia.geo;
+            pageblockmap.zoom = 15;
+            pageblockmap.f28276w = 600;
+            pageblockmap.h = 400;
+            oVar.f21848r.V1(pageblockmap);
+            oVar.a0(true);
+            kiVar.a(true);
             return;
         }
-        this.d = f10;
-        this.f21082e = f11;
-        h();
+        kiVar.a(true);
     }
-
-    public abstract boolean j();
 
     @Override
-    public final void setAlpha(int i7) {
-        if (this.f21081c != i7) {
-            this.f21081c = i7;
-            f(i7);
+    public void k(ArrayList arrayList, CharSequence charSequence, boolean z10, int i7, int i10, long j3, boolean z11, long j10) {
+        if (!arrayList.isEmpty()) {
+            this.f21646a.f21848r.e2((gj) arrayList.get(0));
         }
-    }
-
-    public abstract void updateColors();
-
-    public void h() {
+        this.f21647b.a(true);
     }
 }

@@ -2,18 +2,18 @@ package org.telegram.ui.web;
 
 import android.os.AsyncTask;
 import java.io.File;
-import org.telegram.messenger.c20;
+import org.telegram.messenger.z10;
 public class HttpGetFileTask extends AsyncTask<String, Void, File> {
-    private c20 doneCallback;
+    private z10 doneCallback;
     private Exception exception;
     private File file;
     private long max_size = -1;
     private String overrideExt;
-    private c20 progressCallback;
+    private z10 progressCallback;
 
-    public HttpGetFileTask(c20 c20Var, c20 c20Var2) {
-        this.doneCallback = c20Var;
-        this.progressCallback = c20Var2;
+    public HttpGetFileTask(z10 z10Var, z10 z10Var2) {
+        this.doneCallback = z10Var;
+        this.progressCallback = z10Var2;
     }
 
     public static void b(HttpGetFileTask httpGetFileTask, float f10) {
@@ -50,12 +50,12 @@ public class HttpGetFileTask extends AsyncTask<String, Void, File> {
 
     @Override
     public void onPostExecute(File file) {
-        c20 c20Var = this.doneCallback;
-        if (c20Var != null) {
+        z10 z10Var = this.doneCallback;
+        if (z10Var != null) {
             if (this.exception == null) {
-                c20Var.a(file);
+                z10Var.a(file);
             } else {
-                c20Var.a(null);
+                z10Var.a(null);
             }
         }
     }

@@ -2,11 +2,11 @@ package c4;
 
 import e2.u;
 public interface k {
-    public static final nb.a f5292i = new nb.a(6);
+    public static final pb.b f4111i = new pb.b(6);
 
-    int D(u uVar);
+    boolean L(u uVar);
 
-    m l(u uVar);
+    int O(u uVar);
 
-    boolean w(u uVar);
+    m f(u uVar);
 }

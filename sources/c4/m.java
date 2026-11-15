@@ -1,10 +1,10 @@
 package c4;
 public interface m {
-    int P();
+    void K(byte[] bArr, int i7, int i10, l lVar, h2.j jVar);
 
-    d c(int i7, int i10, byte[] bArr);
+    int Q();
 
     void reset();
 
-    void z(byte[] bArr, int i7, int i10, l lVar, h2.j jVar);
+    d x(int i7, int i10, byte[] bArr);
 }

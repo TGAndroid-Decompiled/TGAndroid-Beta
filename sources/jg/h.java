@@ -1,119 +1,101 @@
 package jg;
 
-import j$.util.Objects;
-import java.util.ArrayList;
-import org.telegram.messenger.s3;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.kj0;
-import org.telegram.ui.Components.n01;
-import org.telegram.ui.Components.p01;
-import org.telegram.ui.Components.pw;
-import org.telegram.ui.i40;
-import org.telegram.ui.t11;
-public final class h extends v4.o {
-    public final int f16735b;
-    public final ArrayList f16736c;
-    public final Object d;
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.view.View;
+import android.widget.TextView;
+import c8.ja;
+import hi.y4;
+import org.telegram.messenger.m10;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.q6;
+import org.telegram.ui.ActionBar.y5;
+import org.telegram.ui.Cells.d3;
+import org.telegram.ui.Components.i9;
+public final class h extends d3 {
+    public final m f17082f;
 
-    public h(Object obj, ArrayList arrayList, int i7) {
-        this.f16735b = i7;
-        this.d = obj;
-        this.f16736c = arrayList;
-    }
+    public h(m mVar, Context context) {
+        super(context);
+        this.f17082f = mVar;
+        this.f30136a = m10.f24934t0;
+        setOrientation(1);
+        q6.h(j6.f28792a7, this, null);
+        y4 y4Var = new y4(context, 3);
+        y4Var.f15421c = new Path();
+        Paint paint = new Paint(1);
+        y4Var.f15420b = paint;
+        paint.setColor(j6.x0(null, j6.f28849d6, false));
+        paint.setShadowLayer(org.telegram.messenger.g0.L(1.33f), 0.0f, org.telegram.messenger.g0.L(0.33f), 503316480);
+        y4Var.setWillNotDraw(false);
+        y4Var.setOrientation(1);
+        y4Var.setPadding(org.telegram.messenger.g0.L(32.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(32.0f), org.telegram.messenger.g0.L(32.0f));
+        i9 i9Var = new i9(context);
+        this.f30137b = i9Var;
+        i9Var.setOnClickListener(new View.OnClickListener(this) {
+            public final jg.h f30101b;
 
-    @Override
-    public final boolean a(int i7, int i10) {
-        switch (this.f16735b) {
-            case 0:
-                if (((l) ((n) this.d).N.get(i7)).f54543a == ((l) this.f16736c.get(i10)).f54543a) {
-                    return true;
+            {
+                this.f30101b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        this.f30101b.f30137b.getImageReceiver().P0(false);
+                        return;
+                    default:
+                        this.f30101b.f17082f.L();
+                        return;
                 }
-                return false;
-            case 1:
-                return true;
-            case 2:
-                return b(i7, i10);
-            case 3:
-                return false;
-            case 4:
-                return true;
-            default:
-                return true;
-        }
-    }
+            }
+        });
+        a();
+        y4Var.addView(i9Var, ja.r(130, 130, 49));
+        TextView textView = new TextView(context);
+        this.f30138c = textView;
+        textView.setGravity(17);
+        textView.setTextSize(1, 18.0f);
+        q6.U(textView, j6.G6, null);
+        textView.setTypeface(org.telegram.messenger.g0.o());
+        y4Var.addView(textView, ja.t(-1, -2, 49, 0, 6, 0, 0));
+        TextView textView2 = new TextView(context);
+        this.d = textView2;
+        textView2.setGravity(17);
+        textView2.setTextSize(1, 14.0f);
+        q6.U(textView2, j6.f29241y6, null);
+        y4Var.addView(textView2, ja.t(-1, -2, 49, 0, 7, 0, 0));
+        TextView textView3 = new TextView(context);
+        this.f30139e = textView3;
+        textView3.setGravity(17);
+        textView3.setBackground(y5.f(j6.Fi, 8.0f));
+        textView3.setTextSize(1, 14.0f);
+        q6.U(textView3, j6.Ji, null);
+        textView3.setTypeface(org.telegram.messenger.g0.o());
+        textView3.setPadding(org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f));
+        textView3.setOnClickListener(new View.OnClickListener(this) {
+            public final jg.h f30101b;
 
-    @Override
-    public final boolean b(int i7, int i10) {
-        TLRPC.TL_contact tL_contact;
-        TLRPC.TL_contact tL_contact2;
-        TLRPC.RecentMeUrl recentMeUrl;
-        String str;
-        switch (this.f16735b) {
-            case 0:
-                l lVar = (l) ((n) this.d).N.get(i7);
-                l lVar2 = (l) this.f16736c.get(i10);
-                TLRPC.Dialog dialog = lVar.f16820c;
-                int i11 = lVar.f54543a;
-                int i12 = lVar2.f54543a;
-                TLRPC.Dialog dialog2 = lVar2.f16820c;
-                if (i11 != i12 || (i11 != 0 ? !(i11 != 14 ? i11 != 4 ? i11 != 6 ? i11 != 5 ? i11 != 10 : lVar.f16825j == lVar2.f16825j : (tL_contact = lVar.f16821e) != null && (tL_contact2 = lVar2.f16821e) != null && tL_contact.user_id == tL_contact2.user_id : (recentMeUrl = lVar.d) != null && lVar2.d != null && (str = recentMeUrl.url) != null && str.equals(str) : dialog != null && dialog2 != null && dialog.f26964id == dialog2.f26964id && dialog.isFolder == dialog2.isFolder) : !(dialog != null && dialog2 != null && dialog.f26964id == dialog2.f26964id && lVar.h == lVar2.h && lVar.f16822f == lVar2.f16822f && lVar.f16823g == lVar2.f16823g))) {
-                    return false;
-                }
-                return true;
-            case 1:
-                return ((Integer) this.f16736c.get(i7)).equals(((pw) this.d).f37079n.get(i10));
-            case 2:
-                return Objects.equals(this.f16736c.get(i7), ((kj0) this.d).f35360n.get(i10));
-            case 3:
-                if (((p01) this.f16736c.get(i7)).a() == ((p01) ((n01) this.d).f36185c.get(i10)).a()) {
-                    return true;
-                }
-                return false;
-            case 4:
-                i40 i40Var = (i40) this.d;
-                ArrayList arrayList = this.f16736c;
-                if (i7 < arrayList.size() && i10 < i40Var.f46480e.size()) {
-                    return ((s3) arrayList.get(i7)).equals(i40Var.f46480e.get(i10));
-                }
-                return false;
-            default:
-                return ((Long) this.f16736c.get(i7)).equals(((t11) this.d).f50064v0.get(i10));
-        }
-    }
+            {
+                this.f30101b = this;
+            }
 
-    @Override
-    public final int d() {
-        switch (this.f16735b) {
-            case 0:
-                return this.f16736c.size();
-            case 1:
-                return ((pw) this.d).f37079n.size();
-            case 2:
-                return ((kj0) this.d).f35360n.size();
-            case 3:
-                return ((n01) this.d).f36185c.size();
-            case 4:
-                return ((i40) this.d).f46480e.size();
-            default:
-                return ((t11) this.d).f50064v0.size();
-        }
-    }
-
-    @Override
-    public final int e() {
-        switch (this.f16735b) {
-            case 0:
-                return ((n) this.d).N.size();
-            case 1:
-                return this.f16736c.size();
-            case 2:
-                return this.f16736c.size();
-            case 3:
-                return this.f16736c.size();
-            case 4:
-                return this.f16736c.size();
-            default:
-                return this.f16736c.size();
-        }
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        this.f30101b.f30137b.getImageReceiver().P0(false);
+                        return;
+                    default:
+                        this.f30101b.f17082f.L();
+                        return;
+                }
+            }
+        });
+        y4Var.addView(textView3, ja.t(-1, -2, 49, 0, 18, 0, 0));
+        addView(y4Var, ja.o(-1, -2));
+        set(null);
     }
 }

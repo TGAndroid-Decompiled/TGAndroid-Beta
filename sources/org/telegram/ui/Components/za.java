@@ -1,18 +1,10 @@
 package org.telegram.ui.Components;
 public interface za {
-    boolean a();
+    void a();
 
-    void b(bc bcVar);
+    void b();
 
-    void c(float f10);
+    void c(xb xbVar);
 
-    void d(bc bcVar);
-
-    boolean e();
-
-    int f(int i7);
-
-    boolean g(int i7);
-
-    int h(int i7);
+    void d();
 }

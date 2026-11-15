@@ -1,74 +1,60 @@
 package u7;
 
-import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.util.AbstractCollection;
-import java.util.Arrays;
-import java.util.Collection;
-public abstract class o extends AbstractCollection implements Serializable {
-    public static final Object[] f56393a = new Object[0];
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+public abstract class o {
+    public static final StringBuilder f57891a;
 
-    @Override
-    public final boolean add(Object obj) {
-        throw new UnsupportedOperationException();
+    static {
+        Locale locale = Locale.ROOT;
+        new SimpleDateFormat("MM-dd HH:mm:ss.SSS", locale);
+        new SimpleDateFormat("MM-dd HH:mm:ss", locale);
+        f57891a = new StringBuilder(33);
     }
 
-    @Override
-    public final boolean addAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void clear() {
-        throw new UnsupportedOperationException();
-    }
-
-    public abstract int f(Object[] objArr);
-
-    public abstract int i();
-
-    public abstract int j();
-
-    public abstract boolean k();
-
-    public abstract Object[] l();
-
-    @Override
-    public final boolean remove(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean removeAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean retainAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final Object[] toArray() {
-        return toArray(f56393a);
-    }
-
-    @Override
-    public final Object[] toArray(Object[] objArr) {
-        objArr.getClass();
-        int size = size();
-        int length = objArr.length;
-        if (length < size) {
-            Object[] l10 = l();
-            if (l10 == null) {
-                objArr = (Object[]) Array.newInstance(objArr.getClass().getComponentType(), size);
-            } else {
-                return Arrays.copyOfRange(l10, j(), i(), objArr.getClass());
-            }
-        } else if (length > size) {
-            objArr[size] = null;
+    public static void a(long j3, StringBuilder sb2) {
+        int i7 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
+        if (i7 == 0) {
+            sb2.append("0s");
+            return;
         }
-        f(objArr);
-        return objArr;
+        sb2.ensureCapacity(sb2.length() + 27);
+        boolean z10 = false;
+        if (i7 < 0) {
+            sb2.append("-");
+            if (j3 != Long.MIN_VALUE) {
+                j3 = -j3;
+            } else {
+                j3 = Long.MAX_VALUE;
+                z10 = true;
+            }
+        }
+        if (j3 >= 86400000) {
+            sb2.append(j3 / 86400000);
+            sb2.append("d");
+            j3 %= 86400000;
+        }
+        if (true == z10) {
+            j3 = 25975808;
+        }
+        if (j3 >= 3600000) {
+            sb2.append(j3 / 3600000);
+            sb2.append("h");
+            j3 %= 3600000;
+        }
+        if (j3 >= 60000) {
+            sb2.append(j3 / 60000);
+            sb2.append("m");
+            j3 %= 60000;
+        }
+        if (j3 >= 1000) {
+            sb2.append(j3 / 1000);
+            sb2.append("s");
+            j3 %= 1000;
+        }
+        if (j3 > 0) {
+            sb2.append(j3);
+            sb2.append("ms");
+        }
     }
 }

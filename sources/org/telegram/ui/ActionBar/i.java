@@ -1,42 +1,200 @@
 package org.telegram.ui.ActionBar;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.transition.ChangeBounds;
 import android.transition.TransitionValues;
-public final class i extends AnimatorListenerAdapter {
-    public final int f27524a;
-    public final TransitionValues f27525b;
+import android.view.View;
+import android.view.ViewGroup;
+public final class i extends ChangeBounds {
+    public final int f28642a;
 
-    public i(TransitionValues transitionValues, int i7) {
-        this.f27524a = i7;
-        this.f27525b = transitionValues;
+    public i(int i7) {
+        this.f28642a = i7;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f27524a) {
+    public final void captureEndValues(TransitionValues transitionValues) {
+        switch (this.f28642a) {
             case 0:
-                super.onAnimationEnd(animator);
-                this.f27525b.view.setLayerType(0, null);
+                super.captureEndValues(transitionValues);
+                View view = transitionValues.view;
+                if (view instanceof j5) {
+                    transitionValues.values.put("text_size", Float.valueOf(((j5) view).getTextPaint().getTextSize()));
+                    return;
+                }
                 return;
             default:
-                super.onAnimationEnd(animator);
-                this.f27525b.view.setEnabled(true);
+                super.captureEndValues(transitionValues);
+                View view2 = transitionValues.view;
+                if (view2 instanceof org.telegram.ui.Components.voip.p) {
+                    int i7 = ((org.telegram.ui.Components.voip.p) view2).f40849n;
+                    int i10 = ((org.telegram.ui.Components.voip.p) view2).f40850r;
+                    int i11 = ((org.telegram.ui.Components.voip.p) view2).f40851s;
+                    int i12 = ((org.telegram.ui.Components.voip.p) view2).f40852w;
+                    transitionValues.values.put("back_color_end_close", Integer.valueOf(i7));
+                    transitionValues.values.put("round_end_close", Integer.valueOf(i10));
+                    transitionValues.values.put("decline_call_alpha_end_close", Integer.valueOf(i11));
+                    transitionValues.values.put("close_text_alpha_end_close", Integer.valueOf(i12));
+                    return;
+                }
                 return;
         }
     }
 
     @Override
-    public final void onAnimationStart(Animator animator) {
-        switch (this.f27524a) {
+    public final void captureStartValues(TransitionValues transitionValues) {
+        switch (this.f28642a) {
             case 0:
-                super.onAnimationStart(animator);
-                this.f27525b.view.setLayerType(2, null);
+                super.captureStartValues(transitionValues);
+                View view = transitionValues.view;
+                if (view instanceof j5) {
+                    transitionValues.values.put("text_size", Float.valueOf(((j5) view).getTextPaint().getTextSize()));
+                    return;
+                }
                 return;
             default:
-                super.onAnimationStart(animator);
-                this.f27525b.view.setEnabled(false);
+                super.captureStartValues(transitionValues);
+                View view2 = transitionValues.view;
+                if (view2 instanceof org.telegram.ui.Components.voip.p) {
+                    int i7 = ((org.telegram.ui.Components.voip.p) view2).f40849n;
+                    int i10 = ((org.telegram.ui.Components.voip.p) view2).f40850r;
+                    int i11 = ((org.telegram.ui.Components.voip.p) view2).f40851s;
+                    int i12 = ((org.telegram.ui.Components.voip.p) view2).f40852w;
+                    transitionValues.values.put("back_color_end_close", Integer.valueOf(i7));
+                    transitionValues.values.put("round_end_close", Integer.valueOf(i10));
+                    transitionValues.values.put("decline_call_alpha_end_close", Integer.valueOf(i11));
+                    transitionValues.values.put("close_text_alpha_end_close", Integer.valueOf(i12));
+                    return;
+                }
                 return;
+        }
+    }
+
+    @Override
+    public final Animator createAnimator(ViewGroup viewGroup, final TransitionValues transitionValues, TransitionValues transitionValues2) {
+        switch (this.f28642a) {
+            case 0:
+                if (transitionValues != null && (transitionValues.view instanceof j5)) {
+                    AnimatorSet animatorSet = new AnimatorSet();
+                    if (transitionValues2 != null) {
+                        Animator createAnimator = super.createAnimator(viewGroup, transitionValues, transitionValues2);
+                        float floatValue = ((Float) transitionValues.values.get("text_size")).floatValue() / ((Float) transitionValues2.values.get("text_size")).floatValue();
+                        transitionValues.view.setScaleX(floatValue);
+                        transitionValues.view.setScaleY(floatValue);
+                        if (createAnimator != null) {
+                            animatorSet.playTogether(createAnimator);
+                        }
+                    }
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(transitionValues.view, View.SCALE_X, 1.0f));
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(transitionValues.view, View.SCALE_Y, 1.0f));
+                    animatorSet.addListener(new h(transitionValues, 0));
+                    return animatorSet;
+                }
+                return super.createAnimator(viewGroup, transitionValues, transitionValues2);
+            default:
+                if (transitionValues != null && transitionValues2 != null && (transitionValues.view instanceof org.telegram.ui.Components.voip.p)) {
+                    AnimatorSet animatorSet2 = new AnimatorSet();
+                    Animator createAnimator2 = super.createAnimator(viewGroup, transitionValues, transitionValues2);
+                    if (createAnimator2 != null) {
+                        animatorSet2.playTogether(createAnimator2);
+                    }
+                    Integer num = (Integer) transitionValues2.values.get("decline_call_alpha_end_close");
+                    Integer num2 = (Integer) transitionValues.values.get("close_text_alpha_end_close");
+                    Integer num3 = (Integer) transitionValues2.values.get("close_text_alpha_end_close");
+                    ValueAnimator valueAnimator = new ValueAnimator();
+                    valueAnimator.setIntValues(((Integer) transitionValues.values.get("back_color_end_close")).intValue(), ((Integer) transitionValues2.values.get("back_color_end_close")).intValue());
+                    valueAnimator.setEvaluator(new ArgbEvaluator());
+                    valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                            switch (r2) {
+                                case 0:
+                                    ((p) transitionValues.view).f40849n = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    return;
+                                case 1:
+                                    ((p) transitionValues.view).f40850r = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    return;
+                                case 2:
+                                    ((p) transitionValues.view).f40851s = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    return;
+                                default:
+                                    ((p) transitionValues.view).f40852w = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    return;
+                            }
+                        }
+                    });
+                    animatorSet2.playTogether(valueAnimator);
+                    ValueAnimator ofInt = ValueAnimator.ofInt(((Integer) transitionValues.values.get("round_end_close")).intValue(), ((Integer) transitionValues2.values.get("round_end_close")).intValue());
+                    ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                            switch (r2) {
+                                case 0:
+                                    ((p) transitionValues.view).f40849n = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    return;
+                                case 1:
+                                    ((p) transitionValues.view).f40850r = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    return;
+                                case 2:
+                                    ((p) transitionValues.view).f40851s = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    return;
+                                default:
+                                    ((p) transitionValues.view).f40852w = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    return;
+                            }
+                        }
+                    });
+                    animatorSet2.playTogether(ofInt);
+                    ValueAnimator ofInt2 = ValueAnimator.ofInt(((Integer) transitionValues.values.get("decline_call_alpha_end_close")).intValue(), num.intValue(), num.intValue(), num.intValue(), num.intValue(), num.intValue(), num.intValue());
+                    ofInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                            switch (r2) {
+                                case 0:
+                                    ((p) transitionValues.view).f40849n = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    return;
+                                case 1:
+                                    ((p) transitionValues.view).f40850r = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    return;
+                                case 2:
+                                    ((p) transitionValues.view).f40851s = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    return;
+                                default:
+                                    ((p) transitionValues.view).f40852w = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    return;
+                            }
+                        }
+                    });
+                    animatorSet2.playTogether(ofInt2);
+                    ValueAnimator ofInt3 = ValueAnimator.ofInt(num2.intValue(), num2.intValue(), (int) (num3.intValue() * 0.25f), (int) (num3.intValue() * 0.5f), (int) (num3.intValue() * 0.75f), num3.intValue());
+                    ofInt3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                            switch (r2) {
+                                case 0:
+                                    ((p) transitionValues.view).f40849n = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    return;
+                                case 1:
+                                    ((p) transitionValues.view).f40850r = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    return;
+                                case 2:
+                                    ((p) transitionValues.view).f40851s = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    return;
+                                default:
+                                    ((p) transitionValues.view).f40852w = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    return;
+                            }
+                        }
+                    });
+                    animatorSet2.playTogether(ofInt3);
+                    animatorSet2.addListener(new h(transitionValues, 1));
+                    return animatorSet2;
+                }
+                return super.createAnimator(viewGroup, transitionValues, transitionValues2);
         }
     }
 }

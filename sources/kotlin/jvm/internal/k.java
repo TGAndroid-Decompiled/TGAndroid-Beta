@@ -2,19 +2,19 @@ package kotlin.jvm.internal;
 
 import java.io.Serializable;
 public abstract class k implements g, Serializable {
-    public final int f17612a;
+    public final int f18751a;
 
     public k(int i7) {
-        this.f17612a = i7;
+        this.f18751a = i7;
     }
 
     @Override
     public final int getArity() {
-        return this.f17612a;
+        return this.f18751a;
     }
 
     public final String toString() {
-        s.f17619a.getClass();
+        s.f18758a.getClass();
         String a10 = t.a(this);
         j.d(a10, "renderLambdaToString(...)");
         return a10;

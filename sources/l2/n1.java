@@ -1,36 +1,247 @@
 package l2;
 
-import a8.ia;
-import android.os.Looper;
+import a8.ja;
 public final class n1 {
-    public final m1 f17969a;
-    public final l1 f17970b;
-    public int f17971c;
-    public Object d;
-    public final Looper f17972e;
-    public boolean f17973f;
+    public final b f19114a;
+    public final int f19115b;
+    public final b f19116c;
+    public int d = 0;
+    public boolean f19117e = false;
+    public boolean f19118f = false;
 
-    public n1(l1 l1Var, m1 m1Var, e2.l1 l1Var2, int i7, Looper looper) {
-        this.f17970b = l1Var;
-        this.f17969a = m1Var;
-        this.f17972e = looper;
+    public n1(b bVar, b bVar2, int i7) {
+        this.f19114a = bVar;
+        this.f19115b = i7;
+        this.f19116c = bVar2;
     }
 
-    public final synchronized void a(boolean z9) {
-        synchronized (this) {
-            notifyAll();
+    public static void b(b bVar) {
+        boolean z10;
+        int i7 = bVar.f18893n;
+        if (i7 == 2) {
+            if (i7 == 2) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            ja.p(z10);
+            bVar.f18893n = 1;
+            bVar.t();
         }
     }
 
-    public final void b() {
-        ia.p(!this.f17973f);
-        this.f17973f = true;
-        r0 r0Var = (r0) this.f17970b;
-        if (!r0Var.Z && r0Var.f18029s.getThread().isAlive()) {
-            r0Var.f18022n.b(14, this).b();
+    public static boolean h(b bVar) {
+        if (bVar.f18893n != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public static void l(b bVar, long j3) {
+        bVar.E = true;
+        if (bVar instanceof z2.e) {
+            z2.e eVar = (z2.e) bVar;
+            ja.p(eVar.E);
+            eVar.f60785b0 = j3;
+        }
+    }
+
+    public final void a(b bVar, i iVar) {
+        boolean z10;
+        boolean z11 = true;
+        if (this.f19114a != bVar && this.f19116c != bVar) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        ja.p(z10);
+        if (!h(bVar)) {
             return;
         }
-        h2.a.l("ExoPlayerImplInternal", "Ignoring messages sent after release.");
-        a(false);
+        if (bVar == ((b) iVar.f19043e)) {
+            iVar.f19044f = null;
+            iVar.f19043e = null;
+            iVar.f19040a = true;
+        }
+        b(bVar);
+        if (bVar.f18893n != 1) {
+            z11 = false;
+        }
+        ja.p(z11);
+        bVar.f18890c.x0();
+        bVar.f18893n = 0;
+        bVar.f18894r = null;
+        bVar.f18895s = null;
+        bVar.E = false;
+        bVar.n();
+        bVar.H = null;
+    }
+
+    public final int c() {
+        int i7;
+        boolean h = h(this.f19114a);
+        b bVar = this.f19116c;
+        if (bVar != null && h(bVar)) {
+            i7 = 1;
+        } else {
+            i7 = 0;
+        }
+        return (h ? 1 : 0) + i7;
+    }
+
+    public final b d(u0 u0Var) {
+        x2.b1 b1Var;
+        if (u0Var != null && (b1Var = u0Var.f19186c[this.f19115b]) != null) {
+            b bVar = this.f19114a;
+            if (bVar.f18894r == b1Var) {
+                return bVar;
+            }
+            b bVar2 = this.f19116c;
+            if (bVar2 != null && bVar2.f18894r == b1Var) {
+                return bVar2;
+            }
+        }
+        return null;
+    }
+
+    public final boolean e(l2.u0 r8, l2.b r9) {
+        throw new UnsupportedOperationException("Method not decompiled: l2.n1.e(l2.u0, l2.b):boolean");
+    }
+
+    public final boolean f() {
+        int i7 = this.d;
+        if (i7 != 2 && i7 != 4 && i7 != 3) {
+            return false;
+        }
+        return true;
+    }
+
+    public final boolean g() {
+        int i7 = this.d;
+        if (i7 != 0 && i7 != 2 && i7 != 4) {
+            b bVar = this.f19116c;
+            bVar.getClass();
+            if (bVar.f18893n != 0) {
+                return true;
+            }
+            return false;
+        }
+        return h(this.f19114a);
+    }
+
+    public final void i(boolean z10) {
+        boolean z11 = true;
+        if (z10) {
+            if (this.f19117e) {
+                b bVar = this.f19114a;
+                if (bVar.f18893n != 0) {
+                    z11 = false;
+                }
+                ja.p(z11);
+                bVar.f18890c.x0();
+                bVar.r();
+                this.f19117e = false;
+            }
+        } else if (this.f19118f) {
+            b bVar2 = this.f19116c;
+            bVar2.getClass();
+            if (bVar2.f18893n != 0) {
+                z11 = false;
+            }
+            ja.p(z11);
+            bVar2.f18890c.x0();
+            bVar2.r();
+            this.f19118f = false;
+        }
+    }
+
+    public final int j(b bVar, u0 u0Var, a3.y yVar, i iVar) {
+        b bVar2;
+        Object[] objArr;
+        int i7;
+        int i10;
+        if (bVar == null || bVar.f18893n == 0 || (bVar == (bVar2 = this.f19114a) && ((i10 = this.d) == 2 || i10 == 4))) {
+            return 1;
+        }
+        if (bVar == this.f19116c && this.d == 3) {
+            return 1;
+        }
+        x2.b1 b1Var = bVar.f18894r;
+        x2.b1[] b1VarArr = u0Var.f19186c;
+        int i11 = this.f19115b;
+        boolean z10 = false;
+        if (b1Var != b1VarArr[i11]) {
+            objArr = 1;
+        } else {
+            objArr = null;
+        }
+        boolean b10 = yVar.b(i11);
+        if (!b10 || objArr != null) {
+            if (!bVar.E) {
+                a3.u uVar = yVar.f145c[i11];
+                if (uVar != null) {
+                    i7 = uVar.length();
+                } else {
+                    i7 = 0;
+                }
+                e2.u[] uVarArr = new e2.u[i7];
+                for (int i12 = 0; i12 < i7; i12++) {
+                    uVar.getClass();
+                    uVarArr[i12] = uVar.g(i12);
+                }
+                x2.b1 b1Var2 = u0Var.f19186c[i11];
+                b1Var2.getClass();
+                bVar.y(uVarArr, b1Var2, u0Var.e(), u0Var.f19197p, u0Var.f19189g.f19200a);
+                return 3;
+            } else if (!bVar.l()) {
+                return 0;
+            } else {
+                a(bVar, iVar);
+                if (!b10 || f()) {
+                    if (bVar == bVar2) {
+                        z10 = true;
+                    }
+                    i(z10);
+                    return 1;
+                }
+            }
+        }
+        return 1;
+    }
+
+    public final void k() {
+        if (!h(this.f19114a)) {
+            i(true);
+        }
+        b bVar = this.f19116c;
+        if (bVar == null || bVar.f18893n != 0) {
+            return;
+        }
+        i(false);
+    }
+
+    public final void m() {
+        int i7;
+        b bVar = this.f19114a;
+        int i10 = bVar.f18893n;
+        boolean z10 = false;
+        if (i10 == 1 && this.d != 4) {
+            if (i10 == 1) {
+                z10 = true;
+            }
+            ja.p(z10);
+            bVar.f18893n = 2;
+            bVar.s();
+            return;
+        }
+        b bVar2 = this.f19116c;
+        if (bVar2 != null && (i7 = bVar2.f18893n) == 1 && this.d != 3) {
+            if (i7 == 1) {
+                z10 = true;
+            }
+            ja.p(z10);
+            bVar2.f18893n = 2;
+            bVar2.s();
+        }
     }
 }

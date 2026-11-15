@@ -1,23 +1,26 @@
 package org.telegram.ui;
+public final class az implements Runnable {
+    public final int f45545a;
+    public final bz f45546b;
 
-import android.content.Context;
-public final class az extends org.telegram.ui.Cells.n4 {
-    public final org.telegram.ui.Cells.w3 f43843r;
+    public az(bz bzVar, int i7) {
+        this.f45545a = i7;
+        this.f45546b = bzVar;
+    }
 
-    public az(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context);
-        int i7;
-        org.telegram.ui.Cells.w3 w3Var = new org.telegram.ui.Cells.w3(context, true, true, true, 3);
-        this.f43843r = w3Var;
-        if (org.telegram.messenger.id.f23161a0) {
-            i7 = 3;
-        } else {
-            i7 = 5;
+    @Override
+    public final void run() {
+        switch (this.f45545a) {
+            case 0:
+                this.f45546b.d();
+                return;
+            case 1:
+                this.f45546b.a();
+                return;
+            default:
+                bz bzVar = this.f45546b;
+                bzVar.b(bzVar.E);
+                return;
         }
-        w3Var.setGravity(i7);
-        org.telegram.ui.ActionBar.t6.Y(w3Var, org.telegram.ui.ActionBar.m6.L6, h6Var);
-        w3Var.setTextSize(org.telegram.messenger.g0.N(15.0f));
-        addView(w3Var, c8.ha.d(-1, 18.0f, (org.telegram.messenger.id.f23161a0 ? 3 : 5) | 48, 22.0f, 17.0f, 22.0f, 0.0f));
-        c8.ka.b(w3Var, 0.04f, 1.2f);
     }
 }

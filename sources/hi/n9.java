@@ -1,0 +1,39 @@
+package hi;
+
+import org.telegram.messenger.camera.CameraController;
+public final class n9 implements Runnable {
+    public final int f14779a;
+    public final p9 f14780b;
+
+    public n9(p9 p9Var, int i7) {
+        this.f14779a = i7;
+        this.f14780b = p9Var;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f14779a) {
+            case 0:
+                sa saVar = this.f14780b.f14881a;
+                b6 b6Var = saVar.D0;
+                if (b6Var != null) {
+                    b6Var.c(false);
+                }
+                if (saVar.R1 && saVar.S1 && saVar.C0 != null) {
+                    saVar.i0(false);
+                    CameraController.getInstance().stopVideoRecording(saVar.C0.getCameraSessionRecording(), false, false);
+                    return;
+                }
+                return;
+            case 1:
+                this.f14780b.f14881a.J(1, true);
+                return;
+            case 2:
+                this.f14780b.f14881a.J(1, true);
+                return;
+            default:
+                this.f14780b.f14881a.J(1, true);
+                return;
+        }
+    }
+}

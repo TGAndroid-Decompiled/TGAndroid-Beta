@@ -1,51 +1,126 @@
 package org.telegram.ui;
-public final class ke implements Runnable {
-    public final int f47279a;
-    public final cn f47280b;
-    public final org.telegram.ui.Components.jk0 f47281c;
-    public final String d;
 
-    public ke(cn cnVar, org.telegram.ui.Components.jk0 jk0Var, String str, int i7) {
-        this.f47279a = i7;
-        this.f47280b = cnVar;
-        this.f47281c = jk0Var;
-        this.d = str;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.tgnet.tl.TL_stories;
+public final class ke implements org.telegram.messenger.z10 {
+    public final int f48688a;
+    public final an f48689b;
+
+    public ke(an anVar, int i7) {
+        this.f48688a = i7;
+        this.f48689b = anVar;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Components.gc a02;
-        int i7;
-        int i10 = this.f47279a;
-        String str = this.d;
-        org.telegram.ui.Components.jk0 jk0Var = this.f47281c;
-        cn cnVar = this.f47280b;
-        switch (i10) {
+    public final void a(Object obj) {
+        int i7 = this.f48688a;
+        an anVar = this.f48689b;
+        switch (i7) {
             case 0:
-                jk0Var.dismiss();
-                org.telegram.messenger.g0.g(str);
-                a02 = org.telegram.ui.Components.gc.a0(cnVar);
-                i7 = 2131746335;
-                break;
+                org.telegram.messenger.lj ljVar = (org.telegram.messenger.lj) obj;
+                an anVar2 = this.f48689b;
+                anVar2.f45422x5 = ljVar;
+                anVar2.G5.f23817k.suggested_post = ljVar.c();
+                anVar2.gc(true, null, anVar2.G5, null, null, true, 0, null, false, 0L, null, true);
+                return;
             case 1:
-                jk0Var.dismiss();
-                org.telegram.messenger.g0.g(str);
-                a02 = org.telegram.ui.Components.gc.a0(cnVar);
-                i7 = 2131743201;
-                break;
+                anVar.kc((org.telegram.messenger.lj) obj);
+                return;
             case 2:
-                jk0Var.dismiss();
-                org.telegram.messenger.g0.g(str);
-                a02 = org.telegram.ui.Components.gc.a0(cnVar);
-                i7 = 2131752553;
-                break;
+                anVar.cc(true, false);
+                if (((Boolean) obj).booleanValue()) {
+                    anVar.finishFragment();
+                    return;
+                }
+                return;
+            case 3:
+                anVar.Ga((String) obj, false);
+                return;
+            case 4:
+                anVar.T1 = (org.telegram.messenger.e3) obj;
+                return;
+            case 5:
+                View view = (View) obj;
+                if (view instanceof org.telegram.ui.Cells.q1) {
+                    org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) view;
+                    q1Var.W6 = anVar.Q9();
+                    q1Var.X6 = anVar.ba();
+                    boolean aa2 = anVar.aa();
+                    if (q1Var.Y6 != aa2) {
+                        q1Var.Y6 = aa2;
+                        anVar.A0.getClass();
+                        int R = RecyclerView.R(view);
+                        q1Var.F6 = true;
+                        q1Var.forceLayout();
+                        if (R >= 0) {
+                            anVar.D0.g(R);
+                        }
+                    }
+                    q1Var.Z6 = anVar.m9();
+                    int n92 = anVar.n9();
+                    if (q1Var.f30909a7 != n92) {
+                        q1Var.f30909a7 = n92;
+                        q1Var.a4();
+                        q1Var.invalidate();
+                        return;
+                    }
+                    return;
+                } else if (view instanceof org.telegram.ui.Cells.t0) {
+                    org.telegram.ui.Cells.t0 t0Var = (org.telegram.ui.Cells.t0) view;
+                    t0Var.f31461f0 = anVar.Q9();
+                    t0Var.f31473j0 = anVar.ba();
+                    anVar.aa();
+                    anVar.m9();
+                    int n93 = anVar.n9();
+                    if (t0Var.f31476k0 != n93) {
+                        t0Var.f31476k0 = n93;
+                        t0Var.invalidate();
+                        return;
+                    }
+                    return;
+                } else if (view instanceof org.telegram.ui.Cells.z1) {
+                    ((org.telegram.ui.Cells.z1) view).getTextView().setTranslationX(anVar.n9() / 2.0f);
+                    return;
+                } else if (view instanceof org.telegram.ui.Cells.a0) {
+                    view.invalidate();
+                    return;
+                } else if (view instanceof org.telegram.ui.Cells.f0) {
+                    view.invalidate();
+                    return;
+                } else {
+                    return;
+                }
+            case 6:
+                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
+                if (tL_premium_boostsStatus != null) {
+                    anVar.S1 = tL_premium_boostsStatus;
+                    anVar.getMessagesController().G0().b(anVar.f45259k6, tL_premium_boostsStatus, new ke(anVar, 4));
+                    return;
+                }
+                return;
+            case 7:
+                Long l10 = (Long) obj;
+                org.telegram.ui.Components.p11 p11Var = anVar.f45202g2;
+                if (p11Var != null) {
+                    p11Var.n(l10.longValue(), true);
+                    return;
+                }
+                return;
+            case 8:
+                er erVar = anVar.f45188f0;
+                erVar.f46901c.add(((org.telegram.ui.ActionBar.q0) obj).getIconView());
+                return;
+            case 9:
+                int intValue = ((Integer) obj).intValue();
+                int i10 = an.f45108ld;
+                anVar.db(intValue);
+                return;
             default:
-                jk0Var.dismiss();
-                org.telegram.messenger.g0.g("@" + str);
-                a02 = org.telegram.ui.Components.gc.a0(cnVar);
-                i7 = 2131743665;
-                break;
+                int intValue2 = ((Integer) obj).intValue();
+                int i11 = an.f45108ld;
+                anVar.db(intValue2);
+                return;
         }
-        org.telegram.messenger.camera.q.r(null, i7, a02);
     }
 }

@@ -1,26 +1,66 @@
 package org.telegram.ui;
-public final class hi implements org.telegram.messenger.ls {
-    public final int f46358a;
-    public final ai.a1 f46359b;
-    public final cn f46360c;
-    public final cn d;
+public final class hi extends vf.b {
+    public final int d;
+    public final int f47713e;
+    public final org.telegram.ui.Cells.q1 f47714f;
+    public final an f47715g;
 
-    public hi(cn cnVar, int i7, ai.a1 a1Var, cn cnVar2) {
-        this.d = cnVar;
-        this.f46358a = i7;
-        this.f46359b = a1Var;
-        this.f46360c = cnVar2;
+    public hi(an anVar, int i7, org.telegram.ui.Cells.q1 q1Var, int i10) {
+        this.d = i10;
+        this.f47715g = anVar;
+        this.f47713e = i7;
+        this.f47714f = q1Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        int i11;
-        int i12 = org.telegram.messenger.qs.D;
-        if (i7 == i12 && ((Integer) objArr[10]).intValue() == this.f46358a) {
-            this.f46359b.run();
-            org.telegram.messenger.g0.i3(new l2.z(this.f46360c, i7, i10, objArr, 10), 50L);
-            i11 = ((org.telegram.ui.ActionBar.f2) this.d).currentAccount;
-            org.telegram.messenger.qs.f(i11).n(this, i12);
+    public final void c(boolean z10) {
+        switch (this.d) {
+            case 0:
+                if (!z10) {
+                    org.telegram.messenger.g0.i3(new ai.v0(this, this.f47713e, 23), 240L);
+                    return;
+                }
+                return;
+            case 1:
+                if (!z10) {
+                    org.telegram.messenger.g0.i3(new ai.v0(this, this.f47713e, 26), 240L);
+                    return;
+                }
+                return;
+            default:
+                if (!z10) {
+                    org.telegram.messenger.g0.i3(new ai.v0(this, this.f47713e, 27), 240L);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void d() {
+        switch (this.d) {
+            case 0:
+                int i7 = this.f47713e;
+                an anVar = this.f47715g;
+                anVar.Zb = i7;
+                anVar.f45130ac = 6;
+                this.f47714f.invalidate();
+                return;
+            case 1:
+                int i10 = this.f47713e;
+                an anVar2 = this.f47715g;
+                anVar2.Zb = i10;
+                anVar2.f45130ac = 5;
+                anVar2.f45159cc = null;
+                this.f47714f.invalidate();
+                return;
+            default:
+                int i11 = this.f47713e;
+                an anVar3 = this.f47715g;
+                anVar3.Zb = i11;
+                anVar3.f45130ac = 7;
+                this.f47714f.invalidate();
+                return;
         }
     }
 }

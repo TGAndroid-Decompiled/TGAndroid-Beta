@@ -3,203 +3,202 @@ package bi;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.wq;
-public abstract class i1 {
-    public static final float[][] f4023a;
-    public static final a4.k f4024b;
+import hi.ia;
+import hi.na;
+import hi.sa;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.ff;
+import org.telegram.messenger.is;
+import org.telegram.messenger.np;
+import org.telegram.messenger.ur;
+import org.telegram.messenger.z10;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.dn0;
+import org.telegram.ui.qn;
+import org.telegram.ui.sw;
+import org.telegram.ui.yw;
+import org.telegram.ui.zv;
+public final class i1 implements z10 {
+    public final int f3570a;
+    public final long f3571b;
+    public final Object f3572c;
+    public final Object d;
+    public final Object f3573e;
 
-    static {
-        float[][] fArr = {new float[]{83.33f, 24.0f, 27.33f, 0.22f, 68.66f, 75.33f, 25.33f, 0.21f, 0.0f, 86.0f, 25.33f, 0.12f, -68.66f, 75.33f, 25.33f, 0.21f, -82.66f, 13.66f, 27.33f, 0.22f, -80.0f, -33.33f, 20.0f, 0.24f, -46.5f, -63.16f, 27.0f, 0.21f, 1.0f, -82.66f, 20.0f, 0.15f, 46.5f, -63.16f, 27.0f, 0.21f, 80.0f, -33.33f, 19.33f, 0.24f, 115.66f, -63.0f, 20.0f, 0.15f, 134.0f, -10.66f, 20.0f, 0.18f, 118.66f, 55.66f, 20.0f, 0.15f, 124.33f, 98.33f, 20.0f, 0.11f, -128.0f, 98.33f, 20.0f, 0.11f, -108.0f, 55.66f, 20.0f, 0.15f, -123.33f, -10.66f, 20.0f, 0.18f, -116.0f, -63.33f, 20.0f, 0.15f}, new float[]{27.33f, -57.66f, 20.0f, 0.12f, 59.0f, -32.0f, 19.33f, 0.22f, 77.0f, 4.33f, 22.66f, 0.2f, 100.0f, 40.33f, 18.0f, 0.12f, 58.66f, 59.0f, 20.0f, 0.18f, 73.33f, 100.33f, 22.66f, 0.15f, 75.0f, 155.0f, 22.0f, 0.11f, -27.33f, -57.33f, 20.0f, 0.12f, -59.0f, -32.33f, 19.33f, 0.2f, -77.0f, 4.66f, 23.33f, 0.2f, -98.66f, 41.0f, 18.66f, 0.12f, -58.0f, 59.33f, 19.33f, 0.18f, -73.33f, 100.0f, 22.0f, 0.15f, -75.66f, 155.0f, 22.0f, 0.11f}, new float[]{-0.83f, -52.16f, 12.33f, 0.2f, 26.66f, -40.33f, 16.0f, 0.2f, 44.16f, -20.5f, 12.33f, 0.2f, 53.0f, 7.33f, 16.0f, 0.2f, 31.0f, 23.66f, 14.66f, 0.2f, 0.0f, 32.0f, 13.33f, 0.2f, -29.0f, 23.66f, 14.0f, 0.2f, -53.0f, 7.33f, 16.0f, 0.2f, -44.5f, -20.16f, 12.33f, 0.2f, -27.33f, -40.33f, 16.0f, 0.2f, 43.66f, 50.0f, 14.66f, 0.2f, -41.66f, 48.0f, 14.66f, 0.2f}, new float[]{-0.16f, -103.5f, 20.33f, 0.15f, 39.66f, -77.33f, 26.66f, 0.15f, 70.66f, -46.33f, 21.33f, 0.15f, 84.5f, -3.83f, 29.66f, 0.15f, 65.33f, 56.33f, 24.66f, 0.15f, 0.0f, 67.66f, 24.66f, 0.15f, -65.66f, 56.66f, 24.66f, 0.15f, -85.0f, -4.0f, 29.33f, 0.15f, -70.66f, -46.33f, 21.33f, 0.15f, -40.33f, -77.66f, 26.66f, 0.15f, 62.66f, -109.66f, 21.33f, 0.11f, 103.166f, -67.5f, 20.33f, 0.11f, 110.33f, 37.66f, 20.66f, 0.11f, 94.166f, 91.16f, 20.33f, 0.11f, 38.83f, 91.16f, 20.33f, 0.11f, 0.0f, 112.5f, 20.33f, 0.11f, -38.83f, 91.16f, 20.33f, 0.11f, -94.166f, 91.16f, 20.33f, 0.11f, -110.33f, 37.66f, 20.66f, 0.11f, -103.166f, -67.5f, 20.33f, 0.11f, -62.66f, -109.66f, 21.33f, 0.11f}};
-        f4023a = fArr;
-        short s5 = 0;
-        for (float[] fArr2 : fArr) {
-            s5 = (short) Math.max((int) s5, fArr2.length / 4);
-        }
-        f4024b = new a4.k(s5);
+    public i1(fi.s6 s6Var, z10 z10Var, long j3, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+        this.f3570a = 4;
+        this.f3572c = s6Var;
+        this.f3573e = z10Var;
+        this.f3571b = j3;
+        this.d = tL_premium_boostsStatus;
     }
 
-    public static void a(Canvas canvas, int i7, Drawable drawable, float f10, float f11, float f12, float f13) {
-        if (f12 > 0.0f) {
-            int i10 = 0;
-            while (true) {
-                float[] fArr = f4023a[i7];
-                if (i10 < fArr.length) {
-                    float f14 = fArr[i10];
-                    float f15 = fArr[i10 + 1];
-                    float f16 = fArr[i10 + 2];
-                    float f17 = fArr[i10 + 3];
-                    if (f10 < f11 && i7 == 0) {
-                        f15 = f14;
-                        f14 = f15;
+    @Override
+    public final void a(Object obj) {
+        int i7 = this.f3570a;
+        di.x2 x2Var = null;
+        long j3 = this.f3571b;
+        Object obj2 = this.f3573e;
+        Object obj3 = this.d;
+        Object obj4 = this.f3572c;
+        switch (i7) {
+            case 0:
+                b2 b2Var = (b2) obj3;
+                vf.b bVar = (vf.b) obj;
+                bVar.d();
+                b2Var.s1(j3, new o1((s2) obj4, bVar, (z10) obj2, b2Var, 0));
+                return;
+            case 1:
+                di.c6 c6Var = (di.c6) obj4;
+                c6Var.f8318g2.setLoading(false);
+                t6 t6Var = new t6(c6Var, 1);
+                ug.j0 j0Var = new ug.j0(26, c6Var.f29679a, c6Var.getContext(), t6Var, c6Var.J0);
+                j0Var.A1((org.telegram.messenger.e3) obj);
+                j0Var.z1((TL_stories.TL_premium_boostsStatus) obj3, true);
+                j0Var.B1(j3);
+                TLRPC.Chat M0 = ((np) obj2).M0(Long.valueOf(-j3));
+                if (M0 != null) {
+                    j0Var.M2 = new di.q2(c6Var, M0);
+                }
+                j0Var.show();
+                return;
+            case 2:
+                fi.q qVar = (fi.q) obj4;
+                fi.p pVar = (fi.p) obj2;
+                ((org.telegram.ui.ActionBar.t1) obj3).dismiss();
+                if (((Boolean) obj).booleanValue()) {
+                    sa D = sa.D(qVar.f12194f0.getParentActivity(), qVar.f12193f);
+                    D.O = j3;
+                    ia iaVar = D.f15048d1;
+                    if (iaVar != null) {
+                        iaVar.setDialogId(j3);
                     }
-                    float f18 = f14 * f13;
-                    float f19 = f15 * f13;
-                    float f20 = f16 * f13;
-                    drawable.setBounds((int) (org.telegram.messenger.g0.L(f18) - (org.telegram.messenger.g0.L(f20) / 2.0f)), (int) (org.telegram.messenger.g0.L(f19) - (org.telegram.messenger.g0.L(f20) / 2.0f)), (int) ((org.telegram.messenger.g0.L(f20) / 2.0f) + org.telegram.messenger.g0.L(f18)), (int) ((org.telegram.messenger.g0.L(f20) / 2.0f) + org.telegram.messenger.g0.L(f19)));
-                    drawable.setAlpha((int) Utilities.i(f12 * 255.0f * f17, 255.0f, 0.0f));
-                    drawable.draw(canvas);
-                    i10 += 4;
-                } else {
+                    D.N = false;
+                    D.Q(na.c(pVar));
                     return;
                 }
-            }
-        }
-    }
-
-    public static void b(Canvas canvas, int i7, Paint paint, Bitmap bitmap, float f10, float f11, float f12) {
-        a4.k kVar;
-        if (f12 <= 0.0f) {
-            return;
-        }
-        float width = bitmap.getWidth();
-        float height = bitmap.getHeight();
-        int i10 = 0;
-        int i11 = 0;
-        while (true) {
-            kVar = f4024b;
-            if (i11 >= kVar.f191b) {
-                break;
-            }
-            a4.k.d((float[]) kVar.d, i11, 0.0f, 0.0f, width, height);
-            i11++;
-        }
-        while (true) {
-            float[] fArr = f4023a[i7];
-            if (i10 < fArr.length) {
-                float f13 = fArr[i10];
-                float f14 = fArr[i10 + 1];
-                float f15 = fArr[i10 + 2];
-                float f16 = fArr[i10 + 3];
-                if (f10 < f11 && i7 == 0) {
-                    f14 = f13;
-                    f13 = f14;
-                }
-                float f17 = f13 * 1.0f;
-                float f18 = f14 * 1.0f;
-                float f19 = f15 * 1.0f;
-                int i12 = i10 / 4;
-                a4.k.d((float[]) kVar.f192c, i12, org.telegram.messenger.g0.L(f17) - (org.telegram.messenger.g0.L(f19) / 2.0f), org.telegram.messenger.g0.L(f18) - (org.telegram.messenger.g0.L(f19) / 2.0f), (org.telegram.messenger.g0.L(f19) / 2.0f) + org.telegram.messenger.g0.L(f17), (org.telegram.messenger.g0.L(f19) / 2.0f) + org.telegram.messenger.g0.L(f18));
-                kVar.t(i12, i0.a.o(-1, (int) (255.0f * f12 * f16)));
-                i10 += 4;
-            } else {
-                g0.a.b(canvas, kVar, fArr.length / 4, paint);
                 return;
-            }
+            case 3:
+                fi.s6 s6Var = (fi.s6) obj4;
+                z10 z10Var = (z10) obj2;
+                np npVar = (np) obj3;
+                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
+                if (tL_premium_boostsStatus == null) {
+                    z10Var.a(Boolean.FALSE);
+                    return;
+                }
+                org.telegram.messenger.f3 G0 = npVar.G0();
+                long j10 = this.f3571b;
+                G0.b(j10, tL_premium_boostsStatus, new i1(s6Var, z10Var, j10, tL_premium_boostsStatus));
+                z10Var.a(Boolean.FALSE);
+                return;
+            case 4:
+                fi.s6 s6Var2 = (fi.s6) obj4;
+                z10 z10Var2 = (z10) obj2;
+                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus2 = (TL_stories.TL_premium_boostsStatus) obj3;
+                org.telegram.messenger.e3 e3Var = (org.telegram.messenger.e3) obj;
+                if (e3Var == null) {
+                    z10Var2.a(Boolean.FALSE);
+                    return;
+                }
+                org.telegram.ui.ActionBar.e2 Q = LaunchActivity.Q();
+                if (s6Var2.j(j3)) {
+                    x2Var = new di.x2(s6Var2, j3, 5);
+                }
+                int i10 = ug.j0.S2;
+                if (Q != null && tL_premium_boostsStatus2 != null && Q.getContext() != null) {
+                    ug.j0 j0Var2 = new ug.j0(18, Q.getCurrentAccount(), Q.getContext(), Q, Q.getResourceProvider());
+                    j0Var2.A1(e3Var);
+                    j0Var2.z1(tL_premium_boostsStatus2, true);
+                    j0Var2.B1(j3);
+                    j0Var2.M2 = x2Var;
+                    j0Var2.show();
+                }
+                z10Var2.a(Boolean.FALSE);
+                return;
+            case 5:
+                qn.d0((qn) obj4, (org.telegram.ui.ActionBar.t1) obj3, (TL_stories.TL_premium_boostsStatus) obj2, this.f3571b, (org.telegram.messenger.e3) obj);
+                return;
+            case 6:
+                org.telegram.ui.ActionBar.e2[] e2VarArr = (org.telegram.ui.ActionBar.e2[]) obj2;
+                Runnable runnable = (Runnable) obj;
+                ((org.telegram.ui.ActionBar.t1) obj3).dismiss();
+                yw ywVar = ((zv) obj4).f54031b;
+                ywVar.getMessagesController().T2(Long.valueOf(j3), null, 32);
+                sw swVar = ywVar.E2;
+                ywVar.removeSelfFromStack();
+                if (e2VarArr[1] != null) {
+                    e2VarArr[0].removeSelfFromStack();
+                    e2VarArr[1].finishFragment();
+                } else {
+                    e2VarArr[0].finishFragment();
+                }
+                if (swVar != null) {
+                    ArrayList arrayList = new ArrayList();
+                    arrayList.add(ur.a(-j3, 0L));
+                    swVar.y(ywVar, arrayList, null, false, ywVar.L2, ywVar.M2, ywVar.N2, null);
+                    return;
+                }
+                return;
+            default:
+                PhotoViewer photoViewer = (PhotoViewer) obj4;
+                String str = (String) obj3;
+                ff ffVar = (ff) obj2;
+                Bitmap bitmap = (Bitmap) obj;
+                Drawable[] drawableArr = PhotoViewer.Z8;
+                if (bitmap == null) {
+                    org.telegram.messenger.g0.h3(new dn0(photoViewer, 18));
+                    return;
+                }
+                try {
+                    FileOutputStream fileOutputStream = new FileOutputStream(new File(str));
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fileOutputStream);
+                    fileOutputStream.close();
+                    Bitmap createBitmap = Bitmap.createBitmap(org.telegram.messenger.g0.L(26.0f), org.telegram.messenger.g0.L(26.0f), Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(createBitmap);
+                    Paint paint = new Paint(3);
+                    canvas.translate(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f);
+                    float max = Math.max(createBitmap.getWidth() / bitmap.getWidth(), createBitmap.getHeight() / bitmap.getHeight());
+                    canvas.scale(max, max);
+                    canvas.drawBitmap(bitmap, (-bitmap.getWidth()) / 2.0f, (-bitmap.getHeight()) / 2.0f, paint);
+                    org.telegram.messenger.g0.h3(new r1(photoViewer, ffVar, this.f3571b, str, createBitmap, 15));
+                    return;
+                } catch (Exception e10) {
+                    a8.g(e10, true);
+                    org.telegram.messenger.g0.h3(new dn0(photoViewer, 19));
+                    return;
+                }
         }
     }
 
-    public static void c(Canvas canvas, org.telegram.ui.Components.f5 f5Var, int i7, float f10, float f11, RectF rectF, float f12) {
-        float f13;
-        float f14;
-        float l10;
-        float f15;
-        float f16 = f11;
-        if (f16 > 0.0f) {
-            if (f16 >= 0.85f) {
-                f13 = 1.0f;
-            } else {
-                f13 = f16 / 0.85f;
-            }
-            float l11 = Utilities.l((f13 - 0.2f) / 0.8f);
-            float f17 = rectF.left;
-            float f18 = rectF.top;
-            float width = rectF.width();
-            float height = rectF.height();
-            float f19 = (width / 2.0f) + f17;
-            float f20 = (height / 2.0f) + f18;
-            float N = org.telegram.messenger.g0.N(96.0f);
-            float min = Math.min(f17, (i7 - N) / 2.0f);
-            float max = Math.max(f18, (f10 - N) / 2.0f);
-            float max2 = Math.max(width, N);
-            float max3 = Math.max(height, N);
-            float f21 = max2 / 2.0f;
-            float f22 = min + f21;
-            float f23 = max3 / 2.0f;
-            float f24 = max + f23;
-            float N2 = org.telegram.messenger.g0.N(24.0f);
-            float N3 = org.telegram.messenger.g0.N(16.0f);
-            float N4 = org.telegram.messenger.g0.N(12.0f);
-            float N5 = org.telegram.messenger.g0.N(8.0f);
-            float N6 = org.telegram.messenger.g0.N(4.0f);
-            float f25 = N2 * 2.0f;
-            float f26 = f25 * 2.0f;
-            float cos = (f25 + f21) * ((float) Math.cos(Math.toRadians(120.0d)));
-            float cos2 = (N3 + f23) * ((float) Math.cos(Math.toRadians(160.0d)));
-            float f27 = max + max3;
-            float f28 = min - N3;
-            float f29 = max3 / 4.0f;
-            float f30 = (f24 - f29) - N5;
-            float f31 = min + max2;
-            float f32 = f31 + N3;
-            float f33 = f24 + f29 + N5;
-            float f34 = min - f25;
-            float f35 = f31 + f25;
-            float f36 = f22 + cos;
-            float f37 = (max - f25) + N4;
-            float f38 = f22 - cos;
-            float f39 = (f27 + f25) - N4;
-            float f40 = f34 - N5;
-            float f41 = f24 + cos2;
-            float f42 = f35 + N5;
-            float f43 = f24 - cos2;
-            float f44 = min - f26;
-            float f45 = f31 + f26;
-            float f46 = 1.0f;
-            int i10 = 0;
-            float[] fArr = {f22, max - N2, 20.0f, f22, f27 + N2, 20.0f, f28, f30, 23.0f, f32, f30, 18.0f, f28, f33, 24.0f, f32 - N6, f33, 24.0f, f34, f24, 19.0f, f35, f24, 19.0f, f36, f37, 17.0f, f38, f37, 17.0f, f36, f39, 20.0f, f38, f39, 20.0f, f40, f41, 20.0f, f42, f41, 19.0f, f40, f43, 21.0f, f42, f43, 18.0f, f44, f24, 19.0f, f45, f24, 19.0f};
-            float[] fArr2 = {0.02f, 0.42f, 0.0f, 0.32f, 0.0f, 0.4f, 0.0f, 0.4f, 0.0f, 0.4f, 0.0f, 0.4f, 0.14f, 0.6f, 0.16f, 0.64f, 0.14f, 0.7f, 0.14f, 0.9f, 0.2f, 0.75f, 0.2f, 0.85f, 0.09f, 0.45f, 0.09f, 0.45f, 0.09f, 0.45f, 0.11f, 0.45f, 0.14f, 0.75f, 0.2f, 0.8f};
-            int i11 = 0;
-            for (int i12 = 54; i11 < i12; i12 = 54) {
-                float f47 = fArr[i11];
-                float f48 = fArr[i11 + 1];
-                float N7 = org.telegram.messenger.g0.N(fArr[i11 + 2]) * 0.5f;
-                float f49 = fArr2[i10];
-                float f50 = fArr2[i10 + 1];
-                float f51 = f46 - l11;
-                if (f51 < f49) {
-                    f14 = max3;
-                    l10 = f46;
-                } else {
-                    f14 = max3;
-                    l10 = f46 - Utilities.l((f51 - f49) / (f50 - f49));
-                }
-                float f52 = f27;
-                if (i11 == 18 || i11 == 19 || i11 == 6 || i11 == 7) {
-                    l10 = wq.f40048i.getInterpolation(l10);
-                }
-                float[] fArr3 = fArr2;
-                float f53 = f46;
-                float v = com.google.android.recaptcha.internal.a.v(f53, f16, org.telegram.messenger.g0.L(12.0f), f48);
-                int i13 = (l10 > f53 ? 1 : (l10 == f53 ? 0 : -1));
-                if (i13 < 0) {
-                    f47 = org.telegram.messenger.g0.T1(f19, f47, wq.f40048i.getInterpolation(l10));
-                    v = org.telegram.messenger.g0.T1(f20, v, l10);
-                    N7 = org.telegram.messenger.g0.T1(org.telegram.messenger.g0.N(8.0f), N7, l10);
-                }
-                if (v > f52 + org.telegram.messenger.g0.L(8.0f)) {
-                    f46 = 1.0f;
-                    f15 = 1.0f - Utilities.l((((v - max) - f14) - org.telegram.messenger.g0.L(8.0f)) / org.telegram.messenger.g0.L(56.0f));
-                } else {
-                    f46 = 1.0f;
-                    f15 = 1.0f;
-                }
-                float l12 = (f46 - Utilities.l(a8.r9.a(f22, f24, f47, v) / (max2 * 2.0f))) * f12 * 0.5f * f15;
-                if (i13 < 0) {
-                    l12 = org.telegram.messenger.g0.T1(0.0f, l12, l10);
-                }
-                f5Var.setBounds((int) (f47 - N7), (int) (v - N7), (int) (f47 + N7), (int) (v + N7));
-                f5Var.f33468w = (int) (l12 * 255.0f);
-                f5Var.draw(canvas);
-                i11 += 3;
-                i10 += 2;
-                f16 = f11;
-                f27 = f52;
-                max3 = f14;
-                fArr2 = fArr3;
-            }
-        }
+    public i1(fi.s6 s6Var, z10 z10Var, np npVar, long j3) {
+        this.f3570a = 3;
+        this.f3572c = s6Var;
+        this.f3573e = z10Var;
+        this.d = npVar;
+        this.f3571b = j3;
+    }
+
+    public i1(Object obj, Object obj2, long j3, Object obj3, int i7) {
+        this.f3570a = i7;
+        this.f3572c = obj;
+        this.d = obj2;
+        this.f3571b = j3;
+        this.f3573e = obj3;
+    }
+
+    public i1(is isVar, Object obj, Object obj2, long j3, int i7) {
+        this.f3570a = i7;
+        this.f3572c = isVar;
+        this.d = obj;
+        this.f3573e = obj2;
+        this.f3571b = j3;
     }
 }

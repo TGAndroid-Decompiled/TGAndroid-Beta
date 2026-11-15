@@ -5,16 +5,16 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 public abstract class l implements Iterator {
-    public final int f516a = 0;
-    public int f517b;
-    public int f518c;
+    public final int f518a = 0;
+    public int f519b;
+    public int f520c;
     public int d;
-    public final AbstractMap f519e;
+    public final AbstractMap f521e;
 
     public l(o oVar) {
-        this.f519e = oVar;
-        this.f517b = oVar.f551e;
-        this.f518c = oVar.isEmpty() ? -1 : 0;
+        this.f521e = oVar;
+        this.f519b = oVar.f556e;
+        this.f520c = oVar.isEmpty() ? -1 : 0;
         this.d = -1;
     }
 
@@ -24,19 +24,19 @@ public abstract class l implements Iterator {
 
     @Override
     public final boolean hasNext() {
-        switch (this.f516a) {
+        switch (this.f518a) {
             case 0:
-                if (this.f518c >= 0) {
+                if (this.f520c >= 0) {
                     return true;
                 }
                 return false;
             case 1:
-                if (this.f518c >= 0) {
+                if (this.f520c >= 0) {
                     return true;
                 }
                 return false;
             default:
-                if (this.f518c >= 0) {
+                if (this.f520c >= 0) {
                     return true;
                 }
                 return false;
@@ -45,53 +45,53 @@ public abstract class l implements Iterator {
 
     @Override
     public final Object next() {
-        switch (this.f516a) {
+        switch (this.f518a) {
             case 0:
-                o oVar = (o) this.f519e;
-                if (oVar.f551e == this.f517b) {
+                o oVar = (o) this.f521e;
+                if (oVar.f556e == this.f519b) {
                     if (hasNext()) {
-                        int i7 = this.f518c;
+                        int i7 = this.f520c;
                         this.d = i7;
                         Object b10 = b(i7);
-                        int i10 = this.f518c + 1;
-                        if (i10 >= oVar.f552f) {
+                        int i10 = this.f520c + 1;
+                        if (i10 >= oVar.f557f) {
                             i10 = -1;
                         }
-                        this.f518c = i10;
+                        this.f520c = i10;
                         return b10;
                     }
                     throw new NoSuchElementException();
                 }
                 throw new ConcurrentModificationException();
             case 1:
-                c8.d dVar = (c8.d) this.f519e;
-                if (dVar.f5420e == this.f517b) {
+                c8.d dVar = (c8.d) this.f521e;
+                if (dVar.f4242e == this.f519b) {
                     if (hasNext()) {
-                        int i11 = this.f518c;
+                        int i11 = this.f520c;
                         this.d = i11;
                         Object b11 = b(i11);
-                        int i12 = this.f518c + 1;
-                        if (i12 >= dVar.f5421f) {
+                        int i12 = this.f520c + 1;
+                        if (i12 >= dVar.f4243f) {
                             i12 = -1;
                         }
-                        this.f518c = i12;
+                        this.f520c = i12;
                         return b11;
                     }
                     throw new NoSuchElementException();
                 }
                 throw new ConcurrentModificationException();
             default:
-                h9.s sVar = (h9.s) this.f519e;
-                if (sVar.f14388e == this.f517b) {
+                h9.s sVar = (h9.s) this.f521e;
+                if (sVar.f13745e == this.f519b) {
                     if (hasNext()) {
-                        int i13 = this.f518c;
+                        int i13 = this.f520c;
                         this.d = i13;
                         Object a10 = a(i13);
-                        int i14 = this.f518c + 1;
-                        if (i14 >= sVar.f14389f) {
+                        int i14 = this.f520c + 1;
+                        if (i14 >= sVar.f13746f) {
                             i14 = -1;
                         }
-                        this.f518c = i14;
+                        this.f520c = i14;
                         return a10;
                     }
                     throw new NoSuchElementException();
@@ -102,27 +102,27 @@ public abstract class l implements Iterator {
 
     @Override
     public final void remove() {
-        boolean z9;
         boolean z10;
         boolean z11;
-        switch (this.f516a) {
+        boolean z12;
+        switch (this.f518a) {
             case 0:
-                o oVar = (o) this.f519e;
-                int i7 = oVar.f551e;
-                int i10 = this.f517b;
+                o oVar = (o) this.f521e;
+                int i7 = oVar.f556e;
+                int i10 = this.f519b;
                 if (i7 == i10) {
                     int i11 = this.d;
                     if (i11 >= 0) {
-                        z9 = true;
+                        z10 = true;
                     } else {
-                        z9 = false;
+                        z10 = false;
                     }
-                    if (z9) {
-                        this.f517b = i10 + 32;
-                        Object[] objArr = oVar.f550c;
+                    if (z10) {
+                        this.f519b = i10 + 32;
+                        Object[] objArr = oVar.f555c;
                         objArr.getClass();
                         oVar.remove(objArr[i11]);
-                        this.f518c--;
+                        this.f520c--;
                         this.d = -1;
                         return;
                     }
@@ -130,22 +130,22 @@ public abstract class l implements Iterator {
                 }
                 throw new ConcurrentModificationException();
             case 1:
-                c8.d dVar = (c8.d) this.f519e;
-                int i12 = dVar.f5420e;
-                int i13 = this.f517b;
+                c8.d dVar = (c8.d) this.f521e;
+                int i12 = dVar.f4242e;
+                int i13 = this.f519b;
                 if (i12 == i13) {
                     int i14 = this.d;
                     if (i14 >= 0) {
-                        z10 = true;
+                        z11 = true;
                     } else {
-                        z10 = false;
+                        z11 = false;
                     }
-                    if (z10) {
-                        this.f517b = i13 + 32;
-                        Object[] objArr2 = dVar.f5419c;
+                    if (z11) {
+                        this.f519b = i13 + 32;
+                        Object[] objArr2 = dVar.f4241c;
                         objArr2.getClass();
                         dVar.remove(objArr2[i14]);
-                        this.f518c--;
+                        this.f520c--;
                         this.d = -1;
                         return;
                     }
@@ -153,17 +153,17 @@ public abstract class l implements Iterator {
                 }
                 throw new ConcurrentModificationException();
             default:
-                h9.s sVar = (h9.s) this.f519e;
-                if (sVar.f14388e == this.f517b) {
+                h9.s sVar = (h9.s) this.f521e;
+                if (sVar.f13745e == this.f519b) {
                     if (this.d >= 0) {
-                        z11 = true;
+                        z12 = true;
                     } else {
-                        z11 = false;
+                        z12 = false;
                     }
-                    ia.o("no calls to next() since the last call to remove()", z11);
-                    this.f517b += 32;
+                    ja.o("no calls to next() since the last call to remove()", z12);
+                    this.f519b += 32;
                     sVar.remove(sVar.k()[this.d]);
-                    this.f518c--;
+                    this.f520c--;
                     this.d = -1;
                     return;
                 }
@@ -172,16 +172,16 @@ public abstract class l implements Iterator {
     }
 
     public l(c8.d dVar) {
-        this.f519e = dVar;
-        this.f517b = dVar.f5420e;
-        this.f518c = dVar.isEmpty() ? -1 : 0;
+        this.f521e = dVar;
+        this.f519b = dVar.f4242e;
+        this.f520c = dVar.isEmpty() ? -1 : 0;
         this.d = -1;
     }
 
     public l(h9.s sVar) {
-        this.f519e = sVar;
-        this.f517b = sVar.f14388e;
-        this.f518c = sVar.isEmpty() ? -1 : 0;
+        this.f521e = sVar;
+        this.f519b = sVar.f13745e;
+        this.f520c = sVar.isEmpty() ? -1 : 0;
         this.d = -1;
     }
 }

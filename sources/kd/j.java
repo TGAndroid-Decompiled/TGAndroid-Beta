@@ -18,7 +18,7 @@ public abstract class j extends c implements kotlin.jvm.internal.g {
     @Override
     public String toString() {
         if (getCompletion() == null) {
-            s.f17619a.getClass();
+            s.f18758a.getClass();
             String a10 = t.a(this);
             kotlin.jvm.internal.j.d(a10, "renderLambdaToString(...)");
             return a10;

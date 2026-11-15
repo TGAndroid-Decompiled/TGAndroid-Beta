@@ -2,65 +2,65 @@ package org.telegram.messenger;
 
 import android.app.Activity;
 import java.util.HashMap;
-import org.telegram.ui.gh0;
+import org.telegram.ui.fh0;
 public final class i4 implements Runnable {
-    public final int f23045a = 0;
-    public final boolean f23046b;
-    public final boolean f23047c;
+    public final int f24278a = 0;
+    public final boolean f24279b;
+    public final boolean f24280c;
     public final boolean d;
-    public final Object f23048e;
-    public final Object f23049f;
+    public final Object f24281e;
+    public final Object f24282f;
 
-    public i4(g5 g5Var, HashMap hashMap, boolean z9, boolean z10, boolean z11) {
-        this.f23048e = g5Var;
-        this.f23049f = hashMap;
-        this.f23046b = z9;
-        this.f23047c = z10;
-        this.d = z11;
+    public i4(g5 g5Var, HashMap hashMap, boolean z10, boolean z11, boolean z12) {
+        this.f24281e = g5Var;
+        this.f24282f = hashMap;
+        this.f24279b = z10;
+        this.f24280c = z11;
+        this.d = z12;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f23045a;
-        Object obj = this.f23049f;
-        Object obj2 = this.f23048e;
+        int i7 = this.f24278a;
+        Object obj = this.f24282f;
+        Object obj2 = this.f24281e;
         switch (i7) {
             case 0:
                 g5 g5Var = (g5) obj2;
                 HashMap hashMap = (HashMap) obj;
-                if (r2.f25216a) {
+                if (r2.f26198a) {
                     a8.b("sync contacts by alert");
                 }
-                g5Var.F(hashMap, true, this.f23046b, this.f23047c, false, false, this.d);
+                g5Var.F(hashMap, true, this.f24279b, this.f24280c, false, false, this.d);
                 return;
             default:
-                org.telegram.ui.zw zwVar = (org.telegram.ui.zw) obj2;
+                org.telegram.ui.yw ywVar = (org.telegram.ui.yw) obj2;
                 Activity activity = (Activity) obj;
-                if (zwVar.getParentActivity() != null) {
-                    zwVar.f52658u2 = false;
-                    boolean z9 = this.f23046b;
-                    boolean z10 = this.f23047c;
-                    boolean z11 = this.d;
-                    if (z9 || z10 || z11) {
-                        zwVar.A0 = true;
-                        if (z9 && gh0.J0(activity)) {
-                            c8.ia.e(new String[]{"android.permission.POST_NOTIFICATIONS"}, new org.telegram.ui.Components.lm(new org.telegram.ui.Components.ex(10, zwVar, activity), 1));
+                if (ywVar.getParentActivity() != null) {
+                    ywVar.f53753v2 = false;
+                    boolean z10 = this.f24279b;
+                    boolean z11 = this.f24280c;
+                    boolean z12 = this.d;
+                    if (z10 || z11 || z12) {
+                        ywVar.B0 = true;
+                        if (z10 && fh0.J0(activity)) {
+                            c8.ka.e(new String[]{"android.permission.POST_NOTIFICATIONS"}, new org.telegram.ui.Components.um(new org.telegram.ui.Components.gh(15, ywVar, activity), 1));
                             return;
-                        } else if (z10 && zwVar.V1 && zwVar.getUserConfig().U && activity.shouldShowRequestPermissionRationale("android.permission.READ_CONTACTS")) {
-                            org.telegram.ui.ActionBar.u1 u1Var = org.telegram.ui.Components.u4.v(activity, new org.telegram.ui.lu(zwVar, 0)).f27300a;
-                            zwVar.U1 = u1Var;
-                            zwVar.showDialog(u1Var);
+                        } else if (z11 && ywVar.W1 && ywVar.getUserConfig().V && activity.shouldShowRequestPermissionRationale("android.permission.READ_CONTACTS")) {
+                            org.telegram.ui.ActionBar.t1 t1Var = org.telegram.ui.Components.t4.v(activity, new org.telegram.ui.ku(ywVar, 0)).f28392a;
+                            ywVar.V1 = t1Var;
+                            ywVar.showDialog(t1Var);
                             return;
-                        } else if (z11 && activity.shouldShowRequestPermissionRationale("android.permission.WRITE_EXTERNAL_STORAGE")) {
+                        } else if (z12 && activity.shouldShowRequestPermissionRationale("android.permission.WRITE_EXTERNAL_STORAGE")) {
                             if (activity instanceof org.telegram.ui.g5) {
-                                org.telegram.ui.ActionBar.u1 v = ((org.telegram.ui.g5) activity).v(2131624118, id.M0(2131747299, null));
-                                zwVar.U1 = v;
-                                zwVar.showDialog(v);
+                                org.telegram.ui.ActionBar.t1 v = ((org.telegram.ui.g5) activity).v(2131624119, hd.M0(2131747299, null));
+                                ywVar.V1 = v;
+                                ywVar.showDialog(v);
                                 return;
                             }
                             return;
                         } else {
-                            zwVar.u3(true);
+                            ywVar.u3(true);
                             return;
                         }
                     }
@@ -70,11 +70,11 @@ public final class i4 implements Runnable {
         }
     }
 
-    public i4(org.telegram.ui.zw zwVar, boolean z9, boolean z10, boolean z11, Activity activity) {
-        this.f23048e = zwVar;
-        this.f23046b = z9;
-        this.f23047c = z10;
-        this.d = z11;
-        this.f23049f = activity;
+    public i4(org.telegram.ui.yw ywVar, boolean z10, boolean z11, boolean z12, Activity activity) {
+        this.f24281e = ywVar;
+        this.f24279b = z10;
+        this.f24280c = z11;
+        this.d = z12;
+        this.f24282f = activity;
     }
 }

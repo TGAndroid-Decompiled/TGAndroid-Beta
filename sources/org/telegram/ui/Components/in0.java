@@ -1,36 +1,34 @@
 package org.telegram.ui.Components;
-public final class in0 implements Runnable {
-    public final int f34708a;
-    public final mo0 f34709b;
 
-    public in0(mo0 mo0Var, int i7) {
-        this.f34708a = i7;
-        this.f34709b = mo0Var;
+import android.graphics.Canvas;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class in0 {
+    public final ut f35670a;
+    public final long f35671b;
+    public final float f35672c;
+    public final float d;
+    public final float f35673e;
+
+    public in0(View view) {
+        ut utVar = new ut(1, view);
+        this.f35671b = System.currentTimeMillis();
+        this.f35670a = utVar;
+        g5.a aVar = Utilities.f22415c;
+        this.f35672c = org.telegram.messenger.g0.T1(5.0f, 9.0f, Utilities.l(aVar.nextFloat()));
+        this.d = org.telegram.messenger.g0.T1(2.5f, 5.0f, Utilities.l(aVar.nextFloat()));
+        this.f35673e = org.telegram.messenger.g0.T1(2.5f, 5.2f, Utilities.l(aVar.nextFloat()));
     }
 
-    @Override
-    public final void run() {
-        switch (this.f34708a) {
-            case 0:
-                mo0 mo0Var = this.f34709b;
-                mo0Var.f36056v2 = true;
-                r00 r00Var = mo0Var.f36052t2;
-                r00Var.f37446r.setText("");
-                org.telegram.messenger.g0.K3(r00Var.f37446r);
-                return;
-            default:
-                us usVar = new us(5);
-                mo0 mo0Var2 = this.f34709b;
-                if (mo0Var2.d) {
-                    r00 r00Var2 = mo0Var2.f36052t2;
-                    if (r00Var2 != null) {
-                        org.telegram.messenger.g0.v1(r00Var2.f37446r);
-                    }
-                    org.telegram.messenger.g0.i3(usVar, 300L);
-                    return;
-                }
-                usVar.run();
-                return;
+    public final void a(Canvas canvas, float f10) {
+        ut utVar;
+        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f35671b)) / 1000.0f;
+        canvas.translate(0.0f, 0.0f);
+        canvas.rotate(((float) Math.sin(this.f35672c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f10);
+        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * org.telegram.messenger.g0.L(0.5f) * f10, ((float) Math.sin(currentTimeMillis * this.f35673e * 3.141592653589793d)) * org.telegram.messenger.g0.L(0.5f) * f10);
+        canvas.translate(-0.0f, -0.0f);
+        if (f10 > 0.0f && (utVar = this.f35670a) != null) {
+            utVar.run();
         }
     }
 }

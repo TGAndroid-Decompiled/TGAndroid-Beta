@@ -4,7 +4,7 @@ public interface b1 {
 
     boolean f();
 
-    int l(long j3);
+    int n(long j3);
 
-    int m(wf.b bVar, k2.h hVar, int i7);
+    int q(k8.a aVar, k2.h hVar, int i7);
 }

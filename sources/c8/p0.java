@@ -1,13 +1,8 @@
 package c8;
 
-import java.io.IOException;
+import android.graphics.drawable.Drawable;
 public abstract class p0 {
-    public static void a(j2.h hVar) {
-        if (hVar != null) {
-            try {
-                hVar.close();
-            } catch (IOException unused) {
-            }
-        }
+    public static void a(int i7, Drawable drawable) {
+        drawable.setTint(i7);
     }
 }

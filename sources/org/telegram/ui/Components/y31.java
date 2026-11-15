@@ -1,45 +1,53 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Typeface;
 import android.text.TextPaint;
-public final class y31 extends b41 {
-    public static boolean h = true;
-    public final int f40486e;
-    public final uy0 f40487f;
+import android.text.style.MetricAffectingSpan;
+public final class y31 extends MetricAffectingSpan {
+    public Typeface f41864a;
+    public int f41865b;
+    public int f41866c;
 
-    public y31(String str, int i7, uy0 uy0Var) {
-        super(str, (uy0) null);
-        this.f40486e = i7;
-        this.f40487f = uy0Var;
+    public y31(Typeface typeface) {
+        this.f41866c = -1;
+        this.f41864a = typeface;
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        int i7;
-        int i10;
-        super.updateDrawState(textPaint);
-        int i11 = this.f40486e;
-        if (i11 == 2) {
-            textPaint.setColor(-1);
-        } else if (i11 == 1) {
-            if (h) {
-                i10 = org.telegram.ui.ActionBar.m6.Vc;
-            } else {
-                i10 = org.telegram.ui.ActionBar.m6.Tc;
-            }
-            textPaint.setColor(org.telegram.ui.ActionBar.m6.x0(null, i10, false));
-        } else {
-            if (h) {
-                i7 = org.telegram.ui.ActionBar.m6.Uc;
-            } else {
-                i7 = org.telegram.ui.ActionBar.m6.Sc;
-            }
-            textPaint.setColor(org.telegram.ui.ActionBar.m6.x0(null, i7, false));
+        int i7 = this.f41866c;
+        if (i7 >= 0) {
+            this.f41865b = org.telegram.ui.ActionBar.j6.v0(i7);
         }
-        uy0 uy0Var = this.f40487f;
-        if (uy0Var != null) {
-            uy0Var.a(textPaint);
-        } else {
-            textPaint.setUnderlineText(false);
+        Typeface typeface = this.f41864a;
+        if (typeface != null) {
+            textPaint.setTypeface(typeface);
         }
+        int i10 = this.f41865b;
+        if (i10 != 0) {
+            textPaint.setColor(i10);
+        }
+        textPaint.setFlags(textPaint.getFlags() | 128);
+    }
+
+    @Override
+    public final void updateMeasureState(TextPaint textPaint) {
+        Typeface typeface = this.f41864a;
+        if (typeface != null) {
+            textPaint.setTypeface(typeface);
+        }
+        textPaint.setFlags(textPaint.getFlags() | 128);
+    }
+
+    public y31() {
+        Typeface typeface = Typeface.DEFAULT;
+        this.f41866c = -1;
+        this.f41864a = typeface;
+    }
+
+    public y31(Typeface typeface, int i7) {
+        this.f41866c = -1;
+        this.f41864a = typeface;
+        this.f41865b = i7;
     }
 }

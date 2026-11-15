@@ -1,32 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class ln implements View.OnClickListener {
-    public final int f35697a;
-    public final on f35698b;
-    public final TLRPC.Document f35699c;
+import java.util.concurrent.atomic.AtomicReference;
+public final class ln implements Runnable {
+    public final int f36856a;
+    public final sn f36857b;
 
-    public ln(on onVar, TLRPC.Document document, int i7) {
-        this.f35697a = i7;
-        this.f35698b = onVar;
-        this.f35699c = document;
+    public ln(sn snVar, int i7) {
+        this.f36856a = i7;
+        this.f36857b = snVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f35697a) {
+    public final void run() {
+        switch (this.f36856a) {
             case 0:
-                nn nnVar = this.f35698b.d;
-                if (nnVar != null) {
-                    nnVar.b(this.f35699c);
+                sn snVar = this.f36857b;
+                AtomicReference atomicReference = snVar.f39363n;
+                org.telegram.ui.ActionBar.j5 j5Var = (org.telegram.ui.ActionBar.j5) atomicReference.get();
+                if (j5Var != null) {
+                    snVar.removeView(j5Var);
+                    atomicReference.set(null);
+                    return;
+                }
+                return;
+            case 1:
+                sn snVar2 = this.f36857b;
+                AtomicReference atomicReference2 = snVar2.f39375w;
+                org.telegram.ui.ActionBar.j5 j5Var2 = (org.telegram.ui.ActionBar.j5) atomicReference2.get();
+                if (j5Var2 != null) {
+                    snVar2.removeView(j5Var2);
+                    atomicReference2.set(null);
+                    if (!snVar2.f39348b) {
+                        snVar2.setClipChildren(true);
+                        return;
+                    }
                     return;
                 }
                 return;
             default:
-                nn nnVar2 = this.f35698b.d;
-                if (nnVar2 != null) {
-                    nnVar2.b(this.f35699c);
+                sn snVar3 = this.f36857b;
+                snVar3.f39361k0 = false;
+                snVar3.f39359i0.c(false);
+                if (snVar3.a()) {
+                    snVar3.f();
                     return;
                 }
                 return;

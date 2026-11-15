@@ -1,4 +1,5 @@
 package org.telegram.ui.Components;
-public interface qi0 {
-    void e();
+
+import android.graphics.drawable.Drawable;
+public abstract class qi0 extends Drawable {
 }

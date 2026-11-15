@@ -1,53 +1,73 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
-public final class h01 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f34114a;
-    public final s01 f34115b;
+public abstract class h01 extends View {
+    public final i01 f35138a;
+    public org.telegram.messenger.z10 f35139b;
+    public final org.telegram.ui.ActionBar.e6 f35140c;
+    public int d;
 
-    public h01(s01 s01Var, int i7) {
-        this.f34114a = i7;
-        this.f34115b = s01Var;
+    public h01(int i7, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.f35140c = e6Var;
+        i01 i01Var = new i01(i7, this, e6Var, false);
+        this.f35138a = i01Var;
+        i01Var.f35410s = new ro0(this, 19);
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i7;
-        switch (this.f34114a) {
-            case 0:
-                s01 s01Var = this.f34115b;
-                s01Var.getClass();
-                s01Var.b(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 1:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                s01 s01Var2 = this.f34115b;
-                s01Var2.S = floatValue;
-                org.telegram.ui.g61 g61Var = s01Var2.P;
-                if (floatValue > 0.0f) {
-                    i7 = 0;
-                } else {
-                    i7 = 8;
-                }
-                g61Var.setVisibility(i7);
-                g61Var.setAlpha(floatValue);
-                g61Var.setTranslationY((1.0f - floatValue) * (-org.telegram.messenger.g0.L(8.0f)));
-                s01Var2.b(floatValue);
-                int L = org.telegram.messenger.g0.L(100.0f) + org.telegram.messenger.g0.f22561m + ((int) (org.telegram.messenger.g0.L(36.0f) * floatValue));
-                ((FrameLayout.LayoutParams) s01Var2.f37809r.getLayoutParams()).topMargin = L;
-                View view = s01Var2.E;
-                if (view != null) {
-                    ((FrameLayout.LayoutParams) view.getLayoutParams()).topMargin = L;
-                }
-                s01Var2.h.requestLayout();
-                return;
-            default:
-                s01 s01Var3 = this.f34115b;
-                s01Var3.getClass();
-                s01Var3.setProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        org.telegram.ui.ActionBar.e6 e6Var = this.f35140c;
+        if (e6Var != null) {
+            e6Var.b(0.0f, 0.0f, getMeasuredWidth(), this.d);
+        } else {
+            org.telegram.ui.ActionBar.j6.r(0.0f, 0.0f, getMeasuredWidth(), this.d);
         }
+        this.f35138a.c(canvas, getWidth(), 0.0f, 0.0f, 0.75f, 1.0f, true);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f35138a.a();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f35138a.b();
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(33.0f), 1073741824));
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.f35138a.d(motionEvent, false) && !super.onTouchEvent(motionEvent)) {
+            return false;
+        }
+        return true;
+    }
+
+    public void set(org.telegram.messenger.gj gjVar) {
+        i01 i01Var = this.f35138a;
+        i01Var.e(gjVar);
+        if (isAttachedToWindow()) {
+            i01Var.a();
+        }
+    }
+
+    public void setBackgroundHeight(int i7) {
+        this.d = i7;
+    }
+
+    public void setOnTopicClickListener(org.telegram.messenger.z10 z10Var) {
+        this.f35139b = z10Var;
     }
 }

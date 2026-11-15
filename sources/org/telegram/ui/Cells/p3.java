@@ -3,28 +3,28 @@ package org.telegram.ui.Cells;
 import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.m41;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.r41;
-import org.telegram.ui.Components.w31;
-import org.telegram.ui.Components.x31;
-public final class p3 extends w31 {
-    public static final int f29749b = 0;
+import org.telegram.ui.Components.a41;
+import org.telegram.ui.Components.b41;
+import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.u41;
+import org.telegram.ui.Components.uj0;
+public final class p3 extends a41 {
+    public static final int f30861b = 0;
 
     static {
-        w31.h(new w31());
+        a41.h(new a41());
     }
 
     @Override
-    public final void b(View view, x31 x31Var, boolean z9, m41 m41Var, r41 r41Var) {
+    public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
         q3 q3Var = (q3) view;
-        q3Var.a((TLRPC.StickerSetCovered) x31Var.G, z9, x31Var.f40164t, false);
-        q3Var.f30133f.a(x31Var.f40164t, false);
-        q3Var.setAddOnClickListener(x31Var.D);
+        q3Var.a((TLRPC.StickerSetCovered) b41Var.G, z10, b41Var.f33189t, false);
+        q3Var.f31266f.a(b41Var.f33189t, false);
+        q3Var.setAddOnClickListener(b41Var.D);
     }
 
     @Override
-    public final View d(Context context, pj0 pj0Var, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
-        return new q3(context, h6Var);
+    public final View d(Context context, uj0 uj0Var, int i7, org.telegram.ui.ActionBar.e6 e6Var) {
+        return new q3(context, e6Var);
     }
 }

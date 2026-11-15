@@ -3,53 +3,54 @@ package org.telegram.ui.Wallet;
 import android.text.TextUtils;
 import android.view.View;
 import org.json.JSONObject;
+import org.telegram.messenger.i20;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.gc;
-import org.telegram.ui.Components.k60;
+import org.telegram.ui.Components.cc;
+import org.telegram.ui.Components.m60;
 public final class i1 implements View.OnClickListener {
-    public final int f42601a;
-    public final Object f42602b;
-    public final Object f42603c;
+    public final int f43962a;
+    public final Object f43963b;
+    public final Object f43964c;
     public final Object d;
 
     public i1(Object obj, Object obj2, Object obj3, int i7) {
-        this.f42601a = i7;
-        this.f42602b = obj;
-        this.f42603c = obj2;
+        this.f43962a = i7;
+        this.f43963b = obj;
+        this.f43964c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f42601a) {
+        switch (this.f43962a) {
             case 0:
-                x2 x2Var = (x2) this.f42603c;
-                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) this.d;
-                if (org.telegram.messenger.g0.g(((JSONObject) this.f42602b).optString("text"))) {
-                    org.telegram.messenger.camera.q.r(null, 2131743009, new gc(x2Var.E, h6Var));
+                w2 w2Var = (w2) this.f43964c;
+                org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) this.d;
+                if (org.telegram.messenger.g0.g(((JSONObject) this.f43963b).optString("text"))) {
+                    i20.s(null, 2131743009, new cc(w2Var.F, e6Var));
                     return;
                 }
                 return;
             case 1:
-                k60 k60Var = (k60) this.d;
-                f fVar = ((l0) this.f42602b).h;
-                String str = ((TL_wallet.currencyRate) this.f42603c).currency;
-                if (!TextUtils.equals(fVar.f42482f, str)) {
-                    fVar.f42482f = str;
+                m60 m60Var = (m60) this.d;
+                f fVar = ((l0) this.f43963b).h;
+                String str = ((TL_wallet.currencyRate) this.f43964c).currency;
+                if (!TextUtils.equals(fVar.f43814f, str)) {
+                    fVar.f43814f = str;
                     try {
-                        org.telegram.messenger.t0.f25570b.getSharedPreferences("gram_wallet", 0).edit().putString("currency", fVar.g()).apply();
+                        org.telegram.messenger.t0.f26600b.getSharedPreferences("gram_wallet", 0).edit().putString("currency", fVar.g()).apply();
                     } catch (Exception e10) {
                         org.telegram.messenger.a8.e("[gram-wallet] failed to save currency prefs", e10);
                     }
-                    fVar.f42479b.L();
+                    fVar.f43811b.L();
                 }
-                k60Var.u();
+                m60Var.u();
                 return;
             default:
-                s8 s8Var = (s8) this.f42602b;
+                s8 s8Var = (s8) this.f43963b;
                 s8Var.getClass();
-                ((org.telegram.ui.ActionBar.u1[]) this.f42603c)[0].dismiss();
-                org.telegram.messenger.g0.g(s8Var.f43169s);
+                ((org.telegram.ui.ActionBar.t1[]) this.f43964c)[0].dismiss();
+                org.telegram.messenger.g0.g(s8Var.f44497s);
                 ((Runnable) this.d).run();
                 return;
         }

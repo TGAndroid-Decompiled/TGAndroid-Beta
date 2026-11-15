@@ -1,13 +1,13 @@
 package h3;
 public final class c implements a {
-    public final int f14186a;
-    public final int f14187b;
-    public final int f14188c;
+    public final int f13543a;
+    public final int f13544b;
+    public final int f13545c;
 
     public c(int i7, int i10, int i11) {
-        this.f14186a = i7;
-        this.f14187b = i10;
-        this.f14188c = i11;
+        this.f13543a = i7;
+        this.f13544b = i10;
+        this.f13545c = i11;
     }
 
     @Override

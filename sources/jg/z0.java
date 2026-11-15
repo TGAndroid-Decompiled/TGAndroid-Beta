@@ -1,47 +1,46 @@
 package jg;
 
-import bi.g2;
-import org.telegram.messenger.qp;
-import org.telegram.messenger.yr;
+import org.telegram.messenger.np;
+import org.telegram.messenger.vr;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class z0 implements Runnable {
-    public final String f16988a;
-    public final String f16989b;
-    public final qp f16990c;
-    public final yr d;
-    public final i1 f16991e;
+    public final String f17340a;
+    public final String f17341b;
+    public final np f17342c;
+    public final vr d;
+    public final h1 f17343e;
 
-    public z0(i1 i1Var, String str, String str2, qp qpVar, yr yrVar) {
-        this.f16991e = i1Var;
-        this.f16988a = str;
-        this.f16989b = str2;
-        this.f16990c = qpVar;
-        this.d = yrVar;
+    public z0(h1 h1Var, String str, String str2, np npVar, vr vrVar) {
+        this.f17343e = h1Var;
+        this.f17340a = str;
+        this.f17341b = str2;
+        this.f17342c = npVar;
+        this.d = vrVar;
     }
 
     @Override
     public final void run() {
-        i1 i1Var = this.f16991e;
-        if (i1Var.f16806y0 == this) {
-            i1Var.f16806y0 = null;
-            TLRPC.User user = i1Var.f16802w0;
-            if (user == null && !i1Var.f16800v0) {
-                String str = this.f16989b;
-                i1Var.f16793q0 = str;
-                qp qpVar = this.f16990c;
-                TLObject f22 = qpVar.f2(str);
+        h1 h1Var = this.f17343e;
+        if (h1Var.f17150z0 == this) {
+            h1Var.f17150z0 = null;
+            TLRPC.User user = h1Var.f17147x0;
+            if (user == null && !h1Var.f17145w0) {
+                String str = this.f17341b;
+                h1Var.f17138r0 = str;
+                np npVar = this.f17342c;
+                TLObject f22 = npVar.f2(str);
                 if (f22 instanceof TLRPC.User) {
-                    i1Var.R((TLRPC.User) f22);
+                    h1Var.R((TLRPC.User) f22);
                     return;
                 }
                 TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
-                tL_contacts_resolveUsername.username = i1Var.f16793q0;
-                i1Var.f16798t0 = ConnectionsManager.getInstance(i1Var.f16781f).sendRequest(tL_contacts_resolveUsername, new g2(this, str, qpVar, this.d, 7));
-            } else if (i1Var.f16800v0) {
+                tL_contacts_resolveUsername.username = h1Var.f17138r0;
+                h1Var.f17142u0 = ConnectionsManager.getInstance(h1Var.f17124f).sendRequest(tL_contacts_resolveUsername, new bi.l1(this, str, npVar, this.d, 8));
+            } else if (h1Var.f17145w0) {
             } else {
-                i1Var.T(true, user, this.f16988a, "");
+                h1Var.T(true, user, this.f17340a, "");
             }
         }
     }

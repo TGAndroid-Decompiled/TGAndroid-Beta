@@ -1,92 +1,101 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.StaticLayout;
-public final class ik0 extends Drawable {
-    public int f34692a = 255;
-    public final r70 f34693b;
-    public final int[] f34694c;
-    public final org.telegram.ui.Cells.q1 d;
-    public final int[] f34695e;
-    public final Bitmap f34696f;
-    public final RectF f34697g;
-    public final Paint h;
-    public final Paint f34698i;
-    public final StaticLayout f34699j;
+public final class ik0 extends qu0 {
+    public float d;
+    public final Paint f35647f;
+    public boolean f35643a = false;
+    public long f35644b = 0;
+    public boolean f35645c = false;
+    public int f35646e = 1;
 
-    public ik0(r70 r70Var, int[] iArr, org.telegram.ui.Cells.q1 q1Var, int[] iArr2, Bitmap bitmap, RectF rectF, Paint paint, Paint paint2, StaticLayout staticLayout) {
-        this.f34693b = r70Var;
-        this.f34694c = iArr;
-        this.d = q1Var;
-        this.f34695e = iArr2;
-        this.f34696f = bitmap;
-        this.f34697g = rectF;
-        this.h = paint;
-        this.f34698i = paint2;
-        this.f34699j = staticLayout;
+    public ik0(boolean z10) {
+        if (z10) {
+            this.f35647f = new Paint(1);
+        }
+    }
+
+    @Override
+    public final void b(int i7) {
+        Paint paint = this.f35647f;
+        if (paint != null) {
+            paint.setColor(i7);
+        }
+    }
+
+    @Override
+    public final void c(boolean z10) {
+        this.f35643a = z10;
+    }
+
+    @Override
+    public final void d() {
+        this.f35644b = System.currentTimeMillis();
+        this.f35645c = true;
+        invalidateSelf();
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        if (this.f34692a <= 0) {
-            return;
+        float f10;
+        Paint paint = this.f35647f;
+        if (paint == null) {
+            paint = org.telegram.ui.ActionBar.j6.f28827c2;
         }
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(getBounds());
-        float f10 = rectF.left;
-        CornerPathEffect cornerPathEffect = r70.f37530w;
-        rectF.left = f10 - (org.telegram.messenger.g0.L(5.0f) / 2.0f);
-        canvas.save();
-        canvas.saveLayerAlpha(rectF, this.f34692a, 31);
-        int[] iArr = this.f34694c;
-        canvas.translate(iArr[0], iArr[1]);
-        r70 r70Var = this.f34693b;
-        org.telegram.ui.Cells.q1 q1Var = this.d;
-        if (q1Var != null && q1Var.L0()) {
-            org.telegram.ui.ActionBar.u4 u4Var = q1Var.K6;
-            if (u4Var != null && u4Var.f28586c != null) {
-                canvas.save();
-                q1Var.setBackgroundTopY(true);
-                canvas.translate(0.0f, -q1Var.K6.f28599r);
-                canvas.drawPaint(q1Var.K6.f28586c);
-                canvas.restore();
-            } else {
-                canvas.translate(-iArr[0], -iArr[1]);
-                int[] iArr2 = this.f34695e;
-                canvas.translate(iArr2[0], q1Var.getPaddingTop() + iArr2[1]);
-                q1Var.M0(canvas, true, false);
-                canvas.translate(-iArr2[0], (-iArr2[1]) - q1Var.getPaddingTop());
-                canvas.translate(iArr[0], iArr[1]);
-            }
-            Bitmap bitmap = this.f34696f;
-            if (bitmap != null) {
-                canvas.save();
-                RectF rectF2 = this.f34697g;
-                canvas.drawBitmap(bitmap, rectF2.left, rectF2.top, this.h);
-                canvas.restore();
-            }
+        paint.setAlpha(((int) (this.d * 200.0f)) + 55);
+        float L = org.telegram.messenger.g0.L(6.0f);
+        if (this.f35643a) {
+            f10 = 8.0f;
         } else {
-            canvas.drawPath(r70Var, this.f34698i);
+            f10 = 9.0f;
         }
-        canvas.clipPath(r70Var);
-        this.f34699j.draw(canvas);
-        canvas.restore();
+        canvas.drawCircle(L, org.telegram.messenger.g0.L(f10), org.telegram.messenger.g0.L(4.0f), paint);
+        if (this.f35645c) {
+            long currentTimeMillis = System.currentTimeMillis();
+            long j3 = currentTimeMillis - this.f35644b;
+            this.f35644b = currentTimeMillis;
+            if (j3 > 50) {
+                j3 = 50;
+            }
+            float f11 = this.d;
+            int i7 = this.f35646e;
+            float f12 = (((float) (i7 * j3)) / 400.0f) + f11;
+            this.d = f12;
+            if (i7 > 0 && f12 >= 1.0f) {
+                this.f35646e = -1;
+                this.d = 1.0f;
+            } else if (i7 < 0 && f12 <= 0.0f) {
+                this.f35646e = 1;
+                this.d = 0.0f;
+            }
+            a();
+        }
+    }
+
+    @Override
+    public final void e() {
+        this.f35645c = false;
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return org.telegram.messenger.g0.L(10.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return org.telegram.messenger.g0.L(12.0f);
     }
 
     @Override
     public final int getOpacity() {
-        return -2;
+        return 0;
     }
 
     @Override
     public final void setAlpha(int i7) {
-        this.f34692a = i7;
     }
 
     @Override

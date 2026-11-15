@@ -1,19 +1,23 @@
 package org.telegram.ui.Components;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-public final class x30 {
-    public final ByteBuffer[] f40144a = new ByteBuffer[10];
-    public final long[] f40145b = new long[10];
-    public final int[] f40146c = new int[10];
-    public int d;
-    public int f40147e;
-    public boolean f40148f;
+import android.content.Context;
+public final class x30 extends f40 {
+    public final r40 d;
 
-    public x30() {
-        for (int i7 = 0; i7 < 10; i7++) {
-            this.f40144a[i7] = ByteBuffer.allocateDirect(2048);
-            this.f40144a[i7].order(ByteOrder.nativeOrder());
-        }
+    public x30(r40 r40Var, Context context) {
+        super(r40Var, context);
+        this.d = r40Var;
+    }
+
+    @Override
+    public final void setAlpha(float f10) {
+        super.setAlpha(f10);
+        this.d.invalidate();
+    }
+
+    @Override
+    public final void setRotationY(float f10) {
+        super.setRotationY(f10);
+        this.d.invalidate();
     }
 }

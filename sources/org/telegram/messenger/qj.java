@@ -1,53 +1,43 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
 public final class qj implements Runnable {
-    public final int f24707a;
-    public final qp f24708b;
-    public final ArrayList f24709c;
+    public final int f26101a;
+    public final np f26102b;
+    public final TLRPC.Chat f26103c;
 
-    public qj(qp qpVar, ArrayList arrayList, int i7) {
-        this.f24707a = i7;
-        this.f24708b = qpVar;
-        this.f24709c = arrayList;
+    public qj(np npVar, TLRPC.Chat chat, int i7) {
+        this.f26101a = i7;
+        this.f26102b = npVar;
+        this.f26103c = chat;
     }
 
     @Override
     public final void run() {
-        switch (this.f24707a) {
+        int i7 = this.f26101a;
+        TLRPC.Chat chat = this.f26103c;
+        np npVar = this.f26102b;
+        switch (i7) {
             case 0:
-                this.f24708b.getNotificationsController().K(this.f24709c, true, false, null);
+                npVar.j(chat);
                 return;
             case 1:
-                g0.h3(new qj(this.f24708b, this.f24709c, 3));
+                npVar.getNotificationCenter().k(90, chat);
                 return;
             case 2:
-                g0.h3(new qj(this.f24708b, this.f24709c, 4));
+                npVar.getClass();
+                npVar.G(chat.f28051id, true);
                 return;
             case 3:
-                this.f24708b.getNotificationsController().K(this.f24709c, true, false, null);
+                npVar.getNotificationCenter().k(90, chat);
                 return;
             case 4:
-                this.f24708b.getNotificationsController().K(this.f24709c, true, false, null);
-                return;
-            case 5:
-                qp qpVar = this.f24708b;
-                qpVar.getClass();
-                int i7 = 0;
-                while (true) {
-                    ArrayList arrayList = this.f24709c;
-                    if (i7 < arrayList.size()) {
-                        qpVar.b4(qpVar.j1(-((Long) arrayList.get(i7)).longValue()), 0L);
-                        i7++;
-                    } else {
-                        return;
-                    }
-                }
-            case 6:
-                this.f24708b.getNotificationsController().K(this.f24709c, true, false, null);
+                npVar.getNotificationCenter().k(320, Long.valueOf(chat.f28051id), Boolean.valueOf(chat.forum), Boolean.valueOf(chat.forum_tabs), Boolean.valueOf(chat.forum_sidebar));
                 return;
             default:
-                g0.h3(new qj(this.f24708b, this.f24709c, 0));
+                npVar.U4(null);
+                npVar.getNotificationCenter().k(348, Long.valueOf(chat.f28051id), Boolean.valueOf(chat.collapsed_in_dialogs));
+                npVar.getNotificationCenter().k(3, new Object[0]);
                 return;
         }
     }

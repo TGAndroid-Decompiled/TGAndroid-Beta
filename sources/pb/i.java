@@ -11,28 +11,27 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.ui.ix;
 public abstract class i {
-    public final ab.q f53546a;
-    public final AtomicInteger f53547b = new AtomicInteger(0);
-    public final AtomicBoolean f53548c = new AtomicBoolean(false);
+    public final ab.q f54951a;
+    public final AtomicInteger f54952b = new AtomicInteger(0);
+    public final AtomicBoolean f54953c = new AtomicBoolean(false);
 
     public i() {
         ?? obj = new Object();
-        obj.f990b = new Object();
-        obj.f991c = new ArrayDeque();
+        obj.f989b = new Object();
+        obj.f990c = new ArrayDeque();
         obj.d = new AtomicReference();
-        this.f53546a = obj;
+        this.f54951a = obj;
     }
 
     public final Task a(final Executor executor, final Callable callable, final CancellationToken cancellationToken) {
-        boolean z9;
-        if (this.f53547b.get() > 0) {
-            z9 = true;
+        boolean z10;
+        if (this.f54952b.get() > 0) {
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        q6.m.j(z9);
+        q6.m.j(z10);
         if (cancellationToken.isCancellationRequested()) {
             return Tasks.forCanceled();
         }
@@ -53,13 +52,13 @@ public abstract class i {
                 }
             }
         };
-        this.f53546a.D(new Runnable() {
+        this.f54951a.E(new Runnable() {
             @Override
             public final void run() {
                 Callable callable2 = callable;
                 TaskCompletionSource taskCompletionSource2 = taskCompletionSource;
                 i iVar = i.this;
-                AtomicBoolean atomicBoolean = iVar.f53548c;
+                AtomicBoolean atomicBoolean = iVar.f54953c;
                 CancellationToken cancellationToken2 = cancellationToken;
                 boolean isCancellationRequested = cancellationToken2.isCancellationRequested();
                 CancellationTokenSource cancellationTokenSource2 = cancellationTokenSource;
@@ -103,15 +102,15 @@ public abstract class i {
     public abstract void c();
 
     public final void d(Executor executor) {
-        boolean z9;
-        if (this.f53547b.get() > 0) {
-            z9 = true;
+        boolean z10;
+        if (this.f54952b.get() > 0) {
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        q6.m.j(z9);
+        q6.m.j(z10);
         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        this.f53546a.D(new ix(this, taskCompletionSource, false, 3), executor);
+        this.f54951a.E(new l(2, this, taskCompletionSource), executor);
         taskCompletionSource.getTask();
     }
 }

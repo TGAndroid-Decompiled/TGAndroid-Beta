@@ -1,44 +1,41 @@
 package org.telegram.ui;
-public final class ag implements Runnable {
-    public final int f43667a;
-    public final org.telegram.ui.ActionBar.u1[] f43668b;
+public final class ag implements org.telegram.messenger.pr {
+    public final int f45042a;
+    public final an f45043b;
 
-    public ag(org.telegram.ui.ActionBar.u1[] u1VarArr, int i7) {
-        this.f43667a = i7;
-        this.f43668b = u1VarArr;
+    public ag(an anVar, int i7) {
+        this.f45042a = i7;
+        this.f45043b = anVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43667a) {
+    public final void a(int i7) {
+        switch (this.f45042a) {
             case 0:
-                org.telegram.ui.ActionBar.u1[] u1VarArr = this.f43668b;
-                try {
-                    u1VarArr[0].dismiss();
-                } catch (Throwable unused) {
+                an anVar = this.f45043b;
+                if (anVar.getParentActivity() != null && anVar.fragmentView != null && i7 > 0) {
+                    org.telegram.ui.Components.cc.a0(anVar).m(org.telegram.ui.Components.bc.f33238r, i7, 0, 0, anVar.Aa).j();
+                    return;
                 }
-                u1VarArr[0] = null;
                 return;
             case 1:
-                org.telegram.ui.ActionBar.u1[] u1VarArr2 = this.f43668b;
-                try {
-                    u1VarArr2[0].dismiss();
-                } catch (Throwable unused2) {
+                an anVar2 = this.f45043b;
+                if (i7 == 0) {
+                    anVar2.D6 = false;
+                    anVar2.ka();
+                    return;
                 }
-                u1VarArr2[0] = null;
-                return;
-            case 2:
-                org.telegram.messenger.g0.h3(new ag(this.f43668b, 4));
-                return;
-            case 3:
-                org.telegram.messenger.g0.h3(new ag(this.f43668b, 5));
-                return;
-            case 4:
-                this.f43668b[0].dismiss();
+                anVar2.l(i7, 0, false, 0, true, 0);
                 return;
             default:
-                this.f43668b[0].dismiss();
-                return;
+                an anVar3 = this.f45043b;
+                if (i7 == 0) {
+                    anVar3.zd(true);
+                    return;
+                } else {
+                    anVar3.finishFragment();
+                    return;
+                }
         }
     }
 }

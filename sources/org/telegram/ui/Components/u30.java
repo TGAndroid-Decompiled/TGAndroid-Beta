@@ -1,23 +1,15 @@
 package org.telegram.ui.Components;
+public final class u30 implements Runnable {
+    public final int f39890a;
+    public final r40 f39891b;
 
-import android.content.Context;
-public final class u30 extends c40 {
-    public final o40 d;
-
-    public u30(o40 o40Var, Context context) {
-        super(o40Var, context);
-        this.d = o40Var;
+    public u30(r40 r40Var, int i7) {
+        this.f39890a = i7;
+        this.f39891b = r40Var;
     }
 
     @Override
-    public final void setAlpha(float f10) {
-        super.setAlpha(f10);
-        this.d.invalidate();
-    }
-
-    @Override
-    public final void setRotationY(float f10) {
-        super.setRotationY(f10);
-        this.d.invalidate();
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.u30.run():void");
     }
 }

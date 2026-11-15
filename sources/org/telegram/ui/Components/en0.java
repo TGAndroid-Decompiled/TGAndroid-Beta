@@ -1,34 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class en0 {
-    public final nt f33300a;
-    public final long f33301b;
-    public final float f33302c;
-    public final float d;
-    public final float f33303e;
+import android.content.Context;
+import android.text.TextUtils;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class en0 extends LinearLayout {
+    public final jt0 f34376a;
+    public final TextView f34377b;
+    public final TextView f34378c;
 
-    public en0(View view) {
-        nt ntVar = new nt(1, view);
-        this.f33301b = System.currentTimeMillis();
-        this.f33300a = ntVar;
-        g5.a aVar = Utilities.f21340c;
-        this.f33302c = org.telegram.messenger.g0.T1(5.0f, 9.0f, Utilities.l(aVar.nextFloat()));
-        this.d = org.telegram.messenger.g0.T1(2.5f, 5.0f, Utilities.l(aVar.nextFloat()));
-        this.f33303e = org.telegram.messenger.g0.T1(2.5f, 5.2f, Utilities.l(aVar.nextFloat()));
-    }
-
-    public final void a(Canvas canvas, float f10) {
-        nt ntVar;
-        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f33301b)) / 1000.0f;
-        canvas.translate(0.0f, 0.0f);
-        canvas.rotate(((float) Math.sin(this.f33302c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f10);
-        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * org.telegram.messenger.g0.L(0.5f) * f10, ((float) Math.sin(currentTimeMillis * this.f33303e * 3.141592653589793d)) * org.telegram.messenger.g0.L(0.5f) * f10);
-        canvas.translate(-0.0f, -0.0f);
-        if (f10 > 0.0f && (ntVar = this.f33300a) != null) {
-            ntVar.run();
-        }
+    public en0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        setLayoutParams(new v4.p0(-1, -2));
+        setOrientation(0);
+        setGravity(16);
+        int L = org.telegram.messenger.g0.L(14.0f);
+        int i7 = L / 2;
+        setPadding(L, i7, L, i7);
+        jt0 jt0Var = new jt0(context);
+        this.f34376a = jt0Var;
+        addView(jt0Var, c8.ja.c(40.0f, 40));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        addView(linearLayout, c8.ja.m(1.0f, 0, -1, 12, 0, 0));
+        TextView textView = new TextView(context);
+        this.f34377b = textView;
+        int i10 = org.telegram.ui.ActionBar.j6.E8;
+        org.telegram.ui.ActionBar.q6.U(textView, i10, e6Var);
+        textView.setTextSize(1, 16.0f);
+        textView.setTag(textView);
+        textView.setMaxLines(1);
+        linearLayout.addView(textView);
+        TextView textView2 = new TextView(context);
+        this.f34378c = textView2;
+        org.telegram.ui.ActionBar.q6.V(textView2, org.telegram.ui.ActionBar.q6.g(i10, 102), e6Var);
+        textView2.setTextSize(1, 14.0f);
+        textView2.setTag(textView2);
+        textView2.setMaxLines(1);
+        textView2.setEllipsize(TextUtils.TruncateAt.END);
+        linearLayout.addView(textView2);
     }
 }

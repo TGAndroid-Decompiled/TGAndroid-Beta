@@ -1,34 +1,34 @@
 package l2;
 
-import a8.ia;
-public abstract class b implements m1 {
-    public boolean D;
+import a8.ja;
+public abstract class b implements i1 {
     public boolean E;
-    public x2.f0 G;
-    public a3.s H;
-    public final int f17761b;
-    public q1 d;
-    public int f17763e;
-    public m2.j f17764f;
+    public boolean F;
+    public x2.f0 H;
+    public a3.s I;
+    public final int f18889b;
+    public m1 d;
+    public int f18891e;
+    public m2.j f18892f;
     public h2.g0 h;
-    public int f17765n;
-    public x2.b1 f17766r;
-    public e2.u[] f17767s;
-    public long f17768w;
-    public long f17769x;
-    public final Object f17760a = new Object();
-    public final wf.b f17762c = new wf.b(27, false);
-    public long f17770y = Long.MIN_VALUE;
-    public e2.l1 F = e2.l1.f10359a;
+    public int f18893n;
+    public x2.b1 f18894r;
+    public e2.u[] f18895s;
+    public long f18896w;
+    public long f18897x;
+    public final Object f18888a = new Object();
+    public final k8.a f18890c = new k8.a(1, false);
+    public long f18898y = Long.MIN_VALUE;
+    public e2.l1 G = e2.l1.f10190a;
 
     public b(int i7) {
-        this.f17761b = i7;
+        this.f18889b = i7;
     }
 
     public final int B(long j3) {
-        x2.b1 b1Var = this.f17766r;
+        x2.b1 b1Var = this.f18894r;
         b1Var.getClass();
-        return b1Var.l(j3 - this.f17768w);
+        return b1Var.n(j3 - this.f18896w);
     }
 
     public abstract int C(e2.u uVar);
@@ -46,7 +46,7 @@ public abstract class b implements m1 {
     }
 
     public long g(long j3, long j10) {
-        if (this.f17765n == 1) {
+        if (this.f18893n == 1) {
             if (m() || l()) {
                 return 1000000L;
             }
@@ -55,14 +55,14 @@ public abstract class b implements m1 {
         return 10000L;
     }
 
-    public w0 h() {
+    public t0 h() {
         return null;
     }
 
     public abstract String i();
 
     public final boolean k() {
-        if (this.f17770y == Long.MIN_VALUE) {
+        if (this.f18898y == Long.MIN_VALUE) {
             return true;
         }
         return false;
@@ -74,64 +74,64 @@ public abstract class b implements m1 {
 
     public abstract void n();
 
-    public abstract void p(long j3, boolean z9, boolean z10);
+    public abstract void p(long j3, boolean z10, boolean z11);
 
-    public final int w(wf.b bVar, k2.h hVar, int i7) {
-        x2.b1 b1Var = this.f17766r;
+    public final int w(k8.a aVar, k2.h hVar, int i7) {
+        x2.b1 b1Var = this.f18894r;
         b1Var.getClass();
-        int m10 = b1Var.m(bVar, hVar, i7);
-        if (m10 == -4) {
+        int q10 = b1Var.q(aVar, hVar, i7);
+        if (q10 == -4) {
             if (hVar.isEndOfStream()) {
-                this.f17770y = Long.MIN_VALUE;
-                if (this.D) {
+                this.f18898y = Long.MIN_VALUE;
+                if (this.E) {
                     return -4;
                 }
                 return -3;
             }
-            long j3 = hVar.f17176e + this.f17768w;
-            hVar.f17176e = j3;
-            this.f17770y = Math.max(this.f17770y, j3);
-            return m10;
+            long j3 = hVar.f17733e + this.f18896w;
+            hVar.f17733e = j3;
+            this.f18898y = Math.max(this.f18898y, j3);
+            return q10;
         }
-        if (m10 == -5) {
-            e2.u uVar = (e2.u) bVar.f57667c;
+        if (q10 == -5) {
+            e2.u uVar = (e2.u) aVar.f17789c;
             uVar.getClass();
-            long j10 = uVar.f10624x;
+            long j10 = uVar.f10455x;
             if (j10 != Long.MAX_VALUE) {
                 e2.t a10 = uVar.a();
-                a10.f10572w = j10 + this.f17768w;
-                bVar.f57667c = new e2.u(a10);
+                a10.f10403w = j10 + this.f18896w;
+                aVar.f17789c = new e2.u(a10);
             }
         }
-        return m10;
+        return q10;
     }
 
     public abstract void x(long j3, long j10);
 
     public final void y(e2.u[] uVarArr, x2.b1 b1Var, long j3, long j10, x2.f0 f0Var) {
-        ia.p(!this.D);
-        this.f17766r = b1Var;
-        this.G = f0Var;
-        if (this.f17770y == Long.MIN_VALUE) {
-            this.f17770y = j3;
+        ja.p(!this.E);
+        this.f18894r = b1Var;
+        this.H = f0Var;
+        if (this.f18898y == Long.MIN_VALUE) {
+            this.f18898y = j3;
         }
-        this.f17767s = uVarArr;
-        this.f17768w = j10;
+        this.f18895s = uVarArr;
+        this.f18896w = j10;
         u(uVarArr, j3, j10, f0Var);
     }
 
-    public final void z(long j3, boolean z9, boolean z10) {
-        this.D = false;
-        this.f17769x = j3;
-        this.f17770y = j3;
-        if (!z10) {
+    public final void z(long j3, boolean z10, boolean z11) {
+        this.E = false;
+        this.f18897x = j3;
+        this.f18898y = j3;
+        if (!z11) {
             if (B(j3) != 0) {
-                z10 = true;
+                z11 = true;
             } else {
-                z10 = false;
+                z11 = false;
             }
         }
-        p(j3, z9, z10);
+        p(j3, z10, z11);
     }
 
     public void f() {
@@ -159,7 +159,7 @@ public abstract class b implements m1 {
     public void c(int i7, Object obj) {
     }
 
-    public void o(boolean z9, boolean z10) {
+    public void o(boolean z10, boolean z11) {
     }
 
     public void u(e2.u[] uVarArr, long j3, long j10, x2.f0 f0Var) {

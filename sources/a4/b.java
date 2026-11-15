@@ -1,8 +1,8 @@
 package a4;
 
-import a8.ia;
-import f3.c0;
-import h2.m0;
+import a8.ja;
+import f3.b0;
+import h2.l0;
 public final class b implements h {
     public final g f148a;
     public final long f149b;
@@ -17,18 +17,18 @@ public final class b implements h {
     public long f156w;
     public long f157x;
 
-    public b(j jVar, long j3, long j10, long j11, long j12, boolean z9) {
-        boolean z10;
+    public b(j jVar, long j3, long j10, long j11, long j12, boolean z10) {
+        boolean z11;
         if (j3 >= 0 && j10 > j3) {
-            z10 = true;
+            z11 = true;
         } else {
-            z10 = false;
+            z11 = false;
         }
-        ia.f(z10);
+        ja.f(z11);
         this.d = jVar;
         this.f149b = j3;
         this.f150c = j10;
-        if (j11 != j10 - j3 && !z9) {
+        if (j11 != j10 - j3 && !z10) {
             this.f151e = 0;
         } else {
             this.f152f = j12;
@@ -38,7 +38,7 @@ public final class b implements h {
     }
 
     @Override
-    public final c0 M() {
+    public final b0 Y() {
         if (this.f152f != 0) {
             return new a(this);
         }
@@ -46,13 +46,13 @@ public final class b implements h {
     }
 
     @Override
-    public final long r0(f3.p r28) {
-        throw new UnsupportedOperationException("Method not decompiled: a4.b.r0(f3.p):long");
+    public final long m0(f3.p r28) {
+        throw new UnsupportedOperationException("Method not decompiled: a4.b.m0(f3.p):long");
     }
 
     @Override
     public final void v0(long j3) {
-        this.f153n = m0.j(j3, 0L, this.f152f - 1);
+        this.f153n = l0.j(j3, 0L, this.f152f - 1);
         this.f151e = 2;
         this.f154r = this.f149b;
         this.f155s = this.f150c;

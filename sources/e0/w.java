@@ -7,17 +7,17 @@ import android.os.Build;
 import android.os.Bundle;
 import java.util.ArrayList;
 public final class w {
-    public final CharSequence f10122a;
-    public final long f10123b;
-    public final j0 f10124c;
+    public final CharSequence f9953a;
+    public final long f9954b;
+    public final j0 f9955c;
     public final Bundle d = new Bundle();
-    public String f10125e;
-    public Uri f10126f;
+    public String f9956e;
+    public Uri f9957f;
 
     public w(CharSequence charSequence, long j3, j0 j0Var) {
-        this.f10122a = charSequence;
-        this.f10123b = j3;
-        this.f10124c = j0Var;
+        this.f9953a = charSequence;
+        this.f9954b = j3;
+        this.f9955c = j0Var;
     }
 
     public static Bundle[] a(ArrayList arrayList) {
@@ -25,26 +25,26 @@ public final class w {
         int size = arrayList.size();
         for (int i7 = 0; i7 < size; i7++) {
             w wVar = (w) arrayList.get(i7);
-            j0 j0Var = wVar.f10124c;
+            j0 j0Var = wVar.f9955c;
             Bundle bundle = new Bundle();
-            CharSequence charSequence = wVar.f10122a;
+            CharSequence charSequence = wVar.f9953a;
             if (charSequence != null) {
                 bundle.putCharSequence("text", charSequence);
             }
-            bundle.putLong("time", wVar.f10123b);
+            bundle.putLong("time", wVar.f9954b);
             if (j0Var != null) {
-                bundle.putCharSequence("sender", j0Var.f10082a);
+                bundle.putCharSequence("sender", j0Var.f9913a);
                 if (Build.VERSION.SDK_INT >= 28) {
                     bundle.putParcelable("sender_person", v.a(d1.f.E(j0Var)));
                 } else {
                     bundle.putBundle("person", j0Var.c());
                 }
             }
-            String str = wVar.f10125e;
+            String str = wVar.f9956e;
             if (str != null) {
                 bundle.putString("type", str);
             }
-            Uri uri = wVar.f10126f;
+            Uri uri = wVar.f9957f;
             if (uri != null) {
                 bundle.putParcelable("uri", uri);
             }
@@ -62,9 +62,9 @@ public final class w {
         int i7 = Build.VERSION.SDK_INT;
         CharSequence charSequence = null;
         Person person = null;
-        long j3 = this.f10123b;
-        CharSequence charSequence2 = this.f10122a;
-        j0 j0Var = this.f10124c;
+        long j3 = this.f9954b;
+        CharSequence charSequence2 = this.f9953a;
+        j0 j0Var = this.f9955c;
         if (i7 >= 28) {
             if (j0Var != null) {
                 person = d1.f.E(j0Var);
@@ -72,13 +72,13 @@ public final class w {
             a10 = v.b(charSequence2, j3, person);
         } else {
             if (j0Var != null) {
-                charSequence = j0Var.f10082a;
+                charSequence = j0Var.f9913a;
             }
             a10 = u.a(charSequence2, j3, charSequence);
         }
-        String str = this.f10125e;
+        String str = this.f9956e;
         if (str != null) {
-            u.b(a10, str, this.f10126f);
+            u.b(a10, str, this.f9957f);
         }
         return a10;
     }

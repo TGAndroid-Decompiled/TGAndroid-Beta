@@ -1,19 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class k41 extends View {
-    public int f35165a;
+import android.text.Selection;
+import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
+import android.text.style.CharacterStyle;
+import android.view.MotionEvent;
+import android.widget.TextView;
+public final class k41 extends LinkMovementMethod {
+    public final UndoView f36278a;
 
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f35165a, 1073741824));
+    public k41(UndoView undoView) {
+        this.f36278a = undoView;
     }
 
-    public void setHeight(int i7) {
-        if (this.f35165a == i7) {
-            return;
+    @Override
+    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
+        CharacterStyle[] characterStyleArr;
+        try {
+            if (motionEvent.getAction() != 0 || ((characterStyleArr = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class)) != null && characterStyleArr.length != 0)) {
+                if (motionEvent.getAction() == 1) {
+                    CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
+                    if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
+                        this.f36278a.b(characterStyleArr2[0]);
+                    }
+                    Selection.removeSelection(spannable);
+                    return true;
+                }
+                return super.onTouchEvent(textView, spannable, motionEvent);
+            }
+            return false;
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+            return false;
         }
-        this.f35165a = i7;
-        requestLayout();
     }
 }

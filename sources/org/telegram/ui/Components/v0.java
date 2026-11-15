@@ -1,54 +1,38 @@
 package org.telegram.ui.Components;
-public final class v0 implements db0 {
-    public final int f38789a;
-    public final int[] f38790b;
 
-    public v0(int[] iArr, int i7) {
-        this.f38789a = i7;
-        this.f38790b = iArr;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.ui.LanguageSelectActivity;
+import org.telegram.ui.LaunchActivity;
+public final class v0 implements org.telegram.ui.ActionBar.q1 {
+    public final int f40194a;
+    public final LaunchActivity f40195b;
+
+    public v0(LaunchActivity launchActivity, int i7) {
+        this.f40194a = i7;
+        this.f40195b = launchActivity;
     }
 
     @Override
-    public final String h(int i7) {
-        int i10 = this.f38789a;
-        int[] iArr = this.f38790b;
-        switch (i10) {
+    public final void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        switch (this.f40194a) {
             case 0:
-                int i11 = iArr[i7];
-                if (i11 == 0) {
-                    return org.telegram.messenger.id.M0(2131748307, null);
-                }
-                if (i11 < 60) {
-                    return org.telegram.messenger.id.G(i11, "Minutes", new Object[0]);
-                }
-                if (i11 < 1440) {
-                    return org.telegram.messenger.id.G(i11 / 60, "Hours", new Object[0]);
-                }
-                if (i11 < 10080) {
-                    return org.telegram.messenger.id.G(i11 / 1440, "Days", new Object[0]);
-                }
-                if (i11 < 44640) {
-                    return org.telegram.messenger.id.G(i11 / 10080, "Weeks", new Object[0]);
-                }
-                if (i11 < 525600) {
-                    return org.telegram.messenger.id.G(i11 / 44640, "Months", new Object[0]);
-                }
-                return org.telegram.messenger.id.G(i11 / 525600, "Years", new Object[0]);
+                this.f40195b.t0(new LanguageSelectActivity());
+                return;
+            case 1:
+                this.f40195b.t0(new org.telegram.ui.y6());
+                return;
             default:
-                int i12 = iArr[i7];
-                if (i12 == 0) {
-                    return org.telegram.messenger.id.M0(2131753849, null);
+                LaunchActivity launchActivity = this.f40195b;
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26600b.getPackageName()));
+                    launchActivity.startActivity(intent);
+                    return;
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
+                    return;
                 }
-                if (i12 < 10080) {
-                    return org.telegram.messenger.id.G(i12 / 1440, "Days", new Object[0]);
-                }
-                if (i12 < 44640) {
-                    return org.telegram.messenger.id.G(i12 / 10080, "Weeks", new Object[0]);
-                }
-                if (i12 < 525600) {
-                    return org.telegram.messenger.id.G(i12 / 44640, "Months", new Object[0]);
-                }
-                return org.telegram.messenger.id.G(i12 / 525600, "Years", new Object[0]);
         }
     }
 }

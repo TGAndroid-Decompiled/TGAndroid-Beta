@@ -1,0 +1,58 @@
+package oi;
+
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
+import org.telegram.ui.Cells.h9;
+public final class u3 extends HorizontalScrollView {
+    public final int f22030a;
+    public final FrameLayout f22031b;
+
+    public u3(FrameLayout frameLayout, Context context, int i7) {
+        super(context);
+        this.f22030a = i7;
+        this.f22031b = frameLayout;
+    }
+
+    @Override
+    public void onMeasure(int i7, int i10) {
+        switch (this.f22030a) {
+            case 0:
+                int mode = View.MeasureSpec.getMode(i7);
+                if (mode == 1073741824) {
+                    super.onMeasure(i7, i10);
+                    return;
+                }
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 0), i10);
+                int measuredWidth = getMeasuredWidth();
+                int i11 = ((v3) this.f22031b).L;
+                if (mode == Integer.MIN_VALUE) {
+                    i11 = Math.min(i11, View.MeasureSpec.getSize(i7));
+                }
+                setMeasuredDimension(Math.min(measuredWidth, i11), getMeasuredHeight());
+                return;
+            default:
+                super.onMeasure(i7, i10);
+                return;
+        }
+    }
+
+    @Override
+    public void onScrollChanged(int i7, int i10, int i11, int i12) {
+        h9 textSelectionHelper;
+        switch (this.f22030a) {
+            case 1:
+                super.onScrollChanged(i7, i10, i11, i12);
+                y2 y2Var = ((k5) this.f22031b).F;
+                if (y2Var != null && (textSelectionHelper = y2Var.f22138a.getTextSelectionHelper()) != null && textSelectionHelper.x()) {
+                    textSelectionHelper.w();
+                }
+                invalidate();
+                return;
+            default:
+                super.onScrollChanged(i7, i10, i11, i12);
+                return;
+        }
+    }
+}

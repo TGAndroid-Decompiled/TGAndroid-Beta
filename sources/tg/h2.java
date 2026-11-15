@@ -1,45 +1,36 @@
 package tg;
 
-import android.graphics.Insets;
-import android.graphics.Rect;
-import android.os.Build;
-import android.view.View;
-import android.view.WindowInsets;
-import org.telegram.ui.Components.w41;
-public final class h2 implements View.OnApplyWindowInsetsListener {
-    public final i2 f55732a;
+import hi.g7;
+public final class h2 implements Runnable {
+    public final int f57329a;
+    public final m2 f57330b;
 
-    public h2(i2 i2Var) {
-        this.f55732a = i2Var;
+    public h2(m2 m2Var, int i7) {
+        this.f57329a = i7;
+        this.f57330b = m2Var;
     }
 
     @Override
-    public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-        WindowInsets windowInsets2;
-        int i7;
-        int i10;
-        int i11;
-        int i12;
-        i2 i2Var = this.f55732a;
-        w41 w41Var = i2Var.f55768b;
-        Rect rect = i2Var.h;
-        int i13 = Build.VERSION.SDK_INT;
-        if (i13 >= 30) {
-            Insets insets = windowInsets.getInsets(647);
-            i7 = insets.left;
-            i10 = insets.top;
-            i11 = insets.right;
-            i12 = insets.bottom;
-            rect.set(i7, i10, i11, i12);
-        } else {
-            rect.set(windowInsets.getStableInsetLeft(), windowInsets.getStableInsetTop(), windowInsets.getStableInsetRight(), windowInsets.getStableInsetBottom());
+    public final void run() {
+        switch (this.f57329a) {
+            case 0:
+                super/*android.app.Dialog*/.dismiss();
+                return;
+            case 1:
+                org.telegram.messenger.g0.h3(new h2(this.f57330b, 0));
+                return;
+            case 2:
+                this.f57330b.dismiss();
+                return;
+            default:
+                m2 m2Var = this.f57330b;
+                g7 g7Var = m2Var.I;
+                if (g7Var != null) {
+                    g7Var.a(null);
+                    m2Var.I = null;
+                }
+                m2Var.dismiss();
+                return;
         }
-        w41Var.setPadding(rect.left, rect.top, rect.right, rect.bottom);
-        w41Var.requestLayout();
-        if (i13 >= 30) {
-            windowInsets2 = WindowInsets.CONSUMED;
-            return windowInsets2;
-        }
-        return windowInsets.consumeSystemWindowInsets();
     }
 }

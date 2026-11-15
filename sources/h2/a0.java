@@ -5,72 +5,72 @@ import e2.i1;
 import e2.l1;
 import j$.util.Objects;
 public final class a0 {
-    public long f14043a;
-    public long f14044b;
-    public long f14045c;
+    public long f13401a;
+    public long f13402b;
+    public long f13403c;
     public int d;
-    public boolean f14046e;
-    public int f14047f;
-    public int f14048g;
+    public boolean f13404e;
+    public int f13405f;
+    public int f13406g;
     public Object h;
-    public final Object f14049i;
+    public final Object f13407i;
 
     public a0(e0 e0Var, int i7) {
-        this.f14049i = e0Var;
+        this.f13407i = e0Var;
         this.d = i7;
     }
 
     public void a() {
         Object l10;
         int i7 = this.d;
-        e0 e0Var = (e0) this.f14049i;
-        i0 i0Var = (i0) e0Var.f14078f;
-        l2.i0 i0Var2 = (l2.i0) e0Var.f14074a;
-        if (i0Var2.i() == 2 && i0Var2.u() && i0Var2.w0() == 0) {
-            l1 y02 = i0Var2.y0();
+        e0 e0Var = (e0) this.f13407i;
+        i0 i0Var = (i0) e0Var.f13436f;
+        l2.f0 f0Var = (l2.f0) e0Var.f13432a;
+        if (f0Var.i() == 2 && f0Var.u() && f0Var.w0() == 0) {
+            l1 y02 = f0Var.y0();
             if (y02.p()) {
                 l10 = null;
             } else {
-                l10 = y02.l(i0Var2.B());
+                l10 = y02.l(f0Var.B());
             }
-            int n02 = i0Var2.n0();
-            int O = i0Var2.O();
-            long d02 = i0Var2.d0();
-            long max = Math.max(0L, i0Var2.r() - Math.max(0L, d02 - i0Var2.l()));
+            int n02 = f0Var.n0();
+            int O = f0Var.O();
+            long d02 = f0Var.d0();
+            long max = Math.max(0L, f0Var.r() - Math.max(0L, d02 - f0Var.l()));
             if (l10 != null && n02 == -1) {
-                d02 -= m0.h0(y02.g(l10, (i1) e0Var.f14077e).f10288e);
+                d02 -= l0.h0(y02.g(l10, (i1) e0Var.f13435e).f10119e);
             }
             ((g0) e0Var.d).getClass();
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            if (this.f14046e && Objects.equals(l10, this.h) && n02 == this.f14047f && O == this.f14048g && d02 == this.f14043a && max == this.f14044b) {
-                if (elapsedRealtime - this.f14045c >= i7) {
-                    ((l2.c0) e0Var.f14076c).f17775a.A1(new l2.l(2, new f0(1, i7), 1003));
+            if (this.f13404e && Objects.equals(l10, this.h) && n02 == this.f13405f && O == this.f13406g && d02 == this.f13401a && max == this.f13402b) {
+                if (elapsedRealtime - this.f13403c >= i7) {
+                    ((l2.z) e0Var.f13434c).f19233a.A1(new l2.l(2, new f0(1, i7), 1003));
                     return;
                 }
                 return;
             }
-            this.f14046e = true;
-            this.f14045c = elapsedRealtime;
+            this.f13404e = true;
+            this.f13403c = elapsedRealtime;
             this.h = l10;
-            this.f14047f = n02;
-            this.f14048g = O;
-            this.f14043a = d02;
-            this.f14044b = max;
+            this.f13405f = n02;
+            this.f13406g = O;
+            this.f13401a = d02;
+            this.f13402b = max;
             i0Var.e(1);
-            i0Var.f14098a.sendEmptyMessageDelayed(1, i7);
+            i0Var.f13456a.sendEmptyMessageDelayed(1, i7);
             return;
         }
-        if (this.f14046e) {
+        if (this.f13404e) {
             i0Var.e(1);
         }
-        this.f14046e = false;
+        this.f13404e = false;
     }
 
     public a0(String str, long j3, long j10, long j11, jg.o0 o0Var) {
-        this.f14049i = o0Var;
+        this.f13407i = o0Var;
         this.h = str;
-        this.f14043a = j3;
-        this.f14044b = j10;
-        this.f14045c = j11;
+        this.f13401a = j3;
+        this.f13402b = j10;
+        this.f13403c = j11;
     }
 }

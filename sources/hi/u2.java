@@ -1,31 +1,46 @@
 package hi;
 
-import org.telegram.messenger.qp;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class u2 implements RequestDelegate {
-    public final int f14980a;
-    public final v2 f14981b;
+import android.content.Context;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+import org.telegram.ui.Components.im;
+import org.telegram.ui.t71;
+public final class u2 extends org.telegram.ui.ActionBar.q0 {
+    public final int A0;
+    public final Object B0;
 
-    public u2(v2 v2Var, int i7) {
-        this.f14980a = i7;
-        this.f14981b = v2Var;
+    public u2(FrameLayout frameLayout, Context context, org.telegram.ui.ActionBar.y yVar, org.telegram.ui.ActionBar.e6 e6Var, int i7) {
+        super(context, yVar, 0, 0, false, e6Var);
+        this.A0 = i7;
+        this.B0 = frameLayout;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f14980a) {
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.A0) {
             case 0:
-                a3 a3Var = this.f14981b.d;
-                if (tLObject instanceof TLRPC.TL_updates) {
-                    qp.s1(a3Var.H).O3((TLRPC.TL_updates) tLObject, false);
-                }
-                org.telegram.messenger.g0.h3(new x1(a3Var, 16));
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setText(((d3) this.B0).E.getText());
+                return;
+            case 1:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setText(((ChatAttachAlertPhotoLayout) this.B0).f32413y.getText());
+                return;
+            case 2:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setText(((im) this.B0).f35667y.getText());
                 return;
             default:
-                org.telegram.messenger.g0.h3(new fi.x1(this.f14981b, tLObject, tL_error, false, 13));
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setText(((t71) this.B0).h.getText());
                 return;
         }
+    }
+
+    public u2(t71 t71Var, Context context, org.telegram.ui.ActionBar.y yVar) {
+        super(context, yVar, 0);
+        this.A0 = 3;
+        this.B0 = t71Var;
     }
 }

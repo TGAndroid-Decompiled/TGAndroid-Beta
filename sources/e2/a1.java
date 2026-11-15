@@ -4,9 +4,9 @@ import java.util.List;
 public interface a1 {
     void B(List list);
 
-    void C(int i7, boolean z9);
+    void D(int i7, boolean z10);
 
-    void D(q1 q1Var);
+    void E(q1 q1Var);
 
     void F(z0 z0Var);
 
@@ -20,49 +20,49 @@ public interface a1 {
 
     void O(y0 y0Var);
 
-    void P(boolean z9);
+    void P(boolean z10);
 
-    void a(x1 x1Var);
+    void a(int i7);
 
-    void c(int i7);
+    void b(x1 x1Var);
+
+    void c(boolean z10);
+
+    void d(int i7);
 
     void e(int i7);
 
-    void f(boolean z9);
+    void f(boolean z10);
 
     void g(int i7);
 
-    void h(boolean z9);
+    void h(boolean z10);
 
-    void i(int i7);
+    void i(int i7, boolean z10);
 
-    void j(boolean z9);
+    void j(float f10);
 
-    void k(int i7, boolean z9);
+    void l(int i7);
 
-    void l(float f10);
+    void m(o0 o0Var);
 
-    void m(int i7);
+    void n(e eVar);
 
-    void n(o0 o0Var);
-
-    void o(e eVar);
+    void o(o0 o0Var);
 
     void onRenderedFirstFrame();
-
-    void p(o0 o0Var);
 
     void q(v0 v0Var);
 
     void s(b1 b1Var, b1 b1Var2, int i7);
 
-    void t(boolean z9);
+    void t(boolean z10);
 
     void u(s1 s1Var);
 
     void v(int i7, l0 l0Var);
 
-    void x(g2.d dVar);
+    void x(g2.c cVar);
 
     void y(v0 v0Var);
 }

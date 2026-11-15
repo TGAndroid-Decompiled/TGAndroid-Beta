@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 public abstract class i extends e implements List, RandomAccess {
-    public static final g f5714b = new g(m.f5763e, 0);
+    public static final g f4538b = new g(m.f4587e, 0);
 
     public static m m(int i7, Object[] objArr) {
         if (i7 == 0) {
-            return m.f5763e;
+            return m.f4587e;
         }
         return new m(i7, objArr);
     }
@@ -42,7 +42,7 @@ public abstract class i extends e implements List, RandomAccess {
                 if (size == list.size()) {
                     if (list instanceof RandomAccess) {
                         for (int i7 = 0; i7 < size; i7++) {
-                            if (a8.e8.a(get(i7), list.get(i7))) {
+                            if (a8.f8.a(get(i7), list.get(i7))) {
                             }
                         }
                         return true;
@@ -52,7 +52,7 @@ public abstract class i extends e implements List, RandomAccess {
                     while (true) {
                         if (listIterator.hasNext()) {
                             if (it.hasNext()) {
-                                if (!a8.e8.a(listIterator.next(), it.next())) {
+                                if (!a8.f8.a(listIterator.next(), it.next())) {
                                     break;
                                 }
                             } else {
@@ -109,13 +109,13 @@ public abstract class i extends e implements List, RandomAccess {
 
     @Override
     public i subList(int i7, int i10) {
-        a8.f8.b(i7, i10, size());
+        a8.g8.b(i7, i10, size());
         int i11 = i10 - i7;
         if (i11 == size()) {
             return this;
         }
         if (i11 == 0) {
-            return m.f5763e;
+            return m.f4587e;
         }
         return new h(this, i7, i11);
     }
@@ -143,11 +143,11 @@ public abstract class i extends e implements List, RandomAccess {
         int size = size();
         if (i7 >= 0 && i7 <= size) {
             if (isEmpty()) {
-                return f5714b;
+                return f4538b;
             }
             return new g(this, i7);
         }
-        throw new IndexOutOfBoundsException(a8.f8.c(i7, size, "index"));
+        throw new IndexOutOfBoundsException(a8.g8.c(i7, size, "index"));
     }
 
     @Override

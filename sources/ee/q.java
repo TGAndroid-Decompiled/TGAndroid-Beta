@@ -1,6 +1,6 @@
 package ee;
 
-import c8.u0;
+import c8.v0;
 import zd.b0;
 public class q extends zd.a implements kd.d {
     public final id.c d;
@@ -17,7 +17,7 @@ public class q extends zd.a implements kd.d {
 
     @Override
     public void g(Object obj) {
-        a.h(u0.b(this.d), b0.s(obj));
+        a.h(v0.b(this.d), b0.s(obj));
     }
 
     @Override

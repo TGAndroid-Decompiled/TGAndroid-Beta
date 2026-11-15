@@ -1,27 +1,21 @@
 package org.telegram.ui;
 
-import android.net.Uri;
-public final class no0 implements org.telegram.messenger.c20 {
-    public final int f48238a;
-    public final to0 f48239b;
-    public final boolean f48240c;
+import android.app.Activity;
+import org.telegram.tgnet.TLObject;
+public final class no0 extends org.telegram.ui.Components.bw0 {
+    public final oo0 f49598s2;
 
-    public no0(to0 to0Var, boolean z9, int i7) {
-        this.f48238a = i7;
-        this.f48239b = to0Var;
-        this.f48240c = z9;
+    public no0(oo0 oo0Var, Activity activity, org.telegram.messenger.gj gjVar, TLObject tLObject, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(activity, gjVar, tLObject, e6Var);
+        this.f49598s2 = oo0Var;
     }
 
     @Override
-    public final void a(Object obj) {
-        Uri uri = (Uri) obj;
-        switch (this.f48238a) {
-            case 0:
-                org.telegram.ui.Components.gc.F(this.f48239b.f50316b.f41382e0, this.f48240c).j();
-                return;
-            default:
-                org.telegram.ui.Components.gc.F(this.f48239b.f50316b.f41382e0, this.f48240c).j();
-                return;
+    public final void dismiss() {
+        super.dismiss();
+        PhotoViewer photoViewer = this.f49598s2.f50039b;
+        if (photoViewer.U3 == this) {
+            photoViewer.U3 = null;
         }
     }
 }

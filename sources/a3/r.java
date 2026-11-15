@@ -1,21 +1,21 @@
 package a3;
 
-import h9.o1;
+import h9.n1;
 import j$.util.Objects;
 public final class r extends q {
-    public final int D;
     public final int E;
     public final int F;
-    public final boolean G;
-    public final int H;
-    public final boolean I;
-    public final int J;
-    public final boolean K;
+    public final int G;
+    public final boolean H;
+    public final int I;
+    public final boolean J;
+    public final int K;
     public final boolean L;
     public final boolean M;
-    public final int N;
-    public final boolean O;
-    public final String P;
+    public final boolean N;
+    public final int O;
+    public final boolean P;
+    public final String Q;
     public final boolean f118e;
     public final n f119f;
     public final boolean h;
@@ -31,24 +31,24 @@ public final class r extends q {
     }
 
     public static int c(r rVar, r rVar2) {
-        h9.w c10 = h9.w.f14409a.c(rVar.f120n, rVar2.f120n);
+        h9.w c10 = h9.w.f13763a.c(rVar.f120n, rVar2.f120n);
         Integer valueOf = Integer.valueOf(rVar.f125y);
         Integer valueOf2 = Integer.valueOf(rVar2.f125y);
-        o1 o1Var = o1.f14362c;
-        return c10.b(valueOf, valueOf2, o1Var).a(rVar.D, rVar2.D).a(rVar.E, rVar2.E).b(Integer.valueOf(rVar.F), Integer.valueOf(rVar2.F), o1Var).c(rVar.G, rVar2.G).a(rVar.H, rVar2.H).c(rVar.f121r, rVar2.f121r).c(rVar.f118e, rVar2.f118e).c(rVar.h, rVar2.h).b(Integer.valueOf(rVar.f124x), Integer.valueOf(rVar2.f124x), o1Var).c(rVar.K, rVar2.K).c(rVar.M, rVar2.M).e();
+        n1 n1Var = n1.f13711c;
+        return c10.b(valueOf, valueOf2, n1Var).a(rVar.E, rVar2.E).a(rVar.F, rVar2.F).b(Integer.valueOf(rVar.G), Integer.valueOf(rVar2.G), n1Var).c(rVar.H, rVar2.H).a(rVar.I, rVar2.I).c(rVar.f121r, rVar2.f121r).c(rVar.f118e, rVar2.f118e).c(rVar.h, rVar2.h).b(Integer.valueOf(rVar.f124x), Integer.valueOf(rVar2.f124x), n1Var).c(rVar.L, rVar2.L).c(rVar.N, rVar2.N).e();
     }
 
     @Override
     public final int a() {
-        return this.J;
+        return this.K;
     }
 
     @Override
     public final boolean b(q qVar) {
         r rVar = (r) qVar;
-        if (this.I || Objects.equals(this.P, rVar.P)) {
+        if (this.J || Objects.equals(this.Q, rVar.Q)) {
             this.f119f.getClass();
-            if (this.K == rVar.K && this.M == rVar.M) {
+            if (this.L == rVar.L && this.N == rVar.N) {
                 return true;
             }
             return false;

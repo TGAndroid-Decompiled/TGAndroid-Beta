@@ -1,70 +1,58 @@
 package org.telegram.ui.Components;
+public final class eh implements Runnable {
+    public final int f34316a;
+    public final ki f34317b;
+    public final boolean f34318c;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.view.View;
-public final class eh extends View {
-    public final int f33259a;
-    public final ci f33260b;
-
-    public eh(ci ciVar, Context context, int i7) {
-        super(context);
-        this.f33259a = i7;
-        this.f33260b = ciVar;
+    public eh(ki kiVar, boolean z10, int i7) {
+        this.f34316a = i7;
+        this.f34317b = kiVar;
+        this.f34318c = z10;
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        switch (this.f33259a) {
+    public final void run() {
+        switch (this.f34316a) {
             case 0:
-                super.draw(canvas);
-                this.f33260b.V1.draw(canvas);
-                return;
-            default:
-                super.draw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f33259a) {
+                boolean z10 = this.f34318c;
+                ki kiVar = this.f34317b;
+                if (!z10) {
+                    kiVar.f36437a3.setVisibility(8);
+                    return;
+                } else {
+                    kiVar.getClass();
+                    return;
+                }
             case 1:
-                ci ciVar = this.f33260b;
-                String format = String.format("%d", Integer.valueOf(Math.max(1, ciVar.f32660v2.getSelectedItemsCount())));
-                int ceil = (int) Math.ceil(ciVar.G2.measureText(format));
-                int max = Math.max(org.telegram.messenger.g0.L(16.0f) + ceil, org.telegram.messenger.g0.L(24.0f));
-                int measuredWidth = getMeasuredWidth() / 2;
-                int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.C5, ciVar.I0);
-                ciVar.G2.setColor(i0.a.o(w02, (int) (((ciVar.S2 * 0.42d) + 0.58d) * Color.alpha(w02))));
-                ciVar.I2.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f27963h5, ciVar.I0));
-                int i7 = max / 2;
-                int i10 = measuredWidth - i7;
-                int i11 = i7 + measuredWidth;
-                ciVar.H2.set(i10, 0.0f, i11, getMeasuredHeight());
-                canvas.drawRoundRect(ciVar.H2, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), ciVar.I2);
-                ciVar.I2.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.W9, ciVar.I0));
-                ciVar.H2.set(org.telegram.messenger.g0.L(2.0f) + i10, org.telegram.messenger.g0.L(2.0f), i11 - org.telegram.messenger.g0.L(2.0f), getMeasuredHeight() - org.telegram.messenger.g0.L(2.0f));
-                canvas.drawRoundRect(ciVar.H2, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), ciVar.I2);
-                canvas.drawText(format, measuredWidth - (ceil / 2), org.telegram.messenger.g0.L(16.2f), ciVar.G2);
-                return;
+                boolean z11 = this.f34318c;
+                ki kiVar2 = this.f34317b;
+                if (!z11) {
+                    kiVar2.f36508w1.setVisibility(8);
+                    return;
+                } else {
+                    kiVar2.getClass();
+                    return;
+                }
+            case 2:
+                boolean z12 = this.f34318c;
+                ki kiVar3 = this.f34317b;
+                if (!z12) {
+                    kiVar3.f36516y1.setVisibility(8);
+                    return;
+                } else {
+                    kiVar3.getClass();
+                    return;
+                }
             default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onSizeChanged(int i7, int i10, int i11, int i12) {
-        switch (this.f33259a) {
-            case 0:
-                super.onSizeChanged(i7, i10, i11, i12);
-                this.f33260b.V1.setBounds(0, (i10 - org.telegram.messenger.g0.f22562n) - org.telegram.messenger.g0.L(48.0f), i7, i10);
-                return;
-            default:
-                super.onSizeChanged(i7, i10, i11, i12);
-                return;
+                boolean z13 = this.f34318c;
+                ki kiVar4 = this.f34317b;
+                if (z13) {
+                    kiVar4.f36506v3.setVisibility(4);
+                    return;
+                } else {
+                    kiVar4.getClass();
+                    return;
+                }
         }
     }
 }

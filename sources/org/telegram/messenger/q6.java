@@ -13,149 +13,149 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 public final class q6 implements RequestDelegate {
-    public final int f24681a;
-    public final Object f24682b;
-    public final Object f24683c;
+    public final int f26057a;
+    public final Object f26058b;
+    public final Object f26059c;
     public final Object d;
-    public final Object f24684e;
+    public final Object f26060e;
 
     public q6(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f24681a = i7;
-        this.f24682b = obj;
-        this.f24683c = obj2;
+        this.f26057a = i7;
+        this.f26058b = obj;
+        this.f26059c = obj2;
         this.d = obj3;
-        this.f24684e = obj4;
+        this.f26060e = obj4;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        yr messagesStorage;
-        int i7 = this.f24681a;
-        Object obj = this.f24684e;
+        vr messagesStorage;
+        int i7 = this.f26057a;
+        Object obj = this.f26060e;
         Object obj2 = this.d;
-        Object obj3 = this.f24683c;
-        Object obj4 = this.f24682b;
+        Object obj3 = this.f26059c;
+        Object obj4 = this.f26058b;
         switch (i7) {
             case 0:
-                g0.h3(new mn((x6) obj4, tLObject, (TLRPC.TL_getFactCheck) obj3, (ArrayList) obj2, (HashMap) obj, 2));
+                g0.h3(new jn((x6) obj4, tLObject, (TLRPC.TL_getFactCheck) obj3, (ArrayList) obj2, (HashMap) obj, 2));
                 return;
             case 1:
-                sd sdVar = (sd) obj4;
-                rd rdVar = (rd) obj3;
+                rd rdVar = (rd) obj4;
+                qd qdVar = (qd) obj3;
                 int[] iArr = (int[]) obj2;
                 TLRPC.TL_messages_editMessage tL_messages_editMessage = (TLRPC.TL_messages_editMessage) obj;
                 if (tL_error != null) {
                     if (tL_error.text.equals("MESSAGE_ID_INVALID")) {
-                        sdVar.f25460b.remove(rdVar);
-                        sdVar.f25459a.l(rdVar.f25280a);
-                        sdVar.l(rdVar, 1);
-                        sdVar.F.delete(iArr[0]);
-                        g0.h3(new ld(sdVar, rdVar, 1));
+                        rdVar.f26270b.remove(qdVar);
+                        rdVar.f26269a.l(qdVar.f26078a);
+                        rdVar.l(qdVar, 1);
+                        rdVar.G.delete(iArr[0]);
+                        g0.h3(new kd(rdVar, qdVar, 1));
                         return;
                     }
                     return;
                 }
                 if ((tL_messages_editMessage.flags & 8) != 0) {
-                    rdVar.f25285g = tL_messages_editMessage.media.proximity_notification_radius;
+                    qdVar.f26083g = tL_messages_editMessage.media.proximity_notification_radius;
                 }
                 TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                boolean z9 = false;
+                boolean z10 = false;
                 for (int i10 = 0; i10 < updates.updates.size(); i10++) {
                     TLRPC.Update update = updates.updates.get(i10);
                     if (update instanceof TL_update.TL_updateEditMessage) {
-                        rdVar.h.f23266k = ((TL_update.TL_updateEditMessage) update).message;
+                        qdVar.h.f23817k = ((TL_update.TL_updateEditMessage) update).message;
                     } else if (update instanceof TL_update.TL_updateEditChannelMessage) {
-                        rdVar.h.f23266k = ((TL_update.TL_updateEditChannelMessage) update).message;
+                        qdVar.h.f23817k = ((TL_update.TL_updateEditChannelMessage) update).message;
                     }
-                    z9 = true;
+                    z10 = true;
                 }
-                if (z9) {
-                    sdVar.l(rdVar, 0);
+                if (z10) {
+                    rdVar.l(qdVar, 0);
                 }
-                sdVar.getMessagesController().O3(updates, false);
+                rdVar.getMessagesController().O3(updates, false);
                 return;
             case 2:
-                qp qpVar = (qp) obj4;
+                np npVar = (np) obj4;
                 TLRPC.Chat chat = (TLRPC.Chat) obj3;
                 TLRPC.User user = (TLRPC.User) obj2;
                 TLRPC.Chat chat2 = (TLRPC.Chat) obj;
-                qpVar.getClass();
+                npVar.getClass();
                 if (tL_error == null) {
                     TLRPC.TL_messages_affectedHistory tL_messages_affectedHistory = (TLRPC.TL_messages_affectedHistory) tLObject;
                     int i11 = tL_messages_affectedHistory.offset;
                     if (i11 > 0) {
-                        qpVar.k0(chat, user, chat2, i11);
+                        npVar.k0(chat, user, chat2, i11);
                     }
-                    qpVar.L3(tL_messages_affectedHistory.pts, tL_messages_affectedHistory.pts_count, chat.f26960id);
+                    npVar.L3(tL_messages_affectedHistory.pts, tL_messages_affectedHistory.pts_count, chat.f28051id);
                     return;
                 }
                 return;
             case 3:
-                qp qpVar2 = (qp) obj4;
-                org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) obj3;
+                np npVar2 = (np) obj4;
+                org.telegram.ui.ActionBar.b6 b6Var = (org.telegram.ui.ActionBar.b6) obj3;
                 TLRPC.TL_wallPaperSettings tL_wallPaperSettings = (TLRPC.TL_wallPaperSettings) obj2;
                 String str = (String) obj;
                 TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) tLObject;
-                File file = new File(t0.h(), e6Var.f27449b);
+                File file = new File(t0.h(), b6Var.f28453b);
                 if (wallPaper != null) {
                     try {
-                        w7 fileLoader = qpVar2.getFileLoader();
+                        w7 fileLoader = npVar2.getFileLoader();
                         TLRPC.Document document = wallPaper.document;
                         fileLoader.getClass();
                         g0.E(file, w7.J(document, null, true, true));
                     } catch (Exception unused) {
                     }
                 }
-                g0.h3(new yj(qpVar2, wallPaper, tL_wallPaperSettings, e6Var, file, str, 0));
+                g0.h3(new wj(npVar2, wallPaper, tL_wallPaperSettings, b6Var, file, str, 0));
                 return;
             case 4:
-                dw dwVar = (dw) obj4;
+                bw bwVar = (bw) obj4;
                 Context context = (Context) obj3;
-                org.telegram.ui.ActionBar.u1 u1Var = (org.telegram.ui.ActionBar.u1) obj2;
+                org.telegram.ui.ActionBar.t1 t1Var = (org.telegram.ui.ActionBar.t1) obj2;
                 TLRPC.User user2 = (TLRPC.User) obj;
                 if (tL_error == null) {
                     TLRPC.messages_DhConfig messages_dhconfig = (TLRPC.messages_DhConfig) tLObject;
                     if (tLObject instanceof TLRPC.TL_messages_dhConfig) {
-                        byte[] bArr = messages_dhconfig.f27117p;
-                        int i12 = messages_dhconfig.f27116g;
-                        Pattern pattern = Utilities.f21338a;
+                        byte[] bArr = messages_dhconfig.f28208p;
+                        int i12 = messages_dhconfig.f28207g;
+                        Pattern pattern = Utilities.f22413a;
                         if (!ConnectionsManager.native_isGoodPrime(bArr, i12)) {
-                            g0.h3(new fn(2, context, u1Var));
+                            g0.h3(new cn(2, context, t1Var));
                             return;
                         }
-                        yr messagesStorage2 = dwVar.getMessagesStorage();
-                        byte[] bArr2 = messages_dhconfig.f27117p;
+                        vr messagesStorage2 = bwVar.getMessagesStorage();
+                        byte[] bArr2 = messages_dhconfig.f28208p;
                         messagesStorage2.H();
-                        messagesStorage2.f26737y = bArr2;
-                        yr messagesStorage3 = dwVar.getMessagesStorage();
-                        int i13 = messages_dhconfig.f27116g;
+                        messagesStorage2.f27235y = bArr2;
+                        vr messagesStorage3 = bwVar.getMessagesStorage();
+                        int i13 = messages_dhconfig.f28207g;
                         messagesStorage3.H();
-                        messagesStorage3.D = i13;
-                        yr messagesStorage4 = dwVar.getMessagesStorage();
+                        messagesStorage3.E = i13;
+                        vr messagesStorage4 = bwVar.getMessagesStorage();
                         int i14 = messages_dhconfig.version;
                         messagesStorage4.H();
-                        messagesStorage4.f26736x = i14;
-                        yr messagesStorage5 = dwVar.getMessagesStorage();
-                        yr messagesStorage6 = dwVar.getMessagesStorage();
+                        messagesStorage4.f27234x = i14;
+                        vr messagesStorage5 = bwVar.getMessagesStorage();
+                        vr messagesStorage6 = bwVar.getMessagesStorage();
                         messagesStorage6.H();
-                        int i15 = messagesStorage6.f26736x;
-                        yr messagesStorage7 = dwVar.getMessagesStorage();
+                        int i15 = messagesStorage6.f27234x;
+                        vr messagesStorage7 = bwVar.getMessagesStorage();
                         messagesStorage7.H();
-                        int i16 = messagesStorage7.D;
-                        yr messagesStorage8 = dwVar.getMessagesStorage();
+                        int i16 = messagesStorage7.E;
+                        vr messagesStorage8 = bwVar.getMessagesStorage();
                         messagesStorage8.H();
-                        messagesStorage5.f26723a.c(new l2.z(messagesStorage5, i15, i16, messagesStorage8.f26737y, 7));
+                        messagesStorage5.f27220a.c(new l2.x(messagesStorage5, i15, i16, messagesStorage8.f27235y, 7));
                     }
                     byte[] bArr3 = new byte[256];
                     for (int i17 = 0; i17 < 256; i17++) {
-                        bArr3[i17] = (byte) (((byte) (Utilities.f21339b.nextDouble() * 256.0d)) ^ messages_dhconfig.random[i17]);
+                        bArr3[i17] = (byte) (((byte) (Utilities.f22414b.nextDouble() * 256.0d)) ^ messages_dhconfig.random[i17]);
                     }
-                    dwVar.getMessagesStorage().H();
-                    BigInteger valueOf = BigInteger.valueOf(messagesStorage.D);
+                    bwVar.getMessagesStorage().H();
+                    BigInteger valueOf = BigInteger.valueOf(messagesStorage.E);
                     BigInteger bigInteger = new BigInteger(1, bArr3);
-                    yr messagesStorage9 = dwVar.getMessagesStorage();
+                    vr messagesStorage9 = bwVar.getMessagesStorage();
                     messagesStorage9.H();
-                    byte[] byteArray = valueOf.modPow(bigInteger, new BigInteger(1, messagesStorage9.f26737y)).toByteArray();
+                    byte[] byteArray = valueOf.modPow(bigInteger, new BigInteger(1, messagesStorage9.f27235y)).toByteArray();
                     if (byteArray.length > 256) {
                         byte[] bArr4 = new byte[256];
                         System.arraycopy(byteArray, 1, bArr4, 0, 256);
@@ -163,26 +163,26 @@ public final class q6 implements RequestDelegate {
                     }
                     TLRPC.TL_messages_requestEncryption tL_messages_requestEncryption = new TLRPC.TL_messages_requestEncryption();
                     tL_messages_requestEncryption.g_a = byteArray;
-                    tL_messages_requestEncryption.user_id = dwVar.getMessagesController().q1(user2);
-                    tL_messages_requestEncryption.random_id = Utilities.f21339b.nextInt();
-                    dwVar.getConnectionsManager().sendRequest(tL_messages_requestEncryption, new eo(dwVar, context, u1Var, bArr3, user2, 2), 2);
+                    tL_messages_requestEncryption.user_id = bwVar.getMessagesController().q1(user2);
+                    tL_messages_requestEncryption.random_id = Utilities.f22414b.nextInt();
+                    bwVar.getConnectionsManager().sendRequest(tL_messages_requestEncryption, new ao(bwVar, context, t1Var, bArr3, user2, 2), 2);
                     return;
                 }
-                dwVar.f22131f.clear();
-                g0.h3(new aw(dwVar, context, u1Var, 0));
+                bwVar.f22761f.clear();
+                g0.h3(new yv(bwVar, context, t1Var, 0));
                 return;
             default:
-                gz gzVar = (gz) obj4;
-                ij ijVar = (ij) obj3;
+                ez ezVar = (ez) obj4;
+                gj gjVar = (gj) obj3;
                 String str2 = (String) obj2;
                 Runnable runnable = (Runnable) obj;
-                a0.h hVar = gzVar.f22777x;
+                a0.h hVar = ezVar.f23395x;
                 if (tL_error == null) {
-                    hVar.k(0L, ijVar.D1());
-                    gzVar.getMessagesController().O3((TLRPC.Updates) tLObject, false);
-                    hVar.k(Long.valueOf(SystemClock.elapsedRealtime()), ijVar.D1());
+                    hVar.k(0L, gjVar.D1());
+                    ezVar.getMessagesController().O3((TLRPC.Updates) tLObject, false);
+                    hVar.k(Long.valueOf(SystemClock.elapsedRealtime()), gjVar.D1());
                 }
-                g0.h3(new lg(gzVar, str2, runnable, 26));
+                g0.h3(new kg(ezVar, str2, runnable, 26));
                 return;
         }
     }

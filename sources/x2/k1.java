@@ -1,56 +1,42 @@
 package x2;
 
-import a8.wa;
+import a8.xa;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import l2.t1;
 public final class k1 implements d0, b3.j {
-    public int D;
-    public final j2.m f58391a;
-    public final j2.g f58392b;
-    public final j2.d0 f58393c;
-    public final pb.b d;
-    public final wa f58394e;
-    public final p1 f58395f;
+    public int E;
+    public final j2.m f59572a;
+    public final j2.g f59573b;
+    public final j2.c0 f59574c;
+    public final qb.a d;
+    public final xa f59575e;
+    public final q1 f59576f;
     public final ArrayList h = new ArrayList();
-    public final long f58396n;
-    public final b3.o f58397r;
-    public final e2.u f58398s;
-    public final boolean f58399w;
-    public boolean f58400x;
-    public byte[] f58401y;
+    public final long f59577n;
+    public final b3.o f59578r;
+    public final e2.u f59579s;
+    public final boolean f59580w;
+    public boolean f59581x;
+    public byte[] f59582y;
 
-    public k1(j2.m mVar, j2.g gVar, j2.d0 d0Var, e2.u uVar, long j3, pb.b bVar, wa waVar, boolean z9, c3.a aVar) {
+    public k1(j2.m mVar, j2.g gVar, j2.c0 c0Var, e2.u uVar, long j3, qb.a aVar, xa xaVar, boolean z10, c3.a aVar2) {
         b3.o oVar;
-        this.f58391a = mVar;
-        this.f58392b = gVar;
-        this.f58393c = d0Var;
-        this.f58398s = uVar;
-        this.f58396n = j3;
-        this.d = bVar;
-        this.f58394e = waVar;
-        this.f58399w = z9;
-        this.f58395f = new p1(new e2.m1("", uVar));
-        if (aVar != null) {
-            oVar = new b3.o(aVar);
+        this.f59572a = mVar;
+        this.f59573b = gVar;
+        this.f59574c = c0Var;
+        this.f59579s = uVar;
+        this.f59577n = j3;
+        this.d = aVar;
+        this.f59575e = xaVar;
+        this.f59580w = z10;
+        this.f59576f = new q1(new e2.m1("", uVar));
+        if (aVar2 != null) {
+            oVar = new b3.o(aVar2);
         } else {
             oVar = new b3.o("SingleSampleMediaPeriod");
         }
-        this.f58397r = oVar;
-    }
-
-    @Override
-    public final void M0(b3.l lVar, long j3, long j10, int i7) {
-        t tVar;
-        j1 j1Var = (j1) lVar;
-        j2.c0 c0Var = j1Var.f58384b;
-        if (i7 == 0) {
-            tVar = new t(j1Var.f58383a, j3);
-        } else {
-            tVar = new t(j1Var.f58383a, c0Var.f16417c, c0Var.d, j3, j10, c0Var.f16416b);
-        }
-        this.f58394e.t(tVar, 1, -1, this.f58398s, 0, null, 0L, this.f58396n, i7);
+        this.f59578r = oVar;
     }
 
     @Override
@@ -73,16 +59,16 @@ public final class k1 implements d0, b3.j {
     }
 
     @Override
-    public final boolean c(l2.v0 v0Var) {
-        if (!this.f58400x) {
-            b3.o oVar = this.f58397r;
+    public final boolean c(l2.s0 s0Var) {
+        if (!this.f59581x) {
+            b3.o oVar = this.f59578r;
             if (!oVar.d() && !oVar.c()) {
-                j2.h createDataSource = this.f58392b.createDataSource();
-                j2.d0 d0Var = this.f58393c;
-                if (d0Var != null) {
-                    createDataSource.addTransferListener(d0Var);
+                j2.h createDataSource = this.f59573b.createDataSource();
+                j2.c0 c0Var = this.f59574c;
+                if (c0Var != null) {
+                    createDataSource.addTransferListener(c0Var);
                 }
-                j1 j1Var = new j1(createDataSource, this.f58391a);
+                j1 j1Var = new j1(createDataSource, this.f59572a);
                 this.d.getClass();
                 oVar.f(j1Var, this, 3);
                 return true;
@@ -94,7 +80,7 @@ public final class k1 implements d0, b3.j {
 
     @Override
     public final long e() {
-        if (!this.f58400x && !this.f58397r.d()) {
+        if (!this.f59581x && !this.f59578r.d()) {
             return 0L;
         }
         return Long.MIN_VALUE;
@@ -102,7 +88,7 @@ public final class k1 implements d0, b3.j {
 
     @Override
     public final boolean g() {
-        return this.f58397r.d();
+        return this.f59578r.d();
     }
 
     @Override
@@ -112,8 +98,8 @@ public final class k1 implements d0, b3.j {
             ArrayList arrayList = this.h;
             if (i7 < arrayList.size()) {
                 i1 i1Var = (i1) arrayList.get(i7);
-                if (i1Var.f58377a == 2) {
-                    i1Var.f58377a = 1;
+                if (i1Var.f59558a == 2) {
+                    i1Var.f59558a = 1;
                 }
                 i7++;
             } else {
@@ -123,28 +109,18 @@ public final class k1 implements d0, b3.j {
     }
 
     @Override
-    public final long n() {
-        return -9223372036854775807L;
-    }
-
-    @Override
-    public final p1 o() {
-        return this.f58395f;
-    }
-
-    @Override
-    public final b3.i o0(b3.l lVar, long j3, long j10, IOException iOException, int i7) {
+    public final b3.i k(b3.l lVar, long j3, long j10, IOException iOException, int i7) {
         long min;
-        boolean z9;
+        boolean z10;
         IOException iOException2;
         b3.i iVar;
         j1 j1Var = (j1) lVar;
-        j2.c0 c0Var = j1Var.f58384b;
-        t tVar = new t(j1Var.f58383a, c0Var.f16417c, c0Var.d, j3, j10, c0Var.f16416b);
-        String str = h2.m0.f14114a;
+        j2.b0 b0Var = j1Var.f59565b;
+        t tVar = new t(j1Var.f59564a, b0Var.f16771c, b0Var.d, j3, j10, b0Var.f16770b);
+        String str = h2.l0.f13471a;
         this.d.getClass();
         for (Throwable th2 = iOException; th2 != null; th2 = th2.getCause()) {
-            if ((th2 instanceof e2.t0) || (th2 instanceof FileNotFoundException) || (th2 instanceof j2.v) || (th2 instanceof b3.n) || ((th2 instanceof j2.j) && ((j2.j) th2).f16437a == 2008)) {
+            if ((th2 instanceof e2.t0) || (th2 instanceof FileNotFoundException) || (th2 instanceof j2.u) || (th2 instanceof b3.n) || ((th2 instanceof j2.j) && ((j2.j) th2).f16791a == 2008)) {
                 min = -9223372036854775807L;
                 break;
             }
@@ -152,61 +128,84 @@ public final class k1 implements d0, b3.j {
         min = Math.min((i7 - 1) * 1000, 5000);
         int i10 = (min > (-9223372036854775807L) ? 1 : (min == (-9223372036854775807L) ? 0 : -1));
         if (i10 != 0 && i7 < 3) {
-            z9 = false;
+            z10 = false;
         } else {
-            z9 = true;
+            z10 = true;
         }
-        if (this.f58399w && z9) {
+        if (this.f59580w && z10) {
             iOException2 = iOException;
             h2.a.m("SingleSampleMediaPeriod", "Loading failed, treating as end-of-stream.", iOException2);
-            this.f58400x = true;
-            iVar = b3.o.f2960e;
+            this.f59581x = true;
+            iVar = b3.o.f2914e;
         } else {
             iOException2 = iOException;
             if (i10 != 0) {
                 iVar = new b3.i(0, min, false);
             } else {
-                iVar = b3.o.f2961f;
+                iVar = b3.o.f2915f;
             }
         }
-        this.f58394e.q(tVar, 1, -1, this.f58398s, 0, null, 0L, this.f58396n, iOException2, !iVar.a());
+        this.f59575e.p(tVar, 1, -1, this.f59579s, 0, null, 0L, this.f59577n, iOException2, !iVar.a());
         return iVar;
     }
 
     @Override
-    public final void o1(b3.l lVar, long j3, long j10) {
+    public final void m(b3.l lVar, long j3, long j10, boolean z10) {
         j1 j1Var = (j1) lVar;
-        this.D = (int) j1Var.f58384b.f16416b;
-        byte[] bArr = j1Var.f58385c;
-        bArr.getClass();
-        this.f58401y = bArr;
-        this.f58400x = true;
-        j2.c0 c0Var = j1Var.f58384b;
-        t tVar = new t(j1Var.f58383a, c0Var.f16417c, c0Var.d, j3, j10, this.D);
+        j2.b0 b0Var = j1Var.f59565b;
+        t tVar = new t(j1Var.f59564a, b0Var.f16771c, b0Var.d, j3, j10, b0Var.f16770b);
         this.d.getClass();
-        this.f58394e.p(tVar, 1, -1, this.f58398s, 0, null, 0L, this.f58396n);
+        this.f59575e.n(tVar, 1, -1, null, 0, null, 0L, this.f59577n);
     }
 
     @Override
-    public final long p() {
-        if (this.f58400x) {
+    public final long o() {
+        return -9223372036854775807L;
+    }
+
+    @Override
+    public final q1 p() {
+        return this.f59576f;
+    }
+
+    @Override
+    public final void r(b3.l lVar, long j3, long j10, int i7) {
+        t tVar;
+        j1 j1Var = (j1) lVar;
+        j2.b0 b0Var = j1Var.f59565b;
+        if (i7 == 0) {
+            tVar = new t(j1Var.f59564a, j3);
+        } else {
+            tVar = new t(j1Var.f59564a, b0Var.f16771c, b0Var.d, j3, j10, b0Var.f16770b);
+        }
+        this.f59575e.s(tVar, 1, -1, this.f59579s, 0, null, 0L, this.f59577n, i7);
+    }
+
+    @Override
+    public final long s() {
+        if (this.f59581x) {
             return Long.MIN_VALUE;
         }
         return 0L;
     }
 
     @Override
-    public final void q(c0 c0Var, long j3) {
-        c0Var.a(this);
+    public final void t(c0 c0Var, long j3) {
+        c0Var.k(this);
     }
 
     @Override
-    public final void q0(b3.l lVar, long j3, long j10, boolean z9) {
+    public final void w(b3.l lVar, long j3, long j10) {
         j1 j1Var = (j1) lVar;
-        j2.c0 c0Var = j1Var.f58384b;
-        t tVar = new t(j1Var.f58383a, c0Var.f16417c, c0Var.d, j3, j10, c0Var.f16416b);
+        this.E = (int) j1Var.f59565b.f16770b;
+        byte[] bArr = j1Var.f59566c;
+        bArr.getClass();
+        this.f59582y = bArr;
+        this.f59581x = true;
+        j2.b0 b0Var = j1Var.f59565b;
+        t tVar = new t(j1Var.f59564a, b0Var.f16771c, b0Var.d, j3, j10, this.E);
         this.d.getClass();
-        this.f58394e.o(tVar, 1, -1, null, 0, null, 0L, this.f58396n);
+        this.f59575e.o(tVar, 1, -1, this.f59579s, 0, null, 0L, this.f59577n);
     }
 
     @Override
@@ -214,15 +213,15 @@ public final class k1 implements d0, b3.j {
     }
 
     @Override
-    public final void k(long j3) {
+    public final void l(long j3) {
     }
 
     @Override
-    public final void r(long j3) {
+    public final void u(long j3) {
     }
 
     @Override
-    public final long h(long j3, t1 t1Var) {
+    public final long h(long j3, l2.p1 p1Var) {
         return j3;
     }
 }

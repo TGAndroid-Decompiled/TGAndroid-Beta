@@ -2,19 +2,19 @@ package z3;
 
 import android.util.Pair;
 import e2.s0;
-import h2.m0;
+import h2.l0;
 import h2.x;
 import java.nio.charset.StandardCharsets;
 public abstract class c {
-    public static final byte[] f59592a;
+    public static final byte[] f60793a;
 
     static {
-        String str = m0.f14114a;
-        f59592a = "OpusHead".getBytes(StandardCharsets.UTF_8);
+        String str = l0.f13471a;
+        f60793a = "OpusHead".getBytes(StandardCharsets.UTF_8);
     }
 
     public static void a(x xVar) {
-        int i7 = xVar.f14165b;
+        int i7 = xVar.f13522b;
         xVar.O(4);
         if (xVar.m() != 1751411826) {
             i7 += 4;
@@ -100,27 +100,27 @@ public abstract class c {
     }
 
     public static Pair h(x xVar, int i7, int i10) {
-        boolean z9;
         boolean z10;
         boolean z11;
+        boolean z12;
         Integer num;
-        s sVar;
+        r rVar;
         Pair create;
         int i11;
         int i12;
         Integer num2;
-        boolean z12;
-        int i13 = xVar.f14165b;
+        boolean z13;
+        int i13 = xVar.f13522b;
         while (i13 - i7 < i10) {
             xVar.N(i13);
             int m10 = xVar.m();
-            boolean z13 = false;
+            boolean z14 = false;
             if (m10 > 0) {
-                z9 = true;
+                z10 = true;
             } else {
-                z9 = false;
+                z10 = false;
             }
-            f3.b.b("childAtomSize must be positive", z9);
+            f3.b.b("childAtomSize must be positive", z10);
             if (xVar.m() == 1936289382) {
                 int i14 = i13 + 8;
                 int i15 = 0;
@@ -147,17 +147,17 @@ public abstract class c {
                     create = null;
                 } else {
                     if (num3 != null) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    f3.b.b("frma atom is mandatory", z10);
-                    if (i16 != -1) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    f3.b.b("schi atom is mandatory", z11);
+                    f3.b.b("frma atom is mandatory", z11);
+                    if (i16 != -1) {
+                        z12 = true;
+                    } else {
+                        z12 = false;
+                    }
+                    f3.b.b("schi atom is mandatory", z12);
                     int i17 = i16 + 8;
                     while (true) {
                         if (i17 - i16 < i15) {
@@ -177,37 +177,37 @@ public abstract class c {
                                 }
                                 if (xVar.A() == 1) {
                                     num2 = num3;
-                                    z12 = true;
+                                    z13 = true;
                                 } else {
                                     num2 = num3;
-                                    z12 = false;
+                                    z13 = false;
                                 }
                                 int A2 = xVar.A();
                                 byte[] bArr2 = new byte[16];
                                 xVar.k(0, 16, bArr2);
-                                if (z12 && A2 == 0) {
+                                if (z13 && A2 == 0) {
                                     int A3 = xVar.A();
                                     byte[] bArr3 = new byte[A3];
                                     xVar.k(0, A3, bArr3);
                                     bArr = bArr3;
                                 }
                                 num = num2;
-                                sVar = new s(z12, str, A2, bArr2, i12, i11, bArr);
+                                rVar = new r(z13, str, A2, bArr2, i12, i11, bArr);
                             } else {
                                 i17 += m13;
                             }
                         } else {
                             num = num3;
-                            sVar = null;
+                            rVar = null;
                             break;
                         }
                     }
-                    if (sVar != null) {
-                        z13 = true;
+                    if (rVar != null) {
+                        z14 = true;
                     }
-                    f3.b.b("tenc atom is mandatory", z13);
-                    String str2 = m0.f14114a;
-                    create = Pair.create(num, sVar);
+                    f3.b.b("tenc atom is mandatory", z14);
+                    String str2 = l0.f13471a;
+                    create = Pair.create(num, rVar);
                 }
                 if (create != null) {
                     return create;

@@ -1,28 +1,56 @@
 package hi;
 
-import android.view.View;
-public final class c2 implements View.OnClickListener {
-    public final int f14584a;
-    public final a3 f14585b;
+import android.content.Context;
+import org.telegram.messenger.qc;
+import org.telegram.ui.Components.av0;
+import org.telegram.ui.Components.wu0;
+public final class c2 extends av0 {
+    public final boolean H3;
+    public final d2 I3;
 
-    public c2(a3 a3Var, int i7) {
-        this.f14584a = i7;
-        this.f14585b = a3Var;
+    public c2(d2 d2Var, Context context, int i7, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
+        super(i7, context, e6Var);
+        this.I3 = d2Var;
+        this.H3 = z10;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f14584a) {
-            case 0:
-                org.telegram.ui.web.u0 webView = this.f14585b.D.getWebView();
-                if (webView != null) {
-                    webView.reload();
-                    return;
+    public final boolean D1() {
+        return qc.e(8200);
+    }
+
+    @Override
+    public final wu0[] E1(wu0[] wu0VarArr) {
+        if (wu0VarArr != null && this.H3) {
+            int i7 = 0;
+            while (true) {
+                if (i7 < wu0VarArr.length) {
+                    wu0 wu0Var = wu0VarArr[i7];
+                    if (wu0Var != null && wu0Var.f41460b) {
+                        break;
+                    }
+                    i7++;
+                } else {
+                    i7 = -1;
+                    break;
                 }
-                return;
-            default:
-                this.f14585b.w();
-                return;
+            }
+            if (i7 >= 0) {
+                int length = wu0VarArr.length;
+                wu0[] wu0VarArr2 = new wu0[length];
+                wu0VarArr2[0] = wu0VarArr[i7];
+                for (int i10 = 1; i10 < length; i10++) {
+                    wu0VarArr2[i10] = wu0VarArr[i10 <= i7 ? i10 - 1 : i10];
+                }
+                return wu0VarArr2;
+            }
         }
+        return wu0VarArr;
+    }
+
+    @Override
+    public final void H1(int i7) {
+        super.H1(i7);
+        this.I3.d(false);
     }
 }

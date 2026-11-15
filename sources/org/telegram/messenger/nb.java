@@ -1,39 +1,51 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLObject;
+import java.util.ArrayList;
 public final class nb implements Runnable {
-    public final int f24175a;
-    public final boolean f24176b;
-    public final int f24177c;
-    public final Object d;
-    public final Object f24178e;
+    public final int f25181a = 0;
+    public final String f25182b;
+    public final int f25183c;
+    public final boolean d;
 
-    public nb(int i7, int i10, Object obj, TLObject tLObject, boolean z9) {
-        this.f24175a = i10;
-        this.d = obj;
-        this.f24178e = tLObject;
-        this.f24176b = z9;
-        this.f24177c = i7;
+    public nb(int i7, String str, boolean z10) {
+        this.f25183c = i7;
+        this.f25182b = str;
+        this.d = z10;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.nb.run():void");
+        int i7 = this.f25181a;
+        boolean z10 = this.d;
+        int i10 = this.f25183c;
+        String str = this.f25182b;
+        switch (i7) {
+            case 0:
+                ns.f(i10).k(139, str, Boolean.valueOf(z10));
+                return;
+            default:
+                org.telegram.utils.twidget.k0 k0Var = (org.telegram.utils.twidget.k0) org.telegram.utils.twidget.n0.f54338a.get(str);
+                if (k0Var != null && k0Var.f54283t != null) {
+                    if (org.telegram.utils.twidget.n0.f54343g.contains(k0Var)) {
+                        k0Var.E = i10;
+                        k0Var.f54283t.n(i10);
+                        return;
+                    }
+                    k0Var.E = i10;
+                    k0Var.F = z10;
+                    ArrayList arrayList = org.telegram.utils.twidget.n0.f54342f;
+                    arrayList.remove(k0Var);
+                    arrayList.add(k0Var);
+                    org.telegram.utils.twidget.n0.p();
+                    return;
+                }
+                return;
+        }
     }
 
-    public nb(qb qbVar, int i7, String str, boolean z9) {
-        this.f24175a = 0;
-        this.d = qbVar;
-        this.f24177c = i7;
-        this.f24178e = str;
-        this.f24176b = z9;
-    }
-
-    public nb(ui uiVar, int i7, boolean z9, c20 c20Var) {
-        this.f24175a = 2;
-        this.d = uiVar;
-        this.f24177c = i7;
-        this.f24176b = z9;
-        this.f24178e = c20Var;
+    public nb(String str, int i7, boolean z10) {
+        this.f25182b = str;
+        this.f25183c = i7;
+        this.d = z10;
     }
 }

@@ -1,52 +1,33 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.tgnet.TLRPC;
-public final class qx extends org.telegram.ui.ActionBar.f2 {
-    public long f49169a;
-    public TLRPC.Chat f49170b;
-    public boolean f49171c;
-    public boolean d;
-    public boolean f49172e;
-    public nx f49173f;
-    public di.b0 h;
+import android.content.DialogInterface;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+public final class qx implements DialogInterface.OnCancelListener {
+    public final int f50801a;
+    public final int f50802b;
+    public final int[] f50803c;
 
-    @Override
-    public final View createView(Context context) {
-        setHasOwnBackground(true);
-        this.simpleActionBar.setBackButtonImage(2131231240);
-        this.simpleActionBar.setActionBarMenuOnItemClick(new w9(this, 29));
-        this.simpleActionBar.setTitle(org.telegram.messenger.id.M0(2131743981, null));
-        FrameLayout frameLayout = new FrameLayout(context);
-        nx nxVar = new nx(this, new a5(this, 13), new zr(this, 9), null, 0);
-        this.f49173f = nxVar;
-        nxVar.r1();
-        this.f49173f.setSectionsDrawBackground(true);
-        frameLayout.addView(this.f49173f, c8.ha.e(-1, -1, 119));
-        this.fragmentView = frameLayout;
-        return frameLayout;
+    public qx(int i7, int i10, int[] iArr) {
+        this.f50801a = i10;
+        this.f50802b = i7;
+        this.f50803c = iArr;
     }
 
     @Override
-    public final org.telegram.ui.Components.pj0 getListViewForSimpleGlass() {
-        return this.f49173f;
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        this.f49170b = getMessagesController().M0(Long.valueOf(-this.f49169a));
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public final boolean useSimpleActionBar() {
-        return true;
+    public final void onCancel(DialogInterface dialogInterface) {
+        int i7 = this.f50801a;
+        int[] iArr = this.f50803c;
+        int i10 = this.f50802b;
+        switch (i7) {
+            case 0:
+                ArrayList arrayList = ExternalActionActivity.f42593y;
+                ConnectionsManager.getInstance(i10).cancelRequest(iArr[0], true);
+                return;
+            default:
+                String str = LaunchActivity.C1;
+                ConnectionsManager.getInstance(i10).cancelRequest(iArr[0], true);
+                return;
+        }
     }
 }

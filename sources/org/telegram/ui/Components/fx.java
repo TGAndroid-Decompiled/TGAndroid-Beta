@@ -1,34 +1,50 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-public final class fx implements ux {
-    public final gx f33663a;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class fx extends c5.a {
+    public final ly f34713c;
 
-    public fx(gx gxVar) {
-        this.f33663a = gxVar;
+    public fx(ly lyVar) {
+        this.f34713c = lyVar;
     }
 
     @Override
-    public final void e() {
-        gx gxVar = this.f33663a;
-        if (gxVar.F.V.F) {
-            return;
-        }
-        ArrayList arrayList = new ArrayList();
-        gxVar.F.V.e(true);
-        gx.E(gxVar, new ro(14, this, arrayList), arrayList, true);
+    public final void a(c5.l lVar, Object obj) {
+        lVar.removeView((View) obj);
     }
 
     @Override
-    public final void run() {
-        LinkedHashSet linkedHashSet = new LinkedHashSet();
-        String str = this.f33663a.f34001w;
-        ro roVar = new ro(13, this, str);
-        if (org.telegram.messenger.i6.d(str)) {
-            zu0.F3.c(org.telegram.messenger.p10.f24474s0, str, new org.telegram.messenger.voip.k(28, linkedHashSet, roVar));
-        } else {
-            roVar.run();
+    public final int b() {
+        return this.f34713c.f36942e.size();
+    }
+
+    @Override
+    public final CharSequence d(int i7) {
+        if (i7 != 0) {
+            if (i7 != 1) {
+                if (i7 != 2) {
+                    return null;
+                }
+                return org.telegram.messenger.hd.M0(2131754756, null);
+            }
+            return org.telegram.messenger.hd.M0(2131754879, null);
         }
+        return org.telegram.messenger.hd.M0(2131751196, null);
+    }
+
+    @Override
+    public final Object e(c5.l lVar, int i7) {
+        FrameLayout frameLayout = ((hy) this.f34713c.f36942e.get(i7)).f35369b;
+        lVar.addView(frameLayout);
+        return frameLayout;
+    }
+
+    @Override
+    public final boolean f(View view, Object obj) {
+        if (view == obj) {
+            return true;
+        }
+        return false;
     }
 }

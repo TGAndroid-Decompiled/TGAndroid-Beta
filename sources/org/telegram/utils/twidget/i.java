@@ -3,22 +3,22 @@ package org.telegram.utils.twidget;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 public final class i {
-    public final ByteBuffer f52839a;
-    public final int f52840b;
-    public final boolean f52841c;
+    public final ByteBuffer f54247a;
+    public final int f54248b;
+    public final boolean f54249c;
     public final int d;
-    public final int[] f52842e;
-    public final int[] f52843f;
-    public final String[] f52844g;
+    public final int[] f54250e;
+    public final int[] f54251f;
+    public final String[] f54252g;
 
-    public i(ByteBuffer byteBuffer, int i7, boolean z9, int i10, int[] iArr, int[] iArr2) {
-        this.f52839a = byteBuffer;
-        this.f52840b = i7;
-        this.f52841c = z9;
+    public i(ByteBuffer byteBuffer, int i7, boolean z10, int i10, int[] iArr, int[] iArr2) {
+        this.f54247a = byteBuffer;
+        this.f54248b = i7;
+        this.f54249c = z10;
         this.d = i10;
-        this.f52842e = iArr;
-        this.f52843f = iArr2;
-        this.f52844g = new String[iArr.length];
+        this.f54250e = iArr;
+        this.f54251f = iArr2;
+        this.f54252g = new String[iArr.length];
     }
 
     public static IllegalArgumentException a() {
@@ -26,7 +26,7 @@ public final class i {
     }
 
     public static i b(byte[] bArr) {
-        boolean z9;
+        boolean z10;
         if (bArr.length >= 24 && (bArr.length & 3) == 0) {
             ByteBuffer order = ByteBuffer.wrap(bArr).order(ByteOrder.LITTLE_ENDIAN);
             if (order.getInt(0) == 1279547220 && order.getInt(4) == 1) {
@@ -58,11 +58,11 @@ public final class i {
                         }
                         if (i14 <= bArr.length) {
                             if ((i10 & 1) != 0) {
-                                z9 = true;
+                                z10 = true;
                             } else {
-                                z9 = false;
+                                z10 = false;
                             }
-                            return new i(order, i7, z9, i11, iArr, iArr2);
+                            return new i(order, i7, z10, i11, iArr, iArr2);
                         }
                         throw a();
                     }

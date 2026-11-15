@@ -1,64 +1,46 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import android.widget.EditText;
-import org.telegram.messenger.Utilities;
-public final class k81 extends org.telegram.ui.ActionBar.n0 {
-    public boolean f47220a = false;
-    public final p81 f47221b;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class k81 extends org.telegram.ui.Components.tj0 {
+    public final ArrayList f48645c = new ArrayList();
+    public final ArrayList d = new ArrayList();
+    public j81 f48646e;
+    public int f48647f;
+    public final l81 h;
 
-    public k81(p81 p81Var) {
-        this.f47221b = p81Var;
+    public k81(l81 l81Var) {
+        this.h = l81Var;
     }
 
     @Override
-    public final void h() {
-        p81 p81Var = this.f47221b;
-        if (p81Var.f48714a.getVisibility() != 0) {
-            p81Var.f48714a.setVisibility(0);
-            p81Var.f48714a.setAlpha(0.0f);
-        }
-        p81Var.f48720r.setVisibility(8);
-        p81Var.d.f();
-        p81Var.f48714a.animate().alpha(1.0f).setDuration(150L).setListener(null).start();
-        p81Var.f48721s.animate().alpha(0.0f).setDuration(150L).setListener(new j81(this, 0)).start();
-        this.f47220a = false;
+    public final boolean D(v4.e1 e1Var) {
+        return true;
     }
 
     @Override
-    public final void l(EditText editText) {
-        String obj = editText.getText().toString();
-        o81 o81Var = this.f47221b.f48717e;
-        if (o81Var.f48468e != null) {
-            Utilities.f21343g.a(o81Var.f48468e);
-            o81Var.f48468e = null;
+    public final int b() {
+        return this.f48645c.size();
+    }
+
+    @Override
+    public final void t(v4.e1 e1Var, int i7) {
+        ArrayList arrayList = this.f48645c;
+        TLRPC.Chat chat = (TLRPC.Chat) arrayList.get(i7);
+        String str = (String) this.d.get(i7);
+        org.telegram.ui.Cells.h4 h4Var = (org.telegram.ui.Cells.h4) e1Var.f58535a;
+        String str2 = chat.title;
+        boolean z10 = true;
+        if (i7 == arrayList.size() - 1) {
+            z10 = false;
         }
-        if (TextUtils.isEmpty(obj)) {
-            o81Var.f48467c.clear();
-            o81Var.d.clear();
-            o81Var.f();
-            o81Var.h.f48720r.setVisibility(8);
-        } else {
-            int i7 = o81Var.f48469f + 1;
-            o81Var.f48469f = i7;
-            org.telegram.messenger.p5 p5Var = Utilities.f21343g;
-            n81 n81Var = new n81(o81Var, obj, i7, 0);
-            o81Var.f48468e = n81Var;
-            p5Var.d(n81Var, 300L);
-        }
-        if (!this.f47220a && !TextUtils.isEmpty(obj)) {
-            if (this.f47221b.f48721s.getVisibility() != 0) {
-                this.f47221b.f48721s.setVisibility(0);
-                this.f47221b.f48721s.setAlpha(0.0f);
-            }
-            this.f47221b.f48714a.animate().alpha(0.0f).setDuration(150L).setListener(new j81(this, 1)).start();
-            this.f47221b.f48717e.d.clear();
-            this.f47221b.f48717e.f48467c.clear();
-            this.f47221b.f48717e.f();
-            this.f47221b.f48721s.animate().setListener(null).alpha(1.0f).setDuration(150L).start();
-            this.f47220a = true;
-        } else if (this.f47220a && TextUtils.isEmpty(obj)) {
-            h();
-        }
+        h4Var.e(chat, str2, str, z10);
+        h4Var.c(this.h.f48904x.contains(Long.valueOf(chat.f28051id)), false);
+    }
+
+    @Override
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
+        return new v4.e1(new org.telegram.ui.Cells.h4(viewGroup.getContext(), 1, 0, false));
     }
 }

@@ -1,24 +1,30 @@
 package org.telegram.messenger;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.PostProcessor;
-public final class zs implements PostProcessor {
-    @Override
-    public final int onPostProcess(Canvas canvas) {
-        Path path = new Path();
-        path.setFillType(Path.FillType.INVERSE_EVEN_ODD);
-        int width = canvas.getWidth();
-        float f10 = width / 2;
-        path.addRoundRect(0.0f, 0.0f, width, canvas.getHeight(), f10, f10, Path.Direction.CW);
-        Paint paint = new Paint();
-        paint.setAntiAlias(true);
-        paint.setColor(0);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
-        canvas.drawPath(path, paint);
-        return -3;
+import android.util.Pair;
+import java.util.HashMap;
+public final class zs {
+    public final long f27999a;
+    public String f28000b;
+    public final HashMap f28001c;
+    public boolean d;
+    public long f28002e;
+
+    public zs(String str, long j3, int i7, long j10, long j11) {
+        HashMap hashMap = new HashMap();
+        this.f28001c = hashMap;
+        this.f27999a = j3;
+        this.f28000b = str;
+        hashMap.put(Integer.valueOf(i7), new Pair(Long.valueOf(j10), Long.valueOf(j11)));
+        this.f28002e = j10;
+    }
+
+    public final long a() {
+        long j3 = -1;
+        for (Pair pair : this.f28001c.values()) {
+            if (j3 == -1 || j3 > ((Long) pair.first).longValue()) {
+                j3 = ((Long) pair.first).longValue();
+            }
+        }
+        return j3;
     }
 }

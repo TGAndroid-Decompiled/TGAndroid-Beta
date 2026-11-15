@@ -4,53 +4,53 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.tgnet.TLRPC;
 public final class f4 extends AnimatorListenerAdapter {
-    public final boolean f45499a;
-    public final ArticleViewer$WindowView f45500b;
+    public final boolean f46990a;
+    public final ArticleViewer$WindowView f46991b;
 
-    public f4(ArticleViewer$WindowView articleViewer$WindowView, boolean z9) {
-        this.f45500b = articleViewer$WindowView;
-        this.f45499a = z9;
+    public f4(ArticleViewer$WindowView articleViewer$WindowView, boolean z10) {
+        this.f46991b = articleViewer$WindowView;
+        this.f46990a = z10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        ArticleViewer$WindowView articleViewer$WindowView = this.f45500b;
-        g4 g4Var = articleViewer$WindowView.H;
-        boolean z9 = articleViewer$WindowView.f28857e;
-        boolean z10 = this.f45499a;
-        if (z9) {
+        ArticleViewer$WindowView articleViewer$WindowView = this.f46991b;
+        g4 g4Var = articleViewer$WindowView.I;
+        boolean z10 = articleViewer$WindowView.f29955e;
+        boolean z11 = this.f46990a;
+        if (z10) {
             Object obj = null;
-            g4Var.f45971u0[0].setBackgroundDrawable(null);
-            if (!z10) {
-                k3[] k3VarArr = g4Var.f45971u0;
+            g4Var.f47336v0[0].setBackgroundDrawable(null);
+            if (!z11) {
+                k3[] k3VarArr = g4Var.f47336v0;
                 k3 k3Var = k3VarArr[1];
                 k3VarArr[1] = k3VarArr[0];
                 k3VarArr[0] = k3Var;
-                g4Var.f45959h0.i();
-                g4Var.f45951a1.a(g4Var.f45971u0[0].getBackgroundColor(), true);
-                g4Var.f45953b1.a(g4Var.f45971u0[1].getBackgroundColor(), true);
-                t3 t3Var = g4Var.K;
+                g4Var.f47324i0.i();
+                g4Var.f47316b1.a(g4Var.f47336v0[0].getBackgroundColor(), true);
+                g4Var.f47318c1.a(g4Var.f47336v0[1].getBackgroundColor(), true);
+                t3 t3Var = g4Var.L;
                 if (t3Var != null) {
                     t3Var.z();
                 }
-                obj = org.telegram.ui.Cells.f1.k(1, g4Var.f45955d0);
-                g4Var.P0.S(g4Var.f45971u0[0].f47142b);
-                org.telegram.ui.Cells.i9 i9Var = g4Var.P0;
-                i9Var.f29342z0 = g4Var.f45971u0[0].d;
-                i9Var.f(true);
+                obj = r.b.g(1, g4Var.f47320e0);
+                g4Var.Q0.S(g4Var.f47336v0[0].f48549b);
+                org.telegram.ui.Cells.h9 h9Var = g4Var.Q0;
+                h9Var.f30421z0 = g4Var.f47336v0[0].d;
+                h9Var.f(true);
                 g4Var.g0(false);
                 g4Var.d0();
             }
-            g4Var.f45971u0[1].b();
-            g4Var.f45971u0[1].setVisibility(8);
+            g4Var.f47336v0[1].b();
+            g4Var.f47336v0[1].setVisibility(8);
             if (obj instanceof x2) {
                 ((x2) obj).a();
             }
             if (obj instanceof TLRPC.WebPage) {
-                org.telegram.ui.web.w1.o((TLRPC.WebPage) obj);
+                org.telegram.ui.web.v1.o((TLRPC.WebPage) obj);
             }
-        } else if (!z10) {
-            t3 t3Var2 = g4Var.K;
+        } else if (!z11) {
+            t3 t3Var2 = g4Var.L;
             if (t3Var2 != null) {
                 t3Var2.release();
                 g4Var.q();
@@ -59,8 +59,8 @@ public final class f4 extends AnimatorListenerAdapter {
                 g4Var.K();
             }
         }
-        articleViewer$WindowView.f28857e = false;
+        articleViewer$WindowView.f29955e = false;
         articleViewer$WindowView.d = false;
-        g4Var.U0 = false;
+        g4Var.V0 = false;
     }
 }

@@ -1,109 +1,105 @@
 package ji;
 
+import ai.b2;
 import ai.m0;
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.messenger.g0;
-import org.telegram.messenger.id;
-import org.telegram.messenger.m5;
-import org.telegram.messenger.p10;
-import org.telegram.messenger.qp;
-import org.telegram.messenger.t3;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.Components.k9;
-import org.telegram.ui.Components.m41;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.r41;
-import org.telegram.ui.Components.v8;
-import org.telegram.ui.Components.w31;
-import org.telegram.ui.Components.x31;
-import v4.o0;
-public final class g extends w31 {
-    public static final int f17086b = 0;
+import ai.s;
+import org.telegram.messenger.z10;
+import org.telegram.ui.Dictation.DictationAsr;
+public final class g implements z10 {
+    public final int f17547a;
+    public final m f17548b;
+    public final String[] f17549c;
 
-    static {
-        w31.h(new w31());
+    public g(m mVar, String[] strArr, int i7) {
+        this.f17547a = i7;
+        this.f17548b = mVar;
+        this.f17549c = strArr;
     }
 
     @Override
-    public final void b(View view, x31 x31Var, boolean z9, m41 m41Var, r41 r41Var) {
-        int i7;
-        String o02;
-        h hVar = (h) view;
-        f fVar = (f) x31Var.G;
-        TLRPC.User user = fVar.f17084b;
-        long j3 = fVar.f17083a;
-        boolean z10 = fVar.f17085c;
-        boolean z11 = !x31Var.f40154j;
-        k9 k9Var = hVar.f17089c;
-        TextView textView = hVar.f17092n;
-        TextView textView2 = hVar.d;
-        hVar.E = (e) x31Var.H;
-        hVar.F = j3;
-        hVar.G = user.f27109id;
-        int i10 = hVar.f17088b;
-        TLRPC.Chat M0 = qp.s1(i10).M0(Long.valueOf(-j3));
-        TLRPC.User a22 = qp.s1(i10).a2(Long.valueOf(j3));
-        hVar.f17091f.setText(m5.l(p10.f24474s0, j3));
-        TextView textView3 = hVar.h;
-        if (a22 != null) {
-            i7 = 2131751898;
-        } else if (t3.V(M0)) {
-            i7 = 2131751897;
-        } else {
-            i7 = 2131751896;
+    public final void a(Object obj) {
+        boolean z10;
+        b2 b2Var;
+        p pVar;
+        b2 b2Var2;
+        Integer num = (Integer) obj;
+        switch (this.f17547a) {
+            case 0:
+                m mVar = this.f17548b;
+                mVar.getClass();
+                if (num.intValue() == 0) {
+                    DictationAsr.T(true);
+                    return;
+                }
+                String str = this.f17549c[num.intValue() - 1];
+                s H = DictationAsr.H(str);
+                if (H != null && !DictationAsr.w(H)) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                DictationAsr.S(str);
+                DictationAsr.s(H);
+                if (z10 && mVar.f17573c == 2 && (pVar = mVar.h) != null) {
+                    mVar.f17586n = "";
+                    if (pVar.N1) {
+                        pVar.f17645v1 = null;
+                    }
+                    pVar.f17618i0 = "";
+                    pVar.f17648w1 = -1;
+                    pVar.f17620j0 = null;
+                    pVar.m0.clear();
+                    pVar.S0 = true;
+                    pVar.B0 = 0.0f;
+                    pVar.A0 = 0.0f;
+                    pVar.C0 = 0.0f;
+                    pVar.D0 = 0.0f;
+                    pVar.F0 = -1.0f;
+                    pVar.E0 = -1.0f;
+                    pVar.H0 = -1.0f;
+                    pVar.J0 = false;
+                    pVar.Q0 = 0L;
+                    pVar.R0 = 0.0f;
+                    pVar.f17653y0 = true;
+                    pVar.X0 = true;
+                    pVar.invalidate();
+                }
+                p pVar2 = mVar.h;
+                if (pVar2 != null) {
+                    pVar2.setLanguage(m0.l(str));
+                }
+                if (mVar.f17573c == 2 && (b2Var = mVar.f17578f) != null) {
+                    b2Var.p(str);
+                }
+                mVar.t();
+                return;
+            default:
+                boolean z11 = true;
+                if (num.intValue() == 0) {
+                    DictationAsr.T(true);
+                    return;
+                }
+                String str2 = this.f17549c[num.intValue() - 1];
+                s H2 = DictationAsr.H(str2);
+                z11 = (H2 == null || DictationAsr.w(H2)) ? false : false;
+                DictationAsr.S(str2);
+                DictationAsr.s(H2);
+                m mVar2 = this.f17548b;
+                if (z11 && mVar2.f17573c == 2 && mVar2.X == null && mVar2.f17577e0 == null) {
+                    mVar2.M.clear();
+                    mVar2.n();
+                }
+                String l10 = m0.l(str2);
+                mVar2.f17585l0 = l10;
+                e eVar = mVar2.K;
+                if (eVar != null) {
+                    eVar.setLanguage(l10);
+                }
+                if (mVar2.f17573c == 2 && (b2Var2 = mVar2.f17578f) != null) {
+                    b2Var2.p(str2);
+                }
+                mVar2.t();
+                return;
         }
-        textView3.setText(g0.Q2(id.a0(null, null, i7, m5.u(user)), m6.Wl, null, new m0(16), false));
-        if (a22 != null) {
-            textView2.setVisibility(8);
-        } else if (M0 != null && M0.participants_count > 0) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("* ");
-            spannableStringBuilder.setSpan(hVar.f17094s, 0, 1, 33);
-            long j10 = M0.participants_count;
-            if (j10 < 1000000) {
-                o02 = id.E(j10, ',');
-            } else {
-                o02 = g0.o0((int) j10, 1000000);
-            }
-            spannableStringBuilder.append((CharSequence) o02);
-            textView2.setText(spannableStringBuilder);
-            textView2.setVisibility(0);
-        } else {
-            textView2.setVisibility(8);
-        }
-        if (z10) {
-            textView.setVisibility(0);
-        } else {
-            textView.setVisibility(8);
-        }
-        hVar.f17097y = z11;
-        if (a22 != null) {
-            k9Var.e(a22, new v8(0, a22));
-        } else {
-            k9Var.e(M0, new v8(M0));
-        }
-        hVar.f17090e.e(user, new v8(0, user));
-    }
-
-    @Override
-    public final View d(Context context, pj0 pj0Var, int i7, h6 h6Var) {
-        h hVar = new h(i7, context, h6Var);
-        hVar.setLayoutParams(new o0(-1, -2));
-        hVar.setClickable(false);
-        return hVar;
-    }
-
-    @Override
-    public final boolean e(x31 x31Var, x31 x31Var2) {
-        f fVar = (f) x31Var.G;
-        f fVar2 = (f) x31Var2.G;
-        if (fVar.f17083a == fVar2.f17083a && m5.d(fVar.f17084b) == m5.d(fVar2.f17084b)) {
-            return true;
-        }
-        return false;
     }
 }

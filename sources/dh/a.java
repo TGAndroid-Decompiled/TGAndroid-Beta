@@ -1,17 +1,17 @@
 package dh;
 
-import org.telegram.messenger.ui;
+import org.telegram.messenger.si;
 public final class a {
-    public boolean f8703a;
-    public long f8704b;
+    public boolean f8087a;
+    public long f8088b;
 
     public void a(long j3) {
-        this.f8704b = ui.p(this.f8704b, j3);
+        this.f8088b = si.p(this.f8088b, j3);
     }
 
-    public void b(boolean z9) {
+    public void b(boolean z10) {
         long j3;
-        if (z9) {
+        if (z10) {
             j3 = 1;
         } else {
             j3 = 0;

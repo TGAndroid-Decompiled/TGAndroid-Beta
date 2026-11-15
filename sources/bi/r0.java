@@ -1,32 +1,17 @@
 package bi;
 
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.Components.ys;
-public final class r0 implements org.telegram.ui.ActionBar.r1 {
-    public final int f4601a;
-    public final int f4602b;
-    public final Object f4603c;
+import android.content.Context;
+import android.view.View;
+public final class r0 extends View {
+    public final float f3813a;
 
-    public r0(int i7, int i10, org.telegram.ui.ActionBar.f2 f2Var) {
-        this.f4601a = i7;
-        this.f4602b = i10;
-        this.f4603c = f2Var;
+    public r0(Context context, float f10) {
+        super(context);
+        this.f3813a = f10;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        vf.b h = u1Var.h(-1, true, true);
-        h.d();
-        TL_payments.TL_resolveStarGiftOffer tL_resolveStarGiftOffer = new TL_payments.TL_resolveStarGiftOffer();
-        tL_resolveStarGiftOffer.offer_msg_id = this.f4601a;
-        int i10 = this.f4602b;
-        ConnectionsManager.getInstance(i10).sendRequestTyped(tL_resolveStarGiftOffer, new v0(i10, (org.telegram.ui.ActionBar.f2) this.f4603c, h, u1Var));
-    }
-
-    public r0(ys ysVar, int i7, int i10) {
-        this.f4603c = ysVar;
-        this.f4601a = i7;
-        this.f4602b = i10;
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (View.MeasureSpec.getSize(i7) * this.f3813a), 1073741824), i10);
     }
 }

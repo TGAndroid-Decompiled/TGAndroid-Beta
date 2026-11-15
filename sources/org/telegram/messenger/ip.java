@@ -1,9 +1,6 @@
 package org.telegram.messenger;
+
+import org.telegram.tgnet.TLRPC;
 public final class ip {
-    public long f23352a;
-    public long f23353b;
-    public long f23354c;
-    public int d;
-    public int f23355e;
-    public long f23356f;
+    public TLRPC.TL_channels_sendAsPeers f24427a;
 }

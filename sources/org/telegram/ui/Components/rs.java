@@ -1,57 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RectShape;
-public final class rs extends ShapeDrawable {
-    public final int f37731a = 1;
-    public final EditTextBoldCursor f37732b;
+import java.util.ArrayList;
+public final class rs implements ss {
+    public final int f39054a;
+    public final Object f39055b;
 
-    public rs(EditTextBoldCursor editTextBoldCursor, RectShape rectShape) {
-        super(rectShape);
-        this.f37732b = editTextBoldCursor;
+    public rs(Object obj, int i7) {
+        this.f39054a = i7;
+        this.f39055b = obj;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f37731a) {
+    public final void a(int i7, boolean z10) {
+        switch (this.f39054a) {
             case 0:
-                super.draw(canvas);
-                this.f37732b.G0 = true;
+                ArrayList arrayList = ((us) this.f39055b).f40156b;
+                int size = arrayList.size();
+                int i10 = 0;
+                while (i10 < size) {
+                    Object obj = arrayList.get(i10);
+                    i10++;
+                    ((ss) obj).a(i7, z10);
+                }
                 return;
             default:
-                EditTextBoldCursor editTextBoldCursor = this.f37732b;
-                if (editTextBoldCursor.f31353d1) {
-                    editTextBoldCursor.G0 = true;
-                    return;
-                } else {
-                    super.draw(canvas);
-                    return;
-                }
+                ((Runnable) this.f39055b).run();
+                return;
         }
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        switch (this.f37731a) {
-            case 1:
-                return org.telegram.messenger.g0.L(this.f37732b.f31362i0 + 20);
-            default:
-                return super.getIntrinsicHeight();
-        }
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        switch (this.f37731a) {
-            case 1:
-                return org.telegram.messenger.g0.L(this.f37732b.E0);
-            default:
-                return super.getIntrinsicWidth();
-        }
-    }
-
-    public rs(EditTextBoldCursor editTextBoldCursor) {
-        this.f37732b = editTextBoldCursor;
     }
 }

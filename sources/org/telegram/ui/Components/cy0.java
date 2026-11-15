@@ -1,58 +1,16 @@
 package org.telegram.ui.Components;
-
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-public final class cy0 extends st0 {
-    public final h6.m f32801f0;
-    public final org.telegram.ui.ActionBar.h6 f32802g0;
-    public final ay0 f32803h0;
-
-    public cy0(Context context, org.telegram.ui.ActionBar.h6 h6Var, ay0 ay0Var) {
-        super(context, null);
-        this.f32802g0 = h6Var;
-        this.f32803h0 = ay0Var;
-        this.f32801f0 = new h6.m(28);
+public final class cy0 extends org.telegram.ui.Cells.q1 {
+    @Override
+    public final int getParentWidth() {
+        return org.telegram.messenger.i20.y(128.0f, org.telegram.messenger.g0.f23609q.x, 2);
     }
 
     @Override
-    public final boolean O() {
+    public final boolean isPressed() {
         return false;
     }
 
     @Override
-    public final boolean P() {
-        return false;
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f32803h0) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-            boolean drawChild = super.drawChild(canvas, view, j3);
-            canvas.save();
-            RectF rectF = org.telegram.messenger.g0.P;
-            rectF.set(0.0f, 0.0f, org.telegram.messenger.g0.L(45.0f), getHeight());
-            this.f32801f0.m(canvas, rectF, 0, 1.0f);
-            canvas.restore();
-            canvas.restore();
-            return drawChild;
-        }
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final org.telegram.ui.ActionBar.h6 getResourceProvider() {
-        return this.f32802g0;
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, i10);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.f22567q.x, 1073741824);
-        ay0 ay0Var = this.f32803h0;
-        ay0Var.measure(makeMeasureSpec, i10);
-        setMeasuredDimension(View.MeasureSpec.getSize(i7), ay0Var.getMeasuredHeight() + org.telegram.messenger.g0.L(24.0f));
+    public final void a4() {
     }
 }

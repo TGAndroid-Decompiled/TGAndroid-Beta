@@ -1,41 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.widget.Toast;
-import java.util.ArrayList;
-import org.telegram.tgnet.ResultCallback;
-import org.telegram.tgnet.TLRPC;
-public final class so implements ResultCallback {
-    public final org.telegram.messenger.d4 f38035a;
-    public final vo f38036b;
+import android.animation.ValueAnimator;
+public final class so implements ValueAnimator.AnimatorUpdateListener {
+    public boolean f39383a = false;
+    public final zz0 f39384b;
+    public final float f39385c;
+    public final boolean d;
+    public final ep f39386e;
 
-    public so(vo voVar, org.telegram.messenger.d4 d4Var) {
-        this.f38036b = voVar;
-        this.f38035a = d4Var;
+    public so(ep epVar, zz0 zz0Var, float f10, boolean z10) {
+        this.f39386e = epVar;
+        this.f39384b = zz0Var;
+        this.f39385c = f10;
+        this.d = z10;
     }
 
     @Override
-    public final void onComplete(Object obj) {
-        int i7;
-        Void r62 = (Void) obj;
-        org.telegram.messenger.d4 d4Var = this.f38035a;
-        if (d4Var.f21987f.f18064c) {
-            i7 = 2;
-        } else {
-            i7 = 0;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        ep epVar = this.f39386e;
+        epVar.M1 = floatValue;
+        if (!this.d) {
+            floatValue = 1.0f - floatValue;
         }
-        ArrayList e10 = d4Var.e(i7 | 5);
-        vo voVar = this.f38036b;
-        org.telegram.messenger.qs.f(voVar.f28669a).d(new ro(0, this, e10));
-        voVar.U1 = false;
-    }
-
-    @Override
-    public final void onError(Throwable th2) {
-        org.telegram.tgnet.k.a(this, th2);
-    }
-
-    @Override
-    public final void onError(TLRPC.TL_error tL_error) {
-        Toast.makeText(this.f38036b.getContext(), tL_error.text, 0).show();
+        this.f39384b.setRadius(this.f39385c * floatValue);
+        if (!this.f39383a && epVar.M1 > 0.5f) {
+            this.f39383a = true;
+        }
     }
 }

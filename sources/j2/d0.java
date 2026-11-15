@@ -1,3 +1,3 @@
 package j2;
-public interface d0 {
+public final class d0 extends j {
 }

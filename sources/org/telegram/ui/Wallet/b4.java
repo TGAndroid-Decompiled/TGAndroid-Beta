@@ -1,44 +1,54 @@
 package org.telegram.ui.Wallet;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import org.telegram.ui.Components.a80;
-public final class b4 extends a80 {
-    public final Paint M;
-    public final d4 N;
+import android.content.Context;
+import android.graphics.SurfaceTexture;
+import android.widget.ImageView;
+public final class b4 extends vg.s {
+    public final int E = 0;
+    public final Object F;
 
-    public b4(d4 d4Var, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(h6Var);
-        this.N = d4Var;
-        Paint paint = new Paint(1);
-        this.M = paint;
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+    public b4(q8 q8Var, Context context, l lVar) {
+        super(context, lVar, 0);
+        this.F = q8Var;
     }
 
     @Override
-    public final void b(Canvas canvas, Path path) {
-        super.b(canvas, path);
-        d4 d4Var = this.N;
-        RectF rectF = d4Var.f42311f;
-        if (d4Var.f42328o0 != null) {
-            canvas.saveLayer(rectF, null);
-            d4Var.f42328o0.c((org.telegram.messenger.g0.L(206.0f) - d4Var.f42328o0.k()) / 2.0f, (rectF.bottom - org.telegram.messenger.g0.L(7.0f)) - d4Var.f42328o0.i(), 1.0f, -1, canvas);
-            Shader shader = this.f31792x.getShader();
-            Paint paint = this.M;
-            paint.setShader(shader);
-            canvas.drawRect(rectF, paint);
-            canvas.restore();
+    public final void a() {
+        switch (this.E) {
+            case 0:
+                c4 c4Var = (c4) this.F;
+                c4Var.f43596o = true;
+                setPaused(true);
+                setVisibility(8);
+                c4Var.f43571a.invalidate();
+                return;
+            default:
+                setPaused(true);
+                setVisibility(8);
+                ((q8) this.F).f44395a.setVisibility(0);
+                return;
         }
     }
 
     @Override
-    public final void invalidateSelf() {
-        super.invalidateSelf();
-        this.N.f42302a.invalidate();
+    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+        switch (this.E) {
+            case 1:
+                ImageView imageView = ((q8) this.F).f44395a;
+                super.onSurfaceTextureUpdated(surfaceTexture);
+                if (this.f58979n && imageView.getVisibility() == 0) {
+                    imageView.setVisibility(4);
+                    return;
+                }
+                return;
+            default:
+                super.onSurfaceTextureUpdated(surfaceTexture);
+                return;
+        }
+    }
+
+    public b4(c4 c4Var, Context context, y3 y3Var) {
+        super(context, y3Var, 2);
+        this.F = c4Var;
     }
 }

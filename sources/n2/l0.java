@@ -1,4 +1,100 @@
 package n2;
+
+import android.content.Context;
+import android.media.AudioFormat;
+import android.media.AudioManager;
+import android.os.Build;
 public final class l0 {
-    public final q0 f20238a;
+    public final Context f20806a;
+    public Boolean f20807b;
+
+    public l0(Context context) {
+        Context applicationContext;
+        if (context == null) {
+            applicationContext = null;
+        } else {
+            applicationContext = context.getApplicationContext();
+        }
+        this.f20806a = applicationContext;
+    }
+
+    public final f a(e2.e eVar, e2.u uVar) {
+        boolean booleanValue;
+        boolean z10;
+        uVar.getClass();
+        int i7 = uVar.L;
+        eVar.getClass();
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 >= 29 && i7 != -1) {
+            Boolean bool = this.f20807b;
+            boolean z11 = false;
+            if (bool != null) {
+                booleanValue = bool.booleanValue();
+            } else {
+                Context context = this.f20806a;
+                if (context != null) {
+                    String parameters = f2.h.d(context).getParameters("offloadVariableRateSupported");
+                    if (parameters != null && parameters.equals("offloadVariableRateSupported=1")) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    this.f20807b = Boolean.valueOf(z10);
+                } else {
+                    this.f20807b = Boolean.FALSE;
+                }
+                booleanValue = this.f20807b.booleanValue();
+            }
+            String str = uVar.f10451s;
+            str.getClass();
+            int c10 = e2.s0.c(str, uVar.f10443k);
+            if (c10 != 0 && i10 >= h2.l0.s(c10)) {
+                int t6 = h2.l0.t(uVar.K);
+                if (t6 == 0) {
+                    return f.d;
+                }
+                try {
+                    AudioFormat build = new AudioFormat.Builder().setSampleRate(i7).setChannelMask(t6).setEncoding(c10).build();
+                    if (i10 >= 33) {
+                        int directPlaybackSupport = AudioManager.getDirectPlaybackSupport(build, eVar.b());
+                        if ((directPlaybackSupport & 1) == 0) {
+                            return f.d;
+                        }
+                        if ((directPlaybackSupport & 3) == 3) {
+                            z11 = true;
+                        }
+                        ?? obj = new Object();
+                        obj.f15865a = true;
+                        obj.f15866b = z11;
+                        obj.f15867c = booleanValue;
+                        return obj.a();
+                    } else if (i10 >= 31) {
+                        int playbackOffloadSupport = AudioManager.getPlaybackOffloadSupport(build, eVar.b());
+                        if (playbackOffloadSupport == 0) {
+                            return f.d;
+                        }
+                        ?? obj2 = new Object();
+                        if (i10 > 32 && playbackOffloadSupport == 2) {
+                            z11 = true;
+                        }
+                        obj2.f15865a = true;
+                        obj2.f15866b = z11;
+                        obj2.f15867c = booleanValue;
+                        return obj2.a();
+                    } else if (!AudioManager.isOffloadedPlaybackSupported(build, eVar.b())) {
+                        return f.d;
+                    } else {
+                        ?? obj3 = new Object();
+                        obj3.f15865a = true;
+                        obj3.f15867c = booleanValue;
+                        return obj3.a();
+                    }
+                } catch (IllegalArgumentException unused) {
+                    return f.d;
+                }
+            }
+            return f.d;
+        }
+        return f.d;
+    }
 }

@@ -1,35 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.ImageView;
-public final class wv extends ImageView {
-    public final gy f40100a;
+import androidx.recyclerview.widget.RecyclerView;
+public final class wv extends v4.s {
+    public final ly Q;
 
-    public wv(gy gyVar, Context context) {
-        super(context);
-        this.f40100a = gyVar;
+    public wv(ly lyVar) {
+        super(5);
+        this.Q = lyVar;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        hx hxVar;
-        int action = motionEvent.getAction();
-        gy gyVar = this.f40100a;
-        if (action == 0) {
-            gyVar.P1 = true;
-            gyVar.Q1 = false;
-            org.telegram.messenger.g0.i3(new q2(gyVar, 350, 6), 350);
-        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            gyVar.P1 = false;
-            if (!gyVar.Q1 && (hxVar = gyVar.f34068t1) != null && hxVar.k()) {
-                try {
-                    gyVar.f34084y.performHapticFeedback(3);
-                } catch (Exception unused) {
-                }
-            }
+    public final int o0(int i7, v4.w0 w0Var, v4.b1 b1Var) {
+        int o02 = super.o0(i7, w0Var, b1Var);
+        ly lyVar = this.Q;
+        if (o02 != 0 && lyVar.E0.getScrollState() == 1) {
+            lyVar.Y1 = false;
+            lyVar.Z();
         }
-        super.onTouchEvent(motionEvent);
-        return true;
+        if (lyVar.U0 == null) {
+            jg.d1 d1Var = new jg.d1(lyVar, lyVar.f36941d1, lyVar.f36993u1.a(), lyVar.f36993u1.f(), 1);
+            lyVar.U0 = d1Var;
+            d1Var.a();
+        }
+        lyVar.U0.b();
+        return o02;
+    }
+
+    @Override
+    public final void v0(RecyclerView recyclerView, v4.b1 b1Var, int i7) {
+        try {
+            pi.l lVar = new pi.l(recyclerView.getContext(), 2);
+            lVar.f58480a = i7;
+            w0(lVar);
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+        }
     }
 }

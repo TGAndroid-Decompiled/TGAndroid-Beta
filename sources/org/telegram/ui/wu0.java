@@ -1,54 +1,50 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class wu0 extends v4.b0 {
-    public final ProfileActivity I;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.UndoView;
+public final class wu0 implements jp {
+    public final TLRPC.Chat f53002a;
+    public final mp f53003b;
+    public final ProfileActivity f53004c;
 
-    public wu0(ProfileActivity profileActivity) {
-        this.I = profileActivity;
+    public wu0(ProfileActivity profileActivity, TLRPC.Chat chat, mp mpVar) {
+        this.f53004c = profileActivity;
+        this.f53002a = chat;
+        this.f53003b = mpVar;
     }
 
     @Override
-    public final int o0(int i7, v4.v0 v0Var, v4.a1 a1Var) {
-        ProfileActivity profileActivity = this.I;
-        View m10 = profileActivity.f41705c.m(0);
-        if (m10 != null && !profileActivity.F0) {
-            int top = m10.getTop() - profileActivity.j4();
-            boolean z9 = profileActivity.f41783n2;
-            boolean z10 = true;
-            if (!z9 && top > i7) {
-                if (!profileActivity.f41782n0.X0.isEmpty() && profileActivity.f41720e0.getImageReceiver().L() && !org.telegram.messenger.g0.C1() && ((!profileActivity.f41776m2 && !org.telegram.messenger.g0.Q1()) || profileActivity.I0)) {
-                    if (profileActivity.I2 != null) {
-                        z10 = false;
+    public final void a(TLRPC.User user) {
+        int i7;
+        ProfileActivity profileActivity = this.f53004c;
+        UndoView undoView = profileActivity.M;
+        long j3 = -profileActivity.f43102f1;
+        if (profileActivity.F2.megagroup) {
+            i7 = 10;
+        } else {
+            i7 = 9;
+        }
+        undoView.m(j3, user, i7);
+    }
+
+    @Override
+    public final void b(int i7, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        TLRPC.Chat chat;
+        ProfileActivity profileActivity = this.f53004c;
+        profileActivity.removeSelfFromStack();
+        TLRPC.User a22 = profileActivity.getMessagesController().a2(Long.valueOf(profileActivity.f43094e1));
+        if (a22 != null && (chat = this.f53002a) != null && profileActivity.f43094e1 != 0) {
+            mp mpVar = this.f53003b;
+            if (mpVar.R && mpVar.getParentLayout() != null) {
+                for (org.telegram.ui.ActionBar.e2 e2Var : mpVar.getParentLayout().getFragmentStack()) {
+                    if (e2Var instanceof lb) {
+                        lb lbVar = (lb) e2Var;
+                        lbVar.a1();
+                        org.telegram.messenger.g0.h3(new lc0(lbVar, a22, chat, 28));
+                        return;
                     }
-                    profileActivity.f41783n2 = z10;
-                }
-            } else if (z9) {
-                if (i7 >= top) {
-                    profileActivity.f41783n2 = false;
-                } else if (profileActivity.f41689a.getScrollState() == 1 && !profileActivity.f41790o2) {
-                    i7 /= 2;
                 }
             }
-            i7 = top;
         }
-        if (profileActivity.N1 && !profileActivity.f41689a.P0) {
-            return 0;
-        }
-        return super.o0(i7, v0Var, a1Var);
-    }
-
-    @Override
-    public final boolean y0() {
-        if (this.I.f41801q0 != null) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void z0(v4.a1 a1Var, int[] iArr) {
-        super.z0(a1Var, iArr);
-        iArr[0] = Math.max(iArr[0], ProfileActivity.J0(this.I));
     }
 }

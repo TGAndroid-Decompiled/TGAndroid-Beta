@@ -4,29 +4,29 @@ import android.media.MediaCodec;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.HandlerThread;
-import h2.m0;
+import h2.l0;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 public final class e implements m {
     public static final ArrayDeque h = new ArrayDeque();
-    public static final Object f56242n = new Object();
-    public final MediaCodec f56243a;
-    public final HandlerThread f56244b;
-    public android.support.v4.media.session.q f56245c;
+    public static final Object f57741n = new Object();
+    public final MediaCodec f57742a;
+    public final HandlerThread f57743b;
+    public android.support.v4.media.session.q f57744c;
     public final AtomicReference d;
-    public final h2.i f56246e;
-    public boolean f56247f;
+    public final h2.i f57745e;
+    public boolean f57746f;
 
     public e(MediaCodec mediaCodec, HandlerThread handlerThread) {
         h2.i iVar = new h2.i();
-        this.f56243a = mediaCodec;
-        this.f56244b = handlerThread;
-        this.f56246e = iVar;
+        this.f57742a = mediaCodec;
+        this.f57743b = handlerThread;
+        this.f57745e = iVar;
         this.d = new AtomicReference();
     }
 
-    public static d c() {
+    public static d a() {
         ArrayDeque arrayDeque = h;
         synchronized (arrayDeque) {
             try {
@@ -40,7 +40,7 @@ public final class e implements m {
         }
     }
 
-    public static void d(d dVar) {
+    public static void b(d dVar) {
         ArrayDeque arrayDeque = h;
         synchronized (arrayDeque) {
             arrayDeque.add(dVar);
@@ -48,28 +48,37 @@ public final class e implements m {
     }
 
     @Override
-    public final void a(int i7, int i10, int i11, long j3) {
-        i();
-        d c10 = c();
-        c10.f56238a = i7;
-        c10.f56239b = i10;
-        c10.d = j3;
-        c10.f56241e = i11;
-        android.support.v4.media.session.q qVar = this.f56245c;
-        String str = m0.f14114a;
-        qVar.obtainMessage(1, c10).sendToTarget();
+    public final void Y() {
+        RuntimeException runtimeException = (RuntimeException) this.d.getAndSet(null);
+        if (runtimeException == null) {
+            return;
+        }
+        throw runtimeException;
     }
 
     @Override
-    public final void b(int i7, k2.d dVar, long j3, int i10) {
-        i();
-        d c10 = c();
-        c10.f56238a = i7;
-        c10.f56239b = 0;
-        c10.d = j3;
-        c10.f56241e = i10;
-        MediaCodec.CryptoInfo cryptoInfo = c10.f56240c;
-        cryptoInfo.numSubSamples = dVar.f17169f;
+    public final void d(int i7, int i10, int i11, long j3) {
+        Y();
+        d a10 = a();
+        a10.f57737a = i7;
+        a10.f57738b = i10;
+        a10.d = j3;
+        a10.f57740e = i11;
+        android.support.v4.media.session.q qVar = this.f57744c;
+        String str = l0.f13471a;
+        qVar.obtainMessage(1, a10).sendToTarget();
+    }
+
+    @Override
+    public final void e(int i7, k2.d dVar, long j3, int i10) {
+        Y();
+        d a10 = a();
+        a10.f57737a = i7;
+        a10.f57738b = 0;
+        a10.d = j3;
+        a10.f57740e = i10;
+        MediaCodec.CryptoInfo cryptoInfo = a10.f57739c;
+        cryptoInfo.numSubSamples = dVar.f17726f;
         int[] iArr = dVar.d;
         int[] iArr2 = cryptoInfo.numBytesOfClearData;
         if (iArr != null) {
@@ -80,7 +89,7 @@ public final class e implements m {
             }
         }
         cryptoInfo.numBytesOfClearData = iArr2;
-        int[] iArr3 = dVar.f17168e;
+        int[] iArr3 = dVar.f17725e;
         int[] iArr4 = cryptoInfo.numBytesOfEncryptedData;
         if (iArr3 != null) {
             if (iArr4 != null && iArr4.length >= iArr3.length) {
@@ -90,7 +99,7 @@ public final class e implements m {
             }
         }
         cryptoInfo.numBytesOfEncryptedData = iArr4;
-        byte[] bArr = dVar.f17166b;
+        byte[] bArr = dVar.f17723b;
         byte[] bArr2 = cryptoInfo.key;
         if (bArr != null) {
             if (bArr2 != null && bArr2.length >= bArr.length) {
@@ -101,7 +110,7 @@ public final class e implements m {
         }
         bArr2.getClass();
         cryptoInfo.key = bArr2;
-        byte[] bArr3 = dVar.f17165a;
+        byte[] bArr3 = dVar.f17722a;
         byte[] bArr4 = cryptoInfo.iv;
         if (bArr3 != null) {
             if (bArr4 != null && bArr4.length >= bArr3.length) {
@@ -112,27 +121,27 @@ public final class e implements m {
         }
         bArr4.getClass();
         cryptoInfo.iv = bArr4;
-        cryptoInfo.mode = dVar.f17167c;
+        cryptoInfo.mode = dVar.f17724c;
         if (Build.VERSION.SDK_INT >= 24) {
-            cryptoInfo.setPattern(new MediaCodec.CryptoInfo.Pattern(dVar.f17170g, dVar.h));
+            cryptoInfo.setPattern(new MediaCodec.CryptoInfo.Pattern(dVar.f17727g, dVar.h));
         }
-        android.support.v4.media.session.q qVar = this.f56245c;
-        String str = m0.f14114a;
-        qVar.obtainMessage(2, c10).sendToTarget();
+        android.support.v4.media.session.q qVar = this.f57744c;
+        String str = l0.f13471a;
+        qVar.obtainMessage(2, a10).sendToTarget();
     }
 
     @Override
     public final void flush() {
-        if (this.f56247f) {
+        if (this.f57746f) {
             try {
-                android.support.v4.media.session.q qVar = this.f56245c;
+                android.support.v4.media.session.q qVar = this.f57744c;
                 qVar.getClass();
                 qVar.removeCallbacksAndMessages(null);
-                h2.i iVar = this.f56246e;
+                h2.i iVar = this.f57745e;
                 synchronized (iVar) {
-                    iVar.f14096b = false;
+                    iVar.f13454b = false;
                 }
-                android.support.v4.media.session.q qVar2 = this.f56245c;
+                android.support.v4.media.session.q qVar2 = this.f57744c;
                 qVar2.getClass();
                 qVar2.obtainMessage(3).sendToTarget();
                 iVar.a();
@@ -144,38 +153,29 @@ public final class e implements m {
     }
 
     @Override
-    public final void i() {
-        RuntimeException runtimeException = (RuntimeException) this.d.getAndSet(null);
-        if (runtimeException == null) {
-            return;
-        }
-        throw runtimeException;
-    }
-
-    @Override
     public final void setParameters(Bundle bundle) {
-        i();
-        android.support.v4.media.session.q qVar = this.f56245c;
-        String str = m0.f14114a;
+        Y();
+        android.support.v4.media.session.q qVar = this.f57744c;
+        String str = l0.f13471a;
         qVar.obtainMessage(4, bundle).sendToTarget();
     }
 
     @Override
     public final void shutdown() {
-        if (this.f56247f) {
+        if (this.f57746f) {
             flush();
-            this.f56244b.quit();
+            this.f57743b.quit();
         }
-        this.f56247f = false;
+        this.f57746f = false;
     }
 
     @Override
     public final void start() {
-        if (!this.f56247f) {
-            HandlerThread handlerThread = this.f56244b;
+        if (!this.f57746f) {
+            HandlerThread handlerThread = this.f57743b;
             handlerThread.start();
-            this.f56245c = new android.support.v4.media.session.q(this, handlerThread.getLooper(), 13);
-            this.f56247f = true;
+            this.f57744c = new android.support.v4.media.session.q(this, handlerThread.getLooper(), 13);
+            this.f57746f = true;
         }
     }
 }

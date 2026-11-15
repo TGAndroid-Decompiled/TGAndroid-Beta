@@ -1,31 +1,57 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import android.app.Activity;
+import android.content.Context;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class yv implements Runnable {
-    public final int f26775a;
-    public final dw f26776b;
-    public final TLRPC.TL_encryptedChatDiscarded f26777c;
+    public final int f27827a;
+    public final bw f27828b;
+    public final Context f27829c;
+    public final org.telegram.ui.ActionBar.t1 d;
 
-    public yv(dw dwVar, TLRPC.TL_encryptedChatDiscarded tL_encryptedChatDiscarded, int i7) {
-        this.f26775a = i7;
-        this.f26776b = dwVar;
-        this.f26777c = tL_encryptedChatDiscarded;
+    public yv(bw bwVar, Context context, org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        this.f27827a = i7;
+        this.f27828b = bwVar;
+        this.f27829c = context;
+        this.d = t1Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f26775a;
-        TLRPC.TL_encryptedChatDiscarded tL_encryptedChatDiscarded = this.f26777c;
-        dw dwVar = this.f26776b;
+        int i7 = this.f27827a;
+        org.telegram.ui.ActionBar.t1 t1Var = this.d;
+        Context context = this.f27829c;
+        bw bwVar = this.f27828b;
         switch (i7) {
             case 0:
-                dwVar.getMessagesController().U3(tL_encryptedChatDiscarded, false);
-                dwVar.getNotificationCenter().k(35, tL_encryptedChatDiscarded);
+                bwVar.f22762n = false;
+                if (!((Activity) context).isFinishing()) {
+                    try {
+                        t1Var.dismiss();
+                        return;
+                    } catch (Exception e10) {
+                        a8.g(e10, true);
+                        return;
+                    }
+                }
                 return;
             default:
-                dwVar.getMessagesController().U3(tL_encryptedChatDiscarded, false);
-                dwVar.getMessagesStorage().V1(tL_encryptedChatDiscarded);
-                dwVar.getNotificationCenter().k(35, tL_encryptedChatDiscarded);
+                if (!((Activity) context).isFinishing()) {
+                    bwVar.f22762n = false;
+                    try {
+                        t1Var.dismiss();
+                    } catch (Exception e11) {
+                        a8.g(e11, true);
+                    }
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
+                    String M0 = hd.M0(2131689472, null);
+                    org.telegram.ui.ActionBar.t1 t1Var2 = alertDialog$Builder.f28392a;
+                    t1Var2.S = M0;
+                    t1Var2.U = hd.M0(2131751750, null);
+                    alertDialog$Builder.k(hd.M0(2131747831, null), null);
+                    alertDialog$Builder.p().setCanceledOnTouchOutside(true);
+                    return;
+                }
                 return;
         }
     }

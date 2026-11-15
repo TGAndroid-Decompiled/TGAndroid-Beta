@@ -1,44 +1,22 @@
 package org.telegram.ui.Components;
+public final class na implements Runnable {
+    public final int f37518a;
+    public final cb f37519b;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.Layout;
-import android.text.Spanned;
-import android.text.style.LeadingMarginSpan;
-public final class na implements LeadingMarginSpan {
-    public final int f36262a;
-    public final int f36263b;
-
-    public na(int i7, int i10) {
-        this.f36262a = i7;
-        this.f36263b = i10;
+    public na(cb cbVar, int i7) {
+        this.f37518a = i7;
+        this.f37519b = cbVar;
     }
 
     @Override
-    public final void drawLeadingMargin(Canvas canvas, Paint paint, int i7, int i10, int i11, int i12, int i13, CharSequence charSequence, int i14, int i15, boolean z9, Layout layout) {
-        int i16;
-        if (((Spanned) charSequence).getSpanStart(this) == i14) {
-            Paint.Style style = paint.getStyle();
-            int color = paint.getColor();
-            paint.setColor(-11491093);
-            paint.setStyle(Paint.Style.FILL);
-            if (layout != null) {
-                if (layout.getLineForOffset(i14) != layout.getLineCount() - 1) {
-                    i16 = (int) layout.getSpacingAdd();
-                } else {
-                    i16 = 0;
-                }
-                i13 -= i16;
-            }
-            int i17 = this.f36263b;
-            canvas.drawCircle((i10 * i17) + i7, (i11 + i13) / 2.0f, i17, paint);
-            paint.setColor(color);
-            paint.setStyle(style);
+    public final void run() {
+        switch (this.f37518a) {
+            case 0:
+                this.f37519b.onExitTransitionStart();
+                return;
+            default:
+                this.f37519b.onEnterTransitionStart();
+                return;
         }
-    }
-
-    @Override
-    public final int getLeadingMargin(boolean z9) {
-        return (this.f36263b * 2) + this.f36262a;
     }
 }

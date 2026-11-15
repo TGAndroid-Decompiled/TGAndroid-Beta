@@ -1,10 +1,8 @@
 package v0;
+public final class o extends h {
+    public final String f58459e;
 
-import bi.b1;
-public final class o {
-    public final b1 f56984a;
-
-    public o(b1 b1Var) {
-        this.f56984a = b1Var;
+    public o(java.lang.String r7) {
+        throw new UnsupportedOperationException("Method not decompiled: v0.o.<init>(java.lang.String):void");
     }
 }

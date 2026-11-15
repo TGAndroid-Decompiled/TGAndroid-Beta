@@ -5,36 +5,36 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import org.telegram.messenger.qp;
-import org.telegram.messenger.v10;
+import org.telegram.messenger.np;
+import org.telegram.messenger.s10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-public final class j0 implements v10 {
-    public final int f42661a;
-    public final k0 f42662b;
-    public final TL_wallet.getTransactions f42663c;
+public final class j0 implements s10 {
+    public final int f44000a;
+    public final k0 f44001b;
+    public final TL_wallet.getTransactions f44002c;
 
     public j0(k0 k0Var, TL_wallet.getTransactions gettransactions, int i7) {
-        this.f42661a = i7;
-        this.f42662b = k0Var;
-        this.f42663c = gettransactions;
+        this.f44000a = i7;
+        this.f44001b = k0Var;
+        this.f44002c = gettransactions;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        boolean z9;
         boolean z10;
-        switch (this.f42661a) {
+        boolean z11;
+        switch (this.f44000a) {
             case 0:
                 TL_wallet.walletTransactions wallettransactions = (TL_wallet.walletTransactions) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                k0 k0Var = this.f42662b;
-                int i7 = k0Var.f42706l.f42749a;
-                k0Var.f42705k = -1;
+                k0 k0Var = this.f44001b;
+                int i7 = k0Var.f44051l.f44078a;
+                k0Var.f44050k = -1;
                 if (wallettransactions != null) {
                     int i10 = 0;
-                    qp.s1(i7).Y3(wallettransactions.users, false);
-                    qp.s1(i7).S3(wallettransactions.chats, false);
+                    np.s1(i7).Y3(wallettransactions.users, false);
+                    np.s1(i7).S3(wallettransactions.chats, false);
                     ArrayList<TL_wallet.walletTransaction> arrayList = wallettransactions.transactions;
                     int size = arrayList.size();
                     while (i10 < size) {
@@ -46,16 +46,16 @@ public final class j0 implements v10 {
                             k0Var.e(wallettransaction2);
                             if (c10 != null) {
                                 c10.set(wallettransaction2);
-                                if (!TextUtils.equals(c10.f27223id, wallettransaction2.f27223id)) {
-                                    c10.f27223id = wallettransaction2.f27223id;
+                                if (!TextUtils.equals(c10.f28314id, wallettransaction2.f28314id)) {
+                                    c10.f28314id = wallettransaction2.f28314id;
                                 }
                             } else {
-                                k0Var.f42698b.add(wallettransaction2);
+                                k0Var.f44043b.add(wallettransaction2);
                             }
                         }
                     }
-                    k0Var.f42702g = wallettransactions.next_offset;
-                    if (wallettransactions.transactions.size() < this.f42663c.limit) {
+                    k0Var.f44047g = wallettransactions.next_offset;
+                    if (wallettransactions.transactions.size() < this.f44002c.limit) {
                         k0Var.h = true;
                     }
                 } else {
@@ -65,19 +65,19 @@ public final class j0 implements v10 {
                 k0Var.i();
                 return;
             default:
-                k0 k0Var2 = this.f42662b;
-                HashMap hashMap = k0Var2.f42701f;
+                k0 k0Var2 = this.f44001b;
+                HashMap hashMap = k0Var2.f44046f;
                 HashSet hashSet = k0Var2.d;
                 TL_wallet.walletTransactions wallettransactions2 = (TL_wallet.walletTransactions) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                int i11 = k0Var2.f42706l.f42749a;
-                ArrayList arrayList2 = k0Var2.f42698b;
-                k0Var2.f42704j = -1;
-                boolean z11 = false;
-                k0Var2.f42703i = false;
+                int i11 = k0Var2.f44051l.f44078a;
+                ArrayList arrayList2 = k0Var2.f44043b;
+                k0Var2.f44049j = -1;
+                boolean z12 = false;
+                k0Var2.f44048i = false;
                 if (wallettransactions2 != null) {
-                    qp.s1(i11).Y3(wallettransactions2.users, false);
-                    qp.s1(i11).S3(wallettransactions2.chats, false);
+                    np.s1(i11).Y3(wallettransactions2.users, false);
+                    np.s1(i11).S3(wallettransactions2.chats, false);
                     ArrayList<TL_wallet.walletTransaction> arrayList3 = wallettransactions2.transactions;
                     int size2 = arrayList3.size();
                     int i12 = 0;
@@ -86,25 +86,25 @@ public final class j0 implements v10 {
                             TL_wallet.walletTransaction wallettransaction3 = arrayList3.get(i12);
                             i12++;
                             if (k0Var2.c(wallettransaction3) != null) {
-                                boolean z12 = false;
+                                boolean z13 = false;
                                 for (int size3 = wallettransactions2.transactions.size() - 1; size3 >= 0; size3--) {
                                     TL_wallet.walletTransaction wallettransaction4 = wallettransactions2.transactions.get(size3);
                                     TL_wallet.walletTransaction c11 = k0Var2.c(wallettransaction4);
                                     k0Var2.e(wallettransaction4);
                                     if (c11 != null) {
-                                        boolean z13 = c11.set(wallettransaction4);
-                                        if (!TextUtils.equals(c11.f27223id, wallettransaction4.f27223id)) {
-                                            c11.f27223id = wallettransaction4.f27223id;
-                                            z13 = true;
+                                        boolean z14 = c11.set(wallettransaction4);
+                                        if (!TextUtils.equals(c11.f28314id, wallettransaction4.f28314id)) {
+                                            c11.f28314id = wallettransaction4.f28314id;
+                                            z14 = true;
                                         }
-                                        if (!z13) {
+                                        if (!z14) {
                                         }
                                     } else {
                                         arrayList2.add(0, wallettransaction4);
                                     }
-                                    z12 = true;
+                                    z13 = true;
                                 }
-                                z11 = z12;
+                                z12 = z13;
                             }
                         } else {
                             ArrayList arrayList4 = new ArrayList();
@@ -118,13 +118,13 @@ public final class j0 implements v10 {
                                 while (true) {
                                     if (it.hasNext()) {
                                         if (hashMap.get((String) it.next()) == wallettransaction5) {
-                                            z10 = true;
+                                            z11 = true;
                                         }
                                     } else {
-                                        z10 = false;
+                                        z11 = false;
                                     }
                                 }
-                                if (z10) {
+                                if (z11) {
                                     arrayList4.add(wallettransaction5);
                                 }
                             }
@@ -148,26 +148,26 @@ public final class j0 implements v10 {
                                 while (true) {
                                     if (it2.hasNext()) {
                                         if (hashMap.get((String) it2.next()) == wallettransaction7) {
-                                            z9 = true;
+                                            z10 = true;
                                         }
                                     } else {
-                                        z9 = false;
+                                        z10 = false;
                                     }
                                 }
-                                if (z9) {
+                                if (z10) {
                                     k0Var2.f(wallettransaction7);
                                 }
                             }
-                            k0Var2.f42702g = wallettransactions2.next_offset;
-                            if (wallettransactions2.transactions.size() < this.f42663c.limit) {
-                                z11 = true;
+                            k0Var2.f44047g = wallettransactions2.next_offset;
+                            if (wallettransactions2.transactions.size() < this.f44002c.limit) {
+                                z12 = true;
                             }
-                            k0Var2.h = z11;
-                            z11 = true;
+                            k0Var2.h = z12;
+                            z12 = true;
                         }
                     }
                 }
-                if (z11) {
+                if (z12) {
                     k0Var2.k();
                     k0Var2.i();
                     return;

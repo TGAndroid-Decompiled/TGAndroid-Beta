@@ -1,50 +1,21 @@
 package fi;
-public final class i8 extends v4.k {
-    public final n8 F;
 
-    public i8(n8 n8Var) {
-        this.F = n8Var;
+import org.telegram.ui.pa0;
+public final class i8 extends pa0 {
+    public final int S0;
+
+    public i8(int i7, int i10) {
+        super(i7);
+        this.S0 = i10;
     }
 
     @Override
-    public final void M() {
-        n8 n8Var = this.F;
-        s8 s8Var = n8Var.W;
-        int i7 = s8.X1;
-        s8Var.f28672b.invalidate();
-        n8Var.f12492e.invalidate();
-    }
-
-    @Override
-    public final void O() {
-        n8 n8Var = this.F;
-        s8 s8Var = n8Var.W;
-        int i7 = s8.X1;
-        s8Var.f28672b.invalidate();
-        n8Var.f12492e.invalidate();
-    }
-
-    @Override
-    public final void P(v4.d1 d1Var) {
-        n8 n8Var = this.F;
-        s8 s8Var = n8Var.W;
-        int i7 = s8.X1;
-        s8Var.f28672b.invalidate();
-        n8Var.f12492e.invalidate();
-        n8Var.f12493f.invalidate();
-    }
-
-    @Override
-    public final void Q() {
-        n8 n8Var = this.F;
-        s8 s8Var = n8Var.W;
-        int i7 = s8.X1;
-        s8Var.f28672b.invalidate();
-        n8Var.f12492e.invalidate();
-    }
-
-    @Override
-    public final boolean t(v4.d1 d1Var) {
-        return true;
+    public final boolean o0() {
+        switch (this.S0) {
+            case 0:
+                return true;
+            default:
+                return true;
+        }
     }
 }

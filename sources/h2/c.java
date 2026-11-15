@@ -1,7 +1,7 @@
 package h2;
 
-import a8.ia;
-import a8.wa;
+import a8.ja;
+import a8.xa;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
@@ -21,35 +21,36 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.WeakHashMap;
-import m.c3;
-import m.m1;
+import m.b3;
+import m.l1;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.jc;
-import org.telegram.ui.Components.qd0;
-import org.telegram.ui.sk;
+import org.telegram.messenger.ic;
+import org.telegram.ui.Components.cf;
+import org.telegram.ui.Components.rd0;
+import org.telegram.ui.qk;
 public final class c {
-    public int f14059a;
-    public Object f14060b;
-    public Object f14061c;
+    public int f13417a;
+    public Object f13418b;
+    public Object f13419c;
     public Object d;
-    public Object f14062e;
-    public Object f14063f;
+    public Object f13420e;
+    public Object f13421f;
 
     public c(pe.b bVar, qe.j jVar, a4.k kVar, me.d descriptor) {
         kotlin.jvm.internal.j.e(descriptor, "descriptor");
-        this.f14060b = bVar;
-        this.f14061c = jVar;
+        this.f13418b = bVar;
+        this.f13419c = jVar;
         this.d = kVar;
-        this.f14059a = -1;
-        p0 p0Var = bVar.f53588a;
-        this.f14062e = p0Var;
-        this.f14063f = p0Var.f14134b ? null : new qe.e(descriptor);
+        this.f13417a = -1;
+        o0 o0Var = bVar.f54996a;
+        this.f13420e = o0Var;
+        this.f13421f = o0Var.f13491b ? null : new qe.e(descriptor);
     }
 
     public void A(Runnable runnable) {
-        i0 i0Var = (i0) this.f14060b;
-        if (!i0Var.f14098a.getLooper().getThread().isAlive()) {
+        i0 i0Var = (i0) this.f13418b;
+        if (!i0Var.f13456a.getLooper().getThread().isAlive()) {
             return;
         }
         i0Var.d(runnable);
@@ -57,12 +58,12 @@ public final class c {
 
     public void B(ColorStateList colorStateList) {
         if (colorStateList != null) {
-            if (((c3) this.d) == null) {
+            if (((b3) this.d) == null) {
                 this.d = new Object();
             }
-            c3 c3Var = (c3) this.d;
-            c3Var.f19082c = colorStateList;
-            c3Var.f19081b = true;
+            b3 b3Var = (b3) this.d;
+            b3Var.f19659c = colorStateList;
+            b3Var.f19658b = true;
         } else {
             this.d = null;
         }
@@ -70,56 +71,56 @@ public final class c {
     }
 
     public void C(int i7) {
-        boolean z9;
+        boolean z10;
         if (i7 >= 0) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        ia.p(z9);
-        this.f14059a = i7;
+        ja.p(z10);
+        this.f13417a = i7;
         r(i7);
     }
 
     public void D(ColorStateList colorStateList) {
-        if (((c3) this.f14062e) == null) {
-            this.f14062e = new Object();
+        if (((b3) this.f13420e) == null) {
+            this.f13420e = new Object();
         }
-        c3 c3Var = (c3) this.f14062e;
-        c3Var.f19082c = colorStateList;
-        c3Var.f19081b = true;
+        b3 b3Var = (b3) this.f13420e;
+        b3Var.f19659c = colorStateList;
+        b3Var.f19658b = true;
         b();
     }
 
     public void E(PorterDuff.Mode mode) {
-        if (((c3) this.f14062e) == null) {
-            this.f14062e = new Object();
+        if (((b3) this.f13420e) == null) {
+            this.f13420e = new Object();
         }
-        c3 c3Var = (c3) this.f14062e;
-        c3Var.d = mode;
-        c3Var.f19080a = true;
+        b3 b3Var = (b3) this.f13420e;
+        b3Var.d = mode;
+        b3Var.f19657a = true;
         b();
     }
 
     public boolean F() {
-        if (((qd0) this.f14060b).b() && ((qd0) this.f14061c).b() && ((qd0) this.d).b() && ((qd0) this.f14062e).b()) {
+        if (((rd0) this.f13418b).b() && ((rd0) this.f13419c).b() && ((rd0) this.d).b() && ((rd0) this.f13420e).b()) {
             return true;
         }
         return false;
     }
 
     public void G(Object obj) {
-        Object obj2 = this.f14062e;
-        this.f14062e = obj;
+        Object obj2 = this.f13420e;
+        this.f13420e = obj;
         if (!obj2.equals(obj)) {
-            l2.i0 i0Var = ((l2.v) this.d).f18067b;
+            l2.f0 f0Var = ((l2.u) this.d).f19183b;
             ((Integer) obj2).getClass();
             Integer num = (Integer) obj;
             int intValue = num.intValue();
-            i0Var.F1();
-            i0Var.t1(1, 10, num);
-            i0Var.t1(2, 10, num);
-            i0Var.f17874m.e(21, new l2.u(intValue, 1));
+            f0Var.F1();
+            f0Var.t1(1, 10, num);
+            f0Var.t1(2, 10, num);
+            f0Var.f18969m.e(21, new l2.t(intValue, 1));
         }
     }
 
@@ -128,42 +129,42 @@ public final class c {
     }
 
     public void b() {
-        View view = (View) this.f14060b;
+        View view = (View) this.f13418b;
         Drawable background = view.getBackground();
         if (background != null) {
-            if (((c3) this.d) != null) {
-                if (((c3) this.f14063f) == null) {
-                    this.f14063f = new Object();
+            if (((b3) this.d) != null) {
+                if (((b3) this.f13421f) == null) {
+                    this.f13421f = new Object();
                 }
-                c3 c3Var = (c3) this.f14063f;
-                c3Var.f19082c = null;
-                c3Var.f19081b = false;
-                c3Var.d = null;
-                c3Var.f19080a = false;
-                WeakHashMap weakHashMap = r0.i0.f54202a;
+                b3 b3Var = (b3) this.f13421f;
+                b3Var.f19659c = null;
+                b3Var.f19658b = false;
+                b3Var.d = null;
+                b3Var.f19657a = false;
+                WeakHashMap weakHashMap = r0.i0.f55671a;
                 ColorStateList c10 = r0.a0.c(view);
                 if (c10 != null) {
-                    c3Var.f19081b = true;
-                    c3Var.f19082c = c10;
+                    b3Var.f19658b = true;
+                    b3Var.f19659c = c10;
                 }
                 PorterDuff.Mode d = r0.a0.d(view);
                 if (d != null) {
-                    c3Var.f19080a = true;
-                    c3Var.d = d;
+                    b3Var.f19657a = true;
+                    b3Var.d = d;
                 }
-                if (c3Var.f19081b || c3Var.f19080a) {
-                    m.r.d(background, c3Var, view.getDrawableState());
+                if (b3Var.f19658b || b3Var.f19657a) {
+                    m.q.d(background, b3Var, view.getDrawableState());
                     return;
                 }
             }
-            c3 c3Var2 = (c3) this.f14062e;
-            if (c3Var2 != null) {
-                m.r.d(background, c3Var2, view.getDrawableState());
+            b3 b3Var2 = (b3) this.f13420e;
+            if (b3Var2 != null) {
+                m.q.d(background, b3Var2, view.getDrawableState());
                 return;
             }
-            c3 c3Var3 = (c3) this.d;
-            if (c3Var3 != null) {
-                m.r.d(background, c3Var3, view.getDrawableState());
+            b3 b3Var3 = (b3) this.d;
+            if (b3Var3 != null) {
+                m.q.d(background, b3Var3, view.getDrawableState());
             }
         }
     }
@@ -171,46 +172,46 @@ public final class c {
     public c c(me.d descriptor) {
         byte b10;
         kotlin.jvm.internal.j.e(descriptor, "descriptor");
-        pe.b bVar = (pe.b) this.f14060b;
+        pe.b bVar = (pe.b) this.f13418b;
         qe.j f10 = qe.f.f(descriptor, bVar);
         a4.k kVar = (a4.k) this.d;
-        wa waVar = (wa) kVar.f192c;
-        int i7 = waVar.f700b + 1;
-        waVar.f700b = i7;
-        Object[] objArr = (Object[]) waVar.f701c;
+        xa xaVar = (xa) kVar.f192c;
+        int i7 = xaVar.f713b + 1;
+        xaVar.f713b = i7;
+        Object[] objArr = (Object[]) xaVar.f714c;
         if (i7 == objArr.length) {
             int i10 = i7 * 2;
             Object[] copyOf = Arrays.copyOf(objArr, i10);
             kotlin.jvm.internal.j.d(copyOf, "copyOf(...)");
-            waVar.f701c = copyOf;
-            int[] copyOf2 = Arrays.copyOf((int[]) waVar.d, i10);
+            xaVar.f714c = copyOf;
+            int[] copyOf2 = Arrays.copyOf((int[]) xaVar.d, i10);
             kotlin.jvm.internal.j.d(copyOf2, "copyOf(...)");
-            waVar.d = copyOf2;
+            xaVar.d = copyOf2;
         }
-        ((Object[]) waVar.f701c)[i7] = descriptor;
-        kVar.h(f10.f54120a);
+        ((Object[]) xaVar.f714c)[i7] = descriptor;
+        kVar.h(f10.f55555a);
         String str = (String) kVar.f194f;
         int i11 = kVar.f191b;
         while (true) {
-            int r10 = kVar.r(i11);
+            int q10 = kVar.q(i11);
             b10 = 10;
-            if (r10 != -1) {
-                char charAt = str.charAt(r10);
+            if (q10 != -1) {
+                char charAt = str.charAt(q10);
                 if (charAt != '\t' && charAt != '\n' && charAt != '\r' && charAt != ' ') {
-                    kVar.f191b = r10;
+                    kVar.f191b = q10;
                     b10 = qe.f.b(charAt);
                     break;
                 }
-                i11 = r10 + 1;
+                i11 = q10 + 1;
             } else {
-                kVar.f191b = r10;
+                kVar.f191b = q10;
                 break;
             }
         }
         if (b10 != 4) {
             int ordinal = f10.ordinal();
             if (ordinal != 1 && ordinal != 2 && ordinal != 3) {
-                if (((qe.j) this.f14061c) == f10 && bVar.f53588a.f14134b) {
+                if (((qe.j) this.f13419c) == f10 && bVar.f54996a.f13491b) {
                     return this;
                 }
                 return new c(bVar, f10, kVar, descriptor);
@@ -223,97 +224,97 @@ public final class c {
 
     public int d(me.d descriptor) {
         Object obj;
-        boolean z9;
-        pe.b json = (pe.b) this.f14060b;
-        p0 p0Var = json.f53588a;
+        boolean z10;
+        pe.b json = (pe.b) this.f13418b;
+        o0 o0Var = json.f54996a;
         a4.k kVar = (a4.k) this.d;
         kotlin.jvm.internal.j.e(descriptor, "descriptor");
-        qe.j jVar = (qe.j) this.f14061c;
+        qe.j jVar = (qe.j) this.f13419c;
         int ordinal = jVar.ordinal();
         int i7 = 0;
         r10 = false;
-        boolean z10 = false;
+        boolean z11 = false;
         int i10 = -1;
         if (ordinal != 0) {
             if (ordinal != 2) {
-                boolean v = kVar.v();
+                boolean u10 = kVar.u();
                 if (kVar.e()) {
-                    int i11 = this.f14059a;
-                    if (i11 != -1 && !v) {
+                    int i11 = this.f13417a;
+                    if (i11 != -1 && !u10) {
                         a4.k.n(kVar, "Expected end of the array or comma", 0, 6);
                         throw null;
                     }
                     i10 = i11 + 1;
-                    this.f14059a = i10;
-                } else if (v) {
-                    p0Var.getClass();
+                    this.f13417a = i10;
+                } else if (u10) {
+                    o0Var.getClass();
                     qe.f.c(kVar, "array");
                     throw null;
                 }
             } else {
-                int i12 = this.f14059a;
+                int i12 = this.f13417a;
                 if (i12 % 2 != 0) {
-                    z9 = true;
+                    z10 = true;
                 } else {
-                    z9 = false;
+                    z10 = false;
                 }
-                if (z9) {
+                if (z10) {
                     if (i12 != -1) {
-                        z10 = kVar.v();
+                        z11 = kVar.u();
                     }
                 } else {
                     kVar.h(':');
                 }
                 if (kVar.e()) {
-                    if (z9) {
-                        if (this.f14059a == -1) {
+                    if (z10) {
+                        if (this.f13417a == -1) {
                             int i13 = kVar.f191b;
-                            if (z10) {
+                            if (z11) {
                                 a4.k.n(kVar, "Unexpected leading comma", i13, 4);
                                 throw null;
                             }
                         } else {
                             int i14 = kVar.f191b;
-                            if (!z10) {
+                            if (!z11) {
                                 a4.k.n(kVar, "Expected comma after the key-value pair", i14, 4);
                                 throw null;
                             }
                         }
                     }
-                    i10 = this.f14059a + 1;
-                    this.f14059a = i10;
-                } else if (z10) {
-                    p0Var.getClass();
+                    i10 = this.f13417a + 1;
+                    this.f13417a = i10;
+                } else if (z11) {
+                    o0Var.getClass();
                     qe.f.c(kVar, "object");
                     throw null;
                 }
             }
         } else {
-            qe.e eVar = (qe.e) this.f14063f;
-            p0 p0Var2 = (p0) this.f14062e;
-            boolean v10 = kVar.v();
+            qe.e eVar = (qe.e) this.f13421f;
+            o0 o0Var2 = (o0) this.f13420e;
+            boolean u11 = kVar.u();
             if (kVar.e()) {
-                p0Var2.getClass();
+                o0Var2.getClass();
                 String name = kVar.g();
                 kVar.h(':');
                 kotlin.jvm.internal.j.e(descriptor, "<this>");
                 kotlin.jvm.internal.j.e(json, "json");
                 kotlin.jvm.internal.j.e(name, "name");
-                p0 p0Var3 = json.f53588a;
-                p0Var3.getClass();
+                o0 o0Var3 = json.f54996a;
+                o0Var3.getClass();
                 qe.f.e(descriptor, json);
                 int d = descriptor.d(name);
                 i10 = -3;
-                if (d != -3 || !p0Var3.f14135c) {
+                if (d != -3 || !o0Var3.f13492c) {
                     i10 = d;
                 } else {
-                    org.telegram.ui.Components.m mVar = json.f53590c;
+                    cf cfVar = json.f54998c;
                     b1.f fVar = new b1.f(2, descriptor, json);
-                    mVar.getClass();
-                    mVar.getClass();
+                    cfVar.getClass();
+                    cfVar.getClass();
                     kotlin.jvm.internal.j.e(descriptor, "descriptor");
-                    Map map = (Map) ((ConcurrentHashMap) mVar.f35778a).get(descriptor);
-                    qe.g gVar = qe.f.f54106a;
+                    Map map = (Map) ((ConcurrentHashMap) cfVar.f33543a).get(descriptor);
+                    qe.g gVar = qe.f.f55541a;
                     Object obj2 = null;
                     if (map != null) {
                         obj = map.get(gVar);
@@ -325,7 +326,7 @@ public final class c {
                     }
                     if (obj2 == null) {
                         obj2 = fVar.invoke();
-                        ConcurrentHashMap concurrentHashMap = (ConcurrentHashMap) mVar.f35778a;
+                        ConcurrentHashMap concurrentHashMap = (ConcurrentHashMap) cfVar.f33543a;
                         Object obj3 = concurrentHashMap.get(descriptor);
                         ConcurrentHashMap concurrentHashMap2 = obj3;
                         if (obj3 == null) {
@@ -342,9 +343,9 @@ public final class c {
                 }
                 if (i10 != -3) {
                     if (eVar != null) {
-                        oe.d dVar = eVar.f54104a;
+                        oe.d dVar = eVar.f55539a;
                         if (i10 < 64) {
-                            dVar.f20913c |= 1 << i10;
+                            dVar.f21431c |= 1 << i10;
                         } else {
                             int i15 = (i10 >>> 6) - 1;
                             long[] jArr = dVar.d;
@@ -358,18 +359,18 @@ public final class c {
                     kVar.m(obj4.lastIndexOf(name, f10), "Encountered an unknown key '" + name + '\'', "Use 'ignoreUnknownKeys = true' in 'Json {}' builder to ignore unknown keys.");
                     throw null;
                 }
-            } else if (!v10) {
+            } else if (!u11) {
                 if (eVar != null) {
-                    oe.d dVar2 = eVar.f54104a;
-                    c1.c cVar = dVar2.f20912b;
-                    me.d dVar3 = dVar2.f20911a;
-                    int f11 = dVar3.f();
+                    oe.d dVar2 = eVar.f55539a;
+                    c1.d dVar3 = dVar2.f21430b;
+                    me.d dVar4 = dVar2.f21429a;
+                    int f11 = dVar4.f();
                     while (true) {
-                        long j3 = dVar2.f20913c;
+                        long j3 = dVar2.f21431c;
                         if (j3 != -1) {
                             int numberOfTrailingZeros = Long.numberOfTrailingZeros(~j3);
-                            dVar2.f20913c |= 1 << numberOfTrailingZeros;
-                            if (((Boolean) cVar.invoke(dVar3, Integer.valueOf(numberOfTrailingZeros))).booleanValue()) {
+                            dVar2.f21431c |= 1 << numberOfTrailingZeros;
+                            if (((Boolean) dVar3.invoke(dVar4, Integer.valueOf(numberOfTrailingZeros))).booleanValue()) {
                                 i10 = numberOfTrailingZeros;
                                 break;
                             }
@@ -388,7 +389,7 @@ public final class c {
                                     int numberOfTrailingZeros2 = Long.numberOfTrailingZeros(~j10);
                                     j10 |= 1 << numberOfTrailingZeros2;
                                     int i18 = numberOfTrailingZeros2 + i17;
-                                    if (((Boolean) cVar.invoke(dVar3, Integer.valueOf(i18))).booleanValue()) {
+                                    if (((Boolean) dVar3.invoke(dVar4, Integer.valueOf(i18))).booleanValue()) {
                                         jArr3[i7] = j10;
                                         i10 = i18;
                                         break loop1;
@@ -402,14 +403,14 @@ public final class c {
                     }
                 }
             } else {
-                p0Var.getClass();
+                o0Var.getClass();
                 qe.f.c(kVar, "object");
                 throw null;
             }
         }
-        if (jVar != qe.j.f54117e) {
-            wa waVar = (wa) kVar.f192c;
-            ((int[]) waVar.d)[waVar.f700b] = i10;
+        if (jVar != qe.j.f55552e) {
+            xa xaVar = (xa) kVar.f192c;
+            ((int[]) xaVar.d)[xaVar.f713b] = i10;
         }
         return i10;
     }
@@ -440,34 +441,34 @@ public final class c {
     }
 
     public boolean i() {
-        boolean z9;
-        qe.e eVar = (qe.e) this.f14063f;
+        boolean z10;
+        qe.e eVar = (qe.e) this.f13421f;
         if (eVar != null) {
-            z9 = eVar.f54105b;
+            z10 = eVar.f55540b;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        if (!z9) {
+        if (!z10) {
             a4.k kVar = (a4.k) this.d;
-            int r10 = kVar.r(kVar.u());
+            int q10 = kVar.q(kVar.t());
             String str = (String) kVar.f194f;
-            int length = str.length() - r10;
-            boolean z10 = false;
-            if (length >= 4 && r10 != -1) {
+            int length = str.length() - q10;
+            boolean z11 = false;
+            if (length >= 4 && q10 != -1) {
                 int i7 = 0;
                 while (true) {
                     if (i7 < 4) {
-                        if ("null".charAt(i7) != str.charAt(r10 + i7)) {
+                        if ("null".charAt(i7) != str.charAt(q10 + i7)) {
                             break;
                         }
                         i7++;
-                    } else if (length <= 4 || qe.f.b(str.charAt(r10 + 4)) != 0) {
-                        z10 = true;
-                        kVar.f191b = r10 + 4;
+                    } else if (length <= 4 || qe.f.b(str.charAt(q10 + 4)) != 0) {
+                        z11 = true;
+                        kVar.f191b = q10 + 4;
                     }
                 }
             }
-            if (!z10) {
+            if (!z11) {
                 return true;
             }
         }
@@ -484,43 +485,43 @@ public final class c {
     }
 
     public Object k(me.d descriptor, int i7, ke.a deserializer, Object obj) {
-        boolean z9;
-        wa waVar = (wa) ((a4.k) this.d).f192c;
+        boolean z10;
+        xa xaVar = (xa) ((a4.k) this.d).f192c;
         kotlin.jvm.internal.j.e(descriptor, "descriptor");
         kotlin.jvm.internal.j.e(deserializer, "deserializer");
-        if (((qe.j) this.f14061c) == qe.j.f54117e && (i7 & 1) == 0) {
-            z9 = true;
+        if (((qe.j) this.f13419c) == qe.j.f55552e && (i7 & 1) == 0) {
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        if (z9) {
-            int i10 = waVar.f700b;
-            if (((int[]) waVar.d)[i10] == -2) {
-                ((Object[]) waVar.f701c)[i10] = qe.g.f54107a;
+        if (z10) {
+            int i10 = xaVar.f713b;
+            if (((int[]) xaVar.d)[i10] == -2) {
+                ((Object[]) xaVar.f714c)[i10] = qe.g.f55542a;
             }
         }
         kotlin.jvm.internal.j.e(descriptor, "descriptor");
         kotlin.jvm.internal.j.e(deserializer, "deserializer");
         Object l10 = l(deserializer);
-        if (z9) {
-            int i11 = waVar.f700b;
-            if (((int[]) waVar.d)[i11] != -2) {
+        if (z10) {
+            int i11 = xaVar.f713b;
+            if (((int[]) xaVar.d)[i11] != -2) {
                 int i12 = i11 + 1;
-                waVar.f700b = i12;
-                Object[] objArr = (Object[]) waVar.f701c;
+                xaVar.f713b = i12;
+                Object[] objArr = (Object[]) xaVar.f714c;
                 if (i12 == objArr.length) {
                     int i13 = i12 * 2;
                     Object[] copyOf = Arrays.copyOf(objArr, i13);
                     kotlin.jvm.internal.j.d(copyOf, "copyOf(...)");
-                    waVar.f701c = copyOf;
-                    int[] copyOf2 = Arrays.copyOf((int[]) waVar.d, i13);
+                    xaVar.f714c = copyOf;
+                    int[] copyOf2 = Arrays.copyOf((int[]) xaVar.d, i13);
                     kotlin.jvm.internal.j.d(copyOf2, "copyOf(...)");
-                    waVar.d = copyOf2;
+                    xaVar.d = copyOf2;
                 }
             }
-            int i14 = waVar.f700b;
-            ((Object[]) waVar.f701c)[i14] = l10;
-            ((int[]) waVar.d)[i14] = -2;
+            int i14 = xaVar.f713b;
+            ((Object[]) xaVar.f714c)[i14] = l10;
+            ((int[]) xaVar.d)[i14] = -2;
         }
         return l10;
     }
@@ -535,12 +536,12 @@ public final class c {
             if (xd.d.e(message, "at path")) {
                 throw e10;
             }
-            throw new ke.b(e10.f17265a, e10.getMessage() + " at path: " + ((wa) ((a4.k) this.d).f192c).m(), e10);
+            throw new ke.b(e10.f17824a, e10.getMessage() + " at path: " + ((xa) ((a4.k) this.d).f192c).l(), e10);
         }
     }
 
     public String m() {
-        ((p0) this.f14062e).getClass();
+        ((o0) this.f13420e).getClass();
         return ((a4.k) this.d).j();
     }
 
@@ -550,66 +551,66 @@ public final class c {
     }
 
     public void o() {
-        this.f14060b = null;
-        if (((sk) this.f14063f) != null) {
-            Utilities.f21341e.a((sk) this.f14063f);
+        this.f13418b = null;
+        if (((qk) this.f13421f) != null) {
+            Utilities.f22416e.a((qk) this.f13421f);
         }
-        Bitmap bitmap = (Bitmap) this.f14061c;
+        Bitmap bitmap = (Bitmap) this.f13419c;
         if (bitmap != null && !bitmap.isRecycled()) {
-            ((Bitmap) this.f14061c).recycle();
+            ((Bitmap) this.f13419c).recycle();
         }
-        this.f14061c = null;
+        this.f13419c = null;
     }
 
     public void p(me.d descriptor) {
         a4.k kVar = (a4.k) this.d;
         kotlin.jvm.internal.j.e(descriptor, "descriptor");
-        p0 p0Var = ((pe.b) this.f14060b).f53588a;
-        p0Var.getClass();
-        if (!kVar.v()) {
-            kVar.h(((qe.j) this.f14061c).f54121b);
-            wa waVar = (wa) kVar.f192c;
-            int i7 = waVar.f700b;
-            int[] iArr = (int[]) waVar.d;
+        o0 o0Var = ((pe.b) this.f13418b).f54996a;
+        o0Var.getClass();
+        if (!kVar.u()) {
+            kVar.h(((qe.j) this.f13419c).f55556b);
+            xa xaVar = (xa) kVar.f192c;
+            int i7 = xaVar.f713b;
+            int[] iArr = (int[]) xaVar.d;
             if (iArr[i7] == -2) {
                 iArr[i7] = -1;
-                waVar.f700b = i7 - 1;
+                xaVar.f713b = i7 - 1;
             }
-            int i10 = waVar.f700b;
+            int i10 = xaVar.f713b;
             if (i10 != -1) {
-                waVar.f700b = i10 - 1;
+                xaVar.f713b = i10 - 1;
                 return;
             }
             return;
         }
-        p0Var.getClass();
+        o0Var.getClass();
         qe.f.c(kVar, "");
         throw null;
     }
 
     public void q() {
-        ByteBuffer byteBuffer = (ByteBuffer) this.f14063f;
+        ByteBuffer byteBuffer = (ByteBuffer) this.f13421f;
         byteBuffer.position(0);
-        qd0 qd0Var = (qd0) this.f14060b;
-        if (qd0Var.f37272f == null) {
-            qd0Var.a();
+        rd0 rd0Var = (rd0) this.f13418b;
+        if (rd0Var.f38954f == null) {
+            rd0Var.a();
         }
-        float[] fArr = qd0Var.f37272f;
-        qd0 qd0Var2 = (qd0) this.f14061c;
-        if (qd0Var2.f37272f == null) {
-            qd0Var2.a();
+        float[] fArr = rd0Var.f38954f;
+        rd0 rd0Var2 = (rd0) this.f13419c;
+        if (rd0Var2.f38954f == null) {
+            rd0Var2.a();
         }
-        float[] fArr2 = qd0Var2.f37272f;
-        qd0 qd0Var3 = (qd0) this.d;
-        if (qd0Var3.f37272f == null) {
-            qd0Var3.a();
+        float[] fArr2 = rd0Var2.f38954f;
+        rd0 rd0Var3 = (rd0) this.d;
+        if (rd0Var3.f38954f == null) {
+            rd0Var3.a();
         }
-        float[] fArr3 = qd0Var3.f37272f;
-        qd0 qd0Var4 = (qd0) this.f14062e;
-        if (qd0Var4.f37272f == null) {
-            qd0Var4.a();
+        float[] fArr3 = rd0Var3.f38954f;
+        rd0 rd0Var4 = (rd0) this.f13420e;
+        if (rd0Var4.f38954f == null) {
+            rd0Var4.a();
         }
-        float[] fArr4 = qd0Var4.f37272f;
+        float[] fArr4 = rd0Var4.f38954f;
         for (int i7 = 0; i7 < 200; i7++) {
             byteBuffer.put((byte) (fArr2[i7] * 255.0f));
             byteBuffer.put((byte) (fArr3[i7] * 255.0f));
@@ -621,24 +622,24 @@ public final class c {
 
     public void r(int i7) {
         ArrayList arrayList;
-        PriorityQueue priorityQueue = (PriorityQueue) this.f14062e;
+        PriorityQueue priorityQueue = (PriorityQueue) this.f13420e;
         while (priorityQueue.size() > i7) {
             i2.t tVar = (i2.t) priorityQueue.poll();
-            String str = m0.f14114a;
+            String str = l0.f13471a;
             int i10 = 0;
             while (true) {
-                arrayList = tVar.f15229a;
+                arrayList = tVar.f15681a;
                 if (i10 >= arrayList.size()) {
                     break;
                 }
-                ((i2.u) this.f14060b).b(tVar.f15230b, (x) arrayList.get(i10));
-                ((ArrayDeque) this.f14061c).push((x) arrayList.get(i10));
+                ((i2.u) this.f13418b).a(tVar.f15682b, (x) arrayList.get(i10));
+                ((ArrayDeque) this.f13419c).push((x) arrayList.get(i10));
                 i10++;
             }
             arrayList.clear();
-            i2.t tVar2 = (i2.t) this.f14063f;
-            if (tVar2 != null && tVar2.f15230b == tVar.f15230b) {
-                this.f14063f = null;
+            i2.t tVar2 = (i2.t) this.f13421f;
+            if (tVar2 != null && tVar2.f15682b == tVar.f15682b) {
+                this.f13421f = null;
             }
             ((ArrayDeque) this.d).push(tVar);
         }
@@ -648,85 +649,85 @@ public final class c {
         throw new UnsupportedOperationException("Method not decompiled: h2.c.s(android.graphics.Bitmap, java.lang.String, int, int, boolean):android.graphics.Bitmap");
     }
 
-    public Bitmap t(jc jcVar) {
-        if (jcVar == null) {
+    public Bitmap t(ic icVar) {
+        if (icVar == null) {
             return null;
         }
-        return s(jcVar.f23539c, jcVar.f23537a, jcVar.f23540e, 0, false);
+        return s(icVar.f24374c, icVar.f24372a, icVar.f24375e, 0, false);
     }
 
     public Bitmap u(ImageReceiver imageReceiver) {
         if (imageReceiver == null) {
             return null;
         }
-        return s(imageReceiver.n(), imageReceiver.Q, imageReceiver.U, imageReceiver.V, false);
+        return s(imageReceiver.n(), imageReceiver.R, imageReceiver.V, imageReceiver.W, false);
     }
 
     public ColorStateList v() {
-        c3 c3Var = (c3) this.f14062e;
-        if (c3Var != null) {
-            return (ColorStateList) c3Var.f19082c;
+        b3 b3Var = (b3) this.f13420e;
+        if (b3Var != null) {
+            return (ColorStateList) b3Var.f19659c;
         }
         return null;
     }
 
     public PorterDuff.Mode w() {
-        c3 c3Var = (c3) this.f14062e;
-        if (c3Var != null) {
-            return (PorterDuff.Mode) c3Var.d;
+        b3 b3Var = (b3) this.f13420e;
+        if (b3Var != null) {
+            return (PorterDuff.Mode) b3Var.d;
         }
         return null;
     }
 
     public void x(AttributeSet attributeSet, int i7) {
         ColorStateList i10;
-        View view = (View) this.f14060b;
+        View view = (View) this.f13418b;
         Context context = view.getContext();
-        int[] iArr = f.a.f10882z;
-        h6.m x10 = h6.m.x(context, attributeSet, iArr, i7);
-        TypedArray typedArray = (TypedArray) x10.f14267c;
-        View view2 = (View) this.f14060b;
-        r0.i0.i(view2, view2.getContext(), iArr, attributeSet, (TypedArray) x10.f14267c, i7);
+        int[] iArr = f.a.f10693z;
+        h6.m z10 = h6.m.z(context, attributeSet, iArr, i7);
+        TypedArray typedArray = (TypedArray) z10.f13625c;
+        View view2 = (View) this.f13418b;
+        r0.i0.i(view2, view2.getContext(), iArr, attributeSet, (TypedArray) z10.f13625c, i7);
         try {
             if (typedArray.hasValue(0)) {
-                this.f14059a = typedArray.getResourceId(0, -1);
-                m.r rVar = (m.r) this.f14061c;
+                this.f13417a = typedArray.getResourceId(0, -1);
+                m.q qVar = (m.q) this.f13419c;
                 Context context2 = view.getContext();
-                int i11 = this.f14059a;
-                synchronized (rVar) {
-                    i10 = rVar.f19241a.i(context2, i11);
+                int i11 = this.f13417a;
+                synchronized (qVar) {
+                    i10 = qVar.f19817a.i(context2, i11);
                 }
                 if (i10 != null) {
                     B(i10);
                 }
             }
             if (typedArray.hasValue(1)) {
-                r0.a0.f(view, x10.o(1));
+                r0.a0.f(view, z10.o(1));
             }
             if (typedArray.hasValue(2)) {
-                r0.a0.g(view, m1.b(typedArray.getInt(2, -1), null));
+                r0.a0.g(view, l1.b(typedArray.getInt(2, -1), null));
             }
-            x10.C();
+            z10.D();
         } catch (Throwable th2) {
-            x10.C();
+            z10.D();
             throw th2;
         }
     }
 
     public void y() {
-        this.f14059a = -1;
+        this.f13417a = -1;
         B(null);
         b();
     }
 
     public void z(int i7) {
         ColorStateList colorStateList;
-        this.f14059a = i7;
-        m.r rVar = (m.r) this.f14061c;
-        if (rVar != null) {
-            Context context = ((View) this.f14060b).getContext();
-            synchronized (rVar) {
-                colorStateList = rVar.f19241a.i(context, i7);
+        this.f13417a = i7;
+        m.q qVar = (m.q) this.f13419c;
+        if (qVar != null) {
+            Context context = ((View) this.f13418b).getContext();
+            synchronized (qVar) {
+                colorStateList = qVar.f19817a.i(context, i7);
             }
         } else {
             colorStateList = null;
@@ -736,34 +737,34 @@ public final class c {
     }
 
     public c(View view) {
-        this.f14059a = -1;
-        this.f14060b = view;
-        this.f14061c = m.r.a();
+        this.f13417a = -1;
+        this.f13418b = view;
+        this.f13419c = m.q.a();
     }
 
     public c(i2.u uVar) {
-        this.f14060b = uVar;
-        this.f14061c = new ArrayDeque();
+        this.f13418b = uVar;
+        this.f13419c = new ArrayDeque();
         this.d = new ArrayDeque();
-        this.f14062e = new PriorityQueue();
-        this.f14059a = -1;
+        this.f13420e = new PriorityQueue();
+        this.f13417a = -1;
     }
 
     public c() {
-        this.f14060b = new qd0();
-        this.f14061c = new qd0();
-        this.d = new qd0();
-        this.f14062e = new qd0();
+        this.f13418b = new rd0();
+        this.f13419c = new rd0();
+        this.d = new rd0();
+        this.f13420e = new rd0();
         ByteBuffer allocateDirect = ByteBuffer.allocateDirect(800);
-        this.f14063f = allocateDirect;
+        this.f13421f = allocateDirect;
         allocateDirect.order(ByteOrder.LITTLE_ENDIAN);
     }
 
     public c(int i7, Runnable runnable) {
         Paint paint = new Paint(1);
         this.d = paint;
-        this.f14059a = i7;
-        this.f14062e = runnable;
+        this.f13417a = i7;
+        this.f13420e = runnable;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 }

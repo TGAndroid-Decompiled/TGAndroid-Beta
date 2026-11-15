@@ -1,9 +1,9 @@
 package ye;
 public final class a extends RuntimeException {
-    public Throwable f59409a;
+    public Throwable f60616a;
 
     @Override
     public final Throwable getCause() {
-        return this.f59409a;
+        return this.f60616a;
     }
 }

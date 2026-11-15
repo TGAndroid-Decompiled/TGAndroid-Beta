@@ -1,51 +1,54 @@
 package org.telegram.ui.Wallet;
 
-import java.util.ArrayList;
-import org.telegram.messenger.ls;
-import org.telegram.messenger.qs;
+import android.view.View;
+import java.io.Serializable;
+import org.telegram.messenger.is;
+import org.telegram.messenger.ns;
+import org.telegram.messenger.s10;
 import org.telegram.tgnet.tl.TL_wallet;
-public final class f5 implements ls {
-    public final int f42498a;
-    public final TL_wallet.walletTransaction[] f42499b;
-    public final di.r f42500c;
+public final class f5 implements View.OnAttachStateChangeListener {
+    public final fi.r f43828a;
+    public final TL_wallet.walletTransaction[] f43829b;
+    public final is f43830c;
+    public final int d;
+    public final s10 f43831e;
+    public final x2[] f43832f;
+    public final String[] h;
+    public final boolean[] f43833n;
 
-    public f5(int i7, TL_wallet.walletTransaction[] wallettransactionArr, di.r rVar) {
-        this.f42498a = i7;
-        this.f42499b = wallettransactionArr;
-        this.f42500c = rVar;
+    public f5(fi.r rVar, TL_wallet.walletTransaction[] wallettransactionArr, e5 e5Var, int i7, s10 s10Var, x2[] x2VarArr, String[] strArr, boolean[] zArr) {
+        this.f43828a = rVar;
+        this.f43829b = wallettransactionArr;
+        this.f43830c = e5Var;
+        this.d = i7;
+        this.f43831e = s10Var;
+        this.f43832f = x2VarArr;
+        this.h = strArr;
+        this.f43833n = zArr;
     }
 
     @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        TL_wallet.walletTransaction[] wallettransactionArr;
-        TL_wallet.walletTransaction wallettransaction;
-        if (i7 == qs.f24975a4 || i7 == qs.f24981b4) {
-            ArrayList arrayList = l0.x(this.f42498a).B().f42699c;
-            int size = arrayList.size();
-            int i11 = 0;
-            while (true) {
-                wallettransactionArr = this.f42499b;
-                if (i11 < size) {
-                    Object obj = arrayList.get(i11);
-                    i11++;
-                    wallettransaction = (TL_wallet.walletTransaction) obj;
-                    TL_wallet.walletTransaction wallettransaction2 = wallettransactionArr[0];
-                    if (wallettransaction != wallettransaction2) {
-                        if (l0.i0(wallettransaction2, wallettransaction)) {
-                            break;
-                        }
-                    } else {
-                        break;
-                    }
-                } else {
-                    wallettransaction = null;
-                    break;
-                }
-            }
-            if (wallettransaction != null) {
-                wallettransactionArr[0] = wallettransaction;
-                this.f42500c.a(wallettransaction);
-            }
+    public final void onViewAttachedToWindow(View view) {
+        this.f43828a.a(this.f43829b[0]);
+        is isVar = this.f43830c;
+        if (isVar != null) {
+            int i7 = this.d;
+            ns.f(i7).c(isVar, ns.f25467a4);
+            ns.f(i7).c(isVar, ns.f25473b4);
+        }
+        s10 s10Var = this.f43831e;
+        if (s10Var != null) {
+            this.f43832f[0].n(new g(s10Var, (Serializable) this.h, (Serializable) this.f43833n, 15));
+        }
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        is isVar = this.f43830c;
+        if (isVar != null) {
+            int i7 = this.d;
+            ns.f(i7).n(isVar, ns.f25467a4);
+            ns.f(i7).n(isVar, ns.f25473b4);
         }
     }
 }

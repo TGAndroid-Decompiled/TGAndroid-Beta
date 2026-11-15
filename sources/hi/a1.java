@@ -1,137 +1,186 @@
 package hi;
 
-import android.content.Context;
-import android.os.SystemClock;
 import java.io.File;
-import org.telegram.messenger.a8;
-import org.telegram.messenger.ij;
-import org.telegram.messenger.pb;
-import org.telegram.messenger.qp;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.r60;
-import org.telegram.ui.Components.t60;
-public final class a1 implements Runnable {
-    public final int f14499a = 0;
-    public final Object f14500b;
-    public final long f14501c;
-    public final Object d;
-    public final int f14502e;
-    public final TLObject f14503f;
-    public final Object h;
-    public final Object f14504n;
-    public final Object f14505r;
-    public final Object f14506s;
+import java.io.IOException;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.ns;
+import org.telegram.messenger.vr;
+public final class a1 {
+    public final int f13861a;
+    public final ArrayList f13862b = new ArrayList();
+    public boolean f13863c;
+    public boolean d;
+    public boolean f13864e;
+    public boolean f13865f;
+    public File f13866g;
 
-    public a1(org.telegram.ui.ActionBar.u1 u1Var, Context context, int i7, long j3, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File[] fileArr, h6 h6Var, org.telegram.ui.web.p pVar, bi.t0 t0Var) {
-        this.f14500b = u1Var;
-        this.d = context;
-        this.f14502e = i7;
-        this.f14501c = j3;
-        this.f14503f = tL_messages_preparedInlineMessage;
-        this.h = fileArr;
-        this.f14504n = h6Var;
-        this.f14505r = pVar;
-        this.f14506s = t0Var;
-    }
-
-    @Override
-    public final void run() {
-        org.telegram.ui.Wallet.i0 i0Var;
-        String i7;
-        org.telegram.ui.Wallet.z1 z1Var;
-        switch (this.f14499a) {
-            case 0:
-                Context context = (Context) this.d;
-                TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage = (TLRPC.TL_messages_preparedInlineMessage) this.f14503f;
-                ((org.telegram.ui.ActionBar.u1) this.f14500b).dismiss();
-                new i1(context, this.f14502e, this.f14501c, tL_messages_preparedInlineMessage, ((File[]) this.h)[0], null, (h6) this.f14504n, (org.telegram.ui.web.p) this.f14505r, (bi.t0) this.f14506s).show();
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.u1 u1Var = (org.telegram.ui.ActionBar.u1) this.f14500b;
-                org.telegram.messenger.c cVar = (org.telegram.messenger.c) this.h;
-                r60 r60Var = (r60) this.f14504n;
-                Context context2 = (Context) this.d;
-                org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.f14505r;
-                TLRPC.Peer peer = (TLRPC.Peer) this.f14506s;
-                try {
-                    u1Var.dismiss();
-                } catch (Exception e10) {
-                    a8.g(e10, true);
-                }
-                TLObject tLObject = this.f14503f;
-                if (tLObject != null) {
-                    TL_phone.joinAsPeers joinaspeers = (TL_phone.joinAsPeers) tLObject;
-                    if (joinaspeers.peers.size() == 1) {
-                        r60Var.a(qp.s1(cVar.f21770a).j1(ij.B1(joinaspeers.peers.get(0))), false, false, false);
-                        return;
-                    }
-                    t60.C1 = joinaspeers.peers;
-                    long j3 = this.f14501c;
-                    t60.E1 = j3;
-                    t60.D1 = SystemClock.elapsedRealtime();
-                    int i10 = cVar.f21770a;
-                    t60.F1 = i10;
-                    qp.s1(i10).S3(joinaspeers.chats, false);
-                    qp.s1(cVar.f21770a).Y3(joinaspeers.users, false);
-                    t60.L0(context2, j3, joinaspeers.peers, f2Var, this.f14502e, peer, r60Var);
-                    return;
-                }
-                return;
-            default:
-                org.telegram.ui.Wallet.d2 d2Var = (org.telegram.ui.Wallet.d2) this.f14500b;
-                TL_wallet.tonConnectPending tonconnectpending = (TL_wallet.tonConnectPending) this.d;
-                TL_wallet.tonConnectRequest tonconnectrequest = (TL_wallet.tonConnectRequest) this.f14503f;
-                org.telegram.ui.Wallet.i0 i0Var2 = (org.telegram.ui.Wallet.i0) this.h;
-                String str = (String) this.f14504n;
-                byte[] bArr = (byte[]) this.f14505r;
-                org.telegram.ui.Wallet.t1 t1Var = (org.telegram.ui.Wallet.t1) this.f14506s;
-                d2Var.getClass();
-                try {
-                    i0Var = i0Var2;
-                } catch (Exception e11) {
-                    e = e11;
-                    i0Var = i0Var2;
-                }
-                try {
-                    z1Var = new org.telegram.ui.Wallet.z1(tonconnectpending, tonconnectrequest, org.telegram.ui.Wallet.d2.g(i0Var2, tonconnectpending.session, str, bArr, tonconnectrequest.body, d2Var.f42290f.getCurrentTime()), str, bArr);
-                    i7 = null;
-                } catch (Exception e12) {
-                    e = e12;
-                    i7 = org.telegram.ui.Wallet.d2.i("decode request", e);
-                    z1Var = null;
-                    org.telegram.messenger.g0.h3(new pb(d2Var, z1Var, t1Var, i7, this.f14501c, this.f14502e, i0Var));
-                    return;
-                }
-                org.telegram.messenger.g0.h3(new pb(d2Var, z1Var, t1Var, i7, this.f14501c, this.f14502e, i0Var));
-                return;
+    public a1(int i7) {
+        this.f13861a = i7;
+        if (!this.f13864e && !this.f13865f) {
+            this.f13865f = true;
+            w0 w0Var = new w0(this, 0);
+            vr a02 = vr.a0(i7);
+            a02.f27220a.c(new di.m6((Object) a02, true, (Object) w0Var, 3));
         }
     }
 
-    public a1(org.telegram.ui.ActionBar.u1 u1Var, TLObject tLObject, org.telegram.messenger.c cVar, r60 r60Var, long j3, Context context, org.telegram.ui.ActionBar.f2 f2Var, int i7, TLRPC.Peer peer) {
-        this.f14500b = u1Var;
-        this.f14503f = tLObject;
-        this.h = cVar;
-        this.f14504n = r60Var;
-        this.f14501c = j3;
-        this.d = context;
-        this.f14505r = f2Var;
-        this.f14502e = i7;
-        this.f14506s = peer;
+    public final void a(z0 z0Var) {
+        String str;
+        StringBuilder sb2;
+        long j3;
+        int i7 = this.f13861a;
+        vr a02 = vr.a0(i7);
+        StringBuilder sb3 = new StringBuilder("StoryDraft append ");
+        sb3.append(z0Var.f15443a);
+        sb3.append(" (edit=");
+        sb3.append(z0Var.G);
+        if (z0Var.G) {
+            StringBuilder sb4 = new StringBuilder(", storyId=");
+            sb4.append(z0Var.H);
+            sb4.append(", ");
+            if (z0Var.J != 0) {
+                sb2 = new StringBuilder("documentId=");
+                j3 = z0Var.J;
+            } else {
+                sb2 = new StringBuilder("photoId=");
+                j3 = z0Var.K;
+            }
+            sb2.append(j3);
+            sb4.append(sb2.toString());
+            sb4.append(", expireDate=");
+            sb4.append(z0Var.L);
+            str = sb4.toString();
+        } else {
+            str = "";
+        }
+        sb3.append(str);
+        sb3.append(", now=");
+        sb3.append(System.currentTimeMillis());
+        sb3.append(")");
+        org.telegram.messenger.a8.b(sb3.toString());
+        a02.f27220a.c(new x0(a02, z0Var, 1));
+        ns.f(i7).k(ns.f25612y5, new Object[0]);
     }
 
-    public a1(org.telegram.ui.Wallet.d2 d2Var, TL_wallet.tonConnectPending tonconnectpending, TL_wallet.tonConnectRequest tonconnectrequest, org.telegram.ui.Wallet.i0 i0Var, String str, byte[] bArr, org.telegram.ui.Wallet.t1 t1Var, long j3, int i7) {
-        this.f14500b = d2Var;
-        this.d = tonconnectpending;
-        this.f14503f = tonconnectrequest;
-        this.h = i0Var;
-        this.f14504n = str;
-        this.f14505r = bArr;
-        this.f14506s = t1Var;
-        this.f14501c = j3;
-        this.f14502e = i7;
+    public final void b(d7 d7Var) {
+        ArrayList arrayList = new ArrayList(1);
+        arrayList.add(d7Var);
+        c(arrayList);
+    }
+
+    public final void c(ArrayList arrayList) {
+        String str;
+        StringBuilder sb2;
+        long j3;
+        if (arrayList != null) {
+            ArrayList arrayList2 = new ArrayList();
+            for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                d7 d7Var = (d7) arrayList.get(i7);
+                if (d7Var != null) {
+                    StringBuilder sb3 = new StringBuilder("StoryDraft delete ");
+                    sb3.append(d7Var.f14126b);
+                    sb3.append(" (edit=");
+                    sb3.append(d7Var.f14139g);
+                    if (d7Var.f14139g) {
+                        StringBuilder sb4 = new StringBuilder(", storyId=");
+                        sb4.append(d7Var.f14137f);
+                        sb4.append(", ");
+                        if (d7Var.H != 0) {
+                            sb2 = new StringBuilder("documentId=");
+                            j3 = d7Var.H;
+                        } else {
+                            sb2 = new StringBuilder("photoId=");
+                            j3 = d7Var.I;
+                        }
+                        sb2.append(j3);
+                        sb4.append(sb2.toString());
+                        sb4.append(", expireDate=");
+                        sb4.append(d7Var.J);
+                        str = sb4.toString();
+                    } else {
+                        str = "";
+                    }
+                    sb3.append(str);
+                    sb3.append(", now=");
+                    sb3.append(System.currentTimeMillis());
+                    sb3.append(")");
+                    org.telegram.messenger.a8.b(sb3.toString());
+                    arrayList2.add(Long.valueOf(d7Var.f14126b));
+                    d7Var.i(true);
+                }
+            }
+            if (arrayList2.isEmpty()) {
+                return;
+            }
+            this.f13862b.removeAll(arrayList);
+            int i10 = this.f13861a;
+            vr a02 = vr.a0(i10);
+            a02.f27220a.c(new y0(a02, arrayList2, 0));
+            ns.f(i10).k(ns.f25612y5, new Object[0]);
+        }
+    }
+
+    public final void d(d7 d7Var) {
+        if (d7Var == null) {
+            return;
+        }
+        e(d7Var);
+        ArrayList arrayList = this.f13862b;
+        arrayList.remove(d7Var);
+        if (!d7Var.f14168w) {
+            arrayList.add(0, d7Var);
+        }
+        z0 z0Var = new z0(d7Var);
+        int i7 = this.f13861a;
+        vr a02 = vr.a0(i7);
+        a02.f27220a.c(new x0(a02, z0Var, 0));
+        ns.f(i7).k(ns.f25612y5, new Object[0]);
+    }
+
+    public final void e(d7 d7Var) {
+        if (d7Var == null) {
+            return;
+        }
+        if (d7Var.f14126b == 0) {
+            d7Var.f14126b = Utilities.f22414b.nextLong();
+        }
+        d7Var.d = System.currentTimeMillis();
+        d7Var.f14129c = true;
+        if (d7Var.M) {
+            d7Var.L = f(d7Var.L);
+        } else if (d7Var.L != null) {
+            File x10 = d7.x(this.f13861a, d7Var.K);
+            try {
+                org.telegram.messenger.g0.E(d7Var.L, x10);
+                d7Var.L = f(x10);
+                d7Var.M = true;
+            } catch (IOException e10) {
+                org.telegram.messenger.a8.g(e10, true);
+            }
+        }
+        d7Var.Z0 = f(d7Var.Z0);
+        d7Var.P0 = f(d7Var.P0);
+        d7Var.O0 = f(d7Var.O0);
+    }
+
+    public final File f(File file) {
+        if (file == null) {
+            return null;
+        }
+        if (this.f13866g == null) {
+            File file2 = new File(org.telegram.messenger.w7.z(4), "drafts");
+            this.f13866g = file2;
+            if (!file2.exists()) {
+                this.f13866g.mkdir();
+            }
+        }
+        if (!file.getAbsolutePath().startsWith(this.f13866g.getAbsolutePath())) {
+            File file3 = new File(this.f13866g, file.getName());
+            if (file.renameTo(file3)) {
+                return file3;
+            }
+        }
+        return file;
     }
 }

@@ -1,24 +1,15 @@
 package c8;
-public enum oa implements u {
-    UNKNOWN_FORMAT(0),
-    NV16(1),
-    NV21(2),
-    YV12(3),
-    YUV_420_888(7),
-    JPEG(8),
-    BITMAP(4),
-    CM_SAMPLE_BUFFER_REF(5),
-    UI_IMAGE(6),
-    CV_PIXEL_BUFFER_REF(9);
-    
-    public final int f5797a;
 
-    oa(int i7) {
-        this.f5797a = i7;
-    }
-
-    @Override
-    public final int zza() {
-        return this.f5797a;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import java.util.ArrayList;
+public abstract class oa {
+    public static ArrayList a(org.telegram.ui.ActionBar.r6 r6Var, int... iArr) {
+        ArrayList arrayList = new ArrayList(iArr.length);
+        for (int i7 : iArr) {
+            arrayList.add(new org.telegram.ui.ActionBar.s6((View) null, 0, (Class[]) null, (Paint) null, (Drawable[]) null, r6Var, i7));
+        }
+        return arrayList;
     }
 }

@@ -39,7 +39,7 @@ public class TeXSymbolParser {
     }
 
     public Map<String, SymbolAtom> readSymbols() {
-        boolean z9;
+        boolean z10;
         HashMap hashMap = new HashMap();
         NodeList elementsByTagName = this.root.getElementsByTagName("Symbol");
         for (int i7 = 0; i7 < elementsByTagName.getLength(); i7++) {
@@ -48,13 +48,13 @@ public class TeXSymbolParser {
             String attrValueAndCheckIfNotNull2 = getAttrValueAndCheckIfNotNull("type", element);
             String attribute = element.getAttribute("del");
             if (attribute != null && attribute.equals("true")) {
-                z9 = true;
+                z10 = true;
             } else {
-                z9 = false;
+                z10 = false;
             }
             Integer num = typeMappings.get(attrValueAndCheckIfNotNull2);
             if (num != null) {
-                hashMap.put(attrValueAndCheckIfNotNull, new SymbolAtom(attrValueAndCheckIfNotNull, num.intValue(), z9));
+                hashMap.put(attrValueAndCheckIfNotNull, new SymbolAtom(attrValueAndCheckIfNotNull, num.intValue(), z10));
             } else {
                 throw new XMLResourceParseException("TeXSymbols.xml", "Symbol", "type", p0.p("has an unknown value '", attrValueAndCheckIfNotNull2, "'!"));
             }

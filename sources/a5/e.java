@@ -12,7 +12,7 @@ import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
-import c8.o0;
+import c8.p0;
 import org.xmlpull.v1.XmlPullParser;
 public final class e extends h implements Animatable {
     public final Context d;
@@ -198,12 +198,12 @@ public final class e extends h implements Animatable {
     }
 
     @Override
-    public final void setAutoMirrored(boolean z9) {
+    public final void setAutoMirrored(boolean z10) {
         Drawable drawable = (Drawable) this.f220b;
         if (drawable != null) {
-            drawable.setAutoMirrored(z9);
+            drawable.setAutoMirrored(z10);
         } else {
-            this.f215c.f211a.setAutoMirrored(z9);
+            this.f215c.f211a.setAutoMirrored(z10);
         }
     }
 
@@ -221,7 +221,7 @@ public final class e extends h implements Animatable {
     public final void setTint(int i7) {
         Drawable drawable = (Drawable) this.f220b;
         if (drawable != null) {
-            o0.a(i7, drawable);
+            p0.a(i7, drawable);
         } else {
             this.f215c.f211a.setTint(i7);
         }
@@ -248,13 +248,13 @@ public final class e extends h implements Animatable {
     }
 
     @Override
-    public final boolean setVisible(boolean z9, boolean z10) {
+    public final boolean setVisible(boolean z10, boolean z11) {
         Drawable drawable = (Drawable) this.f220b;
         if (drawable != null) {
-            return drawable.setVisible(z9, z10);
+            return drawable.setVisible(z10, z11);
         }
-        this.f215c.f211a.setVisible(z9, z10);
-        return super.setVisible(z9, z10);
+        this.f215c.f211a.setVisible(z10, z11);
+        return super.setVisible(z10, z11);
     }
 
     @Override

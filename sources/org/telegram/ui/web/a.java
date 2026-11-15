@@ -2,43 +2,43 @@ package org.telegram.ui.web;
 
 import android.view.View;
 import java.io.Serializable;
-import org.telegram.messenger.a20;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.ij;
-import org.telegram.ui.Components.x31;
-public final class a implements org.telegram.ui.ActionBar.r1, a20 {
-    public final j f51019a;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.x10;
+import org.telegram.ui.Components.b41;
+public final class a implements org.telegram.ui.ActionBar.q1, x10 {
+    public final k f52564a;
 
-    public a(j jVar) {
-        this.f51019a = jVar;
+    public a(k kVar) {
+        this.f52564a = kVar;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        j jVar = this.f51019a;
-        jVar.getContext().getSharedPreferences("webhistory", 0).edit().remove("queries_json").apply();
-        jVar.f51108x.f37496f3.O(true);
+    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        k kVar = this.f52564a;
+        kVar.getContext().getSharedPreferences("webhistory", 0).edit().remove("queries_json").apply();
+        kVar.f52689x.f39895g3.O(true);
     }
 
     @Override
-    public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+    public void m(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
         org.telegram.ui.q qVar;
-        x31 x31Var = (x31) obj;
+        b41 b41Var = (b41) obj;
         View view = (View) obj2;
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        boolean H = x31Var.H(c.class);
-        j jVar = this.f51019a;
+        boolean H = b41Var.H(d.class);
+        k kVar = this.f52564a;
         if (H) {
-            String charSequence = x31Var.f40156l.toString();
-            org.telegram.ui.y yVar = jVar.L;
-            if (yVar != null) {
-                yVar.a(charSequence);
+            String charSequence = b41Var.f33181l.toString();
+            org.telegram.ui.x xVar = kVar.M;
+            if (xVar != null) {
+                xVar.a(charSequence);
             }
-        } else if (x31Var.H(f.class) && (qVar = jVar.N) != null) {
+        } else if (b41Var.H(g.class) && (qVar = kVar.O) != null) {
             try {
-                qVar.a(j.a((ij) x31Var.H));
+                qVar.a(k.a((gj) b41Var.H));
             } catch (Exception e10) {
                 a8.g(e10, true);
             }

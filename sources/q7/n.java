@@ -7,20 +7,20 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 public abstract class n implements Map, Serializable, j$.util.Map {
-    public static final Map.Entry[] f54018b = new Map.Entry[0];
-    public transient o f54019a;
+    public static final Map.Entry[] f55455b = new Map.Entry[0];
+    public transient o f55456a;
 
     @Override
     public final o entrySet() {
-        o oVar = this.f54019a;
+        o oVar = this.f55456a;
         if (oVar == null) {
             r rVar = (r) this;
             if (rVar.isEmpty()) {
-                oVar = y.f54049s;
+                oVar = y.f55486s;
             } else {
                 oVar = new q(rVar);
             }
-            this.f54019a = oVar;
+            this.f55456a = oVar;
         }
         return oVar;
     }
@@ -140,20 +140,20 @@ public abstract class n implements Map, Serializable, j$.util.Map {
         if (size >= 0) {
             StringBuilder sb2 = new StringBuilder((int) Math.min(size * 8, 1073741824L));
             sb2.append('{');
-            boolean z9 = true;
+            boolean z10 = true;
             for (Map.Entry entry : rVar.entrySet()) {
-                if (!z9) {
+                if (!z10) {
                     sb2.append(", ");
                 }
                 sb2.append(entry.getKey());
                 sb2.append('=');
                 sb2.append(entry.getValue());
-                z9 = false;
+                z10 = false;
             }
             sb2.append('}');
             return sb2.toString();
         }
-        throw new IllegalArgumentException(jg.g.j(size, "size cannot be negative but was: "));
+        throw new IllegalArgumentException(i5.c.i(size, "size cannot be negative but was: "));
     }
 
     @Override

@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 public abstract class ud {
     public static xf.a a(View view, xf.c cVar) {
-        xf.a aVar = cVar.f58708b;
+        xf.a aVar = cVar.f59892b;
         if (aVar != null) {
             return aVar;
         }
@@ -17,17 +17,17 @@ public abstract class ud {
             ViewGroup viewGroup = (ViewGroup) rootView;
             xf.a aVar2 = (xf.a) viewGroup.getTag(2131296696);
             if (aVar2 == null) {
-                di.b3 b3Var = new di.b3(viewGroup.getContext(), 8);
-                xf.a aVar3 = new xf.a(b3Var);
+                fi.w2 w2Var = new fi.w2(viewGroup.getContext(), 8);
+                xf.a aVar3 = new xf.a(w2Var);
                 viewGroup.setTag(2131296696, aVar3);
                 if (viewGroup instanceof FrameLayout) {
-                    viewGroup.addView(b3Var, new FrameLayout.LayoutParams(1, 1, 17));
+                    viewGroup.addView(w2Var, new FrameLayout.LayoutParams(1, 1, 17));
                 } else {
-                    viewGroup.addView(b3Var, new ViewGroup.LayoutParams(1, 1));
+                    viewGroup.addView(w2Var, new ViewGroup.LayoutParams(1, 1));
                 }
                 aVar2 = aVar3;
             }
-            cVar.f58708b = aVar2;
+            cVar.f59892b = aVar2;
             return aVar2;
         }
         throw new IllegalArgumentException("Cannot add OnPostDrawListener to root view");

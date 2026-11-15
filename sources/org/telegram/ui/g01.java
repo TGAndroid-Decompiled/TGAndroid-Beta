@@ -1,44 +1,36 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public final class g01 extends g.p {
-    public final int f45901c;
-    public final t11 d;
+import android.content.Context;
+import android.view.View;
+public final class g01 extends View {
+    public final int f47265a;
+    public final Integer f47266b;
 
-    public g01(t11 t11Var, int i7) {
-        this.f45901c = i7;
-        this.d = t11Var;
+    public g01(Context context, Integer num, int i7) {
+        super(context);
+        this.f47265a = i7;
+        this.f47266b = num;
     }
 
     @Override
-    public final int i(int i7) {
-        int i10;
-        ArrayList arrayList;
-        int i11;
-        switch (this.f45901c) {
+    public final void onMeasure(int i7, int i10) {
+        switch (this.f47265a) {
             case 0:
-                t11 t11Var = this.d;
-                if (t11Var.f50067w0.indexOfKey(i7) < 0 && t11Var.f50075z0.indexOfKey(i7) < 0 && i7 != t11Var.f50031f && i7 != t11Var.D && i7 != t11Var.f50046n && i7 != t11Var.h && i7 != t11Var.f50066w && i7 != t11Var.f50017a && i7 != t11Var.f50072y) {
-                    if ((i7 >= t11Var.E && i7 < t11Var.F) || t11Var.Q) {
-                        return 8;
-                    }
-                    return 5;
+                super.onMeasure(i7, i10);
+                Integer num = this.f47266b;
+                if (num != null) {
+                    setPivotX(num.intValue());
+                    return;
                 }
-                return t11Var.f50055r0.J;
+                return;
             default:
-                t11 t11Var2 = this.d;
-                e11 e11Var = t11Var2.f50052q0;
-                int d = e11Var.d(i7);
-                if (d == 6) {
-                    return t11Var2.f50055r0.J;
+                super.onMeasure(i7, i10);
+                Integer num2 = this.f47266b;
+                if (num2 != null) {
+                    setPivotX(num2.intValue());
+                    return;
                 }
-                if (d != 5) {
-                    t11 t11Var3 = e11Var.f45098s;
-                    if (t11Var3.W != 14 ? i7 <= (i10 = e11Var.f45093c) || (i7 - i10) - 1 >= t11Var3.D1.size() : (arrayList = t11Var3.C1) == null || i7 < (i11 = e11Var.f45093c) || i7 - i11 >= arrayList.size()) {
-                        return 5;
-                    }
-                }
-                return 8;
+                return;
         }
     }
 }

@@ -1,86 +1,28 @@
 package mi;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
-import java.util.ArrayList;
-import org.telegram.ui.Cells.q1;
-import v4.d1;
-public final class i extends AnimatorListenerAdapter {
-    public final int f20086a;
-    public final v4.i f20087b;
-    public final ViewPropertyAnimator f20088c;
-    public final View d;
-    public final l f20089e;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.Components.a41;
+import org.telegram.ui.Components.b41;
+import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.u41;
+import org.telegram.ui.Components.uj0;
+public final class i extends a41 {
+    public static final int f20672b = 0;
 
-    public i(l lVar, v4.i iVar, ViewPropertyAnimator viewPropertyAnimator, View view, int i7) {
-        this.f20086a = i7;
-        this.f20089e = lVar;
-        this.f20087b = iVar;
-        this.f20088c = viewPropertyAnimator;
-        this.d = view;
+    static {
+        a41.h(new a41());
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f20086a) {
-            case 0:
-                this.f20088c.setListener(null);
-                View view = this.d;
-                view.setAlpha(1.0f);
-                view.setScaleX(1.0f);
-                view.setScaleX(1.0f);
-                if (view instanceof q1) {
-                    ((q1) view).setAnimationOffsetX(0.0f);
-                } else {
-                    view.setTranslationX(0.0f);
-                }
-                view.setTranslationY(0.0f);
-                l lVar = this.f20089e;
-                ArrayList arrayList = lVar.B;
-                v4.i iVar = this.f20087b;
-                if (arrayList.remove(iVar.f57096a)) {
-                    lVar.d(iVar.f57096a);
-                    lVar.G();
-                    return;
-                }
-                return;
-            default:
-                this.f20088c.setListener(null);
-                View view2 = this.d;
-                view2.setAlpha(1.0f);
-                view2.setScaleX(1.0f);
-                view2.setScaleX(1.0f);
-                if (view2 instanceof q1) {
-                    ((q1) view2).setAnimationOffsetX(0.0f);
-                } else {
-                    view2.setTranslationX(0.0f);
-                }
-                view2.setTranslationY(0.0f);
-                l lVar2 = this.f20089e;
-                ArrayList arrayList2 = lVar2.B;
-                v4.i iVar2 = this.f20087b;
-                if (arrayList2.remove(iVar2.f57097b)) {
-                    lVar2.d(iVar2.f57097b);
-                    lVar2.G();
-                    return;
-                }
-                return;
-        }
+    public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
+        long j3 = b41Var.B;
+        ((j) view).a((int) j3, (int) (j3 >>> 32), b41Var.f33180k, b41Var.f33181l, b41Var.f33183n, b41Var.f33186q);
     }
 
     @Override
-    public final void onAnimationStart(Animator animator) {
-        switch (this.f20086a) {
-            case 0:
-                d1 d1Var = this.f20087b.f57096a;
-                this.f20089e.getClass();
-                return;
-            default:
-                d1 d1Var2 = this.f20087b.f57097b;
-                this.f20089e.getClass();
-                return;
-        }
+    public final View d(Context context, uj0 uj0Var, int i7, e6 e6Var) {
+        return new j(context, e6Var, false);
     }
 }

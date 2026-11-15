@@ -1,16 +1,16 @@
 package h9;
 
-import a8.kb;
+import a8.lb;
 import java.util.Comparator;
 import java.util.SortedMap;
 import java.util.SortedSet;
-public class h extends kb implements SortedMap {
-    public SortedSet f14328f;
-    public final l1 h;
+public class h extends lb implements SortedMap {
+    public SortedSet f13681f;
+    public final k1 h;
 
-    public h(l1 l1Var, SortedMap sortedMap) {
-        super(l1Var, sortedMap, 2);
-        this.h = l1Var;
+    public h(k1 k1Var, SortedMap sortedMap) {
+        super(k1Var, sortedMap, 2);
+        this.h = k1Var;
     }
 
     public SortedSet c() {
@@ -24,17 +24,17 @@ public class h extends kb implements SortedMap {
 
     @Override
     public SortedSet keySet() {
-        SortedSet sortedSet = this.f14328f;
+        SortedSet sortedSet = this.f13681f;
         if (sortedSet == null) {
             SortedSet c10 = c();
-            this.f14328f = c10;
+            this.f13681f = c10;
             return c10;
         }
         return sortedSet;
     }
 
     public SortedMap e() {
-        return (SortedMap) this.f513b;
+        return (SortedMap) this.f533b;
     }
 
     @Override

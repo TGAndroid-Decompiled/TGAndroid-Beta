@@ -1,18 +1,17 @@
 package org.telegram.ui.Components;
+public final class yh implements rt0 {
+    public final ki f41998a;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class yh extends r00 {
-    public final ci J;
-
-    public yh(Context context, org.telegram.ui.ActionBar.h6 h6Var, ci ciVar) {
-        super(context, h6Var);
-        this.J = ciVar;
+    public yh(ki kiVar) {
+        this.f41998a = kiVar;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        this.J.h1(this.f37446r, true);
-        return super.onInterceptTouchEvent(motionEvent);
+    public final void L(int i7, boolean z10) {
+        ki kiVar = this.f41998a;
+        ci ciVar = kiVar.f36509w2;
+        if (ciVar == kiVar.f36467l2) {
+            ciVar.invalidate();
+        }
     }
 }

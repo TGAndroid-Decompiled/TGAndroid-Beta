@@ -1,15 +1,15 @@
 package ce;
 public final class h implements c {
-    public final gf.g f6109a;
-    public final m1.n f6110b;
+    public final ia.d f4931a;
+    public final m1.n f4932b;
 
-    public h(gf.g gVar, m1.n nVar) {
-        this.f6109a = gVar;
-        this.f6110b = nVar;
+    public h(ia.d dVar, m1.n nVar) {
+        this.f4931a = dVar;
+        this.f4932b = nVar;
     }
 
     @Override
-    public final java.lang.Object B(ce.d r9, kd.c r10) {
-        throw new UnsupportedOperationException("Method not decompiled: ce.h.B(ce.d, kd.c):java.lang.Object");
+    public final java.lang.Object G(ce.d r9, kd.c r10) {
+        throw new UnsupportedOperationException("Method not decompiled: ce.h.G(ce.d, kd.c):java.lang.Object");
     }
 }

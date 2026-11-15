@@ -15,13 +15,13 @@ public class q5 extends Thread {
     private volatile Handler handler = null;
     private CountDownLatch syncLatch = new CountDownLatch(1);
 
-    public q5(String str, boolean z9) {
+    public q5(String str, boolean z10) {
         int i7 = indexPointer;
         indexPointer = i7 + 1;
         this.index = i7;
         this.threadPriority = -1000;
         setName(str);
-        if (z9) {
+        if (z10) {
             start();
         }
     }

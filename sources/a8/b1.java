@@ -16,7 +16,7 @@ public abstract class b1 {
             o9.g.c();
             o9.g c10 = o9.g.c();
             c10.a();
-            Context context = c10.f20880a;
+            Context context = c10.f21397a;
             SharedPreferences sharedPreferences = context.getSharedPreferences("com.google.firebase.messaging", 0);
             if (sharedPreferences.contains("export_to_big_query")) {
                 return sharedPreferences.getBoolean("export_to_big_query", false);
@@ -89,7 +89,7 @@ public abstract class b1 {
                     Log.w("FirebaseMessaging", "Error while parsing use_device_time in GCM event", e11);
                 }
             }
-            if (d6.i.l0(bundle)) {
+            if (ab.w.f(bundle)) {
                 str2 = "display";
             } else {
                 str2 = "data";

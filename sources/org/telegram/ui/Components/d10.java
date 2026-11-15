@@ -1,104 +1,83 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public abstract class d10 extends org.telegram.ui.ActionBar.w2 {
-    public static final int l1 = 0;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
+import android.view.ViewConfiguration;
+import org.telegram.ui.PhotoViewer;
+public final class d10 {
+    public static final int f33789x;
+    public static final int f33790y;
+    public final int f33791a;
+    public final int f33792b;
+    public final int f33793c;
+    public final int d;
+    public final int f33794e;
+    public final android.support.v4.media.session.q f33795f;
+    public final c10 f33796g;
+    public b10 h;
+    public boolean f33797i;
+    public boolean f33798j;
+    public boolean f33799k;
+    public boolean f33800l;
+    public boolean f33801m;
+    public MotionEvent f33802n;
+    public MotionEvent f33803o;
+    public MotionEvent f33804p;
+    public boolean f33805q;
+    public float f33806r;
+    public float f33807s;
+    public float f33808t;
+    public float f33809u;
+    public boolean v;
+    public VelocityTracker f33810w;
 
-    public d10(Context context, org.telegram.ui.ActionBar.f2 f2Var) {
-        super(context, true);
-        int i7;
-        this.f28707v0 = false;
-        this.f28706u0 = false;
-        LinearLayout f10 = org.telegram.messenger.k5.f(context, 1);
-        this.N = f10;
-        ?? imageView = new ImageView(context);
-        imageView.setAutoRepeat(true);
-        imageView.f(2131624322, 120, 120, null);
-        imageView.d();
-        f10.addView((View) imageView, c8.ha.t(160, 160, 49, 17, 30, 17, 0));
-        TextView textView = new TextView(context);
-        org.telegram.messenger.camera.q.m(textView, 1, 24.0f);
-        org.telegram.messenger.camera.q.o(textView, org.telegram.ui.ActionBar.m6.f27998j5, null, null, 2131749554);
-        f10.addView(textView, c8.ha.t(-2, -2, 49, 17, 18, 17, 0));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        f10.addView(linearLayout, c8.ha.t(-2, -2, 1, 0, 12, 0, 0));
-        int i10 = 0;
-        while (true) {
-            if (i10 < 3) {
-                LinearLayout f11 = org.telegram.messenger.k5.f(context, 0);
-                if (org.telegram.messenger.id.f23161a0) {
-                    i7 = 5;
-                } else {
-                    i7 = 3;
-                }
-                linearLayout.addView(f11, c8.ha.t(-2, -2, i7, 0, 8, 0, 0));
-                ImageView imageView2 = new ImageView(context);
-                int i11 = org.telegram.ui.ActionBar.m6.f28148r5;
-                org.telegram.ui.ActionBar.t6.s(imageView2, i11, null, PorterDuff.Mode.MULTIPLY);
-                imageView2.setImageResource(2131231623);
-                TextView textView2 = new TextView(context);
-                textView2.setTextSize(1, 15.0f);
-                org.telegram.ui.ActionBar.t6.U(textView2, i11, null);
-                textView2.setGravity((org.telegram.messenger.id.f23161a0 ? 5 : 3) | 16);
-                textView2.setMaxWidth(org.telegram.messenger.g0.L(260.0f));
-                if (i10 != 0) {
-                    if (i10 != 1) {
-                        if (i10 == 2) {
-                            textView2.setText(org.telegram.messenger.id.M0(2131749556, null));
-                        }
-                    } else {
-                        textView2.setText(org.telegram.messenger.id.M0(2131749557, null));
-                    }
-                } else {
-                    textView2.setText(org.telegram.messenger.id.M0(2131749558, null));
-                }
-                if (org.telegram.messenger.id.f23161a0) {
-                    f11.addView(textView2, c8.ha.o(-2, -2));
-                    f11.addView(imageView2, c8.ha.k(8.0f, 7.0f, 0.0f, 0.0f, -2, -2));
-                } else {
-                    f11.addView(imageView2, c8.ha.k(0.0f, 8.0f, 8.0f, 0.0f, -2, -2));
-                    f11.addView(textView2, c8.ha.o(-2, -2));
-                }
-                i10++;
-            } else {
-                ?? frameLayout = new FrameLayout(context);
-                View view = new View(context);
-                frameLayout.f32416a = view;
-                view.setBackground(org.telegram.ui.ActionBar.b6.f(org.telegram.ui.ActionBar.m6.Ci, 4.0f));
-                frameLayout.addView(view, c8.ha.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
-                TextView textView3 = new TextView(context);
-                frameLayout.f32417b = textView3;
-                textView3.setLines(1);
-                textView3.setSingleLine(true);
-                textView3.setGravity(1);
-                textView3.setEllipsize(TextUtils.TruncateAt.END);
-                textView3.setGravity(17);
-                org.telegram.messenger.k5.n(textView3, org.telegram.ui.ActionBar.m6.Gi, null, 1, 14.0f);
-                frameLayout.addView(textView3, c8.ha.e(-2, -2, 17));
-                frameLayout.setBackground(null);
-                frameLayout.setText(org.telegram.messenger.id.M0(2131749555, null));
-                view.setOnClickListener(new ah.g(this, context, f2Var, 26));
-                f10.addView((View) frameLayout, c8.ha.t(-1, 50, 51, 0, 29, 0, 0));
-                TextView textView4 = new TextView(context);
-                textView4.setTextSize(1, 14.0f);
-                org.telegram.messenger.camera.q.o(textView4, org.telegram.ui.ActionBar.m6.f28071n5, null, null, 2131749560);
-                textView4.setGravity(17);
-                f10.addView(textView4, c8.ha.t(-2, 48, 49, 17, 0, 17, 16));
-                textView4.setOnClickListener(new g0(this, 19));
-                return;
-            }
-        }
+    static {
+        ViewConfiguration.getLongPressTimeout();
+        f33789x = ViewConfiguration.getTapTimeout();
+        f33790y = ViewConfiguration.getDoubleTapTimeout();
     }
 
-    public abstract void I0();
+    public d10(Context context, PhotoViewer photoViewer) {
+        this(context, (c10) photoViewer);
+    }
 
-    public abstract void J0();
+    public final boolean a(android.view.MotionEvent r30) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.d10.a(android.view.MotionEvent):boolean");
+    }
+
+    public final void b() {
+        this.v = false;
+    }
+
+    public d10(Context context, c10 c10Var) {
+        int scaledTouchSlop;
+        int i7;
+        int i10;
+        this.f33795f = new android.support.v4.media.session.q(this, 5);
+        this.f33796g = c10Var;
+        if (c10Var instanceof b10) {
+            this.h = (b10) c10Var;
+        }
+        this.v = true;
+        if (context == null) {
+            i7 = ViewConfiguration.getTouchSlop();
+            this.d = ViewConfiguration.getMinimumFlingVelocity();
+            this.f33794e = ViewConfiguration.getMaximumFlingVelocity();
+            i10 = 100;
+            scaledTouchSlop = i7;
+        } else {
+            ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
+            int scaledTouchSlop2 = viewConfiguration.getScaledTouchSlop();
+            scaledTouchSlop = viewConfiguration.getScaledTouchSlop();
+            int scaledDoubleTapSlop = viewConfiguration.getScaledDoubleTapSlop();
+            this.d = viewConfiguration.getScaledMinimumFlingVelocity();
+            this.f33794e = viewConfiguration.getScaledMaximumFlingVelocity();
+            i7 = scaledTouchSlop2;
+            i10 = scaledDoubleTapSlop;
+        }
+        this.f33791a = i7 * i7;
+        this.f33792b = scaledTouchSlop * scaledTouchSlop;
+        this.f33793c = i10 * i10;
+    }
 }

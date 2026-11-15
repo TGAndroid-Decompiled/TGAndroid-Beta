@@ -1,8 +1,8 @@
 package jg;
 
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.ep0;
-import org.telegram.ui.mb;
+import org.telegram.ui.lb;
+import org.telegram.ui.zo0;
 public final class b0 extends v4.b0 {
     public final int I;
 
@@ -11,14 +11,14 @@ public final class b0 extends v4.b0 {
     }
 
     @Override
-    public int W0(v4.a1 a1Var) {
+    public int W0(v4.b1 b1Var) {
         switch (this.I) {
             case 5:
                 return 5000;
             case 9:
                 return org.telegram.messenger.g0.L(4000.0f);
             default:
-                return super.W0(a1Var);
+                return super.W0(b1Var);
         }
     }
 
@@ -33,20 +33,20 @@ public final class b0 extends v4.b0 {
     }
 
     @Override
-    public void v0(RecyclerView recyclerView, v4.a1 a1Var, int i7) {
+    public void v0(RecyclerView recyclerView, v4.b1 b1Var, int i7) {
         switch (this.I) {
             case 4:
-                mi.m mVar = new mi.m(recyclerView.getContext(), 0);
-                mVar.f57221a = i7;
-                w0(mVar);
+                pi.l lVar = new pi.l(recyclerView.getContext(), 0);
+                lVar.f58480a = i7;
+                w0(lVar);
                 return;
             case 15:
-                ep0 ep0Var = new ep0(recyclerView.getContext());
-                ep0Var.f57221a = i7;
-                w0(ep0Var);
+                zo0 zo0Var = new zo0(recyclerView.getContext());
+                zo0Var.f58480a = i7;
+                w0(zo0Var);
                 return;
             default:
-                super.v0(recyclerView, a1Var, i7);
+                super.v0(recyclerView, b1Var, i7);
                 return;
         }
     }
@@ -96,12 +96,12 @@ public final class b0 extends v4.b0 {
         }
     }
 
-    public b0(int i7, boolean z9, int i10) {
-        super(i7, z9);
+    public b0(int i7, boolean z10, int i10) {
+        super(i7, z10);
         this.I = i10;
     }
 
-    public b0(mb mbVar) {
+    public b0(lb lbVar) {
         this.I = 4;
     }
 

@@ -1,7 +1,7 @@
 package org.telegram.tgnet.tl;
 
 import java.util.ArrayList;
-import org.telegram.messenger.ch;
+import org.telegram.messenger.fd;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLMethod;
@@ -18,7 +18,7 @@ public class TL_ephemeral {
         public ArrayList<TLRPC.MessageEntity> entities;
         public int flags;
         public TLRPC.Peer from_id;
-        public int f27175id;
+        public int f28266id;
         public boolean invert_media;
         public TLRPC.MessageMedia media;
         public String message;
@@ -33,8 +33,8 @@ public class TL_ephemeral {
         public long via_bot_id;
         public boolean welcome;
 
-        public static EphemeralMessage TLdeserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
-            return (EphemeralMessage) TLObject.TLdeserialize(EphemeralMessage.class, fromConstructor(i7), inputSerializedData, i7, z9);
+        public static EphemeralMessage TLdeserialize(InputSerializedData inputSerializedData, int i7, boolean z10) {
+            return (EphemeralMessage) TLObject.TLdeserialize(EphemeralMessage.class, fromConstructor(i7), inputSerializedData, i7, z10);
         }
 
         private static EphemeralMessage fromConstructor(int i7) {
@@ -62,59 +62,59 @@ public class TL_ephemeral {
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i7, boolean z9) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i7, z9);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i7, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i7, z10);
         }
     }
 
     public static class TL_deleteMessage extends TLMethod<TLRPC.Bool> {
         public static final int constructor = -1829312617;
         public int flags;
-        public int f27176id;
+        public int f28267id;
         public TLRPC.InputPeer peer;
         public TLRPC.InputUser receiver_id;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            boolean z9;
+            boolean z10;
             outputSerializedData.writeInt32(-1829312617);
             int i7 = this.flags;
             if (this.peer != null) {
-                z9 = true;
+                z10 = true;
             } else {
-                z9 = false;
+                z10 = false;
             }
-            int flag = TLObject.setFlag(i7, 1, z9);
+            int flag = TLObject.setFlag(i7, 1, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.peer.serializeToStream(outputSerializedData);
             }
             this.receiver_id.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.f27176id);
+            outputSerializedData.writeInt32(this.f28267id);
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i7, boolean z9) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i7, z9);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i7, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i7, z10);
         }
     }
 
     public static class TL_deleteWelcomeMessage extends TLMethod<TLRPC.Bool> {
         public static final int constructor = -394090015;
-        public int f27177id;
+        public int f28268id;
         public TLRPC.InputPeer peer;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-394090015);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.f27177id);
+            outputSerializedData.writeInt32(this.f28268id);
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i7, boolean z9) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i7, z9);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i7, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i7, z10);
         }
     }
 
@@ -127,64 +127,64 @@ public class TL_ephemeral {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            boolean z9;
             boolean z10;
             boolean z11;
             boolean z12;
             boolean z13;
+            boolean z14;
             outputSerializedData.writeInt32(-811830693);
             int i7 = this.flags;
-            boolean z14 = false;
+            boolean z15 = false;
             if (this.message != null) {
-                z9 = true;
-            } else {
-                z9 = false;
-            }
-            int flag = TLObject.setFlag(i7, 1, z9);
-            this.flags = flag;
-            if (this.entities != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            int flag2 = TLObject.setFlag(flag, 2, z10);
-            this.flags = flag2;
-            if (this.reply_markup != null) {
+            int flag = TLObject.setFlag(i7, 1, z10);
+            this.flags = flag;
+            if (this.entities != null) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            int flag3 = TLObject.setFlag(flag2, 4, z11);
-            this.flags = flag3;
-            if (this.media != null) {
+            int flag2 = TLObject.setFlag(flag, 2, z11);
+            this.flags = flag2;
+            if (this.reply_markup != null) {
                 z12 = true;
             } else {
                 z12 = false;
             }
-            int flag4 = TLObject.setFlag(flag3, 8, z12);
-            this.flags = flag4;
-            if (this.rich_message != null) {
+            int flag3 = TLObject.setFlag(flag2, 4, z12);
+            this.flags = flag3;
+            if (this.media != null) {
                 z13 = true;
             } else {
                 z13 = false;
             }
-            int flag5 = TLObject.setFlag(flag4, 16, z13);
+            int flag4 = TLObject.setFlag(flag3, 8, z13);
+            this.flags = flag4;
+            if (this.rich_message != null) {
+                z14 = true;
+            } else {
+                z14 = false;
+            }
+            int flag5 = TLObject.setFlag(flag4, 16, z14);
             this.flags = flag5;
             int flag6 = TLObject.setFlag(flag5, 32, this.invert_media);
             this.flags = flag6;
             int flag7 = TLObject.setFlag(flag6, 64, this.welcome);
             this.flags = flag7;
             if (this.peer != null) {
-                z14 = true;
+                z15 = true;
             }
-            int flag8 = TLObject.setFlag(flag7, 128, z14);
+            int flag8 = TLObject.setFlag(flag7, 128, z15);
             this.flags = flag8;
             outputSerializedData.writeInt32(flag8);
             if (TLObject.hasFlag(this.flags, 128)) {
                 this.peer.serializeToStream(outputSerializedData);
             }
             this.receiver_id.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.f27044id);
+            outputSerializedData.writeInt32(this.f28135id);
             if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.message);
             }
@@ -207,106 +207,106 @@ public class TL_ephemeral {
         public static final int constructor = -584597783;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z9) {
-            int readInt32 = inputSerializedData.readInt32(z9);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int readInt32 = inputSerializedData.readInt32(z10);
             this.flags = readInt32;
             this.out = TLObject.hasFlag(readInt32, 1);
             this.welcome = TLObject.hasFlag(this.flags, 32);
             this.invert_media = TLObject.hasFlag(this.flags, 128);
             this.noforwards = TLObject.hasFlag(this.flags, 4096);
-            this.f27175id = inputSerializedData.readInt32(z9);
-            this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
+            this.f28266id = inputSerializedData.readInt32(z10);
+            this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             if (TLObject.hasFlag(this.flags, 512)) {
-                this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
+                this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
-            this.receiver_id = inputSerializedData.readInt64(z9);
+            this.receiver_id = inputSerializedData.readInt64(z10);
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.top_msg_id = inputSerializedData.readInt32(z9);
+                this.top_msg_id = inputSerializedData.readInt32(z10);
             }
-            this.date = inputSerializedData.readInt32(z9);
-            this.message = inputSerializedData.readString(z9);
+            this.date = inputSerializedData.readInt32(z10);
+            this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.entities = Vector.deserialize(inputSerializedData, new ch(4), z9);
+                this.entities = Vector.deserialize(inputSerializedData, new fd(8), z10);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
+                this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
-                this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
+                this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 64)) {
-                this.reply_to = TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
+                this.reply_to = TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 256)) {
-                this.rich_message = TL_iv.RichMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
+                this.rich_message = TL_iv.RichMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
-                this.chat_instance = inputSerializedData.readInt64(z9);
+                this.chat_instance = inputSerializedData.readInt64(z10);
             }
             if (TLObject.hasFlag(this.flags, 2048)) {
-                this.anchor_msg_id = inputSerializedData.readInt32(z9);
+                this.anchor_msg_id = inputSerializedData.readInt32(z10);
             }
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            boolean z9;
             boolean z10;
             boolean z11;
             boolean z12;
             boolean z13;
+            boolean z14;
             outputSerializedData.writeInt32(-584597783);
-            boolean z14 = true;
+            boolean z15 = true;
             int flag = TLObject.setFlag(this.flags, 1, this.out);
             this.flags = flag;
             if (this.entities != null) {
-                z9 = true;
-            } else {
-                z9 = false;
-            }
-            int flag2 = TLObject.setFlag(flag, 4, z9);
-            this.flags = flag2;
-            if (this.media != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            int flag3 = TLObject.setFlag(flag2, 8, z10);
-            this.flags = flag3;
-            if (this.reply_markup != null) {
+            int flag2 = TLObject.setFlag(flag, 4, z10);
+            this.flags = flag2;
+            if (this.media != null) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            int flag4 = TLObject.setFlag(flag3, 16, z11);
-            this.flags = flag4;
-            int flag5 = TLObject.setFlag(flag4, 32, this.welcome);
-            this.flags = flag5;
-            if (this.reply_to != null) {
+            int flag3 = TLObject.setFlag(flag2, 8, z11);
+            this.flags = flag3;
+            if (this.reply_markup != null) {
                 z12 = true;
             } else {
                 z12 = false;
             }
-            int flag6 = TLObject.setFlag(flag5, 64, z12);
-            this.flags = flag6;
-            int flag7 = TLObject.setFlag(flag6, 128, this.invert_media);
-            this.flags = flag7;
-            if (this.rich_message != null) {
+            int flag4 = TLObject.setFlag(flag3, 16, z12);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 32, this.welcome);
+            this.flags = flag5;
+            if (this.reply_to != null) {
                 z13 = true;
             } else {
                 z13 = false;
             }
-            int flag8 = TLObject.setFlag(flag7, 256, z13);
-            this.flags = flag8;
-            if (this.peer_id == null) {
+            int flag6 = TLObject.setFlag(flag5, 64, z13);
+            this.flags = flag6;
+            int flag7 = TLObject.setFlag(flag6, 128, this.invert_media);
+            this.flags = flag7;
+            if (this.rich_message != null) {
+                z14 = true;
+            } else {
                 z14 = false;
             }
-            int flag9 = TLObject.setFlag(flag8, 512, z14);
+            int flag8 = TLObject.setFlag(flag7, 256, z14);
+            this.flags = flag8;
+            if (this.peer_id == null) {
+                z15 = false;
+            }
+            int flag9 = TLObject.setFlag(flag8, 512, z15);
             this.flags = flag9;
             int flag10 = TLObject.setFlag(flag9, 4096, this.noforwards);
             this.flags = flag10;
             outputSerializedData.writeInt32(flag10);
-            outputSerializedData.writeInt32(this.f27175id);
+            outputSerializedData.writeInt32(this.f28266id);
             this.from_id.serializeToStream(outputSerializedData);
             if (TLObject.hasFlag(this.flags, 512)) {
                 this.peer_id.serializeToStream(outputSerializedData);
@@ -345,70 +345,70 @@ public class TL_ephemeral {
         public static final int constructor = -641278950;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z9) {
-            int readInt32 = inputSerializedData.readInt32(z9);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int readInt32 = inputSerializedData.readInt32(z10);
             this.flags = readInt32;
             this.out = TLObject.hasFlag(readInt32, 1);
-            this.f27175id = inputSerializedData.readInt32(z9);
-            this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
-            this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
-            this.receiver_id = inputSerializedData.readInt64(z9);
+            this.f28266id = inputSerializedData.readInt32(z10);
+            this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.receiver_id = inputSerializedData.readInt64(z10);
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.top_msg_id = inputSerializedData.readInt32(z9);
+                this.top_msg_id = inputSerializedData.readInt32(z10);
             }
-            this.date = inputSerializedData.readInt32(z9);
-            this.message = inputSerializedData.readString(z9);
+            this.date = inputSerializedData.readInt32(z10);
+            this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.entities = Vector.deserialize(inputSerializedData, new ch(4), z9);
+                this.entities = Vector.deserialize(inputSerializedData, new fd(8), z10);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
+                this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
-                this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
+                this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 64)) {
-                this.reply_to = TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
+                this.reply_to = TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            boolean z9;
             boolean z10;
             boolean z11;
+            boolean z12;
             outputSerializedData.writeInt32(-641278950);
-            boolean z12 = true;
+            boolean z13 = true;
             int flag = TLObject.setFlag(this.flags, 1, this.out);
             this.flags = flag;
             if (this.entities != null) {
-                z9 = true;
-            } else {
-                z9 = false;
-            }
-            int flag2 = TLObject.setFlag(flag, 4, z9);
-            this.flags = flag2;
-            if (this.media != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            int flag3 = TLObject.setFlag(flag2, 8, z10);
-            this.flags = flag3;
-            if (this.reply_markup != null) {
+            int flag2 = TLObject.setFlag(flag, 4, z10);
+            this.flags = flag2;
+            if (this.media != null) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            int flag4 = TLObject.setFlag(flag3, 16, z11);
-            this.flags = flag4;
-            if (this.reply_to == null) {
+            int flag3 = TLObject.setFlag(flag2, 8, z11);
+            this.flags = flag3;
+            if (this.reply_markup != null) {
+                z12 = true;
+            } else {
                 z12 = false;
             }
-            int flag5 = TLObject.setFlag(flag4, 64, z12);
+            int flag4 = TLObject.setFlag(flag3, 16, z12);
+            this.flags = flag4;
+            if (this.reply_to == null) {
+                z13 = false;
+            }
+            int flag5 = TLObject.setFlag(flag4, 64, z13);
             this.flags = flag5;
             outputSerializedData.writeInt32(flag5);
-            outputSerializedData.writeInt32(this.f27175id);
+            outputSerializedData.writeInt32(this.f28266id);
             this.from_id.serializeToStream(outputSerializedData);
             this.peer_id.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt64(this.receiver_id);
@@ -436,87 +436,87 @@ public class TL_ephemeral {
         public static final int constructor = -1896618863;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z9) {
-            int readInt32 = inputSerializedData.readInt32(z9);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int readInt32 = inputSerializedData.readInt32(z10);
             this.flags = readInt32;
             this.out = TLObject.hasFlag(readInt32, 1);
             this.welcome = TLObject.hasFlag(this.flags, 32);
             this.invert_media = TLObject.hasFlag(this.flags, 128);
-            this.f27175id = inputSerializedData.readInt32(z9);
-            this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
-            this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
-            this.receiver_id = inputSerializedData.readInt64(z9);
+            this.f28266id = inputSerializedData.readInt32(z10);
+            this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.receiver_id = inputSerializedData.readInt64(z10);
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.top_msg_id = inputSerializedData.readInt32(z9);
+                this.top_msg_id = inputSerializedData.readInt32(z10);
             }
-            this.date = inputSerializedData.readInt32(z9);
-            this.message = inputSerializedData.readString(z9);
+            this.date = inputSerializedData.readInt32(z10);
+            this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.entities = Vector.deserialize(inputSerializedData, new ch(4), z9);
+                this.entities = Vector.deserialize(inputSerializedData, new fd(8), z10);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
+                this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
-                this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
+                this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 64)) {
-                this.reply_to = TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
+                this.reply_to = TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 256)) {
-                this.rich_message = TL_iv.RichMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
+                this.rich_message = TL_iv.RichMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            boolean z9;
             boolean z10;
             boolean z11;
             boolean z12;
+            boolean z13;
             outputSerializedData.writeInt32(-1896618863);
-            boolean z13 = true;
+            boolean z14 = true;
             int flag = TLObject.setFlag(this.flags, 1, this.out);
             this.flags = flag;
             if (this.entities != null) {
-                z9 = true;
-            } else {
-                z9 = false;
-            }
-            int flag2 = TLObject.setFlag(flag, 4, z9);
-            this.flags = flag2;
-            if (this.media != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            int flag3 = TLObject.setFlag(flag2, 8, z10);
-            this.flags = flag3;
-            if (this.reply_markup != null) {
+            int flag2 = TLObject.setFlag(flag, 4, z10);
+            this.flags = flag2;
+            if (this.media != null) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            int flag4 = TLObject.setFlag(flag3, 16, z11);
-            this.flags = flag4;
-            int flag5 = TLObject.setFlag(flag4, 32, this.welcome);
-            this.flags = flag5;
-            if (this.reply_to != null) {
+            int flag3 = TLObject.setFlag(flag2, 8, z11);
+            this.flags = flag3;
+            if (this.reply_markup != null) {
                 z12 = true;
             } else {
                 z12 = false;
             }
-            int flag6 = TLObject.setFlag(flag5, 64, z12);
+            int flag4 = TLObject.setFlag(flag3, 16, z12);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 32, this.welcome);
+            this.flags = flag5;
+            if (this.reply_to != null) {
+                z13 = true;
+            } else {
+                z13 = false;
+            }
+            int flag6 = TLObject.setFlag(flag5, 64, z13);
             this.flags = flag6;
             int flag7 = TLObject.setFlag(flag6, 128, this.invert_media);
             this.flags = flag7;
             if (this.rich_message == null) {
-                z13 = false;
+                z14 = false;
             }
-            int flag8 = TLObject.setFlag(flag7, 256, z13);
+            int flag8 = TLObject.setFlag(flag7, 256, z14);
             this.flags = flag8;
             outputSerializedData.writeInt32(flag8);
-            outputSerializedData.writeInt32(this.f27175id);
+            outputSerializedData.writeInt32(this.f28266id);
             this.from_id.serializeToStream(outputSerializedData);
             this.peer_id.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt64(this.receiver_id);
@@ -547,32 +547,32 @@ public class TL_ephemeral {
         public static final int constructor = 1067738312;
         public byte[] data;
         public int flags;
-        public int f27178id;
+        public int f28269id;
         public TLRPC.InputPeer peer;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            boolean z9;
+            boolean z10;
             outputSerializedData.writeInt32(1067738312);
             int i7 = this.flags;
             if (this.data != null) {
-                z9 = true;
+                z10 = true;
             } else {
-                z9 = false;
+                z10 = false;
             }
-            int flag = TLObject.setFlag(i7, 2, z9);
+            int flag = TLObject.setFlag(i7, 2, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.f27178id);
+            outputSerializedData.writeInt32(this.f28269id);
             if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeByteArray(this.data);
             }
         }
 
         @Override
-        public TLRPC.TL_messages_botCallbackAnswer deserializeResponseT(InputSerializedData inputSerializedData, int i7, boolean z9) {
-            return TLRPC.TL_messages_botCallbackAnswer.TLdeserialize(inputSerializedData, i7, z9);
+        public TLRPC.TL_messages_botCallbackAnswer deserializeResponseT(InputSerializedData inputSerializedData, int i7, boolean z10) {
+            return TLRPC.TL_messages_botCallbackAnswer.TLdeserialize(inputSerializedData, i7, z10);
         }
     }
 
@@ -589,14 +589,14 @@ public class TL_ephemeral {
         }
 
         @Override
-        public WelcomeMessages deserializeResponseT(InputSerializedData inputSerializedData, int i7, boolean z9) {
-            return WelcomeMessages.TLdeserialize(inputSerializedData, i7, z9);
+        public WelcomeMessages deserializeResponseT(InputSerializedData inputSerializedData, int i7, boolean z10) {
+            return WelcomeMessages.TLdeserialize(inputSerializedData, i7, z10);
         }
     }
 
     public static class TL_reportMessage extends TLMethod<TLRPC.ReportResult> {
         public static final int constructor = -2029718849;
-        public int f27179id;
+        public int f28270id;
         public String message;
         public byte[] option;
         public TLRPC.InputPeer peer;
@@ -605,14 +605,14 @@ public class TL_ephemeral {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-2029718849);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.f27179id);
+            outputSerializedData.writeInt32(this.f28270id);
             outputSerializedData.writeByteArray(this.option);
             outputSerializedData.writeString(this.message);
         }
 
         @Override
-        public TLRPC.ReportResult deserializeResponseT(InputSerializedData inputSerializedData, int i7, boolean z9) {
-            return TLRPC.ReportResult.TLdeserialize(inputSerializedData, i7, z9);
+        public TLRPC.ReportResult deserializeResponseT(InputSerializedData inputSerializedData, int i7, boolean z10) {
+            return TLRPC.ReportResult.TLdeserialize(inputSerializedData, i7, z10);
         }
     }
 
@@ -635,57 +635,57 @@ public class TL_ephemeral {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            boolean z9;
             boolean z10;
             boolean z11;
             boolean z12;
             boolean z13;
+            boolean z14;
             outputSerializedData.writeInt32(-1165140171);
             int i7 = this.flags;
-            boolean z14 = false;
+            boolean z15 = false;
             if (this.entities != null) {
-                z9 = true;
-            } else {
-                z9 = false;
-            }
-            int flag = TLObject.setFlag(i7, 2, z9);
-            this.flags = flag;
-            if (this.media != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            int flag2 = TLObject.setFlag(flag, 4, z10);
-            this.flags = flag2;
-            if (this.reply_markup != null) {
+            int flag = TLObject.setFlag(i7, 2, z10);
+            this.flags = flag;
+            if (this.media != null) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            int flag3 = TLObject.setFlag(flag2, 8, z11);
-            this.flags = flag3;
-            if (this.rich_message != null) {
+            int flag2 = TLObject.setFlag(flag, 4, z11);
+            this.flags = flag2;
+            if (this.reply_markup != null) {
                 z12 = true;
             } else {
                 z12 = false;
             }
-            int flag4 = TLObject.setFlag(flag3, 16, z12);
-            this.flags = flag4;
-            if (this.reply_to != null) {
+            int flag3 = TLObject.setFlag(flag2, 8, z12);
+            this.flags = flag3;
+            if (this.rich_message != null) {
                 z13 = true;
             } else {
                 z13 = false;
             }
-            int flag5 = TLObject.setFlag(flag4, 32, z13);
+            int flag4 = TLObject.setFlag(flag3, 16, z13);
+            this.flags = flag4;
+            if (this.reply_to != null) {
+                z14 = true;
+            } else {
+                z14 = false;
+            }
+            int flag5 = TLObject.setFlag(flag4, 32, z14);
             this.flags = flag5;
             int flag6 = TLObject.setFlag(flag5, 64, this.invert_media);
             this.flags = flag6;
             int flag7 = TLObject.setFlag(flag6, 128, this.welcome);
             this.flags = flag7;
             if (this.peer != null) {
-                z14 = true;
+                z15 = true;
             }
-            int flag8 = TLObject.setFlag(flag7, 256, z14);
+            int flag8 = TLObject.setFlag(flag7, 256, z15);
             this.flags = flag8;
             int flag9 = TLObject.setFlag(flag8, 512, this.anchor);
             this.flags = flag9;
@@ -717,8 +717,8 @@ public class TL_ephemeral {
         }
 
         @Override
-        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i7, boolean z9) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i7, z9);
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i7, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i7, z10);
         }
     }
 
@@ -726,9 +726,9 @@ public class TL_ephemeral {
         public static final int constructor = 273664114;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z9) {
-            this.hash = inputSerializedData.readInt64(z9);
-            this.messages = Vector.deserialize(inputSerializedData, new ch(5), z9);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.hash = inputSerializedData.readInt64(z10);
+            this.messages = Vector.deserialize(inputSerializedData, new fd(9), z10);
         }
 
         @Override
@@ -743,8 +743,8 @@ public class TL_ephemeral {
         public long hash;
         public ArrayList<EphemeralMessage> messages = new ArrayList<>();
 
-        public static WelcomeMessages TLdeserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
-            return (WelcomeMessages) TLObject.TLdeserialize(WelcomeMessages.class, fromConstructor(i7), inputSerializedData, i7, z9);
+        public static WelcomeMessages TLdeserialize(InputSerializedData inputSerializedData, int i7, boolean z10) {
+            return (WelcomeMessages) TLObject.TLdeserialize(WelcomeMessages.class, fromConstructor(i7), inputSerializedData, i7, z10);
         }
 
         private static WelcomeMessages fromConstructor(int i7) {
@@ -767,7 +767,7 @@ public class TL_ephemeral {
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z9) {
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
         }
     }
 }

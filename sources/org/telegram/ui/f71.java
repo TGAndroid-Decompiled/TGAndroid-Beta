@@ -1,50 +1,26 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.FrameLayout;
-public final class f71 extends AnimatorListenerAdapter {
-    public final boolean f45634a;
-    public final int f45635b;
-    public final int f45636c;
-    public final boolean d;
-    public final x71 f45637e;
+import android.app.Activity;
+import org.telegram.tgnet.TLRPC;
+public final class f71 extends org.telegram.ui.Components.po0 {
+    public final i71 V2;
 
-    public f71(x71 x71Var, boolean z9, int i7, int i10, boolean z10) {
-        this.f45637e = x71Var;
-        this.f45634a = z9;
-        this.f45635b = i7;
-        this.f45636c = i10;
-        this.d = z10;
+    public f71(i71 i71Var, Activity activity, String str, String str2) {
+        super(activity, null, str, false, str2, false, null);
+        this.V2 = i71Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        x71 x71Var = this.f45637e;
-        FrameLayout[] frameLayoutArr = x71Var.M0;
-        x71Var.f51613s1 = null;
-        int i7 = this.f45636c;
-        int i10 = this.f45635b;
-        boolean z9 = this.f45634a;
-        if (z9 && frameLayoutArr[i10].getVisibility() == 0) {
-            frameLayoutArr[i10].setAlpha(1.0f);
-            frameLayoutArr[i10].setVisibility(4);
-        } else if (!z9) {
-            frameLayoutArr[i7].setVisibility(4);
-        }
-        int i11 = x71Var.f51565b;
-        char c10 = 2;
-        if (i11 != 1 && i11 != 2) {
-            if (i7 == 1) {
-                frameLayoutArr[i10].setAlpha(0.0f);
-                return;
-            }
+    public final void R0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
             return;
         }
-        org.telegram.ui.Components.w61[] w61VarArr = x71Var.K0;
-        if (this.d) {
-            c10 = 0;
+        int m10 = hVar.m();
+        i71 i71Var = this.V2;
+        if (m10 == 1) {
+            i71Var.f47937a.f51449n0.m(((TLRPC.Dialog) hVar.n(0)).f28055id, Integer.valueOf(i7), 61);
+        } else {
+            i71Var.f47937a.f51449n0.k(0L, 61, Integer.valueOf(i7), Integer.valueOf(hVar.m()), null, null);
         }
-        w61VarArr[c10].setVisibility(4);
     }
 }

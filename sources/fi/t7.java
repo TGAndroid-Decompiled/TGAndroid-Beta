@@ -1,60 +1,55 @@
 package fi;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.MotionEvent;
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.wq;
-public final class t7 extends FrameLayout {
-    public final Paint f12860a;
-    public final org.telegram.ui.Components.v5 f12861b;
-    public final org.telegram.ui.ActionBar.h6 f12862c;
-    public final w7 d;
+import org.telegram.ui.w61;
+public final class t7 implements r1.d {
+    public final int f12370a;
+    public final FrameLayout f12371b;
 
-    public t7(w7 w7Var, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context);
-        this.d = w7Var;
-        this.f12862c = h6Var;
-        this.f12860a = new Paint(1);
-        this.f12861b = new org.telegram.ui.Components.v5(this, 0L, 350L, wq.h);
+    public t7(int i7, FrameLayout frameLayout) {
+        this.f12370a = i7;
+        this.f12371b = frameLayout;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        boolean z9;
-        int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f27963h5, this.f12862c);
-        Paint paint = this.f12860a;
-        paint.setColor(w02);
-        w7 w7Var = this.d;
-        float max = Math.max(0.0f, w7Var.I0());
-        if (max < org.telegram.messenger.g0.f22561m) {
-            z9 = true;
-        } else {
-            z9 = false;
+    public final void a(r1.g gVar, float f10, float f11) {
+        switch (this.f12370a) {
+            case 0:
+                a8 a8Var = (a8) this.f12371b;
+                a8Var.f11422e0 = f10;
+                a8Var.f11424g0 = f11;
+                return;
+            case 1:
+                hi.m5 m5Var = (hi.m5) this.f12371b;
+                float f12 = f10 / 1000.0f;
+                m5Var.f14663d1 = f12;
+                tg.j1 j1Var = m5Var.W0;
+                j1Var.setAlpha(f12);
+                j1Var.invalidate();
+                m5Var.E0.invalidate();
+                m5Var.V0.getTypefaceCell().setAlpha(1.0f - m5Var.f14663d1);
+                return;
+            case 2:
+                pg.i iVar = (pg.i) this.f12371b;
+                float f13 = f10 / 1000.0f;
+                w61 w61Var = iVar.f55040a;
+                w61Var.setPivotX(org.telegram.messenger.g0.L(28.0f));
+                w61Var.setPivotY(org.telegram.messenger.g0.L(28.0f));
+                w61Var.setScaleX(f13);
+                w61Var.setScaleY(f13);
+                w61Var.setAlpha(c8.i9.a(f13, 0.0f, 1.0f));
+                iVar.invalidate();
+                return;
+            default:
+                tg.g0 g0Var = (tg.g0) this.f12371b;
+                float f14 = f10 / 1000.0f;
+                g0Var.n1 = f14;
+                tg.j1 j1Var2 = g0Var.f57273f1;
+                j1Var2.setAlpha(f14);
+                j1Var2.invalidate();
+                g0Var.N0.invalidate();
+                g0Var.f57272e1.getTypefaceCell().setAlpha(1.0f - g0Var.n1);
+                return;
         }
-        org.telegram.ui.Components.v5 v5Var = this.f12861b;
-        float T1 = org.telegram.messenger.g0.T1(max, 0.0f, v5Var.d(z9));
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(w7Var.f28705t0, T1, getWidth() - w7Var.f28705t0, org.telegram.messenger.g0.L(14.0f) + getHeight());
-        float L = (1.0f - v5Var.f38854c) * org.telegram.messenger.g0.L(14.0f);
-        canvas.drawRoundRect(rectF, L, L, paint);
-        w7Var.f13063q1.setTranslationY(Math.max(org.telegram.messenger.g0.L(8.0f) + org.telegram.messenger.g0.f22561m, org.telegram.messenger.g0.L(14.0f) + T1));
-        canvas.save();
-        canvas.clipRect(w7Var.f28705t0, org.telegram.messenger.g0.L(14.0f) + org.telegram.messenger.g0.f22561m, getWidth() - w7Var.f28705t0, getHeight());
-        super.dispatchDraw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        float y10 = motionEvent.getY();
-        w7 w7Var = this.d;
-        if (y10 < w7Var.I0()) {
-            w7Var.dismiss();
-            return true;
-        }
-        return super.dispatchTouchEvent(motionEvent);
     }
 }

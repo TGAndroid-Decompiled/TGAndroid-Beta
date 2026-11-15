@@ -1,7 +1,7 @@
 package xd;
 public abstract class k extends j {
     public static Integer b(String str) {
-        boolean z9;
+        boolean z10;
         int i7;
         int i10;
         kotlin.jvm.internal.j.e(str, "<this>");
@@ -16,18 +16,18 @@ public abstract class k extends j {
                     if (charAt != '+') {
                         if (charAt == '-') {
                             i12 = Integer.MIN_VALUE;
-                            z9 = true;
+                            z10 = true;
                         } else {
                             return null;
                         }
                     } else {
-                        z9 = false;
+                        z10 = false;
                     }
                 } else {
                     return null;
                 }
             } else {
-                z9 = false;
+                z10 = false;
                 i7 = 0;
             }
             int i13 = -59652323;
@@ -43,7 +43,7 @@ public abstract class k extends j {
                     return null;
                 }
             }
-            if (z9) {
+            if (z10) {
                 return Integer.valueOf(i11);
             }
             return Integer.valueOf(-i11);

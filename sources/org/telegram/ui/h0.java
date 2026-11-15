@@ -1,18 +1,18 @@
 package org.telegram.ui;
-public final class h0 extends org.telegram.ui.ActionBar.v4 {
-    public final int f46187r;
-    public final Object f46188s;
+public final class h0 extends org.telegram.ui.ActionBar.s4 {
+    public final int f47562r;
+    public final Object f47563s;
 
     public h0(Object obj, int i7) {
-        this.f46187r = i7;
-        this.f46188s = obj;
+        this.f47562r = i7;
+        this.f47563s = obj;
     }
 
     @Override
     public void v() {
-        switch (this.f46187r) {
+        switch (this.f47562r) {
             case 1:
-                ((org.telegram.ui.Components.mo0) this.f46188s).T1 = true;
+                ((org.telegram.ui.Components.po0) this.f47563s).U1 = true;
                 return;
             default:
                 return;
@@ -21,13 +21,13 @@ public final class h0 extends org.telegram.ui.ActionBar.v4 {
 
     @Override
     public boolean x() {
-        boolean z9;
-        switch (this.f46187r) {
+        boolean z10;
+        switch (this.f47562r) {
             case 0:
-                g4 g4Var = (g4) this.f46188s;
-                org.telegram.ui.Cells.i9 i9Var = g4Var.Q0;
-                if (i9Var != null && i9Var.x()) {
-                    g4Var.Q0.f(false);
+                g4 g4Var = (g4) this.f47563s;
+                org.telegram.ui.Cells.h9 h9Var = g4Var.R0;
+                if (h9Var != null && h9Var.x()) {
+                    g4Var.R0.f(false);
                     return false;
                 }
                 return true;
@@ -35,12 +35,12 @@ public final class h0 extends org.telegram.ui.ActionBar.v4 {
             default:
                 return super.x();
             case 2:
-                z9 = ((org.telegram.ui.Wallet.z1) this.f46188s).f43422m;
+                z10 = ((org.telegram.ui.Wallet.z1) this.f47563s).f44786m;
                 break;
             case 3:
-                z9 = ((org.telegram.ui.Wallet.s2) this.f46188s).d;
+                z10 = ((org.telegram.ui.Wallet.r2) this.f47563s).d;
                 break;
         }
-        return !z9;
+        return !z10;
     }
 }

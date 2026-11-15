@@ -1,95 +1,52 @@
 package bi;
 
-import android.view.KeyEvent;
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.ij;
-import org.telegram.messenger.ls;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.cj0;
-import org.telegram.ui.Components.m11;
-import org.telegram.ui.Components.r80;
-import org.telegram.ui.Components.us;
-import org.telegram.ui.cn;
-public final class n4 implements org.telegram.ui.ActionBar.r1, cj0 {
-    public final int f4401a;
-    public final long f4402b;
-    public final ls f4403c;
-    public final Object d;
-    public final Object f4404e;
-    public final Object f4405f;
+import java.util.Comparator;
+import org.telegram.tgnet.tl.TL_stars;
+public final class n4 implements Comparator {
+    public final int f3735a;
+    public final a6 f3736b;
 
-    public n4(Object obj, KeyEvent.Callback callback, Object obj2, long j3, Object obj3, int i7) {
-        this.f4401a = i7;
-        this.f4403c = (ls) obj;
-        this.d = callback;
-        this.f4404e = obj2;
-        this.f4402b = j3;
-        this.f4405f = obj3;
+    public n4(a6 a6Var, int i7) {
+        this.f3735a = i7;
+        this.f3736b = a6Var;
     }
 
     @Override
-    public void f(final float r18, final float r19, int r20, android.view.View r21) {
-        throw new UnsupportedOperationException("Method not decompiled: bi.n4.f(float, float, int, android.view.View):void");
-    }
-
-    @Override
-    public boolean f1(View view) {
-        return false;
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f4401a) {
-            case 1:
-                cn.f1((cn) this.f4403c, (TLRPC.TL_game) this.d, (ij) this.f4404e, (String) this.f4405f, this.f4402b);
-                return;
-            default:
-                m11 m11Var = (m11) this.f4403c;
-                ArrayList arrayList = (ArrayList) this.d;
-                HashSet hashSet = (HashSet) this.f4404e;
-                us usVar = (us) this.f4405f;
-                int size = arrayList.size();
-                int i10 = 0;
-                while (true) {
-                    long j3 = this.f4402b;
-                    if (i10 < size) {
-                        Object obj = arrayList.get(i10);
-                        i10++;
-                        if (j3 == ((Integer) obj).intValue()) {
-                            m11Var.n(0L, false);
-                        }
-                    } else {
-                        m11Var.f35809k0.addAll(hashSet);
-                        m11Var.q();
-                        org.telegram.ui.Components.gc.a0(m11Var.f35812s).U(org.telegram.messenger.id.K0(hashSet.size(), "TopicsDeleted"), false, new w2(m11Var, hashSet, arrayList, j3, 18), new r80(m11Var, arrayList, usVar, 23)).j();
-                        u1Var.dismiss();
-                        return;
-                    }
+    public final int compare(Object obj, Object obj2) {
+        switch (this.f3735a) {
+            case 0:
+                o5 o5Var = this.f3736b.d;
+                Integer num = (Integer) o5Var.f3764m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f28057id));
+                Integer num2 = (Integer) o5Var.f3764m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f28057id));
+                if (num == null) {
+                    return 1;
                 }
+                if (num2 == null) {
+                    return -1;
+                }
+                return num2.intValue() - num.intValue();
+            case 1:
+                o5 o5Var2 = this.f3736b.d;
+                Integer num3 = (Integer) o5Var2.f3765n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
+                Integer num4 = (Integer) o5Var2.f3765n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
+                if (num3 == null) {
+                    return 1;
+                }
+                if (num4 == null) {
+                    return -1;
+                }
+                return num4.intValue() - num3.intValue();
+            default:
+                o5 o5Var3 = this.f3736b.d;
+                Integer num5 = (Integer) o5Var3.f3766o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f28057id));
+                Integer num6 = (Integer) o5Var3.f3766o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f28057id));
+                if (num5 == null) {
+                    return 1;
+                }
+                if (num6 == null) {
+                    return -1;
+                }
+                return num6.intValue() - num5.intValue();
         }
-    }
-
-    public n4(cn cnVar, TLRPC.TL_game tL_game, ij ijVar, String str, long j3) {
-        this.f4401a = 1;
-        this.f4403c = cnVar;
-        this.d = tL_game;
-        this.f4404e = ijVar;
-        this.f4405f = str;
-        this.f4402b = j3;
-    }
-
-    public n4(m11 m11Var, ArrayList arrayList, long j3, HashSet hashSet, us usVar) {
-        this.f4401a = 3;
-        this.f4403c = m11Var;
-        this.d = arrayList;
-        this.f4402b = j3;
-        this.f4404e = hashSet;
-        this.f4405f = usVar;
-    }
-
-    @Override
-    public void r0(View view, float f10, float f11) {
     }
 }

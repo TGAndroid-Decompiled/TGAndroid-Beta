@@ -4,21 +4,21 @@ import android.graphics.Canvas;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
-import bi.dd;
+import di.mb;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.r1;
-import org.telegram.ui.zd;
+import org.telegram.ui.xd;
 public final class d {
-    public final long[] f20556a;
-    public final CharSequence[] f20557b;
-    public final CharSequence[] f20558c;
+    public final long[] f21121a;
+    public final CharSequence[] f21122b;
+    public final CharSequence[] f21123c;
     public final StaticLayout[] d;
-    public final StaticLayout[] f20559e;
-    public int f20560f;
-    public int f20561g;
+    public final StaticLayout[] f21124e;
+    public int f21125f;
+    public int f21126g;
     public DecimalFormat h;
 
     public d(long r24, long r26, boolean r28, float r29, int r30, android.text.TextPaint r31, android.text.TextPaint r32) {
@@ -28,7 +28,7 @@ public final class d {
     public final void a(Canvas canvas, int i7, int i10, float f10, float f11, TextPaint textPaint) {
         StaticLayout[] staticLayoutArr;
         CharSequence[] charSequenceArr;
-        StaticLayout[] staticLayoutArr2 = this.f20559e;
+        StaticLayout[] staticLayoutArr2 = this.f21124e;
         StaticLayout[] staticLayoutArr3 = this.d;
         if (i7 == 0) {
             staticLayoutArr = staticLayoutArr3;
@@ -38,15 +38,15 @@ public final class d {
         StaticLayout staticLayout = staticLayoutArr[i10];
         if (staticLayout == null) {
             if (i7 == 0) {
-                charSequenceArr = this.f20557b;
+                charSequenceArr = this.f21122b;
             } else {
-                charSequenceArr = this.f20558c;
+                charSequenceArr = this.f21123c;
             }
             CharSequence charSequence = charSequenceArr[i10];
             if (i7 == 0) {
                 staticLayoutArr2 = staticLayoutArr3;
             }
-            StaticLayout staticLayout2 = new StaticLayout(charSequence, textPaint, g0.f22567q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout2 = new StaticLayout(charSequence, textPaint, g0.f23609q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             staticLayoutArr2[i10] = staticLayout2;
             staticLayout = staticLayout2;
         }
@@ -76,12 +76,12 @@ public final class d {
                 i11 = 6;
             }
             decimalFormat2.setMaximumFractionDigits(i11);
-            return zd.K("TON " + this.h.format(j3 / 1.0E9d), textPaint, 0.8f, -g0.L(0.66f), false);
+            return xd.K("TON " + this.h.format(j3 / 1.0E9d), textPaint, 0.8f, -g0.L(0.66f), false);
         } else if (i10 == 2) {
             if (i7 == 1) {
                 return "≈" + r1.i().f(j3, "USD");
             }
-            return dd.a1(false, jg.g.m(j3, ' ', new StringBuilder("XTR ")), 0.65f, null);
+            return mb.a1(false, i5.c.l(j3, ' ', new StringBuilder("XTR ")), 0.65f, null);
         } else {
             return g0.o0((int) j3, 0);
         }

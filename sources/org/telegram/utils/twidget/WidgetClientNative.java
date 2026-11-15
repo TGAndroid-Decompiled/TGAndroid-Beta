@@ -8,7 +8,7 @@ final class WidgetClientNative {
 
     public static native void arbiterDestroy(long j3);
 
-    public static native int arbiterDown(long j3, double d, double d2, double d10, boolean z9, boolean z10, boolean z11, boolean z12, int i7);
+    public static native int arbiterDown(long j3, double d, double d2, double d10, boolean z10, boolean z11, boolean z12, boolean z13, int i7);
 
     public static native double arbiterHoldDeadline(long j3);
 

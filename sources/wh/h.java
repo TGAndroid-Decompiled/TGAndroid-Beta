@@ -21,88 +21,92 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
+import com.google.android.gms.internal.vision.e2;
 import java.util.ArrayList;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.ij;
+import org.telegram.messenger.gj;
 import org.telegram.messenger.k5;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.Cells.o8;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Cells.n8;
 import org.telegram.ui.Cells.q1;
-import org.telegram.ui.Components.jb;
+import org.telegram.ui.Components.fb;
+import tg.a2;
+import ug.p1;
+import ug.t1;
 public final class h extends Drawable implements Animator.AnimatorListener {
-    public static final RectF f57909b0 = new RectF();
-    public static final Rect f57910c0 = new Rect();
-    public static final int[] f57911d0 = new int[2];
-    public static final o8 f57912e0 = new o8("openFactor", 11);
-    public static final o8 f57913f0 = new o8("openFactor", 12);
-    public final q1 D;
-    public final ij E;
-    public float F;
-    public Bitmap I;
-    public BitmapShader J;
-    public Paint L;
-    public b P;
-    public boolean S;
+    public static final RectF f59345c0 = new RectF();
+    public static final Rect f59346d0 = new Rect();
+    public static final int[] f59347e0 = new int[2];
+    public static final n8 f59348f0 = new n8("openFactor", 11);
+    public static final n8 f59349g0 = new n8("openFactor", 12);
+    public final q1 E;
+    public final gj F;
+    public float G;
+    public Bitmap J;
+    public BitmapShader K;
+    public Paint M;
+    public b Q;
     public boolean T;
-    public int U;
+    public boolean U;
     public int V;
-    public jb W;
-    public float X;
+    public int W;
+    public fb X;
     public float Y;
-    public final i f57914a;
-    public final u9.f f57916b;
-    public final LinearGradient f57919f;
-    public final d[] f57924x;
-    public final Drawable f57925y;
-    public final Paint f57917c = new Paint(1);
+    public float Z;
+    public final i f59350a;
+    public final t1 f59352b;
+    public final LinearGradient f59356f;
+    public final d[] f59361x;
+    public final Drawable f59362y;
+    public final Paint f59354c = new Paint(1);
     public final Matrix d = new Matrix();
-    public final Path f57918e = new Path();
+    public final Path f59355e = new Path();
     public final RectF h = new RectF();
-    public final RectF f57920n = new RectF();
-    public final RectF f57921r = new RectF();
-    public final RectF f57922s = new RectF();
-    public final RectF f57923w = new RectF();
-    public float G = 0.0f;
+    public final RectF f59357n = new RectF();
+    public final RectF f59358r = new RectF();
+    public final RectF f59359s = new RectF();
+    public final RectF f59360w = new RectF();
     public float H = 0.0f;
-    public final Matrix K = new Matrix();
-    public boolean M = false;
+    public float I = 0.0f;
+    public final Matrix L = new Matrix();
     public boolean N = false;
     public boolean O = false;
-    public boolean Q = true;
-    public int R = -1;
-    public final ObjectAnimator Z = ObjectAnimator.ofFloat(this, f57912e0, 1.0f).setDuration(560L);
-    public final ObjectAnimator f57915a0 = ObjectAnimator.ofFloat(this, f57913f0, 1.0f).setDuration(240L);
+    public boolean P = false;
+    public boolean R = true;
+    public int S = -1;
+    public final ObjectAnimator f59351a0 = ObjectAnimator.ofFloat(this, f59348f0, 1.0f).setDuration(560L);
+    public final ObjectAnimator f59353b0 = ObjectAnimator.ofFloat(this, f59349g0, 1.0f).setDuration(240L);
 
-    public h(i iVar, q1 q1Var, ArrayList arrayList, u9.f fVar) {
-        this.f57916b = fVar;
-        this.f57914a = iVar;
-        this.D = q1Var;
-        this.E = q1Var.getMessageObject();
-        this.f57924x = new d[Math.min(5, arrayList.size())];
+    public h(i iVar, q1 q1Var, ArrayList arrayList, t1 t1Var) {
+        this.f59352b = t1Var;
+        this.f59350a = iVar;
+        this.E = q1Var;
+        this.F = q1Var.getMessageObject();
+        this.f59361x = new d[Math.min(5, arrayList.size())];
         int i7 = 0;
         while (true) {
-            d[] dVarArr = this.f57924x;
+            d[] dVarArr = this.f59361x;
             if (i7 < dVarArr.length) {
                 dVarArr[i7] = new d(this, ((Long) arrayList.get(i7)).longValue());
                 i7++;
             } else {
-                this.f57917c.setStyle(Paint.Style.FILL);
-                Drawable mutate = iVar.getContext().getDrawable(2131232673).mutate();
-                this.f57925y = mutate;
+                this.f59354c.setStyle(Paint.Style.FILL);
+                Drawable mutate = iVar.getContext().getDrawable(2131232674).mutate();
+                this.f59362y = mutate;
                 q1Var.setHideSideButtonByQuickShare(true);
                 iVar.performHapticFeedback(3, 1);
-                int w02 = m6.w0(m6.G8, this.D.getResourcesProvider());
-                mutate.setColorFilter(new PorterDuffColorFilter(m6.x0(null, m6.He, false), PorterDuff.Mode.MULTIPLY));
+                int w02 = j6.w0(j6.G8, this.E.getResourcesProvider());
+                mutate.setColorFilter(new PorterDuffColorFilter(j6.x0(null, j6.Ke, false), PorterDuff.Mode.MULTIPLY));
                 LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, g0.L(100.0f), new int[]{w02, 16777215 & w02}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                this.f57919f = linearGradient;
-                this.f57917c.setShader(linearGradient);
-                ObjectAnimator objectAnimator = this.Z;
-                LinearInterpolator linearInterpolator = f.f57890b;
+                this.f59356f = linearGradient;
+                this.f59354c.setShader(linearGradient);
+                ObjectAnimator objectAnimator = this.f59351a0;
+                LinearInterpolator linearInterpolator = f.f59326b;
                 objectAnimator.setInterpolator(linearInterpolator);
-                this.Z.addListener(this);
-                this.f57915a0.setInterpolator(linearInterpolator);
-                this.f57915a0.addListener(this);
-                g0.l2(new ii.c(this, 29), 15.0f);
+                this.f59351a0.addListener(this);
+                this.f59353b0.setInterpolator(linearInterpolator);
+                this.f59353b0.addListener(this);
+                g0.l2(new p1(this, 4), 15.0f);
                 return;
             }
         }
@@ -112,7 +116,7 @@ public final class h extends Drawable implements Animator.AnimatorListener {
         return (float) Math.toDegrees((float) Math.atan2(f13 - f11, f12 - f10));
     }
 
-    public static PointF f(float f10, float f11, float f12, float f13, float f14, float f15, boolean z9) {
+    public static PointF f(float f10, float f11, float f12, float f13, float f14, float f15, boolean z10) {
         float f16 = f13 - f10;
         float f17 = f14 - f11;
         float sqrt = (float) Math.sqrt(Math.pow(f17, 2.0d) + Math.pow(f16, 2.0d));
@@ -129,7 +133,7 @@ public final class h extends Drawable implements Animator.AnimatorListener {
             float f26 = f20 - f22;
             float f27 = f21 + f24;
             if (f23 != f26 && f23 < f26) {
-                if (z9) {
+                if (z10) {
                     return new PointF(f23, f25);
                 }
                 return new PointF(f26, f27);
@@ -143,12 +147,12 @@ public final class h extends Drawable implements Animator.AnimatorListener {
     }
 
     public static float g(float f10, float f11, float f12) {
-        return com.google.android.recaptcha.internal.a.z(f11, f10, f12, f10);
+        return e2.z(f11, f10, f12, f10);
     }
 
-    public static e i(Interpolator interpolator, int i7, int i10, int i11, boolean z9) {
+    public static e i(Interpolator interpolator, int i7, int i10, int i11, boolean z10) {
         float f10 = i11;
-        return new e(z9, i7 / f10, i10 / f10, interpolator);
+        return new e(z10, i7 / f10, i10 / f10, interpolator);
     }
 
     public static float j(float f10) {
@@ -158,29 +162,29 @@ public final class h extends Drawable implements Animator.AnimatorListener {
         return f10 - 180.0f;
     }
 
-    public final void a(Path path, RectF rectF, float f10, float f11, boolean z9, boolean z10) {
+    public final void a(Path path, RectF rectF, float f10, float f11, boolean z10, boolean z11) {
         float f12 = f11 - f10;
-        if (z9) {
+        if (z10) {
             if (f12 > 0.0f) {
                 f12 -= 360.0f;
             }
         } else if (f12 < 0.0f) {
             f12 += 360.0f;
         }
-        if (Math.abs(f12) > 270.0f && z10) {
-            this.Q = false;
+        if (Math.abs(f12) > 270.0f && z11) {
+            this.R = false;
         }
         path.arcTo(rectF, f10, f12);
     }
 
     public final void c() {
-        this.f57915a0.start();
-        this.O = true;
-        if (this.M && !this.T) {
-            b bVar = new b(new u5.e(this, 9));
-            this.P = bVar;
-            RectF rectF = this.f57921r;
-            int i7 = g.f57907a;
+        this.f59353b0.start();
+        this.P = true;
+        if (this.N && !this.U) {
+            b bVar = new b(new a2(this, 13));
+            this.Q = bVar;
+            RectF rectF = this.f59358r;
+            int i7 = g.f59343a;
             bVar.a((int) rectF.width(), (int) (rectF.height() + g0.L(30.0f)), 4.0f, g0.L(10));
         }
         invalidateSelf();
@@ -191,28 +195,28 @@ public final class h extends Drawable implements Animator.AnimatorListener {
         Bitmap bitmap;
         Bitmap bitmap2;
         Bitmap bitmap3;
-        this.D.setHideSideButtonByQuickShare(false);
-        if (!this.T) {
-            this.T = true;
-            Bitmap bitmap4 = this.I;
+        this.E.setHideSideButtonByQuickShare(false);
+        if (!this.U) {
+            this.U = true;
+            Bitmap bitmap4 = this.J;
             if (bitmap4 != null) {
                 bitmap4.recycle();
             }
-            b bVar = this.P;
-            if (bVar != null && (bitmap3 = bVar.f57865c) != null) {
+            b bVar = this.Q;
+            if (bVar != null && (bitmap3 = bVar.f59301c) != null) {
                 bitmap3.recycle();
-                bVar.f57865c = null;
+                bVar.f59301c = null;
             }
-            for (d dVar : this.f57924x) {
-                b bVar2 = dVar.f57876f;
-                if (bVar2 != null && (bitmap2 = bVar2.f57865c) != null) {
+            for (d dVar : this.f59361x) {
+                b bVar2 = dVar.f59312f;
+                if (bVar2 != null && (bitmap2 = bVar2.f59301c) != null) {
                     bitmap2.recycle();
-                    bVar2.f57865c = null;
+                    bVar2.f59301c = null;
                 }
-                b bVar3 = dVar.f57875e;
-                if (bVar3 != null && (bitmap = bVar3.f57865c) != null) {
+                b bVar3 = dVar.f59311e;
+                if (bVar3 != null && (bitmap = bVar3.f59301c) != null) {
                     bitmap.recycle();
-                    bVar3.f57865c = null;
+                    bVar3.f59301c = null;
                 }
             }
         }
@@ -223,87 +227,87 @@ public final class h extends Drawable implements Animator.AnimatorListener {
         e(canvas, false, 255);
     }
 
-    public final void e(Canvas canvas, boolean z9, int i7) {
+    public final void e(Canvas canvas, boolean z10, int i7) {
         float f10;
         float f11;
         float f12;
         int i10;
         i iVar;
-        boolean z10;
-        Canvas canvas2;
-        int i11;
+        boolean z11;
         float f13;
+        int i11;
+        float f14;
         int i12;
         int i13;
         float min;
         double d;
         h hVar = this;
-        boolean z11 = hVar.S;
-        i iVar2 = hVar.f57914a;
-        float f14 = 0.0f;
+        boolean z12 = hVar.T;
+        i iVar2 = hVar.f59350a;
+        float f15 = 0.0f;
         int i14 = 0;
-        q1 q1Var = hVar.D;
+        q1 q1Var = hVar.E;
         int i15 = 1;
-        if (!z11) {
-            int[] iArr = f57911d0;
+        if (!z12) {
+            int[] iArr = f59347e0;
             q1Var.getLocationInWindow(iArr);
             int i16 = iArr[0];
             int i17 = iArr[1];
             iVar2.getLocationInWindow(iArr);
             int i18 = iArr[0];
             int i19 = iArr[1];
-            hVar.U = i16 - i18;
-            hVar.V = i17 - i19;
+            hVar.V = i16 - i18;
+            hVar.W = i17 - i19;
             float L = g0.L(16.0f);
-            float sideButtonStartX = q1Var.getSideButtonStartX() + hVar.U + L;
-            float sideButtonStartY = q1Var.getSideButtonStartY() + hVar.V + L;
-            float f15 = sideButtonStartX - L;
-            float f16 = sideButtonStartY - L;
-            float f17 = sideButtonStartX + L;
-            float f18 = sideButtonStartY + L;
+            float sideButtonStartX = q1Var.getSideButtonStartX() + hVar.V + L;
+            float sideButtonStartY = q1Var.getSideButtonStartY() + hVar.W + L;
+            float f16 = sideButtonStartX - L;
+            float f17 = sideButtonStartY - L;
+            float f18 = sideButtonStartX + L;
+            float f19 = sideButtonStartY + L;
             RectF rectF = hVar.h;
-            rectF.set(f15, f16, f17, f18);
+            rectF.set(f16, f17, f18, f19);
             float L2 = g0.L(16.0f);
             if (rectF.right + g0.L(48.0f) + L2 > iVar2.getMeasuredWidth()) {
-                hVar.F = Math.max(0.0f, (iVar2.getMeasuredWidth() - L2) - rectF.right);
+                hVar.G = Math.max(0.0f, (iVar2.getMeasuredWidth() - L2) - rectF.right);
             } else if (((rectF.right + g0.L(48.0f)) - hVar.h()) - L2 < 0.0f) {
-                hVar.F = Math.max(0.0f, (L2 + hVar.h()) - rectF.right);
+                hVar.G = Math.max(0.0f, (L2 + hVar.h()) - rectF.right);
             } else {
-                hVar.F = g0.L(48.0f);
+                hVar.G = g0.L(48.0f);
             }
-            hVar.Z.start();
-            hVar.S = true;
+            hVar.f59351a0.start();
+            hVar.T = true;
         }
-        b bVar = hVar.P;
-        d[] dVarArr = hVar.f57924x;
+        b bVar = hVar.Q;
+        d[] dVarArr = hVar.f59361x;
         int i20 = 2;
-        RectF rectF2 = hVar.f57921r;
-        if (bVar != null && !z9) {
+        RectF rectF2 = hVar.f59358r;
+        if (bVar != null && !z10) {
             bVar.setBounds((int) rectF2.left, (int) (rectF2.top - g0.L(30.0f)), (int) rectF2.right, (int) rectF2.bottom);
-            hVar.P.f57869i = (int) ((1.0f - f.f57891c.getInterpolation(hVar.H)) * 255.0f);
-            hVar.P.draw(canvas);
-            if (hVar.R != -1) {
-                float interpolation = 1.0f - f.f57892e.getInterpolation(hVar.H);
-                float interpolation2 = f.d.getInterpolation(hVar.H);
+            hVar.Q.f59305i = (int) ((1.0f - f.f59327c.getInterpolation(hVar.I)) * 255.0f);
+            hVar.Q.draw(canvas);
+            if (hVar.S != -1) {
+                float interpolation = 1.0f - f.f59328e.getInterpolation(hVar.I);
+                float interpolation2 = f.d.getInterpolation(hVar.I);
                 float centerX = rectF2.centerX();
-                int i21 = g.f57907a;
-                float L3 = centerX + (g0.L(i21 + 11) * (hVar.R - 2));
+                int i21 = g.f59343a;
+                float L3 = centerX + (g0.L(i21 + 11) * (hVar.S - 2));
                 float centerY = rectF2.centerY();
-                float f19 = hVar.X;
                 float f20 = hVar.Y;
-                float f21 = (L3 + f19) / 2.0f;
-                jb jbVar = hVar.W;
-                if (jbVar != null && jbVar.top) {
-                    min = Math.max(centerY, f20) + g0.L(15);
+                float f21 = hVar.Z;
+                float f22 = (L3 + f20) / 2.0f;
+                fb fbVar = hVar.X;
+                if (fbVar != null && fbVar.top) {
+                    min = Math.max(centerY, f21) + g0.L(15);
                 } else {
-                    min = Math.min(centerY, f20) - g0.L(15);
+                    min = Math.min(centerY, f21) - g0.L(15);
                 }
-                float g10 = g(L3, f19, interpolation2);
+                float g10 = g(L3, f20, interpolation2);
                 double d2 = L3;
                 double d10 = centerY;
-                double d11 = f19;
-                double d12 = f20;
-                double d13 = f21;
+                double d11 = f20;
+                double d12 = f21;
+                double d13 = f22;
                 double d14 = d11 - d2;
                 double d15 = (min - (((d12 - d10) * (d13 - d2)) / d14)) - d10;
                 double d16 = ((d11 * d2) + ((d13 * d13) - (d11 * d13))) - (d13 * d2);
@@ -318,152 +322,152 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                 if (d14 != 0.0d) {
                     d17 = d19 / d14;
                 }
-                double g11 = g(L3, f19, interpolation2);
-                float f22 = (float) ((d17 * g11) + (d * g11 * g11) + ((d10 - (d18 * d)) - (d17 * d2)));
-                float f23 = i21;
-                float g12 = g((g0.L(f23) / 2.0f) + g0.L(2.0f), g0.L(12.0f), interpolation2);
-                final d dVar = dVarArr[hVar.R];
-                if (dVar.f57875e == null) {
+                double g11 = g(L3, f20, interpolation2);
+                float f23 = (float) ((d17 * g11) + (d * g11 * g11) + ((d10 - (d18 * d)) - (d17 * d2)));
+                float f24 = i21;
+                float g12 = g((g0.L(f24) / 2.0f) + g0.L(2.0f), g0.L(12.0f), interpolation2);
+                final d dVar = dVarArr[hVar.S];
+                if (dVar.f59311e == null) {
                     b bVar2 = new b(new a() {
                         @Override
-                        public final void m(Canvas canvas3, int i22) {
-                            float f24;
+                        public final void k(Canvas canvas2, int i22) {
                             float f25;
+                            float f26;
                             switch (r2) {
                                 case 0:
                                     d dVar2 = dVar;
                                     dVar2.getClass();
-                                    canvas3.save();
-                                    canvas3.translate(-dVar2.f57878i, -dVar2.f57879j);
-                                    float f26 = dVar2.f57878i;
-                                    float f27 = dVar2.f57879j;
-                                    float f28 = i22 / 255.0f;
+                                    canvas2.save();
+                                    canvas2.translate(-dVar2.f59314i, -dVar2.f59315j);
+                                    float f27 = dVar2.f59314i;
+                                    float f28 = dVar2.f59315j;
+                                    float f29 = i22 / 255.0f;
                                     RectF rectF3 = g0.P;
                                     float L4 = g0.L(21.0f) / 2.0f;
-                                    int i23 = g.f57907a;
-                                    float f29 = 8;
-                                    rectF3.set(f26, f27, dVar2.h.getWidth() + f26 + (g0.L(f29) * 2), g0.L(21.0f) + f27);
-                                    q1 q1Var2 = dVar2.f57873b;
-                                    boolean g22 = q1Var2.g2();
-                                    Paint paint = dVar2.f57877g;
+                                    int i23 = g.f59343a;
+                                    float f30 = 8;
+                                    rectF3.set(f27, f28, dVar2.h.getWidth() + f27 + (g0.L(f30) * 2), g0.L(21.0f) + f28);
+                                    q1 q1Var2 = dVar2.f59309b;
+                                    boolean h22 = q1Var2.h2();
+                                    Paint paint = dVar2.f59313g;
                                     if (paint != null) {
                                         int alpha = paint.getAlpha();
-                                        paint.setAlpha((int) (255.0f * f28));
-                                        canvas3.drawRoundRect(rectF3, L4, L4, paint);
+                                        paint.setAlpha((int) (255.0f * f29));
+                                        canvas2.drawRoundRect(rectF3, L4, L4, paint);
                                         paint.setAlpha(alpha);
-                                        f24 = 21.0f;
+                                        f25 = 21.0f;
                                     } else {
-                                        Point point = g0.f22567q;
-                                        f24 = 21.0f;
+                                        Point point = g0.f23609q;
+                                        f25 = 21.0f;
                                         q1Var2.y(0.0f, 0.0f, point.x, point.y);
-                                        Paint Z1 = q1Var2.Z1("paintChatActionBackground");
-                                        int alpha2 = Z1.getAlpha();
-                                        if (g22) {
-                                            f25 = alpha2;
+                                        Paint a22 = q1Var2.a2("paintChatActionBackground");
+                                        int alpha2 = a22.getAlpha();
+                                        if (h22) {
+                                            f26 = alpha2;
                                         } else {
-                                            f25 = 229.5f;
+                                            f26 = 229.5f;
                                         }
-                                        Z1.setAlpha((int) (f25 * f28));
-                                        canvas3.drawRoundRect(rectF3, L4, L4, Z1);
-                                        Z1.setAlpha(alpha2);
+                                        a22.setAlpha((int) (f26 * f29));
+                                        canvas2.drawRoundRect(rectF3, L4, L4, a22);
+                                        a22.setAlpha(alpha2);
                                     }
-                                    if (g22 || paint != null) {
-                                        int alpha3 = m6.f27960h2.getAlpha();
-                                        m6.f27960h2.setAlpha((int) (alpha3 * f28));
-                                        canvas3.drawRoundRect(rectF3, L4, L4, m6.f27960h2);
-                                        m6.f27960h2.setAlpha(alpha3);
+                                    if (h22 || paint != null) {
+                                        int alpha3 = j6.f28919h2.getAlpha();
+                                        j6.f28919h2.setAlpha((int) (alpha3 * f29));
+                                        canvas2.drawRoundRect(rectF3, L4, L4, j6.f28919h2);
+                                        j6.f28919h2.setAlpha(alpha3);
                                     }
-                                    canvas3.save();
-                                    canvas3.translate(f26 + g0.L(f29), ((g0.L(f24) - dVar2.h.getHeight()) / 2.0f) + f27);
+                                    canvas2.save();
+                                    canvas2.translate(f27 + g0.L(f30), ((g0.L(f25) - dVar2.h.getHeight()) / 2.0f) + f28);
                                     int alpha4 = dVar2.h.getPaint().getAlpha();
-                                    dVar2.h.getPaint().setAlpha((int) (alpha4 * f28));
-                                    dVar2.h.draw(canvas3);
+                                    dVar2.h.getPaint().setAlpha((int) (alpha4 * f29));
+                                    dVar2.h.draw(canvas2);
                                     dVar2.h.getPaint().setAlpha(alpha4);
-                                    canvas3.restore();
-                                    canvas3.restore();
+                                    canvas2.restore();
+                                    canvas2.restore();
                                     return;
                                 default:
                                     d dVar3 = dVar;
                                     dVar3.getClass();
-                                    int i24 = g.f57907a;
+                                    int i24 = g.f59343a;
                                     float L5 = g0.L(21);
-                                    dVar3.a(canvas3, L5, L5, L5, i22 / 255.0f);
+                                    dVar3.a(L5, L5, L5, i22 / 255.0f, canvas2);
                                     return;
                             }
                         }
                     });
-                    dVar.f57875e = bVar2;
-                    bVar2.a(g0.L(f23), g0.L(f23), 4.0f, g0.L(10));
+                    dVar.f59311e = bVar2;
+                    bVar2.a(g0.L(f24), g0.L(f24), 4.0f, g0.L(10));
                 }
                 canvas.save();
-                canvas.translate(g10 - g12, f22 - g12);
-                float f24 = 21;
-                canvas.scale(g12 / g0.L(f24), g12 / g0.L(f24));
-                b bVar3 = dVar.f57875e;
-                bVar3.f57869i = (int) (interpolation * 255.0f);
+                canvas.translate(g10 - g12, f23 - g12);
+                float f25 = 21;
+                canvas.scale(g12 / g0.L(f25), g12 / g0.L(f25));
+                b bVar3 = dVar.f59311e;
+                bVar3.f59305i = (int) (interpolation * 255.0f);
                 bVar3.draw(canvas);
                 canvas.restore();
                 return;
             }
             return;
         }
-        if (!z9) {
-            f10 = 1.0f - hVar.H;
+        if (!z10) {
+            f10 = 1.0f - hVar.I;
         } else {
             f10 = i7 / 255.0f;
         }
-        float f25 = f10;
-        float g13 = g(0.3f, 0.075f, f.f57897k.getInterpolation(hVar.G));
+        float f26 = f10;
+        float g13 = g(0.3f, 0.075f, f.f59333k.getInterpolation(hVar.H));
         Matrix matrix = hVar.d;
         matrix.reset();
         matrix.setScale(g13, g13);
         matrix.postTranslate(0.0f, rectF2.bottom);
-        hVar.f57919f.setLocalMatrix(matrix);
-        Paint paint = hVar.f57917c;
-        paint.setAlpha((int) (f.f57896j.getInterpolation(hVar.G) * 255.0f * f25));
-        RectF rectF3 = f57909b0;
+        hVar.f59356f.setLocalMatrix(matrix);
+        Paint paint = hVar.f59354c;
+        paint.setAlpha((int) (f.f59332j.getInterpolation(hVar.H) * 255.0f * f26));
+        RectF rectF3 = f59345c0;
         rectF3.set(rectF2);
         rectF3.inset(-g0.L(8.0f), -g0.L(8.0f));
-        Rect rect = f57910c0;
+        Rect rect = f59346d0;
         rectF3.round(rect);
-        Drawable drawable = hVar.f57925y;
-        drawable.setAlpha((int) (f25 * 255.0f));
+        Drawable drawable = hVar.f59362y;
+        drawable.setAlpha((int) (f26 * 255.0f));
         drawable.setBounds(rect);
         drawable.draw(canvas);
-        boolean z12 = hVar.M;
-        RectF rectF4 = hVar.f57920n;
-        if (!z12) {
+        boolean z13 = hVar.N;
+        RectF rectF4 = hVar.f59357n;
+        if (!z13) {
             canvas.save();
             canvas.translate(rectF4.left, rectF4.top);
-            canvas.rotate((f.f57893f.getInterpolation(hVar.G) - f.f57894g.getInterpolation(hVar.G)) * (-40.0f), g0.L(16.0f), g0.L(16.0f));
+            canvas.rotate((f.f59329f.getInterpolation(hVar.H) - f.f59330g.getInterpolation(hVar.H)) * (-40.0f), g0.L(16.0f), g0.L(16.0f));
             canvas.translate(-q1Var.getSideButtonStartX(), -q1Var.getSideButtonStartY());
             q1Var.v1(canvas, true);
             canvas.restore();
         }
-        if (hVar.Q && !hVar.M) {
-            canvas.drawPath(hVar.f57918e, paint);
+        if (hVar.R && !hVar.N) {
+            canvas.drawPath(hVar.f59355e, paint);
         } else {
             float min2 = Math.min(rectF2.width(), rectF2.height()) / 2.0f;
             float min3 = Math.min(rectF4.width(), rectF4.height()) / 2.0f;
             canvas.drawRoundRect(rectF2, min2, min2, paint);
-            if (!hVar.M) {
+            if (!hVar.N) {
                 canvas.drawRoundRect(rectF4, min3, min3, paint);
             }
         }
-        float interpolation3 = f.f57906t.getInterpolation(hVar.G) * g0.L(2.0f);
-        float f26 = g.f57907a + 2;
-        float interpolation4 = ((f.f57903q.getInterpolation(hVar.G) * g0.L(f26)) / 2.0f) - interpolation3;
-        float interpolation5 = ((f.f57904r.getInterpolation(hVar.G) * g0.L(f26)) / 2.0f) - interpolation3;
-        float interpolation6 = ((f.f57905s.getInterpolation(hVar.G) * g0.L(f26)) / 2.0f) - interpolation3;
+        float interpolation3 = f.f59342t.getInterpolation(hVar.H) * g0.L(2.0f);
+        float f27 = g.f59343a + 2;
+        float interpolation4 = ((f.f59339q.getInterpolation(hVar.H) * g0.L(f27)) / 2.0f) - interpolation3;
+        float interpolation5 = ((f.f59340r.getInterpolation(hVar.H) * g0.L(f27)) / 2.0f) - interpolation3;
+        float interpolation6 = ((f.f59341s.getInterpolation(hVar.H) * g0.L(f27)) / 2.0f) - interpolation3;
         int i22 = 0;
         while (i22 < i20) {
             int i23 = i14;
             while (i23 < dVarArr.length) {
-                if ((i22 == 0 && i23 == hVar.R) || (i22 == i15 && i23 != hVar.R)) {
+                if ((i22 == 0 && i23 == hVar.S) || (i22 == i15 && i23 != hVar.S)) {
                     i10 = i22;
                     i12 = i23;
                     iVar = iVar2;
-                    f12 = f14;
+                    f12 = f15;
                     i13 = i20;
                 } else {
                     float length = i23 - ((dVarArr.length / 2.0f) - 0.5f);
@@ -474,130 +478,131 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                     } else {
                         f11 = interpolation5;
                     }
-                    f12 = f14;
-                    float L4 = (g0.L(g.f57907a + 11) * length) + rectF2.centerX();
+                    f12 = f15;
+                    float L4 = (g0.L(g.f59343a + 11) * length) + rectF2.centerX();
                     float centerY2 = rectF2.centerY();
                     i10 = i22;
                     final d dVar2 = dVarArr[i23];
-                    float f27 = 16;
-                    float L5 = g0.L(f27);
-                    float measuredWidth = iVar2.getMeasuredWidth() - g0.L(f27);
-                    float f28 = rectF2.left;
+                    float f28 = 16;
+                    float L5 = g0.L(f28);
+                    float measuredWidth = iVar2.getMeasuredWidth() - g0.L(f28);
+                    float f29 = rectF2.left;
                     iVar = iVar2;
-                    float f29 = rectF2.right;
-                    if (i23 == hVar.R && hVar.O) {
-                        z10 = true;
+                    float f30 = rectF2.right;
+                    if (i23 == hVar.S && hVar.P) {
+                        z11 = true;
                     } else {
-                        z10 = false;
+                        z11 = false;
                     }
-                    if (!z10) {
+                    if (!z11) {
                         dVar2.getClass();
-                        canvas2 = canvas;
+                        f13 = centerY2;
                         i11 = i23;
-                        f13 = L4;
-                        dVar2.a(canvas2, f13, centerY2, f11 + (g0.L(2.0f) * dVar2.f57884o), f25);
+                        f14 = L4;
+                        dVar2.a(f14, f13, f11 + (g0.L(2.0f) * dVar2.f59320o), f26, canvas);
                     } else {
-                        canvas2 = canvas;
+                        f13 = centerY2;
                         i11 = i23;
-                        f13 = L4;
+                        f14 = L4;
                     }
-                    float f30 = dVar2.f57884o;
-                    if (f30 > f12 && dVar2.h != null) {
-                        float f31 = (f30 * 0.15f) + 0.85f;
-                        canvas2.save();
-                        canvas2.scale(f31, f31, f13, centerY2);
-                        float f32 = dVar2.f57884o * f25;
+                    float f31 = dVar2.f59320o;
+                    if (f31 > f12 && dVar2.h != null) {
+                        float f32 = (f31 * 0.15f) + 0.85f;
+                        canvas.save();
+                        canvas.scale(f32, f32, f14, f13);
+                        float f33 = dVar2.f59320o * f26;
                         i12 = i11;
+                        float f34 = f13;
                         i13 = 2;
                         float D = k5.D(8, 2, dVar2.h.getWidth());
-                        dVar2.f57878i = d.b(d.b(f13, D, f28, f29), D, L5, measuredWidth) - (D / 2.0f);
-                        dVar2.f57879j = centerY2 - g0.L(58.0f);
-                        if (dVar2.f57876f == null) {
-                            h hVar2 = dVar2.f57872a;
-                            if (!hVar2.T) {
-                                dVar2.f57877g = hVar2.L;
+                        dVar2.f59314i = d.b(d.b(f14, D, f29, f30), D, L5, measuredWidth) - (D / 2.0f);
+                        dVar2.f59315j = f34 - g0.L(58.0f);
+                        if (dVar2.f59312f == null) {
+                            h hVar2 = dVar2.f59308a;
+                            if (!hVar2.U) {
+                                dVar2.f59313g = hVar2.M;
                                 b bVar4 = new b(new a() {
                                     @Override
-                                    public final void m(Canvas canvas3, int i222) {
-                                        float f242;
+                                    public final void k(Canvas canvas2, int i222) {
                                         float f252;
+                                        float f262;
                                         switch (r2) {
                                             case 0:
                                                 d dVar22 = dVar2;
                                                 dVar22.getClass();
-                                                canvas3.save();
-                                                canvas3.translate(-dVar22.f57878i, -dVar22.f57879j);
-                                                float f262 = dVar22.f57878i;
-                                                float f272 = dVar22.f57879j;
-                                                float f282 = i222 / 255.0f;
+                                                canvas2.save();
+                                                canvas2.translate(-dVar22.f59314i, -dVar22.f59315j);
+                                                float f272 = dVar22.f59314i;
+                                                float f282 = dVar22.f59315j;
+                                                float f292 = i222 / 255.0f;
                                                 RectF rectF32 = g0.P;
                                                 float L42 = g0.L(21.0f) / 2.0f;
-                                                int i232 = g.f57907a;
-                                                float f292 = 8;
-                                                rectF32.set(f262, f272, dVar22.h.getWidth() + f262 + (g0.L(f292) * 2), g0.L(21.0f) + f272);
-                                                q1 q1Var2 = dVar22.f57873b;
-                                                boolean g22 = q1Var2.g2();
-                                                Paint paint2 = dVar22.f57877g;
+                                                int i232 = g.f59343a;
+                                                float f302 = 8;
+                                                rectF32.set(f272, f282, dVar22.h.getWidth() + f272 + (g0.L(f302) * 2), g0.L(21.0f) + f282);
+                                                q1 q1Var2 = dVar22.f59309b;
+                                                boolean h22 = q1Var2.h2();
+                                                Paint paint2 = dVar22.f59313g;
                                                 if (paint2 != null) {
                                                     int alpha = paint2.getAlpha();
-                                                    paint2.setAlpha((int) (255.0f * f282));
-                                                    canvas3.drawRoundRect(rectF32, L42, L42, paint2);
+                                                    paint2.setAlpha((int) (255.0f * f292));
+                                                    canvas2.drawRoundRect(rectF32, L42, L42, paint2);
                                                     paint2.setAlpha(alpha);
-                                                    f242 = 21.0f;
+                                                    f252 = 21.0f;
                                                 } else {
-                                                    Point point = g0.f22567q;
-                                                    f242 = 21.0f;
+                                                    Point point = g0.f23609q;
+                                                    f252 = 21.0f;
                                                     q1Var2.y(0.0f, 0.0f, point.x, point.y);
-                                                    Paint Z1 = q1Var2.Z1("paintChatActionBackground");
-                                                    int alpha2 = Z1.getAlpha();
-                                                    if (g22) {
-                                                        f252 = alpha2;
+                                                    Paint a22 = q1Var2.a2("paintChatActionBackground");
+                                                    int alpha2 = a22.getAlpha();
+                                                    if (h22) {
+                                                        f262 = alpha2;
                                                     } else {
-                                                        f252 = 229.5f;
+                                                        f262 = 229.5f;
                                                     }
-                                                    Z1.setAlpha((int) (f252 * f282));
-                                                    canvas3.drawRoundRect(rectF32, L42, L42, Z1);
-                                                    Z1.setAlpha(alpha2);
+                                                    a22.setAlpha((int) (f262 * f292));
+                                                    canvas2.drawRoundRect(rectF32, L42, L42, a22);
+                                                    a22.setAlpha(alpha2);
                                                 }
-                                                if (g22 || paint2 != null) {
-                                                    int alpha3 = m6.f27960h2.getAlpha();
-                                                    m6.f27960h2.setAlpha((int) (alpha3 * f282));
-                                                    canvas3.drawRoundRect(rectF32, L42, L42, m6.f27960h2);
-                                                    m6.f27960h2.setAlpha(alpha3);
+                                                if (h22 || paint2 != null) {
+                                                    int alpha3 = j6.f28919h2.getAlpha();
+                                                    j6.f28919h2.setAlpha((int) (alpha3 * f292));
+                                                    canvas2.drawRoundRect(rectF32, L42, L42, j6.f28919h2);
+                                                    j6.f28919h2.setAlpha(alpha3);
                                                 }
-                                                canvas3.save();
-                                                canvas3.translate(f262 + g0.L(f292), ((g0.L(f242) - dVar22.h.getHeight()) / 2.0f) + f272);
+                                                canvas2.save();
+                                                canvas2.translate(f272 + g0.L(f302), ((g0.L(f252) - dVar22.h.getHeight()) / 2.0f) + f282);
                                                 int alpha4 = dVar22.h.getPaint().getAlpha();
-                                                dVar22.h.getPaint().setAlpha((int) (alpha4 * f282));
-                                                dVar22.h.draw(canvas3);
+                                                dVar22.h.getPaint().setAlpha((int) (alpha4 * f292));
+                                                dVar22.h.draw(canvas2);
                                                 dVar22.h.getPaint().setAlpha(alpha4);
-                                                canvas3.restore();
-                                                canvas3.restore();
+                                                canvas2.restore();
+                                                canvas2.restore();
                                                 return;
                                             default:
                                                 d dVar3 = dVar2;
                                                 dVar3.getClass();
-                                                int i24 = g.f57907a;
+                                                int i24 = g.f59343a;
                                                 float L52 = g0.L(21);
-                                                dVar3.a(canvas3, L52, L52, L52, i222 / 255.0f);
+                                                dVar3.a(L52, L52, L52, i222 / 255.0f, canvas2);
                                                 return;
                                         }
                                     }
                                 });
-                                dVar2.f57876f = bVar4;
+                                dVar2.f59312f = bVar4;
                                 bVar4.a((int) D, g0.L(21.0f), 3.0f, g0.L(4));
                             }
                         }
-                        b bVar5 = dVar2.f57876f;
+                        b bVar5 = dVar2.f59312f;
                         if (bVar5 != null) {
-                            float f33 = dVar2.f57878i;
-                            float f34 = dVar2.f57879j;
-                            bVar5.setBounds((int) f33, (int) f34, (int) (f33 + D), (int) (f34 + g0.L(21.0f)));
-                            b bVar6 = dVar2.f57876f;
-                            bVar6.f57869i = (int) (f32 * 255.0f);
-                            bVar6.draw(canvas2);
+                            float f35 = dVar2.f59314i;
+                            float f36 = dVar2.f59315j;
+                            bVar5.setBounds((int) f35, (int) f36, (int) (f35 + D), (int) (f36 + g0.L(21.0f)));
+                            b bVar6 = dVar2.f59312f;
+                            bVar6.f59305i = (int) (f33 * 255.0f);
+                            bVar6.draw(canvas);
                         }
-                        canvas2.restore();
+                        canvas.restore();
                     } else {
                         i12 = i11;
                         i13 = 2;
@@ -607,7 +612,7 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                 hVar = this;
                 i20 = i13;
                 i22 = i10;
-                f14 = f12;
+                f15 = f12;
                 iVar2 = iVar;
                 i15 = 1;
             }
@@ -624,29 +629,29 @@ public final class h extends Drawable implements Animator.AnimatorListener {
     }
 
     public final int h() {
-        return g0.L(((g.f57907a + 11) * this.f57924x.length) + 7);
+        return g0.L(((g.f59343a + 11) * this.f59361x.length) + 7);
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        ObjectAnimator objectAnimator = this.Z;
-        u9.f fVar = this.f57916b;
+        ObjectAnimator objectAnimator = this.f59351a0;
+        t1 t1Var = this.f59352b;
         if (animator == objectAnimator) {
-            this.D.setHideSideButtonByQuickShare(false);
-            this.M = true;
-            invalidateSelf();
-            if (this.N) {
-                fVar.run();
-            }
-        } else if (animator == this.f57915a0) {
+            this.E.setHideSideButtonByQuickShare(false);
             this.N = true;
             invalidateSelf();
-            jb jbVar = this.W;
-            if (jbVar != null) {
-                jbVar.f34882a.setVisibility(0);
+            if (this.O) {
+                t1Var.run();
             }
-            if (this.M) {
-                fVar.run();
+        } else if (animator == this.f59353b0) {
+            this.O = true;
+            invalidateSelf();
+            fb fbVar = this.X;
+            if (fbVar != null) {
+                fbVar.f34551a.setVisibility(0);
+            }
+            if (this.N) {
+                t1Var.run();
             }
         }
     }

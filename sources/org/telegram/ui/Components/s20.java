@@ -1,53 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import java.io.Serializable;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class s20 implements org.telegram.messenger.a20, org.telegram.messenger.b20 {
-    public final t20 f37844a;
+import android.animation.ValueAnimator;
+public final class s20 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f39168a;
+    public final u20 f39169b;
 
-    public s20(t20 t20Var) {
-        this.f37844a = t20Var;
+    public s20(u20 u20Var, int i7) {
+        this.f39168a = i7;
+        this.f39169b = u20Var;
     }
 
     @Override
-    public Boolean a(x31 x31Var, View view, Integer num, Float f10, Float f11) {
-        int i7 = x31Var.d;
-        boolean z9 = false;
-        if (i7 != 0) {
-            t20 t20Var = this.f37844a;
-            String str = (String) t20Var.f38145c.get(i7 - 1);
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, t20Var.getContext(), t20Var.f38144b);
-            String M0 = org.telegram.messenger.id.M0(2131752054, null);
-            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27300a;
-            u1Var.R = M0;
-            u1Var.T = org.telegram.messenger.id.a0(null, null, 2131752052, str);
-            alertDialog$Builder.k(org.telegram.messenger.id.M0(2131752055, null), new e2(15, t20Var, str));
-            alertDialog$Builder.h(org.telegram.messenger.id.M0(2131752589, null), null);
-            u1Var.show();
-            z9 = true;
-        }
-        return Boolean.valueOf(z9);
-    }
-
-    @Override
-    public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        View view = (View) obj2;
-        Integer num = (Integer) number;
-        Float f10 = (Float) serializable;
-        Float f11 = (Float) serializable2;
-        int i7 = ((x31) obj).d;
-        t20 t20Var = this.f37844a;
-        if (i7 == 0) {
-            org.telegram.messenger.oa a10 = org.telegram.messenger.oa.a(t20Var.f38143a);
-            a10.f24320f.clear();
-            a10.d();
-            t20Var.f38147f.O(true);
-            return;
-        }
-        org.telegram.messenger.c20 c20Var = t20Var.h;
-        if (c20Var != null) {
-            c20Var.a((String) t20Var.f38145c.get(i7 - 1));
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        org.telegram.ui.bn bnVar;
+        di.c1 c1Var;
+        switch (this.f39168a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                u20 u20Var = this.f39169b;
+                u20Var.f39885x = floatValue;
+                u20Var.f39879e.setTranslationY(floatValue * org.telegram.messenger.g0.L(48.0f));
+                u20Var.f39879e.setPadding(0, 0, 0, (int) (u20Var.f39885x * org.telegram.messenger.g0.L(48.0f)));
+                return;
+            default:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                u20 u20Var2 = this.f39169b;
+                u20Var2.F = floatValue2;
+                u20Var2.f39881n.setScaleX(org.telegram.messenger.g0.T1(0.95f, 1.0f, floatValue2));
+                u20Var2.f39881n.setScaleY(org.telegram.messenger.g0.T1(0.95f, 1.0f, u20Var2.F));
+                org.telegram.ui.mj mjVar = u20Var2.f39880f;
+                if (mjVar != null && (bnVar = mjVar.f46216a) != null && (c1Var = bnVar.f45122a4) != null) {
+                    c1Var.setScaleX(org.telegram.messenger.g0.T1(1.0f, 0.95f, u20Var2.F));
+                    u20Var2.f39880f.f46216a.f45122a4.setScaleY(org.telegram.messenger.g0.T1(1.0f, 0.95f, u20Var2.F));
+                }
+                u20Var2.h.setAlpha(u20Var2.F);
+                return;
         }
     }
 }

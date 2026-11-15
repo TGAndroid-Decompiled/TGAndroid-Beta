@@ -1,19 +1,18 @@
 package org.telegram.ui.Components;
+public final class qp0 implements org.telegram.messenger.z10 {
+    public final org.telegram.ui.Cells.n7 f38740a;
+    public final float f38741b;
+    public final float f38742c;
 
-import android.view.animation.Interpolator;
-public final class qp0 implements Interpolator {
-    public final int f37371a;
+    public qp0(org.telegram.ui.Cells.n7 n7Var, float f10, float f11) {
+        this.f38740a = n7Var;
+        this.f38741b = f10;
+        this.f38742c = f11;
+    }
 
     @Override
-    public final float getInterpolation(float f10) {
-        switch (this.f37371a) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            default:
-                float f11 = f10 - 1.0f;
-                return (f11 * f11 * f11 * f11 * f11) + 1.0f;
-        }
+    public final void a(Object obj) {
+        Boolean bool = (Boolean) obj;
+        this.f38740a.n(this.f38741b, this.f38742c);
     }
 }

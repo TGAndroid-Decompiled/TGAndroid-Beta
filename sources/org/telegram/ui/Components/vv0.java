@@ -1,10 +1,19 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public interface vv0 {
-    void a(TLRPC.Document document, String str, Object obj, org.telegram.messenger.ej ejVar, boolean z9, boolean z10, int i7, int i10);
+import android.view.View;
+public final class vv0 implements View.OnClickListener {
+    public final int f41159a;
+    public final Object f41160b;
+    public final Object f41161c;
 
-    boolean b();
+    public vv0(int i7, Object obj, Object obj2) {
+        this.f41159a = i7;
+        this.f41160b = obj;
+        this.f41161c = obj2;
+    }
 
-    boolean c();
+    @Override
+    public final void onClick(android.view.View r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.vv0.onClick(android.view.View):void");
+    }
 }

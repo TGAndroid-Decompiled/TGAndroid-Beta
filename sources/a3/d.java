@@ -1,9 +1,9 @@
 package a3;
 
-import a8.ia;
+import a8.ja;
 import android.os.SystemClock;
 import e2.m1;
-import h2.m0;
+import h2.l0;
 import java.util.Arrays;
 import java.util.List;
 public abstract class d implements u {
@@ -15,14 +15,14 @@ public abstract class d implements u {
     public int f78f;
 
     public d(m1 m1Var, int[] iArr) {
-        boolean z9;
+        boolean z10;
         int i7 = 0;
         if (iArr.length > 0) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        ia.p(z9);
+        ja.p(z10);
         m1Var.getClass();
         this.f74a = m1Var;
         int length = iArr.length;
@@ -138,7 +138,7 @@ public abstract class d implements u {
             return false;
         }
         long[] jArr = this.f77e;
-        jArr[i7] = Math.max(jArr[i7], m0.a(elapsedRealtime, j3));
+        jArr[i7] = Math.max(jArr[i7], l0.a(elapsedRealtime, j3));
         return true;
     }
 
@@ -169,7 +169,7 @@ public abstract class d implements u {
     }
 
     @Override
-    public final void f(boolean z9) {
+    public final void f(boolean z10) {
     }
 
     @Override

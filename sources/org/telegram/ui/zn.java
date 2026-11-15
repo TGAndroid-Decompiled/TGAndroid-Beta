@@ -1,39 +1,34 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-public final class zn extends org.telegram.ui.Components.hm0 {
-    public final io N;
+public final class zn implements org.telegram.ui.Components.s70 {
+    public final Context f53990a;
+    public final ho f53991b;
 
-    public zn(io ioVar, Context context, org.telegram.ui.Components.gm0 gm0Var, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, gm0Var, h6Var, false);
-        this.N = ioVar;
+    public zn(ho hoVar, Context context) {
+        this.f53991b = hoVar;
+        this.f53990a = context;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (!this.N.L && super.onInterceptTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
+    public final void e() {
+        this.f53991b.d0(true);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() != 0) {
-            return super.onTouchEvent(motionEvent);
-        }
-        if (!this.N.L && super.onTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
+    public final void f() {
+        ho hoVar = this.f53991b;
+        org.telegram.ui.Components.p50 p50Var = new org.telegram.ui.Components.p50(this.f53990a, hoVar.m0, hoVar.Z, hoVar.f47778p0, hoVar, hoVar.f47759a0, true, org.telegram.messenger.t3.T(hoVar.Y));
+        ho hoVar2 = this.f53991b;
+        hoVar2.f47779q0 = p50Var;
+        hoVar2.f47779q0.show();
     }
 
     @Override
-    public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z9) {
-        rect.bottom = org.telegram.messenger.g0.L(60.0f) + rect.bottom;
-        return super.requestChildRectangleOnScreen(view, rect, z9);
+    public final void d() {
+    }
+
+    @Override
+    public final void j() {
     }
 }

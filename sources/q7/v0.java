@@ -2,10 +2,10 @@ package q7;
 
 import java.util.Arrays;
 public final class v0 extends c1 {
-    public final boolean f54044a;
+    public final boolean f55481a;
 
-    public v0(boolean z9) {
-        this.f54044a = z9;
+    public v0(boolean z10) {
+        this.f55481a = z10;
     }
 
     @Override
@@ -19,12 +19,12 @@ public final class v0 extends c1 {
         }
         v0 v0Var = (v0) c1Var;
         int i10 = 21;
-        if (true != this.f54044a) {
+        if (true != this.f55481a) {
             i7 = 20;
         } else {
             i7 = 21;
         }
-        if (true != v0Var.f54044a) {
+        if (true != v0Var.f55481a) {
             i10 = 20;
         }
         return i7 - i10;
@@ -34,18 +34,18 @@ public final class v0 extends c1 {
         if (this == obj) {
             return true;
         }
-        if (obj != null && v0.class == obj.getClass() && this.f54044a == ((v0) obj).f54044a) {
+        if (obj != null && v0.class == obj.getClass() && this.f55481a == ((v0) obj).f55481a) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(c1.c((byte) -32)), Boolean.valueOf(this.f54044a)});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(c1.c((byte) -32)), Boolean.valueOf(this.f55481a)});
     }
 
     public final String toString() {
-        return Boolean.toString(this.f54044a);
+        return Boolean.toString(this.f55481a);
     }
 
     @Override

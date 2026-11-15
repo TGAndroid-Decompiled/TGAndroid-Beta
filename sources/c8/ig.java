@@ -3,26 +3,26 @@ package c8;
 import java.util.Map;
 import java.util.Set;
 public abstract class ig implements k {
-    public transient cd f5726a;
-    public transient a8.kb f5727b;
+    public transient cd f4549a;
+    public transient a8.lb f4550b;
 
     public final Map a() {
-        a8.kb kbVar = this.f5727b;
-        if (kbVar == null) {
+        a8.lb lbVar = this.f4550b;
+        if (lbVar == null) {
             jg jgVar = (jg) this;
-            a8.kb kbVar2 = new a8.kb(jgVar, jgVar.f5741c, 1);
-            this.f5727b = kbVar2;
-            return kbVar2;
+            a8.lb lbVar2 = new a8.lb(jgVar, jgVar.f4564c, 1);
+            this.f4550b = lbVar2;
+            return lbVar2;
         }
-        return kbVar;
+        return lbVar;
     }
 
     public final Set b() {
-        cd cdVar = this.f5726a;
+        cd cdVar = this.f4549a;
         if (cdVar == null) {
             jg jgVar = (jg) this;
-            cd cdVar2 = new cd(jgVar, jgVar.f5741c);
-            this.f5726a = cdVar2;
+            cd cdVar2 = new cd(jgVar, jgVar.f4564c);
+            this.f4549a = cdVar2;
             return cdVar2;
         }
         return cdVar;
@@ -39,10 +39,10 @@ public abstract class ig implements k {
     }
 
     public final int hashCode() {
-        return ((a8.kb) a()).f513b.hashCode();
+        return ((a8.lb) a()).f533b.hashCode();
     }
 
     public final String toString() {
-        return ((a8.kb) a()).f513b.toString();
+        return ((a8.lb) a()).f533b.toString();
     }
 }

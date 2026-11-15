@@ -1,34 +1,36 @@
 package sg;
 public final class p0 implements Runnable {
-    public final int f55188a;
-    public final v0 f55189b;
+    public final int f56741a;
+    public final q0 f56742b;
 
-    public p0(v0 v0Var, int i7) {
-        this.f55188a = i7;
-        this.f55189b = v0Var;
+    public p0(q0 q0Var, int i7) {
+        this.f56741a = i7;
+        this.f56742b = q0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f55188a) {
+        switch (this.f56741a) {
             case 0:
-                u0 u0Var = this.f55189b.f55233a;
-                if (u0Var != null) {
-                    u0Var.o();
+                s0 s0Var = this.f56742b.f56752b.d;
+                if (s0Var != null) {
+                    s0Var.postRunnable(s0Var.f56772x);
                     return;
                 }
                 return;
             case 1:
-                v0 v0Var = this.f55189b;
-                v0Var.f55235c.a(v0Var.f55239r);
-                t0 t0Var = v0Var.d;
-                t0Var.getClass();
-                t0Var.postRunnable(new s0(t0Var, 2));
-                v0Var.d = null;
+                s0 s0Var2 = this.f56742b.f56752b.d;
+                if (s0Var2 != null) {
+                    s0Var2.postRunnable(s0Var2.f56772x);
+                    return;
+                }
                 return;
             default:
-                v0 v0Var2 = this.f55189b;
-                v0Var2.f55235c.q(v0Var2.f55243y);
+                u0 u0Var = this.f56742b.f56752b;
+                s0 s0Var3 = u0Var.d;
+                s0Var3.getClass();
+                s0Var3.postRunnable(new r0(s0Var3, 2));
+                u0Var.d = null;
                 return;
         }
     }

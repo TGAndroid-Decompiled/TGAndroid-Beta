@@ -6,18 +6,18 @@ import java.util.Comparator;
 import java.util.NavigableSet;
 public abstract class s extends o implements NavigableSet, c0, SortedSet {
     public final transient Comparator d;
-    public transient s f54032e;
+    public transient s f55469e;
 
     public s(Comparator comparator) {
         this.d = comparator;
     }
 
     public static z s(Comparator comparator) {
-        if (v.f54041b.equals(comparator)) {
+        if (v.f55478b.equals(comparator)) {
             return z.h;
         }
-        i iVar = m.f54012b;
-        return new z(x.f54046e, comparator);
+        i iVar = m.f55449b;
+        return new z(x.f55483e, comparator);
     }
 
     public final void addFirst(Object obj) {
@@ -66,29 +66,29 @@ public abstract class s extends o implements NavigableSet, c0, SortedSet {
 
     @Override
     public final s descendingSet() {
-        z zVar = this.f54032e;
+        z zVar = this.f55469e;
         if (zVar == null) {
             z zVar2 = (z) this;
             Comparator reverseOrder = Collections.reverseOrder(zVar2.d);
             if (zVar2.isEmpty()) {
                 zVar = s(reverseOrder);
             } else {
-                zVar = new z(zVar2.f54054f.m(), reverseOrder);
+                zVar = new z(zVar2.f55491f.m(), reverseOrder);
             }
-            this.f54032e = zVar;
-            zVar.f54032e = this;
+            this.f55469e = zVar;
+            zVar.f55469e = this;
         }
         return zVar;
     }
 
     @Override
-    public final z subSet(Object obj, boolean z9, Object obj2, boolean z10) {
+    public final z subSet(Object obj, boolean z10, Object obj2, boolean z11) {
         obj.getClass();
         obj2.getClass();
         if (this.d.compare(obj, obj2) <= 0) {
             z zVar = (z) this;
-            z v = zVar.v(zVar.u(obj, z9), zVar.f54054f.size());
-            return v.v(0, v.t(obj2, z10));
+            z v = zVar.v(zVar.u(obj, z10), zVar.f55491f.size());
+            return v.v(0, v.t(obj2, z11));
         }
         throw new IllegalArgumentException();
     }
@@ -110,20 +110,20 @@ public abstract class s extends o implements NavigableSet, c0, SortedSet {
     public final java.util.SortedSet tailSet(Object obj) {
         obj.getClass();
         z zVar = (z) this;
-        return zVar.v(zVar.u(obj, true), zVar.f54054f.size());
+        return zVar.v(zVar.u(obj, true), zVar.f55491f.size());
     }
 
     @Override
-    public final NavigableSet headSet(Object obj, boolean z9) {
+    public final NavigableSet headSet(Object obj, boolean z10) {
         obj.getClass();
         z zVar = (z) this;
-        return zVar.v(0, zVar.t(obj, z9));
+        return zVar.v(0, zVar.t(obj, z10));
     }
 
     @Override
-    public final NavigableSet tailSet(Object obj, boolean z9) {
+    public final NavigableSet tailSet(Object obj, boolean z10) {
         obj.getClass();
         z zVar = (z) this;
-        return zVar.v(zVar.u(obj, z9), zVar.f54054f.size());
+        return zVar.v(zVar.u(obj, z10), zVar.f55491f.size());
     }
 }

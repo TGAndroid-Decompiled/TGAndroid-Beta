@@ -1,46 +1,47 @@
 package e2;
 
+import com.google.android.gms.internal.vision.e2;
 import java.util.Arrays;
 public final class m {
     public static final m h = new m(1, 2, 3, null, -1, -1);
-    public static final String f10362i;
-    public static final String f10363j;
-    public static final String f10364k;
-    public static final String f10365l;
-    public static final String f10366m;
-    public static final String f10367n;
-    public final int f10368a;
-    public final int f10369b;
-    public final int f10370c;
+    public static final String f10193i;
+    public static final String f10194j;
+    public static final String f10195k;
+    public static final String f10196l;
+    public static final String f10197m;
+    public static final String f10198n;
+    public final int f10199a;
+    public final int f10200b;
+    public final int f10201c;
     public final byte[] d;
-    public final int f10371e;
-    public final int f10372f;
-    public int f10373g;
+    public final int f10202e;
+    public final int f10203f;
+    public int f10204g;
 
     static {
-        String str = h2.m0.f14114a;
-        f10362i = Integer.toString(0, 36);
-        f10363j = Integer.toString(1, 36);
-        f10364k = Integer.toString(2, 36);
-        f10365l = Integer.toString(3, 36);
-        f10366m = Integer.toString(4, 36);
-        f10367n = Integer.toString(5, 36);
+        String str = h2.l0.f13471a;
+        f10193i = Integer.toString(0, 36);
+        f10194j = Integer.toString(1, 36);
+        f10195k = Integer.toString(2, 36);
+        f10196l = Integer.toString(3, 36);
+        f10197m = Integer.toString(4, 36);
+        f10198n = Integer.toString(5, 36);
     }
 
     public m(int i7, int i10, int i11, byte[] bArr, int i12, int i13) {
-        this.f10368a = i7;
-        this.f10369b = i10;
-        this.f10370c = i11;
+        this.f10199a = i7;
+        this.f10200b = i10;
+        this.f10201c = i11;
         this.d = bArr;
-        this.f10371e = i12;
-        this.f10372f = i13;
+        this.f10202e = i12;
+        this.f10203f = i13;
     }
 
     public static String a(int i7) {
         if (i7 != -1) {
             if (i7 != 1) {
                 if (i7 != 2) {
-                    return jg.g.j(i7, "Undefined color range ");
+                    return i5.c.i(i7, "Undefined color range ");
                 }
                 return "Limited range";
             }
@@ -54,7 +55,7 @@ public final class m {
             if (i7 != 6) {
                 if (i7 != 1) {
                     if (i7 != 2) {
-                        return jg.g.j(i7, "Undefined color space ");
+                        return i5.c.i(i7, "Undefined color space ");
                     }
                     return "BT601";
                 }
@@ -73,7 +74,7 @@ public final class m {
                         if (i7 != 3) {
                             if (i7 != 6) {
                                 if (i7 != 7) {
-                                    return jg.g.j(i7, "Undefined color transfer ");
+                                    return i5.c.i(i7, "Undefined color transfer ");
                                 }
                                 return "HLG";
                             }
@@ -94,15 +95,15 @@ public final class m {
         if (mVar == null) {
             return true;
         }
-        int i7 = mVar.f10368a;
+        int i7 = mVar.f10199a;
         if (i7 == -1 || i7 == 1 || i7 == 2) {
-            int i10 = mVar.f10369b;
+            int i10 = mVar.f10200b;
             if (i10 == -1 || i10 == 2) {
-                int i11 = mVar.f10370c;
+                int i11 = mVar.f10201c;
                 if ((i11 == -1 || i11 == 3) && mVar.d == null) {
-                    int i12 = mVar.f10372f;
+                    int i12 = mVar.f10203f;
                     if (i12 == -1 || i12 == 8) {
-                        int i13 = mVar.f10371e;
+                        int i13 = mVar.f10202e;
                         if (i13 == -1 || i13 == 8) {
                             return true;
                         }
@@ -153,7 +154,7 @@ public final class m {
     }
 
     public final boolean d() {
-        if (this.f10368a != -1 && this.f10369b != -1 && this.f10370c != -1) {
+        if (this.f10199a != -1 && this.f10200b != -1 && this.f10201c != -1) {
             return true;
         }
         return false;
@@ -165,7 +166,7 @@ public final class m {
         }
         if (obj != null && m.class == obj.getClass()) {
             m mVar = (m) obj;
-            if (this.f10368a == mVar.f10368a && this.f10369b == mVar.f10369b && this.f10370c == mVar.f10370c && Arrays.equals(this.d, mVar.d) && this.f10371e == mVar.f10371e && this.f10372f == mVar.f10372f) {
+            if (this.f10199a == mVar.f10199a && this.f10200b == mVar.f10200b && this.f10201c == mVar.f10201c && Arrays.equals(this.d, mVar.d) && this.f10202e == mVar.f10202e && this.f10203f == mVar.f10203f) {
                 return true;
             }
         }
@@ -173,41 +174,41 @@ public final class m {
     }
 
     public final int hashCode() {
-        if (this.f10373g == 0) {
-            this.f10373g = ((((Arrays.hashCode(this.d) + ((((((527 + this.f10368a) * 31) + this.f10369b) * 31) + this.f10370c) * 31)) * 31) + this.f10371e) * 31) + this.f10372f;
+        if (this.f10204g == 0) {
+            this.f10204g = ((((Arrays.hashCode(this.d) + ((((((527 + this.f10199a) * 31) + this.f10200b) * 31) + this.f10201c) * 31)) * 31) + this.f10202e) * 31) + this.f10203f;
         }
-        return this.f10373g;
+        return this.f10204g;
     }
 
     public final String toString() {
-        boolean z9;
+        boolean z10;
         String str;
         StringBuilder sb2 = new StringBuilder("ColorInfo(");
-        sb2.append(b(this.f10368a));
+        sb2.append(b(this.f10199a));
         sb2.append(", ");
-        sb2.append(a(this.f10369b));
+        sb2.append(a(this.f10200b));
         sb2.append(", ");
-        sb2.append(c(this.f10370c));
+        sb2.append(c(this.f10201c));
         sb2.append(", ");
         if (this.d != null) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        sb2.append(z9);
+        sb2.append(z10);
         sb2.append(", ");
         String str2 = "NA";
-        int i7 = this.f10371e;
+        int i7 = this.f10202e;
         if (i7 == -1) {
             str = "NA";
         } else {
-            str = com.google.android.recaptcha.internal.a.i(i7, "bit Luma");
+            str = e2.i(i7, "bit Luma");
         }
         sb2.append(str);
         sb2.append(", ");
-        int i10 = this.f10372f;
+        int i10 = this.f10203f;
         if (i10 != -1) {
-            str2 = com.google.android.recaptcha.internal.a.i(i10, "bit Chroma");
+            str2 = e2.i(i10, "bit Chroma");
         }
         return a8.p0.s(sb2, str2, ")");
     }

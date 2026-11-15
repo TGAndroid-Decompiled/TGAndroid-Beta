@@ -1,8 +1,8 @@
 package org.telegram.messenger;
 public interface x5 {
-    void C(boolean z9);
+    void C(boolean z10);
 
-    void M(String str);
+    void N(String str);
 
     int getObserverTag();
 

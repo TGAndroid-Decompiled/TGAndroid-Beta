@@ -1,17 +1,17 @@
 package u7;
 
-import a8.k8;
+import a8.l8;
 import com.google.android.gms.tasks.TaskCompletionSource;
-public final class g extends v {
-    public final TaskCompletionSource f56379b;
+public final class g extends w {
+    public final TaskCompletionSource f57876b;
 
     public g(TaskCompletionSource taskCompletionSource) {
-        this.f56379b = taskCompletionSource;
+        this.f57876b = taskCompletionSource;
     }
 
     @Override
-    public final void P0(t tVar) {
-        k8.a(tVar.f56401a, Boolean.TRUE, this.f56379b);
+    public final void Q0(u uVar) {
+        l8.a(uVar.f57900a, Boolean.TRUE, this.f57876b);
     }
 
     @Override

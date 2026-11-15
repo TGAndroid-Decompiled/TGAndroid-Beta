@@ -1,32 +1,36 @@
 package org.telegram.ui.Components;
-public final class gx0 {
-    public final int f34004a;
-    public final int f34005b;
+public class gx0 {
+    public int f35080a;
+    public int f35081b;
+    public int f35082c;
 
-    public gx0(int i7, int i10) {
-        this.f34004a = i7;
-        this.f34005b = i10;
+    public gx0() {
+        c();
     }
 
-    public final int a() {
-        return this.f34005b - this.f34004a;
+    public int a(px0 px0Var, ix0 ix0Var, bx0 bx0Var, int i7, boolean z10) {
+        return this.f35080a - bx0Var.a(ix0Var, i7);
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || gx0.class != obj.getClass()) {
-            return false;
-        }
-        gx0 gx0Var = (gx0) obj;
-        if (this.f34005b == gx0Var.f34005b && this.f34004a == gx0Var.f34004a) {
-            return true;
-        }
-        return false;
+    public void b(int i7, int i10) {
+        this.f35080a = Math.max(this.f35080a, i7);
+        this.f35081b = Math.max(this.f35081b, i10);
     }
 
-    public final int hashCode() {
-        return (this.f34004a * 31) + this.f34005b;
+    public void c() {
+        this.f35080a = Integer.MIN_VALUE;
+        this.f35081b = Integer.MIN_VALUE;
+        this.f35082c = 2;
+    }
+
+    public int d(boolean z10) {
+        if (!z10) {
+            int i7 = this.f35082c;
+            bx0 bx0Var = px0.T;
+            if ((i7 & 2) != 0) {
+                return 100000;
+            }
+        }
+        return this.f35080a + this.f35081b;
     }
 }

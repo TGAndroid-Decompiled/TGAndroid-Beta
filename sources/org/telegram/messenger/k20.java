@@ -1,33 +1,71 @@
 package org.telegram.messenger;
-public final class k20 implements Runnable {
-    public final int f23657a;
-    public final VideoEncodingService f23658b;
 
-    public k20(VideoEncodingService videoEncodingService, int i7) {
-        this.f23657a = i7;
-        this.f23658b = videoEncodingService;
+import java.util.ArrayList;
+import java.util.Locale;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class k20 extends TLObject {
+    public static final int f24629i = 0;
+    public String f24630a;
+    public TLRPC.InputWebFileLocation f24631b;
+    public ArrayList f24632c;
+    public int d;
+    public String f24633e;
+    public boolean f24634f;
+
+    public static k20 a(double d, double d2, long j3, int i7, int i10, int i11, int i12) {
+        ?? tLObject = new TLObject();
+        TLRPC.TL_inputWebFileGeoPointLocation tL_inputWebFileGeoPointLocation = new TLRPC.TL_inputWebFileGeoPointLocation();
+        tLObject.f24631b = tL_inputWebFileGeoPointLocation;
+        TLRPC.TL_inputGeoPoint tL_inputGeoPoint = new TLRPC.TL_inputGeoPoint();
+        tL_inputWebFileGeoPointLocation.geo_point = tL_inputGeoPoint;
+        tL_inputWebFileGeoPointLocation.access_hash = j3;
+        tL_inputGeoPoint.lat = d;
+        tL_inputGeoPoint._long = d2;
+        tL_inputWebFileGeoPointLocation.f28125w = i7;
+        tL_inputWebFileGeoPointLocation.h = i10;
+        tL_inputWebFileGeoPointLocation.zoom = i11;
+        tL_inputWebFileGeoPointLocation.scale = i12;
+        tLObject.f24633e = "image/png";
+        tLObject.f24630a = String.format(Locale.US, "maps_%.6f_%.6f_%d_%d_%d_%d.png", Double.valueOf(d), Double.valueOf(d2), Integer.valueOf(i7), Integer.valueOf(i10), Integer.valueOf(i11), Integer.valueOf(i12));
+        tLObject.f24632c = new ArrayList();
+        return tLObject;
     }
 
-    @Override
-    public final void run() {
-        int i7 = this.f23657a;
-        VideoEncodingService videoEncodingService = this.f23658b;
-        switch (i7) {
-            case 0:
-                VideoEncodingService videoEncodingService2 = VideoEncodingService.f21348e;
-                videoEncodingService.getClass();
-                lf lfVar = MediaController.B().f21256a0;
-                if (lfVar != null) {
-                    videoEncodingService.a(lfVar);
-                    return;
-                } else {
-                    videoEncodingService.stopSelf();
-                    return;
-                }
-            default:
-                VideoEncodingService videoEncodingService3 = VideoEncodingService.f21348e;
-                videoEncodingService.b();
-                return;
+    public static k20 b(TLRPC.GeoPoint geoPoint, int i7, int i10, int i11, int i12) {
+        return a(geoPoint.lat, geoPoint._long, geoPoint.access_hash, i7, i10, i11, i12);
+    }
+
+    public static k20 c(TLRPC.WebDocument webDocument) {
+        if (webDocument instanceof TLRPC.TL_webDocument) {
+            ?? tLObject = new TLObject();
+            TLRPC.TL_webDocument tL_webDocument = (TLRPC.TL_webDocument) webDocument;
+            TLRPC.TL_inputWebFileLocation tL_inputWebFileLocation = new TLRPC.TL_inputWebFileLocation();
+            tLObject.f24631b = tL_inputWebFileLocation;
+            String str = webDocument.url;
+            tLObject.f24630a = str;
+            tL_inputWebFileLocation.url = str;
+            tL_inputWebFileLocation.access_hash = tL_webDocument.access_hash;
+            tLObject.d = tL_webDocument.size;
+            tLObject.f24633e = tL_webDocument.mime_type;
+            tLObject.f24632c = tL_webDocument.attributes;
+            return tLObject;
+        } else if (webDocument instanceof TLRPC.TL_webDocumentNoProxy) {
+            ?? tLObject2 = new TLObject();
+            TLRPC.TL_webDocumentNoProxy tL_webDocumentNoProxy = (TLRPC.TL_webDocumentNoProxy) webDocument;
+            TLRPC.TL_inputWebFileLocation tL_inputWebFileLocation2 = new TLRPC.TL_inputWebFileLocation();
+            tLObject2.f24631b = tL_inputWebFileLocation2;
+            String str2 = webDocument.url;
+            tLObject2.f24630a = str2;
+            tL_inputWebFileLocation2.url = str2;
+            tL_inputWebFileLocation2.access_hash = tL_webDocumentNoProxy.access_hash;
+            tLObject2.d = tL_webDocumentNoProxy.size;
+            tLObject2.f24633e = tL_webDocumentNoProxy.mime_type;
+            tLObject2.f24632c = tL_webDocumentNoProxy.attributes;
+            tLObject2.f24634f = true;
+            return tLObject2;
+        } else {
+            return null;
         }
     }
 }

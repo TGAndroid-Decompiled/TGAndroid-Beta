@@ -1,121 +1,73 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.RippleDrawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RectShape;
-import android.graphics.drawable.shapes.RoundRectShape;
-import android.util.StateSet;
-public abstract class b6 {
-    public static final int f27355a = m6.f27890d6;
-    public static float[] f27356b;
+import android.content.SharedPreferences;
+import java.io.File;
+import java.util.ArrayList;
+import org.json.JSONObject;
+import org.telegram.messenger.a8;
+import org.telegram.tgnet.TLRPC;
+public final class b6 {
+    public String f28452a = "";
+    public String f28453b = "";
+    public String f28454c = "";
+    public int d;
+    public int f28455e;
+    public int f28456f;
+    public int f28457g;
+    public int h;
+    public boolean f28458i;
+    public boolean f28459j;
+    public float f28460k;
+    public long f28461l;
+    public long f28462m;
+    public long f28463n;
+    public boolean f28464o;
+    public i6 f28465p;
+    public g6 f28466q;
+    public float f28467r;
+    public ArrayList f28468s;
+    public TLRPC.WallPaper f28469t;
 
-    public static float[] a(float... fArr) {
-        if (fArr.length == 0) {
-            return new float[]{0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
-        }
-        return fArr.length == 1 ? new float[]{org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0])} : fArr.length == 2 ? new float[]{org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[1]), org.telegram.messenger.g0.L(fArr[1]), org.telegram.messenger.g0.L(fArr[1]), org.telegram.messenger.g0.L(fArr[1])} : fArr.length == 3 ? new float[]{org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[1]), org.telegram.messenger.g0.L(fArr[1]), org.telegram.messenger.g0.L(fArr[2]), org.telegram.messenger.g0.L(fArr[2]), org.telegram.messenger.g0.L(fArr[2]), org.telegram.messenger.g0.L(fArr[2])} : fArr.length < 8 ? new float[]{org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[1]), org.telegram.messenger.g0.L(fArr[1]), org.telegram.messenger.g0.L(fArr[2]), org.telegram.messenger.g0.L(fArr[2]), org.telegram.messenger.g0.L(fArr[3]), org.telegram.messenger.g0.L(fArr[3])} : new float[]{org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[1]), org.telegram.messenger.g0.L(fArr[2]), org.telegram.messenger.g0.L(fArr[3]), org.telegram.messenger.g0.L(fArr[4]), org.telegram.messenger.g0.L(fArr[5]), org.telegram.messenger.g0.L(fArr[6]), org.telegram.messenger.g0.L(fArr[7])};
+    public static void a(b6 b6Var) {
+        org.telegram.messenger.t0.f26600b.getSharedPreferences("themeconfig", 0).edit().remove(b6Var.b()).commit();
+        new File(org.telegram.messenger.t0.h(), b6Var.f28452a).delete();
+        new File(org.telegram.messenger.t0.h(), b6Var.f28453b).delete();
     }
 
-    public static int b(int i7) {
-        float f10;
-        float f11;
-        float f12;
-        if (f27356b == null) {
-            f27356b = new float[3];
+    public final String b() {
+        if (this.f28466q != null) {
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(this.f28465p.f28698a);
+            sb2.append("_");
+            return a8.p0.n(this.f28466q.f28602a, "_owp", sb2);
         }
-        Color.colorToHSV(i7, f27356b);
-        float[] fArr = f27356b;
-        float f13 = fArr[1];
-        if (f13 > 0.01f) {
-            if (m6.I.q()) {
-                f11 = 0.25f;
-            } else {
-                f11 = -0.25f;
-            }
-            fArr[1] = Math.min(1.0f, Math.max(0.0f, f13 + f11));
-            float[] fArr2 = f27356b;
-            float f14 = fArr2[2];
-            if (m6.I.q()) {
-                f12 = 0.05f;
-            } else {
-                f12 = -0.05f;
-            }
-            fArr2[2] = Math.min(1.0f, Math.max(0.0f, f14 + f12));
-        } else {
-            float f15 = fArr[2];
-            if (m6.I.q()) {
-                f10 = 0.1f;
-            } else {
-                f10 = -0.1f;
-            }
-            fArr[2] = Math.min(1.0f, Math.max(0.0f, f15 + f10));
-        }
-        return Color.HSVToColor(127, f27356b);
+        return a8.p0.s(new StringBuilder(), this.f28465p.f28698a, "_owp");
     }
 
-    public static org.telegram.ui.Cells.y c(a6 a6Var, int i7) {
-        ColorStateList colorStateList = new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i7});
-        ?? drawable = new Drawable();
-        drawable.f27320b = -1.0f;
-        if (a6.f27318c == null) {
-            Paint paint = new Paint(1);
-            a6.f27318c = paint;
-            paint.setColor(-1);
-        }
-        drawable.f27319a = a6.f27318c;
-        return new RippleDrawable(colorStateList, a6Var, drawable);
-    }
-
-    public static org.telegram.ui.Cells.y d(int i7, int i10, float... fArr) {
-        ShapeDrawable shapeDrawable;
-        ShapeDrawable shapeDrawable2;
-        if (i7 != 0) {
-            int i11 = 0;
-            while (true) {
-                if (i11 < Math.min(8, fArr.length)) {
-                    if (fArr[i11] > 0.0f) {
-                        ShapeDrawable shapeDrawable3 = new ShapeDrawable(new RoundRectShape(a(fArr), null, null));
-                        shapeDrawable3.getPaint().setColor(i7);
-                        shapeDrawable = shapeDrawable3;
-                        break;
-                    }
-                    i11++;
-                } else {
-                    shapeDrawable = new ColorDrawable(i7);
-                    break;
-                }
+    public final void c() {
+        try {
+            String b10 = b();
+            SharedPreferences.Editor edit = org.telegram.messenger.t0.f26600b.getSharedPreferences("themeconfig", 0).edit();
+            JSONObject jSONObject = new JSONObject();
+            jSONObject.put("wall", this.f28452a);
+            jSONObject.put("owall", this.f28453b);
+            jSONObject.put("pColor", this.d);
+            jSONObject.put("pGrColor", this.f28455e);
+            jSONObject.put("pGrColor2", this.f28456f);
+            jSONObject.put("pGrColor3", this.f28457g);
+            jSONObject.put("pGrAngle", this.h);
+            String str = this.f28454c;
+            if (str == null) {
+                str = "";
             }
-        } else {
-            shapeDrawable = null;
+            jSONObject.put("wallSlug", str);
+            jSONObject.put("wBlur", this.f28458i);
+            jSONObject.put("wMotion", this.f28459j);
+            jSONObject.put("pIntensity", this.f28460k);
+            edit.putString(b10, jSONObject.toString());
+            edit.commit();
+        } catch (Throwable th2) {
+            a8.g(th2, true);
         }
-        int i12 = 0;
-        while (true) {
-            if (i12 < Math.min(8, fArr.length)) {
-                if (fArr[i12] > 0.0f) {
-                    shapeDrawable2 = new ShapeDrawable(new RoundRectShape(a(fArr), null, null));
-                    shapeDrawable2.getPaint().setColor(-1);
-                    break;
-                }
-                i12++;
-            } else {
-                shapeDrawable2 = new ShapeDrawable(new RectShape());
-                shapeDrawable2.getPaint().setColor(-1);
-                break;
-            }
-        }
-        return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i10}), shapeDrawable, shapeDrawable2);
-    }
-
-    public static org.telegram.ui.Cells.y e(int i7, float... fArr) {
-        return d(i7, b(i7), fArr);
-    }
-
-    public static org.telegram.ui.Cells.y f(int i7, float... fArr) {
-        return e(m6.x0(null, i7, false), fArr);
     }
 }

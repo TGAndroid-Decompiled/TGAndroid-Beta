@@ -2,16 +2,16 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class u5 implements Runnable {
-    public final int f25736a;
-    public final z5 f25737b;
-    public final TLRPC.Document f25738c;
-    public final ij d;
+    public final int f26781a;
+    public final z5 f26782b;
+    public final TLRPC.Document f26783c;
+    public final gj d;
 
-    public u5(z5 z5Var, TLRPC.Document document, ij ijVar, int i7) {
-        this.f25736a = i7;
-        this.f25737b = z5Var;
-        this.f25738c = document;
-        this.d = ijVar;
+    public u5(z5 z5Var, TLRPC.Document document, gj gjVar, int i7) {
+        this.f26781a = i7;
+        this.f26782b = z5Var;
+        this.f26783c = document;
+        this.d = gjVar;
     }
 
     @Override

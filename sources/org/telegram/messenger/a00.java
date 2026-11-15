@@ -1,66 +1,25 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-public final class a00 {
-    public final String f21366b;
-    public int f21365a = 0;
-    public final ArrayList d = new ArrayList();
-    public final long f21367c = System.currentTimeMillis();
+public final class a00 implements Runnable {
+    public final int f22440a;
+    public final h00 f22441b;
+    public final long f22442c;
+    public final ArrayList d;
+    public final boolean f22443e;
+    public final long f22444f;
 
-    public a00(String str) {
-        this.f21366b = str;
+    public a00(h00 h00Var, long j3, ArrayList arrayList, boolean z10, long j10, int i7) {
+        this.f22440a = i7;
+        this.f22441b = h00Var;
+        this.f22442c = j3;
+        this.d = arrayList;
+        this.f22443e = z10;
+        this.f22444f = j10;
     }
 
-    public static void a(zz zzVar) {
-        if (zzVar != null) {
-            if (zzVar.f26953b < 0) {
-                a00 a00Var = zzVar.f26955e;
-                int i7 = a00Var.f21365a;
-                a00Var.f21365a = i7 - 1;
-                zzVar.d = i7;
-            }
-            zzVar.f26953b = System.currentTimeMillis();
-        }
-    }
-
-    public static void b(a00 a00Var) {
-        if (a00Var != null) {
-            ArrayList arrayList = a00Var.d;
-            long currentTimeMillis = System.currentTimeMillis() - a00Var.f21367c;
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append(a00Var.f21366b);
-            sb2.append(" total=");
-            sb2.append(currentTimeMillis);
-            sb2.append("ms\n");
-            for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                if (arrayList.get(i7) != null) {
-                    sb2.append("#");
-                    sb2.append(i7);
-                    int i10 = ((zz) arrayList.get(i7)).d;
-                    for (int i11 = 0; i11 < i10; i11++) {
-                        sb2.append(" ");
-                    }
-                    sb2.append(" ");
-                    sb2.append(arrayList.get(i7));
-                    sb2.append("\n");
-                }
-            }
-            a8.b(sb2.toString());
-        }
-    }
-
-    public static void c(a00 a00Var, String str) {
-        if (a00Var != null) {
-            a00Var.d.add(new zz(a00Var, str));
-        }
-    }
-
-    public static zz d(a00 a00Var, String str) {
-        if (a00Var != null) {
-            zz zzVar = new zz(a00Var, str);
-            a00Var.d.add(zzVar);
-            return zzVar;
-        }
-        return null;
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.a00.run():void");
     }
 }

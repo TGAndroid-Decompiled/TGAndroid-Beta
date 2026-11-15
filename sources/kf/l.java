@@ -1,11 +1,11 @@
 package kf;
 
-import c8.b1;
+import c8.d1;
 public final class l extends a {
-    public String f17277g;
+    public String f17836g;
 
     @Override
-    public final void a(b1 b1Var) {
-        b1Var.j(this);
+    public final void a(d1 d1Var) {
+        d1Var.j(this);
     }
 }

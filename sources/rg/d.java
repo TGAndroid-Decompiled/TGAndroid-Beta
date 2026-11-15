@@ -3,10 +3,10 @@ package rg;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
-import org.telegram.ui.Cells.z7;
-import org.telegram.ui.Components.pj0;
-public abstract class d extends pj0 {
-    public boolean f54546e3;
+import org.telegram.ui.Cells.y7;
+import org.telegram.ui.Components.uj0;
+public abstract class d extends uj0 {
+    public boolean f56018f3;
 
     @Override
     public final void J0(Canvas canvas, RectF rectF, long j3) {
@@ -20,9 +20,9 @@ public abstract class d extends pj0 {
                 if (rectF.intersects(x10, y10, childAt.getWidth() + x10, childAt.getHeight() + y10)) {
                     canvas.save();
                     canvas.translate(x10, y10);
-                    z7 z7Var = (z7) ((c) childAt);
-                    if (z7Var.L) {
-                        z7Var.b(canvas, this);
+                    y7 y7Var = (y7) ((c) childAt);
+                    if (y7Var.M) {
+                        y7Var.b(canvas, this);
                     }
                     canvas.restore();
                 }
@@ -32,15 +32,15 @@ public abstract class d extends pj0 {
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        this.f54546e3 = false;
+        this.f56018f3 = false;
         for (int i7 = 0; i7 < getChildCount(); i7++) {
             if (getChildAt(i7) instanceof c) {
                 c cVar = (c) getChildAt(i7);
                 canvas.save();
                 canvas.translate(cVar.getX(), cVar.getY());
-                z7 z7Var = (z7) cVar;
-                if (z7Var.L) {
-                    z7Var.b(canvas, this);
+                y7 y7Var = (y7) cVar;
+                if (y7Var.M) {
+                    y7Var.b(canvas, this);
                 }
                 canvas.restore();
             }
@@ -50,10 +50,10 @@ public abstract class d extends pj0 {
 
     @Override
     public final void invalidate() {
-        if (this.f54546e3) {
+        if (this.f56018f3) {
             return;
         }
         super.invalidate();
-        this.f54546e3 = true;
+        this.f56018f3 = true;
     }
 }

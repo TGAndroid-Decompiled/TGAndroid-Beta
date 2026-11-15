@@ -1,39 +1,40 @@
 package z3;
 
-import f3.j0;
-import h2.m0;
+import e2.u;
+import f3.i0;
+import h2.l0;
 import h2.x;
 public final class g {
-    public final j0 f59600a;
-    public u d;
-    public d f59603e;
-    public int f59604f;
-    public int f59605g;
+    public final i0 f60801a;
+    public t d;
+    public d f60804e;
+    public int f60805f;
+    public int f60806g;
     public int h;
-    public int f59606i;
-    public final e2.u f59607j;
-    public boolean f59610m;
-    public final t f59601b = new t();
-    public final x f59602c = new x();
-    public final x f59608k = new x(1);
-    public final x f59609l = new x();
+    public int f60807i;
+    public final u f60808j;
+    public boolean f60811m;
+    public final s f60802b = new s();
+    public final x f60803c = new x();
+    public final x f60809k = new x(1);
+    public final x f60810l = new x();
 
-    public g(j0 j0Var, u uVar, d dVar, e2.u uVar2) {
-        this.f59600a = j0Var;
-        this.d = uVar;
-        this.f59603e = dVar;
-        this.f59607j = uVar2;
-        this.d = uVar;
-        this.f59603e = dVar;
-        j0Var.g(uVar2);
+    public g(i0 i0Var, t tVar, d dVar, u uVar) {
+        this.f60801a = i0Var;
+        this.d = tVar;
+        this.f60804e = dVar;
+        this.f60808j = uVar;
+        this.d = tVar;
+        this.f60804e = dVar;
+        i0Var.g(uVar);
         e();
     }
 
     public final int a() {
         int i7;
-        if (!this.f59610m) {
-            i7 = this.d.f59711g[this.f59604f];
-        } else if (this.f59601b.f59698j[this.f59604f]) {
+        if (!this.f60811m) {
+            i7 = this.d.f60911g[this.f60805f];
+        } else if (this.f60802b.f60898j[this.f60805f]) {
             i7 = 1;
         } else {
             i7 = 0;
@@ -44,18 +45,18 @@ public final class g {
         return i7;
     }
 
-    public final s b() {
-        if (this.f59610m) {
-            t tVar = this.f59601b;
-            d dVar = tVar.f59691a;
-            String str = m0.f14114a;
-            int i7 = dVar.f59593a;
-            s sVar = tVar.f59701m;
-            if (sVar == null) {
-                sVar = this.d.f59706a.f59686l[i7];
+    public final r b() {
+        if (this.f60811m) {
+            s sVar = this.f60802b;
+            d dVar = sVar.f60891a;
+            String str = l0.f13471a;
+            int i7 = dVar.f60794a;
+            r rVar = sVar.f60901m;
+            if (rVar == null) {
+                rVar = this.d.f60906a.f60886l[i7];
             }
-            if (sVar != null && sVar.f59687a) {
-                return sVar;
+            if (rVar != null && rVar.f60887a) {
+                return rVar;
             }
             return null;
         }
@@ -63,74 +64,74 @@ public final class g {
     }
 
     public final boolean c() {
-        this.f59604f++;
-        if (!this.f59610m) {
+        this.f60805f++;
+        if (!this.f60811m) {
             return false;
         }
-        int i7 = this.f59605g + 1;
-        this.f59605g = i7;
-        int[] iArr = this.f59601b.f59696g;
+        int i7 = this.f60806g + 1;
+        this.f60806g = i7;
+        int[] iArr = this.f60802b.f60896g;
         int i10 = this.h;
         if (i7 != iArr[i10]) {
             return true;
         }
         this.h = i10 + 1;
-        this.f59605g = 0;
+        this.f60806g = 0;
         return false;
     }
 
     public final int d(int i7, int i10) {
         x xVar;
-        boolean z9;
         boolean z10;
+        boolean z11;
         int i11;
-        s b10 = b();
+        r b10 = b();
         if (b10 == null) {
             return 0;
         }
         int i12 = b10.d;
-        t tVar = this.f59601b;
+        s sVar = this.f60802b;
         if (i12 != 0) {
-            xVar = tVar.f59702n;
+            xVar = sVar.f60902n;
         } else {
-            byte[] bArr = b10.f59690e;
-            String str = m0.f14114a;
+            byte[] bArr = b10.f60890e;
+            String str = l0.f13471a;
             int length = bArr.length;
-            x xVar2 = this.f59609l;
+            x xVar2 = this.f60810l;
             xVar2.L(length, bArr);
             i12 = bArr.length;
             xVar = xVar2;
         }
-        int i13 = this.f59604f;
-        if (tVar.f59699k && tVar.f59700l[i13]) {
-            z9 = true;
-        } else {
-            z9 = false;
-        }
-        if (!z9 && i10 == 0) {
-            z10 = false;
-        } else {
+        int i13 = this.f60805f;
+        if (sVar.f60899k && sVar.f60900l[i13]) {
             z10 = true;
+        } else {
+            z10 = false;
         }
-        x xVar3 = this.f59608k;
-        byte[] bArr2 = xVar3.f14164a;
-        if (z10) {
+        if (!z10 && i10 == 0) {
+            z11 = false;
+        } else {
+            z11 = true;
+        }
+        x xVar3 = this.f60809k;
+        byte[] bArr2 = xVar3.f13521a;
+        if (z11) {
             i11 = 128;
         } else {
             i11 = 0;
         }
         bArr2[0] = (byte) (i11 | i12);
         xVar3.N(0);
-        j0 j0Var = this.f59600a;
-        j0Var.a(xVar3, 1, 1);
-        j0Var.a(xVar, i12, 1);
-        if (!z10) {
+        i0 i0Var = this.f60801a;
+        i0Var.a(xVar3, 1, 1);
+        i0Var.a(xVar, i12, 1);
+        if (!z11) {
             return i12 + 1;
         }
-        x xVar4 = this.f59602c;
-        if (!z9) {
+        x xVar4 = this.f60803c;
+        if (!z10) {
             xVar4.K(8);
-            byte[] bArr3 = xVar4.f14164a;
+            byte[] bArr3 = xVar4.f13521a;
             bArr3[0] = 0;
             bArr3[1] = 1;
             bArr3[2] = (byte) 0;
@@ -139,16 +140,16 @@ public final class g {
             bArr3[5] = (byte) ((i7 >> 16) & 255);
             bArr3[6] = (byte) ((i7 >> 8) & 255);
             bArr3[7] = (byte) (i7 & 255);
-            j0Var.a(xVar4, 8, 1);
+            i0Var.a(xVar4, 8, 1);
             return i12 + 9;
         }
-        x xVar5 = tVar.f59702n;
+        x xVar5 = sVar.f60902n;
         int H = xVar5.H();
         xVar5.O(-2);
         int i14 = (H * 6) + 2;
         if (i10 != 0) {
             xVar4.K(i14);
-            byte[] bArr4 = xVar4.f14164a;
+            byte[] bArr4 = xVar4.f13521a;
             xVar5.k(0, i14, bArr4);
             int i15 = (((bArr4[2] & 255) << 8) | (bArr4[3] & 255)) + i10;
             bArr4[2] = (byte) ((i15 >> 8) & 255);
@@ -156,22 +157,22 @@ public final class g {
         } else {
             xVar4 = xVar5;
         }
-        j0Var.a(xVar4, i14, 1);
+        i0Var.a(xVar4, i14, 1);
         return i12 + 1 + i14;
     }
 
     public final void e() {
-        t tVar = this.f59601b;
-        tVar.d = 0;
-        tVar.f59704p = 0L;
-        tVar.f59705q = false;
-        tVar.f59699k = false;
-        tVar.f59703o = false;
-        tVar.f59701m = null;
-        this.f59604f = 0;
+        s sVar = this.f60802b;
+        sVar.d = 0;
+        sVar.f60904p = 0L;
+        sVar.f60905q = false;
+        sVar.f60899k = false;
+        sVar.f60903o = false;
+        sVar.f60901m = null;
+        this.f60805f = 0;
         this.h = 0;
-        this.f59605g = 0;
-        this.f59606i = 0;
-        this.f59610m = false;
+        this.f60806g = 0;
+        this.f60807i = 0;
+        this.f60811m = false;
     }
 }

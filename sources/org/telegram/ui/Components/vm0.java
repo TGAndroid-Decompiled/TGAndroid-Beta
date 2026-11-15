@@ -1,25 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.LinearLayout;
-public final class vm0 extends LinearLayout {
-    public final int f39054a;
-    public final int f39055b;
-
-    public vm0(Context context, int i7, int i10) {
-        super(context);
-        this.f39054a = i7;
-        this.f39055b = i10;
-    }
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+public final class vm0 extends jb {
+    public int f40464c;
 
     @Override
-    public final int getSuggestedMinimumWidth() {
-        return org.telegram.messenger.g0.L(260.0f);
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i7), this.f39054a), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), this.f39055b), View.MeasureSpec.getMode(i10)));
+    public final void updateColors() {
+        super.updateColors();
+        try {
+            int themedColor = getThemedColor(org.telegram.ui.ActionBar.j6.yj);
+            i9 i9Var = this.f35959a;
+            if (i9Var != null && themedColor != this.f40464c) {
+                this.f40464c = themedColor;
+                i9Var.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.SRC_IN));
+            }
+            invalidate();
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+        }
     }
 }

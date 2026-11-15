@@ -5,15 +5,15 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 public class AuthenticatorService extends Service {
-    public static w0 f21171a;
+    public static w0 f22245a;
 
     @Override
     public final IBinder onBind(Intent intent) {
         if (intent.getAction().equals("android.accounts.AccountAuthenticator")) {
-            if (f21171a == null) {
-                f21171a = new AbstractAccountAuthenticator(this);
+            if (f22245a == null) {
+                f22245a = new AbstractAccountAuthenticator(this);
             }
-            return f21171a.getIBinder();
+            return f22245a.getIBinder();
         }
         return null;
     }

@@ -1,15 +1,22 @@
 package org.telegram.ui;
 
-import j$.util.function.Consumer$CC;
-import java.util.function.Consumer;
-public final class s80 implements Consumer {
-    @Override
-    public final void accept(Object obj) {
-        ((Boolean) obj).getClass();
-        String str = LaunchActivity.B1;
+import android.view.View;
+public final class s80 implements View.OnAttachStateChangeListener {
+    public final LaunchActivity f51149a;
+
+    public s80(LaunchActivity launchActivity) {
+        this.f51149a = launchActivity;
     }
 
-    public Consumer andThen(Consumer consumer) {
-        return Consumer$CC.$default$andThen(this, consumer);
+    @Override
+    public final void onViewAttachedToWindow(View view) {
+        LaunchActivity launchActivity = this.f51149a;
+        launchActivity.getWindowManager().addCrossWindowBlurEnabledListener(launchActivity.f42629d1);
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        LaunchActivity launchActivity = this.f51149a;
+        launchActivity.getWindowManager().removeCrossWindowBlurEnabledListener(launchActivity.f42629d1);
     }
 }

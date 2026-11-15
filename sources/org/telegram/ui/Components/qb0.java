@@ -9,47 +9,47 @@ import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import java.util.HashSet;
-public final class qb0 extends HorizontalScrollView implements org.telegram.ui.ActionBar.c6 {
-    public int D;
+public final class qb0 extends HorizontalScrollView implements org.telegram.ui.ActionBar.z5 {
     public int E;
     public int F;
     public int G;
-    public final org.telegram.ui.ActionBar.h6 H;
-    public int I;
-    public final v5 J;
-    public final v5 K;
-    public final LinearLayout.LayoutParams f37232a;
-    public final di.o5 f37233b;
-    public c5.g f37234c;
+    public int H;
+    public final org.telegram.ui.ActionBar.e6 I;
+    public int J;
+    public final u5 K;
+    public final u5 L;
+    public final LinearLayout.LayoutParams f38615a;
+    public final fi.f5 f38616b;
+    public c5.h f38617c;
     public final LinearLayout d;
-    public c5.k f37235e;
-    public int f37236f;
+    public c5.l f38618e;
+    public int f38619f;
     public int h;
-    public float f37237n;
-    public final Paint f37238r;
-    public int f37239s;
-    public int f37240w;
-    public boolean f37241x;
-    public int f37242y;
+    public float f38620n;
+    public final Paint f38621r;
+    public int f38622s;
+    public int f38623w;
+    public boolean f38624x;
+    public int f38625y;
 
-    public qb0(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+    public qb0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f37233b = new di.o5(1, this);
+        this.f38616b = new fi.f5(1, this);
         this.h = 0;
-        this.f37237n = 0.0f;
-        this.f37239s = -10066330;
-        this.f37240w = 436207616;
-        this.f37241x = false;
-        this.f37242y = org.telegram.messenger.g0.L(52.0f);
-        this.D = org.telegram.messenger.g0.L(8.0f);
-        this.E = org.telegram.messenger.g0.L(2.0f);
-        this.F = org.telegram.messenger.g0.L(12.0f);
-        this.G = org.telegram.messenger.g0.L(24.0f);
-        this.I = 0;
-        wq wqVar = wq.h;
-        this.J = new v5(this, 350L, wqVar);
-        this.K = new v5(this, 350L, wqVar);
-        this.H = h6Var;
+        this.f38620n = 0.0f;
+        this.f38622s = -10066330;
+        this.f38623w = 436207616;
+        this.f38624x = false;
+        this.f38625y = org.telegram.messenger.g0.L(52.0f);
+        this.E = org.telegram.messenger.g0.L(8.0f);
+        this.F = org.telegram.messenger.g0.L(2.0f);
+        this.G = org.telegram.messenger.g0.L(12.0f);
+        this.H = org.telegram.messenger.g0.L(24.0f);
+        this.J = 0;
+        er erVar = er.h;
+        this.K = new u5(this, 350L, erVar);
+        this.L = new u5(this, 350L, erVar);
+        this.I = e6Var;
         setFillViewport(true);
         setWillNotDraw(false);
         LinearLayout linearLayout = new LinearLayout(context);
@@ -58,21 +58,21 @@ public final class qb0 extends HorizontalScrollView implements org.telegram.ui.A
         linearLayout.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
         addView(linearLayout);
         Paint paint = new Paint();
-        this.f37238r = paint;
+        this.f38621r = paint;
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL);
-        this.f37232a = new LinearLayout.LayoutParams(-2, -1);
+        this.f38615a = new LinearLayout.LayoutParams(-2, -1);
     }
 
     public static void a(qb0 qb0Var, int i7, int i10) {
         View childAt;
-        if (qb0Var.f37236f != 0 && (childAt = qb0Var.d.getChildAt(i7)) != null) {
+        if (qb0Var.f38619f != 0 && (childAt = qb0Var.d.getChildAt(i7)) != null) {
             int left = childAt.getLeft() + i10;
             if (i7 > 0 || i10 > 0) {
-                left -= qb0Var.f37242y;
+                left -= qb0Var.f38625y;
             }
-            if (left != qb0Var.I) {
-                qb0Var.I = left;
+            if (left != qb0Var.J) {
+                qb0Var.J = left;
                 qb0Var.scrollTo(left, 0);
             }
         }
@@ -80,36 +80,36 @@ public final class qb0 extends HorizontalScrollView implements org.telegram.ui.A
 
     public final void b(int i7, CharSequence charSequence) {
         pb0 pb0Var = new pb0(this, getContext(), i7);
-        boolean z9 = true;
+        boolean z10 = true;
         pb0Var.setTextSize(1, 14.0f);
         pb0Var.setTypeface(org.telegram.messenger.g0.o());
         pb0Var.setTextColor(c(0.6f));
         pb0Var.setFocusable(true);
         pb0Var.setGravity(17);
         pb0Var.setText(charSequence);
-        c8.ka.b(pb0Var, 0.025f, 1.2f);
-        pb0Var.setOnClickListener(new ai.v(this, i7, 15));
+        c8.na.b(pb0Var, 0.025f, 1.2f);
+        pb0Var.setOnClickListener(new ci.q(this, i7, 15));
         pb0Var.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), 0);
-        this.d.addView(pb0Var, c8.ha.k(10.0f, 0.0f, 10.0f, 0.0f, -2, -2));
+        this.d.addView(pb0Var, c8.ja.k(10.0f, 0.0f, 10.0f, 0.0f, -2, -2));
         if (i7 != this.h) {
-            z9 = false;
+            z10 = false;
         }
-        pb0Var.setSelected(z9);
+        pb0Var.setSelected(z10);
     }
 
     public final int c(float f10) {
-        return i0.a.o(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Kl, this.H), (int) (f10 * 255.0f));
+        return i0.a.o(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Nl, this.I), (int) (f10 * 255.0f));
     }
 
     public final void d() {
         this.d.removeAllViews();
-        this.f37236f = this.f37235e.getAdapter().b();
-        for (int i7 = 0; i7 < this.f37236f; i7++) {
-            if (this.f37235e.getAdapter() instanceof zw) {
-                ((zw) this.f37235e.getAdapter()).getClass();
-                b(i7, this.f37235e.getAdapter().d(i7));
+        this.f38619f = this.f38618e.getAdapter().b();
+        for (int i7 = 0; i7 < this.f38619f; i7++) {
+            if (this.f38618e.getAdapter() instanceof fx) {
+                ((fx) this.f38618e.getAdapter()).getClass();
+                b(i7, this.f38618e.getAdapter().d(i7));
             } else {
-                b(i7, this.f37235e.getAdapter().d(i7));
+                b(i7, this.f38618e.getAdapter().d(i7));
             }
         }
         e();
@@ -118,14 +118,14 @@ public final class qb0 extends HorizontalScrollView implements org.telegram.ui.A
 
     public final void e() {
         float f10;
-        for (int i7 = 0; i7 < this.f37236f; i7++) {
+        for (int i7 = 0; i7 < this.f38619f; i7++) {
             View childAt = this.d.getChildAt(i7);
-            childAt.setLayoutParams(this.f37232a);
-            if (this.f37241x) {
+            childAt.setLayoutParams(this.f38615a);
+            if (this.f38624x) {
                 childAt.setPadding(0, 0, 0, 0);
                 childAt.setLayoutParams(new LinearLayout.LayoutParams(-1, -1, 1.0f));
-            } else if (this.f37235e.getAdapter() instanceof zw) {
-                ((zw) this.f37235e.getAdapter()).getClass();
+            } else if (this.f38618e.getAdapter() instanceof fx) {
+                ((fx) this.f38618e.getAdapter()).getClass();
                 if (i7 == 1) {
                     f10 = 12.0f;
                 } else {
@@ -134,42 +134,42 @@ public final class qb0 extends HorizontalScrollView implements org.telegram.ui.A
                 int L = org.telegram.messenger.g0.L(f10);
                 childAt.setPadding(L, 0, L, 0);
             } else {
-                int i10 = this.G;
+                int i10 = this.H;
                 childAt.setPadding(i10, 0, i10, 0);
             }
         }
     }
 
     public int getDividerPadding() {
-        return this.F;
-    }
-
-    public int getIndicatorColor() {
-        return this.f37239s;
-    }
-
-    public int getIndicatorHeight() {
-        return this.D;
-    }
-
-    public int getScrollOffset() {
-        return this.f37242y;
-    }
-
-    public boolean getShouldExpand() {
-        return this.f37241x;
-    }
-
-    public int getTabPaddingLeftRight() {
         return this.G;
     }
 
+    public int getIndicatorColor() {
+        return this.f38622s;
+    }
+
+    public int getIndicatorHeight() {
+        return this.E;
+    }
+
+    public int getScrollOffset() {
+        return this.f38625y;
+    }
+
+    public boolean getShouldExpand() {
+        return this.f38624x;
+    }
+
+    public int getTabPaddingLeftRight() {
+        return this.H;
+    }
+
     public int getUnderlineColor() {
-        return this.f37240w;
+        return this.f38623w;
     }
 
     public int getUnderlineHeight() {
-        return this.E;
+        return this.F;
     }
 
     @Override
@@ -177,48 +177,48 @@ public final class qb0 extends HorizontalScrollView implements org.telegram.ui.A
         float e10;
         float e11;
         int i7;
-        if (!isInEditMode() && this.f37236f != 0) {
+        if (!isInEditMode() && this.f38619f != 0) {
             int height = getHeight();
-            int i10 = this.E;
+            int i10 = this.F;
             LinearLayout linearLayout = this.d;
-            Paint paint = this.f37238r;
+            Paint paint = this.f38621r;
             if (i10 != 0) {
-                paint.setColor(this.f37240w);
+                paint.setColor(this.f38623w);
                 RectF rectF = org.telegram.messenger.g0.P;
-                rectF.set(0.0f, height - this.E, linearLayout.getWidth(), height);
-                float f10 = this.E / 2.0f;
+                rectF.set(0.0f, height - this.F, linearLayout.getWidth(), height);
+                float f10 = this.F / 2.0f;
                 canvas.drawRoundRect(rectF, f10, f10, paint);
             }
             View childAt = linearLayout.getChildAt(this.h);
             if (childAt != null) {
                 float paddingLeft = childAt.getPaddingLeft() + childAt.getLeft();
                 float right = childAt.getRight() - childAt.getPaddingRight();
-                int i11 = (this.f37237n > 0.0f ? 1 : (this.f37237n == 0.0f ? 0 : -1));
-                v5 v5Var = this.K;
-                v5 v5Var2 = this.J;
-                if (i11 > 0 && (i7 = this.h) < this.f37236f - 1) {
+                int i11 = (this.f38620n > 0.0f ? 1 : (this.f38620n == 0.0f ? 0 : -1));
+                u5 u5Var = this.L;
+                u5 u5Var2 = this.K;
+                if (i11 > 0 && (i7 = this.h) < this.f38619f - 1) {
                     View childAt2 = linearLayout.getChildAt(i7 + 1);
                     float paddingLeft2 = childAt2.getPaddingLeft() + childAt2.getLeft();
-                    float f11 = this.f37237n;
+                    float f11 = this.f38620n;
                     float f12 = 1.0f - f11;
                     e10 = (paddingLeft * f12) + (paddingLeft2 * f11);
                     e11 = (f12 * right) + (f11 * (childAt2.getRight() - childAt2.getPaddingRight()));
-                    v5Var2.e(true, e10);
-                    v5Var.e(true, e11);
+                    u5Var2.e(true, e10);
+                    u5Var.e(true, e11);
                     if (childAt instanceof pb0) {
                         pb0 pb0Var = (pb0) childAt;
-                        pb0Var.setTextColor(pb0Var.f36884a.c(org.telegram.messenger.g0.T1(0.6f, 0.8f, 1.0f - this.f37237n)));
+                        pb0Var.setTextColor(pb0Var.f38263a.c(org.telegram.messenger.g0.T1(0.6f, 0.8f, 1.0f - this.f38620n)));
                     }
                     if (childAt2 instanceof pb0) {
                         pb0 pb0Var2 = (pb0) childAt2;
-                        pb0Var2.setTextColor(pb0Var2.f36884a.c(org.telegram.messenger.g0.T1(0.6f, 0.8f, this.f37237n)));
+                        pb0Var2.setTextColor(pb0Var2.f38263a.c(org.telegram.messenger.g0.T1(0.6f, 0.8f, this.f38620n)));
                     }
                 } else {
-                    e10 = v5Var2.e(false, paddingLeft);
-                    e11 = v5Var.e(false, right);
+                    e10 = u5Var2.e(false, paddingLeft);
+                    e11 = u5Var.e(false, right);
                 }
-                if (this.D != 0) {
-                    paint.setColor(this.f37239s);
+                if (this.E != 0) {
+                    paint.setColor(this.f38622s);
                     RectF rectF2 = org.telegram.messenger.g0.P;
                     rectF2.set(e10 - org.telegram.messenger.g0.L(11.0f), getPaddingTop(), e11 + org.telegram.messenger.g0.L(11.0f), height - getPaddingBottom());
                     rectF2.offset(getPaddingLeft(), 0.0f);
@@ -234,78 +234,78 @@ public final class qb0 extends HorizontalScrollView implements org.telegram.ui.A
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        if (this.f37241x && View.MeasureSpec.getMode(i7) != 0) {
+        if (this.f38624x && View.MeasureSpec.getMode(i7) != 0) {
             this.d.measure(getMeasuredWidth() | 1073741824, i10);
         }
     }
 
     @Override
     public final void onSizeChanged(int i7, int i10, int i11, int i12) {
-        if (!this.f37241x) {
-            post(new ob0(this, 0));
+        if (!this.f38624x) {
+            post(new wa0(this, 2));
         }
     }
 
     public void setDividerPadding(int i7) {
-        this.F = i7;
+        this.G = i7;
         invalidate();
     }
 
     public void setIndicatorColor(int i7) {
-        this.f37239s = i7;
+        this.f38622s = i7;
         invalidate();
     }
 
     public void setIndicatorColorResource(int i7) {
-        this.f37239s = getResources().getColor(i7);
+        this.f38622s = getResources().getColor(i7);
         invalidate();
     }
 
     public void setIndicatorHeight(int i7) {
-        this.D = i7;
+        this.E = i7;
         invalidate();
     }
 
-    public void setOnPageChangeListener(c5.g gVar) {
-        this.f37234c = gVar;
+    public void setOnPageChangeListener(c5.h hVar) {
+        this.f38617c = hVar;
     }
 
     public void setScrollOffset(int i7) {
-        this.f37242y = i7;
+        this.f38625y = i7;
         invalidate();
     }
 
-    public void setShouldExpand(boolean z9) {
-        this.f37241x = z9;
+    public void setShouldExpand(boolean z10) {
+        this.f38624x = z10;
         this.d.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
         e();
         requestLayout();
     }
 
     public void setTabPaddingLeftRight(int i7) {
-        this.G = i7;
+        this.H = i7;
         e();
     }
 
     public void setUnderlineColor(int i7) {
-        this.f37240w = i7;
+        this.f38623w = i7;
         invalidate();
     }
 
     public void setUnderlineColorResource(int i7) {
-        this.f37240w = getResources().getColor(i7);
+        this.f38623w = getResources().getColor(i7);
         invalidate();
     }
 
     public void setUnderlineHeight(int i7) {
-        this.E = i7;
+        this.F = i7;
         invalidate();
     }
 
-    public void setViewPager(c5.k kVar) {
-        this.f37235e = kVar;
-        if (kVar.getAdapter() != null) {
-            kVar.setOnPageChangeListener(this.f37233b);
+    public void setViewPager(c5.l lVar) {
+        this.f38618e = lVar;
+        if (lVar.getAdapter() != null) {
+            lVar.setOnPageChangeListener(this.f38616b);
             d();
             return;
         }

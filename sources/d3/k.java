@@ -5,52 +5,52 @@ import android.os.Message;
 import android.os.SystemClock;
 import android.view.Surface;
 import e2.x1;
-import h2.m0;
+import h2.l0;
 public final class k implements Handler.Callback {
-    public final Handler f8033a;
-    public final l f8034b;
+    public final Handler f7419a;
+    public final l f7420b;
 
     public k(l lVar, u2.l lVar2) {
-        this.f8034b = lVar;
-        Handler q10 = m0.q(this);
-        this.f8033a = q10;
-        lVar2.h(this, q10);
+        this.f7420b = lVar;
+        Handler q10 = l0.q(this);
+        this.f7419a = q10;
+        lVar2.k(this, q10);
     }
 
     public final void a(long j3) {
-        boolean z9;
+        boolean z10;
         Surface surface;
-        l lVar = this.f8034b;
-        wf.b bVar = lVar.f8036b1;
-        if (this == lVar.M1 && lVar.f56293d0 != null) {
+        l lVar = this.f7420b;
+        wf.b bVar = lVar.f7423c1;
+        if (this == lVar.N1 && lVar.f57793e0 != null) {
             if (j3 == Long.MAX_VALUE) {
-                lVar.M0 = true;
+                lVar.N0 = true;
                 return;
             }
             try {
                 lVar.C0(j3);
-                x1 x1Var = lVar.H1;
-                if (!x1Var.equals(x1.d) && !x1Var.equals(lVar.I1)) {
-                    lVar.I1 = x1Var;
-                    bVar.m0(x1Var);
+                x1 x1Var = lVar.I1;
+                if (!x1Var.equals(x1.d) && !x1Var.equals(lVar.J1)) {
+                    lVar.J1 = x1Var;
+                    bVar.V(x1Var);
                 }
-                lVar.O0.f17780e++;
-                y yVar = lVar.f8039e1;
-                if (yVar.f8101e != 3) {
-                    z9 = true;
+                lVar.P0.f18913e++;
+                x xVar = lVar.f7426f1;
+                if (xVar.f7481e != 3) {
+                    z10 = true;
                 } else {
-                    z9 = false;
+                    z10 = false;
                 }
-                yVar.f8101e = 3;
-                yVar.f8107l.getClass();
-                yVar.f8103g = m0.S(SystemClock.elapsedRealtime());
-                if (z9 && (surface = lVar.f8050r1) != null) {
-                    bVar.g0(surface);
-                    lVar.f8053u1 = true;
+                xVar.f7481e = 3;
+                xVar.f7487l.getClass();
+                xVar.f7483g = l0.S(SystemClock.elapsedRealtime());
+                if (z10 && (surface = lVar.f7437s1) != null) {
+                    bVar.O(surface);
+                    lVar.f7440v1 = true;
                 }
                 lVar.h0(j3);
             } catch (l2.l e10) {
-                lVar.N0 = e10;
+                lVar.O0 = e10;
             }
         }
     }
@@ -62,7 +62,7 @@ public final class k implements Handler.Callback {
         }
         int i7 = message.arg1;
         int i10 = message.arg2;
-        String str = m0.f14114a;
+        String str = l0.f13471a;
         a(((i7 & 4294967295L) << 32) | (4294967295L & i10));
         return true;
     }

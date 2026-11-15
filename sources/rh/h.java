@@ -3,244 +3,244 @@ package rh;
 import android.graphics.Typeface;
 import android.provider.Settings;
 import android.view.View;
-import m4.d0;
+import hi.g7;
+import ji.j;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.t0;
 import org.telegram.ui.ActionBar.i1;
-import org.telegram.ui.ActionBar.p5;
-import org.telegram.ui.Components.hz;
+import org.telegram.ui.Components.lz;
 import r0.h1;
 import r0.k1;
 import te.k;
 import te.l;
 public class h implements f, e, c {
-    public d D;
-    public View E;
-    public int F;
+    public d E;
+    public View F;
     public int G;
-    public final te.c f54557a;
-    public final k f54558b = new k(0.0f);
-    public final l f54559c = new l();
+    public int H;
+    public final te.c f56029a;
+    public final k f56030b = new k(0.0f);
+    public final l f56031c = new l();
     public final l d = new l();
-    public final h2.f f54560e = new h2.f((int[]) null);
-    public final hz f54561f;
+    public final h2.f f56032e = new h2.f((int[]) null);
+    public final lz f56033f;
     public final Runnable h;
-    public boolean f54562n;
-    public k1 f54563r;
-    public int f54564s;
-    public int f54565w;
-    public int f54566x;
-    public final g f54567y;
+    public boolean f56034n;
+    public k1 f56035r;
+    public int f56036s;
+    public int f56037w;
+    public int f56038x;
+    public final g f56039y;
 
     public h(Runnable runnable) {
-        ii.c cVar = new ii.c(this, 19);
+        g7 g7Var = new g7(this, 24);
         ?? obj = new Object();
-        obj.f34486c = b.f54547a;
-        obj.d = new p5(obj, 22);
-        obj.f34485b = cVar;
-        Typeface typeface = g0.f22539a;
+        obj.f37017c = b.f56019a;
+        obj.d = new q2.d(obj, 4);
+        obj.f37016b = g7Var;
+        Typeface typeface = g0.f23581a;
         float f10 = 1.0f;
         try {
-            f10 = Settings.Global.getFloat(t0.f25570b.getContentResolver(), "animator_duration_scale", 1.0f);
+            f10 = Settings.Global.getFloat(t0.f26600b.getContentResolver(), "animator_duration_scale", 1.0f);
         } catch (Exception unused) {
         }
-        obj.f34484a = f10 * 250.0f * 1.1f;
-        this.f54561f = obj;
-        this.f54564s = 1;
-        this.f54567y = new g(this, 0);
+        obj.f37015a = f10 * 250.0f * 1.1f;
+        this.f56033f = obj;
+        this.f56036s = 1;
+        this.f56039y = new g(this, 0);
         this.h = runnable;
-        this.f54557a = new te.c(0, new d0(this, runnable, false), i1.f27527w, 250L);
+        this.f56029a = new te.c(0, new j(this, runnable, false, 27), i1.f28644w, 250L);
     }
 
     @Override
-    public final void P() {
-        View view = this.E;
+    public final void Q() {
+        View view = this.F;
         if (view != null) {
             view.postOnAnimation(new g(this, 1));
         }
     }
 
     @Override
-    public final View R() {
-        return this.E;
+    public final View S() {
+        return this.F;
     }
 
     public final void a() {
-        boolean z9 = this.f54557a.h;
-        boolean z10 = this.f54562n;
-        h2.f fVar = this.f54560e;
-        if (!z10 && z9) {
-            this.f54562n = true;
+        boolean z10 = this.f56029a.h;
+        boolean z11 = this.f56034n;
+        h2.f fVar = this.f56032e;
+        if (!z11 && z10) {
+            this.f56034n = true;
             fVar.d();
         }
-        if (this.f54562n && !z9) {
-            this.f54562n = false;
+        if (this.f56034n && !z10) {
+            this.f56034n = false;
             fVar.e();
         }
     }
 
     public final float c() {
-        d dVar = this.D;
+        d dVar = this.E;
         l lVar = this.d;
-        if (dVar != null && this.G > 0) {
-            return Math.max(this.F, lVar.d.f55524a);
+        if (dVar != null && this.H > 0) {
+            return Math.max(this.G, lVar.d.f57107a);
         }
-        return lVar.d.f55524a;
+        return lVar.d.f57107a;
     }
 
     public final float d() {
-        d dVar = this.D;
-        l lVar = this.f54559c;
-        if (dVar != null && this.G > 0) {
-            return Math.max(this.F, lVar.d.f55524a);
+        d dVar = this.E;
+        l lVar = this.f56031c;
+        if (dVar != null && this.H > 0) {
+            return Math.max(this.G, lVar.d.f57107a);
         }
-        return lVar.d.f55524a;
+        return lVar.d.f57107a;
     }
 
     public final int e() {
-        if (this.D != null && this.G > 0) {
-            return Math.max(this.F, Math.max(f(527).d, this.f54565w));
+        if (this.E != null && this.H > 0) {
+            return Math.max(this.G, Math.max(f(527).d, this.f56037w));
         }
-        return Math.max(f(527).d, this.f54565w);
+        return Math.max(f(527).d, this.f56037w);
     }
 
-    public final i0.b f(int i7) {
-        k1 k1Var = this.f54563r;
+    public final i0.c f(int i7) {
+        k1 k1Var = this.f56035r;
         if (k1Var != null) {
-            return k1Var.f54213a.f(i7);
+            return k1Var.f55682a.f(i7);
         }
-        return i0.b.f15121e;
+        return i0.c.f15573e;
     }
 
     public final void g(int i7) {
-        if (this.f54565w == i7 && this.f54564s == 0) {
+        if (this.f56037w == i7 && this.f56036s == 0) {
             return;
         }
-        g0.r(this.f54567y);
-        this.f54566x = Math.max(this.f54565w, i7);
-        this.f54565w = i7;
-        this.f54564s = 0;
-        j(this.f54563r);
+        g0.r(this.f56039y);
+        this.f56038x = Math.max(this.f56037w, i7);
+        this.f56037w = i7;
+        this.f56036s = 0;
+        j(this.f56035r);
     }
 
     public final void h(int i7) {
         if (i7 > 0) {
-            g(i7 + g0.f22562n);
+            g(i7 + g0.f23604n);
         } else {
             i(true);
         }
     }
 
-    public final void i(boolean z9) {
+    public final void i(boolean z10) {
         int i7;
-        if (this.f54565w != 0) {
-            g gVar = this.f54567y;
+        if (this.f56037w != 0) {
+            g gVar = this.f56039y;
             g0.r(gVar);
-            if (z9) {
+            if (z10) {
                 i7 = 3;
             } else {
                 i7 = 2;
             }
-            this.f54564s = i7;
-            j(this.f54563r);
-            if (z9) {
+            this.f56036s = i7;
+            j(this.f56035r);
+            if (z10) {
                 g0.i3(gVar, 1000L);
             }
         }
     }
 
     public final void j(k1 k1Var) {
-        boolean z9;
-        if (this.f54563r != null) {
-            z9 = true;
-        } else {
-            z9 = false;
-        }
-        k(k1Var, z9);
-    }
-
-    public final void k(k1 k1Var, boolean z9) {
-        i0.b bVar;
         boolean z10;
-        b bVar2;
-        float f10;
-        int i7;
-        te.c cVar;
-        float f11;
-        k1 b10 = b(k1Var);
-        this.f54563r = b10;
-        i0.b bVar3 = i0.b.f15121e;
-        if (b10 != null) {
-            h1 h1Var = b10.f54213a;
-            bVar = i0.b.a(h1Var.f(647), h1Var.g(647));
-        } else {
-            bVar = bVar3;
-        }
-        if (b10 != null) {
-            bVar3 = b10.f54213a.f(8);
-        }
-        hz hzVar = this.f54561f;
-        b bVar4 = (b) hzVar.f34486c;
-        if (bVar3.d > 0) {
+        if (this.f56035r != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (!z9) {
-            if (z10) {
-                bVar2 = b.d;
-            } else {
-                bVar2 = b.f54547a;
-            }
-        } else if (z10) {
-            bVar2 = b.f54549c;
+        k(k1Var, z10);
+    }
+
+    public final void k(k1 k1Var, boolean z10) {
+        i0.c cVar;
+        boolean z11;
+        b bVar;
+        float f10;
+        int i7;
+        te.c cVar2;
+        float f11;
+        k1 b10 = b(k1Var);
+        this.f56035r = b10;
+        i0.c cVar3 = i0.c.f15573e;
+        if (b10 != null) {
+            h1 h1Var = b10.f55682a;
+            cVar = i0.c.a(h1Var.f(647), h1Var.g(647));
         } else {
-            bVar2 = b.f54548b;
+            cVar = cVar3;
         }
-        if (bVar4 != bVar2) {
-            hzVar.a(bVar2, false);
+        if (b10 != null) {
+            cVar3 = b10.f55682a.f(8);
         }
-        int i10 = this.f54564s;
+        lz lzVar = this.f56033f;
+        b bVar2 = (b) lzVar.f37017c;
+        if (cVar3.d > 0) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        if (!z10) {
+            if (z11) {
+                bVar = b.d;
+            } else {
+                bVar = b.f56019a;
+            }
+        } else if (z11) {
+            bVar = b.f56021c;
+        } else {
+            bVar = b.f56020b;
+        }
+        if (bVar2 != bVar) {
+            lzVar.a(bVar, false);
+        }
+        int i10 = this.f56036s;
         if (i10 == 2) {
-            this.f54565w = 0;
+            this.f56037w = 0;
         }
-        if (i10 == 3 && bVar3.d > 0) {
-            this.f54565w = 0;
+        if (i10 == 3 && cVar3.d > 0) {
+            this.f56037w = 0;
         }
-        i0.b a10 = i0.b.a(bVar3, i0.b.b(0, 0, 0, this.f54565w));
-        int i11 = a10.f15124c;
-        int i12 = a10.f15123b;
-        int i13 = a10.f15122a;
+        i0.c a10 = i0.c.a(cVar3, i0.c.b(0, 0, 0, this.f56037w));
+        int i11 = a10.f15576c;
+        int i12 = a10.f15575b;
+        int i13 = a10.f15574a;
         int i14 = a10.d;
-        i0.b a11 = i0.b.a(bVar, a10);
+        i0.c a11 = i0.c.a(cVar, a10);
         int i15 = a11.d;
-        int i16 = a11.f15124c;
-        int i17 = a11.f15123b;
-        int i18 = a11.f15122a;
+        int i16 = a11.f15576c;
+        int i17 = a11.f15575b;
+        int i18 = a11.f15574a;
         Runnable runnable = this.h;
-        te.c cVar2 = this.f54557a;
+        te.c cVar4 = this.f56029a;
         l lVar = this.d;
-        l lVar2 = this.f54559c;
-        k kVar = this.f54558b;
-        if (z9) {
+        l lVar2 = this.f56031c;
+        k kVar = this.f56030b;
+        if (z10) {
             if (i14 > 0) {
                 f10 = 1.0f;
             } else {
                 f10 = 0.0f;
             }
             if (!kVar.b(f10)) {
-                cVar = cVar2;
+                cVar2 = cVar4;
                 i7 = i16;
                 if (!lVar2.b(i18, i17, i16, i15) && !lVar.b(i13, i12, i11, i14)) {
-                    if (bVar4 != bVar2) {
+                    if (bVar2 != bVar) {
                         runnable.run();
                     }
                 }
             } else {
                 i7 = i16;
-                cVar = cVar2;
+                cVar2 = cVar4;
             }
-            cVar.b();
+            cVar2.b();
             kVar.c(false);
             lVar2.c(false);
             lVar.c(false);
@@ -249,15 +249,15 @@ public class h implements f, e, c {
             } else {
                 f11 = 0.0f;
             }
-            kVar.f55526c = f11;
+            kVar.f57109c = f11;
             lVar2.e(i18, i17, i7, i15);
             lVar.e(i13, i12, i11, i14);
-            te.c cVar3 = cVar;
-            cVar3.c(0.0f);
-            cVar3.a(1.0f);
+            te.c cVar5 = cVar2;
+            cVar5.c(0.0f);
+            cVar5.a(1.0f);
         } else {
             float f12 = 0.0f;
-            cVar2.b();
+            cVar4.b();
             if (i14 > 0) {
                 f12 = 1.0f;
             }
@@ -274,17 +274,17 @@ public class h implements f, e, c {
         int i7;
         k1 b10 = b(k1Var);
         if (b10 != null) {
-            i7 = b10.f54213a.f(8).d;
+            i7 = b10.f55682a.f(8).d;
         } else {
             i7 = 0;
         }
-        this.F = i7;
+        this.G = i7;
         this.h.run();
     }
 
     @Override
     public final void w() {
-        this.G++;
+        this.H++;
     }
 
     public k1 b(k1 k1Var) {

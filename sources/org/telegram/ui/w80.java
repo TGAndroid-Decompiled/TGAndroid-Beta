@@ -1,88 +1,35 @@
 package org.telegram.ui;
 
-import android.window.BackEvent;
-import android.window.OnBackAnimationCallback;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class w80 implements OnBackAnimationCallback {
-    public boolean f50942b;
-    public boolean f50944e;
-    public final LaunchActivity f50945f;
-    public final h2.f f50941a = new h2.f((int[]) null);
-    public boolean f50943c = false;
-    public boolean d = false;
+import android.content.ComponentName;
+import android.content.Context;
+public enum w80 {
+    DEFAULT("DefaultIcon", 2131231490, 2131558426, 2131754237, false),
+    VINTAGE("VintageIcon", 2131231485, 2131558419, 2131754233, false),
+    AQUA("AquaIcon", 2131231479, 2131558426, 2131754239, false),
+    PREMIUM("PremiumIcon", 2131231476, 2131558407, 2131754235, true),
+    TURBO("TurboIcon", 2131231482, 2131558414, 2131754234, true),
+    NOX("NoxIcon", 2131558402, 2131558426, 2131754236, true);
+    
+    public final String f52493a;
+    public final int f52494b;
+    public final int f52495c;
+    public final int d;
+    public final boolean f52496e;
+    public ComponentName f52497f;
 
-    public w80(LaunchActivity launchActivity) {
-        this.f50945f = launchActivity;
+    w80(String str, int i7, int i10, int i11, boolean z10) {
+        this.f52493a = str;
+        this.f52494b = i7;
+        this.f52495c = i10;
+        this.d = i11;
+        this.f52496e = z10;
     }
 
-    public final void onBackCancelled() {
-        ActionBarLayout actionBarLayout;
-        this.f50943c = false;
-        this.d = false;
-        if (this.f50942b) {
-            this.f50941a.e();
-            this.f50942b = false;
+    public final ComponentName a(Context context) {
+        if (this.f52497f == null) {
+            String packageName = context.getPackageName();
+            this.f52497f = new ComponentName(packageName, "org.telegram.messenger." + this.f52493a);
         }
-        if (!org.telegram.messenger.g0.Q1() && (actionBarLayout = this.f50945f.f41277o0) != null && actionBarLayout.f27256i1) {
-            actionBarLayout.f27256i1 = false;
-            actionBarLayout.e(true);
-        }
-    }
-
-    public final void onBackInvoked() {
-        this.d = true;
-        if (this.f50942b) {
-            this.f50941a.e();
-            this.f50942b = false;
-        }
-        if (org.telegram.messenger.g0.Q1()) {
-            this.f50945f.onBackPressed();
-        } else if (!this.f50945f.d0(true)) {
-        } else {
-            LaunchActivity launchActivity = this.f50945f;
-            ActionBarLayout actionBarLayout = launchActivity.f41277o0;
-            if (actionBarLayout != null) {
-                if (!actionBarLayout.f27256i1) {
-                    actionBarLayout.I();
-                    return;
-                }
-                actionBarLayout.f27256i1 = false;
-                actionBarLayout.e(false);
-                return;
-            }
-            launchActivity.onBackPressed();
-        }
-    }
-
-    public final void onBackProgressed(BackEvent backEvent) {
-        ActionBarLayout actionBarLayout;
-        ActionBarLayout actionBarLayout2;
-        if (!this.f50943c || !this.d) {
-            float progress = backEvent.getProgress();
-            boolean z9 = false;
-            if (!this.f50944e && progress > 0.015f) {
-                this.f50944e = true;
-                if (!org.telegram.messenger.g0.Q1() && this.f50945f.d0(false) && (actionBarLayout2 = this.f50945f.f41277o0) != null && actionBarLayout2.J(backEvent.getTouchX(), backEvent.getTouchY()) && !this.f50942b) {
-                    this.f50941a.d();
-                    this.f50942b = true;
-                }
-            }
-            float max = Math.max(0.0f, progress - 0.015f) / 0.985f;
-            if (!org.telegram.messenger.g0.Q1() && (actionBarLayout = this.f50945f.f41277o0) != null && actionBarLayout.f27256i1) {
-                float interpolation = org.telegram.ui.Components.wq.f40051l.getInterpolation(max) * org.telegram.messenger.g0.L(56.0f);
-                if (max > 0.0f) {
-                    z9 = true;
-                }
-                actionBarLayout.f27260k1 = z9;
-                actionBarLayout.f27274s.setTranslationX(interpolation);
-                actionBarLayout.setInnerTranslationX(interpolation);
-            }
-        }
-    }
-
-    public final void onBackStarted(BackEvent backEvent) {
-        this.f50943c = true;
-        this.d = false;
-        this.f50944e = false;
+        return this.f52497f;
     }
 }

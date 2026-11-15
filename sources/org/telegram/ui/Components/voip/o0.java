@@ -1,121 +1,414 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import org.telegram.ui.Components.q9;
-import org.telegram.ui.Components.wq;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.os.SystemClock;
+import android.widget.FrameLayout;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.ch0;
+import org.telegram.ui.Components.fh0;
 public final class o0 {
-    public float f39438a;
-    public float f39439b;
-    public float f39440c;
-    public boolean f39441e;
-    public final c3 f39442f;
-    public final c3 f39443g;
-    public ValueAnimator f39445j;
-    public int f39446k;
-    public float d = 0.0f;
-    public boolean h = false;
-    public float f39444i = 1.0f;
+    public fh0 f40814c;
+    public boolean d;
+    public boolean f40815e;
+    public boolean f40816f;
+    public FrameLayout f40817g;
+    public TLRPC.GroupCallParticipant h;
+    public boolean f40820k;
+    public final m0 f40818i = new Runnable(this) {
+        public final o0 f40774b;
 
-    public o0(int i7, int i10, int i11, int i12) {
-        ?? q9Var = new q9(i12 - 1);
-        this.f39442f = q9Var;
-        ?? q9Var2 = new q9(i12);
-        this.f39443g = q9Var2;
-        q9Var.f37178a = i7;
-        q9Var.f37179b = i10;
-        q9Var2.f37178a = i7 - i11;
-        q9Var2.f37179b = i10 - i11;
-        q9Var.b();
-        q9Var2.b();
-        q9Var.d.setColor(-1);
-        q9Var.d.setAlpha(20);
-        q9Var2.d.setColor(-1);
-        q9Var2.d.setAlpha(36);
-    }
+        {
+            this.f40774b = this;
+        }
 
-    public final void a(Canvas canvas, float f10, float f11, View view) {
-        float f12 = (this.f39438a * 0.4f) + 0.8f;
-        if (this.f39441e || this.d != 0.0f) {
-            canvas.save();
-            float interpolation = wq.f40046f.getInterpolation(this.d) * f12;
-            canvas.scale(interpolation, interpolation, f10, f11);
-            float f13 = this.f39438a;
-            float f14 = this.f39444i;
-            c3 c3Var = this.f39442f;
-            c3Var.g(f13, f14);
-            Paint paint = c3Var.d;
-            c3Var.a(f10, f11, canvas, paint);
-            float f15 = this.f39438a;
-            float f16 = this.f39444i;
-            c3 c3Var2 = this.f39443g;
-            c3Var2.g(f15, f16);
-            c3Var2.a(f10, f11, canvas, paint);
-            canvas.restore();
-        }
-        if (!this.h || this.f39446k != 0) {
-            int i7 = this.f39446k;
-            if (i7 != 0) {
-                this.f39446k = i7 - 1;
-            }
-            if (this.d != 0.0f) {
-                view.invalidate();
-            }
-        }
-    }
-
-    public final void b(double d) {
-        float f10 = ((float) d) / 80.0f;
-        float f11 = 0.0f;
-        if (!this.f39441e) {
-            f10 = 0.0f;
-        }
-        if (f10 > 1.0f) {
-            f11 = 1.0f;
-        } else if (f10 >= 0.0f) {
-            f11 = f10;
-        }
-        this.f39439b = f11;
-        this.f39440c = (f11 - this.f39438a) / 200.0f;
-    }
-
-    public final void c() {
-        float f10 = this.f39439b;
-        float f11 = this.f39438a;
-        if (f10 != f11) {
-            float f12 = this.f39440c;
-            float f13 = (16.0f * f12) + f11;
-            this.f39438a = f13;
-            if (f12 > 0.0f) {
-                if (f13 > f10) {
-                    this.f39438a = f10;
-                }
-            } else if (f13 < f10) {
-                this.f39438a = f10;
-            }
-        }
-        boolean z9 = this.f39441e;
-        if (z9) {
-            float f14 = this.d;
-            if (f14 != 1.0f) {
-                float f15 = f14 + 0.045714285f;
-                this.d = f15;
-                if (f15 > 1.0f) {
-                    this.d = 1.0f;
+        @Override
+        public final void run() {
+            int i7;
+            switch (r2) {
+                case 0:
+                    o0 o0Var = this.f40774b;
+                    o0Var.f40813b.S(0, null);
+                    ch0 ch0Var = o0Var.f40812a;
+                    ch0Var.S(0, null);
+                    fh0 fh0Var = o0Var.f40814c;
+                    if (fh0Var != null) {
+                        fh0Var.setAnimation(ch0Var);
+                        return;
+                    }
                     return;
-                }
-                return;
+                case 1:
+                    o0 o0Var2 = this.f40774b;
+                    ch0 ch0Var2 = o0Var2.f40813b;
+                    int nextInt = Utilities.f22414b.nextInt(100);
+                    int i10 = 120;
+                    if (nextInt < 32) {
+                        i7 = 0;
+                    } else {
+                        i7 = 240;
+                        if (nextInt >= 64) {
+                            i10 = 420;
+                            if (nextInt >= 97) {
+                                i7 = 540;
+                                if (nextInt != 98) {
+                                    i10 = 720;
+                                }
+                            }
+                        }
+                        int i11 = i7;
+                        i7 = i10;
+                        i10 = i11;
+                    }
+                    ch0Var2.P(i10);
+                    ch0Var2.S(i10 - 1, o0Var2.f40818i);
+                    ch0Var2.M(i7);
+                    fh0 fh0Var2 = o0Var2.f40814c;
+                    if (fh0Var2 != null) {
+                        fh0Var2.setAnimation(ch0Var2);
+                        o0Var2.f40814c.d();
+                        return;
+                    }
+                    return;
+                case 2:
+                    o0 o0Var3 = this.f40774b;
+                    o0Var3.f40815e = false;
+                    ?? r22 = o0Var3.f40817g;
+                    if (r22 != 0) {
+                        r22.a();
+                    }
+                    o0Var3.d = false;
+                    return;
+                default:
+                    this.f40774b.c(true);
+                    return;
             }
         }
-        if (!z9) {
-            float f16 = this.d;
-            if (f16 != 0.0f) {
-                float f17 = f16 - 0.045714285f;
-                this.d = f17;
-                if (f17 < 0.0f) {
-                    this.d = 0.0f;
+    };
+    public final m0 f40819j = new Runnable(this) {
+        public final o0 f40774b;
+
+        {
+            this.f40774b = this;
+        }
+
+        @Override
+        public final void run() {
+            int i7;
+            switch (r2) {
+                case 0:
+                    o0 o0Var = this.f40774b;
+                    o0Var.f40813b.S(0, null);
+                    ch0 ch0Var = o0Var.f40812a;
+                    ch0Var.S(0, null);
+                    fh0 fh0Var = o0Var.f40814c;
+                    if (fh0Var != null) {
+                        fh0Var.setAnimation(ch0Var);
+                        return;
+                    }
+                    return;
+                case 1:
+                    o0 o0Var2 = this.f40774b;
+                    ch0 ch0Var2 = o0Var2.f40813b;
+                    int nextInt = Utilities.f22414b.nextInt(100);
+                    int i10 = 120;
+                    if (nextInt < 32) {
+                        i7 = 0;
+                    } else {
+                        i7 = 240;
+                        if (nextInt >= 64) {
+                            i10 = 420;
+                            if (nextInt >= 97) {
+                                i7 = 540;
+                                if (nextInt != 98) {
+                                    i10 = 720;
+                                }
+                            }
+                        }
+                        int i11 = i7;
+                        i7 = i10;
+                        i10 = i11;
+                    }
+                    ch0Var2.P(i10);
+                    ch0Var2.S(i10 - 1, o0Var2.f40818i);
+                    ch0Var2.M(i7);
+                    fh0 fh0Var2 = o0Var2.f40814c;
+                    if (fh0Var2 != null) {
+                        fh0Var2.setAnimation(ch0Var2);
+                        o0Var2.f40814c.d();
+                        return;
+                    }
+                    return;
+                case 2:
+                    o0 o0Var3 = this.f40774b;
+                    o0Var3.f40815e = false;
+                    ?? r22 = o0Var3.f40817g;
+                    if (r22 != 0) {
+                        r22.a();
+                    }
+                    o0Var3.d = false;
+                    return;
+                default:
+                    this.f40774b.c(true);
+                    return;
+            }
+        }
+    };
+    public final m0 f40821l = new Runnable(this) {
+        public final o0 f40774b;
+
+        {
+            this.f40774b = this;
+        }
+
+        @Override
+        public final void run() {
+            int i7;
+            switch (r2) {
+                case 0:
+                    o0 o0Var = this.f40774b;
+                    o0Var.f40813b.S(0, null);
+                    ch0 ch0Var = o0Var.f40812a;
+                    ch0Var.S(0, null);
+                    fh0 fh0Var = o0Var.f40814c;
+                    if (fh0Var != null) {
+                        fh0Var.setAnimation(ch0Var);
+                        return;
+                    }
+                    return;
+                case 1:
+                    o0 o0Var2 = this.f40774b;
+                    ch0 ch0Var2 = o0Var2.f40813b;
+                    int nextInt = Utilities.f22414b.nextInt(100);
+                    int i10 = 120;
+                    if (nextInt < 32) {
+                        i7 = 0;
+                    } else {
+                        i7 = 240;
+                        if (nextInt >= 64) {
+                            i10 = 420;
+                            if (nextInt >= 97) {
+                                i7 = 540;
+                                if (nextInt != 98) {
+                                    i10 = 720;
+                                }
+                            }
+                        }
+                        int i11 = i7;
+                        i7 = i10;
+                        i10 = i11;
+                    }
+                    ch0Var2.P(i10);
+                    ch0Var2.S(i10 - 1, o0Var2.f40818i);
+                    ch0Var2.M(i7);
+                    fh0 fh0Var2 = o0Var2.f40814c;
+                    if (fh0Var2 != null) {
+                        fh0Var2.setAnimation(ch0Var2);
+                        o0Var2.f40814c.d();
+                        return;
+                    }
+                    return;
+                case 2:
+                    o0 o0Var3 = this.f40774b;
+                    o0Var3.f40815e = false;
+                    ?? r22 = o0Var3.f40817g;
+                    if (r22 != 0) {
+                        r22.a();
+                    }
+                    o0Var3.d = false;
+                    return;
+                default:
+                    this.f40774b.c(true);
+                    return;
+            }
+        }
+    };
+    public final m0 f40822m = new Runnable(this) {
+        public final o0 f40774b;
+
+        {
+            this.f40774b = this;
+        }
+
+        @Override
+        public final void run() {
+            int i7;
+            switch (r2) {
+                case 0:
+                    o0 o0Var = this.f40774b;
+                    o0Var.f40813b.S(0, null);
+                    ch0 ch0Var = o0Var.f40812a;
+                    ch0Var.S(0, null);
+                    fh0 fh0Var = o0Var.f40814c;
+                    if (fh0Var != null) {
+                        fh0Var.setAnimation(ch0Var);
+                        return;
+                    }
+                    return;
+                case 1:
+                    o0 o0Var2 = this.f40774b;
+                    ch0 ch0Var2 = o0Var2.f40813b;
+                    int nextInt = Utilities.f22414b.nextInt(100);
+                    int i10 = 120;
+                    if (nextInt < 32) {
+                        i7 = 0;
+                    } else {
+                        i7 = 240;
+                        if (nextInt >= 64) {
+                            i10 = 420;
+                            if (nextInt >= 97) {
+                                i7 = 540;
+                                if (nextInt != 98) {
+                                    i10 = 720;
+                                }
+                            }
+                        }
+                        int i11 = i7;
+                        i7 = i10;
+                        i10 = i11;
+                    }
+                    ch0Var2.P(i10);
+                    ch0Var2.S(i10 - 1, o0Var2.f40818i);
+                    ch0Var2.M(i7);
+                    fh0 fh0Var2 = o0Var2.f40814c;
+                    if (fh0Var2 != null) {
+                        fh0Var2.setAnimation(ch0Var2);
+                        o0Var2.f40814c.d();
+                        return;
+                    }
+                    return;
+                case 2:
+                    o0 o0Var3 = this.f40774b;
+                    o0Var3.f40815e = false;
+                    ?? r22 = o0Var3.f40817g;
+                    if (r22 != 0) {
+                        r22.a();
+                    }
+                    o0Var3.d = false;
+                    return;
+                default:
+                    this.f40774b.c(true);
+                    return;
+            }
+        }
+    };
+    public final ch0 f40812a = new ch0(2131624332, org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), true, null);
+    public final ch0 f40813b = new ch0(2131624045, org.telegram.messenger.g0.L(15.0f), org.telegram.messenger.g0.L(15.0f), true, null);
+
+    public final void a(double d) {
+        if (d > 1.5d) {
+            boolean z10 = this.d;
+            m0 m0Var = this.f40821l;
+            if (z10) {
+                org.telegram.messenger.g0.r(m0Var);
+            }
+            if (!this.f40815e) {
+                this.f40815e = true;
+                ?? r42 = this.f40817g;
+                if (r42 != 0) {
+                    r42.a();
+                }
+            }
+            org.telegram.messenger.g0.i3(m0Var, 500L);
+            this.d = true;
+        }
+    }
+
+    public final void b() {
+        this.f40817g = null;
+        this.f40815e = false;
+        org.telegram.messenger.g0.r(this.f40821l);
+        org.telegram.messenger.g0.r(this.f40819j);
+        org.telegram.messenger.g0.r(this.f40822m);
+        this.f40812a.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+    }
+
+    public final void c(boolean z10) {
+        TLRPC.GroupCallParticipant groupCallParticipant;
+        ch0 ch0Var;
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        boolean z14;
+        int i7;
+        boolean P;
+        boolean z15;
+        if (this.f40814c != null && (groupCallParticipant = this.h) != null && (ch0Var = this.f40812a) != null) {
+            if (groupCallParticipant.muted_by_you && !groupCallParticipant.self) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            TLRPC.GroupCallParticipant groupCallParticipant2 = this.h;
+            if (elapsedRealtime - groupCallParticipant2.lastVoiceUpdateTime < 500) {
+                z12 = groupCallParticipant2.hasVoiceDelayed;
+            } else {
+                z12 = groupCallParticipant2.hasVoice;
+            }
+            if (!groupCallParticipant2.self ? !((!groupCallParticipant2.muted || (this.f40815e && z12)) && !z11) : !(VoIPService.getSharedInstance() == null || !VoIPService.getSharedInstance().isMicMute() || (this.f40815e && z12))) {
+                z13 = true;
+            } else {
+                z13 = false;
+            }
+            TLRPC.GroupCallParticipant groupCallParticipant3 = this.h;
+            if (((groupCallParticipant3.muted && !this.f40815e) || z11) && ((!(z15 = groupCallParticipant3.can_self_unmute) || z11) && !z15 && groupCallParticipant3.raise_hand_rating != 0)) {
+                z14 = true;
+            } else {
+                z14 = false;
+            }
+            if (z14) {
+                long elapsedRealtime2 = SystemClock.elapsedRealtime();
+                long j3 = this.h.lastRaiseHandDate;
+                long j10 = elapsedRealtime2 - j3;
+                if (j3 != 0 && j10 <= 5000) {
+                    org.telegram.messenger.g0.i3(this.f40822m, 5000 - j10);
+                }
+                P = ch0Var.P(136);
+            } else {
+                this.f40814c.setAnimation(ch0Var);
+                ch0Var.S(0, null);
+                if (z13 && this.f40816f) {
+                    P = ch0Var.P(36);
+                } else {
+                    if (z13) {
+                        i7 = 99;
+                    } else {
+                        i7 = 69;
+                    }
+                    P = ch0Var.P(i7);
+                }
+            }
+            if (z10) {
+                if (P) {
+                    if (z14) {
+                        ch0Var.M(99);
+                        ch0Var.P(136);
+                    } else if (z13 && this.f40816f && !z14) {
+                        ch0Var.M(0);
+                        ch0Var.P(36);
+                    } else if (z13) {
+                        ch0Var.M(69);
+                        ch0Var.P(99);
+                    } else {
+                        ch0Var.M(36);
+                        ch0Var.P(69);
+                    }
+                    this.f40814c.d();
+                    this.f40814c.invalidate();
+                }
+            } else {
+                ch0Var.N(ch0Var.f33579f - 1, false, true);
+                this.f40814c.invalidate();
+            }
+            this.f40814c.setAnimation(ch0Var);
+            this.f40816f = z14;
+            if (this.f40820k != z11) {
+                this.f40820k = z11;
+                ?? r12 = this.f40817g;
+                if (r12 != 0) {
+                    r12.a();
                 }
             }
         }

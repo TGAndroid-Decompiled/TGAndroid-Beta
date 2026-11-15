@@ -1,175 +1,32 @@
 package hi;
 
-import android.content.Context;
-import android.graphics.drawable.ShapeDrawable;
-import android.text.SpannableStringBuilder;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
-import org.telegram.messenger.i6;
-import org.telegram.messenger.id;
-import org.telegram.messenger.qp;
-import org.telegram.messenger.t10;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.m41;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.r41;
-import org.telegram.ui.Components.v8;
-import org.telegram.ui.Components.w31;
-import org.telegram.ui.Components.x31;
-import org.telegram.ui.hz;
-public final class m3 extends w31 {
-    public static final int f14800b = 0;
+public final class m3 implements View.OnLayoutChangeListener {
+    public final int f14653a;
+    public final Object f14654b;
 
-    static {
-        w31.h(new w31());
+    public m3(Object obj, int i7) {
+        this.f14653a = i7;
+        this.f14654b = obj;
     }
 
     @Override
-    public final void b(View view, x31 x31Var, boolean z9, m41 m41Var, r41 r41Var) {
-        int i7;
-        int i10;
-        int i11;
-        int i12;
-        float f10;
-        Object obj = x31Var.G;
-        int i13 = 0;
-        if (obj instanceof TL_payments.connectedBotStarRef) {
-            n3 n3Var = (n3) view;
-            TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj;
-            boolean z10 = x31Var.f40162r;
-            h6 h6Var = n3Var.f14818b;
-            View view2 = n3Var.f14820e;
-            ImageView imageView = n3Var.f14821f;
-            TLRPC.User a22 = qp.s1(n3Var.f14817a).a2(Long.valueOf(connectedbotstarref.bot_id));
-            v8 v8Var = new v8((h6) null);
-            v8Var.r(a22);
-            n3Var.f14819c.e(a22, v8Var);
-            TextView textView = n3Var.h;
-            textView.setText(i6.m(t10.p(a22), textView.getPaint().getFontMetricsInt(), false, null, 0));
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            if (connectedbotstarref.commission_permille > 0) {
-                spannableStringBuilder.append((CharSequence) " d");
-                hz hzVar = new hz();
-                int i14 = m6.ik;
-                hzVar.f46455f = m6.w0(i14, null);
-                hzVar.f46457r = i14;
-                hzVar.f46458s = null;
-                hzVar.f46456n = true;
-                hzVar.f46459w = j.J0(connectedbotstarref.commission_permille);
-                if (hzVar.f46453c != null) {
-                    hzVar.f46453c = null;
-                    hzVar.a();
-                }
-                spannableStringBuilder.setSpan(hzVar, 1, 2, 33);
-            }
-            int i15 = connectedbotstarref.duration_months;
-            if (i15 == 0) {
-                spannableStringBuilder.append((CharSequence) id.M0(2131748986, null));
-            } else if (i15 >= 12 && i15 % 12 == 0) {
-                spannableStringBuilder.append((CharSequence) id.G(i15 / 12, "Years", new Object[0]));
-            } else {
-                spannableStringBuilder.append((CharSequence) id.G(i15, "Months", new Object[0]));
-            }
-            n3Var.f14822n.setText(spannableStringBuilder);
-            ImageView imageView2 = n3Var.f14823r;
-            if (z10) {
-                i7 = 0;
-            } else {
-                i7 = 8;
-            }
-            imageView2.setVisibility(i7);
-            n3Var.d.setVisibility(0);
-            imageView.setVisibility(0);
-            view2.setVisibility(0);
-            int L = org.telegram.messenger.g0.L(9.665f);
-            if (connectedbotstarref.revoked) {
-                i10 = m6.kk;
-            } else {
-                i10 = m6.ik;
-            }
-            ShapeDrawable L2 = m6.L(L, m6.w0(i10, h6Var));
-            if (connectedbotstarref.revoked) {
-                i11 = m6.kk;
-            } else {
-                i11 = m6.ik;
-            }
-            p6 M = t6.M(i11);
-            view2.setBackground(L2);
-            t6.j(view2, L2, M, null, h6Var);
-            if (connectedbotstarref.revoked) {
-                i12 = 2131232206;
-            } else {
-                i12 = 2131232200;
-            }
-            imageView.setImageResource(i12);
-            float f11 = 0.6f;
-            if (connectedbotstarref.revoked) {
-                f10 = 0.8f;
-            } else {
-                f10 = 0.6f;
-            }
-            imageView.setScaleX(f10);
-            if (connectedbotstarref.revoked) {
-                f11 = 0.8f;
-            }
-            imageView.setScaleY(f11);
-            n3Var.f14824s = z9;
-            n3Var.setWillNotDraw(!z9);
-        } else if (obj instanceof TL_payments.starRefProgram) {
-            n3 n3Var2 = (n3) view;
-            TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) obj;
-            boolean z11 = x31Var.f40162r;
-            TLRPC.User a23 = qp.s1(n3Var2.f14817a).a2(Long.valueOf(starrefprogram.bot_id));
-            v8 v8Var2 = new v8((h6) null);
-            v8Var2.r(a23);
-            n3Var2.f14819c.e(a23, v8Var2);
-            n3Var2.h.setText(t10.p(a23));
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
-            if (starrefprogram.commission_permille > 0) {
-                spannableStringBuilder2.append((CharSequence) " d");
-                hz hzVar2 = new hz();
-                int i16 = m6.ik;
-                hzVar2.f46455f = m6.w0(i16, null);
-                hzVar2.f46457r = i16;
-                hzVar2.f46458s = null;
-                hzVar2.f46456n = true;
-                hzVar2.f46459w = j.J0(starrefprogram.commission_permille);
-                if (hzVar2.f46453c != null) {
-                    hzVar2.f46453c = null;
-                    hzVar2.a();
-                }
-                spannableStringBuilder2.setSpan(hzVar2, 1, 2, 33);
-            }
-            int i17 = starrefprogram.duration_months;
-            if (i17 == 0) {
-                spannableStringBuilder2.append((CharSequence) id.M0(2131748986, null));
-            } else if (i17 >= 12 && i17 % 12 == 0) {
-                spannableStringBuilder2.append((CharSequence) id.G(i17 / 12, "Years", new Object[0]));
-            } else {
-                spannableStringBuilder2.append((CharSequence) id.G(i17, "Months", new Object[0]));
-            }
-            n3Var2.f14822n.setText(spannableStringBuilder2);
-            ImageView imageView3 = n3Var2.f14823r;
-            if (!z11) {
-                i13 = 8;
-            }
-            imageView3.setVisibility(i13);
-            n3Var2.d.setVisibility(8);
-            n3Var2.f14821f.setVisibility(8);
-            n3Var2.f14820e.setVisibility(8);
-            n3Var2.f14824s = z9;
-            n3Var2.setWillNotDraw(!z9);
+    public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
+        switch (this.f14653a) {
+            case 0:
+                ((p3) this.f14654b).d();
+                return;
+            case 1:
+                ng.c cVar = (ng.c) this.f14654b;
+                TextView textView = cVar.f21116c;
+                textView.setPivotX(textView.getMeasuredWidth() * 0.7f);
+                TextView textView2 = cVar.f21115b;
+                textView2.setPivotX(textView2.getMeasuredWidth() * 0.7f);
+                return;
+            default:
+                ((zi.l) this.f14654b).a0();
+                return;
         }
-    }
-
-    @Override
-    public final View d(Context context, pj0 pj0Var, int i7, h6 h6Var) {
-        return new n3(i7, context, h6Var);
     }
 }

@@ -1,43 +1,19 @@
 package ai;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-public final class q0 extends x {
-    public final s0 M;
-
-    public q0(s0 s0Var, Activity activity, int i7, p0 p0Var) {
-        super(activity, i7, p0Var);
-        this.M = s0Var;
+import android.graphics.RuntimeShader;
+public abstract class q0 {
+    public static RuntimeShader a() {
+        return new RuntimeShader("uniform float2 uSize;\nuniform float2 uOrigin;\nuniform float uRadius;\nuniform float uTime;\nuniform float uIntensity;\nuniform float uSweep;\nuniform float uDark;\nuniform float uHalo;\nuniform float uDp;\nuniform float uLevel;\nuniform float uPulse;\nuniform float uPulseAng;\nuniform float3 uL0;\nuniform float3 uL1;\nuniform float3 uL2;\nuniform float3 uLHi;\nuniform float uHaloW;\nuniform float uHaloS;\nuniform float uLift;\nuniform float uRimW;\nuniform float uRimB;\nuniform float3 uRim;\nuniform float uThin;\nuniform float uHue;\nfloat3 hueShift(float3 c, float h) {\n  float mx = max(c.r, max(c.g, c.b)), mn = min(c.r, min(c.g, c.b)), d = mx - mn;\n  if (d < 0.0001) return c;\n  float hh = mx == c.r ? (c.g - c.b) / d : (mx == c.g ? 2.0 + (c.b - c.r) / d : 4.0 + (c.r - c.g) / d);\n  hh = fract(hh / 6.0 + h);\n  float3 k = clamp(abs(fract(hh + float3(1.0, 2.0 / 3.0, 1.0 / 3.0)) * 6.0 - 3.0) - 1.0, 0.0, 1.0);\n  return mx * mix(float3(1.0), k, d / mx);\n}\nfloat sdRound(float2 p, float2 b, float r) {\n  float2 q = abs(p) - b + r;\n  return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - r;\n}\nfloat hotAt(float a, float t) {\n  float h = 0.5 + 0.5 * sin(a * 2.0 + t * 1.15) * sin(a * 3.0 - t * 0.73 + 1.7);\n  h = smoothstep(0.15, 1.0, h);\n  return clamp(h * (0.75 + 0.6 * uLevel) + 0.12 * uLevel, 0.0, 1.0);\n}\nhalf4 main(float2 fc) {\n  float2 hs = uSize * 0.5;\n  float2 c = uOrigin + hs;\n  float2 p = fc - c;\n  float d = sdRound(p, hs, uRadius);\n  float t = uTime;\n  float2 uv = (fc - uOrigin) / max(uSize.y, 1.0);\n  float ang = atan(p.y / max(hs.y, 1.0), p.x / max(hs.x, 1.0));\n  float hot = 0.5 + 0.5 * sin(ang * 2.0 + t * 1.15) * sin(ang * 3.0 - t * 0.73 + 1.7);\n  hot = smoothstep(0.15, 1.0, hot);\n  hot = clamp(hot * (0.75 + 0.6 * uLevel) + 0.12 * uLevel, 0.0, 1.0);\n  float3 cA = mix(uL0, float3(0.12, 0.40, 1.0), uDark);\n  float3 cB = mix(uL1, float3(0.22, 0.86, 1.0), uDark);\n  float3 cC = mix(uL2, float3(0.43, 0.33, 1.0), uDark);\n  float tc = t * uDark;\n  float3 col = mix(cA, cB, 0.5 + 0.5 * sin(ang * 1.0 + tc * 0.9));\n  col = mix(col, cC, 0.5 + 0.5 * sin(ang * 2.0 - tc * 0.6 + uv.x * 1.3));\n  float dO = max(d, 0.0), dI = min(d, 0.0);\n  float aO = 0.0; float3 cO = col;\n  {\n    float hw = mix(uHaloW, 1.0, uDark), hsx = mix(uHaloS, 1.0, uDark);\n    float wav = 1.0 + (1.0 - uDark) * 0.40 * sin(ang * 3.0 + t * 1.3) * sin(ang * 2.0 - t * 0.8 + 1.1);\n    float halo = exp(-dO / (uHalo * mix(0.22, 0.36, uDark) * hw * wav)) * (mix(0.58, 0.22, uDark) + mix(0.42, 0.78, uDark) * hot);\n    halo *= 1.0 - smoothstep(uHalo * 0.7 * hw, uHalo * hw, dO);\n    aO = clamp(halo * mix(1.0 + 0.35 * uLevel, 0.85, uDark) * hsx, 0.0, 1.0);\n    float lift = (1.0 - uDark) * 0.5 * uLift * exp(-dO / (uHalo * 0.32 * hw)) * (1.0 - smoothstep(uHalo * 0.8 * hw, uHalo * 1.1 * hw, dO));\n    cO = (cO * aO + float3(1.0) * lift * (1.0 - aO)) / max(aO + lift * (1.0 - aO), 0.0001);\n    aO = aO + lift * (1.0 - aO);\n    float qb = dO / (0.6 * uDp);\n    float bline = (1.0 - uDark) * exp(-qb * qb) * 0.26;\n    float3 bc = mix(col, uRim, 0.5) * 0.72;\n    cO = (cO * aO + bc * bline) / max(aO + bline, 0.0001);\n    aO = min(1.0, aO + bline);\n  }\n  float aI = 0.0; float3 cI = col;\n  {\n    float mI = smoothstep(0.0, 9.0 * uDp, -dI) * uDark * 0.55;\n    if (mI > 0.0) {\n      float wy = smoothstep(-0.35 * hs.y, 0.35 * hs.y, p.y);\n      float aN = atan(-1.0, p.x / max(hs.x, 1.0)), aS = atan(1.0, p.x / max(hs.x, 1.0));\n      float hb = mix(hotAt(aN, t), hotAt(aS, t), wy);\n      float3 cN = mix(mix(cA, cB, 0.5 + 0.5 * sin(aN + tc * 0.9)), cC, 0.5 + 0.5 * sin(aN * 2.0 - tc * 0.6 + uv.x * 1.3));\n      float3 cS = mix(mix(cA, cB, 0.5 + 0.5 * sin(aS + tc * 0.9)), cC, 0.5 + 0.5 * sin(aS * 2.0 - tc * 0.6 + uv.x * 1.3));\n      hot = mix(hot, hb, mI);\n      col = mix(col, mix(cN, cS, wy), mI);\n    }\n  }\n  {\n    float rim = exp(dI / (mix(0.9 * uRimW, 1.4, uDark) * uDp)) * (mix(0.62, 0.45, uDark) + mix(0.38, 0.55, uDark) * hot) * mix(uRimB, 1.0, uDark);\n    float band = (exp(dI / (11.0 * uDp)) + exp(-(2.0 * hs.y + dI) / (11.0 * uDp))) * (0.25 + 0.75 * hot);\n    float n = sin(uv.x * 3.1 + t * 0.8 + sin(uv.y * 4.0 - t * 0.5) * 1.2) * sin(uv.y * 5.0 - t * 0.6 + sin(uv.x * 2.3 + t * 0.4) * 1.4);\n    n = 0.5 + 0.5 * n; n = n * n;\n    float inner = n * mix(0.0, 0.20, uDark) * (0.7 + 0.5 * uLevel);\n    float rim2 = exp(dI / (mix(1.8, 2.2, uDark) * uDp)) * (0.5 + 0.5 * hot);\n    float thinK = 1.0 - 0.45 * uThin * uDark;\n    aI = rim * mix(0.22, 0.95, uDark) + rim2 * mix(0.02, 0.0, uDark) + (band * mix(0.0, 0.42, uDark) + inner) * thinK;\n    cI = mix(col, mix(uLHi, float3(0.86, 0.95, 1.0), uDark), clamp(rim, 0.0, 1.0) * mix(0.12, 0.55, uDark));\n    cI = mix(cI, uRim, (1.0 - uDark) * clamp(rim * 1.2, 0.0, 1.0) * 0.85);\n    float wf = (1.0 - uDark) * 0.55 * (1.0 - clamp(rim * 1.3 + rim2 * 0.6, 0.0, 1.0));\n    cI = (cI * aI + float3(1.0) * wf) / max(aI + wf, 0.0001);\n    aI += wf;\n    float ql = (dI + 1.4 * uDp) / (0.6 * uDp);\n    float hl = (1.0 - uDark) * exp(-ql * ql) * 0.6;\n    float3 hlc = mix(uLHi, float3(1.0), 0.35);\n    cI = (cI * aI + hlc * hl) / max(aI + hl, 0.0001);\n    aI = min(1.0, aI + hl);\n  }\n  float kx = smoothstep(-0.7 * uDp, 0.7 * uDp, d);\n  float a = mix(aI, aO, kx);\n  float3 outc = (cI * aI * (1.0 - kx) + cO * aO * kx) / max(a, 0.0001);\n  if (uPulse >= 0.0) {\n    float head = uPulseAng + uPulse * 3.77;\n    float da = abs(mod(ang - head + 3.14159, 6.28318) - 3.14159);\n    float seg = exp(-da * da / 0.8) * sin(uPulse * 3.14159);\n    float edge = exp(-abs(d) / (1.6 * uDp));\n    float pa = seg * edge * 0.38;\n    outc = mix(outc, mix(uLHi, float3(0.80, 0.93, 1.0), uDark), clamp(pa / max(a + pa, 0.0001), 0.0, 1.0));\n    a += pa;\n  }\n  if (uSweep >= 0.0) {\n    float x = (fc.x - uOrigin.x) / max(uSize.x, 1.0);\n    float pos = mix(-0.35, 1.35, uSweep);\n    float k = (x - pos + (fc.y - c.y) / max(uSize.x, 1.0) * 0.9) / 0.15;\n    float core = exp(-k * k * 1.6);\n    float body = exp(-k * k * 0.22);\n    float trail = k < 0.0 ? exp(k * 0.32) * (1.0 - exp(-k * k * 0.5)) : 0.0;\n    float inside = 1.0 - smoothstep(-1.0, 1.0, d);\n    float near = exp(-max(d, 0.0) / (uHalo * 0.3));\n    float m = inside * mix(0.22, 1.0, uDark) + 0.6 * near * (1.0 - inside);\n    float3 cBand = mix(uL0, float3(0.18, 0.55, 1.0), uDark);\n    float3 cCore = mix(uLHi, float3(0.62, 0.95, 1.0), uDark);\n    float3 cTrail = mix(uL2, float3(0.42, 0.30, 0.95), uDark);\n    float aB = body * 0.30 * m, aC = core * mix(0.30, 0.34, uDark) * m, aT = trail * mix(0.20, 0.26, uDark) * m;\n    float sa = aB + aC + aT;\n    float3 sc = (cBand * aB + cCore * aC + cTrail * aT) / max(sa, 0.0001);\n    outc = mix(outc, sc, clamp(sa / max(a + sa, 0.0001), 0.0, 1.0));\n    a += sa;\n  }\n  if (uDark > 0.5 && uHue != 0.0) outc = hueShift(clamp(outc, 0.0, 1.0), uHue);\n  a = clamp(a * uIntensity, 0.0, 1.0);\n  return half4(half3(outc * a), half(a));\n}\n");
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        s0 s0Var = this.M;
-        float min = Math.min(getHeight(), s0Var.f1638w - (getTranslationY() + getTop()));
-        d dVar = s0Var.f1640y;
-        if (dVar != null) {
-            dVar.G = min;
-        }
-        s0Var.K = min;
-        if (dVar != null) {
-            dVar.U = s0Var.f1637s - dVar.getLeft();
-        }
-        super.dispatchDraw(canvas);
+    public static RuntimeShader b(String str) {
+        return new RuntimeShader(str);
     }
 
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        s0 s0Var = this.M;
-        l1 l1Var = s0Var.d;
-        if (l1Var != null && (l1Var.l1 > 0.5f || l1Var.f1419k1 > 0.5f)) {
-            if (motionEvent.getActionMasked() == 1) {
-                l1 l1Var2 = s0Var.d;
-                l1Var2.l1 = 0.0f;
-                l1Var2.invalidate();
-            }
-            return true;
-        }
-        return super.dispatchTouchEvent(motionEvent);
+    public static void c() {
+    }
+
+    public static RuntimeShader d() {
+        return new RuntimeShader("uniform shader content;\nuniform shader alphaMask;\nuniform shader overlay;\nuniform float4 background_color_premultiplied;\nuniform float2 shader_offset;\nhalf4 main(float2 coord) {\n    half4 source = content.eval(coord);\n    half4 background = half4(background_color_premultiplied);\n    half4 base = source + background * (1.0 - source.a);\n    float2 shaderCoord = coord + shader_offset;\n    base *= alphaMask.eval(shaderCoord).a;\n    half4 top = overlay.eval(shaderCoord);\n    return top + base * (1.0 - top.a);\n}");
     }
 }

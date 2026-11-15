@@ -1,88 +1,56 @@
 package org.telegram.messenger;
 
-import org.telegram.SQLite.SQLitePreparedStatement;
-import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class cg implements Runnable {
-    public final int f21855a;
-    public final ui f21856b;
-    public final TLRPC.TL_messages_stickerSet f21857c;
+    public final int f22864a;
+    public final int f22865b;
+    public final Object f22866c;
+    public final Object d;
+    public final Object f22867e;
 
-    public cg(ui uiVar, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i7) {
-        this.f21855a = i7;
-        this.f21856b = uiVar;
-        this.f21857c = tL_messages_stickerSet;
+    public cg(Object obj, int i7, Object obj2, Object obj3, int i10) {
+        this.f22864a = i10;
+        this.f22866c = obj;
+        this.f22865b = i7;
+        this.d = obj2;
+        this.f22867e = obj3;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f21855a;
-        String str = "";
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = this.f21857c;
-        ui uiVar = this.f21856b;
-        switch (i7) {
-            case 0:
-                uiVar.M.k(tL_messages_stickerSet, tL_messages_stickerSet.set.f26987id);
-                uiVar.getNotificationCenter().k(64, Long.valueOf(tL_messages_stickerSet.set.f26987id), tL_messages_stickerSet);
-                return;
-            case 1:
-                uiVar.M.k(tL_messages_stickerSet, tL_messages_stickerSet.set.f26987id);
-                uiVar.getNotificationCenter().k(64, Long.valueOf(tL_messages_stickerSet.set.f26987id), tL_messages_stickerSet);
-                return;
-            case 2:
-                a0.h hVar = uiVar.H[4];
-                for (int i10 = 0; i10 < tL_messages_stickerSet.documents.size(); i10++) {
-                    TLRPC.Document document = tL_messages_stickerSet.documents.get(i10);
-                    hVar.k(document, document.f26966id);
-                }
-                return;
-            case 3:
-                try {
-                    SQLitePreparedStatement executeFast = uiVar.getMessagesStorage().f26725b.executeFast("REPLACE INTO web_recent_v3 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                    executeFast.requery();
-                    executeFast.bindString(1, "s_" + tL_messages_stickerSet.set.f26987id);
-                    executeFast.bindInteger(2, 6);
-                    executeFast.bindString(3, "");
-                    executeFast.bindString(4, "");
-                    executeFast.bindString(5, "");
-                    executeFast.bindInteger(6, 0);
-                    executeFast.bindInteger(7, 0);
-                    executeFast.bindInteger(8, 0);
-                    executeFast.bindInteger(9, 0);
-                    NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tL_messages_stickerSet.getObjectSize());
-                    tL_messages_stickerSet.serializeToStream(nativeByteBuffer);
-                    executeFast.bindByteBuffer(10, nativeByteBuffer);
-                    executeFast.step();
-                    nativeByteBuffer.reuse();
-                    executeFast.dispose();
-                    return;
-                } catch (Exception e10) {
-                    a8.g(e10, true);
-                    return;
-                }
-            default:
-                try {
-                    SQLitePreparedStatement executeFast2 = uiVar.getMessagesStorage().f26725b.executeFast("REPLACE INTO stickersets2 VALUES(?, ?, ?, ?, ?)");
-                    executeFast2.requery();
-                    NativeByteBuffer nativeByteBuffer2 = new NativeByteBuffer(tL_messages_stickerSet.getObjectSize());
-                    tL_messages_stickerSet.serializeToStream(nativeByteBuffer2);
-                    executeFast2.bindLong(1, tL_messages_stickerSet.set.f26987id);
-                    executeFast2.bindByteBuffer(2, nativeByteBuffer2);
-                    executeFast2.bindInteger(3, tL_messages_stickerSet.set.hash);
-                    executeFast2.bindLong(4, System.currentTimeMillis());
-                    String str2 = tL_messages_stickerSet.set.short_name;
-                    if (str2 != null) {
-                        str = str2.toLowerCase();
-                    }
-                    executeFast2.bindString(5, str);
-                    executeFast2.step();
-                    nativeByteBuffer2.reuse();
-                    executeFast2.dispose();
-                    return;
-                } catch (Exception e11) {
-                    a8.g(e11, true);
-                    return;
-                }
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.cg.run():void");
+    }
+
+    public cg(Object obj, Object obj2, int i7, Object obj3, int i10) {
+        this.f22864a = i10;
+        this.f22866c = obj;
+        this.d = obj2;
+        this.f22865b = i7;
+        this.f22867e = obj3;
+    }
+
+    public cg(c1 c1Var, Object obj, Object obj2, int i7, int i10) {
+        this.f22864a = i10;
+        this.f22866c = c1Var;
+        this.d = obj;
+        this.f22867e = obj2;
+        this.f22865b = i7;
+    }
+
+    public cg(np npVar, int i7, TLObject tLObject, TLRPC.TL_error tL_error, int i10) {
+        this.f22864a = i10;
+        this.f22866c = npVar;
+        this.f22865b = i7;
+        this.f22867e = tLObject;
+        this.d = tL_error;
+    }
+
+    public cg(np npVar, TLObject tLObject, int i7, po poVar) {
+        this.f22864a = 10;
+        this.f22866c = npVar;
+        this.f22867e = tLObject;
+        this.f22865b = i7;
+        this.d = poVar;
     }
 }

@@ -1,30 +1,31 @@
 package l2;
 
-import a8.ia;
+import a8.ja;
 import android.text.TextUtils;
+import com.google.android.gms.internal.vision.e2;
 public final class e {
-    public final String f17792a;
-    public final e2.u f17793b;
-    public final e2.u f17794c;
+    public final String f18925a;
+    public final e2.u f18926b;
+    public final e2.u f18927c;
     public final int d;
-    public final int f17795e;
+    public final int f18928e;
 
     public e(String str, e2.u uVar, e2.u uVar2, int i7, int i10) {
-        boolean z9;
+        boolean z10;
         if (i7 != 0 && i10 != 0) {
-            z9 = false;
+            z10 = false;
         } else {
-            z9 = true;
+            z10 = true;
         }
-        ia.f(z9);
-        ia.f(true ^ TextUtils.isEmpty(str));
-        this.f17792a = str;
+        ja.f(z10);
+        ja.f(true ^ TextUtils.isEmpty(str));
+        this.f18925a = str;
         uVar.getClass();
-        this.f17793b = uVar;
+        this.f18926b = uVar;
         uVar2.getClass();
-        this.f17794c = uVar2;
+        this.f18927c = uVar2;
         this.d = i7;
-        this.f17795e = i10;
+        this.f18928e = i10;
     }
 
     public final boolean equals(Object obj) {
@@ -33,7 +34,7 @@ public final class e {
         }
         if (obj != null && e.class == obj.getClass()) {
             e eVar = (e) obj;
-            if (this.d == eVar.d && this.f17795e == eVar.f17795e && this.f17792a.equals(eVar.f17792a) && this.f17793b.equals(eVar.f17793b) && this.f17794c.equals(eVar.f17794c)) {
+            if (this.d == eVar.d && this.f18928e == eVar.f18928e && this.f18925a.equals(eVar.f18925a) && this.f18926b.equals(eVar.f18926b) && this.f18927c.equals(eVar.f18927c)) {
                 return true;
             }
         }
@@ -41,7 +42,7 @@ public final class e {
     }
 
     public final int hashCode() {
-        int h = com.google.android.recaptcha.internal.a.h((((527 + this.d) * 31) + this.f17795e) * 31, 31, this.f17792a);
-        return this.f17794c.hashCode() + ((this.f17793b.hashCode() + h) * 31);
+        int h = e2.h((((527 + this.d) * 31) + this.f18928e) * 31, 31, this.f18925a);
+        return this.f18927c.hashCode() + ((this.f18926b.hashCode() + h) * 31);
     }
 }

@@ -3,15 +3,15 @@ package org.telegram.ui.Cells;
 import java.util.ArrayList;
 import java.util.HashMap;
 public final class j4 {
-    public ArrayList f29370a;
-    public ArrayList f29371b;
-    public HashMap f29372c;
+    public ArrayList f30484a;
+    public ArrayList f30485b;
+    public HashMap f30486c;
     public int d;
-    public int f29373e;
-    public int f29374f;
-    public float f29375g;
+    public int f30487e;
+    public int f30488f;
+    public float f30489g;
     public int h;
-    public float f29376i;
+    public float f30490i;
 
     public final float a(int i7, int i10, float[] fArr) {
         float f10 = 0.0f;

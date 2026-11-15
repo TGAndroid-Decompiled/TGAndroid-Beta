@@ -3,18 +3,18 @@ package y6;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
-import o5.o;
+import o5.p;
 public final class a implements ThreadFactory {
-    public final AtomicInteger f58980b = new AtomicInteger();
-    public final ThreadFactory f58981c = Executors.defaultThreadFactory();
-    public final String f58979a = "GAC_Executor";
+    public final AtomicInteger f60193b = new AtomicInteger();
+    public final ThreadFactory f60194c = Executors.defaultThreadFactory();
+    public final String f60192a = "GAC_Executor";
 
     @Override
     public final Thread newThread(Runnable runnable) {
-        Thread newThread = this.f58981c.newThread(new o(2, runnable));
-        int andIncrement = this.f58980b.getAndIncrement();
+        Thread newThread = this.f60194c.newThread(new p(2, runnable));
+        int andIncrement = this.f60193b.getAndIncrement();
         int length = String.valueOf(andIncrement).length();
-        String str = this.f58979a;
+        String str = this.f60192a;
         StringBuilder sb2 = new StringBuilder(str.length() + 1 + length + 1);
         sb2.append(str);
         sb2.append("[");

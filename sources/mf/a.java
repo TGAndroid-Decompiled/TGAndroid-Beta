@@ -1,7 +1,7 @@
 package mf;
 
 import gf.b;
-import gf.h;
+import gf.g;
 public abstract class a {
     public boolean b(kf.a aVar) {
         return this instanceof b;
@@ -17,7 +17,7 @@ public abstract class a {
         return this instanceof b;
     }
 
-    public abstract gf.a h(h hVar);
+    public abstract gf.a h(g gVar);
 
     public void d() {
     }

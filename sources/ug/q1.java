@@ -1,188 +1,185 @@
 package ug;
 
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Shader;
-import android.view.View;
-import java.util.HashSet;
-import org.telegram.messenger.iz;
-import org.telegram.messenger.sc;
-import org.telegram.ui.ActionBar.c6;
-public class q1 extends View implements c6 {
-    public p1 f56805a;
-    public final tg.y f56806b;
-    public int f56807c;
-    public ii.c d;
-    public boolean f56808e;
-    public Paint f56809f;
-    public LinearGradient h;
-    public Matrix f56810n;
+import android.graphics.RectF;
+import com.google.android.gms.internal.vision.e2;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+public final class q1 {
+    public long f58274a;
+    public final int f58275b;
+    public float d;
+    public float f58277e;
+    public float f58278f;
+    public float f58279g;
+    public float h;
+    public float f58280i;
+    public float f58281j;
+    public float f58282k;
+    public int f58283l;
+    public int f58284m;
+    public float f58285n;
+    public long f58286o;
+    public float f58287p;
+    public float f58288q;
+    public float f58289r;
+    public final r1 f58291t;
+    public float f58276c = 1.0f;
+    public boolean f58290s = true;
 
-    public q1(Context context) {
-        super(context);
+    public q1(r1 r1Var) {
+        this.f58291t = r1Var;
+        int i7 = r1Var.T;
+        r1Var.T = i7 + 1;
+        this.f58275b = i7;
+    }
+
+    public final void a(android.graphics.Canvas r21, long r22, float r24) {
+        throw new UnsupportedOperationException("Method not decompiled: ug.q1.a(android.graphics.Canvas, long, float):void");
+    }
+
+    public final void b(long j3) {
         int i7;
-        if (iz.o() == 2) {
-            i7 = 200;
-        } else if (iz.o() == 1) {
-            i7 = 100;
-        } else {
-            i7 = 50;
-        }
-        this.f56806b = new tg.y(this, 3);
-        this.f56808e = true;
-        this.f56805a = new p1(i7);
-        a();
-    }
-
-    public void a() {
-        p1 p1Var = this.f56805a;
-        p1Var.O = 100;
-        p1Var.M = true;
-        p1Var.G = true;
-        p1Var.K = true;
-        p1Var.H = true;
-        p1Var.f56790r = 4;
-        p1Var.f56794w = 0.98f;
-        p1Var.v = 0.98f;
-        p1Var.f56793u = 0.98f;
-        p1Var.c();
-    }
-
-    public final void b(float f10) {
+        float f10;
         float f11;
-        if (f10 < 60.0f) {
-            f11 = 5.0f;
-        } else if (f10 < 180.0f) {
-            f11 = 9.0f;
-        } else {
-            f11 = 15.0f;
-        }
-        AnimatorSet animatorSet = new AnimatorSet();
-        ti.d dVar = new ti.d(this, 3);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, f11);
-        ofFloat.addUpdateListener(dVar);
-        ofFloat.setDuration(600L);
-        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f11, 1.0f);
-        ofFloat2.addUpdateListener(dVar);
-        ofFloat2.setDuration(2000L);
-        animatorSet.playTogether(ofFloat, ofFloat2);
-        animatorSet.start();
-    }
-
-    public final void c() {
-        Paint paint = new Paint(1);
-        this.f56809f = paint;
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.g0.L(12.0f), new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.h = linearGradient;
-        this.f56809f.setShader(linearGradient);
-        this.f56810n = new Matrix();
-    }
-
-    public int getStarsRectWidth() {
-        return org.telegram.messenger.g0.L(140.0f);
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        ii.c cVar = new ii.c(this, 25);
-        this.d = cVar;
-        sc.a(cVar);
-        boolean e10 = sc.e(131072);
-        if (this.f56808e != e10) {
-            this.f56808e = e10;
-            invalidate();
-        }
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        HashSet hashSet;
-        super.onDetachedFromWindow();
-        ii.c cVar = this.d;
-        if (cVar != null && (hashSet = sc.f25458n) != null) {
-            hashSet.remove(cVar);
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        super.onDraw(canvas);
-        if (this.f56808e) {
-            if (this.f56809f != null) {
-                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-                canvas2 = canvas;
+        float f12;
+        double atan2;
+        int i10;
+        float f13;
+        float f14;
+        float f15;
+        float nextFloat;
+        r1 r1Var = this.f58291t;
+        int i11 = r1Var.O;
+        ArrayList arrayList = r1Var.f58316n;
+        RectF rectF = r1Var.f58305a;
+        if (i11 == 28) {
+            if (Utilities.f22415c.nextFloat() < 0.13f) {
+                this.f58283l = 0;
             } else {
-                canvas2 = canvas;
+                this.f58283l = (int) Math.floor((nextFloat * (r1Var.d.length - 2)) + 1.0f);
             }
-            this.f56805a.d(canvas2);
-            if (this.f56809f != null) {
-                canvas2.save();
-                this.f56810n.reset();
-                this.f56810n.postTranslate(0.0f, (getHeight() + 1) - org.telegram.messenger.g0.L(12.0f));
-                this.h.setLocalMatrix(this.f56810n);
-                canvas2.drawRect(0.0f, getHeight() - org.telegram.messenger.g0.L(12.0f), getWidth(), getHeight(), this.f56809f);
-                this.f56810n.reset();
-                this.f56810n.postRotate(180.0f);
-                this.f56810n.postTranslate(0.0f, org.telegram.messenger.g0.L(12.0f));
-                this.h.setLocalMatrix(this.f56810n);
-                canvas2.drawRect(0.0f, 0.0f, getWidth(), org.telegram.messenger.g0.L(12.0f), this.f56809f);
-                canvas2.restore();
-                canvas2.restore();
+        } else {
+            this.f58283l = Math.abs(((int) Utilities.f22415c.nextLong()) % r1Var.d.length);
+        }
+        long j10 = r1Var.f58325x + j3;
+        g5.a aVar = Utilities.f22415c;
+        int i12 = r1Var.f58326y;
+        if (r1Var.f58309f[this.f58283l]) {
+            i7 = 3;
+        } else {
+            i7 = 1;
+        }
+        this.f58274a = aVar.nextInt(i12 * i7) + j10;
+        this.f58286o = j3;
+        this.f58287p = aVar.nextFloat() * 6.28f;
+        float f16 = 0.0f;
+        this.f58285n = 0.0f;
+        float f17 = 0.6f;
+        if (r1Var.f58315m) {
+            this.f58276c = (aVar.nextFloat() * 0.6f) + 0.4f;
+        }
+        if (r1Var.B) {
+            float abs = Math.abs(((int) aVar.nextLong()) % rectF.width()) + rectF.left;
+            float abs2 = Math.abs(((int) aVar.nextLong()) % rectF.height()) + rectF.top;
+            float f18 = 0.0f;
+            int i13 = 0;
+            while (i13 < 10) {
+                float f19 = rectF.left;
+                g5.a aVar2 = Utilities.f22415c;
+                float f20 = f16;
+                int i14 = i13;
+                float abs3 = Math.abs(((int) aVar2.nextLong()) % rectF.width()) + f19;
+                float abs4 = Math.abs(((int) aVar2.nextLong()) % rectF.height()) + rectF.top;
+                float f21 = 2.1474836E9f;
+                int i15 = 0;
+                while (i15 < arrayList.size()) {
+                    if (r1Var.h) {
+                        f14 = ((q1) arrayList.get(i15)).f58278f - abs3;
+                        f13 = f17;
+                        f15 = ((q1) arrayList.get(i15)).f58279g;
+                    } else {
+                        f13 = f17;
+                        f14 = ((q1) arrayList.get(i15)).d - abs3;
+                        f15 = ((q1) arrayList.get(i15)).f58277e;
+                    }
+                    float f22 = f15 - abs4;
+                    float f23 = (f22 * f22) + (f14 * f14);
+                    if (f23 < f21) {
+                        f21 = f23;
+                    }
+                    i15++;
+                    f17 = f13;
+                }
+                float f24 = f17;
+                if (f21 > f18) {
+                    abs = abs3;
+                    f18 = f21;
+                    abs2 = abs4;
+                }
+                i13 = i14 + 1;
+                f16 = f20;
+                f17 = f24;
             }
-            if (!this.f56805a.f56780g) {
-                invalidate();
+            f10 = f16;
+            f11 = f17;
+            this.d = abs;
+            this.f58277e = abs2;
+        } else {
+            f10 = 0.0f;
+            f11 = 0.6f;
+            if (r1Var.J) {
+                float width = rectF.width();
+                float f25 = r1Var.f58312j;
+                float z10 = e2.z(width, f25, Math.abs(((int) aVar.nextLong()) % 1000) / 1000.0f, f25);
+                float abs5 = Math.abs(((int) aVar.nextLong()) % 360);
+                if (r1Var.f58309f[this.f58283l] && !this.f58290s) {
+                    z10 = Math.min(z10, org.telegram.messenger.g0.L(10.0f));
+                    f12 = org.telegram.messenger.g0.L(30.0f) + 0.0f;
+                } else {
+                    f12 = 0.0f;
+                }
+                double d = z10;
+                double d2 = abs5;
+                this.d = rectF.centerX() + 0.0f + ((float) (Math.sin(Math.toRadians(d2)) * d));
+                this.f58277e = rectF.centerY() + f12 + r1Var.f58313k + ((float) (Math.cos(Math.toRadians(d2)) * d));
+            } else {
+                this.d = Math.abs(((int) aVar.nextLong()) % rectF.width()) + rectF.left;
+                this.f58277e = Math.abs(((int) aVar.nextLong()) % rectF.height()) + rectF.top;
             }
         }
-    }
-
-    @Override
-    public void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, i10);
-        int measuredHeight = getMeasuredHeight() + (getMeasuredWidth() << 16);
-        this.f56805a.f56775a.set(0.0f, 0.0f, getStarsRectWidth(), org.telegram.messenger.g0.L(140.0f));
-        this.f56805a.f56775a.offset((getMeasuredWidth() - this.f56805a.f56775a.width()) / 2.0f, (getMeasuredHeight() - this.f56805a.f56775a.height()) / 2.0f);
-        this.f56805a.f56776b.set(-org.telegram.messenger.g0.L(15.0f), -org.telegram.messenger.g0.L(15.0f), org.telegram.messenger.g0.L(15.0f) + getMeasuredWidth(), org.telegram.messenger.g0.L(15.0f) + getMeasuredHeight());
-        if (this.f56807c != measuredHeight) {
-            this.f56807c = measuredHeight;
-            this.f56805a.f();
+        if (r1Var.f58309f[this.f58283l]) {
+            this.f58289r = Math.abs(Utilities.f22415c.nextFloat() * 2.0f);
         }
-    }
-
-    public void setPaused(boolean z9) {
-        p1 p1Var = this.f56805a;
-        if (z9 == p1Var.f56780g) {
-            return;
+        if (r1Var.f58309f[this.f58283l]) {
+            atan2 = Math.toRadians(280.0f - (Utilities.f22415c.nextFloat() * 200.0f));
+        } else if (r1Var.h) {
+            atan2 = Utilities.f22415c.nextDouble() * 3.141592653589793d * 2.0d;
+        } else {
+            atan2 = Math.atan2(this.f58277e - (rectF.centerY() + r1Var.f58313k), this.d - (rectF.centerX() + f10));
         }
-        p1Var.f56780g = z9;
-        if (z9) {
-            p1Var.R = System.currentTimeMillis();
-            return;
+        this.f58281j = (float) Math.cos(atan2);
+        this.f58282k = (float) Math.sin(atan2);
+        if (r1Var.f58308e[this.f58283l]) {
+            this.f58284m = (int) (((Utilities.f22415c.nextInt(50) + 50) / 100.0f) * 120.0f);
+        } else {
+            this.f58284m = (int) (((Utilities.f22415c.nextInt(50) + 50) / 100.0f) * 255.0f);
         }
-        for (int i7 = 0; i7 < this.f56805a.f56786n.size(); i7++) {
-            o1 o1Var = (o1) this.f56805a.f56786n.get(i7);
-            o1Var.f56743a = (System.currentTimeMillis() - this.f56805a.R) + o1Var.f56743a;
+        int i16 = r1Var.O;
+        if ((i16 == 6 && ((i10 = this.f58283l) == 1 || i10 == 2)) || i16 == 9 || i16 == 3 || i16 == 7 || i16 == 24 || i16 == 11 || i16 == 22 || i16 == 4) {
+            this.f58285n = (int) (((((int) Utilities.f22415c.nextLong()) % 100) / 100.0f) * 45.0f);
         }
-        invalidate();
-    }
-
-    @Override
-    public final void updateColors() {
-        tg.y yVar = this.f56806b;
-        removeCallbacks(yVar);
-        postDelayed(yVar, 150L);
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+        if (r1Var.O != 101) {
+            this.f58288q = f10;
+        }
+        if (r1Var.h) {
+            float min = (Math.min(rectF.width(), rectF.height()) * ((Utilities.f22415c.nextFloat() * 1.2f) + f11)) / 2.0f;
+            float cos = (((float) Math.cos(atan2)) * min) + rectF.centerX() + 0.0f;
+            this.d = cos;
+            this.f58278f = cos;
+            float sin = (((float) Math.sin(atan2)) * min) + rectF.centerY() + r1Var.f58313k;
+            this.f58277e = sin;
+            this.f58279g = sin;
+        }
+        this.f58290s = false;
     }
 }

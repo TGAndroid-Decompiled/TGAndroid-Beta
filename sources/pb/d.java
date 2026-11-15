@@ -1,8 +1,8 @@
 package pb;
 public final class d {
-    public final ua.b f53537a;
+    public final ua.b f54942a;
 
     public d(ua.b bVar) {
-        this.f53537a = bVar;
+        this.f54942a = bVar;
     }
 }

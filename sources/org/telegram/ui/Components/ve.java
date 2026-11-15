@@ -1,29 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import android.view.View;
-public final class ve implements bj0 {
-    public final ChatActivityEnterView f38989a;
+import android.content.Context;
+import android.graphics.Paint;
+public final class ve extends ki.w {
+    public boolean f40385s;
+    public final ChatActivityEnterView f40386w;
 
-    public ve(ChatActivityEnterView chatActivityEnterView) {
-        this.f38989a = chatActivityEnterView;
+    public ve(ChatActivityEnterView chatActivityEnterView, Context context) {
+        super(context);
+        this.f40386w = chatActivityEnterView;
+        this.f18607a = null;
+        Paint paint = new Paint(1);
+        this.d = paint;
+        this.f18611f = true;
+        this.f18608b = new Object();
+        di.c1 c1Var = new di.c1(5, context, this);
+        this.f18609c = c1Var;
+        c1Var.setOverScrollMode(2);
+        c1Var.setClipToPadding(false);
+        c1Var.setClipToOutline(true);
+        c1Var.j(new bi.z4(this, 20));
+        addView(c1Var);
+        paint.setColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.zj, false));
+        fh.g gVar = this.f18613r;
+        if (gVar != null) {
+            gVar.updateColors();
+        }
+        invalidate();
+        setClipChildren(false);
+        this.f40385s = false;
     }
 
     @Override
-    public final void c(int i7, View view) {
-        if (view instanceof hi.w) {
-            String command = ((hi.w) view).getCommand();
-            if (!TextUtils.isEmpty(command)) {
-                ChatActivityEnterView chatActivityEnterView = this.f38989a;
-                if (chatActivityEnterView.c()) {
-                    u4.J(chatActivityEnterView.O2, chatActivityEnterView.Q2, new e2(4, this, command), chatActivityEnterView.W3);
-                    return;
-                }
-                org.telegram.ui.cn cnVar = chatActivityEnterView.P2;
-                if (cnVar == null || !cnVar.t7(view)) {
-                    u4.X(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new org.telegram.messenger.voip.k(22, this, command));
-                }
-            }
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        super.onLayout(z10, i7, i10, i11, i12);
+        if (!this.f40385s) {
+            this.f40385s = true;
+            this.f40386w.W1();
         }
     }
 }

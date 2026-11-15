@@ -2,8 +2,8 @@ package org.scilab.forge.jlatexmath;
 public class LCaronAtom extends Atom {
     private boolean upper;
 
-    public LCaronAtom(boolean z9) {
-        this.upper = z9;
+    public LCaronAtom(boolean z10) {
+        this.upper = z10;
     }
 
     @Override

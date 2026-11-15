@@ -1,12 +1,12 @@
 package x4;
 public final class c {
-    public final b[] f58630a;
-    public final String f58631b;
-    public final String[] f58632c;
+    public final b[] f59813a;
+    public final String f59814b;
+    public final String[] f59815c;
 
     public c(b[] bVarArr, String str, String[] strArr) {
-        this.f58630a = bVarArr;
-        this.f58631b = str;
-        this.f58632c = strArr;
+        this.f59813a = bVarArr;
+        this.f59814b = str;
+        this.f59815c = strArr;
     }
 }

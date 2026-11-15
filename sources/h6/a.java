@@ -5,22 +5,22 @@ import android.os.IInterface;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.RemoteException;
-import c8.xb;
+import c8.yb;
 import f7.t0;
 public final class a extends r6.a {
-    public final String f14215a;
-    public final String f14216b;
-    public final k f14217c;
+    public final String f13572a;
+    public final String f13573b;
+    public final k f13574c;
     public final f d;
-    public final boolean f14218e;
-    public final boolean f14219f;
+    public final boolean f13575e;
+    public final boolean f13576f;
     public static final j6.b h = new j6.b("CastMediaOptions", null);
     public static final Parcelable.Creator<a> CREATOR = new t0(17);
 
-    public a(String str, String str2, IBinder iBinder, f fVar, boolean z9, boolean z10) {
+    public a(String str, String str2, IBinder iBinder, f fVar, boolean z10, boolean z11) {
         k aVar;
-        this.f14215a = str;
-        this.f14216b = str2;
+        this.f13572a = str;
+        this.f13573b = str2;
         if (iBinder == null) {
             aVar = 0;
         } else {
@@ -31,14 +31,14 @@ public final class a extends r6.a {
                 aVar = new a8.a(iBinder, "com.google.android.gms.cast.framework.media.IImagePicker", 2);
             }
         }
-        this.f14217c = aVar;
+        this.f13574c = aVar;
         this.d = fVar;
-        this.f14218e = z9;
-        this.f14219f = z10;
+        this.f13575e = z10;
+        this.f13576f = z11;
     }
 
     public final void b() {
-        k kVar = this.f14217c;
+        k kVar = this.f13574c;
         if (kVar != null) {
             try {
                 Parcel r12 = kVar.r1(kVar.p1(), 2);
@@ -56,21 +56,21 @@ public final class a extends r6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         IBinder iBinder;
-        int r10 = xb.r(parcel, 20293);
-        xb.l(parcel, 2, this.f14215a);
-        xb.l(parcel, 3, this.f14216b);
-        k kVar = this.f14217c;
+        int r10 = yb.r(parcel, 20293);
+        yb.l(parcel, 2, this.f13572a);
+        yb.l(parcel, 3, this.f13573b);
+        k kVar = this.f13574c;
         if (kVar == null) {
             iBinder = null;
         } else {
             iBinder = kVar.f306b;
         }
-        xb.f(parcel, 4, iBinder);
-        xb.k(parcel, 5, this.d, i7);
-        xb.q(parcel, 6, 4);
-        parcel.writeInt(this.f14218e ? 1 : 0);
-        xb.q(parcel, 7, 4);
-        parcel.writeInt(this.f14219f ? 1 : 0);
-        xb.s(parcel, r10);
+        yb.f(parcel, 4, iBinder);
+        yb.k(parcel, 5, this.d, i7);
+        yb.q(parcel, 6, 4);
+        parcel.writeInt(this.f13575e ? 1 : 0);
+        yb.q(parcel, 7, 4);
+        parcel.writeInt(this.f13576f ? 1 : 0);
+        yb.s(parcel, r10);
     }
 }

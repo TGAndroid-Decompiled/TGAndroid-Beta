@@ -3,22 +3,22 @@ package org.telegram.ui;
 import android.app.Activity;
 import android.content.Context;
 public final class da extends ia {
-    public final int J = 0;
-    public final org.telegram.ui.Components.oj0 K;
+    public final int K = 0;
+    public final org.telegram.ui.Components.tj0 L;
 
-    public da(ea eaVar, Activity activity, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(activity, h6Var);
-        this.K = eaVar;
-        this.f46587a = true;
+    public da(ea eaVar, Activity activity, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(activity, e6Var);
+        this.L = eaVar;
+        this.f47997a = true;
     }
 
     @Override
     public final String getUsernameEditable() {
-        switch (this.J) {
+        switch (this.K) {
             case 0:
-                return ((ea) this.K).f45218c.f47561r;
+                return ((ea) this.L).f46657c.f48916r;
             default:
-                ah.i iVar = ((go) this.K).f46137c.f46402h3.f46683b;
+                ah.i iVar = ((fo) this.L).f47173c.f47497i3.f47760b;
                 if (iVar == null) {
                     return null;
                 }
@@ -26,8 +26,8 @@ public final class da extends ia {
         }
     }
 
-    public da(go goVar, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, h6Var);
-        this.K = goVar;
+    public da(fo foVar, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        this.L = foVar;
     }
 }

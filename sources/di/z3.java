@@ -1,14 +1,76 @@
 package di;
 
-import org.telegram.ui.mg0;
-public final class z3 extends mg0 {
-    @Override
-    public final org.telegram.ui.ActionBar.h6 getResourceProvider() {
-        return new b();
+import android.content.Context;
+import java.util.ArrayList;
+import org.telegram.messenger.np;
+import org.telegram.messenger.q10;
+import org.telegram.messenger.z10;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+public final class z3 implements z10 {
+    public final int f9826a;
+    public final int f9827b;
+    public final String f9828c;
+    public final Object d;
+    public final Object f9829e;
+    public final Object f9830f;
+
+    public z3(Object obj, Object obj2, Object obj3, int i7, String str, int i10) {
+        this.f9826a = i10;
+        this.d = obj;
+        this.f9829e = obj2;
+        this.f9830f = obj3;
+        this.f9827b = i7;
+        this.f9828c = str;
     }
 
     @Override
-    public final boolean isLightStatusBar() {
-        return false;
+    public final void a(Object obj) {
+        TLRPC.User user;
+        int i7 = this.f9826a;
+        Object obj2 = this.f9830f;
+        Object obj3 = this.f9829e;
+        Object obj4 = this.d;
+        switch (i7) {
+            case 0:
+                Context context = (Context) obj3;
+                org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) obj2;
+                ArrayList arrayList = (ArrayList) obj;
+                ((boolean[]) obj4)[0] = false;
+                if (arrayList != null) {
+                    new i1(context, e6Var, this.f9827b, this.f9828c, arrayList, false).show();
+                    return;
+                }
+                return;
+            default:
+                LaunchActivity launchActivity = (LaunchActivity) obj4;
+                np npVar = (np) obj3;
+                vf.b bVar = (vf.b) obj2;
+                Long l10 = (Long) obj;
+                String str = LaunchActivity.C1;
+                if (l10 != null && l10.longValue() > 0 && l10.longValue() != Long.MAX_VALUE) {
+                    user = npVar.a2(l10);
+                } else {
+                    user = null;
+                }
+                int i10 = this.f9827b;
+                if (user != null && !q10.B(user)) {
+                    launchActivity.Y(i10, user, this.f9828c, bVar);
+                    return;
+                }
+                if (bVar != null) {
+                    bVar.b();
+                }
+                if (user != null) {
+                    launchActivity.m0(i10, user.f28200id, null);
+                    return;
+                }
+                org.telegram.ui.ActionBar.e2 Q = LaunchActivity.Q();
+                if (Q != null) {
+                    org.telegram.messenger.k5.o(null, 2131748134, org.telegram.ui.Components.cc.a0(Q), null);
+                    return;
+                }
+                return;
+        }
     }
 }

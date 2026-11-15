@@ -1,146 +1,45 @@
 package fi;
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.ic;
-import org.telegram.messenger.sc;
-import org.telegram.ui.Components.hs;
-public final class k1 extends hs {
-    public int M;
-    public int N;
-    public ArrayList O;
-    public final ArrayList P = new ArrayList();
-    public final boolean Q = sc.e(8200);
-    public final m1 R;
+import android.view.View;
+import org.telegram.ui.Components.lp;
+public final class k1 extends View {
+    public final int f11917a = 1;
+    public final lp f11918b;
 
-    public k1(m1 m1Var) {
-        this.R = m1Var;
-    }
-
-    public static void m(Canvas canvas, org.telegram.ui.Components.h5 h5Var, l1 l1Var, float f10) {
-        if (h5Var != null) {
-            h5Var.setAlpha((int) (f10 * 255.0f));
-            h5Var.draw(canvas);
-        } else if (l1Var.f12308f != null) {
-            canvas.save();
-            ImageReceiver imageReceiver = l1Var.f12308f;
-            canvas.clipRect(imageReceiver.K0, imageReceiver.L0, imageReceiver.y(), l1Var.f12308f.A());
-            l1Var.f12308f.setAlpha(f10);
-            l1Var.f12308f.h(canvas, null);
-            canvas.restore();
-        }
+    public k1(Context context) {
+        super(context);
+        this.f11918b = new lp(org.telegram.messenger.g0.L(36.0f), org.telegram.messenger.g0.L(2.0f), -13522392);
     }
 
     @Override
-    public final void a(Canvas canvas, long j3, int i7, int i10, float f10) {
-        boolean z9;
-        if (this.O == null) {
-            return;
-        }
-        boolean z10 = true;
-        if (!this.R.b0() && this.O.size() > 4 && this.Q) {
-            z9 = false;
-        } else {
-            z9 = true;
-        }
-        if (!z9) {
-            for (int i11 = 0; i11 < this.O.size(); i11++) {
-                if (((l1) this.O.get(i11)).getScale() != 1.0f) {
-                    break;
-                }
-            }
-        }
-        z10 = z9;
-        if (z10) {
-            i(System.currentTimeMillis());
-            d(canvas, f10);
-            k();
-            return;
-        }
-        super.a(canvas, j3, i7, i10, f10);
-    }
-
-    @Override
-    public final void c(Canvas canvas) {
-        int i7 = 0;
-        while (true) {
-            ArrayList arrayList = this.P;
-            if (i7 < arrayList.size()) {
-                l1 l1Var = (l1) arrayList.get(i7);
-                l1Var.getClass();
-                org.telegram.ui.Components.h5 h5Var = l1Var.d;
-                if (h5Var != null) {
-                    h5Var.setColorFilter(this.R.f12414o3);
-                }
-                l1Var.f12310r.h(canvas, l1Var.f12309n[this.K]);
-                i7++;
-            } else {
+    public final void onDraw(Canvas canvas) {
+        switch (this.f11917a) {
+            case 0:
+                int L = org.telegram.messenger.g0.L(1.0f);
+                lp lpVar = this.f11918b;
+                lpVar.setBounds(L, L, (getWidth() - L) - L, (getHeight() - L) - L);
+                lpVar.draw(canvas);
+                invalidate();
                 return;
-            }
-        }
-    }
-
-    @Override
-    public final void d(Canvas canvas, float f10) {
-        org.telegram.ui.Components.h5 h5Var;
-        if (this.O != null) {
-            canvas.save();
-            canvas.translate(-this.N, 0.0f);
-            for (int i7 = 0; i7 < this.O.size(); i7++) {
-                l1 l1Var = (l1) this.O.get(i7);
-                l1Var.getClass();
-                float scale = l1Var.getScale();
-                float alpha = l1Var.getAlpha() * f10;
-                Rect rect = org.telegram.messenger.g0.Q;
-                rect.set(l1Var.getPaddingLeft() + ((int) l1Var.getX()), l1Var.getPaddingTop(), (l1Var.getWidth() + ((int) l1Var.getX())) - l1Var.getPaddingRight(), l1Var.getHeight() - l1Var.getPaddingBottom());
-                org.telegram.ui.Components.h5 h5Var2 = l1Var.d;
-                if (h5Var2 != null) {
-                    h5Var2.setBounds(rect);
-                }
-                ImageReceiver imageReceiver = l1Var.f12308f;
-                if (imageReceiver != null) {
-                    imageReceiver.z0(rect);
-                }
-                PorterDuffColorFilter porterDuffColorFilter = this.R.f12414o3;
-                if (porterDuffColorFilter != null && (h5Var = l1Var.d) != null) {
-                    h5Var.setColorFilter(porterDuffColorFilter);
-                }
-                if (scale != 1.0f) {
-                    canvas.save();
-                    canvas.scale(scale, scale, rect.centerX(), rect.centerY());
-                    m(canvas, h5Var2, l1Var, alpha);
-                    canvas.restore();
-                } else {
-                    m(canvas, h5Var2, l1Var, alpha);
-                }
-            }
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final void g() {
-        int i7 = 0;
-        while (true) {
-            ArrayList arrayList = this.P;
-            if (i7 < arrayList.size()) {
-                ic icVar = ((l1) arrayList.get(i7)).f12309n[this.K];
-                if (icVar != null) {
-                    icVar.a();
-                }
-                i7++;
-            } else {
-                this.R.invalidate();
+            default:
+                int width = getWidth();
+                int height = getHeight();
+                lp lpVar2 = this.f11918b;
+                lpVar2.setBounds(0, 0, width, height);
+                lpVar2.b(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f29013m5, false));
+                lpVar2.setAlpha(255);
+                lpVar2.draw(canvas);
+                invalidate();
+                super.onDraw(canvas);
                 return;
-            }
         }
     }
 
-    @Override
-    public final void i(long r14) {
-        throw new UnsupportedOperationException("Method not decompiled: fi.k1.i(long):void");
+    public k1(Activity activity) {
+        super(activity);
+        this.f11918b = new lp(org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f29013m5, false));
     }
 }

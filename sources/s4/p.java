@@ -1,16 +1,16 @@
 package s4;
 
-import a8.pa;
+import a8.qa;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
-import org.telegram.ui.Components.uy;
+import org.telegram.messenger.ou;
 public abstract class p extends q {
-    public final Object f54876a = new Object();
-    public Executor f54877b;
-    public uy f54878c;
+    public final Object f56430a = new Object();
+    public Executor f56431b;
+    public ou f56432c;
     public m d;
-    public ArrayList f54879e;
+    public ArrayList f56433e;
 
     public String j() {
         return null;
@@ -22,15 +22,15 @@ public abstract class p extends q {
 
     public final void l(m mVar, ArrayList arrayList) {
         if (mVar != null) {
-            synchronized (this.f54876a) {
+            synchronized (this.f56430a) {
                 try {
                     try {
-                        Executor executor = this.f54877b;
+                        Executor executor = this.f56431b;
                         if (executor != null) {
-                            executor.execute(new pa(this, this.f54878c, mVar, arrayList, false, 6));
+                            executor.execute(new qa(this, this.f56432c, mVar, arrayList, false, 6));
                         } else {
                             this.d = mVar;
-                            this.f54879e = new ArrayList(arrayList);
+                            this.f56433e = new ArrayList(arrayList);
                         }
                         return;
                     } catch (Throwable th2) {

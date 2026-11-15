@@ -8,7 +8,7 @@ public enum z extends b2 {
     public final void d(l lVar, a aVar) {
         if (aVar.j()) {
             lVar.l(this);
-            lVar.f8658c = b2.f8605a;
+            lVar.f8042c = b2.f7989a;
             return;
         }
         char i7 = aVar.i();
@@ -18,12 +18,12 @@ public enum z extends b2 {
                     lVar.h(aVar.g('-', '<', 0));
                     return;
                 } else {
-                    lVar.a(b2.N);
+                    lVar.a(b2.O);
                     return;
                 }
             }
             lVar.f('-');
-            lVar.a(b2.L);
+            lVar.a(b2.M);
             return;
         }
         lVar.m(this);

@@ -1,17 +1,17 @@
 package w7;
 
-import a8.za;
+import a8.ab;
 public abstract class q {
-    public static za f57619a;
+    public static ab f59059a;
 
     public static synchronized p a(o oVar) {
         p pVar;
         synchronized (q.class) {
             try {
-                if (f57619a == null) {
-                    f57619a = new za(2);
+                if (f59059a == null) {
+                    f59059a = new ab(2);
                 }
-                pVar = (p) f57619a.R0(oVar);
+                pVar = (p) f59059a.R0(oVar);
             } catch (Throwable th2) {
                 throw th2;
             }

@@ -1,109 +1,56 @@
 package aa;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
-import j$.util.Objects;
-import java.util.Locale;
-import java.util.UUID;
-import java.util.regex.Pattern;
+import com.google.android.gms.internal.vision.e2;
 public final class b0 {
-    public static final Pattern f778g = Pattern.compile("[^\\p{Alnum}]");
-    public static final String h = Pattern.quote("/");
-    public final c0 f779a;
-    public final Context f780b;
-    public final String f781c;
-    public final va.d d;
-    public final x f782e;
-    public c f783f;
+    public final int f782a;
+    public String f783b;
 
-    public b0(Context context, String str, va.d dVar, x xVar) {
-        if (context != null) {
-            if (str != null) {
-                this.f780b = context;
-                this.f781c = str;
-                this.d = dVar;
-                this.f782e = xVar;
-                this.f779a = new Object();
-                return;
-            }
-            throw new IllegalArgumentException("appIdentifier must not be null");
-        }
-        throw new IllegalArgumentException("appContext must not be null");
-    }
-
-    public final synchronized String a(String str, SharedPreferences sharedPreferences) {
-        String lowerCase;
-        lowerCase = f778g.matcher(UUID.randomUUID().toString()).replaceAll("").toLowerCase(Locale.US);
-        String str2 = "Created new Crashlytics installation ID: " + lowerCase + " for FID: " + str;
-        if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-            Log.v("FirebaseCrashlytics", str2, null);
-        }
-        sharedPreferences.edit().putString("crashlytics.installation.id", lowerCase).putString("firebase.installation.id", str).apply();
-        return lowerCase;
-    }
-
-    public final aa.a0 b(boolean r9) {
-        throw new UnsupportedOperationException("Method not decompiled: aa.b0.b(boolean):aa.a0");
-    }
-
-    public final synchronized c c() {
+    public static b0 a(h2.x xVar) {
         String str;
-        c cVar = this.f783f;
-        if (cVar != null && (cVar.f785b != null || !this.f782e.a())) {
-            return this.f783f;
-        }
-        x9.b bVar = x9.b.f58673a;
-        bVar.c("Determining Crashlytics installation ID...");
-        SharedPreferences sharedPreferences = this.f780b.getSharedPreferences("com.google.firebase.crashlytics", 0);
-        String string = sharedPreferences.getString("firebase.installation.id", null);
-        bVar.c("Cached Firebase Installation ID: " + string);
-        if (this.f782e.a()) {
-            a0 b10 = b(false);
-            bVar.c("Fetched Firebase Installation ID: " + b10.f773a);
-            if (b10.f773a == null) {
-                if (string == null) {
-                    str = "SYN_" + UUID.randomUUID().toString();
-                } else {
-                    str = string;
-                }
-                b10 = new a0(str, null);
-            }
-            if (Objects.equals(b10.f773a, string)) {
-                this.f783f = new c(sharedPreferences.getString("crashlytics.installation.id", null), b10.f773a, b10.f774b);
+        String str2;
+        xVar.O(2);
+        int A = xVar.A();
+        int i7 = A >> 1;
+        int A2 = ((xVar.A() >> 3) & 31) | ((A & 1) << 5);
+        if (i7 != 4 && i7 != 5 && i7 != 7 && i7 != 8) {
+            if (i7 == 9) {
+                str = "dvav";
+            } else if (i7 == 10) {
+                str = "dav1";
             } else {
-                this.f783f = new c(a(b10.f773a, sharedPreferences), b10.f773a, b10.f774b);
+                return null;
             }
-        } else if (string != null && string.startsWith("SYN_")) {
-            this.f783f = new c(sharedPreferences.getString("crashlytics.installation.id", null), null, null);
         } else {
-            this.f783f = new c(a("SYN_" + UUID.randomUUID().toString(), sharedPreferences), null, null);
+            str = "dvhe";
         }
-        bVar.c("Install IDs: " + this.f783f);
-        return this.f783f;
+        StringBuilder m10 = e2.m(str);
+        String str3 = ".";
+        if (i7 >= 10) {
+            str2 = ".";
+        } else {
+            str2 = ".0";
+        }
+        m10.append(str2);
+        m10.append(i7);
+        if (A2 < 10) {
+            str3 = ".0";
+        }
+        m10.append(str3);
+        m10.append(A2);
+        return new b0(m10.toString(), 2);
     }
 
-    public final String d() {
-        String str;
-        c0 c0Var = this.f779a;
-        Context context = this.f780b;
-        synchronized (c0Var) {
-            try {
-                if (c0Var.f787a == null) {
-                    String installerPackageName = context.getPackageManager().getInstallerPackageName(context.getPackageName());
-                    if (installerPackageName == null) {
-                        installerPackageName = "";
-                    }
-                    c0Var.f787a = installerPackageName;
-                }
-                if ("".equals(c0Var.f787a)) {
-                    str = null;
-                } else {
-                    str = c0Var.f787a;
-                }
-            } finally {
-            }
+    public String toString() {
+        switch (this.f782a) {
+            case 1:
+                return "<" + this.f783b + '>';
+            default:
+                return super.toString();
         }
-        return str;
+    }
+
+    public b0(String str, int i7) {
+        this.f782a = i7;
+        this.f783b = str;
     }
 }

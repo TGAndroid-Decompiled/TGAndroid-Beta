@@ -1,55 +1,55 @@
 package m4;
 
-import a8.ia;
-import f3.j0;
+import a8.ja;
+import f3.i0;
 public final class m {
-    public final j0 f19711a;
-    public boolean f19712b;
-    public boolean f19713c;
+    public final i0 f20300a;
+    public boolean f20301b;
+    public boolean f20302c;
     public boolean d;
-    public int f19714e;
-    public int f19715f;
-    public long f19716g;
+    public int f20303e;
+    public int f20304f;
+    public long f20305g;
     public long h;
 
-    public m(j0 j0Var) {
-        this.f19711a = j0Var;
+    public m(i0 i0Var) {
+        this.f20300a = i0Var;
     }
 
     public final void a(int i7, int i10, byte[] bArr) {
-        boolean z9;
-        if (this.f19713c) {
-            int i11 = this.f19715f;
+        boolean z10;
+        if (this.f20302c) {
+            int i11 = this.f20304f;
             int i12 = (i7 + 1) - i11;
             if (i12 < i10) {
                 if (((bArr[i12] & 192) >> 6) == 0) {
-                    z9 = true;
+                    z10 = true;
                 } else {
-                    z9 = false;
+                    z10 = false;
                 }
-                this.d = z9;
-                this.f19713c = false;
+                this.d = z10;
+                this.f20302c = false;
                 return;
             }
-            this.f19715f = (i10 - i7) + i11;
+            this.f20304f = (i10 - i7) + i11;
         }
     }
 
-    public final void b(int i7, long j3, boolean z9) {
-        boolean z10;
+    public final void b(int i7, long j3, boolean z10) {
+        boolean z11;
         if (this.h != -9223372036854775807L) {
-            z10 = true;
+            z11 = true;
         } else {
-            z10 = false;
+            z11 = false;
         }
-        ia.p(z10);
-        if (this.f19714e == 182 && z9 && this.f19712b) {
-            boolean z11 = this.d;
+        ja.p(z11);
+        if (this.f20303e == 182 && z10 && this.f20301b) {
+            boolean z12 = this.d;
             long j10 = this.h;
-            this.f19711a.c(j10, z11 ? 1 : 0, (int) (j3 - this.f19716g), i7, null);
+            this.f20300a.c(j10, z12 ? 1 : 0, (int) (j3 - this.f20305g), i7, null);
         }
-        if (this.f19714e != 179) {
-            this.f19716g = j3;
+        if (this.f20303e != 179) {
+            this.f20305g = j3;
         }
     }
 }

@@ -3,19 +3,19 @@ package org.telegram.ui;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public interface ls {
-    org.telegram.messenger.ij A();
+    boolean A();
 
-    boolean B();
+    void B(TLRPC.Document document);
 
-    void C(TLRPC.Document document);
+    boolean C();
 
-    boolean D();
+    boolean D(TLRPC.Document document);
 
-    boolean E(TLRPC.Document document);
+    org.telegram.ui.Components.m60 E(ai.j0 j0Var);
 
     void F(TLRPC.Document document);
 
-    String G(boolean z9);
+    String G(boolean z10);
 
     void H(TLRPC.Document document);
 
@@ -27,7 +27,7 @@ public interface ls {
 
     void L();
 
-    void M(TLRPC.InputStickerSet inputStickerSet, boolean z9);
+    void M(TLRPC.InputStickerSet inputStickerSet, boolean z10);
 
     boolean N(TLRPC.Document document);
 
@@ -53,39 +53,39 @@ public interface ls {
 
     boolean h();
 
-    void i(org.telegram.messenger.zy zyVar);
+    void i(org.telegram.messenger.xy xyVar);
 
     boolean j();
 
     boolean k(int i7);
 
-    void l(TLRPC.Document document, String str, Object obj, boolean z9, int i7, int i10);
+    void l(TLRPC.Document document, String str, Object obj, boolean z10, int i7, int i10);
 
-    org.telegram.ui.Components.k60 m(bi.x5 x5Var);
+    void m(String str);
 
-    void n(String str);
+    void n(TLRPC.Document document);
 
-    void o(TLRPC.Document document);
+    boolean o();
 
-    boolean p();
+    void p(TLRPC.Document document);
 
-    void q(TLRPC.Document document);
+    void q();
 
-    void r();
+    void r(int i7, int i10, Object obj, TLObject tLObject, boolean z10);
 
-    void s(int i7, int i10, Object obj, TLObject tLObject, boolean z9);
+    void s();
 
-    void t();
+    void t(TLRPC.Document document);
 
-    void u(CharSequence charSequence, String str, org.telegram.ui.Components.ex exVar);
+    void u(TLRPC.StickerSet stickerSet, String str);
 
-    void v(TLRPC.Document document);
+    void v(TLObject tLObject, Object obj);
 
-    void w(TLRPC.StickerSet stickerSet, String str);
+    boolean w();
 
-    void x(TLObject tLObject, Object obj);
+    void x(String str);
 
-    boolean y();
+    void y(CharSequence charSequence, String str, org.telegram.ui.Components.gh ghVar);
 
-    void z(String str);
+    org.telegram.messenger.gj z();
 }

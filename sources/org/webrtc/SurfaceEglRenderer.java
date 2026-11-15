@@ -1,5 +1,6 @@
 package org.webrtc;
 
+import ai.e1;
 import android.view.SurfaceHolder;
 import java.util.concurrent.CountDownLatch;
 import org.webrtc.EglBase;
@@ -89,14 +90,14 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
 
     @Override
     public void setFpsReduction(float f10) {
-        boolean z9;
+        boolean z10;
         synchronized (this.layoutLock) {
             if (f10 == 0.0f) {
-                z9 = true;
+                z10 = true;
             } else {
-                z9 = false;
+                z10 = false;
             }
-            this.isRenderingPaused = z9;
+            this.isRenderingPaused = z10;
         }
         super.setFpsReduction(f10);
     }
@@ -117,7 +118,7 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         ThreadUtils.checkIsOnMainThread();
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        releaseEglSurface(new l2.a0(countDownLatch, 29), false);
+        releaseEglSurface(new e1(countDownLatch, 1), false);
         ThreadUtils.awaitUninterruptibly(countDownLatch);
     }
 

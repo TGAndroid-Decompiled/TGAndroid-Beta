@@ -1,29 +1,29 @@
 package u2;
 
-import a8.ga;
+import a8.ha;
 import android.media.MediaCodecInfo;
 import android.os.Build;
 import android.util.Pair;
-import bi.s5;
+import di.p4;
 import e2.s0;
 import h9.f0;
 import h9.i0;
-import h9.t1;
+import h9.s1;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 public abstract class w {
-    public static final HashMap f56318a = new HashMap();
+    public static final HashMap f57817a = new HashMap();
 
     public static void a(String str, ArrayList arrayList) {
         if ("audio/raw".equals(str)) {
-            if (Build.VERSION.SDK_INT < 26 && Build.DEVICE.equals("R9") && arrayList.size() == 1 && ((o) arrayList.get(0)).f56271a.equals("OMX.MTK.AUDIO.DECODER.RAW")) {
+            if (Build.VERSION.SDK_INT < 26 && Build.DEVICE.equals("R9") && arrayList.size() == 1 && ((o) arrayList.get(0)).f57770a.equals("OMX.MTK.AUDIO.DECODER.RAW")) {
                 arrayList.add(o.i("OMX.google.raw.decoder", "audio/raw", "audio/raw", null, false, true, false, false));
             }
-            Collections.sort(arrayList, new s5(new Object(), 6));
+            Collections.sort(arrayList, new p4(new Object(), 4));
         }
-        if (Build.VERSION.SDK_INT < 32 && arrayList.size() > 1 && "OMX.qti.audio.decoder.flac".equals(((o) arrayList.get(0)).f56271a)) {
+        if (Build.VERSION.SDK_INT < 32 && arrayList.size() > 1 && "OMX.qti.audio.decoder.flac".equals(((o) arrayList.get(0)).f57770a)) {
             arrayList.add((o) arrayList.remove(0));
         }
     }
@@ -37,8 +37,8 @@ public abstract class w {
 
     public static String c(e2.u uVar) {
         Pair b10;
-        String str = uVar.f10620s;
-        String str2 = uVar.f10620s;
+        String str = uVar.f10451s;
+        String str2 = uVar.f10451s;
         if ("audio/eac3-joc".equals(str)) {
             return "audio/eac3";
         }
@@ -52,7 +52,7 @@ public abstract class w {
             }
             if (intValue == 1024) {
                 e2.m mVar = uVar.I;
-                if (mVar != null && mVar.f10370c == 6 && mVar.f10369b == 1) {
+                if (mVar != null && mVar.f10201c == 6 && mVar.f10200b == 1) {
                     return null;
                 }
                 return "video/av01";
@@ -97,20 +97,20 @@ public abstract class w {
         }
     }
 
-    public static synchronized List e(String str, boolean z9, boolean z10) {
+    public static synchronized List e(String str, boolean z10, boolean z11) {
         synchronized (w.class) {
             try {
-                s sVar = new s(str, z9, z10);
-                HashMap hashMap = f56318a;
+                s sVar = new s(str, z10, z11);
+                HashMap hashMap = f57817a;
                 List list = (List) hashMap.get(sVar);
                 if (list != null) {
                     return list;
                 }
-                ArrayList f10 = f(sVar, new f5.u(z9, z10, str.equals("video/mv-hevc")));
-                if (z9 && f10.isEmpty() && Build.VERSION.SDK_INT == 23) {
-                    f10 = f(sVar, new nb.a(25));
+                ArrayList f10 = f(sVar, new f5.v(z10, z11, str.equals("video/mv-hevc")));
+                if (z10 && f10.isEmpty() && Build.VERSION.SDK_INT == 23) {
+                    f10 = f(sVar, new sa.d(25));
                     if (!f10.isEmpty()) {
-                        h2.a.l("MediaCodecUtil", "MediaCodecList API didn't list secure decoder for: " + str + ". Assuming: " + ((o) f10.get(0)).f56271a);
+                        h2.a.l("MediaCodecUtil", "MediaCodecList API didn't list secure decoder for: " + str + ". Assuming: " + ((o) f10.get(0)).f57770a);
                     }
                 }
                 a(str, f10);
@@ -127,14 +127,14 @@ public abstract class w {
         throw new UnsupportedOperationException("Method not decompiled: u2.w.f(u2.s, u2.u):java.util.ArrayList");
     }
 
-    public static t1 g(i iVar, e2.u uVar, boolean z9, boolean z10) {
+    public static s1 g(i iVar, e2.u uVar, boolean z10, boolean z11) {
         List a10;
-        List a11 = iVar.a(uVar.f10620s, z9, z10);
+        List a11 = iVar.a(uVar.f10451s, z10, z11);
         String c10 = c(uVar);
         if (c10 == null) {
-            a10 = t1.f14399e;
+            a10 = s1.f13749e;
         } else {
-            a10 = iVar.a(c10, z9, z10);
+            a10 = iVar.a(c10, z10, z11);
         }
         f0 p10 = i0.p();
         p10.d(a11);
@@ -142,9 +142,9 @@ public abstract class w {
         return p10.f();
     }
 
-    public static boolean h(MediaCodecInfo mediaCodecInfo, String str, boolean z9, String str2) {
+    public static boolean h(MediaCodecInfo mediaCodecInfo, String str, boolean z10, String str2) {
         if (!mediaCodecInfo.isEncoder()) {
-            if (z9 || !str.endsWith(".secure")) {
+            if (z10 || !str.endsWith(".secure")) {
                 int i7 = Build.VERSION.SDK_INT;
                 if (i7 < 24 && (("OMX.SEC.aac.dec".equals(str) || "OMX.Exynos.AAC.Decoder".equals(str)) && "samsung".equals(Build.MANUFACTURER))) {
                     String str3 = Build.DEVICE;
@@ -174,7 +174,7 @@ public abstract class w {
             return mediaCodecInfo.isSoftwareOnly();
         }
         if (!s0.i(str)) {
-            String c10 = ga.c(mediaCodecInfo.getName());
+            String c10 = ha.c(mediaCodecInfo.getName());
             if (!c10.startsWith("arc.")) {
                 if (!c10.startsWith("omx.google.") && !c10.startsWith("omx.ffmpeg.")) {
                     if ((!c10.startsWith("omx.sec.") || !c10.contains(".sw.")) && !c10.equals("omx.qcom.video.decoder.hevcswvdec") && !c10.startsWith("c2.android.") && !c10.startsWith("c2.google.")) {

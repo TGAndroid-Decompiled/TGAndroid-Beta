@@ -2,15 +2,15 @@ package zd;
 
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public class c1 extends n1 {
-    public final boolean f60066c;
+    public final boolean f61267c;
 
     public c1() {
         super(true);
         q qVar;
         q qVar2;
-        boolean z9 = true;
+        boolean z10 = true;
         y(null);
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = n1.f60108b;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = n1.f61309b;
         p pVar = (p) atomicReferenceFieldUpdater.get(this);
         if (pVar instanceof q) {
             qVar = (q) pVar;
@@ -30,15 +30,15 @@ public class c1 extends n1 {
                     h = qVar2.h();
                 }
             }
-            this.f60066c = z9;
+            this.f61267c = z10;
         }
-        z9 = false;
-        this.f60066c = z9;
+        z10 = false;
+        this.f61267c = z10;
     }
 
     @Override
     public final boolean t() {
-        return this.f60066c;
+        return this.f61267c;
     }
 
     @Override

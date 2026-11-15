@@ -1,18 +1,56 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.function.Supplier;
-public final class nk implements Supplier {
-    public final int f24208a;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class nk implements RequestDelegate {
+    public final int f25206a;
+    public final np f25207b;
+    public final long f25208c;
+    public final long d;
+
+    public nk(int i7, long j3, long j10, np npVar) {
+        this.f25206a = i7;
+        this.f25207b = npVar;
+        this.f25208c = j3;
+        this.d = j10;
+    }
 
     @Override
-    public final Object get() {
-        switch (this.f24208a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f25206a) {
             case 0:
-                return new HashSet();
+                np npVar = this.f25207b;
+                npVar.getClass();
+                if (tL_error == null) {
+                    TLRPC.TL_messages_affectedMessages tL_messages_affectedMessages = (TLRPC.TL_messages_affectedMessages) tLObject;
+                    npVar.L3(tL_messages_affectedMessages.pts, tL_messages_affectedMessages.pts_count, this.f25208c);
+                }
+                long j3 = this.d;
+                if (j3 != 0) {
+                    npVar.getMessagesStorage().q1(j3);
+                    return;
+                }
+                return;
             default:
-                return new ArrayList();
+                np npVar2 = this.f25207b;
+                if (tLObject != null) {
+                    TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs = (TLRPC.TL_messages_peerDialogs) tLObject;
+                    if (!tL_messages_peerDialogs.dialogs.isEmpty()) {
+                        TLRPC.TL_messages_dialogs tL_messages_dialogs = new TLRPC.TL_messages_dialogs();
+                        tL_messages_dialogs.dialogs.addAll(tL_messages_peerDialogs.dialogs);
+                        tL_messages_dialogs.messages.addAll(tL_messages_peerDialogs.messages);
+                        tL_messages_dialogs.users.addAll(tL_messages_peerDialogs.users);
+                        tL_messages_dialogs.chats.addAll(tL_messages_peerDialogs.chats);
+                        npVar2.J3(tL_messages_dialogs, null, null, ((TLRPC.TL_dialog) tL_messages_peerDialogs.dialogs.get(0)).folder_id, 0, 1, npVar2.Q7, false, false, false);
+                    }
+                }
+                long j10 = this.f25208c;
+                if (j10 != 0) {
+                    npVar2.getMessagesStorage().q1(j10);
+                }
+                npVar2.f25255d1.e(this.d);
+                return;
         }
     }
 }

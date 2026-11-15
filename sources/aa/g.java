@@ -37,7 +37,7 @@ public abstract class g {
         }
     }
 
-    public static boolean c(Context context, String str, boolean z9) {
+    public static boolean c(Context context, String str, boolean z10) {
         Resources resources;
         if (context != null && (resources = context.getResources()) != null) {
             int e10 = e(context, str, "bool");
@@ -49,7 +49,7 @@ public abstract class g {
                 return Boolean.parseBoolean(context.getString(e11));
             }
         }
-        return z9;
+        return z10;
     }
 
     public static int d() {

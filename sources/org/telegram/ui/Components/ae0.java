@@ -11,34 +11,34 @@ import java.util.Locale;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.PhotoViewer;
 public abstract class ae0 extends FrameLayout {
-    public TLRPC.WebPage D;
-    public float E;
-    public boolean F;
+    public TLRPC.WebPage E;
+    public float F;
     public boolean G;
-    public int H;
+    public boolean H;
     public int I;
-    public float J;
-    public boolean K;
-    public ob0 L;
-    public int f31841a;
-    public PhotoViewer f31842b;
-    public LinearLayout f31843c;
+    public int J;
+    public float K;
+    public boolean L;
+    public wa0 M;
+    public int f32968a;
+    public PhotoViewer f32969b;
+    public LinearLayout f32970c;
     public TextView d;
-    public TextView f31844e;
-    public rt f31845f;
-    public bi.ec h;
-    public RadialProgressView f31846n;
-    public View f31847r;
-    public String f31848s;
-    public ArrayList f31849w;
-    public String f31850x;
-    public boolean f31851y;
+    public TextView f32971e;
+    public xt f32972f;
+    public bi.o2 h;
+    public RadialProgressView f32973n;
+    public View f32974r;
+    public String f32975s;
+    public ArrayList f32976w;
+    public String f32977x;
+    public boolean f32978y;
 
-    public static void a(org.telegram.ui.fq0 fq0Var, String str) {
+    public static void a(org.telegram.ui.bq0 bq0Var, String str) {
         String str2;
         double ceil;
-        int videoDuration = fq0Var.getVideoDuration() / 1000;
-        ArrayList arrayList = fq0Var.f31849w;
+        int videoDuration = bq0Var.getVideoDuration() / 1000;
+        ArrayList arrayList = bq0Var.f32976w;
         arrayList.clear();
         if (videoDuration > 15) {
             String[] split = str.split("\\|");
@@ -70,12 +70,12 @@ public abstract class ae0 extends FrameLayout {
         }
     }
 
-    public final void b(boolean z9) {
-        ob0 ob0Var = this.L;
-        if (!z9 && this.G) {
-            org.telegram.messenger.g0.i3(ob0Var, 500L);
-        } else if (z9 && !this.G) {
-            org.telegram.messenger.g0.r(ob0Var);
+    public final void b(boolean z10) {
+        wa0 wa0Var = this.M;
+        if (!z10 && this.H) {
+            org.telegram.messenger.g0.i3(wa0Var, 500L);
+        } else if (z10 && !this.H) {
+            org.telegram.messenger.g0.r(wa0Var);
         }
     }
 
@@ -84,30 +84,30 @@ public abstract class ae0 extends FrameLayout {
     }
 
     public final boolean d() {
-        return this.f31851y;
+        return this.f32978y;
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.K) {
+        if (this.L) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
     }
 
     public final boolean e() {
-        if (this.f31846n.getVisibility() != 0) {
-            ti.o c10 = l2.i.d().c();
+        if (this.f32973n.getVisibility() != 0) {
+            wi.n c10 = l2.i.d().c();
             if (c10 != null) {
                 c10.b();
                 org.telegram.messenger.g0.i3(new wd0(this, 0), 300L);
                 return true;
             }
             this.h.setVisibility(0);
-            PhotoViewer photoViewer = this.f31842b;
-            if (photoViewer.D != null && photoViewer.f41392f0 != null) {
+            PhotoViewer photoViewer = this.f32969b;
+            if (photoViewer.E != null && photoViewer.f42772g0 != null) {
                 photoViewer.T0();
-                photoViewer.O8.g(photoViewer.D, null, true);
+                photoViewer.P8.g(photoViewer.E, null, true);
                 return true;
             }
         }
@@ -115,31 +115,31 @@ public abstract class ae0 extends FrameLayout {
     }
 
     public final void f() {
-        if (this.G && this.f31851y) {
+        if (this.H && this.f32978y) {
             h("pauseVideo();");
-            this.G = false;
+            this.H = false;
             b(true);
         }
     }
 
     public final void g() {
-        if (!this.G && this.f31851y) {
+        if (!this.H && this.f32978y) {
             h("playVideo();");
-            this.G = true;
+            this.H = true;
             b(false);
         }
     }
 
     public float getBufferedPosition() {
-        return this.J;
+        return this.K;
     }
 
     public int getCurrentPosition() {
-        return this.I;
+        return this.J;
     }
 
     public int getEmbedHeight() {
-        TLRPC.WebPage webPage = this.D;
+        TLRPC.WebPage webPage = this.E;
         if (webPage != null) {
             return webPage.embed_height;
         }
@@ -147,7 +147,7 @@ public abstract class ae0 extends FrameLayout {
     }
 
     public int getEmbedWidth() {
-        TLRPC.WebPage webPage = this.D;
+        TLRPC.WebPage webPage = this.E;
         if (webPage != null) {
             return webPage.embed_width;
         }
@@ -155,25 +155,25 @@ public abstract class ae0 extends FrameLayout {
     }
 
     public int getVideoDuration() {
-        return this.H;
+        return this.I;
     }
 
     public WebView getWebView() {
-        return this.f31845f;
+        return this.f32972f;
     }
 
     public final void h(String str) {
-        this.f31845f.evaluateJavascript(str, null);
+        this.f32972f.evaluateJavascript(str, null);
     }
 
     public final void i(long j3) {
-        boolean z9 = this.G;
-        this.I = (int) j3;
-        if (z9) {
+        boolean z10 = this.H;
+        this.J = (int) j3;
+        if (z10) {
             f();
         }
-        if (z9) {
-            org.telegram.messenger.g0.i3(new bi.r3(this, j3, 23), 100L);
+        if (z10) {
+            org.telegram.messenger.g0.i3(new di.x2(this, j3, 23), 100L);
             return;
         }
         h("seekTo(" + Math.round(((float) j3) / 1000.0f) + ", true);");
@@ -181,9 +181,9 @@ public abstract class ae0 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        rt rtVar = this.f31845f;
-        if (rtVar.getParent() == this) {
-            TLRPC.WebPage webPage = this.D;
+        xt xtVar = this.f32972f;
+        if (xtVar.getParent() == this) {
+            TLRPC.WebPage webPage = this.E;
             int i11 = webPage.embed_width;
             int i12 = 100;
             if (i11 == 0) {
@@ -198,7 +198,7 @@ public abstract class ae0 extends FrameLayout {
             float f10 = i11;
             float f11 = i12;
             float min = Math.min(size / f10, size2 / f11);
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) rtVar.getLayoutParams();
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) xtVar.getLayoutParams();
             int i14 = (int) (f10 * min);
             layoutParams.width = i14;
             int i15 = (int) (f11 * min);
@@ -210,18 +210,18 @@ public abstract class ae0 extends FrameLayout {
     }
 
     public void setPlaybackSpeed(float f10) {
-        this.E = f10;
-        if (this.f31846n.getVisibility() != 0) {
-            if (this.f31851y) {
+        this.F = f10;
+        if (this.f32973n.getVisibility() != 0) {
+            if (this.f32978y) {
                 h("setPlaybackSpeed(" + f10 + ");");
                 return;
             }
             return;
         }
-        this.F = true;
+        this.G = true;
     }
 
-    public void setTouchDisabled(boolean z9) {
-        this.K = z9;
+    public void setTouchDisabled(boolean z10) {
+        this.L = z10;
     }
 }

@@ -1,19 +1,34 @@
 package org.telegram.ui;
 
-import android.view.View;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class i21 implements View.OnLongClickListener {
-    public final TLRPC.TL_authorization f46472a;
-    public final o21 f46473b;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class i21 extends org.telegram.ui.ActionBar.u2 {
+    public static final int f47886p1 = 0;
+    public TLRPC.TL_authorization f47887m1;
+    public SessionsActivity n1;
+    public org.telegram.ui.Components.fh0 f47888o1;
 
-    public i21(o21 o21Var, TLRPC.TL_authorization tL_authorization) {
-        this.f46473b = o21Var;
-        this.f46472a = tL_authorization;
+    public static void I0(i21 i21Var, String str) {
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(i21Var.getContext());
+        alertDialog$Builder.f(new CharSequence[]{org.telegram.messenger.hd.M0(2131751767, null)}, new og.j(12, i21Var, str));
+        alertDialog$Builder.p();
+    }
+
+    public static void J0(i21 i21Var) {
+        TL_account.changeAuthorizationSettings changeauthorizationsettings = new TL_account.changeAuthorizationSettings();
+        TLRPC.TL_authorization tL_authorization = i21Var.f47887m1;
+        changeauthorizationsettings.encrypted_requests_disabled = tL_authorization.encrypted_requests_disabled;
+        changeauthorizationsettings.call_requests_disabled = tL_authorization.call_requests_disabled;
+        changeauthorizationsettings.flags = 3;
+        changeauthorizationsettings.hash = tL_authorization.hash;
+        ConnectionsManager.getInstance(i21Var.f29679a).sendRequest(changeauthorizationsettings, new fi.m5(28));
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        o21.I0(this.f46473b, this.f46472a.country);
-        return true;
+    public final void show() {
+        super.show();
+        this.f47888o1.d();
     }
 }

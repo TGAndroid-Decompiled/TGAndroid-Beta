@@ -93,8 +93,8 @@ public class WebRtcAudioManager {
         WebRtcAudioUtils.logAudioState("WebRtcAudioManager");
     }
 
-    private static void assertTrue(boolean z9) {
-        if (z9) {
+    private static void assertTrue(boolean z10) {
+        if (z10) {
             return;
         }
         throw new AssertionError("Expected condition to be true");
@@ -166,19 +166,19 @@ public class WebRtcAudioManager {
     }
 
     public static synchronized boolean getStereoInput() {
-        boolean z9;
+        boolean z10;
         synchronized (WebRtcAudioManager.class) {
-            z9 = useStereoInput;
+            z10 = useStereoInput;
         }
-        return z9;
+        return z10;
     }
 
     public static synchronized boolean getStereoOutput() {
-        boolean z9;
+        boolean z10;
         synchronized (WebRtcAudioManager.class) {
-            z9 = useStereoOutput;
+            z10 = useStereoOutput;
         }
-        return z9;
+        return z10;
     }
 
     private boolean hasEarpiece() {
@@ -241,26 +241,26 @@ public class WebRtcAudioManager {
         return false;
     }
 
-    private native void nativeCacheAudioParameters(int i7, int i10, int i11, boolean z9, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14, boolean z15, int i12, int i13, long j3);
+    private native void nativeCacheAudioParameters(int i7, int i10, int i11, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14, boolean z15, boolean z16, int i12, int i13, long j3);
 
-    public static synchronized void setBlacklistDeviceForOpenSLESUsage(boolean z9) {
+    public static synchronized void setBlacklistDeviceForOpenSLESUsage(boolean z10) {
         synchronized (WebRtcAudioManager.class) {
             blacklistDeviceForOpenSLESUsageIsOverridden = true;
-            blacklistDeviceForOpenSLESUsage = z9;
+            blacklistDeviceForOpenSLESUsage = z10;
         }
     }
 
-    public static synchronized void setStereoInput(boolean z9) {
+    public static synchronized void setStereoInput(boolean z10) {
         synchronized (WebRtcAudioManager.class) {
-            Logging.w("WebRtcAudioManager", "Overriding default input behavior: setStereoInput(" + z9 + ')');
-            useStereoInput = z9;
+            Logging.w("WebRtcAudioManager", "Overriding default input behavior: setStereoInput(" + z10 + ')');
+            useStereoInput = z10;
         }
     }
 
-    public static synchronized void setStereoOutput(boolean z9) {
+    public static synchronized void setStereoOutput(boolean z10) {
         synchronized (WebRtcAudioManager.class) {
-            Logging.w("WebRtcAudioManager", "Overriding default output behavior: setStereoOutput(" + z9 + ')');
-            useStereoOutput = z9;
+            Logging.w("WebRtcAudioManager", "Overriding default output behavior: setStereoOutput(" + z10 + ')');
+            useStereoOutput = z10;
         }
     }
 

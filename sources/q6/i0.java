@@ -2,16 +2,16 @@ package q6;
 
 import java.util.Arrays;
 public final class i0 {
-    public final String f53899a;
-    public final String f53900b;
-    public final boolean f53901c;
+    public final String f55336a;
+    public final String f55337b;
+    public final boolean f55338c;
 
-    public i0(String str, String str2, boolean z9) {
+    public i0(String str, String str2, boolean z10) {
         m.e(str);
-        this.f53899a = str;
+        this.f55336a = str;
         m.e(str2);
-        this.f53900b = str2;
-        this.f53901c = z9;
+        this.f55337b = str2;
+        this.f55338c = z10;
     }
 
     public final boolean equals(Object obj) {
@@ -22,18 +22,18 @@ public final class i0 {
             return false;
         }
         i0 i0Var = (i0) obj;
-        if (m.k(this.f53899a, i0Var.f53899a) && m.k(this.f53900b, i0Var.f53900b) && m.k(null, null) && this.f53901c == i0Var.f53901c) {
+        if (m.k(this.f55336a, i0Var.f55336a) && m.k(this.f55337b, i0Var.f55337b) && m.k(null, null) && this.f55338c == i0Var.f55338c) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f53899a, this.f53900b, null, 4225, Boolean.valueOf(this.f53901c)});
+        return Arrays.hashCode(new Object[]{this.f55336a, this.f55337b, null, 4225, Boolean.valueOf(this.f55338c)});
     }
 
     public final String toString() {
-        String str = this.f53899a;
+        String str = this.f55336a;
         if (str != null) {
             return str;
         }

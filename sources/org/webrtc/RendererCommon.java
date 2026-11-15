@@ -6,11 +6,11 @@ public class RendererCommon {
     private static float BALANCED_VISIBLE_FRACTION = 0.5625f;
 
     public interface GlDrawer {
-        void drawOes(int i7, int i10, int i11, int i12, int i13, float[] fArr, int i14, int i15, int i16, int i17, int i18, int i19, boolean z9);
+        void drawOes(int i7, int i10, int i11, int i12, int i13, float[] fArr, int i14, int i15, int i16, int i17, int i18, int i19, boolean z10);
 
-        void drawRgb(int i7, int i10, int i11, int i12, int i13, float[] fArr, int i14, int i15, int i16, int i17, int i18, int i19, boolean z9);
+        void drawRgb(int i7, int i10, int i11, int i12, int i13, float[] fArr, int i14, int i15, int i16, int i17, int i18, int i19, boolean z10);
 
-        void drawYuv(int[] iArr, int i7, int i10, int i11, int i12, float[] fArr, int i13, int i14, int i15, int i16, int i17, int i18, boolean z9);
+        void drawYuv(int[] iArr, int i7, int i10, int i11, int i12, float[] fArr, int i13, int i14, int i15, int i16, int i17, int i18, boolean z10);
 
         void release();
     }
@@ -96,7 +96,7 @@ public class RendererCommon {
         return getDisplaySize(convertScalingTypeToVisibleFraction(scalingType), f10, i7, i10);
     }
 
-    public static float[] getLayoutMatrix(boolean z9, float f10, float f11) {
+    public static float[] getLayoutMatrix(boolean z10, float f10, float f11) {
         float f12;
         float f13;
         if (f11 > f10) {
@@ -106,7 +106,7 @@ public class RendererCommon {
             f12 = f11 / f10;
             f13 = 1.0f;
         }
-        if (z9) {
+        if (z10) {
             f12 *= -1.0f;
         }
         float[] fArr = new float[16];

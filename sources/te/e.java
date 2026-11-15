@@ -1,56 +1,56 @@
 package te;
 
 import android.graphics.RectF;
-import c8.j9;
+import c8.i9;
 public final class e implements Comparable {
-    public final Object f55507a;
-    public int f55508b;
-    public final k f55509c;
+    public final Object f57090a;
+    public int f57091b;
+    public final k f57092c;
     public final k d;
-    public final l f55510e;
-    public final k f55511f;
+    public final l f57093e;
+    public final k f57094f;
     public boolean h = false;
 
-    public e(int i7, Object obj, boolean z9) {
+    public e(int i7, Object obj, boolean z10) {
         float f10;
-        this.f55507a = obj;
-        this.f55508b = i7;
-        if (z9) {
+        this.f57090a = obj;
+        this.f57091b = i7;
+        if (z10) {
             f10 = 1.0f;
         } else {
             f10 = 0.0f;
         }
         this.d = new k(f10);
-        this.f55509c = new k(i7);
-        this.f55510e = new l();
-        this.f55511f = new k(0.0f);
+        this.f57092c = new k(i7);
+        this.f57093e = new l();
+        this.f57094f = new k(0.0f);
         a(false);
     }
 
-    public final void a(boolean z9) {
-        this.f55509c.c(z9);
-        this.d.c(z9);
-        this.f55510e.c(z9);
-        this.f55511f.c(z9);
-        Object obj = this.f55507a;
+    public final void a(boolean z10) {
+        this.f57092c.c(z10);
+        this.d.c(z10);
+        this.f57093e.c(z10);
+        this.f57094f.c(z10);
+        Object obj = this.f57090a;
         if (obj instanceof l) {
-            ((l) obj).c(z9);
+            ((l) obj).c(z10);
         }
     }
 
     public final RectF b() {
-        l lVar = this.f55510e;
-        RectF rectF = lVar.f55530e;
-        rectF.set(lVar.f55527a.f55524a, lVar.f55528b.f55524a, lVar.f55529c.f55524a, lVar.d.f55524a);
+        l lVar = this.f57093e;
+        RectF rectF = lVar.f57113e;
+        rectF.set(lVar.f57110a.f57107a, lVar.f57111b.f57107a, lVar.f57112c.f57107a, lVar.d.f57107a);
         return rectF;
     }
 
     public final float c() {
-        return j9.a(this.d.f55524a, 0.0f, 1.0f);
+        return i9.a(this.d.f57107a, 0.0f, 1.0f);
     }
 
     @Override
     public final int compareTo(Object obj) {
-        return Integer.compare(this.f55508b, ((e) obj).f55508b);
+        return Integer.compare(this.f57091b, ((e) obj).f57091b);
     }
 }

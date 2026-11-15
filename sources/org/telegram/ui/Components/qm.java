@@ -1,39 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class qm extends v4.c0 {
-    public final kg.c0 f37332r;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class qm extends AnimatorListenerAdapter {
+    public final int f38703a;
+    public final jn f38704b;
 
-    public qm(kg.c0 c0Var, Context context) {
-        super(context);
-        this.f37332r = c0Var;
+    public qm(jn jnVar, int i7) {
+        this.f38703a = i7;
+        this.f38704b = jnVar;
     }
 
     @Override
-    public final int k(int i7, View view) {
-        int i10;
-        an anVar = (an) this.f37332r.V;
-        if (anVar.V0) {
-            i7 = -1;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f38703a) {
+            case 0:
+                this.f38704b.F.setTranslationY(0.0f);
+                return;
+            case 1:
+                this.f38704b.F.setTranslationY(0.0f);
+                return;
+            default:
+                jn jnVar = this.f38704b;
+                jnVar.f36085g1 = false;
+                jnVar.F.setTranslationY(0.0f);
+                jnVar.f0();
+                return;
         }
-        int k10 = super.k(i7, view);
-        if (anVar.V0) {
-            k10 += org.telegram.messenger.g0.L(160.0f);
-        }
-        if (!anVar.V0) {
-            k10 = org.telegram.messenger.k5.B(7.0f, anVar.R0 - org.telegram.messenger.g0.f22561m, k10);
-        }
-        if (anVar.V0 && k10 == 0 && (i10 = anVar.W0) >= 0) {
-            an.O(anVar, i10);
-            anVar.W0 = -1;
-        }
-        anVar.V0 = false;
-        return k10;
-    }
-
-    @Override
-    public final int m(int i7) {
-        return super.m(i7) * 2;
     }
 }

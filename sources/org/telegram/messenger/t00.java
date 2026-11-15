@@ -1,50 +1,112 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_payments;
-public final class t00 implements c20 {
-    public final int f25580a = 0;
-    public final long f25581b;
-    public final c1 f25582c;
+import org.telegram.ui.LaunchActivity;
+public final class t00 implements z10 {
+    public final int f26610a;
+    public final long f26611b;
+    public final Object f26612c;
     public final Object d;
+    public final Object f26613e;
 
-    public t00(w9 w9Var, long j3, TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState) {
-        this.f25582c = w9Var;
-        this.f25581b = j3;
-        this.d = tL_StarGiftAuctionState;
+    public t00(Object obj, long j3, Object obj2, Object obj3, int i7) {
+        this.f26610a = i7;
+        this.f26612c = obj;
+        this.f26611b = j3;
+        this.d = obj2;
+        this.f26613e = obj3;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f25580a;
-        Object obj2 = this.d;
-        long j3 = this.f25581b;
-        c1 c1Var = this.f25582c;
+        int i7 = this.f26610a;
+        String str = null;
+        Object obj2 = this.f26613e;
+        Object obj3 = this.d;
+        long j3 = this.f26611b;
+        Object obj4 = this.f26612c;
         switch (i7) {
             case 0:
-                f10 f10Var = (f10) c1Var;
-                ij ijVar = (ij) obj2;
+                c10 c10Var = (c10) obj4;
+                gj gjVar = (gj) obj3;
+                String str2 = (String) obj2;
                 TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) obj;
-                TLRPC.Message message = ijVar.f23266k;
-                message.summaryText = tL_textWithEntities;
+                TLRPC.Message message = gjVar.f23817k;
+                if (tL_textWithEntities != null) {
+                    str = str2;
+                }
+                message.translatedSummaryLanguage = str;
+                message.translatedSummaryText = tL_textWithEntities;
                 if (tL_textWithEntities == null) {
                     message.summarizedOpen = false;
                 }
-                f10Var.getMessagesStorage().X1(j3, ijVar.f23266k);
-                qs.f(f10Var.currentAccount).k(128, ijVar, Boolean.TRUE);
+                c10Var.getMessagesStorage().X1(j3, gjVar.f23817k);
+                ns.f(c10Var.currentAccount).k(128, gjVar, Boolean.TRUE);
+                return;
+            case 1:
+                x6 x6Var = (x6) obj4;
+                ArrayList arrayList = (ArrayList) obj3;
+                HashMap hashMap = (HashMap) obj2;
+                ArrayList arrayList2 = (ArrayList) obj;
+                TLRPC.TL_getFactCheck tL_getFactCheck = new TLRPC.TL_getFactCheck();
+                int i10 = x6Var.f27466a;
+                tL_getFactCheck.peer = np.s1(i10).j1(j3);
+                ArrayList arrayList3 = new ArrayList();
+                int i11 = 0;
+                for (int i12 = 0; i12 < arrayList2.size(); i12++) {
+                    w6 w6Var = (w6) arrayList.get(i12);
+                    TLRPC.TL_factCheck tL_factCheck = (TLRPC.TL_factCheck) arrayList2.get(i12);
+                    if (tL_factCheck == null) {
+                        arrayList3.add(w6Var);
+                        tL_getFactCheck.msg_id.add(Integer.valueOf(w6Var.f27305a));
+                    } else {
+                        x6Var.d.remove(w6Var);
+                        z10 z10Var = (z10) hashMap.get(w6Var);
+                        if (z10Var != null) {
+                            z10Var.a(tL_factCheck);
+                            i11++;
+                        }
+                    }
+                }
+                if (i11 > 0) {
+                    ns.f(i10).k(224, new Object[0]);
+                }
+                if (!tL_getFactCheck.msg_id.isEmpty()) {
+                    ConnectionsManager.getInstance(i10).sendRequest(tL_getFactCheck, new q6(x6Var, tL_getFactCheck, arrayList3, hashMap, 0));
+                    return;
+                }
                 return;
             default:
-                w9 w9Var = (w9) c1Var;
-                w9Var.d(j3).f25603c = (ArrayList) obj;
-                w9Var.f(j3, (TL_payments.TL_StarGiftAuctionState) obj2);
-                return;
+                np npVar = (np) obj4;
+                boolean[] zArr = (boolean[]) obj3;
+                org.telegram.ui.yd ydVar = (org.telegram.ui.yd) obj2;
+                org.telegram.ui.ActionBar.e2 T = LaunchActivity.T();
+                if (((Boolean) obj).booleanValue()) {
+                    npVar.W7.add(Long.valueOf(j3));
+                    npVar.G4(true);
+                    if (T != null) {
+                        org.telegram.ui.Components.cc.a0(T).P(2131623982, g0.H2(g0.x2(hd.M0(2131745574, null), new on(0, T)), true)).k(true);
+                    }
+                    zArr[0] = true;
+                    ydVar.run();
+                    return;
+                } else if (T != null) {
+                    org.telegram.ui.Components.cc.a0(T).I(2131624012, hd.M0(2131754311, null), hd.M0(2131754312, null)).j();
+                    return;
+                } else {
+                    return;
+                }
         }
     }
 
-    public t00(f10 f10Var, ij ijVar, long j3) {
-        this.f25582c = f10Var;
-        this.d = ijVar;
-        this.f25581b = j3;
+    public t00(c10 c10Var, gj gjVar, String str, long j3) {
+        this.f26610a = 0;
+        this.f26612c = c10Var;
+        this.d = gjVar;
+        this.f26613e = str;
+        this.f26611b = j3;
     }
 }

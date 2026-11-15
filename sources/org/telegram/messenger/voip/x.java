@@ -1,59 +1,32 @@
 package org.telegram.messenger.voip;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.concurrent.atomic.AtomicInteger;
-import org.telegram.messenger.ls;
-import org.telegram.messenger.pb;
-import org.telegram.messenger.qp;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class x implements RequestDelegate {
-    public final int f26192a;
-    public final ls f26193b;
-    public final long f26194c;
-    public final Object d;
-    public final Object f26195e;
-    public final int f26196f;
-    public final String f26197g;
+import java.util.ArrayList;
+public final class x implements Runnable {
+    public final int f27196a;
+    public final VoIPService f27197b;
+    public final ArrayList f27198c;
+    public final ArrayList d;
+    public final ArrayList f27199e;
+    public final String f27200f;
 
-    public x(qp qpVar, HashMap hashMap, String str, a0.h hVar, long j3, int i7) {
-        this.f26192a = 2;
-        this.f26193b = qpVar;
-        this.d = hashMap;
-        this.f26197g = str;
-        this.f26195e = hVar;
-        this.f26194c = j3;
-        this.f26196f = i7;
+    public x(VoIPService voIPService, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, String str, int i7) {
+        this.f27196a = i7;
+        this.f27197b = voIPService;
+        this.f27198c = arrayList;
+        this.d = arrayList2;
+        this.f27199e = arrayList3;
+        this.f27200f = str;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f26192a) {
+    public final void run() {
+        switch (this.f27196a) {
             case 0:
-                int i7 = this.f26196f;
-                String str = this.f26197g;
-                ((VoIPService) this.f26193b).lambda$startConferenceGroupCall$51(this.f26194c, (HashSet) this.d, (AtomicInteger) this.f26195e, i7, str, tLObject, tL_error);
-                return;
-            case 1:
-                int i10 = this.f26196f;
-                String str2 = this.f26197g;
-                ((VoIPService) this.f26193b).lambda$startConferenceGroupCall$43(this.f26194c, (HashSet) this.d, (AtomicInteger) this.f26195e, i10, str2, tLObject, tL_error);
+                this.f27197b.lambda$startConferenceGroupCall$47(this.f27198c, this.d, this.f27199e, this.f27200f);
                 return;
             default:
-                org.telegram.messenger.g0.h3(new pb((qp) this.f26193b, (HashMap) this.d, this.f26197g, tLObject, (a0.h) this.f26195e, this.f26194c, this.f26196f));
+                this.f27197b.lambda$startConferenceGroupCall$39(this.f27198c, this.d, this.f27199e, this.f27200f);
                 return;
         }
-    }
-
-    public x(VoIPService voIPService, long j3, HashSet hashSet, AtomicInteger atomicInteger, int i7, String str, int i10) {
-        this.f26192a = i10;
-        this.f26193b = voIPService;
-        this.f26194c = j3;
-        this.d = hashSet;
-        this.f26195e = atomicInteger;
-        this.f26196f = i7;
-        this.f26197g = str;
     }
 }

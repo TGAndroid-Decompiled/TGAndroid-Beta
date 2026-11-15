@@ -1,64 +1,89 @@
 package org.telegram.messenger;
 
+import android.location.Location;
+import android.location.LocationListener;
+import android.os.Bundle;
 import android.os.SystemClock;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class pd implements Runnable {
-    public final int f24549a;
-    public final long f24550b;
-    public final Object f24551c;
+public final class pd implements LocationListener {
+    public final int f25921a;
+    public final Object f25922b;
 
-    public pd(Object obj, long j3, int i7) {
-        this.f24549a = i7;
-        this.f24551c = obj;
-        this.f24550b = j3;
+    public pd(Object obj, int i7) {
+        this.f25921a = i7;
+        this.f25922b = obj;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f24549a;
-        long j3 = this.f24550b;
-        Object obj = this.f24551c;
-        switch (i7) {
+    public final void onLocationChanged(Location location) {
+        switch (this.f25921a) {
             case 0:
-                sd sdVar = (sd) obj;
-                ArrayList arrayList = sdVar.f25460b;
-                a0.h hVar = sdVar.f25459a;
-                rd rdVar = (rd) hVar.f(j3);
-                hVar.l(j3);
-                if (rdVar != null) {
-                    TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
-                    tL_messages_editMessage.peer = sdVar.getMessagesController().j1(rdVar.f25280a);
-                    tL_messages_editMessage.f27044id = rdVar.f25281b;
-                    tL_messages_editMessage.flags |= 16384;
-                    TLRPC.TL_inputMediaGeoLive tL_inputMediaGeoLive = new TLRPC.TL_inputMediaGeoLive();
-                    tL_messages_editMessage.media = tL_inputMediaGeoLive;
-                    tL_inputMediaGeoLive.stopped = true;
-                    tL_inputMediaGeoLive.geo_point = new TLRPC.TL_inputGeoPointEmpty();
-                    sdVar.getConnectionsManager().sendRequest(tL_messages_editMessage, new kd(sdVar, 0));
-                    arrayList.remove(rdVar);
-                    sdVar.l(rdVar, 1);
-                    g0.h3(new ld(sdVar, rdVar, 0));
-                    if (arrayList.isEmpty()) {
-                        sdVar.r(true);
+                rd rdVar = (rd) this.f25922b;
+                if (location != null) {
+                    Location location2 = rdVar.f26276s;
+                    if (location2 != null && (this == rdVar.h || this == rdVar.f26274n)) {
+                        if (!rdVar.E && location.distanceTo(location2) > 20.0f) {
+                            rdVar.m(location);
+                            rdVar.f26277w = SystemClock.elapsedRealtime() - 25000;
+                            return;
+                        }
+                        return;
+                    }
+                    rdVar.m(location);
+                    return;
+                }
+                return;
+            default:
+                a8.b8 b8Var = (a8.b8) this.f25922b;
+                if (location != null && ((as) b8Var.f344e) != null) {
+                    if (r2.f26198a) {
+                        a8.b("found location " + location);
+                    }
+                    b8Var.f345f = location;
+                    if (location.getAccuracy() < 100.0f) {
+                        ((az) b8Var.f341a).f(location);
+                        as asVar = (as) b8Var.f344e;
+                        if (asVar != null) {
+                            g0.r(asVar);
+                        }
+                        b8Var.d();
                         return;
                     }
                     return;
                 }
                 return;
-            default:
-                hz hzVar = (hz) obj;
-                hzVar.f23001e = SystemClock.elapsedRealtime();
-                hzVar.f23000c = false;
-                if (j3 == -1) {
-                    hzVar.d = false;
-                    hzVar.f22999b = 0L;
-                } else {
-                    hzVar.f22999b = j3;
-                    hzVar.d = true;
-                }
-                qs.e().k(278, hzVar);
-                return;
         }
+    }
+
+    @Override
+    public final void onProviderDisabled(String str) {
+        int i7 = this.f25921a;
+    }
+
+    @Override
+    public final void onProviderEnabled(String str) {
+        int i7 = this.f25921a;
+    }
+
+    @Override
+    public final void onStatusChanged(String str, int i7, Bundle bundle) {
+        int i10 = this.f25921a;
+    }
+
+    private final void a(String str) {
+    }
+
+    private final void b(String str) {
+    }
+
+    private final void c(String str) {
+    }
+
+    private final void d(String str) {
+    }
+
+    private final void e(String str, int i7, Bundle bundle) {
+    }
+
+    private final void f(String str, int i7, Bundle bundle) {
     }
 }

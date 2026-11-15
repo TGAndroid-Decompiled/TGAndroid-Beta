@@ -296,7 +296,7 @@ public class PeerConnection {
 
         void onIceConnectionChange(IceConnectionState iceConnectionState);
 
-        void onIceConnectionReceivingChange(boolean z9);
+        void onIceConnectionReceivingChange(boolean z10);
 
         void onIceGatheringChange(IceGatheringState iceGatheringState);
 
@@ -640,9 +640,9 @@ public class PeerConnection {
 
     private native void nativeRestartIce();
 
-    private native void nativeSetAudioPlayout(boolean z9);
+    private native void nativeSetAudioPlayout(boolean z10);
 
-    private native void nativeSetAudioRecording(boolean z9);
+    private native void nativeSetAudioRecording(boolean z10);
 
     private native boolean nativeSetBitrate(Integer num, Integer num2, Integer num3);
 
@@ -810,12 +810,12 @@ public class PeerConnection {
         nativeRestartIce();
     }
 
-    public void setAudioPlayout(boolean z9) {
-        nativeSetAudioPlayout(z9);
+    public void setAudioPlayout(boolean z10) {
+        nativeSetAudioPlayout(z10);
     }
 
-    public void setAudioRecording(boolean z9) {
-        nativeSetAudioRecording(z9);
+    public void setAudioRecording(boolean z10) {
+        nativeSetAudioRecording(z10);
     }
 
     public boolean setBitrate(Integer num, Integer num2, Integer num3) {

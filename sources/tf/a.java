@@ -16,17 +16,17 @@ public abstract class a extends rf.a {
     }
 
     public static boolean c(FilterInputStream filterInputStream) {
-        boolean z9;
+        boolean z10;
         filterInputStream.mark(3);
         try {
             if (filterInputStream.read() == 84 && filterInputStream.read() == 65) {
                 if (filterInputStream.read() == 71) {
-                    z9 = true;
-                    return z9;
+                    z10 = true;
+                    return z10;
                 }
             }
-            z9 = false;
-            return z9;
+            z10 = false;
+            return z10;
         } finally {
             filterInputStream.reset();
         }

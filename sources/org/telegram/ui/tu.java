@@ -1,98 +1,62 @@
 package org.telegram.ui;
 
-import android.view.View;
-import java.util.ArrayList;
+import android.text.SpannableStringBuilder;
+import java.util.Collections;
 import org.telegram.tgnet.TLRPC;
-public final class tu implements View.OnLongClickListener {
-    public final int f50343a;
-    public final zw f50344b;
+public final class tu implements Runnable {
+    public final int f51673a;
+    public final yw f51674b;
+    public final long f51675c;
+    public final boolean d;
 
-    public tu(zw zwVar, int i7) {
-        this.f50343a = i7;
-        this.f50344b = zwVar;
+    public tu(yw ywVar, long j3, boolean z10, int i7) {
+        this.f51673a = i7;
+        this.f51674b = ywVar;
+        this.f51675c = j3;
+        this.d = z10;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        boolean z9;
-        boolean z10;
-        int i7;
-        int i10;
-        int i11 = this.f50343a;
-        zw zwVar = this.f50344b;
-        switch (i11) {
+    public final void run() {
+        String str;
+        TLRPC.Chat chat;
+        SpannableStringBuilder X2;
+        int i7 = this.f51673a;
+        boolean z10 = this.d;
+        long j3 = this.f51675c;
+        yw ywVar = this.f51674b;
+        switch (i7) {
             case 0:
-                ArrayList arrayList = zwVar.J2;
-                if (zwVar.getParentActivity() == null) {
-                    return false;
-                }
-                boolean z11 = !arrayList.isEmpty();
-                boolean z12 = true;
-                for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                    long longValue = ((Long) arrayList.get(i12)).longValue();
-                    if (z11 && longValue != zwVar.getUserConfig().e()) {
-                        z11 = false;
-                    }
-                    if (org.telegram.messenger.m5.C(longValue)) {
-                        z12 = false;
-                    }
-                    TLRPC.Chat M0 = zwVar.getMessagesController().M0(Long.valueOf(-longValue));
-                    if (M0 != null && !org.telegram.messenger.t3.B(M0)) {
-                        z12 = false;
-                    }
-                }
-                if (zwVar.m4() && zwVar.x3()) {
-                    z9 = true;
+                yw ywVar2 = this.f51674b;
+                fi.s6 P1 = ywVar2.getMessagesController().P1();
+                long j10 = this.f51675c;
+                boolean z11 = this.d;
+                P1.l0(j10, z11, false);
+                k8.a aVar = new k8.a(15, false);
+                aVar.f17788b = new tu(ywVar2, j10, z11, 1);
+                aVar.f17789c = new tu(ywVar2, j10, z11, 2);
+                if (j10 >= 0) {
+                    TLRPC.User a22 = ywVar2.getMessagesController().a2(Long.valueOf(j10));
+                    str = org.telegram.messenger.g5.m(15, a22.first_name, null);
+                    chat = a22;
                 } else {
-                    z9 = false;
+                    TLRPC.Chat M0 = ywVar2.getMessagesController().M0(Long.valueOf(-j10));
+                    str = M0.title;
+                    chat = M0;
                 }
-                if (z9) {
-                    ArrayList arrayList2 = zwVar.E2;
-                    int size = arrayList2.size();
-                    int i13 = 0;
-                    while (true) {
-                        if (i13 < size) {
-                            Object obj = arrayList2.get(i13);
-                            i13++;
-                            if (((org.telegram.messenger.gf) obj).b()) {
-                                z9 = false;
-                            }
-                        }
-                    }
-                }
-                ArrayList arrayList3 = zwVar.E2;
-                if (arrayList3 != null && arrayList3.size() > 1) {
-                    z10 = true;
+                if (ywVar2.q4()) {
+                    X2 = org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0("StoriesMovedToDialogs", null, 2131744758, str));
                 } else {
-                    z10 = false;
+                    X2 = org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0("StoriesMovedToContacts", null, 2131744759, org.telegram.messenger.g5.m(15, str, null)));
                 }
-                org.telegram.ui.Components.k60 H = org.telegram.ui.Components.k60.H(zwVar, view);
-                if (z10) {
-                    i7 = 2131745635;
-                } else {
-                    i7 = 2131745636;
-                }
-                H.l(2131232359, org.telegram.messenger.id.M0(i7, null), new fu(zwVar, 5), z9);
-                H.c(2131231508, org.telegram.messenger.id.M0(2131745583, null), new fu(zwVar, 6), false);
-                if (z11) {
-                    i10 = 2131745514;
-                } else {
-                    i10 = 2131745859;
-                }
-                H.l(2131232077, org.telegram.messenger.id.M0(i10, null), new org.telegram.ui.Components.tp0(6, zwVar, z11), z12);
-                H.Z();
-                return true;
+                ywVar2.T = org.telegram.ui.Components.cc.X().V(Collections.singletonList(chat), X2, null, aVar).j();
+                return;
             case 1:
-                zw zwVar2 = this.f50344b;
-                zwVar2.D4(zwVar2.J2, 104, true, true, null);
-                return true;
-            case 2:
-                zwVar.B4(view);
-                return true;
+                ywVar.getMessagesController().P1().l0(j3, !z10, false);
+                return;
             default:
-                zwVar.getContactsController().B();
-                zwVar.W4();
-                return true;
+                ywVar.getMessagesController().P1().l0(j3, z10, true);
+                return;
         }
     }
 }

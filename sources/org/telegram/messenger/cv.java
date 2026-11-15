@@ -1,220 +1,179 @@
 package org.telegram.messenger;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
+import android.graphics.Point;
 import android.graphics.Rect;
-import android.graphics.Shader;
-import android.text.Layout;
-import android.text.SpannableStringBuilder;
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.ui.wg0;
-public final class cv extends fu {
-    public final jv W;
-    public final jv[] X;
-    public int Y;
-    public LinearGradient Z;
-    public final Matrix f21941a0;
-    public final Paint f21942b0;
+import java.io.File;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public final class cv extends pu {
+    public final TL_iv.pageBlockVideo f22944r0;
+    public final TLRPC.Document f22945s0;
+    public final TLRPC.PhotoSize f22946t0;
+    public final TLRPC.TL_photoStrippedSize f22947u0;
+    public final boolean f22948v0;
+    public final boolean f22949w0;
 
-    public cv(kv kvVar, Rect rect, int i7, SpannableStringBuilder spannableStringBuilder) {
-        super(kvVar, rect, i7);
-        this.f21941a0 = new Matrix();
-        this.f21942b0 = new Paint(1);
-        jv jvVar = new jv(kvVar, spannableStringBuilder, this.f22475c);
-        this.W = jvVar;
-        this.X = r2;
-        jv[] jvVarArr = {jvVar};
-    }
-
-    @Override
-    public final int I() {
-        Rect rect = this.f22474b;
-        return this.W.f23609b.getHeight() + rect.top + rect.bottom;
-    }
-
-    @Override
-    public final int J() {
-        Rect rect = this.f22474b;
-        return this.W.q() + rect.left + rect.right;
-    }
-
-    @Override
-    public final int K() {
-        Rect rect = this.f22474b;
-        return this.W.r() + rect.left + rect.right;
-    }
-
-    @Override
-    public final org.telegram.ui.Cells.t9[] L() {
-        return this.X;
-    }
-
-    @Override
-    public final void T() {
-        this.W.i(this.V);
-    }
-
-    @Override
-    public final void V() {
-        this.W.f(this.V);
-    }
-
-    @Override
-    public final void W(Canvas canvas) {
-        kv kvVar = this.f22473a;
-        canvas.saveLayerAlpha(0.0f, 0.0f, kvVar.C, I(), 255, 31);
-        int i02 = i0();
-        jv jvVar = this.W;
-        if (i02 != 0) {
-            jvVar.f23610c = (this.f22474b.left + i02) - jvVar.f23612f;
-            canvas.save();
-            canvas.translate(i02, 0.0f);
-        }
-        jvVar.d(canvas, jvVar.S);
-        if (kvVar.F()) {
-            canvas.save();
-            canvas.translate(-jvVar.f23612f, 0.0f);
-            org.telegram.ui.Components.q5.drawAnimatedEmojis(canvas, jvVar.f23609b, jvVar.E, 0.0f, jvVar.f23617x, 0.0f, 0.0f, 0.0f, 1.0f);
-            canvas.restore();
-        }
-        if (i02 != 0) {
-            canvas.restore();
-        }
-        j0();
-        Matrix matrix = this.f21941a0;
-        matrix.reset();
-        matrix.postTranslate((((float) (System.currentTimeMillis() % 2000)) / 2000.0f) * this.f22475c, 0.0f);
-        this.Z.setLocalMatrix(matrix);
-        canvas.drawRect(0.0f, 0.0f, kvVar.C, I(), this.f21942b0);
-        canvas.restore();
-        View view = this.V;
-        if (view != null) {
-            view.invalidate();
-        }
-    }
-
-    @Override
-    public final void X(Canvas canvas, int i7, float f10) {
+    public cv(iv ivVar, Rect rect, int i7, TL_iv.pageBlockVideo pageblockvideo, boolean z10) {
+        super(ivVar, rect, i7, z10);
+        boolean z11;
         int i10;
-        kv kvVar = this.f22473a;
-        int i11 = kvVar.C;
-        TextPaint textPaint = kvVar.f23786w;
-        canvas.saveLayerAlpha(0.0f, 0.0f, i11, I(), 255, 31);
-        int i02 = i0();
-        jv jvVar = this.W;
-        if (i02 != 0) {
-            jvVar.f23610c = (this.f22474b.left + i02) - jvVar.f23612f;
-        }
-        canvas.save();
-        canvas.translate(i02 - jvVar.f23612f, 0.0f);
-        int color = textPaint.getColor();
-        textPaint.setColor(-1);
-        if (kvVar.E()) {
-            i10 = org.telegram.ui.ActionBar.m6.Vc;
+        int i11;
+        this.f22944r0 = pageblockvideo;
+        TLRPC.Document s5 = ivVar.s(pageblockvideo.video_id);
+        this.f22945s0 = s5;
+        boolean K4 = gj.K4(s5);
+        this.f22949w0 = K4;
+        int i12 = 0;
+        if (!K4 && !gj.s3(s5, false)) {
+            z11 = false;
         } else {
-            i10 = org.telegram.ui.ActionBar.m6.Uc;
+            z11 = true;
         }
-        textPaint.linkColor = org.telegram.ui.ActionBar.m6.w0(i10, kvVar.D);
-        wg0.b(canvas, jvVar.f23609b, i7, f10, new o(5, this, this.V));
-        canvas.restore();
-        textPaint.setColor(color);
-        j0();
-        Matrix matrix = this.f21941a0;
-        matrix.reset();
-        matrix.postTranslate((((float) (System.currentTimeMillis() % 2000)) / 2000.0f) * this.f22475c, 0.0f);
-        this.Z.setLocalMatrix(matrix);
-        canvas.drawRect(0.0f, 0.0f, kvVar.C, I(), this.f21942b0);
-        canvas.restore();
-        View view = this.V;
-        if (view != null) {
-            view.invalidate();
-        }
-    }
-
-    @Override
-    public final boolean Y(MotionEvent motionEvent) {
-        int i02 = i0();
-        jv jvVar = this.W;
-        if (i02 == 0) {
-            return jvVar.t(motionEvent);
-        }
-        motionEvent.offsetLocation(-i02, 0.0f);
-        boolean t6 = jvVar.t(motionEvent);
-        motionEvent.offsetLocation(i02, 0.0f);
-        return t6;
-    }
-
-    @Override
-    public final void Z(int i7, int i10, int i11) {
-        super.Z(i7, i10, i11);
-        int i02 = i0();
-        if (i02 != 0) {
-            int i12 = i7 + i02;
-            jv jvVar = this.W;
-            jvVar.f23610c = i12 - jvVar.f23612f;
-        }
-    }
-
-    @Override
-    public final Layout a() {
-        return this.W.f23609b;
-    }
-
-    public final int i0() {
-        kv kvVar = this.f22473a;
-        if (!kvVar.I()) {
-            return 0;
-        }
-        int L = (kvVar.C + kvVar.T) - g0.L(14.0f);
-        Rect rect = this.f22474b;
-        return ((L - rect.right) - rect.left) - this.W.r();
-    }
-
-    public final void j0() {
-        int i7;
-        kv kvVar = this.f22473a;
-        if (kvVar.E()) {
-            i7 = org.telegram.ui.ActionBar.m6.Tc;
+        this.f22948v0 = z11;
+        if (s5 != null) {
+            this.f22946t0 = w7.w(s5.thumbs, 320, false, null, true);
+            this.f22947u0 = w7.Q(s5.thumbs);
         } else {
-            i7 = org.telegram.ui.ActionBar.m6.Sc;
+            this.f22946t0 = null;
+            this.f22947u0 = null;
         }
-        int w02 = org.telegram.ui.ActionBar.m6.w0(i7, kvVar.D);
-        if (this.Z != null && this.Y == w02) {
+        if (s5 != null) {
+            while (true) {
+                if (i12 < this.f22945s0.attributes.size()) {
+                    TLRPC.DocumentAttribute documentAttribute = this.f22945s0.attributes.get(i12);
+                    if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
+                        i11 = documentAttribute.f28058w;
+                        i10 = documentAttribute.h;
+                        break;
+                    }
+                    i12++;
+                } else {
+                    i10 = 100;
+                    i11 = 100;
+                    break;
+                }
+            }
+            if (i11 <= 0 || i10 <= 0) {
+                TLRPC.PhotoSize photoSize = this.f22946t0;
+                if (photoSize != null) {
+                    i11 = photoSize.f28076w;
+                } else {
+                    i11 = 100;
+                }
+                i10 = photoSize != null ? photoSize.h : 100;
+            }
+            r4 = i11;
+        } else {
+            i10 = 100;
+        }
+        int i13 = this.f22935c;
+        int max = (int) ((i13 / Math.max(1, r4)) * i10);
+        Point point = g0.f23609q;
+        int max2 = (int) (Math.max(point.x, point.y) * 0.55f);
+        if (max > max2) {
+            i13 = (int) ((max2 / Math.max(1, i10)) * r4);
+            max = max2;
+        }
+        this.f25980c0 = i13;
+        this.f25981d0 = max;
+        m0();
+    }
+
+    @Override
+    public final boolean i0() {
+        if (this.f22949w0) {
+            int i7 = gz.f23929a;
+            return qc.e(1024);
+        }
+        int i10 = gz.f23929a;
+        return qc.e(2048);
+    }
+
+    @Override
+    public final void j0(boolean z10) {
+        gc gcVar;
+        TLRPC.Document document = this.f22945s0;
+        if (document == null) {
             return;
         }
-        this.Y = w02;
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, this.f22475c, 0.0f, new int[]{org.telegram.ui.ActionBar.m6.r1(0.7f, w02), org.telegram.ui.ActionBar.m6.r1(0.25f, w02), org.telegram.ui.ActionBar.m6.r1(0.7f, w02)}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.REPEAT);
-        this.Z = linearGradient;
-        Paint paint = this.f21942b0;
-        paint.setShader(linearGradient);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        gc gcVar2 = null;
+        TLRPC.TL_photoStrippedSize tL_photoStrippedSize = this.f22947u0;
+        if (tL_photoStrippedSize != null) {
+            gcVar = gc.c(tL_photoStrippedSize, document);
+        } else {
+            gcVar = null;
+        }
+        TLRPC.PhotoSize photoSize = this.f22946t0;
+        if (photoSize != null) {
+            gcVar2 = gc.c(photoSize, document);
+        }
+        gc gcVar3 = gcVar2;
+        iv ivVar = this.f22933a;
+        ImageReceiver imageReceiver = this.Y;
+        if (z10 && this.f22948v0 && (i0() || this.m0)) {
+            imageReceiver.f22301u0 = true;
+            imageReceiver.W(1);
+            imageReceiver.u0(gc.b(document), "g", gcVar3, null, gcVar, "b1", null, document.size, "mp4", ivVar.f24441b, 1);
+            return;
+        }
+        imageReceiver.u0(null, null, gcVar3, null, gcVar, "b1", null, document.size, "mp4", ivVar.f24441b, 1);
     }
 
     @Override
-    public final void k(SpannableStringBuilder spannableStringBuilder) {
-        fu.l(spannableStringBuilder, this.W, this.X);
+    public final boolean k0() {
+        TLRPC.Document document = this.f22945s0;
+        if (document == null) {
+            return false;
+        }
+        if (!this.f22948v0) {
+            return true;
+        }
+        if (!i0() || !z5.q(this.f22933a.f24440a).c(4, document.size)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public final boolean s(Canvas canvas, ColorFilter colorFilter) {
-        return false;
+    public final boolean l0() {
+        TLRPC.Document document = this.f22945s0;
+        if (document != null) {
+            iv ivVar = this.f22933a;
+            w7.G(ivVar.f24440a);
+            File I = w7.I(document);
+            w7.G(ivVar.f24440a);
+            File J = w7.J(document, null, true, true);
+            if ((I == null || !I.exists()) && (J == null || !J.exists())) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
-    public final boolean u(CharacterStyle characterStyle, int i7, wt wtVar) {
-        jv jvVar = this.W;
-        if (jvVar.o(characterStyle, wtVar)) {
-            Rect rect = this.f22474b;
-            wtVar.f26378e = (i0() + rect.left) - jvVar.f23612f;
-            wtVar.f26379f = i7 + rect.top;
+    public final TL_iv.PageBlock n0() {
+        return this.f22944r0;
+    }
+
+    @Override
+    public final String o0() {
+        return w7.r(null, this.f22945s0);
+    }
+
+    @Override
+    public final boolean p0() {
+        return this.f22948v0;
+    }
+
+    @Override
+    public final boolean q0() {
+        return this.f22949w0;
+    }
+
+    @Override
+    public final boolean r0() {
+        TL_iv.pageBlockVideo pageblockvideo = this.f22944r0;
+        if (pageblockvideo != null && pageblockvideo.spoiler) {
             return true;
         }
         return false;

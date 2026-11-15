@@ -1,26 +1,96 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class w31 implements RequestDelegate {
-    public final int f50891a;
-    public final e51 f50892b;
+import android.os.Bundle;
+import android.view.View;
+public final class w31 implements org.telegram.ui.Components.ij0, te.b {
+    public final z41 f52389a;
 
-    public w31(e51 e51Var, int i7) {
-        this.f50891a = i7;
-        this.f50892b = e51Var;
+    public w31(z41 z41Var) {
+        this.f52389a = z41Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f50891a) {
-            case 0:
-                e51.a0(this.f50892b, tLObject);
-                return;
-            default:
-                e51.Z(this.f50892b, tLObject);
-                return;
+    public void G(int i7, float f10, float f11, te.c cVar) {
+        this.f52389a.t0();
+    }
+
+    @Override
+    public boolean b(int i7, View view) {
+        final z41 z41Var = this.f52389a;
+        org.telegram.ui.ActionBar.t1[] t1VarArr = z41Var.f53854h0;
+        e41 e41Var = z41Var.X;
+        int i10 = e41Var.J;
+        if (i7 >= i10 && i7 <= e41Var.K) {
+            final org.telegram.messenger.gj gjVar = ((w41) z41Var.f53877z0.get(i7 - i10)).f52431b;
+            if (!gjVar.x4()) {
+                org.telegram.ui.Components.m60 H = org.telegram.ui.Components.m60.H(z41Var, view);
+                H.c(2131232379, org.telegram.messenger.hd.M0(2131743549, null), new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                z41 z41Var2 = z41Var;
+                                z41Var2.getClass();
+                                z41Var2.presentFragment(new jg0(gjVar));
+                                return;
+                            default:
+                                z41 z41Var3 = z41Var;
+                                z41Var3.getClass();
+                                Bundle bundle = new Bundle();
+                                bundle.putLong("chat_id", z41Var3.f53844b);
+                                bundle.putInt("message_id", gjVar.e1());
+                                bundle.putBoolean("need_remove_previous_same_chat_activity", false);
+                                z41Var3.presentFragment(new an(bundle), false);
+                                return;
+                        }
+                    }
+                }, false);
+                H.c(2131232256, org.telegram.messenger.hd.M0(2131743550, null), new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                z41 z41Var2 = z41Var;
+                                z41Var2.getClass();
+                                z41Var2.presentFragment(new jg0(gjVar));
+                                return;
+                            default:
+                                z41 z41Var3 = z41Var;
+                                z41Var3.getClass();
+                                Bundle bundle = new Bundle();
+                                bundle.putLong("chat_id", z41Var3.f53844b);
+                                bundle.putInt("message_id", gjVar.e1());
+                                bundle.putBoolean("need_remove_previous_same_chat_activity", false);
+                                z41Var3.presentFragment(new an(bundle), false);
+                                return;
+                        }
+                    }
+                }, false);
+                H.W(z41Var.T.U0(view, false));
+                H.Z();
+                return true;
+            }
+        } else {
+            int i11 = e41Var.V;
+            if (i7 >= i11 && i7 <= e41Var.W) {
+                ((s41) z41Var.R.get(i7 - i11)).c(z41Var.f53842a, z41Var, t1VarArr, true);
+                return true;
+            }
+            int i12 = e41Var.S;
+            if (i7 >= i12 && i7 <= e41Var.T) {
+                ((s41) z41Var.P.get(i7 - i12)).c(z41Var.f53842a, z41Var, t1VarArr, true);
+                return true;
+            }
+            int i13 = e41Var.Y;
+            if (i7 >= i13 && i7 <= e41Var.Z) {
+                ((s41) z41Var.Q.get(i7 - i13)).c(z41Var.f53842a, z41Var, t1VarArr, true);
+                return true;
+            }
         }
+        return false;
+    }
+
+    @Override
+    public void E(float f10, int i7) {
     }
 }

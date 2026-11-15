@@ -1,8 +1,8 @@
 package v4;
 public final class n {
-    public int f57135a;
-    public int f57136b;
-    public int f57137c;
+    public int f58616a;
+    public int f58617b;
+    public int f58618c;
     public boolean d;
-    public boolean f57138e;
+    public boolean f58619e;
 }

@@ -1,108 +1,148 @@
 package aa;
 
+import a8.p0;
 import android.content.Context;
-import android.util.Log;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import java.io.File;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.ui.Components.uy;
+import com.google.android.gms.internal.vision.e2;
+import da.x0;
+import da.y0;
+import da.z0;
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 public final class u {
-    public final Context f857a;
-    public final x f858b;
-    public final q4.q f859c;
-    public wf.b d;
-    public wf.b f860e;
-    public q f861f;
-    public final b0 f862g;
-    public final ga.d h;
-    public final w9.a f863i;
-    public final w9.a f864j;
-    public final j f865k;
-    public final x9.a f866l;
-    public final uy f867m;
-    public final ba.e f868n;
+    public static final HashMap f866f;
+    public static final String f867g;
+    public final Context f868a;
+    public final a0 f869b;
+    public final a f870c;
+    public final wf.b d;
+    public final ia.c f871e;
 
-    public u(o9.g gVar, b0 b0Var, x9.a aVar, x xVar, w9.a aVar2, w9.a aVar3, ga.d dVar, j jVar, uy uyVar, ba.e eVar) {
-        this.f858b = xVar;
-        gVar.a();
-        this.f857a = gVar.f20880a;
-        this.f862g = b0Var;
-        this.f866l = aVar;
-        this.f863i = aVar2;
-        this.f864j = aVar3;
-        this.h = dVar;
-        this.f865k = jVar;
-        this.f867m = uyVar;
-        this.f868n = eVar;
-        System.currentTimeMillis();
-        this.f859c = new q4.q(4);
+    static {
+        HashMap hashMap = new HashMap();
+        f866f = hashMap;
+        e2.p(5, hashMap, "armeabi", 6, "armeabi-v7a");
+        e2.p(9, hashMap, "arm64-v8a", 0, "x86");
+        hashMap.put("x86_64", 1);
+        Locale locale = Locale.US;
+        f867g = "Crashlytics Android SDK/20.1.1";
     }
 
-    public final void a(ia.c cVar) {
-        ba.e.a();
-        ba.e.a();
-        this.d.D();
-        if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-            Log.v("FirebaseCrashlytics", "Initialization marker file was created.", null);
+    public u(Context context, a0 a0Var, a aVar, wf.b bVar, ia.c cVar) {
+        this.f868a = context;
+        this.f869b = a0Var;
+        this.f870c = aVar;
+        this.d = bVar;
+        this.f871e = cVar;
+    }
+
+    public static y0 c(ab.c0 c0Var, int i7) {
+        String str = (String) c0Var.f910c;
+        String str2 = (String) c0Var.f909b;
+        StackTraceElement[] stackTraceElementArr = (StackTraceElement[]) c0Var.d;
+        int i10 = 0;
+        if (stackTraceElementArr == null) {
+            stackTraceElementArr = new StackTraceElement[0];
         }
-        try {
-            try {
-                this.f863i.a(new a3.l(3));
-                this.f861f.i();
-                if (cVar.b().f15416b.f15412a) {
-                    if (!this.f861f.f(cVar)) {
-                        Log.w("FirebaseCrashlytics", "Previous sessions could not be finalized.", null);
-                    }
-                    this.f861f.j(((TaskCompletionSource) ((AtomicReference) cVar.f15426i).get()).getTask());
-                    c();
-                    return;
-                }
-                if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-                    Log.d("FirebaseCrashlytics", "Collection of crash reports disabled in Crashlytics settings.", null);
-                }
-                throw new RuntimeException("Collection of crash reports disabled in Crashlytics settings.");
-            } catch (Exception e10) {
-                Log.e("FirebaseCrashlytics", "Crashlytics encountered a problem during asynchronous initialization.", e10);
-                c();
+        ab.c0 c0Var2 = (ab.c0) c0Var.f911e;
+        if (i7 >= 8) {
+            ab.c0 c0Var3 = c0Var2;
+            while (c0Var3 != null) {
+                c0Var3 = (ab.c0) c0Var3.f911e;
+                i10++;
             }
-        } catch (Throwable th2) {
-            c();
-            throw th2;
         }
-    }
-
-    public final void b(ia.c cVar) {
-        Future<?> submit = this.f868n.f3135a.f3132a.submit(new r(this, cVar, 1));
-        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", "Crashlytics detected incomplete initialization on previous app launch. Will initialize synchronously.", null);
-        }
-        try {
-            submit.get(3L, TimeUnit.SECONDS);
-        } catch (InterruptedException e10) {
-            Log.e("FirebaseCrashlytics", "Crashlytics was interrupted during initialization.", e10);
-            Thread.currentThread().interrupt();
-        } catch (ExecutionException e11) {
-            Log.e("FirebaseCrashlytics", "Crashlytics encountered a problem during initialization.", e11);
-        } catch (TimeoutException e12) {
-            Log.e("FirebaseCrashlytics", "Crashlytics timed out during initialization.", e12);
-        }
-    }
-
-    public final void c() {
-        ba.e.a();
-        try {
-            wf.b bVar = this.d;
-            ga.d dVar = (ga.d) bVar.f57667c;
-            dVar.getClass();
-            if (!new File((File) dVar.d, (String) bVar.f57666b).delete()) {
-                Log.w("FirebaseCrashlytics", "Initialization marker file was not properly removed.", null);
+        int i11 = i10;
+        List d = d(stackTraceElementArr, 4);
+        if (d != null) {
+            byte b10 = (byte) (0 | 1);
+            y0 y0Var = null;
+            if (c0Var2 != null && i11 == 0) {
+                y0Var = c(c0Var2, i7 + 1);
             }
-        } catch (Exception e10) {
-            Log.e("FirebaseCrashlytics", "Problem encountered deleting Crashlytics initialization marker.", e10);
+            if (b10 == 1) {
+                return new y0(str, str2, d, y0Var, i11);
+            }
+            StringBuilder sb2 = new StringBuilder();
+            if ((b10 & 1) == 0) {
+                sb2.append(" overflowCount");
+            }
+            throw new IllegalStateException(p0.q("Missing required properties:", sb2));
         }
+        throw new NullPointerException("Null frames");
+    }
+
+    public static List d(StackTraceElement[] stackTraceElementArr, int i7) {
+        long j3;
+        ArrayList arrayList = new ArrayList();
+        for (StackTraceElement stackTraceElement : stackTraceElementArr) {
+            ?? obj = new Object();
+            obj.f7668e = i7;
+            obj.f7669f = (byte) (obj.f7669f | 4);
+            long j10 = 0;
+            if (stackTraceElement.isNativeMethod()) {
+                j3 = Math.max(stackTraceElement.getLineNumber(), 0L);
+            } else {
+                j3 = 0;
+            }
+            String str = stackTraceElement.getClassName() + "." + stackTraceElement.getMethodName();
+            String fileName = stackTraceElement.getFileName();
+            if (!stackTraceElement.isNativeMethod() && stackTraceElement.getLineNumber() > 0) {
+                j10 = stackTraceElement.getLineNumber();
+            }
+            obj.f7665a = j3;
+            byte b10 = (byte) (obj.f7669f | 1);
+            obj.f7669f = b10;
+            if (str != null) {
+                obj.f7666b = str;
+                obj.f7667c = fileName;
+                obj.d = j10;
+                obj.f7669f = (byte) (b10 | 2);
+                arrayList.add(obj.a());
+            } else {
+                throw new NullPointerException("Null symbol");
+            }
+        }
+        return DesugarCollections.unmodifiableList(arrayList);
+    }
+
+    public static z0 e() {
+        byte b10 = (byte) 1;
+        if (b10 == 1) {
+            return new z0(0L, "0", "0");
+        }
+        StringBuilder sb2 = new StringBuilder();
+        if (b10 == 0) {
+            sb2.append(" address");
+        }
+        throw new IllegalStateException(p0.q("Missing required properties:", sb2));
+    }
+
+    public final List a() {
+        byte b10 = (byte) (((byte) (0 | 1)) | 2);
+        a aVar = this.f870c;
+        String str = aVar.f770e;
+        if (str != null) {
+            String str2 = aVar.f768b;
+            if (b10 == 3) {
+                return Collections.singletonList(new x0(str, str2, 0L, 0L));
+            }
+            StringBuilder sb2 = new StringBuilder();
+            if ((b10 & 1) == 0) {
+                sb2.append(" baseAddress");
+            }
+            if ((b10 & 2) == 0) {
+                sb2.append(" size");
+            }
+            throw new IllegalStateException(p0.q("Missing required properties:", sb2));
+        }
+        throw new NullPointerException("Null name");
+    }
+
+    public final da.g1 b(int r17) {
+        throw new UnsupportedOperationException("Method not decompiled: aa.u.b(int):da.g1");
     }
 }

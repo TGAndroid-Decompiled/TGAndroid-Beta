@@ -8,20 +8,20 @@ import android.graphics.RectF;
 import java.util.ArrayList;
 import org.telegram.messenger.g0;
 public class q extends g {
-    public final Matrix D1;
-    public final float[] E1;
-    public final Path F1;
-    public boolean[] G1;
-    public float[] H1;
+    public final Matrix E1;
+    public final float[] F1;
+    public final Path G1;
+    public boolean[] H1;
+    public float[] I1;
 
     public q(Context context) {
         super(context, null);
-        this.D1 = new Matrix();
-        this.E1 = new float[2];
-        this.F1 = new Path();
-        this.f18329w0 = true;
-        this.f18331x0 = true;
-        this.f18300e = false;
+        this.E1 = new Matrix();
+        this.F1 = new float[2];
+        this.G1 = new Path();
+        this.f19461x0 = true;
+        this.f19463y0 = true;
+        this.f19429e = false;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class q extends g {
     }
 
     public final int M(float f10, float f11) {
-        RectF rectF = this.H0;
+        RectF rectF = this.I0;
         float centerX = rectF.centerX();
         float centerY = rectF.centerY() + g0.L(16.0f);
         int i7 = (f10 > centerX ? 1 : (f10 == centerX ? 0 : -1));
@@ -66,16 +66,16 @@ public class q extends g {
         F();
         k(canvas);
         i(canvas);
-        ArrayList arrayList = this.f18292b;
-        this.m0 = arrayList.size();
+        ArrayList arrayList = this.f19421b;
+        this.f19447n0 = arrayList.size();
         int i7 = 0;
         while (true) {
-            this.f18317n0 = i7;
-            int i10 = this.f18317n0;
-            if (i10 < this.m0) {
+            this.f19448o0 = i7;
+            int i10 = this.f19448o0;
+            if (i10 < this.f19447n0) {
                 l(canvas, (ng.d) arrayList.get(i10));
-                p(canvas, (ng.d) arrayList.get(this.f18317n0));
-                i7 = this.f18317n0 + 1;
+                p(canvas, (ng.d) arrayList.get(this.f19448o0));
+                i7 = this.f19448o0 + 1;
             } else {
                 j(canvas);
                 m(canvas);

@@ -1,40 +1,13 @@
 package bi;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
 import android.view.View;
-public final class b5 extends ClickableSpan {
-    public final int f3513a;
-
-    public b5(int i7) {
-        this.f3513a = i7;
-    }
-
+public final class b5 extends org.telegram.ui.ActionBar.z0 {
     @Override
-    public final void onClick(View view) {
-        switch (this.f3513a) {
-            case 0:
-                return;
-            default:
-                vf.c.t(view.getContext(), "https://t.me/BotFather");
-                return;
+    public final void onMeasure(int i7, int i10) {
+        int size = View.MeasureSpec.getSize(i7);
+        if (View.MeasureSpec.getMode(i7) == Integer.MIN_VALUE) {
+            size = org.telegram.messenger.g0.L(250.0f);
         }
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        switch (this.f3513a) {
-            case 0:
-                textPaint.setUnderlineText(false);
-                textPaint.setColor(-1);
-                return;
-            default:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-        }
-    }
-
-    private final void a(View view) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i10);
     }
 }

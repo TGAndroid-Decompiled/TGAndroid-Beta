@@ -1,7 +1,7 @@
 package org.telegram.messenger.time;
 
 import a8.p0;
-import com.google.android.recaptcha.internal.a;
+import com.google.android.gms.internal.vision.e2;
 import j$.util.DesugarTimeZone;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.ObjectInputStream;
@@ -168,7 +168,7 @@ public class FastDateParser implements DateParser, Serializable {
                     }
                 }
             }
-            StringBuilder m10 = a.m("(GMT[+\\-]\\d{0,1}\\d{2}|[+\\-]\\d{2}:?\\d{2}|");
+            StringBuilder m10 = e2.m("(GMT[+\\-]\\d{0,1}\\d{2}|[+\\-]\\d{2}:?\\d{2}|");
             for (String str : this.tzNames.keySet()) {
                 FastDateParser.escapeRegex(m10, str, false).append('|');
             }
@@ -213,7 +213,7 @@ public class FastDateParser implements DateParser, Serializable {
         return i10 + 100;
     }
 
-    public static StringBuilder escapeRegex(StringBuilder sb2, String str, boolean z9) {
+    public static StringBuilder escapeRegex(StringBuilder sb2, String str, boolean z10) {
         sb2.append("\\Q");
         int i7 = 0;
         while (i7 < str.length()) {
@@ -227,7 +227,7 @@ public class FastDateParser implements DateParser, Serializable {
                         charAt = 'Q';
                     }
                 }
-            } else if (z9) {
+            } else if (z10) {
                 i7++;
                 if (i7 == str.length()) {
                     return sb2;
@@ -259,7 +259,7 @@ public class FastDateParser implements DateParser, Serializable {
         return concurrentMap;
     }
 
-    private static String[] getDisplayNameArray(int i7, boolean z9, Locale locale) {
+    private static String[] getDisplayNameArray(int i7, boolean z10, Locale locale) {
         DateFormatSymbols dateFormatSymbols = new DateFormatSymbols(locale);
         if (i7 != 0) {
             if (i7 != 2) {
@@ -268,12 +268,12 @@ public class FastDateParser implements DateParser, Serializable {
                         return null;
                     }
                     return dateFormatSymbols.getAmPmStrings();
-                } else if (z9) {
+                } else if (z10) {
                     return dateFormatSymbols.getWeekdays();
                 } else {
                     return dateFormatSymbols.getShortWeekdays();
                 }
-            } else if (z9) {
+            } else if (z10) {
                 return dateFormatSymbols.getMonths();
             } else {
                 return dateFormatSymbols.getShortMonths();
@@ -318,7 +318,7 @@ public class FastDateParser implements DateParser, Serializable {
                 switch (charAt) {
                     case '\'':
                         if (str.length() > 2) {
-                            return new CopyQuotedStrategy(a.k(str, 1, 1));
+                            return new CopyQuotedStrategy(e2.k(str, 1, 1));
                         }
                         return new CopyQuotedStrategy(str);
                     case 'S':

@@ -4,127 +4,37 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 public final class x5 extends Drawable {
-    public final int f28767a = 1;
-    public final int f28768b;
-    public final int f28769c;
-    public Object d;
-
-    public x5(int i7, int i10, int i11) {
-        this.f28768b = i7;
-        this.f28769c = i11;
-        Paint paint = new Paint(1);
-        this.d = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(i7);
-        paint.setColor(i10);
-    }
+    public static Paint f29872c;
+    public Paint f29873a;
+    public float f29874b;
 
     @Override
     public final void draw(Canvas canvas) {
-        int i7;
-        float f10;
-        switch (this.f28767a) {
-            case 0:
-                Rect bounds = getBounds();
-                canvas.drawCircle(bounds.centerX(), bounds.centerY(), this.f28769c / 2.0f, (Paint) this.d);
-                return;
-            default:
-                Rect bounds2 = getBounds();
-                int i10 = this.f28769c;
-                int i11 = this.f28768b;
-                if (i11 == 7) {
-                    if (((RectF) this.d) == null) {
-                        this.d = new RectF();
-                    }
-                    ((RectF) this.d).set(bounds2);
-                    if (i10 <= 0) {
-                        f10 = org.telegram.messenger.g0.L(6.0f);
-                    } else {
-                        f10 = i10;
-                    }
-                    canvas.drawRoundRect((RectF) this.d, f10, f10, m6.f28293z);
-                    return;
-                }
-                if (i11 != 1 && i11 != 6) {
-                    if (i11 == 3) {
-                        i7 = Math.max(bounds2.width(), bounds2.height()) / 2;
-                    } else {
-                        i7 = (int) Math.ceil(Math.sqrt(((bounds2.top - bounds2.centerY()) * (bounds2.top - bounds2.centerY())) + ((bounds2.left - bounds2.centerX()) * (bounds2.left - bounds2.centerX()))));
-                    }
-                } else {
-                    if (i10 <= 0) {
-                        i10 = org.telegram.messenger.g0.L(20.0f);
-                    }
-                    i7 = i10;
-                }
-                canvas.drawCircle(bounds2.centerX(), bounds2.centerY(), i7, m6.f28293z);
-                return;
+        int L;
+        Rect bounds = getBounds();
+        float f10 = this.f29874b;
+        if (Math.abs(f10 - (-1.0f)) < 0.01f) {
+            L = Math.max(bounds.width(), bounds.height()) / 2;
+        } else if (Math.abs(f10 - (-2.0f)) < 0.01f) {
+            L = (int) Math.ceil(Math.sqrt(((bounds.top - bounds.centerY()) * (bounds.top - bounds.centerY())) + ((bounds.left - bounds.centerX()) * (bounds.left - bounds.centerX()))));
+        } else {
+            L = org.telegram.messenger.g0.L(f10);
         }
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        switch (this.f28767a) {
-            case 0:
-                return this.f28769c + this.f28768b;
-            default:
-                return super.getIntrinsicHeight();
-        }
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        switch (this.f28767a) {
-            case 0:
-                return this.f28769c + this.f28768b;
-            default:
-                return super.getIntrinsicWidth();
-        }
+        canvas.drawCircle(bounds.centerX(), bounds.centerY(), L, this.f29873a);
     }
 
     @Override
     public final int getOpacity() {
-        switch (this.f28767a) {
-            case 0:
-                return -2;
-            default:
-                return 0;
-        }
+        return -2;
     }
 
     @Override
     public final void setAlpha(int i7) {
-        switch (this.f28767a) {
-            case 0:
-                ((Paint) this.d).setAlpha(i7);
-                return;
-            default:
-                return;
-        }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f28767a) {
-            case 0:
-                ((Paint) this.d).setColorFilter(colorFilter);
-                return;
-            default:
-                return;
-        }
-    }
-
-    public x5(int i7, int i10) {
-        this.f28768b = i7;
-        this.f28769c = i10;
-    }
-
-    private final void a(int i7) {
-    }
-
-    private final void b(ColorFilter colorFilter) {
     }
 }

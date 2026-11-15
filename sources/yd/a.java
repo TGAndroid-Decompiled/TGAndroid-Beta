@@ -1,21 +1,20 @@
 package yd;
 
 import c8.ee;
-import jg.g;
 import kotlin.jvm.internal.j;
 public final class a implements Comparable {
-    public static final long f59399b;
-    public static final long f59400c;
+    public static final long f60606b;
+    public static final long f60607c;
     public static final int d = 0;
-    public final long f59401a;
+    public final long f60608a;
 
     static {
-        int i7 = b.f59402a;
-        f59399b = ee.a(4611686018427387903L);
-        f59400c = ee.a(-4611686018427387903L);
+        int i7 = b.f60609a;
+        f60606b = ee.a(4611686018427387903L);
+        f60607c = ee.a(-4611686018427387903L);
     }
 
-    public static final void a(StringBuilder sb2, int i7, int i10, int i11, String str, boolean z9) {
+    public static final void a(StringBuilder sb2, int i7, int i10, int i11, String str, boolean z10) {
         CharSequence charSequence;
         sb2.append(i7);
         if (i10 != 0) {
@@ -58,13 +57,13 @@ public final class a implements Comparable {
                     }
                 }
                 int i15 = i13 + 1;
-                if (!z9 && i15 < 3) {
+                if (!z10 && i15 < 3) {
                     sb2.append((CharSequence) obj, 0, i15);
                 } else {
                     sb2.append((CharSequence) obj, 0, ((i13 + 3) / 3) * 3);
                 }
             } else {
-                throw new IllegalArgumentException(g.k(i11, "Desired length ", " is less than zero."));
+                throw new IllegalArgumentException(i5.c.j(i11, "Desired length ", " is less than zero."));
             }
         }
         sb2.append(str);
@@ -90,7 +89,7 @@ public final class a implements Comparable {
     }
 
     public static final boolean c(long j3) {
-        if (j3 != f59399b && j3 != f59400c) {
+        if (j3 != f60606b && j3 != f60607c) {
             return false;
         }
         return true;
@@ -99,30 +98,30 @@ public final class a implements Comparable {
     public static final long d(long j3, c unit) {
         c sourceUnit;
         j.e(unit, "unit");
-        if (j3 == f59399b) {
+        if (j3 == f60606b) {
             return Long.MAX_VALUE;
         }
-        if (j3 == f59400c) {
+        if (j3 == f60607c) {
             return Long.MIN_VALUE;
         }
         long j10 = j3 >> 1;
         if ((((int) j3) & 1) == 0) {
-            sourceUnit = c.f59403b;
+            sourceUnit = c.f60610b;
         } else {
-            sourceUnit = c.f59404c;
+            sourceUnit = c.f60611c;
         }
         j.e(sourceUnit, "sourceUnit");
-        return unit.f59408a.convert(j10, sourceUnit.f59408a);
+        return unit.f60615a.convert(j10, sourceUnit.f60615a);
     }
 
     @Override
     public final int compareTo(Object obj) {
-        return b(this.f59401a, ((a) obj).f59401a);
+        return b(this.f60608a, ((a) obj).f60608a);
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof a) {
-            if (this.f59401a != ((a) obj).f59401a) {
+            if (this.f60608a != ((a) obj).f60608a) {
                 return false;
             }
             return true;
@@ -131,12 +130,12 @@ public final class a implements Comparable {
     }
 
     public final int hashCode() {
-        long j3 = this.f59401a;
+        long j3 = this.f60608a;
         return (int) (j3 ^ (j3 >>> 32));
     }
 
     public final String toString() {
-        boolean z9;
+        boolean z10;
         int d2;
         long j3;
         int d10;
@@ -149,42 +148,42 @@ public final class a implements Comparable {
         int i13;
         int i14;
         int i15;
-        long j11 = this.f59401a;
+        long j11 = this.f60608a;
         int i16 = (j11 > 0L ? 1 : (j11 == 0L ? 0 : -1));
         if (i16 == 0) {
             return "0s";
         }
-        if (j11 == f59399b) {
+        if (j11 == f60606b) {
             return "Infinity";
         }
-        if (j11 == f59400c) {
+        if (j11 == f60607c) {
             return "-Infinity";
         }
         if (i16 < 0) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
         StringBuilder sb2 = new StringBuilder();
-        if (z9) {
+        if (z10) {
             sb2.append('-');
         }
         if (i16 < 0) {
             j11 = (((int) j11) & 1) + ((-(j11 >> 1)) << 1);
-            int i17 = b.f59402a;
+            int i17 = b.f60609a;
         }
         long d12 = d(j11, c.h);
         if (c(j11)) {
             d2 = 0;
         } else {
-            d2 = (int) (d(j11, c.f59406f) % 24);
+            d2 = (int) (d(j11, c.f60613f) % 24);
         }
         if (c(j11)) {
             j3 = 0;
             d10 = 0;
         } else {
             j3 = 0;
-            d10 = (int) (d(j11, c.f59405e) % 60);
+            d10 = (int) (d(j11, c.f60612e) % 60);
         }
         if (c(j11)) {
             d11 = 0;
@@ -268,7 +267,7 @@ public final class a implements Comparable {
             }
             i15 = i20;
         }
-        if (z9 && i15 > i7) {
+        if (z10 && i15 > i7) {
             sb2.insert(i7, '(').append(')');
         }
         return sb2.toString();

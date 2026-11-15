@@ -1,231 +1,81 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.drawable.Drawable;
-import android.text.Editable;
-import android.text.Layout;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.style.LeadingMarginSpan;
-import android.text.style.MetricAffectingSpan;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.TreeSet;
-import org.telegram.messenger.Utilities;
-public final class ug0 implements LeadingMarginSpan {
-    public final float[] D;
-    public final Path E;
-    public final Paint F;
-    public final float[] G;
-    public final Path H;
-    public int I;
-    public e0.g J;
-    public SpannableString K;
-    public final boolean f38644a;
-    public boolean f38645b = true;
-    public int f38646c;
+import android.view.View;
+public final class ug0 extends Drawable {
+    public final View f40024a;
+    public final Paint f40025b;
+    public final Path f40026c;
     public int d;
-    public boolean f38647e;
-    public boolean f38648f;
-    public boolean h;
-    public boolean f38649n;
-    public boolean f38650r;
-    public final tg0 f38651s;
-    public li.w5 f38652w;
-    public final Drawable f38653x;
-    public final Paint f38654y;
+    public boolean f40027e;
+    public final u5 f40028f;
 
-    public ug0(boolean z9, boolean z10, tg0 tg0Var) {
+    public ug0(View view) {
         Paint paint = new Paint(1);
-        this.f38654y = paint;
-        this.D = new float[8];
-        this.E = new Path();
-        Paint paint2 = new Paint(1);
-        this.F = paint2;
-        this.G = new float[8];
-        this.H = new Path();
-        this.I = -1;
-        this.f38644a = z9;
-        this.f38651s = tg0Var;
-        this.f38647e = z10;
-        this.f38653x = jg.g.h(org.telegram.messenger.t0.f25570b, 2131231966);
-        paint2.setColor(this.I);
-        paint.setColor(i0.a.o(this.I, 30));
-    }
-
-    public static void a(SpannableStringBuilder spannableStringBuilder) {
-        int i7;
-        int i10;
-        int i11;
-        TreeSet treeSet = new TreeSet();
-        HashMap hashMap = new HashMap();
-        tg0[] tg0VarArr = (tg0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), tg0.class);
-        int i12 = 0;
-        while (true) {
-            int i13 = 1;
-            if (i12 >= tg0VarArr.length) {
-                break;
-            }
-            tg0 tg0Var = tg0VarArr[i12];
-            int spanStart = spannableStringBuilder.getSpanStart(tg0Var);
-            int spanEnd = spannableStringBuilder.getSpanEnd(tg0Var);
-            treeSet.add(Integer.valueOf(spanStart));
-            Integer valueOf = Integer.valueOf(spanStart);
-            if (hashMap.containsKey(Integer.valueOf(spanStart))) {
-                i10 = ((Integer) hashMap.get(Integer.valueOf(spanStart))).intValue();
-            } else {
-                i10 = 0;
-            }
-            if (tg0Var.f38307a.f38647e) {
-                i13 = 16;
-            }
-            hashMap.put(valueOf, Integer.valueOf(i13 | i10));
-            treeSet.add(Integer.valueOf(spanEnd));
-            Integer valueOf2 = Integer.valueOf(spanEnd);
-            if (hashMap.containsKey(Integer.valueOf(spanEnd))) {
-                i11 = ((Integer) hashMap.get(Integer.valueOf(spanEnd))).intValue();
-            } else {
-                i11 = 0;
-            }
-            hashMap.put(valueOf2, Integer.valueOf(i11 | 2));
-            spannableStringBuilder.removeSpan(tg0Var);
-            spannableStringBuilder.removeSpan(tg0Var.f38307a);
-            i12++;
-        }
-        Iterator it = treeSet.iterator();
-        int i14 = 0;
-        int i15 = 0;
-        boolean z9 = false;
-        while (it.hasNext()) {
-            Integer num = (Integer) it.next();
-            int intValue = num.intValue();
-            int intValue2 = ((Integer) hashMap.get(num)).intValue();
-            if (i14 != intValue) {
-                int i16 = intValue - 1;
-                if (i16 >= 0 && i16 < spannableStringBuilder.length() && spannableStringBuilder.charAt(i16) == '\n') {
-                    i7 = intValue - 1;
-                } else {
-                    i7 = intValue;
-                }
-                if (i15 > 0) {
-                    c(spannableStringBuilder, i14, i7, z9);
-                }
-                i14 = intValue + 1;
-                if (i14 >= spannableStringBuilder.length() || spannableStringBuilder.charAt(intValue) != '\n') {
-                    i14 = intValue;
-                }
-            }
-            if ((intValue2 & 2) != 0) {
-                i15--;
-            }
-            if ((intValue2 & 1) != 0 || (intValue2 & 16) != 0) {
-                i15++;
-                if ((intValue2 & 16) != 0) {
-                    z9 = true;
-                } else {
-                    z9 = false;
-                }
-            }
-        }
-        if (i14 < spannableStringBuilder.length() && i15 > 0) {
-            c(spannableStringBuilder, i14, spannableStringBuilder.length(), z9);
-        }
-    }
-
-    public static void b(Spannable spannable, int i7, int i10, boolean z9) {
-        ug0[] ug0VarArr = (ug0[]) spannable.getSpans(i7, i10, ug0.class);
-        if (ug0VarArr != null && ug0VarArr.length > 0) {
-            return;
-        }
-        int j3 = Utilities.j(i7, spannable.length(), 0);
-        int j10 = Utilities.j(i10, spannable.length(), 0);
-        ?? metricAffectingSpan = new MetricAffectingSpan();
-        ug0 ug0Var = new ug0(false, z9, metricAffectingSpan);
-        metricAffectingSpan.f38307a = ug0Var;
-        ug0Var.f38646c = j3;
-        ug0Var.d = j10;
-        spannable.setSpan(metricAffectingSpan, j3, j10, 33);
-        spannable.setSpan(ug0Var, j3, j10, 33);
-    }
-
-    public static int c(Editable editable, int i7, int i10, boolean z9) {
-        if (editable == 0) {
-            return -1;
-        }
-        int j3 = Utilities.j(i7, editable.length(), 0);
-        int j10 = Utilities.j(i10, editable.length(), 0);
-        if (j3 > 0 && editable.charAt(j3 - 1) != '\n') {
-            editable.insert(j3, "\n");
-            j3++;
-            j10++;
-        }
-        int i11 = j10 + 1;
-        if (j10 >= editable.length() || editable.charAt(j10) != '\n') {
-            editable.insert(j10, "\n");
-        }
-        ?? metricAffectingSpan = new MetricAffectingSpan();
-        ug0 ug0Var = new ug0(true, z9, metricAffectingSpan);
-        metricAffectingSpan.f38307a = ug0Var;
-        ug0Var.f38646c = j3;
-        ug0Var.d = j10;
-        editable.setSpan(ug0Var, Utilities.j(j3, editable.length(), 0), Utilities.j(j10, editable.length(), 0), 33);
-        editable.setSpan(metricAffectingSpan, Utilities.j(j3, editable.length(), 0), Utilities.j(j10, editable.length(), 0), 33);
-        editable.insert(Utilities.j(j10, editable.length(), 0), "\ufeff");
-        editable.delete(Utilities.j(j10, editable.length(), 0), Utilities.j(i11, editable.length(), 0));
-        return i11;
-    }
-
-    public static java.util.ArrayList d(org.telegram.ui.Components.ct r19, android.text.Layout r20, java.util.ArrayList r21, boolean[] r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ug0.d(org.telegram.ui.Components.ct, android.text.Layout, java.util.ArrayList, boolean[]):java.util.ArrayList");
-    }
-
-    public static ArrayList e(Layout layout, ArrayList arrayList) {
-        ug0[] ug0VarArr;
-        if (layout == null) {
-            if (arrayList != null) {
-                arrayList.clear();
-                return arrayList;
-            }
-        } else {
-            CharSequence text = layout.getText();
-            if (text != null && (text instanceof Spanned)) {
-                Spanned spanned = (Spanned) text;
-                if (arrayList != null) {
-                    arrayList.clear();
-                }
-                for (ug0 ug0Var : (ug0[]) spanned.getSpans(0, spanned.length(), ug0.class)) {
-                    boolean z9 = ug0Var.f38649n;
-                    qg0 qg0Var = new qg0(null, layout, spanned, ug0Var);
-                    if (arrayList == null) {
-                        arrayList = new ArrayList();
-                    }
-                    arrayList.add(qg0Var);
-                }
-                return arrayList;
-            } else if (arrayList != null) {
-                arrayList.clear();
-            }
-        }
-        return arrayList;
+        this.f40025b = paint;
+        Path path = new Path();
+        this.f40026c = path;
+        this.d = 255;
+        this.f40024a = view;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
+        this.f40028f = new u5(view, 0L, 350L, er.h);
+        float N = org.telegram.messenger.g0.N(4.66f);
+        float N2 = org.telegram.messenger.g0.N(2.16f);
+        path.rewind();
+        path.moveTo(N / 2.0f, 0.0f);
+        float f10 = (-N) / 2.0f;
+        path.lineTo(f10, 0.0f);
+        float f11 = f10 + N2;
+        path.lineTo(f11, -N2);
+        path.moveTo(f10, 0.0f);
+        path.lineTo(f11, N2);
     }
 
     @Override
-    public final int getLeadingMargin(boolean z9) {
-        float f10;
-        if (this.f38645b) {
-            f10 = 8.0f;
-        } else {
-            f10 = 10.0f;
-        }
-        return org.telegram.messenger.g0.L(f10);
+    public final void draw(Canvas canvas) {
+        int centerX = getBounds().centerX();
+        int centerY = getBounds().centerY();
+        float d = this.f40028f.d(this.f40027e);
+        float N = org.telegram.messenger.g0.N(2.51f);
+        canvas.save();
+        canvas.translate(centerX, centerY);
+        canvas.save();
+        canvas.translate(N, N);
+        canvas.rotate(45.0f);
+        canvas.scale(org.telegram.messenger.g0.T1(-1.0f, 1.0f, d), 1.0f);
+        Path path = this.f40026c;
+        Paint paint = this.f40025b;
+        canvas.drawPath(path, paint);
+        canvas.restore();
+        canvas.save();
+        float f10 = -N;
+        canvas.translate(f10, f10);
+        canvas.rotate(225.0f);
+        canvas.scale(org.telegram.messenger.g0.T1(-1.0f, 1.0f, d), 1.0f);
+        canvas.drawPath(path, paint);
+        canvas.restore();
+        canvas.restore();
     }
 
     @Override
-    public final void drawLeadingMargin(Canvas canvas, Paint paint, int i7, int i10, int i11, int i12, int i13, CharSequence charSequence, int i14, int i15, boolean z9, Layout layout) {
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        this.d = i7;
+        this.f40025b.setAlpha(i7);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

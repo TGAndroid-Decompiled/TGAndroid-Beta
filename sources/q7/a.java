@@ -12,9 +12,9 @@ import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public abstract class a {
-    public static volatile ab.a0 f53971b;
-    public static final Object f53970a = new Object();
-    public static final a1 f53972c = new a1("id");
+    public static volatile ab.b0 f55408b;
+    public static final Object f55407a = new Object();
+    public static final a1 f55409c = new a1("id");
     public static final a1 d = new a1("type");
 
     public static int a(int i7, int i10) {
@@ -25,7 +25,7 @@ public abstract class a {
             int i12 = i7 - (i10 * i11);
             if (i12 != 0) {
                 int i13 = ((i7 ^ i10) >> 31) | 1;
-                switch (n0.f54020a[roundingMode.ordinal()]) {
+                switch (n0.f55457a[roundingMode.ordinal()]) {
                     case 1:
                         throw new ArithmeticException("mode was UNNECESSARY, but rounding was necessary");
                     case 2:
@@ -83,7 +83,7 @@ public abstract class a {
         int length;
         int length2;
         int indexOf;
-        String m10;
+        String l10;
         int i7 = 0;
         int i10 = 0;
         while (true) {
@@ -93,17 +93,17 @@ public abstract class a {
             }
             Object obj = objArr[i10];
             if (obj == null) {
-                m10 = "null";
+                l10 = "null";
             } else {
                 try {
-                    m10 = obj.toString();
+                    l10 = obj.toString();
                 } catch (Exception e10) {
-                    String D = a8.p0.D(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(D), (Throwable) e10);
-                    m10 = org.telegram.ui.Cells.f1.m("<", D, " threw ", e10.getClass().getName(), ">");
+                    String E = a8.p0.E(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(E), (Throwable) e10);
+                    l10 = r.b.l("<", E, " threw ", e10.getClass().getName(), ">");
                 }
             }
-            objArr[i10] = m10;
+            objArr[i10] = l10;
             i10++;
         }
         StringBuilder sb2 = new StringBuilder(str.length() + (length * 16));
@@ -193,7 +193,7 @@ public abstract class a {
         }
         if (i7 >= 0) {
             if (i10 < 0) {
-                throw new IllegalArgumentException(jg.g.j(i10, "negative size: "));
+                throw new IllegalArgumentException(i5.c.i(i10, "negative size: "));
             }
             c10 = c("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i7), Integer.valueOf(i10));
         } else {
@@ -212,18 +212,18 @@ public abstract class a {
         throw new NullPointerException("null key in entry: null=".concat(String.valueOf(obj2)));
     }
 
-    public static final void g(StringBuilder sb2, Iterator it, nb.a aVar) {
+    public static final void g(StringBuilder sb2, Iterator it, sa.d dVar) {
         if (it.hasNext()) {
             Map.Entry entry = (Map.Entry) it.next();
-            sb2.append(nb.a.t0(entry.getKey()));
+            sb2.append(sa.d.E2(entry.getKey()));
             sb2.append(" : ");
-            sb2.append(nb.a.t0(entry.getValue()));
+            sb2.append(sa.d.E2(entry.getValue()));
             while (it.hasNext()) {
                 sb2.append(",\n  ");
                 Map.Entry entry2 = (Map.Entry) it.next();
-                sb2.append(nb.a.t0(entry2.getKey()));
+                sb2.append(sa.d.E2(entry2.getKey()));
                 sb2.append(" : ");
-                sb2.append(nb.a.t0(entry2.getValue()));
+                sb2.append(sa.d.E2(entry2.getValue()));
             }
         }
     }
@@ -245,7 +245,7 @@ public abstract class a {
         if (collection instanceof SortedSet) {
             obj = ((SortedSet) collection).comparator();
             if (obj == null) {
-                obj = v.f54041b;
+                obj = v.f55478b;
             }
         } else if (collection instanceof c0) {
             obj = ((s) ((c0) collection)).d;
@@ -282,8 +282,8 @@ public abstract class a {
             if (d2 != null) {
                 try {
                     try {
-                        byte b10 = d2.f53976a;
-                        byte b11 = d2.f53977b;
+                        byte b10 = d2.f55413a;
+                        byte b11 = d2.f55414b;
                         int i7 = 0;
                         if (b10 != Byte.MIN_VALUE) {
                             if (b10 != -96) {
@@ -322,7 +322,7 @@ public abstract class a {
                             if (c10 <= 1000) {
                                 l(b11, c10);
                                 int i10 = (int) c10;
-                                m4.d0[] d0VarArr = new m4.d0[i10];
+                                k8.a[] aVarArr = new k8.a[i10];
                                 c1 c1Var = null;
                                 int i11 = 0;
                                 while (i11 < c10) {
@@ -330,15 +330,15 @@ public abstract class a {
                                     if (c1Var != null && k10.compareTo(c1Var) <= 0) {
                                         throw new IOException("Keys in CBOR Map not in strictly ascending natural order:\nPrevious key: " + c1Var.toString() + "\nCurrent key: " + k10.toString());
                                     }
-                                    d0VarArr[i11] = new m4.d0(k10, k(e1Var));
+                                    aVarArr[i11] = new k8.a(k10, k(e1Var), false, 27);
                                     i11++;
                                     c1Var = k10;
                                 }
                                 TreeMap treeMap = new TreeMap();
                                 while (i7 < i10) {
-                                    m4.d0 d0Var = d0VarArr[i7];
-                                    if (!treeMap.containsKey((c1) d0Var.f19616a)) {
-                                        treeMap.put((c1) d0Var.f19616a, (c1) d0Var.f19617b);
+                                    k8.a aVar = aVarArr[i7];
+                                    if (!treeMap.containsKey((c1) aVar.f17788b)) {
+                                        treeMap.put((c1) aVar.f17788b, (c1) aVar.f17789c);
                                         i7++;
                                     } else {
                                         throw new IOException("Attempted to add duplicate key to canonical CBOR Map.");
@@ -380,20 +380,20 @@ public abstract class a {
                 if (j3 >= 24) {
                     return;
                 }
-                throw new IOException(rf.b.h(j3, "Integer value ", " after add info could have been represented in 0 additional bytes, but used 1"));
+                throw new IOException(r.b.j(j3, "Integer value ", " after add info could have been represented in 0 additional bytes, but used 1"));
             case 25:
                 if (j3 < 256) {
-                    throw new IOException(rf.b.h(j3, "Integer value ", " after add info could have been represented in 0-1 additional bytes, but used 2"));
+                    throw new IOException(r.b.j(j3, "Integer value ", " after add info could have been represented in 0-1 additional bytes, but used 2"));
                 }
                 return;
             case 26:
                 if (j3 < 65536) {
-                    throw new IOException(rf.b.h(j3, "Integer value ", " after add info could have been represented in 0-2 additional bytes, but used 4"));
+                    throw new IOException(r.b.j(j3, "Integer value ", " after add info could have been represented in 0-2 additional bytes, but used 4"));
                 }
                 return;
             case 27:
                 if (j3 < 4294967296L) {
-                    throw new IOException(rf.b.h(j3, "Integer value ", " after add info could have been represented in 0-4 additional bytes, but used 8"));
+                    throw new IOException(r.b.j(j3, "Integer value ", " after add info could have been represented in 0-4 additional bytes, but used 8"));
                 }
                 return;
             default:
@@ -425,6 +425,6 @@ public abstract class a {
         if (i10 >= 0) {
             return c("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i7), Integer.valueOf(i10));
         }
-        throw new IllegalArgumentException(jg.g.j(i10, "negative size: "));
+        throw new IllegalArgumentException(i5.c.i(i10, "negative size: "));
     }
 }

@@ -1,19 +1,19 @@
 package kg;
 
 import java.util.ArrayList;
-import org.telegram.messenger.c20;
-import org.telegram.messenger.qs;
+import org.telegram.messenger.ns;
+import org.telegram.messenger.z10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_account;
 public final class f {
-    public static volatile f[] f17365g = new f[4];
+    public static volatile f[] f17924g = new f[4];
     public static final Object[] h = new Object[4];
-    public final int f17366a;
-    public long f17367b;
-    public TL_account.connectedBots f17368c;
+    public final int f17925a;
+    public long f17926b;
+    public TL_account.connectedBots f17927c;
     public final ArrayList d = new ArrayList();
-    public boolean f17369e;
-    public boolean f17370f;
+    public boolean f17928e;
+    public boolean f17929f;
 
     static {
         for (int i7 = 0; i7 < 4; i7++) {
@@ -22,18 +22,18 @@ public final class f {
     }
 
     public f(int i7) {
-        this.f17366a = i7;
+        this.f17925a = i7;
     }
 
     public static f a(int i7) {
         f fVar;
-        f fVar2 = f17365g[i7];
+        f fVar2 = f17924g[i7];
         if (fVar2 == null) {
             synchronized (h[i7]) {
                 try {
-                    fVar = f17365g[i7];
+                    fVar = f17924g[i7];
                     if (fVar == null) {
-                        f[] fVarArr = f17365g;
+                        f[] fVarArr = f17924g;
                         f fVar3 = new f(i7);
                         fVarArr[i7] = fVar3;
                         fVar = fVar3;
@@ -48,25 +48,25 @@ public final class f {
     }
 
     public final void b() {
-        this.f17370f = false;
+        this.f17929f = false;
         c(null);
     }
 
-    public final void c(c20 c20Var) {
-        boolean z9;
-        if (c20Var != null) {
-            this.d.add(c20Var);
+    public final void c(z10 z10Var) {
+        boolean z10;
+        if (z10Var != null) {
+            this.d.add(z10Var);
         }
-        if (!this.f17369e) {
-            if (System.currentTimeMillis() - this.f17367b <= 60000 && (z9 = this.f17370f)) {
-                if (z9) {
+        if (!this.f17928e) {
+            if (System.currentTimeMillis() - this.f17926b <= 60000 && (z10 = this.f17929f)) {
+                if (z10) {
                     d();
                     return;
                 }
                 return;
             }
-            this.f17369e = true;
-            ConnectionsManager.getInstance(this.f17366a).sendRequest(new TL_account.getConnectedBots(), new bi.j0(this, 15));
+            this.f17928e = true;
+            ConnectionsManager.getInstance(this.f17925a).sendRequest(new TL_account.getConnectedBots(), new ai.d1(this, 15));
         }
     }
 
@@ -76,12 +76,12 @@ public final class f {
             ArrayList arrayList = this.d;
             if (i7 < arrayList.size()) {
                 if (arrayList.get(i7) != null) {
-                    ((c20) arrayList.get(i7)).a(this.f17368c);
+                    ((z10) arrayList.get(i7)).a(this.f17927c);
                 }
                 i7++;
             } else {
                 arrayList.clear();
-                qs.f(this.f17366a).k(qs.Z3, new Object[0]);
+                ns.f(this.f17925a).k(ns.Z3, new Object[0]);
                 return;
             }
         }

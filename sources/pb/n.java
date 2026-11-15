@@ -1,37 +1,22 @@
 package pb;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-public final class n implements Runnable {
-    public final int f53558a;
-    public final Runnable f53559b;
+import java.util.concurrent.Executor;
+public final class n implements Executor {
+    public static final n f54964a;
+    public static final n[] f54965b;
 
-    public n(int i7, Runnable runnable) {
-        this.f53558a = i7;
-        this.f53559b = runnable;
+    static {
+        ?? r02 = new Enum("INSTANCE", 0);
+        f54964a = r02;
+        f54965b = new n[]{r02};
+    }
+
+    public static n[] values() {
+        return (n[]) f54965b.clone();
     }
 
     @Override
-    public final void run() {
-        switch (this.f53558a) {
-            case 0:
-                Deque deque = (Deque) h.f53544b.get();
-                q6.m.g(deque);
-                Runnable runnable = this.f53559b;
-                deque.add(runnable);
-                if (deque.size() <= 1) {
-                    do {
-                        runnable.run();
-                        deque.removeFirst();
-                        runnable = (Runnable) deque.peekFirst();
-                    } while (runnable != null);
-                    return;
-                }
-                return;
-            default:
-                h.f53544b.set(new ArrayDeque());
-                this.f53559b.run();
-                return;
-        }
+    public final void execute(Runnable runnable) {
+        f.a().f54945a.post(runnable);
     }
 }

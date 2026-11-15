@@ -1,34 +1,14 @@
 package z3;
+
+import f3.h0;
 public final class r {
-    public final int f59677a;
-    public final int f59678b;
-    public final long f59679c;
-    public final long d;
-    public final long f59680e;
-    public final long f59681f;
-    public final e2.u f59682g;
-    public final int h;
-    public final long[] f59683i;
-    public final long[] f59684j;
-    public final int f59685k;
-    public final s[] f59686l;
+    public final boolean f60887a;
+    public final String f60888b;
+    public final h0 f60889c;
+    public final int d;
+    public final byte[] f60890e;
 
-    public r(int i7, int i10, long j3, long j10, long j11, long j12, e2.u uVar, int i11, s[] sVarArr, int i12, long[] jArr, long[] jArr2) {
-        this.f59677a = i7;
-        this.f59678b = i10;
-        this.f59679c = j3;
-        this.d = j10;
-        this.f59680e = j11;
-        this.f59681f = j12;
-        this.f59682g = uVar;
-        this.h = i11;
-        this.f59686l = sVarArr;
-        this.f59685k = i12;
-        this.f59683i = jArr;
-        this.f59684j = jArr2;
-    }
-
-    public final r a(e2.u uVar) {
-        return new r(this.f59677a, this.f59678b, this.f59679c, this.d, this.f59680e, this.f59681f, uVar, this.h, this.f59686l, this.f59685k, this.f59683i, this.f59684j);
+    public r(boolean r5, java.lang.String r6, int r7, byte[] r8, int r9, int r10, byte[] r11) {
+        throw new UnsupportedOperationException("Method not decompiled: z3.r.<init>(boolean, java.lang.String, int, byte[], int, int, byte[]):void");
     }
 }

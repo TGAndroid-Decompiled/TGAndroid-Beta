@@ -8,8 +8,8 @@ import java.util.Iterator;
 import java.util.Set;
 public abstract class sc {
     public static void a(ArrayList arrayList) {
-        boolean z9;
         boolean z10;
+        boolean z11;
         HashMap hashMap = new HashMap(arrayList.size());
         int size = arrayList.size();
         int i7 = 0;
@@ -18,39 +18,39 @@ public abstract class sc {
             Object obj = arrayList.get(i10);
             i10++;
             u9.a aVar = (u9.a) obj;
-            u9.h hVar = new u9.h(aVar);
-            for (u9.r rVar : aVar.f56464b) {
-                if (aVar.f56466e == 0) {
-                    z10 = true;
+            u9.g gVar = new u9.g(aVar);
+            for (u9.q qVar : aVar.f57963b) {
+                if (aVar.f57965e == 0) {
+                    z11 = true;
                 } else {
-                    z10 = false;
+                    z11 = false;
                 }
-                u9.i iVar = new u9.i(rVar, !z10);
-                if (!hashMap.containsKey(iVar)) {
-                    hashMap.put(iVar, new HashSet());
+                u9.h hVar = new u9.h(qVar, !z11);
+                if (!hashMap.containsKey(hVar)) {
+                    hashMap.put(hVar, new HashSet());
                 }
-                Set set = (Set) hashMap.get(iVar);
-                if (!set.isEmpty() && z10) {
-                    throw new IllegalArgumentException("Multiple components provide " + rVar + ".");
+                Set set = (Set) hashMap.get(hVar);
+                if (!set.isEmpty() && z11) {
+                    throw new IllegalArgumentException("Multiple components provide " + qVar + ".");
                 }
-                set.add(hVar);
+                set.add(gVar);
             }
         }
-        for (Set<u9.h> set2 : hashMap.values()) {
-            for (u9.h hVar2 : set2) {
-                for (u9.j jVar : hVar2.f56480a.f56465c) {
-                    if (jVar.f56487c == 0) {
-                        u9.r rVar2 = jVar.f56485a;
-                        if (jVar.f56486b == 2) {
-                            z9 = true;
+        for (Set<u9.g> set2 : hashMap.values()) {
+            for (u9.g gVar2 : set2) {
+                for (u9.i iVar : gVar2.f57976a.f57964c) {
+                    if (iVar.f57983c == 0) {
+                        u9.q qVar2 = iVar.f57981a;
+                        if (iVar.f57982b == 2) {
+                            z10 = true;
                         } else {
-                            z9 = false;
+                            z10 = false;
                         }
-                        Set<u9.h> set3 = (Set) hashMap.get(new u9.i(rVar2, z9));
+                        Set<u9.g> set3 = (Set) hashMap.get(new u9.h(qVar2, z10));
                         if (set3 != null) {
-                            for (u9.h hVar3 : set3) {
-                                hVar2.f56481b.add(hVar3);
-                                hVar3.f56482c.add(hVar2);
+                            for (u9.g gVar3 : set3) {
+                                gVar2.f57977b.add(gVar3);
+                                gVar3.f57978c.add(gVar2);
                             }
                         }
                     }
@@ -64,21 +64,21 @@ public abstract class sc {
         HashSet hashSet2 = new HashSet();
         Iterator it = hashSet.iterator();
         while (it.hasNext()) {
-            u9.h hVar4 = (u9.h) it.next();
-            if (hVar4.f56482c.isEmpty()) {
-                hashSet2.add(hVar4);
+            u9.g gVar4 = (u9.g) it.next();
+            if (gVar4.f57978c.isEmpty()) {
+                hashSet2.add(gVar4);
             }
         }
         while (!hashSet2.isEmpty()) {
-            u9.h hVar5 = (u9.h) hashSet2.iterator().next();
-            hashSet2.remove(hVar5);
+            u9.g gVar5 = (u9.g) hashSet2.iterator().next();
+            hashSet2.remove(gVar5);
             i7++;
-            Iterator it2 = hVar5.f56481b.iterator();
+            Iterator it2 = gVar5.f57977b.iterator();
             while (it2.hasNext()) {
-                u9.h hVar6 = (u9.h) it2.next();
-                hVar6.f56482c.remove(hVar5);
-                if (hVar6.f56482c.isEmpty()) {
-                    hashSet2.add(hVar6);
+                u9.g gVar6 = (u9.g) it2.next();
+                gVar6.f57978c.remove(gVar5);
+                if (gVar6.f57978c.isEmpty()) {
+                    hashSet2.add(gVar6);
                 }
             }
         }
@@ -88,9 +88,9 @@ public abstract class sc {
         ArrayList arrayList2 = new ArrayList();
         Iterator it3 = hashSet.iterator();
         while (it3.hasNext()) {
-            u9.h hVar7 = (u9.h) it3.next();
-            if (!hVar7.f56482c.isEmpty() && !hVar7.f56481b.isEmpty()) {
-                arrayList2.add(hVar7.f56480a);
+            u9.g gVar7 = (u9.g) it3.next();
+            if (!gVar7.f57978c.isEmpty() && !gVar7.f57977b.isEmpty()) {
+                arrayList2.add(gVar7.f57976a);
             }
         }
         throw new RuntimeException("Dependency cycle detected: " + Arrays.toString(arrayList2.toArray()));

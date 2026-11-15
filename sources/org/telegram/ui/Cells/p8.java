@@ -1,34 +1,322 @@
 package org.telegram.ui.Cells;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class p8 extends AnimatorListenerAdapter {
-    public final int f29760a;
-    public final int f29761b;
-    public final r8 f29762c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.i20;
+import org.telegram.ui.Components.Switch;
+import org.telegram.ui.Components.bn;
+import org.telegram.ui.Components.er;
+public final class p8 extends FrameLayout {
+    public int f30876a;
+    public final TextView f30877b;
+    public final TextView f30878c;
+    public final Switch d;
+    public boolean f30879e;
+    public LinearLayout f30880f;
+    public org.telegram.ui.Components.h6 h;
+    public View f30881n;
+    public bn f30882r;
 
-    public p8(r8 r8Var, int i7, int i10) {
-        this.f29760a = i10;
-        this.f29762c = r8Var;
-        this.f29761b = i7;
+    public p8(Context context) {
+        super(context);
+        int i7;
+        int i10;
+        float f10;
+        float f11;
+        int i11;
+        int i12;
+        float f12;
+        float f13;
+        TextView textView = new TextView(context);
+        this.f30877b = textView;
+        org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.G6, null);
+        i20.p(textView, 1, 16.0f, 1, 1);
+        textView.setSingleLine(true);
+        if (hd.f24101a0) {
+            i7 = 5;
+        } else {
+            i7 = 3;
+        }
+        textView.setGravity(i7 | 16);
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
+        boolean z10 = hd.f24101a0;
+        if (z10) {
+            i10 = 5;
+        } else {
+            i10 = 3;
+        }
+        int i13 = i10 | 48;
+        if (z10) {
+            f10 = 64.0f;
+        } else {
+            f10 = 21.0f;
+        }
+        if (z10) {
+            f11 = 21.0f;
+        } else {
+            f11 = 64.0f;
+        }
+        addView(textView, c8.ja.d(-2, -1.0f, i13, f10, 0.0f, f11, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.f30878c = textView2;
+        org.telegram.ui.ActionBar.q6.U(textView2, org.telegram.ui.ActionBar.j6.f29260z6, null);
+        textView2.setTextSize(1, 13.0f);
+        if (hd.f24101a0) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        textView2.setGravity(i11);
+        textView2.setLines(1);
+        textView2.setMaxLines(1);
+        textView2.setSingleLine(true);
+        textView2.setPadding(0, 0, 0, 0);
+        textView2.setEllipsize(truncateAt);
+        boolean z11 = hd.f24101a0;
+        if (z11) {
+            i12 = 5;
+        } else {
+            i12 = 3;
+        }
+        int i14 = i12 | 48;
+        if (z11) {
+            f12 = 64.0f;
+        } else {
+            f12 = 21.0f;
+        }
+        if (z11) {
+            f13 = 21.0f;
+        } else {
+            f13 = 64.0f;
+        }
+        addView(textView2, c8.ja.d(-2, -2.0f, i14, f12, 35.0f, f13, 0.0f));
+        Switch r22 = new Switch(context, null);
+        this.d = r22;
+        r22.setDrawIconType(1);
+        addView(r22, c8.ja.d(37, 40.0f, (hd.f24101a0 ? 3 : 5) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
+    }
+
+    public final void a(Runnable runnable, String str, boolean z10) {
+        float f10;
+        int i7;
+        if (this.f30880f == null) {
+            LinearLayout linearLayout = new LinearLayout(getContext());
+            this.f30880f = linearLayout;
+            linearLayout.setOrientation(0);
+            org.telegram.ui.Components.h6 h6Var = new org.telegram.ui.Components.h6(getContext(), false, true, true);
+            this.h = h6Var;
+            h6Var.setTextSize(org.telegram.messenger.g0.L(14.0f));
+            this.h.getDrawable().K = true;
+            org.telegram.ui.Components.h6 h6Var2 = this.h;
+            int i10 = org.telegram.ui.ActionBar.j6.G6;
+            org.telegram.ui.ActionBar.q6.Y(h6Var2, i10, null);
+            this.h.setTypeface(org.telegram.messenger.g0.o());
+            this.h.b(0.4f, 320L, er.h);
+            this.f30880f.addView(this.h, c8.ja.c(20.0f, -2));
+            this.f30881n = new View(getContext());
+            Drawable mutate = getContext().getResources().getDrawable(2131230871).mutate();
+            org.telegram.ui.ActionBar.q6.x(this, mutate, i10, null, PorterDuff.Mode.MULTIPLY);
+            this.f30881n.setBackground(mutate);
+            this.f30880f.addView(this.f30881n, c8.ja.r(16, 16, 16));
+            this.f30880f.setClipChildren(false);
+            setClipChildren(false);
+            addView(this.f30880f, c8.ja.e(-2, -2, 16));
+            bn bnVar = new bn(getContext(), 8);
+            this.f30882r = bnVar;
+            bnVar.setBackground(org.telegram.ui.ActionBar.j6.h0(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28941i6, false), 2, -1));
+            bn bnVar2 = this.f30882r;
+            if (hd.f24101a0) {
+                i7 = 3;
+            } else {
+                i7 = 5;
+            }
+            addView(bnVar2, c8.ja.e(76, -1, i7));
+        }
+        this.h.setText(str);
+        this.f30881n.animate().cancel();
+        ViewPropertyAnimator animate = this.f30881n.animate();
+        if (z10) {
+            f10 = 0.0f;
+        } else {
+            f10 = 180.0f;
+        }
+        animate.rotation(f10).setDuration(340L).setInterpolator(er.h).start();
+        this.f30882r.setOnClickListener(new a(runnable, 11));
+    }
+
+    public final void b(boolean z10, boolean z11) {
+        float f10;
+        float f11;
+        super.setEnabled(z10);
+        Switch r02 = this.d;
+        TextView textView = this.f30878c;
+        TextView textView2 = this.f30877b;
+        float f12 = 0.5f;
+        if (z11) {
+            textView2.clearAnimation();
+            textView.clearAnimation();
+            r02.clearAnimation();
+            ViewPropertyAnimator animate = textView2.animate();
+            if (z10) {
+                f10 = 1.0f;
+            } else {
+                f10 = 0.5f;
+            }
+            animate.alpha(f10).start();
+            ViewPropertyAnimator animate2 = textView.animate();
+            if (z10) {
+                f11 = 1.0f;
+            } else {
+                f11 = 0.5f;
+            }
+            animate2.alpha(f11).start();
+            ViewPropertyAnimator animate3 = r02.animate();
+            if (z10) {
+                f12 = 1.0f;
+            }
+            animate3.alpha(f12).start();
+        } else if (z10) {
+            textView2.setAlpha(1.0f);
+            textView.setAlpha(1.0f);
+            r02.setAlpha(1.0f);
+        } else {
+            r02.setAlpha(0.5f);
+            textView2.setAlpha(0.5f);
+            textView.setAlpha(0.5f);
+        }
+    }
+
+    public final void c(String str, boolean z10, boolean z11) {
+        d(str, z10, z11, false);
+    }
+
+    public final void d(String str, boolean z10, boolean z11, boolean z12) {
+        TextView textView = this.f30877b;
+        textView.setText(str);
+        this.d.c(z10, z12);
+        this.f30879e = z11;
+        this.f30878c.setVisibility(8);
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView.getLayoutParams();
+        layoutParams.height = -1;
+        layoutParams.topMargin = 0;
+        textView.setLayoutParams(layoutParams);
+        setWillNotDraw(!z11);
+    }
+
+    public Switch getCheckBox() {
+        return this.d;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f29760a) {
-            case 0:
-                r8 r8Var = this.f29762c;
-                r8Var.f30228r = 0;
-                r8Var.setBackgroundColor(this.f29761b);
-                r8Var.invalidate();
-                return;
-            default:
-                int i7 = this.f29761b;
-                r8 r8Var2 = this.f29762c;
-                r8Var2.setBackgroundColor(i7);
-                r8Var2.f30228r = 0;
-                r8Var2.invalidate();
-                return;
+    public final void onDraw(Canvas canvas) {
+        float L;
+        int i7;
+        if (this.f30879e) {
+            if (hd.f24101a0) {
+                L = 0.0f;
+            } else {
+                L = org.telegram.messenger.g0.L(20.0f);
+            }
+            float f10 = L;
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (hd.f24101a0) {
+                i7 = org.telegram.messenger.g0.L(20.0f);
+            } else {
+                i7 = 0;
+            }
+            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f28972k0);
         }
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.Switch");
+        accessibilityNodeInfo.setCheckable(true);
+        accessibilityNodeInfo.setChecked(this.d.h);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        super.onLayout(z10, i7, i10, i11, i12);
+        LinearLayout linearLayout = this.f30880f;
+        if (linearLayout != null) {
+            boolean z11 = hd.f24101a0;
+            TextView textView = this.f30877b;
+            if (z11) {
+                linearLayout.setTranslationX((textView.getLeft() - this.f30880f.getMeasuredWidth()) - org.telegram.messenger.g0.L(8.0f));
+                return;
+            }
+            linearLayout.setTranslationX(org.telegram.messenger.g0.L(8.0f) + textView.getRight());
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        float f10;
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824);
+        if (this.f30878c.getVisibility() == 0) {
+            f10 = 64.0f;
+        } else {
+            f10 = 50.0f;
+        }
+        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(f10) + (this.f30879e ? 1 : 0), 1073741824));
+    }
+
+    public void setChecked(boolean z10) {
+        this.d.c(z10, true);
+    }
+
+    @Override
+    public void setEnabled(boolean z10) {
+        super.setEnabled(z10);
+        TextView textView = this.f30877b;
+        textView.clearAnimation();
+        TextView textView2 = this.f30878c;
+        textView2.clearAnimation();
+        Switch r22 = this.d;
+        r22.clearAnimation();
+        if (z10) {
+            textView.setAlpha(1.0f);
+            textView2.setAlpha(1.0f);
+            r22.setAlpha(1.0f);
+            org.telegram.ui.Components.h6 h6Var = this.h;
+            if (h6Var != null) {
+                h6Var.setAlpha(1.0f);
+            }
+            View view = this.f30881n;
+            if (view != null) {
+                view.setAlpha(1.0f);
+                return;
+            }
+            return;
+        }
+        r22.setAlpha(0.5f);
+        textView.setAlpha(0.5f);
+        textView2.setAlpha(0.5f);
+        org.telegram.ui.Components.h6 h6Var2 = this.h;
+        if (h6Var2 != null) {
+            h6Var2.setAlpha(0.6f);
+        }
+        View view2 = this.f30881n;
+        if (view2 != null) {
+            view2.setAlpha(0.6f);
+        }
+    }
+
+    public void setIcon(int i7) {
+        this.d.setIcon(i7);
     }
 }

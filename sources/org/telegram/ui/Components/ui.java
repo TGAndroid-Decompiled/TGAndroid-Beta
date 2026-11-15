@@ -1,41 +1,56 @@
 package org.telegram.ui.Components;
 
-import j$.util.Objects;
-import org.telegram.tgnet.TLRPC;
-public final class ui {
-    public final int f38662a;
-    public final long f38663b;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.HashSet;
+public final class ui extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
+    public final org.telegram.ui.ActionBar.e6 f40030a;
+    public final TextView f40031b;
+    public final TextView f40032c;
 
-    public ui(int i7, long j3) {
-        this.f38662a = i7;
-        this.f38663b = j3;
+    public ui(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.f40030a = e6Var;
+        setPadding(0, org.telegram.messenger.g0.L(42.0f), 0, org.telegram.messenger.g0.L(42.0f));
+        setTag(-33024);
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        addView(linearLayout, c8.ja.r(-1, -2, 17));
+        i9 i9Var = new i9(context);
+        i9Var.setImageDrawable(new ch0(2131624320, org.telegram.messenger.g0.L(120.0f), org.telegram.messenger.g0.L(120.0f)));
+        linearLayout.addView(i9Var, c8.ja.t(120, 120, 17, 0, 0, 0, 0));
+        TextView textView = new TextView(context);
+        this.f40031b = textView;
+        textView.setTextSize(1, 20.0f);
+        textView.setTypeface(org.telegram.messenger.g0.o());
+        textView.setGravity(17);
+        TextView f10 = org.telegram.messenger.i20.f(linearLayout, textView, c8.ja.t(-1, -2, 17, 32, 12, 32, 8), context);
+        this.f40032c = f10;
+        f10.setTextSize(1, 14.0f);
+        f10.setGravity(17);
+        linearLayout.addView(f10, c8.ja.t(-1, -2, 17, 32, 0, 32, 0));
+        updateColors();
     }
 
-    public static ui a(Object obj) {
-        if (obj instanceof org.telegram.messenger.d5) {
-            return new ui(2, ((org.telegram.messenger.d5) obj).f21990a);
-        }
-        if (obj instanceof TLRPC.User) {
-            return new ui(1, ((TLRPC.User) obj).f27109id);
-        }
-        return null;
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.j6.G6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.j6.f29241y6));
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && ui.class == obj.getClass()) {
-                ui uiVar = (ui) obj;
-                if (this.f38663b == uiVar.f38663b && this.f38662a == uiVar.f38662a) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
     }
 
-    public final int hashCode() {
-        return Objects.hash(p1.g.a(this.f38662a), Long.valueOf(this.f38663b));
+    @Override
+    public final void updateColors() {
+        int i7 = org.telegram.ui.ActionBar.j6.G6;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f40030a;
+        this.f40031b.setTextColor(org.telegram.ui.ActionBar.j6.w0(i7, e6Var));
+        this.f40032c.setTextColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f29241y6, e6Var));
     }
 }

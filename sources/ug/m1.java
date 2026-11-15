@@ -1,40 +1,62 @@
 package ug;
 
+import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.RectF;
-import org.telegram.messenger.Utilities;
-public final class m1 {
-    public float f56716a;
-    public float f56717b;
-    public float f56718c;
-    public float d;
-    public long f56719e;
-    public float f56720f;
-    public final n1 f56721g;
+import di.bc;
+import org.telegram.messenger.qc;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Cells.l8;
+import org.telegram.ui.Components.fh0;
+public final class m1 extends l8 {
+    public final bc f58221a0;
+    public final int f58222b0;
+    public final q2.d f58223c0;
 
-    public m1(n1 n1Var) {
-        this.f56721g = n1Var;
+    public m1(int i7, Context context, e6 e6Var) {
+        super(context, e6Var);
+        int i10;
+        this.f58221a0 = new bc(1, 15);
+        this.f58223c0 = new q2.d(this, 25);
+        if (i7 == 1) {
+            i10 = j6.Wk;
+        } else {
+            i10 = j6.Dk;
+        }
+        this.f58222b0 = i10;
     }
 
-    public final void a(long j3, boolean z9) {
-        RectF rectF;
-        n1 n1Var = this.f56721g;
-        RectF rectF2 = n1Var.f56730a;
-        long j10 = j3 + n1Var.h;
-        g5.a aVar = Utilities.f21340c;
-        this.f56719e = j10 + aVar.nextInt(1000);
-        if (z9) {
-            rectF = n1Var.f56731b;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        boolean e10 = qc.e(131072);
+        q2.d dVar = this.f58223c0;
+        if (e10) {
+            bc bcVar = this.f58221a0;
+            bcVar.d();
+            bcVar.a(canvas, j6.x0(null, this.f58222b0, false));
+            bg.k.d().a(15, dVar);
         } else {
-            rectF = rectF2;
+            bg.k.d().f(dVar);
         }
-        float abs = Math.abs(((int) aVar.nextLong()) % rectF.width()) + rectF.left;
-        float f10 = rectF.top;
-        this.f56716a = abs;
-        this.f56717b = Math.abs(((int) aVar.nextLong()) % rectF.height()) + f10;
-        double atan2 = Math.atan2(abs - rectF2.centerX(), this.f56717b - rectF2.centerY());
-        this.f56718c = (float) Math.sin(atan2);
-        this.d = (float) Math.cos(atan2);
-        aVar.nextInt(50);
-        this.f56720f = 0.0f;
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        bg.k.d().f(this.f58223c0);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        super.onLayout(z10, i7, i10, i11, i12);
+        fh0 fh0Var = this.f30656e;
+        float width = (fh0Var.getWidth() / 2.0f) + fh0Var.getX();
+        float y10 = fh0Var.getY();
+        float height = ((fh0Var.getHeight() / 2.0f) + (y10 + fh0Var.getPaddingTop())) - org.telegram.messenger.g0.L(3.0f);
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(width - org.telegram.messenger.g0.L(16.0f), height - org.telegram.messenger.g0.L(16.0f), width + org.telegram.messenger.g0.L(16.0f), height + org.telegram.messenger.g0.L(16.0f));
+        this.f58221a0.g(rectF);
     }
 }

@@ -1,12 +1,21 @@
 package bi;
 
-import org.telegram.tgnet.tl.TL_stars;
-public final class r6 extends n6 {
-    public final TL_stars.starGiftAttributePattern f4622c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+public final class r6 extends FrameLayout {
+    public final float f3834a;
 
-    public r6(TL_stars.starGiftAttributePattern stargiftattributepattern) {
-        this.f4408a = stargiftattributepattern.name;
-        this.f4409b = stargiftattributepattern.getRarityPermille();
-        this.f4622c = stargiftattributepattern;
+    public r6(Context context, float f10) {
+        super(context);
+        this.f3834a = f10;
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipRect(0.0f, 0.0f, getWidth() * this.f3834a, getHeight());
+        super.dispatchDraw(canvas);
+        canvas.restore();
     }
 }

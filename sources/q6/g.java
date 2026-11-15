@@ -12,30 +12,30 @@ import android.util.Log;
 import com.google.android.gms.common.api.Scope;
 public final class g extends r6.a {
     public static final Parcelable.Creator<g> CREATOR = new q4.x(11);
-    public static final Scope[] E = new Scope[0];
-    public static final n6.c[] F = new n6.c[0];
-    public final String D;
-    public final int f53884a;
-    public final int f53885b;
-    public final int f53886c;
+    public static final Scope[] F = new Scope[0];
+    public static final n6.c[] G = new n6.c[0];
+    public final String E;
+    public final int f55321a;
+    public final int f55322b;
+    public final int f55323c;
     public String d;
-    public IBinder f53887e;
-    public Scope[] f53888f;
+    public IBinder f55324e;
+    public Scope[] f55325f;
     public Bundle h;
-    public Account f53889n;
-    public n6.c[] f53890r;
-    public n6.c[] f53891s;
-    public final boolean f53892w;
-    public final int f53893x;
-    public boolean f53894y;
+    public Account f55326n;
+    public n6.c[] f55327r;
+    public n6.c[] f55328s;
+    public final boolean f55329w;
+    public final int f55330x;
+    public boolean f55331y;
 
-    public g(int i7, int i10, int i11, String str, IBinder iBinder, Scope[] scopeArr, Bundle bundle, Account account, n6.c[] cVarArr, n6.c[] cVarArr2, boolean z9, int i12, boolean z10, String str2) {
+    public g(int i7, int i10, int i11, String str, IBinder iBinder, Scope[] scopeArr, Bundle bundle, Account account, n6.c[] cVarArr, n6.c[] cVarArr2, boolean z10, int i12, boolean z11, String str2) {
         Scope[] scopeArr2;
         Bundle bundle2;
         n6.c[] cVarArr3;
         IInterface aVar;
         if (scopeArr == null) {
-            scopeArr2 = E;
+            scopeArr2 = F;
         } else {
             scopeArr2 = scopeArr;
         }
@@ -44,16 +44,16 @@ public final class g extends r6.a {
         } else {
             bundle2 = bundle;
         }
-        n6.c[] cVarArr4 = F;
+        n6.c[] cVarArr4 = G;
         if (cVarArr == null) {
             cVarArr3 = cVarArr4;
         } else {
             cVarArr3 = cVarArr;
         }
         cVarArr4 = cVarArr2 != null ? cVarArr2 : cVarArr4;
-        this.f53884a = i7;
-        this.f53885b = i10;
-        this.f53886c = i11;
+        this.f55321a = i7;
+        this.f55322b = i10;
+        this.f55323c = i11;
         if ("com.google.android.gms".equals(str)) {
             this.d = "com.google.android.gms";
         } else {
@@ -62,7 +62,7 @@ public final class g extends r6.a {
         if (i7 < 2) {
             Account account2 = null;
             if (iBinder != null) {
-                int i13 = a.f53844b;
+                int i13 = a.f55281b;
                 IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.IAccountAccessor");
                 if (queryLocalInterface instanceof i) {
                     aVar = (i) queryLocalInterface;
@@ -87,19 +87,19 @@ public final class g extends r6.a {
                     throw th2;
                 }
             }
-            this.f53889n = account2;
+            this.f55326n = account2;
         } else {
-            this.f53887e = iBinder;
-            this.f53889n = account;
+            this.f55324e = iBinder;
+            this.f55326n = account;
         }
-        this.f53888f = scopeArr2;
+        this.f55325f = scopeArr2;
         this.h = bundle2;
-        this.f53890r = cVarArr3;
-        this.f53891s = cVarArr4;
-        this.f53892w = z9;
-        this.f53893x = i12;
-        this.f53894y = z10;
-        this.D = str2;
+        this.f55327r = cVarArr3;
+        this.f55328s = cVarArr4;
+        this.f55329w = z10;
+        this.f55330x = i12;
+        this.f55331y = z11;
+        this.E = str2;
     }
 
     @Override

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Locale;
 public final class d implements e {
-    public static final Locale[] f20126c = new Locale[0];
-    public final Locale[] f20127a;
-    public final String f20128b;
+    public static final Locale[] f20688c = new Locale[0];
+    public final Locale[] f20689a;
+    public final String f20690b;
 
     static {
         new Locale("en", "XA");
@@ -25,8 +25,8 @@ public final class d implements e {
 
     public d(Locale... localeArr) {
         if (localeArr.length == 0) {
-            this.f20127a = f20126c;
-            this.f20128b = "";
+            this.f20689a = f20688c;
+            this.f20690b = "";
             return;
         }
         ArrayList arrayList = new ArrayList();
@@ -50,16 +50,16 @@ public final class d implements e {
                     hashSet.add(locale2);
                 }
             } else {
-                throw new NullPointerException(jg.g.k(i7, "list[", "] is null"));
+                throw new NullPointerException(i5.c.j(i7, "list[", "] is null"));
             }
         }
-        this.f20127a = (Locale[]) arrayList.toArray(new Locale[0]);
-        this.f20128b = sb2.toString();
+        this.f20689a = (Locale[]) arrayList.toArray(new Locale[0]);
+        this.f20690b = sb2.toString();
     }
 
     @Override
     public final String a() {
-        return this.f20128b;
+        return this.f20690b;
     }
 
     @Override
@@ -74,8 +74,8 @@ public final class d implements e {
         if (!(obj instanceof d)) {
             return false;
         }
-        Locale[] localeArr = ((d) obj).f20127a;
-        Locale[] localeArr2 = this.f20127a;
+        Locale[] localeArr = ((d) obj).f20689a;
+        Locale[] localeArr2 = this.f20689a;
         if (localeArr2.length != localeArr.length) {
             return false;
         }
@@ -90,7 +90,7 @@ public final class d implements e {
     @Override
     public final Locale get(int i7) {
         if (i7 >= 0) {
-            Locale[] localeArr = this.f20127a;
+            Locale[] localeArr = this.f20689a;
             if (i7 < localeArr.length) {
                 return localeArr[i7];
             }
@@ -101,7 +101,7 @@ public final class d implements e {
 
     public final int hashCode() {
         int i7 = 1;
-        for (Locale locale : this.f20127a) {
+        for (Locale locale : this.f20689a) {
             i7 = (i7 * 31) + locale.hashCode();
         }
         return i7;
@@ -109,14 +109,14 @@ public final class d implements e {
 
     @Override
     public final int size() {
-        return this.f20127a.length;
+        return this.f20689a.length;
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("[");
         int i7 = 0;
         while (true) {
-            Locale[] localeArr = this.f20127a;
+            Locale[] localeArr = this.f20689a;
             if (i7 < localeArr.length) {
                 sb2.append(localeArr[i7]);
                 if (i7 < localeArr.length - 1) {

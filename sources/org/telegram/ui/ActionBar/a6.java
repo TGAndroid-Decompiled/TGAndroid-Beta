@@ -1,40 +1,24 @@
 package org.telegram.ui.ActionBar;
+public enum a6 {
+    DEFAULT(j6.f29118rg, j6.f29136sg, j6.f29155tg, j6.Gg, j6.Hg, j6.Ig),
+    PRIMARY(j6.f29175ug, j6.f29193vg, j6.f29212wg, j6.Jg, j6.Kg, j6.Lg),
+    DANGER(j6.f29231xg, j6.f29250yg, j6.f29270zg, j6.Mg, j6.Ng, j6.Og),
+    SUCCESS(j6.Ag, j6.Bg, j6.Cg, j6.Pg, j6.Qg, j6.Rg),
+    DEFAULT_IN_TEXT(j6.Dg, j6.Eg, j6.Fg, j6.Sg, j6.Tg, j6.Ug);
+    
+    public final int f28413a;
+    public final int f28414b;
+    public final int f28415c;
+    public final int d;
+    public final int f28416e;
+    public final int f28417f;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class a6 extends Drawable {
-    public static Paint f27318c;
-    public Paint f27319a;
-    public float f27320b;
-
-    @Override
-    public final void draw(Canvas canvas) {
-        int L;
-        Rect bounds = getBounds();
-        float f10 = this.f27320b;
-        if (Math.abs(f10 - (-1.0f)) < 0.01f) {
-            L = Math.max(bounds.width(), bounds.height()) / 2;
-        } else if (Math.abs(f10 - (-2.0f)) < 0.01f) {
-            L = (int) Math.ceil(Math.sqrt(((bounds.top - bounds.centerY()) * (bounds.top - bounds.centerY())) + ((bounds.left - bounds.centerX()) * (bounds.left - bounds.centerX()))));
-        } else {
-            L = org.telegram.messenger.g0.L(f10);
-        }
-        canvas.drawCircle(bounds.centerX(), bounds.centerY(), L, this.f27319a);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    a6(int i7, int i10, int i11, int i12, int i13, int i14) {
+        this.f28413a = i7;
+        this.f28414b = i10;
+        this.f28415c = i11;
+        this.d = i12;
+        this.f28416e = i13;
+        this.f28417f = i14;
     }
 }

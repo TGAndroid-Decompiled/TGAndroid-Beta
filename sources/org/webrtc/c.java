@@ -5,10 +5,10 @@ import android.graphics.Matrix;
 import android.view.WindowManager;
 import org.webrtc.VideoFrame;
 public abstract class c {
-    public static VideoFrame.TextureBuffer a(TextureBufferImpl textureBufferImpl, boolean z9, int i7) {
+    public static VideoFrame.TextureBuffer a(TextureBufferImpl textureBufferImpl, boolean z10, int i7) {
         Matrix matrix = new Matrix();
         matrix.preTranslate(0.5f, 0.5f);
-        if (z9) {
+        if (z10) {
             matrix.preScale(-1.0f, 1.0f);
         }
         matrix.preRotate(i7);

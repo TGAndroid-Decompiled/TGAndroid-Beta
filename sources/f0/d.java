@@ -1,6 +1,6 @@
 package f0;
 
-import ab.x;
+import ab.y;
 import android.app.AppOpsManager;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -14,7 +14,7 @@ import e0.i0;
 import j$.util.Objects;
 import java.util.concurrent.Executor;
 public abstract class d {
-    public static final Object f10883a = null;
+    public static final Object f10694a = null;
 
     public static int a(Context context, String str, int i7, int i10, String str2) {
         int noteProxyOpNoThrow;
@@ -40,7 +40,7 @@ public abstract class d {
                             noteProxyOpNoThrow = appOpsManager.checkOpNoThrow(permissionToOp, callingUid, str2);
                         }
                         if (noteProxyOpNoThrow == 0) {
-                            String f10 = x.f(context);
+                            String f10 = y.f(context);
                             if (appOpsManager != null) {
                                 i11 = appOpsManager.checkOpNoThrow(permissionToOp, i10, f10);
                             }

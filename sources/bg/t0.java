@@ -1,54 +1,62 @@
 package bg;
 
+import android.graphics.Canvas;
 import android.graphics.Outline;
-import android.view.View;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.os.Build;
+import android.os.Looper;
 import android.view.ViewOutlineProvider;
-public final class t0 extends ViewOutlineProvider {
-    public final boolean f3376a;
-    public final int f3377b;
-    public final boolean f3378c;
-    public final boolean d;
-    public final boolean f3379e;
+import org.telegram.ui.r3;
+import org.telegram.ui.xl0;
+public abstract class t0 {
+    public static final p0 f3332a = new p0(0);
+    public static final p0 f3333b = new p0(1);
+    public static Path f3334c;
+    public static Outline d;
+    public static Rect f3335e;
 
-    public t0(int i7, boolean z9, boolean z10, boolean z11, boolean z12) {
-        this.f3376a = z9;
-        this.f3377b = i7;
-        this.f3378c = z10;
-        this.d = z11;
-        this.f3379e = z12;
-    }
-
-    @Override
-    public final void getOutline(View view, Outline outline) {
-        int i7;
-        int i10;
-        int i11;
-        int width = view.getWidth();
-        int height = view.getHeight();
-        boolean z9 = this.f3376a;
-        int i12 = 0;
-        int i13 = this.f3377b;
-        if (z9) {
-            i7 = 0;
-        } else {
-            i7 = i13;
+    public static void a(Canvas canvas, xl0 xl0Var, r3 r3Var) {
+        Path path;
+        Outline outline;
+        Rect rect;
+        ViewOutlineProvider outlineProvider = xl0Var.getOutlineProvider();
+        if (!canvas.isHardwareAccelerated() && Build.VERSION.SDK_INT >= 24 && xl0Var.getClipToOutline() && outlineProvider != null) {
+            if (Looper.myLooper() == Looper.getMainLooper()) {
+                if (f3334c == null) {
+                    f3334c = new Path();
+                    d = new Outline();
+                    f3335e = new Rect();
+                }
+                path = f3334c;
+                outline = d;
+                rect = f3335e;
+                outline.setEmpty();
+                rect.setEmpty();
+            } else {
+                path = new Path();
+                outline = new Outline();
+                rect = new Rect();
+            }
+            Path path2 = path;
+            outlineProvider.getOutline(xl0Var, outline);
+            path2.rewind();
+            if (!outline.isEmpty() && outline.getRect(rect)) {
+                float radius = outline.getRadius();
+                if (radius > 0.0f) {
+                    path2.addRoundRect(rect.left, rect.top, rect.right, rect.bottom, radius, radius, Path.Direction.CW);
+                } else {
+                    path2.addRect(rect.left, rect.top, rect.right, rect.bottom, Path.Direction.CW);
+                }
+                int save = canvas.save();
+                canvas.clipPath(path2);
+                r3Var.a(canvas);
+                canvas.restoreToCount(save);
+                return;
+            }
+            r3Var.a(canvas);
+            return;
         }
-        int i14 = -i7;
-        if (this.f3378c) {
-            i10 = 0;
-        } else {
-            i10 = i13;
-        }
-        int i15 = -i10;
-        if (this.d) {
-            i11 = 0;
-        } else {
-            i11 = i13;
-        }
-        int i16 = width + i11;
-        if (!this.f3379e) {
-            i12 = i13;
-        }
-        outline.setRoundRect(i14, i15, i16, height + i12, i13);
+        r3Var.a(canvas);
     }
 }

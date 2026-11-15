@@ -1,39 +1,27 @@
 package org.telegram.ui.Components;
+public final class um implements org.telegram.messenger.z10 {
+    public final int f40107a;
+    public final org.telegram.messenger.z10 f40108b;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.ImageView;
-public final class um implements View.OnKeyListener {
-    public final int f38713a;
-    public final Object f38714b;
-
-    public um(Object obj, int i7) {
-        this.f38713a = i7;
-        this.f38714b = obj;
+    public um(org.telegram.messenger.z10 z10Var, int i7) {
+        this.f40107a = i7;
+        this.f40108b = z10Var;
     }
 
     @Override
-    public final boolean onKey(View view, int i7, KeyEvent keyEvent) {
-        switch (this.f38713a) {
+    public final void a(Object obj) {
+        switch (this.f40107a) {
             case 0:
-                ym ymVar = (ym) this.f38714b;
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
-                if (i7 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
-                    ImageView imageView = ymVar.f28907f;
-                    if (imageView != null) {
-                        imageView.callOnClick();
-                    }
-                    return true;
-                }
-                return false;
+                this.f40108b.a(new th.e((String) obj));
+                return;
             default:
-                xt xtVar = (xt) this.f38714b;
-                xtVar.getClass();
-                if (i7 == 82 && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 1 && xtVar.isShowing()) {
-                    xtVar.dismiss();
-                    return true;
+                int[] iArr = (int[]) obj;
+                boolean z10 = false;
+                if (iArr.length >= 1 && iArr[0] == 0) {
+                    z10 = true;
                 }
-                return false;
+                this.f40108b.a(Boolean.valueOf(z10));
+                return;
         }
     }
 }

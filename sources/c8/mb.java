@@ -1,18 +1,12 @@
 package c8;
 
-import java.io.Closeable;
+import java.util.Date;
 public abstract class mb {
-    public static final void a(Closeable closeable, Throwable th2) {
-        if (closeable != null) {
-            if (th2 == null) {
-                closeable.close();
-                return;
-            }
-            try {
-                closeable.close();
-            } catch (Throwable th3) {
-                a8.la.a(th2, th3);
-            }
-        }
+    public static long a(Date date) {
+        return (date.getTime() / 1000) + 2082844800;
+    }
+
+    public static Date b(long j3) {
+        return new Date((j3 - 2082844800) * 1000);
     }
 }

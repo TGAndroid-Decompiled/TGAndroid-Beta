@@ -1,24 +1,28 @@
 package wi;
 
-import org.telegram.ui.Components.qt;
-public final class c {
-    public final int f57940a;
-    public final qt f57941b;
+import android.content.SharedPreferences;
+public final class c implements r1.c {
+    public final int f59370a;
+    public final Object f59371b;
 
-    public c(qt qtVar, int i7) {
-        this.f57940a = i7;
-        this.f57941b = qtVar;
+    public c(Object obj, int i7) {
+        this.f59370a = i7;
+        this.f59371b = obj;
     }
 
-    public void a(Exception exc) {
-        switch (this.f57940a) {
+    @Override
+    public final void a(r1.g gVar, boolean z10, float f10, float f11) {
+        switch (this.f59370a) {
             case 0:
-                qt qtVar = this.f57941b;
-                ((t0) qtVar.f37395b).f58213i.post(new j0(qtVar, exc, 1));
+                ((SharedPreferences) u7.i.b().f57880a).edit().putFloat("x", f10).apply();
+                ((h) this.f59371b).f59381a.f59423b.f();
+                return;
+            case 1:
+                ((SharedPreferences) u7.i.b().f57880a).edit().putFloat("y", f10).apply();
+                ((h) this.f59371b).f59381a.f59423b.f();
                 return;
             default:
-                qt qtVar2 = this.f57941b;
-                ((t0) qtVar2.f37395b).f58213i.post(new j0(qtVar2, exc, 0));
+                ((h2.f) this.f59371b).e();
                 return;
         }
     }

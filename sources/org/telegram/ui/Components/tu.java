@@ -1,28 +1,30 @@
 package org.telegram.ui.Components;
+public final class tu implements Runnable {
+    public final int f39811a;
+    public final uu f39812b;
 
-import android.content.Context;
-public final class tu extends k9 {
-    public final wu G;
-
-    public tu(wu wuVar, Context context) {
-        super(context);
-        this.G = wuVar;
+    public tu(uu uuVar, int i7) {
+        this.f39811a = i7;
+        this.f39812b = uuVar;
     }
 
     @Override
-    public final void invalidate() {
-        if (ch.e0.b(this)) {
-            return;
+    public final void run() {
+        int i7 = this.f39811a;
+        uu uuVar = this.f39812b;
+        switch (i7) {
+            case 0:
+                uuVar.f40164f.dismiss();
+                return;
+            default:
+                wu wuVar = uuVar.f40164f;
+                wuVar.dismiss();
+                org.telegram.ui.ActionBar.e2 e2Var = wuVar.n1;
+                if (e2Var != null && e2Var.getParentActivity() != null) {
+                    org.telegram.messenger.k5.o(null, 2131754435, cc.a0(e2Var), null);
+                    return;
+                }
+                return;
         }
-        super.invalidate();
-        this.G.f();
-    }
-
-    @Override
-    public final void invalidate(int i7, int i10, int i11, int i12) {
-        if (ch.e0.b(this)) {
-            return;
-        }
-        super.invalidate(i7, i10, i11, i12);
     }
 }

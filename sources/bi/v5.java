@@ -1,165 +1,67 @@
 package bi;
 
-import android.animation.ValueAnimator;
-import android.graphics.RectF;
-import android.opengl.Matrix;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.ui.Components.wq;
-public final class v5 {
-    public final w5 f4872a;
-    public ai.d0 d;
-    public int f4876f;
-    public int f4877g;
-    public float f4879j;
-    public float f4880k;
-    public final ArrayList f4873b = new ArrayList();
-    public int f4874c = 0;
-    public boolean f4875e = false;
-    public final float[] h = new float[16];
-    public float[] f4878i = new float[16];
-    public boolean f4881l = false;
+import di.v8;
+import di.xa;
+import org.telegram.messenger.np;
+import org.telegram.messenger.s10;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.b41;
+import org.telegram.ui.Components.e70;
+import org.telegram.ui.Components.ja;
+import org.telegram.ui.Components.z60;
+public final class v5 implements s10 {
+    public final int f3939a;
+    public final long f3940b;
+    public final org.telegram.ui.ActionBar.u2 f3941c;
+    public final Object d;
 
-    public v5(w5 w5Var) {
-        this.f4872a = w5Var;
+    public v5(ja jaVar, Object obj, long j3, int i7) {
+        this.f3939a = i7;
+        this.f3941c = jaVar;
+        this.d = obj;
+        this.f3940b = j3;
     }
 
-    public final void a(int i7) {
-        this.f4873b.add(new u5(3, 0.0f, 0.0f, i7, -1, 0.0f, null, null));
-    }
-
-    public final void b() {
-        ai.d0 d0Var;
-        boolean z9 = this.f4875e;
-        w5 w5Var = this.f4872a;
-        if (!z9) {
-            int i7 = this.f4874c;
-            ArrayList arrayList = this.f4873b;
-            if (i7 < arrayList.size()) {
-                u5 u5Var = (u5) arrayList.get(this.f4874c);
-                boolean z10 = true;
-                this.f4874c++;
-                int i10 = u5Var.f4804a;
-                int i11 = u5Var.f4807e;
-                float f10 = u5Var.f4805b;
-                int i12 = u5Var.d;
-                int c10 = p1.g.c(i10);
-                if (c10 != 0) {
-                    if (c10 != 1) {
-                        if (c10 != 2) {
-                            if (c10 != 3) {
-                                if (c10 != 4) {
-                                    if (c10 == 5) {
-                                        if (f10 <= 0.0f) {
-                                            z10 = false;
-                                        }
-                                        w5Var.f4969f = z10;
-                                        b();
-                                        return;
-                                    }
-                                    return;
-                                }
-                                this.f4881l = true;
-                                View view = u5Var.f4809g;
-                                ValueAnimator valueAnimator = w5Var.G;
-                                if (valueAnimator != null) {
-                                    valueAnimator.cancel();
-                                    w5Var.G = null;
-                                }
-                                RectF rectF = new RectF();
-                                rectF.left = view.getX() - w5Var.getX();
-                                rectF.top = view.getY() - w5Var.getY();
-                                rectF.right = rectF.left + view.getWidth();
-                                rectF.bottom = rectF.top + view.getHeight();
-                                org.telegram.messenger.g0.E2(view);
-                                int childCount = w5Var.getChildCount();
-                                w5Var.addView(view, c8.ha.e(64, 64, 17));
-                                w5Var.f4973w.add(Integer.valueOf(i11));
-                                w5Var.f4974x.put(Integer.valueOf(childCount), Integer.valueOf(i11));
-                                w5Var.f4975y.put(Integer.valueOf(childCount), rectF);
-                                w5Var.F = childCount;
-                                w5Var.E = 0.0f;
-                                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                                w5Var.G = ofFloat;
-                                ofFloat.addUpdateListener(new ah.h(w5Var, 5));
-                                w5Var.G.addListener(new t5(w5Var, 0));
-                                w5Var.G.setDuration(i12 * 16);
-                                w5Var.G.setInterpolator(wq.h);
-                                w5Var.G.start();
-                                return;
-                            }
-                            System.arraycopy(w5Var.f4967c, 0, this.h, 0, 16);
-                            float f11 = u5Var.f4808f;
-                            float[] fArr = new float[16];
-                            Matrix.setIdentityM(fArr, 0);
-                            if (f11 != 0.0f) {
-                                Matrix.rotateM(fArr, 0, -f11, 0.0f, 0.0f, 1.0f);
-                            }
-                            if (i11 != 0) {
-                                if (i11 != 1) {
-                                    if (i11 != 2) {
-                                        if (i11 != 3) {
-                                            if (i11 == 4) {
-                                                Matrix.rotateM(fArr, 0, 180.0f, 0.0f, 1.0f, 0.0f);
-                                            }
-                                        } else {
-                                            Matrix.rotateM(fArr, 0, -90.0f, 1.0f, 0.0f, 0.0f);
-                                        }
-                                    } else {
-                                        Matrix.rotateM(fArr, 0, 90.0f, 1.0f, 0.0f, 0.0f);
-                                    }
-                                } else {
-                                    Matrix.rotateM(fArr, 0, -90.0f, 0.0f, 1.0f, 0.0f);
-                                }
-                            } else {
-                                Matrix.rotateM(fArr, 0, 90.0f, 0.0f, 1.0f, 0.0f);
-                            }
-                            this.f4878i = fArr;
-                            this.f4877g = i12;
-                            this.f4876f = i12;
-                            this.f4879j = w5Var.d;
-                            this.f4880k = w5Var.f4968e;
-                            return;
-                        }
-                        this.f4876f = i12;
-                        this.f4877g = i12;
-                        return;
-                    }
-                    w5Var.d = (u5Var.f4806c * 0.01f) + w5Var.d;
-                    w5Var.f4968e = (f10 * 0.01f) + w5Var.f4968e;
-                    this.f4876f = 1;
-                    this.f4877g = 1;
-                    return;
-                }
-                Runnable runnable = u5Var.h;
-                if (runnable != null) {
-                    runnable.run();
-                }
-                b();
+    @Override
+    public final void a(Object obj, Object obj2) {
+        TLRPC.Updates updates;
+        switch (this.f3939a) {
+            case 0:
+                z5 z5Var = (z5) this.f3941c;
+                TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) this.d;
+                di.c5 c5Var = (di.c5) obj;
+                vf.b bVar = (vf.b) obj2;
+                bVar.d();
+                v8.x(z5Var.f29679a, c5Var.f8303a).h(c5Var.f8304b, tL_starGiftUnique, this.f3940b, null, true, new h0(z5Var, bVar, tL_starGiftUnique, 1));
                 return;
-            }
-        }
-        w5Var.H = null;
-        if (!this.f4875e && (d0Var = this.d) != null) {
-            d0Var.run();
+            case 1:
+                xa.d1((xa) this.f3941c, (b41) this.d, this.f3940b, (Boolean) obj, (String) obj2);
+                return;
+            default:
+                e70 e70Var = (e70) this.f3941c;
+                TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = (TLRPC.TL_messages_importChatInvite) this.d;
+                TLRPC.ChatInviteJoinResult chatInviteJoinResult = (TLRPC.ChatInviteJoinResult) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {
+                    TLRPC.Updates updates2 = ((TLRPC.TL_chatInviteJoinResultOk) chatInviteJoinResult).updates;
+                    np.s1(e70Var.f29679a).O3(updates2, false);
+                    updates = updates2;
+                } else {
+                    if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultWebView) {
+                        org.telegram.messenger.g0.h3(new z60(e70Var, (TLRPC.TL_chatInviteJoinResultWebView) chatInviteJoinResult, this.f3940b, 1));
+                    }
+                    updates = null;
+                }
+                org.telegram.messenger.g0.h3(new org.telegram.ui.ActionBar.m5(e70Var, tL_error, updates, tL_messages_importChatInvite, 27));
+                return;
         }
     }
 
-    public final void c(float f10, float f11) {
-        this.f4873b.add(new u5(2, f10, f11, 0, -1, 0.0f, null, null));
-    }
-
-    public final void d(boolean z9) {
-        float f10;
-        if (z9) {
-            f10 = 1.0f;
-        } else {
-            f10 = -1.0f;
-        }
-        this.f4873b.add(new u5(6, f10, 0.0f, 0, -1, 0.0f, null, null));
-    }
-
-    public final void e(b6 b6Var, int i7, float f10) {
-        this.f4873b.add(new u5(5, 0.0f, 0.0f, 32, i7, f10, b6Var, null));
+    public v5(e70 e70Var, long j3, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
+        this.f3939a = 2;
+        this.f3941c = e70Var;
+        this.f3940b = j3;
+        this.d = tL_messages_importChatInvite;
     }
 }

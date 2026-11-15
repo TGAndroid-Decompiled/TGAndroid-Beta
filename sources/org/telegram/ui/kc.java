@@ -1,151 +1,41 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.content.Context;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.HashSet;
-import org.telegram.tgnet.tl.TL_stories;
-public final class kc extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
-    public final rl0 f47251a;
-    public final jc f47252b;
-    public final org.telegram.ui.ActionBar.m5 f47253c;
-    public final TextView d;
-    public final TextView f47254e;
-    public final LinearLayout f47255f;
-    public final rc h;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class kc implements org.telegram.messenger.z10 {
+    public final int f48671a;
+    public final oc f48672b;
 
-    public kc(rc rcVar, Activity activity) {
-        super(activity);
-        org.telegram.ui.ActionBar.h6 h6Var;
-        int i7;
-        org.telegram.ui.ActionBar.h6 h6Var2;
-        float f10;
-        float f11;
-        int i10;
-        int i11;
-        this.h = rcVar;
-        Context context = getContext();
-        h6Var = ((org.telegram.ui.ActionBar.f2) rcVar).resourceProvider;
-        rl0 rl0Var = new rl0(context, h6Var);
-        this.f47251a = rl0Var;
-        rl0Var.setProgressToGradient(1.0f);
-        rl0Var.F = true;
-        addView(rl0Var, c8.ha.e(-1, -1, 119));
-        Context context2 = getContext();
-        i7 = ((org.telegram.ui.ActionBar.f2) rcVar).currentAccount;
-        long j3 = rcVar.f49351a;
-        h6Var2 = ((org.telegram.ui.ActionBar.f2) rcVar).resourceProvider;
-        jc jcVar = new jc(this, context2, i7, j3, h6Var2);
-        this.f47252b = jcVar;
-        boolean z9 = rcVar.d;
-        if (z9) {
-            f10 = 230.0f;
-        } else {
-            f10 = 190.0f;
-        }
-        float f12 = f10;
-        if (z9) {
-            f11 = 24.0f;
-        } else {
-            f11 = 0.0f;
-        }
-        addView(jcVar, c8.ha.d(-1, f12, 80, 0.0f, 0.0f, 0.0f, f11));
-        if (rcVar instanceof m40) {
-            org.telegram.ui.ActionBar.m5 m5Var = new org.telegram.ui.ActionBar.m5(getContext());
-            this.f47253c = m5Var;
-            m5Var.setGravity(19);
-            int i12 = org.telegram.ui.ActionBar.m6.A8;
-            m5Var.setTextColor(rcVar.getThemedColor(i12));
-            m5Var.setTypeface(org.telegram.messenger.g0.o());
-            m5Var.l(org.telegram.messenger.id.M0(2131752551, null), false);
-            m5Var.setAlpha(0.0f);
-            a();
-            addView(m5Var, c8.ha.d(-1, -2.0f, 80, 72.0f, 0.0f, 0.0f, 16.0f));
-            LinearLayout linearLayout = new LinearLayout(activity);
-            this.f47255f = linearLayout;
-            linearLayout.setOrientation(0);
-            linearLayout.setBackground(org.telegram.ui.ActionBar.m6.i0(org.telegram.ui.ActionBar.m6.r1(0.065f, -16777216), -16777216));
-            linearLayout.setGravity(17);
-            linearLayout.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f));
-            TextView textView = new TextView(activity);
-            this.d = textView;
-            textView.setTextSize(1, 12.0f);
-            textView.setTextColor(jcVar.h.getTextColor());
-            TextView textView2 = new TextView(activity);
-            this.f47254e = textView2;
-            textView2.setTextSize(1, 12.0f);
-            if (rcVar.d && rcVar.f49375s == -1) {
-                i10 = rcVar.getThemedColor(i12);
-            } else {
-                i10 = -1;
-            }
-            textView2.setTextColor(i10);
-            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = rcVar.f49355c;
-            if (tL_premium_boostsStatus != null) {
-                i11 = tL_premium_boostsStatus.boosts;
-            } else {
-                i11 = 0;
-            }
-            textView.setText(org.telegram.messenger.g0.X2(org.telegram.messenger.id.G(i11, "BoostingGroupBoostCount", new Object[0])));
-            textView2.setText(org.telegram.messenger.id.M0(2131753353, null));
-            linearLayout.addView(textView);
-            linearLayout.addView(textView2, c8.ha.k(3.0f, 0.0f, 0.0f, 0.0f, -2, -2));
-            addView(linearLayout, c8.ha.e(-1, -2, 80));
-        }
-    }
-
-    public final void a() {
-        boolean z9;
-        int i7;
-        float f10;
-        int i10 = 0;
-        if (getResources().getConfiguration().orientation == 2) {
-            z9 = true;
-        } else {
-            z9 = false;
-        }
-        if (!org.telegram.messenger.g0.Q1() && z9) {
-            i7 = 18;
-        } else {
-            i7 = 20;
-        }
-        org.telegram.ui.ActionBar.m5 m5Var = this.f47253c;
-        m5Var.setTextSize(i7);
-        if (org.telegram.messenger.g0.Q1()) {
-            f10 = -2.0f;
-        } else {
-            if (z9) {
-                i10 = 4;
-            }
-            f10 = i10;
-        }
-        m5Var.setTranslationY(org.telegram.messenger.g0.L(f10));
+    public kc(oc ocVar, int i7) {
+        this.f48671a = i7;
+        this.f48672b = ocVar;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.m6.A8));
-    }
-
-    @Override
-    public final void updateColors() {
-        int themedColor;
-        org.telegram.ui.ActionBar.m5 m5Var = this.f47253c;
-        if (m5Var != null) {
-            rc rcVar = this.h;
-            int i7 = -1;
-            if (rcVar.d && rcVar.f49375s != -1) {
-                themedColor = -1;
-            } else {
-                themedColor = rcVar.getThemedColor(org.telegram.ui.ActionBar.m6.A8);
-            }
-            m5Var.setTextColor(themedColor);
-            if (rcVar.d && rcVar.f49375s == -1) {
-                i7 = rcVar.getThemedColor(org.telegram.ui.ActionBar.m6.A8);
-            }
-            this.f47254e.setTextColor(i7);
+    public final void a(Object obj) {
+        TLRPC.WallPaper wallPaper;
+        View view = (View) obj;
+        switch (this.f48671a) {
+            case 0:
+                oc ocVar = this.f48672b;
+                ocVar.getClass();
+                if (view instanceof org.telegram.ui.Components.b01) {
+                    view.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f28940i5, ocVar.f49906b));
+                    return;
+                }
+                return;
+            default:
+                if (view instanceof org.telegram.ui.Components.b01) {
+                    org.telegram.ui.Components.b01 b01Var = (org.telegram.ui.Components.b01) view;
+                    if (b01Var.H.f34022a.f29471b) {
+                        wallPaper = null;
+                    } else {
+                        wallPaper = this.f48672b.f49913w;
+                    }
+                    b01Var.setFallbackWallpaper(wallPaper);
+                    return;
+                }
+                return;
         }
     }
 }

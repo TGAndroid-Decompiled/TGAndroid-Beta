@@ -1,28 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-public final class tw0 extends hb0 {
-    public final uw0 f38411y0;
+import android.text.StaticLayout;
+import java.util.ArrayList;
+public final class tw0 {
+    public final org.telegram.ui.ActionBar.e6 f39824a;
+    public StaticLayout f39825b;
+    public final ArrayList f39826c = new ArrayList(2);
+    public int d;
+    public int f39827e;
+    public int f39828f;
+    public int f39829g;
+    public int h;
 
-    public tw0(uw0 uw0Var, Context context) {
-        super(13, context, null);
-        this.f38411y0 = uw0Var;
+    public tw0(org.telegram.ui.ActionBar.e6 e6Var) {
+        this.f39824a = e6Var;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f27998j5, false);
-        uw0 uw0Var = this.f38411y0;
-        if (x02 != uw0Var.f38761a) {
-            uw0Var.f38761a = x02;
-            setTextColor(x02);
+    public static void c(StringBuilder sb2, int i7, boolean z10) {
+        if (sb2.length() > 0) {
+            if (z10) {
+                sb2.append(' ');
+                sb2.append(org.telegram.messenger.hd.M0(2131744345, null));
+                sb2.append(' ');
+            } else {
+                sb2.append(", ");
+            }
         }
-        super.onDraw(canvas);
-        float L = org.telegram.messenger.g0.L(31.0f);
-        uw0Var.f38764e.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.h7, false));
-        canvas.drawLine(org.telegram.messenger.g0.L(2.0f), L, getMeasuredWidth() - org.telegram.messenger.g0.L(2.0f), L, uw0Var.f38764e);
-        float measuredHeight = getMeasuredHeight() - org.telegram.messenger.g0.L(31.0f);
-        canvas.drawLine(org.telegram.messenger.g0.L(2.0f), measuredHeight, getMeasuredWidth() - org.telegram.messenger.g0.L(2.0f), measuredHeight, uw0Var.f38764e);
+        sb2.append(org.telegram.messenger.hd.M0(i7, null));
+    }
+
+    public final int a() {
+        return this.f39829g;
+    }
+
+    public final void b(org.telegram.messenger.gj r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.tw0.b(org.telegram.messenger.gj):void");
     }
 }

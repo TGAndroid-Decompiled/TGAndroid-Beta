@@ -1,38 +1,66 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.GestureDetector;
-import android.widget.FrameLayout;
-public final class ta extends FrameLayout {
-    public final bc D;
-    public final fb f38250a;
-    public final Rect f38251b;
-    public final GestureDetector f38252c;
-    public boolean d;
-    public boolean f38253e;
-    public float f38254f;
-    public float h;
-    public float f38255n;
-    public boolean f38256r;
-    public boolean f38257s;
-    public boolean f38258w;
-    public boolean f38259x;
-    public final FrameLayout f38260y;
+import android.app.Dialog;
+import android.content.Context;
+import android.os.Build;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import java.util.WeakHashMap;
+public final class ta extends Dialog {
+    public final sa f39619a;
+    public final WindowManager.LayoutParams f39620b;
 
-    public ta(bc bcVar, fb fbVar, FrameLayout frameLayout) {
-        super(fbVar.getContext());
-        this.D = bcVar;
-        this.f38260y = frameLayout;
-        this.f38251b = new Rect();
-        this.f38250a = fbVar;
-        GestureDetector gestureDetector = new GestureDetector(fbVar.getContext(), new qb(this, fbVar));
-        this.f38252c = gestureDetector;
-        gestureDetector.setIsLongpressEnabled(false);
-        addView(fbVar);
+    public ta(Context context, bi.t tVar) {
+        super(context);
+        org.telegram.messenger.g0.S(getWindow());
+        sa saVar = new sa(this, context);
+        this.f39619a = saVar;
+        setContentView(saVar, new ViewGroup.LayoutParams(-1, -1));
+        s sVar = new s(this, 15);
+        WeakHashMap weakHashMap = r0.i0.f55671a;
+        r0.a0.i(saVar, sVar);
+        int i7 = Build.VERSION.SDK_INT;
+        if (i7 >= 30) {
+            saVar.setSystemUiVisibility(1792);
+        } else {
+            saVar.setSystemUiVisibility(1280);
+        }
+        saVar.setTag(2131296351, new bi.e1(tVar, 7));
+        try {
+            Window window = getWindow();
+            window.setWindowAnimations(2131755178);
+            window.setBackgroundDrawable(null);
+            WindowManager.LayoutParams attributes = window.getAttributes();
+            this.f39620b = attributes;
+            attributes.width = -1;
+            attributes.height = -1;
+            attributes.gravity = 51;
+            attributes.dimAmount = 0.0f;
+            attributes.format = -3;
+            attributes.flags = (((-3) & attributes.flags) | (-1946091240)) & (-1025);
+            boolean z10 = true;
+            if (i7 >= 28) {
+                attributes.layoutInDisplayCutoutMode = 1;
+            }
+            window.setAttributes(attributes);
+            if (org.telegram.messenger.g0.B(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28792a7, false)) <= 0.721f) {
+                z10 = false;
+            }
+            org.telegram.messenger.g0.n3(this, z10);
+        } catch (Exception unused) {
+        }
+    }
+
+    public static sa a(Context context) {
+        return new ta(context, null).f39619a;
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ta.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void show() {
+        if (!org.telegram.messenger.g0.M1(getContext())) {
+            return;
+        }
+        super.show();
     }
 }

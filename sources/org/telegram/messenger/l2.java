@@ -2,16 +2,16 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class l2 {
-    public final ArrayList f23837a = new ArrayList();
-    public int f23838b;
+    public final ArrayList f24797a = new ArrayList();
+    public int f24798b;
 
     public final void a() {
-        this.f23837a.add(new m2[]{new o2(4, 2131753065, 0)});
+        this.f24797a.add(new m2[]{new o2(4, 2131753065, 0)});
     }
 
-    public final void b(f5.u uVar) {
-        if (uVar != null) {
-            m2[][] m2VarArr = (m2[][]) uVar.f11196c;
+    public final void b(f5.v vVar) {
+        if (vVar != null) {
+            m2[][] m2VarArr = (m2[][]) vVar.f11019c;
             int length = m2VarArr.length;
             for (int i7 = 0; i7 < length; i7++) {
                 int length2 = m2VarArr[i7].length;
@@ -19,17 +19,17 @@ public final class l2 {
                 for (int i10 = 0; i10 < length2; i10++) {
                     m2VarArr2[i10] = m2VarArr[i7][i10];
                 }
-                ArrayList arrayList = this.f23837a;
+                ArrayList arrayList = this.f24797a;
                 arrayList.add(m2VarArr2);
-                if ((uVar.f11195b & (1 << i7)) != 0 && !arrayList.isEmpty()) {
-                    this.f23838b = (1 << (arrayList.size() - 1)) | this.f23838b;
+                if ((vVar.f11018b & (1 << i7)) != 0 && !arrayList.isEmpty()) {
+                    this.f24798b = (1 << (arrayList.size() - 1)) | this.f24798b;
                 }
             }
         }
     }
 
-    public final f5.u c() {
-        ArrayList arrayList = this.f23837a;
-        return new f5.u((m2[][]) arrayList.toArray(new m2[arrayList.size()]), this.f23838b, 9);
+    public final f5.v c() {
+        ArrayList arrayList = this.f24797a;
+        return new f5.v((m2[][]) arrayList.toArray(new m2[arrayList.size()]), this.f24798b, 8);
     }
 }

@@ -2,18 +2,18 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.graphics.RectF;
-public final class gw0 extends org.telegram.ui.Cells.x8 {
-    public final mw0 f46165r;
+public final class gw0 extends kg.f1 {
+    public final iw0 H;
 
-    public gw0(mw0 mw0Var, Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z9, boolean z10) {
-        super(18, context, h6Var, z9, z10);
-        this.f46165r = mw0Var;
+    public gw0(iw0 iw0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        this.H = iw0Var;
     }
 
     @Override
     public final int a(int i7) {
-        ProfileActivity profileActivity = this.f46165r.f48065e;
-        RectF rectF = ProfileActivity.V6;
+        ProfileActivity profileActivity = this.H.f48138e;
+        RectF rectF = ProfileActivity.X6;
         profileActivity.getClass();
         return i7;
     }

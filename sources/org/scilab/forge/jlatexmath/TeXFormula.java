@@ -136,12 +136,12 @@ public class TeXFormula {
             throw new IllegalStateException("Cannot set inter line spacing without having specified a width!");
         }
 
-        public TeXIconBuilder setIsMaxWidth(boolean z9) {
+        public TeXIconBuilder setIsMaxWidth(boolean z10) {
             if (this.widthUnit != null) {
-                if (z9) {
+                if (z10) {
                     this.align = 0;
                 }
-                this.isMaxWidth = z9;
+                this.isMaxWidth = z10;
                 return this;
             }
             throw new IllegalStateException("Cannot set 'isMaxWidth' without having specified a width!");
@@ -157,8 +157,8 @@ public class TeXFormula {
             return this;
         }
 
-        public TeXIconBuilder setTrueValues(boolean z9) {
-            this.trueValues = z9;
+        public TeXIconBuilder setTrueValues(boolean z10) {
+            this.trueValues = z10;
             return this;
         }
 
@@ -334,8 +334,8 @@ public class TeXFormula {
         }
     }
 
-    public static void registerFonts(boolean z9) {
-        DefaultTeXFontParser.registerFonts(z9);
+    public static void registerFonts(boolean z10) {
+        DefaultTeXFontParser.registerFonts(z10);
     }
 
     public static void setDPITarget(float f10) {
@@ -417,8 +417,8 @@ public class TeXFormula {
         return this;
     }
 
-    public void setDEBUG(boolean z9) {
-        Box.DEBUG = z9;
+    public void setDEBUG(boolean z10) {
+        Box.DEBUG = z10;
     }
 
     public TeXFormula setFixedTypes(int i7, int i10) {
@@ -433,10 +433,10 @@ public class TeXFormula {
         }
     }
 
-    public void setLookAtLastAtom(boolean z9) {
+    public void setLookAtLastAtom(boolean z10) {
         Atom atom = this.root;
         if (atom instanceof RowAtom) {
-            ((RowAtom) atom).lookAtLastAtom = z9;
+            ((RowAtom) atom).lookAtLastAtom = z10;
         }
     }
 
@@ -444,9 +444,9 @@ public class TeXFormula {
         return add(new SpaceAtom(i7));
     }
 
-    public TeXFormula append(boolean z9, String str) {
+    public TeXFormula append(boolean z10, String str) {
         if (str != null && str.length() != 0) {
-            new TeXParser(z9, str, this).parse();
+            new TeXParser(z10, str, this).parse();
         }
         return this;
     }
@@ -469,8 +469,8 @@ public class TeXFormula {
         teXFormulaSettingsParser.parseSymbolToFormulaMappings(symbolFormulaMappings, symbolTextMappings);
     }
 
-    public TeXIcon createTeXIcon(int i7, float f10, boolean z9) {
-        return new TeXIconBuilder().setStyle(i7).setSize(f10).setTrueValues(z9).build();
+    public TeXIcon createTeXIcon(int i7, float f10, boolean z10) {
+        return new TeXIconBuilder().setStyle(i7).setSize(f10).setTrueValues(z10).build();
     }
 
     public static void registerExternalFont(Character.UnicodeBlock unicodeBlock, String str) {
@@ -521,12 +521,12 @@ public class TeXFormula {
         return this;
     }
 
-    public TeXFormula(String str, boolean z9) {
+    public TeXFormula(String str, boolean z10) {
         this.middle = new LinkedList();
         this.root = null;
         this.isColored = false;
         this.textStyle = null;
-        TeXParser teXParser = new TeXParser(str, this, z9);
+        TeXParser teXParser = new TeXParser(str, this, z10);
         this.parser = teXParser;
         teXParser.parse();
     }
@@ -541,12 +541,12 @@ public class TeXFormula {
         teXParser.parse();
     }
 
-    public TeXFormula(String str, String str2, boolean z9, boolean z10) {
+    public TeXFormula(String str, String str2, boolean z10, boolean z11) {
         this.middle = new LinkedList();
         this.root = null;
         this.isColored = false;
         this.textStyle = str2;
-        TeXParser teXParser = new TeXParser(str, this, z9, z10);
+        TeXParser teXParser = new TeXParser(str, this, z10, z11);
         this.parser = teXParser;
         teXParser.parse();
     }
@@ -574,14 +574,14 @@ public class TeXFormula {
         this(teXParser, str, (String) null);
     }
 
-    public TeXFormula(TeXParser teXParser, String str, boolean z9) {
+    public TeXFormula(TeXParser teXParser, String str, boolean z10) {
         this.middle = new LinkedList();
         this.root = null;
         this.isColored = false;
         this.textStyle = null;
         this.jlmXMLMap = teXParser.formula.jlmXMLMap;
         boolean isPartial = teXParser.getIsPartial();
-        TeXParser teXParser2 = new TeXParser(isPartial, str, this, z9);
+        TeXParser teXParser2 = new TeXParser(isPartial, str, this, z10);
         this.parser = teXParser2;
         if (isPartial) {
             try {
@@ -618,14 +618,14 @@ public class TeXFormula {
         teXParser2.parse();
     }
 
-    public TeXFormula(TeXParser teXParser, String str, String str2, boolean z9, boolean z10) {
+    public TeXFormula(TeXParser teXParser, String str, String str2, boolean z10, boolean z11) {
         this.middle = new LinkedList();
         this.root = null;
         this.isColored = false;
         this.textStyle = str2;
         this.jlmXMLMap = teXParser.formula.jlmXMLMap;
         boolean isPartial = teXParser.getIsPartial();
-        TeXParser teXParser2 = new TeXParser(isPartial, str, this, z9, z10);
+        TeXParser teXParser2 = new TeXParser(isPartial, str, this, z10, z11);
         this.parser = teXParser2;
         if (isPartial) {
             try {

@@ -1,34 +1,36 @@
 package org.telegram.ui;
 
 import java.util.ArrayList;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_account;
-public final class yz0 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.Components.qi0 {
-    public final t11 f52153a;
+import java.util.LinkedHashSet;
+import org.telegram.tgnet.TLRPC;
+public final class yz0 implements org.telegram.messenger.z10 {
+    public final int f53785a;
+    public final LinkedHashSet f53786b;
+    public final Runnable f53787c;
 
-    public yz0(t11 t11Var) {
-        this.f52153a = t11Var;
+    public yz0(LinkedHashSet linkedHashSet, Runnable runnable, int i7) {
+        this.f53785a = i7;
+        this.f53786b = linkedHashSet;
+        this.f53787c = runnable;
     }
 
     @Override
-    public void e() {
-        this.f52153a.m();
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        t11 t11Var = this.f52153a;
-        int i10 = t11Var.V;
-        ConnectionsManager.getInstance(i10).sendRequest(new TL_account.clearRecentEmojiStatuses(), null);
-        org.telegram.messenger.ui b02 = org.telegram.messenger.ui.b0(i10);
-        ArrayList[] arrayListArr = b02.E0;
-        ArrayList arrayList = arrayListArr[0];
-        if (arrayList != null) {
-            arrayList.clear();
+    public final void a(Object obj) {
+        switch (this.f53785a) {
+            case 0:
+                ArrayList arrayList = (ArrayList) obj;
+                if (arrayList != null) {
+                    this.f53786b.addAll(arrayList);
+                }
+                this.f53787c.run();
+                return;
+            default:
+                TLRPC.TL_emojiList tL_emojiList = (TLRPC.TL_emojiList) obj;
+                if (tL_emojiList != null) {
+                    this.f53786b.addAll(tL_emojiList.document_id);
+                }
+                this.f53787c.run();
+                return;
         }
-        b02.D0[0] = 0;
-        b02.getMessagesStorage().f26723a.c(new org.telegram.messenger.fg(b02, 8));
-        ArrayList arrayList2 = arrayListArr[0];
-        t11Var.B(false, true, true);
     }
 }

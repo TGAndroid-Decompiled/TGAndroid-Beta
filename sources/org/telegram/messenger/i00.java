@@ -1,17 +1,24 @@
 package org.telegram.messenger;
+public final class i00 implements oc, nc {
+    public final c10 f24258a;
+    public final gj f24259b;
+    public final f3.s f24260c;
+    public final di.m9 d;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class i00 {
-    public int f23006a = -1;
-    public long f23007b;
-    public long f23008c;
-    public int d;
-    public int f23009e;
-    public int f23010f;
-    public TLRPC.Message f23011g;
-    public ArrayList h;
-    public boolean f23012i;
-    public boolean f23013j;
-    public boolean f23014k;
+    public i00(c10 c10Var, gj gjVar, f3.s sVar, di.m9 m9Var) {
+        this.f24258a = c10Var;
+        this.f24259b = gjVar;
+        this.f24260c = sVar;
+        this.d = m9Var;
+    }
+
+    @Override
+    public void a(String str) {
+        g0.h3(new jn(this.f24258a, this.f24259b, str, this.f24260c, this.d, 18));
+    }
+
+    @Override
+    public void r(Exception exc) {
+        g0.h3(new bm(this.f24258a, this.f24259b, this.f24260c, this.d, 27));
+    }
 }

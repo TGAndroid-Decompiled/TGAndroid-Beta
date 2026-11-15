@@ -1,15 +1,10 @@
 package fi;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class u7 extends v4.s0 {
-    public final w7 f12898a;
-
-    public u7(w7 w7Var) {
-        this.f12898a = w7Var;
-    }
-
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+public final class u7 extends CharacterStyle {
     @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        this.f12898a.f28672b.invalidate();
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setAlpha((int) (textPaint.getAlpha() * 0.66f));
     }
 }

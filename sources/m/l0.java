@@ -1,32 +1,21 @@
 package m;
 
-import android.view.View;
-import android.widget.AdapterView;
-import androidx.appcompat.widget.SearchView;
-public final class l0 implements AdapterView.OnItemClickListener {
-    public final int f19155a;
-    public final Object f19156b;
+import android.view.ViewTreeObserver;
+import android.widget.PopupWindow;
+public final class l0 implements PopupWindow.OnDismissListener {
+    public final androidx.mediarouter.app.i f19750a;
+    public final m0 f19751b;
 
-    public l0(Object obj, int i7) {
-        this.f19155a = i7;
-        this.f19156b = obj;
+    public l0(m0 m0Var, androidx.mediarouter.app.i iVar) {
+        this.f19751b = m0Var;
+        this.f19750a = iVar;
     }
 
     @Override
-    public final void onItemClick(AdapterView adapterView, View view, int i7, long j3) {
-        switch (this.f19155a) {
-            case 0:
-                n0 n0Var = (n0) this.f19156b;
-                q0 q0Var = n0Var.W;
-                q0Var.setSelection(i7);
-                if (q0Var.getOnItemClickListener() != null) {
-                    q0Var.performItemClick(view, i7, n0Var.T.getItemId(i7));
-                }
-                n0Var.dismiss();
-                return;
-            default:
-                ((SearchView) this.f19156b).m(i7);
-                return;
+    public final void onDismiss() {
+        ViewTreeObserver viewTreeObserver = this.f19751b.X.getViewTreeObserver();
+        if (viewTreeObserver != null) {
+            viewTreeObserver.removeGlobalOnLayoutListener(this.f19750a);
         }
     }
 }

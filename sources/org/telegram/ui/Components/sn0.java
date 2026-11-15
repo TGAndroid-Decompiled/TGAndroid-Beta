@@ -1,87 +1,32 @@
 package org.telegram.ui.Components;
+public final class sn0 extends g.p {
+    public final int f39382c;
+    public final po0 d;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.text.TextUtils;
-import android.widget.FrameLayout;
-public final class sn0 extends kt {
-    public boolean V;
-    public int W;
-    public int f38032a0;
-    public ValueAnimator f38033b0;
-    public final mo0 f38034c0;
-
-    public sn0(mo0 mo0Var, Context context, zn0 zn0Var, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, zn0Var, null, 1, true, h6Var);
-        this.f38034c0 = mo0Var;
+    public sn0(po0 po0Var, int i7) {
+        this.f39382c = i7;
+        this.d = po0Var;
     }
 
     @Override
-    public final void c(float f10) {
-        this.f38034c0.Z0();
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        if (this.V) {
-            ys editText = this.f38034c0.n1.getEditText();
-            editText.setOffsetY(editText.getOffsetY() - ((this.f38032a0 - editText.getScrollY()) + (this.W - editText.getMeasuredHeight())));
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(editText.getOffsetY(), 0.0f);
-            ofFloat.addUpdateListener(new c60(editText, 17));
-            ValueAnimator valueAnimator = this.f38033b0;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            this.f38033b0 = ofFloat;
-            ofFloat.setDuration(200L);
-            ofFloat.setInterpolator(wq.f40046f);
-            ofFloat.start();
-            this.V = false;
+    public final int i(int i7) {
+        switch (this.f39382c) {
+            case 0:
+                if (i7 == 0) {
+                    return this.d.D1.J;
+                }
+                return 1;
+            case 1:
+                mo0 mo0Var = this.d.I1;
+                if (i7 != mo0Var.f37340x && i7 != mo0Var.f37341y && i7 != mo0Var.E && i7 != mo0Var.G && mo0Var.d(i7) != 0) {
+                    return 1;
+                }
+                return 4;
+            default:
+                if (i7 == 0) {
+                    return this.d.E1.J;
+                }
+                return 1;
         }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void f() {
-        super.f();
-        gy emojiView = getEmojiView();
-        mo0 mo0Var = this.f38034c0;
-        if (emojiView != null) {
-            emojiView.f34077w0 = false;
-            emojiView.f34083x2 = false;
-            emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(mo0Var.B2.d);
-        }
-        FrameLayout frameLayout = mo0Var.X1;
-        if (frameLayout != null) {
-            frameLayout.bringToFront();
-        }
-        rn0 rn0Var = mo0Var.f36038m1;
-        if (rn0Var != null) {
-            rn0Var.bringToFront();
-        }
-        rn0 rn0Var2 = mo0Var.f36043p1;
-        if (rn0Var2 != null) {
-            rn0Var2.bringToFront();
-        }
-    }
-
-    @Override
-    public final void q(int i7, int i10) {
-        mo0 mo0Var = this.f38034c0;
-        rn0 rn0Var = mo0Var.f36038m1;
-        if (!TextUtils.isEmpty(getEditText().getText())) {
-            this.V = true;
-            this.W = getEditText().getMeasuredHeight();
-            this.f38032a0 = getEditText().getScrollY();
-            invalidate();
-        } else {
-            getEditText().animate().cancel();
-            getEditText().setOffsetY(0.0f);
-            this.V = false;
-        }
-        mo0Var.f36046q2 = rn0Var.getTop() + mo0Var.f36044p2;
-        rn0Var.invalidate();
     }
 }

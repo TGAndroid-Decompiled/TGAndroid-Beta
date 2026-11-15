@@ -1,22 +1,24 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.messenger.support.LongSparseIntArray;
-public final class ws implements Runnable {
-    public final int f26372a;
-    public final dt f26373b;
-    public final LongSparseIntArray f26374c;
-    public final ArrayList d;
-
-    public ws(dt dtVar, LongSparseIntArray longSparseIntArray, ArrayList arrayList, int i7) {
-        this.f26372a = i7;
-        this.f26373b = dtVar;
-        this.f26374c = longSparseIntArray;
-        this.d = arrayList;
-    }
-
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.PostProcessor;
+public final class ws implements PostProcessor {
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ws.run():void");
+    public final int onPostProcess(Canvas canvas) {
+        Path path = new Path();
+        path.setFillType(Path.FillType.INVERSE_EVEN_ODD);
+        int width = canvas.getWidth();
+        float f10 = width / 2;
+        path.addRoundRect(0.0f, 0.0f, width, canvas.getHeight(), f10, f10, Path.Direction.CW);
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setColor(0);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
+        canvas.drawPath(path, paint);
+        return -3;
     }
 }

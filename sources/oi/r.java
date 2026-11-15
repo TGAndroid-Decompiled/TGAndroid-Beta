@@ -1,30 +1,42 @@
 package oi;
 
-import j$.util.Objects;
+import org.telegram.tgnet.TLRPC;
 public final class r {
-    public final boolean f21127a;
-    public final boolean f21128b;
+    public int f21957a = 0;
+    public boolean f21958b;
+    public boolean f21959c;
+    public boolean d;
+    public String f21960e;
+    public float f21961f;
+    public TLRPC.Photo f21962g;
+    public TLRPC.Document h;
+    public TLRPC.Document f21963i;
+    public int f21964j;
+    public int f21965k;
+    public int f21966l;
+    public int f21967m;
+    public boolean f21968n;
 
-    public r(boolean z9, boolean z10) {
-        this.f21127a = z9;
-        this.f21128b = z10;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof r)) {
-            return false;
-        }
-        r rVar = (r) obj;
-        if (this.f21127a == rVar.f21127a && this.f21128b == rVar.f21128b) {
+    public final boolean a() {
+        if (this.f21957a == 1) {
             return true;
         }
         return false;
     }
 
-    public final int hashCode() {
-        return Objects.hash(Boolean.valueOf(this.f21127a), Boolean.valueOf(this.f21128b));
+    public final boolean b() {
+        if (this.f21957a == 2) {
+            if (!this.f21958b && !this.f21959c && !this.d) {
+                if (this.f21962g != null) {
+                    return true;
+                }
+                return false;
+            } else if (this.h != null) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
     }
 }

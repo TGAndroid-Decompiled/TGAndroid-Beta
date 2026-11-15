@@ -1,31 +1,21 @@
 package r2;
 
 import android.text.TextUtils;
-import e2.n0;
-import e2.p0;
-import e2.u;
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.List;
-public final class r implements p0 {
-    public final String f54395a;
-    public final String f54396b;
-    public final List f54397c;
+public final class r {
+    public final int f55862a;
+    public final int f55863b;
+    public final String f55864c;
+    public final String d;
+    public final String f55865e;
+    public final String f55866f;
 
-    public r(String str, String str2, List list) {
-        this.f54395a = str;
-        this.f54396b = str2;
-        this.f54397c = DesugarCollections.unmodifiableList(new ArrayList(list));
-    }
-
-    @Override
-    public final u a() {
-        return null;
-    }
-
-    @Override
-    public final byte[] c() {
-        return null;
+    public r(int i7, String str, int i10, String str2, String str3, String str4) {
+        this.f55862a = i7;
+        this.f55863b = i10;
+        this.f55864c = str;
+        this.d = str2;
+        this.f55865e = str3;
+        this.f55866f = str4;
     }
 
     public final boolean equals(Object obj) {
@@ -34,7 +24,7 @@ public final class r implements p0 {
         }
         if (obj != null && r.class == obj.getClass()) {
             r rVar = (r) obj;
-            if (TextUtils.equals(this.f54395a, rVar.f54395a) && TextUtils.equals(this.f54396b, rVar.f54396b) && this.f54397c.equals(rVar.f54397c)) {
+            if (this.f55862a == rVar.f55862a && this.f55863b == rVar.f55863b && TextUtils.equals(this.f55864c, rVar.f55864c) && TextUtils.equals(this.d, rVar.d) && TextUtils.equals(this.f55865e, rVar.f55865e) && TextUtils.equals(this.f55866f, rVar.f55866f)) {
                 return true;
             }
         }
@@ -43,35 +33,35 @@ public final class r implements p0 {
 
     public final int hashCode() {
         int i7;
-        int i10 = 0;
-        String str = this.f54395a;
+        int i10;
+        int i11;
+        int i12 = ((this.f55862a * 31) + this.f55863b) * 31;
+        int i13 = 0;
+        String str = this.f55864c;
         if (str != null) {
             i7 = str.hashCode();
         } else {
             i7 = 0;
         }
-        int i11 = i7 * 31;
-        String str2 = this.f54396b;
+        int i14 = (i12 + i7) * 31;
+        String str2 = this.d;
         if (str2 != null) {
             i10 = str2.hashCode();
-        }
-        return this.f54397c.hashCode() + ((i11 + i10) * 31);
-    }
-
-    public final String toString() {
-        String str;
-        StringBuilder sb2 = new StringBuilder("HlsTrackMetadataEntry");
-        String str2 = this.f54395a;
-        if (str2 != null) {
-            str = a8.p0.s(a8.p0.u(" [", str2, ", "), this.f54396b, "]");
         } else {
-            str = "";
+            i10 = 0;
         }
-        sb2.append(str);
-        return sb2.toString();
-    }
-
-    @Override
-    public final void b(n0 n0Var) {
+        int i15 = (i14 + i10) * 31;
+        String str3 = this.f55865e;
+        if (str3 != null) {
+            i11 = str3.hashCode();
+        } else {
+            i11 = 0;
+        }
+        int i16 = (i15 + i11) * 31;
+        String str4 = this.f55866f;
+        if (str4 != null) {
+            i13 = str4.hashCode();
+        }
+        return i16 + i13;
     }
 }

@@ -6,7 +6,7 @@ import org.telegram.messenger.a8;
 import org.telegram.messenger.r2;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
-import org.telegram.ui.Cells.f1;
+import org.telegram.ui.Cells.y0;
 public class SQLitePreparedStatement {
     private boolean isFinalized = false;
     private String query;
@@ -15,7 +15,7 @@ public class SQLitePreparedStatement {
 
     public SQLitePreparedStatement(SQLiteDatabase sQLiteDatabase, String str) {
         this.sqliteStatementHandle = prepare(sQLiteDatabase.getSQLiteHandle(), str);
-        if (r2.f25216a) {
+        if (r2.f26198a) {
             this.query = str;
             this.startTime = SystemClock.elapsedRealtime();
         }
@@ -82,21 +82,21 @@ public class SQLitePreparedStatement {
 
     public void finalizeQuery() {
         if (!this.isFinalized) {
-            if (r2.f25216a) {
+            if (r2.f26198a) {
                 long elapsedRealtime = SystemClock.elapsedRealtime() - this.startTime;
                 if (elapsedRealtime > 500) {
                     StringBuilder sb2 = new StringBuilder("sqlite query ");
                     sb2.append(this.query);
                     sb2.append(" took ");
                     sb2.append(elapsedRealtime);
-                    f1.u("ms", sb2);
+                    y0.t("ms", sb2);
                 }
             }
             try {
                 this.isFinalized = true;
                 finalize(this.sqliteStatementHandle);
             } catch (SQLiteException e10) {
-                if (r2.f25216a) {
+                if (r2.f26198a) {
                     a8.e(e10.getMessage(), e10);
                 }
             }

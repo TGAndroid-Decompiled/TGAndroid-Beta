@@ -1,27 +1,27 @@
 package lg;
 
 import android.animation.ValueAnimator;
-import fi.v3;
+import hi.j3;
 public final class h {
-    public final int f18335a;
-    public int f18336b;
-    public float f18337c;
+    public final int f19465a;
+    public int f19466b;
+    public float f19467c;
     public float d;
-    public ValueAnimator f18338e;
-    public float f18339f = 0.0f;
-    public final j f18340g;
+    public ValueAnimator f19468e;
+    public float f19469f = 0.0f;
+    public final j f19470g;
 
     public h(j jVar, int i7) {
-        this.f18340g = jVar;
-        this.f18335a = i7;
+        this.f19470g = jVar;
+        this.f19465a = i7;
     }
 
     public final void a() {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f18338e = ofFloat;
+        this.f19468e = ofFloat;
         ofFloat.setDuration(600L);
-        this.f18338e.setInterpolator(g.C1);
-        this.f18338e.addUpdateListener(new v3(this, 7));
-        this.f18338e.start();
+        this.f19468e.setInterpolator(g.D1);
+        this.f19468e.addUpdateListener(new j3(this, 8));
+        this.f19468e.start();
     }
 }

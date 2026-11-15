@@ -1,139 +1,202 @@
 package kg;
 
-import android.os.Bundle;
-import android.view.KeyEvent;
-import android.widget.TextView;
-import di.s2;
-import java.util.ArrayList;
-import org.telegram.messenger.c20;
-import org.telegram.messenger.dp;
-import org.telegram.messenger.id;
-import org.telegram.messenger.qp;
-import org.telegram.messenger.t10;
-import org.telegram.messenger.xr;
-import org.telegram.tgnet.TLRPC;
+import a8.ja;
+import android.content.Context;
+import android.graphics.SurfaceTexture;
+import android.graphics.drawable.Drawable;
+import android.os.Looper;
+import ki.w2;
+import ki.x3;
+import oi.d2;
+import org.telegram.messenger.ns;
+import org.telegram.messenger.voip.GroupCallMessage;
+import org.telegram.tgnet.TLParseException;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.tw;
-import org.telegram.ui.z91;
-import org.telegram.ui.zw;
-public final class j1 implements org.telegram.ui.ActionBar.r1, tw {
-    public final int f17415a;
-    public final KeyEvent.Callback f17416b;
-    public final Object f17417c;
-    public final Object d;
-    public final Object f17418e;
-    public final Object f17419f;
+import org.telegram.ui.Cells.i3;
+import org.telegram.ui.Cells.k3;
+public final class j1 implements Runnable {
+    public final int f17975a;
+    public final Object f17976b;
 
-    public j1(x0 x0Var, s2 s2Var, int i7, s1 s1Var, TextView textView, c20 c20Var) {
-        this.f17416b = x0Var;
-        this.f17417c = s2Var;
-        this.f17415a = i7;
-        this.d = s1Var;
-        this.f17418e = textView;
-        this.f17419f = c20Var;
+    public j1(Object obj, int i7) {
+        this.f17975a = i7;
+        this.f17976b = obj;
     }
 
     @Override
-    public boolean G() {
-        return false;
-    }
-
-    @Override
-    public boolean N(zw zwVar) {
-        return false;
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        int i10;
-        x0 x0Var = (x0) this.f17416b;
-        s2 s2Var = (s2) this.f17417c;
-        s1 s1Var = (s1) this.d;
-        TextView textView = (TextView) this.f17418e;
-        c20 c20Var = (c20) this.f17419f;
-        String obj = x0Var.getText().toString();
-        if (obj.length() > 0 && obj.length() <= 32) {
-            t1 f10 = t1.f(this.f17415a);
-            if (s1Var == null) {
-                i10 = -1;
-            } else {
-                i10 = s1Var.f17535a;
-            }
-            s1 d = f10.d(obj);
-            if (d != null && d.f17535a != i10) {
-                org.telegram.messenger.g0.F3(x0Var);
-                textView.setText(id.M0(2131752662, null));
-                s2Var.a(Boolean.TRUE);
+    public final void run() {
+        boolean z10;
+        Object obj;
+        int i7 = this.f17975a;
+        Object obj2 = this.f17976b;
+        switch (i7) {
+            case 0:
+                ((bi.o1) obj2).a(Boolean.FALSE);
                 return;
-            }
-            c20Var.a(obj);
-            u1Var.dismiss();
-            return;
+            case 1:
+                ns.f(((v1) obj2).f18123a).k(121, new Object[0]);
+                return;
+            case 2:
+                ((ki.e0) obj2).invalidateSelf();
+                return;
+            case 3:
+                ((ki.f0) obj2).invalidateSelf();
+                return;
+            case 4:
+                ((ki.h0) obj2).d();
+                return;
+            case 5:
+                ((ki.t0) obj2).c();
+                return;
+            case 6:
+                ((ki.t0) obj2).c();
+                return;
+            case 7:
+                ((ki.u0) obj2).a();
+                return;
+            case 8:
+                ((ki.v0) obj2).a();
+                return;
+            case 9:
+                ((w2) obj2).invalidate();
+                return;
+            case 10:
+                ((h2.f) obj2).e();
+                return;
+            case 11:
+                x3 x3Var = (x3) obj2;
+                x3Var.R = x3Var.f18697r;
+                return;
+            case 12:
+                l2.f0 f0Var = (l2.f0) obj2;
+                h2.c cVar = f0Var.C;
+                Context context = f0Var.f18954e;
+                String str = h2.l0.f13471a;
+                int generateAudioSessionId = f2.h.d(context).generateAudioSessionId();
+                if (generateAudioSessionId == -1) {
+                    generateAudioSessionId = 0;
+                }
+                cVar.getClass();
+                Looper myLooper = Looper.myLooper();
+                if (myLooper == ((h2.i0) cVar.f13419c).f13456a.getLooper()) {
+                    obj = cVar.f13420e;
+                } else {
+                    if (myLooper == ((h2.i0) cVar.f13418b).f13456a.getLooper()) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    ja.p(z10);
+                    obj = cVar.f13421f;
+                }
+                if (((Integer) obj).intValue() != generateAudioSessionId) {
+                    Integer valueOf = Integer.valueOf(generateAudioSessionId);
+                    cVar.f13421f = valueOf;
+                    h2.b bVar = new h2.b(cVar, valueOf, 0);
+                    h2.i0 i0Var = (h2.i0) cVar.f13419c;
+                    if (i0Var.f13456a.getLooper().getThread().isAlive()) {
+                        i0Var.d(bVar);
+                    }
+                    f0Var.t1(1, 10, Integer.valueOf(generateAudioSessionId));
+                    f0Var.t1(2, 10, Integer.valueOf(generateAudioSessionId));
+                    return;
+                }
+                return;
+            case 13:
+                l2.f0 f0Var2 = ((l2.z) obj2).f19233a;
+                f0Var2.x1(null);
+                f0Var2.q1(0, 0);
+                return;
+            case 14:
+                try {
+                    l2.o0.f((l2.j1) obj2);
+                    return;
+                } catch (l2.l e10) {
+                    h2.a.d("ExoPlayerImplInternal", "Unexpected error delivering message on external thread.", e10);
+                    throw new RuntimeException(e10);
+                }
+            case 15:
+                m2.e eVar = (m2.e) obj2;
+                m2.a Q = eVar.Q();
+                eVar.V(Q, 1028, new li.p(Q, 22));
+                eVar.f20128f.d();
+                return;
+            case 16:
+                ((mh.b) obj2).invalidate();
+                return;
+            case 17:
+                ((n2.e) obj2).c();
+                return;
+            case 18:
+                h2.r rVar = (h2.r) obj2;
+                rVar.getClass();
+                if (Thread.currentThread() == rVar.f13498a) {
+                    rVar.e(-1, new n2.a0(0));
+                    return;
+                }
+                return;
+            case 19:
+                n2.r0 r0Var = (n2.r0) obj2;
+                if (r0Var.f20851a0 >= 300000) {
+                    r0Var.f20863n.q();
+                    r0Var.f20851a0 = 0L;
+                    return;
+                }
+                return;
+            case 20:
+                nh.c cVar2 = (nh.c) obj2;
+                GroupCallMessage groupCallMessage = cVar2.I;
+                if (groupCallMessage != null) {
+                    cVar2.f21164a.a(groupCallMessage.isSendDelayed(), true);
+                    cVar2.f21165b.a(cVar2.I.isSendError(), true);
+                    return;
+                }
+                return;
+            case 21:
+                i3 i3Var = ((k3) obj2).d;
+                i3Var.requestFocus();
+                org.telegram.messenger.g0.J3(i3Var);
+                return;
+            case 22:
+                org.telegram.messenger.g0.J3(((oi.u) obj2).f22020a2.d);
+                return;
+            case 23:
+                ((oi.a0) obj2).invalidate();
+                return;
+            case 24:
+                ga.d dVar = (ga.d) obj2;
+                dVar.d = null;
+                dVar.f12965e = null;
+                dVar.f12966f = null;
+                dVar.h = null;
+                dVar.j(null);
+                return;
+            case 25:
+                ((oi.w1) obj2).invalidateSelf();
+                return;
+            case 26:
+                ((d2) obj2).c();
+                return;
+            case 27:
+                TLParseException.lambda$doThrowOrLog$0((TLParseException) obj2);
+                return;
+            case 28:
+                Drawable drawable = ActionBarLayout.f28322w1;
+                org.telegram.messenger.g0.h3((ci.p0) obj2);
+                return;
+            default:
+                ((org.telegram.ui.ActionBar.p0) obj2).setSelectedForDelete(false);
+                return;
         }
-        org.telegram.messenger.g0.F3(x0Var);
-        s2Var.a(Boolean.FALSE);
     }
 
-    @Override
-    public boolean y(zw zwVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, z91 z91Var) {
-        String str;
-        TLRPC.TL_chatAdminRights tL_chatAdminRights;
-        final LaunchActivity launchActivity = (LaunchActivity) this.f17416b;
-        final TLRPC.User user = (TLRPC.User) this.f17417c;
-        final String str2 = (String) this.d;
-        final String str3 = (String) this.f17418e;
-        final zw zwVar2 = (zw) this.f17419f;
-        String str4 = LaunchActivity.B1;
-        final long j3 = ((xr) arrayList.get(0)).f26524a;
-        final TLRPC.Chat M0 = qp.s1(launchActivity.O).M0(Long.valueOf(-j3));
-        final int i11 = this.f17415a;
-        if (M0 != null && (M0.creator || ((tL_chatAdminRights = M0.admin_rights) != null && tL_chatAdminRights.add_admins))) {
-            qp.s1(i11).K(M0, user, new dp() {
-                @Override
-                public final void a(boolean z11, TLRPC.TL_chatAdminRights tL_chatAdminRights2, String str5) {
-                    String str6 = LaunchActivity.B1;
-                    org.telegram.messenger.g0.h3(new org.telegram.messenger.gi(LaunchActivity.this, str2, tL_chatAdminRights2, z11, str3, i11, M0, zwVar2, user, j3, str5));
-                }
-            });
-        } else {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(launchActivity);
-            String M02 = id.M0(2131754463, null);
-            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27300a;
-            u1Var.R = M02;
-            if (M0 == null) {
-                str = "";
-            } else {
-                str = M0.title;
-            }
-            u1Var.T = org.telegram.messenger.g0.X2(id.a0("AddMembersAlertNamesText", null, 2131754399, t10.p(user), str));
-            alertDialog$Builder.h(id.M0(2131752589, null), null);
-            alertDialog$Builder.k(id.M0(2131754463, null), new org.telegram.ui.ActionBar.r1() {
-                @Override
-                public final void g(org.telegram.ui.ActionBar.u1 u1Var2, int i12) {
-                    String str5 = LaunchActivity.B1;
-                    Bundle k10 = a8.p0.k("scrollToTopOnResume", true);
-                    long j10 = -j3;
-                    k10.putLong("chat_id", j10);
-                    cn cnVar = new cn(k10);
-                    int i13 = i11;
-                    org.telegram.messenger.qs.f(i13).k(org.telegram.messenger.qs.f25080t, new Object[0]);
-                    org.telegram.messenger.qp.s1(i13).n(j10, user, str3, cnVar, null);
-                    ((ActionBarLayout) LaunchActivity.this.M()).V(cnVar, true, false);
-                }
-            });
-            alertDialog$Builder.p();
-        }
-        return true;
+    public j1(l2.z zVar, SurfaceTexture surfaceTexture) {
+        this.f17975a = 13;
+        this.f17976b = zVar;
     }
 
-    public j1(LaunchActivity launchActivity, int i7, TLRPC.User user, String str, String str2, zw zwVar) {
-        this.f17416b = launchActivity;
-        this.f17415a = i7;
-        this.f17417c = user;
-        this.d = str;
-        this.f17418e = str2;
-        this.f17419f = zwVar;
+    public j1(l2.o0 o0Var, l2.j1 j1Var) {
+        this.f17975a = 14;
+        this.f17976b = j1Var;
     }
 }

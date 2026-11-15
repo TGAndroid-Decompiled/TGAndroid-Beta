@@ -60,11 +60,11 @@ class MediaCodecUtils {
         return false;
     }
 
-    public static Map<String, String> getCodecProperties(VideoCodecMimeType videoCodecMimeType, boolean z9) {
+    public static Map<String, String> getCodecProperties(VideoCodecMimeType videoCodecMimeType, boolean z10) {
         int i7 = AnonymousClass1.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
         if (i7 != 1 && i7 != 2 && i7 != 3 && i7 != 4) {
             if (i7 == 5) {
-                return H264Utils.getDefaultH264Params(z9);
+                return H264Utils.getDefaultH264Params(z10);
             }
             throw new IllegalArgumentException("Unsupported codec: " + videoCodecMimeType);
         }

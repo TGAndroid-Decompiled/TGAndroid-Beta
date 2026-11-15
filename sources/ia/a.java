@@ -1,27 +1,25 @@
 package ia;
-
-import n2.f;
 public final class a {
-    public boolean f15412a;
-    public boolean f15413b;
-    public boolean f15414c;
+    public boolean f15865a;
+    public boolean f15866b;
+    public boolean f15867c;
 
     public a() {
-        this.f15412a = false;
-        this.f15413b = false;
-        this.f15414c = false;
+        this.f15865a = false;
+        this.f15866b = false;
+        this.f15867c = false;
     }
 
-    public f a() {
-        if (!this.f15412a && (this.f15413b || this.f15414c)) {
+    public n2.f a() {
+        if (!this.f15865a && (this.f15866b || this.f15867c)) {
             throw new IllegalStateException("Secondary offload attribute fields are true but primary isFormatSupported is false");
         }
-        return new f(this);
+        return new n2.f(this);
     }
 
-    public a(boolean z9, boolean z10, boolean z11) {
-        this.f15412a = z9;
-        this.f15413b = z10;
-        this.f15414c = z11;
+    public a(boolean z10, boolean z11, boolean z12) {
+        this.f15865a = z10;
+        this.f15866b = z11;
+        this.f15867c = z12;
     }
 }

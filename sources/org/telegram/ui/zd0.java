@@ -1,81 +1,91 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import java.util.concurrent.CancellationException;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class zd0 implements ss, OnSuccessListener, OnFailureListener {
-    public final ee0 f52441a;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
+public final class zd0 extends AnimatedPhoneNumberEditText {
+    public final int f53947b2;
+    public final be0 f53948c2;
 
-    public zd0(ee0 ee0Var) {
-        this.f52441a = ee0Var;
+    public zd0(be0 be0Var, Context context, int i7) {
+        super(context);
+        this.f53947b2 = i7;
+        this.f53948c2 = be0Var;
     }
 
     @Override
-    public void b(ps psVar) {
-        ee0 ee0Var = this.f52441a;
-        ee0Var.K = true;
-        String str = psVar.f48828c;
-        ee0Var.f45244a.setText(str);
-        ee0Var.u(str, psVar);
-        ee0Var.F = psVar;
-        ee0Var.E = 0;
-        ee0Var.K = false;
-        SharedPreferences.Editor edit = org.telegram.messenger.qp.e1().edit();
-        edit.putString("phone_code_last_matched_" + psVar.f48828c, psVar.d).apply();
-        org.telegram.messenger.g0.i3(new td0(ee0Var, 4), 300L);
-        ce0 ce0Var = ee0Var.f45246b;
-        ce0Var.requestFocus();
-        ce0Var.setSelection(ce0Var.length());
-    }
-
-    @Override
-    public void onFailure(Exception exc) {
-        int i7;
-        ee0 ee0Var = this.f52441a;
-        fe0 fe0Var = ee0Var.f45255g0;
-        if (!ee0Var.W) {
-            if (exc instanceof ConnectionsManager.RequestException) {
-                String message = exc.getMessage();
-                if (message != null && message.contains("SESSION_PASSWORD_NEEDED")) {
-                    TL_account.getPassword getpassword = new TL_account.getPassword();
-                    i7 = ((org.telegram.ui.ActionBar.f2) fe0Var).currentAccount;
-                    ConnectionsManager.getInstance(i7).sendRequest(getpassword, new yd0(ee0Var, 1), 10);
-                    return;
-                } else if (message != null) {
-                    boolean z9 = org.telegram.messenger.r2.f25216a;
-                    new org.telegram.ui.Components.gc(fe0Var.Z, null).e0(message, false);
+    public final void onFocusChanged(boolean z10, int i7, Rect rect) {
+        int i10 = this.f53947b2;
+        float f10 = 1.0f;
+        be0 be0Var = this.f53948c2;
+        switch (i10) {
+            case 0:
+                super.onFocusChanged(z10, i7, rect);
+                org.telegram.ui.Components.mb0 mb0Var = be0Var.f45696f;
+                if (!z10 && !be0Var.f45689b.isFocused()) {
+                    f10 = 0.0f;
                 }
-            } else if (!(exc instanceof CancellationException)) {
-                org.telegram.messenger.a8.g(exc, true);
-            }
-            if (ee0Var.o()) {
-                ee0Var.t(false);
-            }
+                mb0Var.b(f10, f10, true);
+                if (z10) {
+                    be0Var.f45699h0.f46089c.setEditText(this);
+                    return;
+                }
+                return;
+            default:
+                super.onFocusChanged(z10, i7, rect);
+                ce0 ce0Var = be0Var.f45699h0;
+                org.telegram.ui.Components.mb0 mb0Var2 = be0Var.f45696f;
+                if (!z10 && !be0Var.f45687a.isFocused()) {
+                    f10 = 0.0f;
+                }
+                mb0Var2.b(f10, f10, true);
+                if (z10) {
+                    ce0Var.f46089c.setEditText(this);
+                    ce0Var.f46089c.setDispatchBackWhenEmpty(true);
+                    if (be0Var.F == 2) {
+                        be0.n(be0Var, org.telegram.messenger.hd.M0(2131742859, null));
+                        return;
+                    }
+                    return;
+                } else if (be0Var.F == 2) {
+                    be0.n(be0Var, null);
+                    return;
+                } else {
+                    return;
+                }
         }
     }
 
     @Override
-    public void onSuccess(Object obj) {
-        TLRPC.auth_Authorization auth_authorization = (TLRPC.auth_Authorization) obj;
-        ee0 ee0Var = this.f52441a;
-        fe0 fe0Var = ee0Var.f45255g0;
-        if (ee0Var.W) {
-            return;
+    public boolean onKeyDown(int i7, KeyEvent keyEvent) {
+        switch (this.f53947b2) {
+            case 1:
+                be0 be0Var = this.f53948c2;
+                zd0 zd0Var = be0Var.f45687a;
+                if (i7 == 67 && be0Var.f45689b.length() == 0) {
+                    zd0Var.requestFocus();
+                    zd0Var.setSelection(zd0Var.length());
+                    zd0Var.dispatchKeyEvent(keyEvent);
+                }
+                return super.onKeyDown(i7, keyEvent);
+            default:
+                return super.onKeyDown(i7, keyEvent);
         }
-        if (auth_authorization instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
-            TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) auth_authorization).terms_of_service;
-            if (tL_help_termsOfService != null) {
-                fe0Var.f45713q0 = tL_help_termsOfService;
-            }
-            fe0Var.M1(5, true, a8.p0.k("fromFirebasePhoneNumberVerification", true), false);
-        } else if (auth_authorization instanceof TLRPC.TL_auth_authorization) {
-            fe0Var.G1((TLRPC.TL_auth_authorization) auth_authorization, false);
-        } else {
-            ee0Var.t(false);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f53947b2) {
+            case 1:
+                if (motionEvent.getAction() == 0 && !ce0.b1(this.f53948c2.f45699h0, this)) {
+                    clearFocus();
+                    requestFocus();
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
         }
     }
 }

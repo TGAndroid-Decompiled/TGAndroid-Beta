@@ -2,30 +2,30 @@ package sa;
 
 import android.content.Context;
 import android.os.Build;
-import androidx.emoji2.text.w;
+import androidx.emoji2.text.x;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import java.util.Set;
 import java.util.concurrent.Executor;
-import u9.n;
+import u9.m;
 public final class c implements e, f {
-    public final n f54999a;
-    public final Context f55000b;
-    public final ua.b f55001c;
+    public final m f56555a;
+    public final Context f56556b;
+    public final ua.b f56557c;
     public final Set d;
-    public final Executor f55002e;
+    public final Executor f56558e;
 
     public c(Context context, String str, Set set, ua.b bVar, Executor executor) {
-        this.f54999a = new n(new o9.c(context, str));
+        this.f56555a = new m(new o9.c(context, str));
         this.d = set;
-        this.f55002e = executor;
-        this.f55001c = bVar;
-        this.f55000b = context;
+        this.f56558e = executor;
+        this.f56557c = bVar;
+        this.f56556b = context;
     }
 
     public final synchronized int a() {
         long currentTimeMillis = System.currentTimeMillis();
-        h hVar = (h) this.f54999a.get();
+        h hVar = (h) this.f56555a.get();
         if (hVar.g(currentTimeMillis)) {
             hVar.e();
             return 3;
@@ -34,33 +34,33 @@ public final class c implements e, f {
     }
 
     public final Task b() {
-        boolean z9;
+        boolean z10;
         if (Build.VERSION.SDK_INT >= 24) {
-            z9 = w.g(this.f55000b);
+            z10 = x.g(this.f56556b);
         } else {
-            z9 = true;
+            z10 = true;
         }
-        if (!z9) {
+        if (!z10) {
             return Tasks.forResult("");
         }
-        return Tasks.call(this.f55002e, new b(this, 0));
+        return Tasks.call(this.f56558e, new b(this, 0));
     }
 
     public final void c() {
-        boolean z9;
+        boolean z10;
         if (this.d.size() <= 0) {
             Tasks.forResult(null);
             return;
         }
         if (Build.VERSION.SDK_INT >= 24) {
-            z9 = w.g(this.f55000b);
+            z10 = x.g(this.f56556b);
         } else {
-            z9 = true;
+            z10 = true;
         }
-        if (!z9) {
+        if (!z10) {
             Tasks.forResult(null);
             return;
         }
-        Tasks.call(this.f55002e, new b(this, 1));
+        Tasks.call(this.f56558e, new b(this, 1));
     }
 }

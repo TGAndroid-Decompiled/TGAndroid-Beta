@@ -5,49 +5,49 @@ import java.util.WeakHashMap;
 import r0.i0;
 import r0.l0;
 public final class h implements Runnable {
-    public final int f13327a;
-    public final s f13328b;
+    public final int f12675a;
+    public final s f12676b;
 
     public h(s sVar, int i7) {
-        this.f13327a = i7;
-        this.f13328b = sVar;
+        this.f12675a = i7;
+        this.f12676b = sVar;
     }
 
     @Override
     public final void run() {
         ViewGroup viewGroup;
-        int i7 = this.f13327a;
-        s sVar = this.f13328b;
+        int i7 = this.f12675a;
+        s sVar = this.f12676b;
         switch (i7) {
             case 0:
-                if ((sVar.f13368i0 & 1) != 0) {
-                    sVar.j(0);
+                if ((sVar.f12717j0 & 1) != 0) {
+                    sVar.k(0);
                 }
-                if ((sVar.f13368i0 & 4096) != 0) {
-                    sVar.j(108);
+                if ((sVar.f12717j0 & 4096) != 0) {
+                    sVar.k(108);
                 }
-                sVar.f13367h0 = false;
-                sVar.f13368i0 = 0;
+                sVar.f12716i0 = false;
+                sVar.f12717j0 = 0;
                 return;
             default:
-                sVar.E.showAtLocation(sVar.D, 55, 0, 0);
-                l0 l0Var = sVar.G;
+                sVar.F.showAtLocation(sVar.E, 55, 0, 0);
+                l0 l0Var = sVar.H;
                 if (l0Var != null) {
                     l0Var.b();
                 }
-                if (sVar.I && (viewGroup = sVar.J) != null) {
-                    WeakHashMap weakHashMap = i0.f54202a;
+                if (sVar.J && (viewGroup = sVar.K) != null) {
+                    WeakHashMap weakHashMap = i0.f55671a;
                     if (viewGroup.isLaidOut()) {
-                        sVar.D.setAlpha(0.0f);
-                        l0 a10 = i0.a(sVar.D);
+                        sVar.E.setAlpha(0.0f);
+                        l0 a10 = i0.a(sVar.E);
                         a10.a(1.0f);
-                        sVar.G = a10;
+                        sVar.H = a10;
                         a10.d(new j(this, 0));
                         return;
                     }
                 }
-                sVar.D.setAlpha(1.0f);
-                sVar.D.setVisibility(0);
+                sVar.E.setAlpha(1.0f);
+                sVar.E.setVisibility(0);
                 return;
         }
     }

@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
-import bi.d3;
+import bi.m1;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,9 +14,8 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.iz;
-import org.telegram.messenger.p10;
-import org.telegram.ui.Cells.f1;
+import org.telegram.messenger.gz;
+import org.telegram.messenger.m10;
 import org.telegram.ui.Components.AnimatedFileNative;
 public class VideoFramesRewinder {
     private Frame currentFrame;
@@ -30,7 +29,7 @@ public class VideoFramesRewinder {
     private View parentView;
     private long prepareToMs;
     private float prepareWithSpeed;
-    int f25998w;
+    int f26995w;
     private final Paint paint = new Paint(2);
     private final int[] meta = new int[8];
     private final ArrayList<Frame> freeFrames = new ArrayList<>();
@@ -50,7 +49,7 @@ public class VideoFramesRewinder {
     }
 
     public VideoFramesRewinder() {
-        int o4 = iz.o();
+        int o4 = gz.o();
         if (o4 != 1) {
             if (o4 != 2) {
                 this.maxFramesCount = 100;
@@ -95,7 +94,7 @@ public class VideoFramesRewinder {
             }
         }
         while (!arrayList.isEmpty() && this.frames.size() < this.maxFramesCount) {
-            this.frames.add((Frame) f1.k(1, arrayList));
+            this.frames.add((Frame) r.b.g(1, arrayList));
         }
         if (arrayList.size() > 0) {
             a8.b("[VideoFramesRewinder] prepared " + arrayList.size() + " more frames than I could fit :(");
@@ -117,7 +116,7 @@ public class VideoFramesRewinder {
         char c11 = 4;
         int i11 = iArr[4];
         int i12 = 0;
-        int min = Math.min(this.f25998w / 4, iArr[0]);
+        int min = Math.min(this.f26995w / 4, iArr[0]);
         int min2 = Math.min(this.h / 4, this.meta[1]);
         int i13 = this.maxFrameSide;
         if (min > i13 || min2 > i13) {
@@ -183,7 +182,7 @@ public class VideoFramesRewinder {
             c12 = c10;
             i12 = 0;
         }
-        g0.h3(new d3(this, arrayList, currentTimeMillis, 12));
+        g0.h3(new m1(this, arrayList, currentTimeMillis, 13));
     }
 
     private void prepare(long j3) {
@@ -194,7 +193,7 @@ public class VideoFramesRewinder {
         this.isPreparing = true;
         this.prepareToMs = j3;
         this.prepareWithSpeed = this.lastSpeed;
-        Utilities.f21344i.c(this.prepareRunnable);
+        Utilities.f22419i.c(this.prepareRunnable);
     }
 
     public void clearCurrent() {
@@ -205,7 +204,7 @@ public class VideoFramesRewinder {
     }
 
     public void draw(Canvas canvas, int i7, int i10) {
-        this.f25998w = i7;
+        this.f26995w = i7;
         this.h = i10;
         if (this.mDecoder != null && this.currentFrame != null) {
             canvas.save();
@@ -306,6 +305,6 @@ public class VideoFramesRewinder {
             return;
         }
         this.stop.set(false);
-        this.mDecoder = AnimatedFileNative.a(file.getAbsolutePath(), this.meta, p10.f24474s0, 0L, null, true);
+        this.mDecoder = AnimatedFileNative.a(file.getAbsolutePath(), this.meta, m10.f24934t0, 0L, null, true);
     }
 }

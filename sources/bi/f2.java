@@ -1,29 +1,38 @@
 package bi;
+public final class f2 implements Runnable {
+    public final int f3509a;
+    public final i2 f3510b;
+    public final boolean f3511c;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.tl.TL_phone;
-public final class f2 implements RequestDelegate {
-    public final int f3853a;
-    public final Object f3854b;
-    public final Object f3855c;
-    public final Object d;
-
-    public f2(fi.n8 n8Var, org.telegram.ui.ActionBar.u1 u1Var, TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl) {
-        this.f3853a = 6;
-        this.f3854b = n8Var;
-        this.d = u1Var;
-        this.f3855c = getgroupcallstreamrtmpurl;
+    public f2(i2 i2Var, boolean z10, int i7) {
+        this.f3509a = i7;
+        this.f3510b = i2Var;
+        this.f3511c = z10;
     }
 
     @Override
-    public final void run(org.telegram.tgnet.TLObject r11, org.telegram.tgnet.TLRPC.TL_error r12) {
-        throw new UnsupportedOperationException("Method not decompiled: bi.f2.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
-    }
-
-    public f2(Object obj, Object obj2, Object obj3, int i7) {
-        this.f3853a = i7;
-        this.f3854b = obj;
-        this.f3855c = obj2;
-        this.d = obj3;
+    public final void run() {
+        switch (this.f3509a) {
+            case 0:
+                boolean z10 = this.f3511c;
+                i2 i2Var = this.f3510b;
+                if (!z10) {
+                    i2Var.H.setVisibility(8);
+                    return;
+                } else {
+                    i2Var.getClass();
+                    return;
+                }
+            default:
+                boolean z11 = this.f3511c;
+                i2 i2Var2 = this.f3510b;
+                if (!z11) {
+                    i2Var2.f3604w.setVisibility(8);
+                    return;
+                } else {
+                    i2Var2.getClass();
+                    return;
+                }
+        }
     }
 }

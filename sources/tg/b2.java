@@ -1,10 +1,8 @@
 package tg;
 
-import android.graphics.Bitmap;
-public final class b2 {
-    public Bitmap f55591a;
-    public int f55592b;
-    public int f55593c;
-    public int d;
-    public int f55594e;
+import android.graphics.Point;
+public final class b2 extends Point {
+    public b2(float f10, int i7, int i10) {
+        super((int) (i7 * f10), (int) (i10 * f10));
+    }
 }

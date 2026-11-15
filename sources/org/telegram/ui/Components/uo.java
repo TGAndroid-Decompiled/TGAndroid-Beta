@@ -1,21 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.Drawable;
-public final class uo {
-    public final org.telegram.ui.ActionBar.s3 f38725a;
-    public Drawable f38726b;
-    public int f38727c;
-    public boolean d;
+import android.graphics.Bitmap;
+import org.telegram.ui.t71;
+public final class uo extends t71 {
+    public final int f40135m2;
 
-    public uo(org.telegram.ui.ActionBar.s3 s3Var) {
-        this.f38725a = s3Var;
+    public uo(Object obj, Bitmap bitmap, boolean z10, int i7) {
+        super(obj, bitmap, z10);
+        this.f40135m2 = i7;
     }
 
-    public final String a() {
-        org.telegram.ui.ActionBar.s3 s3Var = this.f38725a;
-        if (s3Var != null && !s3Var.f28485a) {
-            return s3Var.f28488e;
+    @Override
+    public final boolean Z0() {
+        switch (this.f40135m2) {
+            case 0:
+                return true;
+            case 1:
+                return true;
+            case 2:
+                return true;
+            case 3:
+                return true;
+            default:
+                return true;
         }
-        return null;
     }
 }

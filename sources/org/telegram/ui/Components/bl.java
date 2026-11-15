@@ -1,67 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.os.Build;
-public final class bl implements Runnable {
-    public final int f32281a;
-    public final ChatAttachAlertPhotoLayout f32282b;
+import android.content.Context;
+import android.widget.TextView;
+public final class bl extends jg.s0 {
+    public final int E = 0;
+    public final org.telegram.messenger.is F;
 
-    public bl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i7) {
-        this.f32281a = i7;
-        this.f32282b = chatAttachAlertPhotoLayout;
+    public bl(dl dlVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
+        super(context, e6Var, z10, false);
+        this.F = dlVar;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f32281a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f32282b;
+    public final void f() {
+        int i7 = this.E;
+        org.telegram.messenger.is isVar = this.F;
         switch (i7) {
             case 0:
-                boolean z9 = ChatAttachAlertPhotoLayout.f31204q1;
-                chatAttachAlertPhotoLayout.f38656b.f28675c.removeView(chatAttachAlertPhotoLayout.P);
-                chatAttachAlertPhotoLayout.P = null;
-                return;
-            case 1:
-                boolean z10 = ChatAttachAlertPhotoLayout.f31204q1;
-                chatAttachAlertPhotoLayout.w0(false);
-                chatAttachAlertPhotoLayout.f31234n0 = null;
-                return;
-            case 2:
-                boolean z11 = ChatAttachAlertPhotoLayout.f31204q1;
-                chatAttachAlertPhotoLayout.w0(false);
-                chatAttachAlertPhotoLayout.f31234n0 = null;
-                return;
-            case 3:
-                chatAttachAlertPhotoLayout.f31249x.setVisibility(8);
-                return;
-            case 4:
-                chatAttachAlertPhotoLayout.G.f();
-                return;
-            case 5:
-                boolean z12 = ChatAttachAlertPhotoLayout.f31204q1;
-                ci ciVar = chatAttachAlertPhotoLayout.f38656b;
-                if (f0.d.b(ciVar.Z1.getParentActivity(), "android.permission.CAMERA") != 0) {
-                    try {
-                        ciVar.Z1.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 18);
-                        return;
-                    } catch (Exception unused) {
-                        return;
-                    }
+                dl dlVar = (dl) isVar;
+                bl blVar = dlVar.O;
+                org.telegram.ui.ActionBar.q0 q0Var = dlVar.f34000x;
+                if (q0Var != null) {
+                    q0Var.setShowSearchProgress(blVar.f17027w);
                 }
-                chatAttachAlertPhotoLayout.l0();
+                TextView textView = dlVar.f33998w;
+                if (textView != null) {
+                    textView.setText(org.telegram.messenger.hd.a0(null, null, 2131748165, blVar.h));
+                }
+                super.f();
                 return;
             default:
-                boolean z13 = ChatAttachAlertPhotoLayout.f31204q1;
-                ci ciVar2 = chatAttachAlertPhotoLayout.f38656b;
-                try {
-                    if (Build.VERSION.SDK_INT >= 33) {
-                        ciVar2.Z1.getParentActivity().requestPermissions(new String[]{"android.permission.READ_MEDIA_VIDEO", "android.permission.READ_MEDIA_IMAGES"}, 4);
-                    } else {
-                        ciVar2.Z1.getParentActivity().requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
-                    }
-                    return;
-                } catch (Exception unused2) {
-                    return;
+                org.telegram.ui.pa0 pa0Var = (org.telegram.ui.pa0) isVar;
+                org.telegram.ui.ActionBar.d5 d5Var = pa0Var.f50214r;
+                if (d5Var != null) {
+                    d5Var.setShowSearchProgress(pa0Var.T.f17027w);
                 }
+                TextView textView2 = pa0Var.f50209n;
+                if (textView2 != null) {
+                    textView2.setText(org.telegram.messenger.hd.a0(null, null, 2131748165, pa0Var.T.h));
+                }
+                super.f();
+                return;
         }
+    }
+
+    public bl(org.telegram.ui.pa0 pa0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
+        super(context, e6Var, false, z10);
+        this.F = pa0Var;
     }
 }

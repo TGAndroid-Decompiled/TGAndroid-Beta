@@ -1,73 +1,76 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
 import android.view.View;
-public final class tm0 implements org.telegram.ui.Components.s4, org.telegram.ui.Components.dj0, org.telegram.ui.ActionBar.e1, org.telegram.ui.ActionBar.r1 {
-    public final int f50305a;
-    public final an0 f50306b;
+public final class tm0 implements org.telegram.ui.ActionBar.n0, org.telegram.ui.Components.xj0 {
+    public final ym0 f51612a;
 
-    public tm0(an0 an0Var, int i7) {
-        this.f50305a = i7;
-        this.f50306b = an0Var;
+    public tm0(ym0 ym0Var) {
+        this.f51612a = ym0Var;
     }
 
     @Override
-    public void L(int i7, int i10, boolean z9) {
-        switch (this.f50305a) {
-            case 0:
-                this.f50306b.j0(i7, z9);
-                return;
-            default:
-                this.f50306b.j0(i7, z9);
-                return;
+    public void a(boolean z10) {
+        org.telegram.ui.ActionBar.o4 o4Var;
+        ym0 ym0Var = this.f51612a;
+        ym0Var.X = z10 ? 1 : 0;
+        if (z10) {
+            o4Var = ((org.telegram.ui.ActionBar.e2) ym0Var).parentLayout;
+            o4Var.getView().requestDisallowInterceptTouchEvent(true);
         }
+        ym0Var.L.d1(true);
     }
 
     @Override
-    public boolean c(int i7, View view) {
-        an0 an0Var = this.f50306b;
-        if (an0Var.Y) {
-            an0Var.f0(view, an0Var.J.f26304e.get(i7));
+    public boolean b(int i7) {
+        if (this.f51612a.M.d(i7) == 0) {
             return true;
-        } else if (view instanceof org.telegram.ui.Cells.q5) {
-            org.telegram.ui.Components.tj0 tj0Var = an0Var.V;
-            boolean z9 = !((org.telegram.ui.Cells.q5) view).a();
-            an0Var.X = z9;
-            tj0Var.d(i7, view, z9);
-            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public void d(View view, boolean z10) {
+        if (z10 == this.f51612a.Y && (view instanceof org.telegram.ui.Cells.q5)) {
+            org.telegram.ui.Cells.q5 q5Var = (org.telegram.ui.Cells.q5) view;
+            q5Var.f31292y.d(q5Var);
+        }
+    }
+
+    @Override
+    public boolean g(int i7) {
+        Object obj;
+        ym0 ym0Var = this.f51612a;
+        org.telegram.messenger.ve veVar = ym0Var.K;
+        if (veVar != null) {
+            obj = Integer.valueOf(((org.telegram.messenger.ff) veVar.f26971e.get(i7)).C);
         } else {
-            return false;
+            obj = ((org.telegram.messenger.jf) ym0Var.f53573f.get(i7)).B;
         }
+        return ym0Var.f53566b.containsKey(obj);
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        an0 an0Var = this.f50306b;
-        bn0 bn0Var = an0Var.f43774t0;
-        if (bn0Var != null) {
-            switch (bn0Var.f44089a) {
-                case 1:
-                    dn0 dn0Var = bn0Var.f44090b;
-                    dn0Var.f45014a.e0();
-                    dn0Var.f45015b.e0();
-                    return;
-                default:
-                    dn0 dn0Var2 = bn0Var.f44090b;
-                    dn0Var2.f45014a.e0();
-                    dn0Var2.f45015b.e0();
-                    return;
-            }
+    public void k() {
+        int i7;
+        int i10;
+        ym0 ym0Var = this.f51612a;
+        org.telegram.ui.ActionBar.z0 z0Var = ym0Var.R;
+        if (ym0Var.Z) {
+            i7 = 2131745346;
+        } else {
+            i7 = 2131745345;
         }
-        an0Var.e0();
+        z0Var.setText(org.telegram.messenger.hd.M0(i7, null));
+        org.telegram.ui.ActionBar.z0 z0Var2 = ym0Var.R;
+        if (ym0Var.Z) {
+            i10 = 2131232220;
+        } else {
+            i10 = 2131232209;
+        }
+        z0Var2.setIcon(i10);
     }
 
     @Override
-    public void j(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.g1 g1Var;
-        an0 an0Var = this.f50306b;
-        an0Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (g1Var = an0Var.m0) != null && g1Var.isShowing()) {
-            an0Var.m0.d(true);
-        }
+    public void i() {
     }
 }

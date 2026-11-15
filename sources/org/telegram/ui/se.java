@@ -1,29 +1,30 @@
 package org.telegram.ui;
+public final class se implements Runnable {
+    public final int f51208a;
+    public final an f51209b;
+    public final boolean f51210c;
 
-import android.graphics.RectF;
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.function.ToIntFunction;
-public final class se implements ToIntFunction {
-    public final int f49844a;
-    public final Object f49845b;
-
-    public se(Object obj, int i7) {
-        this.f49844a = i7;
-        this.f49845b = obj;
+    public se(an anVar, boolean z10, int i7) {
+        this.f51208a = i7;
+        this.f51209b = anVar;
+        this.f51210c = z10;
     }
 
     @Override
-    public final int applyAsInt(Object obj) {
-        int i7 = this.f49844a;
-        Object obj2 = this.f49845b;
-        switch (i7) {
+    public final void run() {
+        String str;
+        switch (this.f51208a) {
             case 0:
-                return ((Integer) ((HashMap) obj2).get((View) obj)).intValue();
+                if (this.f51210c) {
+                    str = "upload_speed";
+                } else {
+                    str = "download_speed";
+                }
+                this.f51209b.presentFragment(new PremiumPreviewFragment(0, str));
+                return;
             default:
-                RectF rectF = ProfileActivity.V6;
-                return ((Integer) ((ArrayList) obj2).get(((Integer) obj).intValue())).intValue();
+                this.f51209b.gd(0, this.f51210c);
+                return;
         }
     }
 }

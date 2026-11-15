@@ -466,173 +466,173 @@ public class PushListenerController {
         }
         switch (c10) {
             case 0:
-                return id.a0(null, null, 2131746574, objArr);
+                return hd.a0(null, null, 2131746574, objArr);
             case 1:
-                return id.a0(null, null, 2131746511, objArr);
+                return hd.a0(null, null, 2131746511, objArr);
             case 2:
-                return id.a0(null, null, 2131746563, objArr);
+                return hd.a0(null, null, 2131746563, objArr);
             case 3:
-                return id.a0(null, null, 2131746547, objArr);
+                return hd.a0(null, null, 2131746547, objArr);
             case 4:
-                return id.a0(null, null, 2131746549, objArr);
+                return hd.a0(null, null, 2131746549, objArr);
             case 5:
-                return id.a0(null, null, 2131746523, objArr);
+                return hd.a0(null, null, 2131746523, objArr);
             case 6:
             case 'F':
-                return id.a0(null, null, 2131746555, objArr);
+                return hd.a0(null, null, 2131746555, objArr);
             case 7:
-                return id.a0(null, null, 2131746533, objArr);
+                return hd.a0(null, null, 2131746533, objArr);
             case '\b':
-                return id.a0(null, null, 2131746526, objArr);
+                return hd.a0(null, null, 2131746526, objArr);
             case '\t':
-                return id.a0(null, null, 2131746542, objArr);
+                return hd.a0(null, null, 2131746542, objArr);
             case '\n':
-                return id.a0(null, null, 2131746566, objArr);
+                return hd.a0(null, null, 2131746566, objArr);
             case 11:
-                return id.a0(null, null, 2131746571, objArr);
+                return hd.a0(null, null, 2131746571, objArr);
             case '\f':
-                return id.a0(null, null, 2131746540, objArr);
+                return hd.a0(null, null, 2131746540, objArr);
             case '\r':
-                return id.a0(null, null, 2131746537, objArr);
+                return hd.a0(null, null, 2131746537, objArr);
             case 14:
-                return id.a0(null, null, 2131746510, objArr);
+                return hd.a0(null, null, 2131746510, objArr);
             case 15:
-                return id.a0(null, null, 2131746567, objArr);
+                return hd.a0(null, null, 2131746567, objArr);
             case 16:
             case '*':
-                return id.a0(null, null, 2131746557, objArr);
+                return hd.a0(null, null, 2131746557, objArr);
             case 17:
-                return id.a0(null, null, 2131746552, objArr);
+                return hd.a0(null, null, 2131746552, objArr);
             case 18:
-                return id.a0(null, null, 2131746528, objArr);
+                return hd.a0(null, null, 2131746528, objArr);
             case 19:
-                return id.a0(null, null, 2131746560, objArr);
+                return hd.a0(null, null, 2131746560, objArr);
             case 20:
-                return id.a0(null, null, 2131746531, objArr);
+                return hd.a0(null, null, 2131746531, objArr);
             case 21:
-                return id.a0(null, null, 2131746543, objArr);
+                return hd.a0(null, null, 2131746543, objArr);
             case 22:
-                return id.a0(null, null, 2131746550, objArr);
+                return hd.a0(null, null, 2131746550, objArr);
             case 23:
-                return id.a0(null, null, 2131746536, objArr);
+                return hd.a0(null, null, 2131746536, objArr);
             case 24:
-                return id.a0(null, null, 2131746534, objArr);
+                return hd.a0(null, null, 2131746534, objArr);
             case 25:
-                return id.a0(null, null, 2131746518, objArr);
+                return hd.a0(null, null, 2131746518, objArr);
             case 26:
-                return id.a0(null, null, 2131746516, objArr);
+                return hd.a0(null, null, 2131746516, objArr);
             case 27:
-                return id.a0(null, null, 2131746541, objArr);
+                return hd.a0(null, null, 2131746541, objArr);
             case 28:
-                return id.a0(null, null, 2131746530, objArr);
+                return hd.a0(null, null, 2131746530, objArr);
             case 29:
-                return id.a0(null, null, 2131746573, objArr);
+                return hd.a0(null, null, 2131746573, objArr);
             case 30:
-                return id.a0(null, null, 2131746570, objArr);
+                return hd.a0(null, null, 2131746570, objArr);
             case 31:
-                return id.a0(null, null, 2131746568, objArr);
+                return hd.a0(null, null, 2131746568, objArr);
             case ' ':
             case 'G':
-                return id.a0(null, null, 2131746515, objArr);
+                return hd.a0(null, null, 2131746515, objArr);
             case '!':
             case ';':
             case 'H':
-                return id.a0(null, null, 2131746517, objArr);
+                return hd.a0(null, null, 2131746517, objArr);
             case '\"':
-                return id.a0(null, null, 2131746544, objArr);
+                return hd.a0(null, null, 2131746544, objArr);
             case '#':
-                return id.a0(null, null, 2131746527, objArr);
+                return hd.a0(null, null, 2131746527, objArr);
             case '$':
-                return id.a0(null, null, 2131746545, objArr);
+                return hd.a0(null, null, 2131746545, objArr);
             case '%':
-                return id.a0(null, null, 2131746525, objArr);
+                return hd.a0(null, null, 2131746525, objArr);
             case '&':
-                return id.a0(null, null, 2131746575, objArr);
+                return hd.a0(null, null, 2131746575, objArr);
             case '\'':
-                return id.a0(null, null, 2131746565, objArr);
+                return hd.a0(null, null, 2131746565, objArr);
             case '(':
-                return id.a0(null, null, 2131746561, objArr);
+                return hd.a0(null, null, 2131746561, objArr);
             case ')':
-                return id.a0(null, null, 2131746559, objArr);
+                return hd.a0(null, null, 2131746559, objArr);
             case '+':
-                return id.a0(null, null, 2131746554, objArr);
+                return hd.a0(null, null, 2131746554, objArr);
             case ',':
-                return id.a0(null, null, 2131748048, objArr);
+                return hd.a0(null, null, 2131748048, objArr);
             case '-':
-                return id.a0(null, null, 2131746514, objArr);
+                return hd.a0(null, null, 2131746514, objArr);
             case '.':
-                return id.a0(null, null, 2131746521, objArr);
+                return hd.a0(null, null, 2131746521, objArr);
             case '/':
-                return id.a0(null, null, 2131747937, objArr);
+                return hd.a0(null, null, 2131747937, objArr);
             case '0':
-                return id.a0(null, null, 2131747937, objArr);
+                return hd.a0(null, null, 2131747937, objArr);
             case '1':
-                return id.a0(null, null, 2131746529, objArr);
+                return hd.a0(null, null, 2131746529, objArr);
             case '2':
-                return id.a0(null, null, 2131746569, objArr);
+                return hd.a0(null, null, 2131746569, objArr);
             case '3':
-                return id.a0(null, null, 2131746512, objArr);
+                return hd.a0(null, null, 2131746512, objArr);
             case '4':
-                return id.a0(null, null, 2131746520, objArr);
+                return hd.a0(null, null, 2131746520, objArr);
             case '5':
-                return id.a0(null, null, 2131746535, objArr);
+                return hd.a0(null, null, 2131746535, objArr);
             case '6':
-                return id.a0(null, null, 2131746539, objArr);
+                return hd.a0(null, null, 2131746539, objArr);
             case '7':
-                return id.a0(null, null, 2131746553, objArr);
+                return hd.a0(null, null, 2131746553, objArr);
             case '8':
-                return id.a0(null, null, 2131746538, objArr);
+                return hd.a0(null, null, 2131746538, objArr);
             case '9':
-                return id.a0(null, null, 2131746532, objArr);
+                return hd.a0(null, null, 2131746532, objArr);
             case ':':
-                return id.a0(null, null, 2131746524, objArr);
+                return hd.a0(null, null, 2131746524, objArr);
             case '<':
-                return id.a0(null, null, 2131746513, objArr);
+                return hd.a0(null, null, 2131746513, objArr);
             case '=':
-                return id.a0(null, null, 2131746519, objArr);
+                return hd.a0(null, null, 2131746519, objArr);
             case '>':
-                return id.a0(null, null, 2131746551, objArr);
+                return hd.a0(null, null, 2131746551, objArr);
             case '?':
-                return id.a0(null, null, 2131746548, objArr);
+                return hd.a0(null, null, 2131746548, objArr);
             case '@':
-                return id.a0(null, null, 2131746546, objArr);
+                return hd.a0(null, null, 2131746546, objArr);
             case 'A':
-                return id.a0(null, null, 2131746572, objArr);
+                return hd.a0(null, null, 2131746572, objArr);
             case 'B':
-                return id.a0(null, null, 2131746564, objArr);
+                return hd.a0(null, null, 2131746564, objArr);
             case 'C':
-                return id.a0(null, null, 2131746562, objArr);
+                return hd.a0(null, null, 2131746562, objArr);
             case 'D':
-                return id.a0(null, null, 2131746558, objArr);
+                return hd.a0(null, null, 2131746558, objArr);
             case 'E':
-                return id.a0(null, null, 2131746556, objArr);
+                return hd.a0(null, null, 2131746556, objArr);
             default:
                 return null;
         }
     }
 
     public static void lambda$processRemoteMessage$2(int i7, TLRPC.TL_updates tL_updates) {
-        qp.s1(i7).O3(tL_updates, false);
+        np.s1(i7).O3(tL_updates, false);
     }
 
     public static void lambda$processRemoteMessage$3(int i7) {
-        if (p10.i(i7).e() != 0) {
-            p10.i(i7).b();
-            qp.s1(i7).A3(0);
+        if (m10.i(i7).e() != 0) {
+            m10.i(i7).b();
+            np.s1(i7).A3(0);
         }
     }
 
     public static void lambda$processRemoteMessage$4(int i7) {
-        sd f10 = sd.f(i7);
-        if (f10.f25460b.isEmpty()) {
+        rd f10 = rd.f(i7);
+        if (f10.f26270b.isEmpty()) {
             return;
         }
-        f10.H = SystemClock.elapsedRealtime() + 65000;
+        f10.I = SystemClock.elapsedRealtime() + 65000;
         f10.p();
     }
 
     public static void lambda$processRemoteMessage$5(int i7, long j3, int i10) {
-        qp.s1(i7).n4(i10, j3, true);
+        np.s1(i7).n4(i10, j3, true);
     }
 
     public static void lambda$processRemoteMessage$6(java.lang.String r86, java.lang.String r87, long r88) {
@@ -640,39 +640,39 @@ public class PushListenerController {
     }
 
     public static void lambda$processRemoteMessage$7(String str, String str2, long j3) {
-        if (r2.f25216a) {
+        if (r2.f26198a) {
             a8.b(str + " PRE INIT APP");
         }
         t0.w();
-        if (r2.f25216a) {
+        if (r2.f26198a) {
             a8.b(str + " POST INIT APP");
         }
-        Utilities.d.c(new st(0, j3, str, str2));
+        Utilities.d.c(new pt(0, j3, str, str2));
     }
 
     public static void lambda$sendRegistrationToServer$0(int i7, int i10, String str) {
-        qp.s1(i7).Z3(i10, str);
+        np.s1(i7).Z3(i10, str);
     }
 
     public static void lambda$sendRegistrationToServer$1(String str, int i7) {
-        boolean z9;
+        boolean z10;
         String str2;
-        ConnectionsManager.setRegId(str, i7, iz.h);
+        ConnectionsManager.setRegId(str, i7, gz.h);
         if (str != null) {
-            if (iz.f23411i != 0 && iz.f23414j != 0 && (!iz.f23417k || !TextUtils.equals(iz.f23406g, str))) {
-                iz.f23417k = false;
-                z9 = true;
+            if (gz.f23951i != 0 && gz.f23954j != 0 && (!gz.f23957k || !TextUtils.equals(gz.f23946g, str))) {
+                gz.f23957k = false;
+                z10 = true;
             } else {
-                z9 = false;
+                z10 = false;
             }
-            iz.f23406g = str;
-            iz.f23403f = i7;
+            gz.f23946g = str;
+            gz.f23943f = i7;
             for (int i10 = 0; i10 < 4; i10++) {
-                p10 i11 = p10.i(i10);
+                m10 i11 = m10.i(i10);
                 i11.d = false;
                 i11.v(false);
                 if (i11.e() != 0) {
-                    if (z9) {
+                    if (z10) {
                         if (i7 == 2) {
                             str2 = "fcm";
                         } else {
@@ -680,23 +680,23 @@ public class PushListenerController {
                         }
                         TLRPC.TL_help_saveAppLog tL_help_saveAppLog = new TLRPC.TL_help_saveAppLog();
                         TLRPC.TL_inputAppEvent tL_inputAppEvent = new TLRPC.TL_inputAppEvent();
-                        tL_inputAppEvent.time = iz.f23411i;
+                        tL_inputAppEvent.time = gz.f23951i;
                         tL_inputAppEvent.type = str2.concat("_token_request");
                         tL_inputAppEvent.peer = 0L;
                         tL_inputAppEvent.data = new TLRPC.TL_jsonNull();
                         tL_help_saveAppLog.events.add(tL_inputAppEvent);
                         TLRPC.TL_inputAppEvent tL_inputAppEvent2 = new TLRPC.TL_inputAppEvent();
-                        tL_inputAppEvent2.time = iz.f23414j;
+                        tL_inputAppEvent2.time = gz.f23954j;
                         tL_inputAppEvent2.type = str2.concat("_token_response");
-                        tL_inputAppEvent2.peer = iz.f23414j - iz.f23411i;
+                        tL_inputAppEvent2.peer = gz.f23954j - gz.f23951i;
                         tL_inputAppEvent2.data = new TLRPC.TL_jsonNull();
                         tL_help_saveAppLog.events.add(tL_inputAppEvent2);
-                        iz.f23417k = true;
-                        iz.y();
+                        gz.f23957k = true;
+                        gz.y();
                         ConnectionsManager.getInstance(i10).sendRequest(tL_help_saveAppLog, null);
-                        z9 = false;
+                        z10 = false;
                     }
-                    g0.h3(new jg.r(i10, i7, str, 5));
+                    g0.h3(new jg.q(i10, i7, str, 5));
                 }
             }
         }
@@ -704,7 +704,7 @@ public class PushListenerController {
 
     private static void onDecryptError() {
         for (int i7 = 0; i7 < 4; i7++) {
-            if (p10.i(i7).p()) {
+            if (m10.i(i7).p()) {
                 ConnectionsManager.onInternalPushReceived(i7);
                 ConnectionsManager.getInstance(i7).resumeNetworkMaybe();
             }
@@ -720,16 +720,16 @@ public class PushListenerController {
             str2 = "HCM";
         }
         String str3 = str2;
-        if (r2.f25216a) {
+        if (r2.f26198a) {
             a8.b(str3.concat(" PRE START PROCESSING"));
         }
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        g0.h3(new st(1, j3, str3, str));
+        g0.h3(new pt(1, j3, str3, str));
         try {
             countDownLatch.await();
         } catch (Throwable unused) {
         }
-        boolean z9 = r2.f25216a;
+        boolean z10 = r2.f26198a;
         StringBuilder u10 = a8.p0.u("finished ", str3, " service, time = ");
         u10.append(SystemClock.elapsedRealtime() - elapsedRealtime);
         a8.b(u10.toString());

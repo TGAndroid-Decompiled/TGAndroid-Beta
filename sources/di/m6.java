@@ -1,21 +1,26 @@
 package di;
+public final class m6 implements Runnable {
+    public final int f9036a;
+    public final boolean f9037b;
+    public final Object f9038c;
+    public final Object d;
 
-import j$.util.function.Consumer$CC;
-import java.util.List;
-import java.util.function.Consumer;
-public final class m6 implements Consumer {
-    public final n6 f9366a;
-
-    public m6(n6 n6Var) {
-        this.f9366a = n6Var;
+    public m6(Object obj, Object obj2, boolean z10, int i7) {
+        this.f9036a = i7;
+        this.d = obj;
+        this.f9038c = obj2;
+        this.f9037b = z10;
     }
 
     @Override
-    public final void accept(Object obj) {
-        org.telegram.messenger.g0.h3(new z0(8, this.f9366a, (List) obj));
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: di.m6.run():void");
     }
 
-    public Consumer andThen(Consumer consumer) {
-        return Consumer$CC.$default$andThen(this, consumer);
+    public m6(Object obj, boolean z10, Object obj2, int i7) {
+        this.f9036a = i7;
+        this.d = obj;
+        this.f9037b = z10;
+        this.f9038c = obj2;
     }
 }

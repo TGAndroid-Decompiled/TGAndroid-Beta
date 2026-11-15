@@ -1,39 +1,39 @@
 package org.telegram.ui.Components;
 
-import j$.util.Objects;
-public final class o8 {
-    public int f36533a;
-    public boolean f36534b;
-    public int f36535c;
-    public int d;
-    public int f36536e;
-    public int f36537f;
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+public final class o8 extends View {
+    public m8 f37864a;
+    public final u5 f37865b;
+    public boolean f37866c;
+    public boolean d;
+    public final i10 f37867e;
+    public Drawable f37868f;
+    public Drawable h;
+    public boolean f37869n;
+    public Paint f37870r;
+    public Paint f37871s;
+    public boolean f37872w;
+    public final q8 f37873x;
 
-    public final o8 a() {
-        ?? obj = new Object();
-        obj.f36535c = this.f36535c;
-        obj.d = this.d;
-        obj.f36536e = this.f36536e;
-        obj.f36537f = this.f36537f;
-        obj.f36534b = this.f36534b;
-        return obj;
+    public o8(q8 q8Var, Context context) {
+        super(context);
+        this.f37873x = q8Var;
+        u5 u5Var = new u5(400L, org.telegram.messenger.g0.H);
+        this.f37865b = u5Var;
+        this.f37867e = new i10();
+        u5Var.f39901a = this;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof o8)) {
-            return false;
-        }
-        o8 o8Var = (o8) obj;
-        if (this.f36535c == o8Var.f36535c && this.d == o8Var.d && this.f36536e == o8Var.f36536e && this.f36537f == o8Var.f36537f) {
-            return true;
-        }
-        return false;
+    @Override
+    public final void onDraw(android.graphics.Canvas r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.o8.onDraw(android.graphics.Canvas):void");
     }
 
-    public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f36533a), Integer.valueOf(this.f36535c), Integer.valueOf(this.d), Integer.valueOf(this.f36536e), Integer.valueOf(this.f36537f));
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f37873x.Q, 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(48.0f), 1073741824));
     }
 }

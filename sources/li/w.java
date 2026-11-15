@@ -1,35 +1,55 @@
 package li;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.Components.m41;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.r41;
-import org.telegram.ui.Components.w31;
-import org.telegram.ui.Components.x31;
-public final class w extends w31 {
-    public static final int f18954b = 0;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+public final class w implements TextWatcher {
+    public final int f19643a;
+    public final d0 f19644b;
 
-    static {
-        w31.h(new w31());
+    public w(d0 d0Var, int i7) {
+        this.f19643a = i7;
+        this.f19644b = d0Var;
     }
 
     @Override
-    public final void b(View view, x31 x31Var, boolean z9, m41 m41Var, r41 r41Var) {
-        ((x) view).h((a) x31Var.G, (n3) x31Var.H);
+    public final void afterTextChanged(Editable editable) {
+        switch (this.f19643a) {
+            case 0:
+                String obj = editable.toString();
+                d0 d0Var = this.f19644b;
+                boolean isEmpty = TextUtils.isEmpty(d0Var.M1);
+                d0Var.M1 = obj;
+                d0Var.A1.h(0L, d0Var.f19542p1, 0L, 0L, null, false, obj, isEmpty);
+                return;
+            default:
+                String obj2 = editable.toString();
+                d0 d0Var2 = this.f19644b;
+                d0Var2.N1 = obj2;
+                d0Var2.B1.f39895g3.O(true);
+                return;
+        }
     }
 
     @Override
-    public final View d(Context context, pj0 pj0Var, int i7, h6 h6Var) {
-        x xVar = new x(i7, context, h6Var);
-        xVar.setBackground(new y1(m6.w0(m6.f27890d6, h6Var)));
-        return xVar;
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        int i12 = this.f19643a;
     }
 
     @Override
-    public final boolean f() {
-        return false;
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        int i12 = this.f19643a;
+    }
+
+    private final void a(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void b(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
     }
 }

@@ -1,6 +1,6 @@
 package re;
 
-import pb.b;
+import w7.s;
 public abstract class a {
-    public static final b f54525a = new b(23);
+    public static final s f55997a = new s(23);
 }

@@ -1,61 +1,64 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-public final class g81 extends org.telegram.ui.Cells.q1 {
-    public final Path f46042ld;
-    public final Paint f46043md;
-    public final int f46044nd;
-    public final int f46045od;
-    public final int f46046pd;
-    public final i81 f46047qd;
+import android.text.TextUtils;
+import android.widget.EditText;
+import org.telegram.messenger.Utilities;
+public final class g81 extends org.telegram.ui.ActionBar.m0 {
+    public boolean f47386a = false;
+    public final l81 f47387b;
 
-    public g81(i81 i81Var, Context context, int i7, org.telegram.ui.ActionBar.h6 h6Var, int i10, int i11, int i12) {
-        super(context, i7, false, null, h6Var);
-        this.f46047qd = i81Var;
-        this.f46044nd = i10;
-        this.f46045od = i11;
-        this.f46046pd = i12;
-        this.f46042ld = new Path();
-        this.f46043md = new Paint(1);
+    public g81(l81 l81Var) {
+        this.f47387b = l81Var;
     }
 
     @Override
-    public final void j1(Canvas canvas) {
-        this.R4 = 0;
-        this.S4 = this.P4.size() - 1;
-        super.j1(canvas);
+    public final void h() {
+        l81 l81Var = this.f47387b;
+        if (l81Var.f48895a.getVisibility() != 0) {
+            l81Var.f48895a.setVisibility(0);
+            l81Var.f48895a.setAlpha(0.0f);
+        }
+        l81Var.f48901r.setVisibility(8);
+        l81Var.d.f();
+        l81Var.f48895a.animate().alpha(1.0f).setDuration(150L).setListener(null).start();
+        l81Var.f48902s.animate().alpha(0.0f).setDuration(150L).setListener(new f81(this, 0)).start();
+        this.f47386a = false;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        canvas.save();
-        int b22 = b2(this.f46044nd);
-        float U1 = U1(b22);
-        float T1 = T1(b22);
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(getPollButtonsLeft(), U1, getPollButtonsRight(), T1);
-        Path path = this.f46042ld;
-        path.rewind();
-        path.addRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), Path.Direction.CW);
-        Paint paint = this.f46043md;
-        paint.setColor(0);
-        paint.setShadowLayer(org.telegram.messenger.g0.L(2.0f), 0.0f, org.telegram.messenger.g0.L(0.66f), org.telegram.ui.ActionBar.m6.r1(this.f46047qd.f46573y * 0.2f, -16777216));
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), paint);
-        canvas.clipPath(path);
-        d1(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        setMeasuredDimension(this.f46045od, this.f46046pd);
-    }
-
-    @Override
-    public final void setPressed(boolean z9) {
+    public final void l(EditText editText) {
+        String obj = editText.getText().toString();
+        k81 k81Var = this.f47387b.f48898e;
+        if (k81Var.f48646e != null) {
+            Utilities.f22418g.a(k81Var.f48646e);
+            k81Var.f48646e = null;
+        }
+        if (TextUtils.isEmpty(obj)) {
+            k81Var.f48645c.clear();
+            k81Var.d.clear();
+            k81Var.f();
+            k81Var.h.f48901r.setVisibility(8);
+        } else {
+            int i7 = k81Var.f48647f + 1;
+            k81Var.f48647f = i7;
+            org.telegram.messenger.p5 p5Var = Utilities.f22418g;
+            j81 j81Var = new j81(k81Var, obj, i7, 0);
+            k81Var.f48646e = j81Var;
+            p5Var.d(j81Var, 300L);
+        }
+        if (!this.f47386a && !TextUtils.isEmpty(obj)) {
+            if (this.f47387b.f48902s.getVisibility() != 0) {
+                this.f47387b.f48902s.setVisibility(0);
+                this.f47387b.f48902s.setAlpha(0.0f);
+            }
+            this.f47387b.f48895a.animate().alpha(0.0f).setDuration(150L).setListener(new f81(this, 1)).start();
+            this.f47387b.f48898e.d.clear();
+            this.f47387b.f48898e.f48645c.clear();
+            this.f47387b.f48898e.f();
+            this.f47387b.f48902s.animate().setListener(null).alpha(1.0f).setDuration(150L).start();
+            this.f47386a = true;
+        } else if (this.f47386a && TextUtils.isEmpty(obj)) {
+            h();
+        }
     }
 }

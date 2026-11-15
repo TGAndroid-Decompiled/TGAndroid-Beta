@@ -1,20 +1,271 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
+import android.graphics.BlendMode;
 import android.graphics.Canvas;
-public final class xf0 {
-    public Canvas f40298a;
-    public Bitmap f40299b;
-    public boolean f40300c;
-    public boolean d;
-    public boolean f40301e;
-    public boolean f40302f;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RecordingCanvas;
+import android.graphics.RectF;
+import android.graphics.RenderEffect;
+import android.graphics.RenderNode;
+import android.graphics.Shader;
+import android.view.View;
+public final class xf0 implements yf0 {
+    public final float f41676f;
+    public final Paint f41678i;
+    public final RectF f41679j;
+    public final zf0 f41680k;
+    public final Paint f41672a = new Paint(1);
+    public final RenderNode f41673b = new RenderNode("render");
+    public final RenderNode f41674c = new RenderNode("effectNotch");
+    public final RenderNode d = new RenderNode("effect");
+    public final RenderNode f41675e = new RenderNode("blur");
+    public final RectF f41677g = new RectF();
+    public final RectF h = new RectF();
 
-    public final void a() {
-        this.f40300c = true;
-        if (!this.f40301e) {
-            this.d = true;
-            this.f40299b.recycle();
+    public xf0(zf0 zf0Var, float f10) {
+        this.f41680k = zf0Var;
+        Paint paint = new Paint();
+        this.f41678i = paint;
+        this.f41679j = new RectF();
+        this.f41676f = f10;
+        paint.setColor(-16777216);
+        paint.setBlendMode(BlendMode.SRC_IN);
+    }
+
+    @Override
+    public final void a(float f10) {
+        RenderNode renderNode = this.d;
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        renderNode.setRenderEffect(RenderEffect.createBlurEffect(f10, f10, tileMode));
+        this.f41674c.setRenderEffect(RenderEffect.createBlurEffect(f10, f10, tileMode));
+        this.f41672a.setColorFilter(new ColorMatrixColorFilter(new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 51.0f, -6375.0f}));
+    }
+
+    @Override
+    public final void b(gx gxVar, Canvas canvas) {
+        Paint paint;
+        float T1;
+        float f10;
+        float f11;
+        float f12;
+        float f13;
+        float f14;
+        Paint paint2;
+        zf0 zf0Var = this.f41680k;
+        Paint paint3 = zf0Var.f42352a;
+        Path path = zf0Var.f42353b;
+        if (!canvas.isHardwareAccelerated()) {
+            return;
         }
+        RectF rectF = this.f41677g;
+        rectF.set(0.0f, 0.0f, zf0Var.getWidth(), zf0Var.getHeight());
+        int childCount = zf0Var.getChildCount();
+        RectF rectF2 = this.f41679j;
+        if (childCount > 0) {
+            View childAt = zf0Var.getChildAt(0);
+            float scaleX = childAt.getScaleX() * childAt.getWidth();
+            float scaleY = childAt.getScaleY() * childAt.getHeight();
+            float x10 = childAt.getX();
+            float y10 = childAt.getY();
+            rectF2.set(x10, y10, scaleX + x10, scaleY + y10);
+            org.telegram.messenger.yr yrVar = zf0Var.f42357n;
+            if (yrVar != null) {
+                rectF2.union(yrVar.f27809e);
+            }
+            rectF2.inset(-org.telegram.messenger.g0.L(20.0f), -org.telegram.messenger.g0.L(20.0f));
+            rectF2.intersect(rectF);
+            rectF2.top = 0.0f;
+        } else {
+            rectF2.set(rectF);
+        }
+        rectF2.bottom += org.telegram.messenger.g0.L(32.0f);
+        int ceil = (int) Math.ceil(rectF2.width());
+        int ceil2 = (int) Math.ceil(rectF2.height());
+        float f15 = rectF2.left;
+        float f16 = rectF2.top;
+        this.f41673b.setPosition(0, 0, ceil, ceil2);
+        this.f41675e.setPosition(0, 0, ceil, ceil2);
+        this.d.setPosition(0, 0, ceil, ceil2);
+        this.f41674c.setPosition(0, 0, ceil, ceil2);
+        float f17 = ceil;
+        float f18 = ceil2;
+        rectF2.set(0.0f, 0.0f, f17, f18);
+        RecordingCanvas beginRecording = this.f41673b.beginRecording();
+        float f19 = -f15;
+        float f20 = -f16;
+        beginRecording.translate(f19, f20);
+        int z12 = (int) ((1.0f - org.telegram.messenger.g0.z1(zf0Var.f42355e, 0.5f, 1.0f)) * 255.0f);
+        int b10 = c8.i9.b(z12, 0, 255);
+        zf0.a((zf0) gxVar.f35079b, beginRecording);
+        this.f41673b.endRecording();
+        float f21 = this.f41676f;
+        float z10 = com.google.android.gms.internal.vision.e2.z(f21, 1.0f, 2.0f, com.google.android.gms.internal.vision.e2.x(zf0Var.f42356f, 0.5f, f21, (f21 / 4.0f) + 1.0f));
+        RecordingCanvas beginRecording2 = this.f41675e.beginRecording();
+        float f22 = 1.0f / z10;
+        beginRecording2.scale(f22, f22, 0.0f, 0.0f);
+        beginRecording2.drawRenderNode(this.f41673b);
+        this.f41675e.endRecording();
+        float f23 = f21 + 2.0f;
+        RecordingCanvas beginRecording3 = this.d.beginRecording();
+        float f24 = 1.0f / f23;
+        beginRecording3.scale(f24, f24, 0.0f, 0.0f);
+        Paint paint4 = this.f41678i;
+        if (b10 < 255) {
+            beginRecording3.saveLayer(rectF2, null);
+            beginRecording3.drawRenderNode(this.f41673b);
+            beginRecording3.drawRect(rectF2, paint4);
+            beginRecording3.restore();
+        }
+        float L = org.telegram.messenger.g0.L(7.0f) * f23;
+        float f25 = zf0Var.f42355e;
+        if (f25 < 0.5f) {
+            paint = paint4;
+            T1 = org.telegram.messenger.g0.T1(0.0f, L, f25 / 0.5f);
+        } else {
+            paint = paint4;
+            T1 = org.telegram.messenger.g0.T1(L, 0.0f, (f25 - 0.5f) / 0.5f);
+        }
+        if (zf0Var.getChildCount() > 0) {
+            View childAt2 = zf0Var.getChildAt(0);
+            float scaleX2 = (((childAt2.getScaleX() * childAt2.getWidth()) / 2.0f) + childAt2.getX()) - f15;
+            f10 = T1;
+            float scaleY2 = ((((childAt2.getScaleY() * childAt2.getHeight()) / 2.0f) + childAt2.getY()) + org.telegram.messenger.g0.L(32.0f)) - f16;
+            float scaleX3 = childAt2.getScaleX() * (childAt2.getWidth() / 2.0f);
+            path.rewind();
+            f11 = f15;
+            path.moveTo(scaleX2 - scaleX3, scaleY2 - (((float) Math.cos(0.7853981633974483d)) * scaleX3));
+            path.lineTo(scaleX2, (scaleY2 - scaleX3) - (0.25f * f10));
+            path.lineTo(scaleX2 + scaleX3, scaleY2 - (((float) Math.cos(0.7853981633974483d)) * scaleX3));
+            path.close();
+            beginRecording3.drawPath(path, paint3);
+        } else {
+            f10 = T1;
+            f11 = f15;
+        }
+        if (b10 > 0) {
+            if (b10 != 255) {
+                beginRecording3.saveLayerAlpha(rectF2, b10);
+            }
+            beginRecording3.drawRenderNode(this.f41673b);
+            if (b10 != 255) {
+                beginRecording3.restore();
+            }
+        }
+        this.d.endRecording();
+        RecordingCanvas beginRecording4 = this.f41674c.beginRecording();
+        beginRecording4.scale(f24, f24, 0.0f, 0.0f);
+        if (zf0Var.f42357n != null) {
+            beginRecording4.translate(f19, f20);
+            beginRecording4.translate(0.0f, org.telegram.messenger.g0.L(32.0f));
+            org.telegram.messenger.yr yrVar2 = zf0Var.f42357n;
+            if (yrVar2.f27808c) {
+                float min = Math.min(yrVar2.f27809e.width(), zf0Var.f42357n.f27809e.height()) / 2.0f;
+                RectF rectF3 = zf0Var.f42357n.f27809e;
+                float width = rectF3.bottom - (rectF3.width() / 2.0f);
+                beginRecording4.drawCircle(zf0Var.f42357n.f27809e.centerX(), width, min, paint3);
+                path.rewind();
+                float f26 = f10 / 2.0f;
+                path.moveTo(zf0Var.f42357n.f27809e.centerX() - f26, width);
+                path.lineTo(zf0Var.f42357n.f27809e.centerX(), min + width + f10);
+                path.lineTo(zf0Var.f42357n.f27809e.centerX() + f26, width);
+                path.close();
+                beginRecording4.drawPath(path, paint3);
+            } else if (yrVar2.f27807b) {
+                beginRecording4.drawPath(yrVar2.d, paint3);
+            } else {
+                float max = Math.max(yrVar2.f27809e.width(), zf0Var.f42357n.f27809e.height()) / 2.0f;
+                RectF rectF4 = zf0Var.f42357n.f27809e;
+                RectF rectF5 = this.h;
+                rectF5.set(rectF4);
+                beginRecording4.drawRoundRect(rectF5, max, max, paint3);
+                path.rewind();
+                float f27 = f10 / 2.0f;
+                path.moveTo(rectF5.centerX() - f27, rectF5.bottom);
+                path.lineTo(rectF5.centerX(), rectF5.bottom + f10);
+                path.lineTo(rectF5.centerX() + f27, rectF5.bottom);
+                path.close();
+                beginRecording4.drawPath(path, paint3);
+            }
+            f12 = f18;
+            f13 = f17;
+            f14 = z10;
+            paint2 = paint;
+        } else {
+            f12 = f18;
+            f13 = f17;
+            f14 = z10;
+            paint2 = paint;
+            beginRecording4.drawRect(0.0f, 0.0f, f13, org.telegram.messenger.g0.L(32.0f), paint3);
+            path.rewind();
+            path.moveTo((f13 - f10) / 2.0f, org.telegram.messenger.g0.L(32.0f));
+            path.lineTo(f13 / 2.0f, org.telegram.messenger.g0.L(32.0f) + f10);
+            path.lineTo((f13 + f10) / 2.0f, org.telegram.messenger.g0.L(32.0f));
+            path.close();
+            beginRecording4.drawPath(path, paint3);
+        }
+        this.f41674c.endRecording();
+        canvas.save();
+        canvas.translate(f11, f16 - org.telegram.messenger.g0.L(32.0f));
+        org.telegram.messenger.yr yrVar3 = zf0Var.f42357n;
+        if (yrVar3 != null) {
+            canvas.clipRect(0.0f, yrVar3.f27809e.top, f13, f12);
+        }
+        Paint paint5 = this.f41672a;
+        canvas.saveLayer(rectF2, paint5);
+        canvas.scale(f23, f23);
+        canvas.drawRenderNode(this.f41674c);
+        canvas.drawRenderNode(this.d);
+        canvas.restore();
+        int b11 = c8.i9.b((z12 * 3) / 4, 0, 255);
+        if (b11 < 255) {
+            canvas.saveLayer(rectF2, null);
+            if (zf0Var.f42356f != 0.0f) {
+                canvas.saveLayer(rectF2, paint5);
+                canvas.scale(f14, f14);
+                canvas.drawRenderNode(this.f41675e);
+                canvas.restore();
+            } else {
+                canvas.drawRenderNode(this.f41673b);
+            }
+            canvas.drawRect(rectF2, paint2);
+            canvas.restore();
+        }
+        if (b11 > 0) {
+            if (b11 != 255) {
+                canvas.saveLayerAlpha(rectF2, b11);
+            }
+            if (zf0Var.f42356f != 0.0f) {
+                canvas.saveLayer(rectF2, paint5);
+                canvas.scale(f14, f14);
+                canvas.drawRenderNode(this.f41675e);
+                canvas.restore();
+            } else {
+                canvas.drawRenderNode(this.f41673b);
+            }
+            if (b11 != 255) {
+                canvas.restore();
+            }
+        }
+        canvas.restore();
+    }
+
+    @Override
+    public final void c(float f10) {
+        Shader.TileMode tileMode;
+        if (f10 == 0.0f) {
+            this.f41675e.setRenderEffect(null);
+            return;
+        }
+        RenderNode renderNode = this.f41675e;
+        float f11 = this.f41680k.d;
+        float f12 = this.f41676f;
+        tileMode = Shader.TileMode.DECAL;
+        renderNode.setRenderEffect(RenderEffect.createBlurEffect((f10 * f11) / f12, (f10 * f11) / f12, tileMode));
+    }
+
+    @Override
+    public final void d(int i7, int i10) {
     }
 }

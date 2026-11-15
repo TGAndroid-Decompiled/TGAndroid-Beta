@@ -1,66 +1,81 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class ui0 implements View.OnTouchListener {
-    public final int f50509a;
-    public final ek0 f50510b;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class ui0 implements org.telegram.ui.ActionBar.q1, ss, tj0 {
+    public final int f51958a;
+    public final ek0 f51959b;
 
     public ui0(ek0 ek0Var, int i7) {
-        this.f50509a = i7;
-        this.f50510b = ek0Var;
+        this.f51958a = i7;
+        this.f51959b = ek0Var;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        int i7 = this.f50509a;
-        ek0 ek0Var = this.f50510b;
-        switch (i7) {
-            case 0:
-                if (ek0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    ts tsVar = new ts(null, false);
-                    tsVar.f50336r = new su(28, ek0Var, view);
-                    ek0Var.presentFragment(tsVar);
-                }
-                return true;
-            case 1:
-                if (ek0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ek0Var.getParentActivity());
-                    String M0 = org.telegram.messenger.id.M0(2131747466, null);
-                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27300a;
-                    u1Var.R = M0;
-                    alertDialog$Builder.f(new CharSequence[]{org.telegram.messenger.id.M0(2131747508, null), org.telegram.messenger.id.M0(2131747569, null)}, new k4(ek0Var, 3));
-                    alertDialog$Builder.k(org.telegram.messenger.id.M0(2131752589, null), null);
-                    ek0Var.showDialog(u1Var);
-                }
-                return true;
+    public void d(String str, String str2) {
+        this.f51959b.B1();
+    }
+
+    @Override
+    public void e(ps psVar) {
+        String str;
+        switch (this.f51958a) {
             case 2:
-                if (ek0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    ts tsVar2 = new ts(null, false);
-                    tsVar2.f50336r = new vi0(ek0Var, 2);
-                    ek0Var.presentFragment(tsVar2);
-                }
-                return true;
+                ek0 ek0Var = this.f51959b;
+                ek0Var.Z[5].setText(psVar.f50358a);
+                ek0Var.f46842s = psVar.d;
+                return;
             default:
-                if (ek0Var.getParentActivity() == null) {
-                    return false;
+                ek0 ek0Var2 = this.f51959b;
+                ek0Var2.Z[0].setText(psVar.f50358a);
+                if (ek0Var2.V0.indexOf(psVar.f50358a) != -1) {
+                    ek0Var2.f46804a1 = true;
+                    String str2 = (String) ek0Var2.W0.get(psVar.f50358a);
+                    ek0Var2.Z[1].setText(str2);
+                    String str3 = (String) ek0Var2.Y0.get(str2);
+                    EditTextBoldCursor editTextBoldCursor = ek0Var2.Z[2];
+                    if (str3 != null) {
+                        str = str3.replace('X', (char) 8211);
+                    } else {
+                        str = null;
+                    }
+                    editTextBoldCursor.setHintText(str);
+                    ek0Var2.f46804a1 = false;
                 }
-                if (motionEvent.getAction() == 1) {
-                    ts tsVar3 = new ts(null, false);
-                    tsVar3.f50336r = new vi0(ek0Var, 3);
-                    ek0Var.presentFragment(tsVar3);
+                org.telegram.messenger.g0.i3(new ri0(ek0Var2, 3), 300L);
+                ek0Var2.Z[2].requestFocus();
+                EditTextBoldCursor editTextBoldCursor2 = ek0Var2.Z[2];
+                editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
+                return;
+        }
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        switch (this.f51958a) {
+            case 0:
+                ek0 ek0Var = this.f51959b;
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26600b.getPackageName()));
+                    ek0Var.getParentActivity().startActivity(intent);
+                    return;
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
+                    return;
                 }
-                return true;
+            case 1:
+                this.f51959b.finishFragment();
+                return;
+            case 2:
+            case 3:
+            default:
+                ek0.f0(this.f51959b);
+                return;
+            case 4:
+                ek0.i0(this.f51959b);
+                return;
         }
     }
 }

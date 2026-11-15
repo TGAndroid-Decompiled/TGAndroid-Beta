@@ -1,25 +1,25 @@
 package c4;
 
-import a8.ia;
+import a8.ja;
 import android.content.SharedPreferences;
 import android.widget.EditText;
-import di.v5;
+import fi.m5;
 import h2.x;
 import java.util.List;
-import org.telegram.messenger.di;
+import org.telegram.messenger.bi;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.p10;
-import org.telegram.messenger.qp;
-import org.telegram.messenger.qs;
+import org.telegram.messenger.m10;
+import org.telegram.messenger.np;
+import org.telegram.messenger.ns;
+import org.telegram.messenger.tr;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.messenger.wr;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegateTimestamp;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.r1;
-import org.telegram.ui.ActionBar.u1;
+import org.telegram.ui.ActionBar.q1;
+import org.telegram.ui.ActionBar.t1;
 import org.telegram.ui.Components.ys0;
 import p4.a1;
 import p4.c1;
@@ -27,73 +27,74 @@ import p4.d0;
 import p4.g1;
 import p4.v;
 import p4.y0;
-public final class n implements h2.j, h2.o, RequestDelegateTimestamp, r1, wr, y0, a1 {
-    public final int f5296a;
-    public final int f5297b;
-    public final long f5298c;
+import w7.s;
+public final class n implements h2.j, h2.o, RequestDelegateTimestamp, q1, tr, y0, a1 {
+    public final int f4115a;
+    public final int f4116b;
+    public final long f4117c;
     public final Object d;
 
     public n(long j3, int i7, Object obj, int i10) {
-        this.f5296a = i10;
-        this.f5298c = j3;
-        this.f5297b = i7;
+        this.f4115a = i10;
+        this.f4117c = j3;
+        this.f4116b = i7;
         this.d = obj;
     }
 
     @Override
     public void a(String str) {
-        ys0.f((ys0) this.d, this.f5298c, this.f5297b, str);
+        ys0.f((ys0) this.d, this.f4117c, this.f4116b, str);
     }
 
     @Override
     public void accept(Object obj) {
-        boolean z9;
+        boolean z10;
         o oVar = (o) this.d;
         a aVar = (a) obj;
         oVar.h.getClass();
-        byte[] w02 = sa.d.w0(aVar.f5272a, aVar.f5274c);
-        x xVar = oVar.f5301c;
+        byte[] k02 = s.k0(aVar.f4091a, aVar.f4093c);
+        x xVar = oVar.f4120c;
         xVar.getClass();
-        xVar.L(w02.length, w02);
-        oVar.f5299a.b(w02.length, xVar);
-        long j3 = aVar.f5273b;
+        xVar.L(k02.length, k02);
+        oVar.f4118a.b(k02.length, xVar);
+        long j3 = aVar.f4092b;
         int i7 = (j3 > (-9223372036854775807L) ? 1 : (j3 == (-9223372036854775807L) ? 0 : -1));
-        long j10 = this.f5298c;
+        long j10 = this.f4117c;
         if (i7 == 0) {
-            if (oVar.h.f10624x == Long.MAX_VALUE) {
-                z9 = true;
+            if (oVar.h.f10455x == Long.MAX_VALUE) {
+                z10 = true;
             } else {
-                z9 = false;
+                z10 = false;
             }
-            ia.p(z9);
+            ja.p(z10);
         } else {
-            long j11 = oVar.h.f10624x;
+            long j11 = oVar.h.f10455x;
             if (j11 == Long.MAX_VALUE) {
                 j10 += j3;
             } else {
                 j10 = j3 + j11;
             }
         }
-        oVar.f5299a.c(j10, this.f5297b | 1, w02.length, 0, null);
+        oVar.f4118a.c(j10, this.f4116b | 1, k02.length, 0, null);
     }
 
     @Override
     public void c(g1 g1Var, v vVar) {
-        g1Var.s(((c1) this.d).m1(vVar, g1Var, this.f5297b), this.f5298c);
+        g1Var.s(((c1) this.d).m1(vVar, g1Var, this.f4116b), this.f4117c);
     }
 
     @Override
-    public void g(u1 u1Var, int i7) {
-        int i10 = this.f5296a;
+    public void h(t1 t1Var, int i7) {
+        int i10 = this.f4115a;
         Object obj = this.d;
-        int i11 = this.f5297b;
-        long j3 = this.f5298c;
+        int i11 = this.f4116b;
+        long j3 = this.f4117c;
         switch (i10) {
             case 3:
                 EditText editText = (EditText) obj;
                 String str = "";
                 if (j3 > 0) {
-                    TLRPC.UserFull b22 = qp.s1(i11).b2(p10.i(i11).e());
+                    TLRPC.UserFull b22 = np.s1(i11).b2(m10.i(i11).e());
                     String trim = editText.getText().toString().replace("\n", " ").replaceAll(" +", " ").trim();
                     if (b22 != null) {
                         String str2 = b22.about;
@@ -102,20 +103,20 @@ public final class n implements h2.j, h2.o, RequestDelegateTimestamp, r1, wr, y0
                         }
                         if (str.equals(trim)) {
                             g0.v1(editText);
-                            u1Var.dismiss();
+                            t1Var.dismiss();
                             return;
                         }
                         b22.about = trim;
-                        qs.f(i11).k(67, Long.valueOf(j3), b22);
+                        ns.f(i11).k(67, Long.valueOf(j3), b22);
                     }
                     TL_account.updateProfile updateprofile = new TL_account.updateProfile();
                     updateprofile.about = trim;
                     updateprofile.flags |= 4;
-                    qs.e().k(292, 2, Long.valueOf(j3));
-                    ConnectionsManager.getInstance(i11).sendRequest(updateprofile, new v5(18), 2);
+                    ns.e().k(292, 2, Long.valueOf(j3));
+                    ConnectionsManager.getInstance(i11).sendRequest(updateprofile, new m5(18), 2);
                 } else {
                     long j10 = -j3;
-                    TLRPC.ChatFull N0 = qp.s1(i11).N0(j10);
+                    TLRPC.ChatFull N0 = np.s1(i11).N0(j10);
                     String obj2 = editText.getText().toString();
                     if (N0 != null) {
                         String str3 = N0.about;
@@ -124,26 +125,26 @@ public final class n implements h2.j, h2.o, RequestDelegateTimestamp, r1, wr, y0
                         }
                         if (str.equals(obj2)) {
                             g0.v1(editText);
-                            u1Var.dismiss();
+                            t1Var.dismiss();
                             return;
                         }
                         N0.about = obj2;
-                        qs f10 = qs.f(i11);
+                        ns f10 = ns.f(i11);
                         Boolean bool = Boolean.FALSE;
                         f10.k(30, N0, 0, bool, bool);
                     }
-                    qs.e().k(292, 2, Long.valueOf(j3));
-                    qp s12 = qp.s1(i11);
+                    ns.e().k(292, 2, Long.valueOf(j3));
+                    np s12 = np.s1(i11);
                     TLRPC.TL_messages_editChatAbout tL_messages_editChatAbout = new TLRPC.TL_messages_editChatAbout();
                     tL_messages_editChatAbout.peer = s12.j1(-j10);
                     tL_messages_editChatAbout.about = obj2;
-                    s12.getConnectionsManager().sendRequest(tL_messages_editChatAbout, new di(s12, N0, obj2, 7), 64);
+                    s12.getConnectionsManager().sendRequest(tL_messages_editChatAbout, new bi(s12, N0, obj2, 7), 64);
                 }
-                u1Var.dismiss();
+                t1Var.dismiss();
                 return;
             default:
                 Runnable runnable = (Runnable) obj;
-                SharedPreferences.Editor edit = qp.s1(p10.f24474s0).f24768d7.edit();
+                SharedPreferences.Editor edit = np.s1(m10.f24934t0).f25270e7.edit();
                 if (j3 != 0) {
                     edit.putInt("color_" + j3, 0);
                 } else if (i11 == 1) {
@@ -169,51 +170,51 @@ public final class n implements h2.j, h2.o, RequestDelegateTimestamp, r1, wr, y0
     @Override
     public void invoke(Object obj) {
         m2.b bVar = (m2.b) obj;
-        bVar.d((m2.a) this.d, this.f5297b, this.f5298c);
+        bVar.p((m2.a) this.d, this.f4116b, this.f4117c);
     }
 
     @Override
-    public Object l(d0 d0Var, v vVar, int i7) {
+    public Object k(d0 d0Var, v vVar, int i7) {
         int i10;
         long j3;
         List list = (List) this.d;
-        int i11 = this.f5297b;
+        int i11 = this.f4116b;
         if (i11 == -1) {
-            i10 = d0Var.f53229t.o0();
+            i10 = d0Var.f54635t.o0();
         } else {
             i10 = i11;
         }
         if (i11 == -1) {
-            j3 = d0Var.f53229t.l();
+            j3 = d0Var.f54635t.l();
         } else {
-            j3 = this.f5298c;
+            j3 = this.f4117c;
         }
         return d0Var.q(vVar, list, i10, j3);
     }
 
     @Override
     public void run(TLObject tLObject, TLRPC.TL_error tL_error, long j3) {
-        ((VoIPService) this.d).lambda$createGroupInstance$78(this.f5297b, this.f5298c, tLObject, tL_error, j3);
+        ((VoIPService) this.d).lambda$createGroupInstance$78(this.f4116b, this.f4117c, tLObject, tL_error, j3);
     }
 
     public n(Object obj, int i7, long j3, int i10) {
-        this.f5296a = i10;
+        this.f4115a = i10;
         this.d = obj;
-        this.f5297b = i7;
-        this.f5298c = j3;
+        this.f4116b = i7;
+        this.f4117c = j3;
     }
 
     public n(Object obj, long j3, int i7, int i10) {
-        this.f5296a = i10;
+        this.f4115a = i10;
         this.d = obj;
-        this.f5298c = j3;
-        this.f5297b = i7;
+        this.f4117c = j3;
+        this.f4116b = i7;
     }
 
     public n(m2.a aVar, int i7, long j3, long j10) {
-        this.f5296a = 1;
+        this.f4115a = 1;
         this.d = aVar;
-        this.f5297b = i7;
-        this.f5298c = j3;
+        this.f4116b = i7;
+        this.f4117c = j3;
     }
 }

@@ -8,8 +8,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 public final class g implements Collection, Set {
-    public int[] f14a = b0.a.f2888a;
-    public Object[] f15b = b0.a.f2890c;
+    public int[] f14a = b0.a.f2842a;
+    public Object[] f15b = b0.a.f2844c;
     public int f16c;
 
     public g(int i7) {
@@ -82,7 +82,7 @@ public final class g implements Collection, Set {
         int size = elements.size() + this.f16c;
         int i7 = this.f16c;
         int[] iArr = this.f14a;
-        boolean z9 = false;
+        boolean z10 = false;
         if (iArr.length < size) {
             Object[] objArr = this.f15b;
             int[] iArr2 = new int[size];
@@ -95,9 +95,9 @@ public final class g implements Collection, Set {
         }
         if (this.f16c == i7) {
             for (Object obj : elements) {
-                z9 |= add(obj);
+                z10 |= add(obj);
             }
-            return z9;
+            return z10;
         }
         throw new ConcurrentModificationException();
     }
@@ -105,8 +105,8 @@ public final class g implements Collection, Set {
     @Override
     public final void clear() {
         if (this.f16c != 0) {
-            this.f14a = b0.a.f2888a;
-            this.f15b = b0.a.f2890c;
+            this.f14a = b0.a.f2842a;
+            this.f15b = b0.a.f2844c;
             this.f16c = 0;
         }
         if (this.f16c == 0) {
@@ -246,26 +246,26 @@ public final class g implements Collection, Set {
     @Override
     public final boolean removeAll(Collection elements) {
         kotlin.jvm.internal.j.e(elements, "elements");
-        boolean z9 = false;
+        boolean z10 = false;
         for (Object obj : elements) {
-            z9 |= remove(obj);
+            z10 |= remove(obj);
         }
-        return z9;
+        return z10;
     }
 
     @Override
     public final boolean retainAll(Collection elements) {
-        boolean z9;
+        boolean z10;
         kotlin.jvm.internal.j.e(elements, "elements");
         int i7 = this.f16c - 1;
-        boolean z10 = false;
+        boolean z11 = false;
         while (true) {
             int i10 = -1;
             if (-1 < i7) {
                 Object obj = this.f15b[i7];
                 Collection collection = elements;
                 if (collection instanceof Collection) {
-                    z9 = collection.contains(obj);
+                    z10 = collection.contains(obj);
                 } else {
                     if (collection instanceof List) {
                         i10 = ((List) collection).indexOf(obj);
@@ -289,18 +289,18 @@ public final class g implements Collection, Set {
                         }
                     }
                     if (i10 >= 0) {
-                        z9 = true;
+                        z10 = true;
                     } else {
-                        z9 = false;
+                        z10 = false;
                     }
                 }
-                if (!z9) {
+                if (!z10) {
                     f(i7);
-                    z10 = true;
+                    z11 = true;
                 }
                 i7--;
             } else {
-                return z10;
+                return z11;
             }
         }
     }

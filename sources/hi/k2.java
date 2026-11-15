@@ -1,37 +1,45 @@
 package hi;
-public final class k2 extends org.telegram.ui.ActionBar.k {
-    public final int f14767a;
-    public final a3 f14768b;
 
-    public k2(a3 a3Var, int i7) {
-        this.f14767a = i7;
-        this.f14768b = a3Var;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+public final class k2 extends View {
+    public final int f14497a;
+    public final n2 f14498b;
+
+    public k2(n2 n2Var, Context context, int i7) {
+        super(context);
+        this.f14497a = i7;
+        this.f14498b = n2Var;
     }
 
     @Override
-    public final void b(int i7) {
-        int i10 = this.f14767a;
-        a3 a3Var = this.f14768b;
-        switch (i10) {
+    public final void dispatchDraw(Canvas canvas) {
+        switch (this.f14497a) {
             case 0:
-                if (i7 == -1) {
-                    if (!a3Var.D.D()) {
-                        a3Var.v();
-                        return;
-                    }
-                    return;
-                } else if (i7 == 2131296492) {
-                    a3Var.f14546y0 = true;
-                    a3Var.o(true);
-                    return;
-                } else {
-                    return;
-                }
+                n2 n2Var = this.f14498b;
+                n2Var.f14753q.reset();
+                n2Var.b(canvas, true);
+                return;
             default:
-                if (i7 == -1) {
-                    a3Var.v();
-                    return;
-                }
+                n2 n2Var2 = this.f14498b;
+                n2Var2.f14753q.reset();
+                n2Var2.f14753q.postTranslate(-getX(), (-getY()) + org.telegram.messenger.g0.f23603m);
+                n2Var2.f14753q.postScale(1.0f / getScaleX(), 1.0f / getScaleY(), getPivotX(), getPivotY());
+                n2Var2.b(canvas, false);
+                return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i7, int i10) {
+        switch (this.f14497a) {
+            case 0:
+                super.onMeasure(i7, i10);
+                this.f14498b.g();
+                return;
+            default:
+                super.onMeasure(i7, i10);
                 return;
         }
     }

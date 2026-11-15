@@ -1,39 +1,36 @@
 package org.telegram.ui.Components;
 
 import android.animation.ValueAnimator;
-import android.widget.TextView;
-public final class ub0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f38618a;
-    public final ec0 f38619b;
+public final class ub0 implements Runnable {
+    public final int f39991a;
+    public final fc0 f39992b;
 
-    public ub0(ec0 ec0Var, int i7) {
-        this.f38618a = i7;
-        this.f38619b = ec0Var;
+    public ub0(fc0 fc0Var, int i7) {
+        this.f39991a = i7;
+        this.f39992b = fc0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f38618a) {
+    public final void run() {
+        int i7 = this.f39991a;
+        fc0 fc0Var = this.f39992b;
+        switch (i7) {
             case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ec0 ec0Var = this.f38619b;
-                di.b4 b4Var = ec0Var.f33211e;
-                b4Var.setScaleX(org.telegram.messenger.g0.T1(0.8f, 1.0f, floatValue));
-                b4Var.setScaleY(org.telegram.messenger.g0.T1(0.8f, 1.0f, floatValue));
-                b4Var.setAlpha(org.telegram.messenger.g0.T1(0.0f, 1.0f, floatValue));
-                TextView textView = ec0Var.f33221x;
-                textView.setScaleX(org.telegram.messenger.g0.T1(1.0f, 0.9f, floatValue));
-                textView.setScaleY(org.telegram.messenger.g0.T1(1.0f, 0.9f, floatValue));
-                textView.setAlpha(org.telegram.messenger.g0.T1(1.0f, 0.0f, floatValue));
-                ec0Var.f33219s.setAlpha(org.telegram.messenger.g0.T1(0.0f, 1.0f, floatValue));
+                EditTextBoldCursor editTextBoldCursor = fc0Var.f34575r;
+                if (!fc0Var.Q && fc0Var.isAttachedToWindow() && fc0Var.f34579y.getVisibility() != 0 && editTextBoldCursor != null) {
+                    editTextBoldCursor.requestFocus();
+                    org.telegram.messenger.g0.J3(editTextBoldCursor);
+                    return;
+                }
                 return;
             default:
-                ec0 ec0Var2 = this.f38619b;
-                ec0Var2.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ec0Var2.f33205a0 = floatValue2;
-                ec0Var2.h(floatValue2);
-                ec0Var2.setAlpha(ec0Var2.f33205a0);
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(fc0Var.f34563b0, 0.0f);
+                fc0Var.T = ofFloat;
+                ofFloat.addUpdateListener(new vb0(fc0Var, 1));
+                ofFloat.addListener(new h60(fc0Var, 6));
+                ofFloat.setDuration(420L);
+                ofFloat.setInterpolator(er.h);
+                ofFloat.start();
                 return;
         }
     }

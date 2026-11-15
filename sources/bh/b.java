@@ -7,75 +7,75 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import c8.ha;
-import di.d4;
+import c8.ja;
+import fi.v3;
 import java.util.Date;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.id;
+import org.telegram.messenger.hd;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.m5;
-import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.j5;
+import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Cells.pa;
-import org.telegram.ui.Components.v8;
+import org.telegram.ui.Components.t8;
 public final class b extends pa {
-    public final TextView f3404b0;
-    public final FrameLayout f3405c0;
-    public Drawable f3406d0;
-    public Drawable f3407e0;
-    public TL_stories.Boost f3408f0;
-    public final a f3409g0;
+    public final TextView f3356c0;
+    public final FrameLayout f3357d0;
+    public Drawable f3358e0;
+    public Drawable f3359f0;
+    public TL_stories.Boost f3360g0;
+    public final a f3361h0;
 
     public b(Context context) {
         super(context, 0, 0, false);
         int i7;
         int i10;
-        this.f3409g0 = new a(getContext());
-        this.f3405c0 = new FrameLayout(getContext());
+        this.f3361h0 = new a(getContext());
+        this.f3357d0 = new FrameLayout(getContext());
         TextView textView = new TextView(getContext());
-        this.f3404b0 = textView;
-        textView.setTextColor(m6.w0(m6.G6, this.D));
-        this.f3404b0.setTypeface(g0.o());
-        this.f3404b0.setTextSize(12.0f);
-        this.f3404b0.setGravity(17);
-        this.f3405c0.addView(this.f3404b0, ha.c(22.0f, -2));
-        this.f3405c0.setPadding(g0.L(8.0f), 0, g0.L(8.0f), 0);
-        FrameLayout frameLayout = this.f3405c0;
-        boolean z9 = id.f23161a0;
-        if (z9) {
+        this.f3356c0 = textView;
+        textView.setTextColor(j6.w0(j6.G6, this.E));
+        this.f3356c0.setTypeface(g0.o());
+        this.f3356c0.setTextSize(12.0f);
+        this.f3356c0.setGravity(17);
+        this.f3357d0.addView(this.f3356c0, ja.c(22.0f, -2));
+        this.f3357d0.setPadding(g0.L(8.0f), 0, g0.L(8.0f), 0);
+        FrameLayout frameLayout = this.f3357d0;
+        boolean z10 = hd.f24101a0;
+        if (z10) {
             i7 = 3;
         } else {
             i7 = 5;
         }
         int i11 = i7 | 48;
-        if (z9) {
+        if (z10) {
             i10 = 9;
         } else {
             i10 = 0;
         }
-        addView(frameLayout, ha.d(-2, -2.0f, i11, i10, 9.0f, z9 ? 0 : 9, 0.0f));
+        addView(frameLayout, ja.d(-2, -2.0f, i11, i10, 9.0f, z10 ? 0 : 9, 0.0f));
     }
 
     private void setAvatarColorByMonths(int i7) {
-        v8 v8Var = this.E;
+        t8 t8Var = this.F;
         if (i7 == 12) {
-            v8Var.i(-31392, -2796986);
+            t8Var.i(-31392, -2796986);
         } else if (i7 == 6) {
-            v8Var.i(-10703110, -12481584);
+            t8Var.i(-10703110, -12481584);
         } else {
-            v8Var.i(-6631068, -11945404);
+            t8Var.i(-6631068, -11945404);
         }
     }
 
     public TL_stories.Boost getBoost() {
-        return this.f3408f0;
+        return this.f3360g0;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         float L;
         int i7;
-        if (this.S) {
-            if (id.f23161a0) {
+        if (this.T) {
+            if (hd.f24101a0) {
                 L = 0.0f;
             } else {
                 L = g0.L(70.0f);
@@ -83,108 +83,108 @@ public final class b extends pa {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (id.f23161a0) {
+            if (hd.f24101a0) {
                 i7 = g0.L(70.0f);
             } else {
                 i7 = 0;
             }
-            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, m6.f28013k0);
+            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, j6.f28972k0);
         }
     }
 
     public void setStatus(TL_stories.Boost boost) {
         int i7;
-        this.f3408f0 = boost;
-        boolean z9 = boost.gift;
-        FrameLayout frameLayout = this.f3405c0;
-        TextView textView = this.f3404b0;
+        this.f3360g0 = boost;
+        boolean z10 = boost.gift;
+        FrameLayout frameLayout = this.f3357d0;
+        TextView textView = this.f3356c0;
         int i10 = 0;
-        m5 m5Var = this.f29768b;
-        if (!z9 && !boost.giveaway) {
+        j5 j5Var = this.f30885b;
+        if (!z10 && !boost.giveaway) {
             frameLayout.setVisibility(8);
         } else {
             frameLayout.setVisibility(0);
             int i11 = ((boost.expires - boost.date) / 30) / 86400;
             long j3 = boost.stars;
             int i12 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-            d4 d4Var = this.f29766a;
-            v8 v8Var = this.E;
+            v3 v3Var = this.f30883a;
+            t8 t8Var = this.F;
             if (i12 > 0) {
-                m5Var.l(id.G((int) j3, "BoostingBoostStars", new Object[0]), false);
-                v8Var.g(26);
-                d4Var.e(null, v8Var);
-                m5Var.i(null);
+                j5Var.l(hd.G((int) j3, "BoostingBoostStars", new Object[0]), false);
+                t8Var.g(26);
+                v3Var.f(null, t8Var);
+                j5Var.i(null);
             } else if (boost.unclaimed) {
-                m5Var.l(id.M0(2131753177, null), false);
-                v8Var.g(18);
+                j5Var.l(hd.M0(2131753177, null), false);
+                t8Var.g(18);
                 setAvatarColorByMonths(i11);
-                d4Var.e(null, v8Var);
-                m5Var.i(null);
+                v3Var.f(null, t8Var);
+                j5Var.i(null);
             } else if (boost.user_id == -1) {
-                m5Var.l(id.M0(2131753178, null), false);
-                v8Var.g(19);
+                j5Var.l(hd.M0(2131753178, null), false);
+                t8Var.g(19);
                 setAvatarColorByMonths(i11);
-                d4Var.e(null, v8Var);
-                m5Var.i(null);
+                v3Var.f(null, t8Var);
+                j5Var.i(null);
             }
-            String format = id.E0().o0().format(new Date(boost.expires * 1000));
+            String format = hd.E0().o0().format(new Date(boost.expires * 1000));
             int i13 = (boost.stars > 0L ? 1 : (boost.stars == 0L ? 0 : -1));
-            m5 m5Var2 = this.f29769c;
+            j5 j5Var2 = this.f30887c;
             if (i13 > 0) {
-                m5Var2.l(id.a0(null, null, 2131753244, format), false);
+                j5Var2.l(hd.a0(null, null, 2131753244, format), false);
             } else {
-                m5Var2.l(id.a0(null, null, 2131753524, format), false);
+                j5Var2.l(hd.a0(null, null, 2131753524, format), false);
             }
             if (boost.gift) {
-                if (this.f3407e0 == null) {
+                if (this.f3359f0 == null) {
                     Drawable drawable = getResources().getDrawable(2131231947);
-                    this.f3407e0 = drawable;
+                    this.f3359f0 = drawable;
                     drawable.setColorFilter(new PorterDuffColorFilter(-3240417, PorterDuff.Mode.MULTIPLY));
                 }
                 textView.setTextColor(-3240417);
-                textView.setCompoundDrawablesWithIntrinsicBounds(this.f3407e0, (Drawable) null, (Drawable) null, (Drawable) null);
+                textView.setCompoundDrawablesWithIntrinsicBounds(this.f3359f0, (Drawable) null, (Drawable) null, (Drawable) null);
                 textView.setCompoundDrawablePadding(g0.L(4.0f));
-                textView.setText(id.M0(2131753501, null));
-                frameLayout.setBackground(m6.e0(g0.L(12.0f), g0.L(12.0f), m6.r1(0.2f, -3240417)));
+                textView.setText(hd.M0(2131753501, null));
+                frameLayout.setBackground(j6.e0(g0.L(12.0f), g0.L(12.0f), j6.r1(0.2f, -3240417)));
             }
             if (boost.giveaway) {
-                if (this.f3406d0 == null) {
+                if (this.f3358e0 == null) {
                     Drawable drawable2 = getResources().getDrawable(2131231953);
-                    this.f3406d0 = drawable2;
+                    this.f3358e0 = drawable2;
                     drawable2.setColorFilter(new PorterDuffColorFilter(-13397548, PorterDuff.Mode.MULTIPLY));
                 }
                 textView.setTextColor(-13397548);
-                textView.setCompoundDrawablesWithIntrinsicBounds(this.f3406d0, (Drawable) null, (Drawable) null, (Drawable) null);
+                textView.setCompoundDrawablesWithIntrinsicBounds(this.f3358e0, (Drawable) null, (Drawable) null, (Drawable) null);
                 textView.setCompoundDrawablePadding(g0.L(4.0f));
-                textView.setText(id.M0(2131753492, null));
-                frameLayout.setBackground(m6.e0(g0.L(12.0f), g0.L(12.0f), m6.r1(0.2f, -13397548)));
+                textView.setText(hd.M0(2131753492, null));
+                frameLayout.setBackground(j6.e0(g0.L(12.0f), g0.L(12.0f), j6.r1(0.2f, -13397548)));
             }
         }
         int i14 = boost.multiplier;
         if (i14 > 0) {
             String valueOf = String.valueOf(i14);
-            a aVar = this.f3409g0;
-            aVar.f3403f = valueOf;
-            aVar.f3402e = aVar.f3399a.measureText(valueOf);
+            a aVar = this.f3361h0;
+            aVar.f3355f = valueOf;
+            aVar.f3354e = aVar.f3351a.measureText(valueOf);
             aVar.invalidateSelf();
-            m5Var.i(aVar);
+            j5Var.i(aVar);
         } else {
-            m5Var.i(null);
+            j5Var.i(null);
         }
         if (frameLayout.getVisibility() == 0) {
             int L = g0.L(22.0f) + ((int) textView.getPaint().measureText(textView.getText().toString()));
-            if (id.f23161a0) {
+            if (hd.f24101a0) {
                 i7 = L;
             } else {
                 i7 = 0;
             }
-            int paddingTop = m5Var.getPaddingTop();
-            if (!id.f23161a0) {
+            int paddingTop = j5Var.getPaddingTop();
+            if (!hd.f24101a0) {
                 i10 = L;
             }
-            m5Var.setPadding(i7, paddingTop, i10, m5Var.getPaddingBottom());
+            j5Var.setPadding(i7, paddingTop, i10, j5Var.getPaddingBottom());
             return;
         }
-        m5Var.setPadding(0, m5Var.getPaddingTop(), 0, m5Var.getPaddingBottom());
+        j5Var.setPadding(0, j5Var.getPaddingTop(), 0, j5Var.getPaddingBottom());
     }
 }

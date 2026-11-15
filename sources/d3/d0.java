@@ -1,81 +1,163 @@
 package d3;
 
-import android.content.Context;
-import android.os.Build;
-import android.view.Surface;
+import android.os.SystemClock;
+import android.os.Trace;
+import e2.s0;
+import e2.x1;
+import h2.l0;
+import java.util.NoSuchElementException;
 public final class d0 {
-    public final g f7971a;
-    public final Context f7972b;
-    public a0 f7973c;
-    public boolean d;
-    public Surface f7974e;
-    public float f7975f;
-    public float f7976g;
-    public float h;
-    public float f7977i;
-    public int f7978j;
-    public long f7979k;
-    public long f7980l;
-    public long f7981m;
-    public long f7982n;
-    public long f7983o;
-    public long f7984p;
-    public long f7985q;
-    public long f7986r;
-    public long f7987s;
+    public final q4.q f7370a;
+    public final x f7371b;
+    public final w f7372c = new w();
+    public final h2.j0 d = new h2.j0();
+    public final h2.j0 f7373e = new h2.j0();
+    public final h2.s f7374f;
+    public final y f7375g;
+    public long h;
+    public long f7376i;
+    public long f7377j;
+    public x1 f7378k;
+    public long f7379l;
 
-    public d0(Context context) {
-        this.f7972b = context;
+    public d0(q4.q qVar, x xVar, y yVar) {
+        this.f7370a = qVar;
+        this.f7371b = xVar;
+        this.f7375g = yVar;
         ?? obj = new Object();
-        obj.f8015a = new f();
-        obj.f8016b = new f();
-        obj.d = -9223372036854775807L;
-        this.f7971a = obj;
-        this.f7975f = -1.0f;
-        this.f7977i = 1.0f;
-        this.f7978j = 0;
+        int highestOneBit = Integer.bitCount(16) != 1 ? Integer.highestOneBit(15) << 1 : 16;
+        obj.f13505a = 0;
+        obj.f13506b = -1;
+        obj.f13507c = 0;
+        obj.f13508e = new long[highestOneBit];
+        obj.d = highestOneBit - 1;
+        this.f7374f = obj;
+        this.h = -9223372036854775807L;
+        this.f7378k = x1.d;
+        this.f7376i = -9223372036854775807L;
+        this.f7377j = -9223372036854775807L;
     }
 
-    public final void a() {
-        Surface surface;
-        if (Build.VERSION.SDK_INT >= 30 && (surface = this.f7974e) != null && this.f7978j != Integer.MIN_VALUE && this.h != 0.0f && surface.isValid()) {
-            this.h = 0.0f;
-            g0.f.v(this.f7974e, 0.0f);
-        }
-    }
-
-    public final void b() {
-        this.f7981m = 0L;
-        this.f7985q = -1L;
-        this.f7982n = -1L;
-        this.f7979k = 0L;
-        this.f7980l = 0L;
-    }
-
-    public final void c() {
-        throw new UnsupportedOperationException("Method not decompiled: d3.d0.c():void");
-    }
-
-    public final void d(boolean z9) {
-        Surface surface;
-        float f10;
-        if (Build.VERSION.SDK_INT >= 30 && (surface = this.f7974e) != null && this.f7978j != Integer.MIN_VALUE && surface.isValid()) {
-            if (this.d) {
-                float f11 = this.f7976g;
-                if (f11 != -1.0f) {
-                    f10 = f11 * this.f7977i;
-                    if (!z9 || this.h != f10) {
-                        this.h = f10;
-                        g0.f.v(this.f7974e, f10);
-                    }
-                    return;
+    public final void a(long j3, long j10) {
+        boolean z10;
+        long j11;
+        e2.u uVar;
+        final q4.q qVar = this.f7370a;
+        e eVar = (e) qVar.f55253c;
+        while (true) {
+            h2.s sVar = this.f7374f;
+            int i7 = sVar.f13507c;
+            if (i7 == 0) {
+                return;
+            }
+            if (i7 != 0) {
+                long j12 = ((long[]) sVar.f13508e)[sVar.f13505a];
+                Long l10 = (Long) this.f7373e.j(j12);
+                x xVar = this.f7371b;
+                if (l10 != null && l10.longValue() != this.f7379l) {
+                    this.f7379l = l10.longValue();
+                    xVar.e(2);
                 }
+                long j13 = this.f7379l;
+                x xVar2 = this.f7371b;
+                w wVar = this.f7372c;
+                int a10 = xVar2.a(j12, j3, j10, j13, false, false, wVar);
+                if (a10 != 5 && a10 != 4) {
+                    this.f7375g.a(j12, wVar.f7476a);
+                }
+                boolean z11 = false;
+                if (a10 != 0 && a10 != 1) {
+                    if (a10 != 2 && a10 != 3) {
+                        if (a10 != 4) {
+                            if (a10 == 5) {
+                                return;
+                            }
+                            throw new IllegalStateException(String.valueOf(a10));
+                        }
+                        this.f7376i = j12;
+                    } else {
+                        this.f7376i = j12;
+                        sVar.d();
+                        eVar.f7386i.execute(new Runnable() {
+                            @Override
+                            public final void run() {
+                                switch (r2) {
+                                    case 0:
+                                        ((e) qVar.f55253c).h.onFirstFrameRendered();
+                                        return;
+                                    default:
+                                        ((e) qVar.f55253c).h.n();
+                                        return;
+                                }
+                            }
+                        });
+                        i iVar = (i) eVar.d.remove();
+                        l lVar = iVar.f7410c;
+                        u2.l lVar2 = iVar.f7408a;
+                        int i10 = iVar.f7409b;
+                        Trace.beginSection("dropVideoBuffer");
+                        lVar2.f(i10);
+                        Trace.endSection();
+                        lVar.R0(0, 1);
+                    }
+                } else {
+                    this.f7376i = j12;
+                    if (a10 == 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    long d = sVar.d();
+                    x1 x1Var = (x1) this.d.j(d);
+                    if (x1Var != null && !x1Var.equals(x1.d) && !x1Var.equals(this.f7378k)) {
+                        this.f7378k = x1Var;
+                        e2.t tVar = new e2.t();
+                        tVar.f10405y = x1Var.f10485a;
+                        tVar.f10406z = x1Var.f10486b;
+                        tVar.f10399r = s0.n("video/raw");
+                        qVar.f55252b = new e2.u(tVar);
+                        eVar.f7386i.execute(new c1.c(20, qVar, x1Var));
+                    }
+                    if (z10) {
+                        j11 = System.nanoTime();
+                    } else {
+                        j11 = wVar.f7477b;
+                    }
+                    long j14 = j11;
+                    if (xVar.f7481e != 3) {
+                        z11 = true;
+                    }
+                    xVar.f7481e = 3;
+                    xVar.f7487l.getClass();
+                    xVar.f7483g = l0.S(SystemClock.elapsedRealtime());
+                    if (z11 && eVar.f7383e != null) {
+                        eVar.f7386i.execute(new Runnable() {
+                            @Override
+                            public final void run() {
+                                switch (r2) {
+                                    case 0:
+                                        ((e) qVar.f55253c).h.onFirstFrameRendered();
+                                        return;
+                                    default:
+                                        ((e) qVar.f55253c).h.n();
+                                        return;
+                                }
+                            }
+                        });
+                    }
+                    e2.u uVar2 = (e2.u) qVar.f55252b;
+                    if (uVar2 == null) {
+                        uVar = new e2.u(new e2.t());
+                    } else {
+                        uVar = uVar2;
+                    }
+                    eVar.f7387j.a(d, j14, uVar, null);
+                    i iVar2 = (i) eVar.d.remove();
+                    iVar2.f7410c.M0(iVar2.f7408a, iVar2.f7409b, j14);
+                }
+            } else {
+                throw new NoSuchElementException();
             }
-            f10 = 0.0f;
-            if (!z9) {
-            }
-            this.h = f10;
-            g0.f.v(this.f7974e, f10);
         }
     }
 }

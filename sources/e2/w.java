@@ -4,39 +4,39 @@ import android.os.Bundle;
 import j$.util.Objects;
 public final class w extends d1 {
     public static final String d;
-    public static final String f10638e;
-    public final boolean f10639b;
-    public final boolean f10640c;
+    public static final String f10469e;
+    public final boolean f10470b;
+    public final boolean f10471c;
 
     static {
-        String str = h2.m0.f14114a;
+        String str = h2.l0.f13471a;
         d = Integer.toString(1, 36);
-        f10638e = Integer.toString(2, 36);
+        f10469e = Integer.toString(2, 36);
     }
 
     public w() {
-        this.f10639b = false;
-        this.f10640c = false;
+        this.f10470b = false;
+        this.f10471c = false;
     }
 
     @Override
     public final boolean b() {
-        return this.f10639b;
+        return this.f10470b;
     }
 
     @Override
     public final Bundle c() {
         Bundle bundle = new Bundle();
-        bundle.putInt(d1.f10219a, 0);
-        bundle.putBoolean(d, this.f10639b);
-        bundle.putBoolean(f10638e, this.f10640c);
+        bundle.putInt(d1.f10050a, 0);
+        bundle.putBoolean(d, this.f10470b);
+        bundle.putBoolean(f10469e, this.f10471c);
         return bundle;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof w) {
             w wVar = (w) obj;
-            if (this.f10640c == wVar.f10640c && this.f10639b == wVar.f10639b) {
+            if (this.f10471c == wVar.f10471c && this.f10470b == wVar.f10470b) {
                 return true;
             }
             return false;
@@ -45,11 +45,11 @@ public final class w extends d1 {
     }
 
     public final int hashCode() {
-        return Objects.hash(Boolean.valueOf(this.f10639b), Boolean.valueOf(this.f10640c));
+        return Objects.hash(Boolean.valueOf(this.f10470b), Boolean.valueOf(this.f10471c));
     }
 
-    public w(boolean z9) {
-        this.f10639b = true;
-        this.f10640c = z9;
+    public w(boolean z10) {
+        this.f10470b = true;
+        this.f10471c = z10;
     }
 }

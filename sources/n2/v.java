@@ -1,26 +1,26 @@
 package n2;
 public interface v {
-    void H0();
+    void G();
 
-    void I();
-
-    void O1(long j3, int i7, long j10);
-
-    void U0(Exception exc);
+    void T(Exception exc);
 
     void W();
 
-    void Y(r0 r0Var);
+    void a(int i7);
 
-    void c(int i7);
+    void b(long j3);
 
-    void c1();
+    void c(boolean z10);
 
-    void e(long j3);
+    void f(s0 s0Var);
 
-    void f(boolean z9);
+    void n0();
 
-    void i(r0 r0Var);
+    void q();
 
-    void t1();
+    void t();
+
+    void u(s0 s0Var);
+
+    void w0(long j3, int i7, long j10);
 }

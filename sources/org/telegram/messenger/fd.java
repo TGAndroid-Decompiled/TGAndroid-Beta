@@ -1,137 +1,173 @@
 package org.telegram.messenger;
 
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.os.SystemClock;
 import android.text.TextUtils;
-import java.io.File;
-public final class fd {
-    public String f22400a;
-    public String f22401b;
-    public String f22402c;
-    public String d;
-    public String f22403e;
-    public String f22404f;
-    public boolean f22405g;
-    public int h;
-    public int f22406i;
-    public boolean f22407j;
-    public int f22408k;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_ephemeral;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.ui.Components.b41;
+import org.telegram.ui.Components.fj0;
+import org.telegram.ui.Components.gt0;
+import org.telegram.ui.Components.kt0;
+import org.telegram.ui.Components.vt0;
+public final class fd implements j9, Vector.TLDeserializer, OnCompleteListener, org.telegram.ui.ActionBar.q1, vt0, t10, gt0, y10, jh.i, fj0, kt0 {
+    public final int f23483a;
 
-    public static fd a(String str) {
-        String str2;
-        String str3;
-        fd fdVar = null;
-        fdVar = null;
-        fdVar = null;
-        if (str != null && str.length() != 0) {
-            String[] split = str.split("\\|");
-            if (split.length >= 4) {
-                ?? obj = new Object();
-                boolean z9 = false;
-                obj.f22400a = split[0];
-                obj.f22401b = split[1];
-                obj.f22402c = split[2].toLowerCase();
-                obj.d = split[3];
-                if (split.length >= 5) {
-                    obj.h = Utilities.z(split[4]).intValue();
+    public fd(int i7) {
+        this.f23483a = i7;
+    }
+
+    public static Shader.TileMode c() {
+        return Shader.TileMode.DECAL;
+    }
+
+    @Override
+    public Boolean a(b41 b41Var, View view, Integer num, Float f10, Float f11) {
+        return Boolean.FALSE;
+    }
+
+    @Override
+    public Object d(Number number, Object obj) {
+        Integer num = (Integer) number;
+        Integer num2 = (Integer) obj;
+        switch (this.f23483a) {
+            case 21:
+                if (num.intValue() == 0) {
+                    return hd.G(num2.intValue(), "MaximumReactionsValue", new Object[0]);
                 }
-                if (split.length >= 6) {
-                    str2 = split[5];
-                } else {
-                    str2 = "";
+                return "" + num2;
+            default:
+                if (num.intValue() == 0) {
+                    return hd.H(',', "Stars", num2.intValue());
                 }
-                obj.f22403e = str2;
-                if (split.length >= 7) {
-                    str3 = split[6];
-                } else {
-                    str3 = obj.f22402c;
-                }
-                obj.f22404f = str3;
-                if (split.length >= 8) {
-                    if (Utilities.z(split[7]).intValue() == 1) {
-                        z9 = true;
-                    }
-                    obj.f22405g = z9;
-                }
-                if (split.length >= 9) {
-                    obj.f22406i = Utilities.z(split[8]).intValue();
-                }
-                if (split.length >= 10) {
-                    obj.f22408k = Utilities.z(split[9]).intValue();
-                } else {
-                    obj.f22408k = Integer.MAX_VALUE;
-                }
-                boolean isEmpty = TextUtils.isEmpty(obj.f22403e);
-                fdVar = obj;
-                if (!isEmpty) {
-                    obj.f22403e = obj.f22403e.replace("-", "_");
-                    fdVar = obj;
-                }
+                return "" + num2;
+        }
+    }
+
+    @Override
+    public TLObject deserialize(InputSerializedData inputSerializedData, int i7, boolean z10) {
+        switch (this.f23483a) {
+            case 6:
+                return TLRPC.Peer.TLdeserialize(inputSerializedData, i7, z10);
+            case 7:
+                return TL_account.WebBrowserSettings.TLdeserialize(inputSerializedData, i7, z10);
+            case 8:
+                return TLRPC.MessageEntity.TLdeserialize(inputSerializedData, i7, z10);
+            case 9:
+                return TL_ephemeral.EphemeralMessage.TLdeserialize(inputSerializedData, i7, z10);
+            case 10:
+            case 11:
+            case 12:
+            default:
+                return TLRPC.PollAnswer.TLdeserialize(inputSerializedData, i7, z10);
+            case 13:
+                return TL_iv.RichText.TLdeserialize(inputSerializedData, i7, z10);
+        }
+    }
+
+    @Override
+    public float get(Object obj) {
+        return ((org.telegram.ui.dr) obj).M1;
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        switch (this.f23483a) {
+            case 15:
+                int i10 = gz.f23929a;
+                return;
+            case 18:
+                t1Var.dismiss();
+                return;
+            case 22:
+                t1Var.dismiss();
+                return;
+            default:
+                t1Var.dismiss();
+                return;
+        }
+    }
+
+    @Override
+    public void j(RectF rectF, View view) {
+        view.invalidate();
+    }
+
+    @Override
+    public float k(RecyclerView recyclerView) {
+        return org.telegram.ui.Cells.y0.c(recyclerView);
+    }
+
+    @Override
+    public void l(int i7) {
+        if (i7 == 0) {
+            gz.A(3);
+        } else if (i7 == 1) {
+            gz.A(0);
+        } else if (i7 == 2) {
+            gz.A(1);
+        } else if (i7 == 3) {
+            gz.A(2);
+        }
+    }
+
+    @Override
+    public RecyclerView n(View view) {
+        return ((org.telegram.ui.rd) view).f50928a;
+    }
+
+    @Override
+    public Object o(Object obj) {
+        Void r22 = (Void) obj;
+        switch (this.f23483a) {
+            case 2:
+                return new TLRPC.TL_messageEntityBold();
+            case 3:
+                return new TLRPC.TL_messageEntityItalic();
+            case 4:
+                return new TLRPC.TL_messageEntitySpoiler();
+            default:
+                return new TLRPC.TL_messageEntityStrike();
+        }
+    }
+
+    @Override
+    public void onComplete(Task task) {
+        gz.f23954j = SystemClock.elapsedRealtime();
+        if (!task.isSuccessful()) {
+            if (r2.f26198a) {
+                a8.b("Failed to get regid");
             }
+            gz.h = "__FIREBASE_FAILED__";
+            PushListenerController.sendRegistrationToServer(2, null);
+            return;
         }
-        return fdVar;
-    }
-
-    public final String b() {
-        if (this.d != null && !i() && !j()) {
-            return "local_" + this.f22402c;
-        } else if (j()) {
-            return "unofficial_" + this.f22402c;
-        } else {
-            return this.f22402c;
+        String str = (String) task.getResult();
+        if (!TextUtils.isEmpty(str)) {
+            PushListenerController.sendRegistrationToServer(2, str);
         }
     }
 
-    public final String c() {
-        return this.f22402c.replace("_", "-");
+    @Override
+    public void s(RecyclerView recyclerView) {
+        org.telegram.ui.Cells.y0.b(recyclerView);
     }
 
-    public final File d() {
-        if (j()) {
-            return new File(t0.h(), a8.p0.s(new StringBuilder("unofficial_base_"), this.f22402c, ".xml"));
-        }
-        return null;
+    public fd(Object obj, int i7) {
+        this.f23483a = i7;
     }
 
-    public final File e() {
-        if (i()) {
-            return new File(t0.h(), a8.p0.s(new StringBuilder("remote_"), this.f22402c, ".xml"));
-        }
-        if (j()) {
-            return new File(t0.h(), a8.p0.s(new StringBuilder("unofficial_"), this.f22402c, ".xml"));
-        }
-        if (!TextUtils.isEmpty(this.d)) {
-            return new File(this.d);
-        }
-        return null;
-    }
-
-    public final String f() {
-        String str = this.f22403e;
-        if (str == null) {
-            str = "";
-        }
-        TextUtils.isEmpty(this.f22404f);
-        return this.f22400a + "|" + this.f22401b + "|" + this.f22402c + "|" + this.d + "|" + this.h + "|" + str + "|" + this.f22404f + "|" + (this.f22405g ? 1 : 0) + "|" + this.f22406i + "|" + this.f22408k;
-    }
-
-    public final boolean g() {
-        if (j() && !TextUtils.isEmpty(this.f22403e) && !this.f22403e.equals(this.f22402c)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean h() {
-        if (!TextUtils.isEmpty(this.d) && !i() && !j()) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean i() {
-        return "remote".equals(this.d);
-    }
-
-    public final boolean j() {
-        return "unofficial".equals(this.d);
+    @Override
+    public void p() {
     }
 }

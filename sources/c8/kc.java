@@ -1,24 +1,16 @@
 package c8;
 
-import android.app.AppOpsManager;
-import android.content.Context;
-import android.os.Build;
-import android.os.Process;
-import android.provider.Settings;
+import android.util.Log;
 public abstract class kc {
-    public static ti.n f5750a;
-
-    public static boolean a(Context context) {
-        if (Settings.canDrawOverlays(context)) {
-            return true;
+    public static void a(String str) {
+        boolean isLoggable;
+        if (Log.isLoggable("FirebaseAppIndex", 3)) {
+            isLoggable = true;
+        } else {
+            isLoggable = Log.isLoggable("FirebaseAppIndex", 3);
         }
-        return false;
-    }
-
-    public static boolean b(Context context) {
-        if (Build.VERSION.SDK_INT < 26 || !context.getPackageManager().hasSystemFeature("android.software.picture_in_picture") || ((AppOpsManager) context.getSystemService("appops")).checkOpNoThrow("android:picture_in_picture", Process.myUid(), context.getPackageName()) != 0) {
-            return false;
+        if (isLoggable) {
+            Log.d("FirebaseAppIndex", str);
         }
-        return true;
     }
 }

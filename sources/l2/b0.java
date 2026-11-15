@@ -1,21 +1,22 @@
 package l2;
+public final class b0 implements x0 {
+    public final Object f18899a;
+    public final x2.a0 f18900b;
+    public e2.l1 f18901c;
 
-import e2.x1;
-public final class b0 implements h2.o {
-    public final int f17771a = 0;
-    public final x1 f17772b;
+    public b0(Object obj, x2.a0 a0Var) {
+        this.f18899a = obj;
+        this.f18900b = a0Var;
+        this.f18901c = a0Var.f59468o;
+    }
 
     @Override
-    public final void invoke(Object obj) {
-        switch (this.f17771a) {
-            case 0:
-                ((e2.a1) obj).a(this.f17772b);
-                return;
-            default:
-                x1 x1Var = this.f17772b;
-                ((m2.b) obj).w(x1Var);
-                int i7 = x1Var.f10654a;
-                return;
-        }
+    public final Object a() {
+        return this.f18899a;
+    }
+
+    @Override
+    public final e2.l1 b() {
+        return this.f18901c;
     }
 }

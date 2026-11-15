@@ -1,30 +1,47 @@
 package org.telegram.ui;
-public final class oi extends org.telegram.ui.ActionBar.g1 {
-    public final cn f48531o;
+public final class oi extends gh.b {
+    public final int f49974s;
+    public final an f49975w;
 
-    public oi(cn cnVar, mi miVar) {
-        super(miVar, -2, -2);
-        this.f48531o = cnVar;
+    public oi(an anVar, org.telegram.ui.ActionBar.e6 e6Var, int i7, int i10) {
+        super(i7, e6Var);
+        this.f49974s = i10;
+        this.f49975w = anVar;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        cn cnVar = this.f48531o;
-        if (cnVar.f44483e9 == this) {
-            cnVar.f44483e9 = null;
-            cnVar.f44548j9 = null;
-            cnVar.f44535i9 = null;
-            cnVar.B0.R = true;
-            if (cnVar.f44497f9) {
-                cnVar.w8(false, true, 0.0f);
-            } else {
-                cnVar.f44497f9 = true;
-            }
-            sj sjVar = cnVar.Z;
-            if (sjVar != null && sjVar.getEditField() != null) {
-                cnVar.Z.getEditField().setAllowDrawCursor(true);
-            }
+    public final int A2() {
+        int i7;
+        int i10;
+        switch (this.f49974s) {
+            case 0:
+                an anVar = this.f49975w;
+                i7 = ((org.telegram.ui.ActionBar.e2) anVar).currentAccount;
+                if (!c8.g0.c(i7, anVar.Aa)) {
+                    return i0.a.o(anVar.getThemedColor(org.telegram.ui.ActionBar.j6.Je), 255);
+                }
+                ym ymVar = anVar.Aa;
+                if (ymVar != null && !ymVar.a()) {
+                    a();
+                    return i0.a.o(this.d, 216);
+                }
+                a();
+                return this.d;
+            case 1:
+                return this.f49975w.f45416x.A2();
+            default:
+                an anVar2 = this.f49975w;
+                i10 = ((org.telegram.ui.ActionBar.e2) anVar2).currentAccount;
+                if (!c8.g0.c(i10, anVar2.Aa)) {
+                    return i0.a.o(anVar2.getThemedColor(org.telegram.ui.ActionBar.j6.f28849d6), 255);
+                }
+                ym ymVar2 = anVar2.Aa;
+                if (ymVar2 != null && !ymVar2.a()) {
+                    a();
+                    return i0.a.o(this.d, 216);
+                }
+                a();
+                return this.d;
         }
     }
 }

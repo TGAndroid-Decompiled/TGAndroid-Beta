@@ -1,85 +1,24 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-public final class n50 extends a51 {
-    public float f36242f;
-    public float h;
-    public final Paint f36243n;
-    public float f36244r;
-    public h6.m f36245s;
-    public final x50 f36246w;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class n50 extends org.telegram.ui.Cells.pa {
+    public final TextView f37455c0;
+    public final TextView f37456d0;
 
-    public n50(x50 x50Var, Context context) {
-        super(x50Var, context);
-        this.f36246w = x50Var;
-        this.f36243n = new Paint();
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        x50 x50Var = this.f36246w;
-        x50Var.P1.setTranslationY(org.telegram.messenger.g0.L(64.0f) + org.telegram.messenger.g0.L(6.0f) + (x50Var.f32473x1 - x50Var.f28704s0));
-        float f10 = x50Var.f40191i2 + x50Var.f40197o2;
-        bv0 bv0Var = x50Var.f32469t1;
-        if (bv0Var.getVisibility() != 0) {
-            this.f36242f = f10;
-            this.h = f10;
-        } else if (this.h != f10) {
-            this.h = f10;
-            this.f36244r = (f10 - this.f36242f) * 0.10666667f;
-        }
-        float f11 = this.f36242f;
-        float f12 = this.h;
-        if (f11 != f12) {
-            float f13 = this.f36244r;
-            float f14 = f11 + f13;
-            this.f36242f = f14;
-            if (f13 > 0.0f && f14 > f12) {
-                this.f36242f = f12;
-            } else if (f13 < 0.0f && f14 < f12) {
-                this.f36242f = f12;
-            } else {
-                invalidate();
-            }
-        }
-        bv0Var.setTranslationY(x50Var.f32473x1 + this.f36242f);
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        x50 x50Var = this.f36246w;
-        if (view == x50Var.P1) {
-            canvas.save();
-            canvas.clipRect(0.0f, view.getY() - org.telegram.messenger.g0.L(4.0f), getMeasuredWidth(), view.getY() + x50Var.f40187e2 + 1.0f);
-            canvas.drawColor(i0.a.o(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f27890d6, false), (int) (x50Var.f40185b2 * 255.0f)));
-            int o4 = i0.a.o(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f27891d7, false), (int) (x50Var.f40185b2 * 255.0f));
-            Paint paint = this.f36243n;
-            paint.setColor(o4);
-            canvas.drawRect(0.0f, view.getY() + x50Var.f40187e2, getMeasuredWidth(), view.getY() + x50Var.f40187e2 + 1.0f, paint);
-            boolean drawChild = super.drawChild(canvas, view, j3);
-            canvas.restore();
-            return drawChild;
-        }
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        h6.m mVar = this.f36245s;
-        if (mVar != null) {
-            ((f51) mVar.f14266b).f33473b = true;
-        }
-    }
-
-    @Override
-    public final void onViewAdded(View view) {
-        if (view == this.f36246w.f40196n2 && this.f36245s == null) {
-            this.f36245s = new h6.m(view);
-        }
+    public n50(Context context) {
+        super(context, 6, 0, true);
+        LinearLayout f10 = org.telegram.messenger.k5.f(context, 1);
+        TextView textView = new TextView(context);
+        this.f37455c0 = textView;
+        org.telegram.messenger.k5.m(textView, org.telegram.ui.ActionBar.j6.G6, null, 1, 16.0f);
+        f10.addView(textView, c8.ja.r(-2, -2, 5));
+        TextView textView2 = new TextView(context);
+        this.f37456d0 = textView2;
+        org.telegram.ui.ActionBar.q6.U(textView2, org.telegram.ui.ActionBar.j6.f29260z6, null);
+        textView2.setTextSize(1, 13.0f);
+        f10.addView(textView2, c8.ja.t(-2, -2, 5, 0, 1, 0, 0));
+        addView(f10, c8.ja.d(-2, -2.0f, (org.telegram.messenger.hd.f24101a0 ? 3 : 5) | 16, 18.0f, 0.0f, 18.0f, 0.0f));
     }
 }

@@ -279,7 +279,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     public void switchCameraInternal(CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler, String str) {
         Logging.d("CameraCapturer", "switchCamera internal");
         if (!Arrays.asList(this.cameraEnumerator.getDeviceNames()).contains(str)) {
-            reportCameraSwitchError(rf.b.i("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
+            reportCameraSwitchError(r.b.k("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
             return;
         }
         synchronized (this.stateLock) {
@@ -288,13 +288,13 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                     reportCameraSwitchError("Camera switch already in progress.", cameraSwitchHandler);
                     return;
                 }
-                boolean z9 = this.sessionOpening;
-                if (!z9 && this.currentSession == null) {
+                boolean z10 = this.sessionOpening;
+                if (!z10 && this.currentSession == null) {
                     reportCameraSwitchError("switchCamera: camera is not running.", cameraSwitchHandler);
                     return;
                 }
                 this.switchEventsHandler = cameraSwitchHandler;
-                if (z9) {
+                if (z10) {
                     this.switchState = SwitchState.PENDING;
                     this.pendingCameraName = str;
                     return;
@@ -329,9 +329,9 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void changeCaptureFormat(int i7, int i10, int i11) {
-        StringBuilder o4 = jg.g.o("changeCaptureFormat: ", i7, "x", i10, "@");
-        o4.append(i11);
-        Logging.d("CameraCapturer", o4.toString());
+        StringBuilder n10 = i5.c.n("changeCaptureFormat: ", i7, "x", i10, "@");
+        n10.append(i11);
+        Logging.d("CameraCapturer", n10.toString());
         synchronized (this.stateLock) {
             stopCapture();
             startCapture(i7, i10, i11);
@@ -393,9 +393,9 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void startCapture(int i7, int i10, int i11) {
-        StringBuilder o4 = jg.g.o("startCapture: ", i7, "x", i10, "@");
-        o4.append(i11);
-        Logging.d("CameraCapturer", o4.toString());
+        StringBuilder n10 = i5.c.n("startCapture: ", i7, "x", i10, "@");
+        n10.append(i11);
+        Logging.d("CameraCapturer", n10.toString());
         if (this.applicationContext != null) {
             synchronized (this.stateLock) {
                 try {

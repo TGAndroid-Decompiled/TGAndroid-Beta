@@ -1,25 +1,25 @@
 package jb;
 
-import gb.j1;
+import gb.h1;
 import java.util.concurrent.atomic.AtomicReference;
 import zd.b0;
 public final class p {
-    public final j1 f16641a;
-    public final m1.g f16642b;
-    public final AtomicReference f16643c;
+    public final h1 f16994a;
+    public final m1.g f16995b;
+    public final AtomicReference f16996c;
 
-    public p(id.h backgroundDispatcher, j1 timeProvider, m1.g sessionConfigsDataStore) {
+    public p(id.h backgroundDispatcher, h1 timeProvider, m1.g sessionConfigsDataStore) {
         kotlin.jvm.internal.j.e(backgroundDispatcher, "backgroundDispatcher");
         kotlin.jvm.internal.j.e(timeProvider, "timeProvider");
         kotlin.jvm.internal.j.e(sessionConfigsDataStore, "sessionConfigsDataStore");
-        this.f16641a = timeProvider;
-        this.f16642b = sessionConfigsDataStore;
-        this.f16643c = new AtomicReference();
+        this.f16994a = timeProvider;
+        this.f16995b = sessionConfigsDataStore;
+        this.f16996c = new AtomicReference();
         b0.q(b0.b(backgroundDispatcher), new n(this, null, 0));
     }
 
     public final i a() {
-        AtomicReference atomicReference = this.f16643c;
+        AtomicReference atomicReference = this.f16996c;
         if (atomicReference.get() == null) {
             Object u10 = b0.u(new n(this, null, 1));
             while (!atomicReference.compareAndSet(null, u10) && atomicReference.get() == null) {
@@ -31,9 +31,9 @@ public final class p {
     }
 
     public final boolean b() {
-        Long l10 = a().f16626e;
+        Long l10 = a().f16979e;
         Integer num = a().d;
-        if (l10 != null && num != null && this.f16641a.a().f13715c - l10.longValue() < num.intValue()) {
+        if (l10 != null && num != null && this.f16994a.a().f13031c - l10.longValue() < num.intValue()) {
             return false;
         }
         return true;

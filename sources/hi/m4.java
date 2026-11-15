@@ -1,25 +1,31 @@
 package hi;
-public final class m4 implements Runnable {
-    public final int f14801a;
-    public final n4 f14802b;
 
-    public m4(n4 n4Var, int i7) {
-        this.f14801a = i7;
-        this.f14802b = n4Var;
+import android.widget.FrameLayout;
+import android.widget.PopupWindow;
+public final class m4 implements PopupWindow.OnDismissListener {
+    public final int f14655a;
+    public final FrameLayout f14656b;
+
+    public m4(int i7, FrameLayout frameLayout) {
+        this.f14655a = i7;
+        this.f14656b = frameLayout;
     }
 
     @Override
-    public final void run() {
-        switch (this.f14801a) {
+    public final void onDismiss() {
+        switch (this.f14655a) {
             case 0:
-                n4 n4Var = this.f14802b;
-                if (n4Var.f14834x) {
-                    n4Var.d();
+                ((m5) this.f14656b).f14689s1.d();
+                return;
+            case 1:
+                org.telegram.ui.ActionBar.n0 n0Var = ((org.telegram.ui.ActionBar.q0) this.f14656b).R;
+                if (n0Var != null) {
+                    n0Var.i();
                     return;
                 }
                 return;
             default:
-                this.f14802b.invalidateSelf();
+                ((tg.g0) this.f14656b).C1.d();
                 return;
         }
     }

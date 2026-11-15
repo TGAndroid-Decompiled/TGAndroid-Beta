@@ -1,18 +1,19 @@
 package z3;
 
 import h2.x;
-public final class e implements g9.k, i2.u {
-    public final h f59596a;
+import i2.u;
+public final class e implements g9.k, u {
+    public final h f60797a;
 
     @Override
-    public Object apply(Object obj) {
-        r rVar = (r) obj;
-        this.f59596a.getClass();
-        return rVar;
+    public void a(long j3, x xVar) {
+        f3.b.c(j3, xVar, this.f60797a.K);
     }
 
     @Override
-    public void b(long j3, x xVar) {
-        f3.b.c(j3, xVar, this.f59596a.K);
+    public Object apply(Object obj) {
+        q qVar = (q) obj;
+        this.f60797a.getClass();
+        return qVar;
     }
 }

@@ -1,47 +1,25 @@
 package org.telegram.ui.Components;
-public final class yw0 {
-    public final int f40768a;
 
-    public yw0(int i7) {
-        this.f40768a = i7;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class yw0 extends AnimatorListenerAdapter {
+    public final int f42171a;
+    public final Switch f42172b;
+
+    public yw0(Switch r12, int i7) {
+        this.f42171a = i7;
+        this.f42172b = r12;
     }
 
-    public final int a(fx0 fx0Var, int i7) {
-        switch (this.f40768a) {
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f42171a) {
             case 0:
-                return Integer.MIN_VALUE;
-            case 1:
-                return 0;
-            case 2:
-                return i7;
-            case 3:
-                return Integer.MIN_VALUE;
+                this.f42172b.d = null;
+                return;
             default:
-                return Integer.MIN_VALUE;
-        }
-    }
-
-    public final int b(fx0 fx0Var, int i7) {
-        switch (this.f40768a) {
-            case 0:
-                return Integer.MIN_VALUE;
-            case 1:
-                return 0;
-            case 2:
-                return i7;
-            case 3:
-                return 0;
-            default:
-                return 0;
-        }
-    }
-
-    public int c(int i7, int i10) {
-        switch (this.f40768a) {
-            case 4:
-                return i10;
-            default:
-                return i7;
+                this.f42172b.f32739e = null;
+                return;
         }
     }
 }

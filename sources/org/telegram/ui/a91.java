@@ -1,54 +1,22 @@
 package org.telegram.ui;
 
 import android.view.View;
-import android.widget.TextView;
-import org.telegram.tgnet.TLRPC;
-public final class a91 implements yh.c, org.telegram.messenger.bp, r0.m, org.telegram.ui.Components.ej0 {
-    public final z91 f43618a;
+public final class a91 implements View.OnClickListener {
+    public final u91 f44974a;
 
-    public a91(z91 z91Var) {
-        this.f43618a = z91Var;
+    public a91(u91 u91Var) {
+        this.f44974a = u91Var;
     }
 
     @Override
-    public r0.k1 S0(View view, r0.k1 k1Var) {
-        int i7 = k1Var.f54213a.f(519).d;
-        z91 z91Var = this.f43618a;
-        z91Var.f52359f1 = i7;
-        v91 v91Var = z91Var.f52380r0;
-        if (v91Var != null) {
-            v91Var.setPadding(0, 0, 0, i7);
+    public final void onClick(View view) {
+        u91 u91Var = this.f44974a;
+        if (u91Var.N == 1) {
+            org.telegram.ui.Components.t4.g0(u91Var, -u91Var.f51834a, null, u91Var.g(), null, false, u91Var.K, new na(this, 4), u91Var.getResourceProvider());
+            return;
         }
-        v81 v81Var = z91Var.f52372n;
-        if (v81Var != null) {
-            ((TextView) v81Var.d).setTranslationY((-z91Var.f52359f1) - z91Var.f52356e1);
-        }
-        z91Var.h.setTranslationY(((-z91Var.X0) - z91Var.f52359f1) - z91Var.f52356e1);
-        z91Var.F0();
-        return r0.k1.f54212b;
-    }
-
-    @Override
-    public boolean a(TLRPC.TL_error tL_error) {
-        return z91.Z(this.f43618a, tL_error);
-    }
-
-    @Override
-    public void d(boolean z9, boolean z10) {
-        z91 z91Var = this.f43618a;
-        z91Var.U0.i(z91Var.R0.b(), z9, z10);
-    }
-
-    @Override
-    public boolean mo19f(float f10, float f11, int i7, View view) {
-        return z91.b0(this.f43618a, view, f10);
-    }
-
-    @Override
-    public void q(float f10) {
-    }
-
-    @Override
-    public void i() {
+        u91Var.getMessagesController().m(u91Var.f51834a, u91Var.getUserConfig().f(), 0, null, u91Var, false, new u81(u91Var, 2), new v81(u91Var), null);
+        org.telegram.messenger.ns.e().k(org.telegram.messenger.ns.I4, new Object[0]);
+        u91Var.S0(false);
     }
 }

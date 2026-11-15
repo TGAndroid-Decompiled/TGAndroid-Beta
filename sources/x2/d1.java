@@ -1,12 +1,12 @@
 package x2;
 public interface d1 {
-    boolean c(l2.v0 v0Var);
+    boolean c(l2.s0 s0Var);
 
     long e();
 
     boolean g();
 
-    long p();
+    long s();
 
-    void r(long j3);
+    void u(long j3);
 }

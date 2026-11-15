@@ -1,129 +1,79 @@
 package org.telegram.ui.Cells;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.util.Property;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import java.util.ArrayList;
-import org.telegram.messenger.id;
+import org.telegram.messenger.hd;
 public final class t8 extends FrameLayout {
     public static Paint d;
-    public static final int[] f30554e = {-1031100, -29183, -12769, -8792480, -12521994, -12140801, -2984711, -45162, -4473925};
-    public static final int[] f30555f = {-65536, -29183, -256, -16711936, -16711681, -16776961, -2984711, -65281, -1};
-    public final TextView f30556a;
-    public boolean f30557b;
-    public int f30558c;
+    public final TextView f31681a;
+    public int f31682b;
+    public float f31683c;
 
-    public t8(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+    public t8(Context context) {
         super(context);
         int i7;
+        int i10;
+        this.f31683c = 1.0f;
         if (d == null) {
             d = new Paint(1);
         }
         TextView textView = new TextView(context);
-        this.f30556a = textView;
-        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.G6, h6Var);
-        org.telegram.messenger.camera.q.n(textView, 1, 16.0f, 1, 1);
+        this.f31681a = textView;
+        textView.setTextColor(-14606047);
+        textView.setTextSize(1, 16.0f);
+        textView.setLines(1);
+        textView.setMaxLines(1);
         textView.setSingleLine(true);
-        if (id.f23161a0) {
+        if (hd.f24101a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7 | 16);
-        addView(textView, c8.ha.d(-1, -1.0f, (id.f23161a0 ? 5 : 3) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
+        textView.setPadding(0, 0, 0, org.telegram.messenger.g0.L(3.0f));
+        boolean z10 = hd.f24101a0;
+        int i11 = (z10 ? 5 : 3) | 48;
+        if (z10) {
+            i10 = 21;
+        } else {
+            i10 = 57;
+        }
+        addView(textView, c8.ja.d(-1, -1.0f, i11, i10, 0.0f, z10 ? 57 : 21, 0.0f));
     }
 
-    public final void a(ArrayList arrayList, boolean z9) {
-        float f10;
-        float f11;
-        setEnabled(z9);
-        TextView textView = this.f30556a;
-        float f12 = 0.5f;
-        if (arrayList != null) {
-            if (z9) {
-                f11 = 1.0f;
-            } else {
-                f11 = 0.5f;
-            }
-            float[] fArr = {f11};
-            Property property = View.ALPHA;
-            arrayList.add(ObjectAnimator.ofFloat(textView, property, fArr));
-            if (z9) {
-                f12 = 1.0f;
-            }
-            arrayList.add(ObjectAnimator.ofFloat(this, property, f12));
-            return;
-        }
-        if (z9) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.5f;
-        }
-        textView.setAlpha(f10);
-        if (z9) {
-            f12 = 1.0f;
-        }
-        setAlpha(f12);
-    }
-
-    public final void b(int i7, String str, boolean z9) {
-        boolean z10;
-        this.f30556a.setText(str);
-        this.f30557b = z9;
-        this.f30558c = i7;
-        if (!z9 && i7 == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        setWillNotDraw(z10);
-        invalidate();
+    @Override
+    public float getAlpha() {
+        return this.f31683c;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
         int measuredWidth;
-        float L;
-        int i7;
-        if (this.f30557b) {
-            if (id.f23161a0) {
-                L = 0.0f;
+        int i7 = this.f31682b;
+        if (i7 != 0) {
+            d.setColor(i7);
+            d.setAlpha((int) (this.f31683c * 255.0f));
+            if (!hd.f24101a0) {
+                measuredWidth = org.telegram.messenger.g0.L(28.0f);
             } else {
-                L = org.telegram.messenger.g0.L(20.0f);
+                measuredWidth = getMeasuredWidth() - org.telegram.messenger.g0.L(28.0f);
             }
-            float f10 = L;
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth2 = getMeasuredWidth();
-            if (id.f23161a0) {
-                i7 = org.telegram.messenger.g0.L(20.0f);
-            } else {
-                i7 = 0;
-            }
-            canvas2 = canvas;
-            canvas2.drawLine(f10, measuredHeight, measuredWidth2 - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.m6.f28013k0);
-        } else {
-            canvas2 = canvas;
-        }
-        int i10 = this.f30558c;
-        if (i10 != 0) {
-            d.setColor(i10);
-            if (id.f23161a0) {
-                measuredWidth = org.telegram.messenger.g0.L(33.0f);
-            } else {
-                measuredWidth = getMeasuredWidth() - org.telegram.messenger.g0.L(33.0f);
-            }
-            canvas2.drawCircle(measuredWidth, getMeasuredHeight() / 2, org.telegram.messenger.g0.L(10.0f), d);
+            canvas.drawCircle(measuredWidth, getMeasuredHeight() / 2, org.telegram.messenger.g0.L(10.0f), d);
         }
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(50.0f) + (this.f30557b ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(50.0f), 1073741824));
+    }
+
+    @Override
+    public void setAlpha(float f10) {
+        this.f31683c = f10;
+        invalidate();
     }
 }

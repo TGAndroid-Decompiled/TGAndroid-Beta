@@ -1,6 +1,6 @@
 package h8;
 
-import a8.k8;
+import a8.l8;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -13,20 +13,20 @@ import com.google.android.gms.wallet.MaskedWallet;
 import q6.m;
 import y8.s;
 public final class a extends Binder implements j, IInterface {
-    public final int f14276a;
-    public final TaskCompletionSource f14277b;
+    public final int f13636a;
+    public final TaskCompletionSource f13637b;
 
     public a(int i7, TaskCompletionSource taskCompletionSource) {
-        this.f14276a = i7;
+        this.f13636a = i7;
         attachInterface(this, "com.google.android.gms.wallet.internal.IWalletServiceCallbacks");
-        this.f14277b = taskCompletionSource;
+        this.f13637b = taskCompletionSource;
     }
 
     @Override
-    public void P(int i7, boolean z9) {
-        switch (this.f14276a) {
+    public void Q(int i7, boolean z10) {
+        switch (this.f13636a) {
             case 1:
-                k8.a(new Status(i7, null, null, null), Boolean.valueOf(z9), this.f14277b);
+                l8.a(new Status(i7, null, null, null), Boolean.valueOf(z10), this.f13637b);
                 return;
             default:
                 return;
@@ -34,12 +34,12 @@ public final class a extends Binder implements j, IInterface {
     }
 
     @Override
-    public void d0(Status status, y8.i iVar) {
-        switch (this.f14276a) {
+    public void e0(Status status, y8.i iVar) {
+        switch (this.f13636a) {
             case 0:
-                int i7 = y8.a.f59264c;
+                int i7 = y8.a.f60475c;
                 boolean b10 = status.b();
-                TaskCompletionSource taskCompletionSource = this.f14277b;
+                TaskCompletionSource taskCompletionSource = this.f13637b;
                 if (b10) {
                     taskCompletionSource.setResult(iVar);
                     return;
@@ -61,7 +61,7 @@ public final class a extends Binder implements j, IInterface {
         } else {
             parcel.enforceInterface(getInterfaceDescriptor());
         }
-        boolean z9 = false;
+        boolean z10 = false;
         switch (i7) {
             case 1:
                 parcel.readInt();
@@ -75,12 +75,12 @@ public final class a extends Binder implements j, IInterface {
                 return true;
             case 3:
                 int readInt = parcel.readInt();
-                int i11 = c.f14278a;
+                int i11 = c.f13638a;
                 if (parcel.readInt() != 0) {
-                    z9 = true;
+                    z10 = true;
                 }
                 Bundle bundle3 = (Bundle) c.a(parcel, Bundle.CREATOR);
-                P(readInt, z9);
+                Q(readInt, z10);
                 return true;
             case 4:
                 parcel.readInt();
@@ -91,7 +91,7 @@ public final class a extends Binder implements j, IInterface {
                 return false;
             case 6:
                 parcel.readInt();
-                int i12 = c.f14278a;
+                int i12 = c.f13638a;
                 parcel.readInt();
                 Bundle bundle5 = (Bundle) c.a(parcel, Bundle.CREATOR);
                 return true;
@@ -107,10 +107,10 @@ public final class a extends Binder implements j, IInterface {
             case 9:
                 Status status3 = (Status) c.a(parcel, Status.CREATOR);
                 if (parcel.readInt() != 0) {
-                    z9 = true;
+                    z10 = true;
                 }
                 Bundle bundle8 = (Bundle) c.a(parcel, Bundle.CREATOR);
-                x0(status3, z9);
+                y0(status3, z10);
                 return true;
             case 10:
                 Status status4 = (Status) c.a(parcel, Status.CREATOR);
@@ -132,7 +132,7 @@ public final class a extends Binder implements j, IInterface {
                 return true;
             case 14:
                 Bundle bundle13 = (Bundle) c.a(parcel, Bundle.CREATOR);
-                d0((Status) c.a(parcel, Status.CREATOR), (y8.i) c.a(parcel, y8.i.CREATOR));
+                e0((Status) c.a(parcel, Status.CREATOR), (y8.i) c.a(parcel, y8.i.CREATOR));
                 return true;
             case 15:
                 Status status8 = (Status) c.a(parcel, Status.CREATOR);
@@ -162,10 +162,10 @@ public final class a extends Binder implements j, IInterface {
     }
 
     @Override
-    public void x0(Status status, boolean z9) {
-        switch (this.f14276a) {
+    public void y0(Status status, boolean z10) {
+        switch (this.f13636a) {
             case 1:
-                k8.a(status, Boolean.valueOf(z9), this.f14277b);
+                l8.a(status, Boolean.valueOf(z10), this.f13637b);
                 return;
             default:
                 return;
@@ -177,12 +177,12 @@ public final class a extends Binder implements j, IInterface {
         return this;
     }
 
-    public final void h1(Status status, boolean z9) {
+    public final void h1(Status status, boolean z10) {
     }
 
     public final void i1(Status status, y8.i iVar) {
     }
 
-    public final void j1(int i7, boolean z9) {
+    public final void j1(int i7, boolean z10) {
     }
 }

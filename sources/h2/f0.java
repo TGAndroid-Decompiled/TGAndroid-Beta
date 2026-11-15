@@ -1,7 +1,7 @@
 package h2;
 public final class f0 extends IllegalStateException {
-    public final int f14085a;
-    public final int f14086b;
+    public final int f13443a;
+    public final int f13444b;
 
     public f0(int r3, int r4) {
         throw new UnsupportedOperationException("Method not decompiled: h2.f0.<init>(int, int):void");
@@ -11,7 +11,7 @@ public final class f0 extends IllegalStateException {
         if (this != obj) {
             if (obj != null && f0.class == obj.getClass()) {
                 f0 f0Var = (f0) obj;
-                if (this.f14085a == f0Var.f14085a && this.f14086b == f0Var.f14086b) {
+                if (this.f13443a == f0Var.f13443a && this.f13444b == f0Var.f13444b) {
                     return true;
                 }
                 return false;
@@ -22,6 +22,6 @@ public final class f0 extends IllegalStateException {
     }
 
     public final int hashCode() {
-        return ((527 + this.f14085a) * 31) + this.f14086b;
+        return ((527 + this.f13443a) * 31) + this.f13444b;
     }
 }

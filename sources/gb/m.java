@@ -1,22 +1,34 @@
 package gb;
 
-import android.content.Context;
-public final class m implements ib.b {
-    public final int f13730a;
-    public final d9.o f13731b;
+import c8.l1;
+public final class m implements pa.f {
+    public static final m f13068b;
+    public static final m[] f13069c;
+    public final int f13070a;
 
-    public m(d9.o oVar, int i7) {
-        this.f13730a = i7;
-        this.f13731b = oVar;
+    static {
+        m mVar = new m("EVENT_TYPE_UNKNOWN", 0, 0);
+        m mVar2 = new m("SESSION_START", 1, 1);
+        f13068b = mVar2;
+        m[] mVarArr = {mVar, mVar2};
+        f13069c = mVarArr;
+        l1.a(mVarArr);
+    }
+
+    public m(String str, int i7, int i10) {
+        this.f13070a = i10;
+    }
+
+    public static m valueOf(String str) {
+        return (m) Enum.valueOf(m.class, str);
+    }
+
+    public static m[] values() {
+        return (m[]) f13069c.clone();
     }
 
     @Override
-    public final Object mo24get() {
-        switch (this.f13730a) {
-            case 0:
-                return new l((ua.b) this.f13731b.f8256a);
-            default:
-                return new jb.a((Context) this.f13731b.f8256a);
-        }
+    public final int a() {
+        return this.f13070a;
     }
 }

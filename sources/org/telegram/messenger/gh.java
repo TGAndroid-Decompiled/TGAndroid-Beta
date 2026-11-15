@@ -1,59 +1,581 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import java.util.Comparator;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class gh implements Comparator {
-    public final int f22669a;
-    public final ArrayList f22670b;
+public final class gh implements RequestDelegate {
+    public final int f23755a;
+    public final si f23756b;
 
-    public gh(int i7, ArrayList arrayList) {
-        this.f22669a = i7;
-        this.f22670b = arrayList;
+    public gh(si siVar, int i7) {
+        this.f23755a = i7;
+        this.f23756b = siVar;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        switch (this.f22669a) {
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f23755a) {
             case 0:
-                Long valueOf = Long.valueOf(((TLRPC.TL_messages_stickerSet) obj).set.f26987id);
-                ArrayList arrayList = this.f22670b;
-                int indexOf = arrayList.indexOf(valueOf);
-                int indexOf2 = arrayList.indexOf(Long.valueOf(((TLRPC.TL_messages_stickerSet) obj2).set.f26987id));
-                if (indexOf > indexOf2) {
-                    return 1;
+                si siVar = this.f23756b;
+                if (tL_error != null) {
+                    g0.h3(new eg(siVar, 10));
+                    return;
                 }
-                if (indexOf < indexOf2) {
-                    return -1;
-                }
-                return 0;
-            default:
-                qi qiVar = (qi) obj;
-                qi qiVar2 = (qi) obj2;
-                String str = qiVar.f24705a;
-                ArrayList arrayList2 = this.f22670b;
-                int indexOf3 = arrayList2.indexOf(str);
-                int i7 = Integer.MAX_VALUE;
-                if (indexOf3 < 0) {
-                    indexOf3 = Integer.MAX_VALUE;
-                }
-                int indexOf4 = arrayList2.indexOf(qiVar2.f24705a);
-                if (indexOf4 >= 0) {
-                    i7 = indexOf4;
-                }
-                if (indexOf3 >= i7) {
-                    if (indexOf3 <= i7) {
-                        int length = qiVar.f24706b.length();
-                        int length2 = qiVar2.f24706b.length();
-                        if (length >= length2) {
-                            if (length <= length2) {
-                                return 0;
-                            }
+                siVar.getMessagesController().O3((TLRPC.Updates) tLObject, false);
+                g0.h3(new eg(siVar, 11));
+                return;
+            case 1:
+                final si siVar2 = this.f23756b;
+                g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i7 = r3;
+                        si siVar3 = siVar2;
+                        TLObject tLObject2 = tLObject;
+                        switch (i7) {
+                            case 0:
+                                boolean z10 = tLObject2 instanceof TLRPC.TL_messages_stickerSet;
+                                si siVar4 = siVar2;
+                                if (z10) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    siVar4.getUserConfig().f24944e0 = tL_messages_stickerSet.set.short_name;
+                                    siVar4.getUserConfig().f24949i0 = System.currentTimeMillis();
+                                    siVar4.getUserConfig().v(false);
+                                    siVar4.s1(siVar4.getUserConfig().f24944e0, false, tL_messages_stickerSet, false, (int) (System.currentTimeMillis() / 1000));
+                                    for (int i10 = 0; i10 < tL_messages_stickerSet.documents.size(); i10++) {
+                                        if (siVar4.currentAccount == m10.f24934t0) {
+                                            siVar4.l1(gc.b(tL_messages_stickerSet.documents.get(i10)), 0);
+                                        }
+                                    }
+                                    return;
+                                }
+                                siVar4.getClass();
+                                return;
+                            case 1:
+                                if (tLObject2 instanceof TLRPC.TL_boolTrue) {
+                                    siVar3.getMessagesStorage().f27220a.c(new eg(siVar3, 12));
+                                    siVar3.f26475g0[0].clear();
+                                    ns.f(siVar3.currentAccount).k(86, Boolean.FALSE, 0);
+                                    return;
+                                }
+                                return;
+                            case 2:
+                                boolean z11 = tLObject2 instanceof TLRPC.TL_messages_stickerSet;
+                                si siVar5 = siVar2;
+                                if (z11) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    siVar5.getUserConfig().f24946f0 = tL_messages_stickerSet2.set.short_name;
+                                    siVar5.getUserConfig().f24950j0 = System.currentTimeMillis();
+                                    siVar5.getUserConfig().v(false);
+                                    siVar5.s1(siVar5.getUserConfig().f24946f0, false, tL_messages_stickerSet2, false, (int) (System.currentTimeMillis() / 1000));
+                                    return;
+                                }
+                                siVar5.getClass();
+                                return;
+                            case 3:
+                                if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    si siVar6 = siVar2;
+                                    siVar6.getUserConfig().f24941c0 = tL_messages_stickerSet3.set.short_name;
+                                    siVar6.getUserConfig().f24947g0 = System.currentTimeMillis();
+                                    siVar6.getUserConfig().v(false);
+                                    siVar6.s1(siVar6.getUserConfig().f24941c0, false, tL_messages_stickerSet3, false, (int) (System.currentTimeMillis() / 1000));
+                                    siVar6.getNotificationCenter().k(192, new Object[0]);
+                                    return;
+                                }
+                                return;
+                            case 4:
+                                siVar3.getClass();
+                                int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
+                                if (tLObject2 instanceof TLRPC.TL_messages_availableReactionsNotModified) {
+                                    siVar3.x1(null, 0, currentTimeMillis, false);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_messages_availableReactions) {
+                                    TLRPC.TL_messages_availableReactions tL_messages_availableReactions = (TLRPC.TL_messages_availableReactions) tLObject2;
+                                    siVar3.x1(tL_messages_availableReactions.reactions, tL_messages_availableReactions.hash, currentTimeMillis, false);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            default:
+                                if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet4 = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    si siVar7 = siVar2;
+                                    siVar7.getUserConfig().f24942d0 = tL_messages_stickerSet4.set.short_name;
+                                    siVar7.getUserConfig().f24948h0 = System.currentTimeMillis();
+                                    siVar7.getUserConfig().v(false);
+                                    siVar7.s1(siVar7.getUserConfig().f24942d0, false, tL_messages_stickerSet4, false, (int) (System.currentTimeMillis() / 1000));
+                                    siVar7.getNotificationCenter().k(193, new Object[0]);
+                                    return;
+                                }
+                                return;
                         }
                     }
-                    return 1;
+                });
+                return;
+            case 2:
+                g0.h3(new mg(this.f23756b, tL_error, tLObject, 0));
+                return;
+            case 3:
+                final si siVar3 = this.f23756b;
+                g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i7 = r3;
+                        si siVar32 = siVar3;
+                        TLObject tLObject2 = tLObject;
+                        switch (i7) {
+                            case 0:
+                                boolean z10 = tLObject2 instanceof TLRPC.TL_messages_stickerSet;
+                                si siVar4 = siVar3;
+                                if (z10) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    siVar4.getUserConfig().f24944e0 = tL_messages_stickerSet.set.short_name;
+                                    siVar4.getUserConfig().f24949i0 = System.currentTimeMillis();
+                                    siVar4.getUserConfig().v(false);
+                                    siVar4.s1(siVar4.getUserConfig().f24944e0, false, tL_messages_stickerSet, false, (int) (System.currentTimeMillis() / 1000));
+                                    for (int i10 = 0; i10 < tL_messages_stickerSet.documents.size(); i10++) {
+                                        if (siVar4.currentAccount == m10.f24934t0) {
+                                            siVar4.l1(gc.b(tL_messages_stickerSet.documents.get(i10)), 0);
+                                        }
+                                    }
+                                    return;
+                                }
+                                siVar4.getClass();
+                                return;
+                            case 1:
+                                if (tLObject2 instanceof TLRPC.TL_boolTrue) {
+                                    siVar32.getMessagesStorage().f27220a.c(new eg(siVar32, 12));
+                                    siVar32.f26475g0[0].clear();
+                                    ns.f(siVar32.currentAccount).k(86, Boolean.FALSE, 0);
+                                    return;
+                                }
+                                return;
+                            case 2:
+                                boolean z11 = tLObject2 instanceof TLRPC.TL_messages_stickerSet;
+                                si siVar5 = siVar3;
+                                if (z11) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    siVar5.getUserConfig().f24946f0 = tL_messages_stickerSet2.set.short_name;
+                                    siVar5.getUserConfig().f24950j0 = System.currentTimeMillis();
+                                    siVar5.getUserConfig().v(false);
+                                    siVar5.s1(siVar5.getUserConfig().f24946f0, false, tL_messages_stickerSet2, false, (int) (System.currentTimeMillis() / 1000));
+                                    return;
+                                }
+                                siVar5.getClass();
+                                return;
+                            case 3:
+                                if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    si siVar6 = siVar3;
+                                    siVar6.getUserConfig().f24941c0 = tL_messages_stickerSet3.set.short_name;
+                                    siVar6.getUserConfig().f24947g0 = System.currentTimeMillis();
+                                    siVar6.getUserConfig().v(false);
+                                    siVar6.s1(siVar6.getUserConfig().f24941c0, false, tL_messages_stickerSet3, false, (int) (System.currentTimeMillis() / 1000));
+                                    siVar6.getNotificationCenter().k(192, new Object[0]);
+                                    return;
+                                }
+                                return;
+                            case 4:
+                                siVar32.getClass();
+                                int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
+                                if (tLObject2 instanceof TLRPC.TL_messages_availableReactionsNotModified) {
+                                    siVar32.x1(null, 0, currentTimeMillis, false);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_messages_availableReactions) {
+                                    TLRPC.TL_messages_availableReactions tL_messages_availableReactions = (TLRPC.TL_messages_availableReactions) tLObject2;
+                                    siVar32.x1(tL_messages_availableReactions.reactions, tL_messages_availableReactions.hash, currentTimeMillis, false);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            default:
+                                if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet4 = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    si siVar7 = siVar3;
+                                    siVar7.getUserConfig().f24942d0 = tL_messages_stickerSet4.set.short_name;
+                                    siVar7.getUserConfig().f24948h0 = System.currentTimeMillis();
+                                    siVar7.getUserConfig().v(false);
+                                    siVar7.s1(siVar7.getUserConfig().f24942d0, false, tL_messages_stickerSet4, false, (int) (System.currentTimeMillis() / 1000));
+                                    siVar7.getNotificationCenter().k(193, new Object[0]);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 4:
+                final si siVar4 = this.f23756b;
+                g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i7 = r3;
+                        si siVar32 = siVar4;
+                        TLObject tLObject2 = tLObject;
+                        switch (i7) {
+                            case 0:
+                                boolean z10 = tLObject2 instanceof TLRPC.TL_messages_stickerSet;
+                                si siVar42 = siVar4;
+                                if (z10) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    siVar42.getUserConfig().f24944e0 = tL_messages_stickerSet.set.short_name;
+                                    siVar42.getUserConfig().f24949i0 = System.currentTimeMillis();
+                                    siVar42.getUserConfig().v(false);
+                                    siVar42.s1(siVar42.getUserConfig().f24944e0, false, tL_messages_stickerSet, false, (int) (System.currentTimeMillis() / 1000));
+                                    for (int i10 = 0; i10 < tL_messages_stickerSet.documents.size(); i10++) {
+                                        if (siVar42.currentAccount == m10.f24934t0) {
+                                            siVar42.l1(gc.b(tL_messages_stickerSet.documents.get(i10)), 0);
+                                        }
+                                    }
+                                    return;
+                                }
+                                siVar42.getClass();
+                                return;
+                            case 1:
+                                if (tLObject2 instanceof TLRPC.TL_boolTrue) {
+                                    siVar32.getMessagesStorage().f27220a.c(new eg(siVar32, 12));
+                                    siVar32.f26475g0[0].clear();
+                                    ns.f(siVar32.currentAccount).k(86, Boolean.FALSE, 0);
+                                    return;
+                                }
+                                return;
+                            case 2:
+                                boolean z11 = tLObject2 instanceof TLRPC.TL_messages_stickerSet;
+                                si siVar5 = siVar4;
+                                if (z11) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    siVar5.getUserConfig().f24946f0 = tL_messages_stickerSet2.set.short_name;
+                                    siVar5.getUserConfig().f24950j0 = System.currentTimeMillis();
+                                    siVar5.getUserConfig().v(false);
+                                    siVar5.s1(siVar5.getUserConfig().f24946f0, false, tL_messages_stickerSet2, false, (int) (System.currentTimeMillis() / 1000));
+                                    return;
+                                }
+                                siVar5.getClass();
+                                return;
+                            case 3:
+                                if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    si siVar6 = siVar4;
+                                    siVar6.getUserConfig().f24941c0 = tL_messages_stickerSet3.set.short_name;
+                                    siVar6.getUserConfig().f24947g0 = System.currentTimeMillis();
+                                    siVar6.getUserConfig().v(false);
+                                    siVar6.s1(siVar6.getUserConfig().f24941c0, false, tL_messages_stickerSet3, false, (int) (System.currentTimeMillis() / 1000));
+                                    siVar6.getNotificationCenter().k(192, new Object[0]);
+                                    return;
+                                }
+                                return;
+                            case 4:
+                                siVar32.getClass();
+                                int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
+                                if (tLObject2 instanceof TLRPC.TL_messages_availableReactionsNotModified) {
+                                    siVar32.x1(null, 0, currentTimeMillis, false);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_messages_availableReactions) {
+                                    TLRPC.TL_messages_availableReactions tL_messages_availableReactions = (TLRPC.TL_messages_availableReactions) tLObject2;
+                                    siVar32.x1(tL_messages_availableReactions.reactions, tL_messages_availableReactions.hash, currentTimeMillis, false);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            default:
+                                if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet4 = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    si siVar7 = siVar4;
+                                    siVar7.getUserConfig().f24942d0 = tL_messages_stickerSet4.set.short_name;
+                                    siVar7.getUserConfig().f24948h0 = System.currentTimeMillis();
+                                    siVar7.getUserConfig().v(false);
+                                    siVar7.s1(siVar7.getUserConfig().f24942d0, false, tL_messages_stickerSet4, false, (int) (System.currentTimeMillis() / 1000));
+                                    siVar7.getNotificationCenter().k(193, new Object[0]);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 5:
+                final si siVar5 = this.f23756b;
+                g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i7 = r3;
+                        si siVar32 = siVar5;
+                        TLObject tLObject2 = tLObject;
+                        switch (i7) {
+                            case 0:
+                                boolean z10 = tLObject2 instanceof TLRPC.TL_messages_stickerSet;
+                                si siVar42 = siVar5;
+                                if (z10) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    siVar42.getUserConfig().f24944e0 = tL_messages_stickerSet.set.short_name;
+                                    siVar42.getUserConfig().f24949i0 = System.currentTimeMillis();
+                                    siVar42.getUserConfig().v(false);
+                                    siVar42.s1(siVar42.getUserConfig().f24944e0, false, tL_messages_stickerSet, false, (int) (System.currentTimeMillis() / 1000));
+                                    for (int i10 = 0; i10 < tL_messages_stickerSet.documents.size(); i10++) {
+                                        if (siVar42.currentAccount == m10.f24934t0) {
+                                            siVar42.l1(gc.b(tL_messages_stickerSet.documents.get(i10)), 0);
+                                        }
+                                    }
+                                    return;
+                                }
+                                siVar42.getClass();
+                                return;
+                            case 1:
+                                if (tLObject2 instanceof TLRPC.TL_boolTrue) {
+                                    siVar32.getMessagesStorage().f27220a.c(new eg(siVar32, 12));
+                                    siVar32.f26475g0[0].clear();
+                                    ns.f(siVar32.currentAccount).k(86, Boolean.FALSE, 0);
+                                    return;
+                                }
+                                return;
+                            case 2:
+                                boolean z11 = tLObject2 instanceof TLRPC.TL_messages_stickerSet;
+                                si siVar52 = siVar5;
+                                if (z11) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    siVar52.getUserConfig().f24946f0 = tL_messages_stickerSet2.set.short_name;
+                                    siVar52.getUserConfig().f24950j0 = System.currentTimeMillis();
+                                    siVar52.getUserConfig().v(false);
+                                    siVar52.s1(siVar52.getUserConfig().f24946f0, false, tL_messages_stickerSet2, false, (int) (System.currentTimeMillis() / 1000));
+                                    return;
+                                }
+                                siVar52.getClass();
+                                return;
+                            case 3:
+                                if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    si siVar6 = siVar5;
+                                    siVar6.getUserConfig().f24941c0 = tL_messages_stickerSet3.set.short_name;
+                                    siVar6.getUserConfig().f24947g0 = System.currentTimeMillis();
+                                    siVar6.getUserConfig().v(false);
+                                    siVar6.s1(siVar6.getUserConfig().f24941c0, false, tL_messages_stickerSet3, false, (int) (System.currentTimeMillis() / 1000));
+                                    siVar6.getNotificationCenter().k(192, new Object[0]);
+                                    return;
+                                }
+                                return;
+                            case 4:
+                                siVar32.getClass();
+                                int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
+                                if (tLObject2 instanceof TLRPC.TL_messages_availableReactionsNotModified) {
+                                    siVar32.x1(null, 0, currentTimeMillis, false);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_messages_availableReactions) {
+                                    TLRPC.TL_messages_availableReactions tL_messages_availableReactions = (TLRPC.TL_messages_availableReactions) tLObject2;
+                                    siVar32.x1(tL_messages_availableReactions.reactions, tL_messages_availableReactions.hash, currentTimeMillis, false);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            default:
+                                if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet4 = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    si siVar7 = siVar5;
+                                    siVar7.getUserConfig().f24942d0 = tL_messages_stickerSet4.set.short_name;
+                                    siVar7.getUserConfig().f24948h0 = System.currentTimeMillis();
+                                    siVar7.getUserConfig().v(false);
+                                    siVar7.s1(siVar7.getUserConfig().f24942d0, false, tL_messages_stickerSet4, false, (int) (System.currentTimeMillis() / 1000));
+                                    siVar7.getNotificationCenter().k(193, new Object[0]);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 6:
+                if (tLObject != null) {
+                    g0.h3(new bg(this.f23756b, (TLRPC.TL_messages_stickerSet) tLObject, 0));
+                    return;
                 }
-                return -1;
+                return;
+            case 7:
+                final si siVar6 = this.f23756b;
+                g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i7 = r3;
+                        si siVar32 = siVar6;
+                        TLObject tLObject2 = tLObject;
+                        switch (i7) {
+                            case 0:
+                                boolean z10 = tLObject2 instanceof TLRPC.TL_messages_stickerSet;
+                                si siVar42 = siVar6;
+                                if (z10) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    siVar42.getUserConfig().f24944e0 = tL_messages_stickerSet.set.short_name;
+                                    siVar42.getUserConfig().f24949i0 = System.currentTimeMillis();
+                                    siVar42.getUserConfig().v(false);
+                                    siVar42.s1(siVar42.getUserConfig().f24944e0, false, tL_messages_stickerSet, false, (int) (System.currentTimeMillis() / 1000));
+                                    for (int i10 = 0; i10 < tL_messages_stickerSet.documents.size(); i10++) {
+                                        if (siVar42.currentAccount == m10.f24934t0) {
+                                            siVar42.l1(gc.b(tL_messages_stickerSet.documents.get(i10)), 0);
+                                        }
+                                    }
+                                    return;
+                                }
+                                siVar42.getClass();
+                                return;
+                            case 1:
+                                if (tLObject2 instanceof TLRPC.TL_boolTrue) {
+                                    siVar32.getMessagesStorage().f27220a.c(new eg(siVar32, 12));
+                                    siVar32.f26475g0[0].clear();
+                                    ns.f(siVar32.currentAccount).k(86, Boolean.FALSE, 0);
+                                    return;
+                                }
+                                return;
+                            case 2:
+                                boolean z11 = tLObject2 instanceof TLRPC.TL_messages_stickerSet;
+                                si siVar52 = siVar6;
+                                if (z11) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    siVar52.getUserConfig().f24946f0 = tL_messages_stickerSet2.set.short_name;
+                                    siVar52.getUserConfig().f24950j0 = System.currentTimeMillis();
+                                    siVar52.getUserConfig().v(false);
+                                    siVar52.s1(siVar52.getUserConfig().f24946f0, false, tL_messages_stickerSet2, false, (int) (System.currentTimeMillis() / 1000));
+                                    return;
+                                }
+                                siVar52.getClass();
+                                return;
+                            case 3:
+                                if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    si siVar62 = siVar6;
+                                    siVar62.getUserConfig().f24941c0 = tL_messages_stickerSet3.set.short_name;
+                                    siVar62.getUserConfig().f24947g0 = System.currentTimeMillis();
+                                    siVar62.getUserConfig().v(false);
+                                    siVar62.s1(siVar62.getUserConfig().f24941c0, false, tL_messages_stickerSet3, false, (int) (System.currentTimeMillis() / 1000));
+                                    siVar62.getNotificationCenter().k(192, new Object[0]);
+                                    return;
+                                }
+                                return;
+                            case 4:
+                                siVar32.getClass();
+                                int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
+                                if (tLObject2 instanceof TLRPC.TL_messages_availableReactionsNotModified) {
+                                    siVar32.x1(null, 0, currentTimeMillis, false);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_messages_availableReactions) {
+                                    TLRPC.TL_messages_availableReactions tL_messages_availableReactions = (TLRPC.TL_messages_availableReactions) tLObject2;
+                                    siVar32.x1(tL_messages_availableReactions.reactions, tL_messages_availableReactions.hash, currentTimeMillis, false);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            default:
+                                if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet4 = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    si siVar7 = siVar6;
+                                    siVar7.getUserConfig().f24942d0 = tL_messages_stickerSet4.set.short_name;
+                                    siVar7.getUserConfig().f24948h0 = System.currentTimeMillis();
+                                    siVar7.getUserConfig().v(false);
+                                    siVar7.s1(siVar7.getUserConfig().f24942d0, false, tL_messages_stickerSet4, false, (int) (System.currentTimeMillis() / 1000));
+                                    siVar7.getNotificationCenter().k(193, new Object[0]);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 8:
+                final si siVar7 = this.f23756b;
+                g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i7 = r3;
+                        si siVar32 = siVar7;
+                        TLObject tLObject2 = tLObject;
+                        switch (i7) {
+                            case 0:
+                                boolean z10 = tLObject2 instanceof TLRPC.TL_messages_stickerSet;
+                                si siVar42 = siVar7;
+                                if (z10) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    siVar42.getUserConfig().f24944e0 = tL_messages_stickerSet.set.short_name;
+                                    siVar42.getUserConfig().f24949i0 = System.currentTimeMillis();
+                                    siVar42.getUserConfig().v(false);
+                                    siVar42.s1(siVar42.getUserConfig().f24944e0, false, tL_messages_stickerSet, false, (int) (System.currentTimeMillis() / 1000));
+                                    for (int i10 = 0; i10 < tL_messages_stickerSet.documents.size(); i10++) {
+                                        if (siVar42.currentAccount == m10.f24934t0) {
+                                            siVar42.l1(gc.b(tL_messages_stickerSet.documents.get(i10)), 0);
+                                        }
+                                    }
+                                    return;
+                                }
+                                siVar42.getClass();
+                                return;
+                            case 1:
+                                if (tLObject2 instanceof TLRPC.TL_boolTrue) {
+                                    siVar32.getMessagesStorage().f27220a.c(new eg(siVar32, 12));
+                                    siVar32.f26475g0[0].clear();
+                                    ns.f(siVar32.currentAccount).k(86, Boolean.FALSE, 0);
+                                    return;
+                                }
+                                return;
+                            case 2:
+                                boolean z11 = tLObject2 instanceof TLRPC.TL_messages_stickerSet;
+                                si siVar52 = siVar7;
+                                if (z11) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    siVar52.getUserConfig().f24946f0 = tL_messages_stickerSet2.set.short_name;
+                                    siVar52.getUserConfig().f24950j0 = System.currentTimeMillis();
+                                    siVar52.getUserConfig().v(false);
+                                    siVar52.s1(siVar52.getUserConfig().f24946f0, false, tL_messages_stickerSet2, false, (int) (System.currentTimeMillis() / 1000));
+                                    return;
+                                }
+                                siVar52.getClass();
+                                return;
+                            case 3:
+                                if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    si siVar62 = siVar7;
+                                    siVar62.getUserConfig().f24941c0 = tL_messages_stickerSet3.set.short_name;
+                                    siVar62.getUserConfig().f24947g0 = System.currentTimeMillis();
+                                    siVar62.getUserConfig().v(false);
+                                    siVar62.s1(siVar62.getUserConfig().f24941c0, false, tL_messages_stickerSet3, false, (int) (System.currentTimeMillis() / 1000));
+                                    siVar62.getNotificationCenter().k(192, new Object[0]);
+                                    return;
+                                }
+                                return;
+                            case 4:
+                                siVar32.getClass();
+                                int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
+                                if (tLObject2 instanceof TLRPC.TL_messages_availableReactionsNotModified) {
+                                    siVar32.x1(null, 0, currentTimeMillis, false);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_messages_availableReactions) {
+                                    TLRPC.TL_messages_availableReactions tL_messages_availableReactions = (TLRPC.TL_messages_availableReactions) tLObject2;
+                                    siVar32.x1(tL_messages_availableReactions.reactions, tL_messages_availableReactions.hash, currentTimeMillis, false);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            default:
+                                if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet4 = (TLRPC.TL_messages_stickerSet) tLObject2;
+                                    si siVar72 = siVar7;
+                                    siVar72.getUserConfig().f24942d0 = tL_messages_stickerSet4.set.short_name;
+                                    siVar72.getUserConfig().f24948h0 = System.currentTimeMillis();
+                                    siVar72.getUserConfig().v(false);
+                                    siVar72.s1(siVar72.getUserConfig().f24942d0, false, tL_messages_stickerSet4, false, (int) (System.currentTimeMillis() / 1000));
+                                    siVar72.getNotificationCenter().k(193, new Object[0]);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                si siVar8 = this.f23756b;
+                siVar8.getClass();
+                int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
+                if (tLObject instanceof TLRPC.TL_help_premiumPromo) {
+                    siVar8.w1((TLRPC.TL_help_premiumPromo) tLObject, currentTimeMillis, false);
+                    return;
+                }
+                return;
         }
     }
 }

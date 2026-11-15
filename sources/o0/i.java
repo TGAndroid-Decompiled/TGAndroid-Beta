@@ -2,16 +2,16 @@ package o0;
 
 import android.os.Process;
 public final class i extends Thread {
-    public final int f20700a;
+    public final int f21216a;
 
     public i(Runnable runnable) {
         super(runnable, "fonts-androidx");
-        this.f20700a = 10;
+        this.f21216a = 10;
     }
 
     @Override
     public final void run() {
-        Process.setThreadPriority(this.f20700a);
+        Process.setThreadPriority(this.f21216a);
         super.run();
     }
 }

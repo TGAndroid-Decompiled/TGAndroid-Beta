@@ -1,23 +1,24 @@
 package org.telegram.ui.Wallet;
-public final class r6 implements r1.d {
-    public final int f43116a;
-    public final x6 f43117b;
+public final class r6 implements r1.c {
+    public final int f44442a;
+    public final Object f44443b;
 
-    public r6(x6 x6Var, int i7) {
-        this.f43116a = i7;
-        this.f43117b = x6Var;
+    public r6(Object obj, int i7) {
+        this.f44442a = i7;
+        this.f44443b = obj;
     }
 
     @Override
-    public final void a(r1.g gVar, float f10, float f11) {
-        switch (this.f43116a) {
+    public final void a(r1.g gVar, boolean z10, float f10, float f11) {
+        switch (this.f44442a) {
             case 0:
-                x6 x6Var = this.f43117b;
-                x6Var.f43337c.setScaleX(f10);
-                x6Var.f43337c.setScaleY(f10);
+                w6.b((w6) this.f44443b, z10, f10);
                 return;
             default:
-                this.f43117b.P = f11;
+                p9 p9Var = (p9) this.f44443b;
+                p9Var.f44334b0 = null;
+                p9Var.f44335c0 = 1.0f;
+                p9Var.G0();
                 return;
         }
     }

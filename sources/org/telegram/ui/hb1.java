@@ -1,15 +1,21 @@
 package org.telegram.ui;
+public final class hb1 implements Runnable {
+    public final int f47662a;
+    public final ib1 f47663b;
+    public final String f47664c;
+    public final boolean d;
+    public final boolean f47665e;
 
-import java.util.ArrayList;
-public final class hb1 {
-    public final int f46291a;
-    public boolean f46293c;
-    public boolean d;
-    public final ArrayList f46294e = new ArrayList();
-    public final ArrayList f46295f = new ArrayList();
-    public final boolean f46292b = true;
+    public hb1(ib1 ib1Var, String str, boolean z10, boolean z11, int i7) {
+        this.f47662a = i7;
+        this.f47663b = ib1Var;
+        this.f47664c = str;
+        this.d = z10;
+        this.f47665e = z11;
+    }
 
-    public hb1(int i7) {
-        this.f46291a = i7;
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.hb1.run():void");
     }
 }

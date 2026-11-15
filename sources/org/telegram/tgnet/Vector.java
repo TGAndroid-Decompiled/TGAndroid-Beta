@@ -2,8 +2,8 @@ package org.telegram.tgnet;
 
 import j$.util.Objects;
 import java.util.ArrayList;
-import org.telegram.messenger.c20;
-import org.telegram.messenger.d20;
+import org.telegram.messenger.a20;
+import org.telegram.messenger.z10;
 import org.telegram.tgnet.TLObject;
 public class Vector<T extends TLObject> extends TLObject {
     public static final int constructor = 481674261;
@@ -17,13 +17,13 @@ public class Vector<T extends TLObject> extends TLObject {
             this.value = i7;
         }
 
-        public static Int TLDeserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
+        public static Int TLDeserialize(InputSerializedData inputSerializedData, int i7, boolean z10) {
             return new Int(i7);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z9) {
-            this.value = inputSerializedData.readInt32(z9);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.value = inputSerializedData.readInt32(z10);
         }
 
         @Override
@@ -39,13 +39,13 @@ public class Vector<T extends TLObject> extends TLObject {
             this.value = (i10 & 4294967295L) | (i7 << 32);
         }
 
-        public static Long TLDeserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
-            return new Long(i7, inputSerializedData.readInt32(z9));
+        public static Long TLDeserialize(InputSerializedData inputSerializedData, int i7, boolean z10) {
+            return new Long(i7, inputSerializedData.readInt32(z10));
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z9) {
-            this.value = inputSerializedData.readInt64(z9);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.value = inputSerializedData.readInt64(z10);
         }
 
         @Override
@@ -54,81 +54,108 @@ public class Vector<T extends TLObject> extends TLObject {
         }
     }
 
+    public static class Strings extends TLObject {
+        public final ArrayList<String> values = new ArrayList<>();
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            for (int i7 = 0; i7 < readInt32; i7++) {
+                this.values.add(inputSerializedData.readString(z10));
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            Vector.serializeString(outputSerializedData, this.values);
+        }
+    }
+
     @FunctionalInterface
     public interface TLDeserializer<T extends TLObject> {
-        T deserialize(InputSerializedData inputSerializedData, int i7, boolean z9);
+        T deserialize(InputSerializedData inputSerializedData, int i7, boolean z10);
     }
 
     public Vector(TLDeserializer<T> tLDeserializer) {
         this.itemDeserializer = tLDeserializer;
     }
 
-    public static <T extends TLObject> Vector<T> TLDeserialize(InputSerializedData inputSerializedData, int i7, boolean z9, TLDeserializer<T> tLDeserializer) {
+    public static <T extends TLObject> Vector<T> TLDeserialize(InputSerializedData inputSerializedData, int i7, boolean z10, TLDeserializer<T> tLDeserializer) {
         if (i7 != 481674261) {
-            TLParseException.doThrowOrLog(inputSerializedData, "Vector", i7, z9);
+            TLParseException.doThrowOrLog(inputSerializedData, "Vector", i7, z10);
             return null;
         }
         Vector<T> vector = new Vector<>(tLDeserializer);
-        vector.readParams(inputSerializedData, z9);
+        vector.readParams(inputSerializedData, z10);
         return vector;
     }
 
-    public static Vector<Int> TLDeserializeInt(InputSerializedData inputSerializedData, int i7, boolean z9) {
+    public static Vector<Int> TLDeserializeInt(InputSerializedData inputSerializedData, int i7, boolean z10) {
         if (i7 != 481674261) {
-            TLParseException.doThrowOrLog(inputSerializedData, "StarGift", i7, z9);
+            TLParseException.doThrowOrLog(inputSerializedData, "StarGift", i7, z10);
             return null;
         }
-        Vector<Int> vector = new Vector<>(new s(18));
-        vector.readParams(inputSerializedData, z9);
+        Vector<Int> vector = new Vector<>(new s(19));
+        vector.readParams(inputSerializedData, z10);
         return vector;
     }
 
-    public static Vector<Int> TLDeserializeLong(InputSerializedData inputSerializedData, int i7, boolean z9) {
+    public static Vector<Int> TLDeserializeLong(InputSerializedData inputSerializedData, int i7, boolean z10) {
         if (i7 != 481674261) {
-            TLParseException.doThrowOrLog(inputSerializedData, "Vector", i7, z9);
+            TLParseException.doThrowOrLog(inputSerializedData, "Vector", i7, z10);
             return null;
         }
-        Vector<Int> vector = new Vector<>(new s(18));
-        vector.readParams(inputSerializedData, z9);
+        Vector<Int> vector = new Vector<>(new s(19));
+        vector.readParams(inputSerializedData, z10);
         return vector;
     }
 
-    private static <T> ArrayList<T> deserialize(InputSerializedData inputSerializedData, d20 d20Var, boolean z9) {
-        int readInt32 = inputSerializedData.readInt32(z9);
+    public static Strings TLDeserializeString(InputSerializedData inputSerializedData, int i7, boolean z10) {
+        if (i7 != 481674261) {
+            TLParseException.doThrowOrLog(inputSerializedData, "Vector", i7, z10);
+            return null;
+        }
+        Strings strings = new Strings();
+        strings.readParams(inputSerializedData, z10);
+        return strings;
+    }
+
+    private static <T> ArrayList<T> deserialize(InputSerializedData inputSerializedData, a20 a20Var, boolean z10) {
+        int readInt32 = inputSerializedData.readInt32(z10);
         if (readInt32 != 481674261) {
-            TLParseException.doThrowOrLog(inputSerializedData, "Vector", readInt32, z9);
+            TLParseException.doThrowOrLog(inputSerializedData, "Vector", readInt32, z10);
             return new ArrayList<>();
         }
-        int readInt322 = inputSerializedData.readInt32(z9);
+        int readInt322 = inputSerializedData.readInt32(z10);
         if (!validateSize(readInt322, 1, inputSerializedData.remaining())) {
-            TLParseException.doThrowOrLog(inputSerializedData, "VectorWrongSize", readInt32, z9);
+            TLParseException.doThrowOrLog(inputSerializedData, "VectorWrongSize", readInt32, z10);
             return new ArrayList<>();
         }
         ArrayList<T> arrayList = (ArrayList<T>) new ArrayList(readInt322);
         for (int i7 = 0; i7 < readInt322; i7++) {
-            arrayList.add(d20Var.a(Boolean.valueOf(z9)));
+            arrayList.add(a20Var.a(Boolean.valueOf(z10)));
         }
         return arrayList;
     }
 
-    public static ArrayList<byte[]> deserializeByteArray(InputSerializedData inputSerializedData, boolean z9) {
+    public static ArrayList<byte[]> deserializeByteArray(InputSerializedData inputSerializedData, boolean z10) {
         Objects.requireNonNull(inputSerializedData);
-        return deserialize(inputSerializedData, new u(inputSerializedData, 3), z9);
+        return deserialize(inputSerializedData, new u(inputSerializedData, 3), z10);
     }
 
-    public static ArrayList<Integer> deserializeInt(InputSerializedData inputSerializedData, boolean z9) {
+    public static ArrayList<Integer> deserializeInt(InputSerializedData inputSerializedData, boolean z10) {
         Objects.requireNonNull(inputSerializedData);
-        return deserialize(inputSerializedData, new u(inputSerializedData, 1), z9);
+        return deserialize(inputSerializedData, new u(inputSerializedData, 1), z10);
     }
 
-    public static ArrayList<java.lang.Long> deserializeLong(InputSerializedData inputSerializedData, boolean z9) {
+    public static ArrayList<java.lang.Long> deserializeLong(InputSerializedData inputSerializedData, boolean z10) {
         Objects.requireNonNull(inputSerializedData);
-        return deserialize(inputSerializedData, new u(inputSerializedData, 0), z9);
+        return deserialize(inputSerializedData, new u(inputSerializedData, 0), z10);
     }
 
-    public static ArrayList<String> deserializeString(InputSerializedData inputSerializedData, boolean z9) {
+    public static ArrayList<String> deserializeString(InputSerializedData inputSerializedData, boolean z10) {
         Objects.requireNonNull(inputSerializedData);
-        return deserialize(inputSerializedData, new u(inputSerializedData, 2), z9);
+        return deserialize(inputSerializedData, new u(inputSerializedData, 2), z10);
     }
 
     public static <T extends TLObject> void serialize(OutputSerializedData outputSerializedData, ArrayList<T> arrayList) {
@@ -167,10 +194,10 @@ public class Vector<T extends TLObject> extends TLObject {
     }
 
     @Override
-    public void readParams(InputSerializedData inputSerializedData, boolean z9) {
-        int readInt32 = inputSerializedData.readInt32(z9);
+    public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+        int readInt32 = inputSerializedData.readInt32(z10);
         for (int i7 = 0; i7 < readInt32; i7++) {
-            this.objects.add(this.itemDeserializer.deserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9));
+            this.objects.add(this.itemDeserializer.deserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10));
         }
     }
 
@@ -195,28 +222,28 @@ public class Vector<T extends TLObject> extends TLObject {
         return arrayList;
     }
 
-    public static <T> void serialize(OutputSerializedData outputSerializedData, c20 c20Var, ArrayList<T> arrayList) {
+    public static <T> void serialize(OutputSerializedData outputSerializedData, z10 z10Var, ArrayList<T> arrayList) {
         outputSerializedData.writeInt32(481674261);
         outputSerializedData.writeInt32(arrayList.size());
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            c20Var.a(arrayList.get(i7));
+            z10Var.a(arrayList.get(i7));
         }
     }
 
-    public static <T extends TLObject> ArrayList<T> deserialize(InputSerializedData inputSerializedData, TLDeserializer<T> tLDeserializer, boolean z9) {
-        int readInt32 = inputSerializedData.readInt32(z9);
+    public static <T extends TLObject> ArrayList<T> deserialize(InputSerializedData inputSerializedData, TLDeserializer<T> tLDeserializer, boolean z10) {
+        int readInt32 = inputSerializedData.readInt32(z10);
         if (readInt32 != 481674261) {
-            TLParseException.doThrowOrLog(inputSerializedData, "Vector", readInt32, z9);
+            TLParseException.doThrowOrLog(inputSerializedData, "Vector", readInt32, z10);
             return new ArrayList<>();
         }
-        int readInt322 = inputSerializedData.readInt32(z9);
+        int readInt322 = inputSerializedData.readInt32(z10);
         if (!validateSize(readInt322, 4, inputSerializedData.remaining())) {
-            TLParseException.doThrowOrLog(inputSerializedData, "VectorWrongSize", readInt32, z9);
+            TLParseException.doThrowOrLog(inputSerializedData, "VectorWrongSize", readInt32, z10);
             return new ArrayList<>();
         }
         ArrayList<T> arrayList = new ArrayList<>(readInt322);
         for (int i7 = 0; i7 < readInt322; i7++) {
-            T deserialize = tLDeserializer.deserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
+            T deserialize = tLDeserializer.deserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             if (deserialize != null) {
                 arrayList.add(deserialize);
             }

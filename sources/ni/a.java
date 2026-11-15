@@ -1,105 +1,89 @@
 package ni;
 
-import android.graphics.BlendMode;
-import android.graphics.RenderNode;
-import android.graphics.Typeface;
-import android.view.WindowManager;
-import com.google.android.gms.tasks.OnSuccessListener;
-import h9.i0;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import org.telegram.messenger.a8;
-import org.telegram.messenger.g0;
-import org.telegram.messenger.k9;
-import org.telegram.messenger.r2;
-import org.telegram.messenger.t0;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.r1;
-import org.telegram.ui.ActionBar.u1;
-import org.telegram.utils.code.highlight.PrismaHighlighter;
-public final class a implements g9.k, l5.g, k9, OnSuccessListener, r1 {
-    public final int f20615a;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import di.m6;
+import hi.q4;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.z10;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.Cells.g6;
+import org.telegram.ui.Components.ja;
+import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.t4;
+import org.telegram.ui.Components.tj0;
+import org.telegram.ui.Components.uj0;
+public final class a extends ja {
+    public p41 T1;
+    public boolean U1;
+    public final FrameLayout V1;
+    public final boolean W1;
+    public final boolean X1;
+    public int Y1;
 
-    public a(int i7) {
-        this.f20615a = i7;
+    public a(android.content.Context r17, org.telegram.tgnet.TLRPC.Chat r18, long r19, org.telegram.messenger.z10 r21) {
+        throw new UnsupportedOperationException("Method not decompiled: ni.a.<init>(android.content.Context, org.telegram.tgnet.TLRPC$Chat, long, org.telegram.messenger.z10):void");
     }
 
-    public static d a() {
-        InputStream open = t0.f25570b.getAssets().open("grammars.dat");
-        try {
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            byte[] bArr = new byte[8192];
-            while (true) {
-                int read = open.read(bArr);
-                if (read != -1) {
-                    byteArrayOutputStream.write(bArr, 0, read);
-                } else {
-                    byte[] byteArray = byteArrayOutputStream.toByteArray();
-                    byteArrayOutputStream.close();
-                    open.close();
-                    return new d(new PrismaHighlighter(byteArray));
-                }
-            }
-        } catch (Throwable th2) {
-            if (open != null) {
-                try {
-                    open.close();
-                } catch (Throwable th3) {
-                    th2.addSuppressed(th3);
-                }
-            }
-            throw th2;
+    @Override
+    public final tj0 L0(uj0 uj0Var) {
+        p41 p41Var = new p41(this.f35936o1, getContext(), this.f29679a, 0, false, new q4(this, 24), this.J0);
+        this.T1 = p41Var;
+        p41Var.f38201r = false;
+        return p41Var;
+    }
+
+    @Override
+    public final CharSequence O0() {
+        int i7;
+        if (this.X1) {
+            i7 = 2131751982;
+        } else {
+            i7 = 2131751977;
         }
+        return hd.M0(i7, null);
     }
 
-    public static BlendMode d(Object obj) {
-        return (BlendMode) obj;
-    }
-
-    public static RenderNode e(Object obj) {
-        return (RenderNode) obj;
-    }
-
-    public static void k(WindowManager.LayoutParams layoutParams, int i7) {
-        layoutParams.layoutInDisplayCutoutMode = i7;
-    }
-
-    @Override
-    public Object apply(Object obj) {
-        return i0.u(Integer.valueOf(((y2.i) obj).f58913a));
-    }
-
-    @Override
-    public void g(u1 u1Var, int i7) {
-        u1Var.dismiss();
-    }
-
-    @Override
-    public Object j(Object obj) {
-        switch (this.f20615a) {
-            case 10:
-                Integer num = (Integer) obj;
-                Typeface typeface = g0.f22539a;
-                return "%s";
-            case 12:
-                return "%" + (((Integer) obj).intValue() + 1) + "$s";
-            case 28:
-                Void r32 = (Void) obj;
-                return new TLRPC.TL_messageEntityBold();
-            default:
-                Void r33 = (Void) obj;
-                return new TLRPC.TL_messageEntityItalic();
+    public final void d1(z10 z10Var, boolean z10, boolean z11) {
+        int i7;
+        if (z11 && !z10 && !this.X1) {
+            Context context = getContext();
+            e6 e6Var = this.J0;
+            String M0 = hd.M0(2131751970, null);
+            if (this.W1) {
+                i7 = 2131751973;
+            } else {
+                i7 = 2131751972;
+            }
+            t4.M(context, e6Var, M0, hd.M0(i7, null), hd.M0(2131754486, null), new m6(this, z10Var, z10, 6)).show();
+            return;
         }
+        z10Var.a(Boolean.valueOf(z10));
+        dismiss();
     }
 
-    @Override
-    public void onSuccess(Object obj) {
-        Void r12 = (Void) obj;
-        boolean z9 = r2.f25216a;
-        a8.b("sms listener registered");
-    }
-
-    @Override
-    public void b(Exception exc) {
+    public final void e1(boolean z10) {
+        boolean z11;
+        if (this.U1 != z10) {
+            this.U1 = z10;
+            uj0 uj0Var = this.f35936o1;
+            View T0 = uj0Var.T0(this.Y1 + 1);
+            if (T0 instanceof g6) {
+                ((g6) T0).a(!z10);
+                z11 = false;
+            } else {
+                z11 = true;
+            }
+            View T02 = uj0Var.T0(this.Y1 + 2);
+            if (T02 instanceof g6) {
+                ((g6) T02).a(z10);
+            } else {
+                z11 = true;
+            }
+            if (z11) {
+                this.T1.O(true);
+            }
+        }
     }
 }

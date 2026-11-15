@@ -1,41 +1,28 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.v10;
+import org.telegram.messenger.s10;
 public final class b7 implements Runnable {
-    public final int f42181a;
-    public final v10 f42182b;
+    public final int f43508a;
+    public final WalletEngine2 f43509b;
+    public final s10 f43510c;
 
-    public b7(v10 v10Var, int i7) {
-        this.f42181a = i7;
-        this.f42182b = v10Var;
+    public b7(WalletEngine2 walletEngine2, s10 s10Var, int i7) {
+        this.f43508a = i7;
+        this.f43509b = walletEngine2;
+        this.f43510c = s10Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f42181a) {
+        switch (this.f43508a) {
             case 0:
-                this.f42182b.a(null, "Wallet engine is closed");
+                this.f43509b.lambda$emulateRotateKey$30(this.f43510c);
                 return;
             case 1:
-                this.f42182b.a(null, "NO_WALLET_ENGINE");
-                return;
-            case 2:
-                this.f42182b.a(null, "NO_WALLET_ENGINE");
-                return;
-            case 3:
-                this.f42182b.a(null, "Recovery phrase is required");
-                return;
-            case 4:
-                this.f42182b.a(null, "Transaction hash is required");
-                return;
-            case 5:
-                this.f42182b.a(null, "NO_WALLET_ENGINE");
-                return;
-            case 6:
-                this.f42182b.a(null, "NO_WALLET_ENGINE");
+                this.f43509b.lambda$balance$14(this.f43510c);
                 return;
             default:
-                this.f42182b.a(null, "NO_WALLET_ENGINE");
+                this.f43509b.lambda$prepareSendNFT$24(this.f43510c);
                 return;
         }
     }

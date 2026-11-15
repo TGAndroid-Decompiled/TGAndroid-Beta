@@ -1,19 +1,19 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class a21 extends v4.s0 {
-    public final d21 f43543a;
+import android.view.View;
+public final class a21 implements View.OnClickListener {
+    public final i21 f44925a;
 
-    public a21(d21 d21Var) {
-        this.f43543a = d21Var;
+    public a21(i21 i21Var) {
+        this.f44925a = i21Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        d21 d21Var = this.f43543a;
-        if (d21Var.n1.I1) {
-            org.telegram.messenger.g0.v1(d21Var.X1);
+    public final void onClick(View view) {
+        org.telegram.ui.Components.fh0 fh0Var = this.f44925a.f47888o1;
+        if (!fh0Var.b() && fh0Var.getAnimatedDrawable() != null) {
+            fh0Var.getAnimatedDrawable().M(40);
+            fh0Var.d();
         }
-        d21.d1(d21Var);
     }
 }

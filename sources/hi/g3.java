@@ -1,59 +1,98 @@
 package hi;
 
 import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.tj;
-public final class g3 implements Runnable {
-    public final int f14676a = 0;
-    public final int f14677b;
-    public final TLRPC.TL_error f14678c;
-    public final TLObject d;
-    public final boolean f14679e;
-    public final long f14680f;
-    public final long h;
-    public final Object f14681n;
-    public final Object f14682r;
-    public final Object f14683s;
-    public final Object f14684w;
-    public final Object f14685x;
-    public final Object f14686y;
+import android.view.MotionEvent;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.ve;
+public final class g3 extends d3 {
+    public final int f14339l0 = 0;
+    public final Object m0;
 
-    public g3(fi.d dVar, TLObject tLObject, int i7, long j3, org.telegram.ui.ActionBar.w2 w2Var, TL_payments.starRefProgram starrefprogram, long j10, boolean z9, Context context, h6 h6Var, TLRPC.User user, TLRPC.TL_error tL_error) {
-        this.f14681n = dVar;
-        this.d = tLObject;
-        this.f14677b = i7;
-        this.f14680f = j3;
-        this.f14682r = w2Var;
-        this.f14683s = starrefprogram;
-        this.h = j10;
-        this.f14679e = z9;
-        this.f14684w = context;
-        this.f14685x = h6Var;
-        this.f14686y = user;
-        this.f14678c = tL_error;
+    public g3(int i7, Context context, fi.b bVar, float f10, String str) {
+        super(i7, context, bVar, null, true, f10, false, false);
+        this.m0 = str;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: hi.g3.run():void");
+    public void a() {
+        switch (this.f14339l0) {
+            case 1:
+                sa saVar = (sa) this.m0;
+                saVar.N0.setTranslationY(saVar.f15076n.getMeasuredHeight() - saVar.N0.g());
+                c9 c9Var = saVar.f15091r2;
+                if (c9Var != null) {
+                    c9Var.run();
+                    saVar.f15091r2 = null;
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
     }
 
-    public g3(tj tjVar, int i7, TLRPC.TL_error tL_error, TLObject tLObject, org.telegram.messenger.c cVar, boolean z9, String str, ArrayList arrayList, long j3, long j10, ArrayList arrayList2, ArrayList arrayList3) {
-        this.f14681n = tjVar;
-        this.f14677b = i7;
-        this.f14678c = tL_error;
-        this.d = tLObject;
-        this.f14682r = cVar;
-        this.f14679e = z9;
-        this.f14683s = str;
-        this.f14684w = arrayList;
-        this.f14680f = j3;
-        this.h = j10;
-        this.f14685x = arrayList2;
-        this.f14686y = arrayList3;
+    @Override
+    public void c(boolean z10) {
+        switch (this.f14339l0) {
+            case 1:
+                if (((sa) this.m0).f15057g0 == 0 && z10) {
+                    org.telegram.messenger.g0.h3(new e1(this, 14));
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.f14339l0) {
+            case 1:
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < g()) {
+                    sa saVar = (sa) this.m0;
+                    saVar.M0 = true;
+                    saVar.e(false);
+                    return true;
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                return super.dispatchTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public String getTitle() {
+        switch (this.f14339l0) {
+            case 0:
+                return (String) this.m0;
+            default:
+                return super.getTitle();
+        }
+    }
+
+    @Override
+    public void setTranslationY(float f10) {
+        switch (this.f14339l0) {
+            case 1:
+                super.setTranslationY(f10);
+                sa saVar = (sa) this.m0;
+                if (saVar.f15073l2) {
+                    float i7 = Utilities.i(1.0f - (f10 / (saVar.f15076n.getMeasuredHeight() - saVar.N0.g())), 1.0f, 0.0f);
+                    saVar.f15088r.b(org.telegram.messenger.g0.L(-32.0f) * i7);
+                    saVar.f15088r.setAlpha(1.0f - (0.6f * i7));
+                    saVar.f15066j0.setAlpha(1.0f - i7);
+                    return;
+                }
+                return;
+            default:
+                super.setTranslationY(f10);
+                return;
+        }
+    }
+
+    public g3(sa saVar, int i7, Context context, fi.b bVar, ve veVar, boolean z10, boolean z11, boolean z12) {
+        super(i7, context, bVar, veVar, z10, 1.39f, z11, z12);
+        this.m0 = saVar;
     }
 }

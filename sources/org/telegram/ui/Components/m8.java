@@ -1,60 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class m8 extends org.telegram.ui.t11 {
-    public boolean f35889e2;
-    public final s8 f35890f2;
+import j$.util.Objects;
+public final class m8 {
+    public int f37161a;
+    public boolean f37162b;
+    public int f37163c;
+    public int d;
+    public int f37164e;
+    public int f37165f;
 
-    public m8(s8 s8Var, s8 s8Var2, Activity activity, int i7) {
-        super(s8Var2, activity, false, null, 4, true, null, 16, i7);
-        this.f35890f2 = s8Var;
-        this.f35889e2 = true;
+    public final m8 a() {
+        ?? obj = new Object();
+        obj.f37163c = this.f37163c;
+        obj.d = this.d;
+        obj.f37164e = this.f37164e;
+        obj.f37165f = this.f37165f;
+        obj.f37162b = this.f37162b;
+        return obj;
     }
 
-    @Override
-    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        super.onLayout(z9, i7, i10, i11, i12);
-        if (this.f35889e2) {
-            this.f35889e2 = false;
-            this.f35890f2.f37889b.s(null);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (!(obj instanceof m8)) {
+            return false;
+        }
+        m8 m8Var = (m8) obj;
+        if (this.f37163c == m8Var.f37163c && this.d == m8Var.d && this.f37164e == m8Var.f37164e && this.f37165f == m8Var.f37165f) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final void p(View view, Long l10, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        int i7;
-        TLRPC.TL_emojiList tL_emojiList;
-        boolean z9;
-        long j3;
-        int i10;
-        boolean z10 = this.R;
-        s8 s8Var = this.f35890f2;
-        if (z10) {
-            i10 = ((org.telegram.ui.ActionBar.f2) s8Var).currentAccount;
-            tL_emojiList = org.telegram.messenger.ui.b0(i10).J1;
-        } else {
-            i7 = ((org.telegram.ui.ActionBar.f2) s8Var).currentAccount;
-            tL_emojiList = org.telegram.messenger.ui.b0(i7).K1;
-        }
-        long j10 = 0;
-        if (tL_emojiList != null) {
-            if (document != null) {
-                j3 = document.f26966id;
-            } else if (l10 != null) {
-                j3 = l10.longValue();
-            } else {
-                j3 = 0;
-            }
-            z9 = tL_emojiList.document_id.contains(Long.valueOf(j3));
-        } else {
-            z9 = false;
-        }
-        if (l10 != null) {
-            j10 = l10.longValue();
-        }
-        s8Var.m0(z9, j10, document);
+    public final int hashCode() {
+        return Objects.hash(Integer.valueOf(this.f37161a), Integer.valueOf(this.f37163c), Integer.valueOf(this.d), Integer.valueOf(this.f37164e), Integer.valueOf(this.f37165f));
     }
 }

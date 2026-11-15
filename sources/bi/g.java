@@ -1,135 +1,130 @@
 package bi;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import j$.util.Objects;
-import org.telegram.ui.Components.hm0;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.r20;
-import org.telegram.ui.Components.v80;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.bx0;
-import org.telegram.ui.nt;
-import org.telegram.ui.tu0;
-import org.telegram.ui.yv0;
-public final class g implements eh.a {
-    public final int f3904a;
-    public final Object f3905b;
-    public final Object f3906c;
+import android.content.Context;
+import android.util.LongSparseArray;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.r9;
+import org.telegram.messenger.t9;
+import org.telegram.messenger.v9;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.b41;
+import org.telegram.ui.Components.ja;
+import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.tj0;
+import org.telegram.ui.Components.uj0;
+public final class g extends ja implements t9 {
+    public final b41 T1;
+    public final LongSparseArray U1;
+    public ArrayList V1;
+    public boolean W1;
+    public p41 X1;
+    public int Y1;
 
-    public g(int i7, Object obj, Object obj2) {
-        this.f3904a = i7;
-        this.f3905b = obj;
-        this.f3906c = obj2;
+    public g(Context context) {
+        super(context, null, false, false, 2, null);
+        int i7 = 0;
+        this.U1 = new LongSparseArray();
+        this.V1 = new ArrayList();
+        int x02 = org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28792a7, false);
+        this.Y1 = x02;
+        v0(x02);
+        v9.c(this.f29679a).f26952f.add(this);
+        this.G1 = false;
+        this.F1 = org.telegram.messenger.g0.L(12.0f);
+        O();
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.setClipChildren(false);
+        linearLayout.setClipToPadding(false);
+        linearLayout.setClickable(true);
+        this.T1 = b41.j(-1, linearLayout);
+        this.f35936o1.setPadding(this.f29717u0, org.telegram.messenger.g0.L(9.0f), this.f29717u0, org.telegram.messenger.g0.L(9.0f));
+        this.f35936o1.setOverScrollMode(2);
+        this.X1.O(false);
+        ArrayList arrayList = v9.c(this.f29679a).f26950c;
+        int size = arrayList.size();
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            r9 r9Var = (r9) obj;
+            f fVar = new f(context, r9Var);
+            fVar.f3487a.setOnClickListener(new ah.g(this, context, r9Var, 1));
+            linearLayout.addView(fVar, c8.ja.o(-1, -2));
+            this.U1.put(r9Var.f26259b, fVar);
+        }
+        g(arrayList);
     }
 
     @Override
-    public final void c(dh.a aVar, RectF rectF) {
-        switch (this.f3904a) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            default:
-                aVar.f8703a = true;
-                return;
+    public final tj0 L0(uj0 uj0Var) {
+        p41 p41Var = new p41(this.f35936o1, getContext(), this.f29679a, 0, true, new b(this, 1), this.J0);
+        this.X1 = p41Var;
+        p41Var.f38201r = false;
+        return p41Var;
+    }
+
+    @Override
+    public final CharSequence O0() {
+        ArrayList arrayList = this.V1;
+        if (arrayList == null) {
+            return null;
+        }
+        return hd.a0(null, null, 2131750418, Integer.valueOf(arrayList.size()));
+    }
+
+    @Override
+    public final void dismiss() {
+        v9.c(this.f29679a).f26952f.remove(this);
+        super.dismiss();
+    }
+
+    @Override
+    public final void g(ArrayList arrayList) {
+        int i7;
+        this.V1 = new ArrayList(arrayList);
+        this.f35937p1.setTitle(O0());
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            r9 r9Var = (r9) obj;
+            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = r9Var.f26262f;
+            if (tL_starGiftAuctionState != null) {
+                i7 = tL_starGiftAuctionState.next_round_at;
+            } else {
+                i7 = 0;
+            }
+            f fVar = (f) this.U1.get(r9Var.f26259b);
+            if (fVar != null) {
+                fVar.b(this.W1);
+                long max = Math.max(0, i7 - ConnectionsManager.getInstance(this.f29679a).getCurrentTime());
+                fVar.a(max, this.W1);
+                fVar.f3491f.a(max);
+            }
         }
     }
 
     @Override
-    public final void d(Canvas canvas, RectF rectF) {
-        float f10;
-        Canvas canvas2;
-        float f11;
-        switch (this.f3904a) {
-            case 0:
-                ((z) this.f3905b).f5120f.d(canvas, rectF, (f) this.f3906c);
-                return;
-            case 1:
-                ((dd) this.f3905b).U.d(canvas, rectF, (f) this.f3906c);
-                return;
-            case 2:
-                ((gi.f) this.f3905b).U.d(canvas, rectF, (f) this.f3906c);
-                return;
-            case 3:
-                hm0 hm0Var = (hm0) this.f3905b;
-                ih.d.a(hm0Var, canvas, rectF, hm0Var, (FrameLayout) this.f3906c);
-                return;
-            case 4:
-                pj0 pj0Var = (pj0) this.f3905b;
-                ih.d.a(pj0Var, canvas, rectF, pj0Var, (FrameLayout) this.f3906c);
-                return;
-            case 5:
-                ((org.telegram.ui.y6) this.f3905b).f51912b0.d(canvas, rectF, (org.telegram.ui.z5) this.f3906c);
-                return;
-            case 6:
-                ((r20) this.f3905b).f37478n.L(canvas, rectF, (FrameLayout) this.f3906c);
-                return;
-            case 7:
-                ((v80) this.f3905b).R.L(canvas, rectF, (e5) this.f3906c);
-                return;
-            case 8:
-                nt ntVar = (nt) this.f3905b;
-                di.b4 b4Var = (di.b4) this.f3906c;
-                int childCount = ntVar.f48288a.getChildCount();
-                for (int i7 = 0; i7 < childCount; i7++) {
-                    View childAt = ntVar.f48288a.getChildAt(i7);
-                    if (childAt instanceof pj0) {
-                        pj0 pj0Var2 = (pj0) childAt;
-                        ih.d.a(pj0Var2, canvas, rectF, pj0Var2, b4Var);
-                    }
-                }
-                return;
-            default:
-                ProfileActivity profileActivity = (ProfileActivity) this.f3905b;
-                dh.k kVar = (dh.k) this.f3906c;
-                Paint paint = profileActivity.P6;
-                ViewGroup viewGroup = (ViewGroup) profileActivity.fragmentView;
-                yv0 yv0Var = profileActivity.N;
-                if (yv0Var != null && yv0Var.getParent() == profileActivity.f41689a) {
-                    f10 = profileActivity.S5;
-                } else {
-                    f10 = 0.0f;
-                }
-                int i10 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
-                if (i10 < 0) {
-                    bx0 bx0Var = profileActivity.f41707c1;
-                    RectF rectF2 = ProfileActivity.V6;
-                    if (jh.k.c(bx0Var, viewGroup, rectF2) && RectF.intersects(rectF2, rectF)) {
-                        ih.d.a(new org.telegram.ui.oa(profileActivity, 4), canvas, rectF, profileActivity.f41707c1, viewGroup);
-                    }
-                    tu0 tu0Var = profileActivity.f41689a;
-                    Objects.requireNonNull(tu0Var);
-                    ih.d.a(new org.telegram.ui.oa(tu0Var, 5), canvas, rectF, profileActivity.f41689a, viewGroup);
-                    kVar.d(canvas, rectF);
-                }
-                if (f10 > 0.0f) {
-                    if (i10 < 0) {
-                        f11 = profileActivity.N.getY() + profileActivity.f41689a.getY();
-                    } else {
-                        f11 = Float.MAX_VALUE;
-                    }
-                    paint.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f27834a7, profileActivity.f41867z0));
-                    paint.setAlpha((int) (f10 * 255.0f));
-                    canvas2 = canvas;
-                    canvas2.drawRect(rectF.left, rectF.top, rectF.right, Math.min(rectF.bottom, f11), paint);
-                } else {
-                    canvas2 = canvas;
-                }
-                profileActivity.N.L(canvas2, rectF, viewGroup);
-                ProfileActivity.N3(profileActivity.f41823t0, canvas2, rectF, viewGroup);
-                ProfileActivity.N3(profileActivity.f41782n0, canvas2, rectF, viewGroup);
-                ProfileActivity.N3(profileActivity.m0, canvas2, rectF, viewGroup);
-                return;
+    public final void s0() {
+        try {
+            super.s0();
+            int x02 = org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28792a7, false);
+            if (x02 != this.Y1) {
+                this.Y1 = x02;
+                v0(x02);
+            }
+        } catch (Exception e10) {
+            a8.g(e10, true);
         }
+    }
+
+    @Override
+    public final void v() {
+        this.W1 = true;
     }
 }

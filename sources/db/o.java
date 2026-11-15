@@ -2,21 +2,21 @@ package db;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.xb;
+import c8.yb;
 public final class o extends r6.a {
     public static final Parcelable.Creator<o> CREATOR = new k(3);
-    public final String f8594a;
+    public final String f7978a;
 
     public o(String token) {
         kotlin.jvm.internal.j.e(token, "token");
-        this.f8594a = token;
+        this.f7978a = token;
     }
 
     @Override
     public final void writeToParcel(Parcel dest, int i7) {
         kotlin.jvm.internal.j.e(dest, "dest");
-        int r10 = xb.r(dest, 20293);
-        xb.l(dest, 1, this.f8594a);
-        xb.s(dest, r10);
+        int r10 = yb.r(dest, 20293);
+        yb.l(dest, 1, this.f7978a);
+        yb.s(dest, r10);
     }
 }

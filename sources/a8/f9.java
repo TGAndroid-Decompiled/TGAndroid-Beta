@@ -1,13 +1,10 @@
 package a8;
-
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public abstract class f9 {
-    public static boolean a(AtomicReferenceFieldUpdater atomicReferenceFieldUpdater, com.google.android.gms.internal.play_billing.l0 l0Var, Object obj, Object obj2) {
-        while (!atomicReferenceFieldUpdater.compareAndSet(l0Var, obj, obj2)) {
-            if (atomicReferenceFieldUpdater.get(l0Var) != obj && atomicReferenceFieldUpdater.get(l0Var) != obj) {
-                return false;
+    public static void a(int i7, Object[] objArr) {
+        for (int i10 = 0; i10 < i7; i10++) {
+            if (objArr[i10] == null) {
+                throw new NullPointerException(i5.c.i(i10, "at index "));
             }
         }
-        return true;
     }
 }

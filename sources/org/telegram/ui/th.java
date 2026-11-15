@@ -1,25 +1,42 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.text.TextUtils;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class th extends qq0 {
-    public final cn f50280a;
+public final class th extends df0 {
+    public final an f51586f;
 
-    public th(cn cnVar) {
-        this.f50280a = cnVar;
-    }
-
-    @Override
-    public final org.telegram.ui.zq0 E(org.telegram.messenger.ij r5, org.telegram.tgnet.TLRPC.FileLocation r6, int r7, boolean r8, boolean r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.th.E(org.telegram.messenger.ij, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.zq0");
-    }
-
-    @Override
-    public final void o(int i7, org.telegram.messenger.j20 j20Var, boolean z9, int i10, int i11, boolean z10) {
-        if (i7 >= 0) {
-            cn cnVar = this.f50280a;
-            if (i7 < cnVar.f44471db.size()) {
-                cnVar.Gb((TLRPC.BotInlineResult) cnVar.f44471db.get(i7), z9, i10, 0L);
-            }
+    public th(an anVar, Context context, int i7, org.telegram.messenger.gj gjVar) {
+        super(context);
+        this.f51586f = anVar;
+        this.f46388a = null;
+        if (!gjVar.h4()) {
+            gjVar.P4();
         }
+        org.telegram.ui.Components.pz pzVar = new org.telegram.ui.Components.pz(context, null);
+        this.f46390c = pzVar;
+        pzVar.e(org.telegram.ui.ActionBar.j6.G8, org.telegram.ui.ActionBar.j6.f28941i6, -1);
+        pzVar.setViewType(13);
+        pzVar.setIsSingleCell(false);
+        addView(pzVar, c8.ja.c(-1.0f, -2));
+        org.telegram.ui.Components.z70 z70Var = new org.telegram.ui.Components.z70(context, null);
+        this.f46389b = z70Var;
+        z70Var.setTextSize(1, 14.0f);
+        z70Var.setGravity(19);
+        org.telegram.ui.ActionBar.q6.U(z70Var, org.telegram.ui.ActionBar.j6.E8, null);
+        org.telegram.ui.ActionBar.q6.G(z70Var, org.telegram.ui.ActionBar.j6.Xc, null);
+        z70Var.setEllipsize(TextUtils.TruncateAt.END);
+        z70Var.setSingleLine();
+        z70Var.setLines(1);
+        z70Var.setMaxLines(1);
+        addView(z70Var, c8.ja.d(-1, -2.0f, 19, 12.0f, 0.0f, 12.0f, 0.0f));
+        TLRPC.TL_channels_getMessageAuthor tL_channels_getMessageAuthor = new TLRPC.TL_channels_getMessageAuthor();
+        tL_channels_getMessageAuthor.channel = org.telegram.messenger.np.s1(i7).h1(-org.telegram.messenger.gj.B0(gjVar.f23817k));
+        tL_channels_getMessageAuthor.f28088id = gjVar.e1();
+        z70Var.setAlpha(0.0f);
+        ConnectionsManager.getInstance(i7).sendRequest(tL_channels_getMessageAuthor, new di.u1(this, i7, 9));
+        setBackground(org.telegram.ui.ActionBar.j6.a0(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.I5, false), 6, 0));
+        setEnabled(false);
     }
 }

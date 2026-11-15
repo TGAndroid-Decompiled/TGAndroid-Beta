@@ -1,39 +1,21 @@
 package l2;
 
-import java.util.List;
-public final class y implements h2.o, p4.a1 {
-    public final int f18089a;
-    public final List f18090b;
-
-    public y(int i7, h9.t1 t1Var) {
-        this.f18089a = i7;
-        this.f18090b = t1Var;
-    }
+import e2.x1;
+public final class y implements h2.o {
+    public final int f19230a = 0;
+    public final x1 f19231b;
 
     @Override
-    public void invoke(Object obj) {
-        switch (this.f18089a) {
+    public final void invoke(Object obj) {
+        switch (this.f19230a) {
             case 0:
-                ((e2.a1) obj).B(this.f18090b);
+                ((e2.a1) obj).b(this.f19231b);
                 return;
             default:
-                ((m2.b) obj).getClass();
+                x1 x1Var = this.f19231b;
+                ((m2.b) obj).w(x1Var);
+                int i7 = x1Var.f10485a;
                 return;
         }
-    }
-
-    @Override
-    public Object l(p4.d0 d0Var, p4.v vVar, int i7) {
-        switch (this.f18089a) {
-            case 2:
-                return d0Var.l(vVar, this.f18090b);
-            default:
-                return d0Var.l(vVar, this.f18090b);
-        }
-    }
-
-    public y(m2.a aVar, List list) {
-        this.f18089a = 1;
-        this.f18090b = list;
     }
 }

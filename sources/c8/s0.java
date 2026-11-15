@@ -2,125 +2,107 @@ package c8;
 
 import java.math.RoundingMode;
 public abstract class s0 {
-    public static long a(long j3, long j10) {
-        boolean z9;
-        long j11 = j3 + j10;
-        boolean z10 = false;
-        if ((j3 ^ j10) < 0) {
-            z9 = true;
-        } else {
-            z9 = false;
-        }
-        if ((j3 ^ j11) >= 0) {
-            z10 = true;
-        }
-        if (z9 | z10) {
-            return j11;
-        }
-        throw new ArithmeticException(a8.p0.r(a8.p0.t(j3, "overflow: checkedAdd(", ", "), j10, ")"));
-    }
-
-    public static long b(long j3, long j10, RoundingMode roundingMode) {
-        roundingMode.getClass();
-        long j11 = j3 / j10;
-        long j12 = j3 - (j10 * j11);
-        int i7 = (j12 > 0L ? 1 : (j12 == 0L ? 0 : -1));
-        if (i7 == 0) {
-            return j11;
-        }
-        boolean z9 = true;
-        int i10 = ((int) ((j3 ^ j10) >> 63)) | 1;
-        switch (j9.e.f16603a[roundingMode.ordinal()]) {
-            case 1:
-                if (i7 != 0) {
-                    z9 = false;
-                }
-                t0.b(z9);
-                return j11;
-            case 2:
-                return j11;
-            case 3:
-                if (i10 >= 0) {
-                    return j11;
-                }
-                return j11 + i10;
-            case 4:
-                return j11 + i10;
-            case 5:
-                if (i10 <= 0) {
-                    return j11;
-                }
-                return j11 + i10;
-            case 6:
-            case 7:
-            case 8:
-                long abs = Math.abs(j12);
-                int i11 = ((abs - (Math.abs(j10) - abs)) > 0L ? 1 : ((abs - (Math.abs(j10) - abs)) == 0L ? 0 : -1));
-                if (i11 == 0) {
-                    if (roundingMode != RoundingMode.HALF_UP && (roundingMode != RoundingMode.HALF_EVEN || (1 & j11) == 0)) {
-                        return j11;
-                    }
-                } else if (i11 <= 0) {
-                    return j11;
-                }
-                return j11 + i10;
-            default:
-                throw new AssertionError();
-        }
-    }
-
-    public static long c(long j3, long j10) {
-        t0.a(j3, "a");
-        t0.a(j10, "b");
-        if (j3 == 0) {
-            return j10;
-        }
-        if (j10 == 0) {
-            return j3;
-        }
-        int numberOfTrailingZeros = Long.numberOfTrailingZeros(j3);
-        long j11 = j3 >> numberOfTrailingZeros;
-        int numberOfTrailingZeros2 = Long.numberOfTrailingZeros(j10);
-        long j12 = j10 >> numberOfTrailingZeros2;
-        while (j11 != j12) {
-            long j13 = j11 - j12;
-            long j14 = (j13 >> 63) & j13;
-            long j15 = (j13 - j14) - j14;
-            j12 += j14;
-            j11 = j15 >> Long.numberOfTrailingZeros(j15);
-        }
-        return j11 << Math.min(numberOfTrailingZeros, numberOfTrailingZeros2);
-    }
-
-    public static long d(long j3, long j10) {
-        boolean z9;
+    public static int a(int i7, int i10) {
         boolean z10;
-        int numberOfLeadingZeros = Long.numberOfLeadingZeros(~j10) + Long.numberOfLeadingZeros(j10) + Long.numberOfLeadingZeros(~j3) + Long.numberOfLeadingZeros(j3);
-        if (numberOfLeadingZeros > 65) {
-            return j3 * j10;
-        }
-        long j11 = ((j3 ^ j10) >>> 63) + Long.MAX_VALUE;
-        boolean z11 = false;
-        if (numberOfLeadingZeros < 64) {
-            z9 = true;
-        } else {
-            z9 = false;
-        }
-        int i7 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-        if (i7 < 0) {
+        long j3 = i7 + i10;
+        int i11 = (int) j3;
+        if (j3 == i11) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (j10 == Long.MIN_VALUE) {
-            z11 = true;
+        if (z10) {
+            return i11;
         }
-        if (!(z9 | (z11 & z10))) {
-            long j12 = j3 * j10;
-            if (i7 == 0 || j12 / j3 == j10) {
-                return j12;
+        throw new ArithmeticException("overflow: checkedAdd(" + i7 + ", " + i10 + ")");
+    }
+
+    public static int b(int i7, int i10) {
+        RoundingMode roundingMode = RoundingMode.CEILING;
+        roundingMode.getClass();
+        if (i10 != 0) {
+            int i11 = i7 / i10;
+            int i12 = i7 - (i10 * i11);
+            if (i12 != 0) {
+                boolean z10 = true;
+                int i13 = ((i7 ^ i10) >> 31) | 1;
+                switch (j9.d.f16955a[roundingMode.ordinal()]) {
+                    case 1:
+                        if (i12 != 0) {
+                            z10 = false;
+                        }
+                        u0.b(z10);
+                        return i11;
+                    case 2:
+                        return i11;
+                    case 3:
+                        if (i13 >= 0) {
+                            return i11;
+                        }
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        if (i13 <= 0) {
+                            return i11;
+                        }
+                        break;
+                    case 6:
+                    case 7:
+                    case 8:
+                        int abs = Math.abs(i12);
+                        int abs2 = abs - (Math.abs(i10) - abs);
+                        if (abs2 == 0) {
+                            RoundingMode roundingMode2 = RoundingMode.HALF_UP;
+                            RoundingMode roundingMode3 = RoundingMode.HALF_EVEN;
+                            return i11;
+                        } else if (abs2 <= 0) {
+                            return i11;
+                        }
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
+                return i11 + i13;
             }
+            return i11;
         }
-        return j11;
+        throw new ArithmeticException("/ by zero");
+    }
+
+    public static int c(int i7) {
+        boolean z10;
+        RoundingMode roundingMode = RoundingMode.UNNECESSARY;
+        if (i7 > 0) {
+            boolean z11 = true;
+            switch (j9.d.f16955a[roundingMode.ordinal()]) {
+                case 1:
+                    if (i7 > 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (((i7 - 1) & i7) != 0) {
+                        z11 = false;
+                    }
+                    u0.b(z10 & z11);
+                    break;
+                case 2:
+                case 3:
+                    break;
+                case 4:
+                case 5:
+                    return 32 - Integer.numberOfLeadingZeros(i7 - 1);
+                case 6:
+                case 7:
+                case 8:
+                    int numberOfLeadingZeros = Integer.numberOfLeadingZeros(i7);
+                    return (31 - numberOfLeadingZeros) + ((~(~(((-1257966797) >>> numberOfLeadingZeros) - i7))) >>> 31);
+                default:
+                    throw new AssertionError();
+            }
+            return 31 - Integer.numberOfLeadingZeros(i7);
+        }
+        throw new IllegalArgumentException(i5.c.j(i7, "x (", ") must be > 0"));
     }
 }

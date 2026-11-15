@@ -1,94 +1,130 @@
 package fi;
 
-import android.graphics.Point;
-import android.graphics.RectF;
-import org.telegram.messenger.ls;
-import org.telegram.messenger.qs;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.zw;
-public final class h9 implements Runnable {
-    public final int f12146a = 0;
-    public final long f12147b;
-    public final boolean f12148c;
-    public final boolean d;
-    public final ls f12149e;
-    public final TLObject f12150f;
-    public final TLObject h;
+import android.view.SurfaceView;
+import org.telegram.messenger.video.VideoPlayerHolderBase;
+public final class h9 extends VideoPlayerHolderBase {
+    public boolean f11808a;
+    public final i9 f11809b;
 
-    public h9(va vaVar, boolean z9, TL_stories.StoryItem storyItem, long j3, TLRPC.InputGroupCall inputGroupCall, boolean z10) {
-        this.f12149e = vaVar;
-        this.f12148c = z9;
-        this.f12150f = storyItem;
-        this.f12147b = j3;
-        this.h = inputGroupCall;
-        this.d = z10;
-    }
-
-    @Override
-    public final void run() {
-        int i7 = this.f12146a;
-        TLObject tLObject = this.h;
-        TLObject tLObject2 = this.f12150f;
-        ls lsVar = this.f12149e;
-        switch (i7) {
-            case 0:
-                va vaVar = (va) lsVar;
-                TL_stories.StoryItem storyItem = (TL_stories.StoryItem) tLObject2;
-                TLRPC.InputGroupCall inputGroupCall = (TLRPC.InputGroupCall) tLObject;
-                boolean z9 = this.f12148c;
-                long j3 = this.f12147b;
-                if (!z9) {
-                    di.g1.W = new di.g1(vaVar.f12940b, vaVar.f12944c, storyItem, j3, storyItem.f27199id, z9, inputGroupCall, true, this.d);
-                }
-                qa qaVar = vaVar.F;
-                if (qaVar != null) {
-                    qaVar.f(false);
-                }
-                vaVar.F = null;
-                vaVar.J = 0;
-                RectF rectF = vaVar.H;
-                Point point = org.telegram.messenger.g0.f22567q;
-                rectF.set(0.0f, 0.0f, point.x, point.y);
-                vaVar.G = org.telegram.messenger.g0.L(8.0f);
-                vaVar.p(true);
-                org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
-                storyItem.dialogId = j3;
-                storyItem.justUploaded = true;
-                T.getOrCreateStoryViewer().L(vaVar.f12940b, storyItem, null);
-                qs.f(vaVar.f12944c).k(176, Long.valueOf(inputGroupCall.f26977id));
-                return;
-            default:
-                zw zwVar = (zw) lsVar;
-                TLRPC.Chat chat = (TLRPC.Chat) tLObject2;
-                TLRPC.User user = (TLRPC.User) tLObject;
-                long j10 = this.f12147b;
-                boolean z10 = this.f12148c;
-                if (chat != null) {
-                    if (org.telegram.messenger.t3.r0(chat)) {
-                        zwVar.getMessagesController().X(0, j10, z10);
-                    } else {
-                        zwVar.getMessagesController().g0(-j10, zwVar.getMessagesController().a2(Long.valueOf(zwVar.getUserConfig().e())), null, z10, z10);
-                    }
-                } else {
-                    zwVar.getMessagesController().X(0, j10, z10);
-                    if (user != null && user.bot && this.d) {
-                        zwVar.getMessagesController().w(user.f27109id);
-                    }
-                }
-                zwVar.getMessagesController().J(zwVar.X2);
-                return;
+    public h9(i9 i9Var, SurfaceView surfaceView, a9 a9Var) {
+        this.f11809b = i9Var;
+        if (i9Var.f11830a) {
+            with(surfaceView);
+        } else {
+            with(a9Var);
         }
     }
 
-    public h9(zw zwVar, TLRPC.Chat chat, long j3, boolean z9, TLRPC.User user, boolean z10) {
-        this.f12149e = zwVar;
-        this.f12150f = chat;
-        this.f12147b = j3;
-        this.f12148c = z9;
-        this.h = user;
-        this.d = z10;
+    @Override
+    public final boolean needRepeat() {
+        return this.f11809b.f11858m1;
+    }
+
+    @Override
+    public final void onRenderedFirstFrame() {
+        i9 i9Var = this.f11809b;
+        a4 a4Var = i9Var.G0;
+        if (a4Var != null) {
+            a4Var.f11405a = true;
+            this.firstFrameRendered = true;
+            a4Var.b();
+            if (this.paused && i9Var.D0 != null) {
+                prepareStub();
+            }
+        }
+    }
+
+    @Override
+    public final void onStateChanged(boolean z10, int i7) {
+        if (i7 == 3 || i7 == 2) {
+            if (this.firstFrameRendered && i7 == 2) {
+                this.f11808a = true;
+                org.telegram.messenger.g0.h3(new Runnable(this) {
+                    public final h9 f11756b;
+
+                    {
+                        this.f11756b = this;
+                    }
+
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                b4 z11 = this.f11756b.f11809b.z();
+                                if (z11 != null) {
+                                    z3 z3Var = z11.f11543y1;
+                                    if (z3Var.f12579a != null) {
+                                        StringBuilder sb2 = new StringBuilder("StoryViewer displayed story buffering dialogId=");
+                                        sb2.append(z11.getCurrentPeer());
+                                        sb2.append(" storyId=");
+                                        i5.c.r(z3Var.f12579a.f28290id, sb2);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            default:
+                                b4 z12 = this.f11756b.f11809b.z();
+                                if (z12 != null) {
+                                    z3 z3Var2 = z12.f11543y1;
+                                    if (z3Var2.f12579a != null) {
+                                        StringBuilder sb3 = new StringBuilder("StoryViewer displayed story playing dialogId=");
+                                        sb3.append(z12.getCurrentPeer());
+                                        sb3.append(" storyId=");
+                                        i5.c.r(z3Var2.f12579a.f28290id, sb3);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+            }
+            if (this.f11808a && i7 == 3) {
+                this.f11808a = false;
+                org.telegram.messenger.g0.h3(new Runnable(this) {
+                    public final h9 f11756b;
+
+                    {
+                        this.f11756b = this;
+                    }
+
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                b4 z11 = this.f11756b.f11809b.z();
+                                if (z11 != null) {
+                                    z3 z3Var = z11.f11543y1;
+                                    if (z3Var.f12579a != null) {
+                                        StringBuilder sb2 = new StringBuilder("StoryViewer displayed story buffering dialogId=");
+                                        sb2.append(z11.getCurrentPeer());
+                                        sb2.append(" storyId=");
+                                        i5.c.r(z3Var.f12579a.f28290id, sb2);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            default:
+                                b4 z12 = this.f11756b.f11809b.z();
+                                if (z12 != null) {
+                                    z3 z3Var2 = z12.f11543y1;
+                                    if (z3Var2.f12579a != null) {
+                                        StringBuilder sb3 = new StringBuilder("StoryViewer displayed story playing dialogId=");
+                                        sb3.append(z12.getCurrentPeer());
+                                        sb3.append(" storyId=");
+                                        i5.c.r(z3Var2.f12579a.f28290id, sb3);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+            }
+        }
     }
 }

@@ -1,24 +1,42 @@
 package org.telegram.messenger;
-public final class l00 implements pc, oc {
-    public final f10 f23823a;
-    public final ij f23824b;
-    public final f3.s f23825c;
-    public final bi.ya d;
 
-    public l00(f10 f10Var, ij ijVar, f3.s sVar, bi.ya yaVar) {
-        this.f23823a = f10Var;
-        this.f23824b = ijVar;
-        this.f23825c = sVar;
-        this.d = yaVar;
+import java.util.ArrayList;
+public final class l00 implements Runnable {
+    public final int f24786a;
+    public final c10 f24787b;
+    public final long f24788c;
+
+    public l00(c10 c10Var, long j3, int i7) {
+        this.f24786a = i7;
+        this.f24787b = c10Var;
+        this.f24788c = j3;
     }
 
     @Override
-    public void a(String str) {
-        g0.h3(new mn(this.f23823a, this.f23824b, str, this.f23825c, this.d, 18));
-    }
-
-    @Override
-    public void r(Exception exc) {
-        g0.h3(new em(this.f23823a, this.f23824b, this.f23825c, this.d, 27));
+    public final void run() {
+        int i7 = this.f24786a;
+        long j3 = this.f24788c;
+        c10 c10Var = this.f24787b;
+        switch (i7) {
+            case 0:
+                ns.f(c10Var.currentAccount).k(130, Long.valueOf(j3));
+                return;
+            default:
+                ArrayList arrayList = (ArrayList) c10Var.f22787n.S.f(j3);
+                if (arrayList != null) {
+                    ArrayList arrayList2 = new ArrayList();
+                    for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                        gj gjVar = (gj) arrayList.get(i10);
+                        if (gjVar != null && gjVar.f23817k != null) {
+                            arrayList2.add(c10Var.getMessagesStorage().e0(gjVar.e1(), gj.B0(gjVar.f23817k)));
+                        } else {
+                            arrayList2.add(null);
+                        }
+                    }
+                    g0.h3(new mg(c10Var, arrayList2, arrayList, 5));
+                    return;
+                }
+                return;
+        }
     }
 }

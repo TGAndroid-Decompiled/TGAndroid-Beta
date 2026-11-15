@@ -6,28 +6,28 @@ import android.os.Build;
 import android.os.Handler;
 import j$.util.Objects;
 public final class g {
-    public final int f10909a;
-    public final AudioManager.OnAudioFocusChangeListener f10910b;
-    public final Handler f10911c;
+    public final int f10720a;
+    public final AudioManager.OnAudioFocusChangeListener f10721b;
+    public final Handler f10722c;
     public final e2.e d;
-    public final boolean f10912e;
-    public final Object f10913f;
+    public final boolean f10723e;
+    public final Object f10724f;
 
-    public g(int i7, AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener, Handler handler, e2.e eVar, boolean z9, boolean z10) {
-        this.f10909a = i7;
-        this.f10911c = handler;
+    public g(int i7, AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener, Handler handler, e2.e eVar, boolean z10, boolean z11) {
+        this.f10720a = i7;
+        this.f10722c = handler;
         this.d = eVar;
-        this.f10912e = z9;
+        this.f10723e = z10;
         int i10 = Build.VERSION.SDK_INT;
         if (i10 < 26) {
-            this.f10910b = new f(onAudioFocusChangeListener, handler);
+            this.f10721b = new f(onAudioFocusChangeListener, handler);
         } else {
-            this.f10910b = onAudioFocusChangeListener;
+            this.f10721b = onAudioFocusChangeListener;
         }
         if (i10 >= 26) {
-            this.f10913f = new AudioFocusRequest.Builder(i7).setAudioAttributes(eVar.b()).setWillPauseWhenDucked(z9).setOnAudioFocusChangeListener(onAudioFocusChangeListener, handler).setAcceptsDelayedFocusGain(z10).build();
+            this.f10724f = new AudioFocusRequest.Builder(i7).setAudioAttributes(eVar.b()).setWillPauseWhenDucked(z10).setOnAudioFocusChangeListener(onAudioFocusChangeListener, handler).setAcceptsDelayedFocusGain(z11).build();
         } else {
-            this.f10913f = null;
+            this.f10724f = null;
         }
     }
 
@@ -39,13 +39,13 @@ public final class g {
             return false;
         }
         g gVar = (g) obj;
-        if (this.f10909a == gVar.f10909a && this.f10912e == gVar.f10912e && Objects.equals(this.f10910b, gVar.f10910b) && Objects.equals(this.f10911c, gVar.f10911c) && Objects.equals(this.d, gVar.d)) {
+        if (this.f10720a == gVar.f10720a && this.f10723e == gVar.f10723e && Objects.equals(this.f10721b, gVar.f10721b) && Objects.equals(this.f10722c, gVar.f10722c) && Objects.equals(this.d, gVar.d)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f10909a), this.f10910b, this.f10911c, this.d, Boolean.valueOf(this.f10912e));
+        return Objects.hash(Integer.valueOf(this.f10720a), this.f10721b, this.f10722c, this.d, Boolean.valueOf(this.f10723e));
     }
 }

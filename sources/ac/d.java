@@ -1,9 +1,9 @@
 package ac;
 
+import a8.d8;
 import a8.r7;
-import a8.wa;
-import a8.x7;
-import ab.b0;
+import a8.xa;
+import ab.c0;
 import android.graphics.Bitmap;
 import android.support.v4.media.session.a0;
 import android.view.View;
@@ -14,8 +14,8 @@ import c8.eb;
 import c8.fg;
 import c8.g;
 import c8.gg;
-import c8.oa;
 import c8.pa;
+import c8.qa;
 import c8.re;
 import c8.ta;
 import c8.tf;
@@ -27,27 +27,27 @@ import q6.m;
 import r0.l0;
 import r0.m0;
 public final class d implements tf {
-    public long f1018a;
-    public boolean f1019b;
-    public final Object f1020c;
+    public long f1016a;
+    public boolean f1017b;
+    public final Object f1018c;
     public Object d;
-    public Object f1021e;
-    public final Object f1022f;
+    public Object f1019e;
+    public final Object f1020f;
 
-    public d(f fVar, long j3, eb ebVar, boolean z9, ub.a aVar, gg ggVar) {
-        this.f1020c = fVar;
-        this.f1018a = j3;
+    public d(f fVar, long j3, eb ebVar, boolean z10, ub.a aVar, gg ggVar) {
+        this.f1018c = fVar;
+        this.f1016a = j3;
         this.d = ebVar;
-        this.f1019b = z9;
-        this.f1021e = aVar;
-        this.f1022f = ggVar;
+        this.f1017b = z10;
+        this.f1019e = aVar;
+        this.f1020f = ggVar;
     }
 
     public void a() {
-        if (!this.f1019b) {
+        if (!this.f1017b) {
             return;
         }
-        ArrayList arrayList = (ArrayList) this.f1020c;
+        ArrayList arrayList = (ArrayList) this.f1018c;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -55,60 +55,60 @@ public final class d implements tf {
             i7++;
             ((l0) obj).b();
         }
-        this.f1019b = false;
+        this.f1017b = false;
     }
 
     public void b() {
         View view;
-        if (this.f1019b) {
+        if (this.f1017b) {
             return;
         }
-        ArrayList arrayList = (ArrayList) this.f1020c;
+        ArrayList arrayList = (ArrayList) this.f1018c;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
             l0 l0Var = (l0) obj;
-            long j3 = this.f1018a;
+            long j3 = this.f1016a;
             if (j3 >= 0) {
                 l0Var.c(j3);
             }
             Interpolator interpolator = (Interpolator) this.d;
-            if (interpolator != null && (view = (View) l0Var.f54214a.get()) != null) {
+            if (interpolator != null && (view = (View) l0Var.f55683a.get()) != null) {
                 view.animate().setInterpolator(interpolator);
             }
-            if (((m0) this.f1021e) != null) {
-                l0Var.d((i) this.f1022f);
+            if (((m0) this.f1019e) != null) {
+                l0Var.d((i) this.f1020f);
             }
-            View view2 = (View) l0Var.f54214a.get();
+            View view2 = (View) l0Var.f55683a.get();
             if (view2 != null) {
                 view2.animate().start();
             }
         }
-        this.f1019b = true;
+        this.f1017b = true;
     }
 
     @Override
-    public wa zza() {
+    public xa zza() {
         int i7;
-        oa oaVar;
-        f fVar = (f) this.f1020c;
-        long j3 = this.f1018a;
-        boolean z9 = this.f1019b;
-        ub.a aVar = (ub.a) this.f1021e;
-        gg ggVar = (gg) this.f1022f;
+        pa paVar;
+        f fVar = (f) this.f1018c;
+        long j3 = this.f1016a;
+        boolean z10 = this.f1017b;
+        ub.a aVar = (ub.a) this.f1019e;
+        gg ggVar = (gg) this.f1020f;
         r7 r7Var = new r7(3, (byte) 0);
         a0 a0Var = new a0(17, false);
-        a0Var.f1763b = Long.valueOf(j3 & Long.MAX_VALUE);
-        a0Var.f1764c = (eb) this.d;
-        a0Var.d = Boolean.valueOf(z9);
-        r7Var.f614b = new ta(a0Var);
-        int i10 = aVar.f56504e;
-        f.f1027l.getClass();
-        int i11 = aVar.f56504e;
+        a0Var.f1706b = Long.valueOf(j3 & Long.MAX_VALUE);
+        a0Var.f1707c = (eb) this.d;
+        a0Var.d = Boolean.valueOf(z10);
+        r7Var.f617b = new ta(a0Var);
+        int i10 = aVar.f58000e;
+        f.f1025l.getClass();
+        int i11 = aVar.f58000e;
         if (i11 == -1) {
-            Bitmap bitmap = aVar.f56501a;
+            Bitmap bitmap = aVar.f57997a;
             m.g(bitmap);
             i7 = bitmap.getAllocationByteCount();
         } else if (i11 != 17 && i11 != 842094169) {
@@ -122,50 +122,50 @@ public final class d implements tf {
             m.g(null);
             throw null;
         }
-        wf.b bVar = new wf.b(8, false);
+        wf.b bVar = new wf.b(7, false);
         if (i10 != -1) {
             if (i10 != 35) {
                 if (i10 != 842094169) {
                     if (i10 != 16) {
                         if (i10 != 17) {
-                            oaVar = oa.UNKNOWN_FORMAT;
+                            paVar = pa.UNKNOWN_FORMAT;
                         } else {
-                            oaVar = oa.NV21;
+                            paVar = pa.NV21;
                         }
                     } else {
-                        oaVar = oa.NV16;
+                        paVar = pa.NV16;
                     }
                 } else {
-                    oaVar = oa.YV12;
+                    paVar = pa.YV12;
                 }
             } else {
-                oaVar = oa.YUV_420_888;
+                paVar = pa.YUV_420_888;
             }
         } else {
-            oaVar = oa.BITMAP;
+            paVar = pa.BITMAP;
         }
-        bVar.f57666b = oaVar;
-        bVar.f57667c = Integer.valueOf(i7 & Integer.MAX_VALUE);
-        r7Var.f615c = new pa(bVar);
-        r7Var.d = fVar.f1028e.a();
+        bVar.f59107b = paVar;
+        bVar.f59108c = Integer.valueOf(i7 & Integer.MAX_VALUE);
+        r7Var.f618c = new qa(bVar);
+        r7Var.d = fVar.f1026e.a();
         if (ggVar != null) {
             List list = ggVar.d;
-            g gVar = c8.i.f5714b;
+            g gVar = c8.i.f4538b;
             Object[] array = list.toArray();
             int length = array.length;
-            x7.a(length, array);
-            r7Var.f617f = c8.i.m(length, array);
-            List<fg> list2 = ggVar.f5693a;
+            d8.a(length, array);
+            r7Var.f620f = c8.i.m(length, array);
+            List<fg> list2 = ggVar.f4515a;
             if (!list2.isEmpty()) {
                 Object[] objArr = new Object[4];
                 int i12 = 0;
                 for (fg fgVar : list2) {
-                    b0 b0Var = new b0(2, false);
-                    b0Var.f907b = Integer.valueOf(fgVar.f5674c & Integer.MAX_VALUE);
-                    b0Var.f908c = Integer.valueOf(fgVar.d & Integer.MAX_VALUE);
-                    b0Var.d = Integer.valueOf(fgVar.f5675e & Integer.MAX_VALUE);
-                    b0Var.f909e = Integer.valueOf(fgVar.f5676f & Integer.MAX_VALUE);
-                    re reVar = new re(b0Var);
+                    c0 c0Var = new c0(2);
+                    c0Var.f909b = Integer.valueOf(fgVar.f4496c & Integer.MAX_VALUE);
+                    c0Var.f910c = Integer.valueOf(fgVar.d & Integer.MAX_VALUE);
+                    c0Var.d = Integer.valueOf(fgVar.f4497e & Integer.MAX_VALUE);
+                    c0Var.f911e = Integer.valueOf(fgVar.f4498f & Integer.MAX_VALUE);
+                    re reVar = new re(c0Var);
                     int i13 = i12 + 1;
                     int length2 = objArr.length;
                     if (length2 < i13) {
@@ -182,18 +182,18 @@ public final class d implements tf {
                     objArr[i12] = reVar;
                     i12 = i13;
                 }
-                r7Var.f616e = c8.i.m(i12, objArr);
+                r7Var.f619e = c8.i.m(i12, objArr);
             }
         }
         ga.d dVar = new ga.d(1);
         dVar.d = db.TYPE_THIN;
         dVar.h = new ce(r7Var);
-        return new wa(dVar, 0);
+        return new xa(dVar, 0);
     }
 
     public d() {
-        this.f1018a = -1L;
-        this.f1022f = new i(this);
-        this.f1020c = new ArrayList();
+        this.f1016a = -1L;
+        this.f1020f = new i(this);
+        this.f1018c = new ArrayList();
     }
 }

@@ -1,36 +1,31 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
+import android.app.Activity;
+import android.view.KeyEvent;
 import android.view.View;
-public final class ki implements ValueAnimator.AnimatorUpdateListener {
-    public final int f47309a;
-    public final org.telegram.ui.ActionBar.f2 f47310b;
+import android.widget.FrameLayout;
+public final class ki extends FrameLayout {
+    public final an f48707a;
 
-    public ki(int i7, org.telegram.ui.ActionBar.f2 f2Var) {
-        this.f47309a = i7;
-        this.f47310b = f2Var;
+    public ki(an anVar, Activity activity) {
+        super(activity);
+        this.f48707a = anVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f47309a) {
-            case 0:
-                cn cnVar = (cn) this.f47310b;
-                cnVar.Ga = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                cnVar.l1.invalidate();
-                return;
-            case 1:
-                zw zwVar = (zw) this.f47310b;
-                zwVar.H0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                View view = zwVar.fragmentView;
-                if (view != null) {
-                    view.invalidate();
-                    return;
-                }
-                return;
-            default:
-                ((x71) this.f47310b).f51627y0.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
+    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
+            this.f48707a.P7(true);
         }
+        return super.dispatchKeyEvent(keyEvent);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        int min = Math.min(View.MeasureSpec.getSize(i10), org.telegram.messenger.g0.L(300.0f));
+        if (min == 0) {
+            min = org.telegram.messenger.g0.L(300.0f);
+        }
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(min, Integer.MIN_VALUE));
     }
 }

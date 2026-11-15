@@ -1,14 +1,39 @@
 package hi;
 
-import android.graphics.Point;
-import android.view.View;
-public final class y2 extends v3 {
+import android.content.Context;
+import android.view.ViewGroup;
+import org.telegram.ui.Components.fp;
+public final class y2 extends fp {
+    public final int d;
+    public final ViewGroup f15415e;
+
+    public y2(ViewGroup viewGroup, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i7) {
+        super(21, context, e6Var);
+        this.d = i7;
+        this.f15415e = viewGroup;
+    }
+
     @Override
-    public final void onMeasure(int i7, int i10) {
-        if (org.telegram.messenger.g0.Q1() && !org.telegram.messenger.g0.E && !org.telegram.messenger.g0.P1()) {
-            Point point = org.telegram.messenger.g0.f22567q;
-            i7 = View.MeasureSpec.makeMeasureSpec((int) (Math.min(point.x, point.y) * 0.8f), 1073741824);
+    public final void invalidate() {
+        switch (this.d) {
+            case 0:
+                super.invalidate();
+                ((z2) this.f15415e).invalidate();
+                return;
+            case 1:
+                super.invalidate();
+                ((org.telegram.ui.Cells.t2) this.f15415e).invalidate();
+                return;
+            default:
+                super.invalidate();
+                ((org.telegram.ui.web.h) this.f15415e).invalidate();
+                return;
         }
-        super.onMeasure(i7, i10);
+    }
+
+    public y2(z2 z2Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(24, context, e6Var);
+        this.d = 0;
+        this.f15415e = z2Var;
     }
 }

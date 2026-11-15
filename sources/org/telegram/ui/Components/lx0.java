@@ -1,15 +1,8 @@
 package org.telegram.ui.Components;
+public final class lx0 {
+    public int f36927a;
 
-import android.graphics.Paint;
-import org.telegram.tgnet.tl.TL_iv;
-public interface lx0 {
-    ex0 c(TL_iv.pageTableCell pagetablecell, int i7);
-
-    void g(ex0 ex0Var, int i7);
-
-    Paint getHeaderPaint();
-
-    Paint getLinePaint();
-
-    Paint getStripPaint();
+    public lx0(int i7) {
+        this.f36927a = i7;
+    }
 }

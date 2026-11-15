@@ -1,6 +1,6 @@
 package b3;
 
-import a8.ia;
+import a8.ja;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -8,40 +8,40 @@ import android.os.SystemClock;
 import android.os.Trace;
 import java.io.IOException;
 public final class k extends Handler implements Runnable {
-    public final int f2952a;
-    public final l f2953b;
-    public final long f2954c;
+    public final int f2906a;
+    public final l f2907b;
+    public final long f2908c;
     public j d;
-    public IOException f2955e;
-    public int f2956f;
+    public IOException f2909e;
+    public int f2910f;
     public Thread h;
-    public boolean f2957n;
-    public volatile boolean f2958r;
-    public final o f2959s;
+    public boolean f2911n;
+    public volatile boolean f2912r;
+    public final o f2913s;
 
     public k(o oVar, Looper looper, l lVar, j jVar, int i7, long j3) {
         super(looper);
-        this.f2959s = oVar;
-        this.f2953b = lVar;
+        this.f2913s = oVar;
+        this.f2907b = lVar;
         this.d = jVar;
-        this.f2952a = i7;
-        this.f2954c = j3;
+        this.f2906a = i7;
+        this.f2908c = j3;
     }
 
-    public final void a(boolean z9) {
-        this.f2958r = z9;
-        this.f2955e = null;
+    public final void a(boolean z10) {
+        this.f2912r = z10;
+        this.f2909e = null;
         if (hasMessages(1)) {
-            this.f2957n = true;
+            this.f2911n = true;
             removeMessages(1);
-            if (!z9) {
+            if (!z10) {
                 sendEmptyMessage(2);
             }
         } else {
             synchronized (this) {
                 try {
-                    this.f2957n = true;
-                    this.f2953b.q0();
+                    this.f2911n = true;
+                    this.f2907b.D();
                     Thread thread = this.h;
                     if (thread != null) {
                         thread.interrupt();
@@ -51,75 +51,75 @@ public final class k extends Handler implements Runnable {
                 }
             }
         }
-        if (z9) {
-            this.f2959s.f2963b = null;
+        if (z10) {
+            this.f2913s.f2917b = null;
             long elapsedRealtime = SystemClock.elapsedRealtime();
             j jVar = this.d;
             jVar.getClass();
-            jVar.q0(this.f2953b, elapsedRealtime, elapsedRealtime - this.f2954c, true);
+            jVar.m(this.f2907b, elapsedRealtime, elapsedRealtime - this.f2908c, true);
             this.d = null;
         }
     }
 
     public final void b() {
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j3 = elapsedRealtime - this.f2954c;
+        long j3 = elapsedRealtime - this.f2908c;
         j jVar = this.d;
         jVar.getClass();
-        jVar.M0(this.f2953b, elapsedRealtime, j3, this.f2956f);
-        this.f2955e = null;
-        o oVar = this.f2959s;
-        c3.a aVar = oVar.f2962a;
-        k kVar = oVar.f2963b;
+        jVar.r(this.f2907b, elapsedRealtime, j3, this.f2910f);
+        this.f2909e = null;
+        o oVar = this.f2913s;
+        c3.a aVar = oVar.f2916a;
+        k kVar = oVar.f2917b;
         kVar.getClass();
         aVar.execute(kVar);
     }
 
     @Override
     public final void handleMessage(Message message) {
-        boolean z9;
-        if (!this.f2958r) {
+        boolean z10;
+        if (!this.f2912r) {
             int i7 = message.what;
             if (i7 == 1) {
                 b();
             } else if (i7 != 4) {
-                this.f2959s.f2963b = null;
+                this.f2913s.f2917b = null;
                 long elapsedRealtime = SystemClock.elapsedRealtime();
-                long j3 = elapsedRealtime - this.f2954c;
+                long j3 = elapsedRealtime - this.f2908c;
                 j jVar = this.d;
                 jVar.getClass();
-                if (this.f2957n) {
-                    jVar.q0(this.f2953b, elapsedRealtime, j3, false);
+                if (this.f2911n) {
+                    jVar.m(this.f2907b, elapsedRealtime, j3, false);
                     return;
                 }
                 int i10 = message.what;
                 if (i10 != 2) {
                     if (i10 == 3) {
                         IOException iOException = (IOException) message.obj;
-                        this.f2955e = iOException;
-                        int i11 = this.f2956f + 1;
-                        this.f2956f = i11;
-                        i o02 = jVar.o0(this.f2953b, elapsedRealtime, j3, iOException, i11);
-                        int i12 = o02.f2950a;
+                        this.f2909e = iOException;
+                        int i11 = this.f2910f + 1;
+                        this.f2910f = i11;
+                        i k10 = jVar.k(this.f2907b, elapsedRealtime, j3, iOException, i11);
+                        int i12 = k10.f2904a;
                         if (i12 == 3) {
-                            this.f2959s.f2964c = this.f2955e;
+                            this.f2913s.f2918c = this.f2909e;
                             return;
                         } else if (i12 != 2) {
                             if (i12 == 1) {
-                                this.f2956f = 1;
+                                this.f2910f = 1;
                             }
-                            long j10 = o02.f2951b;
+                            long j10 = k10.f2905b;
                             if (j10 == -9223372036854775807L) {
-                                j10 = Math.min((this.f2956f - 1) * 1000, 5000);
+                                j10 = Math.min((this.f2910f - 1) * 1000, 5000);
                             }
-                            o oVar = this.f2959s;
-                            if (oVar.f2963b == null) {
-                                z9 = true;
+                            o oVar = this.f2913s;
+                            if (oVar.f2917b == null) {
+                                z10 = true;
                             } else {
-                                z9 = false;
+                                z10 = false;
                             }
-                            ia.p(z9);
-                            oVar.f2963b = this;
+                            ja.p(z10);
+                            oVar.f2917b = this;
                             if (j10 > 0) {
                                 sendEmptyMessageDelayed(1, j10);
                                 return;
@@ -134,10 +134,10 @@ public final class k extends Handler implements Runnable {
                     return;
                 }
                 try {
-                    jVar.o1(this.f2953b, elapsedRealtime, j3);
+                    jVar.w(this.f2907b, elapsedRealtime, j3);
                 } catch (RuntimeException e10) {
                     h2.a.d("LoadTask", "Unexpected exception handling load completed", e10);
-                    this.f2959s.f2964c = new n(e10);
+                    this.f2913s.f2918c = new n(e10);
                 }
             } else {
                 throw ((Error) message.obj);
@@ -147,16 +147,16 @@ public final class k extends Handler implements Runnable {
 
     @Override
     public final void run() {
-        boolean z9;
+        boolean z10;
         try {
             synchronized (this) {
-                z9 = this.f2957n;
+                z10 = this.f2911n;
                 this.h = Thread.currentThread();
             }
-            if (!z9) {
-                Trace.beginSection("load:".concat(this.f2953b.getClass().getSimpleName()));
+            if (!z10) {
+                Trace.beginSection("load:".concat(this.f2907b.getClass().getSimpleName()));
                 try {
-                    this.f2953b.a();
+                    this.f2907b.a();
                     Trace.endSection();
                 } catch (Throwable th2) {
                     Trace.endSection();
@@ -167,25 +167,25 @@ public final class k extends Handler implements Runnable {
                 this.h = null;
                 Thread.interrupted();
             }
-            if (!this.f2958r) {
+            if (!this.f2912r) {
                 sendEmptyMessage(2);
             }
         } catch (IOException e10) {
-            if (!this.f2958r) {
+            if (!this.f2912r) {
                 obtainMessage(3, e10).sendToTarget();
             }
         } catch (Exception e11) {
-            if (!this.f2958r) {
+            if (!this.f2912r) {
                 h2.a.d("LoadTask", "Unexpected exception loading stream", e11);
                 obtainMessage(3, new n(e11)).sendToTarget();
             }
         } catch (OutOfMemoryError e12) {
-            if (!this.f2958r) {
+            if (!this.f2912r) {
                 h2.a.d("LoadTask", "OutOfMemory error loading stream", e12);
                 obtainMessage(3, new n(e12)).sendToTarget();
             }
         } catch (Error e13) {
-            if (!this.f2958r) {
+            if (!this.f2912r) {
                 h2.a.d("LoadTask", "Unexpected error loading stream", e13);
                 obtainMessage(4, e13).sendToTarget();
             }

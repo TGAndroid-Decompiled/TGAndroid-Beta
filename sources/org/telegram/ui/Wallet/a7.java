@@ -1,31 +1,41 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.v10;
+import org.telegram.messenger.s10;
 public final class a7 implements Runnable {
-    public final int f42144a;
-    public final WalletEngine2 f42145b;
-    public final byte[] f42146c;
-    public final c2 d;
-    public final String f42147e;
-    public final v10 f42148f;
+    public final int f43480a;
+    public final s10 f43481b;
 
-    public a7(WalletEngine2 walletEngine2, byte[] bArr, c2 c2Var, String str, v10 v10Var, int i7) {
-        this.f42144a = i7;
-        this.f42145b = walletEngine2;
-        this.f42146c = bArr;
-        this.d = c2Var;
-        this.f42147e = str;
-        this.f42148f = v10Var;
+    public a7(s10 s10Var, int i7) {
+        this.f43480a = i7;
+        this.f43481b = s10Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f42144a) {
+        switch (this.f43480a) {
             case 0:
-                this.f42145b.lambda$signMessage$11(this.f42146c, this.d, this.f42147e, this.f42148f);
+                this.f43481b.a(null, "Wallet engine is closed");
+                return;
+            case 1:
+                this.f43481b.a(null, "NO_WALLET_ENGINE");
+                return;
+            case 2:
+                this.f43481b.a(null, "NO_WALLET_ENGINE");
+                return;
+            case 3:
+                this.f43481b.a(null, "Recovery phrase is required");
+                return;
+            case 4:
+                this.f43481b.a(null, "Transaction hash is required");
+                return;
+            case 5:
+                this.f43481b.a(null, "NO_WALLET_ENGINE");
+                return;
+            case 6:
+                this.f43481b.a(null, "NO_WALLET_ENGINE");
                 return;
             default:
-                this.f42145b.lambda$prepareTonConnectTransfer$5(this.f42146c, this.d, this.f42147e, this.f42148f);
+                this.f43481b.a(null, "NO_WALLET_ENGINE");
                 return;
         }
     }

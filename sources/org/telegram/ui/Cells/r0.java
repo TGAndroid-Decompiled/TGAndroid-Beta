@@ -9,55 +9,55 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.messenger.ij;
-import org.telegram.messenger.iz;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.gz;
 public final class r0 {
-    public TextPaint f30185a;
-    public float f30186b;
-    public final ArrayList f30187c;
+    public TextPaint f31323a;
+    public float f31324b;
+    public final ArrayList f31325c;
     public int d;
-    public float f30188e;
-    public Object f30189f;
-    public final Object f30190g;
+    public float f31326e;
+    public Object f31327f;
+    public final Object f31328g;
     public Object h;
-    public final Object f30191i;
+    public final Object f31329i;
 
     public r0() {
         TextPaint textPaint = new TextPaint(1);
-        this.f30185a = textPaint;
-        this.f30186b = 1.0f;
-        this.f30189f = new HashMap();
-        this.f30190g = new RectF();
+        this.f31323a = textPaint;
+        this.f31324b = 1.0f;
+        this.f31327f = new HashMap();
+        this.f31328g = new RectF();
         this.h = new RectF();
         Paint paint = new Paint();
-        this.f30191i = paint;
-        this.f30187c = new ArrayList();
-        this.f30188e = 1000.0f / org.telegram.messenger.g0.f22568r;
+        this.f31329i = paint;
+        this.f31325c = new ArrayList();
+        this.f31326e = 1000.0f / org.telegram.messenger.g0.f23610r;
         this.d = 25;
         textPaint.setTypeface(org.telegram.messenger.g0.o());
         textPaint.setColor(-1);
-        int o4 = iz.o();
+        int o4 = gz.o();
         if (o4 == 0) {
-            this.f30186b = 0.25f;
+            this.f31324b = 0.25f;
         } else if (o4 != 1) {
-            this.f30186b = 0.75f;
+            this.f31324b = 0.75f;
         } else {
-            this.f30186b = 0.5f;
+            this.f31324b = 0.5f;
         }
-        textPaint.setTextSize(org.telegram.messenger.g0.L(this.f30186b * 24.0f));
+        textPaint.setTextSize(org.telegram.messenger.g0.L(this.f31324b * 24.0f));
         paint.setColor(-1);
     }
 
     public void a(CharSequence charSequence, TextPaint textPaint, int i7) {
         t0 t0Var;
-        this.f30185a = textPaint;
+        this.f31323a = textPaint;
         this.d = i7;
         StaticLayout staticLayout = new StaticLayout(charSequence, textPaint, i7, Layout.Alignment.ALIGN_CENTER, 1.1f, 0.0f, false);
-        this.f30189f = staticLayout;
-        t0 t0Var2 = (t0) this.f30191i;
-        ij ijVar = t0Var2.P0;
-        ArrayList arrayList = this.f30187c;
-        if (ijVar != null && ijVar.L0) {
+        this.f31327f = staticLayout;
+        t0 t0Var2 = (t0) this.f31329i;
+        gj gjVar = t0Var2.Q0;
+        ArrayList arrayList = this.f31325c;
+        if (gjVar != null && gjVar.N0) {
             if (arrayList != null) {
                 arrayList.clear();
             }
@@ -66,12 +66,12 @@ public final class r0 {
             t0Var = t0Var2;
             xh.f.b(t0Var, staticLayout, -1, i7, null, arrayList);
         }
-        this.h = org.telegram.ui.Components.q5.update(0, (View) t0Var, false, (org.telegram.ui.Components.m5) this.h, (StaticLayout) this.f30189f);
+        this.h = org.telegram.ui.Components.p5.update(0, (View) t0Var, false, (org.telegram.ui.Components.l5) this.h, (StaticLayout) this.f31327f);
     }
 
     public r0(t0 t0Var) {
-        this.f30191i = t0Var;
-        this.f30187c = new ArrayList();
-        this.f30190g = new AtomicReference();
+        this.f31329i = t0Var;
+        this.f31325c = new ArrayList();
+        this.f31328g = new AtomicReference();
     }
 }

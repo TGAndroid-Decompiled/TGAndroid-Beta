@@ -1,449 +1,74 @@
 package a8;
 
-import android.content.SharedPreferences;
-import android.graphics.RectF;
-import android.media.MediaCodec;
-import android.media.MediaFormat;
-import android.os.Bundle;
-import com.google.android.gms.tasks.OnFailureListener;
-import j$.util.DesugarCollections;
-import java.nio.ByteBuffer;
+import android.content.Context;
+import com.google.android.gms.tasks.Task;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import org.telegram.messenger.dt;
-import org.telegram.messenger.qp;
-import org.telegram.ui.Components.gc;
-import org.telegram.ui.Components.wn;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.lx0;
-public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, wn, wi.w0 {
-    public final int f678a;
-    public long f679b;
-    public Object f680c;
+import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
+public final class ua {
+    public static a0 f666k;
+    public static final f0 f667l;
+    public final String f668a;
+    public final String f669b;
+    public final oa f670c;
+    public final pb.k d;
+    public final Task f671e;
+    public final Task f672f;
+    public final String f673g;
+    public final int h;
+    public final HashMap f674i = new HashMap();
+    public final HashMap f675j = new HashMap();
 
-    public ua(long j3, Object obj, int i7) {
-        this.f678a = i7;
-        this.f679b = j3;
-        this.f680c = obj;
+    static {
+        Object[] objArr = {"optional-module-barcode", "com.google.android.gms.vision.barcode"};
+        objArr[0].getClass();
+        objArr[1].getClass();
+        f667l = new f0(objArr);
     }
 
-    public void A(int i7) {
-        if (i7 >= 64) {
-            ua uaVar = (ua) this.f680c;
-            if (uaVar != null) {
-                uaVar.A(i7 - 64);
-                return;
-            }
-            return;
-        }
-        this.f679b &= ~(1 << i7);
-    }
-
-    public int B(int i7) {
-        ua uaVar = (ua) this.f680c;
-        if (uaVar == null) {
-            if (i7 >= 64) {
-                return Long.bitCount(this.f679b);
-            }
-            return Long.bitCount(this.f679b & ((1 << i7) - 1));
-        } else if (i7 < 64) {
-            return Long.bitCount(this.f679b & ((1 << i7) - 1));
-        } else {
-            return Long.bitCount(this.f679b) + uaVar.B(i7 - 64);
-        }
-    }
-
-    public void C() {
-        if (((ua) this.f680c) == null) {
-            this.f680c = new ua(8);
-        }
-    }
-
-    public void D(yc.a aVar) {
-        this.f679b++;
-        Thread thread = new Thread(aVar);
-        thread.setDaemon(true);
-        thread.setName("NanoHttpd Request Processor (#" + this.f679b + ")");
-        ((List) this.f680c).add(aVar);
-        thread.start();
-    }
-
-    public boolean E(int i7) {
-        if (i7 >= 64) {
-            C();
-            return ((ua) this.f680c).E(i7 - 64);
-        } else if ((this.f679b & (1 << i7)) != 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public void F(int i7, boolean z9) {
-        boolean z10;
-        if (i7 >= 64) {
-            C();
-            ((ua) this.f680c).F(i7 - 64, z9);
-            return;
-        }
-        long j3 = this.f679b;
-        if ((Long.MIN_VALUE & j3) != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        long j10 = (1 << i7) - 1;
-        this.f679b = ((j3 & (~j10)) << 1) | (j3 & j10);
-        if (z9) {
-            I(i7);
-        } else {
-            A(i7);
-        }
-        if (!z10 && ((ua) this.f680c) == null) {
-            return;
-        }
-        C();
-        ((ua) this.f680c).F(0, z10);
-    }
-
-    public boolean G(int i7) {
-        boolean z9;
-        if (i7 >= 64) {
-            C();
-            return ((ua) this.f680c).G(i7 - 64);
-        }
-        long j3 = 1 << i7;
-        long j10 = this.f679b;
-        if ((j10 & j3) != 0) {
-            z9 = true;
-        } else {
-            z9 = false;
-        }
-        long j11 = j10 & (~j3);
-        this.f679b = j11;
-        long j12 = j3 - 1;
-        this.f679b = (j11 & j12) | Long.rotateRight((~j12) & j11, 1);
-        ua uaVar = (ua) this.f680c;
-        if (uaVar != null) {
-            if (uaVar.E(0)) {
-                I(63);
-            }
-            ((ua) this.f680c).G(0);
-        }
-        return z9;
-    }
-
-    public void H() {
-        this.f679b = 0L;
-        ua uaVar = (ua) this.f680c;
-        if (uaVar != null) {
-            uaVar.H();
-        }
-    }
-
-    public void I(int i7) {
-        if (i7 >= 64) {
-            C();
-            ((ua) this.f680c).I(i7 - 64);
-            return;
-        }
-        this.f679b |= 1 << i7;
-    }
-
-    @Override
-    public void L() {
-        ProfileActivity profileActivity = (ProfileActivity) this.f680c;
-        SharedPreferences sharedPreferences = qp.s1(ProfileActivity.k1(profileActivity)).f24768d7;
-        StringBuilder sb2 = new StringBuilder("sound_enabled_");
-        long j3 = this.f679b;
-        sb2.append(dt.v(j3, profileActivity.f41729f1, false));
-        boolean z9 = sharedPreferences.getBoolean(sb2.toString(), true);
-        boolean z10 = !z9 ? 1 : 0;
-        SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putBoolean("sound_enabled_" + dt.v(j3, profileActivity.f41729f1, false), z10).apply();
-        if (gc.a(profileActivity)) {
-            gc.S(z9 ? 1 : 0, profileActivity, profileActivity.f41867z0).j();
-        }
-    }
-
-    @Override
-    public f3.j0 O1(int i7, int i10) {
-        return ((f3.q) this.f680c).O1(i7, i10);
-    }
-
-    @Override
-    public void R(int i7) {
-        ProfileActivity profileActivity = (ProfileActivity) this.f680c;
-        if (i7 == 0) {
-            if (profileActivity.getMessagesController().r2(this.f679b, profileActivity.f41729f1, null)) {
-                p();
-            }
-            if (gc.a(profileActivity)) {
-                gc.z(profileActivity, 4, i7, profileActivity.f41867z0).j();
-                return;
-            }
-            return;
-        }
-        RectF rectF = ProfileActivity.V6;
-        profileActivity.getNotificationsController().H(this.f679b, i7, profileActivity.f41729f1);
-        if (gc.a(profileActivity)) {
-            gc.z(profileActivity, 5, i7, profileActivity.f41867z0).j();
-        }
-        profileActivity.y5();
-        profileActivity.I5(true);
-    }
-
-    @Override
-    public void U0() {
-        ((f3.q) this.f680c).U0();
-    }
-
-    @Override
-    public long a(long j3) {
-        return ((f3.j) this.f680c).f11046e[(int) j3] - this.f679b;
-    }
-
-    @Override
-    public void b(int i7, int i10, byte[] bArr) {
-        ((f3.p) this.f680c).b(i7, i10, bArr);
-    }
-
-    @Override
-    public boolean c(byte[] bArr, int i7, int i10, boolean z9) {
-        return ((f3.p) this.f680c).c(bArr, 0, i10, z9);
-    }
-
-    @Override
-    public long d(long j3, long j10) {
-        return ((f3.j) this.f680c).d[(int) j3];
-    }
-
-    @Override
-    public long e(long j3, long j10) {
-        return 0L;
-    }
-
-    @Override
-    public void f(f3.c0 c0Var) {
-        ((f3.q) this.f680c).f(new f3.h0(this, c0Var, c0Var));
-    }
-
-    @Override
-    public long g(long j3, long j10) {
-        return -9223372036854775807L;
-    }
-
-    @Override
-    public long getLength() {
-        return ((f3.p) this.f680c).getLength() - this.f679b;
-    }
-
-    @Override
-    public long getPosition() {
-        return ((f3.p) this.f680c).getPosition() - this.f679b;
-    }
-
-    @Override
-    public p2.j h(long j3) {
-        f3.j jVar = (f3.j) this.f680c;
-        int i7 = (int) j3;
-        return new p2.j(jVar.f11045c[i7], null, jVar.f11044b[i7]);
-    }
-
-    @Override
-    public int i(int i7, int i10, byte[] bArr) {
-        return ((f3.p) this.f680c).i(i7, i10, bArr);
-    }
-
-    @Override
-    public boolean j(int i7, boolean z9) {
-        return ((f3.p) this.f680c).j(i7, true);
-    }
-
-    @Override
-    public boolean k(byte[] bArr, int i7, int i10, boolean z9) {
-        return ((f3.p) this.f680c).k(bArr, i7, i10, z9);
-    }
-
-    @Override
-    public long l() {
-        return ((f3.p) this.f680c).l() - this.f679b;
-    }
-
-    @Override
-    public void m(int i7) {
-        ((f3.p) this.f680c).m(i7);
-    }
-
-    @Override
-    public void n() {
-        Bundle bundle = new Bundle();
-        bundle.putLong("dialog_id", this.f679b);
-        ?? f2Var = new org.telegram.ui.ActionBar.f2(bundle);
-        f2Var.d = new ArrayList();
-        f2Var.f45672e = new HashSet();
-        ProfileActivity profileActivity = (ProfileActivity) this.f680c;
-        f2Var.f45672e = profileActivity.f41760j5;
-        profileActivity.presentFragment((org.telegram.ui.ActionBar.f2) f2Var);
-    }
-
-    @Override
-    public long o(long j3, long j10) {
-        return h2.m0.f(((f3.j) this.f680c).f11046e, j3 + this.f679b, true);
-    }
-
-    @Override
-    public void onFailure(Exception exc) {
+    public ua(Context context, pb.k kVar, oa oaVar) {
         int i7;
-        switch (this.f678a) {
-            case 0:
-                ((va) this.f680c).f689b.set(this.f679b);
-                return;
-            case 1:
-                ((va) this.f680c).f689b.set(this.f679b);
-                return;
-            case 2:
-            case 3:
-            default:
-                ((va) this.f680c).f689b.set(this.f679b);
-                return;
-            case 4:
-                if (exc instanceof com.google.android.gms.common.api.f) {
-                    i7 = ((com.google.android.gms.common.api.f) exc).getStatusCode();
-                } else {
-                    i7 = 13;
-                }
-                long j3 = this.f679b;
-                for (j6.o oVar : ((h6.h) ((h6.m) this.f680c).d).f14251c.d) {
-                    oVar.b(j3, i7, null);
-                }
-                return;
+        this.f668a = context.getPackageName();
+        this.f669b = pb.c.a(context);
+        this.d = kVar;
+        this.f670c = oaVar;
+        cb.b();
+        this.f673g = "play-services-mlkit-image-labeling";
+        pb.f a10 = pb.f.a();
+        a2.b bVar = new a2.b(this, 1);
+        a10.getClass();
+        this.f671e = pb.f.b(bVar);
+        pb.f a11 = pb.f.a();
+        kVar.getClass();
+        pa paVar = new pa(kVar, 0);
+        a11.getClass();
+        this.f672f = pb.f.b(paVar);
+        f0 f0Var = f667l;
+        if (f0Var.containsKey("play-services-mlkit-image-labeling")) {
+            i7 = b7.f.d(context, (String) f0Var.get("play-services-mlkit-image-labeling"), false);
+        } else {
+            i7 = -1;
         }
+        this.h = i7;
     }
 
-    @Override
-    public void p() {
-        ProfileActivity profileActivity = (ProfileActivity) this.f680c;
-        boolean z9 = !profileActivity.getMessagesController().r2(this.f679b, profileActivity.f41729f1, null);
-        profileActivity.getNotificationsController().G(this.f679b, profileActivity.f41729f1, z9);
-        if (profileActivity.fragmentView != null) {
-            gc.A(profileActivity, z9, null).j();
+    public static long a(ArrayList arrayList, double d) {
+        return ((Long) arrayList.get(Math.max(((int) Math.ceil((d / 100.0d) * arrayList.size())) - 1, 0))).longValue();
+    }
+
+    public final String b() {
+        Task task = this.f671e;
+        if (task.isSuccessful()) {
+            return (String) task.getResult();
         }
-        profileActivity.y5();
-        profileActivity.I5(true);
+        return q6.j.f55340c.a(this.f673g);
     }
 
-    @Override
-    public void q() {
-        ((f3.p) this.f680c).q();
-    }
-
-    @Override
-    public void r(ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo) {
-        ((wi.x) this.f680c).q(true, byteBuffer, bufferInfo, -this.f679b);
-    }
-
-    @Override
-    public int read(byte[] bArr, int i7, int i10) {
-        return ((f3.p) this.f680c).read(bArr, i7, i10);
-    }
-
-    @Override
-    public void readFully(byte[] bArr, int i7, int i10) {
-        ((f3.p) this.f680c).readFully(bArr, i7, i10);
-    }
-
-    @Override
-    public void s(int i7) {
-        ((f3.p) this.f680c).s(i7);
-    }
-
-    @Override
-    public int skip(int i7) {
-        return ((f3.p) this.f680c).skip(i7);
-    }
-
-    @Override
-    public boolean t() {
-        return true;
-    }
-
-    public String toString() {
-        switch (this.f678a) {
-            case 8:
-                if (((ua) this.f680c) == null) {
-                    return Long.toBinaryString(this.f679b);
-                }
-                return ((ua) this.f680c).toString() + "xx" + Long.toBinaryString(this.f679b);
-            default:
-                return super.toString();
+    public final boolean c(a8 a8Var, long j3) {
+        HashMap hashMap = this.f674i;
+        if (hashMap.get(a8Var) == null || j3 - ((Long) hashMap.get(a8Var)).longValue() > TimeUnit.SECONDS.toMillis(30L)) {
+            return true;
         }
-    }
-
-    @Override
-    public long u() {
-        return 0L;
-    }
-
-    @Override
-    public boolean v(int i7, boolean z9) {
-        return ((f3.p) this.f680c).v(i7, true);
-    }
-
-    @Override
-    public void w(MediaFormat mediaFormat) {
-        ((wi.x) this.f680c).n(mediaFormat, true);
-    }
-
-    @Override
-    public long x(long j3) {
-        return ((f3.j) this.f680c).f11043a;
-    }
-
-    @Override
-    public void y() {
-        ProfileActivity profileActivity = (ProfileActivity) this.f680c;
-        long j3 = this.f679b;
-        if (j3 != 0) {
-            Bundle bundle = new Bundle();
-            bundle.putLong("dialog_id", j3);
-            bundle.putLong("topic_id", profileActivity.f41729f1);
-            profileActivity.presentFragment(new lx0(bundle, profileActivity.f41867z0));
-        }
-    }
-
-    @Override
-    public long z(long j3, long j10) {
-        return ((f3.j) this.f680c).f11043a;
-    }
-
-    public ua(Object obj, long j3, int i7) {
-        this.f678a = i7;
-        this.f680c = obj;
-        this.f679b = j3;
-    }
-
-    public ua(f3.p pVar, long j3) {
-        this.f678a = 2;
-        this.f680c = pVar;
-        ia.f(pVar.getPosition() >= j3);
-        this.f679b = j3;
-    }
-
-    public ua(int i7) {
-        this.f678a = i7;
-        switch (i7) {
-            case 11:
-                this.f680c = DesugarCollections.synchronizedList(new ArrayList());
-                return;
-            default:
-                this.f679b = 0L;
-                return;
-        }
-    }
-
-    @Override
-    public void dismiss() {
+        return false;
     }
 }

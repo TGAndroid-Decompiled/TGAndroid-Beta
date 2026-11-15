@@ -31,7 +31,7 @@ public class RtpTransceiver {
                     return rtpTransceiverDirection;
                 }
             }
-            throw new IllegalArgumentException(jg.g.j(i7, "Uknown native RtpTransceiverDirection type"));
+            throw new IllegalArgumentException(i5.c.i(i7, "Uknown native RtpTransceiverDirection type"));
         }
 
         public int getNativeIndex() {

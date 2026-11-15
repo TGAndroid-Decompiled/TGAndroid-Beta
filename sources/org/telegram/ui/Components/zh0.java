@@ -1,30 +1,31 @@
 package org.telegram.ui.Components;
-public final class zh0 extends rg.a {
-    public final ch.o0 f41006c;
 
-    public zh0(int i7, ch.o0 o0Var) {
-        super(i7, false);
-        this.f41006c = o0Var;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class zh0 extends AnimatorListenerAdapter {
+    public final int f42365a;
+    public final mi0 f42366b;
+
+    public zh0(mi0 mi0Var, int i7) {
+        this.f42365a = i7;
+        this.f42366b = mi0Var;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f42365a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                this.f42366b.M0.e();
+                return;
+            default:
+                super.onAnimationEnd(animator);
+                mi0 mi0Var = this.f42366b;
+                mi0Var.R = null;
+                mi0Var.f37286o0 = 0.0f;
+                mi0Var.m0 = null;
+                mi0Var.invalidate();
+                return;
         }
-        if (obj != null && zh0.class == obj.getClass()) {
-            zh0 zh0Var = (zh0) obj;
-            int i7 = this.f54543a;
-            int i10 = zh0Var.f54543a;
-            if (i7 == i10 && (i7 == 0 || i7 == 3)) {
-                ch.o0 o0Var = this.f41006c;
-                if (o0Var != null && o0Var.equals(zh0Var.f41006c)) {
-                    return true;
-                }
-                return false;
-            } else if (i7 == i10) {
-                return true;
-            }
-        }
-        return false;
     }
 }

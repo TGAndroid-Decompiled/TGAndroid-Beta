@@ -1,13 +1,13 @@
 package kf;
 
-import c8.b1;
+import c8.d1;
 public final class m extends p {
-    public String f17278g;
+    public String f17837g;
     public String h;
-    public String f17279i;
+    public String f17838i;
 
     @Override
-    public final void a(b1 b1Var) {
-        b1Var.v(this);
+    public final void a(d1 d1Var) {
+        d1Var.v(this);
     }
 }

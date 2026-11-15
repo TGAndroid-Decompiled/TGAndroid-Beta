@@ -9,7 +9,7 @@ public class JavaFontRenderingBox extends Box {
     private float size;
     private TextLayout text;
 
-    public JavaFontRenderingBox(String str, int i7, float f10, Font font2, boolean z9) {
+    public JavaFontRenderingBox(String str, int i7, float f10, Font font2, boolean z10) {
         this.size = f10;
         TextLayout textLayout = new TextLayout(str, font2.deriveFont(i7), null);
         this.text = textLayout;

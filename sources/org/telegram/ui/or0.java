@@ -1,33 +1,47 @@
 package org.telegram.ui;
+public final class or0 implements Runnable {
+    public final int f50050a;
+    public final xr0 f50051b;
 
-import android.content.Context;
-import android.view.ActionMode;
-import android.view.Menu;
-public final class or0 extends org.telegram.ui.Cells.a6 {
-    public final qr0 F;
-
-    public or0(qr0 qr0Var, Context context, int i7) {
-        super(context, i7, null, null);
-        this.F = qr0Var;
+    public or0(xr0 xr0Var, int i7) {
+        this.f50050a = i7;
+        this.f50051b = xr0Var;
     }
 
     @Override
-    public final void g(org.telegram.ui.Cells.z5 z5Var, ActionMode actionMode) {
-        if (z5Var.isFocused() && z5Var.hasSelection()) {
-            Menu menu = actionMode.getMenu();
-            if (menu.findItem(16908321) != null) {
-                cn.B8(menu, this.F.d.f49928f.h, false, true, true, true);
-            }
+    public final void run() {
+        switch (this.f50050a) {
+            case 0:
+                xr0 xr0Var = this.f50051b;
+                org.telegram.messenger.g0.h3(new or0(xr0Var, 3));
+                org.telegram.ui.Cells.q1 q1Var = xr0Var.M;
+                if (q1Var != null) {
+                    q1Var.setVisibility(0);
+                    org.telegram.ui.Cells.q1 q1Var2 = xr0Var.M;
+                    q1Var2.f30948d6 = null;
+                    q1Var2.invalidate();
+                }
+                tl tlVar = xr0Var.f53298f0;
+                if (tlVar != null) {
+                    org.telegram.messenger.g0.h3(tlVar);
+                    xr0Var.f53298f0 = null;
+                    return;
+                }
+                return;
+            case 1:
+                this.f50051b.c(false);
+                return;
+            case 2:
+                this.f50051b.c(false);
+                return;
+            default:
+                super/*android.app.Dialog*/.dismiss();
+                return;
         }
     }
 
-    @Override
-    public final void i(boolean z9) {
-        sr0.i0(this.F.d, this, z9);
-    }
-
-    @Override
-    public final void j(org.telegram.ui.Cells.a6 a6Var) {
-        sr0.j0(this.F.d, a6Var);
+    public or0(xr0 xr0Var, boolean z10) {
+        this.f50050a = 0;
+        this.f50051b = xr0Var;
     }
 }

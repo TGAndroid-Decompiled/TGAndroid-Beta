@@ -1,172 +1,129 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.view.WindowManager;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
-import org.telegram.messenger.MediaController;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class bz0 extends org.telegram.ui.ActionBar.f2 {
-    public static final int[] d = {750000, 1000000, 1200000, 2000000};
-    public final int f44184a;
-    public org.telegram.ui.Components.pj0 f44185b;
-    public org.telegram.ui.Components.oj0 f44186c;
+public final class bz0 implements Runnable {
+    public final int f45864a;
+    public final SecretMediaViewer f45865b;
 
-    public bz0(int i7, Bundle bundle) {
-        super(bundle);
-        this.f44184a = i7;
+    public bz0(SecretMediaViewer secretMediaViewer, int i7) {
+        this.f45864a = i7;
+        this.f45865b = secretMediaViewer;
     }
 
-    public static void Z(bz0 bz0Var, int i7) {
-        if (i7 == 1) {
-            xi.a aVar = xi.e.f58865b;
-            boolean z9 = !MediaController.s0(bz0Var.currentAccount);
-            synchronized (aVar) {
-                aVar.d = z9;
-                aVar.f58857c = true;
-                aVar.f58856b = true;
-                xi.d.f58863a.edit().putBoolean("audio_recorder_v2_enabled", z9).apply();
-            }
-            ((l4) bz0Var.f44186c).f();
-        } else if (MediaController.s0(bz0Var.currentAccount) && i7 == 2) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(bz0Var.getParentActivity());
-            alertDialog$Builder.f27300a.R = org.telegram.messenger.id.M0(2131753922, null);
-            alertDialog$Builder.f(new CharSequence[]{org.telegram.messenger.id.M0(2131753921, null), org.telegram.messenger.id.M0(2131753920, null)}, new k4(bz0Var, 0));
-            bz0Var.showDialog(alertDialog$Builder.f27300a);
-        }
-    }
-
-    public static void a0(bz0 bz0Var, int i7) {
-        if (i7 == 1) {
-            xi.a aVar = xi.e.d;
-            boolean z9 = !org.telegram.ui.Components.t40.e(bz0Var.currentAccount);
-            synchronized (aVar) {
-                aVar.d = z9;
-                aVar.f58857c = true;
-                aVar.f58856b = true;
-                xi.d.f58863a.edit().putBoolean("round_video_camera2_enabled", z9).apply();
-            }
-            ((l4) bz0Var.f44186c).f();
-        } else if (org.telegram.ui.Components.t40.e(bz0Var.currentAccount)) {
-            int i10 = 0;
-            if (i7 == 2) {
-                bz0Var.g0(2131745986, new CharSequence[]{"480p", "360p"}, new jo0(6));
-            } else if (i7 == 3) {
-                bz0Var.g0(2131745996, new CharSequence[]{org.telegram.messenger.id.M0(2131745995, null), org.telegram.messenger.id.M0(2131745993, null), org.telegram.messenger.id.M0(2131745994, null)}, new jo0(7));
-            } else if (i7 == 4) {
-                bz0Var.g0(2131745989, new CharSequence[]{"30 FPS", "60 FPS"}, new jo0(8));
-            } else if (i7 == 5) {
-                CharSequence[] charSequenceArr = new CharSequence[4];
-                while (true) {
-                    int[] iArr = d;
-                    if (i10 < 3) {
-                        charSequenceArr[i10] = f0(iArr[i10]);
-                        i10++;
+    @Override
+    public final void run() {
+        String format;
+        String format2;
+        int i7 = this.f45864a;
+        SecretMediaViewer secretMediaViewer = this.f45865b;
+        switch (i7) {
+            case 0:
+                secretMediaViewer.J0 = null;
+                secretMediaViewer.f43295l0 = 0;
+                secretMediaViewer.f43279e.setLayerType(0, null);
+                secretMediaViewer.f43279e.setVisibility(4);
+                secretMediaViewer.f43308s = false;
+                secretMediaViewer.M = null;
+                secretMediaViewer.L = false;
+                secretMediaViewer.j();
+                new ArrayList();
+                org.telegram.messenger.g0.i3(new bz0(secretMediaViewer, 4), 50L);
+                return;
+            case 1:
+                ai.j0 j0Var = secretMediaViewer.f43279e;
+                if (j0Var != null) {
+                    j0Var.setLayerType(0, null);
+                    secretMediaViewer.f43279e.setVisibility(4);
+                    secretMediaViewer.f43295l0 = 0;
+                    secretMediaViewer.f43308s = false;
+                    secretMediaViewer.M = null;
+                    secretMediaViewer.L = false;
+                    secretMediaViewer.j();
+                    new ArrayList();
+                    org.telegram.messenger.g0.i3(new bz0(secretMediaViewer, 4), 50L);
+                    secretMediaViewer.f43279e.setScaleX(1.0f);
+                    secretMediaViewer.f43279e.setScaleY(1.0f);
+                    return;
+                }
+                return;
+            case 2:
+                ip0 ip0Var = secretMediaViewer.E;
+                if (ip0Var != null) {
+                    long S = ip0Var.S();
+                    long U = secretMediaViewer.E.U();
+                    if (U == -9223372036854775807L) {
+                        S = 0;
+                        U = 0;
+                    }
+                    if (U > 0) {
+                        org.telegram.ui.Components.w51 w51Var = secretMediaViewer.P;
+                        if (!w51Var.f41271f) {
+                            w51Var.h(false, ((float) S) / ((float) U));
+                            secretMediaViewer.Q.invalidate();
+                        }
+                    }
+                    int[] iArr = secretMediaViewer.f43290i1;
+                    Arrays.fill(iArr, 0);
+                    int[] iArr2 = secretMediaViewer.f43292j1;
+                    Arrays.fill(iArr2, 0);
+                    ip0 ip0Var2 = secretMediaViewer.E;
+                    if (ip0Var2 != null) {
+                        long max = Math.max(0L, ip0Var2.S()) / 1000;
+                        long max2 = Math.max(0L, secretMediaViewer.E.U()) / 1000;
+                        iArr[0] = (int) (max / 60);
+                        iArr[1] = (int) (max % 60);
+                        iArr2[0] = (int) (max2 / 60);
+                        iArr2[1] = (int) (max2 % 60);
+                    }
+                    int i10 = iArr[0];
+                    if (i10 >= 60) {
+                        format = String.format(Locale.ROOT, "%02d:%02d:%02d", Integer.valueOf(i10 / 60), Integer.valueOf(iArr[0] % 60), Integer.valueOf(iArr[1]));
                     } else {
-                        bz0Var.g0(2131745997, charSequenceArr, new jo0(9));
+                        format = String.format(Locale.ROOT, "%02d:%02d", Integer.valueOf(i10), Integer.valueOf(iArr[1]));
+                    }
+                    int i11 = iArr2[0];
+                    if (i11 >= 60) {
+                        format2 = String.format(Locale.ROOT, "%02d:%02d:%02d", Integer.valueOf(i11 / 60), Integer.valueOf(iArr2[0] % 60), Integer.valueOf(iArr2[1]));
+                    } else {
+                        format2 = String.format(Locale.ROOT, "%02d:%02d", Integer.valueOf(i11), Integer.valueOf(iArr2[1]));
+                    }
+                    org.telegram.ui.ActionBar.j5 j5Var = secretMediaViewer.R;
+                    Locale locale = Locale.ROOT;
+                    j5Var.l(format + " / " + format2, false);
+                    if (secretMediaViewer.E.d0()) {
+                        org.telegram.messenger.g0.i3(secretMediaViewer.f43288h1, 17L);
                         return;
                     }
+                    return;
                 }
-            } else if (i7 == 8) {
-                xi.a aVar2 = xi.e.f58870i;
-                aVar2.a();
-                aVar2.b(true ^ aVar2.d);
-                ((l4) bz0Var.f44186c).g(i7);
-            }
-        }
-    }
-
-    public static String f0(int i7) {
-        if (i7 % 1000000 == 0) {
-            return (i7 / 1000000) + " Mbps";
-        } else if (i7 > 1000000) {
-            return String.format(Locale.US, "%.1f Mbps", Float.valueOf(i7 / 1000000.0f));
-        } else {
-            return (i7 / 1000) + " kbps";
-        }
-    }
-
-    @Override
-    public final View createView(Context context) {
-        switch (this.f44184a) {
-            case 0:
-                setHasOwnBackground(true);
-                this.simpleActionBar.setBackButtonImage(2131231240);
-                this.simpleActionBar.setTitle(org.telegram.messenger.id.M0(2131745985, null));
-                this.simpleActionBar.setActionBarMenuOnItemClick(new qt0(this, 7));
-                FrameLayout frameLayout = new FrameLayout(context);
-                this.fragmentView = frameLayout;
-                org.telegram.ui.Components.pj0 pj0Var = new org.telegram.ui.Components.pj0(context, null);
-                this.f44185b = pj0Var;
-                pj0Var.r1();
-                this.f44185b.setSectionsDrawBackground(true);
-                this.f44185b.setLayoutManager(new v4.b0());
-                this.f44185b.setVerticalScrollBarEnabled(false);
-                org.telegram.ui.Components.pj0 pj0Var2 = this.f44185b;
-                l4 l4Var = new l4(17, this, context);
-                this.f44186c = l4Var;
-                pj0Var2.setAdapter(l4Var);
-                this.f44185b.setOnItemClickListener(new ay0(this, 2));
-                frameLayout.addView(this.f44185b, c8.ha.c(-1.0f, -1));
-                return this.fragmentView;
+                return;
+            case 3:
+                secretMediaViewer.n(false, true);
+                return;
             default:
-                setHasOwnBackground(true);
-                this.simpleActionBar.setBackButtonImage(2131231240);
-                this.simpleActionBar.setTitle(org.telegram.messenger.id.M0(2131753919, null));
-                this.simpleActionBar.setActionBarMenuOnItemClick(new bi.s(this, 23));
-                FrameLayout frameLayout2 = new FrameLayout(context);
-                this.fragmentView = frameLayout2;
-                org.telegram.ui.Components.pj0 pj0Var3 = new org.telegram.ui.Components.pj0(context, null);
-                this.f44185b = pj0Var3;
-                pj0Var3.setSectionsDrawBackground(true);
-                this.f44185b.r1();
-                this.f44185b.setLayoutManager(new v4.b0());
-                this.f44185b.setVerticalScrollBarEnabled(false);
-                org.telegram.ui.Components.pj0 pj0Var4 = this.f44185b;
-                l4 l4Var2 = new l4(0, this, context);
-                this.f44186c = l4Var2;
-                pj0Var4.setAdapter(l4Var2);
-                this.f44185b.setOnItemClickListener(new h(this, 2));
-                frameLayout2.addView(this.f44185b, c8.ha.c(-1.0f, -1));
-                return this.fragmentView;
+                org.telegram.messenger.ic icVar = secretMediaViewer.f43287h0;
+                if (icVar != null) {
+                    icVar.a();
+                    secretMediaViewer.f43287h0 = null;
+                }
+                secretMediaViewer.h.w0(null);
+                try {
+                    if (secretMediaViewer.d.getParent() != null) {
+                        ((WindowManager) secretMediaViewer.f43271b.getSystemService("window")).removeView(secretMediaViewer.d);
+                    }
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
+                }
+                secretMediaViewer.f43289i0 = false;
+                return;
         }
     }
 
-    public void g0(int i7, CharSequence[] charSequenceArr, jo0 jo0Var) {
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-        alertDialog$Builder.f27300a.R = org.telegram.messenger.id.M0(i7, null);
-        alertDialog$Builder.f(charSequenceArr, new og.j(11, this, jo0Var));
-        showDialog(alertDialog$Builder.f27300a);
-    }
-
-    @Override
-    public final org.telegram.ui.Components.pj0 getListViewForSimpleGlass() {
-        switch (this.f44184a) {
-            case 0:
-                return this.f44185b;
-            default:
-                return this.f44185b;
-        }
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        switch (this.f44184a) {
-            case 0:
-                return true;
-            default:
-                return true;
-        }
-    }
-
-    @Override
-    public final boolean useSimpleActionBar() {
-        switch (this.f44184a) {
-            case 0:
-                return true;
-            default:
-                return true;
-        }
+    public bz0(SecretMediaViewer secretMediaViewer, uq0 uq0Var, int i7) {
+        this.f45864a = i7;
+        this.f45865b = secretMediaViewer;
     }
 }

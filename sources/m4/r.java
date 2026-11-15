@@ -1,33 +1,33 @@
 package m4;
 
-import f3.j0;
+import f3.i0;
 public final class r {
-    public final j0 f19771a;
-    public long f19772b;
-    public boolean f19773c;
+    public final i0 f20360a;
+    public long f20361b;
+    public boolean f20362c;
     public int d;
-    public long f19774e;
-    public boolean f19775f;
-    public boolean f19776g;
+    public long f20363e;
+    public boolean f20364f;
+    public boolean f20365g;
     public boolean h;
-    public boolean f19777i;
-    public boolean f19778j;
-    public long f19779k;
-    public long f19780l;
-    public boolean f19781m;
+    public boolean f20366i;
+    public boolean f20367j;
+    public long f20368k;
+    public long f20369l;
+    public boolean f20370m;
 
-    public r(j0 j0Var) {
-        this.f19771a = j0Var;
+    public r(i0 i0Var) {
+        this.f20360a = i0Var;
     }
 
     public final void a(int i7) {
-        long j3 = this.f19780l;
+        long j3 = this.f20369l;
         if (j3 != -9223372036854775807L) {
-            long j10 = this.f19772b;
-            long j11 = this.f19779k;
+            long j10 = this.f20361b;
+            long j11 = this.f20368k;
             if (j10 != j11) {
-                boolean z9 = this.f19781m;
-                this.f19771a.c(j3, z9 ? 1 : 0, (int) (j10 - j11), i7, null);
+                boolean z10 = this.f20370m;
+                this.f20360a.c(j3, z10 ? 1 : 0, (int) (j10 - j11), i7, null);
             }
         }
     }

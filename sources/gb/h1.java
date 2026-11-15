@@ -1,6 +1,8 @@
 package gb;
 public final class h1 {
-    public final ke.a serializer() {
-        return g1.f13690a;
+    public static final h1 f13039a = new Object();
+
+    public final g1 a() {
+        return new g1(System.currentTimeMillis());
     }
 }

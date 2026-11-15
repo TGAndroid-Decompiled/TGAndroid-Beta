@@ -1,22 +1,24 @@
 package org.telegram.ui.Components;
+public final class g0 implements Runnable {
+    public final int f34762a;
+    public final org.telegram.ui.ActionBar.t2 f34763b;
 
-import android.view.View;
-public final class g0 implements View.OnClickListener {
-    public final int f33705a;
-    public final Object f33706b;
-
-    public g0(Object obj, int i7) {
-        this.f33705a = i7;
-        this.f33706b = obj;
+    public g0(org.telegram.ui.ActionBar.t2 t2Var, int i7) {
+        this.f34762a = i7;
+        this.f34763b = t2Var;
     }
 
     @Override
-    public final void onClick(android.view.View r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.g0.onClick(android.view.View):void");
-    }
-
-    public g0(k60 k60Var, ai.m0 m0Var) {
-        this.f33705a = 26;
-        this.f33706b = k60Var;
+    public final void run() {
+        switch (this.f34762a) {
+            case 0:
+                this.f34763b.invalidateSelf();
+                return;
+            default:
+                org.telegram.ui.ActionBar.t2 t2Var = this.f34763b;
+                ((u5) t2Var.d).e(true, 0.0f);
+                t2Var.invalidateSelf();
+                return;
+        }
     }
 }

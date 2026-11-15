@@ -4,11 +4,11 @@ import java.nio.channels.WritableByteChannel;
 public interface b {
     void getBox(WritableByteChannel writableByteChannel);
 
-    f getParent();
+    g getParent();
 
     long getSize();
 
     String getType();
 
-    void setParent(f fVar);
+    void setParent(g gVar);
 }

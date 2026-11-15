@@ -1,77 +1,120 @@
 package wg;
 
-import bi.ud;
-import org.telegram.messenger.a8;
-import org.telegram.ui.Components.m41;
-import org.telegram.ui.Components.n40;
-import org.telegram.ui.Components.qt;
-import zh.d2;
-import zh.g1;
-public final class a0 implements Runnable {
-    public final int f57689a;
-    public final Object f57690b;
+import android.content.Intent;
+import android.net.Uri;
+import bi.j6;
+import bi.o1;
+import java.util.concurrent.atomic.AtomicBoolean;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.m10;
+import org.telegram.messenger.np;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.e2;
+import org.telegram.ui.ActionBar.k2;
+import org.telegram.ui.Components.ja;
+import org.telegram.ui.Components.st0;
+import org.telegram.ui.Components.tj0;
+import org.telegram.ui.Components.uj0;
+import org.telegram.ui.Components.xb;
+import org.telegram.ui.LaunchActivity;
+public final class a0 extends ja {
+    public final TLRPC.TL_payments_checkedGiftCode T1;
+    public final boolean U1;
+    public z V1;
+    public final String W1;
 
-    public a0(Object obj, int i7) {
-        this.f57689a = i7;
-        this.f57690b = obj;
+    public a0(e2 e2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
+        super(e2Var, true);
+        boolean z10;
+        if (tL_payments_checkedGiftCode.used_date == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.U1 = z10;
+        this.T1 = tL_payments_checkedGiftCode;
+        this.W1 = str;
+        this.f29718v0 = false;
+        this.f29720w0 = false;
+        O();
+        b1();
+        z zVar = this.V1;
+        k2 k2Var = this.f29685c;
+        zVar.getClass();
+        zVar.d = tL_payments_checkedGiftCode.used_date == 0;
+        zVar.f59918e = e2Var;
+        zVar.f59919f = tL_payments_checkedGiftCode;
+        zVar.h = str;
+        zVar.f59920n = k2Var;
+    }
+
+    public static boolean d1(Intent intent, vf.b bVar) {
+        String scheme;
+        String path;
+        Uri data = intent.getData();
+        if (data != null && (scheme = data.getScheme()) != null) {
+            if (!scheme.equals("http") && !scheme.equals("https")) {
+                if (scheme.equals("tg")) {
+                    String uri = data.toString();
+                    String lastPathSegment = data.getLastPathSegment();
+                    if ((uri.startsWith("tg:giftcode") || uri.startsWith("tg://giftcode")) && lastPathSegment != null) {
+                        e1(LaunchActivity.Q(), lastPathSegment, bVar);
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
+            }
+            String lowerCase = data.getHost().toLowerCase();
+            if ((lowerCase.equals("telegram.me") || lowerCase.equals("t.me") || lowerCase.equals("telegram.dog")) && (path = data.getPath()) != null) {
+                String lastPathSegment2 = data.getLastPathSegment();
+                if (path.startsWith("/giftcode") && lastPathSegment2 != null) {
+                    e1(LaunchActivity.Q(), lastPathSegment2, bVar);
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public static void e1(e2 e2Var, String str, vf.b bVar) {
+        if (e2Var == null) {
+            return;
+        }
+        AtomicBoolean atomicBoolean = new AtomicBoolean(false);
+        if (bVar != null) {
+            bVar.d();
+            bVar.f58805b = new c(atomicBoolean, 1);
+        }
+        o1 o1Var = new o1(atomicBoolean, e2Var, str, bVar);
+        e eVar = new e(atomicBoolean, bVar, 1);
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(m10.f24934t0);
+        np s12 = np.s1(m10.f24934t0);
+        TLRPC.TL_payments_checkGiftCode tL_payments_checkGiftCode = new TLRPC.TL_payments_checkGiftCode();
+        tL_payments_checkGiftCode.slug = str;
+        connectionsManager.sendRequest(tL_payments_checkGiftCode, new j6(s12, o1Var, eVar, 23));
     }
 
     @Override
-    public final void run() {
-        switch (this.f57689a) {
-            case 0:
-                b0 b0Var = (b0) this.f57690b;
-                b0Var.getClass();
-                c0 c0Var = b0Var.f57698r;
-                ug.f1 f1Var = new ug.f1(c0Var.f35905r1, c0Var.f28669a, null, null, null, c0Var.I0);
-                f1Var.E2 = true;
-                f1Var.X1 = true;
-                c0Var.f35905r1.showDialog(f1Var);
-                return;
-            case 1:
-                n40 n40Var = (n40) ((qt) this.f57690b).f37395b;
-                n40Var.f36226q0 = true;
-                a8.b("RoundVideo camera flip first frame: elapsedMs=" + n40.m(n40Var));
-                n40Var.w(true);
-                n40.n(n40Var);
-                return;
-            case 2:
-                yh.l lVar = (yh.l) this.f57690b;
-                lVar.f();
-                lVar.e(true);
-                return;
-            case 3:
-                zh.l lVar2 = (zh.l) this.f57690b;
-                lVar2.f60435c2.setTranslationX(lVar2.f60434b2.getAnimatedWidth() + org.telegram.messenger.g0.L(28.0f));
-                return;
-            case 4:
-                ((zh.b0) this.f57690b).onBackPressed();
-                return;
-            case 5:
-                m41 m41Var = ((g1) this.f57690b).T1;
-                if (m41Var != null) {
-                    m41Var.O(false);
-                    return;
-                }
-                return;
-            case 6:
-                ((zh.v0) this.f57690b).c();
-                return;
-            case 7:
-                ((zh.b1) this.f57690b).invalidateSelf();
-                return;
-            case 8:
-                zh.d1 d1Var = (zh.d1) this.f57690b;
-                ud udVar = d1Var.f60290e;
-                if (udVar != null) {
-                    udVar.d();
-                    d1Var.invalidateSelf();
-                    return;
-                }
-                return;
-            default:
-                ((d2) this.f57690b).p();
-                return;
+    public final tj0 L0(uj0 uj0Var) {
+        z zVar = new z(this, this.J0);
+        this.V1 = zVar;
+        return zVar;
+    }
+
+    @Override
+    public final CharSequence O0() {
+        if (this.U1) {
+            return hd.M0(2131753500, null);
         }
+        return hd.M0(2131753173, null);
+    }
+
+    @Override
+    public final void U0(st0 st0Var) {
+        xb.a(this.f29685c, new bi.t(15));
     }
 }

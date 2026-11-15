@@ -1,82 +1,94 @@
 package org.telegram.messenger;
 
-import android.widget.TextView;
-import java.io.File;
-import org.json.JSONObject;
+import java.util.ArrayList;
+import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.ExternalActionActivity;
-import org.telegram.ui.zs0;
-public final class ee implements Runnable {
-    public final int f22213a = 0;
-    public final Object f22214b;
-    public final int f22215c;
-    public final Object d;
-    public final Object f22216e;
-    public final Object f22217f;
-    public final Object h;
-    public final Object f22218n;
-    public final Object f22219r;
+import org.telegram.tgnet.tl.TL_update;
+import org.telegram.ui.Components.bp0;
+import org.telegram.ui.Components.ys0;
+public final class ee implements RequestDelegate {
+    public final int f23288a;
+    public final int f23289b;
+    public final int f23290c;
+    public final is d;
 
-    public ee(int i7, File file, String str, org.telegram.ui.ActionBar.u1 u1Var, boolean[] zArr, String str2, c20 c20Var, boolean[] zArr2) {
-        this.f22215c = i7;
-        this.f22217f = file;
-        this.d = str;
-        this.f22214b = u1Var;
-        this.h = zArr;
-        this.f22216e = str2;
-        this.f22219r = c20Var;
-        this.f22218n = zArr2;
+    public ee(is isVar, int i7, int i10, int i11) {
+        this.f23288a = i11;
+        this.d = isVar;
+        this.f23289b = i7;
+        this.f23290c = i10;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ee.run():void");
-    }
-
-    public ee(TLObject tLObject, org.telegram.ui.ActionBar.f2 f2Var, TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription, zs0 zs0Var, com.google.android.gms.internal.clearcut.z0 z0Var, int i7, TLRPC.TL_error tL_error, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
-        this.f22217f = tLObject;
-        this.d = f2Var;
-        this.f22216e = tL_inputStorePaymentPremiumSubscription;
-        this.f22214b = zs0Var;
-        this.h = z0Var;
-        this.f22215c = i7;
-        this.f22218n = tL_error;
-        this.f22219r = tL_payments_canPurchaseStore;
-    }
-
-    public ee(ExternalActionActivity externalActionActivity, org.telegram.ui.ActionBar.u1 u1Var, TLObject tLObject, int i7, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2) {
-        this.f22217f = externalActionActivity;
-        this.f22214b = u1Var;
-        this.h = tLObject;
-        this.f22215c = i7;
-        this.f22218n = authorizationform;
-        this.f22219r = getauthorizationform;
-        this.d = str;
-        this.f22216e = str2;
-    }
-
-    public ee(org.telegram.ui.Wallet.i0 i0Var, String str, byte[] bArr, JSONObject jSONObject, String str2, int i7, org.telegram.ui.Wallet.s2 s2Var, org.telegram.ui.Wallet.l0 l0Var) {
-        this.f22217f = i0Var;
-        this.d = str;
-        this.f22214b = bArr;
-        this.h = jSONObject;
-        this.f22216e = str2;
-        this.f22215c = i7;
-        this.f22218n = s2Var;
-        this.f22219r = l0Var;
-    }
-
-    public ee(Runnable[] runnableArr, TextView[] textViewArr, int i7, org.telegram.ui.ActionBar.h6 h6Var, TL_wallet.walletTransaction wallettransaction, String[] strArr, boolean[] zArr, byte[] bArr) {
-        this.f22217f = runnableArr;
-        this.d = textViewArr;
-        this.f22215c = i7;
-        this.f22216e = h6Var;
-        this.f22214b = wallettransaction;
-        this.f22218n = strArr;
-        this.h = zArr;
-        this.f22219r = bArr;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i7 = this.f23288a;
+        is isVar = this.d;
+        switch (i7) {
+            case 0:
+                String[] strArr = MediaController.W1;
+                g0.h3(new jg.o1(this.f23289b, this.f23290c, 7, (MediaController) isVar, tLObject, tL_error));
+                return;
+            case 1:
+                np npVar = (np) isVar;
+                LongSparseIntArray longSparseIntArray = npVar.Z0;
+                int i10 = 0;
+                if (tL_error == null) {
+                    TLRPC.updates_Difference updates_difference = (TLRPC.updates_Difference) tLObject;
+                    if (updates_difference instanceof TLRPC.TL_updates_differenceTooLong) {
+                        g0.h3(new l2.x(npVar, updates_difference, this.f23289b, this.f23290c, 4));
+                        return;
+                    }
+                    if (updates_difference instanceof TLRPC.TL_updates_differenceSlice) {
+                        TLRPC.TL_updates_state tL_updates_state = updates_difference.intermediate_state;
+                        npVar.Y0(tL_updates_state.pts, tL_updates_state.date, tL_updates_state.qts, true);
+                    }
+                    a0.h hVar = new a0.h();
+                    a0.h hVar2 = new a0.h();
+                    for (int i11 = 0; i11 < updates_difference.users.size(); i11++) {
+                        TLRPC.User user = updates_difference.users.get(i11);
+                        hVar.k(user, user.f28200id);
+                    }
+                    for (int i12 = 0; i12 < updates_difference.chats.size(); i12++) {
+                        TLRPC.Chat chat = updates_difference.chats.get(i12);
+                        hVar2.k(chat, chat.f28051id);
+                    }
+                    ArrayList arrayList = new ArrayList();
+                    if (!updates_difference.other_updates.isEmpty()) {
+                        while (i10 < updates_difference.other_updates.size()) {
+                            TLRPC.Update update = updates_difference.other_updates.get(i10);
+                            if (update instanceof TL_update.TL_updateMessageID) {
+                                arrayList.add((TL_update.TL_updateMessageID) update);
+                                updates_difference.other_updates.remove(i10);
+                            } else {
+                                if (np.Y1(update) == 2) {
+                                    long V1 = np.V1(update);
+                                    int i13 = longSparseIntArray.get(V1);
+                                    if (i13 == 0 && (i13 = npVar.getMessagesStorage().N(V1)) != 0) {
+                                        longSparseIntArray.put(V1, i13);
+                                    }
+                                    if (i13 != 0 && np.W1(update) <= i13) {
+                                        updates_difference.other_updates.remove(i10);
+                                    }
+                                }
+                                i10++;
+                            }
+                            i10--;
+                            i10++;
+                        }
+                    }
+                    g0.h3(new fi(26, npVar, updates_difference));
+                    npVar.getMessagesStorage().f27220a.c(new jn(npVar, updates_difference, arrayList, hVar, hVar2, 10));
+                    return;
+                }
+                npVar.f25284g2 = false;
+                npVar.getConnectionsManager().setIsUpdating(false);
+                a8.b("received: isUpdating = false");
+                return;
+            default:
+                g0.h3(new bp0((ys0) isVar, tL_error, this.f23289b, this.f23290c, tLObject, 0));
+                return;
+        }
     }
 }

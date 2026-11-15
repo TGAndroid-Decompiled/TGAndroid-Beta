@@ -1,56 +1,42 @@
 package org.telegram.ui;
-public final class tf implements q0.a {
-    public final int f50260a;
-    public final cn f50261b;
 
-    public tf(cn cnVar, int i7) {
-        this.f50260a = i7;
-        this.f50261b = cnVar;
+import android.content.DialogInterface;
+import com.google.android.gms.tasks.CancellationTokenSource;
+public final class tf implements DialogInterface.OnCancelListener {
+    public final int f51569a;
+    public final Object f51570b;
+
+    public tf(Object obj, int i7) {
+        this.f51569a = i7;
+        this.f51570b = obj;
     }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f50260a) {
+    public final void onCancel(DialogInterface dialogInterface) {
+        switch (this.f51569a) {
             case 0:
-                Integer num = (Integer) obj;
-                cn cnVar = this.f50261b;
-                cnVar.getClass();
-                if (num.intValue() == 0) {
-                    cnVar.f44742z1 = 0;
-                    cnVar.id(true);
-                    cnVar.getMessagesController().t3(cnVar.f44545j6, cnVar.b());
-                    return;
-                }
-                cnVar.id(true);
-                cnVar.l(num.intValue(), 0, false, 0, true, 0);
+                an anVar = (an) this.f51570b;
+                anVar.s9 = true;
+                anVar.f45335q9 = 0;
+                anVar.Tb = 0;
+                anVar.f45123a5 = 0;
+                anVar.O9();
+                anVar.uc(false);
                 return;
             case 1:
-                Integer num2 = (Integer) obj;
-                cn cnVar2 = this.f50261b;
-                cnVar2.getClass();
-                if (num2.intValue() == 0) {
-                    cnVar2.A1 = 0;
-                    cnVar2.hd(true);
-                    cnVar2.getMessagesController().s3(cnVar2.f44545j6, cnVar2.b());
-                    return;
-                }
-                int i7 = cnVar2.A1 - 1;
-                cnVar2.A1 = i7;
-                if (i7 <= 0) {
-                    cnVar2.getMessagesController().s3(cnVar2.f44545j6, cnVar2.b());
-                }
-                cnVar2.hd(true);
-                cnVar2.l(num2.intValue(), 0, false, 0, true, 0);
+                qn qnVar = (qn) this.f51570b;
+                qnVar.N0 = false;
+                qnVar.f50663b = null;
+                qnVar.O0 = false;
+                return;
+            case 2:
+                ((to) this.f51570b).f51622n = null;
+                return;
+            case 3:
+                ((q90) this.f51570b).b();
                 return;
             default:
-                cn cnVar3 = this.f50261b;
-                cnVar3.getClass();
-                boolean booleanValue = ((Boolean) obj).booleanValue();
-                cnVar3.f44696v7 = booleanValue;
-                if (!booleanValue) {
-                    cnVar3.K8();
-                    return;
-                }
+                ((CancellationTokenSource) this.f51570b).cancel();
                 return;
         }
     }

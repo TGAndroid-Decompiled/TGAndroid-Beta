@@ -1,7 +1,7 @@
 package yg;
 public final class u extends c {
-    public static final int f59497w = 0;
-    public int f59498s;
+    public static final int f60701w = 0;
+    public int f60702s;
 
     @Override
     public final boolean b() {
@@ -9,6 +9,6 @@ public final class u extends c {
     }
 
     public int getSelectedType() {
-        return this.f59498s;
+        return this.f60702s;
     }
 }

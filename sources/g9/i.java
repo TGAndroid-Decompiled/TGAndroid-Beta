@@ -1,5 +1,5 @@
 package g9;
-public abstract class i implements m {
+public abstract class i implements l {
     public static String a(char c10) {
         char[] cArr = new char[6];
         cArr[0] = '\\';
@@ -26,7 +26,7 @@ public abstract class i implements m {
             }
             return new e(str.charAt(0), 0);
         }
-        return b.f13583f;
+        return b.f12929f;
     }
 
     public abstract boolean c(char c10);

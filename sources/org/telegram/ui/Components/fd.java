@@ -1,29 +1,52 @@
 package org.telegram.ui.Components;
+public final class fd implements Runnable {
+    public final int f34580a;
+    public final ChatActivityEnterView f34581b;
+    public final boolean f34582c;
 
-import android.view.View;
-public final class fd implements View.OnLongClickListener {
-    public final int f33524a;
-    public final ChatActivityEnterView f33525b;
-
-    public fd(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f33524a = i7;
-        this.f33525b = chatActivityEnterView;
+    public fd(ChatActivityEnterView chatActivityEnterView, boolean z10, int i7) {
+        this.f34580a = i7;
+        this.f34581b = chatActivityEnterView;
+        this.f34582c = z10;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        int i7 = this.f33524a;
-        ChatActivityEnterView chatActivityEnterView = this.f33525b;
+    public final void run() {
+        org.telegram.ui.bg0 bg0Var;
+        int i7 = this.f34580a;
+        ChatActivityEnterView chatActivityEnterView = this.f34581b;
+        boolean z10 = this.f34582c;
         switch (i7) {
             case 0:
-                int i10 = ChatActivityEnterView.s5;
-                return chatActivityEnterView.F0(view);
-            default:
-                we weVar = chatActivityEnterView.E0;
-                if (weVar != null && weVar.length() > 0) {
-                    return chatActivityEnterView.F0(view);
+                if (!z10) {
+                    chatActivityEnterView.f32164b2.setVisibility(8);
+                    return;
                 }
-                return false;
+                int i10 = ChatActivityEnterView.N6;
+                chatActivityEnterView.getClass();
+                return;
+            case 1:
+                if (!z10) {
+                    chatActivityEnterView.f32172c2.setVisibility(8);
+                    return;
+                }
+                int i11 = ChatActivityEnterView.N6;
+                chatActivityEnterView.getClass();
+                return;
+            default:
+                ChatActivityEnterView chatActivityEnterView2 = this.f34581b;
+                uc ucVar = chatActivityEnterView2.X5;
+                chatActivityEnterView2.N0 = System.currentTimeMillis();
+                boolean k12 = chatActivityEnterView2.k1(false, 0, 0, 0L, true);
+                if (!z10 && (bg0Var = chatActivityEnterView2.M0) != null) {
+                    bg0Var.h(!k12);
+                    chatActivityEnterView2.M0 = null;
+                    return;
+                }
+                chatActivityEnterView2.W5 = !k12;
+                org.telegram.messenger.g0.r(ucVar);
+                org.telegram.messenger.g0.i3(ucVar, 500L);
+                return;
         }
     }
 }

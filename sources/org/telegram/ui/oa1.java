@@ -1,96 +1,78 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-public final class oa1 extends org.telegram.ui.Components.oj0 {
-    public final Context f48484c;
-    public final TwoStepVerificationActivity d;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class oa1 implements Runnable {
+    public final int f49886a;
+    public final xa1 f49887b;
 
-    public oa1(TwoStepVerificationActivity twoStepVerificationActivity, Context context) {
-        this.d = twoStepVerificationActivity;
-        this.f48484c = context;
+    public oa1(xa1 xa1Var, int i7) {
+        this.f49886a = i7;
+        this.f49887b = xa1Var;
     }
 
     @Override
-    public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f57056f == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int b() {
-        TwoStepVerificationActivity twoStepVerificationActivity = this.d;
-        if (!twoStepVerificationActivity.G && twoStepVerificationActivity.I != null) {
-            return twoStepVerificationActivity.T;
-        }
-        return 0;
-    }
-
-    @Override
-    public final int d(int i7) {
-        TwoStepVerificationActivity twoStepVerificationActivity = this.d;
-        if (i7 != twoStepVerificationActivity.P && i7 != twoStepVerificationActivity.S) {
-            return 0;
-        }
-        return 1;
-    }
-
-    @Override
-    public final void t(v4.d1 d1Var, int i7) {
-        int i10;
-        int i11;
-        int i12 = d1Var.f57056f;
-        View view = d1Var.f57052a;
-        TwoStepVerificationActivity twoStepVerificationActivity = this.d;
-        if (i12 != 0) {
-            if (i12 == 1) {
-                org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) view;
-                if (i7 == twoStepVerificationActivity.P) {
-                    z8Var.setText(org.telegram.messenger.id.M0(2131745548, null));
-                    return;
-                } else if (i7 == twoStepVerificationActivity.S) {
-                    z8Var.setText(org.telegram.messenger.id.M0(2131751142, null));
-                    return;
-                } else {
+    public final void run() {
+        switch (this.f49886a) {
+            case 0:
+                int i7 = 0;
+                while (true) {
+                    dr[] drVarArr = this.f49887b.f53159x.f45491f;
+                    if (i7 < drVarArr.length) {
+                        drVarArr[i7].A(0.0f);
+                        i7++;
+                    } else {
+                        return;
+                    }
+                }
+            case 1:
+                xa1 xa1Var = this.f49887b;
+                EditTextBoldCursor editTextBoldCursor = xa1Var.f53155n;
+                if (editTextBoldCursor != null) {
+                    if (editTextBoldCursor.length() != 0) {
+                        xa1Var.f53150g0[2].P(49);
+                        xa1Var.f53150g0[2].T(false, 0.0f);
+                        xa1Var.f53139a.d();
+                        return;
+                    }
+                    xa1Var.K0(true);
                     return;
                 }
-            }
-            return;
+                return;
+            case 2:
+                xa1 xa1Var2 = this.f49887b;
+                EditTextBoldCursor editTextBoldCursor2 = xa1Var2.f53155n;
+                if (editTextBoldCursor2 != null && editTextBoldCursor2.getVisibility() == 0) {
+                    xa1Var2.f53155n.requestFocus();
+                    org.telegram.messenger.g0.J3(xa1Var2.f53155n);
+                    return;
+                }
+                return;
+            case 3:
+                xa1 xa1Var3 = this.f49887b;
+                lb0 lb0Var = xa1Var3.f53159x;
+                if (lb0Var != null && lb0Var.getVisibility() == 0) {
+                    xa1Var3.f53159x.f45491f[0].requestFocus();
+                    return;
+                }
+                return;
+            case 4:
+                xa1 xa1Var4 = this.f49887b;
+                if (xa1Var4.f53151h0 != null) {
+                    xa1Var4.K0(false);
+                    return;
+                }
+                return;
+            case 5:
+                xa1.k0(this.f49887b);
+                return;
+            case 6:
+                org.telegram.messenger.g0.i3(new oa1(this.f49887b, 7), 150L);
+                return;
+            default:
+                for (dr drVar : this.f49887b.f53159x.f45491f) {
+                    drVar.A(0.0f);
+                }
+                return;
         }
-        org.telegram.ui.Cells.w9 w9Var = (org.telegram.ui.Cells.w9) view;
-        int i13 = org.telegram.ui.ActionBar.m6.G6;
-        w9Var.setTag(Integer.valueOf(i13));
-        org.telegram.ui.ActionBar.t6.U(w9Var.getTextView(), i13, null);
-        i10 = twoStepVerificationActivity.changePasswordRow;
-        if (i7 == i10) {
-            w9Var.b(org.telegram.messenger.id.M0(2131752541, null), true);
-        } else if (i7 != twoStepVerificationActivity.O) {
-            i11 = twoStepVerificationActivity.turnPasswordOffRow;
-            if (i7 == i11) {
-                w9Var.b(org.telegram.messenger.id.M0(2131743942, null), true);
-            } else if (i7 == twoStepVerificationActivity.R) {
-                w9Var.b(org.telegram.messenger.id.M0(2131752531, null), false);
-            } else if (i7 == twoStepVerificationActivity.Q) {
-                w9Var.b(org.telegram.messenger.id.M0(2131745515, null), false);
-            }
-        } else {
-            w9Var.b(org.telegram.messenger.id.M0(2131745549, null), true);
-        }
-    }
-
-    @Override
-    public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        View w9Var;
-        Context context = this.f48484c;
-        if (i7 != 0) {
-            w9Var = new org.telegram.ui.Cells.z8(context);
-        } else {
-            w9Var = new org.telegram.ui.Cells.w9(context);
-            org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f27890d6, w9Var, null);
-        }
-        return new v4.d1(w9Var);
     }
 }

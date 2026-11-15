@@ -6,13 +6,13 @@ import java.util.concurrent.locks.LockSupport;
 public final class c0 extends s0 implements Runnable {
     private static volatile Thread _thread;
     private static volatile int debugStatus;
-    public static final c0 f60064s;
-    public static final long f60065w;
+    public static final c0 f61265s;
+    public static final long f61266w;
 
     static {
         Long l10;
         ?? s0Var = new s0();
-        f60064s = s0Var;
+        f61265s = s0Var;
         s0Var.i(false);
         TimeUnit timeUnit = TimeUnit.MILLISECONDS;
         try {
@@ -20,7 +20,7 @@ public final class c0 extends s0 implements Runnable {
         } catch (SecurityException unused) {
             l10 = 1000L;
         }
-        f60065w = timeUnit.toNanos(l10.longValue());
+        f61266w = timeUnit.toNanos(l10.longValue());
     }
 
     @Override
@@ -39,7 +39,7 @@ public final class c0 extends s0 implements Runnable {
             q(nanoTime, p0Var);
             return p0Var;
         }
-        return p1.f60113a;
+        return p1.f61314a;
     }
 
     @Override
@@ -52,7 +52,7 @@ public final class c0 extends s0 implements Runnable {
                 if (thread == null) {
                     thread = new Thread(this, "kotlinx.coroutines.DefaultExecutor");
                     _thread = thread;
-                    thread.setContextClassLoader(f60064s.getClass().getClassLoader());
+                    thread.setContextClassLoader(f61265s.getClass().getClassLoader());
                     thread.setDaemon(true);
                     thread.start();
                 }
@@ -77,37 +77,37 @@ public final class c0 extends s0 implements Runnable {
     }
 
     public final synchronized void r() {
-        boolean z9;
+        boolean z10;
         int i7 = debugStatus;
         if (i7 != 2 && i7 != 3) {
-            z9 = false;
+            z10 = false;
         } else {
-            z9 = true;
+            z10 = true;
         }
-        if (!z9) {
+        if (!z10) {
             return;
         }
         debugStatus = 3;
         s0.h.set(this, null);
-        s0.f60118n.set(this, null);
+        s0.f61319n.set(this, null);
         notifyAll();
     }
 
     @Override
     public final void run() {
-        boolean z9;
         boolean z10;
+        boolean z11;
         boolean p10;
-        v1.f60130a.set(this);
+        v1.f61331a.set(this);
         try {
             synchronized (this) {
                 int i7 = debugStatus;
                 if (i7 != 2 && i7 != 3) {
-                    z9 = false;
+                    z10 = false;
                 } else {
-                    z9 = true;
+                    z10 = true;
                 }
-                if (z9) {
+                if (z10) {
                     if (!p10) {
                         return;
                     }
@@ -122,7 +122,7 @@ public final class c0 extends s0 implements Runnable {
                     if (j10 == Long.MAX_VALUE) {
                         long nanoTime = System.nanoTime();
                         if (j3 == Long.MAX_VALUE) {
-                            j3 = f60065w + nanoTime;
+                            j3 = f61266w + nanoTime;
                         }
                         long j11 = j3 - nanoTime;
                         if (j11 <= 0) {
@@ -142,11 +142,11 @@ public final class c0 extends s0 implements Runnable {
                     if (j10 > 0) {
                         int i10 = debugStatus;
                         if (i10 != 2 && i10 != 3) {
-                            z10 = false;
+                            z11 = false;
                         } else {
-                            z10 = true;
+                            z11 = true;
                         }
-                        if (z10) {
+                        if (z11) {
                             _thread = null;
                             r();
                             if (!p()) {

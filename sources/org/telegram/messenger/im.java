@@ -1,82 +1,77 @@
 package org.telegram.messenger;
 
-import java.util.HashMap;
-import org.telegram.tgnet.RequestDelegate;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class im implements RequestDelegate {
-    public final int f23340a;
-    public final long f23341b;
-    public final int f23342c;
+import org.telegram.tgnet.tl.TL_iv;
+public final class im implements Runnable {
+    public final int f24414a;
+    public final c1 f24415b;
+    public final long f24416c;
     public final Object d;
+    public final Object f24417e;
+    public final Object f24418f;
 
-    public im(c1 c1Var, long j3, int i7, int i10) {
-        this.f23340a = i10;
-        this.d = c1Var;
-        this.f23341b = j3;
-        this.f23342c = i7;
+    public im(c1 c1Var, Object obj, long j3, Object obj2, Object obj3, int i7) {
+        this.f24414a = i7;
+        this.f24415b = c1Var;
+        this.d = obj;
+        this.f24416c = j3;
+        this.f24417e = obj2;
+        this.f24418f = obj3;
     }
 
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f23340a) {
-            case 0:
-                qp qpVar = (qp) this.d;
-                HashMap hashMap = qpVar.f24901s8;
-                hashMap.remove(this.f23341b + "_" + this.f23342c);
-                if (tL_error == null && tLObject != null) {
-                    qpVar.O3((TLRPC.Updates) tLObject, false);
-                    return;
+    private final void a() {
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        c10 c10Var = (c10) this.f24415b;
+        x00 x00Var = (x00) this.d;
+        TLObject tLObject = (TLObject) this.f24417e;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f24418f;
+        long j3 = this.f24416c;
+        synchronized (c10Var) {
+            arrayList = x00Var.f27447b;
+            arrayList2 = x00Var.f27448c;
+        }
+        if (tLObject instanceof TLRPC.TL_messages_translatedRichMessage) {
+            ArrayList<TL_iv.RichMessage> arrayList3 = ((TLRPC.TL_messages_translatedRichMessage) tLObject).result;
+            int min = Math.min(arrayList2.size(), arrayList3.size());
+            for (int i7 = 0; i7 < min; i7++) {
+                ((u10) arrayList2.get(i7)).a((Integer) arrayList.get(i7), arrayList3.get(i7), x00Var.d);
+            }
+        } else if (tL_error != null && "TO_LANG_INVALID".equals(tL_error.text)) {
+            c10Var.K(j3, false);
+            ns.e().k(ns.P4, 1, hd.M0(2131743946, null));
+        } else {
+            if (tL_error != null && "QUOTA_EXCEEDED".equals(tL_error.text)) {
+                ns.e().k(ns.P4, 1, hd.M0(2131743947, null));
+            }
+            for (int i10 = 0; i10 < arrayList2.size(); i10++) {
+                ((u10) arrayList2.get(i10)).a((Integer) arrayList.get(i10), null, x00Var.d);
+            }
+        }
+        synchronized (c10Var) {
+            for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                try {
+                    c10Var.f22791x.remove(arrayList.get(i11));
+                } catch (Throwable th2) {
+                    throw th2;
                 }
-                return;
-            case 1:
-                k00 k00Var = (k00) this.d;
-                a0.h hVar = new a0.h();
-                boolean z9 = tLObject instanceof TLRPC.TL_messages_savedDialogs;
-                long j3 = this.f23341b;
-                int i7 = this.f23342c;
-                int i10 = 0;
-                if (z9) {
-                    TLRPC.TL_messages_savedDialogs tL_messages_savedDialogs = (TLRPC.TL_messages_savedDialogs) tLObject;
-                    while (i10 < tL_messages_savedDialogs.messages.size()) {
-                        hVar.k(tL_messages_savedDialogs.messages.get(i10), tL_messages_savedDialogs.messages.get(i10).f26981id);
-                        i10++;
-                    }
-                    g0.h3(new z1(k00Var, tL_messages_savedDialogs, j3, hVar, i7, 8));
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_messages_savedDialogsSlice) {
-                    TLRPC.TL_messages_savedDialogsSlice tL_messages_savedDialogsSlice = (TLRPC.TL_messages_savedDialogsSlice) tLObject;
-                    while (i10 < tL_messages_savedDialogsSlice.messages.size()) {
-                        hVar.k(tL_messages_savedDialogsSlice.messages.get(i10), tL_messages_savedDialogsSlice.messages.get(i10).f26981id);
-                        i10++;
-                    }
-                    g0.h3(new z1(k00Var, tL_messages_savedDialogsSlice, j3, hVar, i7, 7));
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_messages_savedDialogsNotModified) {
-                    g0.h3(new ir(k00Var, j3, (TLRPC.TL_messages_savedDialogsNotModified) tLObject, 5));
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_messages_forumTopics) {
-                    TLRPC.TL_messages_forumTopics tL_messages_forumTopics = (TLRPC.TL_messages_forumTopics) tLObject;
-                    while (i10 < tL_messages_forumTopics.messages.size()) {
-                        hVar.k(tL_messages_forumTopics.messages.get(i10), tL_messages_forumTopics.messages.get(i10).f26981id);
-                        i10++;
-                    }
-                    g0.h3(new bi.d9(k00Var, tL_messages_forumTopics, j3, tL_messages_forumTopics, hVar, i7));
-                    return;
-                } else {
-                    g0.h3(new c00(k00Var, j3, 0));
-                    return;
-                }
-            default:
-                g0.h3(new bi.f9(this.f23342c, 2, this.f23341b, (org.telegram.ui.g4) this.d, tLObject));
-                return;
+            }
         }
     }
 
-    public im(org.telegram.ui.g4 g4Var, int i7, long j3) {
-        this.f23340a = 2;
-        this.d = g4Var;
-        this.f23342c = i7;
-        this.f23341b = j3;
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.im.run():void");
+    }
+
+    public im(c1 c1Var, Object obj, Object obj2, TLObject tLObject, long j3, int i7) {
+        this.f24414a = i7;
+        this.f24415b = c1Var;
+        this.d = obj;
+        this.f24417e = obj2;
+        this.f24418f = tLObject;
+        this.f24416c = j3;
     }
 }

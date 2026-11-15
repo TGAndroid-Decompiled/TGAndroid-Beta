@@ -1,35 +1,100 @@
 package org.telegram.messenger;
-public final class br implements Runnable {
-    public final int f21725a;
-    public final yr f21726b;
-    public final long f21727c;
-    public final int d;
-    public final int f21728e;
-    public final int f21729f;
-    public final int h;
 
-    public br(yr yrVar, int i7, int i10, int i11, int i12, long j3) {
-        this.f21725a = 0;
-        this.f21726b = yrVar;
-        this.d = i7;
-        this.f21728e = i10;
-        this.f21729f = i11;
-        this.h = i12;
-        this.f21727c = j3;
+import java.util.Locale;
+import org.telegram.SQLite.SQLiteCursor;
+import org.telegram.SQLite.SQLiteDatabase;
+public final class br implements Runnable {
+    public final int f22746a;
+    public final vr f22747b;
+    public final long f22748c;
+    public final pr d;
+
+    public br(vr vrVar, long j3, pr prVar, int i7) {
+        this.f22746a = i7;
+        this.f22747b = vrVar;
+        this.f22748c = j3;
+        this.d = prVar;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.br.run():void");
-    }
-
-    public br(yr yrVar, long j3, int i7, int i10, int i11, int i12, int i13) {
-        this.f21725a = i13;
-        this.f21726b = yrVar;
-        this.f21727c = j3;
-        this.d = i7;
-        this.f21728e = i10;
-        this.f21729f = i11;
-        this.h = i12;
+        int i7 = this.f22746a;
+        SQLiteCursor sQLiteCursor = null;
+        final pr prVar = this.d;
+        long j3 = this.f22748c;
+        vr vrVar = this.f22747b;
+        final int i10 = 0;
+        try {
+            switch (i7) {
+                case 0:
+                    try {
+                        try {
+                            SQLiteDatabase sQLiteDatabase = vrVar.f27222b;
+                            Locale locale = Locale.US;
+                            sQLiteCursor = sQLiteDatabase.queryFinalized("SELECT COUNT(mid) FROM messages_v2 WHERE uid = " + j3, new Object[0]);
+                            if (sQLiteCursor.next()) {
+                                i10 = sQLiteCursor.intValue(0);
+                            }
+                            sQLiteCursor.dispose();
+                            g0.h3(new Runnable() {
+                                @Override
+                                public final void run() {
+                                    switch (r3) {
+                                        case 0:
+                                            prVar.a(i10);
+                                            return;
+                                        default:
+                                            prVar.a(i10);
+                                            return;
+                                    }
+                                }
+                            });
+                        } catch (Exception e10) {
+                            vrVar.o(e10, true);
+                            if (sQLiteCursor == null) {
+                                return;
+                            }
+                        }
+                        sQLiteCursor.dispose();
+                        return;
+                    } finally {
+                    }
+                default:
+                    try {
+                        final int i11 = -1;
+                        if (vrVar.K.f(j3) == null) {
+                            sQLiteCursor = vrVar.f27222b.queryFinalized("SELECT folder_id FROM dialogs WHERE did = ?", Long.valueOf(j3));
+                            if (sQLiteCursor.next()) {
+                                i11 = sQLiteCursor.intValue(0);
+                            }
+                            sQLiteCursor.dispose();
+                        }
+                        g0.h3(new Runnable() {
+                            @Override
+                            public final void run() {
+                                switch (r3) {
+                                    case 0:
+                                        prVar.a(i11);
+                                        return;
+                                    default:
+                                        prVar.a(i11);
+                                        return;
+                                }
+                            }
+                        });
+                        if (sQLiteCursor == null) {
+                            return;
+                        }
+                    } catch (Exception e11) {
+                        vrVar.o(e11, true);
+                        if (sQLiteCursor == null) {
+                            return;
+                        }
+                    }
+                    sQLiteCursor.dispose();
+                    return;
+            }
+        } finally {
+        }
     }
 }

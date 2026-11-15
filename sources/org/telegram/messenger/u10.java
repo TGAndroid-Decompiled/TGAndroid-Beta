@@ -1,4 +1,4 @@
 package org.telegram.messenger;
 public interface u10 {
-    Object run();
+    void a(Object obj, Object obj2, Object obj3);
 }

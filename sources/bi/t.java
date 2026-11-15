@@ -1,106 +1,388 @@
 package bi;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public final class t extends LinearLayout {
-    public final int f4726a;
+import org.telegram.ui.Components.wa;
+import org.telegram.ui.Components.xb;
+public final class t implements wa {
+    public final int f3869a;
 
-    public t(Context context, int i7) {
-        super(context);
-        this.f4726a = i7;
+    public t(int i7) {
+        this.f3869a = i7;
     }
 
     @Override
-    public void dispatchSetPressed(boolean z9) {
-        switch (this.f4726a) {
-            case 9:
-                return;
-            default:
-                super.dispatchSetPressed(z9);
-                return;
-        }
-    }
-
-    @Override
-    public void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        switch (this.f4726a) {
-            case 5:
-                super.onLayout(z9, i7, i10, i11, i12);
-                setPivotX(getWidth());
-                return;
-            default:
-                super.onLayout(z9, i7, i10, i11, i12);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i7, int i10) {
-        switch (this.f4726a) {
+    public final boolean a() {
+        switch (this.f3869a) {
             case 0:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
-                return;
+                return true;
             case 1:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
-                return;
+                return true;
             case 2:
-            case 5:
-            case 6:
-            case 7:
-            case 9:
-            default:
-                super.onMeasure(i7, i10);
-                return;
+                return true;
             case 3:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
-                return;
+                return true;
             case 4:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
-                return;
+                return true;
+            case 5:
+                return true;
+            case 6:
+                return true;
+            case 7:
+                return true;
             case 8:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(220.0f), View.MeasureSpec.getSize(i7)), View.MeasureSpec.getMode(i7)), i10);
-                return;
+                return true;
+            case 9:
+                return true;
             case 10:
-                super.onMeasure(i7, i10);
-                setPivotY(0.0f);
-                setPivotX(0.0f);
-                return;
+                return true;
             case 11:
-                super.onMeasure(i7, i10);
-                setPivotY(0.0f);
-                setPivotX(getMeasuredWidth());
-                return;
+                return true;
             case 12:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(600.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), org.telegram.messenger.g0.L(800.0f)), 1073741824));
-                return;
+                return true;
+            case 13:
+                return true;
+            case 14:
+                return true;
+            case 15:
+                return true;
+            default:
+                return true;
         }
     }
 
-    public t(Context context) {
-        super(context);
-        this.f4726a = 13;
-        setOrientation(1);
-        setPadding(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f));
-        TextView g10 = org.telegram.messenger.k5.g(context, 1, 14.0f);
-        int i7 = org.telegram.ui.ActionBar.m6.G6;
-        org.telegram.ui.ActionBar.t6.U(g10, i7, null);
-        g10.setTypeface(org.telegram.messenger.g0.o());
-        g10.setText(org.telegram.messenger.id.M0(2131754944, null));
-        addView(g10);
-        TextView textView = new TextView(context);
-        textView.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.t6.U(textView, i7, null);
-        textView.setText(org.telegram.messenger.g0.X2(org.telegram.messenger.id.M0(2131754946, null)));
-        addView(textView, c8.ha.q(-1, -2, 0.0f, 0, 0, 0, 0, 0));
-        TextView textView2 = new TextView(context);
-        textView2.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.t6.U(textView2, i7, null);
-        textView2.setText(org.telegram.messenger.g0.X2(org.telegram.messenger.id.M0(2131754945, null)));
-        addView(textView2, c8.ha.q(-1, -2, 0.0f, 0, 0, 24, 0, 0));
+    @Override
+    public final void b(xb xbVar) {
+        int i7 = this.f3869a;
     }
 
-    private final void a(boolean z9) {
+    @Override
+    public final void c(float f10) {
+        int i7 = this.f3869a;
+    }
+
+    @Override
+    public final void d(xb xbVar) {
+        int i7 = this.f3869a;
+    }
+
+    @Override
+    public final boolean e() {
+        switch (this.f3869a) {
+            case 0:
+                return true;
+            case 1:
+                return true;
+            case 2:
+                return true;
+            case 3:
+                return true;
+            case 4:
+                return true;
+            case 5:
+                return true;
+            case 6:
+                return true;
+            case 7:
+                return true;
+            case 8:
+                return true;
+            case 9:
+                return true;
+            case 10:
+                return true;
+            case 11:
+                return true;
+            case 12:
+                return true;
+            case 13:
+                return true;
+            case 14:
+                return true;
+            case 15:
+                return true;
+            default:
+                return true;
+        }
+    }
+
+    @Override
+    public final int f(int i7) {
+        int i10;
+        int L;
+        switch (this.f3869a) {
+            case 0:
+                return org.telegram.messenger.g0.L(64.0f);
+            case 1:
+                return 0;
+            case 2:
+                return 0;
+            case 3:
+                return 0;
+            case 4:
+                return 0;
+            case 5:
+                i10 = org.telegram.messenger.g0.f23604n;
+                L = org.telegram.messenger.g0.L(64.0f);
+                break;
+            case 6:
+                i10 = org.telegram.messenger.g0.f23604n;
+                L = org.telegram.messenger.g0.L(60.0f);
+                break;
+            case 7:
+                return 0;
+            case 8:
+                return org.telegram.messenger.g0.L(51.0f);
+            case 9:
+                return org.telegram.messenger.g0.L(74.0f);
+            case 10:
+                return org.telegram.messenger.g0.L(80.0f);
+            case 11:
+                i10 = org.telegram.messenger.g0.f23604n;
+                L = org.telegram.messenger.g0.L(16.0f);
+                break;
+            case 12:
+                return org.telegram.messenger.g0.L(62.0f);
+            case 13:
+                return org.telegram.messenger.g0.L(64.0f);
+            case 14:
+                return 0;
+            case 15:
+                return 0;
+            default:
+                return org.telegram.messenger.g0.L(68.0f);
+        }
+        return L + i10;
+    }
+
+    @Override
+    public final boolean g(int i7) {
+        switch (this.f3869a) {
+            case 0:
+                return false;
+            case 1:
+                return false;
+            case 2:
+                return true;
+            case 3:
+                return true;
+            case 4:
+                return false;
+            case 5:
+                return false;
+            case 6:
+                return false;
+            case 7:
+                return false;
+            case 8:
+                return false;
+            case 9:
+                return false;
+            case 10:
+                return false;
+            case 11:
+                return false;
+            case 12:
+                return true;
+            case 13:
+                return false;
+            case 14:
+                return false;
+            case 15:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public final int h(int i7) {
+        switch (this.f3869a) {
+            case 0:
+                return 0;
+            case 1:
+                return org.telegram.messenger.g0.f23603m;
+            case 2:
+                return 0;
+            case 3:
+                return org.telegram.messenger.g0.L(56.0f);
+            case 4:
+                return org.telegram.messenger.g0.f23603m;
+            case 5:
+                return 0;
+            case 6:
+                return 0;
+            case 7:
+                return org.telegram.messenger.g0.f23603m;
+            case 8:
+                return 0;
+            case 9:
+                return 0;
+            case 10:
+                return 0;
+            case 11:
+                return 0;
+            case 12:
+                return 0;
+            case 13:
+                return 0;
+            case 14:
+                return org.telegram.messenger.g0.f23603m;
+            case 15:
+                return org.telegram.messenger.g0.f23603m;
+            default:
+                return 0;
+        }
+    }
+
+    private final void A(xb xbVar) {
+    }
+
+    private final void B(xb xbVar) {
+    }
+
+    private final void C(xb xbVar) {
+    }
+
+    private final void D(xb xbVar) {
+    }
+
+    private final void E(xb xbVar) {
+    }
+
+    private final void F(xb xbVar) {
+    }
+
+    private final void G(xb xbVar) {
+    }
+
+    private final void H(xb xbVar) {
+    }
+
+    private final void I(xb xbVar) {
+    }
+
+    private final void J(xb xbVar) {
+    }
+
+    private final void K(xb xbVar) {
+    }
+
+    private final void L(xb xbVar) {
+    }
+
+    private final void M(xb xbVar) {
+    }
+
+    private final void N(xb xbVar) {
+    }
+
+    private final void O(xb xbVar) {
+    }
+
+    private final void P(xb xbVar) {
+    }
+
+    private final void Q(xb xbVar) {
+    }
+
+    private final void R(xb xbVar) {
+    }
+
+    private final void S(xb xbVar) {
+    }
+
+    private final void T(xb xbVar) {
+    }
+
+    private final void U(xb xbVar) {
+    }
+
+    private final void V(xb xbVar) {
+    }
+
+    private final void W(xb xbVar) {
+    }
+
+    private final void X(xb xbVar) {
+    }
+
+    private final void Y(xb xbVar) {
+    }
+
+    private final void Z(xb xbVar) {
+    }
+
+    private final void a0(xb xbVar) {
+    }
+
+    private final void b0(xb xbVar) {
+    }
+
+    private final void c0(xb xbVar) {
+    }
+
+    private final void d0(xb xbVar) {
+    }
+
+    private final void e0(xb xbVar) {
+    }
+
+    private final void f0(xb xbVar) {
+    }
+
+    private final void g0(xb xbVar) {
+    }
+
+    private final void i(float f10) {
+    }
+
+    private final void j(float f10) {
+    }
+
+    private final void k(float f10) {
+    }
+
+    private final void l(float f10) {
+    }
+
+    private final void m(float f10) {
+    }
+
+    private final void n(float f10) {
+    }
+
+    private final void o(float f10) {
+    }
+
+    private final void p(float f10) {
+    }
+
+    private final void q(float f10) {
+    }
+
+    private final void r(float f10) {
+    }
+
+    private final void s(float f10) {
+    }
+
+    private final void t(float f10) {
+    }
+
+    private final void u(float f10) {
+    }
+
+    private final void v(float f10) {
+    }
+
+    private final void w(float f10) {
+    }
+
+    private final void x(float f10) {
+    }
+
+    private final void y(float f10) {
+    }
+
+    private final void z(xb xbVar) {
     }
 }

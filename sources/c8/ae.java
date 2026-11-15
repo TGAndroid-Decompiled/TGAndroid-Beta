@@ -1,10 +1,10 @@
 package c8;
 public final class ae {
-    public final eb f5381a;
-    public final te f5382b;
+    public final eb f4202a;
+    public final te f4203b;
 
     public ae(q4.q qVar) {
-        this.f5381a = (eb) qVar.f53815b;
-        this.f5382b = (te) qVar.f53816c;
+        this.f4202a = (eb) qVar.f55252b;
+        this.f4203b = (te) qVar.f55253c;
     }
 }

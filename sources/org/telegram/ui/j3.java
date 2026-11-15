@@ -3,28 +3,28 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class j3 implements org.telegram.ui.web.d0 {
-    public final k3 f46798a;
+public final class j3 implements org.telegram.ui.web.c0 {
+    public final k3 f48205a;
 
     public j3(k3 k3Var) {
-        this.f46798a = k3Var;
+        this.f48205a = k3Var;
     }
 
     @Override
-    public final hi.v0 A() {
+    public final ki.w0 A() {
         return null;
     }
 
     @Override
     public final void b() {
-        t3 t3Var = this.f46798a.L.K;
+        t3 t3Var = this.f48205a.M.L;
         if (t3Var != null) {
             t3Var.a(true);
         }
     }
 
     @Override
-    public final String g(boolean z9, boolean z10) {
+    public final String g(boolean z10, boolean z11) {
         return "UNSUPPORTED";
     }
 
@@ -35,30 +35,30 @@ public final class j3 implements org.telegram.ui.web.d0 {
 
     @Override
     public final void j() {
-        k3 k3Var = this.f46798a;
-        g4 g4Var = k3Var.L;
-        t3 t3Var = g4Var.K;
+        k3 k3Var = this.f48205a;
+        g4 g4Var = k3Var.M;
+        t3 t3Var = g4Var.L;
         if (t3Var != null) {
             if (!t3Var.h) {
                 t3Var.h = true;
                 t3Var.release();
-                t3Var.K.q();
+                t3Var.L.q();
             }
-        } else if (g4Var.f45971u0[0] == k3Var) {
+        } else if (g4Var.f47336v0[0] == k3Var) {
             g4Var.E();
         }
     }
 
     @Override
-    public final void o(int i7, boolean z9) {
-        k3.a(this.f46798a, z9, i7);
+    public final void o(int i7, boolean z10) {
+        k3.a(this.f48205a, z10, i7);
     }
 
     @Override
     public final void z() {
-        k3 k3Var = this.f46798a;
-        g4 g4Var = k3Var.L;
-        if (g4Var.f45971u0[0] == k3Var) {
+        k3 k3Var = this.f48205a;
+        g4 g4Var = k3Var.M;
+        if (g4Var.f47336v0[0] == k3Var) {
             g4Var.E();
         }
     }
@@ -76,11 +76,11 @@ public final class j3 implements org.telegram.ui.web.d0 {
     }
 
     @Override
-    public final void i(boolean z9) {
+    public final void i(boolean z10) {
     }
 
     @Override
-    public final void k(boolean z9) {
+    public final void k(boolean z10) {
     }
 
     @Override
@@ -88,7 +88,7 @@ public final class j3 implements org.telegram.ui.web.d0 {
     }
 
     @Override
-    public final void p(boolean z9) {
+    public final void p(boolean z10) {
     }
 
     @Override
@@ -96,11 +96,11 @@ public final class j3 implements org.telegram.ui.web.d0 {
     }
 
     @Override
-    public final void t(boolean z9) {
+    public final void t(boolean z10) {
     }
 
     @Override
-    public final void w(boolean z9) {
+    public final void w(boolean z10) {
     }
 
     @Override
@@ -108,7 +108,7 @@ public final class j3 implements org.telegram.ui.web.d0 {
     }
 
     @Override
-    public final void y(boolean z9) {
+    public final void y(boolean z10) {
     }
 
     @Override
@@ -128,7 +128,7 @@ public final class j3 implements org.telegram.ui.web.d0 {
     }
 
     @Override
-    public final void u(int i7, int i10, boolean z9) {
+    public final void u(int i7, int i10, boolean z10) {
     }
 
     @Override
@@ -136,10 +136,10 @@ public final class j3 implements org.telegram.ui.web.d0 {
     }
 
     @Override
-    public final void l(boolean z9, boolean z10, String str, long j3, int i7, int i10, boolean z11, boolean z12, String str2) {
+    public final void l(boolean z10, boolean z11, String str, long j3, int i7, int i10, boolean z12, boolean z13, String str2) {
     }
 
     @Override
-    public final void q(boolean z9, boolean z10, String str, long j3, int i7, int i10, boolean z11, boolean z12) {
+    public final void q(boolean z10, boolean z11, String str, long j3, int i7, int i10, boolean z12, boolean z13) {
     }
 }

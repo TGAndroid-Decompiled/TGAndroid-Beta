@@ -1,6 +1,5 @@
 package qh;
 public final class a {
-    public static final a D;
     public static final a E;
     public static final a F;
     public static final a G;
@@ -15,81 +14,82 @@ public final class a {
     public static final a P;
     public static final a Q;
     public static final a R;
-    public static final a[] S;
-    public static final a f54138f;
+    public static final a S;
+    public static final a[] T;
+    public static final a f55571f;
     public static final a h;
-    public static final a f54139n;
-    public static final a f54140r;
-    public static final a f54141s;
-    public static final a f54142w;
-    public static final a f54143x;
-    public static final a f54144y;
-    public final int f54145a;
-    public final int f54146b;
-    public final int f54147c;
+    public static final a f55572n;
+    public static final a f55573r;
+    public static final a f55574s;
+    public static final a f55575w;
+    public static final a f55576x;
+    public static final a f55577y;
+    public final int f55578a;
+    public final int f55579b;
+    public final int f55580c;
     public final int d;
-    public final int f54148e;
+    public final int f55581e;
     a EF7;
     a EF0;
 
     static {
-        a aVar = new a("CONTACTS", 0, 2131624259);
-        f54138f = aVar;
-        a aVar2 = new a("CALLS", 1, 2131624253);
+        a aVar = new a("CONTACTS", 0, 2131624260);
+        f55571f = aVar;
+        a aVar2 = new a("CALLS", 1, 2131624254);
         h = aVar2;
-        a aVar3 = new a("CHATS", 2, 2131624254);
-        f54139n = aVar3;
-        a aVar4 = new a("SETTINGS", 3, 2131624278);
-        f54140r = aVar4;
-        a aVar5 = new a(4, 2131624255, 2131624256, "CHECKLIST");
-        f54141s = aVar5;
-        a aVar6 = new a(5, 2131624257, 2131624258, "COLORS");
-        f54142w = aVar6;
-        a aVar7 = new a(6, 2131624262, 2131624263, "FILES");
-        f54143x = aVar7;
-        a aVar8 = new a(7, 2131624264, 2131624265, "GALLERY");
-        f54144y = aVar8;
-        a aVar9 = new a(8, 2131624266, 2131624267, "GIFT");
-        a aVar10 = new a(9, 2131624268, 2131624269, "LOCATION");
-        D = aVar10;
-        a aVar11 = new a(10, 2131624279, 2131624280, "STICKER");
-        E = aVar11;
-        a aVar12 = new a(11, 2131624260, 2131624261, "EMOJI");
-        F = aVar12;
-        a aVar13 = new a(12, 2131624270, 2131624271, "MODELS");
-        G = aVar13;
-        a aVar14 = new a(13, 2131624272, 2131624273, "MUSIC");
-        H = aVar14;
-        a aVar15 = new a(14, 2131624274, 2131624275, "POLL");
-        I = aVar15;
-        a aVar16 = new a(15, 2131624281, 2131624282, "SYMBOLS");
-        J = aVar16;
-        a aVar17 = new a(16, 2131624276, 2131624277, "REPLIES");
-        K = aVar17;
-        a aVar18 = new a(17, 2131624283, 2131624284, "WALLET");
+        a aVar3 = new a("CHATS", 2, 2131624255);
+        f55572n = aVar3;
+        a aVar4 = new a("SETTINGS", 3, 2131624279);
+        f55573r = aVar4;
+        a aVar5 = new a(4, 2131624256, 2131624257, "CHECKLIST");
+        f55574s = aVar5;
+        a aVar6 = new a(5, 2131624258, 2131624259, "COLORS");
+        f55575w = aVar6;
+        a aVar7 = new a(6, 2131624263, 2131624264, "FILES");
+        f55576x = aVar7;
+        a aVar8 = new a(7, 2131624265, 2131624266, "GALLERY");
+        f55577y = aVar8;
+        a aVar9 = new a(8, 2131624267, 2131624268, "GIFT");
+        a aVar10 = new a(9, 2131624269, 2131624270, "LOCATION");
+        E = aVar10;
+        a aVar11 = new a(10, 2131624280, 2131624281, "STICKER");
+        F = aVar11;
+        a aVar12 = new a(11, 2131624261, 2131624262, "EMOJI");
+        G = aVar12;
+        a aVar13 = new a(12, 2131624271, 2131624272, "MODELS");
+        H = aVar13;
+        a aVar14 = new a(13, 2131624273, 2131624274, "MUSIC");
+        I = aVar14;
+        a aVar15 = new a(14, 2131624275, 2131624276, "POLL");
+        J = aVar15;
+        a aVar16 = new a(15, 2131624282, 2131624283, "SYMBOLS");
+        K = aVar16;
+        a aVar17 = new a(16, 2131624277, 2131624278, "REPLIES");
+        L = aVar17;
+        a aVar18 = new a(17, 2131624284, 2131624285, "WALLET");
         a aVar19 = new a();
-        L = aVar19;
-        a aVar20 = new a(19, 2131624251, 2131624252, "ARTICLE");
-        M = aVar20;
-        a aVar21 = new a(20, 2131624040, 2131624041, "GRAM");
-        N = aVar21;
+        M = aVar19;
+        a aVar20 = new a(19, 2131624252, 2131624253, "ARTICLE");
+        N = aVar20;
+        a aVar21 = new a(20, 2131624041, 2131624042, "GRAM");
+        O = aVar21;
         a aVar22 = new a("BOOSTS", 21, 2131623944, 25, 49);
-        O = aVar22;
-        a aVar23 = new a("MONETIZATION", 22, 2131624090, 19, 45);
-        P = aVar23;
-        a aVar24 = new a("STORIES_SAVED", 23, 2131624101, 20, 40);
-        Q = aVar24;
-        a aVar25 = new a("STORIES_ARCHIVE", 24, 2131624100);
-        R = aVar25;
-        S = new a[]{aVar, aVar2, aVar3, aVar4, aVar5, aVar6, aVar7, aVar8, aVar9, aVar10, aVar11, aVar12, aVar13, aVar14, aVar15, aVar16, aVar17, aVar18, aVar19, aVar20, aVar21, aVar22, aVar23, aVar24, aVar25};
+        P = aVar22;
+        a aVar23 = new a("MONETIZATION", 22, 2131624091, 19, 45);
+        Q = aVar23;
+        a aVar24 = new a("STORIES_SAVED", 23, 2131624102, 20, 40);
+        R = aVar24;
+        a aVar25 = new a("STORIES_ARCHIVE", 24, 2131624101);
+        S = aVar25;
+        T = new a[]{aVar, aVar2, aVar3, aVar4, aVar5, aVar6, aVar7, aVar8, aVar9, aVar10, aVar11, aVar12, aVar13, aVar14, aVar15, aVar16, aVar17, aVar18, aVar19, aVar20, aVar21, aVar22, aVar23, aVar24, aVar25};
     }
 
     public a(String str, int i7, int i10, int i11, int i12) {
-        this.f54145a = i10;
-        this.f54146b = i10;
+        this.f55578a = i10;
+        this.f55579b = i10;
         this.d = i11;
-        this.f54148e = i12;
-        this.f54147c = -1;
+        this.f55581e = i12;
+        this.f55580c = -1;
     }
 
     public static a valueOf(String str) {
@@ -97,30 +97,30 @@ public final class a {
     }
 
     public static a[] values() {
-        return (a[]) S.clone();
+        return (a[]) T.clone();
     }
 
     public a() {
-        this.f54147c = 2131232772;
-        this.f54145a = -1;
-        this.f54146b = -1;
+        this.f55580c = 2131232773;
+        this.f55578a = -1;
+        this.f55579b = -1;
         this.d = -1;
-        this.f54148e = -1;
+        this.f55581e = -1;
     }
 
     public a(String str, int i7, int i10) {
-        this.f54145a = i10;
-        this.f54146b = i10;
+        this.f55578a = i10;
+        this.f55579b = i10;
         this.d = -1;
-        this.f54148e = -1;
-        this.f54147c = -1;
+        this.f55581e = -1;
+        this.f55580c = -1;
     }
 
     public a(int i7, int i10, int i11, String str) {
-        this.f54145a = i10;
-        this.f54146b = i11;
+        this.f55578a = i10;
+        this.f55579b = i11;
         this.d = -1;
-        this.f54148e = -1;
-        this.f54147c = -1;
+        this.f55581e = -1;
+        this.f55580c = -1;
     }
 }

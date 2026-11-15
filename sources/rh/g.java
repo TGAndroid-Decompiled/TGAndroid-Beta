@@ -6,32 +6,32 @@ import java.util.WeakHashMap;
 import r0.b0;
 import r0.i0;
 public final class g implements Runnable {
-    public final int f54555a;
-    public final h f54556b;
+    public final int f56027a;
+    public final h f56028b;
 
     public g(h hVar, int i7) {
-        this.f54555a = i7;
-        this.f54556b = hVar;
+        this.f56027a = i7;
+        this.f56028b = hVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f54555a;
-        h hVar = this.f54556b;
+        int i7 = this.f56027a;
+        h hVar = this.f56028b;
         switch (i7) {
             case 0:
-                if (hVar.f54565w != 0) {
+                if (hVar.f56037w != 0) {
                     hVar.i(false);
                     return;
                 }
                 return;
             default:
-                int i10 = hVar.G - 1;
-                hVar.G = i10;
+                int i10 = hVar.H - 1;
+                hVar.H = i10;
                 if (i10 == 0) {
-                    View view = hVar.E;
-                    RectF rectF = d.f54551e;
-                    WeakHashMap weakHashMap = i0.f54202a;
+                    View view = hVar.F;
+                    RectF rectF = d.f56023e;
+                    WeakHashMap weakHashMap = i0.f55671a;
                     hVar.k(d.e1(b0.a(view), view, view.getRootView()), false);
                     return;
                 }

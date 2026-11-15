@@ -1,19 +1,19 @@
 package l3;
 
-import bi.b1;
+import com.google.android.gms.common.api.q;
 import h2.x;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-public final class c extends b1 {
-    public long f18124b;
-    public long[] f18125c;
+public final class c extends q {
+    public long f19254b;
+    public long[] f19255c;
     public long[] d;
 
     public static Serializable e1(int i7, x xVar) {
         if (i7 != 0) {
-            boolean z9 = false;
+            boolean z10 = false;
             if (i7 != 1) {
                 if (i7 != 2) {
                     if (i7 != 3) {
@@ -55,9 +55,9 @@ public final class c extends b1 {
                 }
             } else {
                 if (xVar.A() == 1) {
-                    z9 = true;
+                    z10 = true;
                 }
-                return Boolean.valueOf(z9);
+                return Boolean.valueOf(z10);
             }
         } else {
             return Double.valueOf(Double.longBitsToDouble(xVar.u()));
@@ -79,8 +79,8 @@ public final class c extends b1 {
 
     public static String g1(x xVar) {
         int H = xVar.H();
-        int i7 = xVar.f14165b;
+        int i7 = xVar.f13522b;
         xVar.O(H);
-        return new String(xVar.f14164a, i7, H);
+        return new String(xVar.f13521a, i7, H);
     }
 }

@@ -2,11 +2,11 @@ package a8;
 
 import java.util.Iterator;
 public abstract class i0 implements Iterator {
-    public final int f483a;
+    public final int f487a;
 
     @Override
     public final void remove() {
-        switch (this.f483a) {
+        switch (this.f487a) {
             case 0:
                 throw new UnsupportedOperationException();
             case 1:

@@ -1,16 +1,16 @@
 package s4;
 public final class o {
-    public final m f54871a;
-    public final int f54872b;
-    public final boolean f54873c;
+    public final m f56425a;
+    public final int f56426b;
+    public final boolean f56427c;
     public final boolean d;
-    public final boolean f54874e;
+    public final boolean f56428e;
 
-    public o(m mVar, int i7, boolean z9, boolean z10, boolean z11) {
-        this.f54871a = mVar;
-        this.f54872b = i7;
-        this.f54873c = z9;
-        this.d = z10;
-        this.f54874e = z11;
+    public o(m mVar, int i7, boolean z10, boolean z11, boolean z12) {
+        this.f56425a = mVar;
+        this.f56426b = i7;
+        this.f56427c = z10;
+        this.d = z11;
+        this.f56428e = z12;
     }
 }

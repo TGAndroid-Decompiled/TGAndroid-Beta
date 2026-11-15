@@ -2,7 +2,7 @@ package org.telegram.messenger.secretmedia;
 
 import android.net.Uri;
 import j2.c;
-import j2.d0;
+import j2.c0;
 import j2.j;
 import j2.m;
 import java.io.File;
@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 import org.telegram.messenger.t0;
 import org.telegram.messenger.w7;
-import rf.b;
+import r.b;
 public final class EncryptedFileDataSource extends c {
     private int bytesRemaining;
     EncryptedFileInputStream fileInputStream;
@@ -56,27 +56,27 @@ public final class EncryptedFileDataSource extends c {
 
     @Override
     public long open(m mVar) {
-        this.uri = mVar.f16449a;
-        File file = new File(mVar.f16449a.getPath());
+        this.uri = mVar.f16803a;
+        File file = new File(mVar.f16803a.getPath());
         String name = file.getName();
-        Pattern pattern = w7.I;
-        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(t0.f25570b.getCacheDir(), b.r(name, ".key")));
+        Pattern pattern = w7.J;
+        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(t0.f26600b.getCacheDir(), b.v(name, ".key")));
         this.fileInputStream = encryptedFileInputStream;
-        encryptedFileInputStream.skip(mVar.f16452e);
+        encryptedFileInputStream.skip(mVar.f16806e);
         int length = (int) file.length();
         transferInitializing(mVar);
-        long j3 = mVar.f16452e;
+        long j3 = mVar.f16806e;
         long j10 = length;
         if (j3 <= j10) {
             int i7 = (int) (j10 - j3);
             this.bytesRemaining = i7;
-            long j11 = mVar.f16453f;
+            long j11 = mVar.f16807f;
             if (j11 != -1) {
                 this.bytesRemaining = (int) Math.min(i7, j11);
             }
             this.opened = true;
             transferStarted(mVar);
-            long j12 = mVar.f16453f;
+            long j12 = mVar.f16807f;
             if (j12 != -1) {
                 return j12;
             }
@@ -106,10 +106,10 @@ public final class EncryptedFileDataSource extends c {
     }
 
     @Deprecated
-    public EncryptedFileDataSource(d0 d0Var) {
+    public EncryptedFileDataSource(c0 c0Var) {
         this();
-        if (d0Var != null) {
-            addTransferListener(d0Var);
+        if (c0Var != null) {
+            addTransferListener(c0Var);
         }
     }
 }

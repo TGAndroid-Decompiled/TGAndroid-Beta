@@ -4,70 +4,70 @@ import android.content.Context;
 import com.google.mlkit.common.internal.MlKitComponentDiscoveryService;
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
-import org.telegram.ui.Components.qt;
-import sg.i0;
+import org.telegram.ui.Components.cf;
+import sg.h0;
 public final class g {
-    public static final Object f53541b = new Object();
-    public static g f53542c;
-    public u9.g f53543a;
+    public static final Object f54946b = new Object();
+    public static g f54947c;
+    public u9.f f54948a;
 
     public static g c() {
-        boolean z9;
+        boolean z10;
         g gVar;
-        synchronized (f53541b) {
-            if (f53542c != null) {
-                z9 = true;
+        synchronized (f54946b) {
+            if (f54947c != null) {
+                z10 = true;
             } else {
-                z9 = false;
+                z10 = false;
             }
-            q6.m.i("MlKitContext has not been initialized", z9);
-            gVar = f53542c;
+            q6.m.i("MlKitContext has not been initialized", z10);
+            gVar = f54947c;
             q6.m.g(gVar);
         }
         return gVar;
     }
 
     public static g d(Context context, Executor executor) {
-        boolean z9;
+        boolean z10;
         g gVar;
-        synchronized (f53541b) {
-            if (f53542c == null) {
-                z9 = true;
+        synchronized (f54946b) {
+            if (f54947c == null) {
+                z10 = true;
             } else {
-                z9 = false;
+                z10 = false;
             }
-            q6.m.i("MlKitContext is already initialized", z9);
+            q6.m.i("MlKitContext is already initialized", z10);
             ?? obj = new Object();
-            f53542c = obj;
+            f54947c = obj;
             Context applicationContext = context.getApplicationContext();
             if (applicationContext != null) {
                 context = applicationContext;
             }
-            ArrayList b10 = new i0(4, context, new qt(MlKitComponentDiscoveryService.class, 20)).b();
+            ArrayList b10 = new h0(4, context, new cf(MlKitComponentDiscoveryService.class)).b();
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
-            s0.b bVar = u9.e.B;
+            r2.j jVar = u9.e.B;
             arrayList.addAll(b10);
             arrayList2.add(u9.a.c(context, Context.class, new Class[0]));
             arrayList2.add(u9.a.c(obj, g.class, new Class[0]));
-            u9.g gVar2 = new u9.g(executor, arrayList, arrayList2, bVar);
-            obj.f53543a = gVar2;
-            gVar2.h(true);
-            gVar = f53542c;
+            u9.f fVar = new u9.f(executor, arrayList, arrayList2, jVar);
+            obj.f54948a = fVar;
+            fVar.h(true);
+            gVar = f54947c;
         }
         return gVar;
     }
 
     public final Object a(Class cls) {
-        boolean z9;
-        if (f53542c == this) {
-            z9 = true;
+        boolean z10;
+        if (f54947c == this) {
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        q6.m.i("MlKitContext has been deleted", z9);
-        q6.m.g(this.f53543a);
-        return this.f53543a.a(cls);
+        q6.m.i("MlKitContext has been deleted", z10);
+        q6.m.g(this.f54948a);
+        return this.f54948a.a(cls);
     }
 
     public final Context b() {

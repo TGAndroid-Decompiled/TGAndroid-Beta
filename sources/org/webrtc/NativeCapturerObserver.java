@@ -10,8 +10,8 @@ class NativeCapturerObserver implements CapturerObserver {
     }
 
     @Override
-    public void onCapturerStarted(boolean z9) {
-        this.nativeAndroidVideoTrackSource.setState(z9);
+    public void onCapturerStarted(boolean z10) {
+        this.nativeAndroidVideoTrackSource.setState(z10);
     }
 
     @Override

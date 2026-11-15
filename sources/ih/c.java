@@ -7,41 +7,40 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import bg.s;
-import jg.g;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.t0;
-import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.j6;
 public final class c extends Drawable {
-    public final int f15483a;
-    public final Drawable f15484b;
-    public int f15485c;
+    public final int f15938a;
+    public final Drawable f15939b;
+    public int f15940c;
     public int d;
 
     public c() {
-        this.f15483a = 1;
+        this.f15938a = 1;
         this.d = 255;
-        this.f15484b = g.h(t0.f25570b, 2131232697);
+        this.f15939b = i5.c.g(t0.f26600b, 2131232698);
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f15483a) {
+        switch (this.f15938a) {
             case 0:
-                this.f15484b.draw(canvas);
+                this.f15939b.draw(canvas);
                 return;
             default:
                 float exactCenterX = getBounds().exactCenterX();
                 float exactCenterY = getBounds().exactCenterY();
-                int x02 = m6.x0(null, m6.G6, false);
-                int x03 = m6.x0(null, m6.f27890d6, false);
-                int i7 = this.f15485c;
-                Drawable drawable = this.f15484b;
+                int x02 = j6.x0(null, j6.G6, false);
+                int x03 = j6.x0(null, j6.f28849d6, false);
+                int i7 = this.f15940c;
+                Drawable drawable = this.f15939b;
                 if (i7 != x03) {
-                    this.f15485c = x03;
+                    this.f15940c = x03;
                     drawable.setColorFilter(new PorterDuffColorFilter(x03, PorterDuff.Mode.SRC_IN));
                 }
-                canvas.drawCircle(exactCenterX, exactCenterY, g0.L(7.6666665f), m6.n0(i0.a.o(x03, this.d)));
-                canvas.drawCircle(exactCenterX, exactCenterY, g0.L(6.6666665f), m6.n0(i0.a.o(x02, this.d)));
+                canvas.drawCircle(exactCenterX, exactCenterY, g0.L(7.6666665f), j6.n0(i0.a.o(x03, this.d)));
+                canvas.drawCircle(exactCenterX, exactCenterY, g0.L(6.6666665f), j6.n0(i0.a.o(x02, this.d)));
                 s.d(drawable, exactCenterX, exactCenterY, 17);
                 canvas.translate(0.0f, g0.L(0.66f));
                 canvas.save();
@@ -54,9 +53,9 @@ public final class c extends Drawable {
 
     @Override
     public final int getAlpha() {
-        switch (this.f15483a) {
+        switch (this.f15938a) {
             case 0:
-                return this.f15484b.getAlpha();
+                return this.f15939b.getAlpha();
             default:
                 return this.d;
         }
@@ -64,7 +63,7 @@ public final class c extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f15483a) {
+        switch (this.f15938a) {
             case 1:
                 return g0.L(13.333333f);
             default:
@@ -74,7 +73,7 @@ public final class c extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f15483a) {
+        switch (this.f15938a) {
             case 1:
                 return g0.L(13.333333f);
             default:
@@ -84,9 +83,9 @@ public final class c extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f15483a) {
+        switch (this.f15938a) {
             case 0:
-                return this.f15484b.getOpacity();
+                return this.f15939b.getOpacity();
             default:
                 return -3;
         }
@@ -94,16 +93,16 @@ public final class c extends Drawable {
 
     @Override
     public void onBoundsChange(Rect rect) {
-        switch (this.f15483a) {
+        switch (this.f15938a) {
             case 0:
                 super.onBoundsChange(rect);
                 int width = rect.width();
-                int i7 = this.f15485c;
+                int i7 = this.f15940c;
                 int i10 = (width - i7) / 2;
                 int height = rect.height();
                 int i11 = this.d;
                 int i12 = (height - i11) / 2;
-                this.f15484b.setBounds(i10, i12, i7 + i10, i11 + i12);
+                this.f15939b.setBounds(i10, i12, i7 + i10, i11 + i12);
                 return;
             default:
                 super.onBoundsChange(rect);
@@ -113,27 +112,27 @@ public final class c extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        switch (this.f15483a) {
+        switch (this.f15938a) {
             case 0:
-                this.f15484b.setAlpha(i7);
+                this.f15939b.setAlpha(i7);
                 return;
             default:
                 this.d = i7;
-                this.f15484b.setAlpha(i7);
+                this.f15939b.setAlpha(i7);
                 return;
         }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        int i7 = this.f15483a;
+        int i7 = this.f15938a;
     }
 
     public c(int i7, int i10, Drawable drawable) {
-        this.f15483a = 0;
-        this.f15485c = i7;
+        this.f15938a = 0;
+        this.f15940c = i7;
         this.d = i10;
-        this.f15484b = drawable;
+        this.f15939b = drawable;
     }
 
     private final void a(ColorFilter colorFilter) {

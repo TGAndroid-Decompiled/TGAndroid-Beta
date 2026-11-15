@@ -1,22 +1,33 @@
 package org.telegram.ui.Components;
-public final class u11 implements org.telegram.messenger.pc, org.telegram.messenger.oc {
-    public final String f38484a;
-    public final String f38485b;
-    public final org.telegram.messenger.v10 f38486c;
+public final class u11 implements Runnable {
+    public final int f39870a;
+    public final int f39871b;
+    public final Object f39872c;
+    public final Object d;
 
-    public u11(String str, String str2, org.telegram.messenger.v10 v10Var) {
-        this.f38484a = str;
-        this.f38485b = str2;
-        this.f38486c = v10Var;
+    public u11(int i7, org.telegram.messenger.z10 z10Var, org.telegram.ui.Wallet.l0 l0Var) {
+        this.f39870a = 17;
+        this.f39871b = i7;
+        this.f39872c = z10Var;
+        this.d = l0Var;
     }
 
     @Override
-    public void a(String str) {
-        k21.J0(this.f38484a, str, this.f38485b, this.f38486c);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.u11.run():void");
     }
 
-    @Override
-    public void r(Exception exc) {
-        k21.J0(this.f38484a, "en", this.f38485b, this.f38486c);
+    public u11(Object obj, int i7, Object obj2, int i10) {
+        this.f39870a = i10;
+        this.f39872c = obj;
+        this.f39871b = i7;
+        this.d = obj2;
+    }
+
+    public u11(Object obj, Object obj2, int i7, int i10) {
+        this.f39870a = i10;
+        this.f39872c = obj;
+        this.d = obj2;
+        this.f39871b = i7;
     }
 }

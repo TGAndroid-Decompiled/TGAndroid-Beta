@@ -1,26 +1,26 @@
 package y5;
 
 import android.util.SparseArray;
+import i5.c;
 import java.util.HashMap;
-import jg.g;
 import l5.d;
 public abstract class a {
-    public static final SparseArray f58977a = new SparseArray();
-    public static final HashMap f58978b;
+    public static final SparseArray f60190a = new SparseArray();
+    public static final HashMap f60191b;
 
     static {
         HashMap hashMap = new HashMap();
-        f58978b = hashMap;
-        hashMap.put(d.f18178a, 0);
-        hashMap.put(d.f18179b, 1);
-        hashMap.put(d.f18180c, 2);
+        f60191b = hashMap;
+        hashMap.put(d.f19308a, 0);
+        hashMap.put(d.f19309b, 1);
+        hashMap.put(d.f19310c, 2);
         for (d dVar : hashMap.keySet()) {
-            f58977a.append(((Integer) f58978b.get(dVar)).intValue(), dVar);
+            f60190a.append(((Integer) f60191b.get(dVar)).intValue(), dVar);
         }
     }
 
     public static int a(d dVar) {
-        Integer num = (Integer) f58978b.get(dVar);
+        Integer num = (Integer) f60191b.get(dVar);
         if (num != null) {
             return num.intValue();
         }
@@ -28,10 +28,10 @@ public abstract class a {
     }
 
     public static d b(int i7) {
-        d dVar = (d) f58977a.get(i7);
+        d dVar = (d) f60190a.get(i7);
         if (dVar != null) {
             return dVar;
         }
-        throw new IllegalArgumentException(g.j(i7, "Unknown Priority for value "));
+        throw new IllegalArgumentException(c.i(i7, "Unknown Priority for value "));
     }
 }

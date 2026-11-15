@@ -1,177 +1,222 @@
 package org.telegram.messenger;
 
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
+import android.graphics.Shader;
+import android.text.Layout;
 import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
 import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.tgnet.tl.TL_iv;
-public final class av extends zu {
-    public h6.m f21548c0;
-    public org.telegram.ui.Components.hc f21549d0;
-    public boolean f21550e0;
-    public boolean f21551f0;
-    public boolean f21552g0;
-    public boolean f21553h0;
-    public float f21554i0;
-    public int f21555j0;
-    public final Drawable f21556k0;
-    public int f21557l0;
+import org.telegram.ui.tg0;
+public final class av extends cu {
+    public final hv X;
+    public final hv[] Y;
+    public int Z;
+    public LinearGradient f22603a0;
+    public final Matrix f22604b0;
+    public final Paint f22605c0;
 
-    public av(kv kvVar, Rect rect, int i7, TL_iv.pageBlockBlockquote pageblockblockquote, SpannableStringBuilder spannableStringBuilder) {
-        super(kvVar, rect, i7, spannableStringBuilder);
-        this.f21556k0 = jg.g.h(t0.f25570b, 2131230871);
-        boolean z9 = pageblockblockquote.collapsed;
-        this.f21552g0 = z9;
-        this.f21553h0 = z9;
+    public av(iv ivVar, Rect rect, int i7, SpannableStringBuilder spannableStringBuilder) {
+        super(ivVar, rect, i7);
+        this.f22604b0 = new Matrix();
+        this.f22605c0 = new Paint(1);
+        hv hvVar = new hv(ivVar, spannableStringBuilder, this.f22935c);
+        this.X = hvVar;
+        this.Y = r2;
+        hv[] hvVarArr = {hvVar};
     }
 
     @Override
     public final int I() {
-        if (this.f21552g0) {
-            Rect rect = this.f22474b;
-            return (int) Math.min((this.W.f23609b.getPaint().getTextSize() * 1.4f * 3.0f) + rect.top + this.Z + rect.bottom, super.I());
-        }
-        return super.I();
+        Rect rect = this.f22934b;
+        return this.X.f24222b.getHeight() + rect.top + rect.bottom;
+    }
+
+    @Override
+    public final int J() {
+        Rect rect = this.f22934b;
+        return this.X.q() + rect.left + rect.right;
+    }
+
+    @Override
+    public final int K() {
+        Rect rect = this.f22934b;
+        return this.X.r() + rect.left + rect.right;
+    }
+
+    @Override
+    public final org.telegram.ui.Cells.s9[] L() {
+        return this.Y;
+    }
+
+    @Override
+    public final void T() {
+        this.X.i(this.W);
+    }
+
+    @Override
+    public final void V() {
+        this.X.f(this.W);
     }
 
     @Override
     public final void W(Canvas canvas) {
-        float f10;
-        boolean z9;
-        org.telegram.ui.Components.hc hcVar = this.f21549d0;
-        if (hcVar != null) {
-            f10 = hcVar.a(0.01f);
-        } else {
-            f10 = 1.0f;
-        }
-        int i7 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
-        int i10 = this.f22475c;
-        if (i7 != 0) {
+        iv ivVar = this.f22933a;
+        canvas.saveLayerAlpha(0.0f, 0.0f, ivVar.C, I(), 255, 31);
+        int i02 = i0();
+        hv hvVar = this.X;
+        if (i02 != 0) {
+            hvVar.f24223c = (this.f22934b.left + i02) - hvVar.f24225f;
             canvas.save();
-            canvas.scale(f10, f10, i10 / 2.0f, I() / 2.0f);
+            canvas.translate(i02, 0.0f);
         }
-        if (this.f21554i0 > 0.0f) {
-            z9 = true;
+        hvVar.d(canvas, hvVar.T);
+        if (ivVar.F()) {
+            canvas.save();
+            canvas.translate(-hvVar.f24225f, 0.0f);
+            org.telegram.ui.Components.p5.drawAnimatedEmojis(canvas, hvVar.f24222b, hvVar.F, 0.0f, hvVar.f24230x, 0.0f, 0.0f, 0.0f, 1.0f);
+            canvas.restore();
+        }
+        if (i02 != 0) {
+            canvas.restore();
+        }
+        j0();
+        Matrix matrix = this.f22604b0;
+        matrix.reset();
+        matrix.postTranslate((((float) (System.currentTimeMillis() % 2000)) / 2000.0f) * this.f22935c, 0.0f);
+        this.f22603a0.setLocalMatrix(matrix);
+        canvas.drawRect(0.0f, 0.0f, ivVar.C, I(), this.f22605c0);
+        canvas.restore();
+        View view = this.W;
+        if (view != null) {
+            view.invalidate();
+        }
+    }
+
+    @Override
+    public final void X(Canvas canvas, int i7, float f10) {
+        int i10;
+        iv ivVar = this.f22933a;
+        int i11 = ivVar.C;
+        TextPaint textPaint = ivVar.f24459w;
+        canvas.saveLayerAlpha(0.0f, 0.0f, i11, I(), 255, 31);
+        int i02 = i0();
+        hv hvVar = this.X;
+        if (i02 != 0) {
+            hvVar.f24223c = (this.f22934b.left + i02) - hvVar.f24225f;
+        }
+        canvas.save();
+        canvas.translate(i02 - hvVar.f24225f, 0.0f);
+        int color = textPaint.getColor();
+        textPaint.setColor(-1);
+        if (ivVar.E()) {
+            i10 = org.telegram.ui.ActionBar.j6.Yc;
         } else {
-            z9 = false;
+            i10 = org.telegram.ui.ActionBar.j6.Xc;
         }
-        int i11 = (this.f21555j0 - this.f22474b.bottom) - this.f26928a0;
-        canvas.save();
-        canvas.clipRect(0, 0, i10, i11);
-        if (z9) {
-            canvas.saveLayer(0.0f, 0.0f, i10, i11, null);
-        }
-        super.W(canvas);
-        if (z9) {
-            if (this.f21548c0 == null) {
-                this.f21548c0 = new h6.m(28);
-            }
-            RectF rectF = g0.P;
-            rectF.set(0.0f, i11 - g0.L(24.0f), i10, i11 + 1);
-            this.f21548c0.m(canvas, rectF, 3, this.f21554i0);
-            canvas.restore();
-        }
+        textPaint.linkColor = org.telegram.ui.ActionBar.j6.w0(i10, ivVar.D);
+        tg0.b(canvas, hvVar.f24222b, i7, f10, new o(5, this, this.W));
         canvas.restore();
-        kv kvVar = this.f22473a;
-        int i12 = kvVar.f23788y.i();
-        int i13 = this.f21557l0;
-        Drawable drawable = this.f21556k0;
-        if (i12 != i13) {
-            int i14 = kvVar.f23788y.i();
-            this.f21557l0 = i14;
-            drawable.setColorFilter(new PorterDuffColorFilter(i14, PorterDuff.Mode.SRC_IN));
-        }
-        bg.s.e(this.f21556k0, kvVar.C - g0.L(24.0f), g0.L(8.0f) + ((i11 - g0.L(16.0f)) - g0.L(2.0f)), g0.L(16.0f), g0.L(16.0f), 17);
-        canvas.save();
-        canvas.rotate(g0.W1(this.f21554i0, 180, 0), drawable.getBounds().exactCenterX(), drawable.getBounds().exactCenterY());
-        drawable.draw(canvas);
+        textPaint.setColor(color);
+        j0();
+        Matrix matrix = this.f22604b0;
+        matrix.reset();
+        matrix.postTranslate((((float) (System.currentTimeMillis() % 2000)) / 2000.0f) * this.f22935c, 0.0f);
+        this.f22603a0.setLocalMatrix(matrix);
+        canvas.drawRect(0.0f, 0.0f, ivVar.C, I(), this.f22605c0);
         canvas.restore();
-        if (i7 != 0) {
-            canvas.restore();
+        View view = this.W;
+        if (view != null) {
+            view.invalidate();
         }
     }
 
     @Override
     public final boolean Y(MotionEvent motionEvent) {
-        View view;
-        int actionMasked = motionEvent.getActionMasked();
-        if (this.f21551f0) {
-            if (actionMasked == 1 || actionMasked == 3) {
-                this.f21551f0 = false;
-            }
-            return super.Y(motionEvent);
+        int i02 = i0();
+        hv hvVar = this.X;
+        if (i02 == 0) {
+            return hvVar.t(motionEvent);
         }
-        kv kvVar = this.f22473a;
-        if (actionMasked == 0) {
-            boolean Y = super.Y(motionEvent);
-            this.f21551f0 = Y;
-            if (!Y) {
-                this.f21550e0 = true;
-                if (this.f21549d0 == null && (view = kvVar.Q) != null) {
-                    this.f21549d0 = new org.telegram.ui.Components.hc(view);
-                }
-                org.telegram.ui.Components.hc hcVar = this.f21549d0;
-                if (hcVar != null) {
-                    hcVar.c(true);
-                    return true;
-                }
-            }
-        } else if (actionMasked == 1) {
-            if (!this.f21550e0) {
-                return false;
-            }
-            this.f21550e0 = false;
-            org.telegram.ui.Components.hc hcVar2 = this.f21549d0;
-            if (hcVar2 != null) {
-                hcVar2.c(false);
-            }
-            View view2 = kvVar.Q;
-            if (view2 != null) {
-                view2.playSoundEffect(0);
-            }
-            kvVar.X();
-            this.f21552g0 = !this.f21552g0;
-            kvVar.f23785u = true;
-            kvVar.Q();
-            View view3 = kvVar.Q;
-            if (view3 != null) {
-                view3.invalidate();
-            }
-            org.telegram.ui.Cells.q1 q1Var = kvVar.E;
-            org.telegram.ui.Cells.l1 l1Var = kvVar.F;
-            if (q1Var != null && l1Var != null) {
-                l1Var.q1(q1Var, true, true);
-            }
+        motionEvent.offsetLocation(-i02, 0.0f);
+        boolean t6 = hvVar.t(motionEvent);
+        motionEvent.offsetLocation(i02, 0.0f);
+        return t6;
+    }
+
+    @Override
+    public final void Z(int i7, int i10, int i11) {
+        super.Z(i7, i10, i11);
+        int i02 = i0();
+        if (i02 != 0) {
+            int i12 = i7 + i02;
+            hv hvVar = this.X;
+            hvVar.f24223c = i12 - hvVar.f24225f;
+        }
+    }
+
+    @Override
+    public final Layout a() {
+        return this.X.f24222b;
+    }
+
+    public final int i0() {
+        iv ivVar = this.f22933a;
+        if (!ivVar.I()) {
+            return 0;
+        }
+        int L = (ivVar.C + ivVar.T) - g0.L(14.0f);
+        Rect rect = this.f22934b;
+        return ((L - rect.right) - rect.left) - this.X.r();
+    }
+
+    public final void j0() {
+        int i7;
+        iv ivVar = this.f22933a;
+        if (ivVar.E()) {
+            i7 = org.telegram.ui.ActionBar.j6.Wc;
         } else {
-            if (actionMasked == 3) {
-                this.f21550e0 = false;
-                org.telegram.ui.Components.hc hcVar3 = this.f21549d0;
-                if (hcVar3 != null) {
-                    hcVar3.c(false);
-                }
-            }
-            return this.f21550e0;
+            i7 = org.telegram.ui.ActionBar.j6.Vc;
         }
-        return true;
+        int w02 = org.telegram.ui.ActionBar.j6.w0(i7, ivVar.D);
+        if (this.f22603a0 != null && this.Z == w02) {
+            return;
+        }
+        this.Z = w02;
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, this.f22935c, 0.0f, new int[]{org.telegram.ui.ActionBar.j6.r1(0.7f, w02), org.telegram.ui.ActionBar.j6.r1(0.25f, w02), org.telegram.ui.ActionBar.j6.r1(0.7f, w02)}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.REPEAT);
+        this.f22603a0 = linearGradient;
+        Paint paint = this.f22605c0;
+        paint.setShader(linearGradient);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
     }
 
     @Override
-    public final void d0() {
-        super.d0();
-        this.f21553h0 = this.f21552g0;
+    public final void k(SpannableStringBuilder spannableStringBuilder) {
+        cu.l(spannableStringBuilder, this.X, this.Y);
     }
 
     @Override
-    public final float z() {
-        org.telegram.ui.Components.hc hcVar = this.f21549d0;
-        if (hcVar != null) {
-            return hcVar.a(0.01f);
+    public final boolean s(Canvas canvas, ColorFilter colorFilter) {
+        return false;
+    }
+
+    @Override
+    public final boolean u(CharacterStyle characterStyle, int i7, tt ttVar) {
+        hv hvVar = this.X;
+        if (hvVar.o(characterStyle, ttVar)) {
+            Rect rect = this.f22934b;
+            ttVar.f26731e = (i0() + rect.left) - hvVar.f24225f;
+            ttVar.f26732f = i7 + rect.top;
+            return true;
         }
-        return 1.0f;
+        return false;
     }
 }

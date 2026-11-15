@@ -2,8 +2,8 @@ package org.scilab.forge.jlatexmath;
 public class TStrokeAtom extends Atom {
     private boolean upper;
 
-    public TStrokeAtom(boolean z9) {
-        this.upper = z9;
+    public TStrokeAtom(boolean z10) {
+        this.upper = z10;
     }
 
     @Override

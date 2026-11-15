@@ -1,173 +1,173 @@
 package org.telegram.ui.Components;
 
-import android.util.SparseArray;
+import android.animation.ObjectAnimator;
+import android.os.SystemClock;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.ViewConfiguration;
+import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
 import androidx.recyclerview.widget.RecyclerView;
-public class ky extends v4.s {
-    public final SparseArray Q;
-    public int R;
-    public int S;
-    public int T;
-    public final int U;
-    public final pj0 V;
-    public boolean W;
-    public boolean X;
+public class ky extends v4.t0 {
+    public final int f36650a;
+    public boolean f36651b;
+    public final ly f36652c;
 
-    public ky(int i7, int i10, pj0 pj0Var) {
-        super(i7);
-        this.Q = new SparseArray();
-        this.R = -1;
-        this.W = true;
-        this.X = true;
-        this.V = pj0Var;
-        this.U = i10;
+    public ky(ly lyVar, int i7) {
+        this.f36652c = lyVar;
+        this.f36650a = i7;
     }
 
-    public final void B1() {
-        pj0 pj0Var;
-        v4.g0 adapter;
-        int i7;
-        pj0 pj0Var2;
-        if (this.S > 0 && D1() && (adapter = (pj0Var = this.V).getAdapter()) != null) {
-            int i10 = this.J;
-            boolean z9 = true;
-            int b10 = adapter.b() - 1;
-            g.p pVar = this.O;
-            boolean z10 = true;
-            int i11 = 0;
-            int i12 = 0;
-            int i13 = 0;
-            while (true) {
-                i7 = this.U;
-                if (i11 < b10) {
-                    int i14 = pVar.i(i11);
-                    i12 += i14;
-                    if (i14 == i10 || i12 > i10) {
-                        z10 = z9;
-                        i12 = i14;
-                    }
-                    if (!z10) {
-                        pj0Var2 = pj0Var;
+    @Override
+    public void a(RecyclerView recyclerView, int i7) {
+        ObjectAnimator objectAnimator;
+        yx yxVar;
+        float f10;
+        int i10;
+        ly lyVar = this.f36652c;
+        ObjectAnimator[] objectAnimatorArr = lyVar.S0;
+        v4.a1 a1Var = recyclerView.getLayoutManager().f58624e;
+        boolean z10 = true;
+        if (a1Var != null && a1Var.f58483e) {
+            this.f36651b = true;
+            return;
+        }
+        int i11 = this.f36650a;
+        if (i7 == 0) {
+            if (!this.f36651b) {
+                int[] iArr = lyVar.R0;
+                mx mxVar = lyVar.f36993u1;
+                if ((mxVar == null || !mxVar.z()) && i11 != 0) {
+                    float f11 = 48.0f;
+                    if (i11 == 1) {
+                        f10 = 36.0f;
                     } else {
-                        int d = adapter.d(i11);
-                        SparseArray sparseArray = this.Q;
-                        v4.d1 d1Var = (v4.d1) sparseArray.get(d, null);
-                        if (d1Var == null) {
-                            d1Var = adapter.a(pj0Var, d);
-                            View view = d1Var.f57052a;
-                            sparseArray.put(d, d1Var);
-                            if (view.getLayoutParams() == null) {
-                                view.setLayoutParams(n());
+                        f10 = 48.0f;
+                    }
+                    float N = org.telegram.messenger.g0.N(f10);
+                    float f12 = iArr[i11] / (-N);
+                    if (f12 > 0.0f && f12 < 1.0f) {
+                        HorizontalScrollView y10 = lyVar.y(i11);
+                        int i12 = (f12 > 0.5f ? 1 : (f12 == 0.5f ? 0 : -1));
+                        if (i12 > 0) {
+                            i10 = (int) (-Math.ceil(N));
+                        } else {
+                            i10 = 0;
+                        }
+                        if (i12 > 0) {
+                            lyVar.i(i11, i10, false);
+                        }
+                        if (i11 == 1) {
+                            lyVar.m(i10);
+                        }
+                        ObjectAnimator objectAnimator2 = objectAnimatorArr[i11];
+                        if (objectAnimator2 == null) {
+                            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(y10, View.TRANSLATION_Y, y10.getTranslationY(), i10);
+                            objectAnimatorArr[i11] = ofFloat;
+                            ofFloat.addUpdateListener(new org.telegram.ui.ActionBar.h2(lyVar, i11, 3));
+                            objectAnimatorArr[i11].setDuration(200L);
+                        } else {
+                            objectAnimator2.setFloatValues(y10.getTranslationY(), i10);
+                        }
+                        objectAnimatorArr[i11].start();
+                    } else {
+                        uj0 x10 = lyVar.x(i11);
+                        if (i11 == 1) {
+                            f11 = 38.0f;
+                        }
+                        int L = org.telegram.messenger.g0.L(f11);
+                        v4.e1 K = x10.K(0);
+                        if (K != null) {
+                            int bottom = K.f58535a.getBottom();
+                            int i13 = iArr[i11];
+                            float f13 = (bottom - (L + i13)) / lyVar.f36938c1;
+                            if (f13 > 0.0f || f13 < 1.0f) {
+                                if (f13 <= 0.5f) {
+                                    z10 = false;
+                                }
+                                lyVar.i(i11, i13, z10);
                             }
                         }
-                        View view2 = d1Var.f57052a;
-                        if (this.W) {
-                            adapter.t(d1Var, i11);
-                        }
-                        v4.o0 o0Var = (v4.o0) view2.getLayoutParams();
-                        pj0Var2 = pj0Var;
-                        view2.measure(v4.n0.s(d(), this.T, this.f57147k, E() + D() + ((ViewGroup.MarginLayoutParams) o0Var).leftMargin + ((ViewGroup.MarginLayoutParams) o0Var).rightMargin, ((ViewGroup.MarginLayoutParams) o0Var).width), v4.n0.s(this.X, this.S, this.f57148l, C() + F() + ((ViewGroup.MarginLayoutParams) o0Var).topMargin + ((ViewGroup.MarginLayoutParams) o0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) o0Var).height));
-                        i13 += view2.getMeasuredHeight();
-                        if (i13 >= (this.S - i7) - pj0Var2.getPaddingBottom()) {
-                            break;
-                        }
-                        z10 = false;
                     }
-                    i11++;
-                    pj0Var = pj0Var2;
-                    z9 = true;
-                } else {
-                    pj0Var2 = pj0Var;
-                    break;
                 }
             }
-            this.R = Math.max(0, ((this.S - i13) - i7) - pj0Var2.getPaddingBottom());
+            if (lyVar.K0) {
+                lyVar.K0 = false;
+            }
+            this.f36651b = false;
+            return;
+        }
+        if (i7 == 1) {
+            if (lyVar.K0) {
+                lyVar.K0 = false;
+            }
+            if (i11 != 0) {
+                if (i11 != 1) {
+                    if (i11 == 2) {
+                        yxVar = lyVar.f36975p0;
+                    } else {
+                        throw new IllegalArgumentException(i5.c.i(i11, "Unexpected argument: "));
+                    }
+                } else {
+                    yxVar = lyVar.W;
+                }
+            } else {
+                yxVar = lyVar.H0;
+            }
+            if (yxVar != null) {
+                yxVar.b();
+            }
+            this.f36651b = false;
+        }
+        if (!this.f36651b && (objectAnimator = objectAnimatorArr[i11]) != null && objectAnimator.isRunning()) {
+            objectAnimatorArr[i11].cancel();
+        }
+        if (i11 == 0) {
+            if (lyVar.U0 == null) {
+                jg.d1 d1Var = new jg.d1(lyVar, lyVar.f36941d1, lyVar.f36993u1.a(), lyVar.f36993u1.f(), 1);
+                lyVar.U0 = d1Var;
+                d1Var.a();
+            }
+            lyVar.U0.b();
         }
     }
 
-    public final void C1() {
-        this.W = false;
-    }
-
-    public boolean D1() {
-        return true;
-    }
-
     @Override
-    public final void Q() {
-        this.Q.clear();
-        B1();
-    }
-
-    @Override
-    public final void V(RecyclerView recyclerView, int i7, int i10) {
-        super.V(recyclerView, i7, i10);
-        B1();
-    }
-
-    @Override
-    public final void W(RecyclerView recyclerView) {
-        this.Q.clear();
-        B1();
-        super.W(recyclerView);
-    }
-
-    @Override
-    public final void X(RecyclerView recyclerView, int i7, int i10) {
-        super.X(recyclerView, i7, i10);
-        B1();
-    }
-
-    @Override
-    public final void Y(RecyclerView recyclerView, int i7, int i10) {
-        super.Y(recyclerView, i7, i10);
-        B1();
-    }
-
-    @Override
-    public final void Z() {
-        B1();
-    }
-
-    @Override
-    public final void a0(RecyclerView recyclerView, int i7, int i10, Object obj) {
-        super.a0(recyclerView, i7, i10, obj);
-        B1();
-    }
-
-    @Override
-    public final void d0(v4.v0 v0Var, v4.a1 a1Var, int i7, int i10) {
-        int i11 = this.S;
-        this.T = View.MeasureSpec.getSize(i7);
-        int size = View.MeasureSpec.getSize(i10);
-        this.S = size;
-        if (i11 != size) {
-            B1();
+    public void b(RecyclerView recyclerView, int i7, int i10) {
+        int L;
+        ly lyVar = this.f36652c;
+        int i11 = this.f36650a;
+        lyVar.p(i11);
+        ly.e(lyVar, i11, i10);
+        if (i11 != 0) {
+            if (i11 != 1) {
+                if (i11 == 2) {
+                    ly.f(lyVar, false);
+                }
+            } else {
+                lyVar.l(false);
+            }
+        } else {
+            lyVar.q(false);
         }
-        super.d0(v0Var, a1Var, i7, i10);
-    }
-
-    @Override
-    public final boolean e() {
-        return this.X;
-    }
-
-    @Override
-    public final void w1(int i7, View view, boolean z9) {
-        if (this.V.G(view).b() == B() - 1) {
-            ((ViewGroup.MarginLayoutParams) ((v4.o0) view.getLayoutParams())).height = Math.max(this.R, 0);
+        if (!this.f36651b) {
+            float f10 = i10;
+            FrameLayout frameLayout = lyVar.f36969n;
+            if (SystemClock.elapsedRealtime() - lyVar.E2 >= ViewConfiguration.getTapTimeout()) {
+                lyVar.I += f10;
+                if (lyVar.h.getCurrentItem() == 0) {
+                    L = org.telegram.messenger.g0.L(38.0f);
+                } else {
+                    L = org.telegram.messenger.g0.L(48.0f);
+                }
+                float f11 = lyVar.I;
+                if (f11 >= L) {
+                    lyVar.N(false);
+                } else if (f11 <= (-L)) {
+                    lyVar.N(true);
+                } else if ((frameLayout.getTag() == null && lyVar.I < 0.0f) || (frameLayout.getTag() != null && lyVar.I > 0.0f)) {
+                    lyVar.I = 0.0f;
+                }
+            }
         }
-        super.w1(i7, view, z9);
-    }
-
-    public ky(int i7, org.telegram.ui.n30 n30Var) {
-        super(i7, false);
-        this.Q = new SparseArray();
-        this.R = -1;
-        this.W = true;
-        this.X = true;
-        this.V = n30Var;
-        this.U = 0;
     }
 }

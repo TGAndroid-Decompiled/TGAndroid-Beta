@@ -1,83 +1,54 @@
 package bi;
 
-import android.app.Activity;
-import java.util.HashSet;
-import org.telegram.messenger.c20;
-import org.telegram.messenger.ln;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ox;
-import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.cn;
-import org.telegram.ui.fo;
-import org.telegram.ui.vs;
-public final class d4 implements RequestDelegate {
-    public final int f3648a;
-    public final boolean f3649b;
-    public final Object f3650c;
-    public final Object d;
-    public final Object f3651e;
+import android.content.Context;
+import android.graphics.Typeface;
+import android.view.View;
+import org.telegram.ui.Components.a41;
+import org.telegram.ui.Components.b41;
+import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.u41;
+import org.telegram.ui.Components.uj0;
+import org.telegram.ui.Components.z70;
+public final class d4 extends a41 {
+    public static final int f3442b = 0;
 
-    public d4(fi.r1 r1Var, boolean z9, TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults, String str) {
-        this.f3648a = 1;
-        this.f3650c = r1Var;
-        this.f3649b = z9;
-        this.d = tL_messages_getInlineBotResults;
-        this.f3651e = str;
+    static {
+        a41.h(new a41());
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f3648a) {
-            case 0:
-                org.telegram.messenger.g0.h3(new l4(0, (k7) this.f3650c, tL_error, (c20) this.d, (TwoStepVerificationActivity) this.f3651e, tLObject, this.f3649b));
-                return;
-            case 1:
-                org.telegram.messenger.g0.h3(new fi.q1((fi.r1) this.f3650c, tLObject, this.f3649b, (TLRPC.TL_messages_getInlineBotResults) this.d, (String) this.f3651e, 0));
-                return;
-            case 2:
-                org.telegram.messenger.g0.h3(new ln((org.telegram.messenger.x6) this.f3650c, tLObject, (TLRPC.TL_textWithEntities) this.d, (org.telegram.ui.ActionBar.u1) this.f3651e, this.f3649b, 2));
-                return;
-            case 3:
-                org.telegram.messenger.g0.h3(new l4((org.telegram.ui.zd) this.f3650c, tL_error, (TwoStepVerificationActivity) this.f3651e, (Activity) this.d, this.f3649b, tLObject));
-                return;
-            case 4:
-                org.telegram.messenger.g0.h3(new fi.q1((Object) ((cn) this.f3650c), (Object) ((vf.b) this.d), tLObject, (Object) ((t3) this.f3651e), this.f3649b, 6));
-                return;
-            case 5:
-                org.telegram.messenger.g0.h3(new l4((fo) this.f3650c, (TLRPC.TL_channels_toggleUsername) this.d, tLObject, (TLRPC.TL_username) this.f3651e, this.f3649b, tL_error));
-                return;
-            case 6:
-                org.telegram.messenger.g0.h3(new fi.q1((ox) this.f3650c, (String) this.d, this.f3649b, (String) this.f3651e, tLObject));
-                return;
-            default:
-                org.telegram.messenger.g0.h3(new l4((vs) this.f3650c, tLObject, (fi.d) this.d, this.f3649b, (HashSet) this.f3651e, tL_error));
-                return;
+    public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
+        org.telegram.ui.ActionBar.e6 e6Var;
+        z70 z70Var = (z70) view;
+        z70Var.setGravity(b41Var.f33194z);
+        Object obj = b41Var.H;
+        Typeface typeface = null;
+        if (obj instanceof Integer) {
+            int intValue = ((Integer) obj).intValue();
+            Object obj2 = b41Var.G;
+            if (obj2 instanceof org.telegram.ui.ActionBar.e6) {
+                e6Var = (org.telegram.ui.ActionBar.e6) obj2;
+            } else {
+                e6Var = null;
+            }
+            org.telegram.ui.ActionBar.q6.U(z70Var, intValue, e6Var);
+        } else {
+            org.telegram.ui.ActionBar.p6 p6Var = org.telegram.ui.ActionBar.q6.f29534a;
+            z70Var.setTag(2131296709, null);
+            z70Var.setTextColor((int) b41Var.B);
         }
+        z70Var.setTextSize(1, b41Var.A);
+        if (b41Var.f33186q) {
+            typeface = org.telegram.messenger.g0.o();
+        }
+        z70Var.setTypeface(typeface);
+        int i7 = b41Var.f33178i;
+        z70Var.setPadding(i7, 0, i7, b41Var.f33180k);
+        z70Var.setText(b41Var.f33181l);
     }
 
-    public d4(Object obj, Object obj2, Object obj3, boolean z9, int i7) {
-        this.f3648a = i7;
-        this.f3650c = obj;
-        this.d = obj2;
-        this.f3651e = obj3;
-        this.f3649b = z9;
-    }
-
-    public d4(Object obj, Object obj2, boolean z9, Object obj3, int i7) {
-        this.f3648a = i7;
-        this.f3650c = obj;
-        this.d = obj2;
-        this.f3649b = z9;
-        this.f3651e = obj3;
-    }
-
-    public d4(org.telegram.ui.zd zdVar, TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, boolean z9) {
-        this.f3648a = 3;
-        this.f3650c = zdVar;
-        this.f3651e = twoStepVerificationActivity;
-        this.d = activity;
-        this.f3649b = z9;
+    @Override
+    public final View d(Context context, uj0 uj0Var, int i7, org.telegram.ui.ActionBar.e6 e6Var) {
+        return new w1(2, context, null);
     }
 }

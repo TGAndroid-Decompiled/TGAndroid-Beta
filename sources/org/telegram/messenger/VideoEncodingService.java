@@ -3,67 +3,67 @@ package org.telegram.messenger;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-public class VideoEncodingService extends Service implements ls {
-    public static VideoEncodingService f21348e;
-    public e0.q f21349a;
-    public lf f21350b;
-    public int f21351c;
+public class VideoEncodingService extends Service implements is {
+    public static VideoEncodingService f22423e;
+    public e0.q f22424a;
+    public kf f22425b;
+    public int f22426c;
     public String d;
 
-    public final void a(lf lfVar) {
-        boolean z9;
-        lf lfVar2 = this.f21350b;
-        if (lfVar2 == lfVar) {
+    public final void a(kf kfVar) {
+        boolean z10;
+        kf kfVar2 = this.f22425b;
+        if (kfVar2 == kfVar) {
             return;
         }
-        int i7 = qs.U1;
-        int i10 = qs.V1;
-        int i11 = qs.W1;
-        if (lfVar2 != null) {
-            qs.f(this.f21351c).n(this, i11);
-            qs.f(this.f21351c).n(this, i10);
-            qs.f(this.f21351c).n(this, i7);
+        int i7 = ns.U1;
+        int i10 = ns.V1;
+        int i11 = ns.W1;
+        if (kfVar2 != null) {
+            ns.f(this.f22426c).n(this, i11);
+            ns.f(this.f22426c).n(this, i10);
+            ns.f(this.f22426c).n(this, i7);
         }
-        if (lfVar != null) {
-            ij ijVar = lfVar.f23891a;
-            if (ijVar != null && ij.t3(ijVar.f23266k)) {
-                z9 = true;
+        if (kfVar != null) {
+            gj gjVar = kfVar.f24684a;
+            if (gjVar != null && gj.t3(gjVar.f23817k)) {
+                z10 = true;
             } else {
-                z9 = false;
+                z10 = false;
             }
-            if (lfVar.d) {
-                this.f21349a.p(id.M0(2131751768, null));
-                this.f21349a.f(id.M0(2131751768, null));
-            } else if (z9) {
-                this.f21349a.p(id.M0(2131745579, null));
-                this.f21349a.f(id.M0(2131745579, null));
+            if (kfVar.d) {
+                this.f22424a.p(hd.M0(2131751768, null));
+                this.f22424a.f(hd.M0(2131751768, null));
+            } else if (z10) {
+                this.f22424a.p(hd.M0(2131745579, null));
+                this.f22424a.f(hd.M0(2131745579, null));
             } else {
-                this.f21349a.p(id.M0(2131745576, null));
-                this.f21349a.f(id.M0(2131745576, null));
+                this.f22424a.p(hd.M0(2131745576, null));
+                this.f22424a.f(hd.M0(2131745576, null));
             }
-            e0.q qVar = this.f21349a;
-            qVar.f10110n = 100;
-            qVar.f10111o = 0;
-            qVar.f10112p = true;
+            e0.q qVar = this.f22424a;
+            qVar.f9941n = 100;
+            qVar.f9942o = 0;
+            qVar.f9943p = true;
         }
-        this.f21350b = lfVar;
-        int i12 = lfVar.f23893c;
-        this.f21351c = i12;
-        this.d = lfVar.f23891a.f23266k.attachPath;
-        qs.f(i12).b(this, i11);
-        qs.f(this.f21351c).b(this, i10);
-        qs.f(this.f21351c).b(this, i7);
-        if (f21348e != null) {
+        this.f22425b = kfVar;
+        int i12 = kfVar.f24686c;
+        this.f22426c = i12;
+        this.d = kfVar.f24684a.f23817k.attachPath;
+        ns.f(i12).b(this, i11);
+        ns.f(this.f22426c).b(this, i10);
+        ns.f(this.f22426c).b(this, i7);
+        if (f22423e != null) {
             b();
         }
     }
 
     public final void b() {
         try {
-            if (MediaController.B().f21256a0 == null) {
+            if (MediaController.B().f22334b0 == null) {
                 return;
             }
-            new e0.i0(t0.f25570b).e(null, 4, this.f21349a.b());
+            new e0.i0(t0.f26600b).e(null, 4, this.f22424a.b());
         } catch (Throwable th2) {
             a8.g(th2, true);
         }
@@ -73,26 +73,26 @@ public class VideoEncodingService extends Service implements ls {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         String str;
         String str2;
-        boolean z9 = false;
-        if (i7 == qs.W1) {
+        boolean z10 = false;
+        if (i7 == ns.W1) {
             String str3 = (String) objArr[0];
-            if (i10 == this.f21351c && (str2 = this.d) != null && str2.equals(str3)) {
+            if (i10 == this.f22426c && (str2 = this.d) != null && str2.equals(str3)) {
                 float min = Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue()));
                 Boolean bool = (Boolean) objArr[3];
                 int i11 = (int) (min * 100.0f);
-                e0.q qVar = this.f21349a;
+                e0.q qVar = this.f22424a;
                 if (i11 == 0) {
-                    z9 = true;
+                    z10 = true;
                 }
-                qVar.f10110n = 100;
-                qVar.f10111o = i11;
-                qVar.f10112p = z9;
+                qVar.f9941n = 100;
+                qVar.f9942o = i11;
+                qVar.f9943p = z10;
                 b();
             }
-        } else if (i7 == qs.U1 || i7 == qs.V1) {
+        } else if (i7 == ns.U1 || i7 == ns.V1) {
             String str4 = (String) objArr[0];
-            if (i10 == this.f21351c && (str = this.d) != null && str.equals(str4)) {
-                g0.h3(new k20(this, 0));
+            if (i10 == this.f22426c && (str = this.d) != null && str.equals(str4)) {
+                g0.h3(new h20(this, 0));
             }
         }
     }
@@ -105,45 +105,45 @@ public class VideoEncodingService extends Service implements ls {
     @Override
     public final void onDestroy() {
         super.onDestroy();
-        f21348e = null;
+        f22423e = null;
         try {
             stopForeground(true);
         } catch (Throwable unused) {
         }
-        new e0.i0(t0.f25570b).b(4, null);
-        qs.f(this.f21351c).n(this, qs.W1);
-        qs.f(this.f21351c).n(this, qs.V1);
-        qs.f(this.f21351c).n(this, qs.U1);
-        this.f21350b = null;
-        if (r2.f25216a) {
+        new e0.i0(t0.f26600b).b(4, null);
+        ns.f(this.f22426c).n(this, ns.W1);
+        ns.f(this.f22426c).n(this, ns.V1);
+        ns.f(this.f22426c).n(this, ns.U1);
+        this.f22425b = null;
+        if (r2.f26198a) {
             a8.b("VideoEncodingService: destroy video service");
         }
     }
 
     @Override
     public final int onStartCommand(Intent intent, int i7, int i10) {
-        lf lfVar;
-        if (f21348e != null || (lfVar = MediaController.B().f21256a0) == null) {
+        kf kfVar;
+        if (f22423e != null || (kfVar = MediaController.B().f22334b0) == null) {
             return 2;
         }
-        f21348e = this;
-        if (this.f21349a == null) {
-            dt.i();
-            e0.q qVar = new e0.q(t0.f25570b, dt.f22079j0);
-            this.f21349a = qVar;
+        f22423e = this;
+        if (this.f22424a == null) {
+            at.i();
+            e0.q qVar = new e0.q(t0.f26600b, at.f22557k0);
+            this.f22424a = qVar;
             qVar.F.icon = 17301640;
             qVar.F.when = System.currentTimeMillis();
-            e0.q qVar2 = this.f21349a;
-            qVar2.f10120y = dt.f22079j0;
-            qVar2.g(id.M0(2131689472, null));
+            e0.q qVar2 = this.f22424a;
+            qVar2.f9951y = at.f22557k0;
+            qVar2.g(hd.M0(2131689472, null));
         }
-        a(lfVar);
+        a(kfVar);
         try {
-            startForeground(4, this.f21349a.b());
+            startForeground(4, this.f22424a.b());
         } catch (Throwable th2) {
             a8.g(th2, true);
         }
-        g0.h3(new k20(this, 1));
+        g0.h3(new h20(this, 1));
         return 2;
     }
 

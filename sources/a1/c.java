@@ -4,71 +4,67 @@ import a3.n;
 import a3.p;
 import a8.b8;
 import a8.r7;
-import aa.o;
 import ab.m0;
 import ab.o0;
+import ai.h1;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcel;
+import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import bi.ad;
-import bi.dd;
-import bi.e1;
-import bi.ea;
-import bi.m7;
-import bi.mc;
-import bi.q1;
-import bi.u6;
-import bi.y;
-import bi.z;
+import bi.e0;
+import bi.f1;
+import bi.s2;
 import com.google.android.gms.common.api.h;
+import com.google.android.gms.common.api.internal.q;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.android.gms.tasks.Tasks;
-import db.m;
-import db.q;
 import db.r;
 import db.t;
 import db.u;
-import di.g1;
-import di.g2;
-import di.r0;
+import di.e6;
+import di.mb;
+import di.n5;
+import di.s;
 import di.s0;
-import di.u0;
+import di.v8;
 import e2.m1;
 import h2.j;
 import h9.f0;
 import h9.i0;
+import h9.s1;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import k2.i;
-import org.telegram.messenger.a20;
-import org.telegram.messenger.c20;
 import org.telegram.messenger.d1;
-import org.telegram.messenger.v10;
-import org.telegram.messenger.w10;
-import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.messenger.g0;
+import org.telegram.messenger.s10;
+import org.telegram.messenger.x10;
+import org.telegram.messenger.z10;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.r1;
-import org.telegram.ui.ActionBar.u1;
+import org.telegram.ui.ActionBar.q1;
 import org.telegram.ui.Cells.t0;
-import org.telegram.ui.Components.cj0;
-import org.telegram.ui.Components.dj0;
-import org.telegram.ui.Components.s4;
-import org.telegram.ui.Components.x31;
+import org.telegram.ui.Components.b41;
+import org.telegram.ui.Components.r4;
+import org.telegram.ui.Dictation.DictationAsr;
+import org.telegram.ui.Dictation.DictationLid;
 import org.telegram.ui.Wallet.t1;
-import org.telegram.ui.jl0;
-import v4.l0;
-public final class c implements OnSuccessListener, p, Continuation, OnCompleteListener, a20, s4, r1, bg.p, te.b, jl0, j, i, com.google.android.gms.common.api.internal.p, dj0, w10, cj0 {
+import org.telegram.ui.il0;
+import r0.k1;
+import r0.m;
+public final class c implements OnSuccessListener, p, Continuation, OnCompleteListener, h1, bg.p, q1, m, org.telegram.messenger.q1, j, i, q, x10, r4, te.b, il0 {
     public final int f37a;
     public final Object f38b;
 
@@ -78,33 +74,69 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
     }
 
     @Override
-    public void L(int i7, int i10, boolean z9) {
-        e1 e1Var = (e1) this.f38b;
-        if (z9) {
-            long j3 = i7;
-            if (e1Var.C1 != j3) {
-                e1Var.C1 = j3;
-                e1Var.f3739s1.setText(e1.K0(j3));
-            }
-            e1Var.J0(true);
-        }
-    }
-
-    @Override
-    public void Y(int i7, float f10, float f11, te.c cVar) {
-        View view = ((m7) this.f38b).f4332b;
+    public void G(int i7, float f10, float f11, te.c cVar) {
+        View view = ((e6) this.f38b).f8470b;
         if (view instanceof t0) {
-            ((t0) view).T();
+            ((t0) view).W();
         } else {
             view.invalidate();
         }
     }
 
     @Override
-    public void a(k2.j jVar) {
-        d4.i iVar = (d4.i) jVar;
-        iVar.clear();
-        ((d4.j) this.f38b).f8182b.add(iVar);
+    public void L(int i7, int i10, boolean z10) {
+        s0 s0Var = (s0) this.f38b;
+        if (z10) {
+            long j3 = i7;
+            if (s0Var.D1 != j3) {
+                s0Var.D1 = j3;
+                s0Var.f9370t1.setText(s0.K0(j3));
+            }
+            s0Var.J0(true);
+        }
+    }
+
+    @Override
+    public k1 M0(View view, k1 k1Var) {
+        ((f1) this.f38b).f3500r1.j(k1Var);
+        return k1.f55681b;
+    }
+
+    @Override
+    public void a(f5.f fVar, List list) {
+        int i7;
+        s2 s2Var = (s2) this.f38b;
+        ArrayList arrayList = s2Var.f3849i2;
+        Iterator it = list.iterator();
+        long j3 = 0;
+        while (true) {
+            i7 = 0;
+            if (!it.hasNext()) {
+                break;
+            }
+            f5.m mVar = (f5.m) it.next();
+            int size = arrayList.size();
+            while (true) {
+                if (i7 < size) {
+                    Object obj = arrayList.get(i7);
+                    i7++;
+                    ug.j jVar = (ug.j) obj;
+                    if (jVar.h() != null && jVar.h().equals(mVar.f10996c)) {
+                        jVar.h = mVar;
+                        if (jVar.f() > j3) {
+                            j3 = jVar.f();
+                        }
+                    }
+                }
+            }
+        }
+        int size2 = arrayList.size();
+        while (i7 < size2) {
+            Object obj2 = arrayList.get(i7);
+            i7++;
+            ((ug.j) obj2).f58129g = j3;
+        }
+        g0.h3(new a3.f(s2Var, 20));
     }
 
     @Override
@@ -113,19 +145,19 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
         kotlin.jvm.internal.j.e(clientImpl, "clientImpl");
         u uVar = new u((TaskCompletionSource) obj2);
         com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new h(-1, -1, 0, true), false);
-        gVar.f6541c = false;
+        gVar.f5920c = false;
         r rVar = (r) ((t) clientImpl.n());
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken("com.google.firebase.pnv.internal.IFpnvService");
-        int i7 = db.e.f8581a;
+        int i7 = db.e.f7965a;
         obtain.writeStrongBinder(uVar);
         obtain.writeInt(1);
-        ((q) this.f38b).writeToParcel(obtain, 0);
+        ((db.q) this.f38b).writeToParcel(obtain, 0);
         obtain.writeInt(1);
         gVar.writeToParcel(obtain, 0);
         Parcel obtain2 = Parcel.obtain();
         try {
-            rVar.f8596a.transact(3, obtain, obtain2, 0);
+            rVar.f7980a.transact(3, obtain, obtain2, 0);
             obtain2.readException();
         } finally {
             obtain.recycle();
@@ -134,20 +166,45 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
     }
 
     @Override
-    public void b(int i7) {
+    public void b(long j3, long j10) {
+        long[] jArr = (long[]) this.f38b;
+        ExecutorService executorService = DictationLid.f42585a;
+        long[] jArr2 = (long[]) DictationAsr.h.get("tinylid.bin");
+        if (jArr2 != null) {
+            jArr2[0] = j3;
+            if (j10 > 0) {
+                jArr2[1] = j10;
+            }
+        }
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        if (elapsedRealtime - jArr[0] > 100) {
+            jArr[0] = elapsedRealtime;
+            DictationAsr.o();
+        }
+    }
+
+    @Override
+    public void c(k2.j jVar) {
+        d4.i iVar = (d4.i) jVar;
+        iVar.clear();
+        ((d4.j) this.f38b).f7565b.add(iVar);
+    }
+
+    @Override
+    public void e(int i7) {
         switch (this.f37a) {
-            case 16:
-                v10 v10Var = (v10) this.f38b;
+            case 28:
+                s10 s10Var = (s10) this.f38b;
                 if (i7 == 1) {
-                    v10Var.a(Boolean.TRUE, null);
+                    s10Var.a(Boolean.TRUE, null);
                     return;
                 } else if (i7 != 3) {
-                    v10Var.a(Boolean.FALSE, null);
+                    s10Var.a(Boolean.FALSE, null);
                     return;
                 } else {
                     return;
                 }
-            case 17:
+            default:
                 t1 t1Var = (t1) this.f38b;
                 if (i7 == 1) {
                     t1Var.a(Boolean.TRUE, null);
@@ -158,184 +215,68 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                 } else {
                     return;
                 }
-            default:
-                mc mcVar = (mc) this.f38b;
-                if (i7 == 1) {
-                    mcVar.a(Boolean.TRUE, null);
-                    return;
-                } else if (i7 != 3) {
-                    mcVar.a(Boolean.FALSE, null);
-                    return;
-                } else {
-                    return;
-                }
         }
     }
 
     @Override
-    public boolean c(int r37, final android.view.View r38) {
-        throw new UnsupportedOperationException("Method not decompiled: a1.c.c(int, android.view.View):boolean");
-    }
-
-    @Override
-    public Object d(Number number, Object obj) {
-        Long l10 = (Long) number;
-        return u0.a((u0) this.f38b, (Long) obj);
-    }
-
-    @Override
-    public void f(float f10, float f11, int i7, View view) {
-        long j3;
-        long j10;
-        int i10;
-        int i11;
-        int i12;
-        g2 g2Var = (g2) this.f38b;
-        q1 q1Var = g2Var.f9810c;
-        ArrayList arrayList = g2Var.f9819r;
-        di.t0 t0Var = ((r0) view).f9669f;
-        int i13 = g2Var.N;
-        int currentTime = ConnectionsManager.getInstance(i13).getCurrentTime();
-        HashSet hashSet = new HashSet();
-        int i14 = 0;
-        int i15 = 0;
-        while (true) {
-            j3 = 0;
-            if (i15 >= t0Var.f9776f.size()) {
-                break;
-            }
-            s0 s0Var = (s0) t0Var.f9776f.get(i15);
-            long j11 = s0Var.f9724g;
-            if (j11 > 0 && currentTime - s0Var.d <= di.t.b(i13, (int) j11, 0)) {
-                hashSet.add(Integer.valueOf(s0Var.f9719a));
-            }
-            i15++;
-        }
-        g1 g1Var = g2Var.P;
-        if (g1Var != null) {
-            j3 = g1Var.j();
-        }
-        int i16 = 0;
-        int i17 = 0;
-        while (i16 < arrayList.size()) {
-            s0 s0Var2 = (s0) arrayList.get(i16);
-            if (!s0Var2.f9720b && s0Var2.f9722e && s0Var2.f9724g < j3) {
-                j10 = j3;
-            } else {
-                if (hashSet.contains(Integer.valueOf(s0Var2.f9719a))) {
-                    j10 = j3;
-                    if (g2Var.f9822x != t0Var.f9773b || (i12 = g2Var.f9823y) == 0 || s0Var2.f9719a < i12) {
-                        i10 = s0Var2.f9719a;
-                        break;
-                    }
-                } else {
-                    j10 = j3;
-                }
-                i17++;
-            }
-            i16++;
-            j3 = j10;
-        }
-        j10 = j3;
-        i10 = -1;
-        if (i10 < 0) {
-            int i18 = 0;
-            while (true) {
-                if (i14 < arrayList.size()) {
-                    s0 s0Var3 = (s0) arrayList.get(i14);
-                    if (s0Var3.f9720b || !s0Var3.f9722e || s0Var3.f9724g >= j10) {
-                        if (hashSet.contains(Integer.valueOf(s0Var3.f9719a))) {
-                            i11 = s0Var3.f9719a;
-                            i17 = i18;
-                            break;
-                        }
-                        i18++;
-                    }
-                    i14++;
-                } else {
-                    i17 = i18;
-                    i11 = -1;
-                    break;
-                }
-            }
-        } else {
-            i11 = i10;
-        }
-        if (i11 < 0) {
-            return;
-        }
-        g2Var.f9822x = t0Var.f9773b;
-        g2Var.f9823y = i11;
-        g2Var.D = true;
-        l0 itemAnimator = q1Var.getItemAnimator();
-        q1Var.setItemAnimator(null);
-        g2Var.d.i1(i17, q1Var.getHeight() / 2, true);
-        g2Var.f9813e.g(i17);
-        q1Var.setItemAnimator(itemAnimator);
-    }
-
-    @Override
-    public boolean f1(View view) {
-        return false;
-    }
-
-    @Override
-    public void g(u1 u1Var, int i7) {
-        ((c20) this.f38b).a(u1Var.h(i7, true, true));
-    }
-
-    @Override
-    public h9.t1 h(int i7, m1 m1Var, int[] iArr) {
+    public s1 f(int i7, m1 m1Var, int[] iArr) {
         n nVar = (n) this.f38b;
         f0 p10 = i0.p();
-        for (int i10 = 0; i10 < m1Var.f10378a; i10++) {
+        for (int i10 = 0; i10 < m1Var.f10209a; i10++) {
             p10.c(new a3.j(i7, m1Var, i10, nVar, iArr[i10]));
         }
         return p10.f();
     }
 
     @Override
-    public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+    public void g(long j3) {
         switch (this.f37a) {
-            case 10:
-                y yVar = (y) this.f38b;
-                x31 x31Var = (x31) obj;
-                View view = (View) obj2;
-                Integer num = (Integer) number;
-                Float f10 = (Float) serializable;
-                Float f11 = (Float) serializable2;
-                z zVar = yVar.f5064r;
-                if (x31Var.G instanceof TL_stars.StarsTransaction) {
-                    dd.k1(yVar.getContext(), true, zVar.f5113b, z.p0(zVar), (TL_stars.StarsTransaction) x31Var.G, z.q0(zVar));
-                    return;
-                } else if (yVar.h) {
-                    yVar.h = false;
-                    yVar.a();
-                    return;
-                } else {
-                    return;
-                }
-            case 15:
-                ea.b((ea) this.f38b, (ArrayList) obj, (Integer) obj2, (Long) number, (ArrayList) serializable, (ArrayList) serializable2);
+            case 11:
+                ((bi.f) this.f38b).a(j3, true);
                 return;
             default:
-                ad adVar = (ad) this.f38b;
-                x31 x31Var2 = (x31) obj;
-                View view2 = (View) obj2;
-                Integer num2 = (Integer) number;
-                Float f12 = (Float) serializable;
-                Float f13 = (Float) serializable2;
-                if (x31Var2.G instanceof TL_stars.StarsTransaction) {
-                    dd.k1(adVar.getContext(), false, 0L, adVar.f3473c, (TL_stars.StarsTransaction) x31Var2.G, adVar.f3472b);
-                    return;
-                }
+                ((n5) this.f38b).h();
                 return;
         }
     }
 
     @Override
-    public void j(long j3) {
-        ((u6) this.f38b).h();
+    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        switch (this.f37a) {
+            case 12:
+                ((e0) this.f38b).run();
+                return;
+            default:
+                ((z10) this.f38b).a(t1Var.h(i7, true, true));
+                return;
+        }
+    }
+
+    @Override
+    public void m(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        switch (this.f37a) {
+            case 22:
+                s sVar = (s) this.f38b;
+                b41 b41Var = (b41) obj;
+                View view = (View) obj2;
+                Integer num = (Integer) number;
+                Float f10 = (Float) serializable;
+                Float f11 = (Float) serializable2;
+                di.t tVar = sVar.f9363r;
+                if (b41Var.G instanceof TL_stars.StarsTransaction) {
+                    mb.k1(sVar.getContext(), true, tVar.f9413b, di.t.p0(tVar), (TL_stars.StarsTransaction) b41Var.G, di.t.q0(tVar));
+                    return;
+                } else if (sVar.h) {
+                    sVar.h = false;
+                    sVar.a();
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                v8.b((v8) this.f38b, (ArrayList) obj, (Integer) obj2, (Long) number, (ArrayList) serializable, (ArrayList) serializable2);
+                return;
+        }
     }
 
     @Override
@@ -345,7 +286,7 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                 m0.b((Intent) this.f38b);
                 return;
             case 6:
-                ((o0) this.f38b).f980b.trySetResult(null);
+                ((o0) this.f38b).f979b.trySetResult(null);
                 return;
             default:
                 ((ScheduledFuture) this.f38b).cancel(false);
@@ -359,7 +300,7 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
             case 0:
                 ((f) this.f38b).invoke(obj);
                 return;
-            case 20:
+            case 15:
                 ((ae.d) this.f38b).invoke(obj);
                 return;
             default:
@@ -383,8 +324,8 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                 r7Var.getClass();
                 if (!task.isSuccessful() && (exception = task.getException()) != null && !TextUtils.isEmpty(exception.getMessage()) && exception.getMessage().contains("FID_ALREADY_USED:")) {
                     Log.w("FirebaseMessaging", "FID_ALREADY_USED Detected. Retrying with FID cache clearing!");
-                    ((va.c) ((va.d) r7Var.d)).f57299c.b().delete();
-                    return r7Var.C();
+                    ((va.c) ((va.d) r7Var.d)).f58772c.c().delete();
+                    return r7Var.F();
                 }
                 return task;
             case 4:
@@ -406,28 +347,27 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                     throw new IOException("INSTANCE_ID_RESET");
                 }
                 throw new IOException("SERVICE_NOT_AVAILABLE");
-            case 5:
-            case 6:
-            case 7:
+            case 9:
+                return (Task) ((aa.n) this.f38b).call();
             default:
                 db.n this$0 = (db.n) this.f38b;
                 kotlin.jvm.internal.j.e(this$0, "this$0");
                 kotlin.jvm.internal.j.e(task, "task");
-                d1 d1Var = db.n.f8592b;
+                d1 d1Var = db.n.f7976b;
                 if (task.isSuccessful()) {
                     d1Var.a("Successfully completed the operation", new Object[0]);
-                    Task forResult = Tasks.forResult(m.f8591b.invoke(task.getResult()));
+                    Task forResult = Tasks.forResult(db.m.f7975b.invoke(task.getResult()));
                     kotlin.jvm.internal.j.d(forResult, "{\n      logger.d(\"Succes…ccess(task.result))\n    }");
                     return forResult;
                 }
-                Log.e(d1Var.f21974b, d1Var.b("Failed to fetch the Verification Support Info: " + task.getException(), new Object[0]));
+                Log.e(d1Var.f23010b, d1Var.b("Failed to fetch the Verification Support Info: " + task.getException(), new Object[0]));
                 Exception exception2 = task.getException();
                 if (exception2 != null && (message = exception2.getMessage()) != null && xd.d.e(message, "test_number_token is invalid")) {
                     d1Var.a("Backend rejected the test number token.", new Object[0]);
                     forException = Tasks.forException(new db.b(55507, "Invalid test number ID(s) - might be empty, expired or duplicated."));
                 } else {
                     if (exception2 instanceof com.google.android.gms.common.api.f) {
-                        i7 = ((com.google.android.gms.common.api.f) exception2).getStatus().f6532a;
+                        i7 = ((com.google.android.gms.common.api.f) exception2).getStatus().f5911a;
                     } else {
                         i7 = 55501;
                     }
@@ -435,20 +375,18 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                 }
                 kotlin.jvm.internal.j.d(forException, "{\n      logger.e(\"$onFai…reMessage))\n      }\n    }");
                 return forException;
-            case 8:
-                return (Task) ((o) this.f38b).call();
         }
     }
 
     @Override
     public void accept(Object obj) {
         switch (this.f37a) {
-            case 21:
+            case 16:
                 c4.h hVar = (c4.h) this.f38b;
                 c4.a aVar = (c4.a) obj;
-                c4.g gVar = new c4.g(aVar.f5273b, sa.d.w0(aVar.f5272a, aVar.f5274c));
-                hVar.f5283c.add(gVar);
-                long j3 = hVar.f5288j;
+                c4.g gVar = new c4.g(aVar.f4092b, w7.s.k0(aVar.f4091a, aVar.f4093c));
+                hVar.f4102c.add(gVar);
+                long j3 = hVar.f4107j;
                 if (j3 == -9223372036854775807L || aVar.d >= j3) {
                     hVar.g(gVar);
                     return;
@@ -461,10 +399,6 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
     }
 
     @Override
-    public void F(float f10, int i7) {
-    }
-
-    @Override
-    public void r0(View view, float f10, float f11) {
+    public void E(float f10, int i7) {
     }
 }

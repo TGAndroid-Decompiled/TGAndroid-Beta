@@ -3,24 +3,24 @@ package h2;
 import android.telephony.TelephonyCallback;
 import android.telephony.TelephonyDisplayInfo;
 public final class t extends TelephonyCallback implements TelephonyCallback.DisplayInfoListener {
-    public final w f14152a;
+    public final w f13509a;
 
     public t(w wVar) {
-        this.f14152a = wVar;
+        this.f13509a = wVar;
     }
 
     public final void onDisplayInfoChanged(TelephonyDisplayInfo telephonyDisplayInfo) {
-        boolean z9;
+        boolean z10;
         int overrideNetworkType = telephonyDisplayInfo.getOverrideNetworkType();
         int i7 = 5;
         if (overrideNetworkType != 3 && overrideNetworkType != 4 && overrideNetworkType != 5) {
-            z9 = false;
+            z10 = false;
         } else {
-            z9 = true;
+            z10 = true;
         }
-        if (z9) {
+        if (z10) {
             i7 = 10;
         }
-        this.f14152a.c(i7);
+        this.f13509a.c(i7);
     }
 }

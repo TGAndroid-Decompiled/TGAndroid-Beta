@@ -1,218 +1,27 @@
 package m;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.text.InputFilter;
+import android.graphics.Bitmap;
 import android.util.AttributeSet;
-import android.widget.RadioButton;
-import c8.gc;
-public final class a0 extends RadioButton implements u0.k {
-    public final q f19059a;
-    public final h2.c f19060b;
-    public final x0 f19061c;
-    public u d;
+import android.view.View;
+import android.widget.RatingBar;
+public final class a0 extends RatingBar {
+    public final y f19652a;
 
     public a0(Context context, AttributeSet attributeSet) {
-        super(context, attributeSet, 2130968907);
-        b3.a(context);
-        a3.a(this, getContext());
-        q qVar = new q(this);
-        this.f19059a = qVar;
-        qVar.e(attributeSet, 2130968907);
-        h2.c cVar = new h2.c(this);
-        this.f19060b = cVar;
-        cVar.x(attributeSet, 2130968907);
-        x0 x0Var = new x0(this);
-        this.f19061c = x0Var;
-        x0Var.f(attributeSet, 2130968907);
-        getEmojiTextViewHelper().a(attributeSet, 2130968907);
-    }
-
-    private u getEmojiTextViewHelper() {
-        if (this.d == null) {
-            this.d = new u(this);
-        }
-        return this.d;
+        super(context, attributeSet, 2130968908);
+        z2.a(this, getContext());
+        y yVar = new y(this);
+        this.f19652a = yVar;
+        yVar.b(attributeSet, 2130968908);
     }
 
     @Override
-    public final void drawableStateChanged() {
-        super.drawableStateChanged();
-        h2.c cVar = this.f19060b;
-        if (cVar != null) {
-            cVar.b();
+    public final synchronized void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, i10);
+        Bitmap bitmap = (Bitmap) this.f19652a.f19897c;
+        if (bitmap != null) {
+            setMeasuredDimension(View.resolveSizeAndState(bitmap.getWidth() * getNumStars(), i7, 0), getMeasuredHeight());
         }
-        x0 x0Var = this.f19061c;
-        if (x0Var != null) {
-            x0Var.b();
-        }
-    }
-
-    @Override
-    public int getCompoundPaddingLeft() {
-        int compoundPaddingLeft = super.getCompoundPaddingLeft();
-        q qVar = this.f19059a;
-        if (qVar != null) {
-            qVar.getClass();
-        }
-        return compoundPaddingLeft;
-    }
-
-    public ColorStateList getSupportBackgroundTintList() {
-        h2.c cVar = this.f19060b;
-        if (cVar != null) {
-            return cVar.v();
-        }
-        return null;
-    }
-
-    public PorterDuff.Mode getSupportBackgroundTintMode() {
-        h2.c cVar = this.f19060b;
-        if (cVar != null) {
-            return cVar.w();
-        }
-        return null;
-    }
-
-    public ColorStateList getSupportButtonTintList() {
-        q qVar = this.f19059a;
-        if (qVar != null) {
-            return (ColorStateList) qVar.f19219a;
-        }
-        return null;
-    }
-
-    public PorterDuff.Mode getSupportButtonTintMode() {
-        q qVar = this.f19059a;
-        if (qVar != null) {
-            return (PorterDuff.Mode) qVar.f19220b;
-        }
-        return null;
-    }
-
-    public ColorStateList getSupportCompoundDrawablesTintList() {
-        return this.f19061c.d();
-    }
-
-    public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
-        return this.f19061c.e();
-    }
-
-    @Override
-    public void setAllCaps(boolean z9) {
-        super.setAllCaps(z9);
-        getEmojiTextViewHelper().b(z9);
-    }
-
-    @Override
-    public void setBackgroundDrawable(Drawable drawable) {
-        super.setBackgroundDrawable(drawable);
-        h2.c cVar = this.f19060b;
-        if (cVar != null) {
-            cVar.y();
-        }
-    }
-
-    @Override
-    public void setBackgroundResource(int i7) {
-        super.setBackgroundResource(i7);
-        h2.c cVar = this.f19060b;
-        if (cVar != null) {
-            cVar.z(i7);
-        }
-    }
-
-    @Override
-    public void setButtonDrawable(Drawable drawable) {
-        super.setButtonDrawable(drawable);
-        q qVar = this.f19059a;
-        if (qVar != null) {
-            if (qVar.f19222e) {
-                qVar.f19222e = false;
-                return;
-            }
-            qVar.f19222e = true;
-            qVar.a();
-        }
-    }
-
-    @Override
-    public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
-        super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
-        x0 x0Var = this.f19061c;
-        if (x0Var != null) {
-            x0Var.b();
-        }
-    }
-
-    @Override
-    public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
-        super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
-        x0 x0Var = this.f19061c;
-        if (x0Var != null) {
-            x0Var.b();
-        }
-    }
-
-    public void setEmojiCompatEnabled(boolean z9) {
-        getEmojiTextViewHelper().c(z9);
-    }
-
-    @Override
-    public void setFilters(InputFilter[] inputFilterArr) {
-        super.setFilters(((gc) getEmojiTextViewHelper().f19267b.f38776b).a(inputFilterArr));
-    }
-
-    public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        h2.c cVar = this.f19060b;
-        if (cVar != null) {
-            cVar.D(colorStateList);
-        }
-    }
-
-    public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        h2.c cVar = this.f19060b;
-        if (cVar != null) {
-            cVar.E(mode);
-        }
-    }
-
-    public void setSupportButtonTintList(ColorStateList colorStateList) {
-        q qVar = this.f19059a;
-        if (qVar != null) {
-            qVar.f19219a = colorStateList;
-            qVar.f19221c = true;
-            qVar.a();
-        }
-    }
-
-    public void setSupportButtonTintMode(PorterDuff.Mode mode) {
-        q qVar = this.f19059a;
-        if (qVar != null) {
-            qVar.f19220b = mode;
-            qVar.d = true;
-            qVar.a();
-        }
-    }
-
-    @Override
-    public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
-        x0 x0Var = this.f19061c;
-        x0Var.l(colorStateList);
-        x0Var.b();
-    }
-
-    @Override
-    public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
-        x0 x0Var = this.f19061c;
-        x0Var.m(mode);
-        x0Var.b();
-    }
-
-    @Override
-    public void setButtonDrawable(int i7) {
-        setButtonDrawable(b5.a.b(getContext(), i7));
     }
 }

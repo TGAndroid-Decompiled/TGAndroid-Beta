@@ -3,38 +3,38 @@ package cc;
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
 public abstract class j {
-    public static final Charset f6077a = Charset.defaultCharset();
-    public static final Charset f6078b;
-    public static final Charset f6079c;
+    public static final Charset f4899a = Charset.defaultCharset();
+    public static final Charset f4900b;
+    public static final Charset f4901c;
     public static final boolean d;
 
     static {
         Charset charset;
         Charset charset2;
-        boolean z9;
+        boolean z10;
         Charset charset3 = null;
         try {
             charset = Charset.forName("SJIS");
         } catch (UnsupportedCharsetException unused) {
             charset = null;
         }
-        f6078b = charset;
+        f4900b = charset;
         try {
             charset2 = Charset.forName("GB2312");
         } catch (UnsupportedCharsetException unused2) {
             charset2 = null;
         }
-        f6079c = charset2;
+        f4901c = charset2;
         try {
             charset3 = Charset.forName("EUC_JP");
         } catch (UnsupportedCharsetException unused3) {
         }
-        Charset charset4 = f6078b;
-        if ((charset4 != null && charset4.equals(f6077a)) || (charset3 != null && charset3.equals(f6077a))) {
-            z9 = true;
+        Charset charset4 = f4900b;
+        if ((charset4 != null && charset4.equals(f4899a)) || (charset3 != null && charset3.equals(f4899a))) {
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        d = z9;
+        d = z10;
     }
 }

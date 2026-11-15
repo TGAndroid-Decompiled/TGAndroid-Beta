@@ -10,57 +10,43 @@ import android.widget.FrameLayout;
 import androidx.appcompat.widget.ActionBarContextView;
 import java.lang.reflect.Method;
 import java.util.WeakHashMap;
-import m.t3;
+import m.r3;
 import r0.i0;
 import r0.k1;
 public final class i implements r0.m, l.w {
-    public final s f13329a;
+    public final s f12677a;
 
     public i(s sVar) {
-        this.f13329a = sVar;
+        this.f12677a = sVar;
     }
 
     @Override
-    public boolean A(l.k kVar) {
-        Window.Callback callback;
-        if (kVar == kVar.k()) {
-            s sVar = this.f13329a;
-            if (sVar.O && (callback = sVar.f13364f.getCallback()) != null && !sVar.Z) {
-                callback.onMenuOpened(108, kVar);
-                return true;
-            }
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public k1 S0(View view, k1 k1Var) {
-        boolean z9;
+    public k1 M0(View view, k1 k1Var) {
+        boolean z10;
         k1 k1Var2;
         int b10;
         int c10;
-        boolean z10;
+        boolean z11;
         int color;
         int d = k1Var.d();
-        s sVar = this.f13329a;
-        Context context = sVar.f13362e;
+        s sVar = this.f12677a;
+        Context context = sVar.f12710e;
         int d2 = k1Var.d();
-        ActionBarContextView actionBarContextView = sVar.D;
+        ActionBarContextView actionBarContextView = sVar.E;
         int i7 = 8;
         if (actionBarContextView != null && (actionBarContextView.getLayoutParams() instanceof ViewGroup.MarginLayoutParams)) {
-            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) sVar.D.getLayoutParams();
-            boolean z11 = true;
-            if (sVar.D.isShown()) {
-                if (sVar.f13371l0 == null) {
-                    sVar.f13371l0 = new Rect();
+            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) sVar.E.getLayoutParams();
+            boolean z12 = true;
+            if (sVar.E.isShown()) {
+                if (sVar.m0 == null) {
                     sVar.m0 = new Rect();
+                    sVar.f12721n0 = new Rect();
                 }
-                Rect rect = sVar.f13371l0;
-                Rect rect2 = sVar.m0;
+                Rect rect = sVar.m0;
+                Rect rect2 = sVar.f12721n0;
                 rect.set(k1Var.b(), k1Var.d(), k1Var.c(), k1Var.a());
-                ViewGroup viewGroup = sVar.J;
-                Method method = t3.f19264a;
+                ViewGroup viewGroup = sVar.K;
+                Method method = r3.f19834a;
                 if (method != null) {
                     try {
                         method.invoke(viewGroup, rect, rect2);
@@ -71,8 +57,8 @@ public final class i implements r0.m, l.w {
                 int i10 = rect.top;
                 int i11 = rect.left;
                 int i12 = rect.right;
-                ViewGroup viewGroup2 = sVar.J;
-                WeakHashMap weakHashMap = i0.f54202a;
+                ViewGroup viewGroup2 = sVar.K;
+                WeakHashMap weakHashMap = i0.f55671a;
                 k1 a10 = r0.b0.a(viewGroup2);
                 if (a10 == null) {
                     b10 = 0;
@@ -85,23 +71,23 @@ public final class i implements r0.m, l.w {
                     c10 = a10.c();
                 }
                 if (marginLayoutParams.topMargin == i10 && marginLayoutParams.leftMargin == i11 && marginLayoutParams.rightMargin == i12) {
-                    z10 = false;
+                    z11 = false;
                 } else {
                     marginLayoutParams.topMargin = i10;
                     marginLayoutParams.leftMargin = i11;
                     marginLayoutParams.rightMargin = i12;
-                    z10 = true;
+                    z11 = true;
                 }
-                if (i10 > 0 && sVar.L == null) {
+                if (i10 > 0 && sVar.M == null) {
                     View view2 = new View(context);
-                    sVar.L = view2;
+                    sVar.M = view2;
                     view2.setVisibility(8);
                     FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, marginLayoutParams.topMargin, 51);
                     layoutParams.leftMargin = b10;
                     layoutParams.rightMargin = c10;
-                    sVar.J.addView(sVar.L, -1, layoutParams);
+                    sVar.K.addView(sVar.M, -1, layoutParams);
                 } else {
-                    View view3 = sVar.L;
+                    View view3 = sVar.M;
                     if (view3 != null) {
                         ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) view3.getLayoutParams();
                         int i13 = marginLayoutParams2.height;
@@ -110,16 +96,16 @@ public final class i implements r0.m, l.w {
                             marginLayoutParams2.height = i14;
                             marginLayoutParams2.leftMargin = b10;
                             marginLayoutParams2.rightMargin = c10;
-                            sVar.L.setLayoutParams(marginLayoutParams2);
+                            sVar.M.setLayoutParams(marginLayoutParams2);
                         }
                     }
                 }
-                View view4 = sVar.L;
+                View view4 = sVar.M;
                 if (view4 == null) {
-                    z11 = false;
+                    z12 = false;
                 }
-                if (z11 && view4.getVisibility() != 0) {
-                    View view5 = sVar.L;
+                if (z12 && view4.getVisibility() != 0) {
+                    View view5 = sVar.M;
                     if ((view5.getWindowSystemUiVisibility() & 8192) != 0) {
                         color = context.getColor(2131099654);
                     } else {
@@ -127,27 +113,27 @@ public final class i implements r0.m, l.w {
                     }
                     view5.setBackgroundColor(color);
                 }
-                if (!sVar.Q && z11) {
+                if (!sVar.R && z12) {
                     d2 = 0;
                 }
-                z9 = z11;
-                z11 = z10;
+                z10 = z12;
+                z12 = z11;
             } else if (marginLayoutParams.topMargin != 0) {
                 marginLayoutParams.topMargin = 0;
-                z9 = false;
+                z10 = false;
             } else {
-                z9 = false;
-                z11 = false;
+                z10 = false;
+                z12 = false;
             }
-            if (z11) {
-                sVar.D.setLayoutParams(marginLayoutParams);
+            if (z12) {
+                sVar.E.setLayoutParams(marginLayoutParams);
             }
         } else {
-            z9 = false;
+            z10 = false;
         }
-        View view6 = sVar.L;
+        View view6 = sVar.M;
         if (view6 != null) {
-            if (z9) {
+            if (z10) {
                 i7 = 0;
             }
             view6.setVisibility(i7);
@@ -161,22 +147,22 @@ public final class i implements r0.m, l.w {
     }
 
     @Override
-    public void c(l.k kVar, boolean z9) {
-        boolean z10;
+    public void e(l.k kVar, boolean z10) {
+        boolean z11;
         int i7;
         r rVar;
         l.k k10 = kVar.k();
         int i10 = 0;
         if (k10 != kVar) {
-            z10 = true;
+            z11 = true;
         } else {
-            z10 = false;
+            z11 = false;
         }
-        if (z10) {
+        if (z11) {
             kVar = k10;
         }
-        s sVar = this.f13329a;
-        r[] rVarArr = sVar.U;
+        s sVar = this.f12677a;
+        r[] rVarArr = sVar.V;
         if (rVarArr != null) {
             i7 = rVarArr.length;
         } else {
@@ -195,12 +181,26 @@ public final class i implements r0.m, l.w {
             }
         }
         if (rVar != null) {
-            if (z10) {
-                sVar.f(rVar.f13341a, rVar, k10);
+            if (z11) {
+                sVar.f(rVar.f12689a, rVar, k10);
                 sVar.h(rVar, true);
                 return;
             }
-            sVar.h(rVar, z9);
+            sVar.h(rVar, z10);
         }
+    }
+
+    @Override
+    public boolean y(l.k kVar) {
+        Window.Callback callback;
+        if (kVar == kVar.k()) {
+            s sVar = this.f12677a;
+            if (sVar.P && (callback = sVar.f12712f.getCallback()) != null && !sVar.f12706a0) {
+                callback.onMenuOpened(108, kVar);
+                return true;
+            }
+            return true;
+        }
+        return true;
     }
 }

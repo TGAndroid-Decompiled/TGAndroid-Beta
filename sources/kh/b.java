@@ -3,61 +3,61 @@ package kh;
 import android.content.Context;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import c8.ha;
+import c8.ja;
 import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.cp;
-import org.telegram.ui.Components.cq;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.Components.kq;
+import org.telegram.ui.Components.lp;
 public final class b extends FrameLayout {
-    public final h6 f17601a;
-    public a f17602b;
-    public cq f17603c;
+    public final e6 f18167a;
+    public a f18168b;
+    public kq f18169c;
     public boolean d;
 
-    public b(Context context, h6 h6Var) {
+    public b(Context context, e6 e6Var) {
         super(context);
-        this.f17601a = h6Var;
+        this.f18167a = e6Var;
     }
 
-    public final void a(int i7, boolean z9) {
-        if (this.f17603c == null) {
-            cq cqVar = new cq(getContext(), this.f17601a);
-            this.f17603c = cqVar;
-            cqVar.setReverse(this.d);
-            addView(this.f17603c, ha.e(-1, 28, 48));
+    public final void a(int i7, boolean z10) {
+        if (this.f18169c == null) {
+            kq kqVar = new kq(getContext(), this.f18167a);
+            this.f18169c = kqVar;
+            kqVar.setReverse(this.d);
+            addView(this.f18169c, ja.e(-1, 28, 48));
         }
-        this.f17603c.f32735a.c(i7, z9);
+        this.f18169c.f36586a.c(i7, z10);
     }
 
-    public final void b(boolean z9, boolean z10) {
-        super.setEnabled(z9);
-        this.f17602b.e(z9, z10);
+    public final void b(boolean z10, boolean z11) {
+        super.setEnabled(z10);
+        this.f18168b.e(z10, z11);
     }
 
-    public final void c(boolean z9, boolean z10) {
-        a aVar = this.f17602b;
+    public final void c(boolean z10, boolean z11) {
+        a aVar = this.f18168b;
         if (aVar.d == null) {
-            if (!z9) {
+            if (!z10) {
                 return;
             }
-            cp cpVar = new cp(g0.L(18.0f), g0.L(1.7f), -9079435);
-            aVar.f17597e = cpVar;
-            cpVar.f32729f = 90.0f;
+            lp lpVar = new lp(g0.L(18.0f), g0.L(1.7f), -9079435);
+            aVar.f18163e = lpVar;
+            lpVar.f36872f = 90.0f;
             ImageView imageView = new ImageView(aVar.getContext());
             aVar.d = imageView;
-            imageView.setBackground(aVar.f17597e);
+            imageView.setBackground(aVar.f18163e);
             aVar.d.setVisibility(8);
-            aVar.addView(aVar.d, ha.e(46, 46, 17));
+            aVar.addView(aVar.d, ja.e(46, 46, 17));
         }
-        te.a aVar2 = aVar.f17594a;
-        if (!aVar2.f55499f && aVar2.f55498e == 0.0f) {
-            aVar.f17597e.f32727c = -1L;
+        te.a aVar2 = aVar.f18160a;
+        if (!aVar2.f57082f && aVar2.f57081e == 0.0f) {
+            aVar.f18163e.f36870c = -1L;
         }
-        aVar2.a(z9, z10);
+        aVar2.a(z10, z11);
     }
 
     @Override
-    public void setEnabled(boolean z9) {
-        b(z9, false);
+    public void setEnabled(boolean z10) {
+        b(z10, false);
     }
 }

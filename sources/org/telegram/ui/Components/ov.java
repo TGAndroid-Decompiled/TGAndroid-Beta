@@ -1,20 +1,20 @@
 package org.telegram.ui.Components;
-public final class ov implements Runnable {
-    public final int f36696a;
-    public final ux f36697b;
 
-    public ov(ux uxVar, int i7) {
-        this.f36696a = i7;
-        this.f36697b = uxVar;
+import android.view.View;
+public final class ov implements View.OnFocusChangeListener {
+    public final ly f38089a;
+
+    public ov(ly lyVar) {
+        this.f38089a = lyVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36696a) {
-            case 0:
-            default:
-                this.f36697b.e();
-                return;
+    public final void onFocusChange(View view, boolean z10) {
+        if (z10) {
+            String[] G0 = org.telegram.messenger.g0.G0();
+            ly lyVar = this.f38089a;
+            lyVar.X0 = G0;
+            org.telegram.messenger.si.b0(lyVar.f36941d1).M(lyVar.X0, false);
         }
     }
 }

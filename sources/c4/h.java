@@ -1,49 +1,48 @@
 package c4;
 
-import a8.ia;
+import a8.ja;
 import e2.s0;
 import e2.t;
 import e2.u;
-import f3.j0;
+import f3.i0;
 import f3.p;
 import f3.q;
-import f3.z;
-import h2.m0;
+import f3.y;
+import h2.l0;
 import h2.x;
 import h9.g0;
-import h9.i0;
-import h9.t1;
+import h9.s1;
 import java.util.ArrayList;
 import java.util.List;
 public final class h implements f3.o {
-    public final m f5281a;
-    public final u f5282b;
-    public final ArrayList f5283c;
-    public j0 f5285f;
-    public int f5286g;
+    public final m f4100a;
+    public final u f4101b;
+    public final ArrayList f4102c;
+    public i0 f4104f;
+    public int f4105g;
     public int h;
-    public long[] f5287i;
-    public long f5288j;
-    public byte[] f5284e = m0.f14115b;
+    public long[] f4106i;
+    public long f4107j;
+    public byte[] f4103e = l0.f13472b;
     public final x d = new x();
 
     public h(m mVar, u uVar) {
         u uVar2;
-        this.f5281a = mVar;
+        this.f4100a = mVar;
         if (uVar != null) {
             t a10 = uVar.a();
-            a10.f10568r = s0.n("application/x-media3-cues");
-            a10.f10560j = uVar.f10620s;
-            a10.P = mVar.P();
+            a10.f10399r = s0.n("application/x-media3-cues");
+            a10.f10391j = uVar.f10451s;
+            a10.P = mVar.Q();
             uVar2 = new u(a10);
         } else {
             uVar2 = null;
         }
-        this.f5282b = uVar2;
-        this.f5283c = new ArrayList();
+        this.f4101b = uVar2;
+        this.f4102c = new ArrayList();
         this.h = 0;
-        this.f5287i = m0.f14116c;
-        this.f5288j = -9223372036854775807L;
+        this.f4106i = l0.f13473c;
+        this.f4107j = -9223372036854775807L;
     }
 
     @Override
@@ -53,35 +52,35 @@ public final class h implements f3.o {
 
     @Override
     public final void c(q qVar) {
-        boolean z9;
+        boolean z10;
         if (this.h == 0) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        ia.p(z9);
-        j0 O1 = qVar.O1(0, 3);
-        this.f5285f = O1;
-        u uVar = this.f5282b;
+        ja.p(z10);
+        i0 d2 = qVar.d2(0, 3);
+        this.f4104f = d2;
+        u uVar = this.f4101b;
         if (uVar != null) {
-            O1.g(uVar);
-            qVar.U0();
-            qVar.f(new z(-9223372036854775807L, new long[]{0}, new long[]{0}));
+            d2.g(uVar);
+            qVar.d1();
+            qVar.f(new y(-9223372036854775807L, new long[]{0}, new long[]{0}));
         }
         this.h = 1;
     }
 
     @Override
     public final void d(long j3, long j10) {
-        boolean z9;
+        boolean z10;
         int i7 = this.h;
         if (i7 != 0 && i7 != 5) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        ia.p(z9);
-        this.f5288j = j10;
+        ja.p(z10);
+        this.f4107j = j10;
         if (this.h == 2) {
             this.h = 1;
         }
@@ -92,8 +91,8 @@ public final class h implements f3.o {
 
     @Override
     public final List e() {
-        g0 g0Var = i0.f14331b;
-        return t1.f14399e;
+        g0 g0Var = h9.i0.f13686b;
+        return s1.f13749e;
     }
 
     @Override
@@ -102,14 +101,14 @@ public final class h implements f3.o {
     }
 
     public final void g(g gVar) {
-        this.f5285f.getClass();
-        byte[] bArr = gVar.f5280b;
+        this.f4104f.getClass();
+        byte[] bArr = gVar.f4099b;
         int length = bArr.length;
         x xVar = this.d;
         xVar.getClass();
         xVar.L(bArr.length, bArr);
-        this.f5285f.b(length, xVar);
-        this.f5285f.c(gVar.f5279a, 1, length, 0, null);
+        this.f4104f.b(length, xVar);
+        this.f4104f.c(gVar.f4098a, 1, length, 0, null);
     }
 
     @Override
@@ -117,7 +116,7 @@ public final class h implements f3.o {
         if (this.h == 5) {
             return;
         }
-        this.f5281a.reset();
+        this.f4100a.reset();
         this.h = 5;
     }
 

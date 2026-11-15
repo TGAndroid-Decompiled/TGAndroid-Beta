@@ -3,50 +3,36 @@ package kg;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.Components.kt;
+import org.telegram.ui.Components.rt;
 public final class k extends ImageView {
-    public final int f17420a;
+    public final int f17977a;
 
     public k(Context context, int i7) {
         super(context);
-        this.f17420a = i7;
+        this.f17977a = i7;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f17420a) {
-            case 2:
-                super.dispatchDraw(canvas);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f17420a) {
+        switch (this.f17977a) {
             case 1:
-                if (getAlpha() < 0.5f) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
+                super.dispatchDraw(canvas);
+                return;
             default:
-                return super.dispatchTouchEvent(motionEvent);
+                super.dispatchDraw(canvas);
+                return;
         }
     }
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f17420a) {
-            case 5:
+        switch (this.f17977a) {
+            case 4:
                 super.onDraw(canvas);
                 invalidate();
                 return;
@@ -58,8 +44,8 @@ public final class k extends ImageView {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f17420a) {
-            case 6:
+        switch (this.f17977a) {
+            case 5:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 accessibilityNodeInfo.setClassName(ToggleButton.class.getName());
                 accessibilityNodeInfo.setCheckable(true);
@@ -79,7 +65,7 @@ public final class k extends ImageView {
     public void onMeasure(int i7, int i10) {
         float f10;
         float f11;
-        switch (this.f17420a) {
+        switch (this.f17977a) {
             case 0:
                 super.onMeasure(i7, i10);
                 Matrix imageMatrix = getImageMatrix();
@@ -99,22 +85,21 @@ public final class k extends ImageView {
                 setImageMatrix(imageMatrix);
                 return;
             case 1:
-            case 2:
             default:
                 super.onMeasure(i7, i10);
                 return;
-            case 3:
+            case 2:
                 int size = View.MeasureSpec.getSize(i7);
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size, 1073741824));
                 return;
-            case 4:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.l.getCurrentActionBarHeight(), 1073741824));
+            case 3:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 1073741824));
                 return;
         }
     }
 
-    public k(kt ktVar, Context context) {
+    public k(rt rtVar, Context context) {
         super(context);
-        this.f17420a = 2;
+        this.f17977a = 1;
     }
 }

@@ -1,115 +1,56 @@
 package hi;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import java.util.ArrayList;
-import org.telegram.messenger.c20;
-import org.telegram.messenger.id;
-import org.telegram.messenger.qp;
-import org.telegram.messenger.t10;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.gc;
-import org.telegram.ui.Components.u4;
-import org.telegram.ui.k91;
-import org.telegram.ui.z91;
-public final class f3 implements c20 {
-    public final int f14654a = 0;
-    public final int f14655b;
-    public final long f14656c;
-    public final Object d;
-    public final Object f14657e;
-    public final Object f14658f;
-    public final Object f14659g;
+import android.view.KeyEvent;
+import android.view.View;
+public final class f3 implements r1.c {
+    public final int f14269a = 1;
+    public final Runnable f14270b;
+    public final float f14271c;
+    public final KeyEvent.Callback d;
 
-    public f3(int i7, long j3, Context context, TL_payments.connectedBotStarRef connectedbotstarref, org.telegram.ui.ActionBar.w2 w2Var, h6 h6Var) {
-        this.f14655b = i7;
-        this.d = connectedbotstarref;
-        this.f14657e = w2Var;
-        this.f14658f = context;
-        this.f14656c = j3;
-        this.f14659g = h6Var;
+    public f3(float f10, View view, Runnable runnable) {
+        this.f14270b = runnable;
+        this.d = view;
+        this.f14271c = f10;
     }
 
     @Override
-    public final void a(Object obj) {
-        int i7;
-        SpannableStringBuilder X2;
-        int i10 = this.f14654a;
-        Object obj2 = this.f14659g;
-        Object obj3 = this.f14658f;
-        Object obj4 = this.f14657e;
-        Object obj5 = this.d;
-        switch (i10) {
+    public final void a(r1.g gVar, boolean z10, float f10, float f11) {
+        int i7 = this.f14269a;
+        float f12 = this.f14271c;
+        KeyEvent.Callback callback = this.d;
+        Runnable runnable = this.f14270b;
+        switch (i7) {
             case 0:
-                TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj5;
-                org.telegram.ui.ActionBar.w2 w2Var = (org.telegram.ui.ActionBar.w2) obj4;
-                Context context = (Context) obj3;
-                h6 h6Var = (h6) obj2;
-                TL_payments.connectedBotStarRef connectedbotstarref2 = (TL_payments.connectedBotStarRef) obj;
-                int i11 = this.f14655b;
-                long j3 = this.f14656c;
-                if (connectedbotstarref2 == null) {
-                    TLRPC.User a22 = qp.s1(i11).a2(Long.valueOf(connectedbotstarref.bot_id));
-                    if (a22 != null) {
-                        qp.s1(i11).W2(a22, 0, true, new d3(w2Var, context, i11, j3, h6Var, 1));
+                h3 h3Var = (h3) callback;
+                g3 g3Var = h3Var.f14368m1;
+                if (!z10) {
+                    g3Var.setTranslationY(f12);
+                    g3Var.L = false;
+                    h3Var.f14369o1 = null;
+                    h3Var.f14370p1 = null;
+                    if (runnable != null) {
+                        runnable.run();
                         return;
                     }
                     return;
                 }
-                w2Var.dismiss();
-                q3.K0(context, i11, connectedbotstarref2, j3, h6Var);
                 return;
             default:
-                TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = (TLRPC.TL_messages_invitedUsers) obj4;
-                int[] iArr = (int[]) obj3;
-                ArrayList arrayList = (ArrayList) obj2;
-                TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers2 = (TLRPC.TL_messages_invitedUsers) obj;
-                z91 z91Var = ((k91) obj5).f47236b;
-                if (tL_messages_invitedUsers2 != null) {
-                    tL_messages_invitedUsers.missing_invitees.addAll(tL_messages_invitedUsers2.missing_invitees);
+                View view = (View) callback;
+                if (runnable != null) {
+                    runnable.run();
                 }
-                int i12 = iArr[0] + 1;
-                iArr[0] = i12;
-                if (i12 == this.f14655b) {
-                    boolean isEmpty = tL_messages_invitedUsers.missing_invitees.isEmpty();
-                    long j10 = this.f14656c;
-                    if (isEmpty) {
-                        gc a02 = gc.a0(z91Var);
-                        TLRPC.Chat M0 = z91Var.getMessagesController().M0(Long.valueOf(j10));
-                        a02.getClass();
-                        if (arrayList.size() == 0) {
-                            X2 = null;
-                        } else if (arrayList.size() == 1) {
-                            if (org.telegram.messenger.t3.V(M0)) {
-                                X2 = org.telegram.messenger.g0.X2(id.a0("HasBeenAddedToChannel", null, 2131749364, "**" + t10.j((TLRPC.User) arrayList.get(0), true) + "**"));
-                            } else {
-                                X2 = org.telegram.messenger.g0.X2(id.a0("HasBeenAddedToGroup", null, 2131749363, "**" + t10.j((TLRPC.User) arrayList.get(0), true) + "**"));
-                            }
-                        } else if (org.telegram.messenger.t3.V(M0)) {
-                            X2 = org.telegram.messenger.g0.X2(id.G(arrayList.size(), "AddedMembersToChannel", new Object[0]));
-                        } else {
-                            X2 = org.telegram.messenger.g0.X2(id.G(arrayList.size(), "AddedSubscribersToChannel", new Object[0]));
-                        }
-                        a02.V(arrayList, X2, null, null).j();
-                        return;
-                    }
-                    TLRPC.Chat M02 = z91Var.getMessagesController().M0(Long.valueOf(j10));
-                    i7 = ((org.telegram.ui.ActionBar.f2) z91Var).currentAccount;
-                    u4.f(i7, M02, tL_messages_invitedUsers);
-                    return;
-                }
+                view.setTranslationX(f12);
+                view.setTag(2131296663, null);
+                view.setTag(2131296664, null);
                 return;
         }
     }
 
-    public f3(k91 k91Var, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i7, ArrayList arrayList, long j3) {
-        this.d = k91Var;
-        this.f14657e = tL_messages_invitedUsers;
-        this.f14658f = iArr;
-        this.f14655b = i7;
-        this.f14659g = arrayList;
-        this.f14656c = j3;
+    public f3(h3 h3Var, float f10, Runnable runnable) {
+        this.d = h3Var;
+        this.f14271c = f10;
+        this.f14270b = runnable;
     }
 }

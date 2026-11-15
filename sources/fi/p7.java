@@ -1,190 +1,35 @@
 package fi;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
+import android.graphics.Canvas;
 import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.c20;
-import org.telegram.messenger.id;
-import org.telegram.ui.Components.wq;
-public abstract class p7 extends FrameLayout implements o2 {
-    public final o7 f12602a;
-    public final FrameLayout f12603b;
-    public final TextView f12604c;
-    public final FrameLayout d;
-    public final TextView f12605e;
-    public final FrameLayout f12606f;
-    public final TextView h;
-    public float f12607n;
-    public float f12608r;
-    public int f12609s;
-    public ValueAnimator f12610w;
-    public c20 f12611x;
-    public c20 f12612y;
+import java.util.ArrayList;
+public final class p7 extends FrameLayout {
+    public b4 f12179a;
+    public long f12180b;
+    public ArrayList f12181c;
+    public boolean d;
+    public final w f12182e;
 
-    public p7(Context context) {
+    public p7(w wVar, Context context) {
         super(context);
-        o7 o7Var = new o7(this, context);
-        this.f12602a = o7Var;
-        o7Var.setOrientation(0);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f12603b = frameLayout;
-        TextView textView = new TextView(context);
-        this.f12604c = textView;
-        textView.setTextSize(1, 14.0f);
-        textView.setTypeface(org.telegram.messenger.g0.o());
-        textView.setTextColor(-1);
-        textView.setText(id.M0(2131744631, null));
-        frameLayout.addView(textView, c8.ha.d(-2, -2.0f, 80, 16.0f, 0.0f, 16.0f, 7.0f));
-        o7Var.addView(frameLayout, c8.ha.s(-2, -1, 112, 0.0f, 0.0f, 6.66f, 0.0f));
-        frameLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final p7 f12488b;
-
-            {
-                this.f12488b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        this.f12488b.b(-1);
-                        return;
-                    case 1:
-                        this.f12488b.b(0);
-                        return;
-                    default:
-                        this.f12488b.b(1);
-                        return;
-                }
-            }
-        });
-        c8.ka.a(frameLayout);
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        this.d = frameLayout2;
-        TextView textView2 = new TextView(context);
-        this.f12605e = textView2;
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTypeface(org.telegram.messenger.g0.o());
-        textView2.setTextColor(-1);
-        textView2.setText(id.M0(2131744585, null));
-        frameLayout2.addView(textView2, c8.ha.d(-2, -2.0f, 80, 16.0f, 0.0f, 16.0f, 7.0f));
-        o7Var.addView(frameLayout2, c8.ha.s(-2, -1, 112, 0.0f, 0.0f, 6.66f, 0.0f));
-        frameLayout2.setOnClickListener(new View.OnClickListener(this) {
-            public final p7 f12488b;
-
-            {
-                this.f12488b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        this.f12488b.b(-1);
-                        return;
-                    case 1:
-                        this.f12488b.b(0);
-                        return;
-                    default:
-                        this.f12488b.b(1);
-                        return;
-                }
-            }
-        });
-        c8.ka.a(frameLayout2);
-        FrameLayout frameLayout3 = new FrameLayout(context);
-        this.f12606f = frameLayout3;
-        TextView textView3 = new TextView(context);
-        this.h = textView3;
-        textView3.setTextSize(1, 14.0f);
-        textView3.setTypeface(org.telegram.messenger.g0.o());
-        textView3.setTextColor(-1);
-        textView3.setText(id.M0(2131744450, null));
-        frameLayout3.addView(textView3, c8.ha.d(-2, -2.0f, 80, 16.0f, 0.0f, 16.0f, 7.0f));
-        o7Var.addView(frameLayout3, c8.ha.t(-2, -1, 112, 0, 0, 0, 0));
-        frameLayout3.setOnClickListener(new View.OnClickListener(this) {
-            public final p7 f12488b;
-
-            {
-                this.f12488b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        this.f12488b.b(-1);
-                        return;
-                    case 1:
-                        this.f12488b.b(0);
-                        return;
-                    default:
-                        this.f12488b.b(1);
-                        return;
-                }
-            }
-        });
-        c8.ka.a(frameLayout3);
-        addView(o7Var, c8.ha.e(-2, -1, 113));
+        this.f12182e = wVar;
     }
 
-    public final void a(int i7) {
-        if (this.f12609s == i7) {
+    public final void a(boolean z10) {
+        if (this.d != z10) {
+            this.d = z10;
+            invalidate();
+            this.f12179a.setIsVisible(z10);
+            this.f12182e.A();
+        }
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        if (!this.d) {
             return;
         }
-        this.f12609s = i7;
-        ValueAnimator valueAnimator = this.f12610w;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f12608r, i7);
-        this.f12610w = ofFloat;
-        ofFloat.addUpdateListener(new v3(this, 4));
-        this.f12610w.setDuration(320L);
-        this.f12610w.setInterpolator(wq.h);
-        this.f12610w.start();
-    }
-
-    public final void b(int i7) {
-        if (this.f12609s != i7) {
-            a(i7);
-            c20 c20Var = this.f12611x;
-            if (c20Var != null) {
-                c20Var.a(Integer.valueOf(i7));
-            }
-        }
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (((o9) this).D.H()) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.f12602a.invalidate();
-    }
-
-    @Override
-    public void setInvert(float f10) {
-        this.f12607n = f10;
-        this.f12604c.setTextColor(i0.a.f(f10, -1, -16777216));
-        this.f12605e.setTextColor(i0.a.f(f10, -1, -16777216));
-        this.h.setTextColor(i0.a.f(f10, -1, -16777216));
-    }
-
-    public void setOnSwitchModeListener(c20 c20Var) {
-        this.f12611x = c20Var;
-    }
-
-    public void setOnSwitchingModeListener(c20 c20Var) {
-        this.f12612y = c20Var;
+        super.dispatchDraw(canvas);
     }
 }

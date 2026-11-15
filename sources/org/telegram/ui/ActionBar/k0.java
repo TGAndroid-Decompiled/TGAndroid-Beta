@@ -1,27 +1,27 @@
 package org.telegram.ui.ActionBar;
 
 import android.view.ViewTreeObserver;
-import org.telegram.ui.Components.wq;
+import org.telegram.ui.Components.er;
 public final class k0 implements ViewTreeObserver.OnPreDrawListener {
-    public final float f27632a;
-    public final r0 f27633b;
+    public final float f29333a;
+    public final q0 f29334b;
 
-    public k0(r0 r0Var, float f10) {
-        this.f27633b = r0Var;
-        this.f27632a = f10;
+    public k0(q0 q0Var, float f10) {
+        this.f29334b = q0Var;
+        this.f29333a = f10;
     }
 
     @Override
     public final boolean onPreDraw() {
-        r0 r0Var = this.f27633b;
-        r0Var.f28435e.getViewTreeObserver().removeOnPreDrawListener(this);
-        float x10 = r0Var.f28435e.getX();
-        float f10 = this.f27632a;
+        q0 q0Var = this.f29334b;
+        q0Var.f29502e.getViewTreeObserver().removeOnPreDrawListener(this);
+        float x10 = q0Var.f29502e.getX();
+        float f10 = this.f29333a;
         if (x10 != f10) {
-            ah.i iVar = r0Var.f28435e;
+            ah.i iVar = q0Var.f29502e;
             iVar.setTranslationX(f10 - iVar.getX());
         }
-        r0Var.f28435e.animate().translationX(0.0f).setDuration(250L).setStartDelay(0L).setInterpolator(wq.f40046f).start();
+        q0Var.f29502e.animate().translationX(0.0f).setDuration(250L).setStartDelay(0L).setInterpolator(er.f34420f).start();
         return true;
     }
 }

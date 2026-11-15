@@ -1,203 +1,541 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.RadialGradient;
 import android.graphics.RectF;
 import android.graphics.Shader;
-public final class hf0 implements ri.a, dh.b, pi.a {
-    public final ri.a f34327a;
-    public final Paint f34328b = new Paint(1);
-    public final Paint f34329c = new Paint();
-    public RadialGradient d;
-    public int f34330e;
-    public float f34331f;
-    public final if0 h;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeProvider;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import org.telegram.ui.ProfileActivity;
+public final class hf0 extends View {
+    public final HashSet E;
+    public int F;
+    public boolean G;
+    public boolean H;
+    public ef0 I;
+    public ef0 J;
+    public ef0 K;
+    public final float L;
+    public final float M;
+    public final float N;
+    public int O;
+    public boolean P;
+    public RadialGradient Q;
+    public final Matrix R;
+    public int S;
+    public PorterDuffColorFilter T;
+    public ef0 U;
+    public float V;
+    public float W;
+    public final ArrayList f35234a;
+    public long f35235a0;
+    public final Paint f35236b;
+    public df0 f35237b0;
+    public final Paint f35238c;
+    public float d;
+    public boolean f35239e;
+    public float f35240f;
+    public dh.c h;
+    public final ArrayList f35241n;
+    public int f35242r;
+    public int f35243s;
+    public final int f35244w;
+    public float f35245x;
+    public gf0 f35246y;
 
-    public hf0(if0 if0Var, gf0 gf0Var) {
-        this.h = if0Var;
-        this.f34327a = gf0Var;
+    public hf0(Context context, int i7) {
+        super(context);
+        this.f35234a = new ArrayList();
+        Paint paint = new Paint();
+        this.f35236b = paint;
+        this.f35238c = new Paint();
+        this.f35239e = true;
+        this.f35240f = -1.0f;
+        this.f35241n = new ArrayList();
+        this.f35243s = 0;
+        this.f35245x = 0.0f;
+        this.f35246y = null;
+        this.E = new HashSet();
+        this.F = 6;
+        this.I = null;
+        this.O = 0;
+        this.R = new Matrix();
+        this.U = null;
+        paint.setColor(-16777216);
+        paint.setAlpha(40);
+        this.L = org.telegram.messenger.g0.N(14.0f);
+        float N = org.telegram.messenger.g0.N(12.0f);
+        this.M = N;
+        float N2 = org.telegram.messenger.g0.N(8.0f);
+        this.N = N2;
+        this.f35244w = (int) ((i7 - N) - N2);
+        setBackgroundColor(0);
+        setImportantForAccessibility(1);
     }
 
-    @Override
-    public final int a() {
-        return j().a();
+    private float getItemWidth() {
+        int measuredWidth = getMeasuredWidth();
+        float f10 = this.L;
+        int i7 = this.f35243s;
+        return ((measuredWidth - ((f10 / 2.0f) * (i7 - 1))) - (f10 * 2.0f)) / i7;
     }
 
-    @Override
-    public final fh.g b() {
-        return new fh.g(this, this, this);
-    }
-
-    @Override
-    public final void d(float f10, float f11, int i7, Canvas canvas, RectF rectF) {
-        float f12;
-        float f13;
-        int i10;
-        Canvas canvas2;
-        RectF rectF2;
-        if0 if0Var = this.h;
-        ri.a aVar = this.f34327a;
-        if (aVar != null) {
-            f12 = if0Var.f34614l;
-        } else {
-            f12 = 0.0f;
-        }
-        int i11 = (f12 > 1.0f ? 1 : (f12 == 1.0f ? 0 : -1));
-        pi.a aVar2 = null;
-        if (i11 < 0) {
-            oi.c cVar = if0Var.f34606b;
-            if (cVar == null) {
-                cVar = null;
+    public static ef0 i(int i7, List list) {
+        int size = list.size();
+        for (int i10 = 0; i10 < size; i10++) {
+            ef0 ef0Var = (ef0) list.get(i10);
+            if (!ef0Var.f34298o && ef0Var.f34286a == i7) {
+                return ef0Var;
             }
-            cVar.d(f10, f11, i7, canvas, rectF);
-            i10 = i7;
-            canvas2 = canvas;
-            rectF2 = rectF;
-            float f14 = 1.0f - if0Var.f34613k;
-            if (f14 > 0.0f) {
-                canvas2.save();
-                float f15 = 1.0f / i10;
-                canvas2.scale(f15, f15);
-                f13 = f10;
-                canvas2.translate(-f13, -f11);
-                i(canvas2, rectF2.left, rectF2.top, rectF2.right, rectF2.bottom, f14, i10 * 2);
-                canvas2.restore();
+        }
+        return null;
+    }
+
+    public final void a() {
+        ef0 ef0Var = new ef0(this, ff0.SET_PHOTO);
+        ef0Var.f34286a = 14;
+        this.f35234a.add(ef0Var);
+    }
+
+    public final void b() {
+        ef0 ef0Var = new ef0(this, ff0.EDIT_INFO);
+        ef0Var.f34286a = 16;
+        this.f35234a.add(ef0Var);
+    }
+
+    public final void c() {
+        ef0 ef0Var = new ef0(this, ff0.SETTINGS);
+        ef0Var.f34286a = 17;
+        this.f35234a.add(ef0Var);
+    }
+
+    public final void d() {
+        boolean z10;
+        if (this.G) {
+            return;
+        }
+        if (this.F == 6) {
+            this.f35243s = this.f35234a.size();
+            invalidate();
+            return;
+        }
+        ArrayList arrayList = new ArrayList();
+        HashSet hashSet = this.E;
+        if (hashSet.contains(7) && !hashSet.contains(9)) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        int i7 = this.F;
+        if (i7 != 0) {
+            if (i7 != 1) {
+                if (i7 != 2) {
+                    if (i7 != 3 && i7 != 4) {
+                        if (i7 == 5) {
+                            m(0, arrayList);
+                            m(1, arrayList);
+                        }
+                    } else {
+                        if (z10) {
+                            m(7, arrayList);
+                        } else {
+                            m(0, arrayList);
+                        }
+                        m(1, arrayList);
+                        if (z10) {
+                            arrayList.add(j(8));
+                        } else {
+                            m(10, arrayList);
+                            n(11, 10, arrayList);
+                            m(12, arrayList);
+                            m(9, arrayList);
+                        }
+                    }
+                } else {
+                    m(0, arrayList);
+                    m(1, arrayList);
+                    m(4, arrayList);
+                    arrayList.add(j(13));
+                }
             } else {
-                f13 = f10;
-            }
-        } else {
-            f13 = f10;
-            i10 = i7;
-            canvas2 = canvas;
-            rectF2 = rectF;
-        }
-        if (f12 > 0.0f) {
-            if (i11 < 0) {
-                canvas2.saveLayerAlpha(null, (int) (f12 * 255.0f));
-            }
-            if (aVar instanceof pi.a) {
-                aVar2 = (pi.a) aVar;
-            }
-            aVar2.d(f13, f11, i10, canvas2, rectF2);
-            if (i11 < 0) {
-                canvas.restore();
-            }
-        }
-    }
-
-    @Override
-    public final void e(Canvas canvas, float f10, float f11, float f12, float f13) {
-        float f14;
-        ri.a aVar = this.f34327a;
-        if0 if0Var = this.h;
-        if (aVar != null) {
-            f14 = if0Var.f34614l;
-        } else {
-            f14 = 0.0f;
-        }
-        int i7 = (f14 > 1.0f ? 1 : (f14 == 1.0f ? 0 : -1));
-        if (i7 < 0) {
-            if (if0Var.f34606b != null && canvas.isHardwareAccelerated()) {
-                if0Var.f34606b.e(canvas, f10, f11, f12, f13);
-            } else {
-                float f15 = if0Var.f34613k;
-                if (f15 > 0.0f) {
-                    int r12 = org.telegram.ui.ActionBar.m6.r1(f15 * 0.5f, -16777216);
-                    Paint paint = this.f34329c;
-                    paint.setColor(r12);
-                    canvas.drawRect(f10, f11, f12, f13, paint);
+                if (z10) {
+                    m(7, arrayList);
+                } else {
+                    m(10, arrayList);
+                    n(11, 10, arrayList);
+                }
+                m(1, arrayList);
+                if (!z10) {
+                    m(2, arrayList);
+                    if (hashSet.contains(3) && !hashSet.contains(2) && !hashSet.contains(12)) {
+                        arrayList.add(j(3));
+                    }
+                }
+                n(4, 12, arrayList);
+                if (z10) {
+                    arrayList.add(j(8));
+                } else {
+                    m(12, arrayList);
+                    n(9, 12, arrayList);
                 }
             }
-            float f16 = 1.0f - if0Var.f34613k;
-            if (f16 > 0.0f) {
-                i(canvas, f10, f11, f12, f13, f16, 0.0f);
-            }
+        } else {
+            m(0, arrayList);
+            m(1, arrayList);
+            m(5, arrayList);
+            m(6, arrayList);
+            n(3, 6, arrayList);
         }
-        if (f14 > 0.0f) {
-            if (i7 < 0) {
-                canvas.saveLayerAlpha(f10, f11, f12, f13, (int) (f14 * 255.0f));
-            }
-            this.f34327a.e(canvas, f10, f11, f12, f13);
-            if (i7 < 0) {
-                canvas.restore();
-            }
-        }
+        org.telegram.messenger.g0.h3(new vs(27, this, arrayList));
     }
 
-    @Override
-    public final int f() {
-        return j().f();
+    public final void e() {
+        this.G = true;
     }
 
-    @Override
-    public final int g() {
-        return j().g();
-    }
-
-    @Override
-    public final boolean h() {
-        oi.c cVar = this.h.f34606b;
-        pi.a aVar = null;
-        if (cVar == null) {
-            cVar = null;
-        }
-        ri.a aVar2 = this.f34327a;
-        if (aVar2 instanceof pi.a) {
-            aVar = (pi.a) aVar2;
-        }
-        if (cVar != null && cVar.f() > 1) {
-            if (aVar2 == null || (aVar != null && aVar.h())) {
-                return true;
-            }
-            return false;
+    public final boolean f() {
+        int i7 = this.F;
+        if (i7 == 1 || i7 == 3) {
+            return true;
         }
         return false;
     }
 
-    public final void i(Canvas canvas, float f10, float f11, float f12, float f13, float f14, float f15) {
-        if0 if0Var = this.h;
-        boolean z9 = if0Var.f34612j;
-        Paint paint = this.f34328b;
-        if (z9) {
-            float f16 = f12 - f10;
-            float max = Math.max(1.0f, 0.65f * f16);
-            if (this.d == null || this.f34330e != if0Var.f34611i || this.f34331f != max) {
-                this.f34330e = if0Var.f34611i;
-                this.f34331f = max;
-                this.d = new RadialGradient(0.0f, 0.0f, max, org.telegram.ui.ActionBar.m6.r1(0.8f, if0Var.f34611i), if0Var.f34611i, Shader.TileMode.CLAMP);
+    public final void g() {
+        float f10;
+        int i7 = this.O;
+        if (i7 != 0) {
+            if (!this.P) {
+                this.f35236b.setColor(i7);
+                return;
             }
-            canvas.save();
-            canvas.translate((f10 + f12) / 2.0f, (f11 + f13) / 2.0f);
-            paint.setShader(this.d);
-            paint.setColor(-16777216);
-            paint.setAlpha((int) (f14 * 255.0f));
-            canvas.drawRect(((f10 - f12) / 2.0f) - f15, ((f11 - f13) / 2.0f) - f15, (f16 / 2.0f) + f15, com.google.android.recaptcha.internal.a.A(f13, f11, 2.0f, f15), paint);
-            canvas.restore();
-            return;
+            int measuredWidth = getMeasuredWidth();
+            if (measuredWidth <= 0) {
+                return;
+            }
+            float f11 = this.L;
+            float max = ((measuredWidth - ((f11 / 2.0f) * Math.max(0, this.f35243s - 1))) - (f11 * 2.0f)) / Math.max(1, this.f35243s);
+            float f12 = max / 2.0f;
+            float f13 = this.f35244w / 2.0f;
+            if (this.P) {
+                f10 = max * 0.65f;
+            } else {
+                f10 = 1.0f;
+            }
+            RadialGradient radialGradient = new RadialGradient(f12, f13, f10, org.telegram.ui.ActionBar.j6.r1(0.8f, this.O), this.O, Shader.TileMode.CLAMP);
+            this.Q = radialGradient;
+            this.f35238c.setShader(radialGradient);
         }
-        paint.setShader(null);
-        paint.setColor(org.telegram.ui.ActionBar.m6.r1(f14, if0Var.f34611i));
-        canvas.drawRect(f10 - f15, f11 - f15, f12 + f15, f13 + f15, paint);
-    }
-
-    public final pi.a j() {
-        oi.c cVar = this.h.f34606b;
-        pi.a aVar = null;
-        if (cVar == null) {
-            cVar = null;
-        }
-        ri.a aVar2 = this.f34327a;
-        if (aVar2 instanceof pi.a) {
-            aVar = (pi.a) aVar2;
-        }
-        if (aVar != null && cVar.f() >= aVar.f()) {
-            return aVar;
-        }
-        return cVar;
     }
 
     @Override
-    public final void c(fh.g gVar) {
+    public AccessibilityNodeProvider getAccessibilityNodeProvider() {
+        if (this.f35237b0 == null) {
+            this.f35237b0 = new df0(this);
+        }
+        return this.f35237b0;
+    }
+
+    public float getRoundRadius() {
+        return org.telegram.messenger.g0.L(16.0f);
+    }
+
+    public final void h(Canvas canvas, Drawable drawable, float f10) {
+        if (drawable == null) {
+            return;
+        }
+        drawable.setColorFilter(this.T);
+        drawable.setAlpha((int) (f10 * 255.0f));
+        drawable.draw(canvas);
+    }
+
+    public final ef0 j(int i7) {
+        ef0 i10 = i(i7, this.f35234a);
+        if (i10 != null) {
+            if (i7 == 1) {
+                p(i10, false);
+            }
+            return i10;
+        }
+        switch (i7) {
+            case 0:
+                i10 = new ef0(this, ff0.MESSAGE);
+                break;
+            case 1:
+                i10 = new ef0(this);
+                p(i10, false);
+                break;
+            case 2:
+                i10 = new ef0(this, ff0.DISCUSS);
+                break;
+            case 3:
+                i10 = new ef0(this, ff0.GIFT);
+                i10.f34303t = true;
+                i10.f34306x = 200;
+                break;
+            case 4:
+                i10 = new ef0(this, ff0.SHARE);
+                break;
+            case 5:
+                i10 = new ef0(this, ff0.CALL);
+                this.I = i10;
+                i10.f34303t = true;
+                i10.f34306x = 500;
+                break;
+            case 6:
+                i10 = new ef0(this, ff0.VIDEO);
+                i10.f34303t = true;
+                i10.f34306x = 500;
+                break;
+            case 7:
+                i10 = new ef0(this, ff0.JOIN);
+                i10.f34303t = true;
+                i10.v = 300;
+                break;
+            case 8:
+                i10 = new ef0(this, ff0.REPORT);
+                i10.f34303t = true;
+                i10.f34306x = 500;
+                break;
+            case 9:
+                i10 = new ef0(this, ff0.LEAVE);
+                i10.f34303t = true;
+                i10.f34304u = 2131624164;
+                i10.f34306x = 300;
+                break;
+            case 10:
+                i10 = new ef0(this, ff0.VOICE_CHAT);
+                i10.f34303t = true;
+                i10.f34304u = 2131624167;
+                i10.f34306x = 500;
+                break;
+            case 11:
+                i10 = new ef0(this, ff0.STREAM);
+                i10.f34303t = true;
+                i10.f34304u = 2131624167;
+                i10.f34306x = 500;
+                break;
+            case 12:
+                i10 = new ef0(this, ff0.STORY);
+                break;
+            case 13:
+                i10 = new ef0(this, ff0.STOP);
+                i10.f34303t = true;
+                i10.f34306x = 300;
+                break;
+        }
+        if (i10 != null) {
+            i10.f34286a = i7;
+        }
+        return i10;
+    }
+
+    public final boolean k() {
+        if (this.E.contains(5) && this.I != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void l() {
+        int i7 = this.f35242r;
+        while (true) {
+            ArrayList arrayList = this.f35241n;
+            if (i7 < arrayList.size()) {
+                fh.g gVar = (fh.g) arrayList.get(i7);
+                if (!gVar.getBounds().isEmpty()) {
+                    gVar.setBounds(0, 0, 0, 0);
+                }
+                i7++;
+            } else {
+                return;
+            }
+        }
+    }
+
+    public final void m(int i7, ArrayList arrayList) {
+        if (this.E.contains(Integer.valueOf(i7))) {
+            arrayList.add(j(i7));
+        }
+    }
+
+    public final void n(int i7, int i10, ArrayList arrayList) {
+        Integer valueOf = Integer.valueOf(i7);
+        HashSet hashSet = this.E;
+        if (hashSet.contains(valueOf) && !hashSet.contains(Integer.valueOf(i10))) {
+            arrayList.add(j(i7));
+        }
+    }
+
+    public final void o(int i7, boolean z10) {
+        boolean remove;
+        HashSet hashSet = this.E;
+        if (z10) {
+            remove = hashSet.add(Integer.valueOf(i7));
+        } else {
+            remove = hashSet.remove(Integer.valueOf(i7));
+        }
+        if (remove) {
+            d();
+        }
+    }
+
+    @Override
+    public final void onDraw(android.graphics.Canvas r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.hf0.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i7), View.MeasureSpec.makeMeasureSpec((int) (this.f35244w + this.N + this.M), 1073741824));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        ef0 ef0Var;
+        if (this.f35245x >= org.telegram.messenger.g0.L(8.0f)) {
+            float x10 = motionEvent.getX();
+            float y10 = motionEvent.getY();
+            int action = motionEvent.getAction();
+            if (action == 0) {
+                this.U = null;
+                ArrayList arrayList = this.f35234a;
+                int size = arrayList.size();
+                int i7 = 0;
+                while (true) {
+                    if (i7 >= size) {
+                        break;
+                    }
+                    ef0 ef0Var2 = (ef0) arrayList.get(i7);
+                    if (!ef0Var2.f34298o && ef0Var2.d.contains(x10, y10)) {
+                        this.U = ef0Var2;
+                        this.V = x10;
+                        this.W = y10;
+                        this.f35235a0 = System.currentTimeMillis();
+                        this.U.f34287b.c(true);
+                        break;
+                    }
+                    i7++;
+                }
+            } else if (action == 2) {
+                if (this.U != null && (Math.abs(x10 - this.V) > 20.0f || Math.abs(y10 - this.W) > 20.0f)) {
+                    this.U.f34287b.c(false);
+                    this.U = null;
+                }
+            } else if ((action == 1 || action == 3) && (ef0Var = this.U) != null) {
+                ef0Var.f34287b.c(false);
+                if (action == 1 && this.U.d.contains(x10, y10)) {
+                    if (System.currentTimeMillis() - this.f35235a0 > 250) {
+                        try {
+                            performHapticFeedback(0, 1);
+                        } catch (Exception unused) {
+                        }
+                    }
+                    ef0 ef0Var3 = this.U;
+                    if (ef0Var3.f34303t && !ef0Var3.f34302s) {
+                        ef0Var3.f34302s = true;
+                        invalidate();
+                    }
+                    ef0 ef0Var4 = this.U;
+                    int i10 = ef0Var4.f34304u;
+                    if (i10 != 0) {
+                        ef0Var4.d(i10, 0, 0);
+                    }
+                    this.U.f34305w = System.currentTimeMillis();
+                    ef0 ef0Var5 = this.U;
+                    gf0 gf0Var = this.f35246y;
+                    if (gf0Var != null) {
+                        int i11 = ef0Var5.v;
+                        if (i11 == 0) {
+                            int i12 = ef0Var5.f34286a;
+                            RectF rectF = ef0Var5.d;
+                            ProfileActivity.l0(((org.telegram.ui.qt0) gf0Var).f50792b, i12, rectF.left, rectF.top);
+                        } else {
+                            postDelayed(new vs(28, this, ef0Var5), i11);
+                        }
+                    }
+                }
+                this.U = null;
+                return true;
+            }
+            if (this.U != null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final void p(ef0 ef0Var, boolean z10) {
+        ff0 ff0Var;
+        if (z10) {
+            if (this.H) {
+                ef0Var.c(org.telegram.messenger.hd.M0(2131746687, null));
+                ef0Var.d(2131624166, 2131231155, 2131232496);
+                return;
+            }
+            ef0Var.c(org.telegram.messenger.hd.M0(2131746686, null));
+            ef0Var.d(2131624165, 2131231161, 2131232501);
+            return;
+        }
+        if (this.H) {
+            ff0Var = ff0.NOTIFICATION_MUTE;
+        } else {
+            ff0Var = ff0.NOTIFICATION_UNMUTE;
+        }
+        ef0Var.d(0, ff0Var.f34596b, ff0Var.f34597c);
+        ef0Var.c(org.telegram.messenger.hd.M0(ff0Var.f34595a, null));
+    }
+
+    public void setGlassFactory(dh.c cVar) {
+        this.h = cVar;
+        this.f35241n.clear();
+        this.f35242r = 0;
+        invalidate();
+    }
+
+    public void setNotifications(boolean z10) {
+        boolean z11;
+        if (this.H != z10) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        this.H = z10;
+        ef0 i7 = i(1, this.f35234a);
+        if (i7 != null) {
+            p(i7, z11);
+            invalidate();
+            return;
+        }
+        this.E.add(1);
+        d();
+    }
+
+    public void setOnActionClickListener(gf0 gf0Var) {
+        this.f35246y = gf0Var;
+    }
+
+    public void setParentExpanded(float f10) {
+        if (this.d != f10) {
+            this.d = f10;
+            invalidate();
+        }
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (!super.verifyDrawable(drawable) && !(drawable instanceof d80)) {
+            return false;
+        }
+        return true;
     }
 }

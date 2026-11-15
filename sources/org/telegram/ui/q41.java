@@ -1,35 +1,25 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stats;
-public final class q41 {
-    public boolean f48948a;
-    public String f48949b;
-    public long f48950c;
-    public mg.b d;
-    public mg.b f48951e;
-    public String f48952f;
-    public String f48953g;
-    public boolean h;
-    public final int f48954i;
-    public final String f48955j;
-    public boolean f48956k;
-    public boolean f48957l;
-    public boolean f48958m;
-    public boolean f48959n;
-    public boolean f48960o;
+import org.telegram.tgnet.TLRPC;
+public final class q41 extends mp {
+    public final boolean[] f50470d1;
+    public final z41 f50471e1;
+    public final s41 f50472f1;
 
-    public q41(String str, int i7) {
-        this.f48955j = str;
-        this.f48954i = i7;
+    public q41(s41 s41Var, long j3, long j10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z10, boolean[] zArr, z41 z41Var) {
+        super(j3, j10, tL_chatAdminRights, null, tL_chatBannedRights, str, 0, true, z10, null);
+        this.f50472f1 = s41Var;
+        this.f50470d1 = zArr;
+        this.f50471e1 = z41Var;
     }
 
-    public final void a(int i7, int i10, int i11, org.telegram.messenger.u10 u10Var) {
-        if (!this.f48956k) {
-            this.f48956k = true;
-            TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
-            tL_loadAsyncGraph.token = this.f48952f;
-            ConnectionsManager.getInstance(i7).bindRequestToGuid(ConnectionsManager.getInstance(i7).sendRequest(tL_loadAsyncGraph, new p41(0, this, u10Var), null, null, 0, i11, 1, true), i10);
+    @Override
+    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
+        if (!z10 && z11 && this.f50470d1[0]) {
+            z41 z41Var = this.f50471e1;
+            if (org.telegram.ui.Components.cc.a(z41Var)) {
+                org.telegram.ui.Components.cc.C(this.f50472f1.f51098a.first_name, z41Var).j();
+            }
         }
     }
 }

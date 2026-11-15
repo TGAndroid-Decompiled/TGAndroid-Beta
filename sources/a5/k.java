@@ -48,14 +48,14 @@ public final class k extends l {
     @Override
     public final boolean b(int[] iArr) {
         int i7 = 0;
-        boolean z9 = false;
+        boolean z10 = false;
         while (true) {
             ArrayList arrayList = this.f231b;
             if (i7 < arrayList.size()) {
-                z9 |= ((l) arrayList.get(i7)).b(iArr);
+                z10 |= ((l) arrayList.get(i7)).b(iArr);
                 i7++;
             } else {
-                return z9;
+                return z10;
             }
         }
     }

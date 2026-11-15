@@ -10,7 +10,7 @@ import android.widget.HeaderViewListAdapter;
 import android.widget.ListAdapter;
 import android.widget.PopupWindow;
 public abstract class s implements b0, x, AdapterView.OnItemClickListener {
-    public Rect f17729a;
+    public Rect f18868a;
 
     public static int m(ListAdapter listAdapter, Context context, int i7) {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
@@ -56,7 +56,7 @@ public abstract class s implements b0, x, AdapterView.OnItemClickListener {
 
     public abstract void n(View view);
 
-    public abstract void o(boolean z9);
+    public abstract void o(boolean z10);
 
     @Override
     public final void onItemClick(AdapterView adapterView, View view, int i7, long j3) {
@@ -68,7 +68,7 @@ public abstract class s implements b0, x, AdapterView.OnItemClickListener {
         } else {
             hVar = (h) listAdapter;
         }
-        k kVar = hVar.f17668a;
+        k kVar = hVar.f18807a;
         MenuItem menuItem = (MenuItem) listAdapter.getItem(i7);
         if (!(this instanceof e)) {
             i10 = 0;
@@ -84,7 +84,7 @@ public abstract class s implements b0, x, AdapterView.OnItemClickListener {
 
     public abstract void r(PopupWindow.OnDismissListener onDismissListener);
 
-    public abstract void s(boolean z9);
+    public abstract void s(boolean z10);
 
     public abstract void t(int i7);
 

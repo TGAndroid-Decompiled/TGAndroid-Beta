@@ -1,147 +1,144 @@
 package org.telegram.ui;
 
-import android.text.Editable;
+import android.os.Bundle;
 import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.view.View;
 import android.widget.TextView;
 import org.telegram.messenger.Utilities;
-public final class wb0 implements TextWatcher {
-    public final int f50973a;
-    public boolean f50974b;
-    public final View f50975c;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class wb0 extends org.telegram.ui.Components.xt0 {
+    public final ce0 E;
+    public final EditTextBoldCursor f52527a;
+    public final TextView f52528b;
+    public final TextView f52529c;
+    public final TextView d;
+    public final org.telegram.ui.Components.fh0 f52530e;
+    public Bundle f52531f;
+    public boolean h;
+    public TL_account.Password f52532n;
+    public String f52533r;
+    public String f52534s;
+    public String f52535w;
+    public String f52536x;
+    public final org.telegram.ui.Components.mb0 f52537y;
 
-    public wb0(int i7, View view) {
-        this.f50973a = i7;
-        this.f50975c = view;
+    public wb0(org.telegram.ui.ce0 r23, android.content.Context r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.wb0.<init>(org.telegram.ui.ce0, android.content.Context):void");
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i7;
-        int j3;
-        int i10 = this.f50973a;
-        View view = this.f50975c;
-        switch (i10) {
-            case 0:
-                xb0 xb0Var = (xb0) view;
-                if (this.f50974b) {
-                    if (xb0Var.f51674f.getVisibility() != 0 && !TextUtils.isEmpty(editable)) {
-                        if (xb0Var.D) {
-                            xb0Var.f51674f.callOnClick();
-                        }
-                        org.telegram.messenger.g0.Z3(xb0Var.f51674f, true, 0.1f, true, true);
-                        return;
-                    } else if (xb0Var.f51674f.getVisibility() != 8 && TextUtils.isEmpty(editable)) {
-                        org.telegram.messenger.g0.Z3(xb0Var.f51674f, false, 0.1f, true, true);
-                        return;
-                    } else {
-                        return;
-                    }
-                }
-                return;
-            case 1:
-                boolean isEmpty = TextUtils.isEmpty(editable);
-                if (isEmpty != this.f50974b) {
-                    TextView textView = (TextView) view;
-                    this.f50974b = isEmpty;
-                    if (isEmpty) {
-                        i7 = 2131746321;
-                    } else {
-                        i7 = 2131754486;
-                    }
-                    textView.setText(org.telegram.messenger.id.M0(i7, null));
+    public final boolean b() {
+        return true;
+    }
+
+    @Override
+    public final boolean c(boolean z10) {
+        this.h = false;
+        this.E.C1(true, true);
+        this.f52531f = null;
+        return true;
+    }
+
+    @Override
+    public final void d() {
+        this.h = false;
+    }
+
+    @Override
+    public String getHeaderName() {
+        return org.telegram.messenger.hd.M0(2131748726, "LoginPassword");
+    }
+
+    @Override
+    public final void h(String str) {
+        if (!this.h && this.f52532n != null) {
+            String obj = this.f52527a.getText().toString();
+            if (obj.length() == 0) {
+                ce0 ce0Var = this.E;
+                if (ce0Var.getParentActivity() == null) {
                     return;
                 }
+                ce0.c1(ce0Var, this.f52537y, true);
                 return;
-            case 2:
-                tg.k2 k2Var = (tg.k2) view;
-                tg.j2 j2Var = k2Var.f55819q0;
-                if (this.f50974b && k2Var.f55825w0 > 0 && k2Var.f55826x0 > 0 && !k2Var.f55828z0 && j2Var.getLayout() != null) {
-                    float f10 = org.telegram.messenger.g0.f22567q.y / 3.0f;
-                    float height = j2Var.getLayout().getHeight();
-                    if (height > f10 && (j3 = Utilities.j((int) ((f10 / height) * k2Var.getBaseFontSize()), k2Var.f55826x0, k2Var.f55825w0)) != k2Var.getBaseFontSize()) {
-                        k2Var.setBaseFontSize(j3);
-                        Runnable runnable = k2Var.f55827y0;
-                        if (runnable != null) {
-                            runnable.run();
-                        }
-                    }
-                }
-                k2Var.s();
-                return;
-            default:
-                zh.n1 n1Var = (zh.n1) view;
-                if (!this.f50974b && editable.length() > 12) {
-                    this.f50974b = true;
-                    editable.delete(12, editable.length());
-                    org.telegram.messenger.g0.F3(n1Var);
-                    try {
-                        n1Var.performHapticFeedback(3, 2);
-                    } catch (Exception unused) {
-                    }
-                    this.f50974b = false;
-                    return;
-                }
-                return;
+            }
+            this.h = true;
+            this.E.F1(0, true);
+            Utilities.f22416e.c(new g50(22, this, obj));
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        boolean z9;
-        switch (this.f50973a) {
-            case 0:
-            case 1:
-                return;
-            case 2:
-                if (i11 > 3) {
-                    z9 = true;
-                } else {
-                    z9 = false;
-                }
-                this.f50974b = z9;
-                return;
-            default:
-                return;
+    public final void j() {
+        org.telegram.messenger.g0.i3(new iz(this, 22), ce0.A0);
+    }
+
+    @Override
+    public final void k(Bundle bundle) {
+        Bundle bundle2 = bundle.getBundle("passview_params");
+        this.f52531f = bundle2;
+        if (bundle2 != null) {
+            m(bundle2, true);
+        }
+        String string = bundle.getString("passview_code");
+        if (string != null) {
+            this.f52527a.setText(string);
         }
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f50973a;
+    public final void l(Bundle bundle) {
+        String obj = this.f52527a.getText().toString();
+        if (obj.length() != 0) {
+            bundle.putString("passview_code", obj);
+        }
+        Bundle bundle2 = this.f52531f;
+        if (bundle2 != null) {
+            bundle.putBundle("passview_params", bundle2);
+        }
     }
 
-    public wb0(kg.x0 x0Var, TextView textView) {
-        this.f50973a = 1;
-        this.f50975c = textView;
-        this.f50974b = TextUtils.isEmpty(x0Var.getText());
+    @Override
+    public final void m(Bundle bundle, boolean z10) {
+        if (bundle == null) {
+            return;
+        }
+        boolean isEmpty = bundle.isEmpty();
+        EditTextBoldCursor editTextBoldCursor = this.f52527a;
+        if (isEmpty) {
+            org.telegram.messenger.g0.v1(editTextBoldCursor);
+            return;
+        }
+        editTextBoldCursor.setText("");
+        this.f52531f = bundle;
+        String string = bundle.getString("password");
+        this.f52533r = string;
+        if (string != null) {
+            SerializedData serializedData = new SerializedData(Utilities.v(string));
+            this.f52532n = TL_account.Password.TLdeserialize(serializedData, serializedData.readInt32(false), false);
+        }
+        this.f52534s = bundle.getString("phoneFormated");
+        this.f52535w = bundle.getString("phoneHash");
+        this.f52536x = bundle.getString("code");
+        TL_account.Password password = this.f52532n;
+        if (password != null && !TextUtils.isEmpty(password.hint)) {
+            editTextBoldCursor.setHint(this.f52532n.hint);
+        } else {
+            editTextBoldCursor.setHint((CharSequence) null);
+        }
     }
 
-    public wb0(xb0 xb0Var, boolean z9) {
-        this.f50973a = 0;
-        this.f50975c = xb0Var;
-        this.f50974b = z9;
-    }
-
-    private final void a(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void b(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void e(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void f(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void g(int i7, int i10, int i11, CharSequence charSequence) {
+    @Override
+    public final void updateColors() {
+        int i7 = org.telegram.ui.ActionBar.j6.G6;
+        this.d.setTextColor(org.telegram.ui.ActionBar.j6.x0(null, i7, false));
+        this.f52528b.setTextColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.D6, false));
+        int x02 = org.telegram.ui.ActionBar.j6.x0(null, i7, false);
+        EditTextBoldCursor editTextBoldCursor = this.f52527a;
+        editTextBoldCursor.setTextColor(x02);
+        editTextBoldCursor.setCursorColor(org.telegram.ui.ActionBar.j6.x0(null, i7, false));
+        editTextBoldCursor.setHintTextColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.H6, false));
+        this.f52529c.setTextColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f29089q6, false));
+        this.f52537y.f();
     }
 }

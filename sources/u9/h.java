@@ -1,12 +1,24 @@
 package u9;
-
-import java.util.HashSet;
 public final class h {
-    public final a f56480a;
-    public final HashSet f56481b = new HashSet();
-    public final HashSet f56482c = new HashSet();
+    public final q f57979a;
+    public final boolean f57980b;
 
-    public h(a aVar) {
-        this.f56480a = aVar;
+    public h(q qVar, boolean z10) {
+        this.f57979a = qVar;
+        this.f57980b = z10;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof h) {
+            h hVar = (h) obj;
+            if (hVar.f57979a.equals(this.f57979a) && hVar.f57980b == this.f57980b) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return ((this.f57979a.hashCode() ^ 1000003) * 1000003) ^ Boolean.valueOf(this.f57980b).hashCode();
     }
 }

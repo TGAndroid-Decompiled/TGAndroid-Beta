@@ -1,108 +1,37 @@
 package a8;
 
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
+import android.content.res.Resources;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
-import android.view.ContextThemeWrapper;
-import android.widget.ProgressBar;
 public abstract class b7 {
-    public static ContextThemeWrapper a(Context context, boolean z9) {
+    public static int a(Context context) {
+        boolean z10;
         int i7;
-        if (!z9) {
-            i7 = 2130968755;
+        float fraction;
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        if (displayMetrics.widthPixels < displayMetrics.heightPixels) {
+            z10 = true;
         } else {
-            i7 = 2130968615;
+            z10 = false;
         }
-        ContextThemeWrapper contextThemeWrapper = new ContextThemeWrapper(context, g(context, i7));
-        if (g(contextThemeWrapper, 2130968876) != 0) {
-            return new ContextThemeWrapper(contextThemeWrapper, e(contextThemeWrapper));
-        }
-        return contextThemeWrapper;
-    }
-
-    public static int b(Context context, int i7) {
-        if (i0.a.g(-1, f(context, i7, 2130968731)) >= 3.0d) {
-            return -1;
-        }
-        return -570425344;
-    }
-
-    public static float c(Context context) {
         TypedValue typedValue = new TypedValue();
-        if (context.getTheme().resolveAttribute(16842803, typedValue, true)) {
-            return typedValue.getFloat();
-        }
-        return 0.5f;
-    }
-
-    public static Drawable d(Context context, int i7) {
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(new int[]{i7});
-        Drawable b10 = b5.a.b(context, obtainStyledAttributes.getResourceId(0, 0));
-        if (h(context)) {
-            b10.setTint(context.getColor(2131099765));
-        }
-        obtainStyledAttributes.recycle();
-        return b10;
-    }
-
-    public static int e(Context context) {
-        if (h(context)) {
-            if (b(context, 0) == -570425344) {
-                return 2131755314;
-            }
-            return 2131755315;
-        } else if (b(context, 0) == -570425344) {
-            return 2131755316;
+        Resources resources = context.getResources();
+        if (z10) {
+            i7 = 2131165335;
         } else {
-            return 2131755313;
+            i7 = 2131165334;
         }
-    }
-
-    public static int f(Context context, int i7, int i10) {
-        if (i7 != 0) {
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(i7, new int[]{i10});
-            int color = obtainStyledAttributes.getColor(0, 0);
-            obtainStyledAttributes.recycle();
-            if (color != 0) {
-                return color;
-            }
-        }
-        TypedValue typedValue = new TypedValue();
-        context.getTheme().resolveAttribute(i10, typedValue, true);
-        if (typedValue.resourceId != 0) {
-            return context.getResources().getColor(typedValue.resourceId);
-        }
-        return typedValue.data;
-    }
-
-    public static int g(Context context, int i7) {
-        TypedValue typedValue = new TypedValue();
-        if (context.getTheme().resolveAttribute(i7, typedValue, true)) {
-            return typedValue.resourceId;
-        }
-        return 0;
-    }
-
-    public static boolean h(Context context) {
-        TypedValue typedValue = new TypedValue();
-        if (context.getTheme().resolveAttribute(2130968817, typedValue, true) && typedValue.data != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public static void i(Context context, ProgressBar progressBar) {
-        int i7;
-        if (!progressBar.isIndeterminate()) {
-            return;
-        }
-        if (h(context)) {
-            i7 = 2131099757;
+        resources.getValue(i7, typedValue, true);
+        int i10 = typedValue.type;
+        if (i10 == 5) {
+            fraction = typedValue.getDimension(displayMetrics);
+        } else if (i10 == 6) {
+            int i11 = displayMetrics.widthPixels;
+            fraction = typedValue.getFraction(i11, i11);
         } else {
-            i7 = 2131099756;
+            return -2;
         }
-        progressBar.getIndeterminateDrawable().setColorFilter(context.getColor(i7), PorterDuff.Mode.SRC_IN);
+        return (int) fraction;
     }
 }

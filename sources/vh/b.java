@@ -3,30 +3,31 @@ package vh;
 import android.view.View;
 import android.view.WindowInsets;
 import org.telegram.messenger.g0;
-import org.telegram.ui.Components.s00;
+import org.telegram.ui.Components.w00;
 import r0.k1;
 import r0.m;
-public final class b implements s00, m {
-    public final g f57510a;
+import vg.o;
+public final class b implements w00, m {
+    public final h f58986a;
 
-    public b(g gVar) {
-        this.f57510a = gVar;
+    public b(h hVar) {
+        this.f58986a = hVar;
     }
 
     @Override
-    public k1 S0(View view, k1 k1Var) {
-        boolean z9;
+    public k1 M0(View view, k1 k1Var) {
+        boolean z10;
         WindowInsets g10 = k1Var.g();
-        g gVar = this.f57510a;
-        gVar.t0(g10);
-        te.a aVar = gVar.T1;
-        if (k1Var.f54213a.f(8).d > 0) {
-            z9 = true;
+        h hVar = this.f58986a;
+        hVar.t0(g10);
+        te.a aVar = hVar.U1;
+        if (k1Var.f55682a.f(8).d > 0) {
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        aVar.a(z9, true);
-        return k1.f54212b;
+        aVar.a(z10, true);
+        return k1.f55681b;
     }
 
     @Override
@@ -35,11 +36,11 @@ public final class b implements s00, m {
         if (i7 > 0) {
             min -= g0.L(8.0f);
         }
-        g gVar = this.f57510a;
-        if (gVar.f57526g2 != min) {
-            gVar.f57526g2 = min;
-            gVar.S1.a(min);
-            gVar.f57523c2.postOnAnimation(new sh.b(gVar, 25));
+        h hVar = this.f58986a;
+        if (hVar.f59005h2 != min) {
+            hVar.f59005h2 = min;
+            hVar.T1.a(min);
+            hVar.d2.postOnAnimation(new o(hVar, 1));
         }
     }
 }

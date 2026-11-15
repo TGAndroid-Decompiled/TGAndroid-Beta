@@ -4,80 +4,80 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.HashMap;
-public final class l1 implements org.telegram.ui.Components.i71 {
-    public final q1 f47484a;
+public final class l1 implements org.telegram.ui.Components.j71 {
+    public final q1 f48810a;
 
     public l1(q1 q1Var) {
-        this.f47484a = q1Var;
+        this.f48810a = q1Var;
     }
 
     @Override
-    public final TextureView a(View view, boolean z9, float f10, int i7, boolean z10) {
-        q1 q1Var = this.f47484a;
-        g4 g4Var = q1Var.f48912y;
-        if (z9) {
-            g4Var.R.addView(g4Var.Q, c8.ha.c(-1.0f, -1));
-            g4Var.R.setVisibility(0);
-            g4Var.R.a(f10, i7);
-            g4Var.F0 = q1Var.f48903b;
-            g4Var.P.addView(view, c8.ha.c(-1.0f, -1));
-            g4Var.P.setVisibility(0);
+    public final TextureView a(View view, boolean z10, float f10, int i7, boolean z11) {
+        q1 q1Var = this.f48810a;
+        g4 g4Var = q1Var.f50438y;
+        if (z10) {
+            g4Var.S.addView(g4Var.R, c8.ja.c(-1.0f, -1));
+            g4Var.S.setVisibility(0);
+            g4Var.S.a(f10, i7);
+            g4Var.G0 = q1Var.f50429b;
+            g4Var.Q.addView(view, c8.ja.c(-1.0f, -1));
+            g4Var.Q.setVisibility(0);
         } else {
-            g4Var.R.removeView(g4Var.Q);
-            g4Var.F0 = null;
-            g4Var.R.setVisibility(8);
-            g4Var.P.setVisibility(4);
+            g4Var.S.removeView(g4Var.R);
+            g4Var.G0 = null;
+            g4Var.S.setVisibility(8);
+            g4Var.Q.setVisibility(4);
         }
-        return g4Var.Q;
+        return g4Var.R;
     }
 
     @Override
     public final void c(float f10) {
-        this.f47484a.f48912y.R.a(f10, 0);
+        this.f48810a.f50438y.S.a(f10, 0);
     }
 
     @Override
     public final void d() {
-        this.f47484a.f48902a.setVisibility(0);
-        this.f47484a.f48903b.setVisibility(4);
-        this.f47484a.f48903b.g(null, null, null, null, false);
+        this.f48810a.f50428a.setVisibility(0);
+        this.f48810a.f50429b.setVisibility(4);
+        this.f48810a.f50429b.g(null, null, null, null, false);
         HashMap hashMap = new HashMap();
-        hashMap.put("Referer", org.telegram.messenger.t0.f25570b.getPackageName());
-        q1 q1Var = this.f47484a;
-        q1Var.f48902a.loadUrl(q1Var.f48910w.url, hashMap);
+        hashMap.put("Referer", org.telegram.messenger.t0.f26600b.getPackageName());
+        q1 q1Var = this.f48810a;
+        q1Var.f50428a.loadUrl(q1Var.f50436w.url, hashMap);
     }
 
     @Override
-    public final void e(org.telegram.ui.Components.l71 l71Var, boolean z9) {
-        g4 g4Var = this.f47484a.f48912y;
-        if (z9) {
-            org.telegram.ui.Components.l71 l71Var2 = g4Var.E0;
-            if (l71Var2 != null && l71Var2 != l71Var) {
-                l71Var2.f35580a.g0();
-                l71Var2.n();
-                l71Var2.f35590f0.d(true, true);
+    public final void e(org.telegram.ui.Components.m71 m71Var, boolean z10) {
+        g4 g4Var = this.f48810a.f50438y;
+        if (z10) {
+            org.telegram.ui.Components.m71 m71Var2 = g4Var.F0;
+            if (m71Var2 != null && m71Var2 != m71Var) {
+                m71Var2.f37138a.g0();
+                m71Var2.n();
+                m71Var2.f37149g0.d(true, true);
             }
-            g4Var.E0 = l71Var;
+            g4Var.F0 = m71Var;
             try {
-                g4Var.L.getWindow().addFlags(128);
+                g4Var.M.getWindow().addFlags(128);
                 return;
             } catch (Exception e10) {
                 org.telegram.messenger.a8.g(e10, true);
                 return;
             }
         }
-        if (g4Var.E0 == l71Var) {
-            g4Var.E0 = null;
+        if (g4Var.F0 == m71Var) {
+            g4Var.F0 = null;
         }
         try {
-            g4Var.L.getWindow().clearFlags(128);
+            g4Var.M.getWindow().clearFlags(128);
         } catch (Exception e11) {
             org.telegram.messenger.a8.g(e11, true);
         }
     }
 
     @Override
-    public final TextureView f(View view, boolean z9, int i7, int i10, boolean z10) {
+    public final TextureView f(View view, boolean z10, int i7, int i10, boolean z11) {
         return null;
     }
 
@@ -96,6 +96,6 @@ public final class l1 implements org.telegram.ui.Components.i71 {
     }
 
     @Override
-    public final void i(boolean z9, org.telegram.ui.Components.d71 d71Var, float f10, boolean z10) {
+    public final void i(boolean z10, org.telegram.ui.Components.e71 e71Var, float f10, boolean z11) {
     }
 }

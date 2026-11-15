@@ -1,11 +1,11 @@
 package org.telegram.messenger;
 public final class q3 {
-    public int f24676a;
-    public boolean f24677b;
-    public long f24678c;
+    public int f26052a;
+    public boolean f26053b;
+    public long f26054c;
 
     public final boolean a() {
-        if (this.f24677b && (System.currentTimeMillis() - this.f24678c) / 1000 <= qp.s1(p10.f24474s0).f24802h3) {
+        if (this.f26053b && (System.currentTimeMillis() - this.f26054c) / 1000 <= np.s1(m10.f24934t0).f25302i3) {
             return true;
         }
         return false;

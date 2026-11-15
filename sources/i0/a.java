@@ -1,8 +1,9 @@
 package i0;
 
 import android.graphics.Color;
+import com.google.android.gms.internal.vision.e2;
 public abstract class a {
-    public static final ThreadLocal f15120a = new ThreadLocal();
+    public static final ThreadLocal f15571a = new ThreadLocal();
 
     public static int a(float[] fArr) {
         int round;
@@ -56,7 +57,7 @@ public abstract class a {
 
     public static int b(double d, double d2, double d10) {
         double d11;
-        ThreadLocal threadLocal = f15120a;
+        ThreadLocal threadLocal = f15571a;
         double[] dArr = (double[]) threadLocal.get();
         if (dArr == null) {
             dArr = new double[3];
@@ -107,9 +108,9 @@ public abstract class a {
             if (max == f10) {
                 A = ((f11 - f12) / f13) % 6.0f;
             } else if (max == f11) {
-                A = com.google.android.recaptcha.internal.a.A(f12, f10, f13, 2.0f);
+                A = e2.A(f12, f10, f13, 2.0f);
             } else {
-                A = com.google.android.recaptcha.internal.a.A(f10, f11, f13, 4.0f);
+                A = e2.A(f10, f11, f13, 4.0f);
             }
             abs = f13 / (1.0f - Math.abs((2.0f * f14) - 1.0f));
         }
@@ -210,7 +211,7 @@ public abstract class a {
     }
 
     public static double h(int i7) {
-        ThreadLocal threadLocal = f15120a;
+        ThreadLocal threadLocal = f15571a;
         double[] dArr = (double[]) threadLocal.get();
         if (dArr == null) {
             dArr = new double[3];
@@ -269,7 +270,7 @@ public abstract class a {
         if (i13 == 0) {
             return 0;
         }
-        return com.google.android.recaptcha.internal.a.e(255, i10, i11 * i12, (i7 * 255) * i10) / (i13 * 255);
+        return e2.v(255, i10, i11 * i12, (i7 * 255) * i10) / (i13 * 255);
     }
 
     public static int m(int i7) {

@@ -1,207 +1,162 @@
 package j6;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Looper;
-import android.os.RemoteException;
-import com.google.android.gms.cast.CastDevice;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.internal.BinderWrapper;
-import g6.e0;
-import java.util.HashMap;
-import java.util.concurrent.atomic.AtomicLong;
-import m.q3;
-public final class v extends q6.h {
-    public static final b Y = new b("CastClientImpl", null);
-    public static final Object Z = new Object();
-    public static final Object f16553a0 = new Object();
-    public f6.d F;
-    public final CastDevice G;
-    public final e0 H;
-    public final HashMap I;
-    public final long J;
-    public final Bundle K;
-    public u L;
-    public String M;
-    public boolean N;
-    public boolean O;
-    public boolean P;
-    public double Q;
-    public f6.x R;
-    public int S;
-    public int T;
-    public String U;
-    public String V;
-    public Bundle W;
-    public final HashMap X;
+import java.util.concurrent.atomic.AtomicReference;
+import q6.c0;
+public final class v extends g {
+    public final AtomicReference f16904b;
+    public final com.google.android.gms.internal.cast.y f16905c;
 
-    public v(Context context, Looper looper, q3 q3Var, CastDevice castDevice, long j3, e0 e0Var, Bundle bundle, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar) {
-        super(context, looper, 10, q3Var, kVar, lVar, 0);
-        this.G = castDevice;
-        this.H = e0Var;
-        this.J = j3;
-        this.K = bundle;
-        this.I = new HashMap();
-        new AtomicLong(0L);
-        this.X = new HashMap();
-        this.S = -1;
-        this.T = -1;
-        this.F = null;
-        this.M = null;
-        this.Q = 0.0d;
-        D();
-        this.N = false;
-        this.R = null;
-        D();
+    public v(w wVar) {
+        this.f16904b = new AtomicReference(wVar);
+        this.f16905c = new com.google.android.gms.internal.cast.y(wVar.f55292i, 0);
     }
 
-    public static void B(v vVar, long j3, int i7) {
-        com.google.android.gms.common.api.internal.e eVar;
-        synchronized (vVar.X) {
-            eVar = (com.google.android.gms.common.api.internal.e) vVar.X.remove(Long.valueOf(j3));
+    @Override
+    public final void L0(d dVar) {
+        w wVar = (w) this.f16904b.get();
+        if (wVar == null) {
+            return;
         }
-        if (eVar != null) {
-            eVar.a(new Status(i7, null, null, null));
-        }
+        w.Y.b("onDeviceStatusChanged", new Object[0]);
+        this.f16905c.post(new m9.u(20, wVar, dVar));
     }
 
-    public final void C() {
-        Y.b("removing all MessageReceivedCallbacks", new Object[0]);
-        synchronized (this.I) {
-            this.I.clear();
+    @Override
+    public final void O0(c cVar) {
+        w wVar = (w) this.f16904b.get();
+        if (wVar == null) {
+            return;
         }
+        w.Y.b("onApplicationStatusChanged", new Object[0]);
+        this.f16905c.post(new m9.u(21, wVar, cVar));
     }
 
-    public final void D() {
-        CastDevice castDevice = this.G;
-        q6.m.h(castDevice, "device should not be null");
-        if (!castDevice.c(2048) && castDevice.c(4) && !castDevice.c(1)) {
-            "Chromecast Audio".equals(castDevice.f6484e);
+    @Override
+    public final void S0(f6.d dVar, String str, String str2, boolean z10) {
+        w wVar = (w) this.f16904b.get();
+        if (wVar == null) {
+            return;
+        }
+        wVar.F = dVar;
+        wVar.U = dVar.f11053a;
+        wVar.V = str2;
+        wVar.M = str;
+        synchronized (w.Z) {
         }
     }
 
     @Override
-    public final void a() {
-        Object[] objArr = {this.L, Boolean.valueOf(s())};
-        b bVar = Y;
-        bVar.b("disconnect(); ServiceListener=%s, isConnected=%b", objArr);
-        u uVar = this.L;
-        v vVar = null;
-        this.L = null;
-        if (uVar != null) {
-            v vVar2 = (v) uVar.f16551b.getAndSet(null);
-            if (vVar2 != null) {
-                vVar2.S = -1;
-                vVar2.T = -1;
-                vVar2.F = null;
-                vVar2.M = null;
-                vVar2.Q = 0.0d;
-                vVar2.D();
-                vVar2.N = false;
-                vVar2.R = null;
-                vVar = vVar2;
-            }
-            if (vVar != null) {
-                C();
-                try {
-                    try {
-                        ((f) n()).x1();
-                    } finally {
-                        super.a();
-                    }
-                } catch (RemoteException | IllegalStateException e10) {
-                    bVar.a(e10, "Error while disconnecting the controller interface", new Object[0]);
-                }
-                return;
+    public final void X(int i7) {
+        w wVar = null;
+        w wVar2 = (w) this.f16904b.getAndSet(null);
+        if (wVar2 != null) {
+            wVar2.S = -1;
+            wVar2.T = -1;
+            wVar2.F = null;
+            wVar2.M = null;
+            wVar2.Q = 0.0d;
+            wVar2.D();
+            wVar2.N = false;
+            wVar2.R = null;
+            wVar = wVar2;
+        }
+        if (wVar != null) {
+            w.Y.b("ICastDeviceControllerListener.onDisconnected: %d", Integer.valueOf(i7));
+            if (i7 != 0) {
+                int i10 = wVar.C.get();
+                c0 c0Var = wVar.f55294k;
+                c0Var.sendMessage(c0Var.obtainMessage(6, i10, 2));
             }
         }
-        bVar.b("already disposed, so short-circuiting", new Object[0]);
     }
 
     @Override
-    public final int d() {
-        return 12800000;
+    public final void Y0(String str, byte[] bArr) {
+        if (((w) this.f16904b.get()) == null) {
+            return;
+        }
+        w.Y.b("IGNORING: Receive (type=binary, ns=%s) <%d bytes>", str, Integer.valueOf(bArr.length));
     }
 
     @Override
-    public final IInterface i(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
+    public final void a0(String str, String str2) {
+        w wVar = (w) this.f16904b.get();
+        if (wVar == null) {
+            return;
         }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.cast.internal.ICastDeviceController");
-        if (queryLocalInterface instanceof f) {
-            return (f) queryLocalInterface;
-        }
-        return new f(iBinder);
+        w.Y.b("Receive (type=text, ns=%s) %s", str, str2);
+        this.f16905c.post(new a9.h(wVar, str, str2, 6));
     }
 
     @Override
-    public final Bundle l() {
-        Bundle bundle = this.W;
-        if (bundle == null) {
-            return null;
+    public final void d0(int i7) {
+        if (((w) this.f16904b.get()) == null) {
+            return;
         }
-        this.W = null;
-        return bundle;
+        synchronized (w.Z) {
+        }
     }
 
     @Override
-    public final Bundle m() {
-        Bundle bundle = new Bundle();
-        Y.b("getRemoteService(): mLastApplicationId=%s, mLastSessionId=%s", this.U, this.V);
-        CastDevice castDevice = this.G;
-        castDevice.getClass();
-        bundle.putParcelable("com.google.android.gms.cast.EXTRA_CAST_DEVICE", castDevice);
-        bundle.putLong("com.google.android.gms.cast.EXTRA_CAST_FLAGS", this.J);
-        Bundle bundle2 = this.K;
-        if (bundle2 != null) {
-            bundle.putAll(bundle2);
+    public final void g(int i7) {
+        if (((w) this.f16904b.get()) == null) {
+            return;
         }
-        u uVar = new u(this);
-        this.L = uVar;
-        bundle.putParcelable("listener", new BinderWrapper(uVar));
-        String str = this.U;
-        if (str != null) {
-            bundle.putString("last_application_id", str);
-            String str2 = this.V;
-            if (str2 != null) {
-                bundle.putString("last_session_id", str2);
+        synchronized (w.f16906a0) {
+        }
+    }
+
+    @Override
+    public final void g0(long j3) {
+        w wVar = (w) this.f16904b.get();
+        if (wVar == null) {
+            return;
+        }
+        w.B(wVar, j3, 0);
+    }
+
+    @Override
+    public final void zzd(int i7) {
+        w wVar = (w) this.f16904b.get();
+        if (wVar != null) {
+            wVar.U = null;
+            wVar.V = null;
+            synchronized (w.f16906a0) {
+            }
+            if (wVar.H != null) {
+                this.f16905c.post(new androidx.emoji2.text.j(wVar, i7, 2));
             }
         }
-        return bundle;
     }
 
     @Override
-    public final String o() {
-        return "com.google.android.gms.cast.internal.ICastDeviceController";
-    }
-
-    @Override
-    public final String p() {
-        return "com.google.android.gms.cast.service.BIND_CAST_DEVICE_CONTROLLER_SERVICE";
-    }
-
-    @Override
-    public final void u(n6.a aVar) {
-        super.u(aVar);
-        C();
-    }
-
-    @Override
-    public final void w(int i7, IBinder iBinder, Bundle bundle, int i10) {
-        Y.b("in onPostInitHandler; statusCode=%d", Integer.valueOf(i7));
-        if (i7 == 0 || i7 == 2300) {
-            this.O = true;
-            this.P = true;
+    public final void zzg(int i7) {
+        if (((w) this.f16904b.get()) == null) {
+            return;
         }
-        if (i7 == 2300) {
-            Bundle bundle2 = new Bundle();
-            this.W = bundle2;
-            bundle2.putBoolean("com.google.android.gms.cast.EXTRA_APP_NO_LONGER_RUNNING", true);
-            i7 = 0;
+        synchronized (w.f16906a0) {
         }
-        super.w(i7, iBinder, bundle, i10);
+    }
+
+    @Override
+    public final void zzm(int i7, long j3) {
+        w wVar = (w) this.f16904b.get();
+        if (wVar == null) {
+            return;
+        }
+        w.B(wVar, j3, i7);
+    }
+
+    @Override
+    public final void zzn() {
+        w.Y.b("Deprecated callback: \"onStatusreceived\"", new Object[0]);
+    }
+
+    @Override
+    public final void P0(int i7) {
+    }
+
+    @Override
+    public final void h(int i7) {
     }
 }

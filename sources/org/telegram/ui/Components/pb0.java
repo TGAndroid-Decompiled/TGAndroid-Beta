@@ -5,38 +5,38 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.widget.TextView;
 public final class pb0 extends TextView {
-    public final qb0 f36884a;
+    public final qb0 f38263a;
 
     public pb0(qb0 qb0Var, Context context, int i7) {
         super(context);
-        this.f36884a = qb0Var;
+        this.f38263a = qb0Var;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        qb0 qb0Var = this.f36884a;
-        if (qb0Var.f37235e.getAdapter() instanceof zw) {
-            ((zw) qb0Var.f37235e.getAdapter()).getClass();
+        qb0 qb0Var = this.f38263a;
+        if (qb0Var.f38618e.getAdapter() instanceof fx) {
+            ((fx) qb0Var.f38618e.getAdapter()).getClass();
         }
     }
 
     @Override
-    public final void setSelected(boolean z9) {
+    public final void setSelected(boolean z10) {
         float f10;
         float f11;
-        super.setSelected(z9);
+        super.setSelected(z10);
         Drawable background = getBackground();
-        qb0 qb0Var = this.f36884a;
+        qb0 qb0Var = this.f38263a;
         if (background != null) {
-            if (z9) {
+            if (z10) {
                 f11 = 0.1f;
             } else {
                 f11 = 0.05f;
             }
-            org.telegram.ui.ActionBar.m6.H1(background, qb0Var.c(f11), true);
+            org.telegram.ui.ActionBar.j6.H1(background, qb0Var.c(f11), true);
         }
-        if (z9) {
+        if (z10) {
             f10 = 0.8f;
         } else {
             f10 = 0.6f;

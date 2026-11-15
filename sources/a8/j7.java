@@ -1,6 +1,6 @@
 package a8;
 public abstract class j7 {
-    public static float a(float f10) {
-        return 1.0f - c8.j9.a(f10, 0.0f, 1.0f);
+    public static final java.lang.Object a(be.s r4, androidx.lifecycle.k0 r5, kd.c r6) {
+        throw new UnsupportedOperationException("Method not decompiled: a8.j7.a(be.s, androidx.lifecycle.k0, kd.c):java.lang.Object");
     }
 }

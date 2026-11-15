@@ -1,39 +1,21 @@
 package org.telegram.ui.Components;
-public final class dp implements c5.g {
-    public int f33043a;
-    public final sf0 f33044b;
 
-    public dp(sf0 sf0Var) {
-        this.f33044b = sf0Var;
+import android.graphics.drawable.Drawable;
+public final class dp {
+    public final org.telegram.ui.ActionBar.p3 f34022a;
+    public Drawable f34023b;
+    public int f34024c;
+    public boolean d;
+
+    public dp(org.telegram.ui.ActionBar.p3 p3Var) {
+        this.f34022a = p3Var;
     }
 
-    @Override
-    public final void b(float f10, int i7, int i10) {
-        if (i7 == this.f33044b.getCurrentItem() && f10 == 0.0f && this.f33043a == 1) {
-            d();
+    public final String a() {
+        org.telegram.ui.ActionBar.p3 p3Var = this.f34022a;
+        if (p3Var != null && !p3Var.f29470a) {
+            return p3Var.f29473e;
         }
-    }
-
-    @Override
-    public final void c(int i7) {
-        if (i7 == 0) {
-            d();
-        }
-        this.f33043a = i7;
-    }
-
-    public final void d() {
-        sf0 sf0Var = this.f33044b;
-        if (sf0Var.f33620w0 != null) {
-            int currentItem = sf0Var.getCurrentItem();
-            int k10 = sf0Var.f33620w0.k(currentItem) + sf0Var.f33620w0.j();
-            if (currentItem != k10) {
-                sf0Var.x(k10, false);
-            }
-        }
-    }
-
-    @Override
-    public final void a(int i7) {
+        return null;
     }
 }

@@ -4,41 +4,42 @@ import android.graphics.Paint;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import org.telegram.messenger.gf;
-import org.telegram.messenger.we;
+import org.telegram.messenger.ff;
+import org.telegram.messenger.i20;
+import org.telegram.messenger.ve;
 public final class v5 extends FrameLayout {
-    public t5[] f30653a;
-    public we[] f30654b;
-    public int f30655c;
+    public t5[] f31808a;
+    public ve[] f31809b;
+    public int f31810c;
     public u5 d;
-    public Paint f30656e;
+    public Paint f31811e;
 
-    public final void a(int i7, we weVar) {
-        t5[] t5VarArr = this.f30653a;
-        this.f30654b[i7] = weVar;
-        if (weVar != null) {
-            gf gfVar = weVar.d;
+    public final void a(int i7, ve veVar) {
+        t5[] t5VarArr = this.f31808a;
+        this.f31809b[i7] = veVar;
+        if (veVar != null) {
+            ff ffVar = veVar.d;
             t5 t5Var = t5VarArr[i7];
-            org.telegram.ui.Components.k9 k9Var = t5Var.f30538b;
-            k9Var.r();
-            if (gfVar != null) {
-                int i10 = gfVar.C;
-                String str = gfVar.I;
+            org.telegram.ui.Components.i9 i9Var = t5Var.f31675b;
+            i9Var.r();
+            if (ffVar != null) {
+                int i10 = ffVar.C;
+                String str = ffVar.I;
                 if (str != null) {
-                    k9Var.s(gfVar.J, gfVar.K, true);
-                    if (gfVar.f26849b) {
-                        k9Var.h("vthumb://" + i10 + ":" + str, null, org.telegram.ui.ActionBar.m6.R4);
+                    i9Var.s(ffVar.J, ffVar.K, true);
+                    if (ffVar.f27708b) {
+                        i9Var.h("vthumb://" + i10 + ":" + str, null, org.telegram.ui.ActionBar.j6.R4);
                     } else {
-                        k9Var.h("thumb://" + i10 + ":" + str, null, org.telegram.ui.ActionBar.m6.R4);
+                        i9Var.h("thumb://" + i10 + ":" + str, null, org.telegram.ui.ActionBar.j6.R4);
                     }
-                    ((TextView) t5Var.f30539c).setText(weVar.f26303c);
-                    ((TextView) t5Var.d).setText(String.format("%d", Integer.valueOf(weVar.f26304e.size())));
+                    ((TextView) t5Var.f31676c).setText(veVar.f26970c);
+                    ((TextView) t5Var.d).setText(String.format("%d", Integer.valueOf(veVar.f26971e.size())));
                     return;
                 }
             }
-            k9Var.setImageDrawable(org.telegram.ui.ActionBar.m6.R4);
-            ((TextView) t5Var.f30539c).setText(weVar.f26303c);
-            ((TextView) t5Var.d).setText(String.format("%d", Integer.valueOf(weVar.f26304e.size())));
+            i9Var.setImageDrawable(org.telegram.ui.ActionBar.j6.R4);
+            ((TextView) t5Var.f31676c).setText(veVar.f26970c);
+            ((TextView) t5Var.d).setText(String.format("%d", Integer.valueOf(veVar.f26971e.size())));
             return;
         }
         t5VarArr[i7].setVisibility(4);
@@ -47,13 +48,13 @@ public final class v5 extends FrameLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         int A;
-        View[] viewArr = this.f30653a;
+        View[] viewArr = this.f31808a;
         if (org.telegram.messenger.g0.Q1()) {
-            A = org.telegram.messenger.camera.q.A(4.0f, this.f30655c - 1, org.telegram.messenger.g0.L(490.0f) - org.telegram.messenger.g0.L(12.0f)) / this.f30655c;
+            A = i20.A(4.0f, this.f31810c - 1, org.telegram.messenger.g0.L(490.0f) - org.telegram.messenger.g0.L(12.0f)) / this.f31810c;
         } else {
-            A = org.telegram.messenger.camera.q.A(4.0f, this.f30655c - 1, org.telegram.messenger.g0.f22567q.x - org.telegram.messenger.g0.L(12.0f)) / this.f30655c;
+            A = i20.A(4.0f, this.f31810c - 1, org.telegram.messenger.g0.f23609q.x - org.telegram.messenger.g0.L(12.0f)) / this.f31810c;
         }
-        for (int i11 = 0; i11 < this.f30655c; i11++) {
+        for (int i11 = 0; i11 < this.f31810c; i11++) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewArr[i11].getLayoutParams();
             layoutParams.topMargin = org.telegram.messenger.g0.L(4.0f);
             layoutParams.leftMargin = (org.telegram.messenger.g0.L(4.0f) + A) * i11;
@@ -62,14 +63,14 @@ public final class v5 extends FrameLayout {
             layoutParams.gravity = 51;
             viewArr[i11].setLayoutParams(layoutParams);
         }
-        super.onMeasure(i7, org.telegram.messenger.camera.q.B(4.0f, A, 1073741824));
+        super.onMeasure(i7, i20.B(4.0f, A, 1073741824));
     }
 
     public void setAlbumsCount(int i7) {
         int i10;
         int i11 = 0;
         while (true) {
-            t5[] t5VarArr = this.f30653a;
+            t5[] t5VarArr = this.f31808a;
             if (i11 < t5VarArr.length) {
                 t5 t5Var = t5VarArr[i11];
                 if (i11 < i7) {
@@ -80,7 +81,7 @@ public final class v5 extends FrameLayout {
                 t5Var.setVisibility(i10);
                 i11++;
             } else {
-                this.f30655c = i7;
+                this.f31810c = i7;
                 return;
             }
         }

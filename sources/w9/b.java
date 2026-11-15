@@ -1,43 +1,43 @@
 package w9;
 
-import aa.s;
-import aa.u;
-import aa.x;
+import aa.r;
+import aa.t;
+import aa.w;
 import android.content.SharedPreferences;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class b {
-    public final u f57632a;
+    public final t f59073a;
 
-    public b(u uVar) {
-        this.f57632a = uVar;
+    public b(t tVar) {
+        this.f59073a = tVar;
     }
 
     public final void a() {
-        u uVar = this.f57632a;
+        t tVar = this.f59073a;
         Boolean bool = Boolean.TRUE;
-        x xVar = uVar.f858b;
-        synchronized (xVar) {
-            xVar.f883f = false;
-            xVar.f884g = bool;
-            SharedPreferences.Editor edit = xVar.f879a.edit();
+        w wVar = tVar.f855b;
+        synchronized (wVar) {
+            wVar.f880f = false;
+            wVar.f881g = bool;
+            SharedPreferences.Editor edit = wVar.f876a.edit();
             edit.putBoolean("firebase_crashlytics_collection_enabled", true);
             edit.apply();
-            synchronized (xVar.f881c) {
-                if (xVar.a()) {
-                    if (!xVar.f882e) {
-                        xVar.d.trySetResult(null);
-                        xVar.f882e = true;
+            synchronized (wVar.f878c) {
+                if (wVar.a()) {
+                    if (!wVar.f879e) {
+                        wVar.d.trySetResult(null);
+                        wVar.f879e = true;
                     }
-                } else if (xVar.f882e) {
-                    xVar.d = new TaskCompletionSource();
-                    xVar.f882e = false;
+                } else if (wVar.f879e) {
+                    wVar.d = new TaskCompletionSource();
+                    wVar.f879e = false;
                 }
             }
         }
     }
 
     public final void b(String str, String str2) {
-        u uVar = this.f57632a;
-        uVar.f868n.f3135a.a(new s((Object) uVar, (Object) str, (Object) str2, 0));
+        t tVar = this.f59073a;
+        tVar.f865n.f3090a.a(new r((Object) tVar, (Object) str, (Object) str2, 0));
     }
 }

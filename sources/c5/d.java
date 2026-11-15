@@ -1,8 +1,7 @@
 package c5;
-public final class d {
-    public Object f5311a;
-    public int f5312b;
-    public boolean f5313c;
-    public float d;
-    public float f5314e;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+@Retention(RetentionPolicy.RUNTIME)
+public @interface d {
 }

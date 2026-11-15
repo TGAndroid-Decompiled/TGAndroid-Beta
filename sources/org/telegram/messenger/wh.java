@@ -1,134 +1,214 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.support.LongSparseIntArray;
-import org.telegram.tgnet.TLMethod;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_bots;
-public final class wh implements Runnable {
-    public final int f26321a;
-    public final long f26322b;
-    public final int f26323c;
-    public final long d;
-    public final c1 f26324e;
-    public final Object f26325f;
+public final class wh implements RequestDelegate {
+    public final int f27350a;
+    public final si f27351b;
+    public final String f27352c;
 
-    public wh(c1 c1Var, long j3, long j10, Object obj, int i7, int i10) {
-        this.f26321a = i10;
-        this.f26324e = c1Var;
-        this.f26322b = j3;
-        this.d = j10;
-        this.f26325f = obj;
-        this.f26323c = i7;
+    public wh(si siVar, String str, int i7) {
+        this.f27350a = i7;
+        this.f27351b = siVar;
+        this.f27352c = str;
     }
 
     @Override
-    public final void run() {
-        switch (this.f26321a) {
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f27350a) {
             case 0:
-                ui uiVar = (ui) this.f26324e;
-                long j3 = this.f26322b;
-                long j10 = this.d;
-                c20 c20Var = (c20) this.f26325f;
-                int i7 = this.f26323c;
-                try {
-                    TL_bots.BotInfo H0 = uiVar.H0(j3, j10);
-                    if (H0 != null) {
-                        g0.h3(new dg(uiVar, c20Var, H0, i7, 7));
-                    } else if (c20Var != null) {
-                        g0.h3(new rf(c20Var, 0));
-                    }
-                    return;
-                } catch (Exception e10) {
-                    a8.g(e10, true);
-                    return;
-                }
-            case 1:
-                qp qpVar = (qp) this.f26324e;
-                long j11 = this.f26322b;
-                TLRPC.TL_messages_chatFull tL_messages_chatFull = (TLRPC.TL_messages_chatFull) this.f26325f;
-                int i10 = this.f26323c;
-                long j12 = this.d;
-                LongSparseIntArray longSparseIntArray = qpVar.G0;
-                a0.h hVar = qpVar.l1;
-                TLRPC.ChatFull chatFull = (TLRPC.ChatFull) hVar.f(j11);
-                if (chatFull != null) {
-                    tL_messages_chatFull.full_chat.inviterId = chatFull.inviterId;
-                }
-                hVar.k(tL_messages_chatFull.full_chat, j11);
-                long j13 = -j11;
-                qpVar.f24900s7.M(j13);
-                TLRPC.PeerNotifySettings peerNotifySettings = tL_messages_chatFull.full_chat.notify_settings;
-                et etVar = qpVar.getNotificationsController().f22098g0;
-                etVar.getClass();
-                if (peerNotifySettings != null) {
-                    Utilities.f21341e.c(new t8(etVar, j13, 0L, peerNotifySettings, 6));
-                }
-                for (int i11 = 0; i11 < tL_messages_chatFull.full_chat.bot_info.size(); i11++) {
-                    qpVar.getMediaDataController().D1(j13, tL_messages_chatFull.full_chat.bot_info.get(i11));
-                }
-                int indexOfKey = longSparseIntArray.indexOfKey(j13);
-                if (tL_messages_chatFull.full_chat.blocked) {
-                    if (indexOfKey < 0) {
-                        longSparseIntArray.put(j13, 1);
-                        qpVar.getNotificationCenter().k(43, new Object[0]);
-                    }
-                } else if (indexOfKey >= 0) {
-                    longSparseIntArray.removeAt(indexOfKey);
-                    qpVar.getNotificationCenter().k(43, new Object[0]);
-                }
-                qpVar.f24883r.k(tL_messages_chatFull.full_chat.exported_invite, j11);
-                qpVar.f24895s1.remove(Long.valueOf(j11));
-                qpVar.f24930w1.put(j11, System.currentTimeMillis());
-                qpVar.Y3(tL_messages_chatFull.users, false);
-                qpVar.S3(tL_messages_chatFull.chats, false);
-                if (tL_messages_chatFull.full_chat.stickerset != null) {
-                    qpVar.getMediaDataController().Y(tL_messages_chatFull.full_chat.stickerset);
-                }
-                if (tL_messages_chatFull.full_chat.emojiset != null) {
-                    qpVar.getMediaDataController().Y(tL_messages_chatFull.full_chat.emojiset);
-                }
-                qpVar.getNotificationCenter().k(30, tL_messages_chatFull.full_chat, Integer.valueOf(i10), Boolean.FALSE, Boolean.TRUE);
-                TLRPC.Dialog dialog = (TLRPC.Dialog) qpVar.Q.f(j13);
-                if (dialog != null) {
-                    TLRPC.ChatFull chatFull2 = tL_messages_chatFull.full_chat;
-                    if ((chatFull2.flags & 2048) != 0) {
-                        int i12 = dialog.folder_id;
-                        int i13 = chatFull2.folder_id;
-                        if (i12 != i13) {
-                            dialog.folder_id = i13;
-                            qpVar.T4(null);
-                            qpVar.getNotificationCenter().k(3, new Object[0]);
+                final si siVar = this.f27351b;
+                final String str = this.f27352c;
+                g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        char c10;
+                        ArrayList arrayList;
+                        ArrayList arrayList2;
+                        switch (r4) {
+                            case 0:
+                                si siVar2 = siVar;
+                                String str2 = str;
+                                TLObject tLObject2 = tLObject;
+                                HashMap hashMap = siVar2.L0;
+                                ArrayList arrayList3 = (ArrayList) hashMap.get(str2);
+                                if (arrayList3 != null) {
+                                    for (int i7 = 0; i7 < arrayList3.size(); i7++) {
+                                        if (tLObject2 != null) {
+                                            ((s10) arrayList3.get(i7)).a(Boolean.TRUE, (TLRPC.TL_messages_stickerSet) tLObject2);
+                                        } else {
+                                            ((s10) arrayList3.get(i7)).a(Boolean.FALSE, null);
+                                        }
+                                    }
+                                }
+                                hashMap.remove(str2);
+                                return;
+                            default:
+                                si siVar3 = siVar;
+                                String str3 = str;
+                                TLObject tLObject3 = tLObject;
+                                ArrayList arrayList4 = (ArrayList) siVar3.f26462b0.get(str3);
+                                if (tLObject3 != null) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject3;
+                                    TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
+                                    if (stickerSet != null) {
+                                        siVar3.J.k(tL_messages_stickerSet, stickerSet.f28078id);
+                                        String str4 = tL_messages_stickerSet.set.short_name;
+                                        if (str4 != null) {
+                                            siVar3.O.put(str4.toLowerCase(), tL_messages_stickerSet);
+                                        }
+                                    }
+                                    int size = arrayList4.size();
+                                    int i10 = 0;
+                                    while (i10 < size) {
+                                        TLRPC.Message message = (TLRPC.Message) arrayList4.get(i10);
+                                        TLRPC.Document G0 = gj.G0(message);
+                                        int size2 = tL_messages_stickerSet.documents.size();
+                                        int i11 = 0;
+                                        while (true) {
+                                            if (i11 < size2) {
+                                                TLRPC.Document document = tL_messages_stickerSet.documents.get(i11);
+                                                arrayList2 = arrayList4;
+                                                if (document.f28057id == G0.f28057id && document.dc_id == G0.dc_id) {
+                                                    message.stickerVerified = 1;
+                                                } else {
+                                                    i11++;
+                                                    arrayList4 = arrayList2;
+                                                }
+                                            } else {
+                                                arrayList2 = arrayList4;
+                                            }
+                                        }
+                                        if (message.stickerVerified == 0) {
+                                            message.stickerVerified = 2;
+                                        }
+                                        i10++;
+                                        arrayList4 = arrayList2;
+                                    }
+                                    c10 = 0;
+                                    arrayList = arrayList4;
+                                } else {
+                                    c10 = 0;
+                                    int size3 = arrayList4.size();
+                                    int i12 = 0;
+                                    while (true) {
+                                        arrayList = arrayList4;
+                                        if (i12 < size3) {
+                                            ((TLRPC.Message) arrayList.get(i12)).stickerVerified = 2;
+                                            i12++;
+                                        }
+                                    }
+                                }
+                                ns notificationCenter = siVar3.getNotificationCenter();
+                                Object[] objArr = new Object[1];
+                                objArr[c10] = arrayList;
+                                notificationCenter.k(105, objArr);
+                                vr messagesStorage = siVar3.getMessagesStorage();
+                                messagesStorage.getClass();
+                                Utilities.d.c(new pp(messagesStorage, arrayList, 15));
+                                return;
                         }
                     }
-                    int i14 = dialog.ttl_period;
-                    int i15 = tL_messages_chatFull.full_chat.ttl_period;
-                    if (i14 != i15) {
-                        dialog.ttl_period = i15;
-                        qpVar.getNotificationCenter().k(3, new Object[0]);
-                    }
-                    boolean z9 = dialog.view_forum_as_messages;
-                    boolean z10 = tL_messages_chatFull.full_chat.view_forum_as_messages;
-                    if (z9 != z10) {
-                        dialog.view_forum_as_messages = z10;
-                        yr messagesStorage = qpVar.getMessagesStorage();
-                        messagesStorage.f26723a.c(new zp(1, j12, messagesStorage, tL_messages_chatFull.full_chat.view_forum_as_messages));
-                        return;
-                    }
-                    return;
-                }
+                });
                 return;
             default:
-                ((yr) this.f26324e).getMessagesController().a0(null, null, null, this.f26322b, true, 0, false, this.d, (TLMethod) this.f26325f, this.f26323c);
+                final si siVar2 = this.f27351b;
+                final String str2 = this.f27352c;
+                g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        char c10;
+                        ArrayList arrayList;
+                        ArrayList arrayList2;
+                        switch (r4) {
+                            case 0:
+                                si siVar22 = siVar2;
+                                String str22 = str2;
+                                TLObject tLObject2 = tLObject;
+                                HashMap hashMap = siVar22.L0;
+                                ArrayList arrayList3 = (ArrayList) hashMap.get(str22);
+                                if (arrayList3 != null) {
+                                    for (int i7 = 0; i7 < arrayList3.size(); i7++) {
+                                        if (tLObject2 != null) {
+                                            ((s10) arrayList3.get(i7)).a(Boolean.TRUE, (TLRPC.TL_messages_stickerSet) tLObject2);
+                                        } else {
+                                            ((s10) arrayList3.get(i7)).a(Boolean.FALSE, null);
+                                        }
+                                    }
+                                }
+                                hashMap.remove(str22);
+                                return;
+                            default:
+                                si siVar3 = siVar2;
+                                String str3 = str2;
+                                TLObject tLObject3 = tLObject;
+                                ArrayList arrayList4 = (ArrayList) siVar3.f26462b0.get(str3);
+                                if (tLObject3 != null) {
+                                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject3;
+                                    TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
+                                    if (stickerSet != null) {
+                                        siVar3.J.k(tL_messages_stickerSet, stickerSet.f28078id);
+                                        String str4 = tL_messages_stickerSet.set.short_name;
+                                        if (str4 != null) {
+                                            siVar3.O.put(str4.toLowerCase(), tL_messages_stickerSet);
+                                        }
+                                    }
+                                    int size = arrayList4.size();
+                                    int i10 = 0;
+                                    while (i10 < size) {
+                                        TLRPC.Message message = (TLRPC.Message) arrayList4.get(i10);
+                                        TLRPC.Document G0 = gj.G0(message);
+                                        int size2 = tL_messages_stickerSet.documents.size();
+                                        int i11 = 0;
+                                        while (true) {
+                                            if (i11 < size2) {
+                                                TLRPC.Document document = tL_messages_stickerSet.documents.get(i11);
+                                                arrayList2 = arrayList4;
+                                                if (document.f28057id == G0.f28057id && document.dc_id == G0.dc_id) {
+                                                    message.stickerVerified = 1;
+                                                } else {
+                                                    i11++;
+                                                    arrayList4 = arrayList2;
+                                                }
+                                            } else {
+                                                arrayList2 = arrayList4;
+                                            }
+                                        }
+                                        if (message.stickerVerified == 0) {
+                                            message.stickerVerified = 2;
+                                        }
+                                        i10++;
+                                        arrayList4 = arrayList2;
+                                    }
+                                    c10 = 0;
+                                    arrayList = arrayList4;
+                                } else {
+                                    c10 = 0;
+                                    int size3 = arrayList4.size();
+                                    int i12 = 0;
+                                    while (true) {
+                                        arrayList = arrayList4;
+                                        if (i12 < size3) {
+                                            ((TLRPC.Message) arrayList.get(i12)).stickerVerified = 2;
+                                            i12++;
+                                        }
+                                    }
+                                }
+                                ns notificationCenter = siVar3.getNotificationCenter();
+                                Object[] objArr = new Object[1];
+                                objArr[c10] = arrayList;
+                                notificationCenter.k(105, objArr);
+                                vr messagesStorage = siVar3.getMessagesStorage();
+                                messagesStorage.getClass();
+                                Utilities.d.c(new pp(messagesStorage, arrayList, 15));
+                                return;
+                        }
+                    }
+                });
                 return;
         }
-    }
-
-    public wh(qp qpVar, long j3, TLRPC.TL_messages_chatFull tL_messages_chatFull, int i7, long j10) {
-        this.f26321a = 1;
-        this.f26324e = qpVar;
-        this.f26322b = j3;
-        this.f26325f = tL_messages_chatFull;
-        this.f26323c = i7;
-        this.d = j10;
     }
 }

@@ -1,54 +1,58 @@
 package di;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import android.content.DialogInterface;
 import org.telegram.tgnet.ConnectionsManager;
-public final class z implements Runnable {
-    public final int f9986a;
-    public final u0 f9987b;
+import org.telegram.ui.Components.ChatActivityEnterView;
+import org.telegram.ui.Components.ix;
+import org.telegram.ui.Components.lx;
+import org.telegram.ui.c40;
+import org.telegram.ui.lm;
+import org.telegram.ui.pa0;
+import org.telegram.ui.qn;
+import org.telegram.ui.w71;
+public final class z implements DialogInterface.OnCancelListener {
+    public final int f9814a;
+    public final int f9815b;
+    public final Object f9816c;
 
-    public z(u0 u0Var, int i7) {
-        this.f9986a = i7;
-        this.f9987b = u0Var;
+    public z(Object obj, int i7, int i10) {
+        this.f9814a = i10;
+        this.f9816c = obj;
+        this.f9815b = i7;
     }
 
     @Override
-    public final void run() {
-        switch (this.f9986a) {
+    public final void onCancel(DialogInterface dialogInterface) {
+        switch (this.f9814a) {
             case 0:
-                this.f9987b.b();
+                ConnectionsManager.getInstance(((e0) this.f9816c).f8434a).cancelRequest(this.f9815b, true);
+                return;
+            case 1:
+                ConnectionsManager.getInstance(((org.telegram.ui.la) this.f9816c).currentAccount).cancelRequest(this.f9815b, true);
+                return;
+            case 2:
+                ((lm) this.f9816c).f49005a.getConnectionsManager().cancelRequest(this.f9815b, true);
+                return;
+            case 3:
+                qn qnVar = (qn) this.f9816c;
+                qnVar.O0 = false;
+                qnVar.f50663b = null;
+                qnVar.getConnectionsManager().cancelRequest(this.f9815b, true);
+                return;
+            case 4:
+                ((ChatActivityEnterView) this.f9816c).f32319x3.getConnectionsManager().cancelRequest(this.f9815b, true);
+                return;
+            case 5:
+                ConnectionsManager.getInstance(((lx) ((ix) this.f9816c).f35759c.f2787b).G.f36941d1).cancelRequest(this.f9815b, true);
+                return;
+            case 6:
+                ConnectionsManager.getInstance(((c40) this.f9816c).f45951o1.f22778a).cancelRequest(this.f9815b, true);
+                return;
+            case 7:
+                ((pa0) this.f9816c).getConnectionsManager().cancelRequest(this.f9815b, true);
                 return;
             default:
-                u0 u0Var = this.f9987b;
-                ArrayList arrayList = u0Var.f9820s;
-                z zVar = u0Var.E;
-                if (zVar != null) {
-                    org.telegram.messenger.g0.r(zVar);
-                    u0Var.E = null;
-                }
-                int currentTime = ConnectionsManager.getInstance(u0Var.N).getCurrentTime();
-                for (int size = arrayList.size() - 1; size >= 0; size--) {
-                    t0 t0Var = (t0) arrayList.get(size);
-                    ArrayList arrayList2 = t0Var.f9776f;
-                    int size2 = arrayList2.size();
-                    int i7 = 0;
-                    while (true) {
-                        if (i7 < size2) {
-                            Object obj = arrayList2.get(i7);
-                            i7++;
-                            s0 s0Var = (s0) obj;
-                            long j3 = s0Var.f9724g;
-                            if (j3 <= 0 || currentTime - s0Var.d > t.b(t0Var.f9772a, (int) j3, 0)) {
-                            }
-                        } else {
-                            arrayList.remove(size);
-                        }
-                    }
-                }
-                Collections.sort(arrayList, new a3.c(u0Var, 20));
-                u0Var.f9818n.O(true);
-                u0Var.u(true);
-                u0Var.m();
+                ConnectionsManager.getInstance(((w71) this.f9816c).currentAccount).cancelRequest(this.f9815b, true);
                 return;
         }
     }

@@ -4,26 +4,26 @@ import android.view.animation.Interpolator;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import sg.i0;
+import sg.h0;
 public final class j implements Iterable {
-    public final h f55523a;
+    public final h f57106a;
 
     public j(i iVar, Interpolator interpolator, long j3) {
-        this.f55523a = new h(new i0(this, iVar, false, 1), interpolator, j3);
+        this.f57106a = new h(new h0(this, iVar, false, 1), interpolator, j3);
     }
 
-    public final void f(Object obj, boolean z9) {
+    public final void f(Object obj, boolean z10) {
         List list;
         if (obj != null) {
             list = Collections.singletonList(obj);
         } else {
             list = null;
         }
-        this.f55523a.m(list, z9);
+        this.f57106a.m(list, z10);
     }
 
     @Override
     public final Iterator iterator() {
-        return this.f55523a.f55519b.iterator();
+        return this.f57106a.f57102b.iterator();
     }
 }

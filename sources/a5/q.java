@@ -18,8 +18,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
 import android.util.Xml;
-import c8.i0;
-import c8.o0;
+import c8.j0;
+import c8.p0;
 import java.io.IOException;
 import java.util.ArrayDeque;
 import org.xmlpull.v1.XmlPullParser;
@@ -51,7 +51,7 @@ public final class q extends h {
         int next;
         if (Build.VERSION.SDK_INT >= 24) {
             q qVar = new q();
-            ThreadLocal threadLocal = h0.j.f14029a;
+            ThreadLocal threadLocal = h0.j.f13387a;
             qVar.f220b = resources.getDrawable(i7, theme);
             new p(((Drawable) qVar.f220b).getConstantState());
             return qVar;
@@ -342,7 +342,7 @@ public final class q extends h {
 
     @Override
     public final boolean onStateChange(int[] iArr) {
-        boolean z9;
+        boolean z10;
         PorterDuff.Mode mode;
         Drawable drawable = (Drawable) this.f220b;
         if (drawable != null) {
@@ -353,9 +353,9 @@ public final class q extends h {
         if (colorStateList != null && (mode = oVar.d) != null) {
             this.d = d(colorStateList, mode);
             invalidateSelf();
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
         n nVar = oVar.f257b;
         if (nVar.f254n == null) {
@@ -369,7 +369,7 @@ public final class q extends h {
                 return true;
             }
         }
-        return z9;
+        return z10;
     }
 
     @Override
@@ -394,12 +394,12 @@ public final class q extends h {
     }
 
     @Override
-    public final void setAutoMirrored(boolean z9) {
+    public final void setAutoMirrored(boolean z10) {
         Drawable drawable = (Drawable) this.f220b;
         if (drawable != null) {
-            drawable.setAutoMirrored(z9);
+            drawable.setAutoMirrored(z10);
         } else {
-            this.f268c.f259e = z9;
+            this.f268c.f259e = z10;
         }
     }
 
@@ -418,7 +418,7 @@ public final class q extends h {
     public final void setTint(int i7) {
         Drawable drawable = (Drawable) this.f220b;
         if (drawable != null) {
-            o0.a(i7, drawable);
+            p0.a(i7, drawable);
         } else {
             setTintList(ColorStateList.valueOf(i7));
         }
@@ -455,12 +455,12 @@ public final class q extends h {
     }
 
     @Override
-    public final boolean setVisible(boolean z9, boolean z10) {
+    public final boolean setVisible(boolean z10, boolean z11) {
         Drawable drawable = (Drawable) this.f220b;
         if (drawable != null) {
-            return drawable.setVisible(z9, z10);
+            return drawable.setVisible(z10, z11);
         }
-        return super.setVisible(z9, z10);
+        return super.setVisible(z10, z11);
     }
 
     @Override
@@ -525,7 +525,7 @@ public final class q extends h {
             } else {
                 Resources resources2 = f10.getResources();
                 int resourceId = f10.getResourceId(1, 0);
-                ThreadLocal threadLocal = h0.c.f14013a;
+                ThreadLocal threadLocal = h0.c.f13371a;
                 try {
                     colorStateList = h0.c.a(resources2, resources2.getXml(resourceId), theme);
                 } catch (Exception e10) {
@@ -537,11 +537,11 @@ public final class q extends h {
         if (colorStateList2 != null) {
             oVar2.f258c = colorStateList2;
         }
-        boolean z9 = oVar2.f259e;
+        boolean z10 = oVar2.f259e;
         if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "autoMirrored") != null) {
-            z9 = f10.getBoolean(5, z9);
+            z10 = f10.getBoolean(5, z10);
         }
-        oVar2.f259e = z9;
+        oVar2.f259e = z10;
         float f11 = nVar.f250j;
         if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "viewportWidth") != null) {
             f11 = f10.getFloat(7, f11);
@@ -582,7 +582,7 @@ public final class q extends h {
                 arrayDeque.push(kVar);
                 int eventType = xmlPullParser.getEventType();
                 int depth = xmlPullParser.getDepth() + 1;
-                boolean z10 = true;
+                boolean z11 = true;
                 while (eventType != i12 && (xmlPullParser.getDepth() >= depth || eventType != 3)) {
                     if (eventType == 2) {
                         String name = xmlPullParser.getName();
@@ -609,7 +609,7 @@ public final class q extends h {
                                 }
                                 String string3 = f13.getString(2);
                                 if (string3 != null) {
-                                    mVar.f239a = i0.c(string3);
+                                    mVar.f239a = j0.c(string3);
                                 }
                                 mVar.f222f = h0.b.a(f13, xmlPullParser, theme, "fillColor", 1);
                                 float f14 = mVar.h;
@@ -680,7 +680,7 @@ public final class q extends h {
                                 fVar.put(mVar.getPathName(), mVar);
                             }
                             oVar3.f256a = oVar3.f256a;
-                            z10 = false;
+                            z11 = false;
                             c10 = '\b';
                         } else {
                             c10 = '\b';
@@ -694,7 +694,7 @@ public final class q extends h {
                                     }
                                     String string5 = f21.getString(1);
                                     if (string5 != null) {
-                                        mVar2.f239a = i0.c(string5);
+                                        mVar2.f239a = j0.c(string5);
                                     }
                                     mVar2.f241c = !h0.b.c(xmlPullParser, "fillType") ? 0 : f21.getInt(2, 0);
                                     f21.recycle();
@@ -761,7 +761,7 @@ public final class q extends h {
                     i12 = i10;
                     depth = i7;
                 }
-                if (!z10) {
+                if (!z11) {
                     this.d = d(oVar.f258c, oVar.d);
                     return;
                 }

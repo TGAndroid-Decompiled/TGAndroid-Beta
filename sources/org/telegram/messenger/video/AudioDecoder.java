@@ -84,8 +84,8 @@ public class AudioDecoder {
         int limit;
         int dequeueInputBuffer;
         DecodedBufferData decodedBufferData = new DecodedBufferData();
-        boolean z9 = false;
-        while (!z9 && !this.decodingDone) {
+        boolean z10 = false;
+        while (!z10 && !this.decodingDone) {
             if (!this.allInputExtracted && (dequeueInputBuffer = this.decoder.dequeueInputBuffer(0L)) >= 0) {
                 int readSampleData = this.extractor.readSampleData(this.decoder.getInputBuffer(dequeueInputBuffer), 0);
                 if (readSampleData >= 0 && this.extractor.getSampleTime() <= this.endTimeUs) {
@@ -125,7 +125,7 @@ public class AudioDecoder {
                     this.decodingDone = true;
                 }
                 if (decodedBufferData.byteBuffer.remaining() > 0) {
-                    z9 = true;
+                    z10 = true;
                 }
             }
         }
@@ -252,8 +252,8 @@ public class AudioDecoder {
         }
     }
 
-    public void setLoopingEnabled(boolean z9) {
-        this.loopingEnabled = z9;
+    public void setLoopingEnabled(boolean z10) {
+        this.loopingEnabled = z10;
     }
 
     public void setStartTimeUs(long j3) {

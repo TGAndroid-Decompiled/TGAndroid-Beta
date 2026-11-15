@@ -1,79 +1,39 @@
 package org.telegram.ui.ActionBar;
 
-import android.util.SparseIntArray;
-import org.telegram.ui.x71;
-public final class s5 extends u4 {
-    public final int U;
-    public final Object V;
+import android.graphics.Point;
+import android.view.View;
+import c8.ga;
+public final class s5 extends ga {
+    public final boolean f29595a;
+    public final View f29596b;
 
-    public s5(boolean z9, SparseIntArray sparseIntArray, int i7) {
-        super(2, z9, false, null);
-        this.U = i7;
-        this.V = sparseIntArray;
+    public s5(View view, boolean z10) {
+        this.f29595a = z10;
+        this.f29596b = view;
     }
 
     @Override
-    public int g(int i7) {
-        switch (this.U) {
-            case 0:
-                SparseIntArray sparseIntArray = (SparseIntArray) this.V;
-                int indexOfKey = sparseIntArray.indexOfKey(i7);
-                if (indexOfKey > 0) {
-                    return sparseIntArray.valueAt(indexOfKey);
-                }
-                return m6.em[i7];
-            case 1:
-                return ((SparseIntArray) this.V).get(i7);
-            default:
-                return super.g(i7);
-        }
-    }
-
-    @Override
-    public int i(int i7) {
-        switch (this.U) {
-            case 0:
-                return ((SparseIntArray) this.V).get(i7);
-            case 1:
-                return ((SparseIntArray) this.V).get(i7);
-            default:
-                return super.i(i7);
-        }
-    }
-
-    @Override
-    public void o(int i7, int i10, int i11) {
-        switch (this.U) {
-            case 2:
-                if (!((x71) this.V).f51578e2) {
-                    super.o(i7, i10, i11);
-                    return;
-                }
+    public final void b(int i7, int i10) {
+        boolean z10;
+        boolean z11 = this.f29595a;
+        View view = this.f29596b;
+        if (!z11) {
+            Point point = org.telegram.messenger.g0.f23609q;
+            boolean z12 = false;
+            if (point.x <= point.y) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            if (i7 <= i10) {
+                z12 = true;
+            }
+            if (z10 == z12) {
+                view.invalidate();
                 return;
-            default:
-                super.o(i7, i10, i11);
-                return;
+            }
+            return;
         }
-    }
-
-    @Override
-    public void p(int i7, int i10, int i11, int i12, int i13, int i14, boolean z9, boolean z10) {
-        switch (this.U) {
-            case 2:
-                if (!((x71) this.V).f51578e2) {
-                    super.p(i7, i10, i11, i12, i13, i14, z9, z10);
-                    return;
-                }
-                return;
-            default:
-                super.p(i7, i10, i11, i12, i13, i14, z9, z10);
-                return;
-        }
-    }
-
-    public s5(x71 x71Var, int i7, boolean z9) {
-        super(i7, true, z9, null);
-        this.U = 2;
-        this.V = x71Var;
+        view.invalidate();
     }
 }

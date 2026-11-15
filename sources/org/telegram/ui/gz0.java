@@ -1,49 +1,58 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.widget.FrameLayout;
-import java.util.HashSet;
-public final class gz0 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
-    public final Path f46183a;
-    public fh.g f46184b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+import java.lang.reflect.Method;
+public final class gz0 extends AnimatorListenerAdapter {
+    public final int f47558a;
+    public final org.telegram.ui.Components.sk0 f47559b;
 
-    public gz0(Activity activity) {
-        super(activity);
-        this.f46183a = new Path();
+    public gz0(org.telegram.ui.Components.sk0 sk0Var, int i7) {
+        this.f47558a = i7;
+        this.f47559b = sk0Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        canvas.clipPath(this.f46183a);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final void onSizeChanged(int i7, int i10, int i11, int i12) {
-        super.onSizeChanged(i7, i10, i11, i12);
-        Path path = this.f46183a;
-        path.rewind();
-        path.addRoundRect(org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(9.0f), i7 - org.telegram.messenger.g0.L(9.0f), i10 - org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), Path.Direction.CW);
-    }
-
-    public void setBlurredBackground(fh.g gVar) {
-        this.f46184b = gVar;
-        setBackground(gVar);
-    }
-
-    @Override
-    public final void updateColors() {
-        fh.g gVar = this.f46184b;
-        if (gVar != null) {
-            gVar.updateColors();
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f47558a) {
+            case 0:
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f47559b.f39334b;
+                secretMediaViewer.Y.getNextView().setText((CharSequence) null);
+                up0 up0Var = secretMediaViewer.Z;
+                up0Var.m0 = false;
+                if (up0Var.f47810n0 >= 0) {
+                    ((ViewGroup.MarginLayoutParams) up0Var.f47812p0.getLayoutParams()).topMargin = up0Var.f47810n0;
+                    up0Var.f47810n0 = -1;
+                    up0Var.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                ((SecretMediaViewer) this.f47559b.f39334b).Y.setTranslationY(0.0f);
+                return;
         }
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public void onAnimationStart(Animator animator) {
+        switch (this.f47558a) {
+            case 0:
+                up0 up0Var = ((SecretMediaViewer) this.f47559b.f39334b).Z;
+                Method method = up0Var.f47804g0;
+                if (method != null) {
+                    try {
+                        method.invoke(up0Var, null);
+                        return;
+                    } catch (Exception e10) {
+                        org.telegram.messenger.a8.g(e10, true);
+                        return;
+                    }
+                }
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
+        }
     }
 }

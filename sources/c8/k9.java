@@ -6,21 +6,21 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class k9 extends a8.h0 {
-    public final a8.kb f5749b;
+    public final a8.lb f4572b;
 
-    public k9(a8.kb kbVar) {
+    public k9(a8.lb lbVar) {
         super(1);
-        this.f5749b = kbVar;
+        this.f4572b = lbVar;
     }
 
     @Override
     public final void clear() {
-        this.f5749b.clear();
+        this.f4572b.clear();
     }
 
     @Override
     public final boolean contains(Object obj) {
-        Set entrySet = this.f5749b.f513b.entrySet();
+        Set entrySet = this.f4572b.f533b.entrySet();
         entrySet.getClass();
         try {
             return entrySet.contains(obj);
@@ -31,12 +31,12 @@ public final class k9 extends a8.h0 {
 
     @Override
     public final boolean isEmpty() {
-        return this.f5749b.isEmpty();
+        return this.f4572b.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new a8.d(this.f5749b, (byte) 0);
+        return new a8.d(this.f4572b, (byte) 0);
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class k9 extends a8.h0 {
         Map.Entry entry = (Map.Entry) obj;
         entry.getClass();
         Object key = entry.getKey();
-        d dVar = ((jg) this.f5749b.f515e).f5741c;
+        d dVar = ((jg) this.f4572b.f535e).f4564c;
         dVar.getClass();
         try {
             obj2 = dVar.remove(key);
@@ -68,15 +68,15 @@ public final class k9 extends a8.h0 {
     public final boolean removeAll(Collection collection) {
         try {
             if (collection != null) {
-                return a8.d8.a(this, collection);
+                return a8.e8.a(this, collection);
             }
             throw null;
         } catch (UnsupportedOperationException unused) {
-            boolean z9 = false;
+            boolean z10 = false;
             for (Object obj : collection) {
-                z9 |= remove(obj);
+                z10 |= remove(obj);
             }
-            return z9;
+            return z10;
         }
     }
 
@@ -94,7 +94,7 @@ public final class k9 extends a8.h0 {
                 if (size >= 0) {
                     i7 = size + 1;
                 } else {
-                    throw new IllegalArgumentException(jg.g.j(size, "expectedSize cannot be negative but was: "));
+                    throw new IllegalArgumentException(i5.c.i(size, "expectedSize cannot be negative but was: "));
                 }
             } else if (size < 1073741824) {
                 i7 = (int) Math.ceil(size / 0.75d);
@@ -107,11 +107,11 @@ public final class k9 extends a8.h0 {
                     hashSet.add(((Map.Entry) obj).getKey());
                 }
             }
-            jg jgVar = (jg) this.f5749b.f515e;
-            cd cdVar = jgVar.f5726a;
+            jg jgVar = (jg) this.f4572b.f535e;
+            cd cdVar = jgVar.f4549a;
             if (cdVar == null) {
-                cdVar = new cd(jgVar, jgVar.f5741c);
-                jgVar.f5726a = cdVar;
+                cdVar = new cd(jgVar, jgVar.f4564c);
+                jgVar.f4549a = cdVar;
             }
             return cdVar.retainAll(hashSet);
         }
@@ -119,6 +119,6 @@ public final class k9 extends a8.h0 {
 
     @Override
     public final int size() {
-        return this.f5749b.f513b.size();
+        return this.f4572b.f533b.size();
     }
 }

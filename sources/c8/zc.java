@@ -7,8 +7,8 @@ public abstract class zc {
         return false;
     }
 
-    public static int b(int i7, int i10, boolean z9) {
-        if (z9) {
+    public static int b(int i7, int i10, boolean z10) {
+        if (z10) {
             return i7 | i10;
         }
         return i7 & (~i10);

@@ -1,16 +1,16 @@
 package c8;
 public final class ce {
-    public final ta f5412a;
-    public final pa f5413b;
-    public final te f5414c;
+    public final ta f4234a;
+    public final qa f4235b;
+    public final te f4236c;
     public final m d;
-    public final m f5415e;
+    public final m f4237e;
 
     public ce(a8.r7 r7Var) {
-        this.f5412a = (ta) r7Var.f614b;
-        this.f5413b = (pa) r7Var.f615c;
-        this.f5414c = (te) r7Var.d;
-        this.d = (m) r7Var.f616e;
-        this.f5415e = (m) r7Var.f617f;
+        this.f4234a = (ta) r7Var.f617b;
+        this.f4235b = (qa) r7Var.f618c;
+        this.f4236c = (te) r7Var.d;
+        this.d = (m) r7Var.f619e;
+        this.f4237e = (m) r7Var.f620f;
     }
 }

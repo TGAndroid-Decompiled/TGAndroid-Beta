@@ -1,36 +1,21 @@
 package bi;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.b30;
-public final class j6 extends FrameLayout {
-    public final int[] f4091a;
-    public final k6 f4092b;
+import org.telegram.tgnet.RequestDelegate;
+public final class j6 implements RequestDelegate {
+    public final int f3634a;
+    public final Object f3635b;
+    public final Object f3636c;
+    public final Object d;
 
-    public j6(k6 k6Var, Context context) {
-        super(context);
-        this.f4092b = k6Var;
-        this.f4091a = new int[2];
+    public j6(Object obj, Object obj2, Object obj3, int i7) {
+        this.f3634a = i7;
+        this.f3635b = obj;
+        this.f3636c = obj2;
+        this.d = obj3;
     }
 
     @Override
-    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        FrameLayout frameLayout;
-        super.onLayout(z9, i7, i10, i11, i12);
-        k6 k6Var = this.f4092b;
-        b30 b30Var = k6Var.f4150i;
-        if (b30Var != null && b30Var.d.getChildCount() >= 2 && k6Var.f4159r != null && (frameLayout = k6Var.f4154m) != null) {
-            int[] iArr = this.f4091a;
-            frameLayout.getLocationInWindow(iArr);
-            float translationX = iArr[0] - k6Var.f4154m.getTranslationX();
-            float translationY = iArr[1] - k6Var.f4154m.getTranslationY();
-            View childAt = b30Var.d.getChildAt(1);
-            childAt.getLocationInWindow(iArr);
-            float translationY2 = iArr[1] - childAt.getTranslationY();
-            fi.m3 m3Var = k6Var.f4159r;
-            m3Var.setTranslationY(((translationY2 - translationY) - m3Var.getMeasuredHeight()) - b30Var.getMeasuredHeight());
-            k6Var.f4159r.p(0.0f, ((childAt.getMeasuredWidth() / 2.0f) + ((iArr[0] - childAt.getTranslationX()) - translationX)) - org.telegram.messenger.g0.L(12.0f));
-        }
+    public final void run(org.telegram.tgnet.TLObject r11, org.telegram.tgnet.TLRPC.TL_error r12) {
+        throw new UnsupportedOperationException("Method not decompiled: bi.j6.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 }

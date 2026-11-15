@@ -1,39 +1,42 @@
 package a8;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Looper;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 public abstract class v7 {
-    public static int a(java.lang.Object r8, java.lang.Object r9, int r10, java.lang.Object r11, int[] r12, java.lang.Object[] r13, java.lang.Object[] r14) {
-        throw new UnsupportedOperationException("Method not decompiled: a8.v7.a(java.lang.Object, java.lang.Object, int, java.lang.Object, int[], java.lang.Object[], java.lang.Object[]):int");
+    public static b9.k0 a(Context context, GoogleSignInOptions googleSignInOptions) {
+        q6.m.g(googleSignInOptions);
+        return new com.google.android.gms.common.api.j(context, z5.a.f60914a, googleSignInOptions, new com.google.android.gms.common.api.i(new w7.s(6), Looper.getMainLooper()));
     }
 
-    public static int b(int i7, Object obj) {
-        if (obj instanceof byte[]) {
-            return ((byte[]) obj)[i7] & 255;
-        }
-        if (obj instanceof short[]) {
-            return (char) ((short[]) obj)[i7];
-        }
-        return ((int[]) obj)[i7];
-    }
-
-    public static Object c(int i7) {
-        if (i7 >= 2 && i7 <= 1073741824 && Integer.highestOneBit(i7) == i7) {
-            if (i7 <= 256) {
-                return new byte[i7];
-            }
-            if (i7 <= 65536) {
-                return new short[i7];
-            }
-            return new int[i7];
-        }
-        throw new IllegalArgumentException(jg.g.j(i7, "must be power of 2 between 2^1 and 2^30: "));
-    }
-
-    public static void d(int i7, int i10, Object obj) {
-        if (obj instanceof byte[]) {
-            ((byte[]) obj)[i7] = (byte) i10;
-        } else if (obj instanceof short[]) {
-            ((short[]) obj)[i7] = (short) i10;
+    public static Task b(Intent intent) {
+        c6.b bVar;
+        GoogleSignInAccount googleSignInAccount;
+        org.telegram.messenger.d1 d1Var = d6.h.f7592a;
+        Status status = Status.h;
+        if (intent == null) {
+            bVar = new c6.b(null, status);
         } else {
-            ((int[]) obj)[i7] = i10;
+            Status status2 = (Status) intent.getParcelableExtra("googleSignInStatus");
+            GoogleSignInAccount googleSignInAccount2 = (GoogleSignInAccount) intent.getParcelableExtra("googleSignInAccount");
+            if (googleSignInAccount2 == null) {
+                if (status2 != null) {
+                    status = status2;
+                }
+                bVar = new c6.b(null, status);
+            } else {
+                bVar = new c6.b(googleSignInAccount2, Status.f5907e);
+            }
         }
+        Status status3 = bVar.f4186a;
+        if (status3.b() && (googleSignInAccount = bVar.f4187b) != null) {
+            return Tasks.forResult(googleSignInAccount);
+        }
+        return Tasks.forException(q6.m.l(status3));
     }
 }

@@ -5,24 +5,24 @@ import java.io.File;
 import java.io.IOException;
 import org.telegram.SQLite.SQLiteDatabase;
 public final class f8 {
-    public p5 f22382a;
-    public final int f22383b;
-    public SQLiteDatabase f22384c;
+    public p5 f23450a;
+    public final int f23451b;
+    public SQLiteDatabase f23452c;
     public File d;
-    public File f22385e;
-    public final ConcurrentHashMap f22386f = new ConcurrentHashMap();
-    public final e8 f22387g = new Object();
+    public File f23453e;
+    public final ConcurrentHashMap f23454f = new ConcurrentHashMap();
+    public final e8 f23455g = new Object();
     public boolean h;
 
     public f8(int i7) {
-        this.f22383b = i7;
+        this.f23451b = i7;
     }
 
     public final void a() {
         File h = t0.h();
-        int i7 = this.f22383b;
+        int i7 = this.f23451b;
         if (i7 != 0) {
-            File file = new File(h, jg.g.k(i7, "account", "/"));
+            File file = new File(h, i5.c.j(i7, "account", "/"));
             file.mkdirs();
             h = file;
         }
@@ -41,9 +41,9 @@ public final class f8 {
 
     public final void c() {
         if (!this.h) {
-            if (!as.f21513a) {
+            if (!xr.f27567a) {
                 int i7 = 0;
-                while (!as.f21513a) {
+                while (!xr.f27567a) {
                     try {
                         Thread.sleep(1000L);
                     } catch (InterruptedException e10) {
@@ -61,12 +61,12 @@ public final class f8 {
     }
 
     public final void d() {
-        if (this.f22382a == null) {
+        if (this.f23450a == null) {
             synchronized (this) {
                 try {
-                    if (this.f22382a == null) {
-                        p5 p5Var = new p5("files_database_queue_" + this.f22383b);
-                        this.f22382a = p5Var;
+                    if (this.f23450a == null) {
+                        p5 p5Var = new p5("files_database_queue_" + this.f23451b);
+                        this.f23450a = p5Var;
                         p5Var.setPriority(10);
                     }
                 } catch (Throwable th2) {
@@ -86,34 +86,34 @@ public final class f8 {
 
     public final void g(int i7) {
         if (i7 == 1) {
-            jg.g.z(this.f22384c, "CREATE INDEX IF NOT EXISTS path_in_paths ON paths(path);");
-            jg.g.z(this.f22384c, "PRAGMA user_version = 2");
+            k5.s(this.f23452c, "CREATE INDEX IF NOT EXISTS path_in_paths ON paths(path);");
+            k5.s(this.f23452c, "PRAGMA user_version = 2");
             i7 = 2;
         }
         if (i7 == 2) {
-            jg.g.z(this.f22384c, "CREATE TABLE paths_by_dialog_id(path TEXT PRIMARY KEY, dialog_id INTEGER);");
-            jg.g.z(this.f22384c, "PRAGMA user_version = 3");
+            k5.s(this.f23452c, "CREATE TABLE paths_by_dialog_id(path TEXT PRIMARY KEY, dialog_id INTEGER);");
+            k5.s(this.f23452c, "PRAGMA user_version = 3");
             i7 = 3;
         }
         if (i7 == 3) {
-            jg.g.z(this.f22384c, "ALTER TABLE paths_by_dialog_id ADD COLUMN message_id INTEGER default 0");
-            jg.g.z(this.f22384c, "ALTER TABLE paths_by_dialog_id ADD COLUMN message_type INTEGER default 0");
-            jg.g.z(this.f22384c, "PRAGMA user_version = 4");
+            k5.s(this.f23452c, "ALTER TABLE paths_by_dialog_id ADD COLUMN message_id INTEGER default 0");
+            k5.s(this.f23452c, "ALTER TABLE paths_by_dialog_id ADD COLUMN message_type INTEGER default 0");
+            k5.s(this.f23452c, "PRAGMA user_version = 4");
             i7 = 4;
         }
         if (i7 != 4 && i7 != 5 && i7 != 6) {
             return;
         }
         try {
-            this.f22384c.executeFast("ALTER TABLE paths ADD COLUMN flags INTEGER default 0").stepThis().dispose();
+            this.f23452c.executeFast("ALTER TABLE paths ADD COLUMN flags INTEGER default 0").stepThis().dispose();
         } catch (Throwable th2) {
             a8.g(th2, true);
         }
-        jg.g.z(this.f22384c, "PRAGMA user_version = 7");
+        k5.s(this.f23452c, "PRAGMA user_version = 7");
     }
 
     public final void h(Runnable runnable) {
         d();
-        this.f22382a.c(runnable);
+        this.f23450a.c(runnable);
     }
 }

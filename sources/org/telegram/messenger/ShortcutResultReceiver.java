@@ -4,14 +4,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 public class ShortcutResultReceiver extends BroadcastReceiver {
-    public static final int f21336a = 0;
+    public static final int f22411a = 0;
 
     @Override
     public final void onReceive(Context context, Intent intent) {
-        int intExtra = intent.getIntExtra("account", p10.f24474s0);
-        c20 c20Var = (c20) ui.b0(intExtra).f25835o1.remove(intent.getStringExtra("req_id"));
-        if (c20Var != null) {
-            g0.h3(new rf(c20Var, 9));
+        int intExtra = intent.getIntExtra("account", m10.f24934t0);
+        z10 z10Var = (z10) si.b0(intExtra).f26492p1.remove(intent.getStringExtra("req_id"));
+        if (z10Var != null) {
+            g0.h3(new qf(z10Var, 9));
         }
     }
 }

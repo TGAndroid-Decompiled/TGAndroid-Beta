@@ -1,36 +1,54 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-public final class w11 extends pj0 {
-    public final k21 f39859e3;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
+import android.text.TextPaint;
+public final class w11 extends Drawable {
+    public final ch0 f41226a;
+    public int f41227b;
+    public final TextPaint f41228c;
 
-    public w11(k21 k21Var, Context context) {
-        super(context, null);
-        this.f39859e3 = k21Var;
+    public w11(TextPaint textPaint) {
+        a5.b bVar = new a5.b(this, 8);
+        this.f41228c = textPaint;
+        float textSize = textPaint.getTextSize() * 0.89f;
+        ch0 ch0Var = new ch0(2131624001, (int) textSize, (int) (textSize * 1.25f));
+        this.f41226a = ch0Var;
+        ch0Var.setCallback(bVar);
+        ch0Var.K(1);
+        ch0Var.M((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
+        ch0Var.J(true);
+        ch0Var.start();
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            float y10 = motionEvent.getY();
-            k21 k21Var = this.f39859e3;
-            if (y10 < k21Var.L0(true) - getTop()) {
-                k21Var.dismiss();
-                return true;
-            }
+    public final void draw(Canvas canvas) {
+        int color = this.f41228c.getColor();
+        int i7 = this.f41227b;
+        ch0 ch0Var = this.f41226a;
+        if (color != i7) {
+            ch0Var.f33571a0 = true;
+            ch0Var.Q(color, "Comp 1");
+            ch0Var.o();
+            ch0Var.J(true);
+            ch0Var.V(0L);
+            this.f41227b = color;
         }
-        return super.dispatchTouchEvent(motionEvent);
+        ch0Var.draw(canvas);
     }
 
     @Override
-    public final boolean onRequestFocusInDescendants(int i7, Rect rect) {
-        return true;
+    public final int getOpacity() {
+        return -2;
     }
 
     @Override
-    public final void requestChildFocus(View view, View view2) {
+    public final void setAlpha(int i7) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

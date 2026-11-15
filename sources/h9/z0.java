@@ -1,24 +1,24 @@
 package h9;
 
 import java.util.NoSuchElementException;
-public final class z0 extends h2 {
-    public final Object f14422a;
-    public boolean f14423b;
+public final class z0 extends g2 {
+    public final Object f13778a;
+    public boolean f13779b;
 
     public z0(Object obj) {
-        this.f14422a = obj;
+        this.f13778a = obj;
     }
 
     @Override
     public final boolean hasNext() {
-        return !this.f14423b;
+        return !this.f13779b;
     }
 
     @Override
     public final Object next() {
-        if (!this.f14423b) {
-            this.f14423b = true;
-            return this.f14422a;
+        if (!this.f13779b) {
+            this.f13779b = true;
+            return this.f13778a;
         }
         throw new NoSuchElementException();
     }

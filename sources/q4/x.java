@@ -2,45 +2,45 @@ package q4;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.xb;
+import c8.yb;
 import com.google.android.gms.common.internal.BinderWrapper;
 import q6.h0;
 public final class x implements Parcelable.Creator {
-    public final int f53837a;
+    public final int f55274a;
 
     public x(int i7) {
-        this.f53837a = i7;
+        this.f55274a = i7;
     }
 
     public static void a(q6.g gVar, Parcel parcel, int i7) {
-        int r10 = xb.r(parcel, 20293);
-        int i10 = gVar.f53884a;
-        xb.q(parcel, 1, 4);
+        int r10 = yb.r(parcel, 20293);
+        int i10 = gVar.f55321a;
+        yb.q(parcel, 1, 4);
         parcel.writeInt(i10);
-        int i11 = gVar.f53885b;
-        xb.q(parcel, 2, 4);
+        int i11 = gVar.f55322b;
+        yb.q(parcel, 2, 4);
         parcel.writeInt(i11);
-        int i12 = gVar.f53886c;
-        xb.q(parcel, 3, 4);
+        int i12 = gVar.f55323c;
+        yb.q(parcel, 3, 4);
         parcel.writeInt(i12);
-        xb.l(parcel, 4, gVar.d);
-        xb.f(parcel, 5, gVar.f53887e);
-        xb.o(parcel, 6, gVar.f53888f, i7);
-        xb.b(parcel, 7, gVar.h);
-        xb.k(parcel, 8, gVar.f53889n, i7);
-        xb.o(parcel, 10, gVar.f53890r, i7);
-        xb.o(parcel, 11, gVar.f53891s, i7);
-        boolean z9 = gVar.f53892w;
-        xb.q(parcel, 12, 4);
-        parcel.writeInt(z9 ? 1 : 0);
-        int i13 = gVar.f53893x;
-        xb.q(parcel, 13, 4);
-        parcel.writeInt(i13);
-        boolean z10 = gVar.f53894y;
-        xb.q(parcel, 14, 4);
+        yb.l(parcel, 4, gVar.d);
+        yb.f(parcel, 5, gVar.f55324e);
+        yb.o(parcel, 6, gVar.f55325f, i7);
+        yb.b(parcel, 7, gVar.h);
+        yb.k(parcel, 8, gVar.f55326n, i7);
+        yb.o(parcel, 10, gVar.f55327r, i7);
+        yb.o(parcel, 11, gVar.f55328s, i7);
+        boolean z10 = gVar.f55329w;
+        yb.q(parcel, 12, 4);
         parcel.writeInt(z10 ? 1 : 0);
-        xb.l(parcel, 15, gVar.D);
-        xb.s(parcel, r10);
+        int i13 = gVar.f55330x;
+        yb.q(parcel, 13, 4);
+        parcel.writeInt(i13);
+        boolean z11 = gVar.f55331y;
+        yb.q(parcel, 14, 4);
+        parcel.writeInt(z11 ? 1 : 0);
+        yb.l(parcel, 15, gVar.E);
+        yb.s(parcel, r10);
     }
 
     @Override
@@ -50,7 +50,7 @@ public final class x implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i7) {
-        switch (this.f53837a) {
+        switch (this.f55274a) {
             case 0:
                 return new y[i7];
             case 1:

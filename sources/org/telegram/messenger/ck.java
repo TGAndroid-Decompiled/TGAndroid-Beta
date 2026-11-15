@@ -1,51 +1,52 @@
 package org.telegram.messenger;
 
-import j$.util.concurrent.ConcurrentHashMap;
+import android.util.SparseIntArray;
 import java.util.ArrayList;
+import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.ui.NotificationsSettingsActivity;
 public final class ck implements Runnable {
-    public final int f21878a;
-    public final qp f21879b;
-    public final bg.u f21880c;
-    public final ConcurrentHashMap d;
-    public final ConcurrentHashMap f21881e;
+    public final int f22891a;
+    public final is f22892b;
+    public final Cloneable f22893c;
+    public final Cloneable d;
+    public final Cloneable f22894e;
+    public final Cloneable f22895f;
+    public final Cloneable h;
+    public final Cloneable f22896n;
+    public final Cloneable f22897r;
+    public final Object f22898s;
+    public final Cloneable f22899w;
 
-    public ck(qp qpVar, bg.u uVar, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2, int i7) {
-        this.f21878a = i7;
-        this.f21879b = qpVar;
-        this.f21880c = uVar;
-        this.d = concurrentHashMap;
-        this.f21881e = concurrentHashMap2;
+    public ck(np npVar, LongSparseIntArray longSparseIntArray, LongSparseIntArray longSparseIntArray2, SparseIntArray sparseIntArray, a0.h hVar, a0.h hVar2, a0.h hVar3, a0.h hVar4, a0.h hVar5, LongSparseIntArray longSparseIntArray3, int i7) {
+        this.f22891a = i7;
+        this.f22892b = npVar;
+        this.f22893c = longSparseIntArray;
+        this.d = longSparseIntArray2;
+        this.f22894e = sparseIntArray;
+        this.f22895f = hVar;
+        this.h = hVar2;
+        this.f22896n = hVar3;
+        this.f22897r = hVar4;
+        this.f22898s = hVar5;
+        this.f22899w = longSparseIntArray3;
     }
 
     @Override
     public final void run() {
-        switch (this.f21878a) {
-            case 0:
-                qp qpVar = this.f21879b;
-                int i7 = qpVar.currentAccount;
-                bg.u uVar = this.f21880c;
-                uVar.b(i7, this.d, this.f21881e, 0);
-                g0.h3(new vl(qpVar, uVar, 1));
-                return;
-            case 1:
-                qp qpVar2 = this.f21879b;
-                int i10 = qpVar2.currentAccount;
-                bg.u uVar2 = this.f21880c;
-                uVar2.b(i10, this.d, this.f21881e, 0);
-                g0.h3(new vl(qpVar2, uVar2, 2));
-                return;
-            default:
-                qp qpVar3 = this.f21879b;
-                yr messagesStorage = qpVar3.getMessagesStorage();
-                bg.u uVar3 = this.f21880c;
-                ArrayList arrayList = uVar3.f3373a;
-                ck ckVar = new ck(qpVar3, uVar3, this.d, this.f21881e, 1);
-                messagesStorage.getClass();
-                if (arrayList != null && !arrayList.isEmpty()) {
-                    messagesStorage.I(new ng(messagesStorage, arrayList, ckVar, 3));
-                    return;
-                }
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ck.run():void");
+    }
+
+    public ck(NotificationsSettingsActivity notificationsSettingsActivity, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5, ArrayList arrayList6, ArrayList arrayList7, ArrayList arrayList8, Runnable runnable) {
+        this.f22891a = 2;
+        this.f22892b = notificationsSettingsActivity;
+        this.f22893c = arrayList;
+        this.d = arrayList2;
+        this.f22899w = arrayList3;
+        this.f22894e = arrayList4;
+        this.f22895f = arrayList5;
+        this.h = arrayList6;
+        this.f22896n = arrayList7;
+        this.f22897r = arrayList8;
+        this.f22898s = runnable;
     }
 }

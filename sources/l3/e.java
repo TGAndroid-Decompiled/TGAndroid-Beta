@@ -1,20 +1,20 @@
 package l3;
 
-import bi.b1;
-import f3.j0;
+import com.google.android.gms.common.api.q;
+import f3.i0;
 import h2.x;
 import i2.o;
-public final class e extends b1 {
-    public final x f18126b;
-    public final x f18127c;
+public final class e extends q {
+    public final x f19256b;
+    public final x f19257c;
     public int d;
-    public boolean f18128e;
-    public boolean f18129f;
-    public int f18130g;
+    public boolean f19258e;
+    public boolean f19259f;
+    public int f19260g;
 
-    public e(j0 j0Var) {
-        super(j0Var);
-        this.f18126b = new x(o.f15207a);
-        this.f18127c = new x(4);
+    public e(i0 i0Var) {
+        super(i0Var);
+        this.f19256b = new x(o.f15659a);
+        this.f19257c = new x(4);
     }
 }

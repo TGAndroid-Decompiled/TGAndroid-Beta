@@ -1,216 +1,120 @@
 package ug;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import android.widget.ImageView;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.Components.h5;
-public class z0 extends ImageView {
-    public static final int L = 0;
-    public Paint D;
-    public ImageReceiver E;
-    public h5 F;
-    public float G;
-    public boolean H;
-    public boolean I;
-    public org.telegram.ui.Components.voip.n J;
-    public Integer K;
-    public final int f56890a;
-    public final float[] f56891b;
-    public final p1 f56892c;
-    public final h6 d;
-    public boolean f56893e;
-    public final float f56894f;
-    public boolean h;
-    public int f56895n;
-    public int f56896r;
-    public int f56897s;
-    public LinearGradient f56898w;
-    public final Path f56899x;
-    public Paint f56900y;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.j6;
+public class z0 {
+    public final e6 f58388a;
+    public LinearGradient d;
+    public final int f58393g;
+    public final int h;
+    public final int f58394i;
+    public final int f58395j;
+    public boolean f58398m;
+    public boolean f58399n;
+    public float f58389b = 0.5f;
+    public float f58390c = 0.5f;
+    public final Matrix f58391e = new Matrix();
+    public final Paint f58392f = new Paint(1);
+    public final int[] f58397l = new int[5];
+    public float f58400o = 1.0f;
+    public float f58401p = 1.5f;
+    public float f58402q = 0.0f;
+    public final int f58396k = -1;
 
-    public z0(int i7, Context context, h6 h6Var) {
-        super(context);
-        int i10;
-        this.f56891b = new float[3];
-        this.f56894f = 1.0f;
-        this.h = false;
-        this.f56895n = -1;
-        this.f56898w = null;
-        this.f56899x = new Path();
-        this.f56900y = new Paint(1);
-        this.G = 1.0f;
-        this.f56890a = i7;
-        this.d = h6Var;
-        if (i7 == 0) {
-            i10 = 2131232308;
-        } else {
-            i10 = 2131232245;
-        }
-        setImageResource(i10);
-        if (i7 == 0) {
-            p1 p1Var = new p1(5);
-            this.f56892c = p1Var;
-            p1Var.g();
-            p1Var.M = false;
-            p1Var.f56791s = 4;
-            p1Var.f56792t = 4;
-            p1Var.f56790r = 2;
-            p1Var.f56787o = 0.1f;
-            p1Var.c();
-        } else if (i7 == 2) {
-            this.f56894f = 0.8f;
-            this.f56900y.setColor(m6.x0(null, m6.f27834a7, false));
-        } else if (i7 == 3) {
-            setScaleType(ImageView.ScaleType.CENTER);
-            setImageResource(2131232053);
-        } else if (i7 == 4) {
-            setScaleType(ImageView.ScaleType.CENTER);
-            setImageResource(2131232201);
-        }
+    public z0(int i7, int i10, int i11, int i12, e6 e6Var) {
+        this.f58388a = e6Var;
+        this.f58393g = i7;
+        this.h = i10;
+        this.f58394i = i11;
+        this.f58395j = i12;
     }
 
     public final void a() {
-        if (this.f56893e && getMeasuredHeight() != 0 && getMeasuredWidth() != 0) {
-            int i7 = this.f56895n;
-            float[] fArr = this.f56891b;
-            Color.colorToHSV(i7, fArr);
-            fArr[1] = fArr[1] * 1.0f;
-            if (fArr[2] > 0.7f) {
-                fArr[2] = 0.7f;
-            }
-            int HSVToColor = Color.HSVToColor(fArr);
-            int i10 = m6.f27890d6;
-            h6 h6Var = this.d;
-            int f10 = i0.a.f(0.5f, HSVToColor, m6.w0(i10, h6Var));
-            int f11 = i0.a.f(0.4f, HSVToColor, m6.w0(i10, h6Var));
-            if (this.f56898w == null || this.f56896r != f11 || this.f56897s != f10) {
-                if (this.I) {
-                    Paint paint = this.f56900y;
-                    this.D = paint;
-                    paint.setAlpha(255);
-                    this.G = 0.0f;
-                }
-                this.f56900y = new Paint(1);
-                this.f56896r = f11;
-                this.f56897s = f10;
-                LinearGradient linearGradient = new LinearGradient(0.0f, getMeasuredHeight(), 0.0f, 0.0f, new int[]{f11, f10}, (float[]) null, Shader.TileMode.CLAMP);
-                this.f56898w = linearGradient;
-                this.f56900y.setShader(linearGradient);
-                invalidate();
-            }
+        int b10;
+        int b11;
+        int b12;
+        int b13 = b(this.f58393g);
+        int b14 = b(this.h);
+        int i7 = this.f58394i;
+        if (i7 < 0) {
+            b10 = 0;
+        } else {
+            b10 = b(i7);
         }
-    }
-
-    public ImageReceiver getImageReceiver() {
-        return this.E;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f56893e = true;
-        if (this.f56890a != 0) {
-            a();
+        int i10 = this.f58395j;
+        if (i10 < 0) {
+            b11 = 0;
+        } else {
+            b11 = b(i10);
         }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f56893e = false;
-        Paint paint = this.f56900y;
-        if (paint != null && this.f56890a != 2) {
-            paint.setShader(null);
-            this.f56900y = null;
+        int i11 = this.f58396k;
+        if (i11 < 0) {
+            b12 = 0;
+        } else {
+            b12 = b(i11);
         }
-        this.f56898w = null;
-        this.I = false;
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r11) {
-        throw new UnsupportedOperationException("Method not decompiled: ug.z0.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, i10);
-        if (this.f56890a == 0) {
-            Path path = this.f56899x;
-            path.rewind();
-            RectF rectF = org.telegram.messenger.g0.P;
-            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            Path.Direction direction = Path.Direction.CW;
-            path.addCircle(rectF.width() / 2.0f, rectF.centerY(), rectF.width() / 2.0f, direction);
-            rectF.set((getMeasuredWidth() / 2.0f) + org.telegram.messenger.g0.L(2.5f), org.telegram.messenger.g0.N(5.7f) + (getMeasuredHeight() / 2.0f), getMeasuredWidth() - org.telegram.messenger.g0.N(0.2f), getMeasuredHeight());
-            path.addRoundRect(rectF, org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), direction);
-            path.close();
-            p1 p1Var = this.f56892c;
-            p1Var.f56775a.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            p1Var.f56775a.inset(org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f));
+        LinearGradient linearGradient = this.d;
+        int[] iArr = this.f58397l;
+        if (linearGradient != null && iArr[0] == b13 && iArr[1] == b14 && iArr[2] == b10 && iArr[3] == b11 && iArr[4] == b12) {
             return;
         }
+        iArr[0] = b13;
+        iArr[1] = b14;
+        iArr[2] = b10;
+        iArr[3] = b11;
+        iArr[4] = b12;
+        if (b10 == 0) {
+            this.d = new LinearGradient(0.0f, this.f58400o * 100.0f, this.f58401p * 100.0f, this.f58402q * 100.0f, new int[]{iArr[0], iArr[1]}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        } else if (b11 == 0) {
+            this.d = new LinearGradient(0.0f, this.f58400o * 100.0f, this.f58401p * 100.0f, this.f58402q * 100.0f, new int[]{iArr[0], iArr[1], iArr[2]}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.CLAMP);
+        } else if (b12 == 0) {
+            this.d = new LinearGradient(0.0f, this.f58400o * 100.0f, this.f58401p * 100.0f, this.f58402q * 100.0f, new int[]{iArr[0], iArr[1], iArr[2], iArr[3]}, new float[]{0.0f, 0.5f, 0.78f, 1.0f}, Shader.TileMode.CLAMP);
+        } else {
+            this.d = new LinearGradient(0.0f, this.f58400o * 100.0f, this.f58401p * 100.0f, this.f58402q * 100.0f, new int[]{iArr[0], iArr[1], iArr[2], iArr[3], iArr[4]}, new float[]{0.0f, 0.425f, 0.655f, 0.78f, 1.0f}, Shader.TileMode.CLAMP);
+        }
+        this.d.setLocalMatrix(this.f58391e);
+        this.f58392f.setShader(this.d);
+    }
+
+    public final int b(int i7) {
+        int c10 = c(i7);
+        if (this.f58399n) {
+            return Color.argb(Color.alpha(c10), Color.red(c10) - 15, Color.green(c10) - 15, Color.blue(c10) - 15);
+        }
+        return c10;
+    }
+
+    public int c(int i7) {
+        return j6.w0(i7, this.f58388a);
+    }
+
+    public final void d(int i7, float f10, int i10, int i11, float f11, int i12) {
         a();
+        boolean z10 = this.f58398m;
+        Matrix matrix = this.f58391e;
+        if (z10) {
+            matrix.reset();
+            matrix.postScale((i11 - i7) / 100.0f, (i12 - i10) / 100.0f, this.f58389b * 100.0f, this.f58390c * 100.0f);
+            matrix.postTranslate(f10, f11);
+            this.d.setLocalMatrix(matrix);
+            return;
+        }
+        int i13 = i12 - i10;
+        int i14 = i13 + i13;
+        a();
+        matrix.reset();
+        matrix.postScale((i11 - i7) / 100.0f, i14 / 100.0f, 75.0f, 50.0f);
+        matrix.postTranslate(f10, (-i14) + f11);
+        this.d.setLocalMatrix(matrix);
     }
 
-    public void setAnimatedEmojiDrawable(h5 h5Var) {
-        this.F = h5Var;
-        if (h5Var != null) {
-            this.H = true;
-            invalidate();
-        }
-    }
-
-    public void setBlendWithColor(Integer num) {
-        this.K = num;
-    }
-
-    public void setColor(int i7) {
-        this.h = true;
-        Integer num = this.K;
-        if (num != null) {
-            i7 = m6.w(i7, num.intValue());
-        }
-        if (this.f56895n != i7) {
-            this.f56895n = i7;
-            int i10 = this.f56890a;
-            if (i10 != 0 && i10 != 2) {
-                a();
-            } else {
-                Paint paint = this.f56900y;
-                if (paint != null) {
-                    paint.setColor(i7);
-                }
-            }
-            invalidate();
-        }
-    }
-
-    public void setImageReceiver(ImageReceiver imageReceiver) {
-        this.E = imageReceiver;
-        if (imageReceiver != null) {
-            this.H = true;
-            invalidate();
-        }
-    }
-
-    public void setLocked(boolean z9) {
-        int i7;
-        if (this.f56890a != 0) {
-            if (z9) {
-                i7 = 2131232245;
-            } else {
-                i7 = 2131232249;
-            }
-            setImageResource(i7);
-        }
+    public final void e(RectF rectF) {
+        d((int) rectF.left, 0.0f, (int) rectF.top, (int) rectF.right, 0.0f, (int) rectF.bottom);
     }
 }

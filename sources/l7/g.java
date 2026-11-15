@@ -7,21 +7,22 @@ import android.os.IInterface;
 import android.os.Looper;
 import com.google.android.gms.common.api.k;
 import com.google.android.gms.common.api.l;
-import m.q3;
+import m.o3;
+import tg.x;
 public final class g extends q6.h {
     public final z5.b F;
 
-    public g(Context context, Looper looper, q3 q3Var, z5.b bVar, k kVar, l lVar) {
-        super(context, looper, 68, q3Var, kVar, lVar, 0);
-        bVar = bVar == null ? z5.b.f59715c : bVar;
-        ?? obj = new Object();
-        obj.f57252a = Boolean.FALSE;
-        z5.b bVar2 = z5.b.f59715c;
+    public g(Context context, Looper looper, o3 o3Var, z5.b bVar, k kVar, l lVar) {
+        super(context, looper, 68, o3Var, kVar, lVar, 0);
+        bVar = bVar == null ? z5.b.f60915c : bVar;
+        x xVar = new x(9, (byte) 0);
+        xVar.f57596b = Boolean.FALSE;
+        z5.b bVar2 = z5.b.f60915c;
         bVar.getClass();
-        obj.f57252a = Boolean.valueOf(bVar.f59716a);
-        obj.f57253b = bVar.f59717b;
-        obj.f57253b = e.a();
-        this.F = new z5.b(obj);
+        xVar.f57596b = Boolean.valueOf(bVar.f60916a);
+        xVar.f57597c = bVar.f60917b;
+        xVar.f57597c = e.a();
+        this.F = new z5.b(xVar);
     }
 
     @Override
@@ -47,8 +48,8 @@ public final class g extends q6.h {
         bVar.getClass();
         Bundle bundle = new Bundle();
         bundle.putString("consumer_package", null);
-        bundle.putBoolean("force_save_dialog", bVar.f59716a);
-        bundle.putString("log_session_id", bVar.f59717b);
+        bundle.putBoolean("force_save_dialog", bVar.f60916a);
+        bundle.putString("log_session_id", bVar.f60917b);
         return bundle;
     }
 

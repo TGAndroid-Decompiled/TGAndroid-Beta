@@ -19,7 +19,7 @@ public class GlTextureFrameBuffer {
                 this.height = 0;
                 return;
             default:
-                throw new IllegalArgumentException(jg.g.j(i7, "Invalid pixel format: "));
+                throw new IllegalArgumentException(i5.c.i(i7, "Invalid pixel format: "));
         }
     }
 
@@ -76,7 +76,7 @@ public class GlTextureFrameBuffer {
                 GLES20.glBindFramebuffer(36160, 0);
                 return;
             }
-            throw new IllegalStateException(jg.g.j(glCheckFramebufferStatus, "Framebuffer not complete, status: "));
+            throw new IllegalStateException(i5.c.i(glCheckFramebufferStatus, "Framebuffer not complete, status: "));
         }
         throw new IllegalArgumentException(p0.m(i7, i10, "Invalid size: ", "x"));
     }

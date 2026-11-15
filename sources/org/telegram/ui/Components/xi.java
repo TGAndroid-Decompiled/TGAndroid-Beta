@@ -1,32 +1,52 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class xi implements cj {
-    public final int f40310a;
-    public final TLRPC.User f40311b;
+import android.content.Context;
+import org.telegram.ui.WallpapersListActivity;
+import org.telegram.ui.qc1;
+import org.telegram.ui.rc1;
+import org.telegram.ui.t71;
+public final class xi extends org.telegram.ui.Cells.ta {
+    public final int f41703x;
+    public final tj0 f41704y;
 
-    public xi(int i7, TLRPC.User user) {
-        this.f40310a = i7;
-        this.f40311b = user;
+    public xi(tj0 tj0Var, Context context, int i7) {
+        super(context, 5);
+        this.f41703x = i7;
+        this.f41704y = tj0Var;
     }
 
     @Override
-    public final String run() {
-        pf.b c10;
-        StringBuilder sb2;
-        String str;
-        switch (this.f40310a) {
+    public final void a(int i7, Object obj) {
+        switch (this.f41703x) {
             case 0:
-                c10 = pf.b.c();
-                sb2 = new StringBuilder("+");
-                str = this.f40311b.phone;
-                break;
+                q0.a aVar = ((yi) ((ha) this.f41704y).f35207f).f42006y;
+                if (aVar != null) {
+                    aVar.accept(obj);
+                    return;
+                }
+                return;
+            case 1:
+                WallpapersListActivity.w0(((qc1) this.f41704y).d, this, obj, i7);
+                return;
             default:
-                c10 = pf.b.c();
-                sb2 = new StringBuilder("+");
-                str = this.f40311b.phone;
-                break;
+                ((rc1) this.f41704y).F.presentFragment(new t71(obj, null, true));
+                return;
         }
-        return org.telegram.messenger.k5.i(sb2, str, c10);
+    }
+
+    @Override
+    public boolean b(Object obj, int i7) {
+        switch (this.f41703x) {
+            case 1:
+                return WallpapersListActivity.x0(((qc1) this.f41704y).d, this, obj, i7);
+            default:
+                return super.b(obj, i7);
+        }
+    }
+
+    public xi(ha haVar, Context context) {
+        super(context, 1);
+        this.f41703x = 0;
+        this.f41704y = haVar;
     }
 }

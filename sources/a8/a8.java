@@ -183,14 +183,14 @@ public enum a8 implements l0 {
     OPTIONAL_MODULE_SMART_REPLY_INFERENCE(523),
     OPTIONAL_MODULE_SMART_REPLY_RELEASE(524);
     
-    public final int f323a;
+    public final int f329a;
 
     a8(int i7) {
-        this.f323a = i7;
+        this.f329a = i7;
     }
 
     @Override
     public final int zza() {
-        return this.f323a;
+        return this.f329a;
     }
 }

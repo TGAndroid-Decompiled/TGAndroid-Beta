@@ -1,77 +1,100 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Point;
-import android.widget.FrameLayout;
-public final class w7 extends FrameLayout {
-    public final int f50933a;
-    public int f50934b;
-    public final org.telegram.messenger.ls f50935c;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.messenger.ImageReceiver;
+public final class w7 implements fi.e9, org.telegram.messenger.nr {
+    public final i8 f52476a;
 
-    public w7(org.telegram.messenger.ls lsVar, Context context, int i7) {
-        super(context);
-        this.f50933a = i7;
-        this.f50935c = lsVar;
-        this.f50934b = -1;
+    public w7(i8 i8Var) {
+        this.f52476a = i8Var;
     }
 
     @Override
-    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        switch (this.f50933a) {
-            case 0:
-                super.onLayout(z9, i7, i10, i11, i12);
-                int measuredWidth = (getMeasuredWidth() + getMeasuredHeight()) << 16;
-                if (this.f50934b != measuredWidth) {
-                    this.f50934b = measuredWidth;
-                    ((h8) this.f50935c).L.f();
+    public void d(long j3, int i7, fi.g3 g3Var) {
+        i8 i8Var = this.f52476a;
+        if (i8Var.f47940b == null) {
+            g3Var.run();
+        }
+        i8Var.f47940b.post(g3Var);
+    }
+
+    @Override
+    public void j(boolean z10) {
+        org.telegram.ui.ActionBar.o4 o4Var;
+        org.telegram.ui.ActionBar.o4 o4Var2;
+        org.telegram.ui.ActionBar.o4 o4Var3;
+        org.telegram.ui.ActionBar.o4 o4Var4;
+        i8 i8Var = this.f52476a;
+        i8Var.finishFragment();
+        o4Var = ((org.telegram.ui.ActionBar.e2) i8Var).parentLayout;
+        if (o4Var != null) {
+            o4Var2 = ((org.telegram.ui.ActionBar.e2) i8Var).parentLayout;
+            if (o4Var2.getFragmentStack().size() >= 2) {
+                o4Var3 = ((org.telegram.ui.ActionBar.e2) i8Var).parentLayout;
+                List fragmentStack = o4Var3.getFragmentStack();
+                o4Var4 = ((org.telegram.ui.ActionBar.e2) i8Var).parentLayout;
+                org.telegram.ui.ActionBar.e2 e2Var = (org.telegram.ui.ActionBar.e2) fragmentStack.get(o4Var4.getFragmentStack().size() - 2);
+                if (e2Var instanceof an) {
+                    ((an) e2Var).j8(i8Var.Q, i8Var.R + 86400, z10);
                     return;
                 }
                 return;
-            case 1:
-                super.onLayout(z9, i7, i10, i11, i12);
-                int i13 = i12 - i10;
-                int i14 = this.f50934b;
-                if (i14 != -1 && Math.abs(i14 - i13) > org.telegram.messenger.g0.L(20.0f)) {
-                    mp mpVar = (mp) this.f50935c;
-                    mpVar.f48003b.y0(mpVar.V - 1);
-                }
-                this.f50934b = i13;
-                return;
-            default:
-                super.onLayout(z9, i7, i10, i11, i12);
-                Point point = org.telegram.messenger.g0.f22567q;
-                int i15 = point.x + point.y;
-                int i16 = this.f50934b;
-                if (i16 > 0 && i16 != i15) {
-                    setVisibility(8);
-                    org.telegram.ui.Components.p10 p10Var = (org.telegram.ui.Components.p10) this.f50935c;
-                    p10Var.f36777y = false;
-                    p10Var.a();
-                }
-                this.f50934b = i15;
-                return;
+            }
+        }
+        an anVar = i8Var.O;
+        if (anVar != null) {
+            anVar.j8(i8Var.Q, i8Var.R + 86400, z10);
         }
     }
 
     @Override
-    public void setVisibility(int i7) {
-        switch (this.f50933a) {
-            case 2:
-                super.setVisibility(i7);
-                if (i7 == 8) {
-                    this.f50934b = -1;
-                    return;
+    public boolean l(long j3, int i7, int i10, int i11, fi.f9 f9Var) {
+        i8 i8Var = this.f52476a;
+        if (i8Var.f47940b != null) {
+            int i12 = 0;
+            while (true) {
+                if (i12 >= i8Var.f47940b.getChildCount()) {
+                    break;
                 }
-                return;
-            default:
-                super.setVisibility(i7);
-                return;
+                View childAt = i8Var.f47940b.getChildAt(i12);
+                if (childAt instanceof f8) {
+                    f8 f8Var = (f8) childAt;
+                    if (f8Var.f47053n == null) {
+                        continue;
+                    } else {
+                        for (int i13 = 0; i13 < f8Var.f47053n.size(); i13++) {
+                            ArrayList arrayList = ((g8) f8Var.f47053n.valueAt(i13)).f47372b;
+                            if (arrayList != null && arrayList.contains(Integer.valueOf(i10))) {
+                                int keyAt = f8Var.f47053n.keyAt(i13);
+                                i8Var.f47951i0 = keyAt;
+                                ImageReceiver imageReceiver = (ImageReceiver) f8Var.f47054r.get(keyAt);
+                                if (imageReceiver != null) {
+                                    f9Var.f11712c = imageReceiver;
+                                    if (i8Var.f47952j0 == null) {
+                                        i8Var.f47952j0 = new w0(this, 11);
+                                    }
+                                    f9Var.f11713e = i8Var.f47952j0;
+                                    f9Var.f11710a = f8Var;
+                                    f9Var.f11715g = i8Var.fragmentView;
+                                    f9Var.h = org.telegram.messenger.g0.L(36.0f);
+                                    f9Var.f11716i = i8Var.fragmentView.getBottom();
+                                    f9Var.f11711b = null;
+                                    return true;
+                                }
+                            }
+                        }
+                        continue;
+                    }
+                }
+                i12++;
+            }
         }
+        return false;
     }
 
-    public w7(h8 h8Var, Context context) {
-        super(context);
-        this.f50933a = 0;
-        this.f50935c = h8Var;
+    @Override
+    public void c(boolean z10) {
     }
 }

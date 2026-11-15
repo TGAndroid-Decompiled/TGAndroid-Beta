@@ -1,51 +1,19 @@
 package org.telegram.ui;
+public final class m00 extends ug.z0 {
+    public final int f49088r;
 
-import android.graphics.RectF;
-import android.text.style.URLSpan;
-import android.view.View;
-import android.view.ViewParent;
-import org.telegram.tgnet.TLRPC;
-public final class m00 implements org.telegram.messenger.d20 {
-    public final int f47766a;
-    public final Object f47767b;
-
-    public m00(Object obj, int i7) {
-        this.f47766a = i7;
-        this.f47767b = obj;
+    public m00(int i7, int i10, int i11, int i12, org.telegram.ui.ActionBar.e6 e6Var, int i13) {
+        super(i7, i10, i11, i12, e6Var);
+        this.f49088r = i13;
     }
 
     @Override
-    public final Object a(Object obj) {
-        int i7 = this.f47766a;
-        Object obj2 = this.f47767b;
-        switch (i7) {
+    public final int c(int i7) {
+        switch (this.f49088r) {
             case 0:
-                r00 r00Var = (r00) obj2;
-                View view = (View) obj;
-                r00Var.getClass();
-                ViewParent parent = view.getParent();
-                org.telegram.ui.Components.pj0 pj0Var = r00Var.f49189c;
-                if (parent != pj0Var) {
-                    return Boolean.FALSE;
-                }
-                return Boolean.valueOf(!org.telegram.ui.Components.m41.K(pj0Var.T(view).f57056f));
-            case 1:
-                od0 od0Var = (od0) obj2;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                if (tL_error != null && "PHONE_CODE_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                    org.telegram.messenger.g0.h3(new kd0(od0Var, 3));
-                    return Boolean.TRUE;
-                }
-                return Boolean.FALSE;
+                return org.telegram.ui.ActionBar.j6.F0(i7);
             default:
-                ProfileActivity profileActivity = (ProfileActivity) obj2;
-                URLSpan uRLSpan = (URLSpan) obj;
-                RectF rectF = ProfileActivity.V6;
-                if (uRLSpan != null) {
-                    profileActivity.S4(uRLSpan.getURL(), null);
-                    return Boolean.TRUE;
-                }
-                return Boolean.FALSE;
+                return org.telegram.ui.ActionBar.j6.F0(i7);
         }
     }
 }

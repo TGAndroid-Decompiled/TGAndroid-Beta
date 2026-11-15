@@ -2,52 +2,52 @@ package org.telegram.ui;
 
 import android.net.Uri;
 import android.text.TextUtils;
-public final class q implements org.telegram.messenger.c20 {
-    public final int f48891a;
-    public final g4 f48892b;
+public final class q implements org.telegram.messenger.z10 {
+    public final int f50416a;
+    public final g4 f50417b;
 
     public q(g4 g4Var, int i7) {
-        this.f48891a = i7;
-        this.f48892b = g4Var;
+        this.f50416a = i7;
+        this.f50417b = g4Var;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f48891a) {
+        switch (this.f50416a) {
             case 0:
-                g4 g4Var = this.f48892b;
-                di.b4 b4Var = g4Var.f45967q0;
+                g4 g4Var = this.f50417b;
+                bi.v1 v1Var = g4Var.f47332r0;
                 float f10 = -((Integer) obj).intValue();
-                g4Var.f45966p0 = f10;
-                b4Var.setTranslationY(((1.0f - g4Var.Z0) * org.telegram.messenger.g0.L(51.0f)) + f10);
+                g4Var.f47331q0 = f10;
+                v1Var.setTranslationY(((1.0f - g4Var.f47314a1) * org.telegram.messenger.g0.L(51.0f)) + f10);
                 return;
             case 1:
                 String str = (String) obj;
                 if (!TextUtils.isEmpty(str)) {
-                    g4 g4Var2 = this.f48892b;
-                    g4Var2.f45959h0.f51124b0.setText(str);
-                    bi.v vVar = g4Var2.f45959h0.f51124b0;
-                    vVar.setSelection(vVar.getText().length());
-                    org.telegram.messenger.g0.K3(g4Var2.f45959h0.f51124b0);
+                    g4 g4Var2 = this.f50417b;
+                    g4Var2.f47324i0.f52649c0.setText(str);
+                    di.q qVar = g4Var2.f47324i0.f52649c0;
+                    qVar.setSelection(qVar.getText().length());
+                    org.telegram.messenger.g0.J3(g4Var2.f47324i0.f52649c0);
                     return;
                 }
                 return;
             case 2:
                 String str2 = (String) obj;
-                g4 g4Var3 = this.f48892b;
-                if (g4Var3.L != null && str2 != null) {
-                    g4Var3.f45959h0.k(false);
+                g4 g4Var3 = this.f50417b;
+                if (g4Var3.M != null && str2 != null) {
+                    g4Var3.f47324i0.k(false);
                     if (vf.c.g(Uri.parse(str2), false, null)) {
-                        t3 t3Var = g4Var3.K;
+                        t3 t3Var = g4Var3.L;
                         if (t3Var != null) {
                             t3Var.a(true);
                         }
-                        vf.c.l(g4Var3.L, str2, false, false, null);
+                        vf.c.l(g4Var3.M, str2, false, false, null);
                         return;
-                    } else if (!vf.c.m(g4Var3.L, str2, false)) {
-                        k3 k3Var = g4Var3.f45971u0[0];
+                    } else if (!vf.c.m(g4Var3.M, str2, false)) {
+                        k3 k3Var = g4Var3.f47336v0[0];
                         if (k3Var != null && k3Var.getWebView() != null) {
-                            g4Var3.f45971u0[0].getWebView().loadUrl(str2);
+                            g4Var3.f47336v0[0].getWebView().loadUrl(str2);
                             return;
                         } else {
                             vf.c.o(str2);
@@ -59,16 +59,16 @@ public final class q implements org.telegram.messenger.c20 {
                 }
                 return;
             default:
-                org.telegram.ui.web.y0 y0Var = (org.telegram.ui.web.y0) obj;
-                g4 g4Var4 = this.f48892b;
-                if (g4Var4.L != null && y0Var != null) {
-                    g4Var4.f45959h0.k(false);
-                    k3 k3Var2 = g4Var4.f45971u0[0];
+                org.telegram.ui.web.w0 w0Var = (org.telegram.ui.web.w0) obj;
+                g4 g4Var4 = this.f50417b;
+                if (g4Var4.M != null && w0Var != null) {
+                    g4Var4.f47324i0.k(false);
+                    k3 k3Var2 = g4Var4.f47336v0[0];
                     if (k3Var2 != null && k3Var2.getWebView() != null) {
-                        g4Var4.f45971u0[0].getWebView().e(y0Var.f51339c, y0Var.d);
+                        g4Var4.f47336v0[0].getWebView().e(w0Var.f52857c, w0Var.d);
                         return;
                     } else {
-                        vf.c.o(y0Var.f51339c);
+                        vf.c.o(w0Var.f52857c);
                         return;
                     }
                 }

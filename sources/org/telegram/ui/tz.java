@@ -1,65 +1,77 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import java.util.HashSet;
-public final class tz extends View implements org.telegram.ui.ActionBar.c6 {
-    public final org.telegram.ui.Components.h6 f50357a;
-    public fh.g f50358b;
-    public String f50359c;
+import android.view.ViewGroup;
+public final class tz extends org.telegram.ui.Components.tj0 {
+    public final zz f51700c;
 
-    public tz(Activity activity) {
-        super(activity);
-        org.telegram.ui.Components.h6 h6Var = new org.telegram.ui.Components.h6(true, false, false);
-        this.f50357a = h6Var;
-        h6Var.u(-1);
-        h6Var.f34187b = 17;
-        h6Var.x(org.telegram.messenger.g0.o());
-        h6Var.w(org.telegram.messenger.g0.L(14.0f));
-        h6Var.setCallback(this);
+    public tz(zz zzVar) {
+        this.f51700c = zzVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        org.telegram.ui.Components.h6 h6Var = this.f50357a;
-        int N = (int) (org.telegram.messenger.g0.N(30.0f) + h6Var.c());
-        int width = (getWidth() - N) / 2;
-        int i7 = N + width;
-        fh.g gVar = this.f50358b;
-        if (gVar != null) {
-            gVar.setBounds(width, 0, i7, getHeight());
-            this.f50358b.draw(canvas);
-        }
-        h6Var.draw(canvas);
-    }
-
-    @Override
-    public final void onSizeChanged(int i7, int i10, int i11, int i12) {
-        super.onSizeChanged(i7, i10, i11, i12);
-        this.f50357a.setBounds(0, 0, i7, i10);
-    }
-
-    @Override
-    public final void updateColors() {
-        fh.g gVar = this.f50358b;
-        if (gVar != null) {
-            gVar.updateColors();
-            invalidate();
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable) && drawable != this.f50357a) {
-            return false;
-        }
+    public final boolean D(v4.e1 e1Var) {
         return true;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final int b() {
+        zz zzVar = this.f51700c;
+        if (zzVar.f54082f.isEmpty()) {
+            return 0;
+        }
+        return zzVar.f54082f.size() + (!zzVar.O ? 1 : 0);
+    }
+
+    @Override
+    public final int d(int i7) {
+        if (i7 >= this.f51700c.f54082f.size()) {
+            return 3;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void t(v4.e1 e1Var, int i7) {
+        boolean z10;
+        boolean z11;
+        if (e1Var.f58539f == 0) {
+            org.telegram.ui.Cells.t2 t2Var = (org.telegram.ui.Cells.t2) e1Var.f58535a;
+            zz zzVar = this.f51700c;
+            org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) zzVar.f54082f.get(i7);
+            t2Var.P = zzVar.f54094q0;
+            t2Var.f0(org.telegram.messenger.gj.B0(gjVar.f23817k), gjVar, gjVar.f23817k.date, false, false);
+            if (i7 != b() - 1) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            t2Var.f31637t2 = z10;
+            if (t2Var.getMessage() != null && t2Var.getMessage().e1() == gjVar.e1()) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            t2Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.Components.bk(this, t2Var, gjVar, z11, 1));
+        }
+    }
+
+    @Override
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
+        jg.a0 a0Var;
+        if (i7 != 0) {
+            if (i7 != 3) {
+                org.telegram.ui.Cells.x3 x3Var = new org.telegram.ui.Cells.x3(viewGroup.getContext(), null);
+                x3Var.setText(org.telegram.messenger.hd.M0(2131745756, null));
+                a0Var = x3Var;
+            } else {
+                org.telegram.ui.Components.pz pzVar = new org.telegram.ui.Components.pz(viewGroup.getContext(), null);
+                pzVar.setIsSingleCell(true);
+                pzVar.setViewType(1);
+                a0Var = pzVar;
+            }
+        } else {
+            a0Var = new jg.a0(2, viewGroup.getContext(), true);
+        }
+        return i5.c.q(a0Var, a0Var, -1, -2);
     }
 }

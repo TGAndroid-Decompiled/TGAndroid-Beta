@@ -2,25 +2,25 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class s5 extends TLRPC.TL_document {
-    public final TLRPC.ThemeSettings f25419a;
-    public final TLRPC.Document f25420b;
-    public final org.telegram.ui.ActionBar.l6 f25421c;
-    public final org.telegram.ui.ActionBar.j6 d;
+    public final TLRPC.ThemeSettings f26399a;
+    public final TLRPC.Document f26400b;
+    public final org.telegram.ui.ActionBar.i6 f26401c;
+    public final org.telegram.ui.ActionBar.g6 d;
 
     public s5(TLRPC.ThemeSettings themeSettings) {
-        this.f25419a = themeSettings;
-        org.telegram.ui.ActionBar.l6 Q0 = org.telegram.ui.ActionBar.m6.Q0(org.telegram.ui.ActionBar.m6.r0(themeSettings));
-        this.f25421c = Q0;
+        this.f26399a = themeSettings;
+        org.telegram.ui.ActionBar.i6 Q0 = org.telegram.ui.ActionBar.j6.Q0(org.telegram.ui.ActionBar.j6.r0(themeSettings));
+        this.f26401c = Q0;
         Q0.getClass();
-        org.telegram.ui.ActionBar.j6 j6Var = new org.telegram.ui.ActionBar.j6();
-        org.telegram.ui.ActionBar.l6.i(j6Var, themeSettings);
-        j6Var.f27610b = Q0;
-        this.d = j6Var;
+        org.telegram.ui.ActionBar.g6 g6Var = new org.telegram.ui.ActionBar.g6();
+        org.telegram.ui.ActionBar.i6.i(g6Var, themeSettings);
+        g6Var.f28603b = Q0;
+        this.d = g6Var;
         TLRPC.WallPaper wallPaper = themeSettings.wallpaper;
         if (wallPaper instanceof TLRPC.TL_wallPaper) {
             TLRPC.Document document = ((TLRPC.TL_wallPaper) wallPaper).document;
-            this.f25420b = document;
-            this.f26966id = document.f26966id;
+            this.f26400b = document;
+            this.f28057id = document.f28057id;
             this.access_hash = document.access_hash;
             this.file_reference = document.file_reference;
             this.user_id = document.user_id;
@@ -36,7 +36,7 @@ public final class s5 extends TLRPC.TL_document {
             this.attributes = document.attributes;
             return;
         }
-        this.f26966id = -2147483648L;
+        this.f28057id = -2147483648L;
         this.dc_id = Integer.MIN_VALUE;
     }
 }

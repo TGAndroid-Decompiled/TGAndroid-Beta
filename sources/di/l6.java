@@ -1,131 +1,66 @@
 package di;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.ij;
-import org.telegram.messenger.qp;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.tl.TL_stories;
-public final class l6 extends r6 {
-    public final String C;
-    public final String D;
-    public final TL_stories.MediaArea E;
-    public final ArrayList F;
-    public boolean G;
-    public String H;
-    public int I;
-    public int J;
+import org.telegram.messenger.s10;
+import org.telegram.messenger.z10;
+public final class l6 implements s10 {
+    public final int f8979a = 0;
+    public final boolean[] f8980b;
+    public final s10 f8981c;
+    public final z10 d;
 
-    public l6(int i7, String str, String str2) {
-        super(i7, 0L, 3, -1, null);
-        this.F = new ArrayList();
-        this.H = "";
-        this.C = str2;
-        this.D = str;
-        this.E = null;
+    public l6(z10 z10Var, boolean[] zArr, s10 s10Var) {
+        this.d = z10Var;
+        this.f8980b = zArr;
+        this.f8981c = s10Var;
     }
 
     @Override
-    public final ij f(int i7) {
-        if (i7 >= 0) {
-            ArrayList arrayList = this.f9699i;
-            if (i7 < arrayList.size()) {
-                return (ij) arrayList.get(i7);
-            }
-            return null;
+    public final void a(Object obj, Object obj2) {
+        String str;
+        String str2;
+        Long l10 = (Long) obj;
+        Boolean bool = (Boolean) obj2;
+        switch (this.f8979a) {
+            case 0:
+                z10 z10Var = this.d;
+                if (z10Var != null) {
+                    z10Var.a(Boolean.TRUE);
+                }
+                this.f8980b[0] = true;
+                s10 s10Var = this.f8981c;
+                if (s10Var != null) {
+                    if (bool.booleanValue()) {
+                        str = "paid";
+                    } else {
+                        str = "failed";
+                    }
+                    s10Var.a(str, l10);
+                    return;
+                }
+                return;
+            default:
+                this.f8980b[0] = true;
+                s10 s10Var2 = this.f8981c;
+                if (s10Var2 != null) {
+                    if (bool.booleanValue()) {
+                        str2 = "paid";
+                    } else {
+                        str2 = "failed";
+                    }
+                    s10Var2.a(str2, l10);
+                }
+                z10 z10Var2 = this.d;
+                if (z10Var2 != null) {
+                    z10Var2.a(Boolean.TRUE);
+                    return;
+                }
+                return;
         }
-        return null;
     }
 
-    @Override
-    public final int g() {
-        return this.J;
-    }
-
-    @Override
-    public final ArrayList h() {
-        return this.F;
-    }
-
-    @Override
-    public final int i() {
-        return this.f9699i.size();
-    }
-
-    @Override
-    public final boolean k() {
-        return this.G;
-    }
-
-    @Override
-    public final boolean l() {
-        return false;
-    }
-
-    @Override
-    public final boolean q(int i7, List list, boolean z9) {
-        if (this.G || this.H == null) {
-            return false;
-        }
-        TL_stories.TL_stories_searchPosts tL_stories_searchPosts = new TL_stories.TL_stories_searchPosts();
-        tL_stories_searchPosts.offset = this.H;
-        tL_stories_searchPosts.limit = i7;
-        String str = this.C;
-        if (str != null) {
-            tL_stories_searchPosts.flags |= 1;
-            tL_stories_searchPosts.hashtag = str;
-        }
-        TL_stories.MediaArea mediaArea = this.E;
-        if (mediaArea != null) {
-            tL_stories_searchPosts.flags |= 2;
-            tL_stories_searchPosts.area = mediaArea;
-        }
-        this.G = true;
-        String str2 = this.D;
-        boolean isEmpty = TextUtils.isEmpty(str2);
-        TLObject tLObject = null;
-        int i10 = this.f9695c;
-        if (!isEmpty) {
-            TLObject f22 = qp.s1(i10).f2(str2);
-            if (f22 == null) {
-                qp.s1(i10).d2().a(str2, null, new r2(this, z9, i7, list));
-                return true;
-            }
-            tLObject = f22;
-        }
-        if (tLObject != null) {
-            tL_stories_searchPosts.flags |= 4;
-            tL_stories_searchPosts.peer = qp.k1(tLObject);
-        }
-        this.I = ConnectionsManager.getInstance(i10).sendRequest(tL_stories_searchPosts, new bi.j0(this, 6));
-        return true;
-    }
-
-    @Override
-    public final boolean r(int i7) {
-        return false;
-    }
-
-    public l6(int i7, TL_stories.MediaArea mediaArea) {
-        super(i7, 0L, 3, -1, null);
-        this.F = new ArrayList();
-        this.H = "";
-        this.C = null;
-        this.D = null;
-        this.E = mediaArea;
-    }
-
-    @Override
-    public final void j() {
-    }
-
-    @Override
-    public final void s() {
-    }
-
-    @Override
-    public final void x() {
+    public l6(boolean[] zArr, s10 s10Var, z10 z10Var) {
+        this.f8980b = zArr;
+        this.f8981c = s10Var;
+        this.d = z10Var;
     }
 }

@@ -1,19 +1,19 @@
 package rg;
 
 import java.util.ArrayList;
-import org.telegram.ui.Components.m01;
-import org.telegram.ui.Components.oj0;
+import org.telegram.ui.Components.p01;
+import org.telegram.ui.Components.tj0;
 import v4.o;
-public abstract class b extends oj0 {
-    public final m01 f54545c = new m01();
+public abstract class b extends tj0 {
+    public final p01 f56017c = new p01();
 
     public final void E(ArrayList arrayList, ArrayList arrayList2) {
         if (arrayList2 == null) {
             arrayList2 = new ArrayList();
         }
-        m01 m01Var = this.f54545c;
-        m01Var.f35781c = arrayList;
-        m01Var.d = arrayList2;
-        o.c(m01Var, true).c(this);
+        p01 p01Var = this.f56017c;
+        p01Var.f38141c = arrayList;
+        p01Var.d = arrayList2;
+        o.c(p01Var, true).c(this);
     }
 }

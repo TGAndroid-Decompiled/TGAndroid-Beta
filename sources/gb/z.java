@@ -1,11 +1,11 @@
 package gb;
 public final class z implements oe.e {
-    public static final z f13788a;
+    public static final z f13128a;
     private static final me.d descriptor;
 
     static {
         ?? obj = new Object();
-        f13788a = obj;
+        f13128a = obj;
         oe.m mVar = new oe.m("com.google.firebase.sessions.ProcessData", obj, 2);
         mVar.k("pid", false);
         mVar.k("uuid", false);
@@ -18,10 +18,10 @@ public final class z implements oe.e {
         kotlin.jvm.internal.j.e(value, "value");
         me.d dVar = descriptor;
         qe.h a10 = hVar.a(dVar);
-        int i7 = value.f13631a;
+        int i7 = value.f12977a;
         a10.b(dVar, 0);
         a10.c(i7);
-        a10.k(dVar, 1, value.f13632b);
+        a10.k(dVar, 1, value.f12978b);
         a10.l(dVar);
     }
 
@@ -31,10 +31,10 @@ public final class z implements oe.e {
         me.d dVar = descriptor;
         h2.c c10 = decoder.c(dVar);
         String str = null;
-        boolean z9 = true;
+        boolean z10 = true;
         int i7 = 0;
         int i10 = 0;
-        while (z9) {
+        while (z10) {
             int d = c10.d(dVar);
             if (d != -1) {
                 if (d != 0) {
@@ -49,7 +49,7 @@ public final class z implements oe.e {
                     i7 |= 1;
                 }
             } else {
-                z9 = false;
+                z10 = false;
             }
         }
         c10.p(dVar);
@@ -58,7 +58,7 @@ public final class z implements oe.e {
 
     @Override
     public final ke.a[] c() {
-        return new ke.a[]{oe.f.f20914a, oe.p.f20941a};
+        return new ke.a[]{oe.f.f21432a, oe.p.f21459a};
     }
 
     @Override

@@ -3,7 +3,7 @@ package f7;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Base64;
-import c8.xb;
+import c8.yb;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,58 +12,58 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class q0 extends r6.a {
     public static final Parcelable.Creator<q0> CREATOR = new db.k(12);
-    public static final byte[] f11420b = "WebAuthn PRF\u0000".getBytes(StandardCharsets.UTF_8);
-    public final byte[][] f11421a;
+    public static final byte[] f11229b = "WebAuthn PRF\u0000".getBytes(StandardCharsets.UTF_8);
+    public final byte[][] f11230a;
 
     public q0(byte[][] bArr) {
-        boolean z9;
         boolean z10;
         boolean z11;
         boolean z12;
         boolean z13;
+        boolean z14;
         if (bArr != null) {
-            z9 = true;
-        } else {
-            z9 = false;
-        }
-        q6.m.b(z9);
-        if (1 != ((bArr.length & 1) ^ 1)) {
-            z10 = false;
-        } else {
             z10 = true;
+        } else {
+            z10 = false;
         }
         q6.m.b(z10);
+        if (1 != ((bArr.length & 1) ^ 1)) {
+            z11 = false;
+        } else {
+            z11 = true;
+        }
+        q6.m.b(z11);
         for (int i7 = 0; i7 < bArr.length; i7 += 2) {
             if (i7 == 0 || bArr[i7] != null) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            q6.m.b(z11);
-            int i10 = i7 + 1;
-            if (bArr[i10] != null) {
                 z12 = true;
             } else {
                 z12 = false;
             }
             q6.m.b(z12);
-            int length = bArr[i10].length;
-            if (length == 32 || length == 64) {
+            int i10 = i7 + 1;
+            if (bArr[i10] != null) {
                 z13 = true;
             } else {
                 z13 = false;
             }
             q6.m.b(z13);
+            int length = bArr[i10].length;
+            if (length == 32 || length == 64) {
+                z14 = true;
+            } else {
+                z14 = false;
+            }
+            q6.m.b(z14);
         }
-        this.f11421a = bArr;
+        this.f11230a = bArr;
     }
 
-    public static q0 b(JSONObject jSONObject, boolean z9) {
+    public static q0 b(JSONObject jSONObject, boolean z10) {
         ArrayList arrayList = new ArrayList();
         try {
             if (jSONObject.has("eval")) {
                 arrayList.add(null);
-                if (z9) {
+                if (z10) {
                     arrayList.add(e(jSONObject.getJSONObject("eval")));
                 } else {
                     arrayList.add(f(jSONObject.getJSONObject("eval")));
@@ -75,7 +75,7 @@ public final class q0 extends r6.a {
                 while (keys.hasNext()) {
                     String next = keys.next();
                     arrayList.add(x6.b.b(next));
-                    if (z9) {
+                    if (z10) {
                         arrayList.add(e(jSONObject2.getJSONObject(next)));
                     } else {
                         arrayList.add(f(jSONObject2.getJSONObject(next)));
@@ -130,13 +130,13 @@ public final class q0 extends r6.a {
         if (!(obj instanceof q0)) {
             return false;
         }
-        return Arrays.deepEquals(this.f11421a, ((q0) obj).f11421a);
+        return Arrays.deepEquals(this.f11230a, ((q0) obj).f11230a);
     }
 
     public final int hashCode() {
         byte[][] bArr;
         int i7 = 0;
-        for (byte[] bArr2 : this.f11421a) {
+        for (byte[] bArr2 : this.f11230a) {
             if (bArr2 != null) {
                 i7 ^= Arrays.hashCode(new Object[]{bArr2});
             }
@@ -145,7 +145,7 @@ public final class q0 extends r6.a {
     }
 
     public final String toString() {
-        byte[][] bArr = this.f11421a;
+        byte[][] bArr = this.f11230a;
         try {
             JSONObject jSONObject = new JSONObject();
             JSONObject jSONObject2 = null;
@@ -169,8 +169,8 @@ public final class q0 extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = xb.r(parcel, 20293);
-        xb.d(parcel, 1, this.f11421a);
-        xb.s(parcel, r10);
+        int r10 = yb.r(parcel, 20293);
+        yb.d(parcel, 1, this.f11230a);
+        yb.s(parcel, r10);
     }
 }

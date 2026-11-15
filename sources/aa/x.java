@@ -1,53 +1,53 @@
 package aa;
 
-import android.content.SharedPreferences;
+import android.os.Process;
 import android.util.Log;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import org.telegram.ui.Cells.f1;
-public final class x {
-    public final SharedPreferences f879a;
-    public final o9.g f880b;
-    public final Object f881c;
-    public TaskCompletionSource d;
-    public boolean f882e;
-    public boolean f883f;
-    public Boolean f884g;
-    public final TaskCompletionSource h;
+import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
+public final class x implements Runnable {
+    public final int f882a = 0;
+    public final Object f883b;
 
-    public x(o9.g r8) {
-        throw new UnsupportedOperationException("Method not decompiled: aa.x.<init>(o9.g):void");
+    public x(Runnable runnable) {
+        this.f883b = runnable;
     }
 
-    public final synchronized boolean a() {
-        boolean z9;
-        String str;
-        String str2;
-        Boolean bool = this.f884g;
-        if (bool != null) {
-            z9 = bool.booleanValue();
-        } else {
-            try {
-                z9 = this.f880b.h();
-            } catch (IllegalStateException unused) {
-                z9 = false;
-            }
+    @Override
+    public final void run() {
+        Process.setThreadPriority(10);
+        switch (this.f882a) {
+            case 0:
+                ((Runnable) this.f883b).run();
+                return;
+            default:
+                ExecutorService executorService = (ExecutorService) this.f883b;
+                try {
+                    if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                        Log.d("FirebaseCrashlytics", "Executing shutdown hook for awaitEvenIfOnMainThread task continuation executor", null);
+                    }
+                    executorService.shutdown();
+                    if (!executorService.awaitTermination(2L, TimeUnit.SECONDS)) {
+                        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                            Log.d("FirebaseCrashlytics", "awaitEvenIfOnMainThread task continuation executor did not shut down in the allocated time. Requesting immediate shutdown.", null);
+                        }
+                        executorService.shutdownNow();
+                        return;
+                    }
+                    return;
+                } catch (InterruptedException unused) {
+                    Locale locale = Locale.US;
+                    if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                        Log.d("FirebaseCrashlytics", "Interrupted while waiting for awaitEvenIfOnMainThread task continuation executor to shut down. Requesting immediate shutdown.", null);
+                    }
+                    executorService.shutdownNow();
+                    return;
+                }
         }
-        if (z9) {
-            str = "ENABLED";
-        } else {
-            str = "DISABLED";
-        }
-        if (this.f884g == null) {
-            str2 = "global Firebase setting";
-        } else if (this.f883f) {
-            str2 = "firebase_crashlytics_collection_enabled manifest flag";
-        } else {
-            str2 = "API";
-        }
-        String m10 = f1.m("Crashlytics automatic data collection ", str, " by ", str2, ".");
-        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", m10, null);
-        }
-        return z9;
+    }
+
+    public x(ExecutorService executorService) {
+        TimeUnit timeUnit = TimeUnit.SECONDS;
+        this.f883b = executorService;
     }
 }

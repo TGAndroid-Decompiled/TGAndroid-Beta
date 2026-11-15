@@ -1,61 +1,61 @@
 package y2;
 
-import c8.p0;
+import c8.q0;
 import e2.u;
-import f3.j0;
-import j2.c0;
-import sg.i0;
+import f3.i0;
+import j2.b0;
+import sg.h0;
 import x2.a1;
 public final class n extends a {
-    public final int E;
-    public final u F;
-    public long G;
-    public boolean H;
+    public final int F;
+    public final u G;
+    public long H;
+    public boolean I;
 
     public n(j2.h hVar, j2.m mVar, u uVar, int i7, Object obj, long j3, long j10, long j11, int i10, u uVar2) {
         super(hVar, mVar, uVar, i7, obj, j3, j10, -9223372036854775807L, -9223372036854775807L, j11);
-        this.E = i10;
-        this.F = uVar2;
+        this.F = i10;
+        this.G = uVar2;
     }
 
     @Override
     public final void a() {
         a1[] a1VarArr;
-        c0 c0Var = this.f58908r;
-        i0 i0Var = this.f58882y;
-        i0Var.getClass();
-        for (a1 a1Var : (a1[]) i0Var.f55092c) {
+        b0 b0Var = this.f60121r;
+        h0 h0Var = this.f60095y;
+        h0Var.getClass();
+        for (a1 a1Var : (a1[]) h0Var.f56643c) {
             if (a1Var.H != 0) {
                 a1Var.H = 0L;
                 a1Var.B = true;
             }
         }
-        j0 f10 = i0Var.f(this.E);
-        f10.g(this.F);
+        i0 f10 = h0Var.f(this.F);
+        f10.g(this.G);
         try {
-            long open = c0Var.open(this.f58903b.b(this.G));
+            long open = b0Var.open(this.f60116b.b(this.H));
             if (open != -1) {
-                open += this.G;
+                open += this.H;
             }
-            f3.l lVar = new f3.l(this.f58908r, this.G, open);
+            f3.l lVar = new f3.l(this.f60121r, this.H, open);
             for (int i7 = 0; i7 != -1; i7 = f10.e(lVar, Integer.MAX_VALUE, true)) {
-                this.G += i7;
+                this.H += i7;
             }
-            f10.c(this.h, 1, (int) this.G, 0, null);
-            p0.a(c0Var);
-            this.H = true;
+            f10.c(this.h, 1, (int) this.H, 0, null);
+            q0.a(b0Var);
+            this.I = true;
         } catch (Throwable th2) {
-            p0.a(c0Var);
+            q0.a(b0Var);
             throw th2;
         }
     }
 
     @Override
     public final boolean c() {
-        return this.H;
+        return this.I;
     }
 
     @Override
-    public final void q0() {
+    public final void D() {
     }
 }

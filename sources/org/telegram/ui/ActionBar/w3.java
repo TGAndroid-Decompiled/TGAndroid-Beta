@@ -1,39 +1,52 @@
 package org.telegram.ui.ActionBar;
 
+import android.graphics.Rect;
 import android.view.View;
-public final class w3 {
-    public final l4 f28715a;
-    public boolean f28716b;
-    public boolean f28717c;
-    public boolean d;
-    public boolean f28718e = true;
-    public boolean f28719f;
-    public long f28720g;
+import org.telegram.ui.Components.qm0;
+public final class w3 implements View.OnLayoutChangeListener {
+    public final int f29803a;
+    public final Object f29804b;
+    public final Object f29805c;
+    public final Object d;
 
-    public w3(l4 l4Var) {
-        this.f28715a = l4Var;
+    public w3(qm0 qm0Var, qm0 qm0Var2, qm0 qm0Var3) {
+        this.f29803a = 1;
+        this.f29804b = qm0Var;
+        this.f29805c = qm0Var2;
+        this.d = qm0Var3;
     }
 
-    public final void a() {
-        if (this.f28719f) {
-            boolean z9 = this.f28716b;
-            l4 l4Var = this.f28715a;
-            if (!z9 && !this.f28717c && !this.d && this.f28718e) {
-                View view = l4Var.f27752a;
-                z3 z3Var = l4Var.f27761l;
-                view.removeOnLayoutChangeListener(z3Var);
-                l4Var.f27752a.addOnLayoutChangeListener(z3Var);
-                l4Var.c();
-                this.f28720g = System.currentTimeMillis();
+    @Override
+    public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
+        switch (this.f29803a) {
+            case 0:
+                Rect rect = (Rect) this.f29804b;
+                rect.set(i7, i10, i11, i12);
+                Rect rect2 = (Rect) this.f29805c;
+                rect2.set(i13, i14, i15, i16);
+                i4 i4Var = (i4) this.d;
+                g4 g4Var = i4Var.f28686b;
+                if (g4Var.f() && !rect.equals(rect2)) {
+                    i4Var.h = true;
+                    if (g4Var.f()) {
+                        i4Var.c();
+                        return;
+                    }
+                    return;
+                }
                 return;
-            }
-            j4 j4Var = l4Var.f27753b;
-            if (!j4Var.f()) {
+            default:
+                ((qm0) this.f29804b).setProgress(org.telegram.ui.h5.n1);
+                ((qm0) this.f29805c).setProgress(org.telegram.ui.h5.f47610o1);
+                ((qm0) this.d).setProgress(org.telegram.ui.h5.f47611p1);
                 return;
-            }
-            j4Var.G = true;
-            j4Var.f27590x.start();
-            j4Var.D.setEmpty();
         }
+    }
+
+    public w3(i4 i4Var) {
+        this.f29803a = 0;
+        this.d = i4Var;
+        this.f29804b = new Rect();
+        this.f29805c = new Rect();
     }
 }

@@ -8,17 +8,17 @@ import android.text.TextUtils;
 import android.util.Log;
 import java.util.concurrent.atomic.AtomicBoolean;
 public class e {
-    public static final int f20505a;
-    public static final e f20506b;
+    public static final int f21069a;
+    public static final e f21070b;
 
     static {
-        AtomicBoolean atomicBoolean = g.f20508a;
-        f20505a = 12451000;
-        f20506b = new Object();
+        AtomicBoolean atomicBoolean = g.f21072a;
+        f21069a = 12451000;
+        f21070b = new Object();
     }
 
     public static int a(Context context) {
-        AtomicBoolean atomicBoolean = g.f20508a;
+        AtomicBoolean atomicBoolean = g.f21072a;
         try {
             return context.getPackageManager().getPackageInfo("com.google.android.gms", 0).versionCode;
         } catch (PackageManager.NameNotFoundException unused) {
@@ -42,7 +42,7 @@ public class e {
             return intent2;
         } else {
             StringBuilder sb2 = new StringBuilder("gcore_");
-            sb2.append(f20505a);
+            sb2.append(f21069a);
             sb2.append("-");
             if (!TextUtils.isEmpty(str)) {
                 sb2.append(str);
@@ -72,20 +72,20 @@ public class e {
     }
 
     public int c(Context context) {
-        return d(context, f20505a);
+        return d(context, f21069a);
     }
 
     public int d(Context context, int i7) {
         int b10 = g.b(context, i7);
-        boolean z9 = true;
+        boolean z10 = true;
         if (b10 != 18) {
             if (b10 == 1) {
-                z9 = g.c(context);
+                z10 = g.c(context);
             } else {
-                z9 = false;
+                z10 = false;
             }
         }
-        if (z9) {
+        if (z10) {
             return 18;
         }
         return b10;

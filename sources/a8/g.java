@@ -2,11 +2,11 @@ package a8;
 
 import java.util.Map;
 public abstract class g implements Map.Entry {
-    public final int f403a;
+    public final int f409a;
 
     @Override
     public final boolean equals(Object obj) {
-        switch (this.f403a) {
+        switch (this.f409a) {
             case 0:
                 if (!(obj instanceof Map.Entry)) {
                     return false;
@@ -21,7 +21,7 @@ public abstract class g implements Map.Entry {
                     return false;
                 }
                 Map.Entry entry2 = (Map.Entry) obj;
-                if (!e8.a(getKey(), entry2.getKey()) || !e8.a(getValue(), entry2.getValue())) {
+                if (!f8.a(getKey(), entry2.getKey()) || !f8.a(getValue(), entry2.getValue())) {
                     return false;
                 }
                 return true;
@@ -32,7 +32,7 @@ public abstract class g implements Map.Entry {
     public final int hashCode() {
         int hashCode;
         int hashCode2;
-        switch (this.f403a) {
+        switch (this.f409a) {
             case 0:
                 Object key = getKey();
                 Object value = getValue();
@@ -63,15 +63,15 @@ public abstract class g implements Map.Entry {
     }
 
     public final String toString() {
-        switch (this.f403a) {
+        switch (this.f409a) {
             case 0:
                 return getKey() + "=" + getValue();
             default:
-                return p0.D(String.valueOf(getKey()), "=", String.valueOf(getValue()));
+                return p0.E(String.valueOf(getKey()), "=", String.valueOf(getValue()));
         }
     }
 
-    public g(int i7, boolean z9) {
-        this.f403a = i7;
+    public g(int i7, boolean z10) {
+        this.f409a = i7;
     }
 }

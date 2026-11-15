@@ -1,23 +1,23 @@
 package bi;
 
-import android.content.DialogInterface;
-public final class j4 implements DialogInterface.OnDismissListener {
-    public final int f4079a;
-    public final k7 f4080b;
+import org.telegram.messenger.z10;
+public final class j4 implements z10 {
+    public final int f3630a;
+    public final a6 f3631b;
 
-    public j4(k7 k7Var, int i7) {
-        this.f4079a = i7;
-        this.f4080b = k7Var;
+    public j4(a6 a6Var, int i7) {
+        this.f3630a = i7;
+        this.f3631b = a6Var;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f4079a) {
+    public final void a(Object obj) {
+        switch (this.f3630a) {
             case 0:
-                this.f4080b.f4170f2.setLoading(false);
+                this.f3631b.k0(((Boolean) obj).booleanValue());
                 return;
             default:
-                this.f4080b.f4170f2.setLoading(false);
+                a6.c0(this.f3631b, (Integer) obj);
                 return;
         }
     }

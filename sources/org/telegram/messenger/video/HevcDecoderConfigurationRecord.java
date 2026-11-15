@@ -97,17 +97,17 @@ public class HevcDecoderConfigurationRecord {
 
     private static j5.c createSampleEntry(ArrayList<ByteBuffer> arrayList, ArrayList<ByteBuffer> arrayList2, ArrayList<ByteBuffer> arrayList3, SequenceParameterSetRbsp sequenceParameterSetRbsp) {
         j5.c cVar = new j5.c("hvc1");
-        cVar.f16497f = 1;
-        cVar.f16505y = 24;
-        cVar.f16503w = 1;
-        cVar.f16501r = 72.0d;
-        cVar.f16502s = 72.0d;
-        cVar.f16504x = "HEVC Coding";
+        cVar.f16848f = 1;
+        cVar.f16856y = 24;
+        cVar.f16854w = 1;
+        cVar.f16852r = 72.0d;
+        cVar.f16853s = 72.0d;
+        cVar.f16855x = "HEVC Coding";
         HevcConfigurationBox hevcConfigurationBox = new HevcConfigurationBox();
         hevcConfigurationBox.getHevcDecoderConfigurationRecord().setConfigurationVersion(1);
         if (sequenceParameterSetRbsp != null) {
             cVar.h = sequenceParameterSetRbsp.pic_width_in_luma_samples;
-            cVar.f16500n = sequenceParameterSetRbsp.pic_height_in_luma_samples;
+            cVar.f16851n = sequenceParameterSetRbsp.pic_height_in_luma_samples;
             HevcDecoderConfigurationRecord hevcDecoderConfigurationRecord = hevcConfigurationBox.getHevcDecoderConfigurationRecord();
             hevcDecoderConfigurationRecord.setChromaFormat(sequenceParameterSetRbsp.chroma_format_idc);
             hevcDecoderConfigurationRecord.setGeneral_profile_idc(sequenceParameterSetRbsp.general_profile_idc);
@@ -195,7 +195,7 @@ public class HevcDecoderConfigurationRecord {
                     byteBuffer.position(2);
                     ByteBuffer slice = byteBuffer.slice();
                     ?? obj = new Object();
-                    obj.f53574a = slice;
+                    obj.f54982a = slice;
                     sequenceParameterSetRbsp = new SequenceParameterSetRbsp(new jc.a(Channels.newInputStream((ReadableByteChannel) obj)));
                     break;
                 case 34:
@@ -339,7 +339,6 @@ public class HevcDecoderConfigurationRecord {
     }
 
     public void parse(ByteBuffer byteBuffer) {
-        boolean z9;
         boolean z10;
         boolean z11;
         boolean z12;
@@ -347,15 +346,16 @@ public class HevcDecoderConfigurationRecord {
         boolean z14;
         boolean z15;
         boolean z16;
+        boolean z17;
         this.configurationVersion = h5.b.k(byteBuffer);
         int a10 = h5.b.a(byteBuffer.get());
         this.general_profile_space = (a10 & 192) >> 6;
         if ((a10 & 32) > 0) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        this.general_tier_flag = z9;
+        this.general_tier_flag = z10;
         this.general_profile_idc = a10 & 31;
         this.general_profile_compatibility_flags = h5.b.i(byteBuffer);
         long h = h5.b.h(byteBuffer) << 32;
@@ -363,29 +363,29 @@ public class HevcDecoderConfigurationRecord {
             long i7 = h5.b.i(byteBuffer) + h;
             this.general_constraint_indicator_flags = i7;
             if (((i7 >> 44) & 8) > 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            this.frame_only_constraint_flag = z10;
-            if (((i7 >> 44) & 4) > 0) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            this.non_packed_constraint_flag = z11;
-            if (((i7 >> 44) & 2) > 0) {
+            this.frame_only_constraint_flag = z11;
+            if (((i7 >> 44) & 4) > 0) {
                 z12 = true;
             } else {
                 z12 = false;
             }
-            this.interlaced_source_flag = z12;
-            if (((i7 >> 44) & 1) > 0) {
+            this.non_packed_constraint_flag = z12;
+            if (((i7 >> 44) & 2) > 0) {
                 z13 = true;
             } else {
                 z13 = false;
             }
-            this.progressive_source_flag = z13;
+            this.interlaced_source_flag = z13;
+            if (((i7 >> 44) & 1) > 0) {
+                z14 = true;
+            } else {
+                z14 = false;
+            }
+            this.progressive_source_flag = z14;
             this.general_constraint_indicator_flags = 140737488355327L & i7;
             this.general_level_idc = h5.b.a(byteBuffer.get());
             int h7 = h5.b.h(byteBuffer);
@@ -408,11 +408,11 @@ public class HevcDecoderConfigurationRecord {
             this.constantFrameRate = (a15 & 192) >> 6;
             this.numTemporalLayers = (a15 & 56) >> 3;
             if ((a15 & 4) > 0) {
-                z14 = true;
+                z15 = true;
             } else {
-                z14 = false;
+                z15 = false;
             }
-            this.temporalIdNested = z14;
+            this.temporalIdNested = z15;
             this.lengthSizeMinusOne = a15 & 3;
             int a16 = h5.b.a(byteBuffer.get());
             this.arrays = new ArrayList();
@@ -420,17 +420,17 @@ public class HevcDecoderConfigurationRecord {
                 Array array = new Array();
                 int a17 = h5.b.a(byteBuffer.get());
                 if ((a17 & 128) > 0) {
-                    z15 = true;
-                } else {
-                    z15 = false;
-                }
-                array.array_completeness = z15;
-                if ((a17 & 64) > 0) {
                     z16 = true;
                 } else {
                     z16 = false;
                 }
-                array.reserved = z16;
+                array.array_completeness = z16;
+                if ((a17 & 64) > 0) {
+                    z17 = true;
+                } else {
+                    z17 = false;
+                }
+                array.reserved = z17;
                 array.nal_unit_type = a17 & 63;
                 int h10 = h5.b.h(byteBuffer);
                 array.nalUnits = new ArrayList();
@@ -474,8 +474,8 @@ public class HevcDecoderConfigurationRecord {
         this.constantFrameRate = i7;
     }
 
-    public void setFrame_only_constraint_flag(boolean z9) {
-        this.frame_only_constraint_flag = z9;
+    public void setFrame_only_constraint_flag(boolean z10) {
+        this.frame_only_constraint_flag = z10;
     }
 
     public void setGeneral_constraint_indicator_flags(long j3) {
@@ -498,12 +498,12 @@ public class HevcDecoderConfigurationRecord {
         this.general_profile_space = i7;
     }
 
-    public void setGeneral_tier_flag(boolean z9) {
-        this.general_tier_flag = z9;
+    public void setGeneral_tier_flag(boolean z10) {
+        this.general_tier_flag = z10;
     }
 
-    public void setInterlaced_source_flag(boolean z9) {
-        this.interlaced_source_flag = z9;
+    public void setInterlaced_source_flag(boolean z10) {
+        this.interlaced_source_flag = z10;
     }
 
     public void setLengthSizeMinusOne(int i7) {
@@ -514,8 +514,8 @@ public class HevcDecoderConfigurationRecord {
         this.min_spatial_segmentation_idc = i7;
     }
 
-    public void setNon_packed_constraint_flag(boolean z9) {
-        this.non_packed_constraint_flag = z9;
+    public void setNon_packed_constraint_flag(boolean z10) {
+        this.non_packed_constraint_flag = z10;
     }
 
     public void setNumTemporalLayers(int i7) {
@@ -526,12 +526,12 @@ public class HevcDecoderConfigurationRecord {
         this.parallelismType = i7;
     }
 
-    public void setProgressive_source_flag(boolean z9) {
-        this.progressive_source_flag = z9;
+    public void setProgressive_source_flag(boolean z10) {
+        this.progressive_source_flag = z10;
     }
 
-    public void setTemporalIdNested(boolean z9) {
-        this.temporalIdNested = z9;
+    public void setTemporalIdNested(boolean z10) {
+        this.temporalIdNested = z10;
     }
 
     public String toString() {

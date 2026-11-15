@@ -2,18 +2,18 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLObject;
 public final class t8 implements Runnable {
-    public final int f25597a;
-    public final long f25598b;
-    public final long f25599c;
+    public final int f26630a;
+    public final long f26631b;
+    public final long f26632c;
     public final Object d;
-    public final Object f25600e;
+    public final Object f26633e;
 
     public t8(Object obj, long j3, long j10, Object obj2, int i7) {
-        this.f25597a = i7;
+        this.f26630a = i7;
         this.d = obj;
-        this.f25598b = j3;
-        this.f25599c = j10;
-        this.f25600e = obj2;
+        this.f26631b = j3;
+        this.f26632c = j10;
+        this.f26633e = obj2;
     }
 
     @Override
@@ -22,18 +22,18 @@ public final class t8 implements Runnable {
     }
 
     public t8(c1 c1Var, long j3, TLObject tLObject, long j10, int i7) {
-        this.f25597a = i7;
+        this.f26630a = i7;
         this.d = c1Var;
-        this.f25598b = j3;
-        this.f25600e = tLObject;
-        this.f25599c = j10;
+        this.f26631b = j3;
+        this.f26633e = tLObject;
+        this.f26632c = j10;
     }
 
     public t8(y8 y8Var, Float f10, long j3, long j10) {
-        this.f25597a = 0;
+        this.f26630a = 0;
         this.d = y8Var;
-        this.f25600e = f10;
-        this.f25598b = j3;
-        this.f25599c = j10;
+        this.f26633e = f10;
+        this.f26631b = j3;
+        this.f26632c = j10;
     }
 }

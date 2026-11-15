@@ -1,40 +1,24 @@
 package bi;
 
+import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.tl.TL_stars;
-public final class q6 extends n6 {
-    public final boolean f4574c;
-    public final ImageReceiver d;
+public final class q6 extends View {
+    public final TL_stars.StarGift f3810a;
+    public final float f3811b;
 
-    public q6(View view, TL_stars.starGiftAttributeModel stargiftattributemodel) {
-        this.f4408a = stargiftattributemodel.name;
-        this.f4409b = stargiftattributemodel.getRarityPermille();
-        this.f4574c = true;
-        ImageReceiver imageReceiver = new ImageReceiver(view);
-        this.d = imageReceiver;
-        dd.c1(imageReceiver, stargiftattributemodel.document, 160);
+    public q6(Context context, TL_stars.StarGift starGift, float f10) {
+        super(context);
+        this.f3810a = starGift;
+        this.f3811b = f10;
     }
 
     @Override
-    public final void a() {
-        if (this.f4574c) {
-            this.d.R();
+    public final void onMeasure(int i7, int i10) {
+        if (this.f3810a == null) {
+            super.onMeasure(i7, i10);
+        } else {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (View.MeasureSpec.getSize(i7) * this.f3811b), 1073741824), i10);
         }
-    }
-
-    @Override
-    public final boolean b() {
-        if (this.d.B() != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public q6(org.telegram.ui.Components.k9 k9Var, TL_stars.starGiftAttributeModel stargiftattributemodel) {
-        this.f4408a = stargiftattributemodel.name;
-        this.f4409b = stargiftattributemodel.getRarityPermille();
-        this.f4574c = false;
-        this.d = k9Var.getImageReceiver();
     }
 }

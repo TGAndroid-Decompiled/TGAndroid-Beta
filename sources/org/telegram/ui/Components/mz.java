@@ -1,74 +1,19 @@
 package org.telegram.ui.Components;
+public final class mz {
+    public byte f37406a;
+    public byte f37407b;
+    public byte f37408c;
+    public byte d;
+    public byte f37409e;
+    public byte f37410f;
+    public float f37411g;
+    public float h;
+    public short f37412i;
+    public float f37413j;
+    public float f37414k;
+    public final nz f37415l;
 
-import android.os.Bundle;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-public abstract class mz extends km0 {
-    public final boolean d;
-
-    public mz(boolean z9) {
-        this.d = z9;
+    public mz(nz nzVar) {
+        this.f37415l = nzVar;
     }
-
-    @Override
-    public final boolean a() {
-        if (k() > j()) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean b() {
-        if (k() < i()) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void c(boolean z9) {
-        float h = h();
-        if (z9) {
-            h *= -1.0f;
-        }
-        l(Math.min(i(), Math.max(j(), k() + h)));
-    }
-
-    @Override
-    public final void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.e(view, accessibilityNodeInfo);
-        if (this.d) {
-            accessibilityNodeInfo.addAction((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f54609a);
-            accessibilityNodeInfo.setRangeInfo(AccessibilityNodeInfo.RangeInfo.obtain(1, j(), i(), k()));
-        }
-    }
-
-    @Override
-    public final boolean g(View view, int i7, Bundle bundle) {
-        if (super.g(view, i7, bundle)) {
-            return true;
-        }
-        if (i7 == ((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f54609a).getId()) {
-            l(bundle.getFloat("android.view.accessibility.action.ARGUMENT_PROGRESS_VALUE"));
-            return true;
-        }
-        return false;
-    }
-
-    public float h() {
-        return 0.05f;
-    }
-
-    public float i() {
-        return 1.0f;
-    }
-
-    public float j() {
-        return 0.0f;
-    }
-
-    public abstract float k();
-
-    public abstract void l(float f10);
 }

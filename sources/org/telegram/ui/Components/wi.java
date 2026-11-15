@@ -1,30 +1,22 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-public final class wi implements cj {
-    public final int f39975a;
-    public final org.telegram.messenger.d5 f39976b;
+import android.content.Context;
+import android.view.View;
+public final class wi extends v4.c0 {
+    public final gi.g f41352r;
 
-    public wi(org.telegram.messenger.d5 d5Var, int i7) {
-        this.f39975a = i7;
-        this.f39976b = d5Var;
+    public wi(gi.g gVar, Context context) {
+        super(context);
+        this.f41352r = gVar;
     }
 
     @Override
-    public final String run() {
-        switch (this.f39975a) {
-            case 0:
-                ArrayList arrayList = this.f39976b.f21993e;
-                if (arrayList.isEmpty()) {
-                    return "";
-                }
-                return pf.b.c().b((String) arrayList.get(0));
-            default:
-                ArrayList arrayList2 = this.f39976b.f21993e;
-                if (arrayList2.isEmpty()) {
-                    return "";
-                }
-                return pf.b.c().b((String) arrayList2.get(0));
-        }
+    public final int k(int i7, View view) {
+        return org.telegram.messenger.k5.B(7.0f, ((yi) this.f41352r.R).f42001n.getPaddingTop(), super.k(i7, view));
+    }
+
+    @Override
+    public final int m(int i7) {
+        return super.m(i7) * 2;
     }
 }

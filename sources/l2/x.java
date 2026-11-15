@@ -1,444 +1,383 @@
 package l2;
 
-import android.content.DialogInterface;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.util.Log;
-import android.view.KeyEvent;
+import android.content.SharedPreferences;
+import android.graphics.SurfaceTexture;
+import android.view.Surface;
 import android.view.View;
-import android.view.ViewGroup;
-import c8.cc;
-import c8.zc;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Serializable;
-import java.net.ConnectException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.UnknownHostException;
+import hi.l3;
 import java.util.ArrayList;
-import java.util.zip.GZIPInputStream;
-import java.util.zip.GZIPOutputStream;
-import li.a3;
-import li.a6;
-import li.b2;
-import li.b3;
-import li.c6;
-import li.e5;
-import li.g4;
-import li.m5;
-import li.n5;
-import li.t3;
-import org.telegram.messenger.a20;
-import org.telegram.messenger.xr;
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.TLObject;
+import java.util.List;
+import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.fc;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.gz;
+import org.telegram.messenger.hb;
+import org.telegram.messenger.i20;
+import org.telegram.messenger.np;
+import org.telegram.messenger.ns;
+import org.telegram.messenger.pb;
+import org.telegram.messenger.si;
+import org.telegram.messenger.vo;
+import org.telegram.messenger.vr;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.l3;
-import org.telegram.ui.Components.k60;
-import org.telegram.ui.Components.ws;
-import org.telegram.ui.Components.x31;
-import org.telegram.ui.tw;
-import org.telegram.ui.z91;
-import org.telegram.ui.zw;
-public final class x implements h2.o, ws, li.m0, a20, org.telegram.ui.ActionBar.r1, tw, n5, i2.u, oi.m, Vector.TLDeserializer, r0.m, org.telegram.ui.ActionBar.e1 {
-    public final int f18073a;
-    public final Object f18074b;
+import org.telegram.ui.ActionBar.e2;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Cells.t2;
+import org.telegram.ui.Components.UndoView;
+import org.telegram.ui.Components.u11;
+import org.telegram.ui.an;
+import org.telegram.ui.el;
+import org.telegram.ui.jl;
+import org.telegram.ui.lm;
+import org.telegram.ui.uw;
+import org.telegram.ui.ww;
+import org.telegram.ui.xw;
+import org.telegram.ui.yw;
+public final class x implements Runnable {
+    public final int f19226a;
+    public final int f19227b;
+    public final int f19228c;
+    public final Object d;
+    public final Object f19229e;
 
-    public x(Object obj, int i7) {
-        this.f18073a = i7;
-        this.f18074b = obj;
+    public x(int i7, int i10, String str, String str2) {
+        this.f19226a = 9;
+        this.f19227b = i7;
+        this.d = str;
+        this.f19229e = str2;
+        this.f19228c = i10;
     }
 
     @Override
-    public boolean G() {
-        return false;
-    }
-
-    @Override
-    public boolean N(zw zwVar) {
-        return false;
-    }
-
-    @Override
-    public r0.k1 S0(View view, r0.k1 k1Var) {
-        int i7 = this.f18073a;
-        Object obj = this.f18074b;
-        switch (i7) {
-            case 25:
-                ActionBarLayout actionBarLayout = (ActionBarLayout) obj;
-                Drawable drawable = ActionBarLayout.f27231v1;
-                i0.b I0 = org.telegram.messenger.g0.I0(k1Var, false);
-                i0.b I02 = org.telegram.messenger.g0.I0(k1Var, true);
-                actionBarLayout.f27278t1 = I0;
-                actionBarLayout.f27280u1 = I02;
-                actionBarLayout.f27276s1 = k1Var;
-                int childCount = actionBarLayout.getChildCount();
-                for (int i10 = 0; i10 < childCount; i10++) {
-                    actionBarLayout.o(actionBarLayout.getChildAt(i10), k1Var);
-                }
-                return r0.k1.f54212b;
-            default:
-                l3 l3Var = (l3) obj;
-                l3Var.f27745s = k1Var.f54213a.f(2).d;
-                l3Var.invalidate();
-                return r0.k1.f54212b;
-        }
-    }
-
-    @Override
-    public k60 a(li.g1 g1Var) {
-        return k60.H((b2) ((g6.d0) this.f18074b).f13557b, g1Var);
-    }
-
-    @Override
-    public void b(long j3, h2.x xVar) {
-        switch (this.f18073a) {
-            case 17:
-                f3.b.c(j3, xVar, ((m4.c0) this.f18074b).f19605c);
-                return;
-            default:
-                f3.b.d(j3, xVar, ((m4.c0) this.f18074b).f19605c);
-                return;
-        }
-    }
-
-    public li.z c(h6.m mVar) {
-        InputStream inputStream;
-        m5.b bVar = (m5.b) this.f18074b;
-        URL url = (URL) mVar.f14266b;
-        String c10 = cc.c("CctTransportBackend");
-        if (Log.isLoggable(c10, 4)) {
-            Log.i(c10, String.format("Making request to: %s", url));
-        }
-        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-        httpURLConnection.setConnectTimeout(30000);
-        httpURLConnection.setReadTimeout(bVar.f19886g);
-        httpURLConnection.setDoOutput(true);
-        httpURLConnection.setInstanceFollowRedirects(false);
-        httpURLConnection.setRequestMethod("POST");
-        httpURLConnection.setRequestProperty("User-Agent", "datatransport/3.3.0 android/");
-        httpURLConnection.setRequestProperty("Content-Encoding", "gzip");
-        httpURLConnection.setRequestProperty("Content-Type", "application/json");
-        httpURLConnection.setRequestProperty("Accept-Encoding", "gzip");
-        String str = (String) mVar.d;
-        if (str != null) {
-            httpURLConnection.setRequestProperty("X-Goog-Api-Key", str);
-        }
-        try {
-            OutputStream outputStream = httpURLConnection.getOutputStream();
-            try {
-                GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(outputStream);
-                org.telegram.ui.Components.m mVar2 = bVar.f19881a;
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(gZIPOutputStream));
-                pa.d dVar = (pa.d) mVar2.f35778a;
-                pa.e eVar = new pa.e(bufferedWriter, dVar.f53524a, dVar.f53525b, dVar.f53526c, dVar.d);
-                eVar.h((n5.m) mVar.f14267c);
-                eVar.j();
-                eVar.f53528b.flush();
-                gZIPOutputStream.close();
-                if (outputStream != null) {
-                    outputStream.close();
-                }
-                int responseCode = httpURLConnection.getResponseCode();
-                Integer valueOf = Integer.valueOf(responseCode);
-                String c11 = cc.c("CctTransportBackend");
-                if (Log.isLoggable(c11, 4)) {
-                    Log.i(c11, String.format("Status Code: %d", valueOf));
-                }
-                cc.a(httpURLConnection.getHeaderField("Content-Type"), "CctTransportBackend", "Content-Type: %s");
-                cc.a(httpURLConnection.getHeaderField("Content-Encoding"), "CctTransportBackend", "Content-Encoding: %s");
-                if (responseCode != 302 && responseCode != 301 && responseCode != 307) {
-                    if (responseCode != 200) {
-                        return new li.z(responseCode, null, 0L);
-                    }
-                    InputStream inputStream2 = httpURLConnection.getInputStream();
-                    try {
-                        if ("gzip".equals(httpURLConnection.getHeaderField("Content-Encoding"))) {
-                            inputStream = new GZIPInputStream(inputStream2);
-                        } else {
-                            inputStream = inputStream2;
-                        }
-                        li.z zVar = new li.z(responseCode, null, n5.u.a(new BufferedReader(new InputStreamReader(inputStream))).f20485a);
-                        if (inputStream != null) {
-                            inputStream.close();
-                        }
-                        if (inputStream2 != null) {
-                            inputStream2.close();
-                        }
-                        return zVar;
-                    } catch (Throwable th2) {
-                        if (inputStream2 != null) {
-                            try {
-                                inputStream2.close();
-                            } catch (Throwable th3) {
-                                th2.addSuppressed(th3);
-                            }
-                        }
-                        throw th2;
-                    }
-                }
-                return new li.z(responseCode, new URL(httpURLConnection.getHeaderField("Location")), 0L);
-            } catch (Throwable th4) {
-                if (outputStream != null) {
-                    try {
-                        outputStream.close();
-                    } catch (Throwable th5) {
-                        th4.addSuppressed(th5);
-                    }
-                }
-                throw th4;
-            }
-        } catch (ConnectException e10) {
-            e = e10;
-            cc.b("CctTransportBackend", "Couldn't open connection, returning with 500", e);
-            return new li.z(500, null, 0L);
-        } catch (UnknownHostException e11) {
-            e = e11;
-            cc.b("CctTransportBackend", "Couldn't open connection, returning with 500", e);
-            return new li.z(500, null, 0L);
-        } catch (IOException e12) {
-            e = e12;
-            cc.b("CctTransportBackend", "Couldn't encode request, returning with 400", e);
-            return new li.z(400, null, 0L);
-        } catch (na.b e13) {
-            e = e13;
-            cc.b("CctTransportBackend", "Couldn't encode request, returning with 400", e);
-            return new li.z(400, null, 0L);
-        }
-    }
-
-    public void d(int i7) {
-        li.y yVar = (li.y) this.f18074b;
-        yVar.f18996c = i7;
-        yVar.e(i7);
-    }
-
-    @Override
-    public TLObject deserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
-        TLRPC.PhotoSize lambda$readParams$0;
-        TLRPC.PhotoSize lambda$readParams$02;
-        switch (this.f18073a) {
-            case 23:
-                lambda$readParams$0 = ((TLRPC.TL_stickerSet) this.f18074b).lambda$readParams$0(inputSerializedData, i7, z9);
-                return lambda$readParams$0;
-            default:
-                lambda$readParams$02 = ((TLRPC.TL_stickerSet_layer143) this.f18074b).lambda$readParams$0(inputSerializedData, i7, z9);
-                return lambda$readParams$02;
-        }
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f18073a) {
-            case 8:
-                ((aa.d0) this.f18074b).run();
-                return;
-            default:
-                org.telegram.ui.ActionBar.u1 u1Var2 = (org.telegram.ui.ActionBar.u1) this.f18074b;
-                DialogInterface.OnCancelListener onCancelListener = u1Var2.J;
-                if (onCancelListener != null) {
-                    onCancelListener.onCancel(u1Var2);
-                }
-                u1Var2.dismiss();
-                return;
-        }
-    }
-
-    @Override
-    public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        x31 x31Var = (x31) obj;
-        View view = (View) obj2;
-        Integer num = (Integer) number;
-        Float f10 = (Float) serializable;
-        Float f11 = (Float) serializable2;
-        if (((t3[]) this.f18074b)[0] != null && (view instanceof a6)) {
-            ((a6) view).B();
-        }
-    }
-
-    @Override
-    public void invoke(Object obj) {
-        switch (this.f18073a) {
+    public final void run() {
+        int i7;
+        int i10;
+        int[] iArr;
+        l3 l3Var;
+        int i11;
+        int i12;
+        float f10;
+        int i13;
+        int i14 = this.f19226a;
+        int i15 = 0;
+        int i16 = this.f19227b;
+        int i17 = this.f19228c;
+        Object obj = this.f19229e;
+        Object obj2 = this.d;
+        switch (i14) {
             case 0:
-                ((e2.a1) obj).x((g2.d) this.f18074b);
+                f0 f0Var = ((z) obj2).f19233a;
+                Surface surface = new Surface((SurfaceTexture) obj);
+                f0Var.x1(surface);
+                f0Var.U = surface;
+                f0Var.q1(i16, i17);
                 return;
             case 1:
-                ((e2.a1) obj).p(((c0) this.f18074b).f17775a.Q);
+                String str = (String) obj;
+                fc fcVar = ((pb) obj2).f25919b;
+                if (i16 != 1) {
+                    fcVar.f23476s.c(new hb(fcVar, str, 1));
+                }
+                ns.f(i17).k(143, str, Integer.valueOf(i16));
                 return;
             case 2:
-                ((e2.a1) obj).M((e2.q0) this.f18074b);
+                ((si) obj2).x1((List) obj, i16, i17, true);
                 return;
-            case 13:
-                ((m2.b) obj).G((e2.v0) this.f18074b);
-                return;
-            case 14:
-                ((m2.b) obj).onSeekStarted((m2.a) this.f18074b);
-                return;
-            case 15:
-                ((m2.b) obj).z((d) this.f18074b);
-                return;
-            default:
-                ((m2.b) obj).b((x2.b0) this.f18074b);
-                return;
-        }
-    }
-
-    @Override
-    public void j(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.g1 g1Var;
-        org.telegram.ui.ActionBar.r0 r0Var = (org.telegram.ui.ActionBar.r0) this.f18074b;
-        r0Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (g1Var = r0Var.d) != null && g1Var.isShowing()) {
-            r0Var.d.d(true);
-        }
-    }
-
-    @Override
-    public void l(int i7) {
-        boolean z9;
-        int i10;
-        oi.a aVar = (oi.a) this.f18074b;
-        oi.q qVar = aVar.f21024a;
-        oi.d dVar = aVar.f21029g;
-        if (Build.VERSION.SDK_INT >= 31 && dVar != null) {
-            ArrayList arrayList = dVar.f21060a;
-            if (aVar.f21033l || oi.q.f().f21127a) {
-                if (zc.a(i7, 4) || zc.a(i7, 2)) {
-                    qi.a e10 = qVar.e();
-                    ViewGroup viewGroup = aVar.f21035n;
-                    if (viewGroup != null) {
-                        e10.b(viewGroup.getY(), aVar.f21034m.getWidth(), aVar.f21035n.getY() + aVar.f21035n.getHeight());
+            case 3:
+                si siVar = (si) obj2;
+                ArrayList arrayList = (ArrayList) obj;
+                try {
+                    if (arrayList != null) {
+                        siVar.getMessagesStorage().f27222b.executeFast("DELETE FROM reactions").stepThis().dispose();
+                        SQLitePreparedStatement executeFast = siVar.getMessagesStorage().f27222b.executeFast("REPLACE INTO reactions VALUES(?, ?, ?)");
+                        executeFast.requery();
+                        int i18 = 4;
+                        for (int i19 = 0; i19 < arrayList.size(); i19++) {
+                            i18 += ((TLRPC.TL_availableReaction) arrayList.get(i19)).getObjectSize();
+                        }
+                        NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(i18);
+                        nativeByteBuffer.writeInt32(arrayList.size());
+                        while (i15 < arrayList.size()) {
+                            ((TLRPC.TL_availableReaction) arrayList.get(i15)).serializeToStream(nativeByteBuffer);
+                            i15++;
+                        }
+                        executeFast.bindByteBuffer(1, nativeByteBuffer);
+                        executeFast.bindInteger(2, i16);
+                        executeFast.bindInteger(3, i17);
+                        executeFast.step();
+                        nativeByteBuffer.reuse();
+                        executeFast.dispose();
+                        return;
                     }
-                    dVar.f21061b = e10.f54165b;
-                    while (dVar.f21061b > arrayList.size()) {
-                        arrayList.add(new oi.b(arrayList.size()));
-                    }
-                    for (int i11 = 0; i11 < dVar.f21061b; i11++) {
-                        oi.b bVar = (oi.b) arrayList.get(i11);
-                        bVar.f21037a.set(e10.c(i11));
-                        bVar.b(dVar.f21070m, dVar.f21071n, dVar.f21072o);
-                        bVar.c(dVar.f21068k);
-                        int i12 = dVar.f21073p;
-                        int i13 = dVar.f21074q;
-                        int i14 = dVar.f21075r;
-                        int i15 = dVar.f21076s;
-                        bVar.f21055u = i12;
-                        bVar.v = i13;
-                        bVar.f21056w = i14;
-                        bVar.f21057x = i15;
-                    }
-                }
-                dVar.f21062c = aVar.f21036o;
-                dVar.d = aVar.f21034m;
-                int i16 = 1;
-                if (qVar.f21111j > 0) {
-                    z9 = true;
-                } else {
-                    z9 = false;
-                }
-                boolean z10 = !z9;
-                if (dVar.f21069l != z10) {
-                    dVar.f21069l = z10;
-                    if (!z9) {
-                        i10 = 5;
-                    } else {
-                        i10 = 1;
-                    }
-                    dVar.f21070m = i10;
-                    if (!z9) {
-                        i16 = 10;
-                    }
-                    dVar.f21071n = i16;
-                    dVar.f21072o = Math.max(i10, i16);
-                    for (int i17 = 0; i17 < dVar.f21061b; i17++) {
-                        ((oi.b) arrayList.get(i17)).b(dVar.f21070m, dVar.f21071n, dVar.f21072o);
-                    }
-                    dVar.f();
-                }
-                int i18 = qVar.f21112k;
-                int i19 = qVar.f21113l;
-                dVar.f21077t = i18;
-                dVar.f21078u = i19;
-                dVar.f();
-                dVar.e();
-                Runnable runnable = aVar.f21031j;
-                if (runnable != null) {
-                    runnable.run();
-                }
-            }
-        }
-    }
-
-    @Override
-    public void m() {
-        switch (this.f18073a) {
-            case 5:
-                li.r0 r0Var = (li.r0) this.f18074b;
-                li.g1 g1Var = r0Var.d;
-                li.a aVar = r0Var.f18809f;
-                if (aVar != null) {
-                    aVar.f18410s = true;
-                    aVar.f18409r = g1Var.f18596k2;
-                }
-                if (aVar != null) {
-                    TL_iv.PageBlock pageBlock = aVar.f18395b;
-                    if (pageBlock instanceof TL_iv.pageBlockDetails) {
-                        ((TL_iv.pageBlockDetails) pageBlock).title = c6.f(g1Var.getText());
-                    }
-                }
-                b3 b3Var = r0Var.h;
-                if (b3Var != null && r0Var.f18809f != null) {
-                    t3.S1(b3Var.f18480a);
+                    SQLitePreparedStatement executeFast2 = siVar.getMessagesStorage().f27222b.executeFast("UPDATE reactions SET date = ?");
+                    executeFast2.requery();
+                    executeFast2.bindLong(1, i17);
+                    executeFast2.step();
+                    executeFast2.dispose();
+                    return;
+                } catch (Exception e10) {
+                    a8.g(e10, true);
                     return;
                 }
+            case 4:
+                np npVar = (np) obj2;
+                npVar.f25387s1.clear();
+                npVar.f25432x1.clear();
+                vr messagesStorage = npVar.getMessagesStorage();
+                messagesStorage.H();
+                npVar.q4(true, messagesStorage.f27233w, ((TLRPC.updates_Difference) obj).pts, this.f19227b, this.f19228c);
+                npVar.P1().q();
+                return;
+            case 5:
+                vo voVar = (vo) obj2;
+                TLRPC.photos_Photos photos_photos = (TLRPC.photos_Photos) obj;
+                voVar.h.Y3(photos_photos.users, false);
+                voVar.d(i16, i17, photos_photos);
+                return;
+            case 6:
+                vo voVar2 = (vo) obj2;
+                TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) obj;
+                np npVar2 = voVar2.h;
+                npVar2.Y3(messages_messages.users, false);
+                npVar2.S3(messages_messages.chats, false);
+                TLRPC.TL_photos_photos tL_photos_photos = new TLRPC.TL_photos_photos();
+                tL_photos_photos.count = messages_messages.count;
+                int i20 = 0;
+                while (i15 < messages_messages.messages.size()) {
+                    TLRPC.MessageAction messageAction = messages_messages.messages.get(i15).action;
+                    if (messageAction != null) {
+                        TLRPC.Photo photo = messageAction.photo;
+                        if (photo instanceof TLRPC.TL_photo) {
+                            tL_photos_photos.photos.add(photo);
+                            i15++;
+                        }
+                    }
+                    i20++;
+                    i15++;
+                }
+                if (i16 == 0 && messages_messages.messages.size() >= messages_messages.count) {
+                    tL_photos_photos.count -= i20;
+                }
+                voVar2.d(i16, i17, tL_photos_photos);
+                return;
+            case 7:
+                vr vrVar = (vr) obj2;
+                byte[] bArr = (byte[]) obj;
+                vrVar.getClass();
+                try {
+                    SQLitePreparedStatement executeFast3 = vrVar.f27222b.executeFast("UPDATE params SET lsv = ?, sg = ?, pbytes = ? WHERE id = 1");
+                    executeFast3.bindInteger(1, i16);
+                    executeFast3.bindInteger(2, i17);
+                    if (bArr != null) {
+                        i7 = bArr.length;
+                    } else {
+                        i7 = 1;
+                    }
+                    NativeByteBuffer nativeByteBuffer2 = new NativeByteBuffer(i7);
+                    if (bArr != null) {
+                        nativeByteBuffer2.writeBytes(bArr);
+                    }
+                    executeFast3.bindByteBuffer(3, nativeByteBuffer2);
+                    executeFast3.step();
+                    executeFast3.dispose();
+                    nativeByteBuffer2.reuse();
+                    return;
+                } catch (Exception e11) {
+                    vrVar.o(e11, true);
+                    return;
+                }
+            case 8:
+                ns nsVar = (ns) obj2;
+                nsVar.l((Object[]) obj, i16, false);
+                nsVar.f25634q.remove(i17);
+                return;
+            case 9:
+                ConnectionsManager.lambda$onIntegrityCheckClassic$27(i16, (String) obj2, (String) obj, i17);
                 return;
             case 10:
-                ((e5) this.f18074b).g();
+                ((an) obj2).didReceivedNotification(i16, i17, (Object[]) obj);
+                return;
+            case 11:
+                el elVar = (el) obj2;
+                elVar.getClass();
+                gj messageObject = ((org.telegram.ui.Cells.t0) obj).getMessageObject();
+                jl jlVar = elVar.f46862a;
+                an anVar = jlVar.R;
+                int e12 = messageObject.e1();
+                if (gj.B0(messageObject.f23817k) == jlVar.R.f45154c7) {
+                    i10 = 1;
+                } else {
+                    i10 = 0;
+                }
+                anVar.Bb(this.f19227b, e12, true, i10, true, 0, Integer.valueOf(i17), null, null);
+                return;
+            case 12:
+                org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) obj;
+                an anVar2 = ((lm) obj2).f49005a;
+                if (anVar2.P1 != null) {
+                    q1Var.getLocationInWindow(new int[2]);
+                    anVar2.P1.setTranslationY(i20.D(520.0f, iArr[1] - l3Var.getTop(), i16));
+                    anVar2.P1.p(0.0f, (-org.telegram.messenger.g0.L(16.0f)) + iArr[0] + i17);
+                    anVar2.P1.w();
+                    return;
+                }
                 return;
             default:
-                m5 m5Var = (m5) this.f18074b;
-                li.a aVar2 = m5Var.f18994a;
-                if (aVar2 != null) {
-                    aVar2.f18410s = true;
-                    aVar2.f18409r = m5Var.f18712r.f18596k2;
-                }
-                m5Var.w();
-                a3 a3Var = m5Var.E;
-                if (a3Var != null && m5Var.f18994a != null) {
-                    t3.S1(a3Var.f18422a);
+                final ww wwVar = (ww) obj2;
+                TLRPC.Dialog dialog = (TLRPC.Dialog) obj;
+                xw xwVar = wwVar.f53014g;
+                yw ywVar = wwVar.h;
+                ArrayList arrayList2 = ywVar.T1;
+                if (arrayList2 != null) {
+                    arrayList2.remove(dialog);
+                    int i21 = dialog.pinnedNum;
+                    ywVar.Y0 = null;
+                    xwVar.f53331a.invalidate();
+                    int N0 = xwVar.f53333c.N0();
+                    if (N0 == i16 - 1) {
+                        xwVar.f53333c.m(N0).requestLayout();
+                    }
+                    if (ywVar.getMessagesController().C2(dialog.f28055id, false)) {
+                        ywVar.getMessagesController().j2();
+                        xwVar.f53341y.D();
+                        xwVar.q(true);
+                        return;
+                    }
+                    np messagesController = ywVar.getMessagesController();
+                    long j3 = dialog.f28055id;
+                    if (ywVar.Y2 == 0) {
+                        i11 = 1;
+                    } else {
+                        i11 = 0;
+                    }
+                    int d = messagesController.d(i11, -1, j3);
+                    if (d != 2 || i17 != 0) {
+                        xwVar.f53341y.D();
+                        xwVar.q(true);
+                    }
+                    if (ywVar.Y2 == 0) {
+                        if (d == 2) {
+                            boolean z10 = gz.f23974q1;
+                            if (z10) {
+                                gz.f23974q1 = !z10;
+                                SharedPreferences.Editor edit = np.e1().edit();
+                                edit.putBoolean("archiveHidden", gz.f23974q1);
+                                edit.apply();
+                            }
+                            xwVar.f53341y.D();
+                            if (i17 == 0) {
+                                ywVar.M4(true, true);
+                                xwVar.q(true);
+                                ywVar.z3();
+                            } else {
+                                xwVar.q(true);
+                                if (!gz.f23974q1 && xwVar.f53333c.L0() == 0) {
+                                    ywVar.f53680g2 = true;
+                                    uw uwVar = xwVar.f53331a;
+                                    if (gz.f23971p1) {
+                                        f10 = 76.0f;
+                                    } else {
+                                        f10 = 70.0f;
+                                    }
+                                    uwVar.w0(0, -org.telegram.messenger.g0.L(f10), null);
+                                }
+                            }
+                            i13 = ((e2) ywVar).currentAccount;
+                            ywVar.T1.add(0, (TLRPC.Dialog) ywVar.d4(i13, xwVar.f53338s, ywVar.Y2, false).get(0));
+                            xwVar.q(true);
+                            org.telegram.messenger.g0.i3(new Runnable() {
+                                @Override
+                                public final void run() {
+                                    switch (r2) {
+                                        case 0:
+                                            wwVar.h.M4(false, true);
+                                            return;
+                                        default:
+                                            wwVar.h.M4(false, true);
+                                            return;
+                                    }
+                                }
+                            }, 300L);
+                        } else if (d == 1) {
+                            v4.e1 K = xwVar.f53331a.K(0);
+                            if (K != null) {
+                                View view = K.f58535a;
+                                if (view instanceof t2) {
+                                    t2 t2Var = (t2) view;
+                                    if (t2Var.f31549b2.f39598n == 2) {
+                                        t2Var.f31554c2 = true;
+                                        t2Var.d2 = 0.0f;
+                                        j6.f29160u1.T(true, 0.0f);
+                                        j6.f29160u1.start();
+                                        t2Var.invalidate();
+                                    }
+                                }
+                            }
+                            org.telegram.messenger.g0.i3(new Runnable() {
+                                @Override
+                                public final void run() {
+                                    switch (r2) {
+                                        case 0:
+                                            wwVar.h.M4(false, true);
+                                            return;
+                                        default:
+                                            wwVar.h.M4(false, true);
+                                            return;
+                                    }
+                                }
+                            }, 300L);
+                        }
+                        SharedPreferences e13 = np.e1();
+                        i15 = (e13.getBoolean("archivehint_l", false) || gz.f23974q1) ? 1 : 1;
+                        if (i15 == 0) {
+                            e13.edit().putBoolean("archivehint_l", true).commit();
+                        }
+                        UndoView k42 = ywVar.k4();
+                        if (k42 != null) {
+                            long j10 = dialog.f28055id;
+                            if (i15 != 0) {
+                                i12 = 2;
+                            } else {
+                                i12 = 3;
+                            }
+                            k42.l(j10, i12, null, new u11(wwVar, dialog, i21, 2));
+                        }
+                    }
+                    if (ywVar.Y2 != 0 && ywVar.T1.isEmpty()) {
+                        xwVar.f53331a.setEmptyView(null);
+                        xwVar.f53340x.setVisibility(4);
+                        return;
+                    }
                     return;
                 }
                 return;
         }
     }
 
-    @Override
-    public boolean y(zw zwVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, z91 z91Var) {
-        g4 g4Var = (g4) this.f18074b;
-        if (arrayList.isEmpty() || ((xr) arrayList.get(0)).f26524a <= 0) {
-            return false;
-        }
-        g4Var.run(((xr) arrayList.get(0)).f26524a);
-        zwVar.finishFragment();
-        return true;
+    public x(Object obj, int i7, int i10, Object obj2, int i11) {
+        this.f19226a = i11;
+        this.d = obj;
+        this.f19227b = i7;
+        this.f19228c = i10;
+        this.f19229e = obj2;
     }
 
-    public x(m2.a aVar, Object obj, int i7) {
-        this.f18073a = i7;
-        this.f18074b = obj;
+    public x(Object obj, Object obj2, int i7, int i10, int i11) {
+        this.f19226a = i11;
+        this.d = obj;
+        this.f19229e = obj2;
+        this.f19227b = i7;
+        this.f19228c = i10;
     }
 
-    public x(m2.a aVar, x2.t tVar, x2.b0 b0Var, IOException iOException, boolean z9) {
-        this.f18073a = 16;
-        this.f18074b = b0Var;
+    public x(ns nsVar, int i7, Object[] objArr, int i10) {
+        this.f19226a = 8;
+        this.d = nsVar;
+        this.f19227b = i7;
+        this.f19229e = objArr;
+        this.f19228c = i10;
     }
 }

@@ -51,7 +51,7 @@ public class VoIPPermissionActivity extends Activity {
         if (i7 != 101 && i7 != 102) {
             return;
         }
-        boolean z9 = false;
+        boolean z10 = false;
         int i10 = 0;
         while (true) {
             if (i10 < iArr.length) {
@@ -60,11 +60,11 @@ public class VoIPPermissionActivity extends Activity {
                 }
                 i10++;
             } else {
-                z9 = true;
+                z10 = true;
                 break;
             }
         }
-        if (iArr.length > 0 && z9) {
+        if (iArr.length > 0 && z10) {
             if (VoIPService.getSharedInstance() != null) {
                 VoIPService.getSharedInstance().acceptIncomingCall();
             } else {
@@ -78,7 +78,7 @@ public class VoIPPermissionActivity extends Activity {
             } else {
                 VoIPPreNotificationService.decline(this, 1);
             }
-            org.telegram.ui.Components.voip.y1.h(this, new uu0(this, 28), i7);
+            org.telegram.ui.Components.voip.c2.h(this, new pu0(this, 28), i7);
         } else {
             finish();
         }

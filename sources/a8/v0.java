@@ -9,20 +9,20 @@ public abstract class v0 {
         if (collection instanceof z) {
             collection = ((z) collection).zza();
         }
-        boolean z9 = false;
+        boolean z10 = false;
         if ((collection instanceof Set) && collection.size() > h0Var.size()) {
             Iterator<E> it = h0Var.iterator();
             while (it.hasNext()) {
                 if (collection.contains(it.next())) {
                     it.remove();
-                    z9 = true;
+                    z10 = true;
                 }
             }
-            return z9;
+            return z10;
         }
         for (Object obj : collection) {
-            z9 |= h0Var.remove(obj);
+            z10 |= h0Var.remove(obj);
         }
-        return z9;
+        return z10;
     }
 }

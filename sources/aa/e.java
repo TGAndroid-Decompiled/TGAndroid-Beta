@@ -8,9 +8,9 @@ import java.util.Locale;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 public final class e {
-    public static final String f795b = g.i(UUID.randomUUID().toString() + System.currentTimeMillis());
-    public static final AtomicLong f796c = new AtomicLong(0);
-    public final String f797a;
+    public static final String f797b = g.i(UUID.randomUUID().toString() + System.currentTimeMillis());
+    public static final AtomicLong f798c = new AtomicLong(0);
+    public final String f799a;
 
     public e() {
         long time = new Date().getTime();
@@ -26,13 +26,13 @@ public final class e {
         byte[] a10 = a(time % 1000);
         byte b14 = a10[0];
         byte b15 = a10[1];
-        byte[] a11 = a(f796c.incrementAndGet());
+        byte[] a11 = a(f798c.incrementAndGet());
         byte b16 = a11[0];
         byte b17 = a11[1];
         byte[] a12 = a(Integer.valueOf(Process.myPid()).shortValue());
         String f10 = g.f(new byte[]{b10, b11, b12, b13, b14, b15, b16, b17, a12[0], a12[1]});
         Locale locale = Locale.US;
-        this.f797a = String.format(locale, "%s%s%s%s", f10.substring(0, 12), f10.substring(12, 16), f10.subSequence(16, 20), f795b.substring(0, 12)).toUpperCase(locale);
+        this.f799a = String.format(locale, "%s%s%s%s", f10.substring(0, 12), f10.substring(12, 16), f10.subSequence(16, 20), f797b.substring(0, 12)).toUpperCase(locale);
     }
 
     public static byte[] a(long j3) {
@@ -44,6 +44,6 @@ public final class e {
     }
 
     public final String toString() {
-        return this.f797a;
+        return this.f799a;
     }
 }

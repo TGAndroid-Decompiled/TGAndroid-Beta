@@ -2,26 +2,26 @@ package tg;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import org.telegram.ui.xp0;
-public final class b0 extends sg.v0 {
-    public final Bitmap E;
-    public final xp0 F;
+import org.telegram.ui.tp0;
+public final class b0 extends sg.u0 {
+    public final Bitmap F;
+    public final tp0 G;
 
-    public b0(xp0 xp0Var, Context context, sg.j0 j0Var, Bitmap bitmap, Bitmap bitmap2) {
-        super(context, j0Var, bitmap, null, null);
-        this.F = xp0Var;
-        this.E = bitmap2;
+    public b0(tp0 tp0Var, Context context, sg.i0 i0Var, Bitmap bitmap, Bitmap bitmap2) {
+        super(context, i0Var, bitmap, null, null);
+        this.G = tp0Var;
+        this.F = bitmap2;
     }
 
     @Override
     public final void g(sg.h hVar) {
-        int indexOf = sg.h.f55073a.indexOf(hVar);
+        int indexOf = sg.h.f56640a.indexOf(hVar);
         int i7 = indexOf + 1;
-        if (i7 <= 1 || this.E != null) {
+        if (i7 <= 1 || this.F != null) {
             indexOf = i7;
         }
-        xp0 xp0Var = this.F;
-        xp0Var.f55679c1.b(indexOf);
-        xp0Var.w(hVar);
+        tp0 tp0Var = this.G;
+        tp0Var.f57271d1.b(indexOf);
+        tp0Var.w(hVar);
     }
 }

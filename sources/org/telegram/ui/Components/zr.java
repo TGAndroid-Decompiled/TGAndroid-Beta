@@ -1,79 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-public final class zr extends AnimatorListenerAdapter {
-    public final int f41098a = 1;
-    public final v4.d1 f41099b;
-    public final View f41100c;
-    public final ViewPropertyAnimator d;
-    public final ds f41101e;
+import java.util.ArrayList;
+public final class zr implements Runnable {
+    public final int f42417a;
+    public final as f42418b;
 
-    public zr(ds dsVar, v4.d1 d1Var, ViewPropertyAnimator viewPropertyAnimator, View view) {
-        this.f41101e = dsVar;
-        this.f41099b = d1Var;
-        this.d = viewPropertyAnimator;
-        this.f41100c = view;
+    public zr(as asVar, int i7) {
+        this.f42417a = i7;
+        this.f42418b = asVar;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f41098a) {
-            case 1:
-                this.f41100c.setAlpha(1.0f);
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f41098a) {
+    public final void run() {
+        switch (this.f42417a) {
             case 0:
-                this.d.setListener(null);
-                this.f41100c.setAlpha(1.0f);
-                ds dsVar = this.f41101e;
-                v4.d1 d1Var = this.f41099b;
-                dsVar.d(d1Var);
-                dsVar.f33069x.remove(d1Var);
-                dsVar.A();
-                return;
-            default:
-                this.d.setListener(null);
-                ds dsVar2 = this.f41101e;
-                v4.d1 d1Var2 = this.f41099b;
-                dsVar2.u(d1Var2);
-                dsVar2.v.remove(d1Var2);
-                dsVar2.A();
-                View view = d1Var2.f57052a;
-                if (view instanceof org.telegram.ui.Cells.t2) {
-                    ((org.telegram.ui.Cells.t2) view).setMoving(false);
+                as asVar = this.f42418b;
+                asVar.f33050c = false;
+                asVar.f33049b.run();
+                ArrayList arrayList = asVar.h;
+                if (arrayList.isEmpty() || System.currentTimeMillis() - asVar.f33052f > 3600000) {
+                    arrayList.clear();
+                    asVar.f33051e = false;
+                    asVar.f33053g = null;
+                    asVar.a();
                     return;
                 }
                 return;
-        }
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        switch (this.f41098a) {
-            case 0:
-                this.f41101e.y();
-                return;
             default:
-                this.f41101e.getClass();
+                this.f42418b.f33054i = false;
                 return;
         }
-    }
-
-    public zr(ds dsVar, v4.d1 d1Var, View view, ViewPropertyAnimator viewPropertyAnimator) {
-        this.f41101e = dsVar;
-        this.f41099b = d1Var;
-        this.f41100c = view;
-        this.d = viewPropertyAnimator;
     }
 }

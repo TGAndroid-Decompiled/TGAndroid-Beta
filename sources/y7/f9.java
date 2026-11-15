@@ -1,33 +1,21 @@
 package y7;
 
-import a8.wa;
-import a8.xa;
-import android.content.Context;
-public final class f9 implements d9 {
-    public final u9.n f59033a;
-    public final b9 f59034b;
+import a8.ab;
+public abstract class f9 {
+    public static ab f60248a;
 
-    public f9(Context context, b9 b9Var) {
-        this.f59034b = b9Var;
-        m5.a aVar = m5.a.f19877e;
-        o5.s.b(context);
-        o5.q c10 = o5.s.a().c(aVar);
-        if (m5.a.d.contains(new l5.c("json"))) {
-            new u9.n(new xa(c10, 4));
+    public static synchronized d9 a(a9 a9Var) {
+        d9 d9Var;
+        synchronized (f9.class) {
+            try {
+                if (f60248a == null) {
+                    f60248a = new ab(3);
+                }
+                d9Var = (d9) f60248a.R0(a9Var);
+            } catch (Throwable th2) {
+                throw th2;
+            }
         }
-        this.f59033a = new u9.n(new xa(c10, 5));
-    }
-
-    @Override
-    public final void a(wa waVar) {
-        l5.a aVar;
-        this.f59034b.getClass();
-        o5.r rVar = (o5.r) this.f59033a.get();
-        if (waVar.f700b != 0) {
-            aVar = l5.a.a(waVar.E());
-        } else {
-            aVar = new l5.a(null, waVar.E(), l5.d.f18179b, null);
-        }
-        rVar.a(aVar, new ni.a(3));
+        return d9Var;
     }
 }

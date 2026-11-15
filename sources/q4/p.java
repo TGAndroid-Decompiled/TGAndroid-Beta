@@ -5,32 +5,32 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class p implements Parcelable {
     public static final Parcelable.Creator<p> CREATOR = new m6.e(27);
-    public final MediaSession.Token f53812b;
-    public d f53813c;
-    public final Object f53811a = new Object();
+    public final MediaSession.Token f55249b;
+    public d f55250c;
+    public final Object f55248a = new Object();
     public b5.d d = null;
 
     public p(MediaSession.Token token, k kVar) {
-        this.f53812b = token;
-        this.f53813c = kVar;
+        this.f55249b = token;
+        this.f55250c = kVar;
     }
 
     public final d a() {
         d dVar;
-        synchronized (this.f53811a) {
-            dVar = this.f53813c;
+        synchronized (this.f55248a) {
+            dVar = this.f55250c;
         }
         return dVar;
     }
 
     public final void b(d dVar) {
-        synchronized (this.f53811a) {
-            this.f53813c = dVar;
+        synchronized (this.f55248a) {
+            this.f55250c = dVar;
         }
     }
 
     public final void c(b5.d dVar) {
-        synchronized (this.f53811a) {
+        synchronized (this.f55248a) {
             this.d = dVar;
         }
     }
@@ -47,15 +47,15 @@ public final class p implements Parcelable {
         if (!(obj instanceof p)) {
             return false;
         }
-        return this.f53812b.equals(((p) obj).f53812b);
+        return this.f55249b.equals(((p) obj).f55249b);
     }
 
     public final int hashCode() {
-        return this.f53812b.hashCode();
+        return this.f55249b.hashCode();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        parcel.writeParcelable(this.f53812b, i7);
+        parcel.writeParcelable(this.f55249b, i7);
     }
 }

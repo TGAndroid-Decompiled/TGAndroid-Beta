@@ -1,5 +1,6 @@
 package org.telegram.ui;
+public interface ex0 {
+    void b0();
 
-import org.telegram.messenger.ImageReceiver;
-public final class ex0 extends ImageReceiver {
+    void d(qh0 qh0Var);
 }

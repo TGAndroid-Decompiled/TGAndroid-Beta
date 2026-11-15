@@ -1,12 +1,204 @@
 package m;
 
-import android.widget.AbsListView;
-public abstract class p1 {
-    public static boolean a(AbsListView absListView) {
-        return absListView.isSelectedChildViewEnabled();
+import android.content.res.ColorStateList;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.Rect;
+import android.graphics.Region;
+import android.graphics.drawable.Drawable;
+public final class p1 extends Drawable implements Drawable.Callback {
+    public Drawable f19812a;
+    public boolean f19813b;
+
+    public final void a(Canvas canvas) {
+        this.f19812a.draw(canvas);
     }
 
-    public static void b(AbsListView absListView, boolean z9) {
-        absListView.setSelectedChildViewEnabled(z9);
+    public final void b(float f10, float f11) {
+        this.f19812a.setHotspot(f10, f11);
+    }
+
+    public final void c(int i7, int i10, int i11, int i12) {
+        this.f19812a.setHotspotBounds(i7, i10, i11, i12);
+    }
+
+    public final boolean d(boolean z10, boolean z11) {
+        if (!super.setVisible(z10, z11) && !this.f19812a.setVisible(z10, z11)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        if (this.f19813b) {
+            a(canvas);
+        }
+    }
+
+    @Override
+    public final int getChangingConfigurations() {
+        return this.f19812a.getChangingConfigurations();
+    }
+
+    @Override
+    public final Drawable getCurrent() {
+        return this.f19812a.getCurrent();
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f19812a.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f19812a.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getMinimumHeight() {
+        return this.f19812a.getMinimumHeight();
+    }
+
+    @Override
+    public final int getMinimumWidth() {
+        return this.f19812a.getMinimumWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return this.f19812a.getOpacity();
+    }
+
+    @Override
+    public final boolean getPadding(Rect rect) {
+        return this.f19812a.getPadding(rect);
+    }
+
+    @Override
+    public final int[] getState() {
+        return this.f19812a.getState();
+    }
+
+    @Override
+    public final Region getTransparentRegion() {
+        return this.f19812a.getTransparentRegion();
+    }
+
+    @Override
+    public final void invalidateDrawable(Drawable drawable) {
+        invalidateSelf();
+    }
+
+    @Override
+    public final boolean isAutoMirrored() {
+        return this.f19812a.isAutoMirrored();
+    }
+
+    @Override
+    public final boolean isStateful() {
+        return this.f19812a.isStateful();
+    }
+
+    @Override
+    public final void jumpToCurrentState() {
+        this.f19812a.jumpToCurrentState();
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        this.f19812a.setBounds(rect);
+    }
+
+    @Override
+    public final boolean onLevelChange(int i7) {
+        return this.f19812a.setLevel(i7);
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
+        scheduleSelf(runnable, j3);
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        this.f19812a.setAlpha(i7);
+    }
+
+    @Override
+    public final void setAutoMirrored(boolean z10) {
+        this.f19812a.setAutoMirrored(z10);
+    }
+
+    @Override
+    public final void setChangingConfigurations(int i7) {
+        this.f19812a.setChangingConfigurations(i7);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f19812a.setColorFilter(colorFilter);
+    }
+
+    @Override
+    public final void setDither(boolean z10) {
+        this.f19812a.setDither(z10);
+    }
+
+    @Override
+    public final void setFilterBitmap(boolean z10) {
+        this.f19812a.setFilterBitmap(z10);
+    }
+
+    @Override
+    public final void setHotspot(float f10, float f11) {
+        if (this.f19813b) {
+            b(f10, f11);
+        }
+    }
+
+    @Override
+    public final void setHotspotBounds(int i7, int i10, int i11, int i12) {
+        if (this.f19813b) {
+            c(i7, i10, i11, i12);
+        }
+    }
+
+    @Override
+    public final boolean setState(int[] iArr) {
+        if (this.f19813b) {
+            return this.f19812a.setState(iArr);
+        }
+        return false;
+    }
+
+    @Override
+    public final void setTint(int i7) {
+        this.f19812a.setTint(i7);
+    }
+
+    @Override
+    public final void setTintList(ColorStateList colorStateList) {
+        this.f19812a.setTintList(colorStateList);
+    }
+
+    @Override
+    public final void setTintMode(PorterDuff.Mode mode) {
+        this.f19812a.setTintMode(mode);
+    }
+
+    @Override
+    public final boolean setVisible(boolean z10, boolean z11) {
+        if (this.f19813b) {
+            return d(z10, z11);
+        }
+        return false;
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        unscheduleSelf(runnable);
     }
 }

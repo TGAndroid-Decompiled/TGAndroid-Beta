@@ -1,89 +1,57 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.WeakHashMap;
-public final class db1 extends ViewGroup {
-    public final Paint f44944a;
-    public View f44945b;
-    public boolean f44946c;
+import android.widget.ImageView;
+import android.widget.TextView;
+public final class db1 extends org.telegram.ui.Components.a41 {
+    public static final int f46352b = 0;
 
-    public db1(Context context) {
-        super(context);
-        this.f44944a = new Paint(1);
-        setClipToPadding(false);
-    }
-
-    public final boolean a() {
-        View view = this.f44945b;
-        if (view != null && view.getVisibility() == 0) {
-            return true;
-        }
-        return false;
+    static {
+        org.telegram.ui.Components.a41.h(new org.telegram.ui.Components.a41());
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int paddingBottom = getPaddingBottom();
-        float T1 = org.telegram.messenger.g0.T1(0.1f, 0.75f, org.telegram.messenger.g0.R0(paddingBottom));
-        int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Ci, false);
-        int k10 = i0.a.k(org.telegram.ui.ActionBar.m6.r1(T1, org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f27890d6, false)), x02);
-        Paint paint = this.f44944a;
-        paint.setColor(x02);
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - paddingBottom, paint);
-        paint.setColor(k10);
-        canvas.drawRect(0.0f, getMeasuredHeight() - paddingBottom, getMeasuredWidth(), getMeasuredHeight(), paint);
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        int childCount = getChildCount();
-        for (int i13 = 0; i13 < childCount; i13++) {
-            View childAt = getChildAt(i13);
-            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        int i11;
-        boolean a10 = a();
-        int size = View.MeasureSpec.getSize(i7);
-        if (a10) {
-            i11 = getPaddingBottom() + org.telegram.messenger.g0.L(44.0f);
+    public final void b(View view, org.telegram.ui.Components.b41 b41Var, boolean z10, org.telegram.ui.Components.p41 p41Var, org.telegram.ui.Components.u41 u41Var) {
+        float f10;
+        eb1 eb1Var = (eb1) view;
+        int i7 = b41Var.f33180k;
+        CharSequence charSequence = b41Var.f33181l;
+        CharSequence charSequence2 = b41Var.f33182m;
+        boolean z11 = b41Var.f33186q;
+        boolean z12 = b41Var.f33187r;
+        int i10 = b41Var.f33194z;
+        TextView textView = eb1Var.f46669e;
+        ImageView imageView = eb1Var.f46670f;
+        eb1Var.h = z11;
+        eb1Var.f46671n = z12;
+        eb1Var.f46667b.setImageResource(i7);
+        int i11 = 8;
+        if (i10 != 0) {
+            imageView.setVisibility(0);
+            imageView.setImageResource(i10);
         } else {
+            imageView.setVisibility(8);
+        }
+        eb1Var.d.setText(charSequence);
+        textView.setText(charSequence2);
+        if (!TextUtils.isEmpty(charSequence2)) {
             i11 = 0;
         }
-        setMeasuredDimension(size, i11);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(i11, 1073741824);
-        int childCount = getChildCount();
-        for (int i12 = 0; i12 < childCount; i12++) {
-            getChildAt(i12).measure(makeMeasureSpec, makeMeasureSpec2);
+        textView.setVisibility(i11);
+        if (TextUtils.isEmpty(charSequence2)) {
+            f10 = 15.0f;
+        } else {
+            f10 = 10.0f;
         }
-        if (this.f44946c != a10) {
-            this.f44946c = a10;
-            WeakHashMap weakHashMap = r0.i0.f54202a;
-            r0.y.c(this);
-        }
+        int L = org.telegram.messenger.g0.L(f10);
+        eb1Var.f46668c.setPadding(0, L, 0, L);
+        eb1Var.updateColors();
     }
 
     @Override
-    public final void onViewAdded(View view) {
-        super.onViewAdded(view);
-        this.f44945b = view;
-    }
-
-    @Override
-    public final void setPadding(int i7, int i10, int i11, int i12) {
-        super.setPadding(i7, i10, i11, i12);
-        int childCount = getChildCount();
-        for (int i13 = 0; i13 < childCount; i13++) {
-            getChildAt(i13).setPadding(i7, i10, i11, i12);
-        }
+    public final View d(Context context, org.telegram.ui.Components.uj0 uj0Var, int i7, org.telegram.ui.ActionBar.e6 e6Var) {
+        return new eb1(context, e6Var);
     }
 }

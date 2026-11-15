@@ -1,5 +1,6 @@
 package org.webrtc;
 
+import ai.e1;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Point;
@@ -9,7 +10,7 @@ import android.view.TextureView;
 import android.view.View;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.sc;
+import org.telegram.messenger.qc;
 import org.telegram.messenger.voip.VoIPService;
 import org.webrtc.EglBase;
 import org.webrtc.EglRenderer;
@@ -88,21 +89,21 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         } else {
             i7 = 0;
         }
-        boolean z9 = this.mirror;
-        if (z9) {
+        boolean z10 = this.mirror;
+        if (z10) {
             i7 = 360 - i7;
         }
         int i11 = -i7;
         if (this.useCameraRotation) {
             int i12 = this.screenRotation;
             if (i12 == 1) {
-                if (z9) {
+                if (z10) {
                     i10 = 90;
                 } else {
                     i10 = -90;
                 }
             } else if (i12 == 3) {
-                if (z9) {
+                if (z10) {
                     i10 = 270;
                 } else {
                     i10 = -270;
@@ -142,7 +143,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
             sb2.append(", frame size: ");
             sb2.append(this.rotatedFrameWidth);
             sb2.append("x");
-            jg.g.x(sb2, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
+            i5.c.y(sb2, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
             sb2.append(min2);
             sb2.append(", old surface size: ");
             sb2.append(this.surfaceWidth);
@@ -211,9 +212,9 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
                         if (runnable != null) {
                             g0.r(runnable);
                         }
-                        jg.r rVar = new jg.r(this, i11, i13, 17);
-                        this.updateScreenRunnable = rVar;
-                        postOrRun(rVar);
+                        jg.q qVar = new jg.q(this, i11, i13, 18);
+                        this.updateScreenRunnable = qVar;
+                        postOrRun(qVar);
                     } catch (Throwable th2) {
                         throw th2;
                     }
@@ -344,7 +345,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     }
 
     public void setBackgroundRenderer(TextureView textureView) {
-        if (!sc.e(512)) {
+        if (!qc.e(512)) {
             return;
         }
         this.backgroundRenderer = textureView;
@@ -380,9 +381,9 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         });
     }
 
-    public void setEnableHardwareScaler(boolean z9) {
+    public void setEnableHardwareScaler(boolean z10) {
         ThreadUtils.checkIsOnMainThread();
-        this.enableFixedSize = z9;
+        this.enableFixedSize = z10;
         updateSurfaceSize();
     }
 
@@ -390,9 +391,9 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         this.eglRenderer.setFpsReduction(f10);
     }
 
-    public void setIsCamera(boolean z9) {
-        this.isCamera = z9;
-        if (!z9) {
+    public void setIsCamera(boolean z10) {
+        this.isCamera = z10;
+        if (!z10) {
             OrientationHelper orientationHelper = new OrientationHelper() {
                 {
                     TextureViewRenderer.this = this;
@@ -414,13 +415,13 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         this.maxTextureSize = i7;
     }
 
-    public void setMirror(boolean z9) {
-        if (this.mirror != z9) {
-            this.mirror = z9;
+    public void setMirror(boolean z10) {
+        if (this.mirror != z10) {
+            this.mirror = z10;
             if (this.rotateTextureWithScreen) {
                 onRotationChanged();
             } else {
-                this.eglRenderer.setMirror(z9);
+                this.eglRenderer.setMirror(z10);
             }
             updateSurfaceSize();
             requestLayout();
@@ -432,9 +433,9 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         this.parentSink = videoSink;
     }
 
-    public void setRotateTextureWithScreen(boolean z9) {
-        if (this.rotateTextureWithScreen != z9) {
-            this.rotateTextureWithScreen = z9;
+    public void setRotateTextureWithScreen(boolean z10) {
+        if (this.rotateTextureWithScreen != z10) {
+            this.rotateTextureWithScreen = z10;
             requestLayout();
         }
     }
@@ -466,9 +467,9 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         updateVideoSizes();
     }
 
-    public void setUseCameraRotation(boolean z9) {
-        if (this.useCameraRotation != z9) {
-            this.useCameraRotation = z9;
+    public void setUseCameraRotation(boolean z10) {
+        if (this.useCameraRotation != z10) {
+            this.useCameraRotation = z10;
             onRotationChanged();
             updateVideoSizes();
         }
@@ -614,7 +615,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
             ThreadUtils.checkIsOnMainThread();
             CountDownLatch countDownLatch = new CountDownLatch(1);
-            releaseEglSurface(new l2.a0(countDownLatch, 29), false);
+            releaseEglSurface(new e1(countDownLatch, 1), false);
             ThreadUtils.awaitUninterruptibly(countDownLatch);
             return true;
         }
@@ -635,14 +636,14 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
 
         @Override
         public void setFpsReduction(float f10) {
-            boolean z9;
+            boolean z10;
             synchronized (this.layoutLock) {
                 if (f10 == 0.0f) {
-                    z9 = true;
+                    z10 = true;
                 } else {
-                    z9 = false;
+                    z10 = false;
                 }
-                this.isRenderingPaused = z9;
+                this.isRenderingPaused = z10;
             }
             super.setFpsReduction(f10);
         }

@@ -1,7 +1,7 @@
 package org.telegram.messenger;
 public final class f5 {
-    public String f22370a;
-    public String f22371b;
-    public String f22372c;
+    public String f23443a;
+    public String f23444b;
+    public String f23445c;
     public String d;
 }

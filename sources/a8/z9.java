@@ -1,21 +1,40 @@
 package a8;
 public abstract class z9 {
-    public static final Object a(ee.q qVar, ee.q qVar2, rd.p pVar) {
-        Object vVar;
-        Object D;
-        try {
-            kotlin.jvm.internal.u.a(2, pVar);
-            vVar = pVar.invoke(qVar2, qVar);
-        } catch (Throwable th2) {
-            vVar = new zd.v(th2, false);
-        }
-        jd.a aVar = jd.a.f16646a;
-        if (vVar != aVar && (D = qVar.D(vVar)) != zd.b0.f60054e) {
-            if (!(D instanceof zd.v)) {
-                return zd.b0.w(D);
+    public static void a(kf.s sVar, kf.s sVar2, int i7) {
+        if (sVar != null && sVar2 != null && sVar != sVar2) {
+            StringBuilder sb2 = new StringBuilder(i7);
+            sb2.append(sVar.f17845g);
+            kf.p pVar = (kf.p) sVar2.f17843f;
+            for (kf.p pVar2 = (kf.p) sVar.f17843f; pVar2 != pVar; pVar2 = (kf.p) pVar2.f17843f) {
+                sb2.append(((kf.s) pVar2).f17845g);
+                pVar2.g();
             }
-            throw ((zd.v) D).f60128a;
+            sVar.f17845g = sb2.toString();
         }
-        return aVar;
+    }
+
+    public static void b(kf.p pVar, kf.p pVar2) {
+        kf.s sVar = null;
+        kf.s sVar2 = null;
+        int i7 = 0;
+        while (pVar != null) {
+            if (pVar instanceof kf.s) {
+                sVar2 = (kf.s) pVar;
+                if (sVar == null) {
+                    sVar = sVar2;
+                }
+                i7 = sVar2.f17845g.length() + i7;
+            } else {
+                a(sVar, sVar2, i7);
+                sVar = null;
+                sVar2 = null;
+                i7 = 0;
+            }
+            if (pVar == pVar2) {
+                break;
+            }
+            pVar = (kf.p) pVar.f17843f;
+        }
+        a(sVar, sVar2, i7);
     }
 }

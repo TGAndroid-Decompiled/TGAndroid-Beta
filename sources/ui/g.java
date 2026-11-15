@@ -1,21 +1,14 @@
 package ui;
 
-import j$.util.function.IntUnaryOperator$CC;
-import java.util.function.IntUnaryOperator;
-public final class g implements IntUnaryOperator {
-    public IntUnaryOperator andThen(IntUnaryOperator intUnaryOperator) {
-        return IntUnaryOperator$CC.$default$andThen(this, intUnaryOperator);
-    }
+import android.graphics.Canvas;
+public final class g implements a {
+    public a f58445a;
 
     @Override
-    public final int applyAsInt(int i7) {
-        if (i7 >= 16777215) {
-            return 1;
+    public final void b0(float f10, float f11, float f12, float f13, Canvas canvas) {
+        a aVar = this.f58445a;
+        if (aVar != null) {
+            aVar.b0(f10, f11, f12, f13, canvas);
         }
-        return i7 + 1;
-    }
-
-    public IntUnaryOperator compose(IntUnaryOperator intUnaryOperator) {
-        return IntUnaryOperator$CC.$default$compose(this, intUnaryOperator);
     }
 }

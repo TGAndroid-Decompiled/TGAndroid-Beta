@@ -1,54 +1,225 @@
 package org.telegram.messenger;
-public final class af implements Runnable {
-    public final int f21432a;
-    public final cf f21433b;
-    public final int f21434c;
 
-    public af(cf cfVar, int i7, int i10) {
-        this.f21432a = i10;
-        this.f21433b = cfVar;
-        this.f21434c = i7;
+import android.os.Build;
+import android.os.Environment;
+import android.text.TextUtils;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.tgnet.TLRPC;
+public final class af implements Runnable {
+    public final int f22498a;
+    public final bf f22499b;
+
+    public af(bf bfVar, int i7) {
+        this.f22498a = i7;
+        this.f22499b = bfVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f21432a) {
+        boolean z10;
+        File externalStoragePublicDirectory;
+        File file;
+        String str;
+        int i7;
+        String absolutePath;
+        File file2;
+        switch (this.f22498a) {
             case 0:
-                cf cfVar = this.f21433b;
-                try {
-                    cfVar.f21847b.o(this.f21434c);
-                    return;
-                } catch (Exception e10) {
-                    a8.g(e10, true);
-                    return;
-                }
+                bf bfVar = this.f22499b;
+                bfVar.f22696s.a(bfVar.f22694n);
+                return;
             case 1:
-                cf cfVar2 = this.f21433b;
-                try {
-                    cfVar2.f21847b.o(this.f21434c);
-                    return;
-                } catch (Exception e11) {
-                    a8.g(e11, true);
+                bf bfVar2 = this.f22499b;
+                if (!bfVar2.h) {
+                    bfVar2.f22690b.show();
                     return;
                 }
+                return;
             case 2:
-                cf cfVar3 = this.f21433b;
+                bf bfVar3 = this.f22499b;
+                boolean z11 = bfVar3.f22697w;
+                c cVar = bfVar3.f22689a;
+                ArrayList arrayList = bfVar3.f22691c;
                 try {
-                    cfVar3.f21847b.o(this.f21434c);
+                    try {
+                        if (Build.VERSION.SDK_INT >= 29) {
+                            int size = arrayList.size();
+                            for (int i10 = 0; i10 < size; i10++) {
+                                gj gjVar = (gj) arrayList.get(i10);
+                                if (!bfVar3.b(gjVar)) {
+                                    String str2 = gjVar.f23817k.attachPath;
+                                    TLRPC.Document F0 = gjVar.F0();
+                                    TLRPC.Document document = gjVar.f23798f3;
+                                    if (document != null) {
+                                        str2 = null;
+                                        F0 = document;
+                                    }
+                                    String B = w7.B(F0);
+                                    if (str2 != null && str2.length() > 0 && !new File(str2).exists()) {
+                                        str2 = null;
+                                    }
+                                    if (TextUtils.isEmpty(str2)) {
+                                        w7.G(cVar.f22778a);
+                                        TLRPC.MessageMedia m12 = gj.m1(gjVar);
+                                        TLRPC.Document document2 = gjVar.f23798f3;
+                                        if (document2 != null) {
+                                            file2 = w7.J(document2, null, false, true);
+                                        } else {
+                                            File M = w7.M(gjVar.f23817k, false, true);
+                                            if (m12 instanceof TLRPC.TL_messageMediaDocument) {
+                                                TLRPC.TL_messageMediaDocument tL_messageMediaDocument = (TLRPC.TL_messageMediaDocument) m12;
+                                                if (!tL_messageMediaDocument.alt_documents.isEmpty()) {
+                                                    file2 = w7.J(tL_messageMediaDocument.alt_documents.get(0), null, false, true);
+                                                }
+                                            }
+                                            file2 = M;
+                                        }
+                                        str2 = file2.toString();
+                                    }
+                                    File file3 = new File(str2);
+                                    if (!file3.exists()) {
+                                        bfVar3.f22695r = new CountDownLatch(1);
+                                        g0.h3(new x4(26, bfVar3, gjVar));
+                                        bfVar3.f22695r.await();
+                                    }
+                                    if (!bfVar3.f22693f) {
+                                        if (!file3.exists()) {
+                                            w7.G(cVar.f22778a);
+                                            file3 = w7.J(gjVar.f23817k, null, true, true);
+                                            StringBuilder sb2 = new StringBuilder();
+                                            sb2.append("saving file: correcting path from ");
+                                            sb2.append(str2);
+                                            sb2.append(" to ");
+                                            if (file3 == null) {
+                                                absolutePath = null;
+                                            } else {
+                                                absolutePath = file3.getAbsolutePath();
+                                            }
+                                            sb2.append(absolutePath);
+                                            a8.b(sb2.toString());
+                                        }
+                                        if (file3 != null && file3.exists()) {
+                                            if (z11) {
+                                                i7 = 3;
+                                            } else {
+                                                i7 = 2;
+                                            }
+                                            MediaController.f0(i7, file3, B);
+                                            bfVar3.f22694n++;
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if (z11) {
+                                externalStoragePublicDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
+                            } else {
+                                externalStoragePublicDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+                            }
+                            externalStoragePublicDirectory.mkdir();
+                            int size2 = arrayList.size();
+                            for (int i11 = 0; i11 < size2; i11++) {
+                                gj gjVar2 = (gj) arrayList.get(i11);
+                                if (!bfVar3.b(gjVar2)) {
+                                    TLRPC.Document F02 = gjVar2.F0();
+                                    TLRPC.Document document3 = gjVar2.f23798f3;
+                                    if (document3 != null) {
+                                        F02 = document3;
+                                    }
+                                    String B2 = w7.B(F02);
+                                    File file4 = new File(externalStoragePublicDirectory, B2);
+                                    if (file4.exists()) {
+                                        int lastIndexOf = B2.lastIndexOf(46);
+                                        for (int i12 = 0; i12 < 10; i12++) {
+                                            if (lastIndexOf != -1) {
+                                                str = B2.substring(0, lastIndexOf) + "(" + (i12 + 1) + ")" + B2.substring(lastIndexOf);
+                                            } else {
+                                                str = B2 + "(" + (i12 + 1) + ")";
+                                            }
+                                            file4 = new File(externalStoragePublicDirectory, str);
+                                            if (file4.exists()) {
+                                            }
+                                        }
+                                    }
+                                    if (!file4.exists()) {
+                                        file4.createNewFile();
+                                    }
+                                    String str3 = gjVar2.f23817k.attachPath;
+                                    if (gjVar2.f23798f3 != null) {
+                                        str3 = null;
+                                    }
+                                    if (str3 != null && str3.length() > 0 && !new File(str3).exists()) {
+                                        str3 = null;
+                                    }
+                                    if (gjVar2.f23798f3 != null) {
+                                        w7.G(cVar.f22778a);
+                                        file = w7.J(gjVar2.f23798f3, null, false, true);
+                                    } else {
+                                        if (str3 == null || str3.length() == 0) {
+                                            w7.G(cVar.f22778a);
+                                            str3 = w7.M(gjVar2.f23817k, false, true).toString();
+                                        }
+                                        file = new File(str3);
+                                    }
+                                    if (!file.exists()) {
+                                        bfVar3.f22695r = new CountDownLatch(1);
+                                        g0.h3(new x4(26, bfVar3, gjVar2));
+                                        bfVar3.f22695r.await();
+                                    }
+                                    if (file.exists()) {
+                                        bfVar3.a(file, file4, gjVar2.t1());
+                                        bfVar3.f22694n++;
+                                    }
+                                }
+                            }
+                        }
+                        if (bfVar3.d.isEmpty()) {
+                            g0.h3(new af(bfVar3, 4));
+                            return;
+                        }
+                        return;
+                    } catch (Exception e10) {
+                        e = e10;
+                        z10 = true;
+                        a8.g(e, z10);
+                        return;
+                    }
+                } catch (Exception e11) {
+                    e = e11;
+                    z10 = true;
+                }
+                break;
+            case 3:
+                try {
+                    this.f22499b.f22690b.dismiss();
                     return;
                 } catch (Exception e12) {
                     a8.g(e12, true);
                     return;
                 }
             default:
-                cf cfVar4 = this.f21433b;
+                bf bfVar4 = this.f22499b;
+                org.telegram.ui.ActionBar.t1 t1Var = bfVar4.f22690b;
+                c cVar2 = bfVar4.f22689a;
                 try {
-                    cfVar4.f21847b.o(this.f21434c);
-                    return;
+                    if (t1Var.isShowing()) {
+                        t1Var.dismiss();
+                    } else {
+                        bfVar4.h = true;
+                    }
+                    if (bfVar4.f22696s != null) {
+                        g0.h3(new af(bfVar4, 0));
+                    }
                 } catch (Exception e13) {
                     a8.g(e13, true);
-                    return;
                 }
+                int i13 = cVar2.f22778a;
+                ns.f(i13).n(bfVar4, 142);
+                ns.f(i13).n(bfVar4, 141);
+                ns.f(i13).n(bfVar4, 143);
+                return;
         }
     }
 }

@@ -6,23 +6,23 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.Arrays;
 import java.util.List;
 public final class i extends SQLiteOpenHelper {
-    public static final String f57243c = "INSERT INTO global_log_event_state VALUES (" + System.currentTimeMillis() + ")";
+    public static final String f58718c = "INSERT INTO global_log_event_state VALUES (" + System.currentTimeMillis() + ")";
     public static final int d = 7;
-    public static final List f57244e = Arrays.asList(new h(0), new h(1), new h(2), new h(3), new h(4), new h(5), new h(6));
-    public final int f57245a;
-    public boolean f57246b;
+    public static final List f58719e = Arrays.asList(new h(0), new h(1), new h(2), new h(3), new h(4), new h(5), new h(6));
+    public final int f58720a;
+    public boolean f58721b;
 
     public i(int i7, Context context, String str) {
         super(context, str, (SQLiteDatabase.CursorFactory) null, i7);
-        this.f57246b = false;
-        this.f57245a = i7;
+        this.f58721b = false;
+        this.f58720a = i7;
     }
 
     public static void a(SQLiteDatabase sQLiteDatabase, int i7, int i10) {
-        List list = f57244e;
+        List list = f58719e;
         if (i10 <= list.size()) {
             while (i7 < i10) {
-                switch (((h) list.get(i7)).f57242a) {
+                switch (((h) list.get(i7)).f58717a) {
                     case 0:
                         sQLiteDatabase.execSQL("CREATE TABLE events (_id INTEGER PRIMARY KEY, context_id INTEGER NOT NULL, transport_name TEXT NOT NULL, timestamp_ms INTEGER NOT NULL, uptime_ms INTEGER NOT NULL, payload BLOB NOT NULL, code INTEGER, num_attempts INTEGER NOT NULL,FOREIGN KEY (context_id) REFERENCES transport_contexts(_id) ON DELETE CASCADE)");
                         sQLiteDatabase.execSQL("CREATE TABLE event_metadata (_id INTEGER PRIMARY KEY, event_id INTEGER NOT NULL, name TEXT NOT NULL, value TEXT NOT NULL,FOREIGN KEY (event_id) REFERENCES events(_id) ON DELETE CASCADE)");
@@ -48,7 +48,7 @@ public final class i extends SQLiteOpenHelper {
                         sQLiteDatabase.execSQL("DROP TABLE IF EXISTS global_log_event_state");
                         sQLiteDatabase.execSQL("CREATE TABLE log_event_dropped (log_source VARCHAR(45) NOT NULL,reason INTEGER NOT NULL,events_dropped_count BIGINT NOT NULL,PRIMARY KEY(log_source, reason))");
                         sQLiteDatabase.execSQL("CREATE TABLE global_log_event_state (last_metrics_upload_ms BIGINT PRIMARY KEY)");
-                        sQLiteDatabase.execSQL(f57243c);
+                        sQLiteDatabase.execSQL(f58718c);
                         break;
                     case 5:
                         sQLiteDatabase.execSQL("ALTER TABLE events ADD COLUMN product_id INTEGER");
@@ -63,25 +63,25 @@ public final class i extends SQLiteOpenHelper {
             }
             return;
         }
-        StringBuilder o4 = jg.g.o("Migration from ", i7, " to ", i10, " was requested, but cannot be performed. Only ");
-        o4.append(list.size());
-        o4.append(" migrations are provided");
-        throw new IllegalArgumentException(o4.toString());
+        StringBuilder n10 = i5.c.n("Migration from ", i7, " to ", i10, " was requested, but cannot be performed. Only ");
+        n10.append(list.size());
+        n10.append(" migrations are provided");
+        throw new IllegalArgumentException(n10.toString());
     }
 
     @Override
     public final void onConfigure(SQLiteDatabase sQLiteDatabase) {
-        this.f57246b = true;
+        this.f58721b = true;
         sQLiteDatabase.rawQuery("PRAGMA busy_timeout=0;", new String[0]).close();
         sQLiteDatabase.setForeignKeyConstraintsEnabled(true);
     }
 
     @Override
     public final void onCreate(SQLiteDatabase sQLiteDatabase) {
-        if (!this.f57246b) {
+        if (!this.f58721b) {
             onConfigure(sQLiteDatabase);
         }
-        a(sQLiteDatabase, 0, this.f57245a);
+        a(sQLiteDatabase, 0, this.f58720a);
     }
 
     @Override
@@ -92,7 +92,7 @@ public final class i extends SQLiteOpenHelper {
         sQLiteDatabase.execSQL("DROP TABLE IF EXISTS event_payloads");
         sQLiteDatabase.execSQL("DROP TABLE IF EXISTS log_event_dropped");
         sQLiteDatabase.execSQL("DROP TABLE IF EXISTS global_log_event_state");
-        if (!this.f57246b) {
+        if (!this.f58721b) {
             onConfigure(sQLiteDatabase);
         }
         a(sQLiteDatabase, 0, i10);
@@ -100,14 +100,14 @@ public final class i extends SQLiteOpenHelper {
 
     @Override
     public final void onOpen(SQLiteDatabase sQLiteDatabase) {
-        if (!this.f57246b) {
+        if (!this.f58721b) {
             onConfigure(sQLiteDatabase);
         }
     }
 
     @Override
     public final void onUpgrade(SQLiteDatabase sQLiteDatabase, int i7, int i10) {
-        if (!this.f57246b) {
+        if (!this.f58721b) {
             onConfigure(sQLiteDatabase);
         }
         a(sQLiteDatabase, i7, i10);

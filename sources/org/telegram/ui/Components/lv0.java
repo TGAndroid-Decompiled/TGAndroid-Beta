@@ -1,85 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.TextView;
-import java.io.Serializable;
-import java.util.HashMap;
-public final class lv0 implements TextWatcher {
-    public final int f35743a = 0;
-    public final EditTextBoldCursor f35744b;
-    public final Serializable f35745c;
+import android.webkit.WebView;
+import java.util.ArrayList;
+public final class lv0 implements Runnable {
+    public final int f36906a;
+    public final Object f36907b;
+    public final Object f36908c;
     public final Object d;
-    public final org.telegram.messenger.ls f35746e;
 
-    public lv0(yv0 yv0Var, int[] iArr, TextView textView, EditTextBoldCursor editTextBoldCursor) {
-        this.f35746e = yv0Var;
-        this.f35745c = iArr;
-        this.d = textView;
-        this.f35744b = editTextBoldCursor;
+    public lv0(hi.s2 s2Var, ArrayList arrayList, String str) {
+        this.f36906a = 10;
+        this.f36907b = s2Var;
+        this.d = arrayList;
+        this.f36908c = str;
     }
 
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z9;
-        switch (this.f35743a) {
-            case 0:
-                return;
-            default:
-                org.telegram.ui.ek0 ek0Var = (org.telegram.ui.ek0) this.f35746e;
-                String str = (String) this.f35745c;
-                if (((HashMap) this.d) == ek0Var.f45359t1) {
-                    z9 = true;
-                } else {
-                    z9 = false;
-                }
-                EditTextBoldCursor editTextBoldCursor = this.f35744b;
-                org.telegram.ui.ek0.N0(ek0Var, editTextBoldCursor, str, editable, z9);
-                int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
-                EditTextBoldCursor editTextBoldCursor2 = ek0Var.Y[intValue];
-                if (intValue == 6) {
-                    ek0Var.c1(true);
+    private final void a() {
+        xi.i iVar = (xi.i) this.f36907b;
+        WebView webView = (WebView) this.f36908c;
+        e5.f fVar = (e5.f) this.d;
+        synchronized (iVar.f60066a) {
+            if (!iVar.f60084u && iVar.f60078o == webView && iVar.f60079p == fVar && !iVar.f60081r) {
+                if (iVar.f60082s) {
+                    org.telegram.messenger.a8.d("WEB proxy: Base64 bridge installation timed out again; transport stopped");
+                    iVar.q();
                     return;
                 }
-                return;
+                iVar.f60082s = true;
+                org.telegram.messenger.a8.d("WEB proxy: Base64 bridge installation timed out; retrying once");
+                iVar.h();
+            }
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f35743a;
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.lv0.run():void");
     }
 
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        switch (this.f35743a) {
-            case 0:
-                if (((int[]) this.f35745c)[0] == 2) {
-                    ((yv0) this.f35746e).K0((TextView) this.d, this.f35744b.getText().toString(), false);
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
-    public lv0(org.telegram.ui.ek0 ek0Var, EditTextBoldCursor editTextBoldCursor, String str, HashMap hashMap) {
-        this.f35746e = ek0Var;
-        this.f35744b = editTextBoldCursor;
-        this.f35745c = str;
-        this.d = hashMap;
-    }
-
-    private final void a(Editable editable) {
-    }
-
-    private final void b(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
+    public lv0(Object obj, Object obj2, Object obj3, int i7) {
+        this.f36906a = i7;
+        this.f36907b = obj;
+        this.f36908c = obj2;
+        this.d = obj3;
     }
 }

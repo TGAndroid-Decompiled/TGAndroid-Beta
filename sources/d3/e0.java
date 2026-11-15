@@ -1,164 +1,143 @@
 package d3;
 
-import android.os.SystemClock;
-import android.os.Trace;
-import bi.a4;
-import e2.s0;
-import e2.x1;
-import h2.m0;
-import java.util.NoSuchElementException;
-public final class e0 {
-    public final q4.q f7996a;
-    public final y f7997b;
-    public final x f7998c = new x();
-    public final h2.j0 d = new h2.j0();
-    public final h2.j0 f7999e = new h2.j0();
-    public final h2.s f8000f;
-    public final z f8001g;
-    public long h;
-    public long f8002i;
-    public long f8003j;
-    public x1 f8004k;
-    public long f8005l;
+import a8.p0;
+import di.c6;
+import di.cb;
+import di.f2;
+import di.k3;
+import fi.u0;
+import h2.l0;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.np;
+import org.telegram.messenger.ur;
+import org.telegram.messenger.voip.GroupCallMessagesController;
+import org.telegram.messenger.z10;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.Components.io;
+import org.telegram.ui.Components.jy0;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.an;
+import org.telegram.ui.u91;
+import org.telegram.ui.yw;
+import zi.r0;
+import zi.v0;
+public final class e0 implements Runnable {
+    public final int f7388a;
+    public final long f7389b;
+    public final long f7390c;
+    public final Object d;
+    public final Object f7391e;
 
-    public e0(q4.q qVar, y yVar, z zVar) {
-        this.f7996a = qVar;
-        this.f7997b = yVar;
-        this.f8001g = zVar;
-        ?? obj = new Object();
-        int highestOneBit = Integer.bitCount(16) != 1 ? Integer.highestOneBit(15) << 1 : 16;
-        obj.f14148a = 0;
-        obj.f14149b = -1;
-        obj.f14150c = 0;
-        obj.f14151e = new long[highestOneBit];
-        obj.d = highestOneBit - 1;
-        this.f8000f = obj;
-        this.h = -9223372036854775807L;
-        this.f8004k = x1.d;
-        this.f8002i = -9223372036854775807L;
-        this.f8003j = -9223372036854775807L;
+    public e0(u0 u0Var, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, long j10) {
+        this.f7388a = 2;
+        this.d = u0Var;
+        this.f7389b = j3;
+        this.f7391e = tL_textWithEntities;
+        this.f7390c = j10;
     }
 
-    public final void a(long j3, long j10) {
-        boolean z9;
-        long j11;
-        e2.u uVar;
-        final q4.q qVar = this.f7996a;
-        e eVar = (e) qVar.f53816c;
-        while (true) {
-            h2.s sVar = this.f8000f;
-            int i7 = sVar.f14150c;
-            if (i7 == 0) {
+    @Override
+    public final void run() {
+        switch (this.f7388a) {
+            case 0:
+                String str = (String) this.f7391e;
+                long j3 = this.f7389b;
+                long j10 = this.f7390c;
+                String str2 = l0.f13471a;
+                m2.e eVar = ((l2.z) ((h0) ((wf.b) this.d).f59108c)).f19233a.f18980s;
+                m2.a U = eVar.U();
+                eVar.V(U, 1016, new li.p(U, str, j10, j3, 19));
                 return;
-            }
-            if (i7 != 0) {
-                long j12 = ((long[]) sVar.f14151e)[sVar.f14148a];
-                Long l10 = (Long) this.f7999e.j(j12);
-                y yVar = this.f7997b;
-                if (l10 != null && l10.longValue() != this.f8005l) {
-                    this.f8005l = l10.longValue();
-                    yVar.e(2);
+            case 1:
+                c6 c6Var = (c6) this.d;
+                cb cbVar = new cb(c6Var.getContext(), c6Var.J0, this.f7389b, 11, null, new f2(c6Var, new boolean[]{false}, this.f7390c, (z10) this.f7391e, 2), 0L);
+                cbVar.setOnDismissListener(new k3(c6Var, 1));
+                cbVar.show();
+                return;
+            case 2:
+                ((u0) this.d).n(this.f7389b, (TLRPC.TL_textWithEntities) this.f7391e, this.f7390c);
+                return;
+            case 3:
+                String str3 = (String) this.f7391e;
+                long j11 = this.f7389b;
+                long j12 = this.f7390c;
+                String str4 = l0.f13471a;
+                m2.e eVar2 = ((l2.z) ((n2.s) ((k8.a) this.d).f17789c)).f19233a.f18980s;
+                m2.a U2 = eVar2.U();
+                eVar2.V(U2, 1008, new li.p(U2, str3, j12, j11, 7));
+                return;
+            case 4:
+                GroupCallMessagesController.c((GroupCallMessagesController) this.d, this.f7389b, this.f7390c, (byte[]) this.f7391e);
+                return;
+            case 5:
+                ((io) this.d).e(this.f7389b, this.f7390c, (HashSet) this.f7391e);
+                return;
+            case 6:
+                yw ywVar = (yw) this.d;
+                long j13 = this.f7389b;
+                long j14 = this.f7390c;
+                u91 u91Var = (u91) this.f7391e;
+                if (ywVar.E2 != null) {
+                    ArrayList arrayList = new ArrayList();
+                    arrayList.add(ur.a(j13, j14));
+                    ywVar.E2.y(ywVar, arrayList, null, false, ywVar.L2, ywVar.M2, ywVar.N2, u91Var);
+                    if (ywVar.f53699k2) {
+                        ywVar.E2 = null;
+                        return;
+                    }
+                    return;
                 }
-                long j13 = this.f8005l;
-                y yVar2 = this.f7997b;
-                x xVar = this.f7998c;
-                int a10 = yVar2.a(j12, j3, j10, j13, false, false, xVar);
-                if (a10 != 5 && a10 != 4) {
-                    this.f8001g.a(j12, xVar.f8096a);
+                ywVar.finishFragment();
+                return;
+            case 7:
+                LaunchActivity launchActivity = (LaunchActivity) this.d;
+                long j15 = this.f7389b;
+                long j16 = this.f7390c;
+                an anVar = (an) this.f7391e;
+                String str5 = LaunchActivity.C1;
+                TLRPC.TL_forumTopic f10 = np.s1(launchActivity.P).f25383r7.f(j15, j16);
+                StringBuilder t6 = p0.t(j15, "LaunchActivity openForum after load ", " ");
+                t6.append(j16);
+                t6.append(" TL_forumTopic ");
+                t6.append(f10);
+                a8.b(t6.toString());
+                if (launchActivity.f42649p0 != null) {
+                    qg.c.a(anVar, ur.a(-j15, j16));
+                    ((ActionBarLayout) launchActivity.M()).S(anVar);
+                    return;
                 }
-                boolean z10 = false;
-                if (a10 != 0 && a10 != 1) {
-                    if (a10 != 2 && a10 != 3) {
-                        if (a10 != 4) {
-                            if (a10 == 5) {
-                                return;
-                            }
-                            throw new IllegalStateException(String.valueOf(a10));
-                        }
-                        this.f8002i = j12;
-                    } else {
-                        this.f8002i = j12;
-                        sVar.d();
-                        eVar.f7994i.execute(new Runnable() {
-                            @Override
-                            public final void run() {
-                                switch (r2) {
-                                    case 0:
-                                        ((e) qVar.f53816c).h.onFirstFrameRendered();
-                                        return;
-                                    default:
-                                        ((e) qVar.f53816c).h.m();
-                                        return;
-                                }
-                            }
-                        });
-                        i iVar = (i) eVar.d.remove();
-                        l lVar = iVar.f8024c;
-                        u2.l lVar2 = iVar.f8022a;
-                        int i10 = iVar.f8023b;
-                        Trace.beginSection("dropVideoBuffer");
-                        lVar2.c(i10);
-                        Trace.endSection();
-                        lVar.R0(0, 1);
+                return;
+            default:
+                v0 v0Var = (v0) this.d;
+                r0 r0Var = (r0) this.f7391e;
+                long j17 = this.f7389b;
+                long j18 = this.f7390c;
+                synchronized (v0Var.f61751g) {
+                    if (!r0Var.d && !r0Var.f61682e) {
+                        ((jy0) v0Var.f61749e).a(r0Var.f61679a, r0Var.f61680b, j17, j18);
+                        return;
                     }
-                } else {
-                    this.f8002i = j12;
-                    if (a10 == 0) {
-                        z9 = true;
-                    } else {
-                        z9 = false;
-                    }
-                    long d = sVar.d();
-                    x1 x1Var = (x1) this.d.j(d);
-                    if (x1Var != null && !x1Var.equals(x1.d) && !x1Var.equals(this.f8004k)) {
-                        this.f8004k = x1Var;
-                        e2.t tVar = new e2.t();
-                        tVar.f10574y = x1Var.f10654a;
-                        tVar.f10575z = x1Var.f10655b;
-                        tVar.f10568r = s0.n("video/raw");
-                        qVar.f53815b = new e2.u(tVar);
-                        eVar.f7994i.execute(new a4(22, qVar, x1Var));
-                    }
-                    if (z9) {
-                        j11 = System.nanoTime();
-                    } else {
-                        j11 = xVar.f8097b;
-                    }
-                    long j14 = j11;
-                    if (yVar.f8101e != 3) {
-                        z10 = true;
-                    }
-                    yVar.f8101e = 3;
-                    yVar.f8107l.getClass();
-                    yVar.f8103g = m0.S(SystemClock.elapsedRealtime());
-                    if (z10 && eVar.f7991e != null) {
-                        eVar.f7994i.execute(new Runnable() {
-                            @Override
-                            public final void run() {
-                                switch (r2) {
-                                    case 0:
-                                        ((e) qVar.f53816c).h.onFirstFrameRendered();
-                                        return;
-                                    default:
-                                        ((e) qVar.f53816c).h.m();
-                                        return;
-                                }
-                            }
-                        });
-                    }
-                    e2.u uVar2 = (e2.u) qVar.f53815b;
-                    if (uVar2 == null) {
-                        uVar = new e2.u(new e2.t());
-                    } else {
-                        uVar = uVar2;
-                    }
-                    eVar.f7995j.b(d, j14, uVar, null);
-                    i iVar2 = (i) eVar.d.remove();
-                    iVar2.f8024c.M0(iVar2.f8022a, iVar2.f8023b, j14);
+                    return;
                 }
-            } else {
-                throw new NoSuchElementException();
-            }
         }
+    }
+
+    public e0(Object obj, long j3, long j10, Object obj2, int i7) {
+        this.f7388a = i7;
+        this.d = obj;
+        this.f7389b = j3;
+        this.f7390c = j10;
+        this.f7391e = obj2;
+    }
+
+    public e0(Object obj, Object obj2, long j3, long j10, int i7) {
+        this.f7388a = i7;
+        this.d = obj;
+        this.f7391e = obj2;
+        this.f7389b = j3;
+        this.f7390c = j10;
     }
 }

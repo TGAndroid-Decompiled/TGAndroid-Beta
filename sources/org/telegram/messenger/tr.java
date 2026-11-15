@@ -1,4 +1,4 @@
 package org.telegram.messenger;
 public interface tr {
-    void run(long j3);
+    void a(String str);
 }

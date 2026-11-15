@@ -118,11 +118,11 @@ public class FractionAtom extends Atom {
         return new HorizontalBox(verticalBox, (new SpaceAtom(0, 0.12f, 0.0f, 0.0f).createBox(teXEnvironment).getWidth() * 2.0f) + verticalBox.getWidth(), 2);
     }
 
-    public FractionAtom(Atom atom, Atom atom2, boolean z9) {
-        this(atom, atom2, !z9, 2, 0.0f);
+    public FractionAtom(Atom atom, Atom atom2, boolean z10) {
+        this(atom, atom2, !z10, 2, 0.0f);
     }
 
-    public FractionAtom(Atom atom, Atom atom2, boolean z9, int i7, float f10) {
+    public FractionAtom(Atom atom, Atom atom2, boolean z10, int i7, float f10) {
         this.noDefault = false;
         this.numAlign = 2;
         this.denomAlign = 2;
@@ -130,14 +130,14 @@ public class FractionAtom extends Atom {
         SpaceAtom.checkUnit(i7);
         this.numerator = atom;
         this.denominator = atom2;
-        this.noDefault = z9;
+        this.noDefault = z10;
         this.thickness = f10;
         this.unit = i7;
         this.type = 7;
     }
 
-    public FractionAtom(Atom atom, Atom atom2, boolean z9, int i7, int i10) {
-        this(atom, atom2, z9);
+    public FractionAtom(Atom atom, Atom atom2, boolean z10, int i7, int i10) {
+        this(atom, atom2, z10);
         this.numAlign = checkAlignment(i7);
         this.denomAlign = checkAlignment(i10);
     }

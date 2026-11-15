@@ -1,21 +1,21 @@
 package zd;
 public final class o0 extends q0 {
-    public final m f60111c;
+    public final m f61312c;
     public final s0 d;
 
     public o0(s0 s0Var, long j3, m mVar) {
         super(j3);
         this.d = s0Var;
-        this.f60111c = mVar;
+        this.f61312c = mVar;
     }
 
     @Override
     public final void run() {
-        this.f60111c.D(this.d);
+        this.f61312c.D(this.d);
     }
 
     @Override
     public final String toString() {
-        return super.toString() + this.f60111c;
+        return super.toString() + this.f61312c;
     }
 }

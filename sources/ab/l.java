@@ -12,11 +12,11 @@ import android.text.TextUtils;
 import android.util.Log;
 import java.util.ArrayDeque;
 public final class l implements Application.ActivityLifecycleCallbacks {
-    public final ArrayDeque f964a = new ArrayDeque(10);
+    public final ArrayDeque f963a = new ArrayDeque(10);
 
     public final void a(Intent intent) {
         boolean equals;
-        ArrayDeque arrayDeque = this.f964a;
+        ArrayDeque arrayDeque = this.f963a;
         Bundle bundle = null;
         try {
             Bundle extras = intent.getExtras();

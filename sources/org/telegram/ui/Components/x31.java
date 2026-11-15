@@ -1,392 +1,374 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.content.res.Configuration;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.util.LongSparseArray;
+import android.view.MotionEvent;
 import android.view.View;
-import j$.util.Objects;
-import java.util.HashMap;
-import org.telegram.tgnet.TLObject;
-public final class x31 extends rg.a {
-    public static int J = 10000;
-    public static LongSparseArray K;
-    public static HashMap L;
-    public float A;
-    public long B;
-    public org.telegram.messenger.c20 C;
-    public View.OnClickListener D;
-    public View.OnClickListener E;
-    public org.telegram.messenger.c20 F;
-    public Object G;
-    public Object H;
+import android.view.ViewPropertyAnimator;
+import android.widget.FrameLayout;
+import org.telegram.tgnet.TLRPC;
+public final class x31 extends FrameLayout implements org.telegram.messenger.is {
+    public v4.t0 E;
+    public int F;
+    public boolean G;
+    public boolean H;
     public boolean I;
-    public View f40149c;
-    public int d;
-    public boolean f40150e;
-    public boolean f40151f;
-    public boolean f40152g;
-    public boolean h;
-    public int f40153i;
-    public boolean f40154j;
-    public int f40155k;
-    public CharSequence f40156l;
-    public CharSequence f40157m;
-    public CharSequence f40158n;
-    public CharSequence f40159o;
-    public String[] f40160p;
-    public boolean f40161q;
-    public boolean f40162r;
-    public boolean f40163s;
-    public boolean f40164t;
-    public int f40165u;
-    public int v;
-    public boolean f40166w;
-    public long f40167x;
-    public int f40168y;
-    public int f40169z;
+    public boolean J;
+    public boolean K;
+    public long L;
+    public ValueAnimator M;
+    public boolean N;
+    public boolean O;
+    public final TLRPC.StickerSetCovered P;
+    public final org.telegram.ui.ActionBar.e6 Q;
+    public float R;
+    public final Paint S;
+    public final int f41544a;
+    public final u31 f41545b;
+    public final TLRPC.StickerSetCovered[] f41546c;
+    public final LongSparseArray d;
+    public final LongSparseArray f41547e;
+    public final View f41548f;
+    public final m31 h;
+    public final n31 f41549n;
+    public final o31 f41550r;
+    public final w31 f41551s;
+    public final jg.c2 f41552w;
+    public final FrameLayout f41553x;
+    public org.telegram.ui.ActionBar.e2 f41554y;
 
-    public x31(int i7) {
-        super(i7, false);
-        this.f40152g = true;
-        this.f40165u = -1;
-        this.I = true;
+    public x31(Context context, final u31 u31Var, TLRPC.StickerSetCovered[] stickerSetCoveredArr, LongSparseArray longSparseArray, LongSparseArray longSparseArray2, TLRPC.StickerSetCovered stickerSetCovered, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        int i7 = org.telegram.messenger.m10.f24934t0;
+        this.f41544a = i7;
+        this.R = 1.0f;
+        this.S = new Paint();
+        this.f41545b = u31Var;
+        this.f41546c = stickerSetCoveredArr;
+        this.d = longSparseArray;
+        this.f41547e = longSparseArray2;
+        this.P = stickerSetCovered;
+        this.Q = e6Var;
+        w31 w31Var = new w31(this, context);
+        this.f41551s = w31Var;
+        this.f41552w = new jg.c2(context, new l31(this, u31Var), stickerSetCoveredArr, longSparseArray, longSparseArray2, e6Var);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f41553x = frameLayout;
+        org.telegram.ui.ActionBar.q6.h(org.telegram.ui.ActionBar.j6.f28922h5, frameLayout, e6Var);
+        m31 m31Var = new m31(this, context, e6Var);
+        this.h = m31Var;
+        m31Var.setHint(org.telegram.messenger.hd.M0(2131745705, null));
+        frameLayout.addView(m31Var, c8.ja.e(-1, -1, 48));
+        n31 n31Var = new n31(this, context, u31Var);
+        this.f41549n = n31Var;
+        final j jVar = new j(this, 20);
+        n31Var.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                j jVar2 = jVar;
+                return u31Var.e(x31.this.f41549n, jVar2, motionEvent);
+            }
+        });
+        n31Var.setOverScrollMode(2);
+        n31Var.setClipToPadding(false);
+        n31Var.setItemAnimator(null);
+        n31Var.setLayoutAnimation(null);
+        o31 o31Var = new o31(this, org.telegram.messenger.g0.L(58.0f), n31Var);
+        this.f41550r = o31Var;
+        n31Var.setLayoutManager(o31Var);
+        o31Var.O = new p31(this);
+        n31Var.setOnScrollListener(new q31(this));
+        n31Var.setAdapter(w31Var);
+        n31Var.setOnItemClickListener(jVar);
+        addView(n31Var, c8.ja.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
+        View view = new View(context);
+        this.f41548f = view;
+        org.telegram.ui.ActionBar.q6.h(org.telegram.ui.ActionBar.j6.V5, view, e6Var);
+        view.setAlpha(0.0f);
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, org.telegram.messenger.g0.f1());
+        layoutParams.topMargin = org.telegram.messenger.g0.L(58.0f);
+        addView(view, layoutParams);
+        addView(frameLayout, c8.ja.e(-1, 58, 51));
+        d();
+        org.telegram.messenger.ns f10 = org.telegram.messenger.ns.f(i7);
+        f10.c(this, org.telegram.messenger.ns.f25600x0);
+        f10.c(this, org.telegram.messenger.ns.f25614z0);
     }
 
-    public static x31 A(String str, CharSequence charSequence, int i7) {
-        x31 x31Var = new x31(41);
-        x31Var.d = i7;
-        x31Var.f40156l = charSequence;
-        x31Var.f40159o = str;
-        return x31Var;
-    }
-
-    public static x31 B(int i7, CharSequence charSequence) {
-        x31 x31Var = new x31(7);
-        x31Var.d = i7;
-        x31Var.f40156l = charSequence;
-        return x31Var;
-    }
-
-    public static x31 C(CharSequence charSequence) {
-        x31 x31Var = new x31(7);
-        x31Var.f40156l = charSequence;
-        return x31Var;
-    }
-
-    public static x31 D(int i7) {
-        x31 x31Var = new x31(28);
-        x31Var.f40169z = i7;
-        return x31Var;
-    }
-
-    public static x31 E(int i7, int i10) {
-        x31 x31Var = new x31(28);
-        x31Var.d = i7;
-        x31Var.f40169z = i10;
-        return x31Var;
-    }
-
-    public static x31 F(int i7, String str) {
-        x31 x31Var = new x31(39);
-        x31Var.d = i7;
-        x31Var.f40156l = str;
-        x31Var.f40169z = 1;
-        return x31Var;
-    }
-
-    public static w31 G(int i7) {
-        LongSparseArray longSparseArray = K;
-        if (longSparseArray == null) {
-            return null;
+    private void setShadowVisible(boolean z10) {
+        float f10;
+        if (this.H != z10) {
+            this.H = z10;
+            ViewPropertyAnimator animate = this.f41548f.animate();
+            if (z10) {
+                f10 = 1.0f;
+            } else {
+                f10 = 0.0f;
+            }
+            org.telegram.messenger.i20.m(animate, f10, 200L);
         }
-        return (w31) longSparseArray.get(i7);
     }
 
-    public static x31 K(Class cls) {
-        if (L == null) {
-            L = new HashMap();
+    public final void a(boolean z10) {
+        this.N = z10;
+        if (z10) {
+            if (getContentTopOffset() > 0 && this.M == null) {
+                int contentTopOffset = getContentTopOffset();
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.M = ofFloat;
+                ofFloat.addUpdateListener(new t31(this, contentTopOffset));
+                this.M.addListener(new i11(this, 2));
+                this.M.setDuration(250L);
+                this.M.setInterpolator(org.telegram.ui.ActionBar.i1.f28644w);
+                this.M.start();
+                return;
+            }
+            return;
         }
-        if (K == null) {
-            K = new LongSparseArray();
+        ValueAnimator valueAnimator = this.M;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            this.M.cancel();
+            this.M = null;
         }
-        w31 w31Var = (w31) L.get(cls);
-        if (w31Var != null) {
-            return new x31(w31Var.f39870a);
+    }
+
+    public final void b(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet) {
+        r31 r31Var;
+        if (stickerSet != null) {
+            inputStickerSet = new TLRPC.TL_inputStickerSetID();
+            inputStickerSet.access_hash = stickerSet.access_hash;
+            inputStickerSet.f28071id = stickerSet.f28078id;
         }
-        throw new RuntimeException("UItemFactory was not setuped: " + cls);
+        TLRPC.InputStickerSet inputStickerSet2 = inputStickerSet;
+        if (inputStickerSet2 != null) {
+            u31 u31Var = this.f41545b;
+            u31Var.getClass();
+            if (u31Var instanceof gw) {
+                r31Var = new r31(this);
+            } else {
+                r31Var = null;
+            }
+            bw0 bw0Var = new bw0(getContext(), this.f41554y, inputStickerSet2, null, r31Var, this.Q);
+            bw0Var.f33399e2 = false;
+            bw0Var.X1 = new s31(this, inputStickerSet2);
+            this.f41554y.showDialog(bw0Var);
+        }
     }
 
-    public static x31 b(String str) {
-        x31 x31Var = new x31(1);
-        x31Var.f40156l = str;
-        return x31Var;
-    }
-
-    public static x31 c(int i7, int i10, String str) {
-        x31 x31Var = new x31(3);
-        x31Var.d = i7;
-        x31Var.f40155k = i10;
-        x31Var.f40156l = str;
-        return x31Var;
-    }
-
-    public static x31 d(int i7, int i10, String str, String str2) {
-        x31 x31Var = new x31(3);
-        x31Var.d = i7;
-        x31Var.f40155k = i10;
-        x31Var.f40156l = str;
-        x31Var.f40158n = str2;
-        return x31Var;
-    }
-
-    public static x31 e(int i7, String str) {
-        x31 x31Var = new x31(3);
-        x31Var.d = i7;
-        x31Var.f40156l = str;
-        return x31Var;
-    }
-
-    public static x31 f(String str, CharSequence charSequence, int i7) {
-        x31 x31Var = new x31(3);
-        x31Var.d = i7;
-        x31Var.f40156l = str;
-        x31Var.f40158n = charSequence;
-        return x31Var;
-    }
-
-    public static x31 g(CharSequence charSequence) {
-        x31 x31Var = new x31(7);
-        x31Var.f40156l = charSequence;
-        x31Var.f40161q = true;
-        return x31Var;
-    }
-
-    public static x31 h(int i7, int i10, org.telegram.ui.q41 q41Var) {
-        x31 x31Var = new x31(i7 + 18);
-        x31Var.f40169z = i10;
-        x31Var.G = q41Var;
-        return x31Var;
-    }
-
-    public static x31 i(int i7, CharSequence charSequence) {
-        x31 x31Var = new x31(4);
-        x31Var.d = i7;
-        x31Var.f40156l = charSequence;
-        return x31Var;
-    }
-
-    public static x31 j(int i7, View view) {
-        x31 x31Var = new x31(-1);
-        x31Var.d = i7;
-        x31Var.f40149c = view;
-        x31Var.f40169z = -1;
-        return x31Var;
-    }
-
-    public static x31 k(View view) {
-        x31 x31Var = new x31(-1);
-        x31Var.f40149c = view;
-        x31Var.f40169z = -1;
-        return x31Var;
-    }
-
-    public static x31 l(int i7, View view) {
-        x31 x31Var = new x31(-4);
-        x31Var.d = i7;
-        x31Var.f40149c = view;
-        x31Var.f40169z = -1;
-        return x31Var;
-    }
-
-    public static x31 m(View view) {
-        x31 x31Var = new x31(-4);
-        x31Var.f40149c = view;
-        x31Var.f40169z = -1;
-        return x31Var;
-    }
-
-    public static x31 n(View view, int i7) {
-        x31 x31Var = new x31(-4);
-        x31Var.f40149c = view;
-        x31Var.f40169z = i7;
-        return x31Var;
-    }
-
-    public static x31 o(int i7, String str, String str2) {
-        x31 x31Var = new x31(40);
-        x31Var.d = i7;
-        x31Var.f40156l = str;
-        x31Var.f40159o = str2;
-        return x31Var;
-    }
-
-    public static x31 p(int i7) {
-        x31 x31Var = new x31(34);
-        x31Var.f40169z = i7;
-        return x31Var;
-    }
-
-    public static x31 q(int i7, int i10) {
-        x31 x31Var = new x31(34);
-        x31Var.d = i7;
-        x31Var.f40169z = i10;
-        return x31Var;
-    }
-
-    public static x31 r(String str) {
-        x31 x31Var = new x31(31);
-        x31Var.f40156l = str;
-        return x31Var;
-    }
-
-    public static x31 s(String str, String str2, View.OnClickListener onClickListener) {
-        x31 x31Var = new x31(31);
-        x31Var.f40156l = str;
-        x31Var.f40157m = str2;
-        x31Var.D = onClickListener;
-        return x31Var;
-    }
-
-    public static x31 t(int i7, String str) {
-        x31 x31Var = new x31(0);
-        x31Var.d = i7;
-        x31Var.f40156l = str;
-        return x31Var;
-    }
-
-    public static x31 u(String str) {
-        x31 x31Var = new x31(0);
-        x31Var.f40156l = str;
-        return x31Var;
-    }
-
-    public static x31 v(org.telegram.ui.wd wdVar) {
-        x31 x31Var = new x31(24);
-        x31Var.G = wdVar;
-        return x31Var;
-    }
-
-    public static x31 w(TLObject tLObject) {
-        x31 x31Var = new x31(32);
-        x31Var.G = tLObject;
-        return x31Var;
-    }
-
-    public static x31 x(int i7, String str) {
-        x31 x31Var = new x31(10);
-        x31Var.d = i7;
-        x31Var.f40156l = str;
-        return x31Var;
-    }
-
-    public static x31 y(int i7, String str, String str2) {
-        x31 x31Var = new x31(44);
-        x31Var.d = i7;
-        x31Var.f40156l = str;
-        x31Var.f40158n = str2;
-        return x31Var;
-    }
-
-    public static x31 z(int i7, CharSequence charSequence) {
-        x31 x31Var = new x31(35);
-        x31Var.d = i7;
-        x31Var.f40156l = charSequence;
-        return x31Var;
-    }
-
-    public final boolean H(Class cls) {
-        HashMap hashMap;
-        w31 w31Var;
-        if (this.f54543a >= 10000 && (hashMap = L) != null && (w31Var = (w31) hashMap.get(cls)) != null && w31Var.f39870a == this.f54543a) {
+    public final boolean c() {
+        int i7;
+        boolean z10;
+        n31 n31Var = this.f41549n;
+        int childCount = n31Var.getChildCount();
+        View view = this.f41548f;
+        FrameLayout frameLayout = this.f41553x;
+        if (childCount <= 0) {
+            int paddingTop = n31Var.getPaddingTop();
+            this.F = paddingTop;
+            n31Var.setTopGlowOffset(paddingTop);
+            frameLayout.setTranslationY(this.F);
+            view.setTranslationY(this.F);
+            setShadowVisible(false);
             return true;
         }
-        return false;
-    }
-
-    public final boolean I(org.telegram.ui.Components.x31 r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.x31.I(org.telegram.ui.Components.x31):boolean");
-    }
-
-    public final boolean J(x31 x31Var) {
-        if (this.d == x31Var.d && this.f40153i == x31Var.f40153i && this.f40167x == x31Var.f40167x && this.f40155k == x31Var.f40155k && this.f40154j == x31Var.f40154j && this.f40163s == x31Var.f40163s && this.f40162r == x31Var.f40162r && this.f40164t == x31Var.f40164t && this.f40161q == x31Var.f40161q && this.f40149c == x31Var.f40149c && TextUtils.equals(this.f40156l, x31Var.f40156l) && TextUtils.equals(this.f40157m, x31Var.f40157m) && TextUtils.equals(this.f40158n, x31Var.f40158n) && this.f40149c == x31Var.f40149c && this.f40169z == x31Var.f40169z && Math.abs(this.A - x31Var.A) < 0.01f && this.B == x31Var.B && Objects.equals(this.G, x31Var.G) && Objects.equals(this.H, x31Var.H)) {
-            return true;
+        View childAt = n31Var.getChildAt(0);
+        for (int i10 = 1; i10 < n31Var.getChildCount(); i10++) {
+            View childAt2 = n31Var.getChildAt(i10);
+            if (childAt2.getTop() < childAt.getTop()) {
+                childAt = childAt2;
+            }
         }
-        return false;
+        cj0 cj0Var = (cj0) n31Var.G(childAt);
+        int top = childAt.getTop() - org.telegram.messenger.g0.L(58.0f);
+        if (top > 0 && cj0Var != null && cj0Var.b() == 0) {
+            i7 = top;
+        } else {
+            i7 = 0;
+        }
+        if (top < 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        setShadowVisible(z10);
+        if (this.F == i7) {
+            return false;
+        }
+        this.F = i7;
+        n31Var.setTopGlowOffset(org.telegram.messenger.g0.L(58.0f) + i7);
+        frameLayout.setTranslationY(this.F);
+        view.setTranslationY(this.F);
+        return true;
     }
 
-    public final void L(boolean z9) {
-        this.f40150e = z9;
-        if (this.f54543a == 11) {
-            this.f54543a = 12;
+    public final void d() {
+        n31 n31Var = this.f41549n;
+        v4.h0 adapter = n31Var.getAdapter();
+        w31 w31Var = this.f41551s;
+        if (adapter == w31Var) {
+            w31Var.getClass();
+            return;
+        }
+        this.f41552w.getClass();
+        int childCount = n31Var.getChildCount();
+        for (int i7 = 0; i7 < childCount; i7++) {
+            View childAt = n31Var.getChildAt(i7);
+            if (childAt instanceof org.telegram.ui.Cells.i8) {
+                org.telegram.ui.Cells.i8 i8Var = (org.telegram.ui.Cells.i8) childAt;
+                i8Var.d();
+                i8Var.e();
+            }
         }
     }
 
     @Override
-    public final boolean a(rg.a aVar) {
-        w31 G;
-        if (this != aVar) {
-            if (x31.class == aVar.getClass()) {
-                x31 x31Var = (x31) aVar;
-                int i7 = this.f54543a;
-                if (i7 == x31Var.f54543a) {
-                    if (i7 == 31) {
-                        if (TextUtils.equals(this.f40156l, x31Var.f40156l) && TextUtils.equals(this.f40157m, x31Var.f40157m)) {
-                            return true;
-                        }
-                        return false;
-                    } else if (i7 == 28) {
-                        if (this.f40169z == x31Var.f40169z) {
-                            return true;
-                        }
-                        return false;
-                    } else if (i7 != 35 && i7 != 37) {
-                        if (i7 >= 10000 && (G = G(i7)) != null) {
-                            return G.c(this, x31Var);
-                        }
-                        return I(x31Var);
-                    } else if (this.d == x31Var.d && TextUtils.equals(this.f40156l, x31Var.f40156l) && this.f40150e == x31Var.f40150e) {
-                        return true;
-                    } else {
-                        return false;
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        int i11 = org.telegram.messenger.ns.f25600x0;
+        n31 n31Var = this.f41549n;
+        w31 w31Var = this.f41551s;
+        if (i7 == i11) {
+            if (((Integer) objArr[0]).intValue() == 0) {
+                if (this.K) {
+                    v4.h0 adapter = n31Var.getAdapter();
+                    if (adapter != null) {
+                        adapter.n(0, adapter.b(), 0);
+                        return;
                     }
+                    return;
                 }
-                return false;
+                w31Var.G();
             }
-            return false;
+        } else if (i7 == org.telegram.messenger.ns.f25614z0) {
+            if (this.L != org.telegram.messenger.si.b0(this.f41544a).X()) {
+                this.K = false;
+            }
+            if (this.K) {
+                v4.h0 adapter2 = n31Var.getAdapter();
+                if (adapter2 != null) {
+                    adapter2.n(0, adapter2.b(), 0);
+                    return;
+                }
+                return;
+            }
+            w31Var.G();
         }
-        return true;
     }
 
-    public final boolean equals(Object obj) {
-        w31 G;
-        if (this != obj) {
-            if (obj != null && x31.class == obj.getClass()) {
-                x31 x31Var = (x31) obj;
-                int i7 = this.f54543a;
-                if (i7 == x31Var.f54543a) {
-                    if (i7 != 36 && i7 != 35) {
-                        if (i7 == 28) {
-                            if (this.d == x31Var.d) {
-                                return true;
-                            }
-                            return false;
-                        } else if (i7 == 31) {
-                            return TextUtils.equals(this.f40156l, x31Var.f40156l);
-                        } else {
-                            if (i7 >= 10000 && (G = G(i7)) != null) {
-                                return G.e(this, x31Var);
-                            }
-                            return J(x31Var);
-                        }
-                    } else if (this.d == x31Var.d) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-                return false;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        TLRPC.StickerSetCovered stickerSetCovered;
+        int i7;
+        int i10;
+        float f10;
+        float f11 = this.R;
+        if (f11 != 0.0f && (stickerSetCovered = this.P) != null) {
+            float f12 = f11 - 0.0053333333f;
+            this.R = f12;
+            if (f12 < 0.0f) {
+                this.R = 0.0f;
+            } else {
+                invalidate();
             }
-            return false;
+            Integer num = (Integer) this.f41551s.h.get(stickerSetCovered);
+            if (num != null) {
+                int intValue = num.intValue();
+                o31 o31Var = this.f41550r;
+                View m10 = o31Var.m(intValue);
+                if (m10 != null) {
+                    i7 = (int) m10.getY();
+                    i10 = m10.getMeasuredHeight() + ((int) m10.getY());
+                } else {
+                    i7 = -1;
+                    i10 = -1;
+                }
+                View m11 = o31Var.m(num.intValue() + 1);
+                if (m11 != null) {
+                    if (m10 == null) {
+                        i7 = (int) m11.getY();
+                    }
+                    i10 = m11.getMeasuredHeight() + ((int) m11.getY());
+                }
+                if (m10 != null || m11 != null) {
+                    int x02 = org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Fi, false);
+                    Paint paint = this.S;
+                    paint.setColor(x02);
+                    float f13 = this.R;
+                    if (f13 < 0.06f) {
+                        f10 = f13 / 0.06f;
+                    } else {
+                        f10 = 1.0f;
+                    }
+                    paint.setAlpha((int) (f10 * 25.5f));
+                    canvas2 = canvas;
+                    canvas2.drawRect(0.0f, i7, getMeasuredWidth(), i10, paint);
+                    super.dispatchDraw(canvas2);
+                }
+            }
         }
-        return true;
+        canvas2 = canvas;
+        super.dispatchDraw(canvas2);
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        this.G = false;
+        boolean dispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
+        if (!this.G) {
+            MotionEvent obtain = MotionEvent.obtain(motionEvent);
+            this.f41549n.dispatchTouchEvent(obtain);
+            obtain.recycle();
+        }
+        return dispatchTouchEvent;
+    }
+
+    public int getContentTopOffset() {
+        return this.F;
+    }
+
+    @Override
+    public final void onConfigurationChanged(Configuration configuration) {
+        super.onConfigurationChanged(configuration);
+        v4.h0 adapter = this.f41549n.getAdapter();
+        adapter.g(adapter.b() - 1);
+        this.J = false;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        Integer num;
+        super.onLayout(z10, i7, i10, i11, i12);
+        if (!this.J) {
+            this.J = true;
+            w31 w31Var = this.f41551s;
+            w31Var.G();
+            TLRPC.StickerSetCovered stickerSetCovered = this.P;
+            if (stickerSetCovered != null && (num = (Integer) w31Var.h.get(stickerSetCovered)) != null) {
+                this.f41550r.h1(num.intValue(), org.telegram.messenger.g0.L(58.0f) + (-this.f41549n.getPaddingTop()));
+            }
+        }
+    }
+
+    public void setContentViewPaddingTop(int i7) {
+        int L = org.telegram.messenger.g0.L(58.0f) + i7;
+        n31 n31Var = this.f41549n;
+        if (n31Var.getPaddingTop() != L) {
+            this.I = true;
+            n31Var.setPadding(0, L, 0, 0);
+            this.I = false;
+        }
+    }
+
+    public void setOnScrollListener(v4.t0 t0Var) {
+        this.E = t0Var;
+    }
+
+    public void setParentFragment(org.telegram.ui.ActionBar.e2 e2Var) {
+        this.f41554y = e2Var;
     }
 }

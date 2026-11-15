@@ -1,83 +1,27 @@
 package org.telegram.ui.Components.voip;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import c8.ha;
-public final class z1 extends FrameLayout {
-    public String f39688a;
-    public final ImageView f39689b;
-    public final TextView f39690c;
-    public boolean d;
-    public final i1 f39691e;
-    public final RectF f39692f;
+import android.app.Activity;
+import android.content.Intent;
+public final class z1 implements org.telegram.ui.ActionBar.q1 {
+    public final int f41116a;
+    public final Activity f41117b;
+    public final Intent f41118c;
 
-    public z1(Context context, i1 i1Var, int i7) {
-        super(context);
-        this.f39692f = new RectF();
-        setFocusable(true);
-        setFocusableInTouchMode(true);
-        this.f39691e = i1Var;
-        i1Var.a(this);
-        ImageView imageView = new ImageView(context);
-        this.f39689b = imageView;
-        addView(imageView, ha.d(24, 24.0f, 16, 8.0f, 2.0f, 8.0f, 2.0f));
-        TextView textView = new TextView(context);
-        this.f39690c = textView;
-        textView.setTextColor(-1);
-        textView.setTextSize(1, 14.0f);
-        addView(textView, ha.d(-2, -2.0f, 16, i7 != 0 ? 36.0f : 14.0f, 2.0f, 14.0f, 2.0f));
+    public z1(Activity activity, Intent intent, int i7) {
+        this.f41116a = i7;
+        this.f41117b = activity;
+        this.f41118c = intent;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Paint b10;
-        Paint b11;
-        Paint b12;
-        RectF rectF = this.f39692f;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        float x10 = ((View) getParent()).getX() + getX();
-        float y10 = ((View) getParent()).getY() + getY();
-        i1 i1Var = this.f39691e;
-        i1Var.d(x10, y10);
-        Paint paint = i1Var.f39273l;
-        if (this.d) {
-            b10 = paint;
-        } else {
-            b10 = i1Var.b();
+    public final void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        switch (this.f41116a) {
+            case 0:
+                this.f41117b.startActivity(this.f41118c);
+                return;
+            default:
+                this.f41117b.startActivity(this.f41118c);
+                return;
         }
-        int alpha = b10.getAlpha();
-        canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), alpha, 31);
-        if (this.d) {
-            b11 = paint;
-        } else {
-            b11 = i1Var.b();
-        }
-        b11.setAlpha(255);
-        float L = org.telegram.messenger.g0.L(16.0f);
-        float L2 = org.telegram.messenger.g0.L(16.0f);
-        if (this.d) {
-            b12 = paint;
-        } else {
-            b12 = i1Var.b();
-        }
-        canvas.drawRoundRect(rectF, L, L2, b12);
-        if (!this.d) {
-            paint = i1Var.b();
-        }
-        paint.setAlpha(alpha);
-        if (i1Var.f39267e) {
-            int alpha2 = ((Paint) i1Var.d.f335a).getAlpha();
-            ((Paint) i1Var.d.f335a).setAlpha(255);
-            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), (Paint) i1Var.d.f335a);
-            ((Paint) i1Var.d.f335a).setAlpha(alpha2);
-        }
-        canvas.restore();
-        super.dispatchDraw(canvas);
     }
 }

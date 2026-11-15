@@ -1,162 +1,75 @@
 package tg;
 
-import android.content.Context;
-import android.graphics.PointF;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewGroup;
-import c8.ha;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.hc;
-import org.telegram.messenger.w7;
+import java.io.File;
+import java.util.ArrayList;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.g20;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.s10;
+import org.telegram.messenger.z10;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.n3;
-import org.telegram.ui.Components.ki0;
-import org.telegram.ui.Components.nt0;
-import org.telegram.ui.Components.u5;
-import org.telegram.ui.Components.v5;
-import org.telegram.ui.Components.w41;
-import org.telegram.ui.Components.wq;
-import org.telegram.ui.Components.zg0;
-public class d2 extends j {
-    public final TLRPC.Document f55636q0;
-    public final Object f55637r0;
-    public final int f55638s0;
-    public boolean f55639t0;
-    public final v5 f55640u0;
-    public final nt0 f55641v0;
-    public final w41 f55642w0;
-    public final ImageReceiver f55643x0;
+public final class d2 {
+    public String f57188a;
+    public String f57189b;
+    public String f57190c;
+    public CharSequence d;
+    public TLRPC.TL_inputStickerSetItem f57191e;
+    public TLRPC.TL_messageMediaDocument f57192f;
+    public TLRPC.InputFile f57193g;
+    public boolean h;
+    public long f57194i;
+    public TLRPC.StickerSet f57195j;
+    public TLRPC.Document f57196k;
+    public String f57197l;
+    public s10 f57198m;
+    public z10 f57199n;
+    public boolean f57200o;
+    public ArrayList f57201p;
+    public ArrayList f57202q;
+    public gj f57203r;
+    public g20 f57204s;
+    public float f57205t;
+    public float f57206u;
 
-    public d2(Context context, PointF pointF, float f10, float f11, nt0 nt0Var, TLRPC.Document document, Object obj) {
-        super(context, pointF);
-        this.f55638s0 = -1;
-        this.f55639t0 = false;
-        this.f55643x0 = new ImageReceiver(null);
-        setRotation(f10);
-        setScale(f11);
-        this.f55636q0 = document;
-        this.f55641v0 = nt0Var;
-        this.f55637r0 = obj;
+    public final void a() {
+        ArrayList arrayList = this.f57202q;
+        ArrayList arrayList2 = this.f57201p;
+        int size = arrayList2.size();
         int i7 = 0;
-        while (true) {
-            if (i7 >= document.attributes.size()) {
-                break;
-            }
-            TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i7);
-            if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
-                TLRPC.TL_maskCoords tL_maskCoords = documentAttribute.mask_coords;
-                if (tL_maskCoords != null) {
-                    this.f55638s0 = tL_maskCoords.f27035n;
-                }
-            } else {
-                i7++;
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList2.get(i10);
+            i10++;
+            try {
+                ((File) obj).delete();
+            } catch (Exception e10) {
+                a8.g(e10, true);
             }
         }
-        w41 w41Var = new w41(this, context);
-        this.f55642w0 = w41Var;
-        addView(w41Var, ha.c(-1.0f, -1));
-        this.f55640u0 = new v5(w41Var, 0L, 500L, wq.h);
-        ImageReceiver imageReceiver = this.f55643x0;
-        imageReceiver.R0 = true;
-        imageReceiver.J0 = true;
-        imageReceiver.H0(w41Var);
-        this.f55643x0.t0(hc.b(document), null, hc.c(w7.w(document.thumbs, 90, false, null, false), document), null, "webp", obj, 1);
-        this.f55643x0.f21200g1 = new n3(this, 26);
-        k();
-    }
-
-    @Override
-    public final i a() {
-        p1 p1Var = new p1(this, getContext(), 2);
-        p1Var.f55914r = new RectF();
-        return p1Var;
-    }
-
-    public int getAnchor() {
-        return this.f55638s0;
-    }
-
-    public nt0 getBaseSize() {
-        return this.f55641v0;
-    }
-
-    public long getDuration() {
-        ImageReceiver imageReceiver = this.f55643x0;
-        zg0 B = imageReceiver.B();
-        if (B != null) {
-            return B.r();
+        arrayList2.clear();
+        int size2 = arrayList.size();
+        while (i7 < size2) {
+            Object obj2 = arrayList.get(i7);
+            i7++;
+            try {
+                ((File) obj2).delete();
+            } catch (Exception e11) {
+                a8.g(e11, true);
+            }
         }
-        u5 m10 = imageReceiver.m();
-        if (m10 != null) {
-            return m10.d[4];
+        arrayList.clear();
+    }
+
+    public final float b() {
+        float f10;
+        if (this.f57198m == null) {
+            f10 = 0.9f;
+        } else {
+            f10 = 1.0f;
         }
-        return 0L;
-    }
-
-    public Object getParentObject() {
-        return this.f55637r0;
-    }
-
-    @Override
-    public ki0 getSelectionBounds() {
-        ViewGroup viewGroup = (ViewGroup) getParent();
-        if (viewGroup == null) {
-            return new Object();
+        if (this.f57204s == null) {
+            return f10 * this.f57206u;
         }
-        float scaleX = viewGroup.getScaleX();
-        float scale = (getScale() + 0.5f) * getMeasuredWidth();
-        float f10 = scale / 2.0f;
-        float f11 = scale * scaleX;
-        return new ki0((getPositionX() - f10) * scaleX, (getPositionY() - f10) * scaleX, f11, f11);
-    }
-
-    public TLRPC.Document getSticker() {
-        return this.f55636q0;
-    }
-
-    @Override
-    public final void k() {
-        nt0 nt0Var = this.f55641v0;
-        setX(getPositionX() - (nt0Var.f36392a / 2.0f));
-        setY(getPositionY() - (nt0Var.f36393b / 2.0f));
-        m();
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f55643x0.P();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f55643x0.R();
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        nt0 nt0Var = this.f55641v0;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) nt0Var.f36392a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) nt0Var.f36393b, 1073741824));
-    }
-
-    public final void r(boolean z9) {
-        boolean z10 = !this.f55639t0;
-        this.f55639t0 = z10;
-        if (!z9) {
-            this.f55640u0.f(z10, true);
-        }
-        this.f55642w0.invalidate();
-    }
-
-    public void q(zg0 zg0Var) {
-    }
-
-    public d2(Context context, d2 d2Var, PointF pointF) {
-        this(context, pointF, d2Var.getRotation(), d2Var.getScale(), d2Var.f55641v0, d2Var.f55636q0, d2Var.f55637r0);
-        if (d2Var.f55639t0) {
-            r(false);
-        }
+        return com.google.android.gms.internal.vision.e2.B(this.f57206u, 0.5f, this.f57205t * 0.5f, f10);
     }
 }

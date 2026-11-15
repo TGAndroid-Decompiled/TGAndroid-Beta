@@ -1,90 +1,222 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Point;
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class bn extends uh {
-    public final iy f32286n;
-    public final pj0 f32287r;
-    public final int f32288s;
-    public final org.telegram.ui.x7 f32289w;
-    public int f32290x;
+public final class bn extends View {
+    public final int f33327a;
 
-    public bn(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var, ci ciVar) {
-        super(context, h6Var, ciVar);
-        this.f32288s = i7;
-        iy iyVar = new iy(context, h6Var);
-        this.f32286n = iyVar;
-        iyVar.setText(org.telegram.messenger.id.M0(2131748180, null));
-        iyVar.setOnTouchListener(null);
-        iyVar.setTextSize(16);
-        addView(iyVar, c8.ha.c(-2.0f, -1));
-        iyVar.a(2131624087, 150, 150);
-        TLRPC.Chat Y0 = this.f38656b.Y0();
-        if (i7 == 1) {
-            iyVar.setText(org.telegram.messenger.t3.L(7, Y0));
-        } else if (i7 == 3) {
-            iyVar.setText(org.telegram.messenger.t3.L(18, Y0));
-        } else if (i7 == 4) {
-            iyVar.setText(org.telegram.messenger.t3.L(19, Y0));
-        } else {
-            iyVar.setText(org.telegram.messenger.t3.L(22, Y0));
+    public bn(Context context, int i7) {
+        super(context);
+        this.f33327a = i7;
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        float L;
+        int i7;
+        float L2;
+        int i10;
+        float L3;
+        int i11;
+        float L4;
+        int i12;
+        float L5;
+        int i13;
+        switch (this.f33327a) {
+            case 8:
+                super.onDraw(canvas);
+                canvas.drawLine(0.0f, org.telegram.messenger.g0.L(14.0f), 2.0f, getMeasuredHeight() - org.telegram.messenger.g0.L(14.0f), org.telegram.ui.ActionBar.j6.f28972k0);
+                return;
+            case 15:
+                if (org.telegram.messenger.hd.f24101a0) {
+                    L = 0.0f;
+                } else {
+                    L = org.telegram.messenger.g0.L(20.0f);
+                }
+                float f10 = L;
+                float measuredHeight = getMeasuredHeight() - 1;
+                int measuredWidth = getMeasuredWidth();
+                if (org.telegram.messenger.hd.f24101a0) {
+                    i7 = org.telegram.messenger.g0.L(20.0f);
+                } else {
+                    i7 = 0;
+                }
+                canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f28972k0);
+                return;
+            case 16:
+                if (org.telegram.messenger.hd.f24101a0) {
+                    L2 = 0.0f;
+                } else {
+                    L2 = org.telegram.messenger.g0.L(20.0f);
+                }
+                float f11 = L2;
+                float measuredHeight2 = getMeasuredHeight() - 1;
+                int measuredWidth2 = getMeasuredWidth();
+                if (org.telegram.messenger.hd.f24101a0) {
+                    i10 = org.telegram.messenger.g0.L(20.0f);
+                } else {
+                    i10 = 0;
+                }
+                canvas.drawLine(f11, measuredHeight2, measuredWidth2 - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f28972k0);
+                return;
+            case 17:
+                if (org.telegram.messenger.hd.f24101a0) {
+                    L3 = 0.0f;
+                } else {
+                    L3 = org.telegram.messenger.g0.L(20.0f);
+                }
+                float f12 = L3;
+                float measuredHeight3 = getMeasuredHeight() - 1;
+                int measuredWidth3 = getMeasuredWidth();
+                if (org.telegram.messenger.hd.f24101a0) {
+                    i11 = org.telegram.messenger.g0.L(20.0f);
+                } else {
+                    i11 = 0;
+                }
+                canvas.drawLine(f12, measuredHeight3, measuredWidth3 - i11, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f28972k0);
+                return;
+            case 18:
+                if (org.telegram.messenger.hd.f24101a0) {
+                    L4 = 0.0f;
+                } else {
+                    L4 = org.telegram.messenger.g0.L(20.0f);
+                }
+                float f13 = L4;
+                float measuredHeight4 = getMeasuredHeight() - 1;
+                int measuredWidth4 = getMeasuredWidth();
+                if (org.telegram.messenger.hd.f24101a0) {
+                    i12 = org.telegram.messenger.g0.L(20.0f);
+                } else {
+                    i12 = 0;
+                }
+                canvas.drawLine(f13, measuredHeight4, measuredWidth4 - i12, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f28972k0);
+                return;
+            case 26:
+                if (org.telegram.messenger.hd.f24101a0) {
+                    L5 = 0.0f;
+                } else {
+                    L5 = org.telegram.messenger.g0.L(20.0f);
+                }
+                float f14 = L5;
+                float measuredHeight5 = getMeasuredHeight() - 1;
+                int measuredWidth5 = getMeasuredWidth();
+                if (org.telegram.messenger.hd.f24101a0) {
+                    i13 = org.telegram.messenger.g0.L(20.0f);
+                } else {
+                    i13 = 0;
+                }
+                canvas.drawLine(f14, measuredHeight5, measuredWidth5 - i13, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f28972k0);
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
         }
-        iyVar.c();
-        pj0 pj0Var = new pj0(context, h6Var);
-        this.f32287r = pj0Var;
-        pj0Var.setSectionsType(2);
-        pj0Var.setVerticalScrollBarEnabled(false);
-        pj0Var.setLayoutManager(new v4.b0());
-        pj0Var.setClipToPadding(false);
-        org.telegram.ui.x7 x7Var = new org.telegram.ui.x7(this, 4);
-        this.f32289w = x7Var;
-        pj0Var.setAdapter(x7Var);
-        pj0Var.setPadding(0, 0, 0, org.telegram.messenger.g0.L(48.0f));
-        pj0Var.setOnScrollListener(new ti(this, 4));
-        addView(pj0Var, c8.ha.c(-1.0f, -1));
     }
 
     @Override
-    public final void B(int r4, int r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.bn.B(int, int):void");
-    }
-
-    @Override
-    public int getCurrentItemTop() {
-        pj0 pj0Var = this.f32287r;
-        if (pj0Var.getChildCount() <= 0) {
-            return Integer.MAX_VALUE;
+    public void onMeasure(int i7, int i10) {
+        boolean z10;
+        float f10;
+        float f11;
+        switch (this.f33327a) {
+            case 1:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(32.0f), 1073741824));
+                return;
+            case 2:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(52.0f), 1073741824));
+                return;
+            case 3:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(81.0f), 1073741824));
+                return;
+            case 4:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(8.0f), 1073741824));
+                return;
+            case 5:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(52.0f), 1073741824));
+                return;
+            case 6:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(60.0f), 1073741824));
+                return;
+            case 7:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec((int) (org.telegram.messenger.g0.f23609q.y * 0.4f), 1073741824));
+                return;
+            case 8:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 26:
+            default:
+                super.onMeasure(i7, i10);
+                return;
+            case 9:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(300.0f), 1073741824));
+                return;
+            case 10:
+                Point point = org.telegram.messenger.g0.f23609q;
+                int i11 = point.x;
+                int i12 = point.y;
+                if (i11 < i12) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                float f12 = i12;
+                if (z10) {
+                    f10 = 0.56f;
+                } else {
+                    f10 = 0.3f;
+                }
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec((int) (f12 * f10), 1073741824));
+                return;
+            case 11:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(5.0f), 1073741824));
+                return;
+            case 12:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (org.telegram.messenger.g0.f23609q.y * 0.4f), 1073741824));
+                return;
+            case 13:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(4.0f), 1073741824));
+                return;
+            case 14:
+                if (org.telegram.ui.c40.E5) {
+                    f11 = 0.0f;
+                } else {
+                    f11 = 8.0f;
+                }
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(f11), 1073741824));
+                return;
+            case 19:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(12.0f), 1073741824));
+                return;
+            case 20:
+                setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(36.0f));
+                return;
+            case 21:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(7.33f), 1073741824));
+                return;
+            case 22:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(16.0f), 1073741824));
+                return;
+            case 23:
+                super.onMeasure(i7, i10);
+                setPivotX(getMeasuredWidth() / 2);
+                setPivotY(getMeasuredHeight());
+                return;
+            case 24:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(52.0f), 1073741824));
+                return;
+            case 25:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(4.0f), 1073741824));
+                return;
+            case 27:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(6.0f), 1073741824));
+                return;
+            case 28:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(16.0f), 1073741824));
+                return;
         }
-        int i7 = 0;
-        View childAt = pj0Var.getChildAt(0);
-        xi0 xi0Var = (xi0) pj0Var.G(childAt);
-        int top = childAt.getTop() - org.telegram.messenger.g0.L(8.0f);
-        if (top > 0 && xi0Var != null && xi0Var.b() == 0) {
-            i7 = top;
-        }
-        if (top < 0 || xi0Var == null || xi0Var.b() != 0) {
-            top = i7;
-        }
-        int measuredHeight = (getMeasuredHeight() - top) - org.telegram.messenger.g0.L(50.0f);
-        iy iyVar = this.f32286n;
-        iyVar.setTranslationY(((measuredHeight - iyVar.getMeasuredHeight()) / 2) + top);
-        return org.telegram.messenger.g0.L(12.0f) + top;
-    }
-
-    @Override
-    public int getFirstOffset() {
-        return org.telegram.messenger.g0.L(4.0f) + getListTopPadding();
-    }
-
-    @Override
-    public int getListTopPadding() {
-        return this.f32287r.getPaddingTop();
-    }
-
-    @Override
-    public void setTranslationY(float f10) {
-        super.setTranslationY(f10);
-        this.f38656b.f28672b.invalidate();
     }
 }

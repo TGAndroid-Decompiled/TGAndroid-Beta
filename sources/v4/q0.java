@@ -1,4 +1,8 @@
 package v4;
-public abstract class q0 {
-    public abstract boolean a(int i7, int i10);
+
+import android.view.View;
+public interface q0 {
+    void a(View view);
+
+    void b();
 }

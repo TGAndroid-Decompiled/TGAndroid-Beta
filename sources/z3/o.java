@@ -1,10 +1,11 @@
 package z3;
-public final class o {
-    public final long f59670a;
-    public final int f59671b;
 
-    public o(long j3, int i7) {
-        this.f59670a = j3;
-        this.f59671b = i7;
-    }
+import a8.xa;
+import java.util.ArrayList;
+public final class o {
+    public static final xa d = new xa(new d6.i(new g9.e(':', 0), 21));
+    public static final xa f60872e = new xa(new d6.i(new g9.e('*', 0), 21));
+    public final ArrayList f60873a = new ArrayList();
+    public int f60874b = 0;
+    public int f60875c;
 }

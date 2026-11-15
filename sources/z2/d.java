@@ -1,4 +1,10 @@
 package z2;
-public final class d implements e {
-    public Object f59582b;
+public interface d {
+    public static final x9.d D;
+
+    static {
+        ?? obj = new Object();
+        obj.f59858a = new nb.a(6);
+        D = obj;
+    }
 }

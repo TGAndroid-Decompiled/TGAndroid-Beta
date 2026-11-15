@@ -1,6 +1,6 @@
 package pc;
 
-import i5.f;
+import i5.g;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 public abstract class e {
@@ -9,8 +9,8 @@ public abstract class e {
     }
 
     public static String a(i5.b bVar, String str) {
-        f parent = bVar.getParent();
-        ArrayList arrayList = ((com.googlecode.mp4parser.e) parent).f7925b;
+        g parent = bVar.getParent();
+        ArrayList arrayList = ((com.googlecode.mp4parser.e) parent).f7309b;
         int size = arrayList.size();
         int i7 = 0;
         int i10 = 0;

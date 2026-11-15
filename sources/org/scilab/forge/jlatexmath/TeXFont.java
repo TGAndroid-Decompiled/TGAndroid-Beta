@@ -94,13 +94,13 @@ public interface TeXFont {
 
     TeXFont scaleFont(float f10);
 
-    void setBold(boolean z9);
+    void setBold(boolean z10);
 
-    void setIt(boolean z9);
+    void setIt(boolean z10);
 
-    void setRoman(boolean z9);
+    void setRoman(boolean z10);
 
-    void setSs(boolean z9);
+    void setSs(boolean z10);
 
-    void setTt(boolean z9);
+    void setTt(boolean z10);
 }

@@ -1,50 +1,28 @@
 package h9;
-public final class f2 extends t0 {
-    public final transient Object d;
 
-    public f2(Object obj) {
-        obj.getClass();
-        this.d = obj;
+import java.util.Iterator;
+public abstract class f2 implements Iterator {
+    public final Iterator f13679a;
+
+    public f2(Iterator it) {
+        it.getClass();
+        this.f13679a = it;
+    }
+
+    public abstract Object a(Object obj);
+
+    @Override
+    public final boolean hasNext() {
+        return this.f13679a.hasNext();
     }
 
     @Override
-    public final boolean contains(Object obj) {
-        return this.d.equals(obj);
+    public final Object next() {
+        return a(this.f13679a.next());
     }
 
     @Override
-    public final i0 f() {
-        return i0.u(this.d);
-    }
-
-    @Override
-    public final int hashCode() {
-        return this.d.hashCode();
-    }
-
-    @Override
-    public final int i(int i7, Object[] objArr) {
-        objArr[i7] = this.d;
-        return i7 + 1;
-    }
-
-    @Override
-    public final boolean m() {
-        return false;
-    }
-
-    @Override
-    public final h2 n() {
-        return new z0(this.d);
-    }
-
-    @Override
-    public final int size() {
-        return 1;
-    }
-
-    @Override
-    public final String toString() {
-        return "[" + this.d.toString() + ']';
+    public final void remove() {
+        this.f13679a.remove();
     }
 }

@@ -1,11 +1,8 @@
 package c5;
-
-import android.view.ViewGroup;
-public final class e extends ViewGroup.LayoutParams {
-    public boolean f5315a;
-    public int f5316b;
-    public float f5317c;
-    public boolean d;
-    public int f5318e;
-    public int f5319f;
+public final class e {
+    public Object f4131a;
+    public int f4132b;
+    public boolean f4133c;
+    public float d;
+    public float f4134e;
 }

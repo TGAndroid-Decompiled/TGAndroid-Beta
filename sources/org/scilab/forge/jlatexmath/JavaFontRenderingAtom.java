@@ -28,7 +28,7 @@ public class JavaFontRenderingAtom extends Atom {
             i7 = 0;
         }
         int i10 = i7 | (defaultTeXFont.isBold ? 1 : 0);
-        boolean z9 = defaultTeXFont.isRoman;
+        boolean z10 = defaultTeXFont.isRoman;
         if (defaultTeXFont.isSs) {
             TeXFormula.FontInfos fontInfos = this.fontInfos;
             String str = fontInfos.sansserif;
@@ -50,7 +50,7 @@ public class JavaFontRenderingAtom extends Atom {
                 font3 = font;
             }
         }
-        return new JavaFontRenderingBox(this.str, i10, DefaultTeXFont.getSizeFactor(teXEnvironment.getStyle()), font3, z9);
+        return new JavaFontRenderingBox(this.str, i10, DefaultTeXFont.getSizeFactor(teXEnvironment.getStyle()), font3, z10);
     }
 
     public JavaFontRenderingAtom(String str, TeXFormula.FontInfos fontInfos) {

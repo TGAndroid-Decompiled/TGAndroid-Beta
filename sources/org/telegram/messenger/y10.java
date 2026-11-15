@@ -1,6 +1,7 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import android.view.View;
+import org.telegram.ui.Components.b41;
 public interface y10 {
-    void k(Object obj, TLRPC.Document document, Boolean bool);
+    Boolean a(b41 b41Var, View view, Integer num, Float f10, Float f11);
 }

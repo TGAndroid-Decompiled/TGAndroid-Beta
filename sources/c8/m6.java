@@ -1,9 +1,9 @@
 package c8;
 public final class m6 implements na.d {
-    public static final m6 f5770a = new Object();
+    public static final m6 f4593a = new Object();
 
     static {
-        rf.b.q(a8.p0.x(w.class, new s(1)));
+        r.b.u(a8.p0.x(w.class, new s(1)));
     }
 
     @Override

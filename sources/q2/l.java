@@ -1,8 +1,14 @@
 package q2;
 
-import p4.r0;
+import x2.f0;
 public interface l {
-    public static final r0 f53751z = new r0(16);
+    void K(int i7, f0 f0Var, Exception exc);
 
-    void release();
+    void N(int i7, f0 f0Var, int i10);
+
+    void p(int i7, f0 f0Var, nb.a aVar);
+
+    void w(int i7, f0 f0Var);
+
+    void z(int i7, f0 f0Var);
 }

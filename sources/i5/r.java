@@ -1,54 +1,37 @@
 package i5;
+public final class r {
+    public final long f15782a;
+    public final long f15783b;
+    public final long f15784c;
 
-import c8.jb;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.List;
-import y7.i6;
-public final class r extends com.googlecode.mp4parser.c {
-    public static final i6 f15329f;
-    public static final i6 h;
-    public static final i6 f15330n;
-    public List f15331e;
-
-    static {
-        ze.a aVar = new ze.a(r.class, "SampleToChunkBox.java");
-        f15329f = aVar.e(aVar.d("getEntries", "com.coremedia.iso.boxes.SampleToChunkBox", "", "", "java.util.List"));
-        h = aVar.e(aVar.d("setEntries", "com.coremedia.iso.boxes.SampleToChunkBox", "java.util.List", "entries", "void"));
-        f15330n = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SampleToChunkBox", "", "", "java.lang.String"));
-        aVar.e(aVar.d("blowup", "com.coremedia.iso.boxes.SampleToChunkBox", "int", "chunkCount", "[J"));
+    public r(long j3, long j10, long j11) {
+        this.f15782a = j3;
+        this.f15783b = j10;
+        this.f15784c = j11;
     }
 
-    @Override
-    public final void _parseDetails(ByteBuffer byteBuffer) {
-        f(byteBuffer);
-        int a10 = jb.a(h5.b.i(byteBuffer));
-        this.f15331e = new ArrayList(a10);
-        for (int i7 = 0; i7 < a10; i7++) {
-            this.f15331e.add(new q(h5.b.i(byteBuffer), h5.b.i(byteBuffer), h5.b.i(byteBuffer)));
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-    }
-
-    @Override
-    public final void getContent(ByteBuffer byteBuffer) {
-        i(byteBuffer);
-        byteBuffer.putInt(this.f15331e.size());
-        for (q qVar : this.f15331e) {
-            byteBuffer.putInt((int) qVar.f15326a);
-            byteBuffer.putInt((int) qVar.f15327b);
-            byteBuffer.putInt((int) qVar.f15328c);
+        if (obj == null || r.class != obj.getClass()) {
+            return false;
         }
+        r rVar = (r) obj;
+        if (this.f15782a == rVar.f15782a && this.f15784c == rVar.f15784c && this.f15783b == rVar.f15783b) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final long getContentSize() {
-        return (this.f15331e.size() * 12) + 8;
+    public final int hashCode() {
+        long j3 = this.f15782a;
+        long j10 = this.f15783b;
+        long j11 = this.f15784c;
+        return (((((int) (j3 ^ (j3 >>> 32))) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31) + ((int) ((j11 >>> 32) ^ j11));
     }
 
     public final String toString() {
-        ui.e b10 = ze.a.b(f15330n, this, this);
-        com.googlecode.mp4parser.g.a().getClass();
-        com.googlecode.mp4parser.g.b(b10);
-        return "SampleToChunkBox[entryCount=" + this.f15331e.size() + "]";
+        return "Entry{firstChunk=" + this.f15782a + ", samplesPerChunk=" + this.f15783b + ", sampleDescriptionIndex=" + this.f15784c + '}';
     }
 }

@@ -1,22 +1,45 @@
 package org.telegram.ui.ActionBar;
-public final class a5 {
-    public static final a5 f27315a;
-    public static final a5 f27316b;
-    public static final a5[] f27317c;
+public final class a5 implements te.d, l0 {
+    public final c5 f28407a;
 
-    static {
-        ?? r02 = new Enum("ICON", 0);
-        f27315a = r02;
-        ?? r12 = new Enum("TEXT", 1);
-        f27316b = r12;
-        f27317c = new a5[]{r02, r12};
+    public a5(c5 c5Var) {
+        this.f28407a = c5Var;
     }
 
-    public static a5 valueOf(String str) {
-        return (a5) Enum.valueOf(a5.class, str);
+    @Override
+    public void b0() {
+        c5 c5Var = this.f28407a;
+        c5Var.e();
+        c5Var.f28492a.invalidate();
     }
 
-    public static a5[] values() {
-        return (a5[]) f27317c.clone();
+    @Override
+    public void g(int i7) {
+        j jVar = this.f28407a.f28492a.W;
+        if (jVar != null) {
+            jVar.b(i7);
+        }
+    }
+
+    @Override
+    public boolean q() {
+        return false;
+    }
+
+    @Override
+    public boolean s(float f10) {
+        return false;
+    }
+
+    @Override
+    public void n(boolean z10) {
+    }
+
+    @Override
+    public void a() {
+    }
+
+    @Override
+    public void v() {
     }
 }

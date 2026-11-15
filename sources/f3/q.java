@@ -1,10 +1,10 @@
 package f3;
 public interface q {
-    public static final pb.b f11074q = new pb.b(8);
+    public static final qb.a f10876q = new qb.a(8);
 
-    j0 O1(int i7, int i10);
+    void d1();
 
-    void U0();
+    i0 d2(int i7, int i10);
 
-    void f(c0 c0Var);
+    void f(b0 b0Var);
 }

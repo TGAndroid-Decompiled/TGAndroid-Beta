@@ -2,17 +2,17 @@ package sg;
 
 import java.util.Arrays;
 import java.util.List;
-import org.telegram.messenger.id;
+import org.telegram.messenger.hd;
 public final class g extends h {
-    public static final List f55064c = Arrays.asList(new g(2), new g(3), new g(4), new g(1), new g(0));
-    public final int f55065b;
+    public static final List f56622c = Arrays.asList(new g(2), new g(3), new g(4), new g(1), new g(0));
+    public final int f56623b;
 
     public g(int i7) {
-        this.f55065b = i7;
+        this.f56623b = i7;
     }
 
     public static g p(int i7) {
-        List list = f55064c;
+        List list = f56622c;
         if (i7 >= 0 && i7 <= list.size()) {
             return (g) list.get(i7);
         }
@@ -30,17 +30,17 @@ public final class g extends h {
 
     @Override
     public final int e() {
-        switch (this.f55065b) {
+        switch (this.f56623b) {
             case 0:
-                return 2131232519;
-            case 1:
-                return 2131232253;
-            case 2:
                 return 2131232520;
+            case 1:
+                return 2131232254;
+            case 2:
+                return 2131232521;
             case 3:
-                return 2131232525;
+                return 2131232526;
             default:
-                return 2131232527;
+                return 2131232528;
         }
     }
 
@@ -56,37 +56,37 @@ public final class g extends h {
     }
 
     public final int m() {
-        switch (this.f55065b) {
+        switch (this.f56623b) {
             case 0:
-                return 2131232519;
+                return 2131232520;
             case 1:
-                return 2131232254;
+                return 2131232255;
             case 2:
-                return 2131232521;
+                return 2131232522;
             case 3:
-                return 2131232526;
+                return 2131232527;
             default:
-                return 2131232528;
+                return 2131232529;
         }
     }
 
     public final String n() {
-        switch (this.f55065b) {
+        switch (this.f56623b) {
             case 0:
-                return id.M0(2131747676, null);
+                return hd.M0(2131747676, null);
             case 1:
-                return id.M0(2131747674, null);
+                return hd.M0(2131747674, null);
             case 2:
-                return id.M0(2131747673, null);
+                return hd.M0(2131747673, null);
             case 3:
-                return id.M0(2131747662, null);
+                return hd.M0(2131747662, null);
             default:
-                return id.M0(2131747661, null);
+                return hd.M0(2131747661, null);
         }
     }
 
     public final int o() {
-        switch (this.f55065b) {
+        switch (this.f56623b) {
             case 0:
                 return 4;
             case 1:

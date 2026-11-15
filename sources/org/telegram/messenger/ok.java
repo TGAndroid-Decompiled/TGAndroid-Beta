@@ -1,94 +1,100 @@
 package org.telegram.messenger;
 
+import android.util.SparseArray;
 import java.util.ArrayList;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
-public final class ok implements RequestDelegate {
-    public final int f24350a;
-    public final qp f24351b;
-    public final int f24352c;
-    public final long d;
-    public final long f24353e;
+public final class ok implements Runnable {
+    public final int f25769a = 1;
+    public final np f25770b;
+    public final long f25771c;
+    public final int d;
+    public final long f25772e;
+    public final Object f25773f;
+    public final Object h;
+    public final Object f25774n;
+    public final Object f25775r;
 
-    public ok(int i7, long j3, long j10, qp qpVar) {
-        this.f24350a = 0;
-        this.f24351b = qpVar;
-        this.d = j3;
-        this.f24352c = i7;
-        this.f24353e = j10;
+    public ok(np npVar, ArrayList arrayList, long j3, TLRPC.updates_ChannelDifference updates_channeldifference, TLRPC.Chat chat, a0.h hVar, int i7, long j10) {
+        this.f25770b = npVar;
+        this.f25773f = arrayList;
+        this.f25771c = j3;
+        this.h = updates_channeldifference;
+        this.f25774n = chat;
+        this.f25775r = hVar;
+        this.d = i7;
+        this.f25772e = j10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public final void run() {
         TLRPC.Chat chat;
-        switch (this.f24350a) {
+        a0.h hVar;
+        switch (this.f25769a) {
             case 0:
-                qp qpVar = this.f24351b;
-                long j3 = this.d;
-                long j10 = this.f24353e;
-                if (tLObject != null) {
-                    TLRPC.updates_ChannelDifference updates_channeldifference = (TLRPC.updates_ChannelDifference) tLObject;
-                    a0.h hVar = new a0.h();
-                    int i7 = 0;
-                    for (int i10 = 0; i10 < updates_channeldifference.users.size(); i10++) {
-                        TLRPC.User user = updates_channeldifference.users.get(i10);
-                        hVar.k(user, user.f27109id);
-                    }
-                    int i11 = 0;
-                    while (true) {
-                        if (i11 < updates_channeldifference.chats.size()) {
-                            chat = updates_channeldifference.chats.get(i11);
-                            if (chat.f26960id != j3) {
-                                i11++;
-                            }
-                        } else {
-                            chat = null;
-                        }
-                    }
-                    TLRPC.Chat chat2 = chat;
-                    ArrayList arrayList = new ArrayList();
-                    if (!updates_channeldifference.other_updates.isEmpty()) {
-                        while (i7 < updates_channeldifference.other_updates.size()) {
-                            TLRPC.Update update = updates_channeldifference.other_updates.get(i7);
-                            if (update instanceof TL_update.TL_updateMessageID) {
-                                arrayList.add((TL_update.TL_updateMessageID) update);
-                                updates_channeldifference.other_updates.remove(i7);
-                                i7--;
-                            }
-                            i7++;
-                        }
-                    }
-                    qpVar.getMessagesStorage().m1(updates_channeldifference.users, updates_channeldifference.chats, true, true);
-                    g0.h3(new hi(16, qpVar, updates_channeldifference));
-                    qpVar.getMessagesStorage().f26723a.c(new qk(qpVar, arrayList, j3, updates_channeldifference, chat2, hVar, this.f24352c, j10));
-                    return;
-                } else if (tL_error != null) {
-                    g0.h3(new zl(qpVar, tL_error, j3, 0));
-                    qpVar.Z0.e(j3);
-                    if (j10 != 0) {
-                        qpVar.getMessagesStorage().q1(j10);
-                        return;
-                    }
-                    return;
-                } else {
+                np npVar = this.f25770b;
+                boolean[] zArr = (boolean[]) this.f25773f;
+                vr vrVar = (vr) this.h;
+                long j3 = this.f25771c;
+                Runnable[] runnableArr = (Runnable[]) this.f25774n;
+                long j10 = this.f25772e;
+                int i7 = this.d;
+                bp bpVar = (bp) this.f25775r;
+                if (!zArr[0]) {
+                    g0.h3(new ob(npVar, zArr, vrVar.O(j3), runnableArr, j10, i7, bpVar));
                     return;
                 }
-            case 1:
-                g0.h3(new vk(this.f24351b, this.f24352c, this.d, this.f24353e, 0));
                 return;
             default:
-                g0.h3(new vk(this.f24351b, this.f24352c, this.d, this.f24353e, 2));
+                np npVar2 = this.f25770b;
+                ArrayList arrayList = (ArrayList) this.f25773f;
+                long j11 = this.f25771c;
+                TLRPC.updates_ChannelDifference updates_channeldifference = (TLRPC.updates_ChannelDifference) this.h;
+                TLRPC.Chat chat2 = (TLRPC.Chat) this.f25774n;
+                a0.h hVar2 = (a0.h) this.f25775r;
+                int i10 = this.d;
+                long j12 = this.f25772e;
+                if (!arrayList.isEmpty()) {
+                    SparseArray sparseArray = new SparseArray();
+                    int size = arrayList.size();
+                    int i11 = 0;
+                    while (i11 < size) {
+                        Object obj = arrayList.get(i11);
+                        i11++;
+                        TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) obj;
+                        TLRPC.Chat chat3 = chat2;
+                        a0.h hVar3 = hVar2;
+                        ArrayList arrayList2 = arrayList;
+                        long[] a22 = npVar2.getMessagesStorage().a2(tL_updateMessageID.random_id, -j11, null, tL_updateMessageID.f28309id, 0, -1, 0);
+                        if (a22 != null) {
+                            sparseArray.put(tL_updateMessageID.f28309id, a22);
+                        }
+                        chat2 = chat3;
+                        hVar2 = hVar3;
+                        arrayList = arrayList2;
+                    }
+                    chat = chat2;
+                    hVar = hVar2;
+                    if (sparseArray.size() != 0) {
+                        g0.h3(new am(npVar2, sparseArray, 1));
+                    }
+                } else {
+                    chat = chat2;
+                    hVar = hVar2;
+                }
+                Utilities.d.c(new cm(npVar2, updates_channeldifference, j11, chat, hVar, i10, j12));
                 return;
         }
     }
 
-    public ok(qp qpVar, int i7, long j3, long j10, int i10) {
-        this.f24350a = i10;
-        this.f24351b = qpVar;
-        this.f24352c = i7;
-        this.d = j3;
-        this.f24353e = j10;
+    public ok(np npVar, boolean[] zArr, vr vrVar, long j3, Runnable[] runnableArr, long j10, int i7, bp bpVar) {
+        this.f25770b = npVar;
+        this.f25773f = zArr;
+        this.h = vrVar;
+        this.f25771c = j3;
+        this.f25774n = runnableArr;
+        this.f25772e = j10;
+        this.d = i7;
+        this.f25775r = bpVar;
     }
 }

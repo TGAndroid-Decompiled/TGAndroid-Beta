@@ -1,63 +1,36 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-public final class nh0 extends rg.a {
-    public int f48212c;
-    public int d;
-    public CharSequence f48213e;
-    public CharSequence f48214f;
-    public rh0 f48215g;
-    public int h;
-    public boolean f48216i;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+public final class nh0 implements Runnable {
+    public final int f49565a;
+    public final oh0 f49566b;
+    public final String f49567c;
 
-    public static nh0 b(int i7, String str, boolean z9) {
-        ?? aVar = new rg.a(1, true);
-        aVar.f48212c = i7;
-        aVar.f48213e = str;
-        aVar.f48216i = z9;
-        return aVar;
-    }
-
-    public static nh0 c(int i7, String str, String str2) {
-        ?? aVar = new rg.a(5, true);
-        aVar.f48212c = i7;
-        aVar.f48213e = str;
-        aVar.f48214f = str2;
-        return aVar;
-    }
-
-    public static nh0 d(int i7, String str) {
-        ?? aVar = new rg.a(4, true);
-        aVar.f48212c = i7;
-        aVar.f48213e = str;
-        return aVar;
+    public nh0(oh0 oh0Var, String str, int i7) {
+        this.f49565a = i7;
+        this.f49566b = oh0Var;
+        this.f49567c = str;
     }
 
     @Override
-    public final boolean a(rg.a aVar) {
-        if (this != aVar) {
-            if (nh0.class == aVar.getClass()) {
-                nh0 nh0Var = (nh0) aVar;
-                if (this.f48212c == nh0Var.f48212c && this.d == nh0Var.d && this.h == nh0Var.h && this.f48216i == nh0Var.f48216i && Objects.equals(this.f48213e, nh0Var.f48213e) && Objects.equals(this.f48214f, nh0Var.f48214f) && this.f48215g == nh0Var.f48215g) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
+    public final void run() {
+        switch (this.f49565a) {
+            case 0:
+                oh0 oh0Var = this.f49566b;
+                String str = this.f49567c;
+                oh0Var.getClass();
+                org.telegram.messenger.g0.h3(new nh0(oh0Var, str, 1));
+                return;
+            default:
+                oh0 oh0Var2 = this.f49566b;
+                String str2 = this.f49567c;
+                jg.z1 z1Var = oh0Var2.h;
+                int i7 = oh0Var2.f49973n.f42678s;
+                boolean z10 = true;
+                z1Var.g(str2, true, (i7 == 1 || i7 == 3) ? false : false, true, false, 0L, false, 0, 0);
+                Utilities.f22418g.c(new lc0(oh0Var2, str2, new ArrayList(oh0Var2.f49973n.f42680x), 10));
+                return;
         }
-        return true;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && nh0.class == obj.getClass()) {
-            nh0 nh0Var = (nh0) obj;
-            if (this.f48212c == nh0Var.f48212c && this.h == nh0Var.h && ((this.f54543a == 8 || (this.d == nh0Var.d && Objects.equals(this.f48213e, nh0Var.f48213e) && (this.f54543a == 6 || Objects.equals(this.f48214f, nh0Var.f48214f)))) && this.f48215g == nh0Var.f48215g)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

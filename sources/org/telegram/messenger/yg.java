@@ -1,116 +1,127 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Locale;
-import org.telegram.SQLite.SQLiteCursor;
-import org.telegram.SQLite.SQLiteDatabase;
+import java.util.HashMap;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.TwoStepVerificationActivity;
 public final class yg implements Runnable {
-    public final int f26658a;
-    public final ui f26659b;
-    public final long f26660c;
+    public final int f27733a = 2;
+    public final boolean f27734b;
+    public final Object f27735c;
+    public final c1 d;
+    public final Object f27736e;
+    public final Object f27737f;
+    public final Object h;
+    public final Object f27738n;
+    public final Object f27739r;
 
-    public yg(ui uiVar, long j3, int i7) {
-        this.f26658a = i7;
-        this.f26659b = uiVar;
-        this.f26660c = j3;
+    public yg(g5 g5Var, HashMap hashMap, HashMap hashMap2, boolean z10, HashMap hashMap3, ArrayList arrayList, HashMap hashMap4, boolean[] zArr) {
+        this.d = g5Var;
+        this.f27736e = hashMap;
+        this.f27737f = hashMap2;
+        this.f27734b = z10;
+        this.h = hashMap3;
+        this.f27735c = arrayList;
+        this.f27738n = hashMap4;
+        this.f27739r = zArr;
     }
 
     @Override
     public final void run() {
-        int i7;
-        int i10 = this.f26658a;
-        ui uiVar = this.f26659b;
-        long j3 = this.f26660c;
-        int i11 = 0;
-        switch (i10) {
+        boolean z10;
+        switch (this.f27733a) {
             case 0:
-                a0.h hVar = uiVar.f25854w1;
-                ArrayList arrayList = (ArrayList) hVar.f(j3);
-                if (arrayList != null) {
-                    for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                        int i13 = uiVar.currentAccount;
-                        xr a10 = xr.a(j3, ij.b2(i13, (TLRPC.Message) arrayList.get(i12), t3.b0(i13, j3), false));
-                        uiVar.f25857x1.remove(a10);
-                        uiVar.getNotificationCenter().k(69, null, a10);
+                si siVar = (si) this.d;
+                boolean z11 = this.f27734b;
+                ArrayList arrayList = (ArrayList) this.f27737f;
+                ArrayList arrayList2 = (ArrayList) this.h;
+                a0.h hVar = (a0.h) this.f27738n;
+                a0.h hVar2 = (a0.h) this.f27739r;
+                siVar.getMessagesController().Y3((ArrayList) this.f27735c, z11);
+                siVar.getMessagesController().S3((ArrayList) this.f27736e, z11);
+                int size = arrayList.size();
+                int i7 = 0;
+                for (int i10 = 0; i10 < size; i10++) {
+                    TLRPC.Message message = (TLRPC.Message) arrayList.get(i10);
+                    if ((gj.n1(message) instanceof TLRPC.TL_messageMediaDocument) || (gj.n1(message) instanceof TLRPC.TL_messageMediaPhoto)) {
+                        i7++;
                     }
+                    int i11 = siVar.currentAccount;
+                    if (i7 < 30) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    arrayList2.add(new gj(i11, message, hVar, hVar2, false, z10));
                 }
-                hVar.l(j3);
+                g0.h3(new hh(siVar, arrayList2, 0));
                 return;
             case 1:
-                uiVar.f25837p1.l(j3);
-                return;
-            case 2:
-                final long j10 = this.f26660c;
-                final ui uiVar2 = this.f26659b;
-                uiVar2.getClass();
-                double d = 0.0d;
-                try {
-                    SQLiteDatabase sQLiteDatabase = uiVar2.getMessagesStorage().f26725b;
-                    Locale locale = Locale.US;
-                    SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT MAX(mid), MAX(date) FROM messages_v2 WHERE uid = " + j10 + " AND out = 1", new Object[0]);
-                    if (queryFinalized.next()) {
-                        i11 = queryFinalized.intValue(0);
-                        i7 = queryFinalized.intValue(1);
-                    } else {
-                        i7 = 0;
-                    }
-                    queryFinalized.dispose();
-                    if (i11 > 0 && uiVar2.getUserConfig().D != 0) {
-                        d = i7 - uiVar2.getUserConfig().D;
-                    }
-                } catch (Exception e10) {
-                    a8.g(e10, true);
+                g5 g5Var = (g5) this.d;
+                boolean z12 = this.f27734b;
+                HashMap hashMap = (HashMap) this.h;
+                ArrayList arrayList3 = (ArrayList) this.f27735c;
+                HashMap hashMap2 = (HashMap) this.f27738n;
+                boolean[] zArr = (boolean[]) this.f27739r;
+                g5Var.f23670a0 = (HashMap) this.f27736e;
+                g5Var.Z = (HashMap) this.f27737f;
+                g5Var.f23676e = false;
+                g5Var.f23688r = true;
+                if (z12) {
+                    g5Var.h = true;
                 }
-                final double d2 = d;
-                g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        ui uiVar3;
-                        long j11;
-                        TLRPC.TL_topPeer tL_topPeer;
-                        int i14 = 0;
-                        while (true) {
-                            uiVar3 = ui.this;
-                            int size = uiVar3.f25825i1.size();
-                            j11 = j10;
-                            if (i14 < size) {
-                                tL_topPeer = (TLRPC.TL_topPeer) uiVar3.f25825i1.get(i14);
-                                if (tL_topPeer.peer.user_id == j11) {
-                                    break;
-                                }
-                                i14++;
-                            } else {
-                                tL_topPeer = null;
-                                break;
-                            }
-                        }
-                        if (tL_topPeer == null) {
-                            tL_topPeer = new TLRPC.TL_topPeer();
-                            TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-                            tL_topPeer.peer = tL_peerUser;
-                            tL_peerUser.user_id = j11;
-                            uiVar3.f25825i1.add(tL_topPeer);
-                        }
-                        tL_topPeer.rating = Math.exp(d2 / uiVar3.getMessagesController().Z2) + tL_topPeer.rating;
-                        Collections.sort(uiVar3.f25825i1, new jg.x(22));
-                        uiVar3.getMessagesStorage().f26723a.c(new ah(uiVar3, j11, 0, tL_topPeer.rating));
-                        uiVar3.getNotificationCenter().k(qs.S0, new Object[0]);
-                    }
-                });
+                if (!g5Var.f23691x.isEmpty() && g5Var.h) {
+                    g5Var.c(g5Var.f23691x, null, null, null);
+                    g5Var.f23691x.clear();
+                }
+                g0.h3(new u4(g5Var, hashMap, arrayList3, hashMap2, 3));
+                if (zArr[0]) {
+                    Utilities.f22416e.d(new k4(g5Var, 7), 300000L);
+                    return;
+                }
                 return;
             default:
-                ui uiVar3 = this.f26659b;
-                ArrayList[] arrayListArr = uiVar3.f25848u0;
-                arrayListArr[0].remove(Long.valueOf(j3));
-                uiVar3.f25850v0[0].remove(Long.valueOf(j3));
-                long[] jArr = uiVar3.f25836p0;
-                ArrayList[] arrayListArr2 = uiVar3.f25844s0;
-                jArr[0] = uiVar3.o(arrayListArr2[0], false);
-                uiVar3.getNotificationCenter().k(62, new Object[0]);
-                uiVar3.G1(false, arrayListArr2[0], arrayListArr[0], uiVar3.f25838q0[0], jArr[0], uiVar3.f25841r0);
+                ez ezVar = (ez) this.d;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f27735c;
+                TLObject tLObject = (TLObject) this.f27736e;
+                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f27737f;
+                boolean z13 = this.f27734b;
+                gj gjVar = (gj) this.h;
+                TL_keyboard.KeyboardButtonProto keyboardButtonProto = (TL_keyboard.KeyboardButtonProto) this.f27738n;
+                org.telegram.ui.an anVar = (org.telegram.ui.an) this.f27739r;
+                if (tL_error == null) {
+                    TL_account.Password password = (TL_account.Password) tLObject;
+                    twoStepVerificationActivity.J = password;
+                    TwoStepVerificationActivity.r0(password);
+                    ezVar.n0(z13, gjVar, keyboardButtonProto, twoStepVerificationActivity.q0(), twoStepVerificationActivity, anVar);
+                    return;
+                }
                 return;
         }
+    }
+
+    public yg(si siVar, ArrayList arrayList, boolean z10, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, a0.h hVar, a0.h hVar2) {
+        this.d = siVar;
+        this.f27735c = arrayList;
+        this.f27734b = z10;
+        this.f27736e = arrayList2;
+        this.f27737f = arrayList3;
+        this.h = arrayList4;
+        this.f27738n = hVar;
+        this.f27739r = hVar2;
+    }
+
+    public yg(ez ezVar, TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, boolean z10, gj gjVar, TL_keyboard.KeyboardButtonProto keyboardButtonProto, org.telegram.ui.an anVar) {
+        this.d = ezVar;
+        this.f27735c = tL_error;
+        this.f27736e = tLObject;
+        this.f27737f = twoStepVerificationActivity;
+        this.f27734b = z10;
+        this.h = gjVar;
+        this.f27738n = keyboardButtonProto;
+        this.f27739r = anVar;
     }
 }

@@ -1,124 +1,84 @@
 package di;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
 import java.util.ArrayList;
+import org.telegram.messenger.np;
+import org.telegram.messenger.voip.GroupCallMessage;
+import org.telegram.messenger.voip.GroupCallMessagesController;
+import org.telegram.messenger.z10;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.wq;
-public final class g2 extends u0 {
-    public final q9 f9013h0;
-    public final j4 f9014i0;
+import org.telegram.tgnet.tl.TL_stars;
+public final class g2 implements RequestDelegate {
+    public final int f8587a = 0;
+    public final long f8588b;
+    public final long f8589c;
+    public final Object d;
+    public final Object f8590e;
+    public final Object f8591f;
 
-    public g2(j4 j4Var, Context context, q9 q9Var, f9 f9Var, View view, FrameLayout frameLayout, q9 q9Var2) {
-        super(context, q9Var, f9Var, view, frameLayout);
-        this.f9014i0 = j4Var;
-        this.f9013h0 = q9Var2;
+    public g2(c6 c6Var, TLRPC.TL_inputInvoiceStarGiftTransfer tL_inputInvoiceStarGiftTransfer, long j3, long j10, z10 z10Var) {
+        this.d = c6Var;
+        this.f8590e = tL_inputInvoiceStarGiftTransfer;
+        this.f8588b = j3;
+        this.f8589c = j10;
+        this.f8591f = z10Var;
     }
 
     @Override
-    public final TLRPC.Peer getDefaultSendAs() {
-        g1 g1Var = this.f9013h0.A0;
-        if (g1Var != null) {
-            return g1Var.i();
-        }
-        return null;
-    }
-
-    @Override
-    public final void h(long j3) {
-        q1 q1Var = this.f9014i0.H1;
-        if (q1Var != null) {
-            ArrayList arrayList = q1Var.h;
-            for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                if (((p1) arrayList.get(i7)).f9491a == j3) {
-                    ((p1) arrayList.get(i7)).h = true;
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void i(int i7, int i10, long j3) {
-        boolean z9;
-        q1 q1Var = this.f9014i0.H1;
-        if (q1Var == null) {
-            return;
-        }
-        int i11 = q1Var.f9568a;
-        ArrayList arrayList = q1Var.h;
-        if (arrayList.size() < 5) {
-            z9 = true;
-        } else {
-            z9 = false;
-        }
-        arrayList.add(new p1(q1Var, q1Var, i11, j3, i10, z9));
-        q1Var.invalidate();
-    }
-
-    @Override
-    public final void j() {
-        boolean z9;
-        j4 j4Var = this.f9014i0;
-        j4Var.I1.setCount((int) getStarsCount());
-        r1 r1Var = j4Var.I1;
-        if (this.W != null) {
-            z9 = true;
-        } else {
-            z9 = false;
-        }
-        r1Var.setFilled(z9);
-    }
-
-    @Override
-    public final void q(boolean z9, boolean z10) {
-        float f10;
-        if (!z10 || this.f9816f0 != z9) {
-            this.f9816f0 = z9;
-            ValueAnimator valueAnimator = this.f9814e0;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.f9814e0 = null;
-            }
-            bi.q1 q1Var = this.f9810c;
-            q1Var.invalidate();
-            float f11 = 1.0f;
-            if (z10) {
-                float alpha = q1Var.getAlpha();
-                if (z9) {
-                    f11 = 0.0f;
-                }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(alpha, f11);
-                this.f9814e0 = ofFloat;
-                ofFloat.addUpdateListener(new ah.h(this, 14));
-                this.f9814e0.addListener(new ch.y(2, this, z9));
-                this.f9814e0.setDuration(420L);
-                this.f9814e0.setInterpolator(wq.h);
-                this.f9814e0.start();
-            } else {
-                if (z9) {
-                    f10 = 0.0f;
-                } else {
-                    f10 = 0.5f;
-                }
-                this.f9806a.setAlpha(f10);
-                if (z9) {
-                    f11 = 0.0f;
-                }
-                q1Var.setAlpha(f11);
-            }
-            invalidate();
-        }
-        a aVar = this.f9014i0.G1;
-        if (aVar != null) {
-            aVar.a(z9, z10);
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f8587a) {
+            case 0:
+                final c6 c6Var = (c6) this.d;
+                final TLRPC.TL_inputInvoiceStarGiftTransfer tL_inputInvoiceStarGiftTransfer = (TLRPC.TL_inputInvoiceStarGiftTransfer) this.f8590e;
+                final z10 z10Var = (z10) this.f8591f;
+                final long j3 = this.f8588b;
+                final long j10 = this.f8589c;
+                org.telegram.messenger.g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        TLObject tLObject2 = tLObject;
+                        boolean z10 = tLObject2 instanceof TLRPC.PaymentForm;
+                        c6 c6Var2 = c6.this;
+                        z10 z10Var2 = z10Var;
+                        if (z10) {
+                            TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) tLObject2;
+                            int i7 = 0;
+                            np.s1(c6Var2.f29679a).Y3(paymentForm.users, false);
+                            TL_stars.TL_payments_sendStarsForm tL_payments_sendStarsForm = new TL_stars.TL_payments_sendStarsForm();
+                            tL_payments_sendStarsForm.form_id = paymentForm.form_id;
+                            tL_payments_sendStarsForm.invoice = tL_inputInvoiceStarGiftTransfer;
+                            ArrayList<TLRPC.TL_labeledPrice> arrayList = paymentForm.invoice.prices;
+                            int size = arrayList.size();
+                            long j11 = 0;
+                            while (i7 < size) {
+                                TLRPC.TL_labeledPrice tL_labeledPrice = arrayList.get(i7);
+                                i7++;
+                                j11 += tL_labeledPrice.amount;
+                            }
+                            ConnectionsManager.getInstance(c6Var2.f29679a).sendRequest(tL_payments_sendStarsForm, new c2(c6Var2, j3, j10, z10Var2, j11));
+                            return;
+                        }
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        z10Var2.a(tL_error2);
+                        org.telegram.ui.Components.xb Y = c6Var2.k().Y(tL_error2);
+                        Y.f41653t = true;
+                        Y.j();
+                    }
+                });
+                return;
+            default:
+                ((GroupCallMessagesController) this.d).lambda$sendCallMessage$6((org.telegram.messenger.voip.f) this.f8590e, (GroupCallMessage) this.f8591f, this.f8588b, this.f8589c, tLObject, tL_error);
+                return;
         }
     }
 
-    @Override
-    public final void setVisibility(int i7) {
-        super.setVisibility(i7);
-        this.f9014i0.f9241v0.setVisibility(i7);
+    public g2(GroupCallMessagesController groupCallMessagesController, org.telegram.messenger.voip.f fVar, GroupCallMessage groupCallMessage, long j3, long j10) {
+        this.d = groupCallMessagesController;
+        this.f8590e = fVar;
+        this.f8591f = groupCallMessage;
+        this.f8588b = j3;
+        this.f8589c = j10;
     }
 }

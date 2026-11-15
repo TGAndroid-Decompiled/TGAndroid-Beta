@@ -1,90 +1,41 @@
 package fi;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.widget.LinearLayout;
-import org.telegram.ui.Components.wq;
-public final class l8 extends LinearLayout {
-    public float f12345a;
-    public float f12346b;
-    public ValueAnimator f12347c;
-    public ValueAnimator d;
-    public final Paint f12348e;
-    public final org.telegram.ui.Components.v5 f12349f;
-    public final n8 h;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.tgnet.tl.TL_stories;
+public final class l8 extends FrameLayout {
+    public final TL_stories.MediaArea f12019a;
+    public final tg.m0 f12020b;
 
-    public l8(n8 n8Var, Context context) {
+    public l8(Context context, tg.m0 m0Var, TL_stories.MediaArea mediaArea) {
         super(context);
-        this.h = n8Var;
-        this.f12348e = new Paint(1);
-        this.f12349f = new org.telegram.ui.Components.v5(this);
-    }
-
-    public static void a(l8 l8Var, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        l8Var.f12346b = floatValue;
-        super.setTranslationY(floatValue + l8Var.f12345a);
-    }
-
-    public final void b(boolean z9, boolean z10) {
-        ValueAnimator valueAnimator = this.f12347c;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        float f10 = 0.0f;
-        int i7 = 0;
-        if (z10) {
-            setVisibility(0);
-            float f11 = this.f12346b;
-            if (z9) {
-                f10 = getMeasuredHeight();
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
-            this.f12347c = ofFloat;
-            ofFloat.addUpdateListener(new k8(this, 0));
-            this.f12347c.addListener(new ch.y(12, this, z9));
-            this.f12347c.setDuration(320L);
-            this.f12347c.setInterpolator(wq.h);
-            this.f12347c.start();
-            return;
-        }
-        if (z9) {
-            i7 = 8;
-        }
-        setVisibility(i7);
-        if (z9) {
-            f10 = getMeasuredHeight();
-        }
-        this.f12346b = f10;
-        super.setTranslationY(f10 + this.f12345a);
+        this.f12019a = mediaArea;
+        this.f12020b = m0Var;
+        addView(m0Var);
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f10;
-        super.dispatchDraw(canvas);
-        int i7 = org.telegram.ui.ActionBar.m6.f27834a7;
-        n8 n8Var = this.h;
-        s8 s8Var = n8Var.W;
-        int i10 = s8.X1;
-        int w02 = org.telegram.ui.ActionBar.m6.w0(i7, s8Var.I0);
-        Paint paint = this.f12348e;
-        paint.setColor(w02);
-        if (n8Var.f12493f.canScrollVertically(1)) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        paint.setAlpha((int) (this.f12349f.e(false, f10) * 255.0f));
-        canvas.drawRect(0.0f, 0.0f, getWidth(), 1.0f, paint);
-    }
-
-    @Override
-    public final void setTranslationY(float f10) {
-        float f11 = this.f12346b;
-        this.f12345a = f10;
-        super.setTranslationY(f11 + f10);
+    public final void onMeasure(int i7, int i10) {
+        tg.m0 m0Var = this.f12020b;
+        m0Var.measure(i7, i10);
+        int measuredWidth = (m0Var.getMeasuredWidth() - m0Var.getPaddingLeft()) - m0Var.getPaddingRight();
+        int measuredHeight = (m0Var.getMeasuredHeight() - m0Var.getPaddingTop()) - m0Var.getPaddingBottom();
+        float f10 = measuredWidth;
+        float f11 = f10 / 2.0f;
+        m0Var.setPivotX(m0Var.getPaddingLeft() + f11);
+        float f12 = measuredHeight;
+        float f13 = f12 / 2.0f;
+        m0Var.setPivotY(m0Var.getPaddingTop() + f13);
+        int size = View.MeasureSpec.getSize(i7);
+        int size2 = View.MeasureSpec.getSize(i10);
+        setMeasuredDimension(size, size2);
+        float f14 = size;
+        float f15 = size2;
+        float min = Math.min(f14 / f10, f15 / f12);
+        m0Var.setTranslationX((f14 / 2.0f) - (f11 + m0Var.getPaddingLeft()));
+        m0Var.setTranslationY((f15 / 2.0f) - (f13 + m0Var.getPaddingTop()));
+        m0Var.setScaleX(min);
+        m0Var.setScaleY(min);
     }
 }

@@ -1,38 +1,19 @@
 package di;
 
-import android.content.Context;
-import android.view.View;
-public final class t7 extends j4 {
-    public final u7 O3;
+import org.telegram.messenger.z10;
+public final class t7 implements z10 {
+    public final int f9472a;
+    public final boolean f9473b;
+    public final Object f9474c;
 
-    public t7(u7 u7Var, Context context, q9 q9Var, g4 g4Var, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, q9Var, g4Var, h6Var);
-        this.O3 = u7Var;
+    public t7(int i7, Object obj, boolean z10) {
+        this.f9472a = i7;
+        this.f9474c = obj;
+        this.f9473b = z10;
     }
 
     @Override
-    public final boolean I0() {
-        if (getParent() != null && ((Integer) ((View) getParent()).getTag()).intValue() == this.O3.f9840f.getCurrentItem()) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void invalidate() {
-        if (v.f9856c) {
-            v.f9855b.add(this);
-        } else {
-            super.invalidate();
-        }
-    }
-
-    @Override
-    public final void invalidate(int i7, int i10, int i11, int i12) {
-        if (v.f9856c) {
-            v.f9855b.add(this);
-        } else {
-            super.invalidate(i7, i10, i11, i12);
-        }
+    public final void a(java.lang.Object r26) {
+        throw new UnsupportedOperationException("Method not decompiled: di.t7.a(java.lang.Object):void");
     }
 }

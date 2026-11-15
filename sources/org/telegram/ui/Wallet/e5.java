@@ -1,42 +1,51 @@
 package org.telegram.ui.Wallet;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.ee;
-import org.telegram.ui.sb1;
-public final class e5 implements TextWatcher {
-    public final String[] f42462a;
-    public final sb1 f42463b;
-    public final Runnable[] f42464c;
-    public final ee d;
+import java.util.ArrayList;
+import org.telegram.messenger.is;
+import org.telegram.messenger.ns;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class e5 implements is {
+    public final int f43793a;
+    public final TL_wallet.walletTransaction[] f43794b;
+    public final fi.r f43795c;
 
-    public e5(String[] strArr, sb1 sb1Var, Runnable[] runnableArr, ee eeVar) {
-        this.f42462a = strArr;
-        this.f42463b = sb1Var;
-        this.f42464c = runnableArr;
-        this.d = eeVar;
+    public e5(int i7, TL_wallet.walletTransaction[] wallettransactionArr, fi.r rVar) {
+        this.f43793a = i7;
+        this.f43794b = wallettransactionArr;
+        this.f43795c = rVar;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        this.f42462a[0] = editable.toString();
-        this.f42463b.run();
-        Runnable[] runnableArr = this.f42464c;
-        Runnable runnable = runnableArr[0];
-        if (runnable != null) {
-            runnable.run();
-            runnableArr[0] = null;
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        TL_wallet.walletTransaction[] wallettransactionArr;
+        TL_wallet.walletTransaction wallettransaction;
+        if (i7 == ns.f25467a4 || i7 == ns.f25473b4) {
+            ArrayList arrayList = l0.x(this.f43793a).B().f44044c;
+            int size = arrayList.size();
+            int i11 = 0;
+            while (true) {
+                wallettransactionArr = this.f43794b;
+                if (i11 < size) {
+                    Object obj = arrayList.get(i11);
+                    i11++;
+                    wallettransaction = (TL_wallet.walletTransaction) obj;
+                    TL_wallet.walletTransaction wallettransaction2 = wallettransactionArr[0];
+                    if (wallettransaction != wallettransaction2) {
+                        if (l0.i0(wallettransaction2, wallettransaction)) {
+                            break;
+                        }
+                    } else {
+                        break;
+                    }
+                } else {
+                    wallettransaction = null;
+                    break;
+                }
+            }
+            if (wallettransaction != null) {
+                wallettransactionArr[0] = wallettransaction;
+                this.f43795c.a(wallettransaction);
+            }
         }
-        ee eeVar = this.d;
-        org.telegram.messenger.g0.r(eeVar);
-        org.telegram.messenger.g0.i3(eeVar, 1000L);
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 }

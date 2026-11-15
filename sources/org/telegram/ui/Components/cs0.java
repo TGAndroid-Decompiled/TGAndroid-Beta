@@ -1,9 +1,9 @@
 package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
-public final class cs0 extends org.telegram.messenger.ij {
+public final class cs0 extends org.telegram.messenger.gj {
     @Override
-    public final boolean s(TLRPC.Chat chat, boolean z9) {
+    public final boolean s(TLRPC.Chat chat, boolean z10) {
         return false;
     }
 }

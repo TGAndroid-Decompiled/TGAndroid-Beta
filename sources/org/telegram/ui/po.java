@@ -1,22 +1,45 @@
 package org.telegram.ui;
-public final class po implements Runnable {
-    public final int f48812a;
-    public final qo f48813b;
 
-    public po(qo qoVar, int i7) {
-        this.f48812a = i7;
-        this.f48813b = qoVar;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+public final class po extends org.telegram.ui.Components.i70 {
+    public final TLRPC.Chat f50328x;
+    public final qo f50329y;
+
+    public po(qo qoVar, Context context, TLRPC.Chat chat, TLRPC.Chat chat2) {
+        super(context, chat);
+        this.f50329y = qoVar;
+        this.f50328x = chat2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f48812a) {
-            case 0:
-                this.f48813b.f49112y.d.P = false;
-                return;
-            default:
-                this.f48813b.f49112y.d.P = false;
-                return;
+    public final boolean a(boolean z10, org.telegram.ui.Components.g70 g70Var) {
+        to toVar = this.f50329y.d;
+        if (toVar.Q) {
+            return false;
+        }
+        toVar.Q = true;
+        e(new zg(15, this, g70Var), new wn(this, this.f50328x, z10, g70Var, 2));
+        return true;
+    }
+
+    @Override
+    public final boolean b(boolean z10, org.telegram.ui.Components.h70 h70Var) {
+        to toVar = this.f50329y.d;
+        if (toVar.P) {
+            return false;
+        }
+        toVar.P = true;
+        e(new zg(15, this, h70Var), new wn(this, this.f50328x, z10, h70Var, 1));
+        return true;
+    }
+
+    public final void e(zg zgVar, Runnable runnable) {
+        to toVar = this.f50329y.d;
+        if (!org.telegram.messenger.t3.T(toVar.f51621f)) {
+            toVar.getMessagesController().T(toVar.getParentActivity(), this.f50328x.f28051id, toVar, new m2.d(24, this, runnable), zgVar);
+        } else {
+            runnable.run();
         }
     }
 }

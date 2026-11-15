@@ -1,7 +1,7 @@
 package l2;
 
-import a8.ga;
-import a8.ia;
+import a8.ha;
+import a8.ja;
 import android.content.Context;
 import android.os.Build;
 import android.os.Looper;
@@ -10,37 +10,37 @@ public final class n {
     public static final boolean D;
     public final String A;
     public final boolean B;
-    public final Context f17943a;
-    public final h2.g0 f17944b;
-    public g9.u f17945c;
+    public final Context f19088a;
+    public final h2.g0 f19089b;
+    public g9.t f19090c;
     public final f2.c d;
-    public g9.u f17946e;
-    public g9.u f17947f;
-    public final f2.c f17948g;
+    public g9.t f19091e;
+    public g9.t f19092f;
+    public final f2.c f19093g;
     public final Looper h;
-    public final int f17949i;
-    public final e2.e f17950j;
-    public final int f17951k;
-    public final boolean f17952l;
-    public final t1 f17953m;
-    public final s1 f17954n;
-    public final long f17955o;
-    public final long f17956p;
-    public final long f17957q;
-    public final f f17958r;
-    public final long f17959s;
-    public final long f17960t;
-    public final int f17961u;
+    public final int f19094i;
+    public final e2.e f19095j;
+    public final int f19096k;
+    public final boolean f19097l;
+    public final p1 f19098m;
+    public final o1 f19099n;
+    public final long f19100o;
+    public final long f19101p;
+    public final long f19102q;
+    public final f f19103r;
+    public final long f19104s;
+    public final long f19105t;
+    public final int f19106u;
     public final int v;
-    public final int f17962w;
-    public final int f17963x;
-    public final boolean f17964y;
-    public boolean f17965z;
+    public final int f19107w;
+    public final int f19108x;
+    public final boolean f19109y;
+    public boolean f19110z;
 
     static {
         int i7;
-        String str = h2.m0.f14114a;
-        String c10 = ga.c(Build.DEVICE);
+        String str = h2.l0.f13471a;
+        String c10 = ha.c(Build.DEVICE);
         if (!c10.contains("emulator") && !c10.contains("emu64a") && !c10.contains("emu64x") && !c10.contains("generic")) {
             i7 = 10000;
         } else {
@@ -55,50 +55,50 @@ public final class n {
         f2.c cVar = new f2.c(context, 1);
         f2.c cVar2 = new f2.c(context, 2);
         f2.c cVar3 = new f2.c(context, 3);
-        d3.q qVar = new d3.q(3);
+        d3.p pVar = new d3.p(3);
         f2.c cVar4 = new f2.c(context, 4);
         context.getClass();
-        this.f17943a = context;
-        this.f17945c = cVar;
+        this.f19088a = context;
+        this.f19090c = cVar;
         this.d = cVar2;
-        this.f17946e = cVar3;
-        this.f17947f = qVar;
-        this.f17948g = cVar4;
-        String str = h2.m0.f14114a;
+        this.f19091e = cVar3;
+        this.f19092f = pVar;
+        this.f19093g = cVar4;
+        String str = h2.l0.f13471a;
         Looper myLooper = Looper.myLooper();
         this.h = myLooper == null ? Looper.getMainLooper() : myLooper;
-        this.f17950j = e2.e.f10220i;
-        this.f17951k = 1;
-        this.f17952l = true;
-        this.f17953m = t1.f18054f;
-        this.f17955o = 5000L;
-        this.f17956p = 15000L;
-        this.f17957q = 3000L;
-        this.f17954n = s1.f18048b;
-        this.f17958r = new f(h2.m0.S(20L), h2.m0.S(500L));
-        this.f17944b = h2.g0.f14090a;
-        this.f17959s = 500L;
-        this.f17960t = 2000L;
-        this.f17961u = 600000;
-        boolean z9 = D;
-        if (z9) {
+        this.f19095j = e2.e.f10051i;
+        this.f19096k = 1;
+        this.f19097l = true;
+        this.f19098m = p1.f19162f;
+        this.f19100o = 5000L;
+        this.f19101p = 15000L;
+        this.f19102q = 3000L;
+        this.f19099n = o1.f19154b;
+        this.f19103r = new f(h2.l0.S(20L), h2.l0.S(500L));
+        this.f19089b = h2.g0.f13448a;
+        this.f19104s = 500L;
+        this.f19105t = 2000L;
+        this.f19106u = 600000;
+        boolean z10 = D;
+        if (z10) {
             i7 = C;
         } else {
             i7 = Integer.MAX_VALUE;
         }
         this.v = i7;
-        this.f17962w = z9 ? 60000 : Integer.MAX_VALUE;
-        this.f17963x = 600000;
-        this.f17964y = true;
+        this.f19107w = z10 ? 60000 : Integer.MAX_VALUE;
+        this.f19108x = 600000;
+        this.f19109y = true;
         this.A = "";
-        this.f17949i = -1000;
-        new w7.s(12);
+        this.f19094i = -1000;
+        new w7.s();
         this.B = true;
     }
 
-    public final i0 a() {
-        ia.p(!this.f17965z);
-        this.f17965z = true;
-        return new i0(this);
+    public final f0 a() {
+        ja.p(!this.f19110z);
+        this.f19110z = true;
+        return new f0(this);
     }
 }

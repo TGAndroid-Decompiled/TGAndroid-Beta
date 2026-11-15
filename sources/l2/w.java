@@ -1,57 +1,40 @@
 package l2;
 
-import android.os.Bundle;
-import org.telegram.messenger.k9;
-import org.telegram.ui.Components.bc;
-import org.telegram.ui.Components.gc;
-import org.telegram.ui.me0;
-public final class w implements h2.o, p.a, k9, h2.j {
-    public final int f18071a;
-    public final boolean f18072b;
+import h9.s1;
+import java.util.List;
+public final class w implements h2.o, p4.a1 {
+    public final int f19209a;
+    public final List f19210b;
 
-    public w(int i7, boolean z9) {
-        this.f18071a = i7;
-        this.f18072b = z9;
-    }
-
-    @Override
-    public bc a(gc gcVar) {
-        return gcVar.k(this.f18072b);
-    }
-
-    @Override
-    public void accept(Object obj) {
-        switch (this.f18071a) {
-            case 4:
-                ((p4.g1) obj).X(this.f18072b);
-                return;
-            case 5:
-                ((p4.g1) obj).r0(this.f18072b);
-                return;
-            default:
-                ((p4.g1) obj).x(this.f18072b);
-                return;
-        }
+    public w(int i7, s1 s1Var) {
+        this.f19209a = i7;
+        this.f19210b = s1Var;
     }
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f18071a) {
+        switch (this.f19209a) {
             case 0:
-                ((e2.a1) obj).t(this.f18072b);
+                ((e2.a1) obj).B(this.f19210b);
                 return;
             default:
-                ((e2.a1) obj).f(this.f18072b);
+                ((m2.b) obj).getClass();
                 return;
         }
     }
 
     @Override
-    public Object j(Object obj) {
-        Void r22 = (Void) obj;
-        Bundle k10 = a8.p0.k("afterSignup", this.f18072b);
-        me0 me0Var = new me0();
-        me0Var.r0(k10);
-        return me0Var;
+    public Object k(p4.d0 d0Var, p4.v vVar, int i7) {
+        switch (this.f19209a) {
+            case 2:
+                return d0Var.l(vVar, this.f19210b);
+            default:
+                return d0Var.l(vVar, this.f19210b);
+        }
+    }
+
+    public w(m2.a aVar, List list) {
+        this.f19209a = 1;
+        this.f19210b = list;
     }
 }

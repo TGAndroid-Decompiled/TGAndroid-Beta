@@ -1,10 +1,10 @@
 package ge;
 public abstract class i implements Runnable {
-    public long f13856a;
-    public boolean f13857b;
+    public long f13198a;
+    public boolean f13199b;
 
-    public i(long j3, boolean z9) {
-        this.f13856a = j3;
-        this.f13857b = z9;
+    public i(long j3, boolean z10) {
+        this.f13198a = j3;
+        this.f13199b = z10;
     }
 }

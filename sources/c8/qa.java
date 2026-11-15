@@ -1,28 +1,30 @@
 package c8;
 
-import android.content.Context;
-import android.widget.TextView;
-import org.telegram.ui.Components.w70;
-public abstract class qa {
-    public static w70 a(Context context, float f10, int i7, boolean z9, org.telegram.ui.ActionBar.h6 h6Var) {
-        int i10 = org.telegram.ui.ActionBar.m6.Uc;
-        w70 w70Var = new w70(context, null);
-        w70Var.setTextSize(1, f10);
-        org.telegram.ui.ActionBar.t6.U(w70Var, i7, h6Var);
-        org.telegram.ui.ActionBar.t6.G(w70Var, i10, h6Var);
-        if (z9) {
-            w70Var.setTypeface(org.telegram.messenger.g0.o());
-        }
-        return w70Var;
+import java.util.Arrays;
+public final class qa {
+    public final pa f4645a;
+    public final Integer f4646b;
+
+    public qa(wf.b bVar) {
+        this.f4645a = (pa) bVar.f59107b;
+        this.f4646b = (Integer) bVar.f59108c;
     }
 
-    public static TextView b(Context context, float f10, int i7, boolean z9, org.telegram.ui.ActionBar.h6 h6Var) {
-        TextView textView = new TextView(context);
-        textView.setTextSize(1, f10);
-        org.telegram.ui.ActionBar.t6.U(textView, i7, h6Var);
-        if (z9) {
-            textView.setTypeface(org.telegram.messenger.g0.o());
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        return textView;
+        if (!(obj instanceof qa)) {
+            return false;
+        }
+        qa qaVar = (qa) obj;
+        if (q6.m.k(this.f4645a, qaVar.f4645a) && q6.m.k(this.f4646b, qaVar.f4646b) && q6.m.k(null, null) && q6.m.k(null, null)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.f4645a, this.f4646b, null, null});
     }
 }

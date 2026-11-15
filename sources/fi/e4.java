@@ -1,76 +1,81 @@
 package fi;
 
 import android.animation.ValueAnimator;
-import android.view.ViewGroup;
-import java.io.Serializable;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.zq0;
-import org.telegram.ui.px;
-public final class e4 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f11877a;
-    public final int f11878b;
-    public final Object f11879c;
-    public final Object d;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import java.util.ArrayList;
+public final class e4 implements GestureDetector.OnGestureListener {
+    public final d5 f11672a;
 
-    public e4(ViewGroup viewGroup, Serializable serializable, int i7, int i10) {
-        this.f11877a = i10;
-        this.f11879c = viewGroup;
-        this.d = serializable;
-        this.f11878b = i7;
+    public e4(d5 d5Var) {
+        this.f11672a = d5Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float f10;
-        switch (this.f11877a) {
-            case 0:
-                o5 o5Var = (o5) this.f11879c;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o5Var.f12533j1.f55093a = i0.a.f(floatValue, ((Integer) this.d).intValue(), this.f11878b);
-                k5 k5Var = o5Var.C0;
-                if (k5Var != null) {
-                    k5Var.invalidate();
-                    return;
-                }
-                return;
-            case 1:
-                ((zq0) this.f11879c).f41097e.R1.put(this.f11878b, (Float) valueAnimator.getAnimatedValue());
-                ((pj0) this.d).invalidate();
-                return;
-            case 2:
-                px pxVar = (px) this.f11879c;
-                float[] fArr = (float[]) this.d;
-                pxVar.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                for (int i7 = 0; i7 < 3; i7++) {
-                    float[] fArr2 = pxVar.f48855f;
-                    float f11 = fArr[i7];
-                    if (i7 == this.f11878b) {
-                        f10 = 1.0f;
-                    } else {
-                        f10 = 0.0f;
-                    }
-                    fArr2[i7] = org.telegram.messenger.g0.T1(f11, f10, floatValue2);
-                }
-                pxVar.a();
-                return;
-            default:
-                tg.g0 g0Var = (tg.g0) this.f11879c;
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                g0Var.f55704t1.f55093a = i0.a.f(floatValue3, ((Integer) this.d).intValue(), this.f11878b);
-                tg.e0 e0Var = g0Var.L0;
-                if (e0Var != null) {
-                    e0Var.invalidate();
-                    return;
-                }
-                return;
+    public final boolean onDown(MotionEvent motionEvent) {
+        d5 d5Var = this.f11672a;
+        d5Var.d.abortAnimation();
+        ValueAnimator valueAnimator = d5Var.N;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            d5Var.N.cancel();
+            d5Var.N = null;
         }
+        d5Var.M = false;
+        d5Var.P.f11936x = false;
+        return true;
     }
 
-    public e4(zq0 zq0Var, int i7, pj0 pj0Var) {
-        this.f11877a = 1;
-        this.f11879c = zq0Var;
-        this.f11878b = i7;
-        this.d = pj0Var;
+    @Override
+    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
+        d5 d5Var = this.f11672a;
+        d5Var.d.fling((int) d5Var.f11766e, 0, (int) (-f10), 0, (int) d5Var.f11767f, (int) d5Var.h, 0, 0);
+        d5Var.invalidate();
+        return false;
+    }
+
+    @Override
+    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
+        d5 d5Var = this.f11672a;
+        float f12 = d5Var.f11766e + f10;
+        d5Var.f11766e = f12;
+        float f13 = d5Var.f11767f;
+        if (f12 < f13) {
+            d5Var.f11766e = f13;
+        }
+        float f14 = d5Var.f11766e;
+        float f15 = d5Var.h;
+        if (f14 > f15) {
+            d5Var.f11766e = f15;
+        }
+        d5Var.invalidate();
+        return false;
+    }
+
+    @Override
+    public final boolean onSingleTapUp(MotionEvent motionEvent) {
+        d5 d5Var = this.f11672a;
+        ArrayList arrayList = d5Var.H;
+        for (int i7 = 0; i7 < arrayList.size(); i7++) {
+            g4 g4Var = (g4) arrayList.get(i7);
+            if (((g4) arrayList.get(i7)).f11736a.Q0.contains(motionEvent.getX(), motionEvent.getY())) {
+                int i10 = d5Var.L;
+                int i11 = g4Var.f11737b;
+                if (i10 != i11) {
+                    d5Var.c(i11, true, false);
+                } else {
+                    d5Var.O.o(false);
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final void onLongPress(MotionEvent motionEvent) {
+    }
+
+    @Override
+    public final void onShowPress(MotionEvent motionEvent) {
     }
 }

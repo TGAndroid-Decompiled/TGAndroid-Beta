@@ -1,188 +1,24 @@
 package fi;
 
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import org.telegram.messenger.qp;
-import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.messenger.z10;
 import org.telegram.tgnet.TLRPC;
-public final class c8 implements View.OnClickListener {
-    public final int f11741a;
-    public final n8 f11742b;
+public final class c8 implements z10 {
+    public final int f11611a;
+    public final d8 f11612b;
 
-    public c8(n8 n8Var, int i7) {
-        this.f11741a = i7;
-        this.f11742b = n8Var;
+    public c8(d8 d8Var, int i7) {
+        this.f11611a = i7;
+        this.f11612b = d8Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        q8 q8Var;
-        int i7 = this.f11741a;
-        n8 n8Var = this.f11742b;
-        switch (i7) {
+    public final void a(Object obj) {
+        switch (this.f11611a) {
             case 0:
-                HashMap hashMap = n8Var.d;
-                ArrayList arrayList = n8Var.f12491c;
-                s8 s8Var = n8Var.W;
-                d dVar = n8Var.f12497w;
-                if (!dVar.Q) {
-                    int i10 = s8.X1;
-                    int i11 = s8Var.f28669a;
-                    HashMap hashMap2 = s8Var.f12807o1;
-                    ArrayList arrayList2 = s8Var.n1;
-                    HashMap hashMap3 = s8Var.f12811s1;
-                    ArrayList arrayList3 = s8Var.f12810r1;
-                    qp s12 = qp.s1(i11);
-                    int i12 = n8Var.f12489a;
-                    if (i12 == 5) {
-                        e8 e8Var = s8Var.P1;
-                        if (e8Var != null) {
-                            e8Var.a(arrayList);
-                        }
-                        s8Var.dismiss();
-                        return;
-                    } else if (i12 == 1) {
-                        TLRPC.TL_editCloseFriends tL_editCloseFriends = new TLRPC.TL_editCloseFriends();
-                        tL_editCloseFriends.f27010id.addAll(arrayList);
-                        dVar.setLoading(true);
-                        ConnectionsManager.getInstance(s8Var.f28669a).sendRequest(tL_editCloseFriends, new bi.j(14, n8Var, s12));
-                        return;
-                    } else if (i12 == 0) {
-                        int i13 = s8Var.H1;
-                        if (i13 == 3) {
-                            q8Var = new q8(s8Var.H1, s8Var.f28669a, new ArrayList(s8.R0(arrayList3, hashMap3)));
-                            ArrayList arrayList4 = q8Var.f12684c;
-                            arrayList4.clear();
-                            arrayList4.addAll(arrayList3);
-                            HashMap hashMap4 = q8Var.d;
-                            hashMap4.clear();
-                            hashMap4.putAll(hashMap3);
-                        } else if (i13 == 2) {
-                            q8Var = new q8(i13, s8Var.f28669a, s8Var.f12809q1);
-                        } else if (i13 == 4) {
-                            q8Var = new q8(s8Var.H1, s8Var.f28669a, new ArrayList(s8.R0(arrayList2, hashMap2)));
-                            ArrayList arrayList5 = q8Var.f12684c;
-                            arrayList5.clear();
-                            arrayList5.addAll(arrayList2);
-                            HashMap hashMap5 = q8Var.d;
-                            hashMap5.clear();
-                            hashMap5.putAll(hashMap2);
-                        } else {
-                            q8Var = new q8(i13, s8Var.f28669a, (ArrayList) null);
-                        }
-                        s8Var.N0(q8Var, new di.x3(s8Var, 1), false);
-                        return;
-                    } else if (i12 == 2) {
-                        if (s8Var.T1) {
-                            s8Var.M0();
-                            s8Var.N0(new q8(2, s8Var.f28669a, arrayList), new di.x3(s8Var, 1), false);
-                            return;
-                        }
-                        s8Var.M0();
-                        s8Var.l1.E(0);
-                        return;
-                    } else if (i12 == 3) {
-                        if (s8Var.T1) {
-                            HashSet R0 = s8.R0(arrayList, hashMap);
-                            if (!R0.isEmpty()) {
-                                s8Var.M0();
-                                q8 q8Var2 = new q8(3, s8Var.f28669a, new ArrayList(R0));
-                                ArrayList arrayList6 = q8Var2.f12684c;
-                                arrayList6.clear();
-                                arrayList6.addAll(arrayList);
-                                HashMap hashMap6 = q8Var2.d;
-                                hashMap6.clear();
-                                hashMap6.putAll(hashMap);
-                                s8Var.N0(q8Var2, new d8(n8Var, 0), false);
-                                return;
-                            }
-                            return;
-                        } else if (!s8.R0(arrayList, hashMap).isEmpty()) {
-                            s8Var.H1 = 3;
-                            s8Var.M0();
-                            s8Var.l1.E(0);
-                            return;
-                        } else {
-                            return;
-                        }
-                    } else if (i12 == 6) {
-                        HashSet R02 = s8.R0(arrayList, hashMap);
-                        dVar.setLoading(true);
-                        di.z6 P1 = qp.s1(s8Var.f28669a).P1();
-                        d8 d8Var = new d8(n8Var, 1);
-                        int i14 = P1.f9997a;
-                        TLRPC.TL_contacts_setBlocked tL_contacts_setBlocked = new TLRPC.TL_contacts_setBlocked();
-                        tL_contacts_setBlocked.my_stories_from = true;
-                        HashSet hashSet = P1.L;
-                        tL_contacts_setBlocked.limit = hashSet.size();
-                        int size = P1.N - hashSet.size();
-                        P1.N = size;
-                        if (size < 0) {
-                            P1.N = 0;
-                        }
-                        hashSet.clear();
-                        Iterator it = R02.iterator();
-                        while (it.hasNext()) {
-                            Long l10 = (Long) it.next();
-                            TLRPC.InputPeer j12 = qp.s1(i14).j1(l10.longValue());
-                            if (!(j12 instanceof TLRPC.TL_inputPeerEmpty)) {
-                                hashSet.add(l10);
-                                tL_contacts_setBlocked.f27007id.add(j12);
-                            }
-                        }
-                        P1.N = hashSet.size() + P1.N;
-                        tL_contacts_setBlocked.limit = Math.max(tL_contacts_setBlocked.limit, hashSet.size());
-                        ConnectionsManager.getInstance(i14).sendRequest(tL_contacts_setBlocked, new bi.j0(d8Var, 5));
-                        return;
-                    } else {
-                        s8Var.H1 = i12;
-                        s8Var.M0();
-                        s8Var.l1.E(0);
-                        return;
-                    }
-                }
-                return;
-            case 1:
-                s8 s8Var2 = n8Var.W;
-                if (s8Var2.I1) {
-                    s8Var2.G1 = 5;
-                    s8Var2.l1.E(1);
-                    return;
-                }
-                s8 s8Var3 = new s8(n8Var.getContext(), s8Var2.I0);
-                s8Var3.P1 = new e8(n8Var, 1);
-                s8Var3.K1 = s8Var2.K1;
-                s8Var3.show();
+                d8.c(this.f11612b, (TLRPC.TL_messages_stickerSet) obj);
                 return;
             default:
-                HashMap hashMap7 = n8Var.d;
-                a0.h hVar = n8Var.f12490b;
-                ArrayList arrayList7 = n8Var.f12491c;
-                int size2 = arrayList7.size();
-                int i15 = 0;
-                while (i15 < size2) {
-                    Object obj = arrayList7.get(i15);
-                    i15++;
-                    hVar.k(Boolean.FALSE, ((Long) obj).longValue());
-                }
-                for (ArrayList arrayList8 : hashMap7.values()) {
-                    int size3 = arrayList8.size();
-                    int i16 = 0;
-                    while (i16 < size3) {
-                        Object obj2 = arrayList8.get(i16);
-                        i16++;
-                        hVar.k(Boolean.FALSE, ((Long) obj2).longValue());
-                    }
-                }
-                arrayList7.clear();
-                hashMap7.clear();
-                n8Var.W.D1.clear();
-                n8Var.f12499y.d.a();
-                n8Var.g(true);
-                n8Var.f(true);
+                d8.b(this.f11612b, (TLRPC.TL_messages_stickerSet) obj);
                 return;
         }
     }

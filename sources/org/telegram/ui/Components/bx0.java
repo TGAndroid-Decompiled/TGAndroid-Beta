@@ -1,25 +1,47 @@
 package org.telegram.ui.Components;
+public final class bx0 {
+    public final int f33426a;
 
-import android.util.Pair;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-public final class bx0 extends ArrayList {
-    public final Class f32377a;
-    public final Class f32378b;
-
-    public bx0(Class cls, Class cls2) {
-        this.f32377a = cls;
-        this.f32378b = cls2;
+    public bx0(int i7) {
+        this.f33426a = i7;
     }
 
-    public final h6.m f() {
-        int size = size();
-        Object[] objArr = (Object[]) Array.newInstance(this.f32377a, size);
-        Object[] objArr2 = (Object[]) Array.newInstance(this.f32378b, size);
-        for (int i7 = 0; i7 < size; i7++) {
-            objArr[i7] = ((Pair) get(i7)).first;
-            objArr2[i7] = ((Pair) get(i7)).second;
+    public final int a(ix0 ix0Var, int i7) {
+        switch (this.f33426a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i7;
+            case 3:
+                return Integer.MIN_VALUE;
+            default:
+                return Integer.MIN_VALUE;
         }
-        return new h6.m(objArr, objArr2);
+    }
+
+    public final int b(ix0 ix0Var, int i7) {
+        switch (this.f33426a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i7;
+            case 3:
+                return 0;
+            default:
+                return 0;
+        }
+    }
+
+    public int c(int i7, int i10) {
+        switch (this.f33426a) {
+            case 4:
+                return i10;
+            default:
+                return i7;
+        }
     }
 }

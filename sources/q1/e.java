@@ -2,25 +2,25 @@ package q1;
 
 import kotlin.jvm.internal.j;
 public final class e {
-    public final String f53698a;
+    public final String f55133a;
 
     public e(String name) {
         j.e(name, "name");
-        this.f53698a = name;
+        this.f55133a = name;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof e) {
-            return j.a(this.f53698a, ((e) obj).f53698a);
+            return j.a(this.f55133a, ((e) obj).f55133a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f53698a.hashCode();
+        return this.f55133a.hashCode();
     }
 
     public final String toString() {
-        return this.f53698a;
+        return this.f55133a;
     }
 }

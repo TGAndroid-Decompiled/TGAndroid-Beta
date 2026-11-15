@@ -1,66 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
-import org.telegram.tgnet.TLRPC;
-public final class aw extends p31 {
-    public final gy f32021b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.widget.FrameLayout;
+public final class aw extends FrameLayout {
+    public final Paint f33092a;
+    public final ly f33093b;
 
-    public aw(gy gyVar) {
-        this.f32021b = gyVar;
+    public aw(ly lyVar, Context context) {
+        super(context);
+        this.f33093b = lyVar;
+        this.f33092a = new Paint();
     }
 
     @Override
-    public final boolean a() {
-        return this.f32021b.f34068t1.b();
-    }
-
-    @Override
-    public final String[] b() {
-        return this.f32021b.W0;
-    }
-
-    @Override
-    public final boolean c() {
-        return this.f32021b.f34068t1.c();
-    }
-
-    @Override
-    public final boolean d(i31 i31Var, MotionEvent motionEvent) {
-        org.telegram.ui.ns p10 = org.telegram.ui.ns.p();
-        gy gyVar = this.f32021b;
-        gyVar.getMeasuredHeight();
-        return p10.q(motionEvent, i31Var, gyVar.f34030g2, gyVar.Z1);
-    }
-
-    @Override
-    public final boolean e(i31 i31Var, j jVar, MotionEvent motionEvent) {
-        org.telegram.ui.ns p10 = org.telegram.ui.ns.p();
-        gy gyVar = this.f32021b;
-        gyVar.getMeasuredHeight();
-        return p10.r(motionEvent, i31Var, jVar, gyVar.f34030g2, gyVar.Z1);
-    }
-
-    @Override
-    public final void f(TLRPC.Document document, Object obj, boolean z9, int i7) {
-        this.f32021b.f34068t1.m(null, document, null, obj, null, z9, i7);
-    }
-
-    @Override
-    public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z9) {
-        gy gyVar = this.f32021b;
-        gyVar.f34068t1.r(stickerSetCovered);
-        if (z9) {
-            gyVar.X(true);
+    public final void dispatchDraw(Canvas canvas) {
+        ly lyVar = this.f33093b;
+        zv zvVar = lyVar.C0;
+        float L = org.telegram.messenger.g0.L(50.0f) * lyVar.f36993u1.p();
+        if (L > getMeasuredHeight()) {
+            return;
         }
+        canvas.save();
+        if (L != 0.0f) {
+            canvas.clipRect(0.0f, L, getMeasuredWidth(), getMeasuredHeight());
+        }
+        int z10 = lyVar.z(org.telegram.ui.ActionBar.j6.f29269zf);
+        Paint paint = this.f33092a;
+        paint.setColor(z10);
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), zvVar.getExpandedOffset() + org.telegram.messenger.g0.L(36.0f), paint);
+        super.dispatchDraw(canvas);
+        if (zvVar.f41397s != null) {
+            canvas.save();
+            float f10 = zvVar.f41379d0 - zvVar.f41381e0;
+            float f11 = zvVar.f41400w;
+            if (f11 > 0.0f) {
+                f10 = ((zvVar.f41397s.getX() - zvVar.getScrollX()) * zvVar.f41400w) + ((1.0f - f11) * f10);
+            }
+            canvas.translate(f10, 0.0f);
+            zvVar.f41397s.draw(canvas);
+            canvas.restore();
+        }
+        canvas.restore();
     }
 
     @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-        this.f32021b.f34068t1.h(stickerSetCovered);
-    }
-
-    @Override
-    public final void i(String[] strArr) {
-        this.f32021b.W0 = strArr;
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        super.onLayout(z10, i7, i10, i11, i12);
+        this.f33093b.Z();
     }
 }

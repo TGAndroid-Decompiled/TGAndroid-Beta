@@ -1,250 +1,160 @@
 package d3;
 
-import java.io.RandomAccessFile;
-import java.nio.ByteBuffer;
+import a8.ja;
+import android.content.Context;
+import android.hardware.display.DisplayManager;
+import android.os.Build;
+import android.os.SystemClock;
+import android.view.Choreographer;
+import android.view.Surface;
+import h2.l0;
 public final class x {
-    public long f8096a;
-    public long f8097b;
+    public final l f7478a;
+    public final c0 f7479b;
+    public final long f7480c;
+    public boolean d;
+    public long f7483g;
+    public boolean f7485j;
+    public boolean f7488m;
+    public boolean f7489n;
+    public int f7481e = 0;
+    public long f7482f = -9223372036854775807L;
+    public long h = -9223372036854775807L;
+    public long f7484i = -9223372036854775807L;
+    public float f7486k = 1.0f;
+    public h2.g0 f7487l = h2.g0.f13448a;
+    public final boolean f7490o = true;
 
-    public x(long j3, long j10) {
-        this.f8096a = j3;
-        this.f8097b = j10;
+    public x(Context context, l lVar, long j3) {
+        this.f7478a = lVar;
+        this.f7480c = j3;
+        this.f7479b = new c0(context);
     }
 
-    public static boolean a(int i7) {
-        if (i7 != 0 && i7 != 4 && i7 != 8) {
+    public final int a(long r31, long r33, long r35, long r37, boolean r39, boolean r40, d3.w r41) {
+        throw new UnsupportedOperationException("Method not decompiled: d3.x.a(long, long, long, long, boolean, boolean, d3.w):int");
+    }
+
+    public final boolean b(boolean z10) {
+        if (z10 && (this.f7481e == 3 || (this.f7489n && (!this.f7488m || !this.f7490o)))) {
+            this.f7484i = -9223372036854775807L;
+            return true;
+        } else if (this.f7484i == -9223372036854775807L) {
+            return false;
+        } else {
+            this.f7487l.getClass();
+            if (SystemClock.elapsedRealtime() < this.f7484i) {
+                return true;
+            }
+            this.f7484i = -9223372036854775807L;
             return false;
         }
-        return true;
     }
 
-    public static d3.x b(java.io.File r29) {
-        throw new UnsupportedOperationException("Method not decompiled: d3.x.b(java.io.File):d3.x");
-    }
-
-    public static long c(int i7, ByteBuffer byteBuffer) {
-        if (i7 != 4) {
-            if (i7 != 8) {
-                return 0L;
-            }
-            return byteBuffer.getLong();
+    public final void c(boolean z10) {
+        long j3;
+        this.f7485j = z10;
+        long j10 = this.f7480c;
+        if (j10 > 0) {
+            this.f7487l.getClass();
+            j3 = SystemClock.elapsedRealtime() + j10;
+        } else {
+            j3 = -9223372036854775807L;
         }
-        return byteBuffer.getInt() & 4294967295L;
+        this.f7484i = j3;
     }
 
-    public static String d(RandomAccessFile randomAccessFile, ByteBuffer byteBuffer, long j3) {
-        long j10;
-        int i7;
-        String str;
-        long j11;
-        int i10;
-        long j12;
-        int i11;
-        int i12;
-        long j13;
-        int i13;
-        int i14;
-        long j14;
-        int i15;
-        int i16;
-        char c10 = 4;
-        byteBuffer.position(4);
-        int i17 = -1;
-        ByteBuffer byteBuffer2 = null;
-        while (true) {
-            char c11 = c10;
-            int i18 = 2;
-            if (byteBuffer.remaining() >= 8) {
-                int position = byteBuffer.position();
-                str = null;
-                j11 = 1;
-                long j15 = byteBuffer.getInt() & 4294967295L;
-                int i19 = byteBuffer.getInt();
-                if (j15 >= 8) {
-                    j10 = 4294967295L;
-                    if (j15 > byteBuffer.limit() - position) {
-                        break;
-                    }
-                    int i20 = position + ((int) j15);
-                    ByteBuffer byteBuffer3 = (ByteBuffer) ((ByteBuffer) byteBuffer.duplicate().position(position + 8)).limit(i20);
-                    if (i19 == 1768517222) {
-                        int i21 = byteBuffer3.get() & 255;
-                        byteBuffer3.position(byteBuffer3.position() + 3);
-                        if (i21 == 0) {
-                            j13 = byteBuffer3.getShort() & 65535;
-                        } else {
-                            j13 = byteBuffer3.getInt() & 4294967295L;
-                        }
-                        long j16 = 0;
-                        for (int i22 = 8; j16 < j13 && byteBuffer3.remaining() >= i22 && i17 < 0; i22 = 8) {
-                            int position2 = byteBuffer3.position();
-                            long j17 = j16;
-                            long j18 = byteBuffer3.getInt() & 4294967295L;
-                            int i23 = byteBuffer3.getInt();
-                            if (j18 < 8 || j18 > byteBuffer3.limit() - position2) {
-                                break;
-                            }
-                            if (i23 == 1768842853 && byteBuffer3.remaining() >= 12) {
-                                int i24 = byteBuffer3.get() & 255;
-                                byteBuffer3.position(byteBuffer3.position() + 3);
-                                if (i24 >= i18) {
-                                    if (i24 == i18) {
-                                        i15 = byteBuffer3.getShort() & 65535;
-                                    } else {
-                                        i15 = byteBuffer3.getInt();
-                                    }
-                                    byteBuffer3.getShort();
-                                    if (byteBuffer3.getInt() == 1835625829) {
-                                        int i25 = ((int) j18) + position2;
-                                        String[] strArr = new String[i18];
-                                        int i26 = 0;
-                                        while (i26 < i18 && byteBuffer3.position() < i25) {
-                                            int position3 = byteBuffer3.position();
-                                            while (byteBuffer3.position() < i25 && byteBuffer3.get() != 0) {
-                                            }
-                                            int position4 = byteBuffer3.position() - position3;
-                                            if (byteBuffer3.get(byteBuffer3.position() - 1) == 0) {
-                                                i16 = 1;
-                                            } else {
-                                                i16 = 0;
-                                            }
-                                            strArr[i26] = new String(byteBuffer3.array(), byteBuffer3.arrayOffset() + position3, Math.max(0, position4 - i16));
-                                            i26++;
-                                            i17 = i17;
-                                            position2 = position2;
-                                            j13 = j13;
-                                            i18 = 2;
-                                        }
-                                        i13 = i17;
-                                        i14 = position2;
-                                        j14 = j13;
-                                        if ("application/rdf+xml".equalsIgnoreCase(strArr[1])) {
-                                            i17 = i15;
-                                            byteBuffer3.position(i14 + ((int) j18));
-                                            j16 = j17 + 1;
-                                            j13 = j14;
-                                            i18 = 2;
-                                        }
-                                        i17 = i13;
-                                        byteBuffer3.position(i14 + ((int) j18));
-                                        j16 = j17 + 1;
-                                        j13 = j14;
-                                        i18 = 2;
-                                    }
-                                }
-                            }
-                            i13 = i17;
-                            i14 = position2;
-                            j14 = j13;
-                            i17 = i13;
-                            byteBuffer3.position(i14 + ((int) j18));
-                            j16 = j17 + 1;
-                            j13 = j14;
-                            i18 = 2;
-                        }
-                        i17 = i17;
-                    } else if (i19 == 1768714083) {
-                        byteBuffer2 = byteBuffer3;
-                    }
-                    byteBuffer.position(i20);
-                    c10 = c11;
+    public final void d() {
+        z zVar;
+        this.d = true;
+        this.f7487l.getClass();
+        this.f7483g = l0.S(SystemClock.elapsedRealtime());
+        c0 c0Var = this.f7479b;
+        c0Var.d = true;
+        c0Var.b();
+        DisplayManager displayManager = (DisplayManager) c0Var.f7352b.getSystemService("display");
+        z zVar2 = null;
+        if (displayManager != null) {
+            try {
+                Choreographer choreographer = Choreographer.getInstance();
+                if (Build.VERSION.SDK_INT >= 33) {
+                    zVar = new b0(choreographer, displayManager);
                 } else {
-                    j10 = 4294967295L;
-                    break;
+                    zVar = new z(choreographer, displayManager);
+                }
+                zVar2 = zVar;
+            } catch (RuntimeException e10) {
+                h2.a.m("VideoFrameReleaseHelper", "Vsync sampling disabled due to platform error", e10);
+            }
+        }
+        c0Var.f7353c = zVar2;
+        if (zVar2 != null) {
+            zVar2.a();
+        }
+        c0Var.d(false);
+    }
+
+    public final void e(int i7) {
+        if (i7 != 0) {
+            if (i7 != 1) {
+                if (i7 == 2) {
+                    this.f7481e = Math.min(this.f7481e, 2);
+                } else {
+                    throw new IllegalStateException();
                 }
             } else {
-                j10 = 4294967295L;
-                i7 = 0;
-                str = null;
-                j11 = 1;
-                break;
+                this.f7481e = 0;
             }
+        } else {
+            this.f7481e = 1;
         }
-        i7 = 0;
-        if (i17 >= 0 && byteBuffer2 != null) {
-            int i27 = byteBuffer2.get() & 255;
-            byteBuffer2.position(byteBuffer2.position() + 3);
-            short s5 = byteBuffer2.getShort();
-            int i28 = s5 & 65535;
-            int i29 = (i28 >> 12) & 15;
-            int i30 = (i28 >> 8) & 15;
-            int i31 = (i28 >> 4) & 15;
-            if (i27 != 1 && i27 != 2) {
-                i10 = i7;
-            } else {
-                i10 = s5 & 15;
-            }
-            if (a(i29) && a(i30) && a(i31) && a(i10)) {
-                int i32 = i10 + i29 + i30;
-                if (i27 < 2) {
-                    j12 = byteBuffer2.getShort() & 65535;
-                } else {
-                    j12 = byteBuffer2.getInt() & j10;
-                }
-                long j19 = 0;
-                while (true) {
-                    if (j19 >= j12) {
-                        break;
-                    }
-                    if (i27 < 2) {
-                        i11 = byteBuffer2.getShort() & 65535;
-                    } else {
-                        i11 = byteBuffer2.getInt();
-                    }
-                    int i33 = i11;
-                    if (i27 != 1 && i27 != 2) {
-                        i12 = 0;
-                    } else {
-                        i12 = byteBuffer2.getShort() & 15;
-                    }
-                    byteBuffer2.getShort();
-                    long c12 = c(i31, byteBuffer2);
-                    int i34 = byteBuffer2.getShort() & 65535;
-                    long j20 = j19;
-                    long j21 = j12;
-                    if (i34 * i32 > byteBuffer2.remaining()) {
-                        break;
-                    } else if (i33 != i17) {
-                        byteBuffer2.position((i34 * i32) + byteBuffer2.position());
-                        j19 = j20 + j11;
-                        j12 = j21;
-                    } else if (i12 == 0 && i34 != 0 && i34 <= 64) {
-                        long[] jArr = new long[i34];
-                        long[] jArr2 = new long[i34];
-                        long j22 = 0;
-                        int i35 = 0;
-                        while (true) {
-                            if (i35 < i34) {
-                                c(i10, byteBuffer2);
-                                jArr[i35] = c(i29, byteBuffer2) + c12;
-                                long c13 = c(i30, byteBuffer2);
-                                jArr2[i35] = c13;
-                                long j23 = jArr[i35];
-                                if (j23 < 0 || c13 <= 0 || c13 > j3 - j23) {
-                                    break;
-                                }
-                                j22 += c13;
-                                i35++;
-                            } else if (j22 <= 1048576) {
-                                byte[] bArr = new byte[(int) j22];
-                                int i36 = 0;
-                                for (int i37 = 0; i37 < i34; i37++) {
-                                    randomAccessFile.seek(jArr[i37]);
-                                    randomAccessFile.readFully(bArr, i36, (int) jArr2[i37]);
-                                    i36 += (int) jArr2[i37];
-                                }
-                                return new String(bArr, "UTF-8");
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return str;
+        this.f7479b.b();
     }
 
-    public x() {
-        this.f8096a = -9223372036854775807L;
-        this.f8097b = -9223372036854775807L;
+    public final void f(float f10) {
+        c0 c0Var = this.f7479b;
+        c0Var.f7355f = f10;
+        g gVar = c0Var.f7351a;
+        gVar.f7401a.c();
+        gVar.f7402b.c();
+        gVar.f7403c = false;
+        gVar.d = -9223372036854775807L;
+        gVar.f7404e = 0;
+        c0Var.c();
+    }
+
+    public final void g(Surface surface) {
+        boolean z10;
+        if (surface != null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f7488m = z10;
+        this.f7489n = false;
+        c0 c0Var = this.f7479b;
+        if (c0Var.f7354e != surface) {
+            c0Var.a();
+            c0Var.f7354e = surface;
+            c0Var.d(true);
+        }
+        this.f7481e = Math.min(this.f7481e, 1);
+    }
+
+    public final void h(float f10) {
+        boolean z10;
+        if (f10 > 0.0f) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        ja.f(z10);
+        if (f10 == this.f7486k) {
+            return;
+        }
+        this.f7486k = f10;
+        c0 c0Var = this.f7479b;
+        c0Var.f7357i = f10;
+        c0Var.d(false);
     }
 }

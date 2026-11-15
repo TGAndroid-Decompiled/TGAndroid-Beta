@@ -1,77 +1,40 @@
 package fi;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.jy;
-import org.telegram.ui.Components.nt0;
-public final class s1 extends jy {
-    public final nt0 X;
-    public final t1 Y;
+import android.view.View;
+import org.telegram.messenger.hd;
+import org.telegram.ui.Components.m60;
+public final class s1 implements View.OnLongClickListener {
+    public final int f12303a;
+    public final b4 f12304b;
 
-    public s1(t1 t1Var) {
-        super(100, true);
-        this.Y = t1Var;
-        this.X = new Object();
-        this.O = new ai.l(this, 2);
+    public s1(b4 b4Var, int i7) {
+        this.f12303a = i7;
+        this.f12304b = b4Var;
     }
 
     @Override
-    public final int A() {
-        return B();
-    }
-
-    @Override
-    public final nt0 D1(int i7) {
-        TLRPC.Document document;
-        ArrayList<TLRPC.DocumentAttribute> arrayList;
-        TLRPC.PhotoSize w10;
-        int i10;
-        int i11;
-        nt0 nt0Var = this.X;
-        nt0Var.f36394c = false;
-        Object F = this.Y.f12841c.F(i7);
-        if (F instanceof TLRPC.BotInlineResult) {
-            TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) F;
-            document = botInlineResult.document;
-            if (document != null) {
-                arrayList = document.attributes;
-            } else {
-                TLRPC.WebDocument webDocument = botInlineResult.content;
-                if (webDocument != null) {
-                    arrayList = webDocument.attributes;
-                } else {
-                    TLRPC.WebDocument webDocument2 = botInlineResult.thumb;
-                    if (webDocument2 != null) {
-                        arrayList = webDocument2.attributes;
-                    } else {
-                        arrayList = null;
-                    }
+    public final boolean onLongClick(View view) {
+        int i7 = this.f12303a;
+        boolean z10 = false;
+        b4 b4Var = this.f12304b;
+        switch (i7) {
+            case 0:
+                if (b4Var.B0(true)) {
+                    return false;
                 }
-            }
-        } else if (F instanceof TLRPC.Document) {
-            document = (TLRPC.Document) F;
-            arrayList = document.attributes;
-        } else {
-            nt0Var.f36394c = true;
-            return nt0Var;
-        }
-        nt0Var.f36393b = 100.0f;
-        nt0Var.f36392a = 100.0f;
-        nt0Var.f36394c = false;
-        if (document != null && (w10 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false)) != null && (i10 = w10.f26985w) != 0 && (i11 = w10.h) != 0) {
-            nt0Var.f36392a = i10;
-            nt0Var.f36393b = i11;
-        }
-        if (arrayList != null) {
-            for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                TLRPC.DocumentAttribute documentAttribute = arrayList.get(i12);
-                if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    nt0Var.f36392a = documentAttribute.f26967w;
-                    nt0Var.f36393b = documentAttribute.h;
-                    break;
+                m60 F = m60.F(b4Var.f11522t0.f11879w, b4Var.f11493l0, view);
+                F.c(2131232117, hd.M0(2131748810, null), new t1(b4Var, 6), false);
+                if (b4Var.f11533v3 > 0) {
+                    z10 = true;
                 }
-            }
+                F.l(2131231786, hd.M0(2131748809, null), new t1(b4Var, 7), z10);
+                F.V(5);
+                F.U = true;
+                F.Z();
+                return true;
+            default:
+                b4Var.f11530v0.k(b4Var.B0(false));
+                return true;
         }
-        return nt0Var;
     }
 }

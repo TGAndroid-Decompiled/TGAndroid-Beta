@@ -1,26 +1,24 @@
 package org.telegram.ui;
+public final class xc1 extends org.telegram.ui.ActionBar.j {
+    public final zc1 f53175a;
 
-import com.google.android.gms.tasks.OnFailureListener;
-public final class xc1 implements OnFailureListener {
-    public final int f51690a;
-    public final fi.d f51691b;
-
-    public xc1(fi.d dVar, int i7) {
-        this.f51690a = i7;
-        this.f51691b = dVar;
+    public xc1(zc1 zc1Var) {
+        this.f53175a = zc1Var;
     }
 
     @Override
-    public final void onFailure(Exception exc) {
-        switch (this.f51690a) {
-            case 0:
-                org.telegram.messenger.a8.d("wear-auth: /answer send failed: " + exc.getMessage());
-                this.f51691b.setLoading(false);
-                return;
-            default:
-                org.telegram.messenger.a8.d("wear-auth: /token send failed: " + exc.getMessage());
-                this.f51691b.setLoading(false);
-                return;
+    public final void b(int i7) {
+        zc1 zc1Var = this.f53175a;
+        org.telegram.messenger.gj gjVar = zc1Var.f53941n;
+        if (i7 == -1) {
+            zc1Var.finishFragment();
+        } else if (i7 == 1) {
+            if (gjVar != null) {
+                gjVar.f23817k.with_my_score = false;
+                zc1Var.showDialog(org.telegram.ui.Components.po0.N0(zc1Var.getParentActivity(), gjVar, null, false, zc1Var.h));
+            }
+        } else if (i7 == 2) {
+            zc1.a0(zc1Var.d, gjVar, zc1Var.getParentActivity(), zc1Var.f53942r, zc1Var.f53939e);
         }
     }
 }

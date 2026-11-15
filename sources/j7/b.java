@@ -5,9 +5,9 @@ import com.google.android.gms.identitycredentials.GetCredentialRequest;
 import com.google.android.gms.location.LocationAvailability;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
-import m.o0;
+import m.n0;
 public final class b implements Parcelable.Creator {
-    public final int f16558a;
+    public final int f16911a;
 
     @Override
     public final java.lang.Object createFromParcel(android.os.Parcel r43) {
@@ -16,7 +16,7 @@ public final class b implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i7) {
-        switch (this.f16558a) {
+        switch (this.f16911a) {
             case 0:
                 return new a[i7];
             case 1:
@@ -74,7 +74,7 @@ public final class b implements Parcelable.Creator {
             case 27:
                 return new l6.c[i7];
             case 28:
-                return new o0[i7];
+                return new n0[i7];
             default:
                 return new m6.a[i7];
         }

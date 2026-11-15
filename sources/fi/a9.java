@@ -1,30 +1,20 @@
 package fi;
-public final class a9 implements Runnable {
-    public final int f11621a;
-    public final va f11622b;
-    public final Runnable f11623c;
 
-    public a9(va vaVar, Runnable runnable, int i7) {
-        this.f11621a = i7;
-        this.f11622b = vaVar;
-        this.f11623c = runnable;
+import android.content.Context;
+public final class a9 extends x {
+    public final i9 f11441a;
+
+    public a9(Context context, i9 i9Var) {
+        super(context);
+        this.f11441a = i9Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f11621a) {
-            case 0:
-                this.f11623c.run();
-                this.f11622b.o0();
-                return;
-            default:
-                va vaVar = this.f11622b;
-                vaVar.e(false);
-                org.telegram.messenger.g0.r(vaVar.f12960g2);
-                vaVar.f12960g2 = null;
-                vaVar.S1 = false;
-                this.f11623c.run();
-                return;
+    public final void invalidate() {
+        super.invalidate();
+        a4 a4Var = this.f11441a.G0;
+        if (a4Var != null) {
+            a4Var.b();
         }
     }
 }

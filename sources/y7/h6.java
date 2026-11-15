@@ -1,3 +1,4 @@
 package y7;
-public abstract class h6 {
+public final class h6 {
+    public final Float f60264a;
 }

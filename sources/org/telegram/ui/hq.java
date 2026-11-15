@@ -1,68 +1,27 @@
 package org.telegram.ui;
 
-import android.view.View;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-public final class hq implements q0.a {
-    public final int f46407a;
+public final class hq implements r40 {
+    public final w40 f47796a;
+    public final qq f47797b;
 
-    public hq(int i7) {
-        this.f46407a = i7;
+    public hq(qq qqVar, w40 w40Var) {
+        this.f47797b = qqVar;
+        this.f47796a = w40Var;
     }
 
     @Override
-    public final void accept(Object obj) {
-        boolean z9;
-        boolean z10;
-        long j3;
-        boolean z11 = true;
-        switch (this.f46407a) {
-            case 0:
-                TLRPC.User user = (TLRPC.User) obj;
-                return;
-            case 1:
-                View view = (View) obj;
-                boolean z12 = ChatAttachAlertPhotoLayout.f31204q1;
-                if (view instanceof org.telegram.ui.Cells.q5) {
-                    org.telegram.ui.Cells.q5 q5Var = (org.telegram.ui.Cells.q5) view;
-                    if (q5Var.getPhotoEntry() != null && q5Var.getPhotoEntry().M) {
-                        z9 = true;
-                    } else {
-                        z9 = false;
-                    }
-                    q5Var.c(z9, Float.valueOf(250.0f));
-                    if (q5Var.getPhotoEntry() != null && q5Var.getPhotoEntry().c()) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    q5Var.setHighQuality(z10);
-                    if (q5Var.getPhotoEntry() != null) {
-                        j3 = q5Var.getPhotoEntry().N;
-                    } else {
-                        j3 = 0;
-                    }
-                    if (ChatAttachAlertPhotoLayout.f31206s1.size() <= 1) {
-                        z11 = false;
-                    }
-                    q5Var.f(j3, z11);
-                    return;
-                }
-                return;
-            case 2:
-                View view2 = (View) obj;
-                if (view2 instanceof org.telegram.ui.Components.pl0) {
-                    ((org.telegram.ui.Components.pl0) view2).a(false, true);
-                    return;
-                }
-                return;
-            default:
-                View view3 = (View) obj;
-                if (view3 instanceof org.telegram.ui.Components.pl0) {
-                    ((org.telegram.ui.Components.pl0) view3).a(false, true);
-                    return;
-                }
-                return;
+    public final void f(TLRPC.User user) {
+        this.f47797b.y0(user.f28200id, null, null, null, "", true, 0, false);
+    }
+
+    @Override
+    public final void i(int i7, ArrayList arrayList) {
+        if (this.f47796a.getParentActivity() == null) {
+            return;
         }
+        qq qqVar = this.f47797b;
+        qqVar.getMessagesController().o(qqVar.f50738n, qqVar, arrayList, i7, new f3(this, 2), new gq(0), null);
     }
 }

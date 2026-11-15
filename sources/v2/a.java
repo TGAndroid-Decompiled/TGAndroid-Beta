@@ -1,14 +1,14 @@
 package v2;
 
-import c8.ca;
+import c8.ba;
 import e2.u;
 import t3.h;
 import v3.c;
 public final class a {
-    public static final a f56989a = new Object();
+    public static final a f58463a = new Object();
 
-    public final ca a(u uVar) {
-        String str = uVar.f10620s;
+    public final ba a(u uVar) {
+        String str = uVar.f10451s;
         if (str != null) {
             char c10 = 65535;
             switch (str.hashCode()) {
@@ -56,11 +56,11 @@ public final class a {
                     return new c();
             }
         }
-        throw new IllegalArgumentException(rf.b.i("Attempted to create decoder for unsupported MIME type: ", str));
+        throw new IllegalArgumentException(r.b.k("Attempted to create decoder for unsupported MIME type: ", str));
     }
 
     public final boolean b(u uVar) {
-        String str = uVar.f10620s;
+        String str = uVar.f10451s;
         if (!"application/id3".equals(str) && !"application/x-emsg".equals(str) && !"application/x-scte35".equals(str) && !"application/x-icy".equals(str) && !"application/vnd.dvb.ait".equals(str)) {
             return false;
         }

@@ -10,61 +10,60 @@ import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.i6;
-import org.telegram.messenger.id;
-import org.telegram.messenger.p10;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.Components.h5;
-import org.telegram.ui.Components.my0;
-import org.telegram.ui.Components.v5;
-import org.telegram.ui.Components.wq;
-import org.telegram.ui.kz;
-import org.telegram.ui.o00;
-import org.telegram.ui.r30;
-import org.telegram.ui.s30;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.m10;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.er;
+import org.telegram.ui.Components.g5;
+import org.telegram.ui.Components.oy0;
+import org.telegram.ui.Components.u5;
+import org.telegram.ui.iz;
+import org.telegram.ui.o30;
+import org.telegram.ui.p30;
+import org.telegram.ui.rv;
 public final class b {
-    public boolean f13265a;
-    public int f13266b;
-    public final Object f13267c;
+    public boolean f12613a;
+    public int f12614b;
+    public final Object f12615c;
     public final Object d;
-    public Object f13268e;
-    public Object f13269f;
-    public Object f13270g;
+    public Object f12616e;
+    public Object f12617f;
+    public Object f12618g;
     public Object h;
-    public View f13271i;
-    public Object f13272j;
-    public Object f13273k;
-    public Object f13274l;
-    public Object f13275m;
+    public View f12619i;
+    public Object f12620j;
+    public Object f12621k;
+    public Object f12622l;
+    public Object f12623m;
 
     public b(ContextThemeWrapper contextThemeWrapper) {
-        this.f13266b = -1;
-        this.f13267c = contextThemeWrapper;
+        this.f12614b = -1;
+        this.f12615c = contextThemeWrapper;
         this.d = (LayoutInflater) contextThemeWrapper.getSystemService("layout_inflater");
     }
 
     public boolean a(Canvas canvas, float f10, float f11) {
         int L;
-        boolean z9;
+        boolean z10;
         Paint paint = (Paint) this.d;
         canvas.save();
-        my0 my0Var = (my0) this.f13269f;
-        my0Var.f36144p = f10 - g0.L(132.0f);
-        Paint paint2 = (Paint) this.f13267c;
-        paint2.setColor(i0.a.f(f11, this.f13266b, m6.x0(null, m6.f27973hh, false)));
-        float d = ((v5) this.f13272j).d(this.f13265a);
+        oy0 oy0Var = (oy0) this.f12617f;
+        oy0Var.f38116p = f10 - g0.L(132.0f);
+        Paint paint2 = (Paint) this.f12615c;
+        paint2.setColor(i0.a.f(f11, this.f12614b, j6.x0(null, j6.f28988kh, false)));
+        float d = ((u5) this.f12620j).d(this.f12613a);
         int L2 = g0.L(14.0f);
-        float k10 = my0Var.k() + g0.L(86.0f) + L2;
+        float k10 = oy0Var.k() + g0.L(86.0f) + L2;
         float L3 = g0.L(28.0f);
         float L4 = g0.L(232.0f);
-        float i7 = ((my0) this.f13270g).i() + g0.L(54.0f) + g0.L(50.0f);
+        float i7 = ((oy0) this.f12618g).i() + g0.L(54.0f) + g0.L(50.0f);
         float T1 = g0.T1(k10, L4, f11);
         float T12 = g0.T1(L3, i7, f11);
         float W1 = g0.W1(f11, g0.L(14.0f), g0.L(16.0f));
         RectF rectF = g0.P;
         rectF.set((f10 - T1) / 2.0f, 0.0f, (f10 + T1) / 2.0f, T12);
         canvas.drawRoundRect(rectF, W1, W1, paint2);
-        Path path = (Path) this.f13275m;
+        Path path = (Path) this.f12623m;
         path.rewind();
         path.addRoundRect(rectF, W1, W1, Path.Direction.CW);
         canvas.clipPath(path);
@@ -73,7 +72,7 @@ public final class b {
         int i10 = L5 / 2;
         int centerY = ((int) rectF.centerY()) - i10;
         int centerY2 = ((int) rectF.centerY()) + i10;
-        RectF rectF2 = (RectF) this.f13273k;
+        RectF rectF2 = (RectF) this.f12621k;
         int L7 = g0.L(7.0f);
         float f12 = L5 / 2.0f;
         float f13 = centerY;
@@ -82,132 +81,132 @@ public final class b {
         float f15 = f10 / 2.0f;
         float f16 = f15 - (L * 2);
         float L8 = (int) ((L4 - g0.L(32.0f)) / 4.0f);
-        RectF rectF3 = (RectF) this.f13274l;
+        RectF rectF3 = (RectF) this.f12622l;
         float f17 = (int) ((0.5f * L8) + f16);
         float f18 = L6 / 2.0f;
         rectF3.set(f17 - f18, (int) ((rectF.top + g0.L(27.33f)) - f18), f17 + f18, (int) (rectF.top + g0.L(27.33f) + f18));
         g0.c2(rectF2, rectF3, f11, rectF3);
-        s30[] s30VarArr = (s30[]) this.f13268e;
-        boolean b10 = s30VarArr[0].b(canvas, rectF3, f11);
+        p30[] p30VarArr = (p30[]) this.f12616e;
+        boolean b10 = p30VarArr[0].b(canvas, rectF3, f11);
         rectF2.set((g0.L(10.0f) + (g0.L(27.0f) + ((int) rectF.left))) - f12, f13, g0.L(10.0f) + g0.L(27.0f) + ((int) rectF.left) + f12, f14);
         float f19 = (int) ((1.5f * L8) + f16);
-        boolean z10 = b10;
+        boolean z11 = b10;
         rectF3.set(f19 - f18, (int) ((rectF.top + g0.L(27.33f)) - f18), f19 + f18, (int) (rectF.top + g0.L(27.33f) + f18));
         g0.c2(rectF2, rectF3, f11, rectF3);
-        if (s30VarArr[1].b(canvas, rectF3, f11)) {
-            z10 = true;
+        if (p30VarArr[1].b(canvas, rectF3, f11)) {
+            z11 = true;
         }
-        my0 my0Var2 = (my0) this.f13269f;
-        my0Var2.c(f15 - (my0Var2.k() / 2.0f), L3 / 2.0f, g0.T1(1.0f, 0.75f, d) * (1.0f - f11), -1, canvas);
+        oy0 oy0Var2 = (oy0) this.f12617f;
+        oy0Var2.c(f15 - (oy0Var2.k() / 2.0f), L3 / 2.0f, g0.T1(1.0f, 0.75f, d) * (1.0f - f11), -1, canvas);
         rectF2.set((g0.L(10.0f) + (((int) rectF.right) - g0.L(47.0f))) - f12, f13, g0.L(10.0f) + (((int) rectF.right) - g0.L(47.0f)) + f12, f14);
         float f20 = (int) ((L8 * 2.5f) + f16);
         rectF3.set(f20 - f18, (int) ((rectF.top + g0.L(27.33f)) - f18), f20 + f18, (int) (rectF.top + g0.L(27.33f) + f18));
         g0.c2(rectF2, rectF3, f11, rectF3);
-        if (s30VarArr[2].b(canvas, rectF3, f11)) {
-            z10 = true;
+        if (p30VarArr[2].b(canvas, rectF3, f11)) {
+            z11 = true;
         }
         rectF2.set((g0.L(10.0f) + (((int) rectF.right) - g0.L(27.0f))) - f12, f13, g0.L(10.0f) + (((int) rectF.right) - g0.L(27.0f)) + f12, f14);
         float f21 = (int) ((L8 * 3.5f) + f16);
         rectF3.set(f21 - f18, (int) ((rectF.top + g0.L(27.33f)) - f18), f21 + f18, (int) (rectF.top + g0.L(27.33f) + f18));
         g0.c2(rectF2, rectF3, f11, rectF3);
-        if (s30VarArr[3].b(canvas, rectF3, f11)) {
-            z9 = true;
+        if (p30VarArr[3].b(canvas, rectF3, f11)) {
+            z10 = true;
         } else {
-            z9 = z10;
+            z10 = z11;
         }
         if (f11 > 0.0f) {
-            ((my0) this.f13270g).c((rectF.centerX() - (L4 / 2.0f)) + g0.L(16.0f), g0.L(54.0f), f11, -1, canvas);
+            ((oy0) this.f12618g).c((rectF.centerX() - (L4 / 2.0f)) + g0.L(16.0f), g0.L(54.0f), f11, -1, canvas);
             paint.setColor(-16777216);
             paint.setAlpha((int) (255.0f * f11));
             canvas.drawRect(rectF.left, i7 - g0.L(40.0f), rectF.right, g0.L(0.66f) + (i7 - g0.L(40.0f)), paint);
-            ((my0) this.h).c(rectF.centerX() - (((my0) this.h).k() / 2.0f), i7 - g0.L(20.0f), f11, -1, canvas);
+            ((oy0) this.h).c(rectF.centerX() - (((oy0) this.h).k() / 2.0f), i7 - g0.L(20.0f), f11, -1, canvas);
         }
         canvas.restore();
-        return z9;
+        return z10;
     }
 
     public void b(String[] strArr) {
-        boolean z9;
-        String str;
         boolean z10;
+        String str;
+        boolean z11;
         if (strArr == null) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        this.f13265a = z9;
+        this.f12613a = z10;
         for (int i7 = 0; i7 < 4; i7++) {
-            s30 s30Var = ((s30[]) this.f13268e)[i7];
+            p30 p30Var = ((p30[]) this.f12616e)[i7];
             if (strArr == null) {
                 str = null;
             } else {
                 str = strArr[i7];
             }
-            r30 r30Var = s30Var.f49651k;
-            boolean z11 = s30Var.f49647f;
+            o30 o30Var = p30Var.f50128k;
+            boolean z12 = p30Var.f50124f;
             if (str != null) {
-                z10 = true;
+                z11 = true;
             } else {
-                z10 = false;
+                z11 = false;
             }
-            s30Var.f49647f = z10;
-            if (str != null && (s30Var.d == null || !TextUtils.equals(s30Var.f49652l, str))) {
-                h5 h5Var = s30Var.d;
-                if (h5Var != null) {
-                    h5Var.o(r30Var);
+            p30Var.f50124f = z11;
+            if (str != null && (p30Var.d == null || !TextUtils.equals(p30Var.f50129l, str))) {
+                g5 g5Var = p30Var.d;
+                if (g5Var != null) {
+                    g5Var.o(o30Var);
                 }
-                s30Var.f49645c = i6.g(str);
-                int l10 = p10.l();
+                p30Var.f50122c = org.telegram.messenger.j6.g(str);
+                int l10 = m10.l();
                 ?? drawable = new Drawable();
-                drawable.f34177l = 1.0f;
-                drawable.f34179n = null;
-                drawable.f34180o = null;
-                drawable.f34173g = 21;
+                drawable.f34810l = 1.0f;
+                drawable.f34812n = null;
+                drawable.f34813o = null;
+                drawable.f34806g = 21;
                 drawable.h = l10;
                 drawable.x();
-                h5.w();
-                s30Var.d = drawable;
-                s30Var.f49652l = str;
+                g5.w();
+                p30Var.d = drawable;
+                p30Var.f50129l = str;
                 drawable.q(str);
-                s30Var.c();
-                if (s30Var.f49650j) {
-                    s30Var.d.b(r30Var);
+                p30Var.c();
+                if (p30Var.f50127j) {
+                    p30Var.d.b(o30Var);
                 }
             }
-            if (s30Var.f49647f && !z11) {
-                s30Var.f49646e = false;
+            if (p30Var.f50124f && !z12) {
+                p30Var.f50123e = false;
             }
         }
-        o00 o00Var = (o00) this.f13271i;
-        if (o00Var != null) {
-            o00Var.invalidate();
+        rv rvVar = (rv) this.f12619i;
+        if (rvVar != null) {
+            rvVar.invalidate();
         }
     }
 
     public b() {
-        this.f13267c = new Paint(1);
+        this.f12615c = new Paint(1);
         this.d = new Paint(1);
-        this.f13268e = new s30[4];
-        this.f13265a = true;
-        this.f13272j = new v5(new kz(this, 8), 320L, wq.h, 0);
-        this.f13273k = new RectF();
-        this.f13274l = new RectF();
-        this.f13275m = new Path();
+        this.f12616e = new p30[4];
+        this.f12613a = true;
+        this.f12620j = new u5(new iz(this, 8), 320L, er.h, 0);
+        this.f12621k = new RectF();
+        this.f12622l = new RectF();
+        this.f12623m = new Path();
         int i7 = 0;
         while (true) {
-            s30[] s30VarArr = (s30[]) this.f13268e;
-            if (i7 < s30VarArr.length) {
-                s30VarArr[i7] = new s30(i7);
+            p30[] p30VarArr = (p30[]) this.f12616e;
+            if (i7 < p30VarArr.length) {
+                p30VarArr[i7] = new p30(i7);
                 i7++;
             } else {
-                ((Paint) this.f13267c).setColor(m6.x0(null, m6.f27973hh, false));
-                this.f13269f = new my0(id.M0(2131751821, null), 12.0f, g0.o());
-                my0 my0Var = new my0(id.M0(2131751819, null), 11.0f, null);
-                my0Var.m(99);
-                my0Var.p(g0.L(200.0f));
-                my0Var.l(g0.L(2.66f));
-                this.f13270g = my0Var;
-                this.h = new my0(id.M0(2131751820, null), 14.0f, g0.o());
+                ((Paint) this.f12615c).setColor(j6.x0(null, j6.f28988kh, false));
+                this.f12617f = new oy0(hd.M0(2131751821, null), 12.0f, g0.o());
+                oy0 oy0Var = new oy0(hd.M0(2131751819, null), 11.0f, null);
+                oy0Var.m(99);
+                oy0Var.p(g0.L(200.0f));
+                oy0Var.l(g0.L(2.66f));
+                this.f12618g = oy0Var;
+                this.h = new oy0(hd.M0(2131751820, null), 14.0f, g0.o());
                 b(null);
                 return;
             }

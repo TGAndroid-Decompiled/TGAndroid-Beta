@@ -1,45 +1,30 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public final class yk extends qq0 {
-    public final ArrayList f52059a;
-    public final boolean[] f52060b;
-    public final cn f52061c;
+import android.app.Activity;
+import org.telegram.ui.Components.UndoView;
+public final class yk extends org.telegram.ui.Components.h10 {
+    public final an n1;
 
-    public yk(cn cnVar, ArrayList arrayList, boolean[] zArr) {
-        this.f52061c = cnVar;
-        this.f52059a = arrayList;
-        this.f52060b = zArr;
+    public yk(an anVar, Activity activity, org.telegram.ui.ActionBar.e2 e2Var) {
+        super(activity, e2Var);
+        this.n1 = anVar;
     }
 
     @Override
-    public final boolean T() {
-        return false;
-    }
-
-    @Override
-    public final org.telegram.messenger.jc j(int i7) {
-        return null;
-    }
-
-    @Override
-    public final void o(int i7, org.telegram.messenger.j20 j20Var, boolean z9, int i10, int i11, boolean z10) {
-        ArrayList arrayList = this.f52059a;
-        for (int size = arrayList.size() - 1; size >= 0; size--) {
-            if (!this.f52060b[size]) {
-                arrayList.remove(size);
-            }
+    public final void I0() {
+        an anVar = this.n1;
+        anVar.h8();
+        UndoView undoView = anVar.N3;
+        if (undoView == null) {
+            return;
         }
-        this.f52061c.Jb(i10, arrayList, z9, z10);
+        undoView.j(75, 0L, null);
+        anVar.getMessagesController().k4(anVar.f45259k6, "CONVERT_GIGAGROUP");
     }
 
     @Override
-    public final boolean x(int i7) {
-        return this.f52060b[i7];
-    }
-
-    @Override
-    public final int k(int i7, org.telegram.messenger.j20 j20Var) {
-        return i7;
+    public final void J0() {
+        an anVar = this.n1;
+        anVar.getMessagesController().S(anVar.getParentActivity(), anVar.f45173e, anVar, new w0(this, 21));
     }
 }

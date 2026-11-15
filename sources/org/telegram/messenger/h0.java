@@ -3,21 +3,21 @@ package org.telegram.messenger;
 import android.content.SharedPreferences;
 import org.telegram.tgnet.TLRPC;
 public final class h0 implements k0 {
-    public final String f22782a;
-    public final boolean f22783b;
-    public boolean f22784c;
+    public final String f24004a;
+    public final boolean f24005b;
+    public boolean f24006c;
 
-    public h0(String str, boolean z9) {
-        this.f22782a = str;
-        this.f22783b = z9;
+    public h0(String str, boolean z10) {
+        this.f24004a = str;
+        this.f24005b = z10;
     }
 
     @Override
     public final boolean a(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
-        boolean z9;
-        if ((jSONValue instanceof TLRPC.TL_jsonBool) && (z9 = ((TLRPC.TL_jsonBool) jSONValue).value) != this.f22784c) {
-            this.f22784c = z9;
-            editor.putBoolean(this.f22782a, z9);
+        boolean z10;
+        if ((jSONValue instanceof TLRPC.TL_jsonBool) && (z10 = ((TLRPC.TL_jsonBool) jSONValue).value) != this.f24006c) {
+            this.f24006c = z10;
+            editor.putBoolean(this.f24004a, z10);
             return true;
         }
         return false;
@@ -25,6 +25,6 @@ public final class h0 implements k0 {
 
     @Override
     public final void b(SharedPreferences sharedPreferences) {
-        this.f22784c = sharedPreferences.getBoolean(this.f22782a, this.f22783b);
+        this.f24006c = sharedPreferences.getBoolean(this.f24004a, this.f24005b);
     }
 }

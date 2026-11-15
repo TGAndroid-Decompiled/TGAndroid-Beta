@@ -113,12 +113,12 @@ public class SymbolAtom extends CharSymbol {
         symbols.put(symbolAtom.name, symbolAtom);
     }
 
-    public SymbolAtom(String str, int i7, boolean z9) {
+    public SymbolAtom(String str, int i7, boolean z10) {
         this.name = str;
         this.type = i7;
         if (i7 == 1) {
             this.type_limits = 0;
         }
-        this.delimiter = z9;
+        this.delimiter = z10;
     }
 }

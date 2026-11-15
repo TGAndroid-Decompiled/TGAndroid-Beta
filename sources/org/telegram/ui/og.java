@@ -1,23 +1,41 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class og implements View.OnLayoutChangeListener {
-    public final int f48523a;
-    public final Object f48524b;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class og implements Runnable {
+    public final int f49955a;
+    public final EditTextBoldCursor f49956b;
 
-    public og(Object obj, int i7) {
-        this.f48523a = i7;
-        this.f48524b = obj;
+    public og(EditTextBoldCursor editTextBoldCursor, int i7) {
+        this.f49955a = i7;
+        this.f49956b = editTextBoldCursor;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
-        switch (this.f48523a) {
+    public final void run() {
+        switch (this.f49955a) {
             case 0:
-                view.post((bi.u0) this.f48524b);
+                org.telegram.messenger.g0.J3(this.f49956b);
+                return;
+            case 1:
+                EditTextBoldCursor editTextBoldCursor = this.f49956b;
+                editTextBoldCursor.requestFocus();
+                org.telegram.messenger.g0.J3(editTextBoldCursor);
+                return;
+            case 2:
+                EditTextBoldCursor editTextBoldCursor2 = this.f49956b;
+                editTextBoldCursor2.requestFocus();
+                org.telegram.messenger.g0.J3(editTextBoldCursor2);
+                return;
+            case 3:
+                org.telegram.messenger.g0.J3(this.f49956b);
+                return;
+            case 4:
+                org.telegram.messenger.g0.J3(this.f49956b);
                 return;
             default:
-                ((o31) this.f48524b).p0();
+                EditTextBoldCursor editTextBoldCursor3 = this.f49956b;
+                editTextBoldCursor3.requestFocus();
+                org.telegram.messenger.g0.J3(editTextBoldCursor3);
                 return;
         }
     }

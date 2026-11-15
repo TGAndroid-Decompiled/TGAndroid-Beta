@@ -2,50 +2,28 @@ package b9;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.xb;
+import c8.yb;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 public final class e1 extends r6.a {
-    public static final Parcelable.Creator<e1> CREATOR = new n0(12);
-    public final boolean f3044a;
-    public final List f3045b;
+    public static final Parcelable.Creator<e1> CREATOR = new o0(11);
+    public final int f2998a;
+    public final List f2999b;
+    public final b1 f3000c;
 
-    public e1(ArrayList arrayList, boolean z9) {
-        this.f3044a = z9;
-        this.f3045b = arrayList;
-    }
-
-    public final boolean equals(Object obj) {
-        List list;
-        List list2;
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && e1.class == obj.getClass()) {
-            e1 e1Var = (e1) obj;
-            if (this.f3044a == e1Var.f3044a && ((list2 = this.f3045b) == (list = e1Var.f3045b) || (list2 != null && list2.equals(list)))) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f3044a), this.f3045b});
-    }
-
-    public final String toString() {
-        String valueOf = String.valueOf(this.f3045b);
-        return "AppWearDetailsParcelable{isWatchface=" + this.f3044a + ", watchfaceCategories=" + valueOf + "}";
+    public e1(int i7, ArrayList arrayList, b1 b1Var) {
+        this.f2998a = i7;
+        this.f2999b = arrayList;
+        this.f3000c = b1Var;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = xb.r(parcel, 20293);
-        xb.q(parcel, 1, 4);
-        parcel.writeInt(this.f3044a ? 1 : 0);
-        xb.n(parcel, 2, this.f3045b);
-        xb.s(parcel, r10);
+        int r10 = yb.r(parcel, 20293);
+        yb.q(parcel, 1, 4);
+        parcel.writeInt(this.f2998a);
+        yb.p(parcel, 2, this.f2999b);
+        yb.k(parcel, 3, this.f3000c, i7);
+        yb.s(parcel, r10);
     }
 }

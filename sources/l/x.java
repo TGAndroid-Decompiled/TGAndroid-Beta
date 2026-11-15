@@ -4,11 +4,11 @@ import android.content.Context;
 public interface x {
     boolean b(m mVar);
 
-    void c(k kVar, boolean z9);
+    boolean c();
 
-    boolean d();
+    void d();
 
-    void e();
+    void e(k kVar, boolean z10);
 
     void h(w wVar);
 

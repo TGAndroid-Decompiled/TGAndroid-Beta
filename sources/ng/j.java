@@ -1,14 +1,14 @@
 package ng;
 public final class j {
-    public float f20590a;
-    public float f20591b;
-    public float f20592c;
+    public float f21155a;
+    public float f21156b;
+    public float f21157c;
     public float d;
-    public float f20593e;
-    public float f20594f;
-    public float[] f20595g;
+    public float f21158e;
+    public float f21159f;
+    public float[] f21160g;
     public float[] h;
-    public float[] f20596i;
-    public float[] f20597j;
-    public float[] f20598k;
+    public float[] f21161i;
+    public float[] f21162j;
+    public float[] f21163k;
 }

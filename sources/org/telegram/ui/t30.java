@@ -1,52 +1,28 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import java.util.HashSet;
-public final class t30 extends v4.k {
-    public float F;
-    public ValueAnimator G;
-    public final HashSet H = new HashSet();
-    public final HashSet I = new HashSet();
-    public float J;
-    public float K;
-    public final f40 L;
+import android.content.Context;
+import android.view.View;
+public final class t30 extends org.telegram.ui.Cells.f4 {
+    public final w30 f51343h0;
 
-    public t30(f40 f40Var) {
-        this.L = f40Var;
+    public t30(w30 w30Var, Context context) {
+        super(context);
+        this.f51343h0 = w30Var;
     }
 
     @Override
-    public final void g() {
-        super.g();
-        this.I.clear();
-        this.H.clear();
-        this.K = Float.MAX_VALUE;
-        this.L.K1.invalidate();
+    public final void d(org.telegram.ui.Cells.f4 f4Var) {
+        c40 c40Var = this.f51343h0.N;
+        c40 c40Var2 = c40.C5;
+        c40Var.L1(f4Var);
     }
 
     @Override
-    public final void m() {
-        boolean isEmpty = this.f57109p.isEmpty();
-        boolean isEmpty2 = this.f57111r.isEmpty();
-        boolean isEmpty3 = this.f57110q.isEmpty();
-        ValueAnimator valueAnimator = this.G;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.G = null;
+    public final void onMeasure(int i7, int i10) {
+        if (org.telegram.messenger.g0.Q1()) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(420.0f), View.MeasureSpec.getSize(i7)), 1073741824), i10);
+        } else {
+            super.onMeasure(i7, i10);
         }
-        if (!isEmpty || !isEmpty2 || !isEmpty3) {
-            this.F = 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.G = ofFloat;
-            ofFloat.addUpdateListener(new a3(this, 14));
-            this.G.addListener(new g30(this, 1));
-            this.G.setDuration(350L);
-            this.G.setInterpolator(org.telegram.ui.Components.wq.f40046f);
-            this.G.start();
-            f40 f40Var = this.L;
-            f40Var.K1.invalidate();
-            f40Var.U3.invalidate();
-        }
-        super.m();
     }
 }

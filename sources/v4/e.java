@@ -4,31 +4,31 @@ import android.animation.ValueAnimator;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.ui.Cells.q1;
-import org.telegram.ui.Components.v50;
+import org.telegram.ui.Components.y50;
 public final class e implements ValueAnimator.AnimatorUpdateListener {
-    public final int f57070a;
-    public final Object f57071b;
-    public final Object f57072c;
+    public final int f58531a;
+    public final Object f58532b;
+    public final Object f58533c;
 
     public e(int i7, Object obj, Object obj2) {
-        this.f57070a = i7;
-        this.f57071b = obj;
-        this.f57072c = obj2;
+        this.f58531a = i7;
+        this.f58532b = obj;
+        this.f58533c = obj2;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f57070a) {
+        switch (this.f58531a) {
             case 0:
-                ((k) this.f57071b).P((d1) this.f57072c);
+                ((k) this.f58532b).P((e1) this.f58533c);
                 return;
             default:
-                v50 v50Var = (v50) this.f57071b;
-                v50Var.getClass();
-                ((Drawable) this.f57072c).setAlpha(((Integer) valueAnimator.getAnimatedValue()).intValue());
-                View view = ((ug.f1) v50Var.f38863c).f56594v2;
+                y50 y50Var = (y50) this.f58532b;
+                y50Var.getClass();
+                ((Drawable) this.f58533c).setAlpha(((Integer) valueAnimator.getAnimatedValue()).intValue());
+                View view = ((ug.g1) y50Var.f41885c).f58108w2;
                 if (view instanceof q1) {
-                    ((q1) view).p2();
+                    ((q1) view).q2();
                     return;
                 } else {
                     view.invalidate();

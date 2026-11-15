@@ -1,173 +1,80 @@
 package org.telegram.ui.Components;
 
-import android.animation.ObjectAnimator;
-import android.os.SystemClock;
-import android.view.View;
-import android.view.ViewConfiguration;
-import android.widget.FrameLayout;
-import android.widget.HorizontalScrollView;
-import androidx.recyclerview.widget.RecyclerView;
-public class fy extends v4.s0 {
-    public final int f33681a;
-    public boolean f33682b;
-    public final gy f33683c;
+import android.text.TextUtils;
+import android.util.LongSparseArray;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.Utilities;
+public final class fy implements zx {
+    public String f34735a;
+    public int f34736b;
+    public final ArrayList f34737c = new ArrayList();
+    public final HashMap d = new HashMap();
+    public final HashMap f34738e = new HashMap();
+    public final HashMap f34739f = new HashMap();
+    public final ArrayList h = new ArrayList();
+    public final ArrayList f34740n = new ArrayList();
+    public final ArrayList f34741r = new ArrayList(0);
+    public final ArrayList f34742s = new ArrayList(0);
+    public final LongSparseArray f34743w = new LongSparseArray(0);
+    public final gy f34744x;
 
-    public fy(gy gyVar, int i7) {
-        this.f33683c = gyVar;
-        this.f33681a = i7;
+    public fy(gy gyVar) {
+        this.f34744x = gyVar;
     }
 
-    @Override
-    public void a(RecyclerView recyclerView, int i7) {
-        ObjectAnimator objectAnimator;
-        tx txVar;
-        float f10;
-        int i10;
-        gy gyVar = this.f33683c;
-        ObjectAnimator[] objectAnimatorArr = gyVar.R0;
-        v4.z0 z0Var = recyclerView.getLayoutManager().f57142e;
-        boolean z9 = true;
-        if (z0Var != null && z0Var.f57224e) {
-            this.f33682b = true;
-            return;
-        }
-        int i11 = this.f33681a;
-        if (i7 == 0) {
-            if (!this.f33682b) {
-                int[] iArr = gyVar.Q0;
-                hx hxVar = gyVar.f34068t1;
-                if ((hxVar == null || !hxVar.z()) && i11 != 0) {
-                    float f11 = 48.0f;
-                    if (i11 == 1) {
-                        f10 = 36.0f;
-                    } else {
-                        f10 = 48.0f;
-                    }
-                    float N = org.telegram.messenger.g0.N(f10);
-                    float f12 = iArr[i11] / (-N);
-                    if (f12 > 0.0f && f12 < 1.0f) {
-                        HorizontalScrollView y10 = gyVar.y(i11);
-                        int i12 = (f12 > 0.5f ? 1 : (f12 == 0.5f ? 0 : -1));
-                        if (i12 > 0) {
-                            i10 = (int) (-Math.ceil(N));
-                        } else {
-                            i10 = 0;
-                        }
-                        if (i12 > 0) {
-                            gyVar.i(i11, i10, false);
-                        }
-                        if (i11 == 1) {
-                            gyVar.m(i10);
-                        }
-                        ObjectAnimator objectAnimator2 = objectAnimatorArr[i11];
-                        if (objectAnimator2 == null) {
-                            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(y10, View.TRANSLATION_Y, y10.getTranslationY(), i10);
-                            objectAnimatorArr[i11] = ofFloat;
-                            ofFloat.addUpdateListener(new org.telegram.ui.ActionBar.i2(gyVar, i11, 3));
-                            objectAnimatorArr[i11].setDuration(200L);
-                        } else {
-                            objectAnimator2.setFloatValues(y10.getTranslationY(), i10);
-                        }
-                        objectAnimatorArr[i11].start();
-                    } else {
-                        pj0 x10 = gyVar.x(i11);
-                        if (i11 == 1) {
-                            f11 = 38.0f;
-                        }
-                        int L = org.telegram.messenger.g0.L(f11);
-                        v4.d1 K = x10.K(0);
-                        if (K != null) {
-                            int bottom = K.f57052a.getBottom();
-                            int i13 = iArr[i11];
-                            float f13 = (bottom - (L + i13)) / gyVar.f34012b1;
-                            if (f13 > 0.0f || f13 < 1.0f) {
-                                if (f13 <= 0.5f) {
-                                    z9 = false;
-                                }
-                                gyVar.i(i11, i13, z9);
-                            }
-                        }
-                    }
-                }
-            }
-            if (gyVar.J0) {
-                gyVar.J0 = false;
-            }
-            this.f33682b = false;
-            return;
-        }
-        if (i7 == 1) {
-            if (gyVar.J0) {
-                gyVar.J0 = false;
-            }
-            if (i11 != 0) {
-                if (i11 != 1) {
-                    if (i11 == 2) {
-                        txVar = gyVar.f34050o0;
-                    } else {
-                        throw new IllegalArgumentException(jg.g.j(i11, "Unexpected argument: "));
-                    }
-                } else {
-                    txVar = gyVar.V;
-                }
-            } else {
-                txVar = gyVar.G0;
-            }
-            if (txVar != null) {
-                txVar.b();
-            }
-            this.f33682b = false;
-        }
-        if (!this.f33682b && (objectAnimator = objectAnimatorArr[i11]) != null && objectAnimator.isRunning()) {
-            objectAnimatorArr[i11].cancel();
-        }
-        if (i11 == 0) {
-            if (gyVar.T0 == null) {
-                jg.e1 e1Var = new jg.e1(gyVar, gyVar.f34016c1, gyVar.f34068t1.a(), gyVar.f34068t1.f(), 1);
-                gyVar.T0 = e1Var;
-                e1Var.a();
-            }
-            gyVar.T0.b();
-        }
-    }
-
-    @Override
-    public void b(RecyclerView recyclerView, int i7, int i10) {
-        int L;
-        gy gyVar = this.f33683c;
-        int i11 = this.f33681a;
-        gyVar.p(i11);
-        gy.e(gyVar, i11, i10);
-        if (i11 != 0) {
-            if (i11 != 1) {
-                if (i11 == 2) {
-                    gy.f(gyVar, false);
-                }
-            } else {
-                gyVar.l(false);
-            }
+    public final void a(Runnable runnable, boolean z10) {
+        String str;
+        String[] G0 = org.telegram.messenger.g0.G0();
+        if (G0.length == 0) {
+            str = "";
         } else {
-            gyVar.q(false);
+            str = G0[0];
         }
-        if (!this.f33682b) {
-            float f10 = i10;
-            FrameLayout frameLayout = gyVar.f34047n;
-            if (SystemClock.elapsedRealtime() - gyVar.D2 >= ViewConfiguration.getTapTimeout()) {
-                gyVar.H += f10;
-                if (gyVar.h.getCurrentItem() == 0) {
-                    L = org.telegram.messenger.g0.L(38.0f);
-                } else {
-                    L = org.telegram.messenger.g0.L(48.0f);
-                }
-                float f11 = gyVar.H;
-                if (f11 >= L) {
-                    gyVar.M(false);
-                } else if (f11 <= (-L)) {
-                    gyVar.M(true);
-                } else if ((frameLayout.getTag() == null && gyVar.H < 0.0f) || (frameLayout.getTag() != null && gyVar.H > 0.0f)) {
-                    gyVar.H = 0.0f;
-                }
+        org.telegram.messenger.si.b0(this.f34744x.R.f36941d1).Z1(false, str, this.f34735a, new hi.kb(this, z10, runnable, 2), z10);
+    }
+
+    @Override
+    public final void e() {
+        yv yvVar = this.f34744x.R.H0;
+        if (yvVar.G) {
+            return;
+        }
+        yvVar.e(true);
+        Utilities.B(new fo(this, 17), new ey(this, 0));
+    }
+
+    @Override
+    public final void run() {
+        gy gyVar = this.f34744x;
+        ly lyVar = gyVar.R;
+        if (TextUtils.isEmpty(gyVar.O)) {
+            v4.h0 adapter = lyVar.E0.getAdapter();
+            dy dyVar = lyVar.f37010z0;
+            if (adapter != dyVar) {
+                lyVar.E0.setAdapter(dyVar);
             }
+            gyVar.f();
+            return;
+        }
+        int i7 = gyVar.N + 1;
+        gyVar.N = i7;
+        this.f34736b = i7;
+        this.f34735a = gyVar.O;
+        gyVar.E = false;
+        this.f34737c.clear();
+        this.d.clear();
+        this.f34738e.clear();
+        this.f34739f.clear();
+        this.h.clear();
+        this.f34741r.clear();
+        this.f34742s.clear();
+        this.f34743w.clear();
+        lyVar.H0.e(true);
+        if ("premium".equalsIgnoreCase(this.f34735a)) {
+            Utilities.B(new fo(this, 17), new ey(this, 1));
+        } else {
+            Utilities.B(new fo(this, 17), new ey(this, 2), new ey(this, 3), new ey(this, 4), new ey(this, 5), new ey(this, 6), new ey(this, 7));
         }
     }
 }

@@ -2,6 +2,6 @@ package jg;
 
 import org.telegram.messenger.d5;
 public final class r1 {
-    public String f16907a;
-    public d5 f16908b;
+    public String f17262a;
+    public d5 f17263b;
 }

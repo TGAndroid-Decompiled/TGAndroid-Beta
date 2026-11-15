@@ -1,47 +1,103 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-public final class kp extends FrameLayout {
-    public final View f35383a;
-    public final TextView f35384b;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import java.util.Random;
+public final class kp {
+    public float f36579g;
+    public float f36582k;
+    public final Path f36574a = new Path();
+    public final float[] f36575b = new float[4];
+    public final float[] f36576c = new float[4];
+    public final Matrix d = new Matrix();
+    public final float h = 1.0f;
+    public final Random f36580i = new Random();
+    public final int f36578f = 6;
+    public final float f36577e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
+    public final float[] f36581j = new float[6];
 
-    public kp(Context context) {
-        super(context);
-        View view = new View(context);
-        this.f35383a = view;
-        int L = org.telegram.messenger.g0.L(4.0f);
-        int i7 = org.telegram.ui.ActionBar.m6.Ci;
-        int v02 = org.telegram.ui.ActionBar.m6.v0(i7);
-        int i10 = org.telegram.ui.ActionBar.m6.Ei;
-        int v03 = org.telegram.ui.ActionBar.m6.v0(i10);
-        Drawable k02 = org.telegram.ui.ActionBar.m6.k0(L, L, L, L, v02, v03, v03);
-        org.telegram.ui.ActionBar.p6 M = org.telegram.ui.ActionBar.t6.M(i7);
-        org.telegram.ui.ActionBar.p6 M2 = org.telegram.ui.ActionBar.t6.M(i10);
-        view.setBackground(k02);
-        org.telegram.ui.ActionBar.t6.j(view, k02, M, M2, null);
-        addView(view, c8.ha.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
-        TextView textView = new TextView(context);
-        this.f35384b = textView;
-        textView.setLines(1);
-        textView.setSingleLine(true);
-        textView.setGravity(1);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setGravity(17);
-        org.telegram.messenger.k5.n(textView, org.telegram.ui.ActionBar.m6.Gi, null, 1, 14.0f);
-        addView(textView, c8.ha.e(-2, -2, 17));
+    public kp() {
+        for (int i7 = 0; i7 < this.f36578f; i7++) {
+            this.f36581j[i7] = (this.f36580i.nextInt() % 100) / 100.0f;
+        }
     }
 
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(80.0f), 1073741824));
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.f35384b.setText(charSequence);
+    public final void a(float f10, float f11, Canvas canvas, Paint paint) {
+        float f12;
+        int i7;
+        float f13;
+        kp kpVar = this;
+        float f14 = kpVar.f36579g;
+        float f15 = (f14 - 0.0f) - 0.0f;
+        float f16 = f14 + 0.0f + 0.0f;
+        float max = Math.max(f15, f16);
+        float f17 = kpVar.f36577e;
+        float f18 = max * f17 * kpVar.h;
+        Path path = kpVar.f36574a;
+        path.reset();
+        int i10 = 0;
+        while (true) {
+            int i11 = kpVar.f36578f;
+            if (i10 < i11) {
+                Matrix matrix = kpVar.d;
+                matrix.reset();
+                float f19 = 360.0f / i11;
+                matrix.setRotate(i10 * f19, f10, f11);
+                if (i10 % 2 == 0) {
+                    f12 = f15;
+                } else {
+                    f12 = f16;
+                }
+                float f20 = kpVar.f36582k;
+                float[] fArr = kpVar.f36581j;
+                float f21 = (fArr[i10] * f20) + f12;
+                float[] fArr2 = kpVar.f36575b;
+                fArr2[0] = f10;
+                float f22 = f11 - f21;
+                fArr2[1] = f22;
+                float f23 = f16;
+                fArr2[2] = com.google.android.gms.internal.vision.e2.x(f20, fArr[i10], f17, f10 + f18);
+                fArr2[3] = f22;
+                matrix.mapPoints(fArr2);
+                int i12 = i10 + 1;
+                if (i12 >= i11) {
+                    i7 = 0;
+                } else {
+                    i7 = i12;
+                }
+                if (i7 % 2 == 0) {
+                    f13 = f15;
+                } else {
+                    f13 = f23;
+                }
+                float f24 = kpVar.f36582k;
+                float[] fArr3 = kpVar.f36576c;
+                fArr3[0] = f10;
+                float f25 = f11 - ((fArr[i7] * f24) + f13);
+                fArr3[1] = f25;
+                float f26 = f15;
+                fArr3[2] = com.google.android.gms.internal.vision.e2.x(f24, fArr[i7], f17, f10 - f18);
+                fArr3[3] = f25;
+                matrix.reset();
+                matrix.setRotate(f19 * i7, f10, f11);
+                matrix.mapPoints(fArr3);
+                if (i10 == 0) {
+                    path.moveTo(fArr2[0], fArr2[1]);
+                }
+                path.cubicTo(fArr2[2], fArr2[3], fArr3[2], fArr3[3], fArr3[0], fArr3[1]);
+                i10 = i12;
+                f16 = f23;
+                f15 = f26;
+                kpVar = this;
+            } else {
+                canvas.save();
+                canvas.rotate(0.0f, f10, f11);
+                canvas.drawPath(path, paint);
+                canvas.restore();
+                return;
+            }
+        }
     }
 }

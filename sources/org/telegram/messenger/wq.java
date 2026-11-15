@@ -1,25 +1,23 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
 public final class wq implements Runnable {
-    public final yr f26367a;
-    public final int f26368b;
-    public final ArrayList f26369c;
-    public final int d;
-    public final int f26370e;
-    public final int f26371f;
+    public final int f27376a;
+    public final Object f27377b;
+    public final Object f27378c;
 
-    public wq(yr yrVar, int i7, ArrayList arrayList, int i10, int i11, int i12) {
-        this.f26367a = yrVar;
-        this.f26368b = i7;
-        this.f26369c = arrayList;
-        this.d = i10;
-        this.f26370e = i11;
-        this.f26371f = i12;
+    public wq(int i7, Object obj, Object obj2) {
+        this.f27376a = i7;
+        this.f27377b = obj;
+        this.f27378c = obj2;
     }
 
     @Override
     public final void run() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.wq.run():void");
+    }
+
+    public wq(tv tvVar, vr vrVar) {
+        this.f27376a = 16;
+        this.f27378c = tvVar;
+        this.f27377b = vrVar;
     }
 }

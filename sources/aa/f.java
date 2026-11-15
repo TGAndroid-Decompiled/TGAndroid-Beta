@@ -2,9 +2,9 @@ package aa;
 
 import java.util.HashMap;
 public final class f {
-    public static final f f801a;
-    public static final HashMap f802b;
-    public static final f[] f803c;
+    public static final f f806a;
+    public static final HashMap f807b;
+    public static final f[] f808c;
     f EF0;
 
     static {
@@ -16,12 +16,12 @@ public final class f {
         Enum r92 = new Enum("ARMV6", 5);
         Enum r11 = new Enum("ARMV7", 6);
         ?? r13 = new Enum("UNKNOWN", 7);
-        f801a = r13;
+        f806a = r13;
         Enum r15 = new Enum("ARMV7S", 8);
         Enum r22 = new Enum("ARM64", 9);
-        f803c = new f[]{r02, r12, r32, r52, r72, r92, r11, r13, r15, r22};
+        f808c = new f[]{r02, r12, r32, r52, r72, r92, r11, r13, r15, r22};
         HashMap hashMap = new HashMap(4);
-        f802b = hashMap;
+        f807b = hashMap;
         hashMap.put("armeabi-v7a", r11);
         hashMap.put("armeabi", r92);
         hashMap.put("arm64-v8a", r22);
@@ -33,6 +33,6 @@ public final class f {
     }
 
     public static f[] values() {
-        return (f[]) f803c.clone();
+        return (f[]) f808c.clone();
     }
 }

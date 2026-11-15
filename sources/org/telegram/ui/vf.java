@@ -1,43 +1,114 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import com.google.android.gms.tasks.CancellationTokenSource;
-public final class vf implements DialogInterface.OnCancelListener {
-    public final int f50720a;
-    public final Object f50721b;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class vf implements org.telegram.messenger.s10 {
+    public final int f52210a;
+    public final int f52211b;
+    public final Object f52212c;
+    public final Object d;
 
-    public vf(Object obj, int i7) {
-        this.f50720a = i7;
-        this.f50721b = obj;
+    public vf(Object obj, int i7, TLObject tLObject, int i10) {
+        this.f52210a = i10;
+        this.f52212c = obj;
+        this.f52211b = i7;
+        this.d = tLObject;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f50720a) {
+    public final void a(Object obj, Object obj2) {
+        TLRPC.Updates updates;
+        int i7 = this.f52210a;
+        int i10 = this.f52211b;
+        Object obj3 = this.d;
+        Object obj4 = this.f52212c;
+        switch (i7) {
             case 0:
-                cn cnVar = (cn) this.f50721b;
-                cnVar.f44648r9 = true;
-                cnVar.f44621p9 = 0;
-                cnVar.Sb = 0;
-                cnVar.Z4 = 0;
-                cnVar.N9();
-                cnVar.tc(false);
+                org.telegram.messenger.g0.h3(new ai.f1((an) obj4, this.f52211b, (Boolean) obj, (TLRPC.WebPage) obj2, (TL_account.getWebPagePreview) obj3, 12));
                 return;
             case 1:
-                rn rnVar = (rn) this.f50721b;
-                rnVar.M0 = false;
-                rnVar.f49449b = null;
-                rnVar.N0 = false;
+                LaunchActivity launchActivity = (LaunchActivity) obj4;
+                g50 g50Var = (g50) obj3;
+                TLRPC.ChatInviteJoinResult chatInviteJoinResult = (TLRPC.ChatInviteJoinResult) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                String str = LaunchActivity.C1;
+                if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {
+                    TLRPC.Updates updates2 = ((TLRPC.TL_chatInviteJoinResultOk) chatInviteJoinResult).updates;
+                    org.telegram.messenger.np.s1(launchActivity.P).O3(updates2, false);
+                    updates = updates2;
+                } else {
+                    if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultWebView) {
+                        org.telegram.messenger.g0.h3(new g50(6, launchActivity, (TLRPC.TL_chatInviteJoinResultWebView) chatInviteJoinResult));
+                    }
+                    updates = null;
+                }
+                org.telegram.messenger.g0.h3(new ai.f1(launchActivity, g50Var, tL_error, updates, this.f52211b, 21));
                 return;
             case 2:
-                ((uo) this.f50721b).f50532n = null;
-                return;
-            case 3:
-                ((s90) this.f50721b).b();
-                return;
+                PasskeysActivity passkeysActivity = (PasskeysActivity) obj4;
+                TL_account.Passkey passkey = (TL_account.Passkey) obj3;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                ArrayList arrayList = passkeysActivity.f42705b;
+                if (((TLRPC.Bool) obj) instanceof TLRPC.TL_boolFalse) {
+                    org.telegram.ui.Components.cc.a0(passkeysActivity).e0("FALSE", false);
+                    arrayList.add(Utilities.j(i10, arrayList.size(), 0), passkey);
+                    passkeysActivity.f42704a.f39895g3.O(true);
+                    return;
+                } else if (tL_error2 != null) {
+                    org.telegram.ui.Components.cc.a0(passkeysActivity).f0(tL_error2, false);
+                    arrayList.add(Utilities.j(i10, arrayList.size(), 0), passkey);
+                    passkeysActivity.f42704a.f39895g3.O(true);
+                    return;
+                } else {
+                    return;
+                }
             default:
-                ((CancellationTokenSource) this.f50721b).cancel();
+                org.telegram.ui.Wallet.c8 c8Var = (org.telegram.ui.Wallet.c8) obj4;
+                TL_wallet.card cardVar = (TL_wallet.card) obj3;
+                TL_wallet.card cardVar2 = (TL_wallet.card) obj;
+                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
+                c8Var.f43663g1 = 0;
+                if (cardVar2 != null) {
+                    org.telegram.ui.Wallet.c8.e0(i10, cardVar2);
+                    if (!c8Var.f43650b1) {
+                        if (c8Var.f43658e1) {
+                            c8Var.f43653c1 = cardVar2;
+                            c8Var.f43655d1 = org.telegram.ui.Wallet.c8.T(cardVar2);
+                            c8Var.Q();
+                            return;
+                        }
+                        c8Var.d(cardVar2);
+                        return;
+                    }
+                    return;
+                }
+                if (cardVar != null) {
+                    org.telegram.ui.Wallet.c8.e0(i10, cardVar);
+                }
+                if (!c8Var.f43650b1) {
+                    if (tL_error3 != null) {
+                        org.telegram.ui.Components.cc.a0(c8Var.f43645a).f0(tL_error3, false);
+                    }
+                    c8Var.f43658e1 = false;
+                    TL_wallet.card cardVar3 = c8Var.f43653c1;
+                    if (cardVar3 != null) {
+                        c8Var.d(cardVar3);
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
+    }
+
+    public vf(LaunchActivity launchActivity, g50 g50Var, int i7) {
+        this.f52210a = 1;
+        this.f52212c = launchActivity;
+        this.d = g50Var;
+        this.f52211b = i7;
     }
 }

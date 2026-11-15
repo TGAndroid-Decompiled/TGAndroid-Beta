@@ -1,18 +1,28 @@
 package m;
 
-import android.view.ViewGroup;
-public final class i3 extends ViewGroup.MarginLayoutParams {
-    public int f19141a;
-    public int f19142b;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class i3 extends j1.b {
+    public static final Parcelable.Creator<i3> CREATOR = new c5.j(3);
+    public int f19722c;
+    public boolean d;
 
-    public i3(i3 i3Var) {
-        super((ViewGroup.MarginLayoutParams) i3Var);
-        this.f19141a = 0;
-        this.f19141a = i3Var.f19141a;
+    public i3(Parcel parcel, ClassLoader classLoader) {
+        super(parcel, classLoader);
+        boolean z10;
+        this.f19722c = parcel.readInt();
+        if (parcel.readInt() != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.d = z10;
     }
 
-    public i3(ViewGroup.LayoutParams layoutParams) {
-        super(layoutParams);
-        this.f19141a = 0;
+    @Override
+    public final void writeToParcel(Parcel parcel, int i7) {
+        super.writeToParcel(parcel, i7);
+        parcel.writeInt(this.f19722c);
+        parcel.writeInt(this.d ? 1 : 0);
     }
 }

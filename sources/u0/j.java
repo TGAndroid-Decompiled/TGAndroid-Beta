@@ -14,7 +14,7 @@ public final class j {
         if (Log.isLoggable("ReceiveContent", 3)) {
             Log.d("ReceiveContent", "onReceive: " + gVar);
         }
-        r0.f fVar = gVar.f54194a;
+        r0.f fVar = gVar.f55663a;
         if (fVar.e() == 2) {
             return gVar;
         }
@@ -23,7 +23,7 @@ public final class j {
         TextView textView = (TextView) view;
         Editable editable = (Editable) textView.getText();
         Context context = textView.getContext();
-        boolean z9 = false;
+        boolean z10 = false;
         for (int i7 = 0; i7 < a10.getItemCount(); i7++) {
             ClipData.Item itemAt = a10.getItemAt(i7);
             if ((l10 & 1) != 0) {
@@ -35,14 +35,14 @@ public final class j {
                 coerceToStyledText = itemAt.coerceToStyledText(context);
             }
             if (coerceToStyledText != null) {
-                if (!z9) {
+                if (!z10) {
                     int selectionStart = Selection.getSelectionStart(editable);
                     int selectionEnd = Selection.getSelectionEnd(editable);
                     int max = Math.max(0, Math.min(selectionStart, selectionEnd));
                     int max2 = Math.max(0, Math.max(selectionStart, selectionEnd));
                     Selection.setSelection(editable, max2);
                     editable.replace(max, max2, coerceToStyledText);
-                    z9 = true;
+                    z10 = true;
                 } else {
                     editable.insert(Selection.getSelectionEnd(editable), "\n");
                     editable.insert(Selection.getSelectionEnd(editable), coerceToStyledText);

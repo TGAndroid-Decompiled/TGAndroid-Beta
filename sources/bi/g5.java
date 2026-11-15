@@ -1,601 +1,266 @@
 package bi;
 
+import a8.y6;
 import android.content.Context;
-import android.os.Bundle;
-import android.util.SparseArray;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.graphics.RectF;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.os.RemoteException;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
+import c8.yb;
 import java.util.ArrayList;
-import java.util.WeakHashMap;
-import org.telegram.ui.Components.b31;
-import org.telegram.ui.Components.dl0;
-import org.telegram.ui.Components.dm0;
-import org.telegram.ui.Components.em0;
-import org.telegram.ui.Components.k21;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.ob0;
-import org.telegram.ui.Components.r41;
-import org.telegram.ui.Components.sp0;
-import org.telegram.ui.b00;
-import org.telegram.ui.cn;
-import org.telegram.ui.ct;
-import org.telegram.ui.dn;
-import org.telegram.ui.en;
-import org.telegram.ui.iw;
-import org.telegram.ui.j40;
-import org.telegram.ui.nx;
-import org.telegram.ui.oj;
-import org.telegram.ui.pb1;
-import org.telegram.ui.pm;
-import org.telegram.ui.qy0;
-import org.telegram.ui.rb1;
-import org.telegram.ui.ry0;
-import org.telegram.ui.s91;
-import org.telegram.ui.sy0;
-import org.telegram.ui.u91;
-import org.telegram.ui.v91;
-import org.telegram.ui.vq0;
-import org.telegram.ui.vv;
-import org.telegram.ui.z91;
-import org.telegram.ui.zw;
-public final class g5 extends m61 {
-    public final int f3936a;
-    public final Object f3937b;
-    public final Object f3938c;
+import org.telegram.messenger.i20;
+public final class g5 implements org.telegram.ui.ActionBar.q4, yb.a {
+    public boolean f3549a;
+    public Object f3550b;
+    public Object f3551c;
+    public Object d;
+    public Object f3552e;
 
-    public g5(int i7, Context context, Object obj) {
-        this.f3936a = i7;
-        this.f3938c = obj;
-        this.f3937b = context;
+    @Override
+    public boolean a() {
+        return true;
     }
 
     @Override
-    public final void b(View view, int i7, int i10) {
-        m5 m5Var;
-        di.k6 k6Var;
-        org.telegram.ui.ActionBar.f2 f2Var;
-        int i11 = this.f3936a;
-        Object obj = this.f3938c;
-        switch (i11) {
-            case 0:
-                k7 k7Var = (k7) obj;
-                if (i10 == 0) {
-                    k7Var.m2(false);
-                    i5 i5Var = k7Var.X1;
-                    if (i5Var != null) {
-                        m5Var = i5Var.T1;
-                    } else {
-                        return;
+    public boolean b(org.telegram.ui.ActionBar.q0 q0Var, RectF rectF) {
+        int L;
+        float L2 = org.telegram.messenger.g0.L(6.0f);
+        rectF.set(L2, L2, ((FrameLayout) this.f3550b).getWidth() - L, ((FrameLayout) this.f3550b).getHeight() - L);
+        return true;
+    }
+
+    @Override
+    public ArrayList c(ub.a aVar) {
+        Bitmap createBitmap;
+        if (((a8.z0) this.f3552e) == null) {
+            zzb();
+        }
+        if (((a8.z0) this.f3552e) != null) {
+            int i7 = aVar.f58000e;
+            if (i7 != -1) {
+                if (i7 != 17) {
+                    if (i7 != 35) {
+                        if (i7 != 842094169) {
+                            throw new lb.a("Unsupported image format", 13);
+                        }
+                        q6.m.g(null);
+                        throw null;
                     }
-                } else if (i10 == 2) {
-                    k7Var.m2(true);
-                    i5 i5Var2 = k7Var.Y1;
-                    if (i5Var2 != null) {
-                        m5Var = i5Var2.T1;
-                    } else {
-                        return;
-                    }
+                    q6.m.g(null);
+                    throw null;
+                }
+                q6.m.g(null);
+                throw null;
+            }
+            Bitmap bitmap = aVar.f57997a;
+            q6.m.g(bitmap);
+            int i10 = aVar.d;
+            int i11 = aVar.f57998b;
+            int i12 = aVar.f57999c;
+            if (i10 == 0) {
+                createBitmap = Bitmap.createBitmap(bitmap, 0, 0, i11, i12);
+            } else {
+                Matrix matrix = new Matrix();
+                matrix.postRotate(i10);
+                createBitmap = Bitmap.createBitmap(bitmap, 0, 0, i11, i12, matrix, true);
+            }
+            try {
+                a8.z0 z0Var = (a8.z0) this.f3552e;
+                q6.m.g(z0Var);
+                a7.b bVar = new a7.b(createBitmap);
+                Parcel p12 = z0Var.p1();
+                int i13 = a8.g0.f410a;
+                p12.writeStrongBinder(bVar);
+                p12.writeInt(1);
+                int r10 = yb.r(p12, 20293);
+                yb.q(p12, 2, 4);
+                p12.writeInt(-1);
+                yb.s(p12, r10);
+                Parcel r12 = z0Var.r1(p12, 1);
+                a8.y4[] y4VarArr = (a8.y4[]) r12.createTypedArray(a8.y4.CREATOR);
+                r12.recycle();
+                ArrayList arrayList = new ArrayList();
+                for (a8.y4 y4Var : y4VarArr) {
+                    arrayList.add(new wb.a(y4Var.f720c, y4Var.d, y4Var.f719b, y4Var.f718a));
+                }
+                return arrayList;
+            } catch (RemoteException e10) {
+                throw new lb.a("Failed to run legacy image labeler.", e10);
+            }
+        }
+        throw new lb.a("Waiting for the image labeling module to be downloaded. Please wait.", 14);
+    }
+
+    @Override
+    public boolean d() {
+        return true;
+    }
+
+    @Override
+    public boolean e() {
+        return true;
+    }
+
+    @Override
+    public boolean f() {
+        return false;
+    }
+
+    @Override
+    public fh.g g(org.telegram.ui.ActionBar.g5 g5Var) {
+        a6 a6Var = (a6) this.f3552e;
+        fh.g c10 = a6Var.getBaseSimpleGlass().d.c(g5Var, null, false);
+        c10.p(a6Var.N);
+        i20.r(c10, org.telegram.messenger.g0.L(23.0f), 6.0f);
+        return c10;
+    }
+
+    @Override
+    public int getButtonsGlassBackgroundColor() {
+        gh.e eVar = ((a6) this.f3552e).N;
+        return eVar.a(eVar.f13313e);
+    }
+
+    @Override
+    public gh.a getButtonsGlassColorProvider() {
+        return ((a6) this.f3552e).N;
+    }
+
+    @Override
+    public int getMenuDimAlpha() {
+        return -1;
+    }
+
+    @Override
+    public int getMenuExtraBelow() {
+        return 0;
+    }
+
+    @Override
+    public gh.a getMenuGlassColorProvider() {
+        return ((a6) this.f3552e).N;
+    }
+
+    @Override
+    public View getMenuHostView() {
+        return (FrameLayout) this.f3550b;
+    }
+
+    @Override
+    public int getMenuMaxHeight() {
+        return 0;
+    }
+
+    @Override
+    public org.telegram.ui.ActionBar.e6 getMenuResourcesProvider() {
+        org.telegram.ui.ActionBar.e6 e6Var;
+        e6Var = ((org.telegram.ui.ActionBar.e2) ((a6) this.f3552e)).resourceProvider;
+        return e6Var;
+    }
+
+    @Override
+    public int getMenuRise() {
+        return org.telegram.messenger.g0.L(8.0f);
+    }
+
+    @Override
+    public View getMenuView() {
+        return (f5) this.f3551c;
+    }
+
+    @Override
+    public org.telegram.ui.ActionBar.g5 getOpenMenuOverlay() {
+        if (this.f3549a) {
+            return (org.telegram.ui.ActionBar.g5) this.d;
+        }
+        return null;
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.g5 g5Var, org.telegram.ui.ActionBar.q0 q0Var) {
+        boolean z10;
+        int i7 = 0;
+        if (g5Var != null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f3549a = z10;
+        FrameLayout frameLayout = (FrameLayout) this.f3550b;
+        if (z10) {
+            i7 = 4;
+        }
+        frameLayout.setVisibility(i7);
+    }
+
+    @Override
+    public void setMenuGlassFrostedProgress(float f10) {
+        ui.d dVar = ((a6) this.f3552e).getBaseSimpleGlass().f56043e;
+        if (dVar != null) {
+            dVar.j(f10);
+        }
+    }
+
+    @Override
+    public void zzb() {
+        IInterface aVar;
+        String str = (String) this.d;
+        Context context = (Context) this.f3550b;
+        Log.d("LegacyLabelDelegate", "Try to load legacy label module.");
+        if (((a8.z0) this.f3552e) == null) {
+            try {
+                IBinder b10 = b7.f.c(context, b7.f.f2948b, str).b("com.google.android.gms.vision.label.ChimeraNativeImageLabelerCreator");
+                int i7 = a8.w2.f697b;
+                if (b10 == null) {
+                    aVar = null;
                 } else {
+                    IInterface queryLocalInterface = b10.queryLocalInterface("com.google.android.gms.vision.label.internal.client.INativeImageLabelerCreator");
+                    if (queryLocalInterface instanceof a8.x3) {
+                        aVar = (a8.x3) queryLocalInterface;
+                    } else {
+                        aVar = new a8.a(b10, "com.google.android.gms.vision.label.internal.client.INativeImageLabelerCreator", 0);
+                    }
+                }
+                a8.z0 x12 = ((a8.v1) aVar).x1(new a7.b(context), (y6) this.f3551c);
+                this.f3552e = x12;
+                if (x12 == null && !this.f3549a) {
+                    Log.d("LegacyLabelDelegate", "Request ICA optional module download.");
+                    pb.j.b(context);
+                    this.f3549a = true;
+                }
+            } catch (RemoteException e10) {
+                throw new lb.a("Failed to create legacy image labeler.", e10);
+            } catch (b7.b e11) {
+                if (!str.equals("com.google.android.gms.vision.dynamite")) {
+                    if (!this.f3549a) {
+                        Log.d("LegacyLabelDelegate", "Request ICA optional module download.");
+                        pb.j.b(context);
+                        this.f3549a = true;
+                        return;
+                    }
                     return;
                 }
-                FrameLayout frameLayout = (FrameLayout) view;
-                frameLayout.removeAllViews();
-                org.telegram.messenger.g0.E2(m5Var);
-                frameLayout.addView(m5Var);
-                return;
-            case 1:
-                sp0 sp0Var = (sp0) obj;
-                ei.n nVar = (ei.n) view;
-                if (i7 == 0) {
-                    k6Var = sp0Var.f10852e;
-                } else {
-                    k6Var = (di.k6) sp0Var.f10853f.get(i7 - 1);
-                }
-                k6Var.H(null);
-                nVar.setList(k6Var);
-                nVar.setVisibleHeight(sp0Var.f10857w);
-                return;
-            case 2:
-                if (view instanceof en) {
-                    ((en) view).f45407a.qd(((cn) obj).I3);
-                }
-                WeakHashMap weakHashMap = r0.i0.f54202a;
-                r0.y.c(view);
-                return;
-            case 3:
-                iw iwVar = (iw) obj;
-                iwVar.P(view, i7, iwVar.M0, true);
-                return;
-            case 4:
-                return;
-            case 5:
-                ((ry0) view).a(i10);
-                return;
-            case 6:
-                return;
-            case 7:
-                v91 v91Var = (v91) obj;
-                v91Var.M(view, i7, v91Var.f50665d0, true);
-                return;
-            case 8:
-                rb1 rb1Var = (rb1) obj;
-                SparseArray sparseArray = rb1Var.f49343a;
-                pb1 pb1Var = (pb1) sparseArray.get(i7);
-                if (pb1Var != null) {
-                    f2Var = pb1Var.f48735a;
-                } else {
-                    org.telegram.ui.ActionBar.f2 a02 = rb1Var.a0(i7);
-                    pb1 pb1Var2 = new pb1(a02);
-                    sparseArray.put(i7, pb1Var2);
-                    f2Var = a02;
-                    pb1Var = pb1Var2;
-                }
-                if (!pb1Var.f48736b) {
-                    f2Var.onFragmentCreate();
-                    pb1Var.f48736b = true;
-                }
-                f2Var.setParentLayout(rb1Var.getParentLayout());
-                f2Var.setSimpleMenuOverlayHost(rb1Var);
-                if (f2Var.getFragmentView() == null) {
-                    f2Var.performCreateView((Context) this.f3937b);
-                    f2Var.setTitleOverlayText(rb1Var.f49348n, rb1Var.f49349r, rb1Var.f49350s);
-                }
-                FrameLayout frameLayout2 = (FrameLayout) view;
-                frameLayout2.removeAllViews();
-                View fragmentView = f2Var.getFragmentView();
-                org.telegram.messenger.g0.E2(fragmentView);
-                if (!f2Var.hasOwnBackground() && fragmentView.getBackground() == null) {
-                    org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f27890d6, fragmentView, null);
-                }
-                frameLayout2.addView(fragmentView, c8.ha.c(-1.0f, -1));
-                if (f2Var.getActionBar() != null && f2Var.getActionBar().K) {
-                    org.telegram.messenger.g0.E2(f2Var.getActionBar());
-                    frameLayout2.addView(f2Var.getActionBar());
-                }
-                WeakHashMap weakHashMap2 = r0.i0.f54202a;
-                r0.y.c(frameLayout2);
-                rb1Var.checkSystemBarColors();
-                rb1Var.Z();
-                return;
-            case 9:
-                org.telegram.ui.Wallet.z5.Z0((r41) view, false);
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final View d(int i7) {
-        m5 m5Var;
-        int i10;
-        int i11;
-        int i12;
-        org.telegram.ui.ActionBar.h6 h6Var;
-        int i13;
-        switch (this.f3936a) {
-            case 0:
-                k7 k7Var = (k7) this.f3938c;
-                if (i7 == 0) {
-                    k7Var.m2(false);
-                    i5 i5Var = k7Var.X1;
-                    if (i5Var != null) {
-                        m5Var = i5Var.T1;
-                        org.telegram.messenger.g0.E2(m5Var);
-                        FrameLayout frameLayout = new FrameLayout((Context) this.f3937b);
-                        frameLayout.addView(m5Var, c8.ha.e(-1, -1, 119));
-                        return frameLayout;
-                    }
-                    return null;
-                }
-                if (i7 == 1) {
-                    m5Var = k7Var.T1;
-                } else {
-                    if (i7 == 2) {
-                        k7Var.m2(true);
-                        i5 i5Var2 = k7Var.Y1;
-                        if (i5Var2 != null) {
-                            m5Var = i5Var2.T1;
-                        }
-                    }
-                    return null;
-                }
-                org.telegram.messenger.g0.E2(m5Var);
-                FrameLayout frameLayout2 = new FrameLayout((Context) this.f3937b);
-                frameLayout2.addView(m5Var, c8.ha.e(-1, -1, 119));
-                return frameLayout2;
-            case 1:
-                return new ei.n((sp0) this.f3938c, (Context) this.f3937b);
-            case 2:
-                Context context = (Context) this.f3937b;
-                cn cnVar = (cn) this.f3938c;
-                if (i7 == 0) {
-                    return new pm(cnVar, context);
-                }
-                Bundle bundle = new Bundle();
-                bundle.putInt("chatMode", 7);
-                bundle.putInt("searchType", i7);
-                bundle.putString("searchHashtag", cnVar.I3);
-                oj ojVar = new oj(context, cnVar.getParentLayout(), bundle, 0);
-                ojVar.h = false;
-                dn dnVar = ojVar.f45407a;
-                dnVar.M.f54589a = cnVar.M;
-                dnVar.f44726xa = cnVar.f44750za;
-                dnVar.ya = cnVar;
-                dnVar.f44573l9 = new org.telegram.ui.f(this, 12);
-                return ojVar;
-            case 3:
-                iw iwVar = (iw) this.f3938c;
-                zw zwVar = iwVar.L0;
-                if (i7 == 1) {
-                    return iwVar.W;
-                }
-                if (i7 == 3) {
-                    return iwVar.f33594h0;
-                }
-                if (i7 == 4) {
-                    return iwVar.m0;
-                }
-                if (i7 == 5) {
-                    return iwVar.f33605t0;
-                }
-                if (i7 == 2) {
-                    dl0 dl0Var = new dl0(iwVar.J0, zwVar);
-                    iwVar.I0 = dl0Var;
-                    dl0Var.b(iwVar.W0, iwVar.X0, false);
-                    iwVar.I0.f33023b.setClipToPadding(false);
-                    iwVar.I0.f33023b.j(new dm0(this, 0));
-                    iwVar.I0.f33023b.D0(new ob0(iwVar, 19));
-                    iwVar.I0.setUiCallback(iwVar);
-                    return iwVar.I0;
-                } else if (i7 == 6) {
-                    return iwVar.f33603r0;
-                } else {
-                    b00 b00Var = new b00(zwVar);
-                    b00Var.setChatPreviewDelegate(iwVar.R0);
-                    b00Var.setUiCallback(iwVar);
-                    b00Var.j(iwVar.W0, iwVar.X0, false);
-                    dh.c cVar = iwVar.Z0;
-                    if (cVar != null) {
-                        b00Var.setBlurredBackgroundDrawableFactory(cVar);
-                    }
-                    ct ctVar = b00Var.f43862b;
-                    ctVar.setClipToPadding(false);
-                    ctVar.j(new dm0(this, 1));
-                    ctVar.D0(new ob0(iwVar, 19));
-                    return b00Var;
-                }
-            case 4:
-                FrameLayout frameLayout3 = new FrameLayout((Context) this.f3937b);
-                frameLayout3.setOnClickListener(new j40(this, 24));
-                return frameLayout3;
-            case 5:
-                return new ry0((sy0) this.f3938c, (Context) this.f3937b);
-            case 6:
-                FrameLayout frameLayout4 = new FrameLayout((Context) this.f3937b);
-                frameLayout4.setOnClickListener(new qy0(this, 9));
-                return frameLayout4;
-            case 7:
-                v91 v91Var = (v91) this.f3938c;
-                z91 z91Var = v91Var.f50682v0;
-                if (i7 == 1) {
-                    return v91Var.V;
-                }
-                if (i7 == 2) {
-                    i10 = ((org.telegram.ui.ActionBar.f2) z91Var).currentAccount;
-                    dl0 dl0Var2 = new dl0(i10, z91Var);
-                    dl0Var2.f33023b.j(new u91(0));
-                    dl0Var2.setUiCallback(v91Var);
-                    return dl0Var2;
-                }
-                b00 b00Var2 = new b00(z91Var);
-                b00Var2.setChatPreviewDelegate(v91Var.f50680t0);
-                b00Var2.setUiCallback(v91Var);
-                b00Var2.f43862b.j(new u91(1));
-                return b00Var2;
-            case 8:
-                return new vq0((Context) this.f3937b, 13);
-            case 9:
-                org.telegram.ui.Wallet.z5 z5Var = (org.telegram.ui.Wallet.z5) this.f3938c;
-                r41[] r41VarArr = z5Var.f43464r0;
-                r41 r41Var = r41VarArr[i7];
-                if (r41Var == null) {
-                    Context context2 = (Context) this.f3937b;
-                    i11 = ((org.telegram.ui.ActionBar.f2) z5Var).currentAccount;
-                    i12 = ((org.telegram.ui.ActionBar.f2) z5Var).classGuid;
-                    org.telegram.ui.Components.p pVar = new org.telegram.ui.Components.p(this, i7, 2);
-                    org.telegram.ui.Wallet.i4 i4Var = new org.telegram.ui.Wallet.i4(z5Var);
-                    org.telegram.ui.Wallet.i4 i4Var2 = new org.telegram.ui.Wallet.i4(z5Var);
-                    h6Var = ((org.telegram.ui.ActionBar.f2) z5Var).resourceProvider;
-                    if (i7 == 1) {
-                        i13 = 3;
-                    } else {
-                        i13 = -1;
-                    }
-                    nx nxVar = new nx(context2, i11, i12, false, pVar, i4Var, i4Var2, h6Var, i13, 1);
-                    if (i7 == 1) {
-                        nxVar.setPadding(org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(12.0f));
-                    }
-                    nxVar.setFocusableInTouchMode(false);
-                    nxVar.setClipChildren(false);
-                    nxVar.setClipToPadding(false);
-                    if (i7 == 0) {
-                        nxVar.r1();
-                    } else {
-                        nxVar.setSelectorType(9);
-                        nxVar.setSelectorDrawableColor(0);
-                    }
-                    nxVar.f37496f3.f35845r = false;
-                    nxVar.j(new b31(this, i7));
-                    r41VarArr[i7] = nxVar;
-                    return nxVar;
-                }
-                return r41Var;
-            default:
-                if (i7 == 0) {
-                    return ((wg.z) this.f3937b).f28672b;
-                }
-                return ((wg.w0) this.f3938c).f28672b;
-        }
-    }
-
-    @Override
-    public final int e() {
-        switch (this.f3936a) {
-            case 0:
-                k7 k7Var = (k7) this.f3938c;
-                return (k7Var.H1(true) ? 1 : 0) + (k7Var.H1(false) ? 1 : 0) + 1;
-            case 1:
-                return ((sp0) this.f3938c).f10853f.size() + 1;
-            case 2:
-                return 3;
-            case 3:
-                return ((ArrayList) this.f3937b).size();
-            case 4:
-                return 2;
-            case 5:
-                return 5;
-            case 6:
-                return 2;
-            case 7:
-                return ((ArrayList) this.f3937b).size();
-            case 8:
-                ((rb1) this.f3938c).getClass();
-                return 4;
-            case 9:
-                if (((org.telegram.ui.Wallet.z5) this.f3938c).f43451f0) {
-                    return 2;
-                }
-                return 1;
-            default:
-                return 2;
-        }
-    }
-
-    @Override
-    public int f(int i7) {
-        switch (this.f3936a) {
-            case 1:
-                if (i7 == 0) {
-                    return 0;
-                }
-                return ((di.k6) ((sp0) this.f3938c).f10853f.get(i7 - 1)).E.hashCode();
-            default:
-                return i7;
-        }
-    }
-
-    @Override
-    public CharSequence g(int i7) {
-        int i10;
-        int i11 = this.f3936a;
-        Object obj = this.f3937b;
-        switch (i11) {
-            case 1:
-                if (i7 == 0) {
-                    return org.telegram.messenger.id.M0(2131746710, null);
-                }
-                String O0 = k21.O0(((di.k6) ((sp0) this.f3938c).f10853f.get(i7 - 1)).E, null, null);
-                if (O0 == null) {
-                    return null;
-                }
-                return O0.substring(0, 1).toUpperCase() + O0.substring(1);
-            case 2:
-                if (i7 != 1) {
-                    if (i7 != 2) {
-                        return org.telegram.messenger.id.M0(2131745709, null);
-                    }
-                    return org.telegram.messenger.id.M0(2131745712, null);
-                }
-                return org.telegram.messenger.id.M0(2131745738, null);
-            case 3:
-                ArrayList arrayList = (ArrayList) obj;
-                if (((em0) arrayList.get(i7)).f33296a == 0) {
-                    return org.telegram.messenger.id.M0(2131745823, null);
-                }
-                if (((em0) arrayList.get(i7)).f33296a == 1) {
-                    return org.telegram.messenger.id.M0(2131752258, null);
-                }
-                if (((em0) arrayList.get(i7)).f33296a == 4) {
-                    return org.telegram.messenger.id.M0(2131754178, null);
-                }
-                if (((em0) arrayList.get(i7)).f33296a == 6) {
-                    return org.telegram.messenger.id.M0(2131745733, null);
-                }
-                if (((em0) arrayList.get(i7)).f33296a == 2) {
-                    return org.telegram.messenger.id.M0(2131751343, null);
-                }
-                if (((em0) arrayList.get(i7)).f33296a == 5) {
-                    return org.telegram.messenger.id.M0(2131746584, null);
-                }
-                jg.o0 o0Var = jg.q0.j3[((em0) arrayList.get(i7)).f33297b];
-                String str = o0Var.f16872c;
-                if (str != null) {
-                    return str;
-                }
-                return org.telegram.messenger.id.M0(o0Var.f16871b, null);
-            case 4:
-            case 5:
-            case 6:
-            case 8:
-            default:
-                return super.g(i7);
-            case 7:
-                ArrayList arrayList2 = (ArrayList) obj;
-                if (((s91) arrayList2.get(i7)).f49764a == 0) {
-                    return org.telegram.messenger.id.M0(2131745756, null);
-                }
-                if (((s91) arrayList2.get(i7)).f49764a == 1) {
-                    return org.telegram.messenger.id.M0(2131751343, null);
-                }
-                jg.o0 o0Var2 = jg.q0.j3[((s91) arrayList2.get(i7)).f49765b];
-                String str2 = o0Var2.f16872c;
-                if (str2 != null) {
-                    return str2;
-                }
-                return org.telegram.messenger.id.M0(o0Var2.f16871b, null);
-            case 9:
-                if (i7 == 0) {
-                    i10 = 2131742982;
-                } else {
-                    i10 = 2131743170;
-                }
-                return org.telegram.messenger.id.M0(i10, null);
-        }
-    }
-
-    @Override
-    public int h(int i7) {
-        switch (this.f3936a) {
-            case 0:
-                return (i7 - (((k7) this.f3938c).H1(false) ? 1 : 0)) + 1;
-            case 1:
-            case 4:
-            case 6:
-            case 8:
-            default:
-                return super.h(i7);
-            case 2:
-                return i7;
-            case 3:
-                ArrayList arrayList = (ArrayList) this.f3937b;
-                if (((em0) arrayList.get(i7)).f33296a == 0) {
-                    return 1;
-                }
-                if (((em0) arrayList.get(i7)).f33296a == 1) {
-                    return 3;
-                }
-                if (((em0) arrayList.get(i7)).f33296a == 4) {
-                    return 4;
-                }
-                if (((em0) arrayList.get(i7)).f33296a == 2) {
-                    return 2;
-                }
-                if (((em0) arrayList.get(i7)).f33296a == 5) {
-                    return 5;
-                }
-                if (((em0) arrayList.get(i7)).f33296a == 6) {
-                    return 6;
-                }
-                return ((em0) arrayList.get(i7)).f33296a + i7;
-            case 5:
-                if (i7 == 0) {
-                    return 0;
-                }
-                return 1;
-            case 7:
-                ArrayList arrayList2 = (ArrayList) this.f3937b;
-                if (((s91) arrayList2.get(i7)).f49764a == 0) {
-                    return 1;
-                }
-                if (((s91) arrayList2.get(i7)).f49764a == 1) {
-                    return 2;
-                }
-                return ((s91) arrayList2.get(i7)).f49764a + i7;
-            case 9:
-            case 10:
-                return i7;
-        }
-    }
-
-    public void l() {
-        ArrayList arrayList = (ArrayList) this.f3937b;
-        arrayList.clear();
-        arrayList.add(new em0(0));
-        iw iwVar = (iw) this.f3938c;
-        if (iwVar.V0 == 0) {
-            if (iwVar.f33604s0) {
-                arrayList.add(new em0(5));
-            }
-            arrayList.add(new em0(1));
-            arrayList.add(new em0(4));
-            arrayList.add(new em0(6));
-            if (!iwVar.Q0) {
-                em0 em0Var = new em0(3);
-                em0Var.f33297b = 0;
-                arrayList.add(em0Var);
-                vv vvVar = iwVar.f46762d1.G3;
-                if (vvVar == null || !vvVar.c()) {
-                    arrayList.add(new em0(2));
-                }
-                em0 em0Var2 = new em0(3);
-                em0Var2.f33297b = 1;
-                arrayList.add(em0Var2);
-                em0 em0Var3 = new em0(3);
-                em0Var3.f33297b = 2;
-                arrayList.add(em0Var3);
-                em0 em0Var4 = new em0(3);
-                em0Var4.f33297b = 3;
-                arrayList.add(em0Var4);
-                em0 em0Var5 = new em0(3);
-                em0Var5.f33297b = 4;
-                arrayList.add(em0Var5);
+                throw new lb.a("Failed to load deprecated vision dynamite module.", e11);
             }
         }
     }
 
-    public g5(iw iwVar) {
-        this.f3936a = 3;
-        this.f3938c = iwVar;
-        this.f3937b = new ArrayList();
-        l();
-    }
-
-    public g5(v91 v91Var) {
-        this.f3936a = 7;
-        this.f3938c = v91Var;
-        ArrayList arrayList = new ArrayList();
-        this.f3937b = arrayList;
-        arrayList.add(new s91(0));
-        s91 s91Var = new s91(2);
-        s91Var.f49765b = 0;
-        arrayList.add(s91Var);
-        s91 s91Var2 = new s91(2);
-        s91Var2.f49765b = 1;
-        arrayList.add(s91Var2);
-        s91 s91Var3 = new s91(2);
-        s91Var3.f49765b = 2;
-        arrayList.add(s91Var3);
-        s91 s91Var4 = new s91(2);
-        s91Var4.f49765b = 3;
-        arrayList.add(s91Var4);
-        s91 s91Var5 = new s91(2);
-        s91Var5.f49765b = 4;
-        arrayList.add(s91Var5);
-    }
-
-    public g5(wg.z zVar, wg.w0 w0Var) {
-        this.f3936a = 10;
-        this.f3937b = zVar;
-        this.f3938c = w0Var;
-    }
-
-    private final void i(View view, int i7, int i10) {
-    }
-
-    private final void j(View view, int i7, int i10) {
-    }
-
-    private final void k(View view, int i7, int i10) {
+    @Override
+    public void zzc() {
+        a8.z0 z0Var = (a8.z0) this.f3552e;
+        if (z0Var != null) {
+            try {
+                z0Var.t1(z0Var.p1(), 2);
+            } catch (RemoteException e10) {
+                Log.e("LegacyLabelDelegate", "Failed to release legacy image labeler.", e10);
+            }
+            this.f3552e = null;
+        }
     }
 }

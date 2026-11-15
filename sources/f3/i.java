@@ -1,6 +1,6 @@
 package f3;
 public interface i {
-    void M();
+    h W(p pVar, long j3);
 
-    h a(p pVar, long j3);
+    void r0();
 }

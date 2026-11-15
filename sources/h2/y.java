@@ -1,10 +1,10 @@
 package h2;
 
-import a8.ia;
+import a8.ja;
 public final class y {
-    public static final y f14167c = new y(-1, -1);
-    public final int f14168a;
-    public final int f14169b;
+    public static final y f13524c = new y(-1, -1);
+    public final int f13525a;
+    public final int f13526b;
 
     static {
         new y(0, 0);
@@ -13,15 +13,15 @@ public final class y {
     }
 
     public y(int i7, int i10) {
-        boolean z9;
+        boolean z10;
         if ((i7 != -1 && i7 < 0) || (i10 != -1 && i10 < 0)) {
-            z9 = false;
+            z10 = false;
         } else {
-            z9 = true;
+            z10 = true;
         }
-        ia.f(z9);
-        this.f14168a = i7;
-        this.f14169b = i10;
+        ja.f(z10);
+        this.f13525a = i7;
+        this.f13526b = i10;
     }
 
     public final boolean equals(Object obj) {
@@ -33,7 +33,7 @@ public final class y {
         }
         if (obj instanceof y) {
             y yVar = (y) obj;
-            if (this.f14168a == yVar.f14168a && this.f14169b == yVar.f14169b) {
+            if (this.f13525a == yVar.f13525a && this.f13526b == yVar.f13526b) {
                 return true;
             }
         }
@@ -41,11 +41,11 @@ public final class y {
     }
 
     public final int hashCode() {
-        int i7 = this.f14168a;
-        return ((i7 >>> 16) | (i7 << 16)) ^ this.f14169b;
+        int i7 = this.f13525a;
+        return ((i7 >>> 16) | (i7 << 16)) ^ this.f13526b;
     }
 
     public final String toString() {
-        return this.f14168a + "x" + this.f14169b;
+        return this.f13525a + "x" + this.f13526b;
     }
 }

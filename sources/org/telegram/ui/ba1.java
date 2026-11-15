@@ -1,24 +1,35 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class ba1 implements kx0 {
-    public final TLRPC.TL_forumTopic f43995a;
-    public final ca1 f43996b;
+import org.telegram.tgnet.tl.TL_account;
+public final class ba1 implements org.telegram.ui.ActionBar.q1 {
+    public final int f45666a;
+    public final TwoStepVerificationActivity f45667b;
 
-    public ba1(ca1 ca1Var, TLRPC.TL_forumTopic tL_forumTopic) {
-        this.f43996b = ca1Var;
-        this.f43995a = tL_forumTopic;
+    public ba1(TwoStepVerificationActivity twoStepVerificationActivity, int i7) {
+        this.f45666a = i7;
+        this.f45667b = twoStepVerificationActivity;
     }
 
     @Override
-    public final void c0() {
-        fa1 fa1Var = this.f43996b.f44287a;
-        TLRPC.TL_forumTopic tL_forumTopic = this.f43995a;
-        fa1.Z(fa1Var, tL_forumTopic.f27012id);
-        org.telegram.messenger.g0.i3(new rw0(23, this, tL_forumTopic), 300L);
-    }
-
-    @Override
-    public final void t(rh0 rh0Var) {
+    public final void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        switch (this.f45666a) {
+            case 0:
+                this.f45667b.finishFragment();
+                return;
+            case 1:
+                TL_account.declinePasswordReset declinepasswordreset = new TL_account.declinePasswordReset();
+                TwoStepVerificationActivity twoStepVerificationActivity = this.f45667b;
+                twoStepVerificationActivity.getConnectionsManager().sendRequest(declinepasswordreset, new ca1(twoStepVerificationActivity, 2));
+                return;
+            case 2:
+                this.f45667b.p0();
+                return;
+            case 3:
+                this.f45667b.z0();
+                return;
+            default:
+                this.f45667b.z0();
+                return;
+        }
     }
 }

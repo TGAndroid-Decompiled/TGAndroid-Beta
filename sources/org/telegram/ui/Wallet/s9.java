@@ -1,35 +1,63 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.c20;
-import org.telegram.tgnet.TLRPC;
-public final class s9 implements c20 {
-    public final int f43170a;
-    public final y9 f43171b;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.text.TextUtils;
+import android.view.View;
+public final class s9 implements View.OnClickListener {
+    public final int f44498a;
+    public final z9 f44499b;
 
-    public s9(y9 y9Var, int i7) {
-        this.f43170a = i7;
-        this.f43171b = y9Var;
+    public s9(z9 z9Var, int i7) {
+        this.f44498a = i7;
+        this.f44499b = z9Var;
     }
 
     @Override
-    public final void a(Object obj) {
-        ah.i iVar;
-        switch (this.f43170a) {
+    public final void onClick(View view) {
+        switch (this.f44498a) {
             case 0:
-                y9.e0(this.f43171b, (String) obj);
-                return;
-            default:
-                TLRPC.User user = (TLRPC.User) obj;
-                y9 y9Var = this.f43171b;
-                if (!y9Var.isFinished && (iVar = y9Var.N) != null) {
-                    if (user == null) {
-                        org.telegram.messenger.g0.h3(new t9(y9Var, 1));
-                        return;
-                    }
-                    org.telegram.messenger.g0.v1(iVar);
-                    y9Var.m0(null, user);
+                z9 z9Var = this.f44499b;
+                if (z9Var.f44865y != null) {
+                    org.telegram.messenger.g0.v1(z9Var.O);
+                    z9Var.m0(z9Var.f44865y, null);
                     return;
                 }
+                return;
+            case 1:
+                z9 z9Var2 = this.f44499b;
+                if (z9Var2.f44865y != null) {
+                    org.telegram.messenger.g0.v1(z9Var2.O);
+                    z9Var2.m0(z9Var2.f44865y, null);
+                    return;
+                }
+                return;
+            case 2:
+                z9 z9Var3 = this.f44499b;
+                ClipboardManager clipboardManager = (ClipboardManager) z9Var3.getParentActivity().getSystemService("clipboard");
+                if (clipboardManager != null && clipboardManager.hasPrimaryClip()) {
+                    ClipData primaryClip = clipboardManager.getPrimaryClip();
+                    if (primaryClip != null && primaryClip.getItemCount() != 0) {
+                        CharSequence coerceToText = primaryClip.getItemAt(0).coerceToText(z9Var3.getParentActivity());
+                        if (!TextUtils.isEmpty(coerceToText)) {
+                            z9Var3.O.setText(coerceToText.toString().trim());
+                            ah.i iVar = z9Var3.O;
+                            iVar.setSelection(iVar.length());
+                            return;
+                        }
+                        z9Var3.T = false;
+                        z9Var3.p0(true);
+                        return;
+                    }
+                    z9Var3.T = false;
+                    z9Var3.p0(true);
+                    return;
+                }
+                z9Var3.T = false;
+                z9Var3.p0(true);
+                return;
+            default:
+                this.f44499b.i0();
                 return;
         }
     }

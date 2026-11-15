@@ -1,16 +1,16 @@
 package m1;
 public final class i1 implements id.f {
-    public final i1 f19409a;
-    public final b0 f19410b;
+    public final i1 f19998a;
+    public final b0 f19999b;
 
     public i1(i1 i1Var, b0 b0Var) {
-        this.f19409a = i1Var;
-        this.f19410b = b0Var;
+        this.f19998a = i1Var;
+        this.f19999b = b0Var;
     }
 
     public final void a(b0 b0Var) {
-        if (this.f19410b != b0Var) {
-            i1 i1Var = this.f19409a;
+        if (this.f19999b != b0Var) {
+            i1 i1Var = this.f19998a;
             if (i1Var != null) {
                 i1Var.a(b0Var);
                 return;
@@ -27,21 +27,21 @@ public final class i1 implements id.f {
 
     @Override
     public final id.f get(id.g gVar) {
-        return c8.m0.a(this, gVar);
+        return c8.n0.a(this, gVar);
     }
 
     @Override
     public final id.g getKey() {
-        return h1.f19397a;
+        return h1.f19986a;
     }
 
     @Override
     public final id.h minusKey(id.g gVar) {
-        return c8.m0.b(this, gVar);
+        return c8.n0.b(this, gVar);
     }
 
     @Override
     public final id.h plus(id.h hVar) {
-        return c8.m0.c(this, hVar);
+        return c8.n0.c(this, hVar);
     }
 }

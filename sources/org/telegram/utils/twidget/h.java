@@ -14,6 +14,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.SweepGradient;
+import com.google.android.gms.internal.vision.e2;
 public final class h {
     public static final PorterDuff.Mode[] W = {null, PorterDuff.Mode.SRC_IN, PorterDuff.Mode.SRC_OUT, PorterDuff.Mode.SRC_ATOP, PorterDuff.Mode.DST_OVER, PorterDuff.Mode.DST_IN, PorterDuff.Mode.DST_OUT, PorterDuff.Mode.DST_ATOP, PorterDuff.Mode.ADD, PorterDuff.Mode.SRC, PorterDuff.Mode.XOR, PorterDuff.Mode.MULTIPLY, PorterDuff.Mode.SCREEN, PorterDuff.Mode.OVERLAY, PorterDuff.Mode.DARKEN, PorterDuff.Mode.LIGHTEN};
     public float A;
@@ -38,47 +39,47 @@ public final class h {
     public float T;
     public boolean U;
     public boolean V;
-    public final Paint f52809a = new Paint(3);
-    public final Paint f52810b = new Paint(1);
-    public final Paint f52811c = new Paint();
+    public final Paint f54220a = new Paint(3);
+    public final Paint f54221b = new Paint(1);
+    public final Paint f54222c = new Paint();
     public final Paint d;
-    public final Path f52812e;
-    public final Path f52813f;
-    public final Matrix f52814g;
+    public final Path f54223e;
+    public final Path f54224f;
+    public final Matrix f54225g;
     public final Matrix h;
-    public final float[] f52815i;
-    public final float[] f52816j;
-    public final float[] f52817k;
-    public final RectF f52818l;
-    public final Rect f52819m;
-    public final int f52820n;
-    public Bitmap f52821o;
-    public Bitmap f52822p;
-    public Canvas f52823q;
-    public int f52824r;
-    public int f52825s;
-    public int[] f52826t;
-    public int f52827u;
+    public final float[] f54226i;
+    public final float[] f54227j;
+    public final float[] f54228k;
+    public final RectF f54229l;
+    public final Rect f54230m;
+    public final int f54231n;
+    public Bitmap f54232o;
+    public Bitmap f54233p;
+    public Canvas f54234q;
+    public int f54235r;
+    public int f54236s;
+    public int[] f54237t;
+    public int f54238u;
     public int v;
-    public int f52828w;
-    public int f52829x;
-    public int f52830y;
-    public int f52831z;
+    public int f54239w;
+    public int f54240x;
+    public int f54241y;
+    public int f54242z;
 
     public h(int i7) {
         Paint paint = new Paint();
         this.d = paint;
-        this.f52812e = new Path();
-        this.f52813f = new Path();
-        this.f52814g = new Matrix();
+        this.f54223e = new Path();
+        this.f54224f = new Path();
+        this.f54225g = new Matrix();
         this.h = new Matrix();
-        this.f52815i = new float[9];
-        this.f52816j = new float[6];
-        this.f52817k = new float[8];
-        this.f52818l = new RectF();
-        this.f52819m = new Rect();
-        this.f52825s = -1;
-        this.f52820n = i7;
+        this.f54226i = new float[9];
+        this.f54227j = new float[6];
+        this.f54228k = new float[8];
+        this.f54229l = new RectF();
+        this.f54230m = new Rect();
+        this.f54236s = -1;
+        this.f54231n = i7;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
@@ -88,11 +89,11 @@ public final class h {
 
     public final void a(Paint paint) {
         int[] iArr;
-        if (this.f52829x != 0 && (iArr = this.E) != null) {
+        if (this.f54240x != 0 && (iArr = this.E) != null) {
             float[] fArr = this.F;
             paint.setColor(-16777216);
-            int i7 = this.f52829x;
-            float[] fArr2 = this.f52816j;
+            int i7 = this.f54240x;
+            float[] fArr2 = this.f54227j;
             if (i7 == 1) {
                 paint.setShader(new LinearGradient(fArr2[0], fArr2[1], fArr2[2], fArr2[3], iArr, fArr, Shader.TileMode.CLAMP));
                 return;
@@ -103,7 +104,7 @@ public final class h {
                     float[] fArr3 = new float[fArr.length];
                     for (int i10 = 0; i10 < fArr.length; i10++) {
                         float f11 = f10 / max;
-                        fArr3[i10] = com.google.android.recaptcha.internal.a.z(1.0f, f11, fArr[i10], f11);
+                        fArr3[i10] = e2.z(1.0f, f11, fArr[i10], f11);
                     }
                     fArr = fArr3;
                 }
@@ -119,7 +120,7 @@ public final class h {
             }
         }
         paint.setShader(null);
-        paint.setColor(this.f52830y);
+        paint.setColor(this.f54241y);
     }
 
     public final void c(android.graphics.Canvas r18, org.telegram.utils.twidget.g r19) {
@@ -172,57 +173,110 @@ public final class h {
         }
     }
 
-    public final float e() {
-        int[] iArr = this.f52826t;
-        int i7 = this.f52827u;
-        this.f52827u = i7 + 1;
+    public final void e(int i7) {
+        if (i7 >= 0 && i7 <= this.f54237t.length - this.f54238u) {
+            return;
+        }
+        throw new IllegalArgumentException("Canvas batch: count");
+    }
+
+    public final float f() {
+        int[] iArr = this.f54237t;
+        int i7 = this.f54238u;
+        this.f54238u = i7 + 1;
         return Float.intBitsToFloat(iArr[i7]);
     }
 
-    public final void f(Path path, boolean z9) {
+    public final void g(Path path, boolean z10) {
+        int i7;
         path.rewind();
-        int[] iArr = this.f52826t;
-        int i7 = this.f52827u;
-        int i10 = i7 + 1;
-        this.f52827u = i10;
-        int i11 = iArr[i7];
-        int i12 = i7 + 2;
-        this.f52827u = i12;
-        int i13 = iArr[i10];
-        int i14 = i12 + i11;
-        int i15 = i14;
-        for (int i16 = i12; i16 < i14; i16++) {
-            int i17 = iArr[i16];
-            if (i17 != 0) {
-                if (i17 != 1) {
-                    if (i17 != 2) {
-                        if (i17 != 3) {
-                            if (i17 == 4) {
-                                path.close();
-                            }
+        int[] iArr = this.f54237t;
+        int i10 = this.f54238u;
+        int i11 = i10 + 1;
+        this.f54238u = i11;
+        int i12 = iArr[i10];
+        this.f54238u = i10 + 2;
+        int i13 = iArr[i11];
+        e(i12);
+        if (i13 >= 0) {
+            int[] iArr2 = this.f54237t;
+            int length = iArr2.length;
+            int i14 = this.f54238u;
+            if (i13 <= (length - i14) - i12) {
+                int i15 = i14 + i12;
+                int i16 = i15 + i13;
+                int i17 = i15;
+                for (int i18 = i14; i18 < i15; i18++) {
+                    int i19 = iArr2[i18];
+                    if (i19 != 0 && i19 != 1) {
+                        if (i19 == 2) {
+                            i7 = 4;
+                        } else if (i19 == 3) {
+                            i7 = 6;
                         } else {
-                            path.cubicTo(Float.intBitsToFloat(iArr[i15]), Float.intBitsToFloat(iArr[i15 + 1]), Float.intBitsToFloat(iArr[i15 + 2]), Float.intBitsToFloat(iArr[i15 + 3]), Float.intBitsToFloat(iArr[i15 + 4]), Float.intBitsToFloat(iArr[i15 + 5]));
-                            i15 += 6;
+                            i7 = 0;
                         }
                     } else {
-                        path.quadTo(Float.intBitsToFloat(iArr[i15]), Float.intBitsToFloat(iArr[i15 + 1]), Float.intBitsToFloat(iArr[i15 + 2]), Float.intBitsToFloat(iArr[i15 + 3]));
-                        i15 += 4;
+                        i7 = 2;
                     }
-                } else {
-                    path.lineTo(Float.intBitsToFloat(iArr[i15]), Float.intBitsToFloat(iArr[i15 + 1]));
+                    if (i7 + i17 <= i16) {
+                        if (i19 != 0) {
+                            if (i19 != 1) {
+                                if (i19 != 2) {
+                                    if (i19 != 3) {
+                                        if (i19 == 4) {
+                                            path.close();
+                                        }
+                                    } else {
+                                        path.cubicTo(Float.intBitsToFloat(iArr2[i17]), Float.intBitsToFloat(iArr2[i17 + 1]), Float.intBitsToFloat(iArr2[i17 + 2]), Float.intBitsToFloat(iArr2[i17 + 3]), Float.intBitsToFloat(iArr2[i17 + 4]), Float.intBitsToFloat(iArr2[i17 + 5]));
+                                        i17 += 6;
+                                    }
+                                } else {
+                                    path.quadTo(Float.intBitsToFloat(iArr2[i17]), Float.intBitsToFloat(iArr2[i17 + 1]), Float.intBitsToFloat(iArr2[i17 + 2]), Float.intBitsToFloat(iArr2[i17 + 3]));
+                                    i17 += 4;
+                                }
+                            } else {
+                                path.lineTo(Float.intBitsToFloat(iArr2[i17]), Float.intBitsToFloat(iArr2[i17 + 1]));
+                            }
+                        } else {
+                            path.moveTo(Float.intBitsToFloat(iArr2[i17]), Float.intBitsToFloat(iArr2[i17 + 1]));
+                        }
+                        i17 += 2;
+                    } else {
+                        throw new IllegalArgumentException("Canvas batch: path");
+                    }
                 }
-            } else {
-                path.moveTo(Float.intBitsToFloat(iArr[i15]), Float.intBitsToFloat(iArr[i15 + 1]));
+                this.f54238u = i12 + i13 + this.f54238u;
+                if (z10) {
+                    path.setFillType(Path.FillType.WINDING);
+                    return;
+                }
+                return;
             }
-            i15 += 2;
         }
-        this.f52827u = i11 + i13 + this.f52827u;
-        if (z9) {
-            path.setFillType(Path.FillType.WINDING);
-        }
+        throw new IllegalArgumentException("Canvas batch: count");
     }
 
-    public final void g(org.telegram.utils.twidget.g r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.h.g(org.telegram.utils.twidget.g):void");
+    public final void h(org.telegram.utils.twidget.g r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.h.h(org.telegram.utils.twidget.g):void");
+    }
+
+    public final synchronized Bitmap i() {
+        try {
+            Bitmap bitmap = this.f54232o;
+            if (bitmap == null) {
+                return null;
+            }
+            if (this.f54236s == this.f54235r) {
+                if (this.f54233p == null) {
+                }
+                return this.f54233p;
+            }
+            this.f54233p = bitmap.copy(Bitmap.Config.ARGB_8888, false);
+            this.f54236s = this.f54235r;
+            return this.f54233p;
+        } catch (Throwable th2) {
+            throw th2;
+        }
     }
 }

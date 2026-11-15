@@ -4,25 +4,25 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.util.Log;
 import android.util.SparseArray;
-import bi.b1;
-import com.google.android.gms.internal.vision.f3;
-import com.google.android.gms.internal.vision.t2;
+import com.google.android.gms.common.api.q;
+import com.google.android.gms.internal.vision.g3;
+import com.google.android.gms.internal.vision.u2;
 import java.nio.ByteBuffer;
 import java.util.HashSet;
-import org.telegram.ui.ly0;
+import org.telegram.ui.ld0;
 import q6.m;
-public final class b extends b1 {
-    public final t8.a f57626b;
-    public final t2 f57627c;
+public final class b extends q {
+    public final t8.a f59067b;
+    public final u2 f59068c;
     public final Object d;
-    public boolean f57628e;
+    public boolean f59069e;
 
-    public b(t2 t2Var) {
+    public b(u2 u2Var) {
         super(7);
-        this.f57626b = new t8.a();
+        this.f59067b = new t8.a();
         this.d = new Object();
-        this.f57628e = true;
-        this.f57627c = t2Var;
+        this.f59069e = true;
+        this.f59068c = u2Var;
     }
 
     @Override
@@ -30,26 +30,26 @@ public final class b extends b1 {
         super.X0();
         synchronized (this.d) {
             try {
-                if (!this.f57628e) {
+                if (!this.f59069e) {
                     return;
                 }
-                this.f57627c.l();
-                this.f57628e = false;
+                this.f59068c.l();
+                this.f59069e = false;
             } catch (Throwable th2) {
                 throw th2;
             }
         }
     }
 
-    public final SparseArray e1(ly0 ly0Var) {
-        ByteBuffer y10;
+    public final SparseArray e1(ld0 ld0Var) {
+        ByteBuffer w10;
         a[] n10;
-        Bitmap bitmap = (Bitmap) ly0Var.d;
+        Bitmap bitmap = (Bitmap) ld0Var.d;
         if (bitmap != null) {
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
             int i7 = width * height;
-            y10 = ByteBuffer.allocateDirect(((((height + 1) / 2) * ((width + 1) / 2)) << 1) + i7);
+            w10 = ByteBuffer.allocateDirect(((((height + 1) / 2) * ((width + 1) / 2)) << 1) + i7);
             int i10 = i7;
             for (int i11 = 0; i11 < i7; i11++) {
                 int i12 = i11 % width;
@@ -58,24 +58,24 @@ public final class b extends b1 {
                 float red = Color.red(pixel);
                 float green = Color.green(pixel);
                 float blue = Color.blue(pixel);
-                y10.put(i11, (byte) ((0.114f * blue) + (0.587f * green) + (0.299f * red)));
+                w10.put(i11, (byte) ((0.114f * blue) + (0.587f * green) + (0.299f * red)));
                 if (i13 % 2 == 0 && i12 % 2 == 0) {
-                    float d = rf.b.d(blue, 0.5f, ((-0.331f) * green) + ((-0.169f) * red), 128.0f);
-                    float d2 = rf.b.d(blue, -0.081f, (green * (-0.419f)) + (red * 0.5f), 128.0f);
+                    float e10 = r.b.e(blue, 0.5f, ((-0.331f) * green) + ((-0.169f) * red), 128.0f);
+                    float e11 = r.b.e(blue, -0.081f, (green * (-0.419f)) + (red * 0.5f), 128.0f);
                     int i14 = i10 + 1;
-                    y10.put(i10, (byte) d);
+                    w10.put(i10, (byte) e10);
                     i10 += 2;
-                    y10.put(i14, (byte) d2);
+                    w10.put(i14, (byte) e11);
                 }
             }
         } else {
-            y10 = ly0Var.y();
+            w10 = ld0Var.w();
         }
         synchronized (this.d) {
-            if (this.f57628e) {
-                t2 t2Var = this.f57627c;
-                m.g(y10);
-                n10 = t2Var.n(y10, f3.b(ly0Var));
+            if (this.f59069e) {
+                u2 u2Var = this.f59068c;
+                m.g(w10);
+                n10 = u2Var.n(w10, g3.b(ld0Var));
             } else {
                 throw new IllegalStateException("Cannot use detector after release()");
             }
@@ -84,14 +84,14 @@ public final class b extends b1 {
         SparseArray sparseArray = new SparseArray(n10.length);
         int i15 = 0;
         for (a aVar : n10) {
-            int i16 = aVar.f57623a;
+            int i16 = aVar.f59064a;
             i15 = Math.max(i15, i16);
             if (hashSet.contains(Integer.valueOf(i16))) {
                 i16 = i15 + 1;
                 i15 = i16;
             }
             hashSet.add(Integer.valueOf(i16));
-            sparseArray.append(this.f57626b.a(i16), aVar);
+            sparseArray.append(this.f59067b.a(i16), aVar);
         }
         return sparseArray;
     }
@@ -99,7 +99,7 @@ public final class b extends b1 {
     public final void finalize() {
         try {
             synchronized (this.d) {
-                if (this.f57628e) {
+                if (this.f59069e) {
                     Log.w("FaceDetector", "FaceDetector was not released with FaceDetector.release()");
                     X0();
                 }

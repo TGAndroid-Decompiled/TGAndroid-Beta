@@ -9,9 +9,9 @@ import android.os.Build;
 import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessaging;
 public final class e0 extends BroadcastReceiver {
-    public final int f920a = 0;
-    public Context f921b;
-    public Object f922c;
+    public final int f919a = 0;
+    public Context f920b;
+    public Object f921c;
 
     public e0() {
     }
@@ -21,21 +21,21 @@ public final class e0 extends BroadcastReceiver {
             Log.d("FirebaseMessaging", "Connectivity change received registered");
         }
         IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
-        f0 f0Var = (f0) this.f922c;
+        f0 f0Var = (f0) this.f921c;
         if (f0Var != null) {
-            Context context = f0Var.f926c.f7893b;
-            this.f921b = context;
+            Context context = f0Var.f925c.f7277b;
+            this.f920b = context;
             context.registerReceiver(this, intentFilter);
         }
     }
 
     public synchronized void b() {
         try {
-            Context context = this.f921b;
+            Context context = this.f920b;
             if (context != null) {
                 context.unregisterReceiver(this);
             }
-            this.f921b = null;
+            this.f920b = null;
         } catch (Throwable th2) {
             throw th2;
         }
@@ -44,21 +44,21 @@ public final class e0 extends BroadcastReceiver {
     @Override
     public final void onReceive(Context context, Intent intent) {
         String str;
-        switch (this.f920a) {
+        switch (this.f919a) {
             case 0:
-                f0 f0Var = (f0) this.f922c;
+                f0 f0Var = (f0) this.f921c;
                 if (f0Var != null && f0Var.a()) {
                     if (Log.isLoggable("FirebaseMessaging", 3) || (Build.VERSION.SDK_INT == 23 && Log.isLoggable("FirebaseMessaging", 3))) {
                         Log.d("FirebaseMessaging", "Connectivity changed. Starting background sync.");
                     }
-                    f0 f0Var2 = (f0) this.f922c;
-                    f0Var2.f926c.getClass();
+                    f0 f0Var2 = (f0) this.f921c;
+                    f0Var2.f925c.getClass();
                     FirebaseMessaging.b(f0Var2, 0L);
-                    Context context2 = this.f921b;
+                    Context context2 = this.f920b;
                     if (context2 != null) {
                         context2.unregisterReceiver(this);
                     }
-                    this.f922c = null;
+                    this.f921c = null;
                     return;
                 }
                 return;
@@ -70,7 +70,7 @@ public final class e0 extends BroadcastReceiver {
                     str = null;
                 }
                 if ("com.google.android.gms".equals(str)) {
-                    ((cb.c) this.f922c).D();
+                    ((cb.c) this.f921c).z();
                     b();
                     return;
                 }
@@ -79,6 +79,6 @@ public final class e0 extends BroadcastReceiver {
     }
 
     public e0(cb.c cVar) {
-        this.f922c = cVar;
+        this.f921c = cVar;
     }
 }

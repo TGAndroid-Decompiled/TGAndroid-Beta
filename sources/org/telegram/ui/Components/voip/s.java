@@ -1,30 +1,31 @@
 package org.telegram.ui.Components.voip;
 
 import android.widget.TextView;
+import org.telegram.messenger.i20;
 public final class s implements Runnable {
-    public final int f39525a;
-    public final y f39526b;
+    public final int f40928a;
+    public final z f40929b;
 
-    public s(y yVar, int i7) {
-        this.f39525a = i7;
-        this.f39526b = yVar;
+    public s(z zVar, int i7) {
+        this.f40928a = i7;
+        this.f40929b = zVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f39525a) {
+        switch (this.f40928a) {
             case 0:
-                this.f39526b.requestLayout();
+                this.f40929b.requestLayout();
                 return;
             default:
-                y yVar = this.f39526b;
-                TextView textView = yVar.O;
-                u uVar = yVar.f39636a;
-                if (!uVar.d.isFirstFrameRendered()) {
-                    uVar.animate().cancel();
-                    uVar.animate().alpha(0.0f).setDuration(150L).start();
+                z zVar = this.f40929b;
+                TextView textView = zVar.P;
+                v vVar = zVar.f41078a;
+                if (!vVar.d.isFirstFrameRendered()) {
+                    vVar.animate().cancel();
+                    vVar.animate().alpha(0.0f).setDuration(150L).start();
                     textView.animate().cancel();
-                    org.telegram.messenger.camera.q.k(textView.animate(), 1.0f, 150L);
+                    i20.m(textView.animate(), 1.0f, 150L);
                     return;
                 }
                 return;

@@ -1,63 +1,60 @@
 package org.telegram.ui;
-public final class ej extends mi.l {
-    public Runnable W;
-    public final cn X;
+public final class ej implements Runnable {
+    public final int f46798a;
+    public final an f46799b;
 
-    public ej(cn cnVar, cn cnVar2, cj cjVar, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(cnVar2, cjVar, h6Var);
-        this.X = cnVar;
+    public ej(an anVar, int i7) {
+        this.f46798a = i7;
+        this.f46799b = anVar;
     }
 
     @Override
-    public final void F() {
-        cn cnVar = this.X;
-        if (cnVar.f44457ca == -1) {
-            cnVar.f44457ca = cnVar.getNotificationCenter().q(cn.f44414qd, cnVar.f44457ca, false);
+    public final void run() {
+        int i7 = this.f46798a;
+        an anVar = this.f46799b;
+        switch (i7) {
+            case 0:
+                int i10 = an.f45108ld;
+                anVar.o7();
+                return;
+            case 1:
+                an.s2(anVar);
+                return;
+            case 2:
+                an.s2(anVar);
+                return;
+            case 3:
+                int i11 = an.f45108ld;
+                anVar.pb();
+                return;
+            case 4:
+                int i12 = an.f45108ld;
+                anVar.pb();
+                return;
+            case 5:
+                int i13 = an.f45108ld;
+                anVar.pb();
+                return;
+            case 6:
+                int i14 = an.f45108ld;
+                anVar.pb();
+                return;
+            case 7:
+                int i15 = an.f45108ld;
+                anVar.pb();
+                return;
+            case 8:
+                int i16 = an.f45108ld;
+                anVar.pb();
+                return;
+            case 9:
+                int i17 = an.f45108ld;
+                anVar.pb();
+                return;
+            default:
+                int i18 = an.f45108ld;
+                anVar.pb();
+                return;
         }
-    }
-
-    @Override
-    public final void N() {
-        super.N();
-        Runnable runnable = this.W;
-        if (runnable != null) {
-            org.telegram.messenger.g0.r(runnable);
-            this.W = null;
-        }
-        dj djVar = new dj(this, 1);
-        this.W = djVar;
-        org.telegram.messenger.g0.h3(djVar);
-    }
-
-    @Override
-    public final void W() {
-        cn cnVar = this.X;
-        cnVar.f44457ca = cnVar.getNotificationCenter().q(cn.f44414qd, cnVar.f44457ca, false);
-        Runnable runnable = this.W;
-        if (runnable != null) {
-            org.telegram.messenger.g0.r(runnable);
-            this.W = null;
-        }
-        if (org.telegram.messenger.r2.f25216a) {
-            org.telegram.messenger.a8.b("chatItemAnimator disable notifications");
-        }
-        m.f3 f3Var = cnVar.Z.getAdjustPanLayoutHelper().h;
-        org.telegram.messenger.g0.r(f3Var);
-        f3Var.run();
-        org.telegram.ui.Components.ie ieVar = cnVar.Z.Y3;
-        org.telegram.messenger.g0.r(ieVar);
-        ieVar.run();
-    }
-
-    @Override
-    public final void g() {
-        super.g();
-        Runnable runnable = this.W;
-        if (runnable != null) {
-            org.telegram.messenger.g0.r(runnable);
-        }
-        dj djVar = new dj(this, 0);
-        this.W = djVar;
-        org.telegram.messenger.g0.h3(djVar);
     }
 }

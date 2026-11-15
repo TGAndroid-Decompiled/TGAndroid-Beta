@@ -67,15 +67,15 @@ public class AudioRecoder {
         dg.a aVar;
         int remaining = shortBuffer.remaining();
         for (int i7 = 0; i7 < remaining && isInputAvailable(); i7++) {
-            boolean z9 = false;
+            boolean z10 = false;
             short s5 = 0;
             for (int i10 = 0; i10 < this.audioInputs.size() && isInputAvailable(); i10++) {
                 if (this.audioInputs.get(i10).c()) {
-                    s5 = (short) ((((short) (aVar.a() * aVar.f8693a)) / this.audioInputs.size()) + s5);
-                    z9 = true;
+                    s5 = (short) ((((short) (aVar.a() * aVar.f8077a)) / this.audioInputs.size()) + s5);
+                    z10 = true;
                 }
             }
-            if (z9) {
+            if (z10) {
                 shortBuffer.put(s5);
             }
         }

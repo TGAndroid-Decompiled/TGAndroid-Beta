@@ -1,34 +1,47 @@
 package hi;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.ui.ActionBar.m6;
-public final class q2 extends AnimatorListenerAdapter {
-    public final int f14888a;
-    public final int f14889b;
-    public final t1 f14890c;
-    public final a3 d;
+import android.content.Context;
+import android.view.View;
+import org.telegram.ui.Components.pz;
+public final class q2 extends pz {
+    public final int V;
 
-    public q2(a3 a3Var, int i7, int i10, t1 t1Var) {
-        this.d = a3Var;
-        this.f14888a = i7;
-        this.f14889b = i10;
-        this.f14890c = t1Var;
+    public q2(int i7, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        this.V = i7;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int f10 = i0.a.f(1.0f, this.f14888a, this.f14889b);
-        a3 a3Var = this.d;
-        a3Var.R = f10;
-        a3Var.l();
-        z2 z2Var = a3Var.f14521f;
-        z2Var.invalidate();
-        x2 x2Var = a3Var.X;
-        x2Var.setBackgroundColor(a3Var.R);
-        t1 t1Var = this.f14890c;
-        t1Var.b(x2Var, 1.0f);
-        a3Var.f14512a = t1Var.a(m6.wj);
-        z2Var.invalidate();
+    public int getColumnsCount() {
+        switch (this.V) {
+            case 0:
+                return 3;
+            case 1:
+                return 3;
+            default:
+                return super.getColumnsCount();
+        }
+    }
+
+    @Override
+    public int getViewType() {
+        switch (this.V) {
+            case 1:
+                return 2;
+            default:
+                return super.getViewType();
+        }
+    }
+
+    @Override
+    public void onMeasure(int i7, int i10) {
+        switch (this.V) {
+            case 2:
+                setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(104.0f));
+                return;
+            default:
+                super.onMeasure(i7, i10);
+                return;
+        }
     }
 }

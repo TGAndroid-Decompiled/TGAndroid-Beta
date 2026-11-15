@@ -1,82 +1,112 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.view.View;
-public final class rd0 extends View {
-    public boolean D;
-    public long E;
-    public float F;
-    public float G;
-    public float H;
-    public ob0 I;
-    public TextPaint f37611a;
-    public TextPaint f37612b;
-    public StaticLayout f37613c;
-    public float d;
-    public float f37614e;
-    public StaticLayout f37615f;
-    public float h;
-    public float f37616n;
-    public boolean f37617r;
-    public v5 f37618s;
-    public boolean f37619w;
-    public sd0 f37620x;
-    public fi.u8 f37621y;
+import java.util.ArrayList;
+import org.telegram.tgnet.NativeByteBuffer;
+public final class rd0 {
+    public float f38950a = 0.0f;
+    public float f38951b = 25.0f;
+    public float f38952c = 50.0f;
+    public float d = 75.0f;
+    public float f38953e = 100.0f;
+    public float[] f38954f;
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float d = this.f37618s.d(this.f37617r);
-        if (d > 0.0f && this.f37613c != null && this.f37615f != null) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (d * 255.0f), 31);
-            canvas.save();
-            canvas.translate(((getWidth() - this.d) / 2.0f) - this.f37614e, getHeight() * 0.22f);
-            this.f37613c.draw(canvas);
-            canvas.restore();
-            canvas.save();
-            canvas.translate(((getWidth() - this.h) / 2.0f) - this.f37616n, (getHeight() * 0.22f) + org.telegram.messenger.g0.L(60.0f));
-            this.f37615f.draw(canvas);
-            canvas.restore();
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        float f10;
-        setMeasuredDimension(View.MeasureSpec.getSize(i7), View.MeasureSpec.getSize(i10));
-        TextPaint textPaint = this.f37611a;
-        textPaint.setColor(-1);
-        float f11 = 0.0f;
-        textPaint.setShadowLayer(org.telegram.messenger.g0.L(8.0f), 0.0f, 0.0f, 805306368);
-        textPaint.setTextSize(org.telegram.messenger.g0.L(34.0f));
-        TextPaint textPaint2 = this.f37612b;
-        textPaint2.setColor(-1);
-        textPaint2.setShadowLayer(org.telegram.messenger.g0.L(12.0f), 0.0f, 0.0f, 805306368);
-        textPaint2.setTextSize(org.telegram.messenger.g0.L(58.0f));
-        if (this.f37613c == null) {
-            StaticLayout staticLayout = new StaticLayout(org.telegram.messenger.id.M0(2131751126, null), textPaint, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.f37613c = staticLayout;
-            if (staticLayout.getLineCount() > 0) {
-                f10 = this.f37613c.getLineWidth(0);
-            } else {
-                f10 = 0.0f;
+    public final float[] a() {
+        float f10 = this.f38950a;
+        float f11 = this.f38953e;
+        int i7 = 2;
+        int i10 = 5;
+        char c10 = '\f';
+        char c11 = '\r';
+        float[] fArr = {-0.001f, f10 / 100.0f, 0.0f, f10 / 100.0f, 0.25f, this.f38951b / 100.0f, 0.5f, this.f38952c / 100.0f, 0.75f, this.d / 100.0f, 1.0f, f11 / 100.0f, 1.001f, f11 / 100.0f};
+        int i11 = 100;
+        ArrayList arrayList = new ArrayList(100);
+        ArrayList arrayList2 = new ArrayList(100);
+        arrayList2.add(Float.valueOf(fArr[0]));
+        arrayList2.add(Float.valueOf(fArr[1]));
+        int i12 = 1;
+        while (i12 < i10) {
+            int i13 = (i12 - 1) * i7;
+            float f12 = fArr[i13];
+            float f13 = fArr[i13 + 1];
+            int i14 = i12 * 2;
+            float f14 = fArr[i14];
+            float f15 = fArr[i14 + 1];
+            int i15 = i12 + 1;
+            int i16 = i15 * 2;
+            int i17 = i7;
+            float f16 = fArr[i16];
+            char c12 = c10;
+            float f17 = fArr[i16 + 1];
+            int i18 = (i12 + 2) * 2;
+            float f18 = fArr[i18];
+            float f19 = fArr[i18 + 1];
+            char c13 = c11;
+            int i19 = 1;
+            while (i19 < i11) {
+                float f20 = i19 * 0.01f;
+                float f21 = f20 * f20;
+                float f22 = f21 * f20;
+                float z10 = ((((((f14 * 3.0f) - f12) - (f16 * 3.0f)) + f18) * f22) + ((((f16 * 4.0f) + ((f12 * 2.0f) - (f14 * 5.0f))) - f18) * f21) + com.google.android.gms.internal.vision.e2.z(f16, f12, f20, f14 * 2.0f)) * 0.5f;
+                float max = Math.max(0.0f, Math.min(1.0f, ((((((f15 * 3.0f) - f13) - (f17 * 3.0f)) + f19) * f22) + ((((4.0f * f17) + ((2.0f * f13) - (5.0f * f15))) - f19) * f21) + com.google.android.gms.internal.vision.e2.z(f17, f13, f20, f15 * 2.0f)) * 0.5f));
+                if (z10 > f12) {
+                    arrayList2.add(Float.valueOf(z10));
+                    arrayList2.add(Float.valueOf(max));
+                }
+                if ((i19 - 1) % 2 == 0) {
+                    arrayList.add(Float.valueOf(max));
+                }
+                i19++;
+                i11 = 100;
             }
-            this.d = f10;
-            if (this.f37613c.getLineCount() > 0) {
-                f11 = this.f37613c.getLineLeft(0);
-            }
-            this.f37614e = f11;
+            arrayList2.add(Float.valueOf(f16));
+            arrayList2.add(Float.valueOf(f17));
+            i12 = i15;
+            i7 = i17;
+            c10 = c12;
+            c11 = c13;
+            i10 = 5;
+            i11 = 100;
         }
+        arrayList2.add(Float.valueOf(fArr[c10]));
+        arrayList2.add(Float.valueOf(fArr[c11]));
+        this.f38954f = new float[arrayList.size()];
+        int i20 = 0;
+        while (true) {
+            float[] fArr2 = this.f38954f;
+            if (i20 >= fArr2.length) {
+                break;
+            }
+            fArr2[i20] = ((Float) arrayList.get(i20)).floatValue();
+            i20++;
+        }
+        int size = arrayList2.size();
+        float[] fArr3 = new float[size];
+        for (int i21 = 0; i21 < size; i21++) {
+            fArr3[i21] = ((Float) arrayList2.get(i21)).floatValue();
+        }
+        return fArr3;
     }
 
-    public void setAllowTouch(boolean z9) {
-        this.f37619w = z9;
+    public final boolean b() {
+        if (Math.abs(this.f38950a - 0.0f) < 1.0E-5d && Math.abs(this.f38951b - 25.0f) < 1.0E-5d && Math.abs(this.f38952c - 50.0f) < 1.0E-5d && Math.abs(this.d - 75.0f) < 1.0E-5d && Math.abs(this.f38953e - 100.0f) < 1.0E-5d) {
+            return true;
+        }
+        return false;
     }
 
-    public void setFilterView(sd0 sd0Var) {
-        this.f37620x = sd0Var;
+    public final void c(NativeByteBuffer nativeByteBuffer) {
+        this.f38950a = nativeByteBuffer.readFloat(true);
+        this.f38951b = nativeByteBuffer.readFloat(true);
+        this.f38952c = nativeByteBuffer.readFloat(true);
+        this.d = nativeByteBuffer.readFloat(true);
+        this.f38953e = nativeByteBuffer.readFloat(true);
+    }
+
+    public final void d(NativeByteBuffer nativeByteBuffer) {
+        nativeByteBuffer.writeFloat(this.f38950a);
+        nativeByteBuffer.writeFloat(this.f38951b);
+        nativeByteBuffer.writeFloat(this.f38952c);
+        nativeByteBuffer.writeFloat(this.d);
+        nativeByteBuffer.writeFloat(this.f38953e);
     }
 }

@@ -1,35 +1,51 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class w41 implements jp {
-    public final TLRPC.TL_chatChannelParticipant f50904a;
-    public final boolean f50905b;
-    public final boolean[] f50906c;
+import org.telegram.tgnet.tl.TL_stats;
+public final class w41 {
+    public TL_stats.PostInteractionCounters f52430a;
+    public org.telegram.messenger.gj f52431b;
 
-    public w41(TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant, boolean z9, boolean[] zArr) {
-        this.f50904a = tL_chatChannelParticipant;
-        this.f50905b = z9;
-        this.f50906c = zArr;
+    public final int a() {
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f52430a;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
+            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).forwards;
+        }
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
+            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).forwards;
+        }
+        return 0;
     }
 
-    @Override
-    public final void b(int i7, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = this.f50904a;
-        if (i7 == 0) {
-            TLRPC.ChannelParticipant channelParticipant = tL_chatChannelParticipant.channelParticipant;
-            channelParticipant.admin_rights = null;
-            channelParticipant.rank = "";
-            return;
+    public final int b() {
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f52430a;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
+            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).msg_id;
         }
-        TLRPC.ChannelParticipant channelParticipant2 = tL_chatChannelParticipant.channelParticipant;
-        channelParticipant2.admin_rights = tL_chatAdminRights;
-        channelParticipant2.rank = str;
-        if (this.f50905b) {
-            this.f50906c[0] = true;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
+            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).story_id;
         }
+        return 0;
     }
 
-    @Override
-    public final void a(TLRPC.User user) {
+    public final int c() {
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f52430a;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
+            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).reactions;
+        }
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
+            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).reactions;
+        }
+        return 0;
+    }
+
+    public final int d() {
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f52430a;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
+            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).views;
+        }
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
+            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).views;
+        }
+        return 0;
     }
 }

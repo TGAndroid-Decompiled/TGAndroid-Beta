@@ -11,38 +11,43 @@ import android.os.SystemClock;
 import android.os.Trace;
 import j$.util.Objects;
 import j$.util.concurrent.ConcurrentHashMap;
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
-public final class WidgetSandboxBackend implements y0, g {
+public final class WidgetSandboxBackend implements b1, g {
     private static final int MAX_CANVAS_WORDS = 2097152;
     private static final int MAX_DISPLAY_OPS = 200000;
     private static final int MAX_FONTS = 4096;
     private static final int MAX_FRAMES_PER_SECOND = 240;
     static final long MAX_IMAGE_BYTES = 33554432;
     static final long MAX_IMAGE_PIXELS = 4194304;
+    static final int MAX_JSON_DEPTH = 32;
     private static final int MAX_LAYERS = 256;
     private static final long MAX_LIST_BYTES = 8388608;
+    private static final long MAX_PENDING_LAYER_BYTES = 16777216;
     private static final long MEMORY_BUDGET = 33554432;
     private long imageBytes;
     private long layerParseNanos;
     private int nextFont;
     private int nextRecord;
-    private final i1 owner;
-    private n1 text;
+    private final l1 owner;
+    private long pendingLayerBytes;
+    private q1 text;
+    private final Object recordLock = new Object();
     private final long[] recordTimes = new long[240];
     private final ConcurrentHashMap<Integer, Paint> fonts = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, Paint> deviceFonts = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, Bitmap> images = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, h> canvases = new ConcurrentHashMap<>();
     private final HashMap<Integer, i> pendingLayers = new HashMap<>();
-    private HashMap<Long, s0> layerContents = new HashMap<>();
-    private final z0 painter = new z0();
+    private HashMap<Long, v0> layerContents = new HashMap<>();
+    private final c1 painter = new c1();
 
-    public WidgetSandboxBackend(i1 i1Var) {
-        this.owner = i1Var;
+    public WidgetSandboxBackend(l1 l1Var) {
+        this.owner = l1Var;
     }
 
     private static void assertWorker() {
@@ -56,25 +61,60 @@ public final class WidgetSandboxBackend implements y0, g {
         long width;
         long j3 = i10 * i11;
         if (j3 <= 4194304) {
-            long j10 = (j3 * 8) + this.imageBytes;
+            long imageBytes = (j3 * 8) + imageBytes();
             for (Map.Entry<Integer, h> entry : this.canvases.entrySet()) {
                 if (entry.getKey().intValue() != i7) {
                     h value = entry.getValue();
-                    Bitmap bitmap = value.f52821o;
+                    Bitmap bitmap = value.f54232o;
                     if (bitmap == null) {
                         width = 0;
                     } else {
-                        width = bitmap.getWidth() * value.f52821o.getHeight() * 8;
+                        width = bitmap.getWidth() * value.f54232o.getHeight() * 8;
                     }
-                    j10 += width;
+                    imageBytes += width;
                 }
             }
-            if (j10 <= 33554432) {
+            if (imageBytes <= 33554432) {
                 return;
             }
             throw new IllegalArgumentException("Canvas memory budget");
         }
         throw new IllegalArgumentException("Canvas dimensions");
+    }
+
+    public static void checkJsonDepth(String str) {
+        int length = str.length();
+        int i7 = 0;
+        boolean z10 = false;
+        int i10 = 0;
+        while (i7 < length) {
+            char charAt = str.charAt(i7);
+            if (z10) {
+                if (charAt == '\\') {
+                    i7++;
+                } else if (charAt == '\"') {
+                    z10 = false;
+                }
+            } else if (charAt == '\"') {
+                z10 = true;
+            } else if (charAt != '[' && charAt != '{') {
+                if (charAt == ']' || charAt == '}') {
+                    i10--;
+                }
+            } else {
+                i10++;
+                if (i10 > 32) {
+                    throw new IllegalArgumentException("JSON nests too deep");
+                }
+            }
+            i7++;
+        }
+    }
+
+    private void clearPendingLayers() {
+        this.pendingLayers.clear();
+        this.pendingLayerBytes = 0L;
+        this.layerParseNanos = 0L;
     }
 
     public static android.graphics.Bitmap decodeImage(java.lang.String r40, long r41) {
@@ -108,7 +148,22 @@ public final class WidgetSandboxBackend implements y0, g {
         return sb2.toString();
     }
 
-    private h1[] layers(JSONObject jSONObject, float f10) {
+    private long imageBytes() {
+        long j3;
+        synchronized (this.images) {
+            j3 = this.imageBytes;
+        }
+        return j3;
+    }
+
+    private static boolean jsonSignal(int i7) {
+        if (i7 != 3 && i7 != 4 && i7 != 5 && i7 != 8 && i7 != 12 && i7 != 18 && i7 != 19) {
+            return false;
+        }
+        return true;
+    }
+
+    private k1[] layers(JSONObject jSONObject, float f10) {
         int length;
         int i7;
         JSONArray jSONArray;
@@ -117,7 +172,7 @@ public final class WidgetSandboxBackend implements y0, g {
         float[] fArr;
         float[] fArr2;
         int length2;
-        boolean z9;
+        boolean z10;
         int i11;
         int i12;
         c0 b0Var;
@@ -128,8 +183,8 @@ public final class WidgetSandboxBackend implements y0, g {
         } else {
             length = optJSONArray.length();
         }
-        HashMap<Long, s0> hashMap = new HashMap<>();
-        h1[] h1VarArr = new h1[length];
+        HashMap<Long, v0> hashMap = new HashMap<>();
+        k1[] k1VarArr = new k1[length];
         int i14 = 0;
         int i15 = 0;
         while (i14 < length) {
@@ -147,7 +202,7 @@ public final class WidgetSandboxBackend implements y0, g {
                     int floor2 = (int) Math.floor(optJSONArray2.optDouble(1) * d);
                     int ceil = (int) Math.ceil((optJSONArray2.optDouble(2) + optJSONArray2.optDouble(0)) * d);
                     int ceil2 = (int) Math.ceil((optJSONArray2.optDouble(3) + optJSONArray2.optDouble(1)) * d);
-                    s0 s0Var = this.layerContents.get(Long.valueOf(optLong));
+                    v0 v0Var = this.layerContents.get(Long.valueOf(optLong));
                     i iVar = this.pendingLayers.get(Integer.valueOf(i14));
                     if (iVar != null) {
                         if (Build.VERSION.SDK_INT >= 29) {
@@ -170,7 +225,7 @@ public final class WidgetSandboxBackend implements y0, g {
                             a10.scale(f10, f10);
                             this.painter.e(a10, iVar, this, f10);
                             b0Var.d();
-                            s0Var = new s0(b0Var, (int) optLong2);
+                            v0Var = new v0(b0Var, (int) optLong2);
                         } catch (Throwable th2) {
                             b0Var.d();
                             throw th2;
@@ -178,8 +233,8 @@ public final class WidgetSandboxBackend implements y0, g {
                     } else {
                         i10 = i14;
                         j3 = optLong;
-                        if (s0Var != null) {
-                            if (s0Var.f52977b != ((int) optLong2)) {
+                        if (v0Var != null) {
+                            if (v0Var.f54419b != ((int) optLong2)) {
                             }
                         }
                         i14 = i10 + 1;
@@ -187,16 +242,16 @@ public final class WidgetSandboxBackend implements y0, g {
                         optJSONArray = jSONArray;
                         i13 = 0;
                     }
-                    hashMap.put(Long.valueOf(j3), s0Var);
+                    hashMap.put(Long.valueOf(j3), v0Var);
                     JSONArray optJSONArray3 = optJSONObject.optJSONArray("l");
                     float[] fArr3 = null;
                     if (optJSONArray3 != null) {
                         float[] fArr4 = new float[4];
-                        z0.c(optJSONArray3, fArr4, 4, new float[0]);
+                        c1.c(optJSONArray3, fArr4, 4, new float[0]);
                         JSONArray optJSONArray4 = optJSONObject.optJSONArray("q");
                         if (optJSONArray4 != null) {
                             fArr3 = new float[8];
-                            z0.c(optJSONArray4, fArr3, 8, new float[0]);
+                            c1.c(optJSONArray4, fArr3, 8, new float[0]);
                         }
                         fArr2 = fArr3;
                         fArr = fArr4;
@@ -211,17 +266,17 @@ public final class WidgetSandboxBackend implements y0, g {
                         length2 = (optJSONArray5.length() / 8) * 8;
                     }
                     float[] fArr5 = new float[length2];
-                    z0.c(optJSONArray5, fArr5, length2, new float[0]);
+                    c1.c(optJSONArray5, fArr5, length2, new float[0]);
                     int i16 = i15 + 1;
-                    c0 c0Var = s0Var.f52976a;
+                    c0 c0Var = v0Var.f54418a;
                     double optDouble2 = optJSONObject.optDouble("ts");
                     double optDouble3 = optJSONObject.optDouble("td");
                     if (optJSONObject.optInt("tr") != 0) {
-                        z9 = true;
+                        z10 = true;
                     } else {
-                        z9 = false;
+                        z10 = false;
                     }
-                    h1VarArr[i15] = new h1(c0Var, fArr, fArr2, optDouble2, optDouble3, z9, fArr5);
+                    k1VarArr[i15] = new k1(c0Var, fArr, fArr2, optDouble2, optDouble3, z10, fArr5);
                     i15 = i16;
                     i14 = i10 + 1;
                     length = i7;
@@ -240,11 +295,11 @@ public final class WidgetSandboxBackend implements y0, g {
         int i17 = length;
         this.layerContents = hashMap;
         if (i15 == i17) {
-            return h1VarArr;
+            return k1VarArr;
         }
-        h1[] h1VarArr2 = new h1[i15];
-        System.arraycopy(h1VarArr, 0, h1VarArr2, 0, i15);
-        return h1VarArr2;
+        k1[] k1VarArr2 = new k1[i15];
+        System.arraycopy(k1VarArr, 0, k1VarArr2, 0, i15);
+        return k1VarArr2;
     }
 
     public static float[] metrics(int i7, Paint paint, float f10, Rect rect) {
@@ -255,11 +310,11 @@ public final class WidgetSandboxBackend implements y0, g {
         return new float[]{i7, (-f11) / f10, f12 / f10, ((f12 - f11) + fontMetrics.leading) / f10, rect.height() / f10, paint.measureText("0") / f10};
     }
 
-    public static Paint[] paints(String str, float f10, int i7, boolean z9, String str2, float f11) {
+    public static Paint[] paints(String str, float f10, int i7, boolean z10, String str2, float f11) {
         f10 = (f10 <= 0.0f || f10 > 10000.0f) ? 16.0f : 16.0f;
         Paint paint = new Paint(129);
         paint.setTextSize(f10);
-        paint.setTypeface(typeface(str, i7, z9));
+        paint.setTypeface(typeface(str, i7, z10));
         String featureSettings = featureSettings(str2);
         if (featureSettings != null) {
             paint.setFontFeatureSettings(featureSettings);
@@ -270,194 +325,30 @@ public final class WidgetSandboxBackend implements y0, g {
     }
 
     private void putImage(int i7, Bitmap bitmap) {
-        Bitmap put = this.images.put(Integer.valueOf(i7), bitmap);
-        long allocationByteCount = this.imageBytes + bitmap.getAllocationByteCount();
-        this.imageBytes = allocationByteCount;
-        if (put != null) {
-            this.imageBytes = allocationByteCount - put.getAllocationByteCount();
-        }
-    }
-
-    public static String text(byte[] bArr) {
-        if (bArr == null) {
-            return "";
-        }
-        return new String(bArr, StandardCharsets.UTF_8);
-    }
-
-    public static android.graphics.Typeface typeface(java.lang.String r9, int r10, boolean r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.WidgetSandboxBackend.typeface(java.lang.String, int, boolean):android.graphics.Typeface");
-    }
-
-    @Override
-    public Bitmap canvas(int i7) {
-        h hVar = this.canvases.get(Integer.valueOf(i7));
-        if (hVar == null) {
-            return null;
-        }
-        synchronized (hVar) {
+        synchronized (this.images) {
             try {
-                Bitmap bitmap = hVar.f52821o;
-                if (bitmap == null) {
-                    return null;
+                Bitmap put = this.images.put(Integer.valueOf(i7), bitmap);
+                long allocationByteCount = this.imageBytes + bitmap.getAllocationByteCount();
+                this.imageBytes = allocationByteCount;
+                if (put != null) {
+                    this.imageBytes = allocationByteCount - put.getAllocationByteCount();
                 }
-                if (hVar.f52825s == hVar.f52824r) {
-                    if (hVar.f52822p == null) {
-                    }
-                    return hVar.f52822p;
-                }
-                hVar.f52822p = bitmap.copy(Bitmap.Config.ARGB_8888, false);
-                hVar.f52825s = hVar.f52824r;
-                return hVar.f52822p;
             } catch (Throwable th2) {
                 throw th2;
             }
         }
     }
 
-    @Override
-    public Bitmap canvasBitmap(int i7) {
-        h hVar = this.canvases.get(Integer.valueOf(i7));
-        if (hVar == null) {
-            return null;
-        }
-        return hVar.f52821o;
-    }
-
-    public byte[] canvasRead(int i7, int i10, int i11, int i12, int i13) {
-        int i14 = i10;
-        assertWorker();
-        if (i12 > 0 && i13 > 0 && i12 * i13 <= 4194304) {
-            h hVar = this.canvases.get(Integer.valueOf(i7));
-            if (hVar == null) {
-                return new byte[i12 * i13 * 4];
-            }
-            byte[] bArr = new byte[Math.max(i13, 0) * Math.max(i12, 0) * 4];
-            if (hVar.f52821o != null) {
-                int max = Math.max(0, i14);
-                int max2 = Math.max(0, i11);
-                int min = Math.min(hVar.f52821o.getWidth(), i14 + i12);
-                int min2 = Math.min(hVar.f52821o.getHeight(), i13 + i11);
-                if (min > max && min2 > max2) {
-                    int i15 = min - max;
-                    int i16 = min2 - max2;
-                    int[] iArr = new int[i15 * i16];
-                    hVar.f52821o.getPixels(iArr, 0, i15, max, max2, i15, i16);
-                    int i17 = max2;
-                    while (i17 < min2) {
-                        int i18 = max;
-                        while (i18 < min) {
-                            int i19 = iArr[(i18 - max) + ((i17 - max2) * i15)];
-                            int i20 = ((i18 - i14) + ((i17 - i11) * i12)) * 4;
-                            bArr[i20] = (byte) Color.red(i19);
-                            bArr[i20 + 1] = (byte) Color.green(i19);
-                            bArr[i20 + 2] = (byte) Color.blue(i19);
-                            bArr[i20 + 3] = (byte) Color.alpha(i19);
-                            i18++;
-                            i14 = i10;
-                        }
-                        i17++;
-                        i14 = i10;
-                    }
-                }
-            }
-            return bArr;
-        }
-        return null;
-    }
-
-    public void canvasRelease(int i7) {
-        assertWorker();
-        h remove = this.canvases.remove(Integer.valueOf(i7));
-        if (remove != null) {
-            synchronized (remove) {
-                try {
-                    Bitmap bitmap = remove.f52821o;
-                    if (bitmap != null) {
-                        bitmap.recycle();
-                    }
-                    remove.f52821o = null;
-                    remove.f52823q = null;
-                    remove.f52822p = null;
-                } catch (Throwable th2) {
-                    throw th2;
-                }
-            }
-        }
-    }
-
-    public void canvasRun(int r3, int r4, int r5, int[] r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.WidgetSandboxBackend.canvasRun(int, int, int, int[]):void");
-    }
-
-    public float[] createFont(byte[] bArr, float f10, int i7, boolean z9, byte[] bArr2) {
-        assertWorker();
-        int i10 = this.nextFont + 1;
-        this.nextFont = i10;
-        return defineFont(i10, bArr, f10, i7, z9, bArr2);
-    }
-
-    public float[] defineFont(int i7, byte[] bArr, float f10, int i10, boolean z9, byte[] bArr2) {
-        if (this.fonts.size() >= 4096 && !this.fonts.containsKey(Integer.valueOf(i7))) {
-            throw new IllegalArgumentException("Too many fonts");
-        }
-        Paint[] paints = paints(text(bArr), f10, i10, z9, text(bArr2), this.owner.f52857l);
-        this.fonts.put(Integer.valueOf(i7), paints[0]);
-        this.deviceFonts.put(Integer.valueOf(i7), paints[1]);
-        return metrics(i7, paints[1], this.owner.f52857l, new Rect());
-    }
-
-    public void defineImage(int i7, Bitmap bitmap) {
-        if (bitmap != null && bitmap.getWidth() > 0 && bitmap.getHeight() > 0 && bitmap.getWidth() * bitmap.getHeight() <= 4194304 && this.imageBytes + bitmap.getAllocationByteCount() <= 33554432) {
-            putImage(i7, bitmap);
-        }
-    }
-
-    public void deleteFont(int i7) {
-        this.fonts.remove(Integer.valueOf(i7));
-        this.deviceFonts.remove(Integer.valueOf(i7));
-    }
-
-    @Override
-    public Paint deviceFont(int i7) {
-        return this.deviceFonts.get(Integer.valueOf(i7));
-    }
-
-    @Override
-    public Paint font(int i7) {
-        return this.fonts.get(Integer.valueOf(i7));
-    }
-
-    public byte[] formatIntl(byte[] bArr) {
-        return t0.b(text(bArr)).getBytes(StandardCharsets.UTF_8);
-    }
-
-    @Override
-    public Bitmap image(int i7) {
-        return this.images.get(Integer.valueOf(i7));
-    }
-
-    public float[] loadImage(int i7, byte[] bArr) {
-        Bitmap decodeImage = decodeImage(text(bArr), this.imageBytes);
-        if (decodeImage == null) {
-            return null;
-        }
-        putImage(i7, decodeImage);
-        return new float[]{decodeImage.getWidth(), decodeImage.getHeight()};
-    }
-
-    public void record(byte[] bArr, byte[] bArr2, double d, int i7, int i10, float f10, float f11, int i11, int i12) {
+    private void recordLocked(byte[] bArr, byte[] bArr2, double d, int i7, int i10, float f10, float f11, int i11, int i12) {
         c0 b0Var;
         int i13;
         int i14;
-        assertWorker();
         if (bArr.length <= 8388608) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
             long[] jArr = this.recordTimes;
             int i15 = this.nextRecord;
             if (elapsedRealtime - jArr[i15] < 1000) {
-                this.pendingLayers.clear();
-                this.layerParseNanos = 0L;
+                clearPendingLayers();
                 return;
             }
             jArr[i15] = elapsedRealtime;
@@ -480,61 +371,261 @@ public final class WidgetSandboxBackend implements y0, g {
             try {
                 try {
                     i b10 = i.b(bArr);
-                    JSONObject jSONObject = new JSONObject(text(bArr2));
+                    String text = text(bArr2);
+                    checkJsonDepth(text);
+                    JSONObject jSONObject = new JSONObject(text);
                     System.nanoTime();
+                    c1 c1Var = this.painter;
+                    c1Var.v = 0;
+                    c1Var.f54191w = 0;
+                    c1Var.f54192x = 0L;
                     Canvas a10 = c0Var.a();
                     try {
                         a10.scale(f10, f10);
                         this.painter.e(a10, b10, this, f10);
                         c0Var.d();
-                        h1[] layers = layers(jSONObject, f10);
-                        i1 i1Var = this.owner;
+                        k1[] layers = layers(jSONObject, f10);
+                        l1 l1Var = this.owner;
                         System.nanoTime();
-                        i1Var.getClass();
-                        this.owner.b(c0Var, layers, d2, i13, i14, f11, ((float) (System.nanoTime() - nanoTime)) / 1000000.0f, i11, i12, b10.f52840b, this.text);
+                        l1Var.getClass();
+                        this.owner.b(c0Var, layers, d2, i13, i14, f11, ((float) (System.nanoTime() - nanoTime)) / 1000000.0f, i11, i12, b10.f54248b, this.text);
                         return;
                     } catch (Throwable th2) {
                         c0Var.d();
                         throw th2;
                     }
-                } finally {
-                    this.pendingLayers.clear();
-                    this.layerParseNanos = 0L;
-                    Trace.endSection();
+                } catch (Exception e10) {
+                    c0Var.b();
+                    throw e10;
                 }
-            } catch (Exception e10) {
-                c0Var.b();
-                throw e10;
+            } finally {
+                clearPendingLayers();
+                Trace.endSection();
             }
         }
-        this.pendingLayers.clear();
+        clearPendingLayers();
         throw new IllegalArgumentException("Display list");
+    }
+
+    public static String text(byte[] bArr) {
+        if (bArr == null) {
+            return "";
+        }
+        return new String(bArr, StandardCharsets.UTF_8);
+    }
+
+    public static android.graphics.Typeface typeface(java.lang.String r9, int r10, boolean r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.WidgetSandboxBackend.typeface(java.lang.String, int, boolean):android.graphics.Typeface");
+    }
+
+    @Override
+    public Bitmap canvas(int i7) {
+        h hVar = this.canvases.get(Integer.valueOf(i7));
+        if (hVar == null) {
+            return null;
+        }
+        return hVar.i();
+    }
+
+    @Override
+    public Bitmap canvasBitmap(int i7) {
+        h hVar = this.canvases.get(Integer.valueOf(i7));
+        if (hVar == null) {
+            return null;
+        }
+        return hVar.i();
+    }
+
+    public byte[] canvasRead(int i7, int i10, int i11, int i12, int i13) {
+        int i14 = i10;
+        assertWorker();
+        if (i12 > 0 && i13 > 0 && i12 * i13 <= 4194304) {
+            h hVar = this.canvases.get(Integer.valueOf(i7));
+            if (hVar == null) {
+                return new byte[i12 * i13 * 4];
+            }
+            synchronized (hVar) {
+                byte[] bArr = new byte[Math.max(i12, 0) * Math.max(i13, 0) * 4];
+                if (hVar.f54232o == null) {
+                    return bArr;
+                }
+                int max = Math.max(0, i14);
+                int max2 = Math.max(0, i11);
+                int min = Math.min(hVar.f54232o.getWidth(), i14 + i12);
+                int min2 = Math.min(hVar.f54232o.getHeight(), i13 + i11);
+                if (min > max && min2 > max2) {
+                    int i15 = min - max;
+                    int i16 = min2 - max2;
+                    int[] iArr = new int[i15 * i16];
+                    hVar.f54232o.getPixels(iArr, 0, i15, max, max2, i15, i16);
+                    int i17 = max2;
+                    while (i17 < min2) {
+                        int i18 = max;
+                        while (i18 < min) {
+                            int i19 = iArr[(i18 - max) + ((i17 - max2) * i15)];
+                            int i20 = ((i18 - i14) + ((i17 - i11) * i12)) * 4;
+                            bArr[i20] = (byte) Color.red(i19);
+                            bArr[i20 + 1] = (byte) Color.green(i19);
+                            bArr[i20 + 2] = (byte) Color.blue(i19);
+                            bArr[i20 + 3] = (byte) Color.alpha(i19);
+                            i18++;
+                            i14 = i10;
+                        }
+                        i17++;
+                        i14 = i10;
+                    }
+                    return bArr;
+                }
+                return bArr;
+            }
+        }
+        return null;
+    }
+
+    public void canvasRelease(int i7) {
+        assertWorker();
+        h remove = this.canvases.remove(Integer.valueOf(i7));
+        if (remove != null) {
+            synchronized (remove) {
+                try {
+                    Bitmap bitmap = remove.f54232o;
+                    if (bitmap != null) {
+                        bitmap.recycle();
+                    }
+                    remove.f54232o = null;
+                    remove.f54234q = null;
+                    remove.f54233p = null;
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+        }
+    }
+
+    public void canvasRun(int r4, int r5, int r6, int[] r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.WidgetSandboxBackend.canvasRun(int, int, int, int[]):void");
+    }
+
+    public float[] createFont(byte[] bArr, float f10, int i7, boolean z10, byte[] bArr2) {
+        assertWorker();
+        int i10 = this.nextFont + 1;
+        this.nextFont = i10;
+        return defineFont(i10, bArr, f10, i7, z10, bArr2);
+    }
+
+    public float[] defineFont(int i7, byte[] bArr, float f10, int i10, boolean z10, byte[] bArr2) {
+        if (this.fonts.size() >= 4096 && !this.fonts.containsKey(Integer.valueOf(i7))) {
+            throw new IllegalArgumentException("Too many fonts");
+        }
+        Paint[] paints = paints(text(bArr), f10, i10, z10, text(bArr2), this.owner.f54308l);
+        this.fonts.put(Integer.valueOf(i7), paints[0]);
+        this.deviceFonts.put(Integer.valueOf(i7), paints[1]);
+        return metrics(i7, paints[1], this.owner.f54308l, new Rect());
+    }
+
+    public void defineImage(int i7, int i10, int i11, byte[] bArr) {
+        if (bArr != null && i10 > 0 && i11 > 0) {
+            long j3 = i10 * i11;
+            if (j3 <= 4194304 && bArr.length == j3 * 4) {
+                synchronized (this.images) {
+                    try {
+                        if (this.imageBytes + bArr.length > 33554432) {
+                            return;
+                        }
+                        Bitmap createBitmap = Bitmap.createBitmap(i10, i11, Bitmap.Config.ARGB_8888);
+                        createBitmap.copyPixelsFromBuffer(ByteBuffer.wrap(bArr));
+                        putImage(i7, createBitmap);
+                    } catch (Throwable th2) {
+                        throw th2;
+                    }
+                }
+            }
+        }
+    }
+
+    public void deleteFont(int i7) {
+        this.fonts.remove(Integer.valueOf(i7));
+        this.deviceFonts.remove(Integer.valueOf(i7));
+    }
+
+    @Override
+    public Paint deviceFont(int i7) {
+        return this.deviceFonts.get(Integer.valueOf(i7));
+    }
+
+    @Override
+    public Paint font(int i7) {
+        return this.fonts.get(Integer.valueOf(i7));
+    }
+
+    public byte[] formatIntl(byte[] bArr) {
+        return w0.b(text(bArr)).getBytes(StandardCharsets.UTF_8);
+    }
+
+    @Override
+    public Bitmap image(int i7) {
+        return this.images.get(Integer.valueOf(i7));
+    }
+
+    public float[] loadImage(int i7, byte[] bArr) {
+        Bitmap decodeImage = decodeImage(text(bArr), imageBytes());
+        if (decodeImage == null) {
+            return null;
+        }
+        putImage(i7, decodeImage);
+        return new float[]{decodeImage.getWidth(), decodeImage.getHeight()};
+    }
+
+    public void record(byte[] bArr, byte[] bArr2, double d, int i7, int i10, float f10, float f11, int i11, int i12) {
+        assertWorker();
+        synchronized (this.recordLock) {
+            recordLocked(bArr, bArr2, d, i7, i10, f10, f11, i11, i12);
+        }
     }
 
     public void recordLayer(int i7, int i10, byte[] bArr) {
         assertWorker();
         long nanoTime = System.nanoTime();
         if (i7 >= 0 && i7 < 256 && bArr.length <= 8388608) {
-            this.pendingLayers.put(Integer.valueOf(i7), i.b(bArr));
-            this.layerParseNanos = (System.nanoTime() - nanoTime) + this.layerParseNanos;
+            i b10 = i.b(bArr);
+            synchronized (this.recordLock) {
+                try {
+                    long j3 = this.pendingLayerBytes;
+                    if (bArr.length + j3 <= 16777216) {
+                        this.pendingLayerBytes = j3 + bArr.length;
+                        this.pendingLayers.put(Integer.valueOf(i7), b10);
+                        this.layerParseNanos = (System.nanoTime() - nanoTime) + this.layerParseNanos;
+                    } else {
+                        clearPendingLayers();
+                        throw new IllegalArgumentException("Layers");
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
             return;
         }
         throw new IllegalArgumentException("Layer");
     }
 
     public void selectableText(byte[] bArr) {
+        q1 q1Var;
         assertWorker();
+        String text = text(bArr);
+        checkJsonDepth(text);
         try {
-            String text = text(bArr);
             ConcurrentHashMap<Integer, Paint> concurrentHashMap = this.deviceFonts;
             Objects.requireNonNull(concurrentHashMap);
-            this.text = n1.a(text, new o(concurrentHashMap), this.owner.f52857l);
+            q1Var = q1.a(text, new o(concurrentHashMap), this.owner.f54308l);
         } catch (Exception unused) {
-            this.text = null;
+            q1Var = null;
+        }
+        synchronized (this.recordLock) {
+            this.text = q1Var;
         }
     }
 
-    public i1 session() {
+    public l1 session() {
         return this.owner;
     }
 
@@ -547,6 +638,6 @@ public final class WidgetSandboxBackend implements y0, g {
         if (paint == null) {
             return 0.0f;
         }
-        return paint.measureText(text(bArr)) / this.owner.f52857l;
+        return paint.measureText(text(bArr)) / this.owner.f54308l;
     }
 }

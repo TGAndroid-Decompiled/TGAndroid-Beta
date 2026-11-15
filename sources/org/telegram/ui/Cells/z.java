@@ -6,17 +6,17 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import org.telegram.ui.Components.pt0;
 public abstract class z extends ViewGroup implements pt0 {
-    public boolean f30959a;
-    public androidx.emoji2.text.j f30960b;
-    public int f30961c;
-    public m.f3 d;
-    public Runnable f30962e;
+    public boolean f32088a;
+    public androidx.emoji2.text.j f32089b;
+    public int f32090c;
+    public j6.o d;
+    public Runnable f32091e;
 
     public z(Context context) {
         super(context);
-        this.f30959a = false;
-        this.f30960b = null;
-        this.f30961c = 0;
+        this.f32088a = false;
+        this.f32089b = null;
+        this.f32090c = 0;
         this.d = null;
         setWillNotDraw(false);
         setFocusable(true);
@@ -42,8 +42,8 @@ public abstract class z extends ViewGroup implements pt0 {
     }
 
     @Override
-    public final void f(Runnable runnable) {
-        this.f30962e = runnable;
+    public final void d(Runnable runnable) {
+        this.f32091e = runnable;
     }
 
     public int getBoundsLeft() {
@@ -61,7 +61,7 @@ public abstract class z extends ViewGroup implements pt0 {
 
     @Override
     public void invalidate() {
-        Runnable runnable = this.f30962e;
+        Runnable runnable = this.f32091e;
         if (runnable != null) {
             runnable.run();
         }
@@ -69,14 +69,14 @@ public abstract class z extends ViewGroup implements pt0 {
     }
 
     public final void n() {
-        this.f30959a = false;
-        androidx.emoji2.text.j jVar = this.f30960b;
+        this.f32088a = false;
+        androidx.emoji2.text.j jVar = this.f32089b;
         if (jVar != null) {
             removeCallbacks(jVar);
         }
-        m.f3 f3Var = this.d;
-        if (f3Var != null) {
-            removeCallbacks(f3Var);
+        j6.o oVar = this.d;
+        if (oVar != null) {
+            removeCallbacks(oVar);
         }
     }
 
@@ -89,12 +89,12 @@ public abstract class z extends ViewGroup implements pt0 {
     }
 
     public final void u() {
-        if (this.f30959a) {
+        if (this.f32088a) {
             return;
         }
-        this.f30959a = true;
+        this.f32088a = true;
         if (this.d == null) {
-            this.d = new m.f3(this, 19);
+            this.d = new j6.o(this, 22);
         }
         postDelayed(this.d, ViewConfiguration.getTapTimeout());
     }

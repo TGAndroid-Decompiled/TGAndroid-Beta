@@ -1,42 +1,60 @@
 package bi;
 
-import android.os.Bundle;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.e51;
-public final class k3 implements Runnable {
-    public final int f4138a = 0;
-    public final org.telegram.ui.ActionBar.f2 f4139b;
-    public final long f4140c;
+import android.view.KeyEvent;
+import android.view.View;
+import android.webkit.JsPromptResult;
+import android.widget.TextView;
+import org.telegram.messenger.z10;
+import org.telegram.ui.Components.ft;
+public final class k3 implements TextView.OnEditorActionListener {
+    public final int f3644a;
+    public final Object f3645b;
+    public final Object f3646c;
+    public final Object d;
+    public final Object f3647e;
 
-    public k3(long j3, org.telegram.ui.ActionBar.f2 f2Var) {
-        this.f4140c = j3;
-        this.f4139b = f2Var;
+    public k3(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
+        this.f3644a = i7;
+        this.f3645b = obj;
+        this.f3646c = obj2;
+        this.d = obj3;
+        this.f3647e = obj4;
     }
 
     @Override
-    public final void run() {
-        switch (this.f4138a) {
+    public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
+        switch (this.f3644a) {
             case 0:
-                Bundle bundle = new Bundle();
-                long j3 = this.f4140c;
-                if (j3 >= 0) {
-                    bundle.putLong("user_id", j3);
-                } else {
-                    bundle.putLong("chat_id", -j3);
+                j3 j3Var = (j3) this.f3645b;
+                if (i7 != 6) {
+                    return false;
                 }
-                bundle.putBoolean("my_profile", true);
-                bundle.putBoolean("open_gifts", true);
-                this.f4139b.presentFragment(new ProfileActivity(bundle, null));
-                return;
+                String obj = j3Var.getText().toString();
+                if (obj.length() > 0 && obj.length() <= 12) {
+                    ((z10) this.f3646c).a(obj);
+                    org.telegram.ui.ActionBar.t1 t1Var = ((org.telegram.ui.ActionBar.t1[]) this.d)[0];
+                    if (t1Var != null) {
+                        t1Var.dismiss();
+                    }
+                    View view = (View) this.f3647e;
+                    if (view != null) {
+                        view.requestFocus();
+                    }
+                } else {
+                    org.telegram.messenger.g0.E3(j3Var);
+                }
+                return true;
             default:
-                org.telegram.ui.ActionBar.f2 f2Var = this.f4139b;
-                f2Var.presentFragment(e51.g0(f2Var.getMessagesController().M0(Long.valueOf(-this.f4140c)), true));
-                return;
+                if (i7 != 6) {
+                    return false;
+                }
+                boolean[] zArr = (boolean[]) this.f3645b;
+                if (!zArr[0]) {
+                    zArr[0] = true;
+                    ((JsPromptResult) this.f3646c).confirm(((ft) this.d).getText().toString());
+                    ((org.telegram.ui.ActionBar.t1) this.f3647e).dismiss();
+                }
+                return true;
         }
-    }
-
-    public k3(org.telegram.ui.ActionBar.f2 f2Var, long j3) {
-        this.f4139b = f2Var;
-        this.f4140c = j3;
     }
 }

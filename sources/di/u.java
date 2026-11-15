@@ -1,64 +1,93 @@
 package di;
 
-import android.content.Context;
-import android.view.View;
-public final class u extends org.telegram.ui.Components.y8 {
-    public final int f9805e;
+import java.util.HashMap;
+import org.telegram.messenger.ns;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class u implements RequestDelegate {
+    public final int f9497a;
+    public final e0 f9498b;
+    public final long f9499c;
 
-    public u(int i7, Context context, boolean z9) {
-        super(context, z9);
-        this.f9805e = i7;
+    public u(e0 e0Var, long j3, int i7) {
+        this.f9497a = i7;
+        this.f9498b = e0Var;
+        this.f9499c = j3;
     }
 
     @Override
-    public void invalidate() {
-        switch (this.f9805e) {
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f9497a) {
             case 0:
-                if (v.f9856c) {
-                    v.f9855b.add(this);
-                    return;
-                } else {
-                    super.invalidate();
-                    return;
-                }
-            default:
-                super.invalidate();
+                final e0 e0Var = this.f9498b;
+                final long j3 = this.f9499c;
+                org.telegram.messenger.g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i7 = r5;
+                        long j10 = j3;
+                        TLObject tLObject2 = tLObject;
+                        e0 e0Var2 = e0Var;
+                        switch (i7) {
+                            case 0:
+                                HashMap hashMap = e0Var2.f8437e;
+                                if (tLObject2 instanceof TLRPC.TL_payments_starsRevenueStats) {
+                                    hashMap.put(Long.valueOf(j10), (TLRPC.TL_payments_starsRevenueStats) tLObject2);
+                                } else {
+                                    hashMap.put(Long.valueOf(j10), null);
+                                }
+                                e0Var2.d.put(Long.valueOf(j10), Long.valueOf(System.currentTimeMillis()));
+                                ns.f(e0Var2.f8434a).k(225, Long.valueOf(j10));
+                                return;
+                            default:
+                                HashMap hashMap2 = e0Var2.f8436c;
+                                if (tLObject2 instanceof TLRPC.TL_payments_starsRevenueStats) {
+                                    hashMap2.put(Long.valueOf(j10), (TLRPC.TL_payments_starsRevenueStats) tLObject2);
+                                } else {
+                                    hashMap2.put(Long.valueOf(j10), null);
+                                }
+                                e0Var2.f8435b.put(Long.valueOf(j10), Long.valueOf(System.currentTimeMillis()));
+                                ns.f(e0Var2.f8434a).k(225, Long.valueOf(j10));
+                                return;
+                        }
+                    }
+                });
                 return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i7, int i10) {
-        int e10;
-        switch (this.f9805e) {
-            case 1:
-                int i11 = this.f40530a.f40242n;
-                if (i11 == 0) {
-                    e10 = 0;
-                } else {
-                    e10 = com.google.android.recaptcha.internal.a.e(i11, 1, 20, 24);
-                }
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(e10), 1073741824), i10);
-                return;
             default:
-                super.onMeasure(i7, i10);
-                return;
-        }
-    }
-
-    @Override
-    public void invalidate(int i7, int i10, int i11, int i12) {
-        switch (this.f9805e) {
-            case 0:
-                if (v.f9856c) {
-                    v.f9855b.add(this);
-                    return;
-                } else {
-                    super.invalidate(i7, i10, i11, i12);
-                    return;
-                }
-            default:
-                super.invalidate(i7, i10, i11, i12);
+                final e0 e0Var2 = this.f9498b;
+                final long j10 = this.f9499c;
+                org.telegram.messenger.g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i7 = r5;
+                        long j102 = j10;
+                        TLObject tLObject2 = tLObject;
+                        e0 e0Var22 = e0Var2;
+                        switch (i7) {
+                            case 0:
+                                HashMap hashMap = e0Var22.f8437e;
+                                if (tLObject2 instanceof TLRPC.TL_payments_starsRevenueStats) {
+                                    hashMap.put(Long.valueOf(j102), (TLRPC.TL_payments_starsRevenueStats) tLObject2);
+                                } else {
+                                    hashMap.put(Long.valueOf(j102), null);
+                                }
+                                e0Var22.d.put(Long.valueOf(j102), Long.valueOf(System.currentTimeMillis()));
+                                ns.f(e0Var22.f8434a).k(225, Long.valueOf(j102));
+                                return;
+                            default:
+                                HashMap hashMap2 = e0Var22.f8436c;
+                                if (tLObject2 instanceof TLRPC.TL_payments_starsRevenueStats) {
+                                    hashMap2.put(Long.valueOf(j102), (TLRPC.TL_payments_starsRevenueStats) tLObject2);
+                                } else {
+                                    hashMap2.put(Long.valueOf(j102), null);
+                                }
+                                e0Var22.f8435b.put(Long.valueOf(j102), Long.valueOf(System.currentTimeMillis()));
+                                ns.f(e0Var22.f8434a).k(225, Long.valueOf(j102));
+                                return;
+                        }
+                    }
+                });
                 return;
         }
     }

@@ -6,8 +6,8 @@ public class VectorLegacy {
     private VectorLegacy() {
     }
 
-    public static ArrayList<Long> deserialize_IntAsLong(InputSerializedData inputSerializedData, boolean z9) {
-        ArrayList<Integer> deserializeInt = Vector.deserializeInt(inputSerializedData, z9);
+    public static ArrayList<Long> deserialize_IntAsLong(InputSerializedData inputSerializedData, boolean z10) {
+        ArrayList<Integer> deserializeInt = Vector.deserializeInt(inputSerializedData, z10);
         ArrayList<Long> arrayList = new ArrayList<>(deserializeInt.size());
         int size = deserializeInt.size();
         int i7 = 0;
@@ -19,8 +19,8 @@ public class VectorLegacy {
         return arrayList;
     }
 
-    public static ArrayList<TLRPC.Peer> deserialize_IntUserIdAsPeer(InputSerializedData inputSerializedData, boolean z9) {
-        ArrayList<Integer> deserializeInt = Vector.deserializeInt(inputSerializedData, z9);
+    public static ArrayList<TLRPC.Peer> deserialize_IntUserIdAsPeer(InputSerializedData inputSerializedData, boolean z10) {
+        ArrayList<Integer> deserializeInt = Vector.deserializeInt(inputSerializedData, z10);
         ArrayList<TLRPC.Peer> arrayList = new ArrayList<>(deserializeInt.size());
         int size = deserializeInt.size();
         int i7 = 0;
@@ -35,8 +35,8 @@ public class VectorLegacy {
         return arrayList;
     }
 
-    public static ArrayList<TLRPC.Peer> deserialize_LongUserIdAsPeer(InputSerializedData inputSerializedData, boolean z9) {
-        ArrayList<Long> deserializeLong = Vector.deserializeLong(inputSerializedData, z9);
+    public static ArrayList<TLRPC.Peer> deserialize_LongUserIdAsPeer(InputSerializedData inputSerializedData, boolean z10) {
+        ArrayList<Long> deserializeLong = Vector.deserializeLong(inputSerializedData, z10);
         ArrayList<TLRPC.Peer> arrayList = new ArrayList<>(deserializeLong.size());
         int size = deserializeLong.size();
         int i7 = 0;

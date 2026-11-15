@@ -1,10 +1,9 @@
 package org.telegram.ui.Components;
 
-import java.util.LinkedHashMap;
-public final class ew0 {
-    public long f33344a;
-    public int f33345b;
-    public boolean f33346c;
-    public boolean d;
-    public Object f33347e = new LinkedHashMap();
+import android.view.View;
+public final class ew0 extends EditTextBoldCursor {
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(50.0f), 1073741824));
+    }
 }

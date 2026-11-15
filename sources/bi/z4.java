@@ -1,76 +1,122 @@
 package bi;
 
-import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.c20;
-import org.telegram.messenger.qp;
-import org.telegram.messenger.t10;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-public final class z4 implements c20 {
-    public final int f5151a;
-    public final int f5152b;
-    public final String f5153c;
-    public final Object d;
-    public final Object f5154e;
-    public final Object f5155f;
+import a8.xa;
+import android.animation.ValueAnimator;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.ui.Components.cj0;
+import org.telegram.ui.Components.k7;
+import org.telegram.ui.Components.y7;
+public final class z4 extends v4.t0 {
+    public final int f4027a;
+    public final Object f4028b;
 
-    public z4(Object obj, Object obj2, Object obj3, int i7, String str, int i10) {
-        this.f5151a = i10;
-        this.d = obj;
-        this.f5154e = obj2;
-        this.f5155f = obj3;
-        this.f5152b = i7;
-        this.f5153c = str;
+    public z4(Object obj, int i7) {
+        this.f4027a = i7;
+        this.f4028b = obj;
     }
 
     @Override
-    public final void a(Object obj) {
-        TLRPC.User user;
-        int i7 = this.f5151a;
-        Object obj2 = this.f5155f;
-        Object obj3 = this.f5154e;
-        Object obj4 = this.d;
-        switch (i7) {
-            case 0:
-                Context context = (Context) obj3;
-                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) obj2;
-                ArrayList arrayList = (ArrayList) obj;
-                ((boolean[]) obj4)[0] = false;
-                if (arrayList != null) {
-                    new w1(context, h6Var, this.f5152b, this.f5153c, arrayList, false).show();
+    public void a(RecyclerView recyclerView, int i7) {
+        cj0 cj0Var;
+        switch (this.f4027a) {
+            case 4:
+                ci.c cVar = (ci.c) this.f4028b;
+                boolean z10 = true;
+                if (i7 != 1) {
+                    z10 = false;
+                }
+                cVar.f5314d0 = z10;
+                if (i7 != 0) {
+                    cVar.f5311b0 = ci.c.b();
+                }
+                cVar.invalidate();
+                return;
+            case 5:
+                if (i7 == 0) {
+                    ((ci.g0) this.f4028b).f5483w = false;
                     return;
                 }
                 return;
-            default:
-                LaunchActivity launchActivity = (LaunchActivity) obj4;
-                qp qpVar = (qp) obj3;
-                vf.b bVar = (vf.b) obj2;
-                Long l10 = (Long) obj;
-                String str = LaunchActivity.B1;
-                if (l10 != null && l10.longValue() > 0 && l10.longValue() != Long.MAX_VALUE) {
-                    user = qpVar.a2(l10);
+            case 12:
+                fi.c5 c5Var = (fi.c5) this.f4028b;
+                if (i7 == 0) {
+                    c5Var.W = true;
+                    c5Var.invalidate();
+                }
+                if (i7 == 1) {
+                    c5Var.W = false;
+                    xa xaVar = c5Var.d;
+                    ValueAnimator valueAnimator = (ValueAnimator) xaVar.f714c;
+                    if (valueAnimator != null) {
+                        valueAnimator.removeAllListeners();
+                        ((ValueAnimator) xaVar.f714c).cancel();
+                        xaVar.f714c = null;
+                    }
+                    org.telegram.messenger.g0.v1(c5Var);
+                    return;
+                }
+                return;
+            case 14:
+                hi.y1 y1Var = (hi.y1) this.f4028b;
+                if (i7 == 0 && y1Var.f15412n >= 0.0f && !y1Var.f15408b.canScrollVertically(-1)) {
+                    y1Var.f15412n = -1.0f;
+                    return;
+                }
+                return;
+            case 15:
+                if (i7 == 0) {
+                    hi.v6 v6Var = (hi.v6) this.f4028b;
+                    if (v6Var.f15223e2) {
+                        v6Var.f15223e2 = false;
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 19:
+                if (i7 == 1) {
+                    org.telegram.messenger.g0.v1(((kg.y1) this.f4028b).getParentActivity().getCurrentFocus());
+                    return;
+                }
+                return;
+            case 24:
+                li.b0 b0Var = (li.b0) this.f4028b;
+                if (i7 == 0) {
+                    b0Var.f19529e = !b0Var.d.canScrollVertically(-1);
+                    b0Var.d.canScrollVertically(1);
+                    return;
+                }
+                return;
+            case 28:
+                y7 y7Var = (y7) this.f4028b;
+                k7 k7Var = y7Var.f41916s1;
+                if (i7 == 0) {
+                    int L = org.telegram.messenger.g0.L(13.0f);
+                    int i10 = y7Var.f41921u2;
+                    int i11 = y7Var.f29716t0;
+                    if (((i10 - i11) - L) + i11 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && k7Var.canScrollVertically(1) && (cj0Var = (cj0) k7Var.K(y7Var.f41911p2 ? 1 : 0)) != null) {
+                        View view = cj0Var.f58535a;
+                        if (view.getTop() > org.telegram.messenger.g0.L(7.0f)) {
+                            k7Var.w0(0, view.getTop() - org.telegram.messenger.g0.L(7.0f), null);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                } else if (i7 == 1) {
+                    org.telegram.messenger.g0.v1(y7Var.getCurrentFocus());
+                    return;
                 } else {
-                    user = null;
-                }
-                int i10 = this.f5152b;
-                if (user != null && !t10.B(user)) {
-                    launchActivity.Y(i10, user, this.f5153c, bVar);
                     return;
                 }
-                if (bVar != null) {
-                    bVar.b();
-                }
-                if (user != null) {
-                    launchActivity.m0(i10, user.f27109id, null);
-                    return;
-                }
-                org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
-                if (Q != null) {
-                    org.telegram.messenger.k5.p(null, 2131748134, org.telegram.ui.Components.gc.a0(Q), null);
-                    return;
-                }
+            default:
                 return;
         }
+    }
+
+    @Override
+    public void b(androidx.recyclerview.widget.RecyclerView r9, int r10, int r11) {
+        throw new UnsupportedOperationException("Method not decompiled: bi.z4.b(androidx.recyclerview.widget.RecyclerView, int, int):void");
     }
 }

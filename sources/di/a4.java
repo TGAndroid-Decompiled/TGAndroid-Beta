@@ -1,280 +1,54 @@
 package di;
 
 import android.content.Context;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
 import android.view.View;
-import android.widget.LinearLayout;
-import c8.ha;
-import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.id;
-import org.telegram.messenger.qp;
-import org.telegram.messenger.yr;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.ve0;
-import org.telegram.ui.uq;
-public final class a4 extends k.a {
-    public boolean f8806c;
-    public final org.telegram.ui.ActionBar.h6 d;
-    public final q9 f8807e;
-    public final boolean f8808f;
-    public final boolean h;
-    public final boolean f8809n;
-    public final Context f8810r;
-    public final g4 f8811s;
-    public final boolean[] f8812w;
-    public final j4 f8813x;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stars;
+public final class a4 extends ClickableSpan {
+    public final boolean[] f8191a;
+    public final int f8192b;
+    public final Context f8193c;
+    public final org.telegram.ui.ActionBar.e6 d;
+    public final long f8194e;
+    public final String f8195f;
+    public final String h;
 
-    public a4(j4 j4Var, Context context, org.telegram.ui.ActionBar.h6 h6Var, org.telegram.ui.ActionBar.h6 h6Var2, q9 q9Var, boolean z9, boolean z10, boolean z11, Context context2, g4 g4Var, boolean[] zArr) {
-        super(context, h6Var, true);
-        this.f8813x = j4Var;
-        this.d = h6Var2;
-        this.f8807e = q9Var;
-        this.f8808f = z9;
-        this.h = z10;
-        this.f8809n = z11;
-        this.f8810r = context2;
-        this.f8811s = g4Var;
-        this.f8812w = zArr;
+    public a4(boolean[] zArr, int i7, Context context, org.telegram.ui.ActionBar.e6 e6Var, long j3, String str, String str2) {
+        this.f8191a = zArr;
+        this.f8192b = i7;
+        this.f8193c = context;
+        this.d = e6Var;
+        this.f8194e = j3;
+        this.f8195f = str;
+        this.h = str2;
     }
 
     @Override
-    public final void j(org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout r39) {
-        throw new UnsupportedOperationException("Method not decompiled: di.a4.j(org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout):void");
-    }
-
-    @Override
-    public final void k() {
-        if (!this.f8806c && !this.f8812w[0]) {
-            org.telegram.messenger.g0.h3(new s3(this, 0));
-        }
-        j4 j4Var = this.f8813x;
-        j4Var.f9173c1 = null;
-        j4Var.f9170b1 = null;
-    }
-
-    public final void r(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, boolean z9) {
-        h4 h4Var;
-        boolean z10 = this.f8808f;
-        j4 j4Var = this.f8813x;
-        if (z10 && ((h4Var = j4Var.f9250x1) == null || h4Var.f9070b == null)) {
-            Context context = j4Var.getContext();
-            ve0 swipeBack = actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack();
-            final wf.b bVar = new wf.b(this, actionBarPopupWindow$ActionBarPopupWindowLayout, false, 15);
-            h6.m mVar = new h6.m(24, false);
-            org.telegram.ui.ActionBar.z0[] z0VarArr = new org.telegram.ui.ActionBar.z0[5];
-            mVar.d = z0VarArr;
-            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = new ActionBarPopupWindow$ActionBarPopupWindowLayout(0, 0, context, null);
-            mVar.f14266b = actionBarPopupWindow$ActionBarPopupWindowLayout2;
-            actionBarPopupWindow$ActionBarPopupWindowLayout2.setFitItems(true);
-            org.telegram.ui.ActionBar.z0 c10 = org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, 2131232057, id.M0(2131753756, null), false, null);
-            c10.setOnClickListener(new uq(swipeBack, 1));
-            c10.d(-328966, -328966);
-            c10.setSelectorColor(268435455);
-            View b4Var = new b4(context, 11);
-            b4Var.setMinimumWidth(org.telegram.messenger.g0.L(196.0f));
-            b4Var.setBackgroundColor(-15198184);
-            actionBarPopupWindow$ActionBarPopupWindowLayout2.addView(b4Var);
-            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) b4Var.getLayoutParams();
-            if (id.f23161a0) {
-                layoutParams.gravity = 5;
-            }
-            layoutParams.width = -1;
-            layoutParams.height = org.telegram.messenger.g0.L(8.0f);
-            b4Var.setLayoutParams(layoutParams);
-            org.telegram.ui.ActionBar.v0 v0Var = new org.telegram.ui.ActionBar.v0(context, null);
-            mVar.f14267c = v0Var;
-            v0Var.setMinimumWidth(org.telegram.messenger.g0.L(196.0f));
-            v0Var.setDrawShadow(false);
-            v0Var.setBackgroundColor(-14540254);
-            v0Var.setTextColor(-1);
-            v0Var.setOnValueChange(new org.telegram.ui.a5(bVar, 6));
-            actionBarPopupWindow$ActionBarPopupWindowLayout2.a(v0Var, ha.o(-1, 44));
-            View b4Var2 = new b4(context, 12);
-            b4Var2.setMinimumWidth(org.telegram.messenger.g0.L(196.0f));
-            b4Var2.setBackgroundColor(-15198184);
-            actionBarPopupWindow$ActionBarPopupWindowLayout2.addView(b4Var2);
-            LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) b4Var2.getLayoutParams();
-            if (id.f23161a0) {
-                layoutParams2.gravity = 5;
-            }
-            layoutParams2.width = -1;
-            layoutParams2.height = org.telegram.messenger.g0.L(8.0f);
-            b4Var2.setLayoutParams(layoutParams2);
-            org.telegram.ui.ActionBar.z0 c11 = org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, 2131232369, id.M0(2131745263, null), false, null);
-            c11.d(-328966, -328966);
-            c11.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    switch (r2) {
-                        case 0:
-                            bVar.e0(true, true, 0.2f);
-                            return;
-                        case 1:
-                            bVar.e0(true, true, 0.5f);
-                            return;
-                        case 2:
-                            bVar.e0(true, true, 1.0f);
-                            return;
-                        case 3:
-                            bVar.e0(true, true, 1.5f);
-                            return;
-                        default:
-                            bVar.e0(true, true, 2.0f);
-                            return;
-                    }
-                }
-            });
-            c11.setSelectorColor(268435455);
-            z0VarArr[0] = c11;
-            org.telegram.ui.ActionBar.z0 c12 = org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, 2131232373, id.M0(2131745266, null), false, null);
-            c12.d(-328966, -328966);
-            c12.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    switch (r2) {
-                        case 0:
-                            bVar.e0(true, true, 0.2f);
-                            return;
-                        case 1:
-                            bVar.e0(true, true, 0.5f);
-                            return;
-                        case 2:
-                            bVar.e0(true, true, 1.0f);
-                            return;
-                        case 3:
-                            bVar.e0(true, true, 1.5f);
-                            return;
-                        default:
-                            bVar.e0(true, true, 2.0f);
-                            return;
-                    }
-                }
-            });
-            c12.setSelectorColor(268435455);
-            z0VarArr[1] = c12;
-            org.telegram.ui.ActionBar.z0 c13 = org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, 2131232372, id.M0(2131745267, null), false, null);
-            c13.d(-328966, -328966);
-            c13.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    switch (r2) {
-                        case 0:
-                            bVar.e0(true, true, 0.2f);
-                            return;
-                        case 1:
-                            bVar.e0(true, true, 0.5f);
-                            return;
-                        case 2:
-                            bVar.e0(true, true, 1.0f);
-                            return;
-                        case 3:
-                            bVar.e0(true, true, 1.5f);
-                            return;
-                        default:
-                            bVar.e0(true, true, 2.0f);
-                            return;
-                    }
-                }
-            });
-            c13.setSelectorColor(268435455);
-            z0VarArr[2] = c13;
-            org.telegram.ui.ActionBar.z0 c14 = org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, 2131232370, id.M0(2131745270, null), false, null);
-            c14.d(-328966, -328966);
-            c14.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    switch (r2) {
-                        case 0:
-                            bVar.e0(true, true, 0.2f);
-                            return;
-                        case 1:
-                            bVar.e0(true, true, 0.5f);
-                            return;
-                        case 2:
-                            bVar.e0(true, true, 1.0f);
-                            return;
-                        case 3:
-                            bVar.e0(true, true, 1.5f);
-                            return;
-                        default:
-                            bVar.e0(true, true, 2.0f);
-                            return;
-                    }
-                }
-            });
-            c14.setSelectorColor(268435455);
-            z0VarArr[3] = c14;
-            org.telegram.ui.ActionBar.z0 c15 = org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, 2131232374, id.M0(2131745264, null), false, null);
-            c15.d(-328966, -328966);
-            c15.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    switch (r2) {
-                        case 0:
-                            bVar.e0(true, true, 0.2f);
-                            return;
-                        case 1:
-                            bVar.e0(true, true, 0.5f);
-                            return;
-                        case 2:
-                            bVar.e0(true, true, 1.0f);
-                            return;
-                        case 3:
-                            bVar.e0(true, true, 1.5f);
-                            return;
-                        default:
-                            bVar.e0(true, true, 2.0f);
-                            return;
-                    }
-                }
-            });
-            c15.setSelectorColor(268435455);
-            z0VarArr[4] = c15;
-            j4Var.f9206l3 = mVar;
-            mVar.H(true, q9.A1);
-            org.telegram.ui.ActionBar.z0 z0Var = new org.telegram.ui.ActionBar.z0(0, j4Var.getContext(), this.d, false, false);
-            j4Var.f9209m3 = z0Var;
-            z0Var.j(id.M0(2131745271, null), 2131232368, null);
-            j4.Y(j4Var, true);
-            j4Var.f9209m3.setMinimumWidth(org.telegram.messenger.g0.L(196.0f));
-            j4Var.f9209m3.setRightIcon(2131232059);
-            actionBarPopupWindow$ActionBarPopupWindowLayout.addView(j4Var.f9209m3);
-            LinearLayout.LayoutParams layoutParams3 = (LinearLayout.LayoutParams) j4Var.f9209m3.getLayoutParams();
-            if (id.f23161a0) {
-                layoutParams3.gravity = 5;
-            }
-            layoutParams3.width = -1;
-            layoutParams3.height = org.telegram.messenger.g0.L(48.0f);
-            j4Var.f9209m3.setLayoutParams(layoutParams3);
-            int b10 = actionBarPopupWindow$ActionBarPopupWindowLayout.b((ActionBarPopupWindow$ActionBarPopupWindowLayout) j4Var.f9206l3.f14266b);
-            org.telegram.ui.ActionBar.z0 z0Var2 = j4Var.f9209m3;
-            z0Var2.P = new t3(actionBarPopupWindow$ActionBarPopupWindowLayout, b10, 0);
-            z0Var2.setOnClickListener(new o3(this, 11));
-            actionBarPopupWindow$ActionBarPopupWindowLayout.f27291c = true;
-            if (z9) {
-                org.telegram.ui.ActionBar.d1 d1Var = new org.telegram.ui.ActionBar.d1(org.telegram.ui.ActionBar.m6.H8, j4Var.getContext(), this.d);
-                d1Var.setTag(2131296437, 1);
-                actionBarPopupWindow$ActionBarPopupWindowLayout.a(d1Var, ha.o(-1, 8));
-                return;
-            }
+    public final void onClick(View view) {
+        boolean[] zArr = this.f8191a;
+        if (zArr[0]) {
             return;
         }
-        j4Var.f9206l3 = null;
-        j4Var.f9209m3 = null;
+        zArr[0] = true;
+        int i7 = this.f8192b;
+        k0 k0Var = new k0(zArr, i7, this.f8193c, this.d, 1);
+        long j3 = this.f8194e;
+        int i10 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
+        String str = this.f8195f;
+        if (i10 != 0) {
+            k0Var.a(Long.valueOf(j3), str);
+            return;
+        }
+        TL_stars.getUniqueStarGift getuniquestargift = new TL_stars.getUniqueStarGift();
+        getuniquestargift.slug = this.h.concat("-1");
+        ConnectionsManager.getInstance(i7).sendRequest(getuniquestargift, new bi.v2(7, k0Var, str));
     }
 
-    public final void s(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, TL_stories.StoryItem storyItem) {
-        TLRPC.Chat M0;
-        j4 j4Var = this.f8813x;
-        if (j4Var.f9207m1 && storyItem != null && !(storyItem.media instanceof TLRPC.TL_messageMediaVideoStream) && (M0 = qp.s1(j4Var.f9205l2).M0(Long.valueOf(-j4Var.f9201k1))) != null) {
-            TLRPC.ChatFull N0 = qp.s1(j4Var.f9205l2).N0(M0.f26960id);
-            if (N0 == null) {
-                N0 = yr.a0(j4Var.f9205l2).F0(M0.f26960id, true, new CountDownLatch(1), false, false, 0);
-            }
-            if (N0 != null && N0.can_view_stats) {
-                org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, 2131232378, id.M0(2131743542, null), false, this.d).setOnClickListener(new v3(this, storyItem, this.f8807e, M0, 0));
-            }
-        }
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setColor(textPaint.linkColor);
+        textPaint.setUnderlineText(false);
     }
 }

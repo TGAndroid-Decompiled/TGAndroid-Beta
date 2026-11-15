@@ -5,11 +5,11 @@ public class UnderOverArrowAtom extends Atom {
     private boolean left;
     private boolean over;
 
-    public UnderOverArrowAtom(Atom atom, boolean z9, boolean z10) {
+    public UnderOverArrowAtom(Atom atom, boolean z10, boolean z11) {
         this.dble = false;
         this.base = atom;
-        this.left = z9;
-        this.over = z10;
+        this.left = z10;
+        this.over = z11;
     }
 
     @Override
@@ -48,10 +48,10 @@ public class UnderOverArrowAtom extends Atom {
         return verticalBox;
     }
 
-    public UnderOverArrowAtom(Atom atom, boolean z9) {
+    public UnderOverArrowAtom(Atom atom, boolean z10) {
         this.left = false;
         this.base = atom;
-        this.over = z9;
+        this.over = z10;
         this.dble = true;
     }
 }

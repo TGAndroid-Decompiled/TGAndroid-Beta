@@ -1,48 +1,52 @@
 package org.telegram.ui;
 
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class je implements Runnable {
-    public final int f46989a = 0;
-    public final cn f46990b;
-    public final org.telegram.messenger.qp f46991c;
-    public final CharSequence d;
-    public final boolean f46992e;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Shader;
+public final class je implements org.telegram.messenger.s10 {
+    public final int f48312a;
+    public final an f48313b;
 
-    public je(cn cnVar, CharSequence charSequence, org.telegram.messenger.qp qpVar, boolean z9) {
-        this.f46990b = cnVar;
-        this.d = charSequence;
-        this.f46991c = qpVar;
-        this.f46992e = z9;
+    public je(an anVar, int i7) {
+        this.f48312a = i7;
+        this.f48313b = anVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f46989a) {
+    public final void a(Object obj, Object obj2) {
+        switch (this.f48312a) {
             case 0:
-                cn.P0(this.f46990b, this.d, this.f46991c, this.f46992e);
+                an.l1(this.f48313b, (Integer) obj, (Boolean) obj2);
+                return;
+            case 1:
+                an.x1(this.f48313b, (Long) obj, (Boolean) obj2);
+                return;
+            case 2:
+                Bitmap bitmap = (Bitmap) obj;
+                an anVar = this.f48313b;
+                ui.b bVar = anVar.O8;
+                bVar.a((Bitmap) obj2);
+                ih.d.c(bVar, anVar.fragmentView);
+                anVar.P8.d();
                 return;
             default:
-                cn cnVar = this.f46990b;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, cnVar.getParentActivity(), cnVar.f44750za);
-                String M0 = org.telegram.messenger.id.M0(2131689472, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27300a;
-                u1Var.R = M0;
-                String M02 = org.telegram.messenger.id.M0(2131747831, null);
-                org.telegram.messenger.qp qpVar = this.f46991c;
-                alertDialog$Builder.k(M02, new a3.g(cnVar, qpVar, this.d, this.f46992e, 4));
-                alertDialog$Builder.h(org.telegram.messenger.id.M0(2131752589, null), null);
-                u1Var.T = org.telegram.messenger.id.M0(2131745685, null);
-                cnVar.showDialog(u1Var);
-                qpVar.G2 = 0;
-                org.telegram.messenger.qp.e1().edit().putInt("secretWebpage2", qpVar.G2).commit();
+                an anVar2 = this.f48313b;
+                anVar2.Q8 = (Bitmap) obj;
+                Paint paint = new Paint(1);
+                anVar2.S8 = paint;
+                Bitmap bitmap2 = anVar2.Q8;
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
+                anVar2.R8 = bitmapShader;
+                paint.setShader(bitmapShader);
+                anVar2.T8 = new Matrix();
+                ui.b bVar2 = anVar2.O8;
+                bVar2.a((Bitmap) obj2);
+                ih.d.c(bVar2, anVar2.fragmentView);
+                anVar2.P8.d();
                 return;
         }
-    }
-
-    public je(cn cnVar, org.telegram.messenger.qp qpVar, CharSequence charSequence, boolean z9) {
-        this.f46990b = cnVar;
-        this.f46991c = qpVar;
-        this.d = charSequence;
-        this.f46992e = z9;
     }
 }

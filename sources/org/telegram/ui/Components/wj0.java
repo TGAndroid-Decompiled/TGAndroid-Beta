@@ -1,174 +1,164 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class wj0 extends Drawable {
-    public final zu f39985e;
-    public final zu f39986f;
-    public float h;
-    public float f39988i;
-    public final Rect f39982a = new Rect();
-    public final wq f39983b = js.f35058b;
-    public final int f39984c = org.telegram.messenger.g0.L(24.0f);
-    public final int d = org.telegram.messenger.g0.L(24.0f);
-    public long f39987g = -1;
+import android.view.MotionEvent;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public class wj0 extends w61 {
+    public final it0 W;
+    public boolean f41367a0;
+    public View f41368b0;
+    public View f41369c0;
 
-    public wj0() {
-        zu zuVar = new zu(1, (byte) 0);
-        this.f39985e = zuVar;
-        zuVar.f41121c.setColor(-2130706433);
-        zu zuVar2 = new zu(1, (byte) 0);
-        this.f39986f = zuVar2;
-        zuVar2.f41121c.setColor(-2130706433);
-    }
-
-    public final void a(Canvas canvas, float f10) {
-        Rect bounds = getBounds();
-        float interpolation = this.f39983b.getInterpolation(f10);
-        Rect rect = this.f39982a;
-        rect.left = (int) (org.telegram.messenger.g0.L(2.0f) * this.h);
-        int L = bounds.bottom - ((int) (org.telegram.messenger.g0.L(6.0f) * this.f39988i));
-        rect.bottom = L;
-        rect.right = bounds.right - rect.left;
-        rect.top = L - ((int) (org.telegram.messenger.g0.L(4.0f) * this.f39988i));
-        zu zuVar = this.f39986f;
-        zuVar.setBounds(rect);
-        zuVar.draw(canvas);
-        int L2 = org.telegram.messenger.g0.L(12.0f);
-        rect.right = L2;
-        rect.left = L2;
-        int L3 = org.telegram.messenger.g0.L(8.0f);
-        rect.bottom = L3;
-        rect.top = L3;
-        rect.inset(-org.telegram.messenger.g0.L(org.telegram.messenger.g0.W1(interpolation, 10, 11)), -org.telegram.messenger.g0.L(org.telegram.messenger.g0.W1(interpolation, 2, 3)));
-        zu zuVar2 = this.f39985e;
-        zuVar2.setBounds(rect);
-        zuVar2.setAlpha(org.telegram.messenger.g0.W1(interpolation, 128, 255));
-        zuVar2.draw(canvas);
-    }
-
-    public final void b(Canvas canvas, float f10) {
-        Rect bounds = getBounds();
-        float interpolation = this.f39983b.getInterpolation(f10);
-        Rect rect = this.f39982a;
-        rect.left = (int) (org.telegram.messenger.g0.L(2.0f) * this.h);
-        int L = bounds.bottom - ((int) (org.telegram.messenger.g0.L(6.0f) * this.f39988i));
-        rect.bottom = L;
-        rect.right = bounds.right - rect.left;
-        rect.top = L - ((int) (org.telegram.messenger.g0.L(4.0f) * this.f39988i));
-        rect.offset(0, org.telegram.messenger.g0.L(org.telegram.messenger.g0.W1(interpolation, 0, -8)));
-        zu zuVar = this.f39986f;
-        zuVar.setBounds(rect);
-        zuVar.draw(canvas);
-        rect.left = (int) (org.telegram.messenger.g0.N(org.telegram.messenger.g0.W1(interpolation, 1, 2)) * this.h);
-        int N = (int) (org.telegram.messenger.g0.N(org.telegram.messenger.g0.W1(interpolation, 5, 6)) * this.f39988i);
-        rect.top = N;
-        rect.right = bounds.right - rect.left;
-        rect.bottom = N + ((int) (org.telegram.messenger.g0.N(org.telegram.messenger.g0.W1(interpolation, 6, 4)) * this.f39988i));
-        rect.offset(0, org.telegram.messenger.g0.L(org.telegram.messenger.g0.W1(interpolation, 0, 8)));
-        zu zuVar2 = this.f39985e;
-        zuVar2.setBounds(rect);
-        zuVar2.setAlpha(255);
-        zuVar2.draw(canvas);
-    }
-
-    public final void c(Canvas canvas, float f10) {
-        Rect bounds = getBounds();
-        float interpolation = this.f39983b.getInterpolation(f10);
-        Rect rect = this.f39982a;
-        rect.left = (int) (org.telegram.messenger.g0.L(2.0f) * this.h);
-        int L = bounds.bottom - ((int) (org.telegram.messenger.g0.L(6.0f) * this.f39988i));
-        rect.bottom = L;
-        rect.right = bounds.right - rect.left;
-        rect.top = L - ((int) (org.telegram.messenger.g0.L(4.0f) * this.f39988i));
-        rect.offset(0, org.telegram.messenger.g0.L(-8.0f));
-        zu zuVar = this.f39986f;
-        zuVar.setBounds(rect);
-        zuVar.draw(canvas);
-        rect.left = (int) (org.telegram.messenger.g0.N(2.0f) * this.h);
-        int N = (int) (org.telegram.messenger.g0.N(6.0f) * this.f39988i);
-        rect.top = N;
-        rect.right = bounds.right - rect.left;
-        rect.bottom = N + ((int) (org.telegram.messenger.g0.N(4.0f) * this.f39988i));
-        rect.offset(0, org.telegram.messenger.g0.L(8.0f));
-        zu zuVar2 = this.f39985e;
-        zuVar2.setBounds(rect);
-        zuVar2.setAlpha(org.telegram.messenger.g0.W1(interpolation, 255, 128));
-        zuVar2.draw(canvas);
+    public wj0(Context context, org.telegram.ui.ActionBar.e6 e6Var, it0 it0Var) {
+        super(context, e6Var);
+        this.W = it0Var;
+        setClipChildren(false);
+        setClipToPadding(false);
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        if (this.f39987g > 0) {
-            int currentTimeMillis = (int) (System.currentTimeMillis() - this.f39987g);
-            int i7 = currentTimeMillis - 300;
-            if (i7 >= 0) {
-                if (i7 < 150) {
-                    a(canvas, i7 / 150.0f);
-                } else {
-                    int i10 = currentTimeMillis - 750;
-                    if (i10 >= 0) {
-                        if (i10 < 200) {
-                            b(canvas, i10 / 200.0f);
-                        } else {
-                            int i11 = currentTimeMillis - 1250;
-                            if (i11 >= 0) {
-                                if (i11 < 150) {
-                                    c(canvas, i11 / 150.0f);
-                                } else {
-                                    c(canvas, 1.0f);
-                                    if (currentTimeMillis - 1400 >= 100) {
-                                        this.f39987g = System.currentTimeMillis();
-                                    }
-                                }
-                            } else {
-                                b(canvas, 1.0f);
-                            }
-                        }
-                    } else {
-                        a(canvas, 1.0f);
-                    }
-                }
-            } else {
-                a(canvas, 0.0f);
-            }
-            invalidateSelf();
+    public final void D(View view, float f10) {
+        if (view.getTranslationX() == f10) {
             return;
         }
-        a(canvas, 0.0f);
+        super.D(view, f10);
+        invalidate();
+    }
+
+    public final void J(View view) {
+        this.f41368b0 = null;
+        this.f41369c0 = null;
+        it0 it0Var = this.W;
+        it0Var.f("PAGE_BOUND", view, 0, 0, true);
+        if (it0Var.P == null) {
+            return;
+        }
+        if (it0Var.f35724e0) {
+            it0Var.i("page_bound");
+        }
+        RecyclerView n10 = it0Var.P.n(view);
+        it0Var.b(n10);
+        it0Var.P.s(n10);
+        it0Var.p();
+    }
+
+    public final void K(MotionEvent motionEvent) {
+        String str;
+        if (motionEvent != null && motionEvent.getActionMasked() == 0) {
+            float x10 = motionEvent.getX();
+            float y10 = motionEvent.getY();
+            it0 it0Var = this.W;
+            boolean j3 = it0Var.j(x10, y10);
+            this.f41367a0 = j3;
+            if (j3) {
+                str = "PAGER_DOWN_COMMON";
+            } else {
+                str = "PAGER_DOWN_PAGE";
+            }
+            it0Var.g(str);
+        }
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return this.d;
+    public final boolean b(MotionEvent motionEvent) {
+        if (!this.f41367a0 && this.W.c()) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return this.f39984c;
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        int save = canvas.save();
+        float x10 = view.getX();
+        it0 it0Var = this.W;
+        canvas.clipRect(x10, -it0Var.getTopBleed(), view.getX() + view.getWidth(), it0Var.getBottomBleed() + getHeight());
+        boolean drawChild = super.drawChild(canvas, view, j3);
+        canvas.restoreToCount(save);
+        return drawChild;
     }
 
     @Override
-    public final int getOpacity() {
-        return -3;
+    public float getAvailableTranslationX() {
+        return Math.max(1, getMeasuredWidth());
     }
 
     @Override
-    public final void onBoundsChange(Rect rect) {
-        this.h = rect.width() / this.f39984c;
-        this.f39988i = rect.height() / this.d;
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        K(motionEvent);
+        if (!this.f41367a0 && super.onInterceptTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f39985e.setColorFilter(colorFilter);
-        this.f39986f.setColorFilter(colorFilter);
-        invalidateSelf();
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        String str;
+        it0 it0Var = this.W;
+        if (motionEvent == null) {
+            it0Var.g("PAGER_CANCEL_NULL");
+            this.f41367a0 = false;
+            return z(null);
+        }
+        K(motionEvent);
+        if (motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) {
+            if (motionEvent.getActionMasked() == 1) {
+                str = "PAGER_UP";
+            } else {
+                str = "PAGER_CANCEL";
+            }
+            it0Var.g(str);
+        }
+        if (this.f41367a0 || !z(motionEvent)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public final void setAlpha(int i7) {
+    public final void r() {
+        it0 it0Var = this.W;
+        it0Var.g("PAGER_SCROLL_END");
+        it0Var.p();
+    }
+
+    @Override
+    public final void s() {
+        this.f41368b0 = null;
+        this.f41369c0 = null;
+    }
+
+    @Override
+    public final void t(boolean z10) {
+        this.W.p();
+    }
+
+    @Override
+    public final void x(int i7) {
+        it0 it0Var = this.W;
+        it0Var.g("PAGER_TAB_END");
+        it0Var.p();
+    }
+
+    @Override
+    public final boolean z(MotionEvent motionEvent) {
+        boolean z10 = this.I;
+        boolean z11 = super.z(motionEvent);
+        if (z10 && !this.I && motionEvent != null && motionEvent.getActionMasked() == 2) {
+            View[] viewPages = getViewPages();
+            View view = viewPages[0];
+            View view2 = viewPages[1];
+            if (view != null && view2 != null && view.getTranslationX() == 0.0f && view.getMeasuredWidth() > 0 && Math.abs(view2.getTranslationX()) >= view.getMeasuredWidth()) {
+                this.f41368b0 = view;
+                this.f41369c0 = view2;
+                it0 it0Var = this.W;
+                it0Var.g("PAGER_DRAG_ABORTED");
+                it0Var.p();
+            }
+        }
+        return z11;
     }
 }

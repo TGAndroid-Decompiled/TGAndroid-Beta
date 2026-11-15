@@ -1,25 +1,57 @@
 package org.telegram.ui.Components;
-public final class zs implements Runnable {
-    public final int f41102a;
-    public final ct f41103b;
 
-    public zs(ct ctVar, int i7) {
-        this.f41102a = i7;
-        this.f41103b = ctVar;
+import android.graphics.Canvas;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
+public final class zs extends ShapeDrawable {
+    public final int f42419a = 1;
+    public final EditTextBoldCursor f42420b;
+
+    public zs(EditTextBoldCursor editTextBoldCursor, RectShape rectShape) {
+        super(rectShape);
+        this.f42420b = editTextBoldCursor;
     }
 
     @Override
-    public final void run() {
-        switch (this.f41102a) {
+    public final void draw(Canvas canvas) {
+        switch (this.f42419a) {
             case 0:
-                ct ctVar = this.f41103b;
-                ctVar.post(new zs(ctVar, 1));
+                super.draw(canvas);
+                this.f42420b.H0 = true;
                 return;
             default:
-                ct ctVar2 = this.f41103b;
-                ctVar2.h();
-                ctVar2.d();
-                return;
+                EditTextBoldCursor editTextBoldCursor = this.f42420b;
+                if (editTextBoldCursor.f32515e1) {
+                    editTextBoldCursor.H0 = true;
+                    return;
+                } else {
+                    super.draw(canvas);
+                    return;
+                }
         }
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        switch (this.f42419a) {
+            case 1:
+                return org.telegram.messenger.g0.L(this.f42420b.f32524j0 + 20);
+            default:
+                return super.getIntrinsicHeight();
+        }
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        switch (this.f42419a) {
+            case 1:
+                return org.telegram.messenger.g0.L(this.f42420b.F0);
+            default:
+                return super.getIntrinsicWidth();
+        }
+    }
+
+    public zs(EditTextBoldCursor editTextBoldCursor) {
+        this.f42420b = editTextBoldCursor;
     }
 }

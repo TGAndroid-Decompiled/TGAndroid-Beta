@@ -1,56 +1,110 @@
 package org.telegram.messenger;
 
+import android.content.SharedPreferences;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class dg implements Runnable {
-    public final int f22028a;
-    public final int f22029b;
-    public final Object f22030c;
-    public final Object d;
-    public final Object f22031e;
+public final class dg implements RequestDelegate {
+    public final int f23078a;
+    public final si f23079b;
+    public final SharedPreferences f23080c;
 
-    public dg(Object obj, int i7, Object obj2, Object obj3, int i10) {
-        this.f22028a = i10;
-        this.f22030c = obj;
-        this.f22029b = i7;
-        this.d = obj2;
-        this.f22031e = obj3;
+    public dg(si siVar, SharedPreferences sharedPreferences, int i7) {
+        this.f23078a = i7;
+        this.f23079b = siVar;
+        this.f23080c = sharedPreferences;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.dg.run():void");
-    }
-
-    public dg(Object obj, Object obj2, int i7, Object obj3, int i10) {
-        this.f22028a = i10;
-        this.f22030c = obj;
-        this.d = obj2;
-        this.f22029b = i7;
-        this.f22031e = obj3;
-    }
-
-    public dg(c1 c1Var, Object obj, Object obj2, int i7, int i10) {
-        this.f22028a = i10;
-        this.f22030c = c1Var;
-        this.d = obj;
-        this.f22031e = obj2;
-        this.f22029b = i7;
-    }
-
-    public dg(qp qpVar, int i7, TLObject tLObject, TLRPC.TL_error tL_error, int i10) {
-        this.f22028a = i10;
-        this.f22030c = qpVar;
-        this.f22029b = i7;
-        this.f22031e = tLObject;
-        this.d = tL_error;
-    }
-
-    public dg(qp qpVar, TLObject tLObject, int i7, so soVar) {
-        this.f22028a = 10;
-        this.f22030c = qpVar;
-        this.f22031e = tLObject;
-        this.f22029b = i7;
-        this.d = soVar;
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f23078a) {
+            case 0:
+                g0.h3(new bm(this.f23079b, tL_error, tLObject, this.f23080c, 13));
+                return;
+            case 1:
+                final si siVar = this.f23079b;
+                final SharedPreferences sharedPreferences = this.f23080c;
+                g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                si siVar2 = siVar;
+                                siVar2.getClass();
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 instanceof TLRPC.TL_emojiList) {
+                                    SerializedData serializedData = new SerializedData(tLObject2.getObjectSize());
+                                    tLObject2.serializeToStream(serializedData);
+                                    SharedPreferences.Editor edit = sharedPreferences.edit();
+                                    siVar2.N1 = (TLRPC.TL_emojiList) tLObject2;
+                                    edit.putString("restrictedstatuses", Utilities.f(serializedData.toByteArray()));
+                                    edit.putLong("restrictedstatuses_last_check", System.currentTimeMillis());
+                                    edit.apply();
+                                    return;
+                                }
+                                return;
+                            default:
+                                si siVar3 = siVar;
+                                siVar3.getClass();
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 instanceof TLRPC.TL_emojiList) {
+                                    SerializedData serializedData2 = new SerializedData(tLObject3.getObjectSize());
+                                    tLObject3.serializeToStream(serializedData2);
+                                    SharedPreferences.Editor edit2 = sharedPreferences.edit();
+                                    siVar3.M1 = (TLRPC.TL_emojiList) tLObject3;
+                                    edit2.putString("replyicons", Utilities.f(serializedData2.toByteArray()));
+                                    edit2.putLong("replyicons_last_check", System.currentTimeMillis());
+                                    edit2.apply();
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                final si siVar2 = this.f23079b;
+                siVar2.getClass();
+                final SharedPreferences sharedPreferences2 = this.f23080c;
+                g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                si siVar22 = siVar2;
+                                siVar22.getClass();
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 instanceof TLRPC.TL_emojiList) {
+                                    SerializedData serializedData = new SerializedData(tLObject2.getObjectSize());
+                                    tLObject2.serializeToStream(serializedData);
+                                    SharedPreferences.Editor edit = sharedPreferences2.edit();
+                                    siVar22.N1 = (TLRPC.TL_emojiList) tLObject2;
+                                    edit.putString("restrictedstatuses", Utilities.f(serializedData.toByteArray()));
+                                    edit.putLong("restrictedstatuses_last_check", System.currentTimeMillis());
+                                    edit.apply();
+                                    return;
+                                }
+                                return;
+                            default:
+                                si siVar3 = siVar2;
+                                siVar3.getClass();
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 instanceof TLRPC.TL_emojiList) {
+                                    SerializedData serializedData2 = new SerializedData(tLObject3.getObjectSize());
+                                    tLObject3.serializeToStream(serializedData2);
+                                    SharedPreferences.Editor edit2 = sharedPreferences2.edit();
+                                    siVar3.M1 = (TLRPC.TL_emojiList) tLObject3;
+                                    edit2.putString("replyicons", Utilities.f(serializedData2.toByteArray()));
+                                    edit2.putLong("replyicons_last_check", System.currentTimeMillis());
+                                    edit2.apply();
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
+        }
     }
 }

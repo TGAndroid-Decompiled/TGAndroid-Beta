@@ -4,10 +4,11 @@ import a0.m;
 import androidx.lifecycle.p0;
 import ca.i;
 import d6.d;
+import w7.s;
 public class b extends p0 {
-    public static final pb.b f59576f = new pb.b(29);
+    public static final s f60778f = new s(29);
     public final m d = new m();
-    public boolean f59577e = false;
+    public boolean f60779e = false;
 
     @Override
     public final void b() {
@@ -15,24 +16,24 @@ public class b extends p0 {
         int i7 = mVar.f34c;
         for (int i10 = 0; i10 < i7; i10++) {
             a aVar = (a) mVar.f33b[i10];
-            d dVar = aVar.f59573l;
+            d dVar = aVar.f60775l;
             dVar.a();
-            dVar.f8200c = true;
-            i iVar = aVar.f59575n;
+            dVar.f7583c = true;
+            i iVar = aVar.f60777n;
             if (iVar != null) {
                 aVar.i(iVar);
             }
-            a aVar2 = dVar.f8198a;
+            a aVar2 = dVar.f7581a;
             if (aVar2 != null) {
                 if (aVar2 == aVar) {
-                    dVar.f8198a = null;
+                    dVar.f7581a = null;
                     if (iVar != null) {
-                        boolean z9 = iVar.f6018b;
+                        boolean z10 = iVar.f4840b;
                     }
                     dVar.d = true;
-                    dVar.f8199b = false;
-                    dVar.f8200c = false;
-                    dVar.f8201e = false;
+                    dVar.f7582b = false;
+                    dVar.f7583c = false;
+                    dVar.f7584e = false;
                 } else {
                     throw new IllegalArgumentException("Attempting to unregister the wrong listener");
                 }

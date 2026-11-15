@@ -77,8 +77,8 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public void releaseOutputBuffer(int i7, boolean z9) {
-            this.mediaCodec.releaseOutputBuffer(i7, z9);
+        public void releaseOutputBuffer(int i7, boolean z10) {
+            this.mediaCodec.releaseOutputBuffer(i7, z10);
         }
 
         @Override

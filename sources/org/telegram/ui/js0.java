@@ -1,42 +1,33 @@
 package org.telegram.ui;
 
+import android.app.Activity;
 import android.view.View;
-import java.io.Serializable;
-public final class js0 implements org.telegram.ui.ActionBar.r1, org.telegram.messenger.a20 {
-    public final int f47067a;
-    public final ks0 f47068b;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class js0 extends n11 {
+    public final bi.e4 f48453f2;
+    public final e11[] f48454g2;
+    public final PremiumPreviewFragment f48455h2;
 
-    public js0(ks0 ks0Var, int i7) {
-        this.f47067a = i7;
-        this.f47068b = ks0Var;
+    public js0(PremiumPreviewFragment premiumPreviewFragment, PremiumPreviewFragment premiumPreviewFragment2, Activity activity, Integer num, int i7, org.telegram.ui.ActionBar.e6 e6Var, int i10, bi.e4 e4Var, e11[] e11VarArr) {
+        super(premiumPreviewFragment2, activity, true, num, i7, true, e6Var, i10);
+        this.f48455h2 = premiumPreviewFragment;
+        this.f48453f2 = e4Var;
+        this.f48454g2 = e11VarArr;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f47067a) {
-            case 0:
-                this.f47068b.d0();
-                return;
-            default:
-                this.f47068b.finishFragment();
-                return;
-        }
+    public final float getScrimDrawableTranslationY() {
+        return 0.0f;
     }
 
     @Override
-    public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        View view = (View) obj2;
-        Integer num = (Integer) number;
-        Float f10 = (Float) serializable;
-        Float f11 = (Float) serializable2;
-        if (((org.telegram.ui.Components.x31) obj).d == 1) {
-            org.telegram.ui.Cells.r8 r8Var = (org.telegram.ui.Cells.r8) view;
-            boolean z9 = !r8Var.f30225e.h;
-            ks0 ks0Var = this.f47068b;
-            ks0Var.f47409n = z9;
-            r8Var.setChecked(z9);
-            ks0Var.d.f37496f3.O(true);
-            ks0Var.a0(true);
+    public final void p(View view, Long l10, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        this.f48453f2.a(l10, num);
+        e11 e11Var = this.f48454g2[0];
+        if (e11Var != null) {
+            this.f48455h2.f43003v0 = null;
+            e11Var.dismiss();
         }
     }
 }

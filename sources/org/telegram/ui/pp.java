@@ -1,53 +1,53 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class pp implements org.telegram.messenger.tr, org.telegram.ui.ActionBar.r1, org.telegram.ui.Components.cj0, org.telegram.ui.Components.dj0 {
-    public final int f48816a;
-    public final rq f48817b;
+public final class pp implements org.telegram.messenger.qr, org.telegram.ui.ActionBar.q1, org.telegram.ui.Components.hj0, org.telegram.ui.Components.ij0 {
+    public final int f50331a;
+    public final qq f50332b;
 
-    public pp(rq rqVar, int i7) {
-        this.f48816a = i7;
-        this.f48817b = rqVar;
+    public pp(qq qqVar, int i7) {
+        this.f50331a = i7;
+        this.f50332b = qqVar;
     }
 
     @Override
-    public boolean c(int i7, View view) {
-        rq rqVar = this.f48817b;
-        if (rqVar.getParentActivity() != null) {
-            v4.g0 adapter = rqVar.f49502c.getAdapter();
-            nq nqVar = rqVar.f49496a;
-            if (adapter == nqVar) {
-                return rqVar.m0(nqVar.E(i7), false, view);
+    public boolean b(int i7, View view) {
+        qq qqVar = this.f50332b;
+        if (qqVar.getParentActivity() != null) {
+            v4.h0 adapter = qqVar.f50715c.getAdapter();
+            mq mqVar = qqVar.f50709a;
+            if (adapter == mqVar) {
+                return qqVar.m0(mqVar.E(i7), false, view);
             }
         }
         return false;
     }
 
     @Override
-    public void f(float f10, float f11, int i7, View view) {
-        rq.a0(this.f48817b, view, i7);
-    }
-
-    @Override
-    public boolean f1(View view) {
+    public boolean c1(View view) {
         return false;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f48816a) {
+    public void f(float f10, float f11, int i7, View view) {
+        qq.a0(this.f50332b, view, i7);
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        switch (this.f50331a) {
             case 1:
-                this.f48817b.z0();
+                this.f50332b.z0();
                 return;
             default:
-                this.f48817b.finishFragment();
+                this.f50332b.finishFragment();
                 return;
         }
     }
 
     @Override
     public void run(long j3) {
-        rq.Z(this.f48817b, j3);
+        qq.Z(this.f50332b, j3);
     }
 
     @Override

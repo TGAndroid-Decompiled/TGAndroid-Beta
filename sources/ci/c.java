@@ -1,217 +1,154 @@
 package ci;
 
-import android.util.LongSparseArray;
-import android.util.SparseArray;
+import android.app.Activity;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.text.TextPaint;
+import android.view.MotionEvent;
+import android.view.View;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import org.telegram.ui.s6;
-import org.telegram.ui.t6;
-public final class c {
-    public final boolean f6426a;
-    public long f6434k;
-    public boolean f6436m;
-    public boolean f6437n;
-    public boolean f6438o;
-    public boolean f6439p;
-    public boolean f6440q;
-    public long f6441r;
-    public long f6442s;
-    public long f6443t;
-    public long f6444u;
-    public long v;
-    public ArrayList f6427b = new ArrayList();
-    public final LongSparseArray f6428c = new LongSparseArray();
-    public final ArrayList d = new ArrayList();
-    public final ArrayList f6429e = new ArrayList();
-    public final ArrayList f6430f = new ArrayList();
-    public final ArrayList f6431g = new ArrayList();
-    public final ArrayList h = new ArrayList();
-    public final HashSet f6432i = new HashSet();
-    public final HashSet f6433j = new HashSet();
-    public final HashSet f6435l = new HashSet();
+import java.util.HashMap;
+import java.util.WeakHashMap;
+public final class c extends View {
+    public static final long f5306g0 = System.currentTimeMillis();
+    public static final String[] f5307h0 = new String[100];
+    public float E;
+    public long F;
+    public final RectF G;
+    public float H;
+    public float I;
+    public final b1 J;
+    public final Path K;
+    public float L;
+    public final RectF M;
+    public final RectF N;
+    public final WeakHashMap O;
+    public final Path P;
+    public final int[] Q;
+    public LinearGradient R;
+    public final Paint S;
+    public final Paint.FontMetrics T;
+    public m U;
+    public float V;
+    public float W;
+    public final ob.c f5308a;
+    public float f5309a0;
+    public g0 f5310b;
+    public long f5311b0;
+    public final Paint f5312c;
+    public long f5313c0;
+    public final Paint d;
+    public boolean f5314d0;
+    public final TextPaint f5315e;
+    public final int[] f5316e0;
+    public final int[] f5317f;
+    public final RectF f5318f0;
+    public final int[] h;
+    public final HashMap f5319n;
+    public final ArrayList f5320r;
+    public final ArrayList f5321s;
+    public final ArrayList f5322w;
+    public float f5323x;
+    public float f5324y;
 
-    public c(boolean z9) {
-        this.f6426a = z9;
+    public c(Activity activity, ob.c cVar) {
+        super(activity);
+        this.f5312c = new Paint(1);
+        Paint paint = new Paint(1);
+        this.d = paint;
+        TextPaint textPaint = new TextPaint(1);
+        this.f5315e = textPaint;
+        new RectF();
+        this.f5317f = new int[2];
+        this.h = new int[2];
+        this.f5319n = new HashMap();
+        this.f5320r = new ArrayList();
+        this.f5321s = new ArrayList();
+        this.f5322w = new ArrayList();
+        this.G = new RectF();
+        this.H = Float.NaN;
+        this.I = -1.0f;
+        this.J = new b1(0);
+        this.K = new Path();
+        this.L = Float.NaN;
+        this.M = new RectF();
+        this.N = new RectF();
+        this.O = new WeakHashMap();
+        this.P = new Path();
+        this.Q = new int[2];
+        this.S = new Paint(1);
+        this.T = new Paint.FontMetrics();
+        this.V = Float.NaN;
+        this.f5309a0 = 0.45f;
+        this.f5316e0 = new int[2];
+        this.f5318f0 = new RectF();
+        this.f5308a = cVar;
+        textPaint.setTypeface(org.telegram.messenger.g0.o());
+        textPaint.setTextSize(org.telegram.messenger.g0.L(10.0f));
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        paint.setStyle(Paint.Style.STROKE);
     }
 
-    public final void a(int i7, boolean z9) {
-        if (this.f6426a) {
-            if (!z9) {
-                if (i7 == 0) {
-                    this.f6436m = false;
-                    return;
-                } else if (i7 == 1) {
-                    this.f6437n = false;
-                    return;
-                } else if (i7 == 2) {
-                    this.f6438o = false;
-                    return;
-                } else if (i7 == 3) {
-                    this.f6439p = false;
-                    return;
-                } else if (i7 == 4) {
-                    this.f6440q = false;
-                    return;
-                } else {
-                    return;
-                }
-            }
-            ArrayList arrayList = this.d;
-            if (i7 == 0) {
-                this.f6436m = b(i7, arrayList);
-            } else if (i7 == 1) {
-                this.f6437n = b(i7, arrayList);
-            } else if (i7 == 2) {
-                this.f6438o = b(i7, this.f6429e);
-            } else if (i7 == 3) {
-                this.f6439p = b(i7, this.f6430f);
-            } else if (i7 == 4) {
-                this.f6440q = b(i7, this.f6431g);
-            } else if (i7 == 7) {
-                b(i7, this.h);
-            }
-        }
+    public static long b() {
+        return System.currentTimeMillis() - f5306g0;
     }
 
-    public final boolean b(int i7, ArrayList arrayList) {
-        for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            if (((b) arrayList.get(i10)).d == i7 && !this.f6433j.contains(arrayList.get(i10))) {
-                return false;
-            }
-        }
-        return true;
+    public static float c(float[] fArr, long j3) {
+        float min = Math.min(1.0f, ((float) (j3 - fArr[2])) / 180.0f);
+        float f10 = fArr[1];
+        float max = 1.0f - Math.max(0.0f, Math.min(1.0f, min));
+        return ((1.0f - ((max * max) * max)) * (fArr[0] - f10)) + f10;
     }
 
-    public final void c() {
-        if (!this.f6426a) {
-            HashSet hashSet = this.f6432i;
-            hashSet.clear();
-            HashSet hashSet2 = this.f6433j;
-            Iterator it = hashSet2.iterator();
-            while (it.hasNext()) {
-                long j3 = ((b) it.next()).f6421b;
-                if (j3 != 0) {
-                    hashSet.add(Long.valueOf(j3));
-                }
-            }
-            HashSet hashSet3 = this.f6435l;
-            hashSet3.clear();
-            Iterator it2 = hashSet.iterator();
-            while (it2.hasNext()) {
-                s6 s6Var = (s6) this.f6428c.get(((Long) it2.next()).longValue());
-                if (s6Var != null) {
-                    SparseArray sparseArray = s6Var.d;
-                    int i7 = 0;
-                    while (true) {
-                        if (i7 < sparseArray.size()) {
-                            ArrayList arrayList = ((t6) sparseArray.valueAt(i7)).f50142b;
-                            int size = arrayList.size();
-                            int i10 = 0;
-                            while (i10 < size) {
-                                Object obj = arrayList.get(i10);
-                                i10++;
-                                if (!hashSet2.contains((b) obj)) {
-                                    break;
-                                }
-                            }
-                            i7++;
-                        } else {
-                            hashSet3.add(Long.valueOf(s6Var.f49684a));
-                            break;
-                        }
-                    }
-                }
-            }
-        }
+    public final boolean a(android.graphics.Canvas r37, android.view.ViewGroup r38, java.util.List r39, long r40) {
+        throw new UnsupportedOperationException("Method not decompiled: ci.c.a(android.graphics.Canvas, android.view.ViewGroup, java.util.List, long):boolean");
     }
 
-    public final void d() {
-        this.f6434k = 0L;
-        this.f6433j.clear();
-        this.f6435l.clear();
-    }
-
-    public final ArrayList e(int i7) {
-        if (i7 == 0 || i7 == 1) {
-            return this.d;
-        }
-        if (i7 == 2) {
-            return this.f6429e;
-        }
-        if (i7 == 3) {
-            return this.f6430f;
-        }
-        if (i7 == 4) {
-            return this.f6431g;
-        }
-        if (i7 == 7) {
-            return this.h;
-        }
-        return null;
-    }
-
-    public final long f(int i7) {
-        if (i7 == 0) {
-            return this.f6441r;
-        }
-        if (i7 == 1) {
-            return this.f6442s;
-        }
-        if (i7 == 2) {
-            return this.f6443t;
-        }
-        if (i7 == 3) {
-            return this.f6444u;
-        }
-        if (i7 == 4) {
-            return this.v;
-        }
-        return -1L;
-    }
-
-    public final void g(b bVar, boolean z9) {
-        long j3 = bVar.f6422c;
-        if (!z9) {
-            j3 = -j3;
-        }
-        int i7 = bVar.d;
-        if (i7 == 0) {
-            this.f6441r += j3;
-        } else if (i7 == 1) {
-            this.f6442s += j3;
-        } else if (i7 == 2) {
-            this.f6443t += j3;
-        } else if (i7 == 3) {
-            this.f6444u += j3;
-        } else if (i7 == 4) {
-            this.v += j3;
-        }
-    }
-
-    public final boolean h() {
-        if (this.d.isEmpty() && this.f6429e.isEmpty() && this.f6430f.isEmpty()) {
-            if (this.f6426a || this.f6427b.isEmpty()) {
-                return true;
-            }
-            return false;
-        }
+    @Override
+    public final boolean hasOverlappingRendering() {
         return false;
     }
 
-    public final void i(b bVar) {
-        HashSet hashSet = this.f6433j;
-        if (hashSet.contains(bVar)) {
-            hashSet.remove(bVar);
-            g(bVar, false);
-            this.f6434k -= bVar.f6422c;
-            a(bVar.d, false);
-        } else {
-            hashSet.add(bVar);
-            g(bVar, true);
-            this.f6434k += bVar.f6422c;
-            a(bVar.d, true);
+    @Override
+    public final void onDraw(android.graphics.Canvas r29) {
+        throw new UnsupportedOperationException("Method not decompiled: ci.c.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int i7 = 0;
+        if (this.f5324y >= 0.5f) {
+            if (this.G.contains(motionEvent.getX(), motionEvent.getY())) {
+                if (motionEvent.getActionMasked() == 1) {
+                    int i10 = 0;
+                    while (true) {
+                        ArrayList arrayList = this.f5320r;
+                        if (i7 >= arrayList.size()) {
+                            break;
+                        }
+                        b bVar = (b) arrayList.get(i7);
+                        if (!bVar.d) {
+                            if (Math.abs(motionEvent.getX() - bVar.f5295b) < org.telegram.messenger.g0.L(34.0f) / 2.0f) {
+                                z0 z0Var = ((i0) this.f5308a.f21417b).d;
+                                ArrayList arrayList2 = z0Var.J;
+                                if (i10 >= 0 && i10 < arrayList2.size()) {
+                                    arrayList2.remove(i10);
+                                    z0Var.c();
+                                    z0Var.i0();
+                                }
+                                invalidate();
+                                return true;
+                            }
+                            i10++;
+                        }
+                        i7++;
+                    }
+                }
+                return true;
+            }
         }
-        c();
+        return false;
     }
 }

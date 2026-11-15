@@ -1,82 +1,43 @@
 package org.telegram.ui;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class av0 extends v4.s0 {
-    public final int f43824a;
-    public final ProfileActivity f43825b;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Stories.ProfileStoriesView;
+public final class av0 extends ProfileStoriesView {
+    public final Context f45519u0;
+    public final ProfileActivity f45520v0;
 
-    public av0(ProfileActivity profileActivity, int i7) {
-        this.f43824a = i7;
-        this.f43825b = profileActivity;
+    public av0(ProfileActivity profileActivity, Context context, int i7, long j3, boolean z10, k0 k0Var, xu0 xu0Var, org.telegram.ui.ActionBar.e6 e6Var, Context context2) {
+        super(context, i7, j3, z10, k0Var, xu0Var, e6Var);
+        this.f45520v0 = profileActivity;
+        this.f45519u0 = context2;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i7) {
-        boolean z9;
-        View m10;
-        switch (this.f43824a) {
-            case 0:
-                if (i7 == 1) {
-                    org.telegram.messenger.g0.v1(this.f43825b.getParentActivity().getCurrentFocus());
-                    return;
-                }
+    public final void e(cb.c cVar) {
+        TL_stories.PeerStories peerStories;
+        TL_stories.PeerStories peerStories2;
+        ProfileActivity profileActivity = this.f45520v0;
+        long a10 = profileActivity.a();
+        fi.s6 P1 = profileActivity.getMessagesController().P1();
+        boolean K = P1.K(a10);
+        Context context = this.f45519u0;
+        if (!K && !P1.M(a10) && !P1.Q(a10)) {
+            TLRPC.UserFull userFull = profileActivity.f43219w2;
+            if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.stories.isEmpty() && profileActivity.f43094e1 != profileActivity.getUserConfig().f24953n) {
+                profileActivity.getOrCreateStoryViewer().K(context, profileActivity.f43219w2.stories, cVar);
                 return;
-            default:
-                ProfileActivity profileActivity = this.f43825b;
-                boolean z10 = true;
-                if (i7 == 1) {
-                    org.telegram.messenger.g0.v1(profileActivity.getParentActivity().getCurrentFocus());
-                }
-                if (profileActivity.F0 && i7 != 2) {
-                    profileActivity.F0 = false;
-                }
-                if (i7 == 0 && !profileActivity.F1 && (m10 = profileActivity.f41705c.m(0)) != null) {
-                    ProfileActivity.R0(profileActivity, m10, 0.0f);
-                }
-                org.telegram.ui.ActionBar.g5 g5Var = profileActivity.T0;
-                if (g5Var != null) {
-                    if (i7 != 0) {
-                        z9 = true;
-                    } else {
-                        z9 = false;
-                    }
-                    profileActivity.f41861y1 = z9;
-                    if (z9 || profileActivity.f41790o2) {
-                        z10 = false;
-                    }
-                    g5Var.setEnabled(z10);
-                }
-                yv0 yv0Var = profileActivity.N;
-                boolean z11 = profileActivity.f41689a.I1;
-                yv0Var.getClass();
+            }
+            TLRPC.ChatFull chatFull = profileActivity.f43211v2;
+            if (chatFull != null && (peerStories = chatFull.stories) != null && !peerStories.stories.isEmpty()) {
+                profileActivity.getOrCreateStoryViewer().K(context, profileActivity.f43211v2.stories, cVar);
                 return;
+            } else {
+                profileActivity.Z3();
+                return;
+            }
         }
-    }
-
-    @Override
-    public void b(RecyclerView recyclerView, int i7, int i10) {
-        switch (this.f43824a) {
-            case 1:
-                ProfileActivity profileActivity = this.f43825b;
-                fi.m3 m3Var = profileActivity.W;
-                boolean z9 = true;
-                if (m3Var != null) {
-                    m3Var.f(true);
-                }
-                profileActivity.O3();
-                if (profileActivity.B1 != null && !profileActivity.C1 && profileActivity.f41705c.N0() > profileActivity.f41833u4 - 8) {
-                    profileActivity.h4(false);
-                }
-                yv0 yv0Var = profileActivity.N;
-                if (yv0Var.getY() > 0.0f) {
-                    z9 = false;
-                }
-                yv0Var.setPinnedToTop(z9);
-                profileActivity.s5();
-                return;
-            default:
-                return;
-        }
+        profileActivity.getOrCreateStoryViewer().J(context, a10, cVar);
     }
 }

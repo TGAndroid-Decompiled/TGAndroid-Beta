@@ -1,12 +1,12 @@
 package d4;
 public final class a {
-    public final int f8114a;
-    public final boolean f8115b;
-    public int f8116c;
+    public final int f7497a;
+    public final boolean f7498b;
+    public int f7499c;
 
-    public a(int i7, boolean z9, int i10) {
-        this.f8114a = i7;
-        this.f8115b = z9;
-        this.f8116c = i10;
+    public a(int i7, boolean z10, int i10) {
+        this.f7497a = i7;
+        this.f7498b = z10;
+        this.f7499c = i10;
     }
 }

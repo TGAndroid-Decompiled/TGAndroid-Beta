@@ -2,39 +2,39 @@ package y3;
 
 import f3.k;
 public final class a extends k implements h {
-    public final long f58929i;
-    public final int f58930j;
-    public final int f58931k;
-    public final boolean f58932l;
-    public final long f58933m;
+    public final long f60142i;
+    public final int f60143j;
+    public final int f60144k;
+    public final boolean f60145l;
+    public final long f60146m;
 
-    public a(long j3, long j10, int i7, int i10, boolean z9, boolean z10) {
-        super(j3, j10, i7, i10, z9, z10);
+    public a(long j3, long j10, int i7, int i10, boolean z10, boolean z11) {
+        super(j3, j10, i7, i10, z10, z11);
         long j11 = j3;
-        this.f58929i = j10;
-        this.f58930j = i7;
-        this.f58931k = i10;
-        this.f58932l = z9;
-        this.f58933m = j11 == -1 ? -1L : j11;
+        this.f60142i = j10;
+        this.f60143j = i7;
+        this.f60144k = i10;
+        this.f60145l = z10;
+        this.f60146m = j11 == -1 ? -1L : j11;
     }
 
     @Override
-    public final long a(long j3) {
-        return (Math.max(0L, j3 - this.f11049b) * 8000000) / this.f11051e;
+    public final long a() {
+        return this.f60146m;
     }
 
     @Override
-    public final long b() {
-        return this.f58933m;
+    public final long b(long j3) {
+        return (Math.max(0L, j3 - this.f10857b) * 8000000) / this.f10859e;
     }
 
     @Override
     public final long c() {
-        return this.f58929i;
+        return this.f60142i;
     }
 
     @Override
     public final int g() {
-        return this.f58930j;
+        return this.f60143j;
     }
 }

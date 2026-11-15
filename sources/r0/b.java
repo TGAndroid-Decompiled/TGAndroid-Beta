@@ -11,29 +11,30 @@ import android.view.accessibility.AccessibilityNodeProvider;
 import java.lang.ref.WeakReference;
 import java.util.Collections;
 import java.util.List;
+import org.telegram.ui.Components.cf;
 public class b {
-    public static final View.AccessibilityDelegate f54172c = new View.AccessibilityDelegate();
-    public final View.AccessibilityDelegate f54173a;
-    public final a f54174b;
+    public static final View.AccessibilityDelegate f55641c = new View.AccessibilityDelegate();
+    public final View.AccessibilityDelegate f55642a;
+    public final a f55643b;
 
     public b() {
-        this(f54172c);
+        this(f55641c);
     }
 
-    public org.telegram.ui.Components.m a(View view) {
-        AccessibilityNodeProvider accessibilityNodeProvider = this.f54173a.getAccessibilityNodeProvider(view);
+    public cf a(View view) {
+        AccessibilityNodeProvider accessibilityNodeProvider = this.f55642a.getAccessibilityNodeProvider(view);
         if (accessibilityNodeProvider != null) {
-            return new org.telegram.ui.Components.m(accessibilityNodeProvider);
+            return new cf(accessibilityNodeProvider);
         }
         return null;
     }
 
     public void b(View view, AccessibilityEvent accessibilityEvent) {
-        this.f54173a.onInitializeAccessibilityEvent(view, accessibilityEvent);
+        this.f55642a.onInitializeAccessibilityEvent(view, accessibilityEvent);
     }
 
-    public void c(View view, s0.d dVar) {
-        this.f54173a.onInitializeAccessibilityNodeInfo(view, dVar.f54612a);
+    public void c(View view, s0.c cVar) {
+        this.f55642a.onInitializeAccessibilityNodeInfo(view, cVar.f56166a);
     }
 
     public boolean d(View view, int i7, Bundle bundle) {
@@ -44,9 +45,9 @@ public class b {
         if (list == null) {
             list = Collections.EMPTY_LIST;
         }
-        for (int i10 = 0; i10 < list.size() && ((AccessibilityNodeInfo.AccessibilityAction) ((s0.c) list.get(i10)).f54609a).getId() != i7; i10++) {
+        for (int i10 = 0; i10 < list.size() && ((AccessibilityNodeInfo.AccessibilityAction) ((s0.b) list.get(i10)).f56163a).getId() != i7; i10++) {
         }
-        boolean performAccessibilityAction = this.f54173a.performAccessibilityAction(view, i7, bundle);
+        boolean performAccessibilityAction = this.f55642a.performAccessibilityAction(view, i7, bundle);
         if (!performAccessibilityAction && i7 == 2131296269 && bundle != null) {
             int i11 = bundle.getInt("ACCESSIBILITY_CLICKABLE_SPAN_ID", -1);
             SparseArray sparseArray = (SparseArray) view.getTag(2131296683);
@@ -70,7 +71,7 @@ public class b {
     }
 
     public b(View.AccessibilityDelegate accessibilityDelegate) {
-        this.f54173a = accessibilityDelegate;
-        this.f54174b = new a(this);
+        this.f55642a = accessibilityDelegate;
+        this.f55643b = new a(this);
     }
 }

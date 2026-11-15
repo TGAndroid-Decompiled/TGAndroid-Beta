@@ -1,8 +1,8 @@
 package org.telegram.ui;
-public final class jt extends org.telegram.ui.Components.lc {
+public final class jt extends org.telegram.ui.Components.hc {
     public int d;
-    public long f47069e;
-    public long f47070f;
-    public int f47071g;
+    public long f48456e;
+    public long f48457f;
+    public int f48458g;
     public int h;
 }

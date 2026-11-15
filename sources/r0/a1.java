@@ -1,72 +1,72 @@
 package r0;
 
-import c8.vb;
+import c8.wb;
 public abstract class a1 {
-    public final k1 f54170a;
-    public i0.b[] f54171b;
+    public final k1 f55639a;
+    public i0.c[] f55640b;
 
     public a1() {
         this(new k1());
     }
 
     public final void a() {
-        i0.b[] bVarArr = this.f54171b;
-        if (bVarArr != null) {
-            i0.b bVar = bVarArr[0];
-            i0.b bVar2 = bVarArr[1];
-            k1 k1Var = this.f54170a;
-            if (bVar2 == null) {
-                bVar2 = k1Var.f54213a.f(2);
+        i0.c[] cVarArr = this.f55640b;
+        if (cVarArr != null) {
+            i0.c cVar = cVarArr[0];
+            i0.c cVar2 = cVarArr[1];
+            k1 k1Var = this.f55639a;
+            if (cVar2 == null) {
+                cVar2 = k1Var.f55682a.f(2);
             }
-            if (bVar == null) {
-                bVar = k1Var.f54213a.f(1);
+            if (cVar == null) {
+                cVar = k1Var.f55682a.f(1);
             }
-            g(i0.b.a(bVar, bVar2));
-            i0.b bVar3 = this.f54171b[vb.a(16)];
-            if (bVar3 != null) {
-                f(bVar3);
+            g(i0.c.a(cVar, cVar2));
+            i0.c cVar3 = this.f55640b[wb.a(16)];
+            if (cVar3 != null) {
+                f(cVar3);
             }
-            i0.b bVar4 = this.f54171b[vb.a(32)];
-            if (bVar4 != null) {
-                d(bVar4);
+            i0.c cVar4 = this.f55640b[wb.a(32)];
+            if (cVar4 != null) {
+                d(cVar4);
             }
-            i0.b bVar5 = this.f54171b[vb.a(64)];
-            if (bVar5 != null) {
-                h(bVar5);
+            i0.c cVar5 = this.f55640b[wb.a(64)];
+            if (cVar5 != null) {
+                h(cVar5);
             }
         }
     }
 
     public abstract k1 b();
 
-    public void c(int i7, i0.b bVar) {
-        if (this.f54171b == null) {
-            this.f54171b = new i0.b[10];
+    public void c(int i7, i0.c cVar) {
+        if (this.f55640b == null) {
+            this.f55640b = new i0.c[10];
         }
         for (int i10 = 1; i10 <= 512; i10 <<= 1) {
             if ((i7 & i10) != 0) {
-                this.f54171b[vb.a(i10)] = bVar;
+                this.f55640b[wb.a(i10)] = cVar;
             }
         }
     }
 
-    public abstract void e(i0.b bVar);
+    public abstract void e(i0.c cVar);
 
-    public abstract void g(i0.b bVar);
+    public abstract void g(i0.c cVar);
 
     public a1(k1 k1Var) {
-        this.f54170a = k1Var;
+        this.f55639a = k1Var;
     }
 
-    public void d(i0.b bVar) {
+    public void d(i0.c cVar) {
     }
 
-    public void f(i0.b bVar) {
+    public void f(i0.c cVar) {
     }
 
-    public void h(i0.b bVar) {
+    public void h(i0.c cVar) {
     }
 
-    public void i(int i7, boolean z9) {
+    public void i(int i7, boolean z10) {
     }
 }

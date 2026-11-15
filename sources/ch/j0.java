@@ -1,17 +1,79 @@
 package ch;
 
-import org.telegram.messenger.ImageReceiver;
-public final class j0 {
-    public ImageReceiver f6274a;
-    public int f6275b;
-    public float f6276c;
-    public float d;
-    public float f6277e;
-    public float f6278f;
-    public float f6279g;
-    public float h;
-    public float f6280i;
-    public float f6281j;
-    public boolean f6282k;
-    public float f6283l;
+import android.content.Context;
+import android.graphics.Canvas;
+import org.telegram.ui.Components.g5;
+import org.telegram.ui.Components.i9;
+public final class j0 extends i9 {
+    public boolean H;
+    public g5 I;
+    public d J;
+    public boolean K;
+    public final l0 L;
+
+    public j0(l0 l0Var, Context context) {
+        super(context);
+        this.L = l0Var;
+        getImageReceiver().h0(3);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.K = true;
+        g5 g5Var = this.I;
+        if (g5Var != null) {
+            g5Var.a(this);
+        }
+        d dVar = this.J;
+        if (dVar != null) {
+            dVar.f(this);
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.K = false;
+        g5 g5Var = this.I;
+        if (g5Var != null) {
+            g5Var.n(this);
+        }
+        d dVar = this.J;
+        if (dVar != null) {
+            dVar.d(this);
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        g5 g5Var = this.I;
+        if (g5Var != null) {
+            g5Var.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            this.I.setAlpha(255);
+            this.I.draw(canvas);
+            this.H = true;
+            return;
+        }
+        d dVar = this.J;
+        if (dVar != null) {
+            dVar.e(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            this.J.b(canvas);
+            this.H = true;
+            return;
+        }
+        if (getImageReceiver().B() != null && getImageReceiver().B().f33586l0) {
+            this.H = true;
+        }
+        if (!this.H && getImageReceiver().B() != null && !getImageReceiver().B().f33586l0) {
+            l0 l0Var = this.L;
+            if (l0Var.f5112a == 2 && !l0Var.f5134z) {
+                getImageReceiver().B().N(getImageReceiver().B().f33577e[0] - 1, false, false);
+            } else {
+                getImageReceiver().B().N(0, false, false);
+                getImageReceiver().B().start();
+            }
+        }
+        super.onDraw(canvas);
+    }
 }

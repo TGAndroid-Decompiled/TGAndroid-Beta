@@ -1,43 +1,16 @@
 package j6;
 
-import android.os.IBinder;
-import android.os.IInterface;
-import f6.y;
-public final class s extends q6.h {
-    @Override
-    public final int d() {
-        return 12451000;
-    }
+import com.google.android.gms.tasks.Task;
+import f3.k0;
+public final class s extends com.google.android.gms.common.api.j {
+    public static final com.google.android.gms.common.api.e f16899l = new com.google.android.gms.common.api.e("CastApi.API", new a9.e(6), new Object());
 
-    @Override
-    public final IInterface i(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
-        }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.cast.internal.ICastService");
-        if (queryLocalInterface instanceof i) {
-            return (i) queryLocalInterface;
-        }
-        return new a8.a(iBinder, "com.google.android.gms.cast.internal.ICastService", 2);
-    }
-
-    @Override
-    public final n6.c[] k() {
-        return y.f11353e;
-    }
-
-    @Override
-    public final String o() {
-        return "com.google.android.gms.cast.internal.ICastService";
-    }
-
-    @Override
-    public final String p() {
-        return "com.google.android.gms.cast.service.BIND_CAST_DEVICE_CONTROLLER_SERVICE";
-    }
-
-    @Override
-    public final boolean x() {
-        return true;
+    public final Task f(String[] strArr) {
+        com.google.android.gms.common.api.internal.t b10 = com.google.android.gms.common.api.internal.u.b();
+        b10.f6071c = new k0(this, strArr);
+        b10.d = new n6.c[]{f6.y.f11160b};
+        b10.f6070b = false;
+        b10.f6069a = 8425;
+        return e(0, b10.a());
     }
 }

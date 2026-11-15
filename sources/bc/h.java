@@ -1,17 +1,17 @@
 package bc;
 public abstract class h extends Exception {
-    public static final boolean f3173a;
-    public static final StackTraceElement[] f3174b;
+    public static final boolean f3128a;
+    public static final StackTraceElement[] f3129b;
 
     static {
-        boolean z9;
+        boolean z10;
         if (System.getProperty("surefire.test.class.path") != null) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        f3173a = z9;
-        f3174b = new StackTraceElement[0];
+        f3128a = z10;
+        f3129b = new StackTraceElement[0];
     }
 
     @Override

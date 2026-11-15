@@ -120,7 +120,7 @@ public class EglBase10Impl implements EglBase10 {
         }
 
         @Override
-        public void setKeepScreenOn(boolean z9) {
+        public void setKeepScreenOn(boolean z10) {
         }
 
         @Override
@@ -180,13 +180,13 @@ public class EglBase10Impl implements EglBase10 {
         throw new RuntimeException("Failed to create EGL context: 0x" + Integer.toHexString(this.egl.eglGetError()));
     }
 
-    private void createSurfaceInternal(Object obj, boolean z9) {
+    private void createSurfaceInternal(Object obj, boolean z10) {
         if (!(obj instanceof SurfaceHolder) && !(obj instanceof SurfaceTexture)) {
             throw new IllegalStateException("Input must be either a SurfaceHolder or SurfaceTexture");
         }
         checkIsNotReleased();
         EGLSurface eGLSurface = EGL10.EGL_NO_SURFACE;
-        if (z9) {
+        if (z10) {
             if (this.eglBackgroundSurface == eGLSurface) {
                 EGLSurface eglCreateWindowSurface = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344});
                 this.eglBackgroundSurface = eglCreateWindowSurface;
@@ -258,9 +258,9 @@ public class EglBase10Impl implements EglBase10 {
             if (eglCreatePbufferSurface != eGLSurface2) {
                 return;
             }
-            StringBuilder o4 = jg.g.o("Failed to create pixel buffer surface with size ", i7, "x", i10, ": 0x");
-            o4.append(Integer.toHexString(this.egl.eglGetError()));
-            throw new RuntimeException(o4.toString());
+            StringBuilder n10 = i5.c.n("Failed to create pixel buffer surface with size ", i7, "x", i10, ": 0x");
+            n10.append(Integer.toHexString(this.egl.eglGetError()));
+            throw new RuntimeException(n10.toString());
         }
         throw new RuntimeException("Already has an EGLSurface");
     }
@@ -363,9 +363,9 @@ public class EglBase10Impl implements EglBase10 {
     }
 
     @Override
-    public void releaseSurface(boolean z9) {
+    public void releaseSurface(boolean z10) {
         EGLSurface eGLSurface = EGL10.EGL_NO_SURFACE;
-        if (z9) {
+        if (z10) {
             EGLSurface eGLSurface2 = this.eglBackgroundSurface;
             if (eGLSurface2 != eGLSurface) {
                 this.egl.eglDestroySurface(this.eglDisplay, eGLSurface2);
@@ -396,8 +396,8 @@ public class EglBase10Impl implements EglBase10 {
     }
 
     @Override
-    public void swapBuffers(boolean z9) {
-        EGLSurface eGLSurface = z9 ? this.eglBackgroundSurface : this.eglSurface;
+    public void swapBuffers(boolean z10) {
+        EGLSurface eGLSurface = z10 ? this.eglBackgroundSurface : this.eglSurface;
         checkIsNotReleased();
         if (eGLSurface != EGL10.EGL_NO_SURFACE) {
             synchronized (EglBase.lock) {
@@ -414,7 +414,7 @@ public class EglBase10Impl implements EglBase10 {
     }
 
     @Override
-    public void swapBuffers(long j3, boolean z9) {
-        swapBuffers(z9);
+    public void swapBuffers(long j3, boolean z10) {
+        swapBuffers(z10);
     }
 }

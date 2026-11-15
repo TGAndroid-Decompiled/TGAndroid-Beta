@@ -8,16 +8,16 @@ import androidx.core.widget.NestedScrollView;
 public final class e extends r0.b {
     @Override
     public final void b(View view, AccessibilityEvent accessibilityEvent) {
-        boolean z9;
+        boolean z10;
         super.b(view, accessibilityEvent);
         NestedScrollView nestedScrollView = (NestedScrollView) view;
         accessibilityEvent.setClassName(ScrollView.class.getName());
         if (nestedScrollView.getScrollRange() > 0) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        accessibilityEvent.setScrollable(z9);
+        accessibilityEvent.setScrollable(z10);
         accessibilityEvent.setScrollX(nestedScrollView.getScrollX());
         accessibilityEvent.setScrollY(nestedScrollView.getScrollY());
         accessibilityEvent.setMaxScrollX(nestedScrollView.getScrollX());
@@ -25,21 +25,21 @@ public final class e extends r0.b {
     }
 
     @Override
-    public final void c(View view, s0.d dVar) {
+    public final void c(View view, s0.c cVar) {
         int scrollRange;
-        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f54612a;
-        this.f54173a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
+        AccessibilityNodeInfo accessibilityNodeInfo = cVar.f56166a;
+        this.f55642a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
         NestedScrollView nestedScrollView = (NestedScrollView) view;
-        dVar.i("android.widget.ScrollView");
+        cVar.i("android.widget.ScrollView");
         if (nestedScrollView.isEnabled() && (scrollRange = nestedScrollView.getScrollRange()) > 0) {
             accessibilityNodeInfo.setScrollable(true);
             if (nestedScrollView.getScrollY() > 0) {
-                dVar.b(s0.c.f54606e);
-                dVar.b(s0.c.f54607f);
+                cVar.b(s0.b.f56160e);
+                cVar.b(s0.b.f56161f);
             }
             if (nestedScrollView.getScrollY() < scrollRange) {
-                dVar.b(s0.c.d);
-                dVar.b(s0.c.f54608g);
+                cVar.b(s0.b.d);
+                cVar.b(s0.b.f56162g);
             }
         }
     }

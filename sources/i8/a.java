@@ -3,9 +3,9 @@ package i8;
 import android.os.BadParcelableException;
 import android.os.Parcel;
 import android.os.Parcelable;
-import jg.g;
+import i5.c;
 public abstract class a {
-    public static final int f15400a = 0;
+    public static final int f15853a = 0;
 
     static {
         a.class.getClassLoader();
@@ -23,6 +23,6 @@ public abstract class a {
         if (dataAvail <= 0) {
             return;
         }
-        throw new BadParcelableException(g.j(dataAvail, "Parcel data not fully consumed, unread size: "));
+        throw new BadParcelableException(c.i(dataAvail, "Parcel data not fully consumed, unread size: "));
     }
 }

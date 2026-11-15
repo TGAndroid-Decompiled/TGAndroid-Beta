@@ -1,39 +1,26 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-import j$.util.Objects;
-public final class jw extends fy {
-    public final gy d;
+import android.content.Context;
+public final class jw extends v4.c0 {
+    public final int f36192r;
 
-    public jw(gy gyVar) {
-        super(gyVar, 1);
-        this.d = gyVar;
+    public jw(Context context, int i7) {
+        super(context);
+        this.f36192r = i7;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i7) {
-        if (i7 == 0) {
-            this.d.f34025f0 = false;
-        }
-        super.a(recyclerView, i7);
+    public final int i(int i7, int i10, int i11, int i12, int i13) {
+        return super.i(i7, i10, i11, i12, i13) + this.f36192r;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        gy gyVar = this.d;
-        gw gwVar = gyVar.Q;
-        gyVar.U(gwVar.I0());
-        super.b(recyclerView, i7, i10);
-        gx gxVar = gyVar.S;
-        if (gxVar != null && gyVar.P.getAdapter() == gxVar) {
-            gx gxVar2 = gxVar.f34003y.f33663a;
-            if (!gxVar2.F.V.F && !gxVar2.E) {
-                if (gwVar.N0() + 20 > gxVar.b()) {
-                    fx fxVar = gxVar.f34003y;
-                    Objects.requireNonNull(fxVar);
-                    org.telegram.messenger.g0.h3(new ov(fxVar, 1));
-                }
-            }
-        }
+    public final int m(int i7) {
+        return super.m(i7) * 16;
+    }
+
+    @Override
+    public final int p() {
+        return -1;
     }
 }

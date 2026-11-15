@@ -1,6 +1,7 @@
 package ca;
 
 import android.util.Log;
+import com.google.android.gms.internal.vision.e2;
 import java.io.BufferedWriter;
 import java.io.Closeable;
 import java.io.File;
@@ -18,11 +19,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class h {
-    public static final Charset f6015b = Charset.forName("UTF-8");
-    public final ga.d f6016a;
+    public static final Charset f4837b = Charset.forName("UTF-8");
+    public final ga.d f4838a;
 
     public h(ga.d dVar) {
-        this.f6016a = dVar;
+        this.f4838a = dVar;
     }
 
     public static HashMap a(String str) {
@@ -59,7 +60,7 @@ public final class h {
         JSONArray jSONArray = new JSONArray();
         for (int i7 = 0; i7 < list.size(); i7++) {
             try {
-                jSONArray.put(new JSONObject(p.f6036a.u(list.get(i7))));
+                jSONArray.put(new JSONObject(p.f4858a.o(list.get(i7))));
             } catch (JSONException e10) {
                 Log.w("FirebaseCrashlytics", "Exception parsing rollout assignment!", e10);
             }
@@ -76,17 +77,17 @@ public final class h {
 
     public static void g(File file, String str) {
         if (file.exists() && file.delete()) {
-            Log.i("FirebaseCrashlytics", com.google.android.recaptcha.internal.a.l("Deleted corrupt file: ", file.getAbsolutePath(), "\nReason: ", str), null);
+            Log.i("FirebaseCrashlytics", e2.l("Deleted corrupt file: ", file.getAbsolutePath(), "\nReason: ", str), null);
         }
     }
 
-    public final Map c(String str, boolean z9) {
+    public final Map c(String str, boolean z10) {
         File b10;
         Throwable th2;
         FileInputStream fileInputStream;
         Exception e10;
-        ga.d dVar = this.f6016a;
-        if (z9) {
+        ga.d dVar = this.f4838a;
+        if (z10) {
             b10 = dVar.b(str, "internal-keys");
         } else {
             b10 = dVar.b(str, "keys");
@@ -129,7 +130,7 @@ public final class h {
     public final String d(String str) {
         FileInputStream fileInputStream;
         String str2;
-        File b10 = this.f6016a.b(str, "user-data");
+        File b10 = this.f4838a.b(str, "user-data");
         Closeable closeable = null;
         if (b10.exists()) {
             ?? r32 = (b10.length() > 0L ? 1 : (b10.length() == 0L ? 0 : -1));
@@ -171,20 +172,20 @@ public final class h {
                 closeable = r32;
             }
         }
-        String i7 = rf.b.i("No userId set for session ", str);
+        String k10 = r.b.k("No userId set for session ", str);
         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", i7, null);
+            Log.d("FirebaseCrashlytics", k10, null);
         }
         f(b10);
         return null;
     }
 
-    public final void h(String str, Map map, boolean z9) {
+    public final void h(String str, Map map, boolean z10) {
         File b10;
         String jSONObject;
         BufferedWriter bufferedWriter;
-        ga.d dVar = this.f6016a;
-        if (z9) {
+        ga.d dVar = this.f4838a;
+        if (z10) {
             b10 = dVar.b(str, "internal-keys");
         } else {
             b10 = dVar.b(str, "keys");
@@ -193,7 +194,7 @@ public final class h {
         try {
             try {
                 jSONObject = new JSONObject(map).toString();
-                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b10), f6015b));
+                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b10), f4837b));
             } catch (Exception e10) {
                 e = e10;
             }
@@ -221,14 +222,14 @@ public final class h {
     public final void i(String str, String str2) {
         String obj;
         BufferedWriter bufferedWriter;
-        File b10 = this.f6016a.b(str, "user-data");
+        File b10 = this.f4838a.b(str, "user-data");
         BufferedWriter bufferedWriter2 = null;
         try {
             try {
                 JSONObject jSONObject = new JSONObject();
                 jSONObject.put("userId", str2);
                 obj = jSONObject.toString();
-                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b10), f6015b));
+                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b10), f4837b));
             } catch (Exception e10) {
                 e = e10;
             }

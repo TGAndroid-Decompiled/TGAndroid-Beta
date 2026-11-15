@@ -1,35 +1,39 @@
 package org.telegram.ui;
 
-import android.animation.LayoutTransition;
-import android.view.View;
-import android.view.ViewGroup;
-public final class ik implements LayoutTransition.TransitionListener {
-    public hk f46654a;
-    public int f46655b;
-    public final org.telegram.ui.ActionBar.y f46656c;
-    public final cn d;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class ik implements org.telegram.ui.Components.li0 {
+    public final an f48078a;
 
-    public ik(cn cnVar, org.telegram.ui.ActionBar.y yVar) {
-        this.d = cnVar;
-        this.f46656c = yVar;
+    public ik(an anVar) {
+        this.f48078a = anVar;
     }
 
     @Override
-    public final void endTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i7) {
-        int i10 = this.f46655b - 1;
-        this.f46655b = i10;
-        if (i10 == 0 && this.f46654a != null) {
-            this.f46656c.getViewTreeObserver().removeOnPreDrawListener(this.f46654a);
-            this.f46654a = null;
-        }
+    public final boolean B() {
+        return false;
     }
 
     @Override
-    public final void startTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i7) {
-        if (this.f46655b == 0 && this.f46654a == null) {
-            this.f46654a = new hk(this, 0);
-            this.f46656c.getViewTreeObserver().addOnPreDrawListener(this.f46654a);
-        }
-        this.f46655b++;
+    public final boolean L() {
+        return false;
+    }
+
+    @Override
+    public final void h(android.view.View r24, ch.p0 r25, boolean r26, boolean r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ik.h(android.view.View, ch.p0, boolean, boolean):void");
+    }
+
+    @Override
+    public final boolean r() {
+        return true;
+    }
+
+    @Override
+    public final void K() {
+    }
+
+    @Override
+    public final void J(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i7, boolean z10) {
     }
 }

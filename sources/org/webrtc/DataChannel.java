@@ -9,9 +9,9 @@ public class DataChannel {
         public final boolean binary;
         public final ByteBuffer data;
 
-        public Buffer(ByteBuffer byteBuffer, boolean z9) {
+        public Buffer(ByteBuffer byteBuffer, boolean z10) {
             this.data = byteBuffer;
-            this.binary = z9;
+            this.binary = z10;
         }
     }
 
@@ -21,10 +21,10 @@ public class DataChannel {
         public int maxRetransmitTimeMs = -1;
         public int maxRetransmits = -1;
         public String protocol = "";
-        public int f53042id = -1;
+        public int f54448id = -1;
 
         public int getId() {
-            return this.f53042id;
+            return this.f54448id;
         }
 
         public int getMaxRetransmitTimeMs() {
@@ -88,7 +88,7 @@ public class DataChannel {
 
     private native long nativeRegisterObserver(Observer observer);
 
-    private native boolean nativeSend(byte[] bArr, boolean z9);
+    private native boolean nativeSend(byte[] bArr, boolean z10);
 
     private native State nativeState();
 

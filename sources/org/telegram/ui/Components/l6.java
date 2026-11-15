@@ -1,23 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.view.animation.OvershootInterpolator;
-public abstract class l6 {
-    public static final OvershootInterpolator f35548a = new OvershootInterpolator(1.9f);
-    public static final j6 f35549b = new j6("alpha", 0);
-    public static final org.telegram.ui.Cells.o8 f35550c;
-    public static final j6 d;
-    public static final j6 f35551e;
-    public static final org.telegram.ui.Cells.o8 f35552f;
-    public static final org.telegram.ui.Cells.o8 f35553g;
-    public static final org.telegram.ui.Cells.o8 h;
-
-    static {
-        new j6("color", 1);
-        f35550c = new org.telegram.ui.Cells.o8("currentAlpha", 4);
-        d = new j6("alpha", 2);
-        f35551e = new j6("alpha", 3);
-        f35552f = new org.telegram.ui.Cells.o8("animationProgress", 5);
-        f35553g = new org.telegram.ui.Cells.o8("animationValue", 6);
-        h = new org.telegram.ui.Cells.o8("clipProgress", 7);
+import android.graphics.Typeface;
+import android.widget.TextView;
+import org.telegram.ui.LaunchActivity;
+public final class l6 extends va {
+    public l6(LaunchActivity launchActivity, org.telegram.ui.w80 w80Var) {
+        super(launchActivity, null);
+        org.telegram.ui.Cells.q qVar = new org.telegram.ui.Cells.q(getContext());
+        TextView textView = new TextView(getContext());
+        addView(qVar, c8.ja.i(30.0f, 30.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
+        textView.setGravity(8388611);
+        textView.setPadding(0, org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f));
+        org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.yj, null);
+        textView.setTextSize(1, 15.0f);
+        textView.setTypeface(Typeface.SANS_SERIF);
+        addView(textView, c8.ja.i(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
+        qVar.setImageDrawable(launchActivity.getDrawable(w80Var.f52494b));
+        qVar.setOuterPadding(org.telegram.messenger.g0.L(8.0f));
+        qVar.setBackgroundOuterPadding(org.telegram.messenger.g0.L(24.0f));
+        qVar.setForeground(w80Var.f52495c);
+        org.telegram.messenger.k5.q(null, null, 2131754238, new Object[]{org.telegram.messenger.hd.M0(w80Var.d, null)}, textView);
     }
 }

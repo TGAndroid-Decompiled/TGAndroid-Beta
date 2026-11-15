@@ -1,46 +1,28 @@
 package jg;
 
-import di.i7;
-import org.telegram.messenger.qp;
-import org.telegram.ui.Cells.p2;
-import org.telegram.ui.Cells.t2;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.cn;
-public final class j1 implements p2 {
-    public final m1 f16814a;
+import android.content.Context;
+import android.view.View;
+import fi.d6;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.Components.a41;
+import org.telegram.ui.Components.b41;
+import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.u41;
+import org.telegram.ui.Components.uj0;
+public final class j1 extends a41 {
+    public static final int f17162b = 0;
 
-    public j1(m1 m1Var) {
-        this.f16814a = m1Var;
+    static {
+        a41.h(new a41());
     }
 
     @Override
-    public final boolean m() {
-        return false;
+    public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
+        ((k1) view).a((d6) b41Var.G);
     }
 
     @Override
-    public final void u(t2 t2Var) {
-        m1 m1Var = this.f16814a;
-        cn cnVar = m1Var.f16843f;
-        if (qp.s1(m1Var.f16845r).P1().K(t2Var.getDialogId())) {
-            cnVar.getOrCreateStoryViewer().getClass();
-            cnVar.getOrCreateStoryViewer().J(m1Var.f16841c, t2Var.getDialogId(), i7.a((pj0) t2Var.getParent()));
-        }
-    }
-
-    @Override
-    public final void l(t2 t2Var) {
-    }
-
-    @Override
-    public final void r(t2 t2Var) {
-    }
-
-    @Override
-    public final void w(t2 t2Var) {
-    }
-
-    @Override
-    public final void q() {
+    public final View d(Context context, uj0 uj0Var, int i7, e6 e6Var) {
+        return new k1(context, e6Var);
     }
 }

@@ -17,71 +17,71 @@ import android.util.StateSet;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.HashSet;
-public class Switch extends View implements org.telegram.ui.ActionBar.c6 {
-    public int D;
+public class Switch extends View implements org.telegram.ui.ActionBar.z5 {
     public int E;
-    public Drawable F;
-    public int G;
-    public boolean H;
-    public org.telegram.ui.Cells.y I;
-    public final int[] J;
-    public int K;
-    public boolean L;
-    public Bitmap[] M;
-    public Canvas[] N;
-    public Bitmap O;
-    public Canvas P;
-    public float Q;
+    public int F;
+    public Drawable G;
+    public int H;
+    public boolean I;
+    public org.telegram.ui.Cells.y J;
+    public final int[] K;
+    public int L;
+    public boolean M;
+    public Bitmap[] N;
+    public Canvas[] O;
+    public Bitmap P;
+    public Canvas Q;
     public float R;
     public float S;
-    public Paint T;
+    public float T;
     public Paint U;
-    public final org.telegram.ui.ActionBar.h6 V;
-    public int W;
-    public final te.a f31571a;
-    public final RectF f31572b;
-    public float f31573c;
+    public Paint V;
+    public final org.telegram.ui.ActionBar.e6 W;
+    public final te.a f32735a;
+    public int f32736a0;
+    public final RectF f32737b;
+    public float f32738c;
     public ObjectAnimator d;
-    public ObjectAnimator f31574e;
-    public boolean f31575f;
+    public ObjectAnimator f32739e;
+    public boolean f32740f;
     public boolean h;
-    public final Paint f31576n;
-    public final Paint f31577r;
-    public int f31578s;
-    public float f31579w;
-    public int f31580x;
-    public int f31581y;
+    public final Paint f32741n;
+    public final Paint f32742r;
+    public int f32743s;
+    public float f32744w;
+    public int f32745x;
+    public int f32746y;
 
-    public Switch(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+    public Switch(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f31571a = new te.a(0, new org.telegram.ui.ActionBar.n3(this, 19), wq.h, 380L, true);
-        this.f31579w = 1.0f;
-        this.f31580x = org.telegram.ui.ActionBar.m6.f28150r7;
-        this.f31581y = org.telegram.ui.ActionBar.m6.V6;
-        int i7 = org.telegram.ui.ActionBar.m6.f27890d6;
-        this.D = i7;
+        this.f32735a = new te.a(0, new org.telegram.ui.ActionBar.z(this, 24), er.h, 380L, true);
+        this.f32744w = 1.0f;
+        this.f32745x = org.telegram.ui.ActionBar.j6.f29109r7;
+        this.f32746y = org.telegram.ui.ActionBar.j6.V6;
+        int i7 = org.telegram.ui.ActionBar.j6.f28849d6;
         this.E = i7;
-        this.J = new int[]{16842910, 16842919};
-        this.V = h6Var;
-        this.f31572b = new RectF();
-        this.f31576n = new Paint(1);
+        this.F = i7;
+        this.K = new int[]{16842910, 16842919};
+        this.W = e6Var;
+        this.f32737b = new RectF();
+        this.f32741n = new Paint(1);
         Paint paint = new Paint(1);
-        this.f31577r = paint;
+        this.f32742r = paint;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
         setHapticFeedbackEnabled(true);
     }
 
-    public final void b(int i7, boolean z9, boolean z10) {
-        boolean z11;
+    public final void b(int i7, boolean z10, boolean z11) {
+        boolean z12;
         float f10;
         float f11;
         float f12 = 0.0f;
-        if (z9 != this.h) {
-            this.h = z9;
-            if (this.f31575f && z10) {
-                if (z9) {
+        if (z10 != this.h) {
+            this.h = z10;
+            if (this.f32740f && z11) {
+                if (z10) {
                     f11 = 1.0f;
                 } else {
                     f11 = 0.0f;
@@ -89,7 +89,7 @@ public class Switch extends View implements org.telegram.ui.ActionBar.c6 {
                 ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", f11);
                 this.d = ofFloat;
                 ofFloat.setDuration(200L);
-                this.d.addListener(new vw0(this, 0));
+                this.d.addListener(new yw0(this, 0));
                 this.d.start();
             } else {
                 ObjectAnimator objectAnimator = this.d;
@@ -97,7 +97,7 @@ public class Switch extends View implements org.telegram.ui.ActionBar.c6 {
                     objectAnimator.cancel();
                     this.d = null;
                 }
-                if (z9) {
+                if (z10) {
                     f10 = 1.0f;
                 } else {
                     f10 = 0.0f;
@@ -105,28 +105,28 @@ public class Switch extends View implements org.telegram.ui.ActionBar.c6 {
                 setProgress(f10);
             }
         }
-        if (this.f31578s != i7) {
-            this.f31578s = i7;
-            if (this.f31575f && z10) {
+        if (this.f32743s != i7) {
+            this.f32743s = i7;
+            if (this.f32740f && z11) {
                 if (i7 == 0) {
-                    z11 = true;
+                    z12 = true;
                 } else {
-                    z11 = false;
+                    z12 = false;
                 }
-                if (z11) {
+                if (z12) {
                     f12 = 1.0f;
                 }
                 ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this, "iconProgress", f12);
-                this.f31574e = ofFloat2;
+                this.f32739e = ofFloat2;
                 ofFloat2.setDuration(200L);
-                this.f31574e.addListener(new vw0(this, 1));
-                this.f31574e.start();
+                this.f32739e.addListener(new yw0(this, 1));
+                this.f32739e.start();
                 return;
             }
-            ObjectAnimator objectAnimator2 = this.f31574e;
+            ObjectAnimator objectAnimator2 = this.f32739e;
             if (objectAnimator2 != null) {
                 objectAnimator2.cancel();
-                this.f31574e = null;
+                this.f32739e = null;
             }
             if (i7 == 0) {
                 f12 = 1.0f;
@@ -135,35 +135,35 @@ public class Switch extends View implements org.telegram.ui.ActionBar.c6 {
         }
     }
 
-    public final void c(boolean z9, boolean z10) {
-        b(this.f31578s, z9, z10);
+    public final void c(boolean z10, boolean z11) {
+        b(this.f32743s, z10, z11);
     }
 
     public final void d(int i7, int i10, int i11, int i12) {
-        this.f31580x = i7;
-        this.f31581y = i10;
-        this.D = i11;
-        this.E = i12;
+        this.f32745x = i7;
+        this.f32746y = i10;
+        this.E = i11;
+        this.F = i12;
     }
 
     public float getIconProgress() {
-        return this.f31579w;
+        return this.f32744w;
     }
 
     public float getProgress() {
-        return this.f31573c;
+        return this.f32738c;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f31575f = true;
+        this.f32740f = true;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f31575f = false;
+        this.f32740f = false;
     }
 
     @Override
@@ -180,41 +180,41 @@ public class Switch extends View implements org.telegram.ui.ActionBar.c6 {
     }
 
     public void setDrawIconType(int i7) {
-        this.f31578s = i7;
+        this.f32743s = i7;
     }
 
-    public void setDrawRipple(boolean z9) {
+    public void setDrawRipple(boolean z10) {
         int[] iArr;
         float L;
         int i7;
         int i10 = Build.VERSION.SDK_INT;
-        if (z9 == this.H) {
+        if (z10 == this.I) {
             return;
         }
-        this.H = z9;
+        this.I = z10;
         int i11 = 1;
-        if (this.I == null) {
+        if (this.J == null) {
             new Paint(1).setColor(-1);
             ?? rippleDrawable = new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{0}), null, null);
-            this.I = rippleDrawable;
+            this.J = rippleDrawable;
             rippleDrawable.setRadius(org.telegram.messenger.g0.L(18.0f));
-            this.I.setCallback(this);
+            this.J.setCallback(this);
         }
-        boolean z10 = this.h;
-        if ((z10 && this.K != 2) || (!z10 && this.K != 1)) {
-            if (z10) {
-                i7 = org.telegram.ui.ActionBar.m6.T6;
+        boolean z11 = this.h;
+        if ((z11 && this.L != 2) || (!z11 && this.L != 1)) {
+            if (z11) {
+                i7 = org.telegram.ui.ActionBar.j6.T6;
             } else {
-                i7 = org.telegram.ui.ActionBar.m6.S6;
+                i7 = org.telegram.ui.ActionBar.j6.S6;
             }
-            this.I.setColor(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{a(org.telegram.ui.ActionBar.m6.w0(i7, this.V))}));
+            this.J.setColor(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{a(org.telegram.ui.ActionBar.j6.w0(i7, this.W))}));
             if (this.h) {
                 i11 = 2;
             }
-            this.K = i11;
+            this.L = i11;
         }
-        if (i10 >= 28 && z9) {
-            org.telegram.ui.Cells.y yVar = this.I;
+        if (i10 >= 28 && z10) {
+            org.telegram.ui.Cells.y yVar = this.J;
             if (this.h) {
                 L = 0.0f;
             } else {
@@ -222,9 +222,9 @@ public class Switch extends View implements org.telegram.ui.ActionBar.c6 {
             }
             yVar.setHotspot(L, org.telegram.messenger.g0.L(18.0f));
         }
-        org.telegram.ui.Cells.y yVar2 = this.I;
-        if (z9) {
-            iArr = this.J;
+        org.telegram.ui.Cells.y yVar2 = this.J;
+        if (z10) {
+            iArr = this.K;
         } else {
             iArr = StateSet.NOTHING;
         }
@@ -236,82 +236,82 @@ public class Switch extends View implements org.telegram.ui.ActionBar.c6 {
         int i10;
         if (i7 != 0) {
             Drawable mutate = getResources().getDrawable(i7).mutate();
-            this.F = mutate;
+            this.G = mutate;
             if (mutate != null) {
                 if (this.h) {
-                    i10 = this.f31581y;
+                    i10 = this.f32746y;
                 } else {
-                    i10 = this.f31580x;
+                    i10 = this.f32745x;
                 }
-                int w02 = org.telegram.ui.ActionBar.m6.w0(i10, this.V);
-                this.G = w02;
+                int w02 = org.telegram.ui.ActionBar.j6.w0(i10, this.W);
+                this.H = w02;
                 mutate.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
             }
         } else {
-            this.F = null;
+            this.G = null;
         }
         invalidate();
     }
 
     public void setIconProgress(float f10) {
-        if (this.f31579w == f10) {
+        if (this.f32744w == f10) {
             return;
         }
-        this.f31579w = f10;
+        this.f32744w = f10;
         invalidate();
     }
 
     public void setOverrideColor(int i7) {
-        if (this.W != i7) {
-            if (this.M == null) {
+        if (this.f32736a0 != i7) {
+            if (this.N == null) {
                 try {
-                    this.M = new Bitmap[2];
-                    this.N = new Canvas[2];
+                    this.N = new Bitmap[2];
+                    this.O = new Canvas[2];
                     for (int i10 = 0; i10 < 2; i10++) {
-                        this.M[i10] = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-                        this.N[i10] = new Canvas(this.M[i10]);
+                        this.N[i10] = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                        this.O[i10] = new Canvas(this.N[i10]);
                     }
-                    this.O = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-                    this.P = new Canvas(this.O);
+                    this.P = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                    this.Q = new Canvas(this.P);
                     Paint paint = new Paint(1);
-                    this.T = paint;
+                    this.U = paint;
                     paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                     Paint paint2 = new Paint(1);
-                    this.U = paint2;
+                    this.V = paint2;
                     paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-                    this.L = true;
+                    this.M = true;
                 } catch (Throwable unused) {
                     return;
                 }
             }
-            if (!this.L) {
+            if (!this.M) {
                 return;
             }
-            this.W = i7;
-            this.Q = 0.0f;
+            this.f32736a0 = i7;
             this.R = 0.0f;
             this.S = 0.0f;
+            this.T = 0.0f;
             invalidate();
         }
     }
 
     public void setProgress(float f10) {
-        if (this.f31573c == f10) {
+        if (this.f32738c == f10) {
             return;
         }
-        this.f31573c = f10;
+        this.f32738c = f10;
         invalidate();
     }
 
     @Override
     public final void updateColors() {
-        this.K = 0;
+        this.L = 0;
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
         if (!super.verifyDrawable(drawable)) {
-            org.telegram.ui.Cells.y yVar = this.I;
+            org.telegram.ui.Cells.y yVar = this.J;
             if (yVar == null || drawable != yVar) {
                 return false;
             }
@@ -328,6 +328,6 @@ public class Switch extends View implements org.telegram.ui.ActionBar.c6 {
     public final void addColorKeys(HashSet hashSet) {
     }
 
-    public void setOnCheckedChangeListener(ww0 ww0Var) {
+    public void setOnCheckedChangeListener(zw0 zw0Var) {
     }
 }

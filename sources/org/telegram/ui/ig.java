@@ -1,26 +1,27 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class ig implements DialogInterface.OnCancelListener {
-    public final int f46628a;
-    public final boolean[] f46629b;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+public final class ig implements View.OnClickListener {
+    public final int f48046a;
+    public final org.telegram.ui.Components.m60 f48047b;
 
-    public ig(int i7, boolean[] zArr) {
-        this.f46628a = i7;
-        this.f46629b = zArr;
+    public ig(org.telegram.ui.Components.m60 m60Var, int i7) {
+        this.f48046a = i7;
+        this.f48047b = m60Var;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        int i7 = this.f46628a;
-        boolean[] zArr = this.f46629b;
+    public final void onClick(View view) {
+        int i7 = this.f48046a;
+        org.telegram.ui.Components.m60 m60Var = this.f48047b;
         switch (i7) {
             case 0:
-                zArr[0] = true;
+                m60Var.s();
                 return;
             default:
-                String str = LaunchActivity.B1;
-                zArr[0] = true;
+                Drawable[] drawableArr = PhotoViewer.Z8;
+                m60Var.s();
                 return;
         }
     }

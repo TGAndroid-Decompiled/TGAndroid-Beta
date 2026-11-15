@@ -7,14 +7,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class c2 {
-    public final long f42209a;
-    public final List f42210b;
-    public final long f42211c;
+    public final long f43558a;
+    public final List f43559b;
+    public final long f43560c;
 
     public c2(JSONObject jSONObject) {
-        boolean z9;
+        boolean z10;
         long optLong = jSONObject.optLong("valid_until", 0L);
-        this.f42209a = optLong;
+        this.f43558a = optLong;
         JSONArray jSONArray = jSONObject.getJSONArray("messages");
         if (jSONArray.length() != 0 && jSONArray.length() <= 255 && optLong >= 0) {
             ArrayList arrayList = new ArrayList();
@@ -22,14 +22,14 @@ public final class c2 {
             int i7 = 0;
             while (i7 < jSONArray.length()) {
                 b2 b2Var = new b2(jSONArray.getJSONObject(i7));
-                long j10 = b2Var.f42170e;
+                long j10 = b2Var.f43502e;
                 long j11 = j3 + j10;
                 if ((j10 ^ j3) < 0) {
-                    z9 = true;
+                    z10 = true;
                 } else {
-                    z9 = false;
+                    z10 = false;
                 }
-                if (z9 | ((j3 ^ j11) >= 0)) {
+                if (z10 | ((j3 ^ j11) >= 0)) {
                     arrayList.add(b2Var);
                     i7++;
                     j3 = j11;
@@ -37,8 +37,8 @@ public final class c2 {
                     throw new ArithmeticException();
                 }
             }
-            this.f42211c = j3;
-            this.f42210b = DesugarCollections.unmodifiableList(arrayList);
+            this.f43560c = j3;
+            this.f43559b = DesugarCollections.unmodifiableList(arrayList);
             return;
         }
         throw new JSONException("Invalid transaction");
@@ -46,17 +46,17 @@ public final class c2 {
 
     public final String[] a() {
         String str;
-        List list = this.f42210b;
+        List list = this.f43559b;
         String[] strArr = new String[list.size() * 5];
         for (int i7 = 0; i7 < list.size(); i7++) {
             b2 b2Var = (b2) list.get(i7);
             int i10 = i7 * 5;
-            strArr[i10] = b2Var.f42167a;
-            strArr[i10 + 1] = Long.toString(b2Var.f42170e);
-            strArr[i10 + 2] = b2Var.f42168b;
-            strArr[i10 + 3] = b2Var.f42169c;
+            strArr[i10] = b2Var.f43499a;
+            strArr[i10 + 1] = Long.toString(b2Var.f43502e);
+            strArr[i10 + 2] = b2Var.f43500b;
+            strArr[i10 + 3] = b2Var.f43501c;
             int i11 = i10 + 4;
-            if (b2Var.f42171f) {
+            if (b2Var.f43503f) {
                 str = "1";
             } else {
                 str = "0";

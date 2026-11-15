@@ -1,15 +1,15 @@
 package cg;
 public final class b {
-    public static final b f6165a;
-    public static final b f6166b;
-    public static final b[] f6167c;
+    public static final b f4987a;
+    public static final b f4988b;
+    public static final b[] f4989c;
 
     static {
         ?? r02 = new Enum("STARS", 0);
-        f6165a = r02;
+        f4987a = r02;
         ?? r12 = new Enum("TON", 1);
-        f6166b = r12;
-        f6167c = new b[]{r02, r12};
+        f4988b = r12;
+        f4989c = new b[]{r02, r12};
     }
 
     public static b valueOf(String str) {
@@ -17,6 +17,6 @@ public final class b {
     }
 
     public static b[] values() {
-        return (b[]) f6167c.clone();
+        return (b[]) f4989c.clone();
     }
 }

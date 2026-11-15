@@ -1,94 +1,39 @@
 package h9;
-public final class a2 extends t0 {
-    public static final Object[] f14289r;
-    public static final a2 f14290s;
-    public final transient Object[] d;
-    public final transient int f14291e;
-    public final transient Object[] f14292f;
-    public final transient int h;
-    public final transient int f14293n;
 
-    static {
-        Object[] objArr = new Object[0];
-        f14289r = objArr;
-        f14290s = new a2(0, 0, 0, objArr, objArr);
-    }
+import java.io.Serializable;
+public final class a2 extends q1 implements Serializable {
+    public final q1 f13649a;
 
-    public a2(int i7, int i10, int i11, Object[] objArr, Object[] objArr2) {
-        this.d = objArr;
-        this.f14291e = i7;
-        this.f14292f = objArr2;
-        this.h = i10;
-        this.f14293n = i11;
+    public a2(q1 q1Var) {
+        this.f13649a = q1Var;
     }
 
     @Override
-    public final boolean contains(Object obj) {
-        if (obj != null) {
-            Object[] objArr = this.f14292f;
-            if (objArr.length != 0) {
-                int v = o.v(obj);
-                while (true) {
-                    int i7 = v & this.h;
-                    Object obj2 = objArr[i7];
-                    if (obj2 == null) {
-                        return false;
-                    }
-                    if (obj2.equals(obj)) {
-                        return true;
-                    }
-                    v = i7 + 1;
-                }
-            }
+    public final q1 a() {
+        return this.f13649a;
+    }
+
+    @Override
+    public final int compare(Object obj, Object obj2) {
+        return this.f13649a.compare(obj2, obj);
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof a2) {
+            return this.f13649a.equals(((a2) obj).f13649a);
         }
         return false;
     }
 
-    @Override
     public final int hashCode() {
-        return this.f14291e;
+        return -this.f13649a.hashCode();
     }
 
-    @Override
-    public final int i(int i7, Object[] objArr) {
-        Object[] objArr2 = this.d;
-        int i10 = this.f14293n;
-        System.arraycopy(objArr2, 0, objArr, i7, i10);
-        return i7 + i10;
-    }
-
-    @Override
-    public final Object[] j() {
-        return this.d;
-    }
-
-    @Override
-    public final int k() {
-        return this.f14293n;
-    }
-
-    @Override
-    public final int l() {
-        return 0;
-    }
-
-    @Override
-    public final boolean m() {
-        return false;
-    }
-
-    @Override
-    public final h2 n() {
-        return f().listIterator(0);
-    }
-
-    @Override
-    public final i0 r() {
-        return i0.o(this.f14293n, this.d);
-    }
-
-    @Override
-    public final int size() {
-        return this.f14293n;
+    public final String toString() {
+        return this.f13649a + ".reverse()";
     }
 }

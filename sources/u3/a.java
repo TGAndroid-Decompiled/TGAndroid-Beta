@@ -1,26 +1,26 @@
 package u3;
 
-import a8.ia;
+import a8.ja;
 import a8.p0;
-import h2.m0;
+import h2.l0;
 import j$.util.Objects;
 import java.util.Locale;
 public final class a {
-    public final long f56321a;
-    public final long f56322b;
-    public final int f56323c;
+    public final long f57820a;
+    public final long f57821b;
+    public final int f57822c;
 
     public a(long j3, int i7, long j10) {
-        boolean z9;
+        boolean z10;
         if (j3 < j10) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        ia.f(z9);
-        this.f56321a = j3;
-        this.f56322b = j10;
-        this.f56323c = i7;
+        ja.f(z10);
+        this.f57820a = j3;
+        this.f57821b = j10;
+        this.f57822c = i7;
     }
 
     public final boolean equals(Object obj) {
@@ -29,7 +29,7 @@ public final class a {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f56321a == aVar.f56321a && this.f56322b == aVar.f56322b && this.f56323c == aVar.f56323c) {
+            if (this.f57820a == aVar.f57820a && this.f57821b == aVar.f57821b && this.f57822c == aVar.f57822c) {
                 return true;
             }
         }
@@ -37,16 +37,16 @@ public final class a {
     }
 
     public final int hashCode() {
-        return Objects.hash(Long.valueOf(this.f56321a), Long.valueOf(this.f56322b), Integer.valueOf(this.f56323c));
+        return Objects.hash(Long.valueOf(this.f57820a), Long.valueOf(this.f57821b), Integer.valueOf(this.f57822c));
     }
 
     public final String toString() {
-        String str = m0.f14114a;
+        String str = l0.f13471a;
         Locale locale = Locale.US;
-        StringBuilder t6 = p0.t(this.f56321a, "Segment: startTimeMs=", ", endTimeMs=");
-        t6.append(this.f56322b);
+        StringBuilder t6 = p0.t(this.f57820a, "Segment: startTimeMs=", ", endTimeMs=");
+        t6.append(this.f57821b);
         t6.append(", speedDivisor=");
-        t6.append(this.f56323c);
+        t6.append(this.f57822c);
         return t6.toString();
     }
 }

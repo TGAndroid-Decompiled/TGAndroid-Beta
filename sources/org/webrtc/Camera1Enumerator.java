@@ -60,10 +60,10 @@ public class Camera1Enumerator implements CameraEnumerator {
                     Logging.e("Camera1Enumerator", "getSupportedFormats() failed on camera index " + i7, e10);
                 }
                 long elapsedRealtime2 = SystemClock.elapsedRealtime();
-                StringBuilder n10 = jg.g.n(i7, "Get supported formats for camera index ", " done. Time spent: ");
-                n10.append(elapsedRealtime2 - elapsedRealtime);
-                n10.append(" ms.");
-                Logging.d("Camera1Enumerator", n10.toString());
+                StringBuilder m10 = i5.c.m(i7, "Get supported formats for camera index ", " done. Time spent: ");
+                m10.append(elapsedRealtime2 - elapsedRealtime);
+                m10.append(" ms.");
+                Logging.d("Camera1Enumerator", m10.toString());
                 return arrayList;
             } catch (RuntimeException e11) {
                 Logging.e("Camera1Enumerator", "Open camera failed on camera index " + i7, e11);
@@ -88,7 +88,7 @@ public class Camera1Enumerator implements CameraEnumerator {
                 return i7;
             }
         }
-        throw new IllegalArgumentException(rf.b.i("No such camera: ", str));
+        throw new IllegalArgumentException(r.b.k("No such camera: ", str));
     }
 
     private static Camera.CameraInfo getCameraInfo(int i7) {
@@ -159,8 +159,8 @@ public class Camera1Enumerator implements CameraEnumerator {
         return false;
     }
 
-    public Camera1Enumerator(boolean z9) {
-        this.captureToTexture = z9;
+    public Camera1Enumerator(boolean z10) {
+        this.captureToTexture = z10;
     }
 
     public static synchronized List<CameraEnumerationAndroid.CaptureFormat> getSupportedFormats(int i7) {

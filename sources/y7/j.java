@@ -9,27 +9,27 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 public final class j implements na.e {
-    public static final Charset f59071f = Charset.forName("UTF-8");
-    public static final na.c f59072g = new na.c("key", jg.g.q(rf.b.k(h.class, new e(1))));
-    public static final na.c h = new na.c("value", jg.g.q(rf.b.k(h.class, new e(2))));
-    public static final i f59073i = i.f59051b;
-    public OutputStream f59074a;
-    public final HashMap f59075b;
-    public final HashMap f59076c;
+    public static final Charset f60286f = Charset.forName("UTF-8");
+    public static final na.c f60287g = new na.c("key", i5.c.p(r.b.n(h.class, new e(1))));
+    public static final na.c h = new na.c("value", i5.c.p(r.b.n(h.class, new e(2))));
+    public static final i f60288i = i.f60276b;
+    public OutputStream f60289a;
+    public final HashMap f60290b;
+    public final HashMap f60291c;
     public final na.d d;
-    public final a8.r0 f59077e = new a8.r0(this, 3);
+    public final a8.r0 f60292e = new a8.r0(this, 3);
 
     public j(ByteArrayOutputStream byteArrayOutputStream, HashMap hashMap, HashMap hashMap2, na.d dVar) {
-        this.f59074a = byteArrayOutputStream;
-        this.f59075b = hashMap;
-        this.f59076c = hashMap2;
+        this.f60289a = byteArrayOutputStream;
+        this.f60290b = hashMap;
+        this.f60291c = hashMap2;
         this.d = dVar;
     }
 
     public static int i(na.c cVar) {
         h hVar = (h) cVar.b(h.class);
         if (hVar != null) {
-            return ((e) hVar).f59012a;
+            return ((e) hVar).f60234a;
         }
         throw new RuntimeException("Field has no @Protobuf config");
     }
@@ -47,8 +47,8 @@ public final class j implements na.e {
     }
 
     @Override
-    public final na.e c(na.c cVar, boolean z9) {
-        h(cVar, z9 ? 1 : 0, true);
+    public final na.e c(na.c cVar, boolean z10) {
+        h(cVar, z10 ? 1 : 0, true);
         return this;
     }
 
@@ -63,7 +63,7 @@ public final class j implements na.e {
         if (j3 != 0) {
             h hVar = (h) cVar.b(h.class);
             if (hVar != null) {
-                k(((e) hVar).f59012a << 3);
+                k(((e) hVar).f60234a << 3);
                 l(j3);
                 return this;
             }
@@ -72,23 +72,23 @@ public final class j implements na.e {
         return this;
     }
 
-    public final void f(na.c cVar, double d, boolean z9) {
-        if (z9 && d == 0.0d) {
+    public final void f(na.c cVar, double d, boolean z10) {
+        if (z10 && d == 0.0d) {
             return;
         }
         k((i(cVar) << 3) | 1);
-        this.f59074a.write(ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN).putDouble(d).array());
+        this.f60289a.write(ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN).putDouble(d).array());
     }
 
-    public final void g(na.c cVar, Object obj, boolean z9) {
+    public final void g(na.c cVar, Object obj, boolean z10) {
         if (obj != null) {
             if (obj instanceof CharSequence) {
                 CharSequence charSequence = (CharSequence) obj;
-                if (!z9 || charSequence.length() != 0) {
+                if (!z10 || charSequence.length() != 0) {
                     k((i(cVar) << 3) | 2);
-                    byte[] bytes = charSequence.toString().getBytes(f59071f);
+                    byte[] bytes = charSequence.toString().getBytes(f60286f);
                     k(bytes.length);
-                    this.f59074a.write(bytes);
+                    this.f60289a.write(bytes);
                 }
             } else if (obj instanceof Collection) {
                 for (Object obj2 : (Collection) obj) {
@@ -96,85 +96,85 @@ public final class j implements na.e {
                 }
             } else if (obj instanceof Map) {
                 for (Map.Entry entry : ((Map) obj).entrySet()) {
-                    j(f59073i, cVar, entry, false);
+                    j(f60288i, cVar, entry, false);
                 }
             } else if (obj instanceof Double) {
-                f(cVar, ((Double) obj).doubleValue(), z9);
+                f(cVar, ((Double) obj).doubleValue(), z10);
             } else if (obj instanceof Float) {
                 float floatValue = ((Float) obj).floatValue();
-                if (!z9 || floatValue != 0.0f) {
+                if (!z10 || floatValue != 0.0f) {
                     k((i(cVar) << 3) | 5);
-                    this.f59074a.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putFloat(floatValue).array());
+                    this.f60289a.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putFloat(floatValue).array());
                 }
             } else if (obj instanceof Number) {
                 long longValue = ((Number) obj).longValue();
-                if (!z9 || longValue != 0) {
+                if (!z10 || longValue != 0) {
                     h hVar = (h) cVar.b(h.class);
                     if (hVar != null) {
-                        k(((e) hVar).f59012a << 3);
+                        k(((e) hVar).f60234a << 3);
                         l(longValue);
                         return;
                     }
                     throw new RuntimeException("Field has no @Protobuf config");
                 }
             } else if (obj instanceof Boolean) {
-                h(cVar, ((Boolean) obj).booleanValue() ? 1 : 0, z9);
+                h(cVar, ((Boolean) obj).booleanValue() ? 1 : 0, z10);
             } else if (obj instanceof byte[]) {
                 byte[] bArr = (byte[]) obj;
-                if (z9 && bArr.length == 0) {
+                if (z10 && bArr.length == 0) {
                     return;
                 }
                 k((i(cVar) << 3) | 2);
                 k(bArr.length);
-                this.f59074a.write(bArr);
+                this.f60289a.write(bArr);
             } else {
-                na.d dVar = (na.d) this.f59075b.get(obj.getClass());
+                na.d dVar = (na.d) this.f60290b.get(obj.getClass());
                 if (dVar != null) {
-                    j(dVar, cVar, obj, z9);
+                    j(dVar, cVar, obj, z10);
                     return;
                 }
-                na.f fVar = (na.f) this.f59076c.get(obj.getClass());
+                na.f fVar = (na.f) this.f60291c.get(obj.getClass());
                 if (fVar != null) {
-                    a8.r0 r0Var = this.f59077e;
-                    r0Var.f601b = false;
+                    a8.r0 r0Var = this.f60292e;
+                    r0Var.f604b = false;
                     r0Var.d = cVar;
-                    r0Var.f602c = z9;
+                    r0Var.f605c = z10;
                     fVar.a(obj, r0Var);
                 } else if (obj instanceof f) {
                     h(cVar, ((f) obj).zza(), true);
                 } else if (obj instanceof Enum) {
                     h(cVar, ((Enum) obj).ordinal(), true);
                 } else {
-                    j(this.d, cVar, obj, z9);
+                    j(this.d, cVar, obj, z10);
                 }
             }
         }
     }
 
-    public final void h(na.c cVar, int i7, boolean z9) {
-        if (z9 && i7 == 0) {
+    public final void h(na.c cVar, int i7, boolean z10) {
+        if (z10 && i7 == 0) {
             return;
         }
         h hVar = (h) cVar.b(h.class);
         if (hVar != null) {
-            k(((e) hVar).f59012a << 3);
+            k(((e) hVar).f60234a << 3);
             k(i7);
             return;
         }
         throw new RuntimeException("Field has no @Protobuf config");
     }
 
-    public final void j(na.d dVar, na.c cVar, Object obj, boolean z9) {
+    public final void j(na.d dVar, na.c cVar, Object obj, boolean z10) {
         a8.k0 k0Var = new a8.k0(3);
-        k0Var.f501b = 0L;
+        k0Var.f506b = 0L;
         try {
-            OutputStream outputStream = this.f59074a;
-            this.f59074a = k0Var;
+            OutputStream outputStream = this.f60289a;
+            this.f60289a = k0Var;
             dVar.a(obj, this);
-            this.f59074a = outputStream;
-            long j3 = k0Var.f501b;
+            this.f60289a = outputStream;
+            long j3 = k0Var.f506b;
             k0Var.close();
-            if (z9 && j3 == 0) {
+            if (z10 && j3 == 0) {
                 return;
             }
             k((i(cVar) << 3) | 2);
@@ -195,17 +195,17 @@ public final class j implements na.e {
 
     public final void k(int i7) {
         while ((i7 & (-128)) != 0) {
-            this.f59074a.write((i7 & 127) | 128);
+            this.f60289a.write((i7 & 127) | 128);
             i7 >>>= 7;
         }
-        this.f59074a.write(i7 & 127);
+        this.f60289a.write(i7 & 127);
     }
 
     public final void l(long j3) {
         while (((-128) & j3) != 0) {
-            this.f59074a.write((((int) j3) & 127) | 128);
+            this.f60289a.write((((int) j3) & 127) | 128);
             j3 >>>= 7;
         }
-        this.f59074a.write(((int) j3) & 127);
+        this.f60289a.write(((int) j3) & 127);
     }
 }

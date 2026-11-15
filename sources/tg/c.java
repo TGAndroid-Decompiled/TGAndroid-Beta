@@ -1,6 +1,6 @@
 package tg;
 public interface c {
-    void g();
+    void j();
 
-    j l();
+    j z();
 }

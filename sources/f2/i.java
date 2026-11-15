@@ -1,112 +1,126 @@
 package f2;
 
-import android.app.RemoteInput;
-import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Bitmap;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Icon;
-import android.hardware.display.DisplayManager;
-import android.media.AudioFocusRequest;
-import android.media.AudioManager;
-import android.os.Build;
-import android.os.Looper;
-import android.view.Display;
-import android.view.MenuItem;
-public abstract class i {
-    public static AudioManager f10917a;
+import a8.ja;
+import h9.i0;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+public final class i {
+    public final i0 f10726a;
+    public final ArrayList f10727b = new ArrayList();
+    public ByteBuffer[] f10728c = new ByteBuffer[0];
+    public boolean d;
 
-    public static void a(AudioManager audioManager, g gVar) {
-        if (Build.VERSION.SDK_INT >= 26) {
-            Object obj = gVar.f10913f;
-            obj.getClass();
-            audioManager.abandonAudioFocusRequest((AudioFocusRequest) obj);
-            return;
-        }
-        audioManager.abandonAudioFocus(gVar.f10910b);
+    public i(i0 i0Var) {
+        this.f10726a = i0Var;
+        j jVar = j.f10729e;
+        this.d = false;
     }
 
-    public static Icon b(Bitmap bitmap) {
-        return Icon.createWithAdaptiveBitmap(bitmap);
-    }
-
-    public static boolean c(Context context) {
-        Display display;
-        Display.HdrCapabilities hdrCapabilities;
-        DisplayManager displayManager = (DisplayManager) context.getSystemService("display");
-        if (displayManager != null) {
-            display = displayManager.getDisplay(0);
-        } else {
-            display = null;
-        }
-        if (display == null || !display.isHdr() || (hdrCapabilities = display.getHdrCapabilities()) == null) {
-            return false;
-        }
-        for (int i7 : hdrCapabilities.getSupportedHdrTypes()) {
-            if (i7 == 1) {
-                return true;
+    public final void a() {
+        boolean z10;
+        k kVar = k.f10733b;
+        ArrayList arrayList = this.f10727b;
+        arrayList.clear();
+        this.d = false;
+        long j3 = kVar.f10734a;
+        int i7 = 0;
+        while (true) {
+            i0 i0Var = this.f10726a;
+            if (i7 >= i0Var.size()) {
+                break;
             }
+            m mVar = (m) i0Var.get(i7);
+            mVar.d(new k(j3));
+            if (mVar.isActive()) {
+                j3 = mVar.g(j3);
+                if (j3 >= 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                ja.p(z10);
+                arrayList.add(mVar);
+            }
+            i7++;
+        }
+        this.f10728c = new ByteBuffer[arrayList.size()];
+        for (int i10 = 0; i10 <= b(); i10++) {
+            this.f10728c[i10] = ((m) arrayList.get(i10)).b();
+        }
+    }
+
+    public final int b() {
+        return this.f10728c.length - 1;
+    }
+
+    public final boolean c() {
+        if (this.d && ((m) this.f10727b.get(b())).a() && !this.f10728c[b()].hasRemaining()) {
+            return true;
         }
         return false;
     }
 
-    public static synchronized AudioManager d(Context context) {
-        synchronized (i.class) {
-            synchronized (i.class) {
-                Context applicationContext = context.getApplicationContext();
-                if (applicationContext != null) {
-                    f10917a = null;
+    public final boolean d() {
+        return !this.f10727b.isEmpty();
+    }
+
+    public final void e(ByteBuffer byteBuffer) {
+        boolean z10;
+        ByteBuffer byteBuffer2;
+        boolean z11;
+        for (boolean z12 = true; z12; z12 = z10) {
+            z10 = false;
+            for (int i7 = 0; i7 <= b(); i7++) {
+                if (!this.f10728c[i7].hasRemaining()) {
+                    ArrayList arrayList = this.f10727b;
+                    m mVar = (m) arrayList.get(i7);
+                    if (mVar.a()) {
+                        if (!this.f10728c[i7].hasRemaining() && i7 < b()) {
+                            ((m) arrayList.get(i7 + 1)).f();
+                        }
+                    } else {
+                        if (i7 > 0) {
+                            byteBuffer2 = this.f10728c[i7 - 1];
+                        } else if (byteBuffer.hasRemaining()) {
+                            byteBuffer2 = byteBuffer;
+                        } else {
+                            byteBuffer2 = m.f10735a;
+                        }
+                        mVar.c(byteBuffer2);
+                        this.f10728c[i7] = mVar.b();
+                        if (byteBuffer2.remaining() - byteBuffer2.remaining() <= 0 && !this.f10728c[i7].hasRemaining()) {
+                            z11 = false;
+                        } else {
+                            z11 = true;
+                        }
+                        z10 |= z11;
+                    }
                 }
-                AudioManager audioManager = f10917a;
-                if (audioManager != null) {
-                    return audioManager;
-                }
-                Looper myLooper = Looper.myLooper();
-                if (myLooper != null && myLooper != Looper.getMainLooper()) {
-                    h2.i iVar = new h2.i();
-                    h2.a.e().execute(new h(0, (Object) applicationContext, (Object) iVar));
-                    iVar.b();
-                    AudioManager audioManager2 = f10917a;
-                    audioManager2.getClass();
-                    return audioManager2;
-                }
-                AudioManager audioManager3 = (AudioManager) applicationContext.getSystemService("audio");
-                f10917a = audioManager3;
-                audioManager3.getClass();
-                return audioManager3;
             }
         }
     }
 
-    public static int e(android.media.AudioManager r4, f2.g r5) {
-        throw new UnsupportedOperationException("Method not decompiled: f2.i.e(android.media.AudioManager, f2.g):int");
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof i)) {
+            return false;
+        }
+        i0 i0Var = ((i) obj).f10726a;
+        i0 i0Var2 = this.f10726a;
+        if (i0Var2.size() != i0Var.size()) {
+            return false;
+        }
+        for (int i7 = 0; i7 < i0Var2.size(); i7++) {
+            if (i0Var2.get(i7) != i0Var.get(i7)) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    public static void f(RemoteInput.Builder builder, String str) {
-        builder.setAllowDataType(str, true);
-    }
-
-    public static void g(MenuItem menuItem, char c10, int i7) {
-        menuItem.setAlphabeticShortcut(c10, i7);
-    }
-
-    public static void h(MenuItem menuItem, CharSequence charSequence) {
-        menuItem.setContentDescription(charSequence);
-    }
-
-    public static void i(MenuItem menuItem, ColorStateList colorStateList) {
-        menuItem.setIconTintList(colorStateList);
-    }
-
-    public static void j(MenuItem menuItem, PorterDuff.Mode mode) {
-        menuItem.setIconTintMode(mode);
-    }
-
-    public static void k(MenuItem menuItem, char c10, int i7) {
-        menuItem.setNumericShortcut(c10, i7);
-    }
-
-    public static void l(MenuItem menuItem, CharSequence charSequence) {
-        menuItem.setTooltipText(charSequence);
+    public final int hashCode() {
+        return this.f10726a.hashCode();
     }
 }

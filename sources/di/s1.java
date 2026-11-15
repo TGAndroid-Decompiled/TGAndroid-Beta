@@ -1,199 +1,206 @@
 package di;
 
+import android.graphics.Bitmap;
+import android.view.View;
 import java.util.ArrayList;
-import java.util.Arrays;
-import org.telegram.messenger.qp;
-import org.telegram.messenger.qs;
-import org.telegram.messenger.yr;
+import org.telegram.messenger.ff;
+import org.telegram.messenger.is;
+import org.telegram.messenger.np;
+import org.telegram.messenger.s10;
+import org.telegram.messenger.u10;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class s1 implements org.telegram.ui.ActionBar.r1, lh.a {
-    public final int f9725a;
-    public final j4 f9726b;
+import org.telegram.tgnet.tl.TL_stars;
+public final class s1 implements u10 {
+    public final int f9377a;
+    public final is f9378b;
 
-    public s1(j4 j4Var, int i7) {
-        this.f9725a = i7;
-        this.f9726b = j4Var;
+    public s1(is isVar, int i7) {
+        this.f9377a = i7;
+        this.f9378b = isVar;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        long j3;
-        TLRPC.ChatFull chatFull;
-        TL_stories.PeerStories peerStories;
-        TLRPC.UserFull userFull;
-        boolean z9;
+    public final void a(Object obj, Object obj2, Object obj3) {
         boolean z10;
-        TL_stories.StoryItem storyItem;
-        int i10 = this.f9725a;
-        j4 j4Var = this.f9726b;
-        switch (i10) {
+        int i7;
+        hi.t tVar;
+        float f10;
+        switch (this.f9377a) {
             case 0:
-                o2 o2Var = j4Var.K1;
-                if (o2Var != null) {
-                    o2Var.x();
-                    return;
+                ((c6) this.f9378b).q2((View) obj2, (CharSequence) obj, ((Boolean) obj3).booleanValue());
+                return;
+            case 1:
+                c6 c6Var = (c6) this.f9378b;
+                ArrayList arrayList = (ArrayList) obj;
+                s10 s10Var = (s10) obj2;
+                Runnable runnable = (Runnable) obj3;
+                bi.y5 y5Var = c6Var.S2;
+                if (y5Var != null) {
+                    y5Var.b();
+                    c6Var.S2 = null;
                 }
+                TL_stars.craftStarGift craftstargift = new TL_stars.craftStarGift();
+                int size = arrayList.size();
+                int i10 = 0;
+                while (i10 < size) {
+                    Object obj4 = arrayList.get(i10);
+                    i10++;
+                    TL_stars.TL_inputSavedStarGiftSlug tL_inputSavedStarGiftSlug = new TL_stars.TL_inputSavedStarGiftSlug();
+                    tL_inputSavedStarGiftSlug.slug = ((TL_stars.StarGift) obj4).slug;
+                    craftstargift.stargift.add(tL_inputSavedStarGiftSlug);
+                }
+                ConnectionsManager.getInstance(c6Var.f29679a).sendRequestTyped(craftstargift, new d3.b(1), new b2(c6Var, s10Var, arrayList, runnable, 0));
                 return;
             default:
-                h4 h4Var = j4Var.f9250x1;
-                int i11 = 0;
-                boolean z11 = true;
-                TLRPC.ChatFull chatFull2 = null;
-                if (h4Var.f9073f && (storyItem = h4Var.f9069a) != null) {
-                    TLRPC.MessageMedia messageMedia = storyItem.media;
-                    if (messageMedia instanceof TLRPC.TL_messageMediaVideoStream) {
-                        TLRPC.InputGroupCall inputGroupCall = ((TLRPC.TL_messageMediaVideoStream) messageMedia).call;
-                        g1 g1Var = g1.W;
-                        if (g1Var != null && g1Var.f(inputGroupCall)) {
-                            g1.W.e();
-                            if (g1.W != null) {
-                                g1.W = null;
-                                qs.f(j4Var.f9205l2).k(176, Long.valueOf(g1.W.g()));
+                hi.sa saVar = (hi.sa) this.f9378b;
+                Boolean bool = (Boolean) obj;
+                ArrayList arrayList2 = (ArrayList) obj2;
+                ArrayList arrayList3 = (ArrayList) obj3;
+                if (saVar.f15057g0 == 0 && arrayList2 != null && !arrayList2.isEmpty() && saVar.f15087q2 == null && !saVar.X && saVar.I()) {
+                    saVar.I1 = null;
+                    saVar.J1 = null;
+                    saVar.K1 = null;
+                    if (bool.booleanValue()) {
+                        if (arrayList2.size() + saVar.B0.getFilledCount() > saVar.B0.getTotalCount()) {
+                            int size2 = arrayList2.size() + saVar.B0.getFilledCount();
+                            ArrayList a10 = hi.t.a();
+                            int size3 = a10.size();
+                            int i11 = 0;
+                            while (true) {
+                                if (i11 < size3) {
+                                    Object obj5 = a10.get(i11);
+                                    i11++;
+                                    tVar = (hi.t) obj5;
+                                    if (tVar.f15124e.size() >= size2) {
+                                    }
+                                } else {
+                                    tVar = null;
+                                }
                             }
+                            if (tVar == null) {
+                                saVar.B0.o(null);
+                                saVar.B0.c();
+                                saVar.J0.setSelected((hi.t) null);
+                                hi.v9 v9Var = saVar.C0;
+                                if (v9Var != null) {
+                                    v9Var.recordHevc = !saVar.B0.j();
+                                }
+                                saVar.J0.a(false, true);
+                                saVar.l0(true);
+                                return;
+                            }
+                            hi.fa faVar = saVar.B0;
+                            saVar.A0 = tVar;
+                            faVar.o(tVar);
+                            saVar.J0.setSelected(tVar);
+                            int indexOf = hi.t.a().indexOf(tVar);
+                            if (indexOf >= 0) {
+                                saVar.J0.f15400a.v0(indexOf);
+                            }
+                            hi.v9 v9Var2 = saVar.C0;
+                            if (v9Var2 != null) {
+                                v9Var2.recordHevc = !saVar.B0.j();
+                            }
+                            saVar.H0.setDrawable(new hi.u(tVar, false));
+                            saVar.b0(saVar.I0, saVar.J0.f15403e, true);
+                            hi.f6 f6Var = saVar.P0;
+                            if (saVar.B0.j()) {
+                                f10 = saVar.B0.getFilledProgress();
+                            } else {
+                                f10 = 0.0f;
+                            }
+                            f6Var.e(true, f10);
                         }
                     }
-                }
-                TL_stories.StoryItem storyItem2 = h4Var.f9069a;
-                if (storyItem2 instanceof j6) {
-                    k6 k6Var = ((j6) storyItem2).f9265a;
-                    TLRPC.MessageMedia messageMedia2 = storyItem2.media;
-                    k6Var.getClass();
-                    k6Var.F(new ArrayList(Arrays.asList(messageMedia2)));
-                } else if (storyItem2 != null) {
-                    j4 j4Var2 = h4Var.f9077k;
-                    z6 z6Var = j4Var2.B1;
-                    long j10 = j4Var2.f9201k1;
-                    a0.h hVar = z6Var.f10003i;
-                    int i12 = z6Var.f9997a;
-                    if (!(storyItem2 instanceof TL_stories.TL_storyItemDeleted)) {
-                        int i13 = 0;
-                        while (i13 < 2) {
-                            if (i13 == 0) {
-                                j3 = 0;
-                                TLRPC.ChatFull chatFull3 = chatFull2;
-                                chatFull = chatFull3;
-                                peerStories = (TL_stories.PeerStories) hVar.f(j10);
-                                userFull = chatFull3;
-                            } else if (j10 >= 0) {
-                                TLRPC.UserFull b22 = qp.s1(i12).b2(j10);
-                                if (b22 != null) {
-                                    j3 = 0;
-                                    chatFull = chatFull2;
-                                    userFull = b22;
-                                    peerStories = b22.stories;
+                    saVar.M1 = true;
+                    int i12 = 0;
+                    while (true) {
+                        if (i12 < arrayList2.size()) {
+                            hi.d7 l10 = hi.d7.l((ff) arrayList2.get(i12));
+                            l10.M0 = (Bitmap) arrayList3.get(i12);
+                            l10.J0 = saVar.f15106w0;
+                            l10.K0 = saVar.f15110x0;
+                            l10.A();
+                            if (bool.booleanValue()) {
+                                if (saVar.B0.l(l10)) {
+                                    saVar.L1 = hi.d7.a(saVar.B0.getLayout(), saVar.B0.getContent());
                                 } else {
-                                    j3 = 0;
-                                    chatFull = chatFull2;
-                                    userFull = b22;
-                                    peerStories = chatFull;
+                                    i12++;
                                 }
                             } else {
-                                j3 = 0;
-                                TLRPC.ChatFull N0 = qp.s1(i12).N0(-j10);
-                                if (N0 != null) {
-                                    chatFull = N0;
-                                    peerStories = N0.stories;
-                                    userFull = chatFull2;
+                                if (saVar.L1 == null) {
+                                    saVar.L1 = l10;
                                 } else {
-                                    TLRPC.ChatFull chatFull4 = chatFull2;
-                                    chatFull = N0;
-                                    peerStories = chatFull4;
-                                    userFull = chatFull4;
-                                }
-                            }
-                            if (peerStories != null) {
-                                int i14 = i11;
-                                while (true) {
-                                    if (i14 < peerStories.stories.size()) {
-                                        if (peerStories.stories.get(i14).f27199id == storyItem2.f27199id) {
-                                            peerStories.stories.remove(i14);
-                                            if (peerStories.stories.size() == 0) {
-                                                if (!z6Var.M(j10)) {
-                                                    hVar.l(j10);
-                                                    z6Var.f10002g.remove(peerStories);
-                                                    z6Var.h.remove(peerStories);
-                                                }
-                                                if (j10 > j3) {
-                                                    TLRPC.User a22 = qp.s1(i12).a2(Long.valueOf(j10));
-                                                    if (a22 != null) {
-                                                        a22.stories_unavailable = z11;
-                                                    }
-                                                } else {
-                                                    TLRPC.Chat M0 = qp.s1(i12).M0(Long.valueOf(-j10));
-                                                    if (M0 != null) {
-                                                        M0.stories_unavailable = true;
-                                                    }
-                                                }
-                                            }
-                                        } else {
-                                            i14++;
-                                            z11 = true;
-                                        }
+                                    if (saVar.I1 == null) {
+                                        ArrayList arrayList4 = new ArrayList();
+                                        saVar.I1 = arrayList4;
+                                        arrayList4.add(saVar.L1);
+                                    }
+                                    if (saVar.I1.size() < 10) {
+                                        saVar.I1.add(l10);
                                     }
                                 }
+                                i12++;
                             }
-                            if (chatFull != null) {
-                                z9 = false;
-                                yr.a0(i12).N1(chatFull, false);
-                            } else {
-                                z9 = false;
-                            }
-                            if (userFull != 0) {
-                                yr.a0(i12).j2(userFull, z9);
-                            }
-                            i13++;
-                            i11 = 0;
-                            z11 = true;
-                            chatFull2 = null;
                         }
-                        TL_stories.TL_stories_deleteStories tL_stories_deleteStories = new TL_stories.TL_stories_deleteStories();
-                        tL_stories_deleteStories.peer = qp.s1(i12).j1(j10);
-                        tL_stories_deleteStories.f27202id.add(Integer.valueOf(storyItem2.f27199id));
-                        ConnectionsManager.getInstance(i12).sendRequest(tL_stories_deleteStories, new y5(z6Var, 4));
-                        m7 m7Var = z6Var.f10005k;
-                        m7Var.f9368b.f26723a.c(new j7(m7Var, j10, storyItem2.f27199id, 1));
-                        qs.f(i12).k(324, new Object[0]);
-                        qp.s1(i12).D();
-                        z6Var.n0(j10, Arrays.asList(storyItem2));
                     }
-                } else {
-                    y6 y6Var = h4Var.f9070b;
-                    if (y6Var != null) {
-                        y6Var.a();
+                    if (saVar.I1 != null) {
+                        saVar.h0(false, true);
+                        saVar.R0.a(saVar.P1);
+                        hi.f6 f6Var2 = saVar.P0;
+                        if (saVar.P1 == 1) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        f6Var2.f14294o0 = -1.0f;
+                        f6Var2.f14295p0 = z10;
+                        f6Var2.invalidate();
+                        saVar.J1 = new ArrayList();
+                        saVar.K1 = new ArrayList();
+                        for (int i13 = 0; i13 < saVar.I1.size(); i13 = com.google.android.gms.internal.vision.e2.f(i13, i13, 1, saVar.K1)) {
+                            saVar.J1.add(Integer.valueOf(i13));
+                        }
+                        saVar.B0.n(null);
+                        saVar.J0.a(false, true);
+                        saVar.l0(true);
+                        saVar.e(false);
+                        saVar.J(1, true);
+                        hi.l9 l9Var = saVar.f15051e1;
+                        if (l9Var != null) {
+                            hi.e1 e1Var = l9Var.h;
+                            if (!l9Var.J && !l9Var.N && (i7 = np.e1().getInt("multistorieshint", 0)) < 3) {
+                                np.e1().edit().putInt("multistorieshint", i7 + 1).apply();
+                                org.telegram.messenger.g0.r(e1Var);
+                                l9Var.J = true;
+                                l9Var.invalidate();
+                                org.telegram.messenger.g0.i3(e1Var, 5500L);
+                            }
+                        }
+                        hi.g3 g3Var = saVar.N0;
+                        if (g3Var != null) {
+                            saVar.f15075m2 = g3Var.f14106e.e0();
+                            saVar.f15078n2 = saVar.N0.getSelectedAlbum();
+                            return;
+                        }
+                        return;
                     }
-                }
-                j4Var.h1();
-                if (j4Var.f9234t1 && j4Var.f9198j1 == 0) {
-                    ((h9) j4Var.f9258z1).j();
-                    return;
-                }
-                int i15 = j4Var.f9230s1;
-                int i16 = j4Var.f9198j1;
-                if (i15 >= i16) {
-                    j4Var.f9230s1 = i16 - 1;
-                    z10 = false;
-                } else {
-                    z10 = false;
-                    if (i15 < 0) {
-                        j4Var.f9230s1 = 0;
+                    hi.d7 d7Var = saVar.L1;
+                    if (d7Var != null) {
+                        d7Var.B();
                     }
-                }
-                j4Var.d1(z10);
-                q9 q9Var = j4Var.f9229s0;
-                if (q9Var != null) {
-                    q9Var.r();
+                    saVar.J0.a(false, true);
+                    saVar.l0(true);
+                    saVar.e(false);
+                    hi.g3 g3Var2 = saVar.N0;
+                    if (g3Var2 != null) {
+                        saVar.f15075m2 = g3Var2.f14106e.e0();
+                        saVar.f15078n2 = saVar.N0.getSelectedAlbum();
+                        return;
+                    }
                     return;
                 }
                 return;
-        }
-    }
-
-    @Override
-    public void h(int i7) {
-        if (i7 == 0) {
-            this.f9726b.N0();
         }
     }
 }

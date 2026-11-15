@@ -4,16 +4,16 @@ import android.support.v4.media.session.a0;
 import java.util.Arrays;
 import q6.m;
 public final class a {
-    public final String f57649a;
-    public final float f57650b;
-    public final int f57651c;
+    public final String f59090a;
+    public final float f59091b;
+    public final int f59092c;
     public final String d;
 
     public a(float f10, int i7, String str, String str2) {
-        int i10 = b8.b.f3010a;
-        this.f57649a = str == null ? "" : str;
-        this.f57650b = f10;
-        this.f57651c = i7;
+        int i10 = b8.b.f2964a;
+        this.f59090a = str == null ? "" : str;
+        this.f59091b = f10;
+        this.f59092c = i7;
         this.d = str2;
     }
 
@@ -25,14 +25,14 @@ public final class a {
             return false;
         }
         a aVar = (a) obj;
-        if (m.k(this.f57649a, aVar.f57649a) && Float.compare(this.f57650b, aVar.f57650b) == 0 && this.f57651c == aVar.f57651c && m.k(this.d, aVar.d)) {
+        if (m.k(this.f59090a, aVar.f59090a) && Float.compare(this.f59091b, aVar.f59091b) == 0 && this.f59092c == aVar.f59092c && m.k(this.d, aVar.d)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f57649a, Float.valueOf(this.f57650b), Integer.valueOf(this.f57651c), this.d});
+        return Arrays.hashCode(new Object[]{this.f59090a, Float.valueOf(this.f59091b), Integer.valueOf(this.f59092c), this.d});
     }
 
     public final String toString() {
@@ -40,24 +40,24 @@ public final class a {
         a0 a0Var2 = new a0(11, false);
         ((a0) a0Var.d).d = a0Var2;
         a0Var.d = a0Var2;
-        a0Var2.f1764c = this.f57649a;
-        a0Var2.f1763b = "text";
-        String valueOf = String.valueOf(this.f57650b);
+        a0Var2.f1707c = this.f59090a;
+        a0Var2.f1706b = "text";
+        String valueOf = String.valueOf(this.f59091b);
         a0 a0Var3 = new a0(11, false);
         ((a0) a0Var.d).d = a0Var3;
         a0Var.d = a0Var3;
-        a0Var3.f1764c = valueOf;
-        a0Var3.f1763b = "confidence";
-        String valueOf2 = String.valueOf(this.f57651c);
+        a0Var3.f1707c = valueOf;
+        a0Var3.f1706b = "confidence";
+        String valueOf2 = String.valueOf(this.f59092c);
         a0 a0Var4 = new a0(11, false);
         ((a0) a0Var.d).d = a0Var4;
-        a0Var4.f1764c = valueOf2;
-        a0Var4.f1763b = "index";
+        a0Var4.f1707c = valueOf2;
+        a0Var4.f1706b = "index";
         a0 a0Var5 = new a0(11, false);
         a0Var4.d = a0Var5;
         a0Var.d = a0Var5;
-        a0Var5.f1764c = this.d;
-        a0Var5.f1763b = "mid";
+        a0Var5.f1707c = this.d;
+        a0Var5.f1706b = "mid";
         return a0Var.toString();
     }
 }

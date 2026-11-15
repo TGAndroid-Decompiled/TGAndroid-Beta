@@ -1,6 +1,6 @@
 package a5;
 
-import a8.wa;
+import a8.xa;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
@@ -73,9 +73,9 @@ public final class n {
                 matrix4.postScale(f13, f14);
                 float[] fArr = {0.0f, 1.0f, 1.0f, 0.0f};
                 matrix3.mapVectors(fArr);
-                boolean z9 = c10;
+                boolean z10 = c10;
                 i11 = i13;
-                float f15 = (fArr[z9 ? 1 : 0] * fArr[3]) - (fArr[1] * fArr[2]);
+                float f15 = (fArr[z10 ? 1 : 0] * fArr[3]) - (fArr[1] * fArr[2]);
                 float max = Math.max((float) Math.hypot(fArr[c10], fArr[1]), (float) Math.hypot(fArr[2], fArr[3]));
                 if (max > 0.0f) {
                     f10 = Math.abs(f15) / max;
@@ -85,9 +85,9 @@ public final class n {
                 if (f10 != 0.0f) {
                     Path path = this.f243a;
                     path.reset();
-                    i0.d[] dVarArr = mVar.f239a;
-                    if (dVarArr != null) {
-                        i0.d.b(dVarArr, path);
+                    i0.e[] eVarArr = mVar.f239a;
+                    if (eVarArr != null) {
+                        i0.e.b(eVarArr, path);
                     }
                     Path path2 = this.f244b;
                     path2.reset();
@@ -110,7 +110,7 @@ public final class n {
                             if (this.f247f == null) {
                                 this.f247f = new PathMeasure();
                             }
-                            this.f247f.setPath(path, z9);
+                            this.f247f.setPath(path, z10);
                             float length = this.f247f.getLength();
                             float f20 = f18 * length;
                             float f21 = f19 * length;
@@ -126,8 +126,8 @@ public final class n {
                             path.rLineTo(f11, f11);
                         }
                         path2.addPath(path, matrix4);
-                        wa waVar = jVar.f222f;
-                        if (((Shader) waVar.f701c) != null || waVar.f700b != 0) {
+                        xa xaVar = jVar.f222f;
+                        if (((Shader) xaVar.f714c) != null || xaVar.f713b != 0) {
                             if (this.f246e == null) {
                                 i12 = 16777215;
                                 Paint paint = new Paint(1);
@@ -137,7 +137,7 @@ public final class n {
                                 i12 = 16777215;
                             }
                             Paint paint2 = this.f246e;
-                            Shader shader = (Shader) waVar.f701c;
+                            Shader shader = (Shader) xaVar.f714c;
                             if (shader != null) {
                                 shader.setLocalMatrix(matrix4);
                                 paint2.setShader(shader);
@@ -146,7 +146,7 @@ public final class n {
                             } else {
                                 paint2.setShader(null);
                                 paint2.setAlpha(255);
-                                int i14 = waVar.f700b;
+                                int i14 = xaVar.f713b;
                                 float f22 = jVar.h;
                                 PorterDuff.Mode mode = q.f267w;
                                 f12 = 255.0f;
@@ -164,8 +164,8 @@ public final class n {
                             f12 = 255.0f;
                             i12 = 16777215;
                         }
-                        wa waVar2 = jVar.d;
-                        if (((Shader) waVar2.f701c) != null || waVar2.f700b != 0) {
+                        xa xaVar2 = jVar.d;
+                        if (((Shader) xaVar2.f714c) != null || xaVar2.f713b != 0) {
                             if (this.d == null) {
                                 Paint paint3 = new Paint(1);
                                 this.d = paint3;
@@ -181,7 +181,7 @@ public final class n {
                                 paint4.setStrokeCap(cap);
                             }
                             paint4.setStrokeMiter(jVar.f229n);
-                            Shader shader2 = (Shader) waVar2.f701c;
+                            Shader shader2 = (Shader) xaVar2.f714c;
                             if (shader2 != null) {
                                 shader2.setLocalMatrix(matrix4);
                                 paint4.setShader(shader2);
@@ -189,7 +189,7 @@ public final class n {
                             } else {
                                 paint4.setShader(null);
                                 paint4.setAlpha(255);
-                                int i15 = waVar2.f700b;
+                                int i15 = xaVar2.f713b;
                                 float f23 = jVar.f223g;
                                 PorterDuff.Mode mode2 = q.f267w;
                                 paint4.setColor((i15 & i12) | (((int) (Color.alpha(i15) * f23)) << 24));

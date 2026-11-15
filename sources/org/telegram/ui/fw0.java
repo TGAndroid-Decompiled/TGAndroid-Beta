@@ -1,50 +1,59 @@
 package org.telegram.ui;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
+import android.content.Context;
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_fragment;
-public final class fw0 extends ClickableSpan {
-    public final TLRPC.TL_username f45858a;
-    public final String f45859b;
-    public final mw0 f45860c;
+import androidx.recyclerview.widget.RecyclerView;
+public final class fw0 extends View {
+    public int f47208a;
+    public int f47209b;
+    public final iw0 f47210c;
 
-    public fw0(mw0 mw0Var, TLRPC.TL_username tL_username, String str) {
-        this.f45860c = mw0Var;
-        this.f45858a = tL_username;
-        this.f45859b = str;
+    public fw0(iw0 iw0Var, Context context) {
+        super(context);
+        this.f47210c = iw0Var;
+        this.f47208a = 0;
+        this.f47209b = 0;
     }
 
     @Override
-    public final void onClick(View view) {
-        ProfileActivity profileActivity = this.f45860c.f48065e;
-        TLRPC.TL_username tL_username = this.f45858a;
-        if (!tL_username.editable) {
-            if (profileActivity.f41767k5 != this) {
-                profileActivity.h5(this);
-                TL_fragment.TL_getCollectibleInfo tL_getCollectibleInfo = new TL_fragment.TL_getCollectibleInfo();
-                TL_fragment.TL_inputCollectibleUsername tL_inputCollectibleUsername = new TL_fragment.TL_inputCollectibleUsername();
-                tL_inputCollectibleUsername.username = tL_username.username;
-                tL_getCollectibleInfo.collectible = tL_inputCollectibleUsername;
-                profileActivity.getConnectionsManager().bindRequestToGuid(profileActivity.getConnectionsManager().sendRequest(tL_getCollectibleInfo, new k50(24, this, tL_username)), profileActivity.getClassGuid());
-                return;
+    public final void onMeasure(int i7, int i10) {
+        int measuredHeight;
+        int i11 = this.f47209b;
+        ProfileActivity profileActivity = this.f47210c.f48138e;
+        int i12 = 0;
+        if (i11 != profileActivity.f43062a.getMeasuredHeight()) {
+            this.f47208a = 0;
+        }
+        this.f47209b = profileActivity.f43062a.getMeasuredHeight();
+        int childCount = profileActivity.f43062a.getChildCount();
+        if (childCount == profileActivity.d.f48138e.O2) {
+            int i13 = 0;
+            for (int i14 = 0; i14 < childCount; i14++) {
+                View childAt = profileActivity.f43062a.getChildAt(i14);
+                profileActivity.f43062a.getClass();
+                int R = RecyclerView.R(childAt);
+                if (R >= 0 && R != profileActivity.D3) {
+                    i13 += profileActivity.f43062a.getChildAt(i14).getMeasuredHeight();
+                }
             }
+            View view = profileActivity.fragmentView;
+            if (view == null) {
+                measuredHeight = 0;
+            } else {
+                measuredHeight = view.getMeasuredHeight();
+            }
+            int currentActionBarHeight = ((measuredHeight - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - org.telegram.messenger.g0.f23603m) - i13;
+            if (currentActionBarHeight > profileActivity.i4()) {
+                currentActionBarHeight = 0;
+            }
+            if (currentActionBarHeight > 0) {
+                i12 = currentActionBarHeight;
+            }
+            int measuredWidth = profileActivity.f43062a.getMeasuredWidth();
+            this.f47208a = i12;
+            setMeasuredDimension(measuredWidth, i12);
             return;
         }
-        profileActivity.h5(null);
-        String str = profileActivity.getMessagesController().U2 + "/" + this.f45859b;
-        TLRPC.Chat chat = profileActivity.D2;
-        if (chat != null && chat.noforwards) {
-            return;
-        }
-        org.telegram.messenger.g0.g(str);
-        profileActivity.L.j(56, 0L, null);
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(false);
-        textPaint.setColor(textPaint.linkColor);
+        setMeasuredDimension(profileActivity.f43062a.getMeasuredWidth(), this.f47208a);
     }
 }

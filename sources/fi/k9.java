@@ -1,106 +1,103 @@
 package fi;
 
-import android.animation.ValueAnimator;
-import android.view.animation.DecelerateInterpolator;
-import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.Components.av;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.dc1;
-public final class k9 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f12279a;
-    public final float f12280b;
-    public final float f12281c;
-    public final Object d;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.ch0;
+public final class k9 extends j9 {
+    public final o8 f11974a;
+    public final TL_stories.TL_mediaAreaSuggestedReaction f11975b;
+    public final ch.g0 f11976c;
+    public final n9 d;
 
-    public k9(Object obj, float f10, float f11, int i7) {
-        this.f12279a = i7;
-        this.d = obj;
-        this.f12280b = f10;
-        this.f12281c = f11;
+    public k9(n9 n9Var, TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction) {
+        this.d = n9Var;
+        o8 o8Var = new o8(null);
+        this.f11974a = o8Var;
+        ch.g0 g0Var = new ch.g0(null);
+        this.f11976c = g0Var;
+        this.f11975b = tL_mediaAreaSuggestedReaction;
+        if (tL_mediaAreaSuggestedReaction.flipped) {
+            o8Var.b(true, false);
+        }
+        if (tL_mediaAreaSuggestedReaction.dark) {
+            o8Var.a();
+        }
+        g0Var.f5078i = true;
+        g0Var.e(ch.p0.d(tL_mediaAreaSuggestedReaction.reaction));
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        boolean z9;
-        int i7 = this.f12279a;
-        float f10 = this.f12281c;
-        float f11 = this.f12280b;
-        Object obj = this.d;
-        switch (i7) {
-            case 0:
-                va vaVar = (va) obj;
-                vaVar.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vaVar.f12989r.setTranslationY(f11 * floatValue);
-                vaVar.f12989r.b(f10 * floatValue);
-                return;
-            case 1:
-                av avVar = (av) obj;
-                avVar.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                avVar.L = floatValue2;
-                avVar.K = org.telegram.messenger.g0.T1(f11, f10, floatValue2);
-                avVar.f39048b.invalidate();
-                return;
-            case 2:
-                dc1 dc1Var = (dc1) obj;
-                dc1Var.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float L = f11 + org.telegram.messenger.g0.L(28.0f);
-                float L2 = f10 + org.telegram.messenger.g0.L(52.0f);
-                float f12 = dc1Var.D;
-                dc1Var.G = L - (L * f12);
-                dc1Var.H = L2 - (f12 * L2);
-                dc1Var.invalidate();
-                return;
-            case 3:
-                PhotoViewer photoViewer = (PhotoViewer) obj;
-                CropAreaView cropAreaView = photoViewer.C1.f33527b.f21012a;
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue() * f11;
-                float f13 = photoViewer.Z5;
-                cropAreaView.f31332n0 = floatValue3;
-                cropAreaView.f31333o0 = ((photoViewer.f41378d6 - f13) * photoViewer.f41440k6) + f13;
-                cropAreaView.f31334p0 = 0.0f;
-                cropAreaView.f31335q0 = 0.0f;
-                cropAreaView.invalidate();
-                photoViewer.C1.f33528c.b(org.telegram.messenger.g0.T1(f10, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                return;
-            case 4:
-                org.telegram.ui.Wallet.d4 d4Var = (org.telegram.ui.Wallet.d4) obj;
-                float floatValue4 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                d4Var.A = (f11 * floatValue4) + d4Var.g();
-                d4Var.B = (f10 * floatValue4) + (d4Var.f42320k.E * 0.14f);
-                if (floatValue4 > 0.0f) {
-                    z9 = true;
-                } else {
-                    z9 = false;
-                }
-                d4Var.D = z9;
-                d4Var.f42302a.invalidate();
-                return;
-            case 5:
-                org.telegram.ui.Wallet.d6 d6Var = (org.telegram.ui.Wallet.d6) obj;
-                d6Var.getClass();
-                float floatValue5 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                d6Var.N = f11 * floatValue5;
-                d6Var.O = f10 * floatValue5;
-                return;
-            case 6:
-                te.c cVar = (te.c) obj;
-                if (cVar.h) {
-                    DecelerateInterpolator decelerateInterpolator = se.a.f55016a;
-                    float animatedFraction = valueAnimator.getAnimatedFraction();
-                    cVar.d((f10 * animatedFraction) + f11, animatedFraction);
-                    return;
-                }
-                return;
-            default:
-                vg.e eVar = (vg.e) obj;
-                eVar.getClass();
-                float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vg.f fVar = eVar.f57371a;
-                fVar.d = f11 * floatValue6;
-                fVar.f57388i = f10 * floatValue6;
-                return;
+    public final void a(Canvas canvas, float f10) {
+        ImageReceiver imageReceiver;
+        int i7;
+        ch.g0 g0Var = this.f11976c;
+        org.telegram.ui.Components.g5 g5Var = g0Var.f5073b;
+        if (g5Var != null) {
+            imageReceiver = g5Var.f34809k;
+        } else {
+            imageReceiver = g0Var.f5072a;
         }
+        if (imageReceiver != null && imageReceiver.K() && imageReceiver.J()) {
+            ch0 B = imageReceiver.B();
+            if (B != null && B.y()) {
+                return;
+            }
+            n9 n9Var = this.d;
+            double d = n9Var.d;
+            TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction = this.f11975b;
+            TL_stories.MediaAreaCoordinates mediaAreaCoordinates = tL_mediaAreaSuggestedReaction.coordinates;
+            float f11 = (float) (((mediaAreaCoordinates.f28287x * d) / 100.0d) + n9Var.f12093b);
+            double d2 = n9Var.f12094c;
+            double d10 = n9Var.f12095e;
+            float f12 = (float) (((mediaAreaCoordinates.f28288y * d10) / 100.0d) + d2);
+            float f13 = ((float) ((d * mediaAreaCoordinates.f28286w) / 100.0d)) / 2.0f;
+            float f14 = ((float) ((d10 * mediaAreaCoordinates.h) / 100.0d)) / 2.0f;
+            o8 o8Var = this.f11974a;
+            o8Var.setBounds((int) (f11 - f13), (int) (f12 - f14), (int) (f13 + f11), (int) (f14 + f12));
+            o8Var.f12131e = (int) (255.0f * f10);
+            canvas.save();
+            double d11 = tL_mediaAreaSuggestedReaction.coordinates.rotation;
+            if (d11 != 0.0d) {
+                canvas.rotate((float) d11, f11, f12);
+            }
+            Rect rect = org.telegram.messenger.g0.Q;
+            float height = (o8Var.getBounds().height() * 0.61f) / 2.0f;
+            rect.set((int) (o8Var.getBounds().centerX() - height), (int) (o8Var.getBounds().centerY() - height), (int) (o8Var.getBounds().centerX() + height), (int) (o8Var.getBounds().centerY() + height));
+            o8Var.c(1.0f);
+            o8Var.draw(canvas);
+            g0Var.c(rect);
+            g0Var.h = f10;
+            if (o8Var.f12128a == 1) {
+                i7 = -1;
+            } else {
+                i7 = -16777216;
+            }
+            g0Var.d(i7);
+            g0Var.a(canvas);
+            canvas.restore();
+        }
+    }
+
+    @Override
+    public final void b(boolean z10) {
+        this.f11976c.b(z10);
+    }
+
+    @Override
+    public final void c(View view) {
+        ch.g0 g0Var = this.f11976c;
+        if (g0Var.f5076f == view) {
+            return;
+        }
+        if (g0Var.f5077g) {
+            g0Var.b(false);
+            g0Var.f5076f = view;
+            g0Var.b(true);
+            return;
+        }
+        g0Var.f5076f = view;
     }
 }

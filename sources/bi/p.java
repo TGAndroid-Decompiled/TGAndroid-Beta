@@ -1,76 +1,31 @@
 package bi;
 
-import android.text.TextUtils;
-import android.view.KeyEvent;
-import android.widget.TextView;
-public final class p implements TextView.OnEditorActionListener {
-    public final int f4497a;
-    public final Object f4498b;
+import android.content.Context;
+import android.view.View;
+import di.db;
+public final class p implements View.OnClickListener {
+    public final int f3773a;
+    public final Context f3774b;
+    public final org.telegram.ui.ActionBar.e6 f3775c;
 
-    public p(Object obj, int i7) {
-        this.f4497a = i7;
-        this.f4498b = obj;
+    public p(int i7, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        this.f3773a = i7;
+        this.f3774b = context;
+        this.f3775c = e6Var;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
-        li.f1 f1Var;
-        switch (this.f4497a) {
+    public final void onClick(View view) {
+        switch (this.f3773a) {
             case 0:
-                z zVar = (z) this.f4498b;
-                if (i7 == 5) {
-                    zVar.y0();
-                    return true;
-                }
-                zVar.getClass();
-                return false;
+                new db(this.f3774b, this.f3775c).show();
+                return;
             case 1:
-                kg.q0 q0Var = (kg.q0) this.f4498b;
-                kg.k0 k0Var = q0Var.F;
-                boolean z9 = false;
-                if (i7 == 6) {
-                    q0Var.f17513y = false;
-                    org.telegram.messenger.g0.r(k0Var);
-                    z9 = true;
-                    if (TextUtils.isEmpty(q0Var.f17507f.getText())) {
-                        q0Var.D = null;
-                        q0Var.d.b();
-                        q0Var.f17505c.f37496f3.O(true);
-                    } else {
-                        org.telegram.messenger.g0.h3(k0Var);
-                    }
-                    q0Var.g0();
-                }
-                return z9;
-            case 2:
-                li.g1 g1Var = (li.g1) this.f4498b;
-                if (i7 == 5 && (f1Var = g1Var.Y1) != null && !g1Var.f18593h2) {
-                    if (g1Var.f18590e2) {
-                        g1Var.L();
-                    } else {
-                        f1Var.F(g1Var);
-                    }
-                    return true;
-                }
-                return false;
-            case 3:
-                org.telegram.ui.ActionBar.r0 r0Var = (org.telegram.ui.ActionBar.r0) this.f4498b;
-                if (keyEvent != null) {
-                    if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        org.telegram.messenger.g0.v1(r0Var.f28435e);
-                        org.telegram.ui.ActionBar.n0 n0Var = r0Var.H;
-                        if (n0Var != null) {
-                            n0Var.k(r0Var.f28435e);
-                            return false;
-                        }
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
+                new db(this.f3774b, this.f3775c).show();
+                return;
             default:
-                org.telegram.ui.ActionBar.z4.c((org.telegram.ui.ActionBar.z4) this.f4498b, i7, keyEvent);
-                return false;
+                new db(this.f3774b, this.f3775c).show();
+                return;
         }
     }
 }

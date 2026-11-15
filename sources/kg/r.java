@@ -1,40 +1,34 @@
 package kg;
 
 import android.content.DialogInterface;
-import org.telegram.ui.Cells.z5;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class r implements DialogInterface.OnShowListener {
-    public final int f17519a;
-    public final EditTextBoldCursor f17520b;
+import android.view.View;
+public final class r implements DialogInterface.OnDismissListener {
+    public final int f18077a;
+    public final View f18078b;
 
-    public r(EditTextBoldCursor editTextBoldCursor, int i7) {
-        this.f17519a = i7;
-        this.f17520b = editTextBoldCursor;
+    public r(int i7, View view) {
+        this.f18077a = i7;
+        this.f18078b = view;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f17519a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f18077a) {
             case 0:
-                s sVar = (s) this.f17520b;
-                sVar.requestFocus();
-                org.telegram.messenger.g0.K3(sVar);
-                return;
-            case 1:
-                EditTextBoldCursor editTextBoldCursor = this.f17520b;
-                editTextBoldCursor.requestFocus();
-                org.telegram.messenger.g0.K3(editTextBoldCursor);
-                editTextBoldCursor.setSelection(0, editTextBoldCursor.length());
-                return;
-            case 2:
-                z5 z5Var = (z5) this.f17520b;
-                z5Var.requestFocus();
-                org.telegram.messenger.g0.K3(z5Var);
+                v.f18119e = null;
+                View view = this.f18078b;
+                if (view != null) {
+                    view.requestFocus();
+                    return;
+                }
                 return;
             default:
-                zh.n1 n1Var = (zh.n1) this.f17520b;
-                n1Var.requestFocus();
-                org.telegram.messenger.g0.K3(n1Var);
+                r1.f18081f = null;
+                View view2 = this.f18078b;
+                if (view2 != null) {
+                    view2.requestFocus();
+                    return;
+                }
                 return;
         }
     }

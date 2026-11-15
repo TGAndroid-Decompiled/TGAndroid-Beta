@@ -1,76 +1,85 @@
 package org.telegram.ui.Cells;
 
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Components.a80;
-import org.telegram.ui.Components.bc;
-import org.telegram.ui.Components.pj0;
+import org.telegram.messenger.gj;
+import org.telegram.ui.Components.d80;
+import org.telegram.ui.Components.uj0;
+import org.telegram.ui.Components.x11;
+import org.telegram.ui.Components.xb;
 import org.telegram.ui.SessionsActivity;
-import org.telegram.ui.zw;
+import org.telegram.ui.yw;
 public final class f implements Runnable {
-    public final int f29100a;
-    public final Object f29101b;
+    public final int f30195a;
+    public final Object f30196b;
 
     public f(Object obj, int i7) {
-        this.f29100a = i7;
-        this.f29101b = obj;
+        this.f30195a = i7;
+        this.f30196b = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f29100a) {
+        switch (this.f30195a) {
             case 0:
-                g gVar = (g) this.f29101b;
-                a80 a80Var = gVar.d;
-                if (a80Var != null) {
-                    gVar.h.E.n(a80Var, true);
+                g gVar = (g) this.f30196b;
+                d80 d80Var = gVar.d;
+                if (d80Var != null) {
+                    gVar.h.F.o(d80Var, true);
                     return;
                 }
                 return;
             case 1:
-                l1 l1Var = ((y1) this.f29101b).f30933e;
+                gj gjVar = (gj) this.f30196b;
+                if (x11.j(gjVar)) {
+                    x11.x(gjVar, false, null);
+                    return;
+                }
+                return;
+            case 2:
+                l1 l1Var = ((y1) this.f30196b).f32052e;
                 if (l1Var != null) {
                     l1Var.k();
                     return;
                 }
                 return;
-            case 2:
-                ((d2) this.f29101b).a();
-                return;
             case 3:
-                org.telegram.messenger.g0.v1(((zh.w3) this.f29101b).f29267b.getEditText());
+                ((d2) this.f30196b).a();
                 return;
             case 4:
-                org.telegram.messenger.g0.v1(((k3) this.f29101b).d);
+                org.telegram.messenger.g0.v1(((bi.o6) this.f30196b).f30375b.getEditText());
                 return;
             case 5:
-                ((q5) this.f29101b).f30147a.invalidate();
+                org.telegram.messenger.g0.v1(((k3) this.f30196b).d);
                 return;
             case 6:
-                g6 g6Var = (g6) this.f29101b;
-                if (g6Var.getParent() instanceof pj0) {
-                    ((pj0) g6Var.getParent()).getOnItemClickListener().c(RecyclerView.R(g6Var), g6Var);
+                ((q5) this.f30196b).f31280a.invalidate();
+                return;
+            case 7:
+                f6 f6Var = (f6) this.f30196b;
+                if (f6Var.getParent() instanceof uj0) {
+                    ((uj0) f6Var.getParent()).getOnItemClickListener().b(RecyclerView.R(f6Var), f6Var);
                     return;
                 } else {
-                    g6Var.callOnClick();
+                    f6Var.callOnClick();
                     return;
                 }
-            case 7:
-                ((o7) this.f29101b).h();
-                return;
             case 8:
-                v9 v9Var = (v9) this.f29101b;
-                v9Var.C.invalidate();
-                v9Var.T();
+                ((n7) this.f30196b).h();
                 return;
             case 9:
-                ((v9) ((f9) this.f29101b).f29149c).T();
+                u9 u9Var = (u9) this.f30196b;
+                u9Var.C.invalidate();
+                u9Var.T();
                 return;
             case 10:
-                z9 z9Var = (z9) this.f29101b;
-                z9Var.f31018y = -1;
+                ((u9) ((e9) this.f30196b).f30191c).T();
+                return;
+            case 11:
+                z9 z9Var = (z9) this.f30196b;
+                z9Var.f32141y = -1;
                 int i7 = 0;
                 while (true) {
-                    q1[] q1VarArr = z9Var.f31013n;
+                    q1[] q1VarArr = z9Var.f32136n;
                     if (i7 < q1VarArr.length) {
                         q1 q1Var = q1VarArr[i7];
                         if (q1Var != null) {
@@ -81,14 +90,14 @@ public final class f implements Runnable {
                         return;
                     }
                 }
-            case 11:
-                bc.e();
-                ((zw) this.f29101b).presentFragment(new SessionsActivity(0));
+            case 12:
+                xb.e();
+                ((yw) this.f30196b).presentFragment(new SessionsActivity(0));
                 return;
             default:
-                org.telegram.ui.ActionBar.w2 w2Var = (org.telegram.ui.ActionBar.w2) this.f29101b;
-                w2Var.f28673b0 = true;
-                w2Var.f28676c0 = true;
+                org.telegram.ui.ActionBar.u2 u2Var = (org.telegram.ui.ActionBar.u2) this.f30196b;
+                u2Var.f29686c0 = true;
+                u2Var.f29688d0 = true;
                 return;
         }
     }

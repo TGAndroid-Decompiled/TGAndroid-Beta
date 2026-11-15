@@ -1,11 +1,112 @@
 package org.telegram.ui.web;
-public final class i {
-    public final String f51092a;
-    public long f51093b;
-    public double f51094c;
 
-    public i(String str, long j3) {
-        this.f51092a = str;
-        this.f51093b = j3;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.is;
+import org.telegram.messenger.m10;
+import org.telegram.messenger.ns;
+import org.telegram.messenger.si;
+import org.telegram.tgnet.ConnectionsManager;
+public final class i implements is {
+    public final int f52627b;
+    public final Runnable f52628c;
+    public final String d;
+    public boolean f52630f;
+    public boolean h;
+    public boolean f52631n;
+    public final ArrayList f52626a = new ArrayList();
+    public final int f52629e = ConnectionsManager.generateClassGuid();
+
+    public i(String str, int i7, Runnable runnable) {
+        this.f52627b = i7;
+        this.d = str;
+        this.f52628c = runnable;
+    }
+
+    public final void a() {
+        if (!this.h) {
+            this.h = true;
+            int i7 = this.f52627b;
+            ns.f(i7).c(this, ns.V);
+            ns.f(i7).c(this, ns.H1);
+            if (TextUtils.isEmpty(this.d)) {
+                d();
+            }
+        }
+    }
+
+    public final void b(ArrayList arrayList) {
+        int i7 = 0;
+        while (true) {
+            ArrayList arrayList2 = this.f52626a;
+            if (i7 < arrayList2.size()) {
+                if (arrayList.contains(Integer.valueOf(((gj) arrayList2.get(i7)).e1()))) {
+                    arrayList2.remove(i7);
+                    i7--;
+                }
+                i7++;
+            } else {
+                return;
+            }
+        }
+    }
+
+    public final void c() {
+        if (!this.h) {
+            return;
+        }
+        this.h = false;
+        int i7 = this.f52627b;
+        ns.f(i7).n(this, ns.V);
+        ns.f(i7).n(this, ns.H1);
+        ConnectionsManager.getInstance(i7).cancelRequestsForGuid(this.f52629e);
+        this.f52631n = false;
+    }
+
+    public final void d() {
+        ArrayList arrayList;
+        int i7;
+        if (!this.f52631n && !this.f52630f) {
+            this.f52631n = true;
+            int i10 = this.f52627b;
+            long e10 = m10.i(i10).e();
+            int i11 = 0;
+            int i12 = Integer.MAX_VALUE;
+            while (true) {
+                arrayList = this.f52626a;
+                if (i11 >= arrayList.size()) {
+                    break;
+                }
+                i12 = Math.min(i12, ((gj) arrayList.get(i11)).e1());
+                i11++;
+            }
+            si b02 = si.b0(i10);
+            if (arrayList.isEmpty()) {
+                i7 = 30;
+            } else {
+                i7 = 50;
+            }
+            if (i12 == Integer.MAX_VALUE) {
+                i12 = 0;
+            }
+            b02.N0(e10, i7, i12, 0, 3, 0L, 1, this.f52629e, 0, null, this.d);
+        }
+    }
+
+    @Override
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        int i11 = ns.V;
+        ArrayList arrayList = this.f52626a;
+        if (i7 == i11) {
+            if (((Integer) objArr[3]).intValue() == this.f52629e) {
+                this.f52631n = false;
+                this.f52630f = ((Boolean) objArr[5]).booleanValue();
+                arrayList.addAll((ArrayList) objArr[2]);
+                this.f52628c.run();
+            }
+        } else if (i7 == ns.H1) {
+            arrayList.add(0, (gj) objArr[0]);
+        }
     }
 }

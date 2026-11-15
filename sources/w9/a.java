@@ -5,26 +5,27 @@ import android.os.Bundle;
 import android.util.Log;
 import androidx.emoji2.text.f;
 import java.util.ArrayList;
+import w7.s;
 public final class a implements y9.a {
-    public final f f57631a;
+    public final f f59072a;
 
     public a(f fVar) {
-        this.f57631a = fVar;
+        this.f59072a = fVar;
+    }
+
+    @Override
+    public void O(Bundle bundle) {
+        ((s) this.f59072a.f2247a).O(bundle);
     }
 
     public void a(l lVar) {
-        f fVar = this.f57631a;
+        f fVar = this.f59072a;
         synchronized (fVar) {
-            ((ArrayList) fVar.f2300b).add(lVar);
-            ((qb.a) fVar.f2301c).getClass();
+            ((ArrayList) fVar.f2248b).add(lVar);
+            ((z9.a) fVar.f2249c).getClass();
             if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                 Log.d("FirebaseCrashlytics", "Could not register handler for breadcrumbs events.", null);
             }
         }
-    }
-
-    @Override
-    public void a2(Bundle bundle) {
-        ((qb.a) this.f57631a.f2299a).a2(bundle);
     }
 }

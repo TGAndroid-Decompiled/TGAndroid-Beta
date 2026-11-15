@@ -1,6 +1,6 @@
 package i9;
 
-import a8.ia;
+import a8.ja;
 import java.io.OutputStream;
 public final class e extends OutputStream {
     public final String toString() {
@@ -19,6 +19,6 @@ public final class e extends OutputStream {
     @Override
     public final void write(byte[] bArr, int i7, int i10) {
         bArr.getClass();
-        ia.n(i7, i10 + i7, bArr.length);
+        ja.n(i7, i10 + i7, bArr.length);
     }
 }

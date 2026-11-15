@@ -1,72 +1,47 @@
 package org.telegram.messenger;
 
-import android.content.SharedPreferences;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import org.telegram.tgnet.ConnectionsManager;
-public final class qt implements ls {
-    public static final qt f25143c;
-    public static final List d;
-    public boolean f25144a;
-    public ds f25145b;
+import android.text.TextUtils;
+import org.telegram.messenger.PushListenerController;
+public final class qt implements PushListenerController.IPushListenerServiceProvider {
+    public static final qt f26129b = new Object();
+    public Boolean f26130a;
 
-    static {
-        ?? obj = new Object();
-        obj.f25145b = new ds((Object) obj, 2);
-        f25143c = obj;
-        d = Arrays.asList(5, 10, 15, 30, 60);
-    }
-
-    public final void a() {
-        this.f25144a = false;
-        if (iz.f23391a1) {
-            ArrayList arrayList = new ArrayList(iz.f23460z1);
-            Collections.sort(arrayList, new jl(13));
-            int size = arrayList.size();
-            int i7 = 0;
-            while (i7 < size) {
-                Object obj = arrayList.get(i7);
-                i7++;
-                hz hzVar = (hz) obj;
-                if (hzVar != iz.B1 && !hzVar.f23000c && hzVar.d) {
-                    SharedPreferences.Editor edit = qp.e1().edit();
-                    edit.putBoolean("proxy_enabled", true);
-                    hzVar.f22998a.i(edit);
-                    edit.apply();
-                    iz.B1 = hzVar;
-                    qs.e().k(qs.A4, new Object[0]);
-                    qs.e().k(qs.C4, new Object[0]);
-                    ConnectionsManager.setProxySettings(true, iz.B1.f22998a);
-                    return;
-                }
-            }
-        }
+    @Override
+    public final String getLogTitle() {
+        return "Google Play Services";
     }
 
     @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        ds dsVar = this.f25145b;
-        if (i7 == qs.B4) {
-            int i11 = iz.f23389a;
-            if (qp.e1().getBoolean("proxy_enabled", false) && iz.B1 != null && iz.f23391a1 && iz.f23460z1.size() > 1 && this.f25144a) {
-                a();
-            }
-        } else if (i7 == qs.A4) {
-            g0.r(dsVar);
-        } else if (i7 == qs.T1 && i10 == p10.f24474s0) {
-            int i12 = iz.f23389a;
-            if (((qp.e1().getBoolean("proxy_enabled", false) && iz.B1 != null) || iz.f23391a1) && iz.f23460z1.size() > 1) {
-                if (ConnectionsManager.getInstance(i10).getConnectionState() == 4) {
-                    if (!this.f25144a) {
-                        g0.i3(dsVar, ((Integer) d.get(iz.f23394b1)).intValue() * 1000);
-                        return;
-                    }
-                    return;
+    public final int getPushType() {
+        return 2;
+    }
+
+    @Override
+    public final boolean hasServices() {
+        boolean z10;
+        if (this.f26130a == null) {
+            try {
+                if (n6.d.f21067e.d(t0.f26600b, n6.e.f21069a) == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
                 }
-                g0.r(dsVar);
+                this.f26130a = Boolean.valueOf(z10);
+            } catch (Exception e10) {
+                a8.g(e10, true);
+                this.f26130a = Boolean.FALSE;
             }
         }
+        return this.f26130a.booleanValue();
+    }
+
+    @Override
+    public final void onRequestPushToken() {
+        if (!TextUtils.isEmpty(gz.f23946g)) {
+            boolean z10 = r2.f26198a;
+        } else if (r2.f26198a) {
+            a8.b("FCM Registration not found.");
+        }
+        Utilities.f22416e.c(new as(this, 3));
     }
 }

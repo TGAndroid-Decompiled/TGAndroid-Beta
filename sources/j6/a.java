@@ -2,6 +2,7 @@ package j6;
 
 import android.os.SystemClock;
 import android.text.TextUtils;
+import com.google.android.gms.internal.vision.e2;
 import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,8 +10,8 @@ import java.util.Random;
 import java.util.regex.Pattern;
 import org.json.JSONObject;
 public abstract class a {
-    public static final Pattern f16506a = Pattern.compile("urn:x-cast:[-A-Za-z0-9_]+(\\.[-A-Za-z0-9_]+)*");
-    public static final Random f16507b = new Random(SystemClock.elapsedRealtime());
+    public static final Pattern f16857a = Pattern.compile("urn:x-cast:[-A-Za-z0-9_]+(\\.[-A-Za-z0-9_]+)*");
+    public static final Random f16858b = new Random(SystemClock.elapsedRealtime());
 
     public static String a(String str, JSONObject jSONObject) {
         if (jSONObject != null && jSONObject.has(str)) {
@@ -40,7 +41,7 @@ public abstract class a {
         int length = iArr.length;
         int i7 = 0;
         while (i7 < length) {
-            i7 = com.google.android.recaptcha.internal.a.f(iArr[i7], i7, 1, arrayList);
+            i7 = e2.f(iArr[i7], i7, 1, arrayList);
         }
         return arrayList;
     }

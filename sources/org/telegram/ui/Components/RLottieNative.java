@@ -5,13 +5,13 @@ import android.os.Trace;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class RLottieNative {
-    public final int[] f31489a;
-    public long f31490b;
-    public final AtomicBoolean f31491c = new AtomicBoolean(false);
+    public final int[] f32652a;
+    public long f32653b;
+    public final AtomicBoolean f32654c = new AtomicBoolean(false);
 
     public RLottieNative(long j3, int[] iArr) {
-        this.f31490b = j3;
-        this.f31489a = iArr;
+        this.f32653b = j3;
+        this.f32652a = iArr;
     }
 
     public static RLottieNative a(String str, String str2, int[] iArr, int[] iArr2, int i7, HashMap hashMap) {
@@ -103,14 +103,14 @@ public final class RLottieNative {
 
     private static native void nDestroy(long j3);
 
-    private static native int nGetFrame(long j3, int i7, Bitmap bitmap, boolean z9);
+    private static native int nGetFrame(long j3, int i7, Bitmap bitmap, boolean z10);
 
-    public final int c(int i7, Bitmap bitmap, boolean z9) {
-        if (!this.f31491c.get()) {
-            long j3 = this.f31490b;
+    public final int c(int i7, Bitmap bitmap, boolean z10) {
+        if (!this.f32654c.get()) {
+            long j3 = this.f32653b;
             Trace.beginSection("RLottieNative#getFrame");
             try {
-                return nGetFrame(j3, i7, bitmap, z9);
+                return nGetFrame(j3, i7, bitmap, z10);
             } finally {
                 Trace.endSection();
             }
@@ -119,9 +119,9 @@ public final class RLottieNative {
     }
 
     public final void d() {
-        if (this.f31491c.compareAndSet(false, true)) {
-            long j3 = this.f31490b;
-            this.f31490b = 0L;
+        if (this.f32654c.compareAndSet(false, true)) {
+            long j3 = this.f32653b;
+            this.f32653b = 0L;
             if (j3 != 0) {
                 Trace.beginSection("RLottieNative#destroy");
                 try {
@@ -135,7 +135,7 @@ public final class RLottieNative {
 
     public final void finalize() {
         try {
-            if (!this.f31491c.get()) {
+            if (!this.f32654c.get()) {
                 d();
             }
         } finally {

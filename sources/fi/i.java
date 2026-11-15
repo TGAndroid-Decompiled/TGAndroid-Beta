@@ -2,68 +2,111 @@ package fi;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.view.KeyEvent;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.ci;
-import org.telegram.ui.Components.g90;
-public final class i extends g90 {
-    public final int V;
-    public final KeyEvent.Callback W;
+import android.view.MotionEvent;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.Collections;
+import org.telegram.ui.Components.uj0;
+import org.telegram.ui.qv;
+public final class i extends uj0 {
+    public final int f11810f3;
+    public final qv f11811g3;
 
-    public i(KeyEvent.Callback callback, Context context, long j3, org.telegram.ui.ActionBar.f2 f2Var, org.telegram.ui.ActionBar.h6 h6Var, int i7) {
-        super(context, j3, 0L, f2Var, h6Var);
-        this.V = i7;
-        this.W = callback;
+    public i(qv qvVar, Context context, int i7) {
+        super(context, null);
+        this.f11810f3 = i7;
+        this.f11811g3 = qvVar;
     }
 
     @Override
-    public void f(Canvas canvas, Rect rect, float f10) {
-        switch (this.V) {
-            case 0:
-                m mVar = (m) this.W;
-                Paint paint = mVar.f12365e;
-                RectF rectF = mVar.f12392y0;
-                rectF.set(rect);
-                if (mVar.g()) {
-                    mVar.h(mVar.T, canvas, mVar.f12392y0, f10, false, -mVar.M.getX(), -mVar.M.getY(), false);
-                    return;
-                }
-                Paint c10 = mVar.T.c(1.0f);
-                if (c10 == null) {
-                    paint.setAlpha(128);
-                    canvas.drawRoundRect(rectF, f10, f10, paint);
-                    return;
-                }
-                canvas.drawRoundRect(rectF, f10, f10, c10);
-                paint.setAlpha(80);
-                canvas.drawRoundRect(rectF, f10, f10, paint);
-                return;
-            default:
-                super.f(canvas, rect, f10);
-                return;
-        }
-    }
-
-    @Override
-    public boolean h() {
-        switch (this.V) {
-            case 0:
-                return true;
-            default:
-                return super.h();
-        }
-    }
-
-    @Override
-    public void i() {
-        switch (this.V) {
+    public void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        boolean z10;
+        switch (this.f11810f3) {
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((ci) this.W).d2;
-                if (chatAttachAlertPhotoLayout != null) {
-                    chatAttachAlertPhotoLayout.X();
+                qv qvVar = this.f11811g3;
+                ArrayList arrayList = qvVar.Q;
+                arrayList.clear();
+                int i7 = 0;
+                for (int i10 = 0; i10 < getChildCount(); i10++) {
+                    p pVar = (p) getChildAt(i10);
+                    int R = RecyclerView.R(pVar);
+                    pVar.f12145b = R;
+                    boolean z11 = true;
+                    pVar.f12143a = true;
+                    if (R == 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    pVar.d = z10;
+                    if (R != qvVar.E.size() - 1) {
+                        z11 = false;
+                    }
+                    pVar.f12147c = z11;
+                    arrayList.add(pVar);
+                }
+                Collections.sort(arrayList, qvVar.f12216x0);
+                while (i7 < arrayList.size()) {
+                    p pVar2 = (p) arrayList.get(i7);
+                    int save = canvas.save();
+                    canvas.translate(pVar2.getX(), pVar2.getY());
+                    if (pVar2.getAlpha() != 1.0f) {
+                        canvas2 = canvas;
+                        canvas2.saveLayerAlpha(-org.telegram.messenger.g0.L(4.0f), -org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(50.0f), (int) (pVar2.getAlpha() * 255.0f), 31);
+                    } else {
+                        canvas2 = canvas;
+                    }
+                    canvas2.scale(pVar2.getScaleX(), pVar2.getScaleY(), org.telegram.messenger.g0.L(14.0f), pVar2.getCy());
+                    pVar2.draw(canvas2);
+                    canvas2.restoreToCount(save);
+                    i7++;
+                    canvas = canvas2;
+                }
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.f11810f3) {
+            case 0:
+                if (motionEvent.getAction() == 0) {
+                    qv qvVar = this.f11811g3;
+                    if (qvVar.f12190d0 > 0.2f || qvVar.getAlpha() == 0.0f) {
+                        return false;
+                    }
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public boolean drawChild(Canvas canvas, View view, long j3) {
+        switch (this.f11810f3) {
+            case 0:
+                if (this.f11811g3.Q.contains(view)) {
+                    return true;
+                }
+                return super.drawChild(canvas, view, j3);
+            default:
+                return super.drawChild(canvas, view, j3);
+        }
+    }
+
+    @Override
+    public void l0(int i7) {
+        switch (this.f11810f3) {
+            case 1:
+                hi.l3 l3Var = this.f11811g3.K;
+                if (l3Var != null) {
+                    l3Var.f(true);
                     return;
                 }
                 return;
@@ -73,17 +116,39 @@ public final class i extends g90 {
     }
 
     @Override
-    public void n(boolean z9) {
-        switch (this.V) {
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        switch (this.f11810f3) {
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((ci) this.W).d2;
-                if (chatAttachAlertPhotoLayout != null) {
-                    chatAttachAlertPhotoLayout.X();
-                    return;
+                return false;
+            default:
+                return super.onInterceptTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        switch (this.f11810f3) {
+            case 0:
+                ArrayList arrayList = this.f11811g3.f12189c0;
+                super.onLayout(z10, i7, i10, i11, i12);
+                for (int i13 = 0; i13 < arrayList.size(); i13++) {
+                    ((Runnable) arrayList.get(i13)).run();
                 }
+                arrayList.clear();
                 return;
             default:
+                super.onLayout(z10, i7, i10, i11, i12);
                 return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f11810f3) {
+            case 1:
+                return false;
+            default:
+                return super.onTouchEvent(motionEvent);
         }
     }
 }

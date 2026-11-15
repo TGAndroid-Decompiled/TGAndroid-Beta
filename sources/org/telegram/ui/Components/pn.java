@@ -1,44 +1,49 @@
 package org.telegram.ui.Components;
-public final class pn implements org.telegram.messenger.c20 {
-    public final k60 f37040a;
-    public final int f37041b;
-    public final long f37042c;
-    public final long d;
-    public final org.telegram.ui.ActionBar.f2 f37043e;
-    public final org.telegram.ui.ActionBar.h6 f37044f;
 
-    public pn(k60 k60Var, int i7, long j3, long j10, org.telegram.ui.cn cnVar, org.telegram.ui.ActionBar.h6 h6Var) {
-        this.f37040a = k60Var;
-        this.f37041b = i7;
-        this.f37042c = j3;
-        this.d = j10;
-        this.f37043e = cnVar;
-        this.f37044f = h6Var;
+import org.telegram.tgnet.TLRPC;
+public final class pn implements c8 {
+    public final org.telegram.ui.ActionBar.g1[] f38332a;
+    public final sn f38333b;
+
+    public pn(sn snVar, org.telegram.ui.ActionBar.g1[] g1VarArr) {
+        this.f38333b = snVar;
+        this.f38332a = g1VarArr;
     }
 
     @Override
-    public final void a(Object obj) {
-        Integer num = (Integer) obj;
-        this.f37040a.u();
-        int intValue = num.intValue();
-        int i7 = this.f37041b;
-        long j3 = this.f37042c;
-        long j10 = this.d;
-        org.telegram.ui.ActionBar.f2 f2Var = this.f37043e;
-        org.telegram.ui.ActionBar.h6 h6Var = this.f37044f;
-        if (intValue == 0) {
-            if (org.telegram.messenger.qp.s1(i7).r2(j3, j10, null)) {
-                org.telegram.messenger.dt.t(i7).G(j3, j10, false);
+    public final void R0(int i7, int i10) {
+        int i11;
+        org.telegram.ui.an anVar = this.f38333b.H;
+        if (anVar != null) {
+            anVar.getMessagesController().J4(i7, anVar.a());
+            TLRPC.ChatFull chatFull = anVar.f45334q8;
+            TLRPC.UserFull userFull = anVar.f45348r8;
+            if (userFull != null || chatFull != null) {
+                anVar.h8();
+                UndoView undoView = anVar.N3;
+                if (undoView != null) {
+                    long a10 = anVar.a();
+                    TLRPC.User j3 = anVar.j();
+                    if (userFull != null) {
+                        i11 = userFull.ttl_period;
+                    } else {
+                        i11 = chatFull.ttl_period;
+                    }
+                    undoView.k(a10, i10, j3, Integer.valueOf(i11), null, null);
+                }
             }
-            if (gc.a(f2Var)) {
-                gc.z(f2Var, 4, num.intValue(), h6Var).j();
-                return;
-            }
-            return;
         }
-        org.telegram.messenger.dt.t(i7).H(j3, num.intValue(), j10);
-        if (gc.a(f2Var)) {
-            gc.z(f2Var, 5, num.intValue(), h6Var).j();
+    }
+
+    @Override
+    public final void dismiss() {
+        org.telegram.ui.ActionBar.g1 g1Var = this.f38332a[0];
+        if (g1Var != null) {
+            g1Var.dismiss();
         }
+    }
+
+    @Override
+    public final void g1() {
     }
 }

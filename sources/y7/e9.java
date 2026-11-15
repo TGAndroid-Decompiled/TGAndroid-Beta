@@ -1,53 +1,33 @@
 package y7;
 
-import a8.oa;
+import a8.xa;
+import a8.ya;
 import android.content.Context;
-import com.google.android.gms.tasks.Task;
-import java.util.HashMap;
-public final class e9 {
-    public static n9 f59020j;
-    public static final d f59021k;
-    public final String f59022a;
-    public final String f59023b;
-    public final c9 f59024c;
-    public final pb.k d;
-    public final Task f59025e;
-    public final Task f59026f;
-    public final String f59027g;
-    public final int h;
-    public final HashMap f59028i = new HashMap();
+public final class e9 implements c9 {
+    public final u9.m f60239a;
+    public final a9 f60240b;
 
-    static {
-        Object[] objArr = {"optional-module-barcode", "com.google.android.gms.vision.barcode"};
-        objArr[0].getClass();
-        objArr[1].getClass();
-        f59021k = new d(objArr);
+    public e9(Context context, a9 a9Var) {
+        this.f60240b = a9Var;
+        m5.a aVar = m5.a.f20466e;
+        o5.t.b(context);
+        o5.r c10 = o5.t.a().c(aVar);
+        if (m5.a.d.contains(new l5.c("json"))) {
+            new u9.m(new ya(c10, 4));
+        }
+        this.f60239a = new u9.m(new ya(c10, 5));
     }
 
-    public e9(Context context, pb.k kVar, c9 c9Var, String str) {
-        int i7;
-        new HashMap();
-        this.f59022a = context.getPackageName();
-        this.f59023b = pb.c.a(context);
-        this.d = kVar;
-        this.f59024c = c9Var;
-        h9.b();
-        this.f59027g = str;
-        pb.f a10 = pb.f.a();
-        a2.b bVar = new a2.b(this, 8);
-        a10.getClass();
-        this.f59025e = pb.f.b(bVar);
-        pb.f a11 = pb.f.a();
-        kVar.getClass();
-        oa oaVar = new oa(kVar, 3);
-        a11.getClass();
-        this.f59026f = pb.f.b(oaVar);
-        d dVar = f59021k;
-        if (dVar.containsKey(str)) {
-            i7 = b7.f.d(context, (String) dVar.get(str), false);
+    @Override
+    public final void a(xa xaVar) {
+        l5.a aVar;
+        this.f60240b.getClass();
+        o5.s sVar = (o5.s) this.f60239a.get();
+        if (xaVar.f713b != 0) {
+            aVar = l5.a.a(xaVar.D());
         } else {
-            i7 = -1;
+            aVar = new l5.a(null, xaVar.D(), l5.d.f19309b, null);
         }
-        this.h = i7;
+        sVar.a(aVar, new n2.a0(7));
     }
 }

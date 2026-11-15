@@ -2,18 +2,18 @@ package org.telegram.ui.Wallet;
 
 import org.telegram.tgnet.tl.TL_wallet;
 public final class y1 {
-    public final String f43374a;
-    public final String f43375b;
-    public final String f43376c;
+    public final String f44705a;
+    public final String f44706b;
+    public final String f44707c;
     public final String d;
-    public TL_wallet.tonConnectSession f43377e;
-    public boolean f43378f;
+    public TL_wallet.tonConnectSession f44708e;
+    public boolean f44709f;
 
     public y1(TL_wallet.tonConnectSession tonconnectsession, String str, String str2, String str3, String str4) {
-        this.f43377e = tonconnectsession;
-        this.f43374a = str;
-        this.f43375b = str2;
-        this.f43376c = str3;
+        this.f44708e = tonconnectsession;
+        this.f44705a = str;
+        this.f44706b = str2;
+        this.f44707c = str3;
         this.d = str4;
     }
 }

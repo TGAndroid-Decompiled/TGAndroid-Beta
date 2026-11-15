@@ -7,7 +7,7 @@ public abstract class md {
         int length;
         int length2;
         int indexOf;
-        String m10;
+        String l10;
         int i7 = 0;
         int i10 = 0;
         while (true) {
@@ -17,17 +17,17 @@ public abstract class md {
             }
             Object obj = objArr[i10];
             if (obj == null) {
-                m10 = "null";
+                l10 = "null";
             } else {
                 try {
-                    m10 = obj.toString();
+                    l10 = obj.toString();
                 } catch (Exception e10) {
-                    String D = a8.p0.D(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(D), (Throwable) e10);
-                    m10 = org.telegram.ui.Cells.f1.m("<", D, " threw ", e10.getClass().getName(), ">");
+                    String E = a8.p0.E(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(E), (Throwable) e10);
+                    l10 = r.b.l("<", E, " threw ", e10.getClass().getName(), ">");
                 }
             }
-            objArr[i10] = m10;
+            objArr[i10] = l10;
             i10++;
         }
         StringBuilder sb2 = new StringBuilder(str.length() + (length * 16));

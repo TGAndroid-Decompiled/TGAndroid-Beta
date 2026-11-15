@@ -1,15 +1,15 @@
 package of;
 public final class b implements Runnable {
-    public final int f20944a;
-    public final Runnable f20945b;
+    public final int f21462a;
+    public final Runnable f21463b;
 
     public b(int i7, Runnable runnable) {
-        this.f20944a = i7;
-        this.f20945b = runnable;
+        this.f21462a = i7;
+        this.f21463b = runnable;
     }
 
     @Override
     public final void run() {
-        this.f20945b.run();
+        this.f21463b.run();
     }
 }

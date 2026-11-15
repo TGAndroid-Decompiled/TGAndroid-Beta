@@ -4,16 +4,16 @@ import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
 public final class uj0 extends ClickableSpan {
-    public final ek0 f50514a;
+    public final ek0 f51960a;
 
     public uj0(ek0 ek0Var) {
-        this.f50514a = ek0Var;
+        this.f51960a = ek0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        ek0 ek0Var = this.f50514a;
-        vf.c.t(ek0Var.getParentActivity(), ek0Var.D.privacy_policy_url);
+        ek0 ek0Var = this.f51960a;
+        vf.c.t(ek0Var.getParentActivity(), ek0Var.E.privacy_policy_url);
     }
 
     @Override

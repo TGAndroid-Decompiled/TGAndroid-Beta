@@ -1,79 +1,75 @@
 package ch;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import org.telegram.ui.Components.h5;
-import org.telegram.ui.Components.k9;
-public final class i0 extends k9 {
-    public boolean G;
-    public h5 H;
-    public d I;
-    public boolean J;
-    public final k0 K;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.gj;
+import org.telegram.ui.ActionBar.e2;
+import org.telegram.ui.an;
+public final class i0 extends FrameLayout {
+    public final e2 f5087a;
+    public final View f5088b;
+    public final boolean f5089c;
+    public final gj d;
+    public final an f5090e;
+    public final int f5091f;
+    public final int h;
+    public final boolean f5092n;
+    public final float f5093r;
+    public final float f5094s;
+    public final float f5095w;
+    public final p0 f5096x;
+    public final l0 f5097y;
 
-    public i0(k0 k0Var, Context context) {
+    public i0(l0 l0Var, Context context, e2 e2Var, View view, boolean z10, gj gjVar, an anVar, int i7, int i10, boolean z11, float f10, float f11, float f12, p0 p0Var) {
         super(context);
-        this.K = k0Var;
-        getImageReceiver().h0(3);
+        this.f5097y = l0Var;
+        this.f5087a = e2Var;
+        this.f5088b = view;
+        this.f5089c = z10;
+        this.d = gjVar;
+        this.f5090e = anVar;
+        this.f5091f = i7;
+        this.h = i10;
+        this.f5092n = z11;
+        this.f5093r = f10;
+        this.f5094s = f11;
+        this.f5095w = f12;
+        this.f5096x = p0Var;
+    }
+
+    @Override
+    public final void dispatchDraw(android.graphics.Canvas r25) {
+        throw new UnsupportedOperationException("Method not decompiled: ch.i0.dispatchDraw(android.graphics.Canvas):void");
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.J = true;
-        h5 h5Var = this.H;
-        if (h5Var != null) {
-            h5Var.a(this);
-        }
-        d dVar = this.I;
-        if (dVar != null) {
-            dVar.f(this);
+        int i7 = 0;
+        while (true) {
+            l0 l0Var = this.f5097y;
+            if (i7 < l0Var.f5132x.size()) {
+                ((k0) l0Var.f5132x.get(i7)).f5101a.P();
+                i7++;
+            } else {
+                return;
+            }
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.J = false;
-        h5 h5Var = this.H;
-        if (h5Var != null) {
-            h5Var.n(this);
-        }
-        d dVar = this.I;
-        if (dVar != null) {
-            dVar.d(this);
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        h5 h5Var = this.H;
-        if (h5Var != null) {
-            h5Var.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            this.H.setAlpha(255);
-            this.H.draw(canvas);
-            this.G = true;
-            return;
-        }
-        d dVar = this.I;
-        if (dVar != null) {
-            dVar.e(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            this.I.b(canvas);
-            this.G = true;
-            return;
-        }
-        if (getImageReceiver().B() != null && getImageReceiver().B().f40976k0) {
-            this.G = true;
-        }
-        if (!this.G && getImageReceiver().B() != null && !getImageReceiver().B().f40976k0) {
-            k0 k0Var = this.K;
-            if (k0Var.f6285a == 2 && !k0Var.f6307z) {
-                getImageReceiver().B().N(getImageReceiver().B().f40968e[0] - 1, false, false);
+        int i7 = 0;
+        while (true) {
+            l0 l0Var = this.f5097y;
+            if (i7 < l0Var.f5132x.size()) {
+                ((k0) l0Var.f5132x.get(i7)).f5101a.R();
+                i7++;
             } else {
-                getImageReceiver().B().N(0, false, false);
-                getImageReceiver().B().start();
+                return;
             }
         }
-        super.onDraw(canvas);
     }
 }

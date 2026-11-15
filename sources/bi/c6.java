@@ -1,97 +1,111 @@
 package bi;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RadialGradient;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.wq;
-public final class c6 extends Drawable {
-    public Drawable f3577g;
-    public int h;
-    public int f3578i;
-    public final Paint f3573b = new Paint(1);
-    public final Shader[] f3574c = new Shader[2];
-    public final Matrix d = new Matrix();
-    public final org.telegram.ui.Components.v5 f3575e = new org.telegram.ui.Components.v5(1.0f, new a3.f(this, 27), 0, 420, wq.h);
-    public final RectF f3576f = new RectF();
-    public final int f3572a = 1;
+import di.m8;
+import org.telegram.messenger.hd;
+import org.telegram.tgnet.TLObject;
+public final class c6 implements Runnable {
+    public final int f3426a = 0;
+    public final org.telegram.ui.ActionBar.z0 f3427b;
+    public final org.telegram.ui.ActionBar.z0 f3428c;
+    public final org.telegram.ui.ActionBar.z0 d;
+    public final org.telegram.ui.ActionBar.z0 f3429e;
+    public final org.telegram.ui.ActionBar.z0 f3430f;
+    public final boolean h;
+    public final org.telegram.ui.ActionBar.z0 f3431n;
+    public final org.telegram.ui.ActionBar.z0 f3432r;
+    public final Object f3433s;
 
-    public final void a(int i7, int i10) {
-        if (this.h == i7 && this.f3578i == i10) {
-            return;
-        }
-        Shader[] shaderArr = this.f3574c;
-        shaderArr[0] = shaderArr[1];
-        if (this.f3572a == 0) {
-            this.h = i7;
-            this.f3578i = i10;
-            shaderArr[1] = new LinearGradient(0.0f, 0.0f, 100.0f, 0.0f, new int[]{i7, i10}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        } else {
-            this.h = i7;
-            this.f3578i = i10;
-            shaderArr[1] = new RadialGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(340.0f), new int[]{i7, i10}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        }
-        this.f3575e.e(true, 0.0f);
-        invalidateSelf();
+    public c6(d6 d6Var, org.telegram.ui.ActionBar.z0 z0Var, org.telegram.ui.ActionBar.z0 z0Var2, org.telegram.ui.ActionBar.z0 z0Var3, org.telegram.ui.ActionBar.z0 z0Var4, org.telegram.ui.ActionBar.z0 z0Var5, boolean z10, org.telegram.ui.ActionBar.z0 z0Var6, org.telegram.ui.ActionBar.z0 z0Var7) {
+        this.f3433s = d6Var;
+        this.f3427b = z0Var;
+        this.f3428c = z0Var2;
+        this.d = z0Var3;
+        this.f3429e = z0Var4;
+        this.f3430f = z0Var5;
+        this.h = z10;
+        this.f3431n = z0Var6;
+        this.f3432r = z0Var7;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        RectF rectF = this.f3576f;
-        rectF.set(bounds);
-        rectF.right = rectF.width() + rectF.left;
-        int i7 = 0;
-        float e10 = this.f3575e.e(false, 1.0f);
-        while (true) {
-            Shader[] shaderArr = this.f3574c;
-            if (i7 >= shaderArr.length) {
-                break;
-            }
-            if (shaderArr[i7] != null) {
-                float pow = (float) Math.pow(1.0f - Math.abs(i7 - e10), 0.25d);
-                if (pow > 0.0f) {
-                    Matrix matrix = this.d;
-                    matrix.reset();
-                    if (this.f3572a == 1) {
-                        matrix.postTranslate(rectF.centerX(), org.telegram.messenger.g0.L(145.0f));
-                    } else {
-                        matrix.postScale(getBounds().width() / 100.0f, 1.0f);
-                    }
-                    shaderArr[i7].setLocalMatrix(matrix);
-                    Shader shader = shaderArr[i7];
-                    Paint paint = this.f3573b;
-                    paint.setShader(shader);
-                    paint.setAlpha((int) (pow * 255.0f));
-                    canvas.drawRoundRect(rectF, 0.0f, 0.0f, paint);
+    public final void run() {
+        int i7;
+        int i10;
+        int i11;
+        int i12;
+        int i13 = this.f3426a;
+        org.telegram.ui.ActionBar.z0 z0Var = this.f3432r;
+        org.telegram.ui.ActionBar.z0 z0Var2 = this.f3431n;
+        boolean z10 = this.h;
+        org.telegram.ui.ActionBar.z0 z0Var3 = this.f3430f;
+        org.telegram.ui.ActionBar.z0 z0Var4 = this.f3429e;
+        org.telegram.ui.ActionBar.z0 z0Var5 = this.d;
+        org.telegram.ui.ActionBar.z0 z0Var6 = this.f3428c;
+        Object obj = this.f3433s;
+        org.telegram.ui.ActionBar.z0 z0Var7 = this.f3427b;
+        switch (i13) {
+            case 0:
+                m8 m8Var = ((d6) obj).f3445c.U1;
+                if (m8Var.f9045e) {
+                    i7 = 2131750197;
+                } else {
+                    i7 = 2131750198;
                 }
-            }
-            i7++;
+                String M0 = hd.M0(i7, null);
+                if (m8Var.f9045e) {
+                    i10 = 2131231890;
+                } else {
+                    i10 = 2131231888;
+                }
+                z0Var7.j(M0, i10, null);
+                z0Var6.setChecked(TLObject.hasFlag(m8Var.f9047g, 1));
+                z0Var5.setChecked(TLObject.hasFlag(m8Var.f9047g, 2));
+                z0Var4.setChecked(TLObject.hasFlag(m8Var.f9047g, 4));
+                z0Var3.setChecked(TLObject.hasFlag(m8Var.f9047g, 8));
+                if (z10) {
+                    z0Var2.setChecked(TLObject.hasFlag(m8Var.f9047g, 256));
+                    z0Var.setChecked(TLObject.hasFlag(m8Var.f9047g, 512));
+                    return;
+                }
+                return;
+            default:
+                m8 m8Var2 = (m8) obj;
+                if (z0Var7 != null) {
+                    if (m8Var2.f9045e) {
+                        i11 = 2131750197;
+                    } else {
+                        i11 = 2131750198;
+                    }
+                    String M02 = hd.M0(i11, null);
+                    if (m8Var2.f9045e) {
+                        i12 = 2131231890;
+                    } else {
+                        i12 = 2131231888;
+                    }
+                    z0Var7.j(M02, i12, null);
+                }
+                z0Var6.setChecked(TLObject.hasFlag(m8Var2.f9047g, 1));
+                z0Var5.setChecked(TLObject.hasFlag(m8Var2.f9047g, 2));
+                z0Var4.setChecked(TLObject.hasFlag(m8Var2.f9047g, 4));
+                z0Var3.setChecked(TLObject.hasFlag(m8Var2.f9047g, 8));
+                if (z10) {
+                    z0Var2.setChecked(TLObject.hasFlag(m8Var2.f9047g, 256));
+                    z0Var.setChecked(TLObject.hasFlag(m8Var2.f9047g, 512));
+                    return;
+                }
+                return;
         }
-        if (this.f3577g != null) {
-            canvas.save();
-            canvas.translate(rectF.centerX(), org.telegram.messenger.g0.L(145.0f));
-            i1.a(canvas, 0, this.f3577g, rectF.width(), org.telegram.messenger.g0.L(290.0f), 2.0f, 1.0f);
-            canvas.restore();
-        }
     }
 
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public c6(org.telegram.ui.ActionBar.z0 z0Var, m8 m8Var, org.telegram.ui.ActionBar.z0 z0Var2, org.telegram.ui.ActionBar.z0 z0Var3, org.telegram.ui.ActionBar.z0 z0Var4, org.telegram.ui.ActionBar.z0 z0Var5, boolean z10, org.telegram.ui.ActionBar.z0 z0Var6, org.telegram.ui.ActionBar.z0 z0Var7) {
+        this.f3427b = z0Var;
+        this.f3433s = m8Var;
+        this.f3428c = z0Var2;
+        this.d = z0Var3;
+        this.f3429e = z0Var4;
+        this.f3430f = z0Var5;
+        this.h = z10;
+        this.f3431n = z0Var6;
+        this.f3432r = z0Var7;
     }
 }

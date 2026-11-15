@@ -7,23 +7,18 @@ import android.os.Handler;
 import android.view.Surface;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import org.telegram.ui.Components.qt;
+import org.telegram.ui.Components.cf;
+import org.telegram.ui.web.e1;
 public interface l {
-    void a(int i7, int i10, int i11, long j3);
+    void d(int i7, int i10, int i11, long j3);
 
-    void b(int i7, k2.d dVar, long j3, int i10);
+    void e(int i7, k2.d dVar, long j3, int i10);
 
-    void c(int i7);
-
-    void d();
-
-    void e(int i7, long j3);
-
-    int f();
+    void f(int i7);
 
     void flush();
 
-    int g(MediaCodec.BufferInfo bufferInfo);
+    void g();
 
     ByteBuffer getInputBuffer(int i7);
 
@@ -31,19 +26,25 @@ public interface l {
 
     MediaFormat getOutputFormat();
 
-    void h(d3.k kVar, Handler handler);
+    void h(int i7, long j3);
 
-    void i(int i7);
+    int i();
 
-    void j(org.telegram.ui.web.s sVar);
+    int j(MediaCodec.BufferInfo bufferInfo);
 
-    void k(Surface surface);
+    void k(d3.k kVar, Handler handler);
 
-    boolean l(qt qtVar);
+    void l(int i7);
 
-    void m(ArrayList arrayList);
+    boolean m(cf cfVar);
 
-    void n(ArrayList arrayList);
+    void n(Surface surface);
+
+    void o(e1 e1Var);
+
+    void p(ArrayList arrayList);
+
+    void q(ArrayList arrayList);
 
     void release();
 

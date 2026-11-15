@@ -3,7 +3,7 @@ package u9;
 import com.google.firebase.components.ComponentRegistrar;
 import java.util.List;
 public interface e {
-    public static final s0.b B = new s0.b(26);
+    public static final r2.j B = new r2.j(27);
 
-    List i(ComponentRegistrar componentRegistrar);
+    List l(ComponentRegistrar componentRegistrar);
 }

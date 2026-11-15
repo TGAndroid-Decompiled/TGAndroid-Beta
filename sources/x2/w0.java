@@ -1,37 +1,38 @@
 package x2;
 
-import org.telegram.ui.ly0;
+import org.telegram.ui.ld0;
+import tg.a2;
 public final class w0 implements e0 {
-    public final j2.g f58520a;
-    public final u5.e f58521b;
-    public final ly0 f58522c;
-    public final pb.b d;
-    public final int f58523e;
+    public final j2.g f59703a;
+    public final a2 f59704b;
+    public final ld0 f59705c;
+    public final qb.a d;
+    public final int f59706e;
 
     public w0(j2.g gVar, f3.m mVar) {
-        u5.e eVar = new u5.e(mVar, 10);
-        ly0 ly0Var = new ly0(6);
-        pb.b bVar = new pb.b(4);
-        this.f58520a = gVar;
-        this.f58521b = eVar;
-        this.f58522c = ly0Var;
-        this.d = bVar;
-        this.f58523e = 1048576;
+        a2 a2Var = new a2(mVar, 14);
+        ld0 ld0Var = new ld0(7);
+        qb.a aVar = new qb.a(4);
+        this.f59703a = gVar;
+        this.f59704b = a2Var;
+        this.f59705c = ld0Var;
+        this.d = aVar;
+        this.f59706e = 1048576;
     }
 
     @Override
     public final x0 b(e2.l0 l0Var) {
-        l0Var.f10355b.getClass();
-        return new x0(l0Var, this.f58520a, this.f58521b, this.f58522c.t(l0Var), this.d, this.f58523e, null);
+        l0Var.f10186b.getClass();
+        return new x0(l0Var, this.f59703a, this.f59704b, this.f59705c.s(l0Var), this.d, this.f59706e, null);
     }
 
     @Override
-    public final e0 a(w7.s sVar) {
+    public final e0 a(nb.a aVar) {
         return this;
     }
 
     @Override
-    public final e0 c(boolean z9) {
+    public final e0 c(boolean z10) {
         return this;
     }
 

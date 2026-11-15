@@ -1,9 +1,9 @@
 package n5;
 public final class r extends d0 {
-    public final q f20472a;
+    public final q f21036a;
 
     public r(q qVar) {
-        this.f20472a = qVar;
+        this.f21036a = qVar;
     }
 
     public final boolean equals(Object obj) {
@@ -11,16 +11,16 @@ public final class r extends d0 {
             return true;
         }
         if (obj instanceof d0) {
-            return this.f20472a.equals(((r) ((d0) obj)).f20472a);
+            return this.f21036a.equals(((r) ((d0) obj)).f21036a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f20472a.hashCode() ^ 1000003;
+        return this.f21036a.hashCode() ^ 1000003;
     }
 
     public final String toString() {
-        return "ExternalPrivacyContext{prequest=" + this.f20472a + "}";
+        return "ExternalPrivacyContext{prequest=" + this.f21036a + "}";
     }
 }

@@ -1,19 +1,26 @@
 package org.telegram.ui;
 public final class n81 implements Runnable {
-    public final int f48159a;
-    public final o81 f48160b;
-    public final String f48161c;
-    public final int d;
+    public final int f49523a;
+    public final s81 f49524b;
 
-    public n81(o81 o81Var, String str, int i7, int i10) {
-        this.f48159a = i10;
-        this.f48160b = o81Var;
-        this.f48161c = str;
-        this.d = i7;
+    public n81(s81 s81Var, int i7) {
+        this.f49523a = i7;
+        this.f49524b = s81Var;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.n81.run():void");
+        switch (this.f49523a) {
+            case 0:
+                s81 s81Var = this.f49524b;
+                s81Var.getClass();
+                new ug.x0((org.telegram.ui.ActionBar.e2) s81Var, 11, false).show();
+                return;
+            default:
+                s81 s81Var2 = this.f49524b;
+                s81Var2.f51153e.requestFocus();
+                org.telegram.messenger.g0.J3(s81Var2.f51153e);
+                return;
+        }
     }
 }

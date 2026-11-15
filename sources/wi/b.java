@@ -1,42 +1,56 @@
 package wi;
 
-import android.os.Handler;
-import j$.util.Objects;
-import org.telegram.ui.Components.qt;
+import android.widget.ImageView;
+import org.telegram.messenger.g0;
 public final class b implements Runnable {
-    public final int f57933a;
-    public final k f57934b;
-    public final m0 f57935c;
-    public final long d;
+    public final int f59368a;
+    public final h f59369b;
 
-    public b(k kVar, m0 m0Var, long j3, int i7) {
-        this.f57933a = i7;
-        this.f57934b = kVar;
-        this.f57935c = m0Var;
-        this.d = j3;
+    public b(h hVar, int i7) {
+        this.f59368a = i7;
+        this.f59369b = hVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f57933a) {
+        switch (this.f59368a) {
             case 0:
-                k kVar = this.f57934b;
-                kVar.f58021c.post(new b(kVar, this.f57935c, this.d, 1));
-                return;
-            default:
-                k kVar2 = this.f57934b;
-                m0 m0Var = this.f57935c;
-                long j3 = this.d;
-                if (kVar2.U && kVar2.F == m0Var) {
-                    o oVar = kVar2.f58040j;
-                    oVar.b("camera switch first preview frame: path=DUAL_ACTIVE, totalElapsedMs=" + k.z(j3));
-                    t0 t0Var = (t0) kVar2.f58043k.f37395b;
-                    Handler handler = t0Var.f58213i;
-                    qt qtVar = t0Var.d;
-                    Objects.requireNonNull(qtVar);
-                    handler.post(new wg.a0(qtVar, 1));
+                h hVar = this.f59369b;
+                ImageView imageView = hVar.f59390l;
+                if (imageView != null) {
+                    imageView.setVisibility(8);
+                    hVar.f59390l.setImageDrawable(null);
                     return;
                 }
+                return;
+            case 1:
+                h hVar2 = this.f59369b;
+                if (hVar2.b() && hVar2.c()) {
+                    boolean z10 = false;
+                    float f10 = hVar2.M[0];
+                    if (f10 >= hVar2.f59401x * 0.5f) {
+                        z10 = true;
+                    }
+                    if (hVar2.f59382b.X(z10, f10, hVar2.G) && !hVar2.f59399u) {
+                        hVar2.f59399u = true;
+                        hVar2.o(true);
+                        if (!hVar2.f59400w) {
+                            hVar2.f59400w = true;
+                            g0.i3(hVar2.P, 1500L);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 2:
+                g0.h3(new b(this.f59369b, 0));
+                return;
+            default:
+                h hVar3 = this.f59369b;
+                hVar3.getClass();
+                g0.h3(new b(hVar3, 0));
                 return;
         }
     }

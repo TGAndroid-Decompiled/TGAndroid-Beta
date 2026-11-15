@@ -1,22 +1,10 @@
 package org.telegram.ui.Components;
-public final class sw0 implements db0, fb0 {
-    public final uw0 f38096a;
+public final class sw0 {
+    public final oy0 f39443a;
+    public final oy0 f39444b;
 
-    @Override
-    public String h(int i7) {
-        return this.f38096a.f38766n[i7];
-    }
-
-    @Override
-    public void n(hb0 hb0Var, int i7) {
-        uw0 uw0Var = this.f38096a;
-        uw0Var.b();
-        org.telegram.messenger.iz.f23437r1 = i7;
-        org.telegram.messenger.t0.f25570b.getSharedPreferences("mainconfig", 0).edit().putInt("ChatSwipeAction", org.telegram.messenger.iz.f23437r1).apply();
-        uw0Var.invalidate();
-        try {
-            hb0Var.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
-        }
+    public sw0(oy0 oy0Var, oy0 oy0Var2) {
+        this.f39443a = oy0Var;
+        this.f39444b = oy0Var2;
     }
 }

@@ -1,69 +1,270 @@
 package org.telegram.ui;
 
 import android.graphics.RectF;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class eu0 implements Runnable {
-    public final int f45446a;
-    public final ProfileActivity f45447b;
-    public final TLRPC.TL_error f45448c;
-    public final TLObject d;
-    public final TLRPC.TL_channels_getParticipants f45449e;
+import org.telegram.tgnet.tl.TL_account;
+public final class eu0 implements RequestDelegate {
+    public final int f46923a;
+    public final ProfileActivity f46924b;
 
-    public eu0(ProfileActivity profileActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_getParticipants tL_channels_getParticipants, int i7) {
-        this.f45446a = i7;
-        this.f45447b = profileActivity;
-        this.f45448c = tL_error;
-        this.d = tLObject;
-        this.f45449e = tL_channels_getParticipants;
+    public eu0(ProfileActivity profileActivity, int i7) {
+        this.f46923a = i7;
+        this.f46924b = profileActivity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f45446a) {
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        int i7 = this.f46923a;
+        final ProfileActivity profileActivity = this.f46924b;
+        switch (i7) {
             case 0:
-                RectF rectF = ProfileActivity.V6;
-                ProfileActivity profileActivity = this.f45447b;
-                profileActivity.getNotificationCenter().d(new eu0(profileActivity, this.f45448c, this.d, this.f45449e, 1));
-                return;
-            default:
-                ProfileActivity profileActivity2 = this.f45447b;
-                if (this.f45448c == null) {
-                    RectF rectF2 = ProfileActivity.V6;
-                    TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) this.d;
-                    profileActivity2.getMessagesController().Y3(tL_channels_channelParticipants.users, false);
-                    profileActivity2.getMessagesController().S3(tL_channels_channelParticipants.chats, false);
-                    if (tL_channels_channelParticipants.users.size() < 200) {
-                        profileActivity2.C1 = true;
-                    }
-                    if (this.f45449e.offset == 0) {
-                        profileActivity2.B1.b();
-                        profileActivity2.f41825t2.participants = new TLRPC.TL_chatParticipants();
-                        profileActivity2.getMessagesStorage().m1(tL_channels_channelParticipants.users, tL_channels_channelParticipants.chats, true, true);
-                        org.telegram.messenger.yr messagesStorage = profileActivity2.getMessagesStorage();
-                        messagesStorage.f26723a.c(new org.telegram.messenger.lr(messagesStorage, profileActivity2.f41721e1, tL_channels_channelParticipants.participants, 2));
-                    }
-                    for (int i7 = 0; i7 < tL_channels_channelParticipants.participants.size(); i7++) {
-                        TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
-                        TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i7);
-                        tL_chatChannelParticipant.channelParticipant = channelParticipant;
-                        tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
-                        long B1 = org.telegram.messenger.ij.B1(channelParticipant.peer);
-                        tL_chatChannelParticipant.user_id = B1;
-                        tL_chatChannelParticipant.date = tL_chatChannelParticipant.channelParticipant.date;
-                        if (profileActivity2.B1.h(B1) < 0) {
-                            TLRPC.ChatFull chatFull = profileActivity2.f41825t2;
-                            if (chatFull.participants == null) {
-                                chatFull.participants = new TLRPC.TL_chatParticipants();
-                            }
-                            profileActivity2.f41825t2.participants.participants.add(tL_chatChannelParticipant);
-                            profileActivity2.B1.k(tL_chatChannelParticipant, tL_chatChannelParticipant.user_id);
+                RectF rectF = ProfileActivity.X6;
+                org.telegram.messenger.g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i10 = r4;
+                        TLObject tLObject2 = tLObject;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        ProfileActivity profileActivity2 = profileActivity;
+                        switch (i10) {
+                            case 0:
+                                RectF rectF2 = ProfileActivity.X6;
+                                if (tL_error2 != null) {
+                                    org.telegram.ui.Components.cc.d0(tL_error2);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
+                                    org.telegram.messenger.k5.o(null, 2131743879, org.telegram.ui.Components.cc.a0(profileActivity2), null);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            case 1:
+                                RectF rectF3 = ProfileActivity.X6;
+                                if (tL_error2 != null) {
+                                    org.telegram.ui.Components.cc.d0(tL_error2);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
+                                    org.telegram.messenger.k5.o(null, 2131743879, org.telegram.ui.Components.cc.a0(profileActivity2), null);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            case 2:
+                                RectF rectF4 = ProfileActivity.X6;
+                                if (tL_error2 != null) {
+                                    org.telegram.ui.Components.cc.d0(tL_error2);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
+                                    org.telegram.messenger.k5.o(null, 2131743879, org.telegram.ui.Components.cc.a0(profileActivity2), null);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            default:
+                                RectF rectF5 = ProfileActivity.X6;
+                                if (tL_error2 != null) {
+                                    org.telegram.ui.Components.cc.d0(tL_error2);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
+                                    org.telegram.messenger.k5.o(null, 2131743879, org.telegram.ui.Components.cc.a0(profileActivity2), null);
+                                    return;
+                                } else {
+                                    return;
+                                }
                         }
                     }
+                });
+                return;
+            case 1:
+                RectF rectF2 = ProfileActivity.X6;
+                org.telegram.messenger.g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i10 = r4;
+                        TLObject tLObject2 = tLObject;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        ProfileActivity profileActivity2 = profileActivity;
+                        switch (i10) {
+                            case 0:
+                                RectF rectF22 = ProfileActivity.X6;
+                                if (tL_error2 != null) {
+                                    org.telegram.ui.Components.cc.d0(tL_error2);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
+                                    org.telegram.messenger.k5.o(null, 2131743879, org.telegram.ui.Components.cc.a0(profileActivity2), null);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            case 1:
+                                RectF rectF3 = ProfileActivity.X6;
+                                if (tL_error2 != null) {
+                                    org.telegram.ui.Components.cc.d0(tL_error2);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
+                                    org.telegram.messenger.k5.o(null, 2131743879, org.telegram.ui.Components.cc.a0(profileActivity2), null);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            case 2:
+                                RectF rectF4 = ProfileActivity.X6;
+                                if (tL_error2 != null) {
+                                    org.telegram.ui.Components.cc.d0(tL_error2);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
+                                    org.telegram.messenger.k5.o(null, 2131743879, org.telegram.ui.Components.cc.a0(profileActivity2), null);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            default:
+                                RectF rectF5 = ProfileActivity.X6;
+                                if (tL_error2 != null) {
+                                    org.telegram.ui.Components.cc.d0(tL_error2);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
+                                    org.telegram.messenger.k5.o(null, 2131743879, org.telegram.ui.Components.cc.a0(profileActivity2), null);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                        }
+                    }
+                });
+                return;
+            case 2:
+                RectF rectF3 = ProfileActivity.X6;
+                org.telegram.messenger.g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i10 = r4;
+                        TLObject tLObject2 = tLObject;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        ProfileActivity profileActivity2 = profileActivity;
+                        switch (i10) {
+                            case 0:
+                                RectF rectF22 = ProfileActivity.X6;
+                                if (tL_error2 != null) {
+                                    org.telegram.ui.Components.cc.d0(tL_error2);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
+                                    org.telegram.messenger.k5.o(null, 2131743879, org.telegram.ui.Components.cc.a0(profileActivity2), null);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            case 1:
+                                RectF rectF32 = ProfileActivity.X6;
+                                if (tL_error2 != null) {
+                                    org.telegram.ui.Components.cc.d0(tL_error2);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
+                                    org.telegram.messenger.k5.o(null, 2131743879, org.telegram.ui.Components.cc.a0(profileActivity2), null);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            case 2:
+                                RectF rectF4 = ProfileActivity.X6;
+                                if (tL_error2 != null) {
+                                    org.telegram.ui.Components.cc.d0(tL_error2);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
+                                    org.telegram.messenger.k5.o(null, 2131743879, org.telegram.ui.Components.cc.a0(profileActivity2), null);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            default:
+                                RectF rectF5 = ProfileActivity.X6;
+                                if (tL_error2 != null) {
+                                    org.telegram.ui.Components.cc.d0(tL_error2);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
+                                    org.telegram.messenger.k5.o(null, 2131743879, org.telegram.ui.Components.cc.a0(profileActivity2), null);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                        }
+                    }
+                });
+                return;
+            case 3:
+                RectF rectF4 = ProfileActivity.X6;
+                org.telegram.messenger.g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i10 = r4;
+                        TLObject tLObject2 = tLObject;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        ProfileActivity profileActivity2 = profileActivity;
+                        switch (i10) {
+                            case 0:
+                                RectF rectF22 = ProfileActivity.X6;
+                                if (tL_error2 != null) {
+                                    org.telegram.ui.Components.cc.d0(tL_error2);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
+                                    org.telegram.messenger.k5.o(null, 2131743879, org.telegram.ui.Components.cc.a0(profileActivity2), null);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            case 1:
+                                RectF rectF32 = ProfileActivity.X6;
+                                if (tL_error2 != null) {
+                                    org.telegram.ui.Components.cc.d0(tL_error2);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
+                                    org.telegram.messenger.k5.o(null, 2131743879, org.telegram.ui.Components.cc.a0(profileActivity2), null);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            case 2:
+                                RectF rectF42 = ProfileActivity.X6;
+                                if (tL_error2 != null) {
+                                    org.telegram.ui.Components.cc.d0(tL_error2);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
+                                    org.telegram.messenger.k5.o(null, 2131743879, org.telegram.ui.Components.cc.a0(profileActivity2), null);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            default:
+                                RectF rectF5 = ProfileActivity.X6;
+                                if (tL_error2 != null) {
+                                    org.telegram.ui.Components.cc.d0(tL_error2);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
+                                    org.telegram.messenger.k5.o(null, 2131743879, org.telegram.ui.Components.cc.a0(profileActivity2), null);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                        }
+                    }
+                });
+                return;
+            case 4:
+                RectF rectF5 = ProfileActivity.X6;
+                if (tLObject != null) {
+                    org.telegram.messenger.g0.h3(new mp0(18, profileActivity, tLObject));
+                    return;
                 }
-                profileActivity2.A1 = false;
-                profileActivity2.W4();
-                profileActivity2.G5(true, false);
+                return;
+            default:
+                if (tLObject instanceof TL_account.TL_password) {
+                    profileActivity.I2 = (TL_account.TL_password) tLObject;
+                    return;
+                }
+                RectF rectF6 = ProfileActivity.X6;
+                profileActivity.getClass();
                 return;
         }
     }

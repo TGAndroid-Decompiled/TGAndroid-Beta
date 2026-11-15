@@ -1,88 +1,89 @@
 package org.telegram.ui;
 
-import android.app.Dialog;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class ya1 implements Runnable {
-    public final int f51985a;
-    public final cb1 f51986b;
-    public final TLRPC.TL_error f51987c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.WeakHashMap;
+public final class ya1 extends ViewGroup {
+    public final Paint f53481a;
+    public View f53482b;
+    public boolean f53483c;
 
-    public ya1(cb1 cb1Var, TLRPC.TL_error tL_error, int i7) {
-        this.f51985a = i7;
-        this.f51986b = cb1Var;
-        this.f51987c = tL_error;
+    public ya1(Context context) {
+        super(context);
+        this.f53481a = new Paint(1);
+        setClipToPadding(false);
+    }
+
+    public final boolean a() {
+        View view = this.f53482b;
+        if (view != null && view.getVisibility() == 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void run() {
-        String G;
-        String G2;
-        int i7 = this.f51985a;
-        TLRPC.TL_error tL_error = this.f51987c;
-        cb1 cb1Var = this.f51986b;
-        switch (i7) {
-            case 0:
-                cb1Var.B0();
-                if (tL_error == null) {
-                    cb1Var.getMessagesController().k4(0L, "VALIDATE_PASSWORD");
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(cb1Var.getParentActivity());
-                    alertDialog$Builder.k(org.telegram.messenger.id.M0(2131747831, null), new ua1(cb1Var, 3));
-                    String M0 = org.telegram.messenger.id.M0(2131747436, null);
-                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27300a;
-                    u1Var.T = M0;
-                    u1Var.R = org.telegram.messenger.id.M0(2131743931, null);
-                    Dialog showDialog = cb1Var.showDialog(u1Var);
-                    if (showDialog != null) {
-                        showDialog.setCanceledOnTouchOutside(false);
-                        showDialog.setCancelable(false);
-                        return;
-                    }
-                    return;
-                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
-                    int intValue = Utilities.z(tL_error.text).intValue();
-                    if (intValue < 60) {
-                        G = org.telegram.messenger.id.G(intValue, "Seconds", new Object[0]);
-                    } else {
-                        G = org.telegram.messenger.id.G(intValue / 60, "Minutes", new Object[0]);
-                    }
-                    cb1Var.L0(org.telegram.messenger.id.M0(2131743931, null), org.telegram.messenger.id.a0("FloodWaitTime", null, 2131750686, G));
-                    return;
-                } else {
-                    cb1Var.L0(org.telegram.messenger.id.M0(2131743931, null), tL_error.text);
-                    return;
-                }
-            case 1:
-                cb1Var.B0();
-                if (tL_error == null) {
-                    if (cb1Var.getParentActivity() != null) {
-                        cb1Var.z0(new ta1(cb1Var, 5));
-                        return;
-                    }
-                    return;
-                } else if (tL_error.text.startsWith("CODE_INVALID")) {
-                    cb1Var.D0();
-                    return;
-                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
-                    int intValue2 = Utilities.z(tL_error.text).intValue();
-                    if (intValue2 < 60) {
-                        G2 = org.telegram.messenger.id.G(intValue2, "Seconds", new Object[0]);
-                    } else {
-                        G2 = org.telegram.messenger.id.G(intValue2 / 60, "Minutes", new Object[0]);
-                    }
-                    cb1Var.L0(org.telegram.messenger.id.M0(2131689472, null), org.telegram.messenger.id.a0("FloodWaitTime", null, 2131750686, G2));
-                    return;
-                } else {
-                    cb1Var.L0(org.telegram.messenger.id.M0(2131689472, null), tL_error.text);
-                    return;
-                }
-            case 2:
-                cb1.j0(cb1Var, tL_error);
-                return;
-            default:
-                cb1.e0(cb1Var, tL_error);
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        int paddingBottom = getPaddingBottom();
+        float T1 = org.telegram.messenger.g0.T1(0.1f, 0.75f, org.telegram.messenger.g0.R0(paddingBottom));
+        int x02 = org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Fi, false);
+        int k10 = i0.a.k(org.telegram.ui.ActionBar.j6.r1(T1, org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28849d6, false)), x02);
+        Paint paint = this.f53481a;
+        paint.setColor(x02);
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - paddingBottom, paint);
+        paint.setColor(k10);
+        canvas.drawRect(0.0f, getMeasuredHeight() - paddingBottom, getMeasuredWidth(), getMeasuredHeight(), paint);
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        int childCount = getChildCount();
+        for (int i13 = 0; i13 < childCount; i13++) {
+            View childAt = getChildAt(i13);
+            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        int i11;
+        boolean a10 = a();
+        int size = View.MeasureSpec.getSize(i7);
+        if (a10) {
+            i11 = getPaddingBottom() + org.telegram.messenger.g0.L(44.0f);
+        } else {
+            i11 = 0;
+        }
+        setMeasuredDimension(size, i11);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(i11, 1073741824);
+        int childCount = getChildCount();
+        for (int i12 = 0; i12 < childCount; i12++) {
+            getChildAt(i12).measure(makeMeasureSpec, makeMeasureSpec2);
+        }
+        if (this.f53483c != a10) {
+            this.f53483c = a10;
+            WeakHashMap weakHashMap = r0.i0.f55671a;
+            r0.y.c(this);
+        }
+    }
+
+    @Override
+    public final void onViewAdded(View view) {
+        super.onViewAdded(view);
+        this.f53482b = view;
+    }
+
+    @Override
+    public final void setPadding(int i7, int i10, int i11, int i12) {
+        super.setPadding(i7, i10, i11, i12);
+        int childCount = getChildCount();
+        for (int i13 = 0; i13 < childCount; i13++) {
+            getChildAt(i13).setPadding(i7, i10, i11, i12);
         }
     }
 }

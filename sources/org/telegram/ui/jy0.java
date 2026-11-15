@@ -1,41 +1,28 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class jy0 implements Runnable {
-    public final int f47104a;
-    public final org.telegram.messenger.video.a f47105b;
-    public final org.telegram.ui.Components.gc f47106c;
-    public final Context d;
-    public final di.i0 f47107e;
+import android.text.Editable;
+import android.text.TextUtils;
+public final class jy0 extends org.telegram.ui.Cells.k3 {
+    public final ly0 F;
 
-    public jy0(org.telegram.messenger.video.a aVar, org.telegram.ui.Components.gc gcVar, Context context, di.i0 i0Var, int i7) {
-        this.f47104a = i7;
-        this.f47105b = aVar;
-        this.f47106c = gcVar;
-        this.d = context;
-        this.f47107e = i0Var;
+    public jy0(ly0 ly0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, "", true, false, 1024, e6Var);
+        this.F = ly0Var;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f47104a;
-        di.i0 i0Var = this.f47107e;
-        Context context = this.d;
-        org.telegram.ui.Components.gc gcVar = this.f47106c;
-        org.telegram.messenger.video.a aVar = this.f47105b;
-        switch (i7) {
-            case 0:
-                aVar.run();
-                gcVar.c(org.telegram.messenger.g0.S2(org.telegram.messenger.id.M0(2131754487, null), -1, 2, new eu(context, 2), i0Var)).j();
-                return;
-            case 1:
-                aVar.run();
-                gcVar.c(org.telegram.messenger.g0.S2(org.telegram.messenger.id.M0(2131754487, null), -1, 2, new eu(context, 5), i0Var)).j();
-                return;
-            default:
-                aVar.run();
-                gcVar.c(org.telegram.messenger.g0.S2(org.telegram.messenger.id.M0(2131754487, null), -1, 2, new eu(context, 6), i0Var)).j();
-                return;
+    public final void b(Editable editable) {
+        boolean z10;
+        ly0 ly0Var = this.F;
+        hi.d dVar = ly0Var.f49068s;
+        if (dVar != null) {
+            if (!ly0Var.d.optional && TextUtils.isEmpty(ly0Var.f49066n.getText())) {
+                z10 = false;
+            } else {
+                z10 = true;
+            }
+            dVar.setEnabled(z10);
         }
     }
 }

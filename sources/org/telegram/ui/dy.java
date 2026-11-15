@@ -1,26 +1,27 @@
 package org.telegram.ui;
 
+import android.content.DialogInterface;
 import org.telegram.ui.Components.EditTextBoldCursor;
-public final class dy implements org.telegram.ui.ActionBar.r1 {
-    public final int f45068a;
-    public final EditTextBoldCursor f45069b;
+public final class dy implements DialogInterface.OnDismissListener {
+    public final int f46501a;
+    public final EditTextBoldCursor f46502b;
 
     public dy(EditTextBoldCursor editTextBoldCursor, int i7) {
-        this.f45068a = i7;
-        this.f45069b = editTextBoldCursor;
+        this.f46501a = i7;
+        this.f46502b = editTextBoldCursor;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f45068a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f46501a) {
             case 0:
-                org.telegram.messenger.g0.v1(this.f45069b);
+                org.telegram.messenger.g0.v1(this.f46502b);
                 return;
             case 1:
-                org.telegram.messenger.g0.v1(this.f45069b);
+                org.telegram.messenger.g0.v1(this.f46502b);
                 return;
             default:
-                org.telegram.messenger.g0.v1(this.f45069b);
+                org.telegram.messenger.g0.v1(this.f46502b);
                 return;
         }
     }

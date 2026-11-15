@@ -1,59 +1,36 @@
 package fi;
 
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class n4 implements View.OnTouchListener {
-    public final int f12481a;
-    public final FrameLayout f12482b;
+import android.content.Context;
+import android.text.TextUtils;
+import org.telegram.ui.Components.jl0;
+public final class n4 extends jl0 {
+    public di.s2 f12075f;
+    public final c5 h;
 
-    public n4(int i7, FrameLayout frameLayout) {
-        this.f12481a = i7;
-        this.f12482b = frameLayout;
+    public n4(c5 c5Var, Context context, b bVar) {
+        super(context, 13.0f, bVar);
+        this.h = c5Var;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.g1 g1Var;
-        org.telegram.ui.ActionBar.g1 g1Var2;
-        org.telegram.ui.ActionBar.g1 g1Var3;
-        switch (this.f12481a) {
-            case 0:
-                o5 o5Var = (o5) this.f12482b;
-                o5Var.getClass();
-                if (motionEvent.getActionMasked() == 0 && (g1Var = o5Var.f12544q1) != null && g1Var.isShowing()) {
-                    view.getHitRect(o5Var.f12548s1);
-                    if (!o5Var.f12548s1.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        o5Var.f12544q1.d(true);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            case 1:
-                org.telegram.ui.ActionBar.r0 r0Var = (org.telegram.ui.ActionBar.r0) this.f12482b;
-                r0Var.getClass();
-                if (motionEvent.getActionMasked() == 0 && (g1Var2 = r0Var.d) != null && g1Var2.isShowing()) {
-                    view.getHitRect(r0Var.I);
-                    if (!r0Var.I.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        r0Var.d.d(true);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            default:
-                tg.g0 g0Var = (tg.g0) this.f12482b;
-                g0Var.getClass();
-                if (motionEvent.getActionMasked() == 0 && (g1Var3 = g0Var.A1) != null && g1Var3.isShowing()) {
-                    view.getHitRect(g0Var.C1);
-                    if (!g0Var.C1.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        g0Var.A1.d(true);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
+    public final void a(String str) {
+        di.s2 s2Var = this.f12075f;
+        if (s2Var != null) {
+            org.telegram.messenger.g0.r(s2Var);
+        }
+        this.f12075f = new di.s2(26, this, str);
+        if (!TextUtils.isEmpty(str)) {
+            org.telegram.messenger.g0.i3(this.f12075f, 300L);
+        } else {
+            this.f12075f.run();
+        }
+        if (this.f12075f != null) {
+            c5 c5Var = this.h;
+            if (!c5Var.R) {
+                c5Var.R = true;
+                c5Var.f11606x.E();
+                c5Var.f11607y.h1(0, -c5Var.f11603r.getPaddingTop());
+            }
         }
     }
 }

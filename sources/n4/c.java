@@ -1,21 +1,20 @@
 package n4;
 
-import f3.j0;
+import f3.i0;
 import f3.o;
 import f3.p;
 import f3.q;
 import h9.g0;
-import h9.i0;
-import h9.t1;
+import h9.s1;
 import java.util.List;
 public final class c implements o {
-    public q f20395a;
-    public j0 f20396b;
-    public int f20397c;
+    public q f20959a;
+    public i0 f20960b;
+    public int f20961c;
     public long d;
-    public b f20398e;
-    public int f20399f;
-    public long f20400g;
+    public b f20962e;
+    public int f20963f;
+    public long f20964g;
 
     @Override
     public final boolean b(p pVar) {
@@ -24,9 +23,9 @@ public final class c implements o {
 
     @Override
     public final void c(q qVar) {
-        this.f20395a = qVar;
-        this.f20396b = qVar.O1(0, 1);
-        qVar.U0();
+        this.f20959a = qVar;
+        this.f20960b = qVar.d2(0, 1);
+        qVar.d1();
     }
 
     @Override
@@ -37,8 +36,8 @@ public final class c implements o {
         } else {
             i7 = 4;
         }
-        this.f20397c = i7;
-        b bVar = this.f20398e;
+        this.f20961c = i7;
+        b bVar = this.f20962e;
         if (bVar != null) {
             bVar.b(j10);
         }
@@ -46,8 +45,8 @@ public final class c implements o {
 
     @Override
     public final List e() {
-        g0 g0Var = i0.f14331b;
-        return t1.f14399e;
+        g0 g0Var = h9.i0.f13686b;
+        return s1.f13749e;
     }
 
     @Override

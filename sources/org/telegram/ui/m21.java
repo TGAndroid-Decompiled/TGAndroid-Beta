@@ -1,25 +1,24 @@
 package org.telegram.ui;
+public final class m21 implements Runnable {
+    public final int f49093a;
+    public final SessionsActivity f49094b;
+    public final boolean f49095c;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.Switch;
-public final class m21 implements View.OnClickListener {
-    public final org.telegram.ui.Components.dg f47780a;
-    public final TLRPC.TL_authorization f47781b;
-    public final o21 f47782c;
-
-    public m21(o21 o21Var, org.telegram.ui.Components.dg dgVar, TLRPC.TL_authorization tL_authorization) {
-        this.f47782c = o21Var;
-        this.f47780a = dgVar;
-        this.f47781b = tL_authorization;
+    public m21(SessionsActivity sessionsActivity, boolean z10, int i7) {
+        this.f49093a = i7;
+        this.f49094b = sessionsActivity;
+        this.f49095c = z10;
     }
 
     @Override
-    public final void onClick(View view) {
-        org.telegram.ui.Components.dg dgVar = this.f47780a;
-        Switch r02 = (Switch) dgVar.f32967f;
-        r02.c(!r02.h, true);
-        this.f47781b.call_requests_disabled = !((Switch) dgVar.f32967f).h;
-        o21.J0(this.f47782c);
+    public final void run() {
+        switch (this.f49093a) {
+            case 0:
+                this.f49094b.p0(this.f49095c);
+                return;
+            default:
+                this.f49094b.p0(this.f49095c);
+                return;
+        }
     }
 }

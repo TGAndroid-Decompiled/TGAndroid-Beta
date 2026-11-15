@@ -1,60 +1,54 @@
 package org.telegram.ui.Components;
 
-import android.util.SparseIntArray;
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-public final class ei implements org.telegram.messenger.d20 {
-    public final int f33266a;
-    public final Object f33267b;
+import android.content.Context;
+import android.widget.TextView;
+public final class ei extends fi {
+    public int f34322b;
+    public final ki f34323c;
 
-    public ei(Object obj, int i7) {
-        this.f33266a = i7;
-        this.f33267b = obj;
+    public ei(ki kiVar, Context context) {
+        super(context);
+        this.f34323c = kiVar;
+        setWillNotDraw(false);
+        setFocusable(true);
+        int i7 = ki.I4;
+        org.telegram.ui.ActionBar.e6 e6Var = kiVar.J0;
+        qh.b bVar = new qh.b(context);
+        bVar.d = e6Var;
+        bVar.R = true;
+        TextView textView = bVar.f55582a;
+        textView.setTextSize(1, 11.0f);
+        textView.setPadding(org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f), 0);
+        bVar.b(false);
+        bVar.f55583b.setLayoutParams(c8.ja.d(24, 24.0f, 49, 0.0f, 4.0f, 0.0f, 0.0f));
+        bVar.f55591x = org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Tl, e6Var);
+        bVar.f55589s = org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Rl, e6Var);
+        bVar.f55590w = org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Sl, e6Var);
+        bVar.a();
+        this.f34612a = bVar;
+        addView(bVar, c8.ja.c(-1.0f, -1));
+    }
+
+    public final void a(int i7, String str, qh.a aVar) {
+        this.f34612a.setText(str);
+        this.f34612a.setTabAnimation(aVar);
+        this.f34322b = i7;
     }
 
     @Override
-    public final Object a(Object obj) {
-        int i7;
-        int i10 = this.f33266a;
-        boolean z9 = true;
-        Object obj2 = this.f33267b;
-        switch (i10) {
-            case 0:
-                return Boolean.valueOf(mi.O((mi) obj2, (org.telegram.messenger.ij) obj));
-            case 1:
-                th.f fVar = (th.f) obj2;
-                View view = (View) obj;
-                ImageReceiver imageReceiver = new ImageReceiver(view);
-                int i11 = org.telegram.ui.ActionBar.m6.Dc;
-                if (org.telegram.ui.ActionBar.m6.I.q()) {
-                    i7 = 3;
-                } else {
-                    i7 = 6;
-                }
-                org.telegram.messenger.rz c10 = org.telegram.messenger.t5.c(i7 * 0.12f, i11);
-                c10.f25400t = true;
-                c10.f25393m = org.telegram.ui.ActionBar.m6.f27917ef;
-                imageReceiver.s0(org.telegram.messenger.hc.p(org.telegram.messenger.m20.b(fVar.f56071b.geo, 300, 168, 15, Math.min(2, (int) Math.ceil(org.telegram.messenger.g0.f22566p)))), null, null, null, new np(c10), null, 0);
-                view.addOnAttachStateChangeListener(new org.telegram.ui.Cells.l8(imageReceiver, 1));
-                imageReceiver.J0(org.telegram.messenger.g0.L(14.0f));
-                return new nc(4, imageReceiver, view.getContext().getResources().getDrawable(2131231646).mutate());
-            case 2:
-                int i12 = ((SparseIntArray) obj2).get(((Integer) obj).intValue(), -1);
-                if (i12 == -1) {
-                    return Boolean.TRUE;
-                }
-                if (i12 != 1) {
-                    z9 = false;
-                }
-                return Boolean.valueOf(z9);
-            default:
-                r41 r41Var = (r41) obj2;
-                View view2 = (View) obj;
-                r41Var.getClass();
-                if (view2.getParent() != r41Var) {
-                    return Boolean.FALSE;
-                }
-                return Boolean.valueOf(!m41.K(r41Var.T(view2).f57056f));
+    public final boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        boolean z10;
+        super.onAttachedToWindow();
+        if (this.f34322b == this.f34323c.U2) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        this.f34612a.f(z10, false);
     }
 }

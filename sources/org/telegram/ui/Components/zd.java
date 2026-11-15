@@ -1,35 +1,127 @@
 package org.telegram.ui.Components;
-public final class zd implements s4 {
-    public final int f40917a;
-    public final ChatActivityEnterView f40918b;
 
-    public zd(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f40917a = i7;
-        this.f40918b = chatActivityEnterView;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.widget.ImageView;
+public final class zd extends ImageView {
+    public final int f42340a;
+    public final ChatActivityEnterView f42341b;
+
+    public zd(ChatActivityEnterView chatActivityEnterView, Context context, int i7) {
+        super(context);
+        this.f42340a = i7;
+        this.f42341b = chatActivityEnterView;
     }
 
     @Override
-    public final void L(int i7, int i10, boolean z9) {
-        switch (this.f40917a) {
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.f42340a) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f40918b;
-                boolean T0 = chatActivityEnterView.T0(z9, i7, i10, 0L, true);
-                te teVar = chatActivityEnterView.L0;
-                if (teVar != null) {
-                    teVar.g(!T0);
-                    chatActivityEnterView.L0 = null;
+                if (getAlpha() >= 0.5f && this.f42341b.f32274r1 <= 0.0f) {
+                    return super.dispatchTouchEvent(motionEvent);
+                }
+                return false;
+            default:
+                return super.dispatchTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        switch (this.f42340a) {
+            case 0:
+                ChatActivityEnterView chatActivityEnterView = this.f42341b;
+                float f10 = chatActivityEnterView.f32274r1;
+                if (f10 < 1.0f) {
+                    if (f10 > 0.0f) {
+                        int saveLayerAlpha = canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - chatActivityEnterView.f32274r1) * 255.0f));
+                        super.draw(canvas);
+                        canvas.restoreToCount(saveLayerAlpha);
+                        return;
+                    }
+                    super.draw(canvas);
                     return;
                 }
                 return;
             default:
-                ChatActivityEnterView chatActivityEnterView2 = this.f40918b;
-                chatActivityEnterView2.T0(z9, i7, i10, 0L, true);
-                te teVar2 = chatActivityEnterView2.L0;
-                if (teVar2 != null) {
-                    teVar2.h();
-                    chatActivityEnterView2.L0 = null;
+                super.draw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        switch (this.f42340a) {
+            case 1:
+                super.onLayout(z10, i7, i10, i11, i12);
+                post(new nd(this.f42341b, 10));
+                return;
+            default:
+                super.onLayout(z10, i7, i10, i11, i12);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f42340a) {
+            case 3:
+                if (getAlpha() <= 0.0f) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void setAlpha(float f10) {
+        switch (this.f42340a) {
+            case 1:
+                super.setAlpha(f10);
+                je jeVar = this.f42341b.f32275r2;
+                if (jeVar != null) {
+                    jeVar.setTranslationX(jeVar.f35968a);
                     return;
                 }
+                return;
+            case 2:
+                super.setAlpha(f10);
+                je jeVar2 = this.f42341b.f32275r2;
+                if (jeVar2 != null) {
+                    jeVar2.setTranslationX(jeVar2.f35968a);
+                    return;
+                }
+                return;
+            case 3:
+                super.setAlpha(f10);
+                ee eeVar = this.f42341b.f32155a1;
+                if (eeVar != null) {
+                    eeVar.invalidate();
+                    return;
+                }
+                return;
+            default:
+                super.setAlpha(f10);
+                return;
+        }
+    }
+
+    @Override
+    public void setVisibility(int i7) {
+        switch (this.f42340a) {
+            case 3:
+                super.setVisibility(i7);
+                ee eeVar = this.f42341b.f32155a1;
+                if (eeVar != null) {
+                    eeVar.invalidate();
+                    return;
+                }
+                return;
+            default:
+                super.setVisibility(i7);
                 return;
         }
     }

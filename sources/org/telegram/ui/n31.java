@@ -1,49 +1,77 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.LinearLayout;
+import android.os.RemoteException;
+import android.os.SystemClock;
+import android.os.Trace;
 import java.util.HashSet;
-public final class n31 extends LinearLayout implements org.telegram.ui.ActionBar.c6 {
-    public final org.telegram.ui.ActionBar.h6 f48107a;
-    public final org.telegram.ui.Components.w70 f48108b;
-    public final org.telegram.ui.Components.w70 f48109c;
-    public final fi.d d;
-    public final fi.d f48110e;
+public final class n31 implements Runnable {
+    public final int f49439a;
+    public final long f49440b;
+    public final Object f49441c;
 
-    public n31(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context);
-        this.f48107a = h6Var;
-        setOrientation(1);
-        int i7 = org.telegram.ui.ActionBar.m6.G6;
-        org.telegram.ui.Components.w70 a10 = c8.qa.a(context, 15.0f, i7, true, h6Var);
-        this.f48108b = a10;
-        a10.setGravity(17);
-        addView(a10, c8.ha.t(-1, -2, 55, 32, 20, 32, 0));
-        org.telegram.ui.Components.w70 a11 = c8.qa.a(context, 13.0f, i7, false, h6Var);
-        this.f48109c = a11;
-        a11.setGravity(17);
-        addView(a11, c8.ha.s(-1, -2, 55, 32.0f, 9.33f, 32.0f, 0.0f));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(0);
-        fi.d h = org.telegram.messenger.k5.h(24, context, h6Var, true);
-        this.d = h;
-        fi.d h7 = org.telegram.messenger.k5.h(24, context, h6Var, true);
-        this.f48110e = h7;
-        linearLayout.addView(h, c8.ha.q(0, 42, 1.0f, 112, 0, 0, 12, 0));
-        linearLayout.addView(h7, c8.ha.q(0, 42, 1.0f, 112, 0, 0, 0, 0));
-        addView(linearLayout, c8.ha.t(-1, -2, 55, 24, 18, 24, 16));
+    public n31(Object obj, long j3, int i7) {
+        this.f49439a = i7;
+        this.f49441c = obj;
+        this.f49440b = j3;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.m6.G6));
-    }
-
-    @Override
-    public final void updateColors() {
-        int i7 = org.telegram.ui.ActionBar.m6.G6;
-        org.telegram.ui.ActionBar.h6 h6Var = this.f48107a;
-        this.f48108b.setTextColor(org.telegram.ui.ActionBar.m6.w0(i7, h6Var));
-        this.f48109c.setTextColor(org.telegram.ui.ActionBar.m6.w0(i7, h6Var));
+    public final void run() {
+        int i7;
+        switch (this.f49439a) {
+            case 0:
+                ((li.v) this.f49441c).a(Long.valueOf(this.f49440b));
+                return;
+            case 1:
+                org.telegram.ui.web.a0 a0Var = (org.telegram.ui.web.a0) this.f49441c;
+                long j3 = this.f49440b;
+                a0Var.getClass();
+                a0Var.presentFragment(an.ua(j3));
+                return;
+            case 2:
+                org.telegram.utils.twidget.l1 l1Var = (org.telegram.utils.twidget.l1) this.f49441c;
+                long j10 = this.f49440b;
+                Trace.beginSection("WidgetSandbox:Destroy");
+                try {
+                    org.telegram.utils.twidget.u0 u0Var = l1Var.f54301c;
+                    org.telegram.utils.twidget.r0 r0Var = (org.telegram.utils.twidget.r0) u0Var.f54414e.remove(Long.valueOf(j10));
+                    if (r0Var != null) {
+                        org.telegram.utils.twidget.b h12 = r0Var.h1();
+                        if (h12 != null) {
+                            try {
+                                h12.K(r0Var.d);
+                            } catch (RemoteException unused) {
+                            }
+                        }
+                        synchronized (u0Var.f54412b) {
+                            u0Var.j(r0Var.f54388a);
+                        }
+                    }
+                    return;
+                } finally {
+                    Trace.endSection();
+                }
+            case 3:
+                wg.u0 u0Var2 = (wg.u0) this.f49441c;
+                long j11 = this.f49440b;
+                HashSet hashSet = u0Var2.f59243a2;
+                hashSet.remove(Long.valueOf(j11));
+                u0Var2.U1.b(true, hashSet, new wg.p0(u0Var2, 5), null);
+                u0Var2.n1(true, false);
+                return;
+            default:
+                long j12 = this.f49440b;
+                yi.j jVar = (yi.j) ((ac.e) this.f49441c).f1023c;
+                if (j12 == jVar.f60764o && (i7 = jVar.G) != 9 && i7 != 10 && i7 != 8) {
+                    SystemClock.elapsedRealtime();
+                    jVar.f60771w = false;
+                    jVar.s(3);
+                    jVar.f60758i.removeCallbacks(jVar.D);
+                    yi.b bVar = jVar.h;
+                    bVar.b("recording started: retainedDurationMs=" + yi.j.r(jVar.f60765p));
+                    return;
+                }
+                return;
+        }
     }
 }

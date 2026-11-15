@@ -5,31 +5,31 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.HashSet;
 import org.telegram.ui.Components.RadialProgressView;
-public final class w0 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
-    public final bi.x5 f30711a;
-    public final RadialProgressView f30712b;
-    public final org.telegram.ui.ActionBar.h6 f30713c;
+public final class w0 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
+    public final ai.j0 f31847a;
+    public final RadialProgressView f31848b;
+    public final org.telegram.ui.ActionBar.e6 f31849c;
     public float d;
-    public int f30714e;
+    public int f31850e;
 
-    public w0(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+    public w0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         int i7;
-        this.f30713c = h6Var;
-        bi.x5 x5Var = new bi.x5(this, context);
-        this.f30711a = x5Var;
-        x5Var.setWillNotDraw(false);
-        addView(x5Var, c8.ha.e(36, 36, 17));
-        RadialProgressView radialProgressView = new RadialProgressView(context, h6Var);
-        this.f30712b = radialProgressView;
+        this.f31849c = e6Var;
+        ai.j0 j0Var = new ai.j0(this, context);
+        this.f31847a = j0Var;
+        j0Var.setWillNotDraw(false);
+        addView(j0Var, c8.ja.e(36, 36, 17));
+        RadialProgressView radialProgressView = new RadialProgressView(context, e6Var);
+        this.f31848b = radialProgressView;
         radialProgressView.setSize(org.telegram.messenger.g0.L(28.0f));
-        if (org.telegram.ui.ActionBar.m6.i1(h6Var)) {
-            i7 = org.telegram.ui.ActionBar.m6.Ka;
+        if (org.telegram.ui.ActionBar.j6.i1(e6Var)) {
+            i7 = org.telegram.ui.ActionBar.j6.Ka;
         } else {
-            i7 = org.telegram.ui.ActionBar.m6.Wc;
+            i7 = org.telegram.ui.ActionBar.j6.Zc;
         }
-        radialProgressView.setProgressColor(org.telegram.ui.ActionBar.m6.w0(i7, h6Var));
-        x5Var.addView(radialProgressView, c8.ha.e(32, 32, 17));
+        radialProgressView.setProgressColor(org.telegram.ui.ActionBar.j6.w0(i7, e6Var));
+        j0Var.addView(radialProgressView, c8.ja.e(32, 32, 17));
     }
 
     public final void a(float f10, int i7) {
@@ -37,7 +37,7 @@ public final class w0 extends FrameLayout implements org.telegram.ui.ActionBar.c
             invalidate();
         }
         this.d = f10;
-        this.f30714e = i7;
+        this.f31850e = i7;
     }
 
     @Override
@@ -45,28 +45,28 @@ public final class w0 extends FrameLayout implements org.telegram.ui.ActionBar.c
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(44.0f), 1073741824));
     }
 
-    public void setProgressVisible(boolean z9) {
+    public void setProgressVisible(boolean z10) {
         int i7;
-        if (z9) {
+        if (z10) {
             i7 = 0;
         } else {
             i7 = 4;
         }
-        this.f30711a.setVisibility(i7);
+        this.f31847a.setVisibility(i7);
     }
 
     @Override
     public final void updateColors() {
         int i7;
-        org.telegram.ui.ActionBar.h6 h6Var = this.f30713c;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f31849c;
         try {
-            RadialProgressView radialProgressView = this.f30712b;
-            if (org.telegram.ui.ActionBar.m6.i1(h6Var)) {
-                i7 = org.telegram.ui.ActionBar.m6.Ka;
+            RadialProgressView radialProgressView = this.f31848b;
+            if (org.telegram.ui.ActionBar.j6.i1(e6Var)) {
+                i7 = org.telegram.ui.ActionBar.j6.Ka;
             } else {
-                i7 = org.telegram.ui.ActionBar.m6.Wc;
+                i7 = org.telegram.ui.ActionBar.j6.Zc;
             }
-            radialProgressView.setProgressColor(org.telegram.ui.ActionBar.m6.w0(i7, h6Var));
+            radialProgressView.setProgressColor(org.telegram.ui.ActionBar.j6.w0(i7, e6Var));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

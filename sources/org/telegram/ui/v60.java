@@ -1,136 +1,100 @@
 package org.telegram.ui;
 
-import java.io.File;
-import java.lang.ref.WeakReference;
+import android.os.Bundle;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class v60 implements Runnable {
-    public final int f50639a;
-    public final LaunchActivity f50640b;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class v60 implements sw {
+    public final int f52141a = 0;
+    public final LaunchActivity f52142b;
+    public final TLRPC.User f52143c;
+    public final String d;
+    public final int f52144e;
 
-    public v60(LaunchActivity launchActivity, int i7) {
-        this.f50639a = i7;
-        this.f50640b = launchActivity;
+    public v60(LaunchActivity launchActivity, String str, int i7, TLRPC.User user) {
+        this.f52142b = launchActivity;
+        this.d = str;
+        this.f52144e = i7;
+        this.f52143c = user;
     }
 
     @Override
-    public final void run() {
-        WeakReference weakReference;
-        int i7 = this.f50639a;
-        org.telegram.ui.ActionBar.f2 f2Var = null;
-        LaunchActivity launchActivity = this.f50640b;
-        switch (i7) {
+    public final boolean H() {
+        switch (this.f52141a) {
             case 0:
-                String str = LaunchActivity.B1;
-                org.telegram.ui.Components.jb jbVar = new org.telegram.ui.Components.jb(launchActivity, null);
-                jbVar.d(2131624008, new String[0]);
-                jbVar.f34883b.setText(org.telegram.messenger.id.M0(2131742811, null));
-                org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
-                if (Q != null) {
-                    org.telegram.ui.Components.bc.g(Q, jbVar, 1500).j();
-                    try {
-                        Q.fragmentView.performHapticFeedback(3, 2);
-                        return;
-                    } catch (Exception unused) {
-                        return;
-                    }
-                }
-                return;
-            case 1:
-                if (launchActivity.V0) {
-                    launchActivity.V0 = false;
-                    launchActivity.F(false, false, true);
-                    return;
-                }
-                return;
-            case 2:
-                if (!launchActivity.f41292v1) {
-                    try {
-                        org.telegram.ui.ActionBar.u1 z9 = org.telegram.ui.Components.u4.z(launchActivity);
-                        z9.setOnDismissListener(new n70(launchActivity, 0));
-                        launchActivity.f41292v1 = true;
-                        z9.show();
-                    } catch (Throwable unused2) {
-                        return;
-                    }
-                }
-                return;
-            case 3:
-                String str2 = LaunchActivity.B1;
-                launchActivity.F(false, true, false);
-                if (LaunchActivity.Q() != null && LaunchActivity.Q().getLastStoryViewer() != null) {
-                    LaunchActivity.Q().getLastStoryViewer().V();
-                    return;
-                }
-                return;
-            case 4:
-                if (!launchActivity.f41277o0.getFragmentStack().isEmpty()) {
-                    launchActivity.f41277o0.getFragmentStack().get(0).showDialog(new org.telegram.ui.Components.yv0(launchActivity, launchActivity.f41270j0, launchActivity.f41266h0, launchActivity.f41268i0));
-                    return;
-                }
-                return;
-            case 5:
-                String str3 = LaunchActivity.B1;
-                launchActivity.getClass();
-                org.telegram.ui.Components.p10.f36762f0 = false;
-                org.telegram.ui.Components.p10.k(launchActivity);
-                return;
-            case 6:
-                String str4 = LaunchActivity.B1;
-                if (org.telegram.messenger.g0.f22550g != -10 && org.telegram.messenger.g0.f22548f == -10 && launchActivity.getResources().getConfiguration().smallestScreenWidthDp < 600 && (weakReference = org.telegram.messenger.g0.f22553i) != null && weakReference.get() == launchActivity) {
-                    int i10 = org.telegram.messenger.g0.h;
-                    int i11 = org.telegram.messenger.g0.f22550g;
-                    org.telegram.messenger.g0.f22550g = -10;
-                    org.telegram.messenger.g0.h = -10;
-                    org.telegram.messenger.g0.f22553i = null;
-                    try {
-                        launchActivity.setRequestedOrientation(i10);
-                        launchActivity.setRequestedOrientation(i11);
-                        return;
-                    } catch (Exception e10) {
-                        org.telegram.messenger.a8.g(e10, true);
-                        return;
-                    }
-                }
-                return;
-            case 7:
-                launchActivity.f41288t1 = null;
-                return;
-            case 8:
-                if (launchActivity.S0 != null) {
-                    File file = new File(org.telegram.messenger.t0.h(), a8.p0.r(new StringBuilder("remote"), launchActivity.S0.f27099id, ".attheme"));
-                    TLRPC.TL_theme tL_theme = launchActivity.S0;
-                    org.telegram.ui.ActionBar.l6 v = org.telegram.ui.ActionBar.m6.v(file, tL_theme.title, tL_theme, true);
-                    if (v != null) {
-                        launchActivity.t0(new x71(v, true, 0, false, false));
-                    }
-                    launchActivity.i0();
-                    return;
-                }
-                return;
-            case 9:
-                ArrayList arrayList = launchActivity.f41258d0;
-                ArrayList arrayList2 = launchActivity.f41260e0;
-                if (org.telegram.messenger.g0.Q1()) {
-                    if (!arrayList2.isEmpty()) {
-                        f2Var = (org.telegram.ui.ActionBar.f2) jg.g.i(1, arrayList2);
-                    }
-                } else if (!arrayList.isEmpty()) {
-                    f2Var = (org.telegram.ui.ActionBar.f2) jg.g.i(1, arrayList);
-                }
-                if (!(f2Var instanceof ProxyListActivity) && !(f2Var instanceof zx0)) {
-                    launchActivity.t0(new ProxyListActivity());
-                    return;
-                }
-                return;
-            case 10:
-                launchActivity.f41290u1 = null;
-                return;
+                return false;
             default:
-                String str5 = LaunchActivity.B1;
-                launchActivity.getClass();
-                launchActivity.t0(new z90());
-                return;
+                return false;
         }
+    }
+
+    @Override
+    public final boolean P(yw ywVar) {
+        switch (this.f52141a) {
+            case 0:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public final boolean y(yw ywVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i7, int i10, u91 u91Var) {
+        int i11 = this.f52141a;
+        int i12 = this.f52144e;
+        String str = this.d;
+        TLRPC.User user = this.f52143c;
+        LaunchActivity launchActivity = this.f52142b;
+        switch (i11) {
+            case 0:
+                String str2 = LaunchActivity.C1;
+                long j3 = ((org.telegram.messenger.ur) arrayList.get(0)).f26860a;
+                TLRPC.TL_inputMediaGame tL_inputMediaGame = new TLRPC.TL_inputMediaGame();
+                TLRPC.TL_inputGameShortName tL_inputGameShortName = new TLRPC.TL_inputGameShortName();
+                tL_inputMediaGame.f28113id = tL_inputGameShortName;
+                tL_inputGameShortName.short_name = str;
+                tL_inputGameShortName.bot_id = org.telegram.messenger.np.s1(i12).q1(user);
+                org.telegram.messenger.ez.C(i12).p0(org.telegram.messenger.np.s1(i12).j1(j3), tL_inputMediaGame, 0L, 0L);
+                Bundle k10 = a8.p0.k("scrollToTopOnResume", true);
+                if (org.telegram.messenger.m5.C(j3)) {
+                    k10.putInt("enc_id", (int) (j3 & 4294967295L));
+                } else if (org.telegram.messenger.m5.E(j3)) {
+                    k10.putLong("user_id", j3);
+                } else {
+                    k10.putLong("chat_id", -j3);
+                }
+                if (org.telegram.messenger.np.s1(i12).E(k10, ywVar, null, null)) {
+                    org.telegram.messenger.ns.f(i12).k(4, new Object[0]);
+                    ((ActionBarLayout) launchActivity.M()).V(new an(k10), true, false);
+                }
+                return true;
+            default:
+                String str3 = LaunchActivity.C1;
+                long j10 = ((org.telegram.messenger.ur) arrayList.get(0)).f26860a;
+                Bundle k11 = a8.p0.k("scrollToTopOnResume", true);
+                if (org.telegram.messenger.m5.C(j10)) {
+                    k11.putInt("enc_id", (int) (j10 & 4294967295L));
+                } else if (org.telegram.messenger.m5.E(j10)) {
+                    k11.putLong("user_id", j10);
+                } else {
+                    k11.putLong("chat_id", -j10);
+                }
+                k11.putString("attach_bot", org.telegram.messenger.q10.n(user));
+                if (str != null) {
+                    k11.putString("attach_bot_start_command", str);
+                }
+                if (org.telegram.messenger.np.s1(i12).E(k11, ywVar, null, null)) {
+                    org.telegram.messenger.ns.f(i12).k(4, new Object[0]);
+                    ((ActionBarLayout) launchActivity.M()).V(new an(k11), true, false);
+                }
+                return true;
+        }
+    }
+
+    public v60(LaunchActivity launchActivity, TLRPC.User user, String str, int i7) {
+        this.f52142b = launchActivity;
+        this.f52143c = user;
+        this.d = str;
+        this.f52144e = i7;
     }
 }

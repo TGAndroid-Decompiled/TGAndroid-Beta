@@ -1,85 +1,114 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class r61 implements RequestDelegate {
-    public final int f49274a;
-    public final x71 f49275b;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+public final class r61 implements View.OnClickListener {
+    public final int f50861a;
+    public int f50862b = 0;
+    public final t71 f50863c;
 
-    public r61(x71 x71Var, int i7) {
-        this.f49274a = i7;
-        this.f49275b = x71Var;
+    public r61(t71 t71Var, int i7) {
+        this.f50861a = i7;
+        this.f50863c = t71Var;
     }
 
     @Override
-    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f49274a) {
+    public final void onClick(View view) {
+        switch (this.f50861a) {
             case 0:
-                final x71 x71Var = this.f49275b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                x71.b0(x71Var, tLObject);
-                                return;
-                            default:
-                                TLObject tLObject2 = tLObject;
-                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
-                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
-                                    if (tL_wallPaper.pattern) {
-                                        x71 x71Var2 = x71Var;
-                                        x71Var2.X0 = tL_wallPaper;
-                                        x71Var2.g1(false);
-                                        x71Var2.o1();
-                                        x71Var2.V0.add(0, x71Var2.X0);
-                                        v71 v71Var = x71Var2.R0;
-                                        if (v71Var != null) {
-                                            v71Var.f();
-                                            return;
-                                        }
-                                        return;
-                                    }
-                                    return;
+                t71 t71Var = this.f50863c;
+                t71Var.H0.setRotation(this.f50862b);
+                this.f50862b -= 45;
+                t71Var.H0.animate().rotationBy(-45.0f).setDuration(300L).setInterpolator(org.telegram.ui.Components.er.f34421g).start();
+                j71[] j71VarArr = t71Var.f51475y0;
+                j71 j71Var = j71VarArr[0];
+                if (j71Var != null) {
+                    Drawable background = j71Var.getBackground();
+                    if (background instanceof org.telegram.ui.Components.ra0) {
+                        ((org.telegram.ui.Components.ra0) background).w(false);
+                    } else {
+                        org.telegram.ui.ActionBar.g6 g6Var = t71Var.f51468w;
+                        if (t71Var.f51412b == 2) {
+                            t71Var.f51440j1 += 45;
+                            while (true) {
+                                int i7 = t71Var.f51440j1;
+                                if (i7 >= 360) {
+                                    t71Var.f51440j1 = i7 - 360;
+                                } else {
+                                    t71Var.f1(t71Var.f51414b1, 0, true);
                                 }
-                                return;
+                            }
+                        } else if (g6Var != null) {
+                            g6Var.f28613n += 45;
+                            while (true) {
+                                int i10 = g6Var.f28613n;
+                                if (i10 >= 360) {
+                                    g6Var.f28613n = i10 - 360;
+                                } else {
+                                    org.telegram.ui.ActionBar.j6.t1(false, false);
+                                }
+                            }
                         }
                     }
-                });
+                }
+                j71 j71Var2 = j71VarArr[1];
+                if (j71Var2 != null) {
+                    Drawable background2 = j71Var2.getBackground();
+                    if (background2 instanceof org.telegram.ui.Components.ra0) {
+                        ((org.telegram.ui.Components.ra0) background2).w(false);
+                        return;
+                    }
+                    return;
+                }
                 return;
             default:
-                final x71 x71Var2 = this.f49275b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                x71.b0(x71Var2, tLObject);
-                                return;
-                            default:
-                                TLObject tLObject2 = tLObject;
-                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
-                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
-                                    if (tL_wallPaper.pattern) {
-                                        x71 x71Var22 = x71Var2;
-                                        x71Var22.X0 = tL_wallPaper;
-                                        x71Var22.g1(false);
-                                        x71Var22.o1();
-                                        x71Var22.V0.add(0, x71Var22.X0);
-                                        v71 v71Var = x71Var22.R0;
-                                        if (v71Var != null) {
-                                            v71Var.f();
-                                            return;
-                                        }
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                        }
+                t71 t71Var2 = this.f50863c;
+                org.telegram.ui.ActionBar.p5 p5Var = t71Var2.T;
+                t71Var2.I0.setRotation(this.f50862b);
+                this.f50862b -= 45;
+                t71Var2.I0.animate().rotationBy(-45.0f).setDuration(300L).setInterpolator(org.telegram.ui.Components.er.f34421g).start();
+                org.telegram.ui.ActionBar.g6 g6Var2 = t71Var2.f51468w;
+                if (g6Var2.f28608i) {
+                    if (p5Var.j() != null) {
+                        p5Var.j().w(false);
+                        return;
                     }
-                });
+                    return;
+                }
+                int i11 = g6Var2.h;
+                if (i11 != 0) {
+                    int i12 = g6Var2.f28605e;
+                    if (i12 == 0) {
+                        i12 = g6Var2.f28604c;
+                    }
+                    g6Var2.f28605e = g6Var2.f28606f;
+                    g6Var2.f28606f = g6Var2.f28607g;
+                    g6Var2.f28607g = i11;
+                    g6Var2.h = i12;
+                } else {
+                    int i13 = g6Var2.f28605e;
+                    if (i13 == 0) {
+                        i13 = g6Var2.f28604c;
+                    }
+                    g6Var2.f28605e = g6Var2.f28606f;
+                    g6Var2.f28606f = g6Var2.f28607g;
+                    g6Var2.f28607g = i13;
+                }
+                t71Var2.X.e(g6Var2.h, 3);
+                t71Var2.X.e(g6Var2.f28607g, 2);
+                t71Var2.X.e(g6Var2.f28606f, 1);
+                org.telegram.ui.Components.dq dqVar = t71Var2.X;
+                int i14 = g6Var2.f28605e;
+                if (i14 == 0) {
+                    i14 = g6Var2.f28604c;
+                }
+                dqVar.e(i14, 0);
+                t71Var2.M0[1].b(0, g6Var2.f28605e);
+                t71Var2.M0[1].b(1, g6Var2.f28606f);
+                t71Var2.M0[1].b(2, g6Var2.f28607g);
+                t71Var2.M0[1].b(3, g6Var2.h);
+                org.telegram.ui.ActionBar.j6.t1(true, true);
+                t71Var2.f51469w0.g1();
                 return;
         }
     }

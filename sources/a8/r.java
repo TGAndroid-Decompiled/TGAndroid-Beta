@@ -2,23 +2,23 @@ package a8;
 
 import java.io.Serializable;
 public final class r extends g implements Serializable {
-    public final Object f598b;
-    public final f f599c;
+    public final Object f601b;
+    public final f f602c;
 
     public r(Object obj, f fVar) {
         super(0, false);
-        this.f598b = obj;
-        this.f599c = fVar;
+        this.f601b = obj;
+        this.f602c = fVar;
     }
 
     @Override
     public final Object getKey() {
-        return this.f598b;
+        return this.f601b;
     }
 
     @Override
     public final Object getValue() {
-        return this.f599c;
+        return this.f602c;
     }
 
     @Override

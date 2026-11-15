@@ -1,3 +1,111 @@
 package j2;
-public final class t extends j {
+
+import android.net.Uri;
+import android.system.ErrnoException;
+import android.system.OsConstants;
+import android.text.TextUtils;
+import com.google.android.gms.internal.vision.e2;
+import h2.l0;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+public final class t extends c {
+    public RandomAccessFile f16836a;
+    public Uri f16837b;
+    public long f16838c;
+    public boolean d;
+
+    @Override
+    public final void close() {
+        this.f16837b = null;
+        try {
+            try {
+                RandomAccessFile randomAccessFile = this.f16836a;
+                if (randomAccessFile != null) {
+                    randomAccessFile.close();
+                }
+            } catch (IOException e10) {
+                throw new j(e10, 2000);
+            }
+        } finally {
+            this.f16836a = null;
+            if (this.d) {
+                this.d = false;
+                transferEnded();
+            }
+        }
+    }
+
+    @Override
+    public final Uri getUri() {
+        return this.f16837b;
+    }
+
+    @Override
+    public final long open(m mVar) {
+        Uri uri = mVar.f16803a;
+        long j3 = mVar.f16806e;
+        this.f16837b = uri;
+        transferInitializing(mVar);
+        int i7 = 2006;
+        try {
+            String path = uri.getPath();
+            path.getClass();
+            RandomAccessFile randomAccessFile = new RandomAccessFile(path, "r");
+            this.f16836a = randomAccessFile;
+            try {
+                randomAccessFile.seek(j3);
+                long j10 = mVar.f16807f;
+                if (j10 == -1) {
+                    j10 = this.f16836a.length() - j3;
+                }
+                this.f16838c = j10;
+                if (j10 >= 0) {
+                    this.d = true;
+                    transferStarted(mVar);
+                    return this.f16838c;
+                }
+                throw new j(null, null, 2008);
+            } catch (IOException e10) {
+                throw new j(e10, 2000);
+            }
+        } catch (FileNotFoundException e11) {
+            if (TextUtils.isEmpty(uri.getQuery()) && TextUtils.isEmpty(uri.getFragment())) {
+                throw new j(e11, ((e11.getCause() instanceof ErrnoException) && ((ErrnoException) e11.getCause()).errno == OsConstants.EACCES) ? 2005 : 2005);
+            }
+            String path2 = uri.getPath();
+            String query = uri.getQuery();
+            String fragment = uri.getFragment();
+            StringBuilder n10 = e2.n("uri has query and/or fragment, which are not supported. Did you call Uri.parse() on a string containing '?' or '#'? Use Uri.fromFile(new File(path)) to avoid this. path=", path2, ",query=", query, ",fragment=");
+            n10.append(fragment);
+            throw new j(n10.toString(), e11, 1004);
+        } catch (SecurityException e12) {
+            throw new j(e12, 2006);
+        } catch (RuntimeException e13) {
+            throw new j(e13, 2000);
+        }
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i7, int i10) {
+        if (i10 == 0) {
+            return 0;
+        }
+        long j3 = this.f16838c;
+        if (j3 == 0) {
+            return -1;
+        }
+        try {
+            RandomAccessFile randomAccessFile = this.f16836a;
+            String str = l0.f13471a;
+            int read = randomAccessFile.read(bArr, i7, (int) Math.min(j3, i10));
+            if (read > 0) {
+                this.f16838c -= read;
+                bytesTransferred(read);
+            }
+            return read;
+        } catch (IOException e10) {
+            throw new j(e10, 2000);
+        }
+    }
 }

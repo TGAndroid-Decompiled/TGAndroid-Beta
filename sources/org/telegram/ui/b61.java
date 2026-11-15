@@ -1,101 +1,163 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.text.TextUtils;
+import android.graphics.Rect;
+import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.ui.ThemeActivity;
-public final class b61 implements org.telegram.ui.Components.bj0 {
-    public final int f43939a;
-    public final Object f43940b;
-    public final Object f43941c;
-    public final Object d;
+import android.view.ViewParent;
+public final class b61 extends org.telegram.ui.Components.uj0 {
+    public final int f45602f3;
 
-    public b61(Object obj, Object obj2, Object obj3, int i7) {
-        this.f43939a = i7;
-        this.f43940b = obj;
-        this.f43941c = obj2;
-        this.d = obj3;
+    public b61(int i7, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        this.f45602f3 = i7;
     }
 
     @Override
-    public final void c(int i7, View view) {
-        org.telegram.ui.ActionBar.l6 D0;
-        boolean z9;
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        switch (this.f43939a) {
+    public Integer V0(int i7) {
+        switch (this.f45602f3) {
+            case 1:
+                return 0;
+            case 2:
+            case 5:
+            case 6:
+            case 8:
+            default:
+                return super.V0(i7);
+            case 3:
+                return 0;
+            case 4:
+                return 0;
+            case 7:
+                return 0;
+            case 9:
+                return 0;
+        }
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        switch (this.f45602f3) {
             case 0:
-                j61 j61Var = (j61) this.f43941c;
-                g61 g61Var = (g61) this.d;
-                ThemeActivity themeActivity = ((h61) this.f43940b).f46233e;
-                int i10 = themeActivity.f42018f;
-                if (i10 == 1) {
-                    D0 = org.telegram.ui.ActionBar.m6.J;
-                } else {
-                    D0 = org.telegram.ui.ActionBar.m6.D0();
+                if (getParent() != null && getParent().getParent() != null) {
+                    getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
                 }
-                org.telegram.ui.ActionBar.l6 l6Var = D0;
-                if (i7 == j61Var.b() - 1) {
-                    if (i10 == 1) {
-                        z12 = true;
-                    } else {
-                        z12 = false;
+                return super.onInterceptTouchEvent(motionEvent);
+            case 2:
+                if (getParent() != null && getParent().getParent() != null) {
+                    ViewParent parent = getParent().getParent();
+                    boolean z10 = true;
+                    if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
+                        z10 = false;
                     }
-                    themeActivity.presentFragment(new x71(l6Var, false, 1, false, z12));
-                } else {
-                    org.telegram.ui.ActionBar.j6 j6Var = (org.telegram.ui.ActionBar.j6) j61Var.f46832e.get(i7);
-                    if (!TextUtils.isEmpty(j6Var.f27621o) && j6Var.f27609a != org.telegram.ui.ActionBar.m6.f28066n) {
-                        org.telegram.ui.ActionBar.g6.a(false);
-                    }
-                    int i11 = l6Var.Y;
-                    int i12 = j6Var.f27609a;
-                    if (i11 != i12) {
-                        if (i10 == 1) {
-                            z11 = true;
-                        } else {
-                            z11 = false;
-                        }
-                        org.telegram.ui.ActionBar.m6.K1(l6Var, z11, i12, view);
-                        org.telegram.ui.ActionBar.s3.q(l6Var, j6Var.f27609a);
-                        org.telegram.ui.ActionBar.m6.M1(themeActivity);
-                    } else {
-                        if (i12 >= 100) {
-                            z9 = true;
-                        } else {
-                            z9 = false;
-                        }
-                        if (i10 == 1) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        themeActivity.presentFragment(new x71(l6Var, false, 1, z9, z10));
-                    }
+                    parent.requestDisallowInterceptTouchEvent(z10);
                 }
-                int left = view.getLeft();
-                int right = view.getRight();
-                int L = org.telegram.messenger.g0.L(52.0f);
-                int i13 = left - L;
-                if (i13 < 0) {
-                    g61Var.w0(i13, 0, null);
-                } else {
-                    int i14 = right + L;
-                    if (i14 > g61Var.getMeasuredWidth()) {
-                        g61Var.w0(i14 - g61Var.getMeasuredWidth(), 0, null);
+                return super.onInterceptTouchEvent(motionEvent);
+            case 6:
+                if (getParent() != null && getParent().getParent() != null) {
+                    ViewParent parent2 = getParent().getParent();
+                    boolean z11 = true;
+                    if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
+                        z11 = false;
                     }
+                    parent2.requestDisallowInterceptTouchEvent(z11);
                 }
-                int childCount = g61Var.getChildCount();
-                for (int i15 = 0; i15 < childCount; i15++) {
-                    View childAt = g61Var.getChildAt(i15);
-                    if (childAt instanceof ThemeActivity.InnerAccentView) {
-                        ((ThemeActivity.InnerAccentView) childAt).a(true);
-                    }
+                return super.onInterceptTouchEvent(motionEvent);
+            case 14:
+                if (getParent() != null && getParent().getParent() != null) {
+                    getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            default:
+                return super.onInterceptTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void onMeasure(int i7, int i10) {
+        switch (this.f45602f3) {
+            case 8:
+                int size = View.MeasureSpec.getSize(i10);
+                int b10 = (getAdapter().b() * org.telegram.messenger.g0.L(50.0f)) + org.telegram.messenger.g0.L(4.0f);
+                if (b10 <= size) {
+                    size = b10;
+                }
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+                return;
+            case 11:
+                int size2 = View.MeasureSpec.getSize(i10);
+                int b11 = (getAdapter().b() * org.telegram.messenger.g0.L(50.0f)) + org.telegram.messenger.g0.L(4.0f);
+                if (b11 <= size2) {
+                    size2 = b11;
+                }
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+                return;
+            default:
+                super.onMeasure(i7, i10);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f45602f3) {
+            case 13:
+                if (motionEvent.getAction() == 0) {
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void r0(View view, View view2) {
+        switch (this.f45602f3) {
+            case 5:
+                if (view instanceof org.telegram.ui.Cells.z5) {
+                    super.r0(view, view2);
+                    return;
+                }
+                return;
+            case 12:
+                if (view instanceof org.telegram.ui.Cells.z5) {
+                    super.r0(view, view2);
+                    return;
                 }
                 return;
             default:
-                lx0.a0((lx0) this.f43940b, (Context) this.f43941c, (String) this.d, view, i7);
+                super.r0(view, view2);
                 return;
         }
+    }
+
+    @Override
+    public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
+        switch (this.f45602f3) {
+            case 5:
+                rect.bottom = org.telegram.messenger.g0.L(60.0f) + rect.bottom;
+                return super.requestChildRectangleOnScreen(view, rect, z10);
+            case 12:
+                rect.bottom = org.telegram.messenger.g0.L(60.0f) + rect.bottom;
+                return super.requestChildRectangleOnScreen(view, rect, z10);
+            default:
+                return super.requestChildRectangleOnScreen(view, rect, z10);
+        }
+    }
+
+    @Override
+    public boolean requestFocus(int i7, Rect rect) {
+        switch (this.f45602f3) {
+            case 10:
+                return false;
+            default:
+                return super.requestFocus(i7, rect);
+        }
+    }
+
+    public b61(Context context) {
+        super(context, null);
+        this.f45602f3 = 13;
     }
 }

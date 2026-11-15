@@ -1,218 +1,96 @@
 package di;
 
-import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
+import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.messenger.f10;
-import org.telegram.messenger.qp;
-import org.telegram.messenger.ui;
-import org.telegram.messenger.voip.NativeInstance;
-import org.telegram.messenger.yn;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.is;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.k21;
-public final class o3 implements View.OnClickListener {
-    public final int f9435a;
-    public final a4 f9436b;
+import org.telegram.ui.Components.hh0;
+import org.telegram.ui.Components.hj0;
+import org.telegram.ui.Components.ih;
+import org.telegram.ui.Components.p11;
+import org.telegram.ui.an;
+public final class o3 implements org.telegram.ui.ActionBar.q1, hj0 {
+    public final int f9143a;
+    public final long f9144b;
+    public final is f9145c;
+    public final Object d;
+    public final Object f9146e;
+    public final Object f9147f;
 
-    public o3(a4 a4Var, int i7) {
-        this.f9435a = i7;
-        this.f9436b = a4Var;
+    public o3(Object obj, KeyEvent.Callback callback, Object obj2, long j3, Object obj3, int i7) {
+        this.f9143a = i7;
+        this.f9145c = (is) obj;
+        this.d = callback;
+        this.f9146e = obj2;
+        this.f9144b = j3;
+        this.f9147f = obj3;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f9435a) {
-            case 0:
-                j4 j4Var = this.f9436b.f8813x;
-                j4.c0(j4Var, j4Var.f9201k1);
-                a4 a4Var = j4Var.f9173c1;
-                if (a4Var != null) {
-                    a4Var.a();
-                    return;
-                }
-                return;
+    public boolean c1(View view) {
+        return false;
+    }
+
+    @Override
+    public void f(final float r18, final float r19, int r20, android.view.View r21) {
+        throw new UnsupportedOperationException("Method not decompiled: di.o3.f(float, float, int, android.view.View):void");
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        switch (this.f9143a) {
             case 1:
-                j4 j4Var2 = this.f9436b.f8813x;
-                j4.b0(j4Var2);
-                a4 a4Var2 = j4Var2.f9173c1;
-                if (a4Var2 != null) {
-                    a4Var2.a();
-                    return;
-                }
-                return;
-            case 2:
-                j4 j4Var3 = this.f9436b.f8813x;
-                org.telegram.messenger.g0.g(j4Var3.f9250x1.e());
-                j4.h0(j4Var3);
-                a4 a4Var3 = j4Var3.f9173c1;
-                if (a4Var3 != null) {
-                    a4Var3.a();
-                    return;
-                }
-                return;
-            case 3:
-                j4 j4Var4 = this.f9436b.f8813x;
-                j4Var4.W0(false);
-                a4 a4Var4 = j4Var4.f9173c1;
-                if (a4Var4 != null) {
-                    a4Var4.a();
-                    return;
-                }
-                return;
-            case 4:
-                j4 j4Var5 = this.f9436b.f8813x;
-                h4 h4Var = j4Var5.f9250x1;
-                h4Var.f9069a.translated = false;
-                m7 m7Var = qp.s1(j4Var5.f9205l2).P1().f10005k;
-                TL_stories.StoryItem storyItem = h4Var.f9069a;
-                m7Var.k(storyItem.dialogId, storyItem);
-                j4Var5.n0();
-                j4Var5.d1(false);
-                a4 a4Var5 = j4Var5.f9173c1;
-                if (a4Var5 != null) {
-                    a4Var5.a();
-                    return;
-                }
-                return;
-            case 5:
-                a4 a4Var6 = this.f9436b;
-                j4 j4Var6 = a4Var6.f8813x;
-                h4 h4Var2 = j4Var6.f9250x1;
-                h4Var2.f9069a.translated = true;
-                j4Var6.n0();
-                c4 c4Var = j4Var6.f9258z1;
-                if (c4Var != null) {
-                    q9 q9Var = ((h9) c4Var).d;
-                    q9Var.Y0 = true;
-                    q9Var.V();
-                }
-                m7 m7Var2 = qp.s1(j4Var6.f9205l2).P1().f10005k;
-                TL_stories.StoryItem storyItem2 = h4Var2.f9069a;
-                m7Var2.k(storyItem2.dialogId, storyItem2);
-                long currentTimeMillis = System.currentTimeMillis();
-                s3 s3Var = new s3(a4Var6, 1);
-                f10 f10Var = qp.s1(j4Var6.f9205l2).f24900s7;
-                TL_stories.StoryItem storyItem3 = h4Var2.f9069a;
-                bi.r3 r3Var = new bi.r3(s3Var, currentTimeMillis, 4);
-                HashSet hashSet = f10Var.J;
-                if (storyItem3 != null) {
-                    Object obj = new Object();
-                    String M0 = k21.M0();
-                    if (storyItem3.translatedText != null && TextUtils.equals(storyItem3.translatedLng, M0)) {
-                        r3Var.run();
-                    } else if (hashSet.contains(obj)) {
-                        r3Var.run();
-                    } else {
-                        hashSet.add(obj);
-                        TLRPC.TL_messages_translateText tL_messages_translateText = new TLRPC.TL_messages_translateText();
-                        tL_messages_translateText.flags |= 2;
-                        TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
-                        tL_textWithEntities.text = storyItem3.caption;
-                        tL_textWithEntities.entities = storyItem3.entities;
-                        tL_messages_translateText.text.add(tL_textWithEntities);
-                        tL_messages_translateText.to_lang = f10.D(M0);
-                        f10Var.getConnectionsManager().sendRequest(tL_messages_translateText, new yn(f10Var, storyItem3, M0, obj, r3Var, tL_textWithEntities, 1));
-                    }
-                }
-                j4Var6.d1(false);
-                j4Var6.Q2 = true;
-                j4Var6.f9233t0.E(true);
-                a4 a4Var7 = j4Var6.f9173c1;
-                if (a4Var7 != null) {
-                    a4Var7.a();
-                    return;
-                }
-                return;
-            case 6:
-                j4 j4Var7 = this.f9436b.f8813x;
-                y6 y6Var = j4Var7.f9250x1.f9070b;
-                if (y6Var != null) {
-                    y6Var.a();
-                    j4Var7.h1();
-                }
-                a4 a4Var8 = j4Var7.f9173c1;
-                if (a4Var8 != null) {
-                    a4Var8.a();
-                    return;
-                }
-                return;
-            case 7:
-                j4 j4Var8 = this.f9436b.f8813x;
-                j4.b0(j4Var8);
-                a4 a4Var9 = j4Var8.f9173c1;
-                if (a4Var9 != null) {
-                    a4Var9.a();
-                    return;
-                }
-                return;
-            case 8:
-                j4 j4Var9 = this.f9436b.f8813x;
-                org.telegram.messenger.g0.g(j4Var9.f9250x1.e());
-                j4.h0(j4Var9);
-                a4 a4Var10 = j4Var9.f9173c1;
-                if (a4Var10 != null) {
-                    a4Var10.a();
-                    return;
-                }
-                return;
-            case 9:
-                j4 j4Var10 = this.f9436b.f8813x;
-                j4Var10.W0(false);
-                a4 a4Var11 = j4Var10.f9173c1;
-                if (a4Var11 != null) {
-                    a4Var11.a();
-                    return;
-                }
-                return;
-            case 10:
-                g1 g1Var = g1.W;
-                if (g1Var != null && g1Var.f9007n) {
-                    long j3 = g1Var.J;
-                    boolean z9 = !g1Var.I;
-                    g1Var.I = z9;
-                    NativeInstance.switchCameraCapturer(j3, z9);
-                }
-                a4 a4Var12 = this.f9436b.f8813x.f9173c1;
-                if (a4Var12 != null) {
-                    a4Var12.a();
-                    return;
-                }
-                return;
-            case 11:
-                this.f9436b.f8813x.f9209m3.b();
-                return;
-            case 12:
-                this.f9436b.f8813x.f9212n3.b();
-                return;
-            case 13:
-                j4 j4Var11 = this.f9436b.f8813x;
-                j4.d0(j4Var11);
-                a4 a4Var13 = j4Var11.f9173c1;
-                if (a4Var13 != null) {
-                    a4Var13.a();
-                    return;
-                }
-                return;
-            case 14:
-                j4 j4Var12 = this.f9436b.f8813x;
-                ui.b0(j4Var12.f9205l2).N1(j4Var12.f9201k1);
-                j4Var12.B1.l0(j4Var12.f9201k1, true, false);
-                a4 a4Var14 = j4Var12.f9173c1;
-                if (a4Var14 != null) {
-                    a4Var14.a();
-                    return;
-                }
+                an.f1((an) this.f9145c, (TLRPC.TL_game) this.d, (gj) this.f9146e, (String) this.f9147f, this.f9144b);
                 return;
             default:
-                j4 j4Var13 = this.f9436b.f8813x;
-                j4.c0(j4Var13, j4Var13.f9201k1);
-                a4 a4Var15 = j4Var13.f9173c1;
-                if (a4Var15 != null) {
-                    a4Var15.a();
-                    return;
+                p11 p11Var = (p11) this.f9145c;
+                ArrayList arrayList = (ArrayList) this.d;
+                HashSet hashSet = (HashSet) this.f9146e;
+                ih ihVar = (ih) this.f9147f;
+                int size = arrayList.size();
+                int i10 = 0;
+                while (true) {
+                    long j3 = this.f9144b;
+                    if (i10 < size) {
+                        Object obj = arrayList.get(i10);
+                        i10++;
+                        if (j3 == ((Integer) obj).intValue()) {
+                            p11Var.n(0L, false);
+                        }
+                    } else {
+                        p11Var.f38161l0.addAll(hashSet);
+                        p11Var.q();
+                        org.telegram.ui.Components.cc.a0(p11Var.f38164s).U(hd.K0(hashSet.size(), "TopicsDeleted"), false, new f2(p11Var, hashSet, arrayList, j3, 18), new hh0(p11Var, arrayList, ihVar, 16)).j();
+                        t1Var.dismiss();
+                        return;
+                    }
                 }
-                return;
         }
+    }
+
+    public o3(an anVar, TLRPC.TL_game tL_game, gj gjVar, String str, long j3) {
+        this.f9143a = 1;
+        this.f9145c = anVar;
+        this.d = tL_game;
+        this.f9146e = gjVar;
+        this.f9147f = str;
+        this.f9144b = j3;
+    }
+
+    public o3(p11 p11Var, ArrayList arrayList, long j3, HashSet hashSet, ih ihVar) {
+        this.f9143a = 3;
+        this.f9145c = p11Var;
+        this.d = arrayList;
+        this.f9144b = j3;
+        this.f9146e = hashSet;
+        this.f9147f = ihVar;
+    }
+
+    @Override
+    public void r0(View view, float f10, float f11) {
     }
 }

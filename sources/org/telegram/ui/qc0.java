@@ -1,42 +1,29 @@
 package org.telegram.ui;
+
+import org.telegram.ui.Components.EditTextBoldCursor;
 public final class qc0 implements Runnable {
-    public final int f49012a;
-    public final rc0 f49013b;
+    public final int f50588a;
+    public final rc0 f50589b;
 
     public qc0(rc0 rc0Var, int i7) {
-        this.f49012a = i7;
-        this.f49013b = rc0Var;
+        this.f50588a = i7;
+        this.f50589b = rc0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f49012a) {
+        switch (this.f50588a) {
             case 0:
-                rc0 rc0Var = this.f49013b;
-                sc0 sc0Var = rc0Var.d;
-                if (rc0Var.f49387b) {
-                    boolean z9 = sc0Var.L;
-                    org.telegram.ui.Components.zg0 zg0Var = sc0Var.K;
-                    yc ycVar = sc0Var.f49824n;
-                    if (z9 && System.currentTimeMillis() - rc0Var.f49386a >= 10000) {
-                        ycVar.setAnimation(zg0Var);
-                        zg0Var.N(0, false, false);
-                        zg0Var.f40987t0 = new qc0(rc0Var, 1);
-                        ycVar.d();
-                        rc0Var.f49386a = System.currentTimeMillis();
-                    }
-                    ycVar.postDelayed(rc0Var.f49388c, 1000L);
-                    return;
-                }
-                return;
-            case 1:
-                org.telegram.messenger.g0.h3(new qc0(this.f49013b, 2));
+                rc0 rc0Var = this.f50589b;
+                org.telegram.ui.Components.fh0 fh0Var = rc0Var.h;
+                fh0Var.getAnimatedDrawable().N(0, false, false);
+                fh0Var.d();
+                EditTextBoldCursor editTextBoldCursor = rc0Var.f50909b;
+                editTextBoldCursor.requestFocus();
+                org.telegram.messenger.g0.J3(editTextBoldCursor);
                 return;
             default:
-                sc0 sc0Var2 = this.f49013b.d;
-                org.telegram.ui.Components.zg0 zg0Var2 = sc0Var2.J;
-                zg0Var2.N(0, false, false);
-                sc0Var2.f49824n.setAnimation(zg0Var2);
+                this.f50589b.f50909b.requestFocus();
                 return;
         }
     }

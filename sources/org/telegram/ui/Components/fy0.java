@@ -1,19 +1,70 @@
 package org.telegram.ui.Components;
 
-import java.io.File;
-import org.telegram.tgnet.TLRPC;
-public final class fy0 {
-    public final File f33684a;
-    public long f33685b;
-    public long f33686c;
-    public boolean d;
-    public boolean f33687e;
-    public TLRPC.InputFile f33688f;
-    public TLRPC.InputEncryptedFile f33689g;
-    public byte[] h;
-    public byte[] f33690i;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.style.ReplacementSpan;
+public final class fy0 extends ReplacementSpan {
+    public final int f34745a;
+    public int f34746b;
+    public final Object f34747c;
 
-    public fy0(File file) {
-        this.f33684a = file;
+    public fy0(int i7) {
+        this.f34745a = 0;
+        Paint paint = new Paint(1);
+        this.f34747c = paint;
+        this.f34746b = i7;
+        paint.setColor(org.telegram.ui.ActionBar.j6.r1(0.3f, org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28875ee, false)));
+    }
+
+    public void a(int i7) {
+        org.telegram.ui.dm0 dm0Var = (org.telegram.ui.dm0) this.f34747c;
+        if (dm0Var != null) {
+            dm0Var.f46428a = i7 / 2.0f;
+            dm0Var.d();
+            this.f34746b = i7;
+        }
+    }
+
+    @Override
+    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+        switch (this.f34745a) {
+            case 0:
+                float L = ((i11 + i13) / 2.0f) + org.telegram.messenger.g0.L(1.33f);
+                RectF rectF = org.telegram.messenger.g0.P;
+                float L2 = org.telegram.messenger.g0.L(6.66f) / 2.0f;
+                rectF.set(f10, L - L2, this.f34746b + f10, L + L2);
+                Paint paint2 = (Paint) this.f34747c;
+                paint2.setColor(org.telegram.ui.ActionBar.j6.r1(0.3f, org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28875ee, false)));
+                canvas.drawRoundRect(rectF, L2, L2, paint2);
+                return;
+            default:
+                org.telegram.ui.dm0 dm0Var = (org.telegram.ui.dm0) this.f34747c;
+                if (dm0Var != null) {
+                    int i14 = (i11 + i13) / 2;
+                    float L3 = f10 + org.telegram.messenger.g0.L(5.0f);
+                    int i15 = this.f34746b;
+                    dm0Var.setBounds((int) (org.telegram.messenger.g0.L(3.0f) + f10), i14 - this.f34746b, (int) (L3 + i15), i14 + i15);
+                    dm0Var.draw(canvas);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
+        switch (this.f34745a) {
+            case 0:
+                return this.f34746b;
+            default:
+                return org.telegram.messenger.g0.L(3.0f) + org.telegram.messenger.g0.L(3.0f) + this.f34746b;
+        }
+    }
+
+    public fy0(boolean z10, int i7, int i10) {
+        this.f34745a = 1;
+        this.f34746b = org.telegram.messenger.g0.L(21.0f);
+        this.f34747c = z10 ? org.telegram.ui.dm0.c(i7, i10) : org.telegram.ui.dm0.a(i7, i10);
     }
 }

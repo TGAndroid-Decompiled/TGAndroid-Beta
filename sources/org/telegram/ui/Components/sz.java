@@ -1,82 +1,86 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import java.util.WeakHashMap;
-public final class sz extends FrameLayout {
-    public final i6 f38108a;
-    public final i6 f38109b;
+import android.view.ViewGroup;
+import org.telegram.tgnet.tl.TL_chatlists;
+public final class sz extends tj0 {
+    public final zz f39458c;
 
-    public sz(Context context) {
-        super(context);
-        int i7;
-        int i10;
-        int i11;
-        i6 i6Var = new i6(context, true, true, false);
-        this.f38108a = i6Var;
-        i6Var.setTextSize(org.telegram.messenger.g0.L(15.0f));
-        i6Var.setTypeface(org.telegram.messenger.g0.o());
-        int i12 = org.telegram.ui.ActionBar.m6.L6;
-        org.telegram.ui.ActionBar.t6.Y(i6Var, i12, null);
-        if (org.telegram.messenger.id.f23161a0) {
-            i7 = 5;
-        } else {
-            i7 = 3;
-        }
-        i6Var.setGravity(i7);
-        if (org.telegram.messenger.id.f23161a0) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        addView(i6Var, c8.ha.d(-1, 20.0f, i10 | 80, 21.0f, 15.0f, 21.0f, 2.0f));
-        i6 i6Var2 = new i6(context, true, true, true);
-        this.f38109b = i6Var2;
-        i6Var2.b(0.45f, 250L, wq.h);
-        i6Var2.setTextSize(org.telegram.messenger.g0.L(15.0f));
-        org.telegram.ui.ActionBar.t6.Y(i6Var2, i12, null);
-        if (org.telegram.messenger.id.f23161a0) {
-            i11 = 3;
-        } else {
-            i11 = 5;
-        }
-        i6Var2.setGravity(i11);
-        addView(i6Var2, c8.ha.d(-2, 20.0f, (org.telegram.messenger.id.f23161a0 ? 3 : 5) | 80, 21.0f, 15.0f, 21.0f, 2.0f));
-        WeakHashMap weakHashMap = r0.i0.f54202a;
-        new r0.v(2131296684, Boolean.class, 0, 28, 2).d(this, Boolean.TRUE);
+    public sz(zz zzVar) {
+        this.f39458c = zzVar;
     }
 
-    public final void a(String str, Runnable runnable) {
-        i6 i6Var = this.f38109b;
-        i6Var.c(str, !org.telegram.messenger.id.f23161a0, true);
-        i6Var.setOnClickListener(new n6(1, runnable));
+    @Override
+    public final boolean D(v4.e1 e1Var) {
+        if (e1Var.f58539f == 2) {
+            int b10 = e1Var.b();
+            zz zzVar = this.f39458c;
+            if (b10 >= zzVar.f42509n2 && e1Var.b() <= zzVar.f42510o2) {
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
-    public final void b(String str, boolean z9) {
+    @Override
+    public final int b() {
+        return this.f39458c.f42506k2;
+    }
+
+    @Override
+    public final int d(int i7) {
+        zz zzVar = this.f39458c;
+        zzVar.getClass();
+        if (i7 == 0) {
+            return 0;
+        }
+        if (i7 != zzVar.f42507l2 && i7 != zzVar.f42511p2 && i7 != zzVar.f42515t2) {
+            if (i7 != zzVar.f42508m2 && i7 != zzVar.f42512q2) {
+                return 2;
+            }
+            return 3;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void t(v4.e1 r11, int r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.sz.t(v4.e1, int):void");
+    }
+
+    @Override
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
+        yz yzVar;
+        yz yzVar2;
         boolean z10;
-        i6 i6Var = this.f38108a;
-        if (z9) {
-            i6Var.a();
-        }
-        if (z9 && !org.telegram.messenger.id.f23161a0) {
-            z10 = true;
+        zz zzVar = this.f39458c;
+        if (i7 == 0) {
+            Context context = zzVar.getContext();
+            if (!(zzVar.V1 instanceof TL_chatlists.TL_chatlists_chatlistInviteAlready) && zzVar.W1 == null) {
+                z10 = false;
+            } else {
+                z10 = true;
+            }
+            yzVar = new yz(zzVar, context, z10, zzVar.f42498b2, zzVar.Z1, zzVar.f42497a2);
+            zzVar.f42505j2 = yzVar;
         } else {
-            z10 = false;
+            yzVar = null;
+            if (i7 == 1) {
+                ?? y8Var = new org.telegram.ui.Cells.y8(zzVar.getContext());
+                org.telegram.ui.ActionBar.q6.h(org.telegram.ui.ActionBar.j6.f28792a7, y8Var, null);
+                yzVar2 = y8Var;
+            } else if (i7 == 2) {
+                ?? h4Var = new org.telegram.ui.Cells.h4(zzVar.getContext(), 1, 0, false);
+                org.telegram.ui.ActionBar.q6.h(org.telegram.ui.ActionBar.j6.f28849d6, h4Var, null);
+                yzVar = h4Var;
+            } else if (i7 == 3) {
+                ?? wzVar = new wz(zzVar.getContext());
+                org.telegram.ui.ActionBar.q6.h(org.telegram.ui.ActionBar.j6.f28849d6, wzVar, null);
+                yzVar2 = wzVar;
+            }
+            yzVar = yzVar2;
         }
-        i6Var.c(str, z10, true);
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.TextView");
-        accessibilityNodeInfo.setText(this.f38108a.getText());
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
+        return new v4.e1(yzVar);
     }
 }

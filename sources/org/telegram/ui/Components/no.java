@@ -1,92 +1,52 @@
 package org.telegram.ui.Components;
+public final class no implements Runnable {
+    public final int f37664a;
+    public final ep f37665b;
 
-import android.graphics.Bitmap;
-import android.graphics.Point;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.uc1;
-public final class no implements ai {
-    public final vo f36346a;
-
-    public no(vo voVar) {
-        this.f36346a = voVar;
+    public no(ep epVar, int i7) {
+        this.f37664a = i7;
+        this.f37665b = epVar;
     }
 
     @Override
-    public final boolean G1() {
-        System.currentTimeMillis();
-        return true;
-    }
-
-    @Override
-    public final void M0(Object obj) {
-        ko koVar = new ko(obj, null, true, 3);
-        vo voVar = this.f36346a;
-        koVar.W1 = voVar.Y1;
-        koVar.h1(voVar.f39071u1.a());
-        koVar.J1 = new mo(this, 1);
-        vo.I0(voVar, koVar);
-    }
-
-    @Override
-    public final void c0(pg pgVar) {
-        pgVar.run();
-    }
-
-    @Override
-    public final boolean f0() {
-        return false;
-    }
-
-    @Override
-    public final void o1(int i7, boolean z9, boolean z10, int i10, int i11, long j3, boolean z11, boolean z12, long j10) {
-        vo voVar = this.f36346a;
-        try {
-            HashMap<Object, Object> selectedPhotos = voVar.R1.d2.getSelectedPhotos();
-            if (!selectedPhotos.isEmpty()) {
-                org.telegram.messenger.gf gfVar = (org.telegram.messenger.gf) selectedPhotos.values().iterator().next();
-                String str = gfVar.h;
-                if (str == null) {
-                    str = gfVar.I;
-                }
-                if (str != null) {
-                    File z13 = org.telegram.messenger.w7.z(4);
-                    File file = new File(z13, Utilities.f21339b.nextInt() + ".jpg");
-                    Point c12 = org.telegram.messenger.g0.c1();
-                    Bitmap K = org.telegram.messenger.gc.K(str, null, (float) c12.x, (float) c12.y, true);
-                    K.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-                    ko koVar = new ko(new uc1(file, file, ""), K, false, 2);
-                    koVar.W1 = voVar.Y1;
-                    koVar.G1 = false;
-                    koVar.F1 = false;
-                    koVar.f51603o1 = 0.2f;
-                    koVar.h1(voVar.f39071u1.a());
-                    koVar.J1 = new mo(this, 0);
-                    vo.I0(voVar, koVar);
-                }
-            }
-        } catch (Throwable th2) {
-            org.telegram.messenger.a8.g(th2, true);
+    public final void run() {
+        switch (this.f37664a) {
+            case 0:
+                this.f37665b.f34397r1.f();
+                return;
+            case 1:
+                this.f37665b.K0(true);
+                return;
+            case 2:
+                ep epVar = this.f37665b;
+                org.telegram.ui.an anVar = epVar.f34401v1;
+                org.telegram.ui.ActionBar.e2 g02 = org.telegram.ui.z41.g0(anVar.getMessagesController().M0(Long.valueOf(-anVar.a())), true);
+                ?? obj = new Object();
+                obj.f28476a = true;
+                g02.setResourceProvider(anVar.getResourceProvider());
+                obj.f28478c = new ih(2);
+                obj.d = new no(epVar, 3);
+                obj.f28477b = new no(epVar, 4);
+                obj.f28479e = true;
+                epVar.R1 = g02;
+                anVar.showAsSheet(g02, obj);
+                return;
+            case 3:
+                this.f37665b.O0();
+                return;
+            case 4:
+                this.f37665b.R1 = null;
+                return;
+            case 5:
+                this.f37665b.O0();
+                return;
+            case 6:
+                this.f37665b.R1 = null;
+                return;
+            default:
+                ep epVar2 = this.f37665b;
+                epVar2.O1.c(epVar2.A1);
+                return;
         }
-    }
-
-    @Override
-    public final void Y0(TLRPC.User user) {
-    }
-
-    @Override
-    public final void F0() {
-    }
-
-    @Override
-    public final void t0() {
-    }
-
-    @Override
-    public final void M1(ArrayList arrayList, CharSequence charSequence, boolean z9, int i7, int i10, long j3, boolean z10, long j10) {
     }
 }

@@ -1,61 +1,30 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class w extends AnimatorListenerAdapter {
-    public final int f39594a;
-    public final y f39595b;
+import org.webrtc.RendererCommon;
+public final class w implements RendererCommon.RendererEvents {
+    public final z f41019a;
 
-    public w(y yVar, int i7) {
-        this.f39594a = i7;
-        this.f39595b = yVar;
+    public w(z zVar) {
+        this.f41019a = zVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f10;
-        int i7;
-        switch (this.f39594a) {
-            case 0:
-                y yVar = this.f39595b;
-                yVar.E = false;
-                yVar.invalidate();
+    public final void onFirstFrameRendered() {
+        int i7 = 0;
+        while (true) {
+            z zVar = this.f41019a;
+            if (i7 < zVar.f41096n0.size()) {
+                org.telegram.messenger.g0.r((Runnable) zVar.f41096n0.get(i7));
+                ((Runnable) zVar.f41096n0.get(i7)).run();
+                i7++;
+            } else {
+                zVar.f41096n0.clear();
                 return;
-            case 1:
-                y yVar2 = this.f39595b;
-                x xVar = yVar2.f39639b0;
-                if (yVar2.W) {
-                    f10 = 0.0f;
-                } else {
-                    f10 = 1.0f;
-                }
-                yVar2.f39637a0 = f10;
-                xVar.setAlpha(f10);
-                if (yVar2.W) {
-                    i7 = 8;
-                } else {
-                    i7 = 0;
-                }
-                xVar.setVisibility(i7);
-                yVar2.f39636a.invalidate();
-                return;
-            case 2:
-                super.onAnimationEnd(animator);
-                y yVar3 = this.f39595b;
-                yVar3.J0 = null;
-                u uVar = yVar3.f39636a;
-                uVar.setRotationY(0.0f);
-                if (!yVar3.K0) {
-                    uVar.d.clearImage();
-                    return;
-                }
-                return;
-            case 3:
-                this.f39595b.E = false;
-                return;
-            default:
-                this.f39595b.E = false;
-                return;
+            }
         }
+    }
+
+    @Override
+    public final void onFrameResolutionChanged(int i7, int i10, int i11) {
     }
 }

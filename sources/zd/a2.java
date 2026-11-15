@@ -1,6 +1,6 @@
 package zd;
 public final class a2 extends ee.q {
-    public final ThreadLocal f60049e;
+    public final ThreadLocal f61250e;
     private volatile boolean threadLocalIsSet;
 
     public a2(id.c r3, id.h r4) {
@@ -8,29 +8,29 @@ public final class a2 extends ee.q {
     }
 
     public final boolean T() {
-        boolean z9;
-        if (this.threadLocalIsSet && this.f60049e.get() == null) {
-            z9 = true;
+        boolean z10;
+        if (this.threadLocalIsSet && this.f61250e.get() == null) {
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        this.f60049e.remove();
-        return !z9;
+        this.f61250e.remove();
+        return !z10;
     }
 
     public final void U(id.h hVar, Object obj) {
         this.threadLocalIsSet = true;
-        this.f60049e.set(new gd.e(hVar, obj));
+        this.f61250e.set(new gd.e(hVar, obj));
     }
 
     @Override
     public final void h(Object obj) {
         if (this.threadLocalIsSet) {
-            gd.e eVar = (gd.e) this.f60049e.get();
+            gd.e eVar = (gd.e) this.f61250e.get();
             if (eVar != null) {
-                ee.a.g((id.h) eVar.f13820a, eVar.f13821b);
+                ee.a.g((id.h) eVar.f13162a, eVar.f13163b);
             }
-            this.f60049e.remove();
+            this.f61250e.remove();
         }
         Object s5 = b0.s(obj);
         id.c cVar = this.d;

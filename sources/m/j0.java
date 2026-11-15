@@ -1,121 +1,113 @@
 package m;
 
-import android.content.DialogInterface;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
+import android.database.DataSetObserver;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListAdapter;
-import androidx.appcompat.app.AlertController$RecycleListView;
-public final class j0 implements p0, DialogInterface.OnClickListener {
-    public g.f f19143a;
-    public k0 f19144b;
-    public CharSequence f19145c;
-    public final q0 d;
+import android.widget.SpinnerAdapter;
+public final class j0 implements ListAdapter, SpinnerAdapter {
+    public SpinnerAdapter f19728a;
+    public ListAdapter f19729b;
 
-    public j0(q0 q0Var) {
-        this.d = q0Var;
+    @Override
+    public final boolean areAllItemsEnabled() {
+        ListAdapter listAdapter = this.f19729b;
+        if (listAdapter != null) {
+            return listAdapter.areAllItemsEnabled();
+        }
+        return true;
     }
 
     @Override
-    public final boolean a() {
-        g.f fVar = this.f19143a;
-        if (fVar != null) {
-            return fVar.isShowing();
+    public final int getCount() {
+        SpinnerAdapter spinnerAdapter = this.f19728a;
+        if (spinnerAdapter == null) {
+            return 0;
+        }
+        return spinnerAdapter.getCount();
+    }
+
+    @Override
+    public final View getDropDownView(int i7, View view, ViewGroup viewGroup) {
+        SpinnerAdapter spinnerAdapter = this.f19728a;
+        if (spinnerAdapter == null) {
+            return null;
+        }
+        return spinnerAdapter.getDropDownView(i7, view, viewGroup);
+    }
+
+    @Override
+    public final Object getItem(int i7) {
+        SpinnerAdapter spinnerAdapter = this.f19728a;
+        if (spinnerAdapter == null) {
+            return null;
+        }
+        return spinnerAdapter.getItem(i7);
+    }
+
+    @Override
+    public final long getItemId(int i7) {
+        SpinnerAdapter spinnerAdapter = this.f19728a;
+        if (spinnerAdapter == null) {
+            return -1L;
+        }
+        return spinnerAdapter.getItemId(i7);
+    }
+
+    @Override
+    public final int getItemViewType(int i7) {
+        return 0;
+    }
+
+    @Override
+    public final View getView(int i7, View view, ViewGroup viewGroup) {
+        return getDropDownView(i7, view, viewGroup);
+    }
+
+    @Override
+    public final int getViewTypeCount() {
+        return 1;
+    }
+
+    @Override
+    public final boolean hasStableIds() {
+        SpinnerAdapter spinnerAdapter = this.f19728a;
+        if (spinnerAdapter != null && spinnerAdapter.hasStableIds()) {
+            return true;
         }
         return false;
     }
 
     @Override
-    public final int b() {
-        return 0;
+    public final boolean isEmpty() {
+        if (getCount() == 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void c(int i7) {
-        Log.e("AppCompatSpinner", "Cannot set horizontal offset for MODE_DIALOG, ignoring");
+    public final boolean isEnabled(int i7) {
+        ListAdapter listAdapter = this.f19729b;
+        if (listAdapter != null) {
+            return listAdapter.isEnabled(i7);
+        }
+        return true;
     }
 
     @Override
-    public final CharSequence d() {
-        return this.f19145c;
-    }
-
-    @Override
-    public final void dismiss() {
-        g.f fVar = this.f19143a;
-        if (fVar != null) {
-            fVar.dismiss();
-            this.f19143a = null;
+    public final void registerDataSetObserver(DataSetObserver dataSetObserver) {
+        SpinnerAdapter spinnerAdapter = this.f19728a;
+        if (spinnerAdapter != null) {
+            spinnerAdapter.registerDataSetObserver(dataSetObserver);
         }
     }
 
     @Override
-    public final Drawable e() {
-        return null;
-    }
-
-    @Override
-    public final void h(CharSequence charSequence) {
-        this.f19145c = charSequence;
-    }
-
-    @Override
-    public final void i(Drawable drawable) {
-        Log.e("AppCompatSpinner", "Cannot set popup background for MODE_DIALOG, ignoring");
-    }
-
-    @Override
-    public final void j(int i7) {
-        Log.e("AppCompatSpinner", "Cannot set vertical offset for MODE_DIALOG, ignoring");
-    }
-
-    @Override
-    public final void k(int i7) {
-        Log.e("AppCompatSpinner", "Cannot set horizontal (original) offset for MODE_DIALOG, ignoring");
-    }
-
-    @Override
-    public final void l(int i7, int i10) {
-        if (this.f19144b == null) {
-            return;
+    public final void unregisterDataSetObserver(DataSetObserver dataSetObserver) {
+        SpinnerAdapter spinnerAdapter = this.f19728a;
+        if (spinnerAdapter != null) {
+            spinnerAdapter.unregisterDataSetObserver(dataSetObserver);
         }
-        q0 q0Var = this.d;
-        f5.u uVar = new f5.u(q0Var.getPopupContext());
-        g.b bVar = (g.b) uVar.f11196c;
-        CharSequence charSequence = this.f19145c;
-        if (charSequence != null) {
-            bVar.f13269f = charSequence;
-        }
-        k0 k0Var = this.f19144b;
-        int selectedItemPosition = q0Var.getSelectedItemPosition();
-        bVar.f13274l = k0Var;
-        bVar.f13275m = this;
-        bVar.f13266b = selectedItemPosition;
-        bVar.f13265a = true;
-        g.f g10 = uVar.g();
-        this.f19143a = g10;
-        AlertController$RecycleListView alertController$RecycleListView = g10.f13323f.f13303e;
-        h0.d(alertController$RecycleListView, i7);
-        h0.c(alertController$RecycleListView, i10);
-        this.f19143a.show();
-    }
-
-    @Override
-    public final int m() {
-        return 0;
-    }
-
-    @Override
-    public final void n(ListAdapter listAdapter) {
-        this.f19144b = (k0) listAdapter;
-    }
-
-    @Override
-    public final void onClick(DialogInterface dialogInterface, int i7) {
-        q0 q0Var = this.d;
-        q0Var.setSelection(i7);
-        if (q0Var.getOnItemClickListener() != null) {
-            q0Var.performItemClick(null, i7, this.f19144b.getItemId(i7));
-        }
-        dismiss();
     }
 }

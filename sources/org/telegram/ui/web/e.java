@@ -1,69 +1,58 @@
 package org.telegram.ui.web;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.my0;
-public final class e extends Drawable {
-    public final int f51055a;
-    public final my0 f51056b;
-    public final g f51057c;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import c8.ja;
+public final class e extends FrameLayout {
+    public final ImageView f52589a;
+    public final TextView f52590b;
+    public final ImageView f52591c;
+    public final Paint d;
+    public boolean f52592e;
 
-    public e(g gVar, String str, int i7) {
-        this.f51055a = i7;
-        switch (i7) {
-            case 1:
-                this.f51057c = gVar;
-                this.f51056b = new my0(str, 14.0f, org.telegram.messenger.g0.o());
-                return;
-            default:
-                this.f51057c = gVar;
-                this.f51056b = new my0(str, 14.0f, org.telegram.messenger.g0.o());
-                return;
+    public e(Context context) {
+        super(context);
+        this.d = new Paint(1);
+        ImageView imageView = new ImageView(context);
+        this.f52589a = imageView;
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        imageView.setImageResource(2131231777);
+        addView(imageView, ja.d(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
+        TextView textView = new TextView(context);
+        this.f52590b = textView;
+        textView.setTextSize(1, 16.0f);
+        addView(textView, ja.d(-1, -2.0f, 19, 64.0f, 8.0f, 64.0f, 8.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f52591c = imageView2;
+        imageView2.setScaleType(scaleType);
+        imageView2.setImageResource(2131231768);
+        addView(imageView2, ja.d(32, 32.0f, 21, 8.0f, 8.0f, 10.0f, 8.0f));
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.f52592e) {
+            canvas.drawRect(org.telegram.messenger.g0.L(64.0f), getHeight() - Math.max(org.telegram.messenger.g0.L(0.66f), 1), getWidth(), getHeight(), this.d);
         }
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f51055a) {
-            case 0:
-                this.f51056b.c(getBounds().centerX() - (this.f51056b.f36133c / 2.0f), getBounds().centerY(), 1.0f, this.f51057c.f51074s, canvas);
-                return;
-            default:
-                this.f51056b.c(getBounds().centerX() - (this.f51056b.f36133c / 2.0f), getBounds().centerY(), 1.0f, this.f51057c.f51074s, canvas);
-                return;
-        }
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
     }
 
-    @Override
-    public final int getOpacity() {
-        switch (this.f51055a) {
-            case 0:
-                return -2;
-            default:
-                return -2;
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-        int i10 = this.f51055a;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        int i7 = this.f51055a;
-    }
-
-    private final void a(int i7) {
-    }
-
-    private final void b(int i7) {
-    }
-
-    private final void c(ColorFilter colorFilter) {
-    }
-
-    private final void d(ColorFilter colorFilter) {
+    public void setAsShowMore(k kVar) {
+        ImageView imageView = this.f52589a;
+        imageView.setImageResource(2131230871);
+        imageView.setColorFilter(new PorterDuffColorFilter(kVar.I, PorterDuff.Mode.SRC_IN));
     }
 }

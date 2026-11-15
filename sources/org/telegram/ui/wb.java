@@ -1,34 +1,23 @@
 package org.telegram.ui;
+public final class wb implements Runnable {
+    public final int f52525a;
+    public final qc f52526b;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class wb implements org.telegram.messenger.c20 {
-    public final int f50971a;
-    public final rc f50972b;
-
-    public wb(rc rcVar, int i7) {
-        this.f50971a = i7;
-        this.f50972b = rcVar;
+    public wb(qc qcVar, int i7) {
+        this.f52525a = i7;
+        this.f52526b = qcVar;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f50971a) {
+    public final void run() {
+        int i7 = this.f52525a;
+        qc qcVar = this.f52526b;
+        switch (i7) {
             case 0:
-                TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) obj;
-                rc rcVar = this.f50972b;
-                rcVar.E = wallPaper;
-                rcVar.F = wallPaper;
-                rcVar.G = wallPaper;
-                rcVar.e1(false);
-                rcVar.h1(false);
-                org.telegram.messenger.g0.i3(new xb(rcVar, 1), 350L);
-                return;
-            case 1:
-                rc.a0(this.f50972b, (org.telegram.messenger.e3) obj);
+                qc.Z(qcVar);
                 return;
             default:
-                this.f50972b.d1((TL_stories.TL_premium_boostsStatus) obj);
+                org.telegram.messenger.k5.n(null, 2131752260, org.telegram.ui.Components.cc.a0(qcVar), 2131624000, 36);
                 return;
         }
     }

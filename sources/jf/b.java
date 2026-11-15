@@ -1,5 +1,6 @@
 package jf;
 
+import com.google.android.gms.internal.vision.e2;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,8 +10,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public abstract class b {
-    public static final Map f16659a;
-    public static final Pattern f16660b;
+    public static final Map f17011a;
+    public static final Pattern f17012b;
 
     static {
         HashMap hashMap = new HashMap();
@@ -26,8 +27,8 @@ public abstract class b {
                 } else {
                     bufferedReader.close();
                     hashMap.put("NewLine", "\n");
-                    f16659a = hashMap;
-                    f16660b = Pattern.compile("^&#[Xx]?");
+                    f17011a = hashMap;
+                    f17012b = Pattern.compile("^&#[Xx]?");
                     return;
                 }
             }
@@ -38,7 +39,7 @@ public abstract class b {
 
     public static String a(String str) {
         int i7;
-        Matcher matcher = f16660b.matcher(str);
+        Matcher matcher = f17012b.matcher(str);
         if (matcher.find()) {
             if (matcher.end() == 2) {
                 i7 = 10;
@@ -55,7 +56,7 @@ public abstract class b {
                 return "�";
             }
         }
-        String str2 = (String) f16659a.get(com.google.android.recaptcha.internal.a.k(str, 1, 1));
+        String str2 = (String) f17011a.get(e2.k(str, 1, 1));
         if (str2 != null) {
             return str2;
         }

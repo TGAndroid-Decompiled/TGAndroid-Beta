@@ -1,26 +1,55 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class wr0 implements View.OnClickListener {
-    public final int f51429a;
-    public final org.telegram.ui.Components.k60 f51430b;
+import android.content.Context;
+import android.graphics.Canvas;
+public final class wr0 extends org.telegram.ui.Cells.q1 {
+    public final int Ad;
+    public final int Bd;
+    public final int f52989zd;
 
-    public wr0(org.telegram.ui.Components.k60 k60Var, int i7) {
-        this.f51429a = i7;
-        this.f51430b = k60Var;
+    public wr0(Context context, int i7, org.telegram.ui.ActionBar.e6 e6Var, int i10, int i11, int i12) {
+        super(context, i7, false, null, e6Var);
+        this.f52989zd = i12;
+        this.Ad = i10;
+        this.Bd = i11;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f51429a) {
+    public final void j1(Canvas canvas) {
+        switch (this.f52989zd) {
             case 0:
-                org.telegram.ui.Components.bc.e();
-                this.f51430b.s();
+                this.S4 = 0;
+                this.T4 = this.Q4.size() - 1;
+                super.j1(canvas);
                 return;
             default:
-                org.telegram.ui.Components.bc.e();
-                this.f51430b.s();
+                this.S4 = 0;
+                this.T4 = this.Q4.size() - 1;
+                super.j1(canvas);
                 return;
         }
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        switch (this.f52989zd) {
+            case 0:
+                setMeasuredDimension(this.Ad, this.Bd);
+                return;
+            default:
+                setMeasuredDimension(this.Ad, this.Bd);
+                return;
+        }
+    }
+
+    @Override
+    public final void setPressed(boolean z10) {
+        int i7 = this.f52989zd;
+    }
+
+    private final void e4(boolean z10) {
+    }
+
+    private final void f4(boolean z10) {
     }
 }

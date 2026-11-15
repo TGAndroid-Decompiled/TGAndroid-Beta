@@ -1,27 +1,68 @@
 package org.telegram.ui;
-public final class cd0 implements Runnable {
-    public final int f44330a;
-    public final jd0 f44331b;
-    public final int f44332c;
 
-    public cd0(jd0 jd0Var, int i7, int i10) {
-        this.f44330a = i10;
-        this.f44331b = jd0Var;
-        this.f44332c = i7;
+import android.content.Context;
+public final class cd0 extends db0 {
+    public final int f46081e;
+    public final org.telegram.ui.Components.xt0 f46082f;
+
+    public cd0(ed0 ed0Var, Context context, int i7) {
+        super(ed0Var.f46759v0, context);
+        this.f46081e = i7;
+        switch (i7) {
+            case 1:
+                this.f46082f = ed0Var;
+                super(ed0Var.f46759v0, context);
+                return;
+            default:
+                this.f46082f = ed0Var;
+                return;
+        }
     }
 
     @Override
-    public final void run() {
-        switch (this.f44330a) {
+    public final boolean a() {
+        switch (this.f46081e) {
             case 0:
-                org.telegram.messenger.g0.h3(new cd0(this.f44331b, this.f44332c, 1));
-                return;
+                return ((ed0) this.f46082f).f46747l0;
             case 1:
-                this.f44331b.z(this.f44332c);
-                return;
+                return ((ed0) this.f46082f).f46747l0;
             default:
-                this.f44331b.f46967f.f44118f[this.f44332c].C(1.0f);
-                return;
+                return ((dc0) this.f46082f).N;
         }
+    }
+
+    @Override
+    public final boolean b() {
+        cd0 cd0Var;
+        switch (this.f46081e) {
+            case 0:
+                if (getVisibility() == 0) {
+                    ed0 ed0Var = (ed0) this.f46082f;
+                    if (ed0Var.f46734b0 <= 0 || ed0Var.U == null) {
+                        return true;
+                    }
+                }
+                return false;
+            case 1:
+                ed0 ed0Var2 = (ed0) this.f46082f;
+                if (isClickable() && getVisibility() == 0 && !ed0Var2.f46742g0 && (((cd0Var = ed0Var2.f46760w) == null || cd0Var.getVisibility() == 8) && !ed0Var2.f46747l0)) {
+                    return true;
+                }
+                return false;
+            default:
+                if (getVisibility() == 0) {
+                    dc0 dc0Var = (dc0) this.f46082f;
+                    if (dc0Var.Q <= 0 || dc0Var.O == null) {
+                        return true;
+                    }
+                }
+                return false;
+        }
+    }
+
+    public cd0(dc0 dc0Var, Context context) {
+        super(dc0Var.f46357b0, context);
+        this.f46081e = 2;
+        this.f46082f = dc0Var;
     }
 }

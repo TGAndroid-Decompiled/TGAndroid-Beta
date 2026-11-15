@@ -7,39 +7,39 @@ import java.util.ArrayList;
 import java.util.List;
 public final class gg extends r6.a {
     public static final Parcelable.Creator<gg> CREATOR = new ag(2);
-    public final List f5693a;
-    public final float[] f5694b;
-    public final Bitmap f5695c;
+    public final List f4515a;
+    public final float[] f4516b;
+    public final Bitmap f4517c;
     public final List d;
 
     public gg(ArrayList arrayList, float[] fArr, Bitmap bitmap, ArrayList arrayList2) {
-        this.f5693a = arrayList;
-        this.f5694b = fArr;
-        this.f5695c = bitmap;
+        this.f4515a = arrayList;
+        this.f4516b = fArr;
+        this.f4517c = bitmap;
         this.d = arrayList2;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = xb.r(parcel, 20293);
-        xb.p(parcel, 1, this.f5693a);
-        float[] fArr = this.f5694b;
+        int r10 = yb.r(parcel, 20293);
+        yb.p(parcel, 1, this.f4515a);
+        float[] fArr = this.f4516b;
         if (fArr != null) {
-            int r11 = xb.r(parcel, 2);
+            int r11 = yb.r(parcel, 2);
             parcel.writeFloatArray(fArr);
-            xb.s(parcel, r11);
+            yb.s(parcel, r11);
         }
-        xb.k(parcel, 3, this.f5695c, i7);
+        yb.k(parcel, 3, this.f4517c, i7);
         List list = this.d;
         if (list != null) {
-            int r12 = xb.r(parcel, 4);
+            int r12 = yb.r(parcel, 4);
             int size = list.size();
             parcel.writeInt(size);
             for (int i10 = 0; i10 < size; i10++) {
                 parcel.writeFloat(((Float) list.get(i10)).floatValue());
             }
-            xb.s(parcel, r12);
+            yb.s(parcel, r12);
         }
-        xb.s(parcel, r10);
+        yb.s(parcel, r10);
     }
 }

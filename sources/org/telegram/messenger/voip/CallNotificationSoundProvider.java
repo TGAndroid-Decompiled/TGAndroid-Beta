@@ -30,7 +30,7 @@ public class CallNotificationSoundProvider extends ContentProvider {
     @Override
     public ParcelFileDescriptor openFile(Uri uri, String str) {
         if ("r".equals(str)) {
-            if (org.telegram.messenger.t0.f25570b != null) {
+            if (org.telegram.messenger.t0.f26600b != null) {
                 try {
                     VoIPService sharedInstance = VoIPService.getSharedInstance();
                     if (sharedInstance != null) {
@@ -47,7 +47,7 @@ public class CallNotificationSoundProvider extends ContentProvider {
             }
             throw new FileNotFoundException("Unexpected application state");
         }
-        throw new SecurityException(rf.b.i("Unexpected file mode ", str));
+        throw new SecurityException(r.b.k("Unexpected file mode ", str));
     }
 
     @Override

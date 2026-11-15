@@ -1,31 +1,31 @@
 package x9;
 
 import android.util.Log;
-import bi.i;
 import da.p1;
+import di.h;
 import java.util.concurrent.atomic.AtomicReference;
-import u5.e;
-import u9.p;
+import tg.a2;
+import u9.o;
 public final class a {
-    public static final b f58670c = new Object();
-    public final p f58671a;
-    public final AtomicReference f58672b = new AtomicReference(null);
+    public static final b f59853c = new Object();
+    public final o f59854a;
+    public final AtomicReference f59855b = new AtomicReference(null);
 
-    public a(p pVar) {
-        this.f58671a = pVar;
-        pVar.a(new e(this, 11));
+    public a(o oVar) {
+        this.f59854a = oVar;
+        oVar.a(new a2(this, 15));
     }
 
     public final b a(String str) {
-        a aVar = (a) this.f58672b.get();
+        a aVar = (a) this.f59855b.get();
         if (aVar == null) {
-            return f58670c;
+            return f59853c;
         }
         return aVar.a(str);
     }
 
     public final boolean b() {
-        a aVar = (a) this.f58672b.get();
+        a aVar = (a) this.f59855b.get();
         if (aVar != null && aVar.b()) {
             return true;
         }
@@ -33,7 +33,7 @@ public final class a {
     }
 
     public final boolean c(String str) {
-        a aVar = (a) this.f58672b.get();
+        a aVar = (a) this.f59855b.get();
         if (aVar != null && aVar.c(str)) {
             return true;
         }
@@ -41,10 +41,10 @@ public final class a {
     }
 
     public final void d(String str, long j3, p1 p1Var) {
-        String i7 = rf.b.i("Deferring native open session: ", str);
+        String k10 = r.b.k("Deferring native open session: ", str);
         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-            Log.v("FirebaseCrashlytics", i7, null);
+            Log.v("FirebaseCrashlytics", k10, null);
         }
-        this.f58671a.a(new i(str, j3, p1Var, 11));
+        this.f59854a.a(new h(str, j3, p1Var, 11));
     }
 }

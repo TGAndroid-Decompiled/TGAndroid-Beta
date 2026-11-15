@@ -1,27 +1,27 @@
 package u2;
 
-import a8.ia;
+import a8.ja;
 import java.nio.ByteBuffer;
 public final class g extends k2.h {
-    public long f56261r;
-    public int f56262s;
-    public int f56263w;
+    public long f57760r;
+    public int f57761s;
+    public int f57762w;
 
     @Override
     public final void clear() {
         super.clear();
-        this.f56262s = 0;
+        this.f57761s = 0;
     }
 
     public final boolean e(k2.h hVar) {
         ByteBuffer byteBuffer;
-        ia.f(!hVar.getFlag(1073741824));
-        ia.f(!hVar.hasSupplementalData());
-        ia.f(!hVar.isEndOfStream());
+        ja.f(!hVar.getFlag(1073741824));
+        ja.f(!hVar.hasSupplementalData());
+        ja.f(!hVar.isEndOfStream());
         if (f()) {
-            if (this.f56262s < this.f56263w) {
-                ByteBuffer byteBuffer2 = hVar.f17175c;
-                if (byteBuffer2 != null && (byteBuffer = this.f17175c) != null) {
+            if (this.f57761s < this.f57762w) {
+                ByteBuffer byteBuffer2 = hVar.f17732c;
+                if (byteBuffer2 != null && (byteBuffer = this.f17732c) != null) {
                     if (byteBuffer2.remaining() + byteBuffer.position() > 3072000) {
                         return false;
                     }
@@ -30,25 +30,25 @@ public final class g extends k2.h {
                 return false;
             }
         }
-        int i7 = this.f56262s;
-        this.f56262s = i7 + 1;
+        int i7 = this.f57761s;
+        this.f57761s = i7 + 1;
         if (i7 == 0) {
-            this.f17176e = hVar.f17176e;
+            this.f17733e = hVar.f17733e;
             if (hVar.isKeyFrame()) {
                 setFlags(1);
             }
         }
-        ByteBuffer byteBuffer3 = hVar.f17175c;
+        ByteBuffer byteBuffer3 = hVar.f17732c;
         if (byteBuffer3 != null) {
             b(byteBuffer3.remaining());
-            this.f17175c.put(byteBuffer3);
+            this.f17732c.put(byteBuffer3);
         }
-        this.f56261r = hVar.f17176e;
+        this.f57760r = hVar.f17733e;
         return true;
     }
 
     public final boolean f() {
-        if (this.f56262s > 0) {
+        if (this.f57761s > 0) {
             return true;
         }
         return false;

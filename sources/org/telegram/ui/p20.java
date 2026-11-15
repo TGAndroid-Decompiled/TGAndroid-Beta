@@ -1,11 +1,16 @@
 package org.telegram.ui;
-public final class p20 extends org.telegram.ui.Components.hb0 {
-    public p20(LaunchActivity launchActivity) {
-        super(launchActivity, null);
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class p20 extends AnimatorListenerAdapter {
+    public final c40 f50114a;
+
+    public p20(c40 c40Var) {
+        this.f50114a = c40Var;
     }
 
     @Override
-    public final CharSequence d(int i7) {
-        return org.telegram.messenger.id.G(i7, "Hours", new Object[0]);
+    public final void onAnimationEnd(Animator animator) {
+        this.f50114a.S2 = null;
     }
 }

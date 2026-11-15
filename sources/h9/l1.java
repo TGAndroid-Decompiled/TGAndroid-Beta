@@ -1,46 +1,29 @@
 package h9;
 
-import a8.ia;
-import a8.kb;
-import java.io.Serializable;
+import di.z6;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.NavigableMap;
-import java.util.RandomAccess;
 import java.util.Set;
-import java.util.SortedMap;
-public final class l1 extends l implements a1, Serializable {
-    public final transient Map f14347e;
-    public transient int f14348f;
-    public transient k1 h;
+public final class l1 extends l implements a1 {
+    public final a1 f13702e;
+    public final ob.c f13703f;
 
-    public l1(Map map) {
-        ia.f(map.isEmpty());
-        this.f14347e = map;
+    public l1(a1 a1Var, ob.c cVar) {
+        a1Var.getClass();
+        this.f13702e = a1Var;
+        this.f13703f = cVar;
     }
 
     @Override
     public final void clear() {
-        Map map = this.f14347e;
-        for (Collection collection : map.values()) {
-            collection.clear();
-        }
-        map.clear();
-        this.f14348f = 0;
+        this.f13702e.clear();
     }
 
     @Override
     public final Map d() {
-        Map map = this.f14347e;
-        if (map instanceof NavigableMap) {
-            return new e(this, (NavigableMap) map);
-        }
-        if (map instanceof SortedMap) {
-            return new h(this, (SortedMap) map);
-        }
-        return new kb(this, map, 2);
+        return new h1(this.f13702e.b(), new z6(this, 15));
     }
 
     @Override
@@ -50,40 +33,26 @@ public final class l1 extends l implements a1, Serializable {
 
     @Override
     public final Set f() {
-        Map map = this.f14347e;
-        if (map instanceof NavigableMap) {
-            return new f(this, (NavigableMap) map);
-        }
-        if (map instanceof SortedMap) {
-            return new i(this, (SortedMap) map);
-        }
-        return new d(this, map);
+        return this.f13702e.keySet();
     }
 
     @Override
     public final Iterator g() {
-        return new b(this, 1);
+        return new w0(this.f13702e.a().iterator(), new d6.i(this.f13703f, 24));
     }
 
     @Override
     public final Collection get(Object obj) {
-        Collection collection = (Collection) this.f14347e.get(obj);
-        if (collection == null) {
-            collection = h();
-        }
-        List list = (List) collection;
-        if (list instanceof RandomAccess) {
-            return new a8.f(this, obj, list, (a8.f) null);
-        }
-        return new a8.f(this, obj, list, (a8.f) null);
+        return o.y((List) this.f13702e.get(obj), new q4.q(this.f13703f, obj, false, 24));
     }
 
-    public final Collection h() {
-        return (List) this.h.get();
+    @Override
+    public final boolean remove(Object obj, Object obj2) {
+        return get(obj).remove(obj2);
     }
 
     @Override
     public final int size() {
-        return this.f14348f;
+        return this.f13702e.size();
     }
 }

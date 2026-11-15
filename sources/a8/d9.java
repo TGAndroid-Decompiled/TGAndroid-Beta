@@ -1,10 +1,57 @@
 package a8;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public abstract class d9 {
-    public static void a(int i7, Object[] objArr) {
-        for (int i10 = 0; i10 < i7; i10++) {
-            if (objArr[i10] == null) {
-                throw new NullPointerException(jg.g.j(i10, "at index "));
+    public static String a(String str, Object... objArr) {
+        int length;
+        int length2;
+        int indexOf;
+        String l10;
+        int i7 = 0;
+        int i10 = 0;
+        while (true) {
+            length = objArr.length;
+            if (i10 >= length) {
+                break;
             }
+            Object obj = objArr[i10];
+            if (obj == null) {
+                l10 = "null";
+            } else {
+                try {
+                    l10 = obj.toString();
+                } catch (Exception e10) {
+                    String E = p0.E(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(E), (Throwable) e10);
+                    l10 = r.b.l("<", E, " threw ", e10.getClass().getName(), ">");
+                }
+            }
+            objArr[i10] = l10;
+            i10++;
         }
+        StringBuilder sb2 = new StringBuilder(str.length() + (length * 16));
+        int i11 = 0;
+        while (true) {
+            length2 = objArr.length;
+            if (i7 >= length2 || (indexOf = str.indexOf("%s", i11)) == -1) {
+                break;
+            }
+            sb2.append((CharSequence) str, i11, indexOf);
+            sb2.append(objArr[i7]);
+            i7++;
+            i11 = indexOf + 2;
+        }
+        sb2.append((CharSequence) str, i11, str.length());
+        if (i7 < length2) {
+            sb2.append(" [");
+            sb2.append(objArr[i7]);
+            for (int i12 = i7 + 1; i12 < objArr.length; i12++) {
+                sb2.append(", ");
+                sb2.append(objArr[i12]);
+            }
+            sb2.append(']');
+        }
+        return sb2.toString();
     }
 }

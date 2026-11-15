@@ -1,39 +1,29 @@
 package fi;
 
 import android.content.Context;
-import android.view.ViewGroup;
-import org.telegram.ui.Components.wo;
-public final class a3 extends wo {
-    public final int d;
-    public final ViewGroup f11596e;
+import android.graphics.Bitmap;
+public final class a3 extends m8 {
+    public final i9 I;
+    public final b4 J;
 
-    public a3(ViewGroup viewGroup, Context context, org.telegram.ui.ActionBar.h6 h6Var, int i7) {
-        super(21, context, h6Var);
-        this.d = i7;
-        this.f11596e = viewGroup;
+    public a3(b4 b4Var, Context context, e3 e3Var, org.telegram.ui.ActionBar.e6 e6Var, i9 i9Var) {
+        super(context, e3Var, e6Var);
+        this.J = b4Var;
+        this.I = i9Var;
     }
 
     @Override
-    public final void invalidate() {
-        switch (this.d) {
-            case 0:
-                super.invalidate();
-                ((b3) this.f11596e).invalidate();
-                return;
-            case 1:
-                super.invalidate();
-                ((org.telegram.ui.Cells.t2) this.f11596e).invalidate();
-                return;
-            default:
-                super.invalidate();
-                ((org.telegram.ui.web.g) this.f11596e).invalidate();
-                return;
+    public final void b(boolean z10) {
+        u3 u3Var = this.J.A1;
+        if (u3Var != null) {
+            i9 i9Var = ((z8) u3Var).d;
+            i9Var.f11852i1 = z10;
+            i9Var.V();
         }
     }
 
-    public a3(b3 b3Var, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(24, context, h6Var);
-        this.d = 0;
-        this.f11596e = b3Var;
+    @Override
+    public final Bitmap getPlayingBitmap() {
+        return this.J.getPlayingBitmap();
     }
 }

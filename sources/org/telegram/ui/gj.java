@@ -1,60 +1,34 @@
 package org.telegram.ui;
-public final class gj implements Runnable {
-    public final int f46103a;
-    public final cn f46104b;
 
-    public gj(cn cnVar, int i7) {
-        this.f46103a = i7;
-        this.f46104b = cnVar;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class gj extends org.telegram.ui.Components.h01 {
+    public final an f47463e;
+
+    public gj(an anVar, Context context, int i7, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(i7, context, e6Var);
+        this.f47463e = anVar;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f46103a;
-        cn cnVar = this.f46104b;
-        switch (i7) {
-            case 0:
-                int i10 = cn.f44408kd;
-                cnVar.o7();
-                return;
-            case 1:
-                cn.s2(cnVar);
-                return;
-            case 2:
-                cn.s2(cnVar);
-                return;
-            case 3:
-                int i11 = cn.f44408kd;
-                cnVar.ob();
-                return;
-            case 4:
-                int i12 = cn.f44408kd;
-                cnVar.ob();
-                return;
-            case 5:
-                int i13 = cn.f44408kd;
-                cnVar.ob();
-                return;
-            case 6:
-                int i14 = cn.f44408kd;
-                cnVar.ob();
-                return;
-            case 7:
-                int i15 = cn.f44408kd;
-                cnVar.ob();
-                return;
-            case 8:
-                int i16 = cn.f44408kd;
-                cnVar.ob();
-                return;
-            case 9:
-                int i17 = cn.f44408kd;
-                cnVar.ob();
-                return;
-            default:
-                int i18 = cn.f44408kd;
-                cnVar.ob();
-                return;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.k kVar;
+        if (getAlpha() != 0.0f) {
+            an anVar = this.f47463e;
+            kVar = ((org.telegram.ui.ActionBar.e2) anVar).actionBar;
+            if (!kVar.x() && !anVar.Y9()) {
+                return super.onTouchEvent(motionEvent);
+            }
+            return false;
         }
+        return false;
+    }
+
+    @Override
+    public final void setTranslationY(float f10) {
+        if (getTranslationY() != f10) {
+            invalidate();
+        }
+        super.setTranslationY(f10);
     }
 }

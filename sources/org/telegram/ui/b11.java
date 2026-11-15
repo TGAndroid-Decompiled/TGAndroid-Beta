@@ -1,34 +1,21 @@
 package org.telegram.ui;
+public final class b11 implements Runnable {
+    public final int f45560a;
+    public final bi.u f45561b;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class b11 extends AnimatorListenerAdapter {
-    public final int f43900a;
-    public final d11 f43901b;
-
-    public b11(d11 d11Var, int i7) {
-        this.f43900a = i7;
-        this.f43901b = d11Var;
+    public b11(bi.u uVar, int i7) {
+        this.f45560a = i7;
+        this.f45561b = uVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f43900a) {
+    public final void run() {
+        switch (this.f45560a) {
             case 0:
-                super.onAnimationEnd(animator);
-                this.f43901b.I = null;
-                return;
-            case 1:
-                super.onAnimationEnd(animator);
-                this.f43901b.I = null;
+                org.telegram.messenger.g0.J3(((f01) this.f45561b.f3884f2).h);
                 return;
             default:
-                super.onAnimationEnd(animator);
-                d11 d11Var = this.f43901b;
-                d11Var.N = 0.0f;
-                d11Var.I = null;
-                d11Var.M = false;
-                d11Var.d(true, false);
+                this.f45561b.requestFocus();
                 return;
         }
     }

@@ -18,7 +18,7 @@ public final class c extends z {
     private static final c DEFAULT_INSTANCE;
     private static volatile x0 PARSER = null;
     public static final int PREFERENCES_FIELD_NUMBER = 1;
-    private o0 preferences_ = o0.f2233b;
+    private o0 preferences_ = o0.f2181b;
 
     static {
         c cVar = new c();
@@ -28,7 +28,7 @@ public final class c extends z {
 
     public static o0 l(c cVar) {
         o0 o0Var = cVar.preferences_;
-        if (!o0Var.f2234a) {
+        if (!o0Var.f2182a) {
             cVar.preferences_ = o0Var.c();
         }
         return cVar.preferences_;
@@ -44,10 +44,10 @@ public final class c extends z {
         p a10 = p.a();
         z i7 = cVar.i();
         try {
-            y0 y0Var = y0.f2288c;
+            y0 y0Var = y0.f2236c;
             y0Var.getClass();
             b1 a11 = y0Var.a(i7.getClass());
-            d4.f fVar = (d4.f) jVar.f2210b;
+            d4.f fVar = (d4.f) jVar.f2158b;
             if (fVar == null) {
                 fVar = new d4.f(jVar);
             }
@@ -58,7 +58,7 @@ public final class c extends z {
             }
             throw new IOException(new g1().getMessage());
         } catch (e0 e10) {
-            if (e10.f2169a) {
+            if (e10.f2117a) {
                 throw new IOException(e10.getMessage(), e10);
             }
             throw e10;
@@ -86,7 +86,7 @@ public final class c extends z {
             case 1:
                 return null;
             case 2:
-                return new a1(DEFAULT_INSTANCE, "\u0001\u0001\u0000\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u00012", new Object[]{"preferences_", b.f53096a});
+                return new a1(DEFAULT_INSTANCE, "\u0001\u0001\u0000\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u00012", new Object[]{"preferences_", b.f54502a});
             case 3:
                 return new c();
             case 4:

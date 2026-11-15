@@ -1,37 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.text.Layout;
-import android.view.View;
-import java.lang.ref.WeakReference;
-public final class l5 implements n5 {
-    public final WeakReference f35536a;
-    public final boolean f35537b;
-    public Layout f35538c;
-    public q5 d;
-    public Rect f35539e;
-    public h5 f35540f;
-    public org.telegram.messenger.e6 h;
-    public boolean f35541n;
-    public float f35542r;
-    public float f35543s;
-    public boolean f35544w;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class l5 {
+    public ArrayList f36726a;
+    public HashMap f36727b;
+    public ArrayList f36728c;
 
-    public l5(View view, boolean z9) {
-        this.f35536a = new WeakReference(view);
-        this.f35537b = z9;
+    public final void a() {
+        ArrayList arrayList = this.f36726a;
+        for (int i7 = 0; i7 < arrayList.size(); i7++) {
+            ((k5) arrayList.get(i7)).d.spanDrawn = false;
+        }
     }
 
-    @Override
-    public final void invalidate() {
-        View view = (View) this.f35536a.get();
-        if (view == null) {
+    public final void b(int i7) {
+        k5 k5Var = (k5) this.f36726a.remove(i7);
+        HashMap hashMap = this.f36727b;
+        n5 n5Var = (n5) hashMap.get(k5Var.f36281c);
+        if (n5Var != null) {
+            ArrayList arrayList = n5Var.f37454b;
+            arrayList.remove(k5Var);
+            n5Var.a();
+            if (arrayList.isEmpty()) {
+                hashMap.remove(k5Var.f36281c);
+                this.f36728c.remove(n5Var);
+            }
+            g5 g5Var = k5Var.f36283f;
+            if (g5Var != null) {
+                g5Var.o(k5Var);
+                return;
+            }
             return;
         }
-        if (this.f35537b && view.getParent() != null) {
-            ((View) view.getParent()).invalidate();
-        } else {
-            view.invalidate();
-        }
+        throw new RuntimeException("!!!");
     }
 }

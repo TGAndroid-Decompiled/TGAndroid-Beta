@@ -1,30 +1,15 @@
 package org.telegram.ui;
+public final class ax0 implements org.telegram.ui.ActionBar.q1 {
+    public final fx0 f45537a;
+    public final String f45538b;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.TextView;
-import java.util.HashSet;
-public final class ax0 extends TextView implements org.telegram.ui.ActionBar.c6 {
-    public final ProfileActivity f43837a;
-
-    public ax0(ProfileActivity profileActivity, Context context) {
-        super(context);
-        this.f43837a = profileActivity;
-        updateColors();
+    public ax0(fx0 fx0Var, String str) {
+        this.f45537a = fx0Var;
+        this.f45538b = str;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.m6.G6));
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
-    }
-
-    @Override
-    public final void updateColors() {
-        setTextColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.G6, this.f43837a.f41867z0));
+    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        fx0.b0(this.f45537a, this.f45538b);
     }
 }

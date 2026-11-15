@@ -1,21 +1,45 @@
 package a8;
-
-import android.os.Bundle;
-import java.util.ArrayList;
 public abstract class q9 {
-    public static final ArrayList a(ArrayList arrayList) {
-        ArrayList arrayList2 = new ArrayList();
-        int size = arrayList.size();
-        int i7 = 0;
-        while (i7 < size) {
-            Object obj = arrayList.get(i7);
-            i7++;
-            d9.t tVar = (d9.t) obj;
-            Bundle bundle = new Bundle();
-            bundle.putInt("event_type", tVar.f8258a);
-            bundle.putLong("event_timestamp", tVar.f8259b);
-            arrayList2.add(bundle);
+    public static void a(int i7, int i10) {
+        String a10;
+        if (i7 >= 0 && i7 < i10) {
+            return;
         }
-        return arrayList2;
+        if (i7 >= 0) {
+            if (i10 < 0) {
+                throw new IllegalArgumentException(i5.c.i(i10, "negative size: "));
+            }
+            a10 = r9.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i7), Integer.valueOf(i10));
+        } else {
+            a10 = r9.a("%s (%s) must not be negative", "index", Integer.valueOf(i7));
+        }
+        throw new IndexOutOfBoundsException(a10);
+    }
+
+    public static void b(int i7, int i10, int i11) {
+        String c10;
+        if (i7 >= 0 && i10 >= i7 && i10 <= i11) {
+            return;
+        }
+        if (i7 >= 0 && i7 <= i11) {
+            if (i10 >= 0 && i10 <= i11) {
+                c10 = r9.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i10), Integer.valueOf(i7));
+            } else {
+                c10 = c(i10, i11, "end index");
+            }
+        } else {
+            c10 = c(i7, i11, "start index");
+        }
+        throw new IndexOutOfBoundsException(c10);
+    }
+
+    public static String c(int i7, int i10, String str) {
+        if (i7 < 0) {
+            return r9.a("%s (%s) must not be negative", str, Integer.valueOf(i7));
+        }
+        if (i10 >= 0) {
+            return r9.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i7), Integer.valueOf(i10));
+        }
+        throw new IllegalArgumentException(i5.c.i(i10, "negative size: "));
     }
 }

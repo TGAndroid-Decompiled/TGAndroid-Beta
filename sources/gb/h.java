@@ -1,24 +1,24 @@
 package gb;
 public final class h implements na.d {
-    public static final h f13691a = new Object();
-    public static final na.c f13692b = na.c.c("sessionId");
-    public static final na.c f13693c = na.c.c("firstSessionId");
+    public static final h f13032a = new Object();
+    public static final na.c f13033b = na.c.c("sessionId");
+    public static final na.c f13034c = na.c.c("firstSessionId");
     public static final na.c d = na.c.c("sessionIndex");
-    public static final na.c f13694e = na.c.c("eventTimestampUs");
-    public static final na.c f13695f = na.c.c("dataCollectionStatus");
-    public static final na.c f13696g = na.c.c("firebaseInstallationId");
+    public static final na.c f13035e = na.c.c("eventTimestampUs");
+    public static final na.c f13036f = na.c.c("dataCollectionStatus");
+    public static final na.c f13037g = na.c.c("firebaseInstallationId");
     public static final na.c h = na.c.c("firebaseAuthenticationToken");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        x0 x0Var = (x0) obj;
+        v0 v0Var = (v0) obj;
         na.e eVar = (na.e) obj2;
-        eVar.a(f13692b, x0Var.f13778a);
-        eVar.a(f13693c, x0Var.f13779b);
-        eVar.d(d, x0Var.f13780c);
-        eVar.e(f13694e, x0Var.d);
-        eVar.a(f13695f, x0Var.f13781e);
-        eVar.a(f13696g, x0Var.f13782f);
-        eVar.a(h, x0Var.f13783g);
+        eVar.a(f13033b, v0Var.f13107a);
+        eVar.a(f13034c, v0Var.f13108b);
+        eVar.d(d, v0Var.f13109c);
+        eVar.e(f13035e, v0Var.d);
+        eVar.a(f13036f, v0Var.f13110e);
+        eVar.a(f13037g, v0Var.f13111f);
+        eVar.a(h, v0Var.f13112g);
     }
 }

@@ -1,151 +1,144 @@
 package org.telegram.ui.Components;
 
-import android.content.ComponentName;
-import android.content.Intent;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.SubMenu;
-import j$.util.Objects;
-public final class h90 implements Menu {
-    public final k60 f34250a;
-    public final r2 f34251b;
-    public final Runnable f34252c;
-    public final ps d;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+public final class h90 extends uj0 {
+    public boolean f35201f3;
+    public boolean f35202g3;
+    public int f35203h3;
+    public int f35204i3;
+    public final i90 j3;
 
-    public h90(k60 k60Var, ys ysVar) {
-        Objects.requireNonNull(ysVar);
-        r2 r2Var = new r2(ysVar, 5);
-        Runnable onPremiumMenuLockClickListener = ysVar.getOnPremiumMenuLockClickListener();
-        ps psVar = new ps(ysVar, 2);
-        this.f34250a = k60Var;
-        this.f34251b = r2Var;
-        this.f34252c = onPremiumMenuLockClickListener;
-        this.d = psVar;
+    public h90(i90 i90Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        this.j3 = i90Var;
+        setOnScrollListener(new ri(this, 11));
+        i(new g90(this));
     }
 
     @Override
-    public final MenuItem add(int i7) {
-        return null;
+    public final void l0(int i7) {
+        i90 i90Var = this.j3;
+        i90Var.invalidate();
+        i90Var.b();
     }
 
     @Override
-    public final int addIntentOptions(int i7, int i10, int i11, ComponentName componentName, Intent[] intentArr, Intent intent, int i12, MenuItem[] menuItemArr) {
-        return 0;
-    }
-
-    @Override
-    public final SubMenu addSubMenu(int i7) {
-        return null;
-    }
-
-    @Override
-    public final MenuItem findItem(int i7) {
-        return null;
-    }
-
-    @Override
-    public final MenuItem getItem(int i7) {
-        return null;
-    }
-
-    @Override
-    public final boolean hasVisibleItems() {
-        return false;
-    }
-
-    @Override
-    public final boolean isShortcutKey(int i7, KeyEvent keyEvent) {
-        return false;
-    }
-
-    @Override
-    public final boolean performIdentifierAction(int i7, int i10) {
-        return false;
-    }
-
-    @Override
-    public final boolean performShortcut(int i7, KeyEvent keyEvent, int i10) {
-        return false;
-    }
-
-    @Override
-    public final int size() {
-        return 0;
-    }
-
-    @Override
-    public final MenuItem add(CharSequence charSequence) {
-        return null;
-    }
-
-    @Override
-    public final SubMenu addSubMenu(int i7, int i10, int i11, int i12) {
-        return null;
-    }
-
-    @Override
-    public final MenuItem add(int i7, int i10, int i11, CharSequence charSequence) {
-        ps psVar;
-        if (i10 != 2131296502 || (psVar = this.d) == null || ((Boolean) psVar.run()).booleanValue()) {
-            Runnable runnable = this.f34252c;
-            if ((i10 != 2131296503 || runnable == null) && (runnable == null || !org.telegram.ui.ActionBar.l4.f27751r.contains(Integer.valueOf(i10)) || !org.telegram.messenger.qp.s1(org.telegram.messenger.p10.f24474s0).D3())) {
-                q2 q2Var = new q2(this, i10, 7);
-                k60 k60Var = this.f34250a;
-                k60Var.c(0, charSequence, q2Var, false);
-                if (runnable != null && org.telegram.ui.ActionBar.l4.f27751r.contains(Integer.valueOf(i10))) {
-                    k60Var.M(runnable);
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        boolean z10;
+        i90 i90Var = this.j3;
+        jg.h1 h1Var = i90Var.f35523f;
+        jg.n1 n1Var = i90Var.f35522e;
+        if (!i90Var.f35521c.f58494t ? this.f35202g3 || n1Var == null || n1Var.f17215e == null || !n1Var.f17216f || motionEvent.getY() >= n1Var.f17215e.getBottom() : this.f35202g3 || n1Var == null || n1Var.f17215e == null || !n1Var.f17216f || motionEvent.getY() <= n1Var.f17215e.getTop()) {
+            if (!this.f35201f3 && org.telegram.ui.ns.p().q(motionEvent, i90Var.f35520b, null, this.f40069o2)) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            if (((h1Var.N() && motionEvent.getAction() == 0) || motionEvent.getAction() == 2) && h1Var.N()) {
+                if (h1Var.f17134o0 == null) {
+                    jg.d1 d1Var = new jg.d1(h1Var, h1Var.f17124f, h1Var.f17132n, h1Var.f17137r, 0);
+                    h1Var.f17134o0 = d1Var;
+                    d1Var.a();
                 }
+                h1Var.f17134o0.b();
+            }
+            if (super.onInterceptTouchEvent(motionEvent) || z10) {
+                return true;
             }
         }
-        return null;
+        return false;
     }
 
     @Override
-    public final SubMenu addSubMenu(int i7, int i10, int i11, CharSequence charSequence) {
-        return null;
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        int N0;
+        int i13;
+        int i14;
+        int i15 = i11 - i7;
+        int i16 = i12 - i10;
+        i90 i90Var = this.j3;
+        boolean g10 = i90Var.g();
+        v4.b0 currentLayoutManager = i90Var.getCurrentLayoutManager();
+        if (g10) {
+            N0 = currentLayoutManager.L0();
+        } else {
+            N0 = currentLayoutManager.N0();
+        }
+        View m10 = currentLayoutManager.m(N0);
+        if (m10 != null) {
+            int top = m10.getTop();
+            if (g10) {
+                i14 = 0;
+            } else {
+                i14 = this.f35204i3 - i16;
+            }
+            i13 = top - i14;
+        } else {
+            i13 = 0;
+        }
+        super.onLayout(z10, i7, i10, i11, i12);
+        if (i90Var.I) {
+            i90Var.H = true;
+            currentLayoutManager.h1(0, 100000);
+            super.onLayout(false, i7, i10, i11, i12);
+            i90Var.H = false;
+            i90Var.I = false;
+        } else if (N0 != -1 && i15 == this.f35203h3 && i16 - this.f35204i3 != 0) {
+            i90Var.H = true;
+            currentLayoutManager.i1(N0, i13, false);
+            super.onLayout(false, i7, i10, i11, i12);
+            i90Var.H = false;
+        }
+        this.f35204i3 = i16;
+        this.f35203h3 = i15;
     }
 
     @Override
-    public final SubMenu addSubMenu(CharSequence charSequence) {
-        return null;
+    public final void onMeasure(int i7, int i10) {
+        int size = View.MeasureSpec.getSize(i10);
+        i90 i90Var = this.j3;
+        jg.n1 n1Var = i90Var.f35522e;
+        if (n1Var != null) {
+            n1Var.d = Integer.valueOf(size);
+            bi.o2 o2Var = n1Var.f17215e;
+            if (o2Var != null) {
+                o2Var.requestLayout();
+            }
+        }
+        float min = (int) Math.min(org.telegram.messenger.g0.L(126.0f), org.telegram.messenger.g0.f23609q.y * 0.22f);
+        i90Var.f35527w = min;
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(size + ((int) min), 1073741824));
     }
 
     @Override
-    public final MenuItem add(int i7, int i10, int i11, int i12) {
-        add(i7, i10, i11, org.telegram.messenger.id.M0(i12, null));
-        return null;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        i90 i90Var = this.j3;
+        jg.n1 n1Var = i90Var.f35522e;
+        if (i90Var.f35521c.f58494t) {
+            if (!this.f35202g3 && n1Var != null && n1Var.f17215e != null && n1Var.f17216f && motionEvent.getY() > n1Var.f17215e.getTop()) {
+                return false;
+            }
+        } else if (!this.f35202g3 && n1Var != null && n1Var.f17215e != null && n1Var.f17216f && motionEvent.getY() < n1Var.f17215e.getBottom()) {
+            return false;
+        }
+        return super.onTouchEvent(motionEvent);
     }
 
     @Override
-    public final void removeGroup(int i7) {
+    public final void requestLayout() {
+        if (this.j3.H) {
+            return;
+        }
+        super.requestLayout();
     }
 
     @Override
-    public final void removeItem(int i7) {
-    }
-
-    @Override
-    public final void setQwertyMode(boolean z9) {
-    }
-
-    @Override
-    public final void clear() {
-    }
-
-    @Override
-    public final void close() {
-    }
-
-    @Override
-    public final void setGroupEnabled(int i7, boolean z9) {
-    }
-
-    @Override
-    public final void setGroupVisible(int i7, boolean z9) {
-    }
-
-    @Override
-    public final void setGroupCheckable(int i7, boolean z9, boolean z10) {
+    public void setTranslationY(float f10) {
+        super.setTranslationY(f10);
+        i90 i90Var = this.j3;
+        i90Var.invalidate();
+        i90Var.b();
     }
 }

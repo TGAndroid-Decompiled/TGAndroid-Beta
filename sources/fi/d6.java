@@ -1,78 +1,131 @@
 package fi;
 
-import android.os.SystemClock;
-public final class d6 implements Runnable {
-    public final int f11794a;
-    public final g6 f11795b;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.np;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.tl.TL_stories;
+public final class d6 extends k6 {
+    public final String C;
+    public final String D;
+    public final TL_stories.MediaArea E;
+    public final ArrayList F;
+    public boolean G;
+    public String H;
+    public int I;
+    public int J;
 
-    public d6(g6 g6Var, int i7) {
-        this.f11794a = i7;
-        this.f11795b = g6Var;
+    public d6(int i7, String str, String str2) {
+        super(i7, 0L, 3, -1, null);
+        this.F = new ArrayList();
+        this.H = "";
+        this.C = str2;
+        this.D = str;
+        this.E = null;
     }
 
     @Override
-    public final void run() {
-        switch (this.f11794a) {
-            case 0:
-                g6 g6Var = this.f11795b;
-                g6Var.f12098r0 = false;
-                g6Var.f12110z0 = false;
-                g6Var.f12103v0 = SystemClock.elapsedRealtime();
-                g6Var.f12102u0 = true;
-                g6Var.f12105w0 = false;
-                g6Var.J.c(false);
-                g6Var.K.c(false);
-                g6Var.L.c(false);
-                ((r9) g6Var.f12075a).e(true);
-                return;
-            case 1:
-                long currentTimeMillis = System.currentTimeMillis();
-                g6 g6Var2 = this.f11795b;
-                g6Var2.Q = currentTimeMillis;
-                g6Var2.R = 0L;
-                g6Var2.f12098r0 = true;
-                ((r9) g6Var2.f12075a).f12762a.J0.a(0L, true);
-                return;
-            case 2:
-                g6 g6Var3 = this.f11795b;
-                if (!g6Var3.f12098r0 && !g6Var3.b()) {
-                    if (!va.c(((r9) g6Var3.f12075a).f12762a)) {
-                        g6Var3.f12105w0 = false;
-                        g6Var3.J.c(false);
-                        g6Var3.K.c(false);
-                        g6Var3.L.c(false);
-                        return;
-                    }
-                    g6Var3.f12110z0 = true;
-                    g6Var3.A0 = true;
-                    ((r9) g6Var3.f12075a).f(new d6(g6Var3, 4), true);
-                    return;
-                }
-                return;
-            case 3:
-                g6 g6Var4 = this.f11795b;
-                if (!g6Var4.f12098r0 && !g6Var4.b()) {
-                    y9 y9Var = ((r9) g6Var4.f12075a).f12762a.B0;
-                    if (y9Var != null) {
-                        y9Var.toggleDual();
-                    }
-                    g6Var4.d(360.0f);
-                    g6Var4.f12105w0 = false;
-                    g6Var4.J.c(false);
-                    g6Var4.K.c(false);
-                    g6Var4.L.c(false);
-                    return;
-                }
-                return;
-            default:
-                long currentTimeMillis2 = System.currentTimeMillis();
-                g6 g6Var5 = this.f11795b;
-                g6Var5.Q = currentTimeMillis2;
-                g6Var5.f12098r0 = true;
-                e6 e6Var = g6Var5.f12075a;
-                g6Var5.R = 0L;
-                ((r9) e6Var).f12762a.J0.a(0L, true);
-                return;
+    public final gj f(int i7) {
+        if (i7 >= 0) {
+            ArrayList arrayList = this.f11944i;
+            if (i7 < arrayList.size()) {
+                return (gj) arrayList.get(i7);
+            }
+            return null;
         }
+        return null;
+    }
+
+    @Override
+    public final int g() {
+        return this.J;
+    }
+
+    @Override
+    public final ArrayList h() {
+        return this.F;
+    }
+
+    @Override
+    public final int i() {
+        return this.f11944i.size();
+    }
+
+    @Override
+    public final boolean k() {
+        return this.G;
+    }
+
+    @Override
+    public final boolean l() {
+        return false;
+    }
+
+    @Override
+    public final boolean q(int i7, List list, boolean z10) {
+        if (this.G || this.H == null) {
+            return false;
+        }
+        TL_stories.TL_stories_searchPosts tL_stories_searchPosts = new TL_stories.TL_stories_searchPosts();
+        tL_stories_searchPosts.offset = this.H;
+        tL_stories_searchPosts.limit = i7;
+        String str = this.C;
+        if (str != null) {
+            tL_stories_searchPosts.flags |= 1;
+            tL_stories_searchPosts.hashtag = str;
+        }
+        TL_stories.MediaArea mediaArea = this.E;
+        if (mediaArea != null) {
+            tL_stories_searchPosts.flags |= 2;
+            tL_stories_searchPosts.area = mediaArea;
+        }
+        this.G = true;
+        String str2 = this.D;
+        boolean isEmpty = TextUtils.isEmpty(str2);
+        TLObject tLObject = null;
+        int i10 = this.f11940c;
+        if (!isEmpty) {
+            TLObject f22 = np.s1(i10).f2(str2);
+            if (f22 == null) {
+                np.s1(i10).d2().a(str2, null, new n2(this, z10, i7, list));
+                return true;
+            }
+            tLObject = f22;
+        }
+        if (tLObject != null) {
+            tL_stories_searchPosts.flags |= 4;
+            tL_stories_searchPosts.peer = np.k1(tLObject);
+        }
+        this.I = ConnectionsManager.getInstance(i10).sendRequest(tL_stories_searchPosts, new ai.d1(this, 7));
+        return true;
+    }
+
+    @Override
+    public final boolean r(int i7) {
+        return false;
+    }
+
+    public d6(int i7, TL_stories.MediaArea mediaArea) {
+        super(i7, 0L, 3, -1, null);
+        this.F = new ArrayList();
+        this.H = "";
+        this.C = null;
+        this.D = null;
+        this.E = mediaArea;
+    }
+
+    @Override
+    public final void j() {
+    }
+
+    @Override
+    public final void s() {
+    }
+
+    @Override
+    public final void x() {
     }
 }

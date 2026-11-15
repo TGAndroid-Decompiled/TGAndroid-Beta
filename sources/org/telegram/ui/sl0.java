@@ -1,39 +1,35 @@
 package org.telegram.ui;
+public final class sl0 implements Runnable {
+    public final int f51241a;
+    public final cm0 f51242b;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.tl.TL_stars;
-public final class sl0 extends org.telegram.ui.Components.w31 {
-    public static final int f49878b = 0;
-
-    static {
-        org.telegram.ui.Components.w31.h(new org.telegram.ui.Components.w31());
+    public sl0(cm0 cm0Var, int i7) {
+        this.f51241a = i7;
+        this.f51242b = cm0Var;
     }
 
     @Override
-    public final void b(View view, org.telegram.ui.Components.x31 x31Var, boolean z9, org.telegram.ui.Components.m41 m41Var, org.telegram.ui.Components.r41 r41Var) {
-        tl0 tl0Var = (tl0) view;
-        TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) x31Var.G;
-        zh.z0 z0Var = tl0Var.h;
-        zh.v0 v0Var = tl0Var.f50300e;
-        tl0Var.f50297a = savedStarGift.gift.f27189id;
-        tl0Var.setPadding(0, 0, 0, 0);
-        tl0Var.c(savedStarGift.gift.getDocument(), savedStarGift.gift);
-        tl0Var.f50298b = (TL_stars.starGiftAttributeBackdrop) bi.ea.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributeBackdrop.class);
-        tl0Var.f50299c = (TL_stars.starGiftAttributePattern) bi.ea.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributePattern.class);
-        v0Var.d(tl0Var.f50298b);
-        v0Var.e(tl0Var.f50299c);
-        if (z0Var != null) {
-            z0Var.setBackdrop(tl0Var.f50298b);
-            String m10 = jg.g.m(savedStarGift.gift.num, ',', new StringBuilder("#"));
-            z0Var.f60650b = m10;
-            z0Var.f60649a.f(9, m10, false);
+    public final void run() {
+        int i7 = this.f51241a;
+        cm0 cm0Var = this.f51242b;
+        switch (i7) {
+            case 0:
+                if (cm0Var.H) {
+                    cm0Var.f46191b.invalidate();
+                    return;
+                }
+                return;
+            case 1:
+                cm0Var.h();
+                return;
+            case 2:
+                int i10 = cm0.f46188r0;
+                cm0Var.h();
+                return;
+            default:
+                int i11 = cm0.f46188r0;
+                cm0Var.h();
+                return;
         }
-        tl0Var.b(x31Var.f40150e, false);
-    }
-
-    @Override
-    public final View d(Context context, org.telegram.ui.Components.pj0 pj0Var, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
-        return new tl0(context, h6Var, true);
     }
 }

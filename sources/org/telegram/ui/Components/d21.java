@@ -1,20 +1,18 @@
 package org.telegram.ui.Components;
+public final class d21 extends v4.k {
+    public final p21 F;
 
-import android.content.Context;
-public final class d21 extends k21 {
-    public final Runnable T1;
-
-    public d21(Context context, String str, String str2, CharSequence charSequence, Runnable runnable) {
-        super(context, str, str2, charSequence, null, 0, false, null);
-        this.T1 = runnable;
+    public d21(p21 p21Var) {
+        this.F = p21Var;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        Runnable runnable = this.T1;
-        if (runnable != null) {
-            runnable.run();
-        }
+    public final void O() {
+        this.F.f29682b.invalidate();
+    }
+
+    @Override
+    public final void P(v4.e1 e1Var) {
+        this.F.f29682b.invalidate();
     }
 }

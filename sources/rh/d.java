@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.PathInterpolator;
 import android.widget.FrameLayout;
-import bi.b1;
 import c8.zc;
+import com.google.android.gms.common.api.q;
 import java.util.Iterator;
 import java.util.List;
 import java.util.WeakHashMap;
@@ -20,27 +20,27 @@ import r0.p0;
 import r0.q0;
 import r0.t0;
 import r0.v0;
-public final class d extends b1 {
-    public static final RectF f54551e;
-    public static final Rect f54552f;
-    public final ViewGroup f54553b;
-    public int f54554c;
+public final class d extends q {
+    public static final RectF f56023e;
+    public static final Rect f56024f;
+    public final ViewGroup f56025b;
+    public int f56026c;
     public final xe.b d = new xe.b();
 
     static {
         new PointF();
-        f54551e = new RectF();
-        f54552f = new Rect();
+        f56023e = new RectF();
+        f56024f = new Rect();
     }
 
     public d(FrameLayout frameLayout) {
-        this.f54553b = frameLayout;
-        WeakHashMap weakHashMap = i0.f54202a;
+        this.f56025b = frameLayout;
+        WeakHashMap weakHashMap = i0.f55671a;
         if (Build.VERSION.SDK_INT >= 30) {
             t0.g(frameLayout, this);
             return;
         }
-        PathInterpolator pathInterpolator = q0.f54225e;
+        PathInterpolator pathInterpolator = q0.f55694e;
         View.OnApplyWindowInsetsListener p0Var = new p0(frameLayout, this);
         frameLayout.setTag(2131296698, p0Var);
         if (frameLayout.getTag(2131296686) == null && frameLayout.getTag(2131296687) == null) {
@@ -50,9 +50,9 @@ public final class d extends b1 {
 
     public static k1 e1(k1 k1Var, View view, View view2) {
         if (view != null && view2 != null && k1Var != null) {
-            RectF rectF = f54551e;
+            RectF rectF = f56023e;
             if (k.c(view, view2, rectF)) {
-                Rect rect = f54552f;
+                Rect rect = f56024f;
                 rectF.round(rect);
                 int i7 = rect.left;
                 int i10 = rect.top;
@@ -61,7 +61,7 @@ public final class d extends b1 {
                 if (i7 == 0 && i10 == 0 && width == 0 && height == 0) {
                     return k1Var;
                 }
-                return k1Var.f54213a.m(Math.max(0, i7), Math.max(0, i10), Math.max(0, width), Math.max(0, height));
+                return k1Var.f55682a.m(Math.max(0, i7), Math.max(0, i10), Math.max(0, width), Math.max(0, height));
             }
             return null;
         }
@@ -70,12 +70,12 @@ public final class d extends b1 {
 
     @Override
     public final void V0() {
-        int i7 = this.f54554c - 1;
-        this.f54554c = i7;
+        int i7 = this.f56026c - 1;
+        this.f56026c = i7;
         if (i7 == 0) {
             Iterator it = this.d.iterator();
             while (it.hasNext()) {
-                ((c) it.next()).P();
+                ((c) it.next()).Q();
             }
         }
     }
@@ -85,13 +85,13 @@ public final class d extends b1 {
         Iterator it = list.iterator();
         int i7 = 0;
         while (it.hasNext()) {
-            i7 |= ((v0) it.next()).f54242a.c();
+            i7 |= ((v0) it.next()).f55711a.c();
         }
         if (zc.a(i7, 8)) {
             Iterator it2 = this.d.iterator();
             while (it2.hasNext()) {
                 c cVar = (c) it2.next();
-                k1 e12 = e1(k1Var, cVar.R(), this.f54553b);
+                k1 e12 = e1(k1Var, cVar.S(), this.f56025b);
                 if (e12 != null) {
                     cVar.m(e12);
                 }

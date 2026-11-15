@@ -4,9 +4,9 @@ public interface i {
 
     void d();
 
-    void e(boolean z9);
+    void e(boolean z10);
 
     void f(int i7, long j3);
 
-    void g(f3.q qVar, g0 g0Var);
+    void g(f3.q qVar, f0 f0Var);
 }

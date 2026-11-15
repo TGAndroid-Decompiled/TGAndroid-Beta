@@ -78,7 +78,7 @@ public abstract class f0 {
             }
             throw new IOException("Invalid " + str2 + ": " + parseInt);
         } catch (NumberFormatException e10) {
-            throw new IOException(com.google.android.recaptcha.internal.a.l("Invalid ", str2, ": ", str), e10);
+            throw new IOException(com.google.android.gms.internal.vision.e2.l("Invalid ", str2, ": ", str), e10);
         }
     }
 
@@ -112,9 +112,9 @@ public abstract class f0 {
                 createBitmap.copyPixelsFromBuffer(wrap);
                 return createBitmap;
             }
-            throw new IOException(jg.g.j(c12, "Only 8-bit PGM supported (maxval=255), got: "));
+            throw new IOException(i5.c.i(c12, "Only 8-bit PGM supported (maxval=255), got: "));
         }
-        throw new IOException(rf.b.i("Not a binary PGM (P5), got: ", b10));
+        throw new IOException(r.b.k("Not a binary PGM (P5), got: ", b10));
     }
 
     public static void e(Bitmap bitmap, GZIPOutputStream gZIPOutputStream, List list) {

@@ -1,42 +1,62 @@
 package bi;
-public final class z3 implements Runnable {
-    public final int f5149a;
-    public final zh.h0 f5150b;
 
-    public z3(zh.h0 h0Var, int i7) {
-        this.f5149a = i7;
-        this.f5150b = h0Var;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.View;
+import android.widget.ScrollView;
+public final class z3 extends ScrollView {
+    public final int f4026a;
+
+    public z3(Context context, int i7) {
+        super(context);
+        this.f4026a = i7;
     }
 
     @Override
-    public final void run() {
-        switch (this.f5149a) {
+    public void onMeasure(int i7, int i10) {
+        switch (this.f4026a) {
             case 0:
-                this.f5150b.dismiss();
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(260.0f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
                 return;
             case 1:
-                zh.h0 h0Var = this.f5150b;
-                rh.h hVar = h0Var.f60364q1;
-                jh.f fVar = h0Var.f60363p1;
-                if (fVar != null) {
-                    fVar.d();
-                }
-                zh.g0 g0Var = h0Var.B1;
-                if (g0Var != null) {
-                    g0Var.setTranslationY(-hVar.d());
-                }
-                org.telegram.ui.Components.i6 i6Var = h0Var.f60369v1;
-                if (i6Var != null) {
-                    i6Var.setTranslationY(-hVar.d());
-                }
-                h0Var.I0();
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(260.0f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
                 return;
             case 2:
-                this.f5150b.B1.performClick();
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec((int) Math.min(View.MeasureSpec.getSize(i10), Math.min(org.telegram.messenger.g0.f23609q.y * 0.35f, org.telegram.messenger.g0.L(400.0f))), View.MeasureSpec.getMode(i10)));
                 return;
+            case 3:
             default:
-                this.f5150b.f60365r1.I0();
+                super.onMeasure(i7, i10);
                 return;
+            case 4:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), org.telegram.messenger.g0.L(320.0f)), Integer.MIN_VALUE));
+                return;
+            case 5:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), org.telegram.messenger.g0.L(360.0f)), Integer.MIN_VALUE));
+                return;
+        }
+    }
+
+    @Override
+    public boolean onRequestFocusInDescendants(int i7, Rect rect) {
+        switch (this.f4026a) {
+            case 3:
+                return false;
+            default:
+                return super.onRequestFocusInDescendants(i7, rect);
+        }
+    }
+
+    @Override
+    public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
+        switch (this.f4026a) {
+            case 3:
+                rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
+                rect.top = org.telegram.messenger.g0.L(20.0f) + rect.top;
+                rect.bottom = org.telegram.messenger.g0.L(50.0f) + rect.bottom;
+                return super.requestChildRectangleOnScreen(view, rect, z10);
+            default:
+                return super.requestChildRectangleOnScreen(view, rect, z10);
         }
     }
 }

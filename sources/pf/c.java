@@ -1,19 +1,19 @@
 package pf;
 public final class c {
-    public int f53602a;
-    public int f53603b;
-    public int f53604c;
+    public int f55010a;
+    public int f55011b;
+    public int f55012c;
     public int d;
-    public String f53605e;
+    public String f55013e;
 
     public final String a(String str, String str2, String str3) {
         StringBuilder sb2 = new StringBuilder(20);
-        boolean z9 = false;
-        int i7 = 0;
         boolean z10 = false;
+        int i7 = 0;
         boolean z11 = false;
-        for (int i10 = 0; i10 < this.f53605e.length(); i10++) {
-            char charAt = this.f53605e.charAt(i10);
+        boolean z12 = false;
+        for (int i10 = 0; i10 < this.f55013e.length(); i10++) {
+            char charAt = this.f55013e.charAt(i10);
             if (charAt != '#') {
                 if (charAt != '(') {
                     if (charAt != 'c') {
@@ -21,43 +21,43 @@ public final class c {
                             if (str3 != null) {
                                 sb2.append(str3);
                             }
-                            z10 = true;
+                            z11 = true;
                         }
                     } else {
                         if (str2 != null) {
                             sb2.append(str2);
                         }
-                        z9 = true;
+                        z10 = true;
                     }
                 } else if (i7 < str.length()) {
-                    z11 = true;
+                    z12 = true;
                 }
                 if (charAt == ' ' && i10 > 0) {
                     int i11 = i10 - 1;
-                    if (this.f53605e.charAt(i11) == 'n') {
+                    if (this.f55013e.charAt(i11) == 'n') {
                         if (str3 == null) {
                         }
                     }
-                    if (this.f53605e.charAt(i11) == 'c' && str2 == null) {
+                    if (this.f55013e.charAt(i11) == 'c' && str2 == null) {
                     }
                 }
-                if (i7 < str.length() || (z11 && charAt == ')')) {
-                    sb2.append(this.f53605e.substring(i10, i10 + 1));
+                if (i7 < str.length() || (z12 && charAt == ')')) {
+                    sb2.append(this.f55013e.substring(i10, i10 + 1));
                     if (charAt == ')') {
-                        z11 = false;
+                        z12 = false;
                     }
                 }
             } else if (i7 < str.length()) {
                 int i12 = i7 + 1;
                 sb2.append(str.substring(i7, i12));
                 i7 = i12;
-            } else if (z11) {
+            } else if (z12) {
                 sb2.append(" ");
             }
         }
-        if (str2 != null && !z9) {
+        if (str2 != null && !z10) {
             sb2.insert(0, str2.concat(" "));
-        } else if (str3 != null && !z10) {
+        } else if (str3 != null && !z11) {
             sb2.insert(0, str3);
         }
         return sb2.toString();

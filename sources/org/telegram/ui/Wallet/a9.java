@@ -2,88 +2,88 @@ package org.telegram.ui.Wallet;
 
 import android.text.TextUtils;
 import android.widget.TextView;
-import org.telegram.messenger.v10;
+import org.telegram.messenger.s10;
 import org.telegram.tgnet.tl.TL_wallet;
-public final class a9 implements v10 {
-    public final int f42155a;
-    public final o9 f42156b;
+public final class a9 implements s10 {
+    public final int f43486a;
+    public final p9 f43487b;
 
-    public a9(o9 o9Var, int i7) {
-        this.f42155a = i7;
-        this.f42156b = o9Var;
+    public a9(p9 p9Var, int i7) {
+        this.f43486a = i7;
+        this.f43487b = p9Var;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         int i7;
         int i10;
-        switch (this.f42155a) {
+        switch (this.f43486a) {
             case 0:
                 String str = (String) obj2;
-                o9.g0(this.f42156b, (TL_wallet.walletUserAddress) obj);
+                p9.g0(this.f43487b, (TL_wallet.walletUserAddress) obj);
                 return;
             case 1:
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 String str2 = (String) obj2;
-                o9 o9Var = this.f42156b;
-                o9Var.getClass();
+                p9 p9Var = this.f43487b;
+                p9Var.getClass();
                 if (wallettransaction != null) {
-                    o9Var.f42921e0 = wallettransaction.fee;
-                    o9Var.D0();
+                    p9Var.f44340f0 = wallettransaction.fee;
+                    p9Var.D0();
                     return;
                 }
                 return;
             case 2:
                 TL_wallet.walletUserAddress walletuseraddress = (TL_wallet.walletUserAddress) obj;
-                o9 o9Var2 = this.f42156b;
-                o9Var2.f42935r = false;
+                p9 p9Var2 = this.f43487b;
+                p9Var2.f44352r = false;
                 if (TextUtils.equals((String) obj2, "WALLET_USER_UNAVAILABLE")) {
-                    o9Var2.finishFragment();
+                    p9Var2.finishFragment();
                     return;
                 }
-                o9Var2.f42920e = walletuseraddress;
+                p9Var2.f44337e = walletuseraddress;
                 if (walletuseraddress != null) {
-                    o9Var2.h = walletuseraddress.address;
+                    p9Var2.h = walletuseraddress.address;
                 }
-                fi.w3 w3Var = o9Var2.f36518a;
-                if (w3Var != null) {
-                    w3Var.f37496f3.O(true);
+                bi.v3 v3Var = p9Var2.f38882a;
+                if (v3Var != null) {
+                    v3Var.f39895g3.O(true);
                 }
-                o9Var2.C0();
-                o9Var2.t0();
-                s8 s8Var = o9Var2.f42942w;
+                p9Var2.C0();
+                p9Var2.t0();
+                s8 s8Var = p9Var2.f44359w;
                 if (s8Var != null) {
-                    s8Var.a(o9Var2.h, o9Var2.f42922f);
+                    s8Var.a(p9Var2.h, p9Var2.f44339f);
                     return;
                 }
                 return;
             case 3:
-                o9 o9Var3 = this.f42156b;
-                o9Var3.f42924g0 = (String) obj;
-                o9Var3.f42925h0 = ((Boolean) obj2).booleanValue();
-                o9Var3.P.setText(o9Var3.f42924g0);
-                TextView textView = o9Var3.P;
-                if (TextUtils.isEmpty(o9Var3.f42924g0)) {
+                p9 p9Var3 = this.f43487b;
+                p9Var3.f44342h0 = (String) obj;
+                p9Var3.f44343i0 = ((Boolean) obj2).booleanValue();
+                p9Var3.Q.setText(p9Var3.f44342h0);
+                TextView textView = p9Var3.Q;
+                if (TextUtils.isEmpty(p9Var3.f44342h0)) {
                     i7 = 8;
                 } else {
                     i7 = 0;
                 }
                 textView.setVisibility(i7);
-                o9Var3.E0();
+                p9Var3.E0();
                 return;
             default:
-                o9 o9Var4 = this.f42156b;
-                o9Var4.f42924g0 = (String) obj;
-                o9Var4.f42925h0 = ((Boolean) obj2).booleanValue();
-                o9Var4.P.setText(o9Var4.f42924g0);
-                TextView textView2 = o9Var4.P;
-                if (TextUtils.isEmpty(o9Var4.f42924g0)) {
+                p9 p9Var4 = this.f43487b;
+                p9Var4.f44342h0 = (String) obj;
+                p9Var4.f44343i0 = ((Boolean) obj2).booleanValue();
+                p9Var4.Q.setText(p9Var4.f44342h0);
+                TextView textView2 = p9Var4.Q;
+                if (TextUtils.isEmpty(p9Var4.f44342h0)) {
                     i10 = 8;
                 } else {
                     i10 = 0;
                 }
                 textView2.setVisibility(i10);
-                o9Var4.E0();
+                p9Var4.E0();
                 return;
         }
     }

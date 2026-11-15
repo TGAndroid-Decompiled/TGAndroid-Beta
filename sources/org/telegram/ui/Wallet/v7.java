@@ -1,81 +1,60 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.ui.ra0;
-public final class v7 implements Runnable {
-    public final int f43265a;
-    public final d8 f43266b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+public final class v7 extends View {
+    public final c8 f44607a;
 
-    public v7(d8 d8Var, int i7) {
-        this.f43265a = i7;
-        this.f43266b = d8Var;
+    public v7(c8 c8Var, Context context) {
+        super(context);
+        this.f44607a = c8Var;
     }
 
     @Override
-    public final void run() {
-        q7 j3;
-        switch (this.f43265a) {
-            case 0:
-                d8 d8Var = this.f43266b;
-                d8Var.f42416s0 = false;
-                d8Var.f42392g0 = null;
-                d8Var.f0();
-                return;
-            case 1:
-                this.f43266b.Q();
-                return;
-            case 2:
-                d8 d8Var2 = this.f43266b;
-                c8 c8Var = d8Var2.f42392g0;
-                if (c8Var != null && !d8Var2.m0) {
-                    if (d8Var2.f42420u0) {
-                        d8Var2.f42405n0 = true;
-                        d8Var2.f42394h0 = c8Var;
-                        d8Var2.B0 = Float.NaN;
-                        d8Var2.E0 = Float.NaN;
-                        d8Var2.C0 = 0.0f;
-                        d8Var2.L0 = false;
-                        d8Var2.D0 = c8Var.f42229i.f42184b;
-                        c8Var.f42237q.a(0.0f);
-                        c8 c8Var2 = d8Var2.f42392g0;
-                        b8 b8Var = c8Var2.f42232l;
-                        b8Var.d = 260.0f;
-                        b8Var.f42186e = 0.58f;
-                        b8Var.f42184b = 1.0f;
-                        long j10 = d8Var2.N0 + 1;
-                        d8Var2.N0 = j10;
-                        c8Var2.I = j10;
-                        di.z2 z2Var = c8Var2.f42223c;
-                        z2Var.f21227u0 = true;
-                        z2Var.P0(false);
-                        d8Var2.performHapticFeedback(0);
-                        d8Var2.f0();
-                        return;
-                    } else if (d8Var2.f42408p0 && (j3 = d8Var2.j(c8Var)) != null) {
-                        d8Var2.S(j3);
-                        return;
-                    } else {
-                        return;
-                    }
+    public final void onDraw(Canvas canvas) {
+        float pow;
+        float f10;
+        Canvas canvas2;
+        float f11;
+        float f12;
+        c8 c8Var = this.f44607a;
+        if (c8Var.Z0 > 0.0f) {
+            if (c8Var.Y0) {
+                float f13 = c8Var.V0;
+                pow = com.google.android.gms.internal.vision.e2.C(f13, 2.0f, 3.0f, f13 * f13);
+            } else {
+                pow = 1.0f - ((float) Math.pow(1.0f - c8Var.V0, 4.0d));
+            }
+            float f14 = pow;
+            boolean z10 = c8Var.Y0;
+            if (!z10 && f14 < 1.0f) {
+                f10 = c8Var.Z0 * 1.2f * f14;
+            } else {
+                f10 = -1.0f;
+            }
+            float f15 = f10;
+            b8 b8Var = c8Var.T0;
+            if (b8Var != null && f14 < 1.0f) {
+                if (z10) {
+                    f12 = 1.0f - f14;
+                } else {
+                    f12 = 1.0f;
                 }
-                return;
-            default:
-                d8 d8Var3 = this.f43266b;
-                if (d8Var3.f42410q0 && d8Var3.f42392g0 != null) {
-                    d8Var3.f42410q0 = false;
-                    d8Var3.f42408p0 = true;
-                    d8Var3.removeCallbacks(d8Var3.B1);
-                    ((ra0) d8Var3.d.f19616a).X();
-                    d8Var3.getParent().requestDisallowInterceptTouchEvent(true);
-                    d8Var3.performHapticFeedback(4);
-                    q7 j11 = d8Var3.j(d8Var3.f42392g0);
-                    if (j11 != null) {
-                        j11.o();
-                        j11.animate().scaleX(0.94f).scaleY(0.94f).setDuration(100L).start();
-                    }
-                    d8Var3.f0();
-                    return;
+                canvas2 = canvas;
+                c8Var.s(canvas2, b8Var, f12, f15, true);
+            } else {
+                canvas2 = canvas;
+            }
+            b8 b8Var2 = c8Var.U0;
+            if (b8Var2 != null) {
+                if (c8Var.Y0) {
+                    f11 = f14;
+                } else {
+                    f11 = 1.0f;
                 }
-                return;
+                c8Var.s(canvas2, b8Var2, f11, f15, false);
+            }
         }
     }
 }

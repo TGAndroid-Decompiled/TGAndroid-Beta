@@ -1,20 +1,20 @@
 package zd;
 public abstract class t0 extends x {
-    public static final int f60120f = 0;
-    public long f60121c;
+    public static final int f61321f = 0;
+    public long f61322c;
     public boolean d;
-    public hd.d f60122e;
+    public hd.d f61323e;
 
-    public final void g(boolean z9) {
+    public final void g(boolean z10) {
         long j3;
-        long j10 = this.f60121c;
-        if (z9) {
+        long j10 = this.f61322c;
+        if (z10) {
             j3 = 4294967296L;
         } else {
             j3 = 1;
         }
         long j11 = j10 - j3;
-        this.f60121c = j11;
+        this.f61322c = j11;
         if (j11 <= 0 && this.d) {
             shutdown();
         }
@@ -22,16 +22,16 @@ public abstract class t0 extends x {
 
     public abstract Thread h();
 
-    public final void i(boolean z9) {
+    public final void i(boolean z10) {
         long j3;
-        long j10 = this.f60121c;
-        if (z9) {
+        long j10 = this.f61322c;
+        if (z10) {
             j3 = 4294967296L;
         } else {
             j3 = 1;
         }
-        this.f60121c = j3 + j10;
-        if (!z9) {
+        this.f61322c = j3 + j10;
+        if (!z10) {
             this.d = true;
         }
     }
@@ -40,7 +40,7 @@ public abstract class t0 extends x {
 
     public final boolean k() {
         Object removeFirst;
-        hd.d dVar = this.f60122e;
+        hd.d dVar = this.f61323e;
         if (dVar == null) {
             return false;
         }
@@ -58,7 +58,7 @@ public abstract class t0 extends x {
     }
 
     public void l(long j3, q0 q0Var) {
-        c0.f60064s.q(j3, q0Var);
+        c0.f61265s.q(j3, q0Var);
     }
 
     public abstract void shutdown();

@@ -1,14 +1,14 @@
 package nh;
 
 import android.view.View;
-import ch.h0;
-import ch.k0;
-import ch.o0;
+import ch.i0;
+import ch.l0;
+import ch.p0;
 import java.util.List;
 import org.telegram.messenger.voip.GroupCallMessage;
-import org.telegram.ui.f40;
-import org.telegram.ui.i20;
-import v4.d1;
+import org.telegram.ui.c40;
+import org.telegram.ui.e20;
+import v4.e1;
 import v4.k;
 public final class f extends k {
     public final h F;
@@ -23,28 +23,28 @@ public final class f extends k {
     }
 
     @Override
-    public final void w(d1 d1Var) {
-        o0 o0Var;
+    public final void w(e1 e1Var) {
+        p0 p0Var;
         g gVar;
         h hVar = this.F;
-        e eVar = hVar.S0;
-        int b10 = d1Var.b();
-        List list = eVar.f20610c;
+        e eVar = hVar.T0;
+        int b10 = e1Var.b();
+        List list = eVar.f21175c;
         GroupCallMessage groupCallMessage = null;
         if (list != null && b10 >= 0 && b10 < list.size()) {
-            groupCallMessage = (GroupCallMessage) eVar.f20610c.get(b10);
+            groupCallMessage = (GroupCallMessage) eVar.f21175c.get(b10);
         }
-        if (groupCallMessage != null && (o0Var = groupCallMessage.visibleReaction) != null) {
-            View view = d1Var.f57052a;
-            if ((view instanceof c) && (gVar = hVar.X0) != null) {
-                f40 f40Var = ((i20) gVar).f46471a;
-                k0 k0Var = new k0(f40Var.getContext(), null, f40Var.E1, (c) view, null, 0.0f, 0.0f, o0Var, f40Var.f28669a, 1, false);
-                k0.B = k0Var;
-                h0 h0Var = k0Var.f6291i;
-                h0Var.setTag(2131296591, 1);
-                f40Var.f28675c.addView(h0Var);
-                k0Var.f6301s = true;
-                k0Var.f6306y = System.currentTimeMillis();
+        if (groupCallMessage != null && (p0Var = groupCallMessage.visibleReaction) != null) {
+            View view = e1Var.f58535a;
+            if ((view instanceof c) && (gVar = hVar.Y0) != null) {
+                c40 c40Var = ((e20) gVar).f46533a;
+                l0 l0Var = new l0(c40Var.getContext(), null, c40Var.F1, (c) view, null, 0.0f, 0.0f, p0Var, c40Var.f29679a, 1, false);
+                l0.B = l0Var;
+                i0 i0Var = l0Var.f5118i;
+                i0Var.setTag(2131296591, 1);
+                c40Var.f29685c.addView(i0Var);
+                l0Var.f5128s = true;
+                l0Var.f5133y = System.currentTimeMillis();
             }
         }
     }

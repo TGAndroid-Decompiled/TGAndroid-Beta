@@ -1,59 +1,58 @@
 package org.telegram.ui.web;
 
-import bi.a3;
-import di.p7;
+import fi.i7;
 import java.io.File;
-import org.telegram.messenger.c20;
-public final class v implements c20 {
-    public final int f51270a = 0;
-    public final x0 f51271b;
-    public final String f51272c;
+import org.telegram.messenger.z10;
+public final class v implements z10 {
+    public final int f52806a = 0;
+    public final v0 f52807b;
+    public final String f52808c;
     public final String d;
-    public final Object f51273e;
-    public final Object f51274f;
+    public final Object f52809e;
+    public final Object f52810f;
 
-    public v(x0 x0Var, p7 p7Var, String str, hi.m1 m1Var, String str2) {
-        this.f51271b = x0Var;
-        this.f51273e = p7Var;
-        this.f51272c = str;
-        this.f51274f = m1Var;
+    public v(v0 v0Var, i7 i7Var, String str, ki.n1 n1Var, String str2) {
+        this.f52807b = v0Var;
+        this.f52809e = i7Var;
+        this.f52808c = str;
+        this.f52810f = n1Var;
         this.d = str2;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f51270a) {
+        switch (this.f52806a) {
             case 0:
-                p7 p7Var = (p7) this.f51273e;
-                hi.m1 m1Var = (hi.m1) this.f51274f;
+                i7 i7Var = (i7) this.f52809e;
+                ki.n1 n1Var = (ki.n1) this.f52810f;
                 String str = this.d;
                 String str2 = (String) obj;
-                x0 x0Var = this.f51271b;
-                String str3 = this.f51272c;
+                v0 v0Var = this.f52807b;
+                String str3 = this.f52808c;
                 if (str2 == null) {
-                    x0Var.x(p7Var, "secure_storage_failed", x0.B("req_id", str3, "error", "RESTORE_CANCELLED"));
+                    v0Var.x(i7Var, "secure_storage_failed", v0.B("req_id", str3, "error", "RESTORE_CANCELLED"));
                     return;
                 }
                 try {
-                    m1Var.j(str2);
-                    x0Var.x(p7Var, "secure_storage_key_restored", x0.B("req_id", str3, "value", (String) m1Var.f(str).first));
+                    n1Var.j(str2);
+                    v0Var.x(i7Var, "secure_storage_key_restored", v0.B("req_id", str3, "value", (String) n1Var.f(str).first));
                     return;
                 } catch (Exception e10) {
-                    x0Var.x(p7Var, "secure_storage_failed", x0.B("req_id", str3, "error", e10.getMessage()));
+                    v0Var.x(i7Var, "secure_storage_failed", v0.B("req_id", str3, "error", e10.getMessage()));
                     return;
                 }
             default:
-                x0 x0Var2 = this.f51271b;
-                org.telegram.messenger.g0.h3(new a3(x0Var2, (File) obj, (org.telegram.ui.ActionBar.u1) this.f51273e, this.f51272c, this.d, (String) this.f51274f, 26));
+                v0 v0Var2 = this.f52807b;
+                org.telegram.messenger.g0.h3(new bi.p1(v0Var2, (File) obj, (org.telegram.ui.ActionBar.t1) this.f52809e, this.f52808c, this.d, (String) this.f52810f, 28, false));
                 return;
         }
     }
 
-    public v(x0 x0Var, org.telegram.ui.ActionBar.u1 u1Var, String str, String str2, String str3) {
-        this.f51271b = x0Var;
-        this.f51273e = u1Var;
-        this.f51272c = str;
+    public v(v0 v0Var, org.telegram.ui.ActionBar.t1 t1Var, String str, String str2, String str3) {
+        this.f52807b = v0Var;
+        this.f52809e = t1Var;
+        this.f52808c = str;
         this.d = str2;
-        this.f51274f = str3;
+        this.f52810f = str3;
     }
 }

@@ -7,50 +7,50 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.Components.wq;
+import org.telegram.ui.Components.er;
 import org.webrtc.RendererCommon;
 public final class k extends ViewGroup {
-    public final j D;
-    public final FrameLayout f39289a;
-    public final k2 f39290b;
-    public final int f39291c;
+    public final j E;
+    public final FrameLayout f40697a;
+    public final o2 f40698b;
+    public final int f40699c;
     public final int d;
-    public boolean f39292e;
-    public boolean f39293f;
+    public boolean f40700e;
+    public boolean f40701f;
     public boolean h;
-    public float f39294n;
-    public volatile long f39295r;
-    public volatile int f39296s;
-    public volatile int f39297w;
-    public volatile boolean f39298x;
-    public final i f39299y;
+    public float f40702n;
+    public volatile long f40703r;
+    public volatile int f40704s;
+    public volatile int f40705w;
+    public volatile boolean f40706x;
+    public final i f40707y;
 
     public k(Context context) {
         super(context);
-        this.f39291c = org.telegram.messenger.g0.L(6.0f);
+        this.f40699c = org.telegram.messenger.g0.L(6.0f);
         this.d = org.telegram.messenger.g0.L(6.0f);
         this.h = true;
-        this.f39299y = new i(this, 0);
-        this.D = new j(this, 0);
+        this.f40707y = new i(this, 0);
+        this.E = new j(this, 0);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f39289a = frameLayout;
+        this.f40697a = frameLayout;
         frameLayout.setBackgroundColor(-14999773);
         frameLayout.setOutlineProvider(new fh.a(this, 6));
         frameLayout.setClipToOutline(true);
         frameLayout.setElevation(org.telegram.messenger.g0.L(2.0f));
-        k2 k2Var = new k2(context, false, true, false, false);
-        this.f39290b = k2Var;
+        o2 o2Var = new o2(context, false, true, false, false);
+        this.f40698b = o2Var;
         RendererCommon.ScalingType scalingType = RendererCommon.ScalingType.SCALE_ASPECT_FILL;
-        j2 j2Var = k2Var.d;
-        j2Var.setScalingType(scalingType);
-        j2Var.setEnableHardwareScaler(true);
-        j2Var.setMirror(true);
-        k2Var.f39340a0 = 0;
-        View view = k2Var.h;
+        n2 n2Var = o2Var.d;
+        n2Var.setScalingType(scalingType);
+        n2Var.setEnableHardwareScaler(true);
+        n2Var.setMirror(true);
+        o2Var.f40829b0 = 0;
+        View view = o2Var.h;
         if (view != null) {
             view.setVisibility(8);
         }
-        frameLayout.addView(k2Var);
+        frameLayout.addView(o2Var);
         frameLayout.setAlpha(0.0f);
         frameLayout.setScaleX(0.6f);
         frameLayout.setScaleY(0.6f);
@@ -59,88 +59,88 @@ public final class k extends ViewGroup {
     }
 
     public final void a() {
-        if (this.f39292e) {
+        if (this.f40700e) {
             return;
         }
-        this.f39292e = true;
-        this.f39290b.d.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), null);
+        this.f40700e = true;
+        this.f40698b.d.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), null);
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
-            sharedInstance.addExtraLocalSink(this.D);
+            sharedInstance.addExtraLocalSink(this.E);
         }
         c();
     }
 
     public final void b() {
-        if (!this.f39292e) {
+        if (!this.f40700e) {
             return;
         }
-        this.f39292e = false;
+        this.f40700e = false;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
-            sharedInstance.removeExtraLocalSink(this.D);
+            sharedInstance.removeExtraLocalSink(this.E);
         }
-        org.telegram.messenger.g0.r(this.f39299y);
-        this.f39298x = false;
-        this.f39290b.d.release();
+        org.telegram.messenger.g0.r(this.f40707y);
+        this.f40706x = false;
+        this.f40698b.d.release();
     }
 
     public final void c() {
-        boolean z9;
         boolean z10;
+        boolean z11;
         float f10;
-        if (this.f39292e) {
+        if (this.f40700e) {
             VoIPService sharedInstance = VoIPService.getSharedInstance();
-            boolean z11 = true;
+            boolean z12 = true;
             if (sharedInstance != null && sharedInstance.getVideoState(false) == 2 && !sharedInstance.isScreencast()) {
-                z9 = true;
-            } else {
-                z9 = false;
-            }
-            if (SystemClock.elapsedRealtime() - this.f39295r < 1000) {
                 z10 = true;
             } else {
                 z10 = false;
             }
+            if (SystemClock.elapsedRealtime() - this.f40703r < 1000) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
             if (sharedInstance != null && this.h != sharedInstance.isFrontFaceCamera()) {
                 boolean isFrontFaceCamera = sharedInstance.isFrontFaceCamera();
                 this.h = isFrontFaceCamera;
-                this.f39290b.d.setMirror(isFrontFaceCamera);
+                this.f40698b.d.setMirror(isFrontFaceCamera);
             }
-            int i7 = this.f39296s;
-            int i10 = this.f39297w;
+            int i7 = this.f40704s;
+            int i10 = this.f40705w;
             if (i7 > 0 && i10 > 0) {
                 f10 = i7 / i10;
             } else {
                 f10 = 0.0f;
             }
-            if (f10 > 0.0f && Math.abs(f10 - this.f39294n) > 0.01f) {
-                this.f39294n = f10;
+            if (f10 > 0.0f && Math.abs(f10 - this.f40702n) > 0.01f) {
+                this.f40702n = f10;
                 requestLayout();
             }
-            if (!z9 || !z10) {
-                z11 = false;
+            if (!z10 || !z11) {
+                z12 = false;
             }
-            FrameLayout frameLayout = this.f39289a;
-            if (this.f39293f == z11) {
+            FrameLayout frameLayout = this.f40697a;
+            if (this.f40701f == z12) {
                 return;
             }
-            this.f39293f = z11;
+            this.f40701f = z12;
             frameLayout.animate().cancel();
-            if (z11) {
+            if (z12) {
                 frameLayout.setVisibility(0);
-                frameLayout.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(220L).setInterpolator(wq.h).withEndAction(null).start();
+                frameLayout.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(220L).setInterpolator(er.h).withEndAction(null).start();
                 return;
             }
-            frameLayout.animate().alpha(0.0f).scaleX(0.6f).scaleY(0.6f).setDuration(180L).setInterpolator(wq.f40047g).withEndAction(new i(this, 1)).start();
+            frameLayout.animate().alpha(0.0f).scaleX(0.6f).scaleY(0.6f).setDuration(180L).setInterpolator(er.f34421g).withEndAction(new i(this, 1)).start();
         }
     }
 
     @Override
-    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        int i13 = this.f39291c;
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        int i13 = this.f40699c;
         int i14 = (i11 - i7) - i13;
-        FrameLayout frameLayout = this.f39289a;
+        FrameLayout frameLayout = this.f40697a;
         frameLayout.layout(i14 - frameLayout.getMeasuredWidth(), i13, i14, frameLayout.getMeasuredHeight() + i13);
         frameLayout.setPivotX(frameLayout.getMeasuredWidth());
         frameLayout.setPivotY(0.0f);
@@ -153,13 +153,13 @@ public final class k extends ViewGroup {
         int size = View.MeasureSpec.getSize(i7);
         int size2 = View.MeasureSpec.getSize(i10);
         setMeasuredDimension(size, size2);
-        float f12 = this.f39294n;
+        float f12 = this.f40702n;
         if (f12 <= 0.0f) {
             f12 = 0.75f;
         }
         float sqrt = (float) Math.sqrt(((0.1f * f10) * f11) / f12);
         float f13 = f12 * sqrt;
         float min = Math.min(1.0f, Math.min((size * 0.42f) / Math.max(1.0f, f13), (size2 * 0.42f) / Math.max(1.0f, sqrt)));
-        this.f39289a.measure(View.MeasureSpec.makeMeasureSpec(Math.max(1, Math.round(f13 * min)), 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(1, Math.round(sqrt * min)), 1073741824));
+        this.f40697a.measure(View.MeasureSpec.makeMeasureSpec(Math.max(1, Math.round(f13 * min)), 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(1, Math.round(sqrt * min)), 1073741824));
     }
 }

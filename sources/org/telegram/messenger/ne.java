@@ -4,8 +4,8 @@ import java.io.File;
 public final class ne extends File {
     @Override
     public final boolean delete() {
-        if (r2.f25216a) {
-            a8.d("delete voice file");
+        if (r2.f26198a) {
+            a8.d("delete voice file (joined)");
         }
         return super.delete();
     }

@@ -1,10 +1,10 @@
 package org.telegram.ui;
 public final class dq extends v4.k {
     public final h2.f F = new h2.f((int[]) null);
-    public final rq G;
+    public final qq G;
 
-    public dq(rq rqVar) {
-        this.G = rqVar;
+    public dq(qq qqVar) {
+        this.G = qqVar;
     }
 
     @Override
@@ -14,20 +14,20 @@ public final class dq extends v4.k {
 
     @Override
     public final void O() {
-        this.G.f49502c.invalidate();
+        this.G.f50715c.invalidate();
     }
 
     @Override
-    public final void P(v4.d1 d1Var) {
-        this.G.f49502c.invalidate();
+    public final void P(v4.e1 e1Var) {
+        this.G.f50715c.invalidate();
     }
 
     @Override
     public final void m() {
-        boolean isEmpty = this.f57109p.isEmpty();
-        boolean isEmpty2 = this.f57111r.isEmpty();
-        boolean isEmpty3 = this.f57112s.isEmpty();
-        boolean isEmpty4 = this.f57110q.isEmpty();
+        boolean isEmpty = this.f58587p.isEmpty();
+        boolean isEmpty2 = this.f58589r.isEmpty();
+        boolean isEmpty3 = this.f58590s.isEmpty();
+        boolean isEmpty4 = this.f58588q.isEmpty();
         if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
             this.F.d();
         }

@@ -1,15 +1,30 @@
 package org.telegram.ui.Components;
 public final class mk0 implements Runnable {
-    public final int f35988a;
-    public final rk0 f35989b;
+    public final int f37314a;
+    public final ok0 f37315b;
 
-    public mk0(rk0 rk0Var, int i7) {
-        this.f35988a = i7;
-        this.f35989b = rk0Var;
+    public mk0(ok0 ok0Var, int i7) {
+        this.f37314a = i7;
+        this.f37315b = ok0Var;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.mk0.run():void");
+        switch (this.f37314a) {
+            case 0:
+                ok0 ok0Var = this.f37315b;
+                ok0Var.getClass();
+                org.telegram.messenger.g0.h3(new mk0(ok0Var, 2));
+                return;
+            case 1:
+                org.telegram.messenger.g0.h3(new mk0(this.f37315b, 3));
+                return;
+            case 2:
+                super/*android.app.Dialog*/.dismiss();
+                return;
+            default:
+                super/*android.app.Dialog*/.dismiss();
+                return;
+        }
     }
 }

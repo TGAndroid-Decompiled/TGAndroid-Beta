@@ -1,114 +1,178 @@
 package org.telegram.messenger;
 
-import android.animation.ValueAnimator;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Point;
 import android.graphics.Rect;
+import android.graphics.RectF;
+import android.text.Layout;
+import android.text.SpannableStringBuilder;
+import android.text.StaticLayout;
 import android.text.TextUtils;
+import android.text.style.CharacterStyle;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.widget.OverScroller;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
-public final class wu extends fu {
-    public static Paint m0;
-    public static Paint f26380n0;
-    public final boolean W;
-    public final ArrayList X;
-    public final int Y;
-    public final int Z;
-    public int f26381a0;
-    public float f26382b0;
-    public boolean f26383c0;
-    public boolean f26384d0;
-    public float f26385e0;
-    public float f26386f0;
-    public int f26387g0;
-    public int f26388h0;
-    public int f26389i0;
-    public VelocityTracker f26390j0;
-    public ValueAnimator f26391k0;
-    public final Path f26392l0;
+import org.telegram.ui.Components.hx0;
+import org.telegram.ui.Components.ix0;
+import org.telegram.ui.Components.ox0;
+import org.telegram.ui.Components.px0;
+import org.telegram.ui.rg0;
+import org.telegram.ui.tg0;
+public final class wu extends cu implements ox0 {
+    public final j6.o A0;
+    public final TL_iv.pageBlockTable X;
+    public final px0 Y;
+    public final ArrayList Z;
+    public final org.telegram.ui.Cells.s9[] f27394a0;
+    public final hv f27395b0;
+    public final int f27396c0;
+    public final ArrayList f27397d0;
+    public final int f27398e0;
+    public final int f27399f0;
+    public int f27400g0;
+    public int f27401h0;
+    public final int f27402i0;
+    public int f27403j0;
+    public Paint f27404k0;
+    public Paint f27405l0;
+    public Paint m0;
+    public Paint f27406n0;
+    public float f27407o0;
+    public int f27408p0;
+    public boolean f27409q0;
+    public hv f27410r0;
+    public float f27411s0;
+    public float f27412t0;
+    public boolean f27413u0;
+    public int f27414v0;
+    public int f27415w0;
+    public int f27416x0;
+    public VelocityTracker f27417y0;
+    public OverScroller f27418z0;
 
-    public wu(kv kvVar, Rect rect, int i7, TL_iv.pageBlockSlideshow pageblockslideshow, boolean z9) {
-        super(kvVar, rect, i7);
-        yt ytVar;
-        this.X = new ArrayList();
-        this.f26392l0 = new Path();
-        this.W = z9;
-        for (int i10 = 0; i10 < pageblockslideshow.items.size(); i10++) {
-            TL_iv.PageBlock pageBlock = pageblockslideshow.items.get(i10);
-            if (pageBlock instanceof TL_iv.pageBlockPhoto) {
-                ytVar = new yt(kvVar, (TL_iv.pageBlockPhoto) pageBlock);
-            } else if (pageBlock instanceof TL_iv.pageBlockVideo) {
-                ytVar = new yt(kvVar, (TL_iv.pageBlockVideo) pageBlock);
-            } else {
-                ytVar = null;
+    public wu(iv ivVar, Rect rect, int i7, TL_iv.pageBlockTable pageblocktable) {
+        super(ivVar, rect, i7);
+        float f10;
+        int i10;
+        int i11;
+        int max;
+        this.Z = new ArrayList();
+        this.f27397d0 = new ArrayList();
+        this.A0 = new j6.o(this, 15);
+        Rect rect2 = this.f22934b;
+        rect2.top = g0.L(10.0f) + rect2.top;
+        this.X = pageblocktable;
+        this.f27398e0 = this.f22935c;
+        px0 px0Var = new px0(t0.f26600b, this, null);
+        this.Y = px0Var;
+        px0Var.setOrientation(0);
+        px0Var.setRowOrderPreserved(true);
+        px0Var.setDrawLines(pageblocktable.bordered);
+        px0Var.setStriped(pageblocktable.striped);
+        px0Var.setRtl(ivVar.I());
+        px0Var.setFillWidth(false);
+        px0Var.setBalancedColumns(true);
+        if (pageblocktable.compact) {
+            int L = g0.L(5.0f);
+            int L2 = g0.L(5.0f);
+            int L3 = g0.L(5.0f);
+            if (px0Var.f38431w != L || px0Var.f38429r != L2 || px0Var.f38430s != L3) {
+                px0Var.f38431w = L;
+                px0Var.f38429r = L2;
+                px0Var.f38430s = L3;
+                px0Var.requestLayout();
             }
-            if (ytVar != null) {
-                this.X.add(ytVar);
+        }
+        if (pageblocktable.compact) {
+            f10 = 18.0f;
+        } else {
+            f10 = 36.0f;
+        }
+        px0Var.setMinimumCellHeight(g0.L(f10));
+        if (!pageblocktable.rows.isEmpty()) {
+            TL_iv.pageTableRow pagetablerow = pageblocktable.rows.get(0);
+            i10 = 0;
+            for (int i12 = 0; i12 < pagetablerow.cells.size(); i12++) {
+                int i13 = pagetablerow.cells.get(i12).colspan;
+                if (i13 == 0) {
+                    i13 = 1;
+                }
+                i10 += i13;
+            }
+        } else {
+            i10 = 0;
+        }
+        for (int i14 = 0; i14 < pageblocktable.rows.size(); i14++) {
+            TL_iv.pageTableRow pagetablerow2 = pageblocktable.rows.get(i14);
+            int i15 = 0;
+            for (int i16 = 0; i16 < pagetablerow2.cells.size(); i16++) {
+                TL_iv.pageTableCell pagetablecell = pagetablerow2.cells.get(i16);
+                int i17 = pagetablecell.colspan;
+                i17 = i17 == 0 ? 1 : i17;
+                int i18 = pagetablecell.rowspan;
+                i18 = i18 == 0 ? 1 : i18;
+                if (pagetablecell.text != null) {
+                    this.Y.b(pagetablecell, i15, i14, i17);
+                } else {
+                    this.Y.a(i15, i14, i17, i18);
+                }
+                i15 += i17;
             }
         }
-        ArrayList arrayList = this.X;
-        if (arrayList.isEmpty()) {
-            this.Z = 0;
-            this.Y = 0;
-            return;
+        this.Y.setColumnCount(i10);
+        this.Y.measure(View.MeasureSpec.makeMeasureSpec(this.f22935c, 0), View.MeasureSpec.makeMeasureSpec(0, 0));
+        int measuredWidth = this.Y.getMeasuredWidth();
+        this.f27401h0 = this.Y.getMeasuredHeight();
+        this.f27402i0 = Math.max(0, measuredWidth - this.f27398e0);
+        TL_iv.RichText richText = pageblocktable.title;
+        if (richText != null && !(richText instanceof TL_iv.textEmpty) && !TextUtils.isEmpty(iv.x(richText))) {
+            hv hvVar = new hv(ivVar, ivVar.l(pageblocktable.title, iv.R(0, 15)), this.f27398e0, Layout.Alignment.ALIGN_CENTER);
+            this.f27395b0 = hvVar;
+            hvVar.f24227r = true;
+            this.f27396c0 = g0.L(9.0f) + hvVar.f24222b.getHeight();
+        } else {
+            this.f27395b0 = null;
+            this.f27396c0 = 0;
         }
-        this.Y = this.f22475c;
-        int size = arrayList.size();
-        int i11 = 0;
-        float f10 = 0.0f;
-        while (i11 < size) {
-            Object obj = arrayList.get(i11);
-            i11++;
-            float f11 = ((yt) obj).E;
-            if (f11 <= 0.0f) {
-                f11 = 1.0f;
+        hv hvVar2 = this.f27395b0;
+        if (hvVar2 != null) {
+            i11 = hvVar2.r();
+        } else {
+            i11 = 0;
+        }
+        if (ivVar.D()) {
+            max = Math.max(0, this.f27398e0);
+        } else {
+            max = Math.max(0, Math.min(this.f27398e0, Math.max(measuredWidth, i11)));
+        }
+        this.f27399f0 = max;
+        this.f27400g0 = max;
+        for (int i19 = 0; i19 < this.Y.getChildCount(); i19++) {
+            ix0 d = this.Y.d(i19);
+            hx0 hx0Var = d.f35761b;
+            if (hx0Var instanceof hv) {
+                this.Z.add((hv) hx0Var);
+                this.f27397d0.add(new vu(d));
             }
-            f10 += f11;
         }
-        int max = (int) (this.Y / Math.max(0.5f, f10 / arrayList.size()));
-        Point point = g0.f22567q;
-        int max2 = (int) (Math.max(point.x, point.y) * 0.55f);
-        this.Z = max > max2 ? max2 : max;
-        int size2 = arrayList.size();
-        int i12 = 0;
-        while (i12 < size2) {
-            Object obj2 = arrayList.get(i12);
-            i12++;
-            ((yt) obj2).l(0, 0, this.Y, this.Z);
+        ArrayList arrayList = new ArrayList();
+        hv hvVar3 = this.f27395b0;
+        if (hvVar3 != null) {
+            arrayList.add(hvVar3);
         }
-    }
-
-    @Override
-    public final void A(int i7, Rect rect) {
-        Rect rect2 = this.f22474b;
-        int i10 = rect2.left;
-        int i11 = ((int) this.M) + rect2.top;
-        rect.set(i10, i11, this.Y + i10, this.Z + i11);
-    }
-
-    @Override
-    public final int B() {
-        return !this.X.isEmpty();
-    }
-
-    @Override
-    public final CharSequence E(int i7) {
-        ArrayList arrayList = this.X;
-        if (arrayList.isEmpty()) {
-            return null;
-        }
-        int max = Math.max(0, Math.min(this.f26381a0, arrayList.size() - 1));
-        return TextUtils.concat(((yt) arrayList.get(max)).f(), ", ", id.a0(null, null, 2131747829, Integer.valueOf(max + 1), Integer.valueOf(arrayList.size())));
+        arrayList.addAll(this.Z);
+        this.f27394a0 = (org.telegram.ui.Cells.s9[]) arrayList.toArray(new org.telegram.ui.Cells.s9[0]);
     }
 
     @Override
     public final int I() {
-        return this.Z;
+        Rect rect = this.f22934b;
+        return g0.L(10.0f) + rect.top + this.f27396c0 + this.f27401h0 + rect.bottom;
     }
 
     @Override
@@ -118,15 +182,20 @@ public final class wu extends fu {
 
     @Override
     public final int K() {
-        Rect rect = this.f22474b;
-        return rect.left + this.f22475c + rect.right;
+        Rect rect = this.f22934b;
+        return rect.left + this.f27399f0 + rect.right;
+    }
+
+    @Override
+    public final org.telegram.ui.Cells.s9[] L() {
+        return this.f27394a0;
     }
 
     @Override
     public final boolean Q() {
-        if (!this.f26383c0) {
-            ValueAnimator valueAnimator = this.f26391k0;
-            if (valueAnimator == null || !valueAnimator.isRunning()) {
+        if (!this.f27409q0) {
+            OverScroller overScroller = this.f27418z0;
+            if (overScroller == null || overScroller.isFinished()) {
                 return false;
             }
             return true;
@@ -136,233 +205,651 @@ public final class wu extends fu {
 
     @Override
     public final void T() {
-        ArrayList arrayList = this.X;
+        hv hvVar = this.f27395b0;
+        if (hvVar != null) {
+            hvVar.i(this.W);
+        }
+        ArrayList arrayList = this.Z;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
-            yt ytVar = (yt) obj;
-            View view = this.V;
-            ytVar.S = view;
-            ImageReceiver imageReceiver = ytVar.f26741c;
-            imageReceiver.H0(view);
-            imageReceiver.P();
-            ImageReceiver imageReceiver2 = ytVar.d;
-            imageReceiver2.H0(view);
-            imageReceiver2.P();
-            ytVar.d(view);
-            ytVar.m(view, false);
+            ((hv) obj).i(this.W);
         }
-    }
-
-    @Override
-    public final boolean U(int i7, View view) {
-        ArrayList arrayList = this.X;
-        if (arrayList.isEmpty()) {
-            return false;
-        }
-        return ((yt) arrayList.get(Math.max(0, Math.min(this.f26381a0, arrayList.size() - 1)))).j(view);
     }
 
     @Override
     public final void V() {
-        int i7 = 0;
-        a0(false);
-        this.f26383c0 = false;
-        this.f26384d0 = false;
-        VelocityTracker velocityTracker = this.f26390j0;
-        if (velocityTracker != null) {
-            velocityTracker.recycle();
-            this.f26390j0 = null;
+        hv hvVar = this.f27395b0;
+        if (hvVar != null) {
+            hvVar.f(this.W);
         }
-        ArrayList arrayList = this.X;
+        ArrayList arrayList = this.Z;
         int size = arrayList.size();
+        int i7 = 0;
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
-            yt ytVar = (yt) obj;
-            ytVar.f26741c.R();
-            ytVar.d.R();
-            ytVar.f26742e = null;
-            z5.q(ytVar.f26739a.f23767a).v(ytVar);
+            ((hv) obj).f(this.W);
         }
     }
 
     @Override
-    public final void W(android.graphics.Canvas r31) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.wu.W(android.graphics.Canvas):void");
+    public final void W(Canvas canvas) {
+        int i7;
+        int i10;
+        hv hvVar = this.f27395b0;
+        if (hvVar != null) {
+            canvas.save();
+            canvas.translate(j0(), 0.0f);
+            hvVar.d(canvas, hvVar.T);
+            canvas.restore();
+        }
+        canvas.save();
+        canvas.translate(0.0f, this.f27396c0);
+        iv ivVar = this.f22933a;
+        int i11 = ivVar.S;
+        h6.m mVar = ivVar.f24462z;
+        Rect rect = this.f22934b;
+        canvas.saveLayerAlpha(-i11, 0.0f, ((ivVar.C + ivVar.T) - rect.left) - rect.right, this.f27401h0, 255, 31);
+        canvas.save();
+        canvas.translate(-this.f27403j0, 0.0f);
+        px0 px0Var = this.Y;
+        int childCount = px0Var.getChildCount();
+        for (int i12 = 0; i12 < childCount; i12++) {
+            px0Var.d(i12).a(canvas, this.W, true);
+        }
+        canvas.restore();
+        RectF rectF = g0.P;
+        rectF.set(-ivVar.S, 0.0f, g0.L(12.0f) + i7, this.f27401h0);
+        mVar.m(canvas, rectF, 0, 1.0f);
+        rectF.set(i10 - g0.L(12.0f), 0.0f, ((ivVar.C + ivVar.T) - rect.left) - rect.right, this.f27401h0);
+        mVar.m(canvas, rectF, 2, 1.0f);
+        canvas.restore();
+        canvas.restore();
     }
 
     @Override
     public final boolean Y(MotionEvent motionEvent) {
-        boolean k10;
         VelocityTracker velocityTracker;
+        int i7;
+        int i10;
         View view;
         int actionMasked = motionEvent.getActionMasked();
-        Rect rect = this.f22474b;
-        motionEvent.offsetLocation(-rect.left, -rect.top);
-        ArrayList arrayList = this.X;
-        try {
-            if (actionMasked == 0) {
-                if (this.f26387g0 == 0 && (view = this.V) != null) {
-                    ViewConfiguration viewConfiguration = ViewConfiguration.get(view.getContext());
-                    this.f26387g0 = viewConfiguration.getScaledTouchSlop();
-                    this.f26388h0 = viewConfiguration.getScaledMinimumFlingVelocity();
-                    this.f26389i0 = viewConfiguration.getScaledMaximumFlingVelocity();
-                }
-                this.f26385e0 = motionEvent.getX();
-                this.f26386f0 = motionEvent.getY();
-                this.f26383c0 = false;
-                this.f26384d0 = false;
-                VelocityTracker velocityTracker2 = this.f26390j0;
-                if (velocityTracker2 == null) {
-                    this.f26390j0 = VelocityTracker.obtain();
-                } else {
-                    velocityTracker2.clear();
-                }
-                this.f26390j0.addMovement(motionEvent);
-                a0(true);
-                ValueAnimator valueAnimator = this.f26391k0;
-                if (valueAnimator != null) {
-                    valueAnimator.cancel();
-                    this.f26391k0 = null;
-                }
-                int i7 = this.f26381a0;
-                if (i7 >= 0 && i7 < arrayList.size()) {
-                    ((yt) arrayList.get(this.f26381a0)).k(this.V, motionEvent);
-                }
+        int i11 = this.f27402i0;
+        ix0 ix0Var = null;
+        int i12 = 0;
+        if (actionMasked == 0) {
+            if (this.f27414v0 == 0 && (view = this.W) != null) {
+                ViewConfiguration viewConfiguration = ViewConfiguration.get(view.getContext());
+                this.f27414v0 = viewConfiguration.getScaledTouchSlop();
+                this.f27415w0 = viewConfiguration.getScaledMinimumFlingVelocity();
+                this.f27416x0 = viewConfiguration.getScaledMaximumFlingVelocity();
+            }
+            if (this.f27418z0 == null && this.W != null) {
+                this.f27418z0 = new OverScroller(this.W.getContext());
+            }
+            OverScroller overScroller = this.f27418z0;
+            if (overScroller != null && !overScroller.isFinished()) {
+                this.f27418z0.forceFinished(true);
+            }
+            this.f27407o0 = motionEvent.getX();
+            motionEvent.getY();
+            this.f27408p0 = this.f27403j0;
+            this.f27409q0 = false;
+            VelocityTracker velocityTracker2 = this.f27417y0;
+            if (velocityTracker2 == null) {
+                this.f27417y0 = VelocityTracker.obtain();
             } else {
-                float f10 = 0.0f;
-                if (actionMasked == 2) {
-                    if (!this.f26384d0) {
-                        VelocityTracker velocityTracker3 = this.f26390j0;
-                        if (velocityTracker3 != null) {
-                            velocityTracker3.addMovement(motionEvent);
-                        }
-                        float x10 = motionEvent.getX() - this.f26385e0;
-                        float y10 = motionEvent.getY() - this.f26386f0;
-                        if (!this.f26383c0 && Math.abs(y10) > this.f26387g0 && Math.abs(y10) > Math.abs(x10)) {
-                            this.f26384d0 = true;
-                            int i10 = this.f26381a0;
-                            if (i10 >= 0 && i10 < arrayList.size()) {
-                                MotionEvent obtain = MotionEvent.obtain(motionEvent);
-                                obtain.setAction(3);
-                                ((yt) arrayList.get(this.f26381a0)).k(this.V, obtain);
-                                obtain.recycle();
-                            }
-                            a0(false);
-                        } else {
-                            if (!this.f26383c0 && Math.abs(x10) > this.f26387g0 && Math.abs(x10) > Math.abs(y10)) {
-                                this.f26383c0 = true;
-                                int i11 = this.f26381a0;
-                                if (i11 >= 0 && i11 < arrayList.size()) {
-                                    MotionEvent obtain2 = MotionEvent.obtain(motionEvent);
-                                    obtain2.setAction(3);
-                                    ((yt) arrayList.get(this.f26381a0)).k(this.V, obtain2);
-                                    obtain2.recycle();
-                                }
-                            }
-                            if (this.f26383c0) {
-                                float f11 = (-x10) / this.Y;
-                                int i12 = this.f26381a0;
-                                if (i12 == 0 && f11 < 0.0f) {
-                                    f11 *= 0.3f;
-                                }
-                                if (i12 == arrayList.size() - 1 && f11 > 0.0f) {
-                                    f11 *= 0.3f;
-                                }
-                                this.f26382b0 = f11;
-                                View view2 = this.V;
-                                if (view2 != null) {
-                                    view2.invalidate();
-                                }
-                            } else {
-                                int i13 = this.f26381a0;
-                                if (i13 >= 0 && i13 < arrayList.size()) {
-                                    k10 = ((yt) arrayList.get(this.f26381a0)).k(this.V, motionEvent);
-                                    motionEvent.offsetLocation(rect.left, rect.top);
-                                    return k10;
-                                }
-                                motionEvent.offsetLocation(rect.left, rect.top);
-                                return false;
-                            }
-                        }
-                    }
-                } else {
-                    if (actionMasked == 1 || actionMasked == 3) {
-                        boolean z9 = this.f26384d0;
-                        this.f26384d0 = false;
-                        if (!z9 && actionMasked == 1 && (velocityTracker = this.f26390j0) != null) {
-                            velocityTracker.addMovement(motionEvent);
-                            this.f26390j0.computeCurrentVelocity(1000, this.f26389i0);
-                            float xVelocity = this.f26390j0.getXVelocity();
-                            float yVelocity = this.f26390j0.getYVelocity();
-                            if (Math.abs(xVelocity) >= this.f26388h0 && Math.abs(xVelocity) > Math.abs(yVelocity)) {
-                                f10 = xVelocity;
-                            }
-                        }
-                        VelocityTracker velocityTracker4 = this.f26390j0;
-                        if (velocityTracker4 != null) {
-                            velocityTracker4.recycle();
-                            this.f26390j0 = null;
-                        }
-                        a0(false);
-                        if (!z9) {
-                            if (this.f26383c0) {
-                                this.f26383c0 = false;
-                                i0(f10);
-                            } else {
-                                int i14 = this.f26381a0;
-                                if (i14 >= 0 && i14 < arrayList.size()) {
-                                    k10 = ((yt) arrayList.get(this.f26381a0)).k(this.V, motionEvent);
-                                    motionEvent.offsetLocation(rect.left, rect.top);
-                                    return k10;
-                                }
-                            }
-                        }
-                    }
-                    motionEvent.offsetLocation(rect.left, rect.top);
-                    return false;
+                velocityTracker2.clear();
+            }
+            this.f27417y0.addMovement(motionEvent);
+            this.f27410r0 = null;
+            this.f27413u0 = false;
+            int i13 = this.f27396c0;
+            hv hvVar = this.f27395b0;
+            if (hvVar != null && motionEvent.getY() < i13) {
+                float j02 = j0();
+                motionEvent.offsetLocation(-j02, 0.0f);
+                boolean t6 = hvVar.t(motionEvent);
+                motionEvent.offsetLocation(j02, 0.0f);
+                if (t6) {
+                    this.f27410r0 = hvVar;
+                    this.f27411s0 = j02;
+                    this.f27412t0 = 0.0f;
+                    this.f27413u0 = true;
                 }
             }
-            return true;
-        } finally {
-            motionEvent.offsetLocation(rect.left, rect.top);
+            if (!this.f27413u0) {
+                float x10 = motionEvent.getX();
+                float f10 = x10 + this.f27403j0;
+                float y10 = motionEvent.getY() - i13;
+                px0 px0Var = this.Y;
+                int childCount = px0Var.getChildCount();
+                int i14 = 0;
+                while (true) {
+                    if (i14 >= childCount) {
+                        break;
+                    }
+                    ix0 d = px0Var.d(i14);
+                    if (d.f35761b instanceof hv) {
+                        if (f10 >= d.f35773p && f10 < i7 + d.f35768k) {
+                            if (y10 >= d.f35774q && y10 < i10 + d.f35769l) {
+                                ix0Var = d;
+                                break;
+                            }
+                        }
+                    }
+                    i14++;
+                }
+                if (ix0Var != null) {
+                    this.f27410r0 = (hv) ix0Var.f35761b;
+                    this.f27411s0 = ix0Var.b() - this.f27403j0;
+                    this.f27412t0 = ix0Var.c() + i13;
+                    this.f27410r0.S.set(ix0Var.f35773p - ix0Var.b(), ix0Var.f35774q - ix0Var.c(), (ix0Var.f35773p + ix0Var.f35768k) - ix0Var.b(), (ix0Var.f35774q + ix0Var.f35769l) - ix0Var.c());
+                    motionEvent.offsetLocation(-this.f27411s0, -this.f27412t0);
+                    this.f27413u0 = this.f27410r0.t(motionEvent);
+                    motionEvent.offsetLocation(this.f27411s0, this.f27412t0);
+                }
+            }
+            if (this.f27413u0 || i11 > 0) {
+                return true;
+            }
+            return false;
+        }
+        if (actionMasked == 2) {
+            VelocityTracker velocityTracker3 = this.f27417y0;
+            if (velocityTracker3 != null) {
+                velocityTracker3.addMovement(motionEvent);
+            }
+            float x11 = motionEvent.getX() - this.f27407o0;
+            if (!this.f27409q0 && i11 > 0 && Math.abs(x11) > this.f27414v0) {
+                this.f27409q0 = true;
+                a0(true);
+                if (this.f27413u0 && this.f27410r0 != null) {
+                    MotionEvent obtain = MotionEvent.obtain(motionEvent);
+                    obtain.setAction(3);
+                    obtain.offsetLocation(-this.f27411s0, -this.f27412t0);
+                    this.f27410r0.t(obtain);
+                    obtain.recycle();
+                    this.f27413u0 = false;
+                }
+            }
+            if (this.f27409q0) {
+                int i15 = (int) (this.f27408p0 - x11);
+                if (i15 >= 0) {
+                    i12 = i15;
+                }
+                if (i12 <= i11) {
+                    i11 = i12;
+                }
+                if (i11 != this.f27403j0) {
+                    this.f27403j0 = i11;
+                    Z(this.T, this.U, this.V);
+                    View view2 = this.W;
+                    if (view2 != null) {
+                        view2.invalidate();
+                        return true;
+                    }
+                }
+            } else {
+                return this.f27413u0;
+            }
+        } else {
+            if (actionMasked == 1 || actionMasked == 3) {
+                boolean z10 = this.f27409q0;
+                this.f27409q0 = false;
+                if (z10) {
+                    a0(false);
+                    if (actionMasked == 1 && (velocityTracker = this.f27417y0) != null && this.f27418z0 != null && this.W != null) {
+                        velocityTracker.addMovement(motionEvent);
+                        this.f27417y0.computeCurrentVelocity(1000, this.f27416x0);
+                        float f11 = -this.f27417y0.getXVelocity();
+                        if (Math.abs(f11) > this.f27415w0) {
+                            this.f27418z0.fling(this.f27403j0, 0, (int) f11, 0, 0, this.f27402i0, 0, 0);
+                            this.W.postOnAnimation(this.A0);
+                        }
+                    }
+                }
+                if (!z10 && this.f27413u0 && this.f27410r0 != null) {
+                    motionEvent.offsetLocation(-this.f27411s0, -this.f27412t0);
+                    this.f27410r0.t(motionEvent);
+                    motionEvent.offsetLocation(this.f27411s0, this.f27412t0);
+                }
+                boolean z11 = this.f27413u0;
+                this.f27413u0 = false;
+                this.f27410r0 = null;
+                VelocityTracker velocityTracker4 = this.f27417y0;
+                if (velocityTracker4 != null) {
+                    velocityTracker4.recycle();
+                    this.f27417y0 = null;
+                }
+                if (z10 || z11) {
+                }
+            }
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final void Z(int i7, int i10, int i11) {
+        this.T = i7;
+        this.U = i10;
+        this.V = i11;
+        hv hvVar = this.f27395b0;
+        if (hvVar != null) {
+            hvVar.f24223c = (j0() + i7) - hvVar.n();
+            hvVar.d = i10;
+            hvVar.f24224e = i11;
+        }
+        px0 px0Var = this.Y;
+        int childCount = px0Var.getChildCount();
+        for (int i12 = 0; i12 < childCount; i12++) {
+            ix0 d = px0Var.d(i12);
+            hx0 hx0Var = d.f35761b;
+            if (hx0Var instanceof hv) {
+                hv hvVar2 = (hv) hx0Var;
+                hvVar2.f24223c = ((d.b() + i7) - this.f27403j0) - hvVar2.n();
+                hvVar2.d = d.c() + this.f27396c0 + i10;
+                hvVar2.f24224e = i11;
+            }
         }
     }
 
-    public final void i0(float f10) {
+    @Override
+    public final hx0 c(TL_iv.pageTableCell pagetablecell, int i7) {
+        Layout.Alignment alignment;
+        if (pagetablecell == null) {
+            return null;
+        }
+        int R = iv.R(0, 14);
+        TL_iv.RichText richText = pagetablecell.text;
+        iv ivVar = this.f22933a;
+        SpannableStringBuilder l10 = ivVar.l(richText, R);
+        if (pagetablecell.align_right) {
+            alignment = Layout.Alignment.ALIGN_OPPOSITE;
+        } else if (pagetablecell.align_center) {
+            alignment = Layout.Alignment.ALIGN_CENTER;
+        } else {
+            alignment = Layout.Alignment.ALIGN_NORMAL;
+        }
+        hv hvVar = new hv(ivVar, l10, i7, alignment);
+        hvVar.f24227r = true;
+        return hvVar;
+    }
+
+    @Override
+    public final Paint getHeaderPaint() {
+        i0();
+        return this.m0;
+    }
+
+    @Override
+    public final Paint getLinePaint() {
+        i0();
+        return this.f27404k0;
+    }
+
+    @Override
+    public final Paint getStripPaint() {
+        i0();
+        return this.f27406n0;
+    }
+
+    public final void i0() {
         int i7;
         int i10;
-        int i11 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
-        ArrayList arrayList = this.X;
-        if (i11 >= 0 || this.f26381a0 >= arrayList.size() - 1) {
-            i7 = -1;
-            if (f10 <= 0.0f || this.f26381a0 <= 0) {
-                if (this.f26382b0 <= 0.5f || this.f26381a0 >= arrayList.size() - 1) {
-                    if (this.f26382b0 >= -0.5f || this.f26381a0 <= 0) {
-                        i7 = 0;
+        if (this.f27404k0 == null) {
+            Paint paint = new Paint(1);
+            this.f27404k0 = paint;
+            Paint.Style style = Paint.Style.STROKE;
+            paint.setStyle(style);
+            this.f27404k0.setStrokeWidth(g0.N(0.66f));
+            Paint paint2 = new Paint();
+            this.f27405l0 = paint2;
+            paint2.setStyle(style);
+            this.f27405l0.setStrokeWidth(g0.N(0.66f));
+            this.m0 = new Paint();
+            this.f27406n0 = new Paint();
+        }
+        iv ivVar = this.f22933a;
+        if (ivVar.E()) {
+            i7 = org.telegram.ui.ActionBar.j6.ll;
+        } else {
+            i7 = org.telegram.ui.ActionBar.j6.kl;
+        }
+        int w02 = org.telegram.ui.ActionBar.j6.w0(i7, ivVar.D);
+        this.f27404k0.setColor(w02);
+        this.f27405l0.setColor(w02);
+        Paint paint3 = this.m0;
+        if (ivVar.E()) {
+            i10 = org.telegram.ui.ActionBar.j6.jl;
+        } else {
+            i10 = org.telegram.ui.ActionBar.j6.il;
+        }
+        paint3.setColor(org.telegram.ui.ActionBar.j6.w0(i10, ivVar.D));
+        this.f27406n0.setColor(167772160);
+    }
+
+    public final int j0() {
+        hv hvVar = this.f27395b0;
+        if (hvVar == null) {
+            return 0;
+        }
+        int i7 = this.f27400g0;
+        int i10 = hvVar.h;
+        int i11 = hvVar.f24225f;
+        return Math.round(((i7 - (i10 - i11)) / 2.0f) - i11);
+    }
+
+    @Override
+    public final void k(SpannableStringBuilder spannableStringBuilder) {
+        StaticLayout staticLayout;
+        cu.l(spannableStringBuilder, this.f27395b0, null);
+        int i7 = 0;
+        while (true) {
+            ArrayList arrayList = this.Z;
+            if (i7 < arrayList.size()) {
+                hv hvVar = (hv) arrayList.get(i7);
+                if (hvVar != null && (staticLayout = hvVar.f24222b) != null && !TextUtils.isEmpty(staticLayout.getText())) {
+                    if (spannableStringBuilder.length() > 0 && spannableStringBuilder.charAt(spannableStringBuilder.length() - 1) != '\n') {
+                        spannableStringBuilder.append(", ");
                     }
+                    spannableStringBuilder.append(staticLayout.getText());
+                }
+                i7++;
+            } else {
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final void p(ArrayList arrayList) {
+        ArrayList arrayList2 = this.f27397d0;
+        if (arrayList2.isEmpty()) {
+            arrayList.add(this);
+        } else {
+            arrayList.addAll(arrayList2);
+        }
+    }
+
+    @Override
+    public final boolean s(Canvas canvas, ColorFilter colorFilter) {
+        boolean z10;
+        boolean z11;
+        int i7;
+        int i10;
+        ix0 d;
+        hv hvVar;
+        org.telegram.ui.Components.l5 l5Var;
+        px0 px0Var;
+        int i11;
+        int i12;
+        h6.m mVar;
+        int i13;
+        org.telegram.ui.Components.l5 l5Var2;
+        canvas.save();
+        Rect rect = this.f22934b;
+        canvas.translate(rect.left, rect.top);
+        hv hvVar2 = this.f27395b0;
+        if (hvVar2 != null && (l5Var2 = hvVar2.F) != null && !l5Var2.f36726a.isEmpty()) {
+            canvas.save();
+            canvas.translate(j0(), 0.0f);
+            org.telegram.ui.Components.p5.drawAnimatedEmojis(canvas, hvVar2.f24222b, hvVar2.F, 0.0f, hvVar2.f24230x, 0.0f, 0.0f, 0.0f, 1.0f, colorFilter);
+            canvas.restore();
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        canvas.translate(0.0f, this.f27396c0);
+        ArrayList arrayList = this.Z;
+        int size = arrayList.size();
+        int i14 = 0;
+        while (true) {
+            if (i14 < size) {
+                org.telegram.ui.Components.l5 l5Var3 = ((hv) arrayList.get(i14)).F;
+                if (l5Var3 != null && !l5Var3.f36726a.isEmpty()) {
+                    iv ivVar = this.f22933a;
+                    int i15 = ivVar.S;
+                    h6.m mVar2 = ivVar.f24462z;
+                    int saveLayerAlpha = canvas.saveLayerAlpha(-i15, 0.0f, ((ivVar.C + ivVar.T) - rect.left) - rect.right, this.f27401h0, 255, 31);
+                    canvas.save();
+                    canvas.translate(-this.f27403j0, 0.0f);
+                    px0 px0Var2 = this.Y;
+                    int childCount = px0Var2.getChildCount();
+                    int i16 = 0;
+                    while (i16 < childCount) {
+                        hx0 hx0Var = px0Var2.d(i16).f35761b;
+                        if (!(hx0Var instanceof hv) || (l5Var = (hvVar = (hv) hx0Var).F) == null || l5Var.f36726a.isEmpty()) {
+                            i13 = saveLayerAlpha;
+                            px0Var = px0Var2;
+                            i11 = childCount;
+                            i12 = i16;
+                            mVar = mVar2;
+                        } else {
+                            canvas.save();
+                            canvas.translate(d.b(), d.c());
+                            px0Var = px0Var2;
+                            i11 = childCount;
+                            i12 = i16;
+                            mVar = mVar2;
+                            i13 = saveLayerAlpha;
+                            org.telegram.ui.Components.p5.drawAnimatedEmojis(canvas, hvVar.f24222b, hvVar.F, 0.0f, hvVar.f24230x, 0.0f, 0.0f, 0.0f, 1.0f, colorFilter);
+                            canvas.restore();
+                        }
+                        i16 = i12 + 1;
+                        mVar2 = mVar;
+                        px0Var2 = px0Var;
+                        childCount = i11;
+                        saveLayerAlpha = i13;
+                    }
+                    int i17 = saveLayerAlpha;
+                    h6.m mVar3 = mVar2;
+                    canvas.restore();
+                    RectF rectF = g0.P;
+                    rectF.set(-ivVar.S, 0.0f, g0.L(12.0f) + i7, this.f27401h0);
+                    mVar3.m(canvas, rectF, 0, 1.0f);
+                    rectF.set(i10 - g0.L(12.0f), 0.0f, ((ivVar.C + ivVar.T) - rect.left) - rect.right, this.f27401h0);
+                    mVar3.m(canvas, rectF, 2, 1.0f);
+                    canvas.restoreToCount(i17);
+                    z11 = true;
+                } else {
+                    i14++;
+                }
+            } else {
+                z11 = z10;
+                break;
+            }
+        }
+        canvas.restore();
+        return z11;
+    }
+
+    @Override
+    public final void t(Canvas canvas) {
+        int i7;
+        int i10;
+        vu vuVar;
+        float f10;
+        int i11;
+        px0 px0Var;
+        int i12;
+        int i13;
+        int i14;
+        float f11;
+        tg0 tg0Var = this.L;
+        if (tg0Var != null && tg0Var.h) {
+            ArrayList arrayList = this.f27397d0;
+            if (!arrayList.isEmpty() && tg0Var.d((rg0) arrayList.get(0)) >= 0) {
+                float c10 = tg0Var.c((rg0) arrayList.get(0));
+                float f12 = 0.0f;
+                if (c10 <= 0.0f) {
+                    return;
+                }
+                canvas.save();
+                Rect rect = this.f22934b;
+                canvas.translate(rect.left, rect.top);
+                hv hvVar = this.f27395b0;
+                if (hvVar != null) {
+                    canvas.save();
+                    canvas.translate(j0(), 0.0f);
+                    hvVar.d(canvas, hvVar.T);
+                    canvas.restore();
+                }
+                canvas.translate(0.0f, this.f27396c0);
+                iv ivVar = this.f22933a;
+                int i15 = ivVar.S;
+                h6.m mVar = ivVar.f24462z;
+                float f13 = 255.0f;
+                int saveLayerAlpha = canvas.saveLayerAlpha(-i15, 0.0f, ((ivVar.C + ivVar.T) - rect.left) - rect.right, this.f27401h0, (int) (c10 * 255.0f), 31);
+                canvas.save();
+                canvas.translate(-this.f27403j0, 0.0f);
+                px0 px0Var2 = this.Y;
+                int childCount = px0Var2.getChildCount();
+                int i16 = 0;
+                int i17 = 0;
+                while (i16 < childCount) {
+                    float f14 = f13;
+                    ix0 d = px0Var2.d(i16);
+                    if (i17 < arrayList.size() && ((vu) arrayList.get(i17)).f27248a == d) {
+                        vuVar = (vu) arrayList.get(i17);
+                        i17++;
+                    } else {
+                        vuVar = null;
+                    }
+                    int i18 = i17;
+                    if (vuVar == null) {
+                        d.a(canvas, this.W, true);
+                    } else if (!tg0Var.i(vuVar)) {
+                        d.a(canvas, this.W, false);
+                    } else {
+                        if (tg0Var.g(vuVar)) {
+                            d.a(canvas, this.W, false);
+                            if (d.f35761b instanceof hv) {
+                                canvas.save();
+                                f10 = f12;
+                                canvas.translate(d.b(), d.c());
+                                hv hvVar2 = (hv) d.f35761b;
+                                if (tg0Var.g(vuVar)) {
+                                    i14 = tg0Var.f51579e;
+                                } else {
+                                    i14 = -1;
+                                }
+                                if (tg0Var.g(vuVar)) {
+                                    f11 = tg0Var.f51580f;
+                                } else {
+                                    f11 = f10;
+                                }
+                                hvVar2.m(canvas, i14, f11);
+                                canvas.restore();
+                            } else {
+                                f10 = f12;
+                            }
+                        } else {
+                            f10 = f12;
+                            float c11 = tg0Var.c(vuVar);
+                            if (c11 >= 1.0f) {
+                                d.a(canvas, this.W, true);
+                            } else {
+                                if (c11 > f10 && d.f35761b != null) {
+                                    d.a(canvas, this.W, false);
+                                    canvas.save();
+                                    canvas.translate(d.b(), d.c());
+                                    px0Var = px0Var2;
+                                    i13 = i16;
+                                    i11 = saveLayerAlpha;
+                                    i12 = childCount;
+                                    int saveLayerAlpha2 = canvas.saveLayerAlpha(0.0f, 0.0f, d.f35768k, d.f35769l, (int) (c11 * f14), 31);
+                                    d.f35761b.d(canvas, this.W);
+                                    canvas.restoreToCount(saveLayerAlpha2);
+                                    canvas.restore();
+                                } else {
+                                    i11 = saveLayerAlpha;
+                                    px0Var = px0Var2;
+                                    i12 = childCount;
+                                    i13 = i16;
+                                    d.a(canvas, this.W, false);
+                                }
+                                i16 = i13 + 1;
+                                saveLayerAlpha = i11;
+                                f13 = f14;
+                                i17 = i18;
+                                f12 = f10;
+                                childCount = i12;
+                                px0Var2 = px0Var;
+                            }
+                        }
+                        i11 = saveLayerAlpha;
+                        px0Var = px0Var2;
+                        i12 = childCount;
+                        i13 = i16;
+                        i16 = i13 + 1;
+                        saveLayerAlpha = i11;
+                        f13 = f14;
+                        i17 = i18;
+                        f12 = f10;
+                        childCount = i12;
+                        px0Var2 = px0Var;
+                    }
+                    px0Var = px0Var2;
+                    i12 = childCount;
+                    i13 = i16;
+                    f10 = f12;
+                    i11 = saveLayerAlpha;
+                    i16 = i13 + 1;
+                    saveLayerAlpha = i11;
+                    f13 = f14;
+                    i17 = i18;
+                    f12 = f10;
+                    childCount = i12;
+                    px0Var2 = px0Var;
+                }
+                float f15 = f12;
+                int i19 = saveLayerAlpha;
+                canvas.restore();
+                RectF rectF = g0.P;
+                rectF.set(-ivVar.S, f15, g0.L(12.0f) + i7, this.f27401h0);
+                mVar.m(canvas, rectF, 0, 1.0f);
+                rectF.set(i10 - g0.L(12.0f), 0.0f, ((ivVar.C + ivVar.T) - rect.left) - rect.right, this.f27401h0);
+                mVar.m(canvas, rectF, 2, 1.0f);
+                canvas.restoreToCount(i19);
+                canvas.restore();
+                return;
+            }
+        }
+        q(canvas);
+    }
+
+    @Override
+    public final boolean u(CharacterStyle characterStyle, int i7, tt ttVar) {
+        ix0 d;
+        hv hvVar;
+        Rect rect = this.f22934b;
+        hv hvVar2 = this.f27395b0;
+        if (hvVar2 != null && hvVar2.o(characterStyle, ttVar)) {
+            ttVar.f26731e = (j0() + rect.left) - hvVar2.n();
+            ttVar.f26732f = i7 + rect.top;
+            return true;
+        }
+        px0 px0Var = this.Y;
+        int childCount = px0Var.getChildCount();
+        for (int i10 = 0; i10 < childCount; i10++) {
+            hx0 hx0Var = px0Var.d(i10).f35761b;
+            if (hx0Var instanceof hv) {
+                if (((hv) hx0Var).o(characterStyle, ttVar)) {
+                    ttVar.f26731e = ((d.b() + rect.left) - this.f27403j0) - hvVar.n();
+                    ttVar.f26732f = d.c() + i7 + rect.top + this.f27396c0;
+                    return true;
                 }
             }
-            int i12 = i7 + this.f26381a0;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f26382b0, i12 - i10);
-            this.f26391k0 = ofFloat;
-            ofFloat.setDuration(420L);
-            this.f26391k0.setInterpolator(org.telegram.ui.Components.wq.h);
-            this.f26391k0.addUpdateListener(new g(this, 2));
-            this.f26391k0.addListener(new hi.m2(this, i12, 3));
-            this.f26391k0.start();
         }
-        i7 = 1;
-        int i122 = i7 + this.f26381a0;
-        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.f26382b0, i122 - i10);
-        this.f26391k0 = ofFloat2;
-        ofFloat2.setDuration(420L);
-        this.f26391k0.setInterpolator(org.telegram.ui.Components.wq.h);
-        this.f26391k0.addUpdateListener(new g(this, 2));
-        this.f26391k0.addListener(new hi.m2(this, i122, 3));
-        this.f26391k0.start();
+        return false;
+    }
+
+    @Override
+    public final void g(hx0 hx0Var, int i7) {
     }
 }

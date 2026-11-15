@@ -1,27 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class cw0 implements TextWatcher {
-    public final NumberTextView f32773a;
-    public final bw0 f32774b;
+import android.app.Activity;
+import android.content.Context;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class cw0 extends tj0 {
+    public final Context f33716c;
+    public final dw0 d;
 
-    public cw0(NumberTextView numberTextView, bw0 bw0Var) {
-        this.f32773a = numberTextView;
-        this.f32774b = bw0Var;
+    public cw0(dw0 dw0Var, Activity activity) {
+        this.d = dw0Var;
+        this.f33716c = activity;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        this.f32773a.a(50 - Character.codePointCount(editable, 0, editable.length()), true);
-        this.f32774b.setErrorText(null);
+    public final boolean D(v4.e1 e1Var) {
+        return false;
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+    public final int b() {
+        return this.d.f34083c.size();
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+    public final void t(v4.e1 e1Var, int i7) {
+        org.telegram.ui.Cells.v vVar = (org.telegram.ui.Cells.v) e1Var.f58535a;
+        ArrayList arrayList = this.d.f34083c;
+        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i7);
+        boolean z10 = true;
+        if (i7 == arrayList.size() - 1) {
+            z10 = false;
+        }
+        vVar.b(stickerSetCovered, z10);
+    }
+
+    @Override
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
+        org.telegram.ui.Cells.v vVar = new org.telegram.ui.Cells.v(this.f33716c, false);
+        vVar.setLayoutParams(new v4.p0(-1, org.telegram.messenger.g0.L(82.0f)));
+        return new v4.e1(vVar);
     }
 }

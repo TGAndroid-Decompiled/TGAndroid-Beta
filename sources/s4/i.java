@@ -3,18 +3,18 @@ package s4;
 import android.media.MediaRouter2$RouteCallback;
 import java.util.List;
 public final class i extends MediaRouter2$RouteCallback {
-    public final int f54841a;
-    public final k f54842b;
+    public final int f56395a;
+    public final k f56396b;
 
     public i(k kVar, int i7) {
-        this.f54841a = i7;
-        this.f54842b = kVar;
+        this.f56395a = i7;
+        this.f56396b = kVar;
     }
 
     public void onRoutesAdded(List list) {
-        switch (this.f54841a) {
+        switch (this.f56395a) {
             case 0:
-                this.f54842b.q();
+                this.f56396b.q();
                 return;
             default:
                 super.onRoutesAdded(list);
@@ -23,9 +23,9 @@ public final class i extends MediaRouter2$RouteCallback {
     }
 
     public void onRoutesChanged(List list) {
-        switch (this.f54841a) {
+        switch (this.f56395a) {
             case 0:
-                this.f54842b.q();
+                this.f56396b.q();
                 return;
             default:
                 super.onRoutesChanged(list);
@@ -34,9 +34,9 @@ public final class i extends MediaRouter2$RouteCallback {
     }
 
     public void onRoutesRemoved(List list) {
-        switch (this.f54841a) {
+        switch (this.f56395a) {
             case 0:
-                this.f54842b.q();
+                this.f56396b.q();
                 return;
             default:
                 super.onRoutesRemoved(list);
@@ -45,9 +45,9 @@ public final class i extends MediaRouter2$RouteCallback {
     }
 
     public void onRoutesUpdated(List list) {
-        switch (this.f54841a) {
+        switch (this.f56395a) {
             case 1:
-                this.f54842b.q();
+                this.f56396b.q();
                 return;
             default:
                 super.onRoutesUpdated(list);

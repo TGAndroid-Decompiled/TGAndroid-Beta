@@ -49,14 +49,14 @@ public enum z7 implements l0 {
     CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(407),
     UNKNOWN_ERROR(9999);
     
-    public final int f751a;
+    public final int f750a;
 
     z7(int i7) {
-        this.f751a = i7;
+        this.f750a = i7;
     }
 
     @Override
     public final int zza() {
-        return this.f751a;
+        return this.f750a;
     }
 }

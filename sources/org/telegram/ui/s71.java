@@ -1,7 +1,6 @@
 package org.telegram.ui;
-public final class s71 extends org.telegram.messenger.ij {
-    @Override
-    public final boolean k5() {
-        return false;
-    }
+
+import org.telegram.tgnet.TLRPC;
+public interface s71 {
+    void a(TLRPC.TL_wallPaper tL_wallPaper);
 }

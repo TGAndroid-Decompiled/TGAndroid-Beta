@@ -1,160 +1,291 @@
 package org.telegram.messenger;
 
-import android.app.AppOpsManager;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.os.Build;
-import android.os.Process;
-import android.security.keystore.KeyPermanentlyInvalidatedException;
-import android.text.TextUtils;
-import java.lang.reflect.Field;
-import java.security.KeyPairGenerator;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import javax.crypto.Cipher;
-public abstract class as {
-    public static volatile boolean f21513a = false;
-    public static final StringBuilder f21514b = new StringBuilder();
-    public static final byte[] f21515c = {-1, -40, -1, -32, 0, 16, 74, 70, 73, 70, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, -1, -37, 0, 67, 0, 40, 28, 30, 35, 30, 25, 40, 35, 33, 35, 45, 43, 40, 48, 60, 100, 65, 60, 55, 55, 60, 123, 88, 93, 73, 100, -111, Byte.MIN_VALUE, -103, -106, -113, Byte.MIN_VALUE, -116, -118, -96, -76, -26, -61, -96, -86, -38, -83, -118, -116, -56, -1, -53, -38, -18, -11, -1, -1, -1, -101, -63, -1, -1, -1, -6, -1, -26, -3, -1, -8, -1, -37, 0, 67, 1, 43, 45, 45, 60, 53, 60, 118, 65, 65, 118, -8, -91, -116, -91, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -8, -1, -64, 0, 17, 8, 0, 30, 0, 40, 3, 1, 34, 0, 2, 17, 1, 3, 17, 1, -1, -60, 0, 31, 0, 0, 1, 5, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, -1, -60, 0, -75, 16, 0, 2, 1, 3, 3, 2, 4, 3, 5, 5, 4, 4, 0, 0, 1, 125, 1, 2, 3, 0, 4, 17, 5, 18, 33, 49, 65, 6, 19, 81, 97, 7, 34, 113, 20, 50, -127, -111, -95, 8, 35, 66, -79, -63, 21, 82, -47, -16, 36, 51, 98, 114, -126, 9, 10, 22, 23, 24, 25, 26, 37, 38, 39, 40, 41, 42, 52, 53, 54, 55, 56, 57, 58, 67, 68, 69, 70, 71, 72, 73, 74, 83, 84, 85, 86, 87, 88, 89, 90, 99, 100, 101, 102, 103, 104, 105, 106, 115, 116, 117, 118, 119, 120, 121, 122, -125, -124, -123, -122, -121, -120, -119, -118, -110, -109, -108, -107, -106, -105, -104, -103, -102, -94, -93, -92, -91, -90, -89, -88, -87, -86, -78, -77, -76, -75, -74, -73, -72, -71, -70, -62, -61, -60, -59, -58, -57, -56, -55, -54, -46, -45, -44, -43, -42, -41, -40, -39, -38, -31, -30, -29, -28, -27, -26, -25, -24, -23, -22, -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -1, -60, 0, 31, 1, 0, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, -1, -60, 0, -75, 17, 0, 2, 1, 2, 4, 4, 3, 4, 7, 5, 4, 4, 0, 1, 2, 119, 0, 1, 2, 3, 17, 4, 5, 33, 49, 6, 18, 65, 81, 7, 97, 113, 19, 34, 50, -127, 8, 20, 66, -111, -95, -79, -63, 9, 35, 51, 82, -16, 21, 98, 114, -47, 10, 22, 36, 52, -31, 37, -15, 23, 24, 25, 26, 38, 39, 40, 41, 42, 53, 54, 55, 56, 57, 58, 67, 68, 69, 70, 71, 72, 73, 74, 83, 84, 85, 86, 87, 88, 89, 90, 99, 100, 101, 102, 103, 104, 105, 106, 115, 116, 117, 118, 119, 120, 121, 122, -126, -125, -124, -123, -122, -121, -120, -119, -118, -110, -109, -108, -107, -106, -105, -104, -103, -102, -94, -93, -92, -91, -90, -89, -88, -87, -86, -78, -77, -76, -75, -74, -73, -72, -71, -70, -62, -61, -60, -59, -58, -57, -56, -55, -54, -46, -45, -44, -43, -42, -41, -40, -39, -38, -30, -29, -28, -27, -26, -25, -24, -23, -22, -14, -13, -12, -11, -10, -9, -8, -7, -6, -1, -38, 0, 12, 3, 1, 0, 2, 17, 3, 17, 0, 63, 0};
-    public static final byte[] d = {-1, -39};
-    public static KeyStore f21516e;
-    public static KeyPairGenerator f21517f;
-    public static Boolean f21518g;
-    public static Boolean h;
-    public static int f21519i;
-    public static SharedPreferences f21520j;
+import android.location.Location;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.SystemClock;
+import android.view.View;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.messaging.FirebaseMessaging;
+import java.util.ArrayList;
+import java.util.Set;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.ui.Components.jv0;
+public final class as implements Runnable {
+    public final int f22555a;
+    public final Object f22556b;
 
-    public static boolean a() {
-        Boolean bool = f21518g;
-        if (bool != null) {
-            return bool.booleanValue();
-        }
-        try {
-            Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding").init(2, f21516e.getKey("tmessages_passcode", null));
-            f21518g = Boolean.FALSE;
-            return false;
-        } catch (KeyPermanentlyInvalidatedException unused) {
-            f21518g = Boolean.TRUE;
-            return true;
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            f21518g = Boolean.FALSE;
-            return false;
-        }
+    public as(Object obj, int i7) {
+        this.f22555a = i7;
+        this.f22556b = obj;
     }
 
-    public static void b(boolean r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.as.b(boolean):void");
-    }
-
-    public static Bitmap c(int i7, int i10) {
-        Bitmap createBitmap = Bitmap.createBitmap(i7, i10, Bitmap.Config.ARGB_8888);
-        createBitmap.eraseColor(0);
-        return createBitmap;
-    }
-
-    public static String d() {
-        String str = "mips";
-        String str2 = "armeabi";
-        try {
-            String str3 = Build.CPU_ABI;
-            if (str3.equalsIgnoreCase("x86_64")) {
-                str = "x86_64";
-            } else if (str3.equalsIgnoreCase("arm64-v8a")) {
-                str = "arm64-v8a";
-            } else if (str3.equalsIgnoreCase("armeabi-v7a")) {
-                str = "armeabi-v7a";
-            } else {
-                if (!str3.equalsIgnoreCase("armeabi")) {
-                    if (str3.equalsIgnoreCase("x86")) {
-                        str = "x86";
-                    } else if (!str3.equalsIgnoreCase("mips")) {
-                        if (r2.f25216a) {
-                            a8.d("Unsupported arch: ".concat(str3));
+    @Override
+    public final void run() {
+        FirebaseMessaging firebaseMessaging;
+        Task task;
+        TLRPC.Message message;
+        boolean z10;
+        switch (this.f22555a) {
+            case 0:
+                try {
+                    t0.f26600b.getContentResolver().call(Uri.parse("content://com.huawei.android.launcher.settings/badge/"), "change_badge", (String) null, (Bundle) this.f22556b);
+                    return;
+                } catch (Exception e10) {
+                    a8.g(e10, true);
+                    return;
+                }
+            case 1:
+                ns.f(((bt) this.f22556b).f22749a).k(42, new Object[0]);
+                return;
+            case 2:
+                nt ntVar = (nt) this.f22556b;
+                ntVar.f25636a = true;
+                int i7 = m10.f24934t0;
+                int i10 = 0;
+                boolean z11 = false;
+                while (true) {
+                    ArrayList arrayList = gz.f24000z1;
+                    if (i10 < arrayList.size()) {
+                        fz fzVar = (fz) arrayList.get(i10);
+                        if (!fzVar.f23577c && SystemClock.elapsedRealtime() - fzVar.f23578e >= 120000) {
+                            fzVar.f23577c = true;
+                            ConnectionsManager.getInstance(i7).checkProxy(fzVar.f23575a, new j1(fzVar, 14));
+                            z11 = true;
                         }
+                        i10++;
+                    } else if (!z11) {
+                        ntVar.f25636a = false;
+                        ntVar.a();
+                        return;
+                    } else {
+                        return;
                     }
                 }
-                str = "armeabi";
-            }
-            str2 = str;
-        } catch (Exception e10) {
-            a8.g(e10, true);
+                break;
+            case 3:
+                qt qtVar = (qt) this.f22556b;
+                try {
+                    gz.f23951i = SystemClock.elapsedRealtime();
+                    o9.g.f(t0.f26600b);
+                    ob.c cVar = FirebaseMessaging.f7273m;
+                    synchronized (FirebaseMessaging.class) {
+                        firebaseMessaging = FirebaseMessaging.getInstance(o9.g.c());
+                    }
+                    if (firebaseMessaging.d.t()) {
+                        task = Tasks.forException(new IllegalStateException("API disabled. Please use {@link #register()} instead or enable this API by removing {@code <meta-data android:name=\"firebase_messaging_installation_id_enabled\" android:value=\"true\" />} from your app's manifest."));
+                    } else {
+                        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
+                        firebaseMessaging.f7281g.execute(new a1.e(6, firebaseMessaging, taskCompletionSource));
+                        task = taskCompletionSource.getTask();
+                    }
+                    task.addOnCompleteListener(new fd(qtVar, 12));
+                    return;
+                } catch (Throwable th2) {
+                    a8.g(th2, true);
+                    return;
+                }
+            case 4:
+                xt xtVar = (xt) this.f22556b;
+                iv ivVar = xtVar.f27595e;
+                if (ivVar == null || !ivVar.H()) {
+                    xtVar.f27600w.l0();
+                    return;
+                }
+                return;
+            case 5:
+                View view = ((eu) this.f22556b).W;
+                if (view != null) {
+                    view.invalidate();
+                    return;
+                }
+                return;
+            case 6:
+                View view2 = ((fu) this.f22556b).h;
+                if (view2 != null) {
+                    view2.invalidate();
+                    return;
+                }
+                return;
+            case 7:
+                org.telegram.ui.Cells.l1 l1Var = ((iv) this.f22556b).F;
+                if (l1Var != null) {
+                    l1Var.k();
+                    return;
+                }
+                return;
+            case 8:
+                hv hvVar = (hv) this.f22556b;
+                hvVar.K = null;
+                if (hvVar.R != null) {
+                    hvVar.L = true;
+                    View view3 = hvVar.T;
+                    if (view3 != null) {
+                        try {
+                            view3.performHapticFeedback(0);
+                        } catch (Exception unused) {
+                        }
+                    }
+                    fu fuVar = hvVar.R;
+                    iv ivVar2 = hvVar.f24221a;
+                    org.telegram.ui.Cells.q1 q1Var = ivVar2.E;
+                    org.telegram.ui.Cells.l1 l1Var2 = ivVar2.F;
+                    TL_iv.textButton textbutton = fuVar.f23549b;
+                    if (q1Var != null && l1Var2 != null) {
+                        l1Var2.I1(q1Var, textbutton);
+                        return;
+                    }
+                    return;
+                } else if (hvVar.N != null) {
+                    hvVar.L = true;
+                    View view4 = hvVar.T;
+                    if (view4 != null) {
+                        try {
+                            view4.performHapticFeedback(0);
+                        } catch (Exception unused2) {
+                        }
+                    }
+                    hvVar.l(hvVar.N, true);
+                    n2.o0 o0Var = hvVar.J;
+                    if (o0Var != null) {
+                        o0Var.f(true);
+                        return;
+                    }
+                    return;
+                } else {
+                    return;
+                }
+            case 9:
+                bw bwVar = (bw) this.f22556b;
+                ArrayList arrayList2 = bwVar.f22761f;
+                if (!arrayList2.isEmpty()) {
+                    bwVar.getMessagesController().N3(arrayList2, null, null, false, 0);
+                    arrayList2.clear();
+                    return;
+                }
+                return;
+            case 10:
+                ((jv0) this.f22556b).a(null);
+                return;
+            case 11:
+                g0.h3((bx) this.f22556b);
+                return;
+            case 12:
+                ez ezVar = (ez) this.f22556b;
+                ezVar.getNotificationCenter().b(ezVar, 138);
+                ezVar.getNotificationCenter().b(ezVar, 140);
+                ezVar.getNotificationCenter().b(ezVar, 139);
+                ezVar.getNotificationCenter().b(ezVar, 144);
+                ezVar.getNotificationCenter().b(ezVar, 145);
+                ezVar.getNotificationCenter().b(ezVar, 146);
+                ezVar.getNotificationCenter().b(ezVar, 136);
+                ezVar.getNotificationCenter().b(ezVar, 135);
+                ezVar.getNotificationCenter().b(ezVar, 142);
+                ezVar.getNotificationCenter().b(ezVar, 143);
+                return;
+            case 13:
+                gj gjVar = (gj) this.f22556b;
+                if (gjVar != null && (message = gjVar.f23817k) != null) {
+                    message.reqId = 0;
+                    return;
+                }
+                return;
+            case 14:
+                a8.b8 b8Var = (a8.b8) this.f22556b;
+                az azVar = (az) b8Var.f341a;
+                Location location = (Location) b8Var.f345f;
+                if (location != null) {
+                    azVar.f(location);
+                } else {
+                    azVar.c();
+                }
+                b8Var.d();
+                return;
+            case 15:
+                uz uzVar = (uz) this.f22556b;
+                android.support.v4.media.session.a0 a0Var = uzVar.f26901b;
+                int i11 = m10.f24934t0;
+                uzVar.f26902c = i11;
+                uzVar.d = g0.b1(np.s1(i11).f25270e7, "auto_lastSelectedDialog", 0L);
+                uzVar.f26903e = false;
+                uzVar.f26904f = false;
+                uzVar.f26905g.clear();
+                uzVar.h.b();
+                uzVar.f26906i.b();
+                uzVar.f26907j.b();
+                uzVar.f26908k.b();
+                uzVar.f26909l.b();
+                try {
+                    a0Var.u(null);
+                    ((android.support.v4.media.session.u) a0Var.f1706b).f1736a.setQueueTitle(null);
+                    return;
+                } catch (Throwable unused3) {
+                    return;
+                }
+            case 16:
+                ns.f(((tz) this.f22556b).f26760g.f26902c).k(150, 0);
+                return;
+            default:
+                c10 c10Var = (c10) this.f22556b;
+                np npVar = c10Var.f22787n;
+                String string = npVar.f25280f7.getString("translating_dialog_languages2", null);
+                if (string != null) {
+                    for (String str : string.split(";")) {
+                        String[] split = str.split("=");
+                        if (split.length >= 2) {
+                            long parseLong = Long.parseLong(split[0]);
+                            String[] split2 = split[1].split(">");
+                            if (split2.length == 2) {
+                                String str2 = split2[0];
+                                String str3 = split2[1];
+                                if (str3.length() > 0 && str3.charAt(str3.length() - 1) == '!') {
+                                    str3 = com.google.android.gms.internal.vision.e2.k(str3, 1, 0);
+                                    z10 = true;
+                                } else {
+                                    z10 = false;
+                                }
+                                if ("null".equals(str2)) {
+                                    str2 = null;
+                                }
+                                if ("null".equals(str3)) {
+                                    str3 = null;
+                                }
+                                if (str2 != null) {
+                                    c10Var.f22785e.put(Long.valueOf(parseLong), str2);
+                                    if (!c10Var.w(str2)) {
+                                        c10Var.f22782a.put(parseLong, Boolean.valueOf(!z10));
+                                        c10Var.f22783b.add(Long.valueOf(parseLong));
+                                    }
+                                    if (str3 != null) {
+                                        c10Var.d.put(Long.valueOf(parseLong), str3);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Set<String> stringSet = npVar.f25280f7.getStringSet("hidden_translation_at", null);
+                    if (stringSet != null) {
+                        for (String str4 : stringSet) {
+                            try {
+                                c10Var.h.add(Long.valueOf(Long.parseLong(str4)));
+                            } catch (Exception e11) {
+                                a8.g(e11, true);
+                            }
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        String property = System.getProperty("os.arch");
-        if (property != null && property.contains("686")) {
-            return "x86";
-        }
-        return str2;
     }
 
-    public static KeyStore e() {
-        KeyStore keyStore = f21516e;
-        if (keyStore != null) {
-            return keyStore;
-        }
-        try {
-            KeyStore keyStore2 = KeyStore.getInstance("AndroidKeyStore");
-            f21516e = keyStore2;
-            keyStore2.load(null);
-            return f21516e;
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return null;
-        }
-    }
-
-    public static synchronized void f(android.content.Context r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.as.f(android.content.Context):void");
-    }
-
-    public static boolean g() {
-        try {
-            Class cls = Integer.TYPE;
-            if (((Integer) AppOpsManager.class.getMethod("checkOpNoThrow", cls, cls, String.class).invoke((AppOpsManager) t0.f25570b.getSystemService("appops"), 10020, Integer.valueOf(Process.myUid()), t0.f25570b.getPackageName())).intValue() == 0) {
-                return true;
-            }
-            return false;
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return true;
-        }
-    }
-
-    public static boolean h() {
-        try {
-            return e().containsAlias("tmessages_passcode");
-        } catch (KeyStoreException e10) {
-            a8.g(e10, true);
-            return false;
-        }
-    }
-
-    public static boolean i() {
-        return !TextUtils.isEmpty(g0.k1("ro.miui.ui.version.name"));
-    }
-
-    public static boolean j() {
-        int intValue;
-        Boolean bool = h;
-        if (bool != null) {
-            return bool.booleanValue();
-        }
-        try {
-            Field declaredField = Build.VERSION.class.getDeclaredField("SEM_PLATFORM_INT");
-            declaredField.setAccessible(true);
-            intValue = ((Integer) declaredField.get(null)).intValue();
-        } catch (Exception unused) {
-            h = Boolean.FALSE;
-        }
-        if (intValue < 100000) {
-            return false;
-        }
-        f21519i = intValue - 90000;
-        h = Boolean.TRUE;
-        return h.booleanValue();
-    }
-
-    public static boolean k(android.content.Context r6, java.io.File r7, java.io.File r8, java.lang.String r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.as.k(android.content.Context, java.io.File, java.io.File, java.lang.String):boolean");
+    public as(ez ezVar, gj gjVar) {
+        this.f22555a = 13;
+        this.f22556b = gjVar;
     }
 }

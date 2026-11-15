@@ -1,21 +1,17 @@
 package a8;
 
-import java.lang.reflect.Method;
+import java.io.Serializable;
 public abstract class la {
-    public static void a(Throwable th2, Throwable exception) {
-        kotlin.jvm.internal.j.e(th2, "<this>");
-        kotlin.jvm.internal.j.e(exception, "exception");
-        if (th2 != exception) {
-            Integer num = nd.a.f20541a;
-            if (num != null && num.intValue() < 19) {
-                Method method = md.a.f20011a;
-                if (method != null) {
-                    method.invoke(th2, exception);
-                    return;
-                }
-                return;
+    public static g9.t a(g9.t tVar) {
+        if (!(tVar instanceof g9.v)) {
+            if (tVar instanceof g9.u) {
+                return tVar;
             }
-            th2.addSuppressed(exception);
+            if (tVar instanceof Serializable) {
+                return new g9.u(tVar);
+            }
+            return new g9.v(tVar);
         }
+        return tVar;
     }
 }

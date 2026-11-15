@@ -1,6 +1,6 @@
 package b3;
 public interface l {
-    void a();
+    void D();
 
-    void q0();
+    void a();
 }

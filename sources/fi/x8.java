@@ -1,46 +1,97 @@
 package fi;
 
-import java.io.File;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.ls;
-import org.telegram.tgnet.TLRPC;
-public final class x8 implements Runnable {
-    public final int f13096a;
-    public final ls f13097b;
-    public final Object f13098c;
-    public final int d;
-    public final int f13099e;
-    public final Object f13100f;
-    public final boolean h;
-    public final boolean f13101n;
-    public final Object f13102r;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class x8 extends v {
+    public final i9 d;
 
-    public x8(va vaVar, x9 x9Var, int i7, int i10, e7 e7Var, boolean z9, boolean z10, Runnable runnable, int i11) {
-        this.f13096a = i11;
-        this.f13097b = vaVar;
-        this.f13098c = x9Var;
-        this.d = i7;
-        this.f13099e = i10;
-        this.f13100f = e7Var;
-        this.h = z9;
-        this.f13101n = z10;
-        this.f13102r = runnable;
+    public x8(Context context, i9 i9Var) {
+        super(context);
+        this.d = i9Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: fi.x8.run():void");
+    public final void dispatchDraw(Canvas canvas) {
+        float f10;
+        i9 i9Var = this.d;
+        b4 currentPeerView = i9Var.f11861o0.getCurrentPeerView();
+        k5 k5Var = i9Var.f11882x;
+        if (k5Var != null && currentPeerView != null) {
+            e3 e3Var = currentPeerView.M0;
+            k5Var.setOffset(i9Var.f11845f0);
+            if (i9Var.f11882x.f11931f == 1.0f) {
+                i9Var.f11861o0.setVisibility(4);
+            } else {
+                i9Var.f11861o0.setVisibility(0);
+            }
+            i9Var.f11861o0.B();
+            float top = e3Var.getTop() + currentPeerView.getTop();
+            float f11 = i9Var.f11882x.f11931f;
+            getMeasuredHeight();
+            getMeasuredHeight();
+            if (e3Var.getMeasuredHeight() > 0) {
+                i9Var.f11866q1 = e3Var.getMeasuredHeight();
+            }
+            float T1 = org.telegram.messenger.g0.T1(1.0f, i9Var.f11882x.f11932n / i9Var.f11866q1, f11);
+            i9Var.f11861o0.setPivotY(top);
+            i9Var.f11861o0.setPivotX(getMeasuredWidth() / 2.0f);
+            i9Var.f11861o0.setScaleX(T1);
+            i9Var.f11861o0.setScaleY(T1);
+            currentPeerView.F2 = true;
+            if (i9Var.f11845f0 == 0.0f) {
+                currentPeerView.V0(0.0f, 0.0f, null);
+            } else {
+                currentPeerView.V0(f11, T1, i9Var.f11882x.getCrossfadeToImage());
+            }
+            currentPeerView.invalidate();
+            currentPeerView.f11483i1.f3321b = (int) org.telegram.messenger.g0.T1(10.0f, 6.0f / f10, i9Var.f11882x.f11931f);
+            e3Var.invalidateOutline();
+            i9Var.f11861o0.setTranslationY((i9Var.f11882x.f11928b - top) * f11);
+        }
+        if (currentPeerView != null) {
+            i9Var.f11840d1.setTranslationY(((currentPeerView.M0.getY() + currentPeerView.getY()) - i9Var.f11840d1.getTop()) - org.telegram.messenger.g0.L(4.0f));
+        }
+        super.dispatchDraw(canvas);
     }
 
-    public x8(MediaController mediaController, File file, File file2, TLRPC.TL_document tL_document, int i7, boolean z9, int i10, boolean z10) {
-        this.f13096a = 2;
-        this.f13097b = mediaController;
-        this.f13098c = file;
-        this.f13100f = file2;
-        this.f13102r = tL_document;
-        this.d = i7;
-        this.h = z9;
-        this.f13099e = i10;
-        this.f13101n = z10;
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        int i11;
+        int size = View.MeasureSpec.getSize(i10);
+        i9 i9Var = this.d;
+        if (!i9Var.f11833b || i9Var.f11836c) {
+            View rootView = getRootView();
+            Rect rect = org.telegram.messenger.g0.Q;
+            getWindowVisibleDisplayFrame(rect);
+            int i12 = 0;
+            if (rect.bottom != 0 || rect.top != 0) {
+                int height = rootView.getHeight();
+                if (rect.top != 0) {
+                    i11 = org.telegram.messenger.g0.f23603m;
+                } else {
+                    i11 = 0;
+                }
+                i12 = Math.max(0, ((height - i11) - org.telegram.messenger.g0.q1(rootView)) - (rect.bottom - rect.top));
+            }
+            i9Var.h(i12);
+            size += i9Var.f11865q0;
+        }
+        int size2 = View.MeasureSpec.getSize(i7);
+        int i13 = (int) ((size2 * 16.0f) / 9.0f);
+        if (size > i13) {
+            i9Var.f11861o0.getLayoutParams().width = -1;
+            size = i13;
+        } else {
+            int i14 = (int) ((size / 16.0f) * 9.0f);
+            i9Var.f11861o0.getLayoutParams().width = i14;
+            size2 = i14;
+        }
+        i9Var.f11886z0.getLayoutParams().height = size + 1;
+        i9Var.f11886z0.getLayoutParams().width = size2;
+        ((FrameLayout.LayoutParams) i9Var.f11886z0.getLayoutParams()).topMargin = org.telegram.messenger.g0.f23603m;
+        super.onMeasure(i7, i10);
     }
 }

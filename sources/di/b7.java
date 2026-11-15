@@ -1,35 +1,28 @@
 package di;
+public final class b7 implements Runnable {
+    public final int f8252a;
+    public final bi.v5 f8253b;
 
-import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.TextView;
-import c8.ha;
-public final class b7 implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final TextView f8858a;
-    public final View f8859b;
-    public final TextView f8860c;
-    public final d7 d;
-
-    public b7(d7 d7Var, TextView textView, View view, TextView textView2) {
-        this.d = d7Var;
-        this.f8858a = textView;
-        this.f8859b = view;
-        this.f8860c = textView2;
+    public b7(bi.v5 v5Var, int i7) {
+        this.f8252a = i7;
+        this.f8253b = v5Var;
     }
 
     @Override
-    public final void onGlobalLayout() {
-        int[] iArr = new int[2];
-        TextView textView = this.f8858a;
-        textView.getLocationOnScreen(iArr);
-        int L = org.telegram.messenger.g0.L(24.0f) + iArr[1];
-        int measuredHeight = this.f8859b.getMeasuredHeight();
-        d7 d7Var = this.d;
-        if (L > measuredHeight) {
-            textView.setLayoutParams(ha.k(0.0f, 13.0f, 0.0f, 0.0f, -2, -2));
-            this.f8860c.setLayoutParams(ha.k(68.0f, 8.0f, 68.0f, 13.0f, -2, -2));
-            d7Var.requestLayout();
+    public final void run() {
+        switch (this.f8252a) {
+            case 0:
+                this.f8253b.a(Boolean.FALSE, "PRODUCT_NOT_FOUND");
+                return;
+            case 1:
+                this.f8253b.a(Boolean.FALSE, "PRODUCT_NO_ONETIME_OFFER_DETAILS");
+                return;
+            case 2:
+                org.telegram.messenger.g0.h3(new b7(this.f8253b, 3));
+                return;
+            default:
+                this.f8253b.a(Boolean.FALSE, null);
+                return;
         }
-        d7Var.getViewTreeObserver().removeOnGlobalLayoutListener(this);
     }
 }

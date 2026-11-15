@@ -1,78 +1,33 @@
 package org.telegram.ui;
 
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class o30 implements org.telegram.ui.Components.i30 {
-    public float f48403a;
-    public TLRPC.FileLocation f48404b;
-    public TLRPC.FileLocation f48405c;
-    public org.telegram.messenger.hc d;
-    public final long f48406e;
-    public final f40 f48407f;
+import java.util.Iterator;
+public final class o30 implements org.telegram.ui.Components.m5 {
+    public final int f49798a;
+    public final Object f49799b;
 
-    public o30(f40 f40Var, long j3) {
-        this.f48407f = f40Var;
-        this.f48406e = j3;
+    public o30(Object obj, int i7) {
+        this.f49798a = i7;
+        this.f49799b = obj;
     }
 
     @Override
-    public final void H(float f10) {
-        this.f48407f.l1.O(this.d, f10);
-        a(f10);
-    }
-
-    @Override
-    public final void U(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z9, TLRPC.VideoSize videoSize) {
-        org.telegram.messenger.g0.h3(new ii.l(this, inputFile, inputFile2, videoSize, d, str, photoSize2, photoSize, 3));
-    }
-
-    public final void a(float f10) {
-        this.f48403a = f10;
-        n30 n30Var = this.f48407f.K1;
-        if (n30Var != null) {
-            for (int i7 = 0; i7 < n30Var.getChildCount(); i7++) {
-                View childAt = n30Var.getChildAt(i7);
-                if (childAt instanceof org.telegram.ui.Cells.f4) {
-                    org.telegram.ui.Cells.f4 f4Var = (org.telegram.ui.Cells.f4) childAt;
-                    if (f4Var.c()) {
-                        org.telegram.ui.Cells.b4 b4Var = f4Var.f29132y;
-                        b4Var.setProgress(f10);
-                        if (f10 < 1.0f) {
-                            org.telegram.messenger.g0.Z3(b4Var, true, 1.0f, true, true);
-                        } else {
-                            org.telegram.messenger.g0.Z3(b4Var, false, 1.0f, true, true);
-                        }
-                    }
+    public final void invalidate() {
+        switch (this.f49798a) {
+            case 0:
+                Iterator it = ((p30) this.f49799b).f50126i.iterator();
+                while (it.hasNext()) {
+                    ((View) it.next()).invalidate();
                 }
-            }
+                return;
+            default:
+                x01 x01Var = (x01) this.f49799b;
+                x01Var.getClass();
+                if (!ch.f0.f5065b && x01Var.getParent() != null) {
+                    ((View) x01Var.getParent()).invalidate();
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final boolean e() {
-        return true;
-    }
-
-    @Override
-    public final zq0 getCloseIntoObject() {
-        return null;
-    }
-
-    @Override
-    public final String getInitialSearchString() {
-        return null;
-    }
-
-    @Override
-    public final boolean x() {
-        return false;
-    }
-
-    @Override
-    public final void T() {
-    }
-
-    @Override
-    public final void O(boolean z9, boolean z10) {
     }
 }

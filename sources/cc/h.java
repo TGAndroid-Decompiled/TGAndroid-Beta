@@ -2,19 +2,19 @@ package cc;
 
 import java.lang.reflect.Array;
 public final class h extends g {
-    public b f6069e;
+    public b f4891e;
 
     @Override
     public final b a() {
         int min;
         int min2;
-        b bVar = this.f6069e;
+        b bVar = this.f4891e;
         if (bVar != null) {
             return bVar;
         }
-        bc.d dVar = this.f6066a;
-        int i7 = dVar.f3165a;
-        int i10 = dVar.f3166b;
+        bc.d dVar = this.f4888a;
+        int i7 = dVar.f3120a;
+        int i10 = dVar.f3121b;
         if (i7 >= 40 && i10 >= 40) {
             byte[] a10 = dVar.a();
             int i11 = i7 >> 3;
@@ -28,7 +28,7 @@ public final class h extends g {
             int i13 = i10 - 8;
             int i14 = i7 - 8;
             int i15 = 2;
-            boolean z9 = true;
+            boolean z10 = true;
             int i16 = 0;
             int[][] iArr = (int[][]) Array.newInstance(Integer.TYPE, i12, i11);
             int i17 = 0;
@@ -41,7 +41,7 @@ public final class h extends g {
                 if (i19 > i13) {
                     i19 = i13;
                 }
-                boolean z10 = z9;
+                boolean z11 = z10;
                 int i20 = i16;
                 while (i20 < i11) {
                     int i21 = i20 << 3;
@@ -112,7 +112,7 @@ public final class h extends g {
                     i18 = 8;
                 }
                 i17++;
-                z9 = z10;
+                z10 = z11;
                 i16 = 0;
             }
             byte[] bArr3 = a10;
@@ -175,10 +175,10 @@ public final class h extends g {
                 i37 = 2;
                 i38++;
             }
-            this.f6069e = bVar2;
+            this.f4891e = bVar2;
         } else {
-            this.f6069e = super.a();
+            this.f4891e = super.a();
         }
-        return this.f6069e;
+        return this.f4891e;
     }
 }

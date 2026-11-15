@@ -1,50 +1,29 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.Drawable;
-import android.view.View;
-public final class wg implements Runnable {
-    public final int f51359a;
-    public final View f51360b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class wg implements RequestDelegate {
+    public final int f52905a;
+    public final an f52906b;
+    public final TLRPC.TL_attachMenuBot f52907c;
+    public final TLRPC.User d;
 
-    public wg(int i7, View view) {
-        this.f51359a = i7;
-        this.f51360b = view;
+    public wg(an anVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, TLRPC.User user, int i7) {
+        this.f52905a = i7;
+        this.f52906b = anVar;
+        this.f52907c = tL_attachMenuBot;
+        this.d = user;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f51359a;
-        View view = this.f51360b;
-        switch (i7) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f52905a) {
             case 0:
-                try {
-                    view.performHapticFeedback(3, 2);
-                    return;
-                } catch (Exception unused) {
-                    return;
-                }
-            case 1:
-                view.setBackgroundDrawable(null);
-                return;
-            case 2:
-                Drawable[] drawableArr = PhotoViewer.Y8;
-                org.telegram.messenger.g0.E2(view);
-                return;
-            case 3:
-                Drawable[] drawableArr2 = PhotoViewer.Y8;
-                view.setVisibility(8);
-                return;
-            case 4:
-                org.telegram.messenger.iz.I(0);
-                ((org.telegram.ui.Cells.w9) view).f30763c.c(org.telegram.messenger.id.M0(2131744401, null), true, true);
-                return;
-            case 5:
-                org.telegram.messenger.iz.I(1);
-                ((org.telegram.ui.Cells.w9) view).f30763c.c(org.telegram.messenger.id.M0(2131744400, null), true, true);
+                org.telegram.messenger.g0.h3(new ah(this.f52906b, this.f52907c, tL_error, this.d));
                 return;
             default:
-                org.telegram.messenger.iz.I(2);
-                ((org.telegram.ui.Cells.w9) view).f30763c.c(org.telegram.messenger.id.M0(2131744399, null), true, true);
+                org.telegram.messenger.g0.h3(new ah(this.f52906b, tL_error, this.f52907c, this.d));
                 return;
         }
     }

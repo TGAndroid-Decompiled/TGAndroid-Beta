@@ -1,51 +1,41 @@
 package di;
 
-import android.content.Context;
-import android.graphics.drawable.GradientDrawable;
-import android.view.GestureDetector;
-import android.view.animation.OvershootInterpolator;
-import android.widget.Scroller;
-import java.util.ArrayList;
-public final class m5 extends p4 {
-    public final q9 N;
-    public final t5 O;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class m5 extends Drawable {
+    public final float f9034a;
+    public final Paint f9035b;
 
-    public m5(Context context, t5 t5Var, q9 q9Var) {
-        super(context);
-        this.O = t5Var;
-        this.N = q9Var;
-        this.f9512x = -1;
-        this.E = new ArrayList();
-        this.F = new ArrayList();
-        this.G = new ArrayList();
-        this.I = new GestureDetector(new m4(this));
-        this.d = new Scroller(context, new OvershootInterpolator());
-        this.H = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{0, i0.a.o(-16777216, 160)});
+    public m5(float f10, int i7) {
+        Paint paint = new Paint(1);
+        this.f9035b = paint;
+        this.f9034a = f10;
+        paint.setColor(i7);
     }
 
     @Override
-    public final void b(int i7) {
-        m9 m9Var;
-        t5 t5Var = this.O;
-        n5 n5Var = t5Var.E;
-        if (!t5Var.f9798x) {
-            if (n5Var.getCurrentItem() != i7) {
-                try {
-                    n5Var.x(i7, false);
-                } catch (Throwable th2) {
-                    org.telegram.messenger.a8.g(th2, true);
-                    n5Var.getAdapter().g();
-                    n5Var.x(i7, false);
-                }
-            }
-            q9 q9Var = this.N;
-            if (q9Var.N0 != null && (m9Var = q9Var.f9642t0) != null) {
-                if (i7 < 10) {
-                    m9Var.b(false);
-                } else if (i7 >= this.E.size() - 10) {
-                    q9Var.f9642t0.b(true);
-                }
-            }
-        }
+    public final void draw(Canvas canvas) {
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(getBounds());
+        Paint paint = this.f9035b;
+        float f10 = this.f9034a;
+        canvas.drawRoundRect(rectF, f10, f10, paint);
+        org.telegram.messenger.g0.P(canvas, rectF, f10);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

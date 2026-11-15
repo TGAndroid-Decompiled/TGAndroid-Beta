@@ -1,56 +1,43 @@
 package di;
 
-import android.content.Intent;
-import java.util.ArrayList;
-import org.telegram.messenger.gz;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.lj;
-public final class w2 implements lj {
-    public final j4 f9897a;
+import android.view.KeyEvent;
+import org.telegram.messenger.np;
+import org.telegram.messenger.z10;
+import org.telegram.tgnet.TLObject;
+import org.telegram.ui.an;
+import org.telegram.ui.uf;
+import org.telegram.ui.yd;
+public final class w2 implements z10 {
+    public final int f9643a;
+    public final long f9644b;
+    public final Object f9645c;
+    public final Object d;
+    public final Object f9646e;
+    public final Object f9647f;
+    public final Object f9648g;
 
-    public w2(j4 j4Var) {
-        this.f9897a = j4Var;
+    public w2(KeyEvent.Callback callback, Object obj, Object obj2, long j3, TLObject tLObject, TLObject tLObject2, int i7) {
+        this.f9643a = i7;
+        this.f9645c = callback;
+        this.d = obj;
+        this.f9646e = obj2;
+        this.f9644b = j3;
+        this.f9647f = tLObject;
+        this.f9648g = tLObject2;
     }
 
     @Override
-    public final void A() {
-        try {
-            Intent intent = new Intent("android.intent.action.GET_CONTENT");
-            intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
-            intent.setType("*/*");
-            org.telegram.ui.ActionBar.f2 f2Var = this.f9897a.f9229s0.f9613f;
-            if (f2Var.getParentActivity() == null) {
-                return;
-            }
-            f2Var.getParentActivity().startActivityForResult(intent, 21);
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
-        }
+    public final void a(java.lang.Object r31) {
+        throw new UnsupportedOperationException("Method not decompiled: di.w2.a(java.lang.Object):void");
     }
 
-    @Override
-    public final void n(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z9, int i7, long j3, boolean z10, long j10) {
-        org.telegram.messenger.c accountInstance;
-        boolean z11;
-        j4 j4Var = this.f9897a;
-        TL_stories.StoryItem storyItem = j4Var.f9250x1.f9069a;
-        if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            accountInstance = j4Var.getAccountInstance();
-            gz.V(i7, j4Var.f9201k1, 0L, j10, 0L, str, null, arrayList, arrayList, null, null, null, null, accountInstance, null, null, null, null, null, storyItem, null, null, null, z9, false);
-            if (j10 <= 0) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            j4Var.i0(z11);
-        }
-    }
-
-    @Override
-    public final void S() {
-    }
-
-    @Override
-    public final void p(ArrayList arrayList, boolean z9, int i7, long j3) {
+    public w2(np npVar, org.telegram.ui.ActionBar.t1 t1Var, an anVar, uf ufVar, long j3, yd ydVar) {
+        this.f9643a = 1;
+        this.f9645c = npVar;
+        this.d = t1Var;
+        this.f9646e = anVar;
+        this.f9647f = ufVar;
+        this.f9644b = j3;
+        this.f9648g = ydVar;
     }
 }

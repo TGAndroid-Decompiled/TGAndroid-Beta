@@ -1,44 +1,45 @@
 package v3;
 
-import c8.ca;
+import c8.ba;
 import e2.p0;
 import e2.q0;
 import h2.k0;
 import h2.x;
+import j$.util.DesugarCollections;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import org.telegram.ui.Components.m;
-public final class c extends ca {
-    public final x f56993a = new x();
-    public final d4.f f56994b = new d4.f();
-    public k0 f56995c;
+import w7.s;
+public final class c extends ba {
+    public final x f58467a = new x();
+    public final d4.f f58468b = new d4.f();
+    public k0 f58469c;
 
     @Override
     public final q0 b(o3.a aVar, ByteBuffer byteBuffer) {
         Object obj;
-        boolean z9;
         boolean z10;
         boolean z11;
         boolean z12;
-        long j3;
         boolean z13;
+        long j3;
         boolean z14;
         boolean z15;
+        boolean z16;
         long j10;
         long j11;
-        k0 k0Var = this.f56995c;
-        if (k0Var == null || aVar.f20798r != k0Var.e()) {
-            k0 k0Var2 = new k0(aVar.f17176e);
-            this.f56995c = k0Var2;
-            k0Var2.a(aVar.f17176e - aVar.f20798r);
+        k0 k0Var = this.f58469c;
+        if (k0Var == null || aVar.f21314r != k0Var.e()) {
+            k0 k0Var2 = new k0(aVar.f17733e);
+            this.f58469c = k0Var2;
+            k0Var2.a(aVar.f17733e - aVar.f21314r);
         }
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();
-        x xVar = this.f56993a;
+        x xVar = this.f58467a;
         xVar.L(limit, array);
-        d4.f fVar = this.f56994b;
+        d4.f fVar = this.f58468b;
         fVar.H(limit, array);
         fVar.L(39);
         long j12 = (fVar.j(1) << 32) | fVar.j(32);
@@ -53,57 +54,57 @@ public final class c extends ca {
                         if (j14 != 6) {
                             obj = null;
                         } else {
-                            k0 k0Var3 = this.f56995c;
+                            k0 k0Var3 = this.f58469c;
                             long d = a.d(j12, xVar);
                             obj = new a(d, 1, k0Var3.b(d));
                         }
                     } else {
-                        k0 k0Var4 = this.f56995c;
+                        k0 k0Var4 = this.f58469c;
                         xVar.C();
                         if ((xVar.A() & 128) != 0) {
-                            z12 = true;
+                            z13 = true;
                         } else {
-                            z12 = false;
+                            z13 = false;
                         }
                         List list = Collections.EMPTY_LIST;
-                        if (!z12) {
+                        if (!z13) {
                             int A = xVar.A();
                             if ((A & 64) != 0) {
-                                z13 = true;
-                            } else {
-                                z13 = false;
-                            }
-                            if ((A & 32) != 0) {
                                 z14 = true;
                             } else {
                                 z14 = false;
                             }
-                            if ((A & 16) != 0) {
+                            if ((A & 32) != 0) {
                                 z15 = true;
                             } else {
                                 z15 = false;
                             }
-                            if (z13 && !z15) {
+                            if ((A & 16) != 0) {
+                                z16 = true;
+                            } else {
+                                z16 = false;
+                            }
+                            if (z14 && !z16) {
                                 j10 = a.d(j12, xVar);
                             } else {
                                 j10 = -9223372036854775807L;
                             }
-                            if (!z13) {
+                            if (!z14) {
                                 int A2 = xVar.A();
                                 ArrayList arrayList = new ArrayList(A2);
                                 for (int i7 = 0; i7 < A2; i7++) {
                                     xVar.A();
-                                    if (!z15) {
+                                    if (!z16) {
                                         j11 = a.d(j12, xVar);
                                     } else {
                                         j11 = -9223372036854775807L;
                                     }
                                     k0Var4.b(j11);
-                                    arrayList.add(new pb.b(26));
+                                    arrayList.add(new s(26));
                                 }
                                 list = arrayList;
                             }
-                            if (z14) {
+                            if (z15) {
                                 xVar.A();
                                 xVar.C();
                             }
@@ -122,37 +123,37 @@ public final class c extends ca {
                     for (int i10 = 0; i10 < A3; i10++) {
                         xVar.C();
                         if ((xVar.A() & 128) != 0) {
-                            z9 = true;
+                            z10 = true;
                         } else {
-                            z9 = false;
+                            z10 = false;
                         }
                         ArrayList arrayList3 = new ArrayList();
-                        if (!z9) {
+                        if (!z10) {
                             int A4 = xVar.A();
                             if ((A4 & 64) != 0) {
-                                z10 = true;
-                            } else {
-                                z10 = false;
-                            }
-                            if ((A4 & 32) != 0) {
                                 z11 = true;
                             } else {
                                 z11 = false;
                             }
-                            if (z10) {
+                            if ((A4 & 32) != 0) {
+                                z12 = true;
+                            } else {
+                                z12 = false;
+                            }
+                            if (z11) {
                                 xVar.C();
                             }
-                            if (!z10) {
+                            if (!z11) {
                                 int A5 = xVar.A();
                                 ArrayList arrayList4 = new ArrayList(A5);
                                 for (int i11 = 0; i11 < A5; i11++) {
                                     xVar.A();
                                     xVar.C();
-                                    arrayList4.add(new qb.a(26));
+                                    arrayList4.add(new nb.a(27));
                                 }
                                 arrayList3 = arrayList4;
                             }
-                            if (z11) {
+                            if (z12) {
                                 xVar.A();
                                 xVar.C();
                             }
@@ -160,7 +161,9 @@ public final class c extends ca {
                             xVar.A();
                             xVar.A();
                         }
-                        arrayList2.add(new m(arrayList3));
+                        ?? obj2 = new Object();
+                        obj2.f57880a = DesugarCollections.unmodifiableList(arrayList3);
+                        arrayList2.add(obj2);
                     }
                     obj = new f(arrayList2);
                 }

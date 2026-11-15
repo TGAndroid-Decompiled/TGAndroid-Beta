@@ -8,8 +8,8 @@ import android.graphics.Rect;
 import android.graphics.Region;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import bi.m6;
-import org.telegram.ui.Components.gp;
+import bi.x1;
+import org.telegram.ui.Components.fo;
 public abstract class h extends Drawable {
     public final int f219a;
     public Object f220b;
@@ -213,17 +213,17 @@ public abstract class h extends Drawable {
     }
 
     @Override
-    public void setFilterBitmap(boolean z9) {
+    public void setFilterBitmap(boolean z10) {
         switch (this.f219a) {
             case 0:
                 Drawable drawable = (Drawable) this.f220b;
                 if (drawable != null) {
-                    drawable.setFilterBitmap(z9);
+                    drawable.setFilterBitmap(z10);
                     return;
                 }
                 return;
             default:
-                super.setFilterBitmap(z9);
+                super.setFilterBitmap(z10);
                 return;
         }
     }
@@ -278,9 +278,9 @@ public abstract class h extends Drawable {
         this.f219a = 1;
         this.f220b = new Paint(1);
         if (view != null) {
-            view.addOnAttachStateChangeListener(new m6(this, 9));
+            view.addOnAttachStateChangeListener(new x1(this, 13));
             if (view.isAttachedToWindow()) {
-                view.post(new gp(this, 1));
+                view.post(new fo(this, 3));
             }
         }
     }

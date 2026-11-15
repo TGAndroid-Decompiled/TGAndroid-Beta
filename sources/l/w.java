@@ -1,6 +1,6 @@
 package l;
 public interface w {
-    boolean A(k kVar);
+    void e(k kVar, boolean z10);
 
-    void c(k kVar, boolean z9);
+    boolean y(k kVar);
 }

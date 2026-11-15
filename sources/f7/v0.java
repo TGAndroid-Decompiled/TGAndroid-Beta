@@ -3,28 +3,28 @@ package f7;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Base64;
-import c8.xb;
+import c8.yb;
 import java.util.Arrays;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class v0 extends r6.a {
     public static final Parcelable.Creator<v0> CREATOR = new t0(3);
-    public final boolean f11456a;
-    public final q7.s0 f11457b;
+    public final boolean f11265a;
+    public final q7.s0 f11266b;
 
-    public v0(boolean z9, q7.s0 s0Var) {
-        this.f11456a = z9;
-        this.f11457b = s0Var;
+    public v0(boolean z10, q7.s0 s0Var) {
+        this.f11265a = z10;
+        this.f11266b = s0Var;
     }
 
     public final JSONObject b() {
         byte[] p10;
         try {
             JSONObject jSONObject = new JSONObject();
-            if (this.f11456a) {
+            if (this.f11265a) {
                 jSONObject.put("enabled", true);
             }
-            q7.s0 s0Var = this.f11457b;
+            q7.s0 s0Var = this.f11266b;
             if (s0Var == null) {
                 p10 = null;
             } else {
@@ -49,14 +49,14 @@ public final class v0 extends r6.a {
             return false;
         }
         v0 v0Var = (v0) obj;
-        if (this.f11456a != v0Var.f11456a || !q6.m.k(this.f11457b, v0Var.f11457b)) {
+        if (this.f11265a != v0Var.f11265a || !q6.m.k(this.f11266b, v0Var.f11266b)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f11456a), this.f11457b});
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f11265a), this.f11266b});
     }
 
     public final String toString() {
@@ -66,16 +66,16 @@ public final class v0 extends r6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         byte[] p10;
-        int r10 = xb.r(parcel, 20293);
-        xb.q(parcel, 1, 4);
-        parcel.writeInt(this.f11456a ? 1 : 0);
-        q7.s0 s0Var = this.f11457b;
+        int r10 = yb.r(parcel, 20293);
+        yb.q(parcel, 1, 4);
+        parcel.writeInt(this.f11265a ? 1 : 0);
+        q7.s0 s0Var = this.f11266b;
         if (s0Var == null) {
             p10 = null;
         } else {
             p10 = s0Var.p();
         }
-        xb.c(parcel, 2, p10);
-        xb.s(parcel, r10);
+        yb.c(parcel, 2, p10);
+        yb.s(parcel, r10);
     }
 }

@@ -1,34 +1,34 @@
 package x2;
 public final class m1 implements b1 {
-    public final b1 f58424a;
-    public final long f58425b;
+    public final b1 f59605a;
+    public final long f59606b;
 
     public m1(b1 b1Var, long j3) {
-        this.f58424a = b1Var;
-        this.f58425b = j3;
+        this.f59605a = b1Var;
+        this.f59606b = j3;
     }
 
     @Override
     public final void a() {
-        this.f58424a.a();
+        this.f59605a.a();
     }
 
     @Override
     public final boolean f() {
-        return this.f58424a.f();
+        return this.f59605a.f();
     }
 
     @Override
-    public final int l(long j3) {
-        return this.f58424a.l(j3 - this.f58425b);
+    public final int n(long j3) {
+        return this.f59605a.n(j3 - this.f59606b);
     }
 
     @Override
-    public final int m(wf.b bVar, k2.h hVar, int i7) {
-        int m10 = this.f58424a.m(bVar, hVar, i7);
-        if (m10 == -4) {
-            hVar.f17176e += this.f58425b;
+    public final int q(k8.a aVar, k2.h hVar, int i7) {
+        int q10 = this.f59605a.q(aVar, hVar, i7);
+        if (q10 == -4) {
+            hVar.f17733e += this.f59606b;
         }
-        return m10;
+        return q10;
     }
 }

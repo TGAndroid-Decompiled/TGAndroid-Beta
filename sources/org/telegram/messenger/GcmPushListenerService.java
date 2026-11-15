@@ -5,14 +5,14 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import java.util.HashMap;
 public class GcmPushListenerService extends FirebaseMessagingService {
-    public static final int f21181n = 0;
+    public static final int f22255n = 0;
 
     @Override
-    public final void c(ab.z zVar) {
+    public final void c(ab.a0 a0Var) {
         long parseLong;
-        Bundle bundle = zVar.f1010a;
+        Bundle bundle = a0Var.f902a;
         String string = bundle.getString("from");
-        if (zVar.f1011b == null) {
+        if (a0Var.f903b == null) {
             ?? lVar = new a0.l(0);
             for (String str : bundle.keySet()) {
                 Object obj = bundle.get(str);
@@ -23,9 +23,9 @@ public class GcmPushListenerService extends FirebaseMessagingService {
                     }
                 }
             }
-            zVar.f1011b = lVar;
+            a0Var.f903b = lVar;
         }
-        HashMap hashMap = new HashMap(zVar.f1011b);
+        HashMap hashMap = new HashMap(a0Var.f903b);
         Object obj2 = bundle.get("google.sent_time");
         if (obj2 instanceof Long) {
             parseLong = ((Long) obj2).longValue();
@@ -39,7 +39,7 @@ public class GcmPushListenerService extends FirebaseMessagingService {
             }
             parseLong = 0;
         }
-        if (r2.f25216a) {
+        if (r2.f26198a) {
             a8.b("FCM received data: " + hashMap + " from: " + string);
         }
         PushListenerController.processRemoteMessage(2, (String) hashMap.get("p"), parseLong);

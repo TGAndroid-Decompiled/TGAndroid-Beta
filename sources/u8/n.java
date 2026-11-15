@@ -5,45 +5,45 @@ import android.os.Parcel;
 import android.os.RemoteException;
 import android.util.Log;
 import android.util.SparseArray;
-import bi.b1;
-import com.google.android.gms.internal.vision.d3;
-import com.google.android.gms.internal.vision.f3;
-import com.google.android.gms.internal.vision.t2;
+import com.google.android.gms.common.api.q;
+import com.google.android.gms.internal.vision.e3;
+import com.google.android.gms.internal.vision.g3;
+import com.google.android.gms.internal.vision.u2;
 import java.nio.ByteBuffer;
-import org.telegram.ui.ly0;
-public final class n extends b1 {
-    public final t2 f56461b;
+import org.telegram.ui.ld0;
+public final class n extends q {
+    public final u2 f57960b;
 
-    public n(t2 t2Var) {
+    public n(u2 u2Var) {
         super(7);
-        this.f56461b = t2Var;
+        this.f57960b = u2Var;
     }
 
     @Override
     public final void X0() {
         super.X0();
-        this.f56461b.l();
+        this.f57960b.l();
     }
 
-    public final SparseArray e1(ly0 ly0Var) {
+    public final SparseArray e1(ld0 ld0Var) {
         m[] mVarArr;
-        if (ly0Var != null) {
-            f3 b10 = f3.b(ly0Var);
-            Bitmap bitmap = (Bitmap) ly0Var.d;
-            t2 t2Var = this.f56461b;
+        if (ld0Var != null) {
+            g3 b10 = g3.b(ld0Var);
+            Bitmap bitmap = (Bitmap) ld0Var.d;
+            u2 u2Var = this.f57960b;
             if (bitmap != null) {
-                if (!t2Var.k()) {
+                if (!u2Var.k()) {
                     mVarArr = new m[0];
                 } else {
                     try {
                         a7.b bVar = new a7.b(bitmap);
-                        d3 d3Var = (d3) t2Var.m();
-                        q6.m.g(d3Var);
-                        Parcel h12 = d3Var.h1();
-                        int i7 = com.google.android.gms.internal.vision.a.f7495a;
+                        e3 e3Var = (e3) u2Var.m();
+                        q6.m.g(e3Var);
+                        Parcel h12 = e3Var.h1();
+                        int i7 = com.google.android.gms.internal.vision.a.f6879a;
                         h12.writeStrongBinder(bVar);
                         com.google.android.gms.internal.vision.a.a(h12, b10);
-                        Parcel q12 = d3Var.q1(h12, 2);
+                        Parcel q12 = e3Var.q1(h12, 2);
                         m[] mVarArr2 = (m[]) q12.createTypedArray(m.CREATOR);
                         q12.recycle();
                         mVarArr = mVarArr2;
@@ -56,20 +56,20 @@ public final class n extends b1 {
                     throw new IllegalArgumentException("Internal barcode detector error; check logcat output.");
                 }
             } else {
-                ByteBuffer y10 = ly0Var.y();
-                q6.m.g(y10);
-                if (!t2Var.k()) {
+                ByteBuffer w10 = ld0Var.w();
+                q6.m.g(w10);
+                if (!u2Var.k()) {
                     mVarArr = new m[0];
                 } else {
                     try {
-                        a7.b bVar2 = new a7.b(y10);
-                        d3 d3Var2 = (d3) t2Var.m();
-                        q6.m.g(d3Var2);
-                        Parcel h13 = d3Var2.h1();
-                        int i10 = com.google.android.gms.internal.vision.a.f7495a;
+                        a7.b bVar2 = new a7.b(w10);
+                        e3 e3Var2 = (e3) u2Var.m();
+                        q6.m.g(e3Var2);
+                        Parcel h13 = e3Var2.h1();
+                        int i10 = com.google.android.gms.internal.vision.a.f6879a;
                         h13.writeStrongBinder(bVar2);
                         com.google.android.gms.internal.vision.a.a(h13, b10);
-                        Parcel q13 = d3Var2.q1(h13, 1);
+                        Parcel q13 = e3Var2.q1(h13, 1);
                         m[] mVarArr3 = (m[]) q13.createTypedArray(m.CREATOR);
                         q13.recycle();
                         mVarArr = mVarArr3;
@@ -81,7 +81,7 @@ public final class n extends b1 {
             }
             SparseArray sparseArray = new SparseArray(mVarArr.length);
             for (m mVar : mVarArr) {
-                sparseArray.append(mVar.f56451b.hashCode(), mVar);
+                sparseArray.append(mVar.f57950b.hashCode(), mVar);
             }
             return sparseArray;
         }

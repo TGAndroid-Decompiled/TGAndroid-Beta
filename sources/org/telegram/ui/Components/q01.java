@@ -1,51 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.widget.FrameLayout;
-public final class q01 extends FrameLayout {
-    public final Paint f37119a;
-    public final RectF f37120b;
-    public final v5 f37121c;
-    public final String d;
-    public final s01 f37122e;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+public final class q01 extends tj0 {
+    public final ArrayList f38458c = new ArrayList();
+    public String d;
+    public final v01 f38459e;
 
-    public q01(s01 s01Var, Context context) {
-        super(context);
-        this.f37122e = s01Var;
-        this.f37119a = new Paint(1);
-        this.f37120b = new RectF();
-        this.f37121c = new v5(this, 0L, 260L, wq.h);
-        this.d = "";
-        setWillNotDraw(false);
-        c8.ka.a(this);
-        addView(new k9(context), c8.ha.d(20, 20.0f, 19, 10.0f, 0.0f, 0.0f, 0.0f));
+    public q01(v01 v01Var) {
+        this.f38459e = v01Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float e10 = this.f37121c.e(false, 0.0f);
-        int i7 = org.telegram.ui.ActionBar.m6.qk;
-        s01 s01Var = this.f37122e;
-        int w02 = org.telegram.ui.ActionBar.m6.w0(i7, s01Var.f37798e);
-        float width = getWidth() - org.telegram.messenger.g0.L(3.0f);
-        int height = getHeight();
-        RectF rectF = this.f37120b;
-        rectF.set(org.telegram.messenger.g0.L(3.0f), (getHeight() - org.telegram.messenger.g0.L(28.0f)) / 2.0f, width, (org.telegram.messenger.g0.L(28.0f) + height) / 2.0f);
-        int f10 = i0.a.f(e10, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.O5, s01Var.f37798e), w02);
-        Paint paint = this.f37119a;
-        paint.setColor(f10);
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), paint);
-        s01Var.f37802g0.setColor(i0.a.f(e10, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.G6, s01Var.f37798e), org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.tk, s01Var.f37798e)));
-        float centerY = rectF.centerY();
-        float descent = s01Var.f37802g0.descent();
-        canvas.drawText(this.d, org.telegram.messenger.g0.L(35.0f), centerY - ((s01Var.f37802g0.ascent() + descent) / 2.0f), s01Var.f37802g0);
+    public final boolean D(v4.e1 e1Var) {
+        return true;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(org.telegram.messenger.camera.q.B(13.0f, org.telegram.messenger.g0.L(35.0f) + ((int) Math.ceil(this.f37122e.f37802g0.measureText(this.d))), 1073741824), i10);
+    public final int b() {
+        return this.f38458c.size();
+    }
+
+    @Override
+    public final void t(v4.e1 r35, int r36) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.q01.t(v4.e1, int):void");
+    }
+
+    @Override
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
+        u01 u01Var = new u01(this.f38459e, viewGroup.getContext());
+        u01Var.setLayoutParams(new v4.p0(-1, -2));
+        return new v4.e1(u01Var);
     }
 }

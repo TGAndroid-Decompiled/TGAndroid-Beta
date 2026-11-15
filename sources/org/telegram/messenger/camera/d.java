@@ -2,22 +2,22 @@ package org.telegram.messenger.camera;
 
 import org.telegram.messenger.camera.Camera2Session;
 public final class d implements Runnable {
-    public final int f21804a;
-    public final Camera2Session.AnonymousClass2 f21805b;
+    public final int f22819a;
+    public final Camera2Session.AnonymousClass2 f22820b;
 
     public d(Camera2Session.AnonymousClass2 anonymousClass2, int i7) {
-        this.f21804a = i7;
-        this.f21805b = anonymousClass2;
+        this.f22819a = i7;
+        this.f22820b = anonymousClass2;
     }
 
     @Override
     public final void run() {
-        switch (this.f21804a) {
+        switch (this.f22819a) {
             case 0:
-                Camera2Session.AnonymousClass2.b(this.f21805b);
+                this.f22820b.lambda$onConfigured$0();
                 return;
             default:
-                Camera2Session.AnonymousClass2.a(this.f21805b);
+                this.f22820b.lambda$onConfigureFailed$1();
                 return;
         }
     }

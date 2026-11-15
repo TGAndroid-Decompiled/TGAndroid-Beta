@@ -3,33 +3,52 @@ package org.telegram.utils.twidget;
 import android.content.Context;
 import android.net.Uri;
 import java.io.Serializable;
-import org.telegram.ui.ActionBar.r1;
-import org.telegram.ui.ActionBar.u1;
-public final class t implements w, r1 {
-    public final int f52978a;
-    public final Serializable f52979b;
-    public final Object f52980c;
+import org.telegram.ui.ActionBar.t1;
+public final class t implements w, org.telegram.ui.ActionBar.q1, o0 {
+    public final int f54397a;
+    public final Serializable f54398b;
+    public final Object f54399c;
 
     public t(int i7, Serializable serializable, Object obj) {
-        this.f52978a = i7;
-        this.f52980c = obj;
-        this.f52979b = serializable;
+        this.f54397a = i7;
+        this.f54399c = obj;
+        this.f54398b = serializable;
     }
 
     @Override
-    public void g(u1 u1Var, int i7) {
-        vf.c.q((Context) this.f52980c, Uri.parse((String) this.f52979b), true, false);
+    public void h(t1 t1Var, int i7) {
+        vf.c.q((Context) this.f54399c, Uri.parse((String) this.f54398b), true, false);
     }
 
     @Override
-    public void run() {
-        switch (this.f52978a) {
+    public void mo26run() {
+        switch (this.f54397a) {
             case 0:
-                ((x) this.f52980c).a((byte[]) this.f52979b);
+                ((x) this.f54399c).a((byte[]) this.f54398b);
                 return;
             default:
-                ((WidgetEngineBackend) this.f52980c).lambda$send$10((byte[]) this.f52979b);
+                ((WidgetEngineBackend) this.f54399c).lambda$send$10((byte[]) this.f54398b);
                 return;
         }
+    }
+
+    @Override
+    public Object run() {
+        r0 r0Var = (r0) this.f54399c;
+        byte[] bArr = (byte[]) this.f54398b;
+        synchronized (r0Var) {
+            if (bArr != null) {
+                try {
+                    if (r0Var.f54391e.size() + bArr.length <= 16777216) {
+                        r0Var.f54391e.write(bArr, 0, bArr.length);
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            r0Var.f54391e.reset();
+            throw new IllegalStateException("Widget engine: argument too large");
+        }
+        return null;
     }
 }

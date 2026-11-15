@@ -1,15 +1,15 @@
 package bg;
 public final class n {
-    public final int f3357a;
-    public final String f3358b;
+    public final int f3309a;
+    public final String f3310b;
 
     public n(int i7) {
-        this.f3357a = i7;
-        this.f3358b = null;
+        this.f3309a = i7;
+        this.f3310b = null;
     }
 
     public n(String str) {
-        this.f3357a = 1;
-        this.f3358b = str;
+        this.f3309a = 1;
+        this.f3310b = str;
     }
 }

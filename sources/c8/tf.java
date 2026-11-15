@@ -1,4 +1,4 @@
 package c8;
 public interface tf {
-    a8.wa zza();
+    a8.xa zza();
 }

@@ -1,7 +1,52 @@
 package org.telegram.ui.web;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.gz;
+import org.telegram.messenger.hd;
 public final class d1 {
-    public String f51053a;
-    public final HashMap f51054b = new HashMap();
+    public static ArrayList d;
+    public final String f52586a;
+    public final String f52587b;
+    public final String f52588c;
+
+    public d1(String str, String str2, String str3) {
+        this.f52586a = str;
+        this.f52587b = str2;
+        this.f52588c = str3;
+    }
+
+    public static d1 a() {
+        ArrayList b10 = b();
+        if (b10.isEmpty()) {
+            return new d1("Google", "https://www.google.com/search?q=", "https://suggestqueries.google.com/complete/search?client=chrome&amp;q=");
+        }
+        return (d1) b10.get(Utilities.j(gz.f23970p0, b10.size() - 1, 0));
+    }
+
+    public static ArrayList b() {
+        if (d == null) {
+            d = new ArrayList();
+            int i7 = 1;
+            while (true) {
+                String c10 = c(hd.N0("SearchEngine" + i7 + "Name"));
+                if (c10 == null) {
+                    break;
+                }
+                String c11 = c(hd.N0("SearchEngine" + i7 + "SearchURL"));
+                String c12 = c(hd.N0("SearchEngine" + i7 + "AutocompleteURL"));
+                c(hd.N0("SearchEngine" + i7 + "PrivacyPolicyURL"));
+                d.add(new d1(c10, c11, c12));
+                i7++;
+            }
+        }
+        return d;
+    }
+
+    public static String c(String str) {
+        if (str != null && !str.startsWith("LOC_ERR") && !"reserved".equals(str)) {
+            return str;
+        }
+        return null;
+    }
 }

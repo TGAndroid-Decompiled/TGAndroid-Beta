@@ -7,13 +7,13 @@ import android.os.ResultReceiver;
 import android.text.TextUtils;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputConnectionWrapper;
-import org.telegram.ui.Components.qt;
+import org.telegram.ui.Components.ff;
 public final class d extends InputConnectionWrapper {
-    public final e f55361a;
+    public final e f56943a;
 
     public d(InputConnection inputConnection, e eVar) {
         super(inputConnection, false);
-        this.f55361a = eVar;
+        this.f56943a = eVar;
     }
 
     @Override
@@ -26,11 +26,11 @@ public final class d extends InputConnectionWrapper {
         String str5;
         String str6;
         String str7;
-        e eVar = this.f55361a;
-        boolean z9 = false;
-        z9 = false;
-        z9 = false;
-        z9 = false;
+        e eVar = this.f56943a;
+        boolean z10 = false;
+        z10 = false;
+        z10 = false;
+        z10 = false;
         if (bundle != null) {
             if (TextUtils.equals("androidx.core.view.inputmethod.InputConnectionCompat.COMMIT_CONTENT", str)) {
                 objArr = null;
@@ -76,10 +76,10 @@ public final class d extends InputConnectionWrapper {
                     }
                     Bundle bundle2 = (Bundle) bundle.getParcelable(str7);
                     if (uri != null && clipDescription != null) {
-                        z9 = eVar.k(new qt(uri, clipDescription, uri2), i7, bundle2);
+                        z10 = eVar.o(new ff(uri, clipDescription, uri2), i7, bundle2);
                     }
                     if (resultReceiver != null) {
-                        resultReceiver.send(z9 ? 1 : 0, null);
+                        resultReceiver.send(z10 ? 1 : 0, null);
                     }
                 } catch (Throwable th2) {
                     th = th2;
@@ -93,7 +93,7 @@ public final class d extends InputConnectionWrapper {
                 resultReceiver = null;
             }
         }
-        if (z9) {
+        if (z10) {
             return true;
         }
         return super.performPrivateCommand(str, bundle);

@@ -59,13 +59,13 @@ public interface EglBase {
             return iArr;
         }
 
-        public ConfigBuilder setHasAlphaChannel(boolean z9) {
-            this.hasAlphaChannel = z9;
+        public ConfigBuilder setHasAlphaChannel(boolean z10) {
+            this.hasAlphaChannel = z10;
             return this;
         }
 
-        public ConfigBuilder setIsRecordable(boolean z9) {
-            this.isRecordable = z9;
+        public ConfigBuilder setIsRecordable(boolean z10) {
+            this.isRecordable = z10;
             return this;
         }
 
@@ -74,11 +74,11 @@ public interface EglBase {
                 this.openGlesVersion = i7;
                 return this;
             }
-            throw new IllegalArgumentException(jg.g.k(i7, "OpenGL ES version ", " not supported"));
+            throw new IllegalArgumentException(i5.c.j(i7, "OpenGL ES version ", " not supported"));
         }
 
-        public ConfigBuilder setSupportsPixelBuffer(boolean z9) {
-            this.supportsPixelBuffer = z9;
+        public ConfigBuilder setSupportsPixelBuffer(boolean z10) {
+            this.supportsPixelBuffer = z10;
             return this;
         }
     }
@@ -113,13 +113,13 @@ public interface EglBase {
 
     void release();
 
-    void releaseSurface(boolean z9);
+    void releaseSurface(boolean z10);
 
     int surfaceHeight();
 
     int surfaceWidth();
 
-    void swapBuffers(long j3, boolean z9);
+    void swapBuffers(long j3, boolean z10);
 
-    void swapBuffers(boolean z9);
+    void swapBuffers(boolean z10);
 }

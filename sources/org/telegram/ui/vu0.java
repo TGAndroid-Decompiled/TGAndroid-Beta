@@ -1,44 +1,82 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.graphics.RectF;
-public final class vu0 extends v4.k {
-    public int F = -1;
-    public final ProfileActivity G;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class vu0 extends v4.t0 {
+    public final int f52296a;
+    public final ProfileActivity f52297b;
 
-    public vu0(ProfileActivity profileActivity) {
-        this.G = profileActivity;
+    public vu0(ProfileActivity profileActivity, int i7) {
+        this.f52296a = i7;
+        this.f52297b = profileActivity;
     }
 
     @Override
-    public final long K(long j3, long j10, long j11) {
-        return 0L;
-    }
-
-    @Override
-    public final void N() {
-        org.telegram.messenger.g0.h3(new uu0(this, 0));
-    }
-
-    @Override
-    public final void P(v4.d1 d1Var) {
-        RectF rectF = ProfileActivity.V6;
-        this.G.s5();
-    }
-
-    @Override
-    public final void m() {
-        boolean isEmpty = this.f57109p.isEmpty();
-        boolean isEmpty2 = this.f57111r.isEmpty();
-        boolean isEmpty3 = this.f57112s.isEmpty();
-        boolean isEmpty4 = this.f57110q.isEmpty();
-        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat.addUpdateListener(new a3(this, 24));
-            ofFloat.setDuration(this.f57125e);
-            ofFloat.start();
-            this.F = this.G.getNotificationCenter().q(null, this.F, true);
+    public final void a(RecyclerView recyclerView, int i7) {
+        boolean z10;
+        View m10;
+        switch (this.f52296a) {
+            case 0:
+                if (i7 == 1) {
+                    org.telegram.messenger.g0.v1(this.f52297b.getParentActivity().getCurrentFocus());
+                    return;
+                }
+                return;
+            default:
+                ProfileActivity profileActivity = this.f52297b;
+                boolean z11 = true;
+                if (i7 == 1) {
+                    org.telegram.messenger.g0.v1(profileActivity.getParentActivity().getCurrentFocus());
+                }
+                if (profileActivity.G0 && i7 != 2) {
+                    profileActivity.G0 = false;
+                }
+                if (i7 == 0 && !profileActivity.G1 && (m10 = profileActivity.f43078c.m(0)) != null) {
+                    ProfileActivity.R0(profileActivity, m10, 0.0f);
+                }
+                org.telegram.ui.ActionBar.d5 d5Var = profileActivity.U0;
+                if (d5Var != null) {
+                    if (i7 != 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    profileActivity.f43241z1 = z10;
+                    if (z10 || profileActivity.f43176q2) {
+                        z11 = false;
+                    }
+                    d5Var.setEnabled(z11);
+                }
+                uv0 uv0Var = profileActivity.O;
+                boolean z12 = profileActivity.f43062a.J1;
+                uv0Var.getClass();
+                return;
         }
-        super.m();
+    }
+
+    @Override
+    public void b(RecyclerView recyclerView, int i7, int i10) {
+        switch (this.f52296a) {
+            case 1:
+                ProfileActivity profileActivity = this.f52297b;
+                hi.l3 l3Var = profileActivity.X;
+                boolean z10 = true;
+                if (l3Var != null) {
+                    l3Var.f(true);
+                }
+                profileActivity.N3();
+                if (profileActivity.C1 != null && !profileActivity.D1 && profileActivity.f43078c.N0() > profileActivity.f43221w4 - 8) {
+                    profileActivity.g4(false);
+                }
+                uv0 uv0Var = profileActivity.O;
+                if (uv0Var.getY() > 0.0f) {
+                    z10 = false;
+                }
+                uv0Var.setPinnedToTop(z10);
+                profileActivity.r5();
+                return;
+            default:
+                return;
+        }
     }
 }

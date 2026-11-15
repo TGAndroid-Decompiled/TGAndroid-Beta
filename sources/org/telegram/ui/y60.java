@@ -1,89 +1,80 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.tl.TL_stories;
-public final class y60 implements org.telegram.messenger.c20 {
-    public final int f51927a;
-    public final LaunchActivity f51928b;
-    public final f10 f51929c;
-    public final Long d;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class y60 implements RequestDelegate {
+    public final int f53453a;
+    public final LaunchActivity f53454b;
+    public final int f53455c;
+    public final g50 d;
+    public final Object f53456e;
+    public final Object f53457f;
+    public final Object f53458g;
+    public final Object h;
+    public final Object f53459i;
 
-    public y60(LaunchActivity launchActivity, f10 f10Var, Long l10, int i7) {
-        this.f51927a = i7;
-        this.f51928b = launchActivity;
-        this.f51929c = f10Var;
-        this.d = l10;
+    public y60(LaunchActivity launchActivity, g50 g50Var, int i7, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2, String str3) {
+        this.f53453a = 0;
+        this.f53454b = launchActivity;
+        this.d = g50Var;
+        this.f53455c = i7;
+        this.f53459i = authorizationform;
+        this.f53456e = getauthorizationform;
+        this.f53457f = str;
+        this.f53458g = str2;
+        this.h = str3;
     }
 
     @Override
-    public final void a(Object obj) {
-        int i7 = this.f51927a;
-        Long l10 = this.d;
-        f10 f10Var = this.f51929c;
-        LaunchActivity launchActivity = this.f51928b;
-        TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i7 = this.f53453a;
+        Object obj = this.h;
+        Object obj2 = this.f53458g;
+        Object obj3 = this.f53457f;
+        Object obj4 = this.f53456e;
+        Object obj5 = this.f53459i;
         switch (i7) {
             case 0:
-                String str = LaunchActivity.B1;
-                try {
-                    f10Var.run();
-                } catch (Exception e10) {
-                    org.telegram.messenger.a8.g(e10, true);
-                }
-                org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
-                if (storyItem == null) {
-                    org.telegram.ui.Components.gc X = org.telegram.ui.Components.gc.X();
-                    if (X != null) {
-                        org.telegram.messenger.k5.o(null, 2131744606, X, 2131624236, 36);
-                        return;
-                    }
-                    return;
-                } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
-                    org.telegram.ui.Components.gc X2 = org.telegram.ui.Components.gc.X();
-                    if (X2 != null) {
-                        org.telegram.messenger.k5.o(null, 2131744606, X2, 2131624235, 36);
-                        return;
-                    }
-                    return;
-                } else if (Q != null) {
-                    storyItem.dialogId = l10.longValue();
-                    di.q9 createOverlayStoryViewer = Q.createOverlayStoryViewer();
-                    createOverlayStoryViewer.B();
-                    createOverlayStoryViewer.L(launchActivity, storyItem, null);
-                    return;
-                } else {
+                String str = LaunchActivity.C1;
+                org.telegram.messenger.g0.h3(new di.h8(this.f53454b, this.d, tLObject, this.f53455c, (TL_account.authorizationForm) obj5, (TL_account.getAuthorizationForm) obj4, (String) obj3, (String) obj2, (String) obj, 3));
+                return;
+            case 1:
+                int[] iArr = (int[]) obj5;
+                TL_account.getAuthorizationForm getauthorizationform = (TL_account.getAuthorizationForm) obj4;
+                String str2 = (String) obj3;
+                String str3 = (String) obj2;
+                String str4 = (String) obj;
+                String str5 = LaunchActivity.C1;
+                TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) tLObject;
+                LaunchActivity launchActivity = this.f53454b;
+                g50 g50Var = this.d;
+                if (authorizationform != null) {
+                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                    int i10 = this.f53455c;
+                    iArr[0] = ConnectionsManager.getInstance(i10).sendRequest(getpassword, new y60(launchActivity, g50Var, i10, authorizationform, getauthorizationform, str2, str3, str4));
                     return;
                 }
+                org.telegram.messenger.g0.h3(new tp(launchActivity, g50Var, tL_error, 15));
+                return;
             default:
-                String str2 = LaunchActivity.B1;
-                try {
-                    f10Var.run();
-                } catch (Exception e11) {
-                    org.telegram.messenger.a8.g(e11, true);
-                }
-                org.telegram.ui.ActionBar.f2 Q2 = LaunchActivity.Q();
-                if (storyItem == null) {
-                    org.telegram.ui.Components.gc X3 = org.telegram.ui.Components.gc.X();
-                    if (X3 != null) {
-                        org.telegram.messenger.k5.o(null, 2131744606, X3, 2131624236, 36);
-                        return;
-                    }
-                    return;
-                } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
-                    org.telegram.ui.Components.gc X4 = org.telegram.ui.Components.gc.X();
-                    if (X4 != null) {
-                        org.telegram.messenger.k5.o(null, 2131744606, X4, 2131624235, 36);
-                        return;
-                    }
-                    return;
-                } else if (Q2 != null) {
-                    storyItem.dialogId = l10.longValue();
-                    di.q9 createOverlayStoryViewer2 = Q2.createOverlayStoryViewer();
-                    createOverlayStoryViewer2.B();
-                    createOverlayStoryViewer2.L(launchActivity, storyItem, null);
-                    return;
-                } else {
-                    return;
-                }
+                String str6 = LaunchActivity.C1;
+                org.telegram.messenger.g0.h3(new di.h8(this.f53454b, tLObject, (int[]) obj5, this.f53455c, this.d, (Integer) obj4, (Integer) obj3, (Long) obj2, (Integer) obj, 2));
+                return;
         }
+    }
+
+    public y60(LaunchActivity launchActivity, int[] iArr, int i7, g50 g50Var, Object obj, Object obj2, Object obj3, Object obj4, int i10) {
+        this.f53453a = i10;
+        this.f53454b = launchActivity;
+        this.f53459i = iArr;
+        this.f53455c = i7;
+        this.d = g50Var;
+        this.f53456e = obj;
+        this.f53457f = obj2;
+        this.f53458g = obj3;
+        this.h = obj4;
     }
 }

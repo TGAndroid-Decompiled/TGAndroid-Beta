@@ -1,51 +1,50 @@
 package bi;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.ui.Components.wq;
-public final class y5 extends View {
-    public final Paint f5077a;
-    public final org.telegram.ui.Components.v5 f5078b;
-    public final org.telegram.ui.Components.v5 f5079c;
-    public float d;
-    public float f5080e;
+import di.m8;
+import org.telegram.messenger.is;
+import org.telegram.messenger.ns;
+public final class y5 implements is {
+    public final int f4014a;
+    public final m8 f4015b;
+    public final o5 f4016c;
+    public s5 d;
+    public boolean f4017e;
 
-    public y5(Context context) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f5077a = paint;
-        a3.f fVar = new a3.f(this, 26);
-        wq wqVar = wq.h;
-        this.f5078b = new org.telegram.ui.Components.v5(fVar, 420L, wqVar, 0);
-        this.f5079c = new org.telegram.ui.Components.v5(new a3.f(this, 26), 420L, wqVar, 0);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
+    public y5(int i7, long j3) {
+        this.f4014a = i7;
+        m8 m8Var = new m8(i7, 0L, false);
+        this.f4015b = m8Var;
+        m8Var.f9055p = j3;
+        o5 o5Var = new o5(i7, j3, new ai.f0(this, 2));
+        o5Var.f3770s = true;
+        this.f4016c = o5Var;
+    }
+
+    public final void a() {
+        if (this.f4017e) {
+            return;
+        }
+        ns.f(this.f4014a).c(this, ns.G3);
+        this.f4015b.a();
+        this.f4016c.g(false);
+        this.f4017e = true;
+    }
+
+    public final void b() {
+        if (!this.f4017e) {
+            return;
+        }
+        ns.f(this.f4014a).n(this, ns.G3);
+        this.f4015b.f();
+        this.f4016c.f();
+        this.f4017e = false;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        boolean z9 = false;
-        float e10 = this.f5078b.e(false, this.d);
-        if (this.d > 0.0f) {
-            z9 = true;
-        }
-        float d = this.f5079c.d(z9);
-        float width = getWidth() / 2.0f;
-        float height = getHeight() / 2.0f;
-        float f10 = this.f5080e;
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(width - f10, height - f10, width + f10, height + f10);
-        int r12 = org.telegram.ui.ActionBar.m6.r1(0.25f, -1);
-        Paint paint = this.f5077a;
-        paint.setColor(r12);
-        canvas.drawArc(rectF, 135.0f, 270.0f, false, paint);
-        if (d > 0.0f) {
-            paint.setColor(org.telegram.ui.ActionBar.m6.r1(d, -1));
-            canvas.drawArc(rectF, 135.0f, e10 * 270.0f, false, paint);
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        s5 s5Var;
+        if (i7 == ns.G3 && objArr[1] == this.f4015b && (s5Var = this.d) != null) {
+            s5Var.run();
         }
     }
 }

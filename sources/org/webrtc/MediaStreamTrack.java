@@ -21,7 +21,7 @@ public class MediaStreamTrack {
                     return mediaType;
                 }
             }
-            throw new IllegalArgumentException(jg.g.j(i7, "Unknown native media type: "));
+            throw new IllegalArgumentException(i5.c.i(i7, "Unknown native media type: "));
         }
 
         public int getNative() {
@@ -75,7 +75,7 @@ public class MediaStreamTrack {
 
     private static native State nativeGetState(long j3);
 
-    private static native boolean nativeSetEnabled(long j3, boolean z9);
+    private static native boolean nativeSetEnabled(long j3, boolean z10);
 
     public void dispose() {
         checkMediaStreamTrackExists();
@@ -103,9 +103,9 @@ public class MediaStreamTrack {
         return nativeGetKind(this.nativeTrack);
     }
 
-    public boolean setEnabled(boolean z9) {
+    public boolean setEnabled(boolean z10) {
         checkMediaStreamTrackExists();
-        return nativeSetEnabled(this.nativeTrack, z9);
+        return nativeSetEnabled(this.nativeTrack, z10);
     }
 
     public State state() {

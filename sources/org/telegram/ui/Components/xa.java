@@ -1,12 +1,7 @@
 package org.telegram.ui.Components;
-
-import android.widget.FrameLayout;
-public abstract class xa extends FrameLayout implements cb {
+public final class xa extends xb {
     @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void b() {
+    public final xb j() {
+        return this;
     }
 }

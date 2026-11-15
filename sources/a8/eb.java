@@ -1,4 +1,29 @@
 package a8;
-public abstract class eb extends q implements fb {
-    public static final int f385b = 0;
+
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+public final class eb extends a implements gb {
+    public final db x1(a7.b bVar, ib ibVar) {
+        db aVar;
+        Parcel p12 = p1();
+        int i7 = g0.f410a;
+        p12.writeStrongBinder(bVar);
+        p12.writeInt(1);
+        ibVar.writeToParcel(p12, 0);
+        Parcel r12 = r1(p12, 1);
+        IBinder readStrongBinder = r12.readStrongBinder();
+        if (readStrongBinder == null) {
+            aVar = 0;
+        } else {
+            IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("com.google.mlkit.vision.label.aidls.IImageLabeler");
+            if (queryLocalInterface instanceof db) {
+                aVar = (db) queryLocalInterface;
+            } else {
+                aVar = new a(readStrongBinder, "com.google.mlkit.vision.label.aidls.IImageLabeler", 0);
+            }
+        }
+        r12.recycle();
+        return aVar;
+    }
 }

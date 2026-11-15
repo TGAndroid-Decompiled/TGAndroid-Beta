@@ -1,31 +1,54 @@
 package org.telegram.ui.Components;
+public final class t0 implements eb0 {
+    public final int f39463a;
+    public final int[] f39464b;
 
-import android.content.DialogInterface;
-public final class t0 implements DialogInterface.OnShowListener {
-    public final int f38112a;
-    public final t4 f38113b;
-
-    public t0(int i7, t4 t4Var) {
-        this.f38112a = i7;
-        this.f38113b = t4Var;
+    public t0(int[] iArr, int i7) {
+        this.f39463a = i7;
+        this.f39464b = iArr;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f38112a) {
+    public final String e(int i7) {
+        int i10 = this.f39463a;
+        int[] iArr = this.f39464b;
+        switch (i10) {
             case 0:
-                t4 t4Var = this.f38113b;
-                t4Var.requestFocus();
-                org.telegram.messenger.g0.K3(t4Var);
-                return;
-            case 1:
-                t4 t4Var2 = this.f38113b;
-                t4Var2.requestFocus();
-                org.telegram.messenger.g0.K3(t4Var2);
-                return;
+                int i11 = iArr[i7];
+                if (i11 == 0) {
+                    return org.telegram.messenger.hd.M0(2131748307, null);
+                }
+                if (i11 < 60) {
+                    return org.telegram.messenger.hd.G(i11, "Minutes", new Object[0]);
+                }
+                if (i11 < 1440) {
+                    return org.telegram.messenger.hd.G(i11 / 60, "Hours", new Object[0]);
+                }
+                if (i11 < 10080) {
+                    return org.telegram.messenger.hd.G(i11 / 1440, "Days", new Object[0]);
+                }
+                if (i11 < 44640) {
+                    return org.telegram.messenger.hd.G(i11 / 10080, "Weeks", new Object[0]);
+                }
+                if (i11 < 525600) {
+                    return org.telegram.messenger.hd.G(i11 / 44640, "Months", new Object[0]);
+                }
+                return org.telegram.messenger.hd.G(i11 / 525600, "Years", new Object[0]);
             default:
-                org.telegram.messenger.g0.h3(new wf(this.f38113b, 2));
-                return;
+                int i12 = iArr[i7];
+                if (i12 == 0) {
+                    return org.telegram.messenger.hd.M0(2131753849, null);
+                }
+                if (i12 < 10080) {
+                    return org.telegram.messenger.hd.G(i12 / 1440, "Days", new Object[0]);
+                }
+                if (i12 < 44640) {
+                    return org.telegram.messenger.hd.G(i12 / 10080, "Weeks", new Object[0]);
+                }
+                if (i12 < 525600) {
+                    return org.telegram.messenger.hd.G(i12 / 44640, "Months", new Object[0]);
+                }
+                return org.telegram.messenger.hd.G(i12 / 525600, "Years", new Object[0]);
         }
     }
 }

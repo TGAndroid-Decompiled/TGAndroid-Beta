@@ -12,54 +12,54 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import m9.u;
 public final class j implements Runnable {
-    public final int f19912a;
-    public final l f19913b;
+    public final int f20504a;
+    public final l f20505b;
 
     public j(l lVar, int i7) {
-        this.f19912a = i7;
-        this.f19913b = lVar;
+        this.f20504a = i7;
+        this.f20505b = lVar;
     }
 
     private final void a() {
         while (true) {
-            l lVar = this.f19913b;
+            l lVar = this.f20505b;
             synchronized (lVar) {
                 try {
-                    if (lVar.f19915a == 2) {
+                    if (lVar.f20507a == 2) {
                         ArrayDeque arrayDeque = lVar.d;
                         if (arrayDeque.isEmpty()) {
                             lVar.d();
                             return;
                         }
                         m mVar = (m) arrayDeque.poll();
-                        SparseArray sparseArray = lVar.f19918e;
-                        int i7 = mVar.f19920a;
+                        SparseArray sparseArray = lVar.f20510e;
+                        int i7 = mVar.f20512a;
                         sparseArray.put(i7, mVar);
-                        ((ScheduledExecutorService) lVar.f19919f.f19927c).schedule(new u(23, lVar, mVar), 30L, TimeUnit.SECONDS);
+                        ((ScheduledExecutorService) lVar.f20511f.f20519c).schedule(new u(23, lVar, mVar), 30L, TimeUnit.SECONDS);
                         if (Log.isLoggable("MessengerIpcClient", 3)) {
                             Log.d("MessengerIpcClient", "Sending ".concat(String.valueOf(mVar)));
                         }
-                        n nVar = lVar.f19919f;
-                        Messenger messenger = lVar.f19916b;
-                        int i10 = mVar.f19922c;
+                        n nVar = lVar.f20511f;
+                        Messenger messenger = lVar.f20508b;
+                        int i10 = mVar.f20514c;
                         Message obtain = Message.obtain();
                         obtain.what = i10;
                         obtain.arg1 = i7;
                         obtain.replyTo = messenger;
                         Bundle bundle = new Bundle();
                         bundle.putBoolean("oneWay", mVar.a());
-                        bundle.putString("pkg", ((Context) nVar.f19926b).getPackageName());
+                        bundle.putString("pkg", ((Context) nVar.f20518b).getPackageName());
                         bundle.putBundle("data", mVar.d);
                         obtain.setData(bundle);
                         try {
-                            j2.n nVar2 = lVar.f19917c;
-                            Messenger messenger2 = (Messenger) nVar2.f16456b;
+                            k8.a aVar = lVar.f20509c;
+                            Messenger messenger2 = (Messenger) aVar.f17788b;
                             if (messenger2 != null) {
                                 messenger2.send(obtain);
                             } else {
-                                g gVar = (g) nVar2.f16457c;
+                                g gVar = (g) aVar.f17789c;
                                 if (gVar != null) {
-                                    gVar.f19905a.send(obtain);
+                                    gVar.f20497a.send(obtain);
                                 } else {
                                     throw new IllegalStateException("Both messengers are null");
                                     break;
@@ -79,11 +79,11 @@ public final class j implements Runnable {
 
     @Override
     public final void run() {
-        switch (this.f19912a) {
+        switch (this.f20504a) {
             case 0:
-                l lVar = this.f19913b;
+                l lVar = this.f20505b;
                 synchronized (lVar) {
-                    if (lVar.f19915a == 1) {
+                    if (lVar.f20507a == 1) {
                         lVar.b("Timed out while binding");
                     }
                 }
@@ -92,7 +92,7 @@ public final class j implements Runnable {
                 a();
                 return;
             default:
-                this.f19913b.b("Service disconnected");
+                this.f20505b.b("Service disconnected");
                 return;
         }
     }

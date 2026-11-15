@@ -1,13 +1,17 @@
 package a8;
-
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public abstract class w8 {
-    public static boolean a(AtomicReferenceFieldUpdater atomicReferenceFieldUpdater, com.google.android.gms.internal.cast.c4 c4Var, Object obj, Object obj2) {
-        while (!atomicReferenceFieldUpdater.compareAndSet(c4Var, obj, obj2)) {
-            if (atomicReferenceFieldUpdater.get(c4Var) != obj && atomicReferenceFieldUpdater.get(c4Var) != obj) {
-                return false;
+    public static int a(int i7, int i10) {
+        if (i10 >= 0) {
+            int i11 = i7 + (i7 >> 1) + 1;
+            if (i11 < i10) {
+                int highestOneBit = Integer.highestOneBit(i10 - 1);
+                i11 = highestOneBit + highestOneBit;
             }
+            if (i11 < 0) {
+                return Integer.MAX_VALUE;
+            }
+            return i11;
         }
-        return true;
+        throw new AssertionError("cannot store more than MAX_VALUE elements");
     }
 }

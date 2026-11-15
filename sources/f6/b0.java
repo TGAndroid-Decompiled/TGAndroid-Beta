@@ -4,67 +4,67 @@ import android.os.Parcel;
 import android.os.RemoteException;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import java.util.HashMap;
-public final class b0 implements com.google.android.gms.common.api.internal.p {
-    public final int f11233a;
-    public final e0 f11234b;
-    public final String f11235c;
+public final class b0 implements com.google.android.gms.common.api.internal.q {
+    public final int f11042a;
+    public final e0 f11043b;
+    public final String f11044c;
     public final String d;
 
     public b0(e0 e0Var, String str, String str2, int i7) {
-        this.f11233a = i7;
-        this.f11234b = e0Var;
-        this.f11235c = str;
+        this.f11042a = i7;
+        this.f11043b = e0Var;
+        this.f11044c = str;
         this.d = str2;
     }
 
     @Override
     public final void accept(Object obj, Object obj2) {
-        boolean z9 = false;
-        boolean z10 = true;
-        switch (this.f11233a) {
+        boolean z10 = false;
+        boolean z11 = true;
+        switch (this.f11042a) {
             case 0:
-                e0 e0Var = this.f11234b;
-                String str = this.f11235c;
+                e0 e0Var = this.f11043b;
+                String str = this.f11044c;
                 String str2 = this.d;
-                j6.w wVar = (j6.w) obj;
+                j6.x xVar = (j6.x) obj;
                 TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
                 if (e0Var.G != 2) {
-                    z10 = false;
+                    z11 = false;
                 }
-                q6.m.i("Not connected to device", z10);
-                j6.f fVar = (j6.f) wVar.n();
+                q6.m.i("Not connected to device", z11);
+                j6.f fVar = (j6.f) xVar.n();
                 Parcel p12 = fVar.p1();
                 p12.writeString(str);
                 p12.writeString(str2);
-                int i7 = com.google.android.gms.internal.cast.t.f6994a;
+                int i7 = com.google.android.gms.internal.cast.t.f6380a;
                 p12.writeInt(0);
                 fVar.u1(p12, 14);
-                synchronized (e0Var.f11262s) {
+                synchronized (e0Var.f11071s) {
                     try {
-                        if (e0Var.f11259p != null) {
+                        if (e0Var.f11068p != null) {
                             e0Var.i(2477);
                         }
-                        e0Var.f11259p = taskCompletionSource;
+                        e0Var.f11068p = taskCompletionSource;
                     } catch (Throwable th2) {
                         throw th2;
                     }
                 }
                 return;
             default:
-                e0 e0Var2 = this.f11234b;
-                String str3 = this.f11235c;
+                e0 e0Var2 = this.f11043b;
+                String str3 = this.f11044c;
                 String str4 = this.d;
-                j6.w wVar2 = (j6.w) obj;
+                j6.x xVar2 = (j6.x) obj;
                 TaskCompletionSource taskCompletionSource2 = (TaskCompletionSource) obj2;
                 HashMap hashMap = e0Var2.C;
-                long incrementAndGet = e0Var2.f11261r.incrementAndGet();
+                long incrementAndGet = e0Var2.f11070r.incrementAndGet();
                 if (e0Var2.G == 2) {
-                    z9 = true;
+                    z10 = true;
                 }
-                q6.m.i("Not connected to device", z9);
+                q6.m.i("Not connected to device", z10);
                 try {
                     hashMap.put(Long.valueOf(incrementAndGet), taskCompletionSource2);
-                    j6.f fVar2 = (j6.f) wVar2.n();
+                    j6.f fVar2 = (j6.f) xVar2.n();
                     Parcel p13 = fVar2.p1();
                     p13.writeString(str3);
                     p13.writeString(str4);

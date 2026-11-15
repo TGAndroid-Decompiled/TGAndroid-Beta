@@ -9,42 +9,42 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 public final class x extends y {
-    public final ArrayList f10127e = new ArrayList();
-    public final ArrayList f10128f = new ArrayList();
-    public final j0 f10129g;
+    public final ArrayList f9958e = new ArrayList();
+    public final ArrayList f9959f = new ArrayList();
+    public final j0 f9960g;
     public CharSequence h;
-    public Boolean f10130i;
+    public Boolean f9961i;
 
     public x() {
         ?? obj = new Object();
-        obj.f10082a = "";
-        obj.f10083b = null;
-        obj.f10084c = null;
+        obj.f9913a = "";
+        obj.f9914b = null;
+        obj.f9915c = null;
         obj.d = null;
-        obj.f10085e = false;
-        obj.f10086f = false;
-        this.f10129g = obj;
+        obj.f9916e = false;
+        obj.f9917f = false;
+        this.f9960g = obj;
     }
 
     @Override
     public final void a(Bundle bundle) {
         super.a(bundle);
-        j0 j0Var = this.f10129g;
-        bundle.putCharSequence("android.selfDisplayName", j0Var.f10082a);
+        j0 j0Var = this.f9960g;
+        bundle.putCharSequence("android.selfDisplayName", j0Var.f9913a);
         bundle.putBundle("android.messagingStyleUser", j0Var.c());
         bundle.putCharSequence("android.hiddenConversationTitle", this.h);
-        if (this.h != null && this.f10130i.booleanValue()) {
+        if (this.h != null && this.f9961i.booleanValue()) {
             bundle.putCharSequence("android.conversationTitle", this.h);
         }
-        ArrayList arrayList = this.f10127e;
+        ArrayList arrayList = this.f9958e;
         if (!arrayList.isEmpty()) {
             bundle.putParcelableArray("android.messages", w.a(arrayList));
         }
-        ArrayList arrayList2 = this.f10128f;
+        ArrayList arrayList2 = this.f9959f;
         if (!arrayList2.isEmpty()) {
             bundle.putParcelableArray("android.messages.historic", w.a(arrayList2));
         }
-        Boolean bool = this.f10130i;
+        Boolean bool = this.f9961i;
         if (bool != null) {
             bundle.putBoolean("android.isGroupConversation", bool.booleanValue());
         }
@@ -61,30 +61,30 @@ public final class x extends y {
     }
 
     public final List d() {
-        return this.f10127e;
+        return this.f9958e;
     }
 
     public final SpannableStringBuilder e(w wVar) {
         p0.b bVar;
         CharSequence charSequence;
-        String str = p0.b.f53085b;
+        String str = p0.b.f54491b;
         if (TextUtils.getLayoutDirectionFromLocale(Locale.getDefault()) == 1) {
-            bVar = p0.b.f53087e;
+            bVar = p0.b.f54493e;
         } else {
             bVar = p0.b.d;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        j0 j0Var = wVar.f10124c;
+        j0 j0Var = wVar.f9955c;
         CharSequence charSequence2 = "";
         if (j0Var == null) {
             charSequence = "";
         } else {
-            charSequence = j0Var.f10082a;
+            charSequence = j0Var.f9913a;
         }
         int i7 = -16777216;
         if (TextUtils.isEmpty(charSequence)) {
-            charSequence = this.f10129g.f10082a;
-            int i10 = this.f10131a.f10118w;
+            charSequence = this.f9960g.f9913a;
+            int i10 = this.f9962a.f9949w;
             if (i10 != 0) {
                 i7 = i10;
             }
@@ -92,7 +92,7 @@ public final class x extends y {
         SpannableStringBuilder c10 = bVar.c(charSequence);
         spannableStringBuilder.append((CharSequence) c10);
         spannableStringBuilder.setSpan(new TextAppearanceSpan(null, 0, 0, ColorStateList.valueOf(i7), null), spannableStringBuilder.length() - c10.length(), spannableStringBuilder.length(), 33);
-        CharSequence charSequence3 = wVar.f10122a;
+        CharSequence charSequence3 = wVar.f9953a;
         if (charSequence3 != null) {
             charSequence2 = charSequence3;
         }
@@ -105,8 +105,8 @@ public final class x extends y {
     }
 
     public x(j0 j0Var) {
-        if (!TextUtils.isEmpty(j0Var.f10082a)) {
-            this.f10129g = j0Var;
+        if (!TextUtils.isEmpty(j0Var.f9913a)) {
+            this.f9960g = j0Var;
             return;
         }
         throw new IllegalArgumentException("User's name must not be empty.");

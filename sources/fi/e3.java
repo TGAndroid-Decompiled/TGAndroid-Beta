@@ -1,108 +1,105 @@
 package fi;
 
-import android.graphics.drawable.ColorDrawable;
-import android.text.TextUtils;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.hc;
-import org.telegram.messenger.qp;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.oj0;
-public abstract class e3 extends oj0 {
-    public boolean d;
-    public String f11871f;
-    public String h;
-    public TLRPC.User f11872n;
-    public boolean f11873r;
-    public final f3 f11876x;
-    public final ArrayList f11869c = new ArrayList();
-    public int f11870e = -1;
-    public final ColorDrawable f11874s = new ColorDrawable(285212671);
-    public final di.f8 f11875w = new di.f8(this, 23);
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.er;
+import org.telegram.ui.Components.xb;
+public final class e3 extends v {
+    public final org.telegram.ui.Components.u5 d;
+    public final org.telegram.ui.Components.u5 f11664e;
+    public final org.telegram.ui.Components.voip.n f11665f;
+    public final org.telegram.ui.Components.u5 h;
+    public final org.telegram.ui.Components.u5 f11666n;
+    public boolean f11667r;
+    public boolean f11668s;
+    public final y3 f11669w;
+    public final i9 f11670x;
+    public final b4 f11671y;
 
-    public e3(f3 f3Var) {
-        this.f11876x = f3Var;
+    public e3(b4 b4Var, Context context, y3 y3Var, i9 i9Var) {
+        super(context);
+        this.f11671y = b4Var;
+        this.f11669w = y3Var;
+        this.f11670x = i9Var;
+        er erVar = er.f34420f;
+        this.d = new org.telegram.ui.Components.u5(this, 150L, erVar);
+        this.f11664e = new org.telegram.ui.Components.u5(this, 150L, erVar);
+        this.f11665f = new org.telegram.ui.Components.voip.n(32, 102, 240);
+        org.telegram.ui.Components.u5 u5Var = new org.telegram.ui.Components.u5(this);
+        this.h = u5Var;
+        org.telegram.ui.Components.u5 u5Var2 = new org.telegram.ui.Components.u5(this);
+        this.f11666n = u5Var2;
+        u5Var.f39906g = 500L;
+        u5Var2.f39906g = 100L;
+    }
+
+    public final void b(android.graphics.Canvas r34) {
+        throw new UnsupportedOperationException("Method not decompiled: fi.e3.b(android.graphics.Canvas):void");
     }
 
     @Override
-    public final boolean D(v4.d1 d1Var) {
+    public final void dispatchDraw(android.graphics.Canvas r24) {
+        throw new UnsupportedOperationException("Method not decompiled: fi.e3.dispatchDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        e1 e1Var;
+        b4 b4Var = this.f11671y;
+        a4 a4Var = b4Var.f11536w2;
+        if (b4Var.f11527u1 && !b4Var.M2 && ((org.telegram.ui.j4) a4Var.f11408e) != null && (e1Var = (e1) a4Var.f11406b) != null && e1Var.n() && ((org.telegram.ui.j4) a4Var.f11408e).dispatchTouchEvent(motionEvent)) {
+            return true;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        if (view != this.f11671y.T0) {
+            if (this.f11667r) {
+                xb xbVar = xb.f41635w;
+                if (xbVar != null && view == xbVar.f41639e) {
+                    if (this.f11668s) {
+                        return super.drawChild(canvas, view, j3);
+                    }
+                    return true;
+                }
+                return super.drawChild(canvas, view, j3);
+            }
+            return super.drawChild(canvas, view, j3);
+        }
         return true;
     }
 
-    public final void E() {
-        int i7 = this.f11876x.f11960a;
-        if (!this.d) {
-            this.d = true;
-            F(true);
-            qp s12 = qp.s1(i7);
-            String str = s12.L3;
-            if (this.f11872n == null) {
-                TLObject f22 = s12.f2(str);
-                if (f22 instanceof TLRPC.User) {
-                    this.f11872n = (TLRPC.User) f22;
-                }
-            }
-            TLRPC.User user = this.f11872n;
-            if (user == null && !this.f11873r) {
-                TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
-                tL_contacts_resolveUsername.username = str;
-                this.f11870e = ConnectionsManager.getInstance(i7).sendRequest(tL_contacts_resolveUsername, new bi.j(13, this, s12));
-            } else if (user == null) {
-            } else {
-                TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
-                tL_messages_getInlineBotResults.bot = s12.q1(this.f11872n);
-                String str2 = this.f11871f;
-                String str3 = "";
-                if (str2 == null) {
-                    str2 = "";
-                }
-                tL_messages_getInlineBotResults.query = str2;
-                tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
-                String str4 = this.h;
-                if (str4 != null) {
-                    str3 = str4;
-                }
-                tL_messages_getInlineBotResults.offset = str3;
-                this.f11870e = ConnectionsManager.getInstance(i7).sendRequest(tL_messages_getInlineBotResults, new d3(0, this, TextUtils.isEmpty(str3)));
-            }
-        }
-    }
-
-    public abstract void F(boolean z9);
-
     @Override
-    public final int b() {
-        return this.f11869c.size();
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f11671y.U0.i();
+        setTag(2131296351, new bi.e1(this, 2));
     }
 
     @Override
-    public final void t(v4.d1 d1Var, int i7) {
-        org.telegram.ui.Components.k9 k9Var = (org.telegram.ui.Components.k9) d1Var.f57052a;
-        TLObject tLObject = (TLObject) this.f11869c.get(i7);
-        boolean z9 = tLObject instanceof TLRPC.Document;
-        ColorDrawable colorDrawable = this.f11874s;
-        if (z9) {
-            k9Var.j(hc.b((TLRPC.Document) tLObject), "200_200", colorDrawable, null);
-        } else if (tLObject instanceof TLRPC.Photo) {
-            TLRPC.Photo photo = (TLRPC.Photo) tLObject;
-            k9Var.j(hc.i(org.telegram.messenger.w7.w(photo.sizes, 320, false, null, false), photo), "200_200", colorDrawable, null);
-        } else if (tLObject instanceof TLRPC.BotInlineResult) {
-            TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) tLObject;
-            TLRPC.WebDocument webDocument = botInlineResult.thumb;
-            if (webDocument != null) {
-                k9Var.j(hc.g(webDocument.url), "200_200", colorDrawable, botInlineResult);
-            } else {
-                k9Var.b();
-            }
-        } else {
-            k9Var.b();
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        b4 b4Var = this.f11671y;
+        b4Var.U0.j();
+        setTag(2131296351, null);
+        u3 u3Var = b4Var.A1;
+        if (u3Var != null) {
+            i9 i9Var = ((z8) u3Var).d;
+            i9Var.Y0 = false;
+            i9Var.V();
         }
     }
 
     @Override
-    public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        return new v4.d1(new bi.b7(this.f11876x.getContext(), 1));
+    public final void onMeasure(int i7, int i10) {
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f11671y.f11482i0.getLayoutParams();
+        layoutParams.rightMargin = org.telegram.messenger.g0.L(42.0f);
+        layoutParams.topMargin = org.telegram.messenger.g0.L(15.0f);
+        super.onMeasure(i7, i10);
     }
 }

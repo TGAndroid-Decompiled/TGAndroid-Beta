@@ -3,47 +3,47 @@ package gf;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
-import com.google.android.gms.internal.vision.t2;
+import com.google.android.gms.internal.vision.u2;
 import java.util.ArrayList;
-import org.telegram.ui.Components.uy;
+import org.telegram.messenger.ou;
 public final class c {
-    public int f13873a;
-    public boolean f13874b;
-    public int f13875c;
+    public int f13215a;
+    public boolean f13216b;
+    public int f13217c;
     public final Object d;
 
     public c(Context context) {
-        this.f13873a = 0;
-        this.f13874b = true;
-        this.f13875c = 0;
+        this.f13215a = 0;
+        this.f13216b = true;
+        this.f13217c = 0;
         this.d = context;
     }
 
     public w8.b a() {
-        boolean z9;
+        boolean z10;
         ?? obj = new Object();
-        int i7 = this.f13875c;
-        obj.f58664a = i7;
-        int i10 = this.f13873a;
-        obj.f58665b = i10;
-        boolean z10 = false;
-        obj.f58666c = 0;
+        int i7 = this.f13217c;
+        obj.f59847a = i7;
+        int i10 = this.f13215a;
+        obj.f59848b = i10;
+        boolean z11 = false;
+        obj.f59849c = 0;
         obj.d = false;
-        obj.f58667e = this.f13874b;
-        obj.f58668f = -1.0f;
+        obj.f59850e = this.f13216b;
+        obj.f59851f = -1.0f;
         if (i7 != 2 && i10 == 2) {
             Log.e("FaceDetector", "Contour is not supported for non-SELFIE mode.");
-            z9 = false;
+            z10 = false;
         } else {
-            z9 = true;
+            z10 = true;
         }
-        if (obj.f58665b == 2 && obj.f58666c == 1) {
+        if (obj.f59848b == 2 && obj.f59849c == 1) {
             Log.e("FaceDetector", "Classification is not supported with contour.");
         } else {
-            z10 = z9;
+            z11 = z10;
         }
-        if (z10) {
-            return new w8.b(new t2((Context) this.d, (x8.b) obj));
+        if (z11) {
+            return new w8.b(new u2((Context) this.d, (x8.b) obj));
         }
         throw new IllegalArgumentException("Invalid build options");
     }
@@ -55,7 +55,7 @@ public final class c {
             sb2.append(i7);
             throw new IllegalArgumentException(sb2.toString());
         }
-        this.f13873a = i7;
+        this.f13215a = i7;
     }
 
     public void c(int i7) {
@@ -65,17 +65,17 @@ public final class c {
             sb2.append(i7);
             throw new IllegalArgumentException(sb2.toString());
         }
-        this.f13875c = i7;
+        this.f13217c = i7;
     }
 
     public c(mf.a... aVarArr) {
-        this.f13873a = -1;
-        this.f13875c = -1;
-        this.f13874b = false;
+        this.f13215a = -1;
+        this.f13217c = -1;
+        this.f13216b = false;
         this.d = aVarArr;
     }
 
     public c(View view, ArrayList arrayList, xh.j jVar) {
-        this.d = new uy(view.getContext(), new xh.i(this, view, arrayList, jVar));
+        this.d = new ou(view.getContext(), new xh.i(this, view, arrayList, jVar));
     }
 }

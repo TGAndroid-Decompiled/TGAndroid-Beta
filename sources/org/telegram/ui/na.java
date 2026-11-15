@@ -1,53 +1,53 @@
 package org.telegram.ui;
 
 import android.graphics.RectF;
-public final class na implements org.telegram.messenger.sr {
-    public final int f48165a;
-    public final Object f48166b;
+public final class na implements org.telegram.messenger.pr {
+    public final int f49528a;
+    public final Object f49529b;
 
     public na(Object obj, int i7) {
-        this.f48165a = i7;
-        this.f48166b = obj;
+        this.f49528a = i7;
+        this.f49529b = obj;
     }
 
     @Override
     public final void a(int i7) {
-        sq0 sq0Var;
-        int i10 = this.f48165a;
-        Object obj = this.f48166b;
+        oq0 oq0Var;
+        int i10 = this.f49528a;
+        Object obj = this.f49529b;
         switch (i10) {
             case 0:
-                ((mb) obj).Z0(true);
+                ((lb) obj).Z0(true);
                 return;
             case 1:
                 ((NotificationsCustomSettingsActivity) obj).q0(true);
                 return;
             case 2:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
-                if (photoViewer.D != null && (sq0Var = photoViewer.f41382e0) != null && i7 > 0) {
-                    org.telegram.ui.Components.gc.F(sq0Var, true).j();
+                if (photoViewer.E != null && (oq0Var = photoViewer.f42763f0) != null && i7 > 0) {
+                    org.telegram.ui.Components.cc.F(oq0Var, true).j();
                     return;
                 }
                 return;
             case 3:
                 ProfileActivity profileActivity = (ProfileActivity) obj;
-                RectF rectF = ProfileActivity.V6;
+                RectF rectF = ProfileActivity.X6;
                 if (i7 == 1) {
                     profileActivity.getNotificationCenter().n(profileActivity, 4);
                     profileActivity.getNotificationCenter().k(4, new Object[0]);
-                    profileActivity.I1 = 0;
+                    profileActivity.J1 = 0;
                     profileActivity.finishFragment();
                     return;
                 }
-                profileActivity.getNotificationCenter().k(79, Long.valueOf(profileActivity.f41714d1));
+                profileActivity.getNotificationCenter().k(79, Long.valueOf(profileActivity.f43094e1));
                 return;
             default:
-                z91 z91Var = ((f91) obj).f45663a;
+                u91 u91Var = ((a91) obj).f44974a;
                 if (i7 == 0) {
-                    z91Var.S0(false);
+                    u91Var.S0(false);
                     return;
                 } else {
-                    z91Var.finishFragment();
+                    u91Var.finishFragment();
                     return;
                 }
         }

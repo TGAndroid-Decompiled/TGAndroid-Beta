@@ -1,18 +1,19 @@
 package s3;
 
+import com.google.android.gms.internal.vision.e2;
 import e2.n0;
 import e2.p0;
 import e2.u;
 import java.util.Arrays;
 public final class c implements p0 {
-    public final byte[] f54788a;
-    public final String f54789b;
-    public final String f54790c;
+    public final byte[] f56342a;
+    public final String f56343b;
+    public final String f56344c;
 
     public c(byte[] bArr, String str, String str2) {
-        this.f54788a = bArr;
-        this.f54789b = str;
-        this.f54790c = str2;
+        this.f56342a = bArr;
+        this.f56343b = str;
+        this.f56344c = str2;
     }
 
     @Override
@@ -22,9 +23,9 @@ public final class c implements p0 {
 
     @Override
     public final void b(n0 n0Var) {
-        String str = this.f54789b;
+        String str = this.f56343b;
         if (str != null) {
-            n0Var.f10382a = str;
+            n0Var.f10213a = str;
         }
     }
 
@@ -38,16 +39,16 @@ public final class c implements p0 {
             return true;
         }
         if (obj != null && c.class == obj.getClass()) {
-            return Arrays.equals(this.f54788a, ((c) obj).f54788a);
+            return Arrays.equals(this.f56342a, ((c) obj).f56342a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.f54788a);
+        return Arrays.hashCode(this.f56342a);
     }
 
     public final String toString() {
-        return a8.p0.n(this.f54788a.length, "\"", com.google.android.recaptcha.internal.a.n("ICY: title=\"", this.f54789b, "\", url=\"", this.f54790c, "\", rawMetadata.length=\""));
+        return a8.p0.n(this.f56342a.length, "\"", e2.n("ICY: title=\"", this.f56343b, "\", url=\"", this.f56344c, "\", rawMetadata.length=\""));
     }
 }

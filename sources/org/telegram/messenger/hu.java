@@ -1,276 +1,463 @@
 package org.telegram.messenger;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.View;
+import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.tgnet.tl.TL_keyboard;
-public final class hu extends fu {
-    public final gu[] W;
-    public final int X;
-    public int Y;
-    public gu Z;
-    public gu f22974a0;
-    public final org.telegram.ui.Cells.l9 f22975b0;
+public final class hu extends cu {
+    public static Paint f24218c0;
+    public final boolean X;
+    public final ArrayList Y;
+    public final int[] Z;
+    public final int f24219a0;
+    public vt f24220b0;
 
-    public hu(kv kvVar, Rect rect, int i7, TL_iv.pageBlockButtonRow pageblockbuttonrow) {
-        super(kvVar, rect, i7);
-        this.Y = -1;
-        this.f22975b0 = new org.telegram.ui.Cells.l9(new gf.g(this, 25));
-        this.W = new gu[pageblockbuttonrow.buttons.size()];
-        int size = pageblockbuttonrow.buttons.size();
-        for (int i10 = 0; i10 < size; i10++) {
-            gu[] guVarArr = this.W;
-            TL_keyboard.PageButton pageButton = pageblockbuttonrow.buttons.get(i10);
-            guVarArr[i10] = new gu(kvVar, i7, kvVar.l(pageButton.text, kv.R(16, 13)), pageButton, pageButton.type, pageButton.style, cg.c.c(pageButton, TL_keyboard.TL_inlineButtonTypeDisabled.class), false, false, false, false, null, new ds(this, 5));
+    public hu(iv ivVar, Rect rect, int i7, TL_iv.pageBlockCollage pageblockcollage, boolean z10) {
+        super(ivVar, rect, i7);
+        float f10;
+        int i10;
+        float f11;
+        int round;
+        float f12;
+        int round2;
+        int i11;
+        vt vtVar;
+        this.Y = new ArrayList();
+        this.X = z10;
+        int i12 = 0;
+        for (int i13 = 0; i13 < pageblockcollage.items.size(); i13++) {
+            TL_iv.PageBlock pageBlock = pageblockcollage.items.get(i13);
+            if (pageBlock instanceof TL_iv.pageBlockPhoto) {
+                vtVar = new vt(ivVar, (TL_iv.pageBlockPhoto) pageBlock);
+            } else if (pageBlock instanceof TL_iv.pageBlockVideo) {
+                vtVar = new vt(ivVar, (TL_iv.pageBlockVideo) pageBlock);
+            } else {
+                vtVar = null;
+            }
+            if (vtVar != null) {
+                this.Y.add(vtVar);
+            }
         }
-        if (pageblockbuttonrow.align_left) {
-            this.X = 1;
-        } else if (pageblockbuttonrow.align_center) {
-            this.X = 3;
-        } else if (pageblockbuttonrow.align_right) {
-            this.X = 2;
+        int i14 = this.f22935c;
+        ArrayList arrayList = this.Y;
+        this.Z = new int[arrayList.size()];
+        if (arrayList.isEmpty()) {
+            this.f24219a0 = 0;
+            return;
+        }
+        int i15 = 1;
+        if (arrayList.size() == 1) {
+            vt vtVar2 = (vt) arrayList.get(0);
+            float f13 = vtVar2.F;
+            f13 = f13 <= 0.0f ? 1.0f : f13;
+            int i16 = (int) (i14 / f13);
+            Point point = g0.f23609q;
+            int max = (int) (Math.max(point.x, point.y) * 0.55f);
+            if (i16 > max) {
+                i14 = (int) (max * f13);
+                i16 = max;
+            }
+            vtVar2.l(0, 0, i14, i16);
+            this.Z[0] = 15;
+            this.f24219a0 = i16;
+            return;
+        }
+        float[] fArr = new float[arrayList.size()];
+        for (int i17 = 0; i17 < arrayList.size(); i17++) {
+            fArr[i17] = ((vt) arrayList.get(i17)).F;
+        }
+        yi[] e10 = iv.e(fArr);
+        int i18 = 0;
+        for (yi yiVar : e10) {
+            i18 = Math.max(i18, (int) yiVar.d);
+        }
+        int i19 = i18 + 1;
+        float[] fArr2 = new float[i19];
+        for (yi yiVar2 : e10) {
+            byte b10 = yiVar2.f27746c;
+            if (b10 == yiVar2.d) {
+                fArr2[b10] = Math.max(fArr2[b10], yiVar2.f27748f);
+            }
+        }
+        int length = e10.length;
+        int i20 = 0;
+        while (i20 < length) {
+            yi yiVar3 = e10[i20];
+            int i21 = yiVar3.f27746c;
+            byte b11 = yiVar3.d;
+            if (i21 != b11) {
+                int i22 = (b11 - i21) + i15;
+                float[] fArr3 = yiVar3.f27754m;
+                if (fArr3 != null && fArr3.length == i22) {
+                    int i23 = 0;
+                    while (i23 < i22) {
+                        int i24 = yiVar3.f27746c + i23;
+                        fArr2[i24] = Math.max(fArr2[i24], yiVar3.f27754m[i23]);
+                        i23++;
+                        i15 = i15;
+                    }
+                } else {
+                    i11 = i15;
+                    float f14 = yiVar3.f27748f / i22;
+                    while (i21 <= yiVar3.d) {
+                        fArr2[i21] = Math.max(fArr2[i21], f14);
+                        i21++;
+                    }
+                    i20++;
+                    i15 = i11;
+                }
+            }
+            i11 = i15;
+            i20++;
+            i15 = i11;
+        }
+        Point point2 = g0.f23609q;
+        float max2 = Math.max(point2.x, point2.y) * 0.5f;
+        int[] iArr = new int[i18 + 2];
+        float f15 = 0.0f;
+        for (int i25 = 0; i25 <= i18; i25++) {
+            iArr[i25] = Math.round(f15 * max2);
+            f15 += fArr2[i25];
+        }
+        iArr[i19] = Math.round(f15 * max2);
+        if (this.f22933a.D()) {
+            f10 = 3.0f;
         } else {
-            this.X = 4;
+            f10 = 2.0f;
         }
-        l0(k0());
+        int L = g0.L(f10);
+        int i26 = 0;
+        while (i26 < e10.length) {
+            yi yiVar4 = e10[i26];
+            int i27 = iArr[yiVar4.f27746c];
+            int i28 = iArr[yiVar4.d + 1] - i27;
+            float f16 = 1000.0f;
+            if (yiVar4.f27751j > 0) {
+                round = Math.round((i10 * i14) / 1000.0f);
+                f11 = 1000.0f;
+            } else {
+                int i29 = i12;
+                int i30 = i29;
+                while (i29 < e10.length) {
+                    if (i29 == i26) {
+                        f12 = f16;
+                    } else {
+                        yi yiVar5 = e10[i29];
+                        f12 = f16;
+                        byte b12 = yiVar5.f27746c;
+                        byte b13 = yiVar4.f27746c;
+                        if (b12 <= b13 && yiVar5.d >= b13 && yiVar5.f27744a < yiVar4.f27744a) {
+                            i30 += yiVar5.f27747e;
+                        }
+                    }
+                    i29++;
+                    f16 = f12;
+                }
+                f11 = f16;
+                round = Math.round((i30 * i14) / f11);
+            }
+            if ((yiVar4.f27753l & 2) != 0) {
+                round2 = i14 - round;
+            } else {
+                round2 = Math.round((yiVar4.f27747e * i14) / f11) - L;
+            }
+            if ((yiVar4.f27753l & 8) == 0) {
+                i28 -= L;
+            }
+            ((vt) arrayList.get(i26)).l(round, i27, Math.max(0, round2), Math.max(0, i28));
+            this.Z[i26] = yiVar4.f27753l;
+            i26++;
+            i12 = 0;
+        }
+        this.f24219a0 = iArr[i19];
     }
 
-    public static gu i0(hu huVar, float f10, float f11) {
-        int c10;
-        int i7;
-        huVar.m0();
-        gu[] guVarArr = huVar.W;
-        if (guVarArr.length == 0) {
-            c10 = g0.L(huVar.f22473a.M + 18);
-        } else {
-            c10 = guVarArr[0].c();
+    @Override
+    public final void A(int i7, Rect rect) {
+        if (i7 >= 0) {
+            ArrayList arrayList = this.Y;
+            if (i7 < arrayList.size()) {
+                vt vtVar = (vt) arrayList.get(i7);
+                Rect rect2 = this.f22934b;
+                int i10 = rect2.left + vtVar.G;
+                int i11 = ((int) this.N) + rect2.top + vtVar.H;
+                rect.set(i10, i11, vtVar.I + i10, vtVar.J + i11);
+            }
         }
-        float I = (huVar.I() - c10) / 2.0f;
-        if (f11 >= I && f11 <= I + c10) {
-            for (gu guVar : guVarArr) {
-                if (f10 >= guVar.d && f10 <= i7 + guVar.f22729e) {
-                    return guVar;
-                }
+    }
+
+    @Override
+    public final int B() {
+        return this.Y.size();
+    }
+
+    @Override
+    public final CharSequence E(int i7) {
+        if (i7 >= 0) {
+            ArrayList arrayList = this.Y;
+            if (i7 < arrayList.size()) {
+                return ((vt) arrayList.get(i7)).f();
             }
             return null;
         }
         return null;
     }
 
-    public static void j0(hu huVar, gu guVar) {
-        gu guVar2 = huVar.Z;
-        if (guVar2 != guVar) {
-            if (guVar2 != null) {
-                guVar2.m(false);
-            }
-            huVar.Z = guVar;
-            if (guVar != null) {
-                guVar.m(true);
-            }
-        }
+    @Override
+    public final int I() {
+        return this.f24219a0;
     }
 
     @Override
-    public final int I() {
-        int c10;
-        gu[] guVarArr = this.W;
-        if (guVarArr.length == 0) {
-            c10 = g0.L(this.f22473a.M + 18);
-        } else {
-            c10 = guVarArr[0].c();
-        }
-        Rect rect = this.f22474b;
-        return g0.L(4.333f) + rect.top + c10 + rect.bottom;
+    public final int J() {
+        return K();
     }
 
     @Override
     public final int K() {
-        Rect rect = this.f22474b;
-        return k0() + rect.left + rect.right;
+        Rect rect = this.f22934b;
+        return rect.left + this.f22935c + rect.right;
     }
 
     @Override
-    public final boolean Q() {
-        if (this.f22974a0 != null) {
-            return true;
+    public final void T() {
+        ArrayList arrayList = this.Y;
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            vt vtVar = (vt) obj;
+            View view = this.W;
+            vtVar.T = view;
+            ImageReceiver imageReceiver = vtVar.f27239c;
+            imageReceiver.H0(view);
+            imageReceiver.P();
+            ImageReceiver imageReceiver2 = vtVar.d;
+            imageReceiver2.H0(view);
+            imageReceiver2.P();
+            vtVar.d(view);
+            vtVar.m(view, false);
+        }
+    }
+
+    @Override
+    public final boolean U(int i7, View view) {
+        if (i7 >= 0) {
+            ArrayList arrayList = this.Y;
+            if (i7 < arrayList.size()) {
+                return ((vt) arrayList.get(i7)).j(view);
+            }
+            return false;
         }
         return false;
     }
 
     @Override
-    public final void T() {
-        gu[] guVarArr;
-        for (gu guVar : this.W) {
-            guVar.f22726a.i(this.V);
-        }
-    }
-
-    @Override
     public final void V() {
-        gu[] guVarArr;
-        for (gu guVar : this.W) {
-            guVar.f22726a.f(this.V);
+        ArrayList arrayList = this.Y;
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            vt vtVar = (vt) obj;
+            vtVar.f27239c.R();
+            vtVar.d.R();
+            vtVar.f27240e = null;
+            z5.q(vtVar.f27237a.f24440a).v(vtVar);
         }
     }
 
     @Override
-    public final boolean Y(MotionEvent motionEvent) {
-        View view = this.V;
-        if (view == null) {
-            return false;
-        }
-        return this.f22975b0.a(view, motionEvent);
-    }
-
-    public final int k0() {
-        gu[] guVarArr = this.W;
-        int length = guVarArr.length;
-        if (length == 0) {
-            return 0;
-        }
-        int L = (length - 1) * g0.L(7.0f);
-        for (gu guVar : guVarArr) {
-            L += guVar.h();
-        }
-        return Math.min(this.f22475c, L);
-    }
-
-    public final void l0(int i7) {
+    public final void W(Canvas canvas) {
+        int i7;
         int i10;
+        float f10;
         int i11;
-        boolean z9;
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        float f11;
+        int L;
         int i12;
         int i13;
         int i14;
         int i15;
         int i16;
-        this.Y = i7;
-        gu[] guVarArr = this.W;
-        int length = guVarArr.length;
-        if (length != 0) {
-            int L = g0.L(7.0f);
-            int i17 = 1;
-            int i18 = (length - 1) * L;
-            int max = Math.max(0, i7 - i18);
-            int i19 = 0;
-            for (gu guVar : guVarArr) {
-                int h = guVar.h();
-                guVar.f22729e = h;
-                i19 += h;
-            }
-            int i20 = this.X;
-            if (i19 > max) {
-                int i21 = 0;
-                for (gu guVar2 : guVarArr) {
-                    i21 += guVar2.f22729e - guVar2.e();
-                }
-                if (i21 <= 0) {
-                    for (gu guVar3 : guVarArr) {
-                        guVar3.f22729e = guVar3.e();
-                    }
-                } else {
-                    int min = Math.min(i19 - max, i21);
-                    int i22 = 0;
-                    int i23 = 0;
-                    while (i22 < guVarArr.length) {
-                        gu guVar4 = guVarArr[i22];
-                        int e10 = guVar4.f22729e - guVar4.e();
-                        if (i22 == guVarArr.length - i17) {
-                            i16 = min - i23;
-                            i14 = i17;
-                            i15 = min;
-                        } else {
-                            i14 = i17;
-                            i15 = min;
-                            i16 = (int) ((min * e10) / i21);
-                        }
-                        int min2 = Math.min(i16, e10);
-                        guVar4.f22729e -= min2;
-                        i23 += min2;
-                        i22++;
-                        i17 = i14;
-                        min = i15;
-                    }
-                }
-                i10 = i17;
-            } else {
-                i10 = 1;
-                if (i20 == 4) {
-                    boolean[] zArr = new boolean[guVarArr.length];
-                    int length2 = guVarArr.length;
-                    for (boolean z10 = true; z10 && length2 > 0; z10 = z9) {
-                        int i24 = max / length2;
-                        z9 = false;
-                        for (int i25 = 0; i25 < guVarArr.length; i25++) {
-                            if (!zArr[i25] && (i12 = guVarArr[i25].f22729e) > i24) {
-                                zArr[i25] = true;
-                                max -= i12;
-                                length2--;
-                                z9 = true;
-                            }
-                        }
-                    }
-                    if (length2 > 0) {
-                        int i26 = max / length2;
-                        int i27 = max - (length2 * i26);
-                        for (int i28 = 0; i28 < guVarArr.length; i28++) {
-                            if (!zArr[i28]) {
-                                gu guVar5 = guVarArr[i28];
-                                int i29 = i27 - 1;
-                                if (i27 > 0) {
-                                    i11 = 1;
-                                } else {
-                                    i11 = 0;
-                                }
-                                guVar5.f22729e = i11 + i26;
-                                i27 = i29;
-                            }
-                        }
-                    }
-                }
-            }
-            for (gu guVar6 : guVarArr) {
-                i18 += guVar6.f22729e;
-            }
-            int c10 = p1.g.c(i20);
-            if (c10 != i10) {
-                if (c10 != 2) {
-                    i13 = 0;
-                } else {
-                    i13 = (i7 - i18) / 2;
-                }
-            } else {
-                i13 = i7 - i18;
-            }
-            for (gu guVar7 : guVarArr) {
-                guVar7.d = i13;
-                i13 += guVar7.f22729e + L;
-            }
+        int i17;
+        int i18;
+        hu huVar = this;
+        boolean z14 = true;
+        if (f24218c0 == null) {
+            Paint paint = new Paint(1);
+            f24218c0 = paint;
+            paint.setColor(251658240);
         }
-    }
-
-    public final void m0() {
-        kv kvVar = this.f22473a;
-        int i7 = kvVar.C;
-        int i10 = kvVar.S;
-        Rect rect = this.f22474b;
-        int max = Math.max(0, ((((i7 + i10) + kvVar.T) - (i10 * 2)) - rect.left) - rect.right);
-        if (this.Y != max) {
-            l0(max);
+        boolean R = huVar.R();
+        int L2 = g0.L(2.0f);
+        iv ivVar = huVar.f22933a;
+        if (!R && !ivVar.D()) {
+            i7 = ivVar.S - L2;
+        } else {
+            i7 = 0;
+        }
+        if (!R && !ivVar.D()) {
+            i10 = ivVar.T - L2;
+        } else {
+            i10 = 0;
+        }
+        int i19 = huVar.f22935c;
+        if (i19 > 0 && (i7 > 0 || i10 > 0)) {
+            f10 = ((i19 + i7) + i10) / i19;
+        } else {
+            f10 = 1.0f;
+        }
+        int i20 = 0;
+        while (true) {
+            ArrayList arrayList = huVar.Y;
+            if (i20 < arrayList.size()) {
+                vt vtVar = (vt) arrayList.get(i20);
+                int i21 = vtVar.G;
+                ImageReceiver imageReceiver = vtVar.f27239c;
+                int round = Math.round(i21 * f10) - i7;
+                int round2 = Math.round(vtVar.I * f10);
+                int[] iArr = huVar.Z;
+                if (iArr != null && i20 < iArr.length) {
+                    i11 = iArr[i20];
+                } else {
+                    i11 = 0;
+                }
+                if ((i11 & 4) != 0) {
+                    z10 = z14;
+                } else {
+                    z10 = false;
+                }
+                if ((i11 & 8) != 0) {
+                    z11 = z14;
+                } else {
+                    z11 = false;
+                }
+                if ((i11 & 1) != 0) {
+                    z12 = z14;
+                } else {
+                    z12 = false;
+                }
+                if ((i11 & 2) != 0) {
+                    z13 = z14;
+                } else {
+                    z13 = false;
+                }
+                if (R) {
+                    int L3 = g0.L(8.0f);
+                    if (z10 && z12) {
+                        i15 = L3;
+                    } else {
+                        i15 = 0;
+                    }
+                    if (z10 && z13) {
+                        i16 = L3;
+                    } else {
+                        i16 = 0;
+                    }
+                    if (z11 && z13) {
+                        i17 = L3;
+                    } else {
+                        i17 = 0;
+                    }
+                    if (z11 && z12) {
+                        i18 = L3;
+                    } else {
+                        i18 = 0;
+                    }
+                    imageReceiver.K0(i15, i16, i17, i18);
+                    f11 = 1.0f;
+                } else {
+                    int i22 = gz.Y0;
+                    f11 = 1.0f;
+                    if (i22 > 2) {
+                        L = g0.L(i22 - 2);
+                    } else {
+                        L = g0.L(i22);
+                    }
+                    int min = Math.min(g0.L(3.0f), L);
+                    if (ivVar.D()) {
+                        imageReceiver.J0(g0.L(12.0f));
+                    } else {
+                        boolean z15 = huVar.X;
+                        if (z10 && z12) {
+                            if (z15 && !ivVar.B() && (ivVar.E() || !ivVar.G())) {
+                                i12 = L;
+                            } else {
+                                i12 = min;
+                            }
+                        } else {
+                            i12 = 0;
+                        }
+                        if (z10 && z13) {
+                            if (!z15 || ivVar.B() || (ivVar.E() && ivVar.G())) {
+                                L = min;
+                            }
+                        } else {
+                            L = 0;
+                        }
+                        if (z11 && z13) {
+                            i13 = min;
+                        } else {
+                            i13 = 0;
+                        }
+                        imageReceiver.K0(i12, L, i13, (z11 && z12) ? 0 : 0);
+                    }
+                }
+                float f12 = round;
+                imageReceiver.y0(f12, vtVar.H, round2, vtVar.J);
+                if (!imageReceiver.I() || imageReceiver.f22278i1 != f11) {
+                    canvas.drawRect(f12, vtVar.H, round + round2, i14 + vtVar.J, f24218c0);
+                }
+                vtVar.c(canvas);
+                i20++;
+                z14 = true;
+                huVar = this;
+            } else {
+                return;
+            }
         }
     }
 
     @Override
-    public final void q(Canvas canvas) {
-        gu[] guVarArr;
-        m0();
-        for (gu guVar : this.W) {
-            canvas.save();
-            canvas.translate(guVar.d, Math.round((I() - guVar.c()) / 2.0f));
-            guVar.a(canvas);
-            canvas.restore();
+    public final boolean Y(MotionEvent motionEvent) {
+        ArrayList arrayList = this.Y;
+        int actionMasked = motionEvent.getActionMasked();
+        Rect rect = this.f22934b;
+        motionEvent.offsetLocation(-rect.left, -rect.top);
+        try {
+            if (actionMasked == 0) {
+                this.f24220b0 = null;
+                for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                    vt vtVar = (vt) arrayList.get(i7);
+                    if (vtVar.g(motionEvent.getX(), motionEvent.getY()) && vtVar.k(this.W, motionEvent)) {
+                        this.f24220b0 = vtVar;
+                        return true;
+                    }
+                }
+            } else {
+                vt vtVar2 = this.f24220b0;
+                if (vtVar2 != null) {
+                    boolean k10 = vtVar2.k(this.W, motionEvent);
+                    if (actionMasked == 1 || actionMasked == 3) {
+                        this.f24220b0 = null;
+                    }
+                    return k10;
+                }
+            }
+            return false;
+        } finally {
+            motionEvent.offsetLocation(rect.left, rect.top);
         }
     }
 }

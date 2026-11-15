@@ -1,32 +1,32 @@
 package org.telegram.ui.Components;
 public final class q11 implements Runnable {
-    public final int f37128a;
-    public final org.telegram.messenger.ij f37129b;
-    public final long f37130c;
+    public final int f38470a;
+    public final org.telegram.messenger.gj f38471b;
+    public final long f38472c;
     public final String d;
 
-    public q11(org.telegram.messenger.ij ijVar, long j3, String str, int i7) {
-        this.f37128a = i7;
-        this.f37129b = ijVar;
-        this.f37130c = j3;
+    public q11(org.telegram.messenger.gj gjVar, long j3, String str, int i7) {
+        this.f38470a = i7;
+        this.f38471b = gjVar;
+        this.f38472c = j3;
         this.d = str;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f37128a;
+        int i7 = this.f38470a;
         String str = this.d;
-        long j3 = this.f37130c;
-        org.telegram.messenger.ij ijVar = this.f37129b;
+        long j3 = this.f38472c;
+        org.telegram.messenger.gj gjVar = this.f38471b;
         switch (i7) {
             case 0:
-                s11.f(ijVar, j3, str);
-                return;
-            default:
-                org.telegram.messenger.qs f10 = org.telegram.messenger.qs.f(ijVar.I1);
+                org.telegram.messenger.ns f10 = org.telegram.messenger.ns.f(gjVar.K1);
                 Long valueOf = Long.valueOf(j3);
                 Boolean bool = Boolean.TRUE;
-                f10.k(115, ijVar, valueOf, str, bool, bool);
+                f10.k(115, gjVar, valueOf, str, bool, bool);
+                return;
+            default:
+                x11.f(gjVar, j3, str);
                 return;
         }
     }

@@ -3,74 +3,73 @@ package v4;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.view.View;
-import di.n4;
-import org.telegram.ui.ix;
+import fi.f4;
 public final class u implements Animator.AnimatorListener {
-    public final int D;
-    public final d1 E;
-    public final y F;
-    public final float f57169a;
-    public final float f57170b;
-    public final float f57171c;
+    public final int E;
+    public final e1 F;
+    public final y G;
+    public final float f58647a;
+    public final float f58648b;
+    public final float f58649c;
     public final float d;
-    public final d1 f57172e;
-    public final int f57173f;
+    public final e1 f58650e;
+    public final int f58651f;
     public final ValueAnimator h;
-    public boolean f57174n;
-    public float f57175r;
-    public float f57176s;
-    public boolean f57177w = false;
-    public boolean f57178x = false;
-    public float f57179y;
+    public boolean f58652n;
+    public float f58653r;
+    public float f58654s;
+    public boolean f58655w = false;
+    public boolean f58656x = false;
+    public float f58657y;
 
-    public u(y yVar, d1 d1Var, int i7, float f10, float f11, float f12, float f13, int i10, d1 d1Var2) {
-        this.F = yVar;
-        this.D = i10;
-        this.E = d1Var2;
-        this.f57173f = i7;
-        this.f57172e = d1Var;
-        this.f57169a = f10;
-        this.f57170b = f11;
-        this.f57171c = f12;
+    public u(y yVar, e1 e1Var, int i7, float f10, float f11, float f12, float f13, int i10, e1 e1Var2) {
+        this.G = yVar;
+        this.E = i10;
+        this.F = e1Var2;
+        this.f58651f = i7;
+        this.f58650e = e1Var;
+        this.f58647a = f10;
+        this.f58648b = f11;
+        this.f58649c = f12;
         this.d = f13;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.h = ofFloat;
-        ofFloat.addUpdateListener(new n4(this, 14));
-        ofFloat.setTarget(d1Var.f57052a);
+        ofFloat.addUpdateListener(new f4(this, 14));
+        ofFloat.setTarget(e1Var.f58535a);
         ofFloat.addListener(this);
-        this.f57179y = 0.0f;
+        this.f58657y = 0.0f;
     }
 
     public final void a(Animator animator) {
-        if (!this.f57178x) {
-            this.f57172e.q(true);
+        if (!this.f58656x) {
+            this.f58650e.q(true);
         }
-        this.f57178x = true;
+        this.f58656x = true;
     }
 
     @Override
     public final void onAnimationCancel(Animator animator) {
-        this.f57179y = 1.0f;
+        this.f58657y = 1.0f;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         a(animator);
-        if (!this.f57177w) {
-            int i7 = this.D;
-            d1 d1Var = this.E;
-            y yVar = this.F;
+        if (!this.f58655w) {
+            int i7 = this.E;
+            e1 e1Var = this.F;
+            y yVar = this.G;
             if (i7 <= 0) {
-                yVar.f57204y.a(yVar.H, d1Var);
+                yVar.f58684y.a(yVar.I, e1Var);
             } else {
-                yVar.f57194a.add(d1Var.f57052a);
-                this.f57174n = true;
+                yVar.f58674a.add(e1Var.f58535a);
+                this.f58652n = true;
                 if (i7 > 0) {
-                    yVar.H.post(new ix(yVar, this, i7));
+                    yVar.I.post(new pb.l(yVar, this, i7));
                 }
             }
-            View view = yVar.M;
-            View view2 = d1Var.f57052a;
+            View view = yVar.N;
+            View view2 = e1Var.f58535a;
             if (view == view2) {
                 yVar.q(view2);
             }

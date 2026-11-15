@@ -1,15 +1,15 @@
 package be;
 public final class o extends c {
-    public final a f3225w;
+    public final a f3180w;
 
     public o(int i7, a aVar) {
         super(i7);
-        this.f3225w = aVar;
-        if (aVar != a.f3182a) {
+        this.f3180w = aVar;
+        if (aVar != a.f3137a) {
             if (i7 >= 1) {
                 return;
             }
-            throw new IllegalArgumentException(jg.g.k(i7, "Buffered channel capacity must be at least 1, but ", " was specified").toString());
+            throw new IllegalArgumentException(i5.c.j(i7, "Buffered channel capacity must be at least 1, but ", " was specified").toString());
         }
         throw new IllegalArgumentException(("This implementation does not support suspension for senders, use " + kotlin.jvm.internal.s.a(c.class).b() + " instead").toString());
     }
@@ -21,7 +21,7 @@ public final class o extends c {
     @Override
     public final Object a(id.c cVar, Object obj) {
         if (!(C(obj, true) instanceof h)) {
-            return gd.k.f13831a;
+            return gd.k.f13173a;
         }
         throw o();
     }
@@ -33,7 +33,7 @@ public final class o extends c {
 
     @Override
     public final boolean s() {
-        if (this.f3225w == a.f3183b) {
+        if (this.f3180w == a.f3138b) {
             return true;
         }
         return false;

@@ -1,47 +1,44 @@
 package gf;
-public final class p extends mf.a {
-    public final kf.o f13947a = new kf.p();
-    public final int f13948b;
-    public boolean f13949c;
 
-    public p(int i7) {
-        this.f13948b = i7;
+import kf.r;
+public final class p extends mf.a {
+    public final r f13290a = new kf.p();
+    public final l f13291b = new l();
+
+    @Override
+    public final void a(java.lang.CharSequence r12) {
+        throw new UnsupportedOperationException("Method not decompiled: gf.p.a(java.lang.CharSequence):void");
     }
 
     @Override
-    public final boolean b(kf.a aVar) {
-        if (this.f13949c) {
-            kf.a aVar2 = (kf.a) ((kf.p) this.f13947a.f17281b);
-            return true;
-        }
+    public final boolean c() {
         return true;
+    }
+
+    @Override
+    public final void d() {
+        if (this.f13291b.f13276b.length() == 0) {
+            this.f13290a.g();
+        }
     }
 
     @Override
     public final kf.a e() {
-        return this.f13947a;
+        return this.f13290a;
     }
 
     @Override
-    public final boolean f() {
-        return true;
-    }
-
-    @Override
-    public final a h(h hVar) {
-        boolean z9 = false;
-        if (hVar.h) {
-            if (((kf.p) this.f13947a.f17282c) != null) {
-                kf.a e10 = hVar.h().e();
-                this.f13949c = ((e10 instanceof kf.r) || (e10 instanceof kf.o)) ? true : true;
-                return a.a(hVar.f13897e);
-            }
-            return null;
+    public final void g(lf.a aVar) {
+        StringBuilder sb2 = this.f13291b.f13276b;
+        if (sb2.length() > 0) {
+            aVar.a(sb2.toString(), this.f13290a);
         }
-        int i7 = hVar.f13899g;
-        int i10 = this.f13948b;
-        if (i7 >= i10) {
-            return new a(-1, hVar.f13896c + i10, false);
+    }
+
+    @Override
+    public final a h(g gVar) {
+        if (!gVar.h) {
+            return a.a(gVar.f13235b);
         }
         return null;
     }

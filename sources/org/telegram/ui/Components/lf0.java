@@ -1,91 +1,114 @@
 package org.telegram.ui.Components;
 
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.os.Build;
 import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-public final class lf0 implements c5.g {
-    public final sf0 f35666a;
+import java.util.Iterator;
+public final class lf0 {
+    public static final float[] f36766m = new ColorMatrix().getArray();
+    public static final float[] f36767n;
+    public static final sa.d f36768o;
+    public final ri.d f36769a;
+    public final ri.c f36770b;
+    public final dh.c f36771c;
+    public final dh.c d;
+    public final dh.c f36772e;
+    public final ui.d f36773f;
+    public final xe.b f36774g;
+    public final xe.b h;
+    public int f36775i;
+    public boolean f36776j;
+    public float f36777k;
+    public float f36778l;
 
-    public lf0(sf0 sf0Var) {
-        this.f35666a = sf0Var;
+    static {
+        ColorMatrix colorMatrix = new ColorMatrix();
+        org.telegram.messenger.g0.i(colorMatrix, 0.65f);
+        org.telegram.messenger.g0.n2(colorMatrix, 0.5f);
+        f36767n = colorMatrix.getArray();
+        f36768o = new sa.d(18);
     }
 
-    @Override
-    public final void a(int i7) {
-        boolean z9;
-        sf0 sf0Var = this.f35666a;
-        int i10 = sf0Var.f37981o1;
-        int i11 = 0;
-        if (i7 >= i10) {
-            z9 = true;
+    public lf0(ri.q qVar, ri.a aVar) {
+        ri.c cVar;
+        xe.b bVar = new xe.b();
+        this.f36774g = bVar;
+        xe.b bVar2 = new xe.b();
+        this.h = bVar2;
+        if (Build.VERSION.SDK_INT >= 31) {
+            aVar.f56049l = true;
+            ri.d dVar = aVar.f56045g;
+            this.f36769a = dVar;
+            if (dVar != null) {
+                cVar = dVar.d(4);
+            } else {
+                cVar = null;
+            }
+            this.f36770b = cVar;
         } else {
-            z9 = false;
+            this.f36769a = null;
+            this.f36770b = null;
         }
-        if (i7 != i10) {
-            sf0Var.getClass();
-            sf0Var.f37981o1 = i7;
+        kf0 kf0Var = new kf0(this, null);
+        kf0 kf0Var2 = new kf0(this, new jf0(aVar.f56042c));
+        dh.c cVar2 = new dh.c(kf0Var, kf0Var, kf0Var);
+        cVar2.f8096j = qVar;
+        cVar2.f8094g = bVar;
+        cVar2.f8093f = bVar2;
+        this.f36771c = cVar2;
+        dh.c cVar3 = new dh.c(kf0Var2, kf0Var2, kf0Var2);
+        cVar3.f8096j = qVar;
+        cVar3.f8094g = bVar;
+        cVar3.f8093f = bVar2;
+        this.d = cVar3;
+        cVar3.f8097k = true;
+        ui.d dVar2 = new ui.d(kf0Var2, new jf0(aVar.f56044f));
+        this.f36773f = dVar2;
+        dh.c cVar4 = new dh.c(dVar2, dVar2, dVar2);
+        cVar4.f8096j = qVar;
+        cVar4.f8094g = bVar;
+        cVar4.f8093f = bVar2;
+        this.f36772e = cVar4;
+        cVar4.f8097k = true;
+    }
+
+    public final void a() {
+        Iterator it = this.h.iterator();
+        while (it.hasNext()) {
+            ((fh.g) it.next()).updateColors();
         }
-        org.telegram.messenger.yo yoVar = sf0Var.S0;
-        if (yoVar != null) {
-            rf0 rf0Var = sf0Var.D0;
-            if (rf0Var != null) {
-                i11 = rf0Var.j();
-            }
-            yoVar.b(i7 - i11, z9);
+        Iterator it2 = this.f36774g.iterator();
+        while (it2.hasNext()) {
+            ((View) it2.next()).invalidate();
         }
     }
 
-    @Override
-    public final void b(float f10, int i7, int i10) {
-        org.telegram.messenger.hc hcVar;
-        sf0 sf0Var = this.f35666a;
-        sf0Var.B(f10, i7);
-        if (i10 == 0) {
-            int k10 = sf0Var.D0.k(i7);
-            if (sf0Var.f37977i1) {
-                k10--;
-            }
-            sf0Var.getCurrentItemView();
-            int childCount = sf0Var.getChildCount();
-            for (int i11 = 0; i11 < childCount; i11++) {
-                View childAt = sf0Var.getChildAt(i11);
-                if (childAt instanceof k9) {
-                    rf0 rf0Var = sf0Var.D0;
-                    int k11 = rf0Var.k(rf0Var.d.indexOf(childAt));
-                    if (sf0Var.f37977i1) {
-                        k11--;
+    public final void b(float f10) {
+        ri.d dVar;
+        ColorMatrixColorFilter colorMatrixColorFilter;
+        if (this.f36777k != f10) {
+            this.f36777k = f10;
+            if (Build.VERSION.SDK_INT >= 31 && (dVar = this.f36769a) != null) {
+                if (f10 > 0.0f) {
+                    float[] fArr = f36766m;
+                    int length = fArr.length;
+                    float[] fArr2 = new float[length];
+                    for (int i7 = 0; i7 < length; i7++) {
+                        fArr2[i7] = org.telegram.messenger.g0.T1(fArr[i7], f36767n[i7], f10);
                     }
-                    ImageReceiver imageReceiver = ((k9) childAt).getImageReceiver();
-                    boolean z9 = imageReceiver.f21225t0;
-                    if (k11 >= 0 && k11 < sf0Var.W0.size()) {
-                        if (k11 == k10) {
-                            if (!z9) {
-                                imageReceiver.f21225t0 = true;
-                                imageReceiver.P0(false);
-                            }
-                            org.telegram.messenger.hc hcVar2 = (org.telegram.messenger.hc) sf0Var.W0.get(k11);
-                            if (hcVar2 != null) {
-                                org.telegram.messenger.w7 G = org.telegram.messenger.w7.G(sf0Var.L0);
-                                TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = hcVar2.f22873f;
-                                if (tL_fileLocationToBeDeprecated != null) {
-                                    org.telegram.messenger.w7.J.c(new org.telegram.messenger.x4(9, G, tL_fileLocationToBeDeprecated));
-                                }
-                            }
-                        } else if (z9) {
-                            u5 m10 = imageReceiver.m();
-                            if (m10 != null && (hcVar = (org.telegram.messenger.hc) sf0Var.W0.get(k11)) != null) {
-                                m10.y(hcVar.f22876j, false, true);
-                            }
-                            imageReceiver.f21225t0 = false;
-                            imageReceiver.Q0();
-                        }
+                    colorMatrixColorFilter = new ColorMatrixColorFilter(fArr2);
+                } else {
+                    colorMatrixColorFilter = null;
+                }
+                if (dVar.f56084k != colorMatrixColorFilter) {
+                    dVar.f56084k = colorMatrixColorFilter;
+                    for (int i10 = 0; i10 < dVar.f56077b; i10++) {
+                        ((ri.b) dVar.f56076a.get(i10)).c(colorMatrixColorFilter);
                     }
                 }
             }
+            a();
         }
-    }
-
-    @Override
-    public final void c(int i7) {
     }
 }

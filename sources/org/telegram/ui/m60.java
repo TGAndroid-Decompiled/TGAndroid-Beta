@@ -1,23 +1,49 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class m60 extends v4.k {
-    public final LanguageSelectActivity F;
+import java.util.HashMap;
+import org.telegram.messenger.Utilities;
+public final class m60 implements org.telegram.ui.ActionBar.q1 {
+    public final int f49139a;
+    public final int f49140b;
+    public final HashMap f49141c;
+    public final boolean d;
+    public final boolean f49142e;
 
-    public m60(LanguageSelectActivity languageSelectActivity) {
-        this.F = languageSelectActivity;
+    public m60(int i7, HashMap hashMap, boolean z10, boolean z11, int i10) {
+        this.f49139a = i10;
+        this.f49140b = i7;
+        this.f49141c = hashMap;
+        this.d = z10;
+        this.f49142e = z11;
     }
 
     @Override
-    public final void P(v4.d1 d1Var) {
-        View view;
-        LanguageSelectActivity languageSelectActivity = this.F;
-        languageSelectActivity.f41246b.invalidate();
-        org.telegram.ui.Components.pj0 pj0Var = languageSelectActivity.f41246b;
-        int i7 = pj0Var.C1;
-        if (i7 != -1 && (view = pj0Var.D1) != null) {
-            pj0Var.k1(i7, view);
-            pj0Var.invalidate();
+    public final void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        switch (this.f49139a) {
+            case 0:
+                int i10 = this.f49140b;
+                HashMap hashMap = this.f49141c;
+                boolean z10 = this.d;
+                boolean z11 = this.f49142e;
+                String str = LaunchActivity.C1;
+                Utilities.f22416e.c(new org.telegram.messenger.i4(org.telegram.messenger.g5.r(i10), hashMap, z10, z11, true));
+                return;
+            case 1:
+                int i11 = this.f49140b;
+                HashMap hashMap2 = this.f49141c;
+                boolean z12 = this.d;
+                boolean z13 = this.f49142e;
+                String str2 = LaunchActivity.C1;
+                Utilities.f22416e.c(new org.telegram.messenger.i4(org.telegram.messenger.g5.r(i11), hashMap2, z12, z13, false));
+                return;
+            default:
+                int i12 = this.f49140b;
+                HashMap hashMap3 = this.f49141c;
+                boolean z14 = this.d;
+                boolean z15 = this.f49142e;
+                String str3 = LaunchActivity.C1;
+                Utilities.f22416e.c(new org.telegram.messenger.i4(org.telegram.messenger.g5.r(i12), hashMap3, z14, z15, true));
+                return;
         }
     }
 }

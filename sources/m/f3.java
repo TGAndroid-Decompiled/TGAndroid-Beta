@@ -1,60 +1,123 @@
 package m;
 
-import org.telegram.ui.Components.am;
-import org.telegram.ui.Components.zl;
-public final class f3 implements Runnable {
-    public final int f19109a;
-    public Object f19110b;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+import androidx.appcompat.widget.Toolbar;
+import java.util.ArrayList;
+public final class f3 implements l.x {
+    public l.k f19688a;
+    public l.m f19689b;
+    public final Toolbar f19690c;
 
-    public f3() {
-        this.f19109a = 7;
+    public f3(Toolbar toolbar) {
+        this.f19690c = toolbar;
     }
 
-    private final void a() {
-        boolean z9;
-        float f10;
-        zl zlVar = (zl) this.f19110b;
-        am amVar = zlVar.P;
-        if (amVar.J != null && !amVar.K) {
-            int computeVerticalScrollOffset = amVar.f31880r.computeVerticalScrollOffset();
-            if (amVar.f31880r.computeVerticalScrollExtent() + computeVerticalScrollOffset >= (zlVar.e() - zlVar.f41059r) + zlVar.f41058n) {
-                z9 = true;
-            } else {
-                z9 = false;
+    @Override
+    public final boolean b(l.m mVar) {
+        Toolbar toolbar = this.f19690c;
+        toolbar.c();
+        ViewParent parent = toolbar.f1933n.getParent();
+        if (parent != toolbar) {
+            if (parent instanceof ViewGroup) {
+                ((ViewGroup) parent).removeView(toolbar.f1933n);
             }
-            float max = Math.max(0.0f, (amVar.E - Math.max(0, computeVerticalScrollOffset - amVar.getListTopPadding())) - org.telegram.messenger.g0.L(52.0f));
-            float max2 = Math.max(0.0f, ((amVar.f31880r.getMeasuredHeight() - (amVar.E - computeVerticalScrollOffset)) - amVar.getListTopPadding()) - org.telegram.messenger.g0.L(84.0f));
-            float L = org.telegram.messenger.g0.L(32.0f);
-            if (max < L && computeVerticalScrollOffset > amVar.getListTopPadding()) {
-                f10 = (-(1.0f - (max / L))) * org.telegram.messenger.g0.L(6.0f);
-            } else if (max2 < L) {
-                f10 = org.telegram.messenger.g0.L(6.0f) * (1.0f - (max2 / L));
-            } else {
-                f10 = 0.0f;
+            toolbar.addView(toolbar.f1933n);
+        }
+        View actionView = mVar.getActionView();
+        toolbar.f1934r = actionView;
+        this.f19689b = mVar;
+        ViewParent parent2 = actionView.getParent();
+        if (parent2 != toolbar) {
+            if (parent2 instanceof ViewGroup) {
+                ((ViewGroup) parent2).removeView(toolbar.f1934r);
             }
-            int i7 = (int) f10;
-            if (Math.abs(i7) > 0 && amVar.f31880r.canScrollVertically(i7) && (f10 <= 0.0f || !z9)) {
-                amVar.E += f10;
-                amVar.f31880r.scrollBy(0, i7);
-                zlVar.invalidate();
+            g3 h = Toolbar.h();
+            h.f19702a = (toolbar.E & 112) | 8388611;
+            h.f19703b = 2;
+            toolbar.f1934r.setLayoutParams(h);
+            toolbar.addView(toolbar.f1934r);
+        }
+        for (int childCount = toolbar.getChildCount() - 1; childCount >= 0; childCount--) {
+            View childAt = toolbar.getChildAt(childCount);
+            if (((g3) childAt.getLayoutParams()).f19703b != 2 && childAt != toolbar.f1917a) {
+                toolbar.removeViewAt(childCount);
+                toolbar.V.add(childAt);
             }
-            zlVar.L = true;
-            zlVar.postDelayed(this, 15L);
+        }
+        toolbar.requestLayout();
+        mVar.C = true;
+        mVar.f18848n.p(false);
+        View view = toolbar.f1934r;
+        if (view instanceof k.b) {
+            ((k.b) view).onActionViewExpanded();
+        }
+        toolbar.t();
+        return true;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final void d() {
+        if (this.f19689b != null) {
+            l.k kVar = this.f19688a;
+            if (kVar != null) {
+                int size = kVar.f18817f.size();
+                for (int i7 = 0; i7 < size; i7++) {
+                    if (this.f19688a.getItem(i7) == this.f19689b) {
+                        return;
+                    }
+                }
+            }
+            k(this.f19689b);
         }
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: m.f3.run():void");
+    public final void i(Context context, l.k kVar) {
+        l.m mVar;
+        l.k kVar2 = this.f19688a;
+        if (kVar2 != null && (mVar = this.f19689b) != null) {
+            kVar2.d(mVar);
+        }
+        this.f19688a = kVar;
     }
 
-    public f3(Object obj, int i7) {
-        this.f19109a = i7;
-        this.f19110b = obj;
+    @Override
+    public final boolean j(l.d0 d0Var) {
+        return false;
     }
 
-    public f3(gf.g gVar, int i7) {
-        this.f19109a = 3;
-        this.f19110b = gVar;
+    @Override
+    public final boolean k(l.m mVar) {
+        Toolbar toolbar = this.f19690c;
+        View view = toolbar.f1934r;
+        if (view instanceof k.b) {
+            ((k.b) view).onActionViewCollapsed();
+        }
+        toolbar.removeView(toolbar.f1934r);
+        toolbar.removeView(toolbar.f1933n);
+        toolbar.f1934r = null;
+        ArrayList arrayList = toolbar.V;
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            toolbar.addView((View) arrayList.get(size));
+        }
+        arrayList.clear();
+        this.f19689b = null;
+        toolbar.requestLayout();
+        mVar.C = false;
+        mVar.f18848n.p(false);
+        toolbar.t();
+        return true;
+    }
+
+    @Override
+    public final void e(l.k kVar, boolean z10) {
     }
 }

@@ -78,7 +78,7 @@ public class JLatexMathDrawable extends Drawable {
         }
 
         @Deprecated
-        public Builder fitCanvas(boolean z9) {
+        public Builder fitCanvas(boolean z10) {
             return this;
         }
     }

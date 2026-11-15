@@ -1,15 +1,15 @@
 package org.telegram.ui.Components;
 public final class dt0 {
-    public static final dt0 f33074a;
-    public static final dt0 f33075b;
-    public static final dt0[] f33076c;
+    public static final dt0 f34062a;
+    public static final dt0 f34063b;
+    public static final dt0[] f34064c;
 
     static {
         ?? r02 = new Enum("DEFAULT", 0);
-        f33074a = r02;
+        f34062a = r02;
         ?? r12 = new Enum("RECORDING", 1);
-        f33075b = r12;
-        f33076c = new dt0[]{r02, r12};
+        f34063b = r12;
+        f34064c = new dt0[]{r02, r12};
     }
 
     public static dt0 valueOf(String str) {
@@ -17,6 +17,6 @@ public final class dt0 {
     }
 
     public static dt0[] values() {
-        return (dt0[]) f33076c.clone();
+        return (dt0[]) f34064c.clone();
     }
 }

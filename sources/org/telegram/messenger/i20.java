@@ -1,126 +1,159 @@
 package org.telegram.messenger;
 
-import android.graphics.SurfaceTexture;
+import android.animation.ValueAnimator;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.opengl.GLUtils;
+import android.text.TextPaint;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.view.animation.OvershootInterpolator;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
-import java.util.ArrayList;
-import org.telegram.messenger.video.MediaCodecPlayer;
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.OutputSerializedData;
-import org.telegram.tgnet.TLObject;
-public final class i20 extends TLObject {
-    public static final int C = 0;
-    public MediaCodecPlayer B;
-    public int f23024a;
-    public boolean f23025b;
-    public boolean f23026c;
-    public String d;
-    public float f23027e = 1.0f;
-    public long f23028f = 0;
-    public boolean f23029i = true;
-    public float f23030j;
-    public float f23031k;
-    public int f23032l;
-    public int f23033m;
-    public long f23034o;
-    public fi.s f23035r;
-    public FloatBuffer f23036s;
-    public FloatBuffer f23037t;
-    public org.telegram.ui.Components.u5 f23038u;
-    public float v;
-    public SurfaceTexture f23039z;
-
-    public static ArrayList a(fi.e7 e7Var) {
-        if (e7Var != null && e7Var.T != null) {
-            ArrayList arrayList = new ArrayList();
-            for (int i7 = 0; i7 < e7Var.T.size(); i7++) {
-                fi.e7 e7Var2 = (fi.e7) e7Var.T.get(i7);
-                ?? tLObject = new TLObject();
-                tLObject.f23027e = 1.0f;
-                tLObject.f23028f = 0L;
-                tLObject.f23029i = true;
-                tLObject.f23025b = e7Var2.K;
-                tLObject.f23026c = e7Var2.Y;
-                tLObject.d = e7Var2.L.getAbsolutePath();
-                tLObject.f23027e = e7Var2.P;
-                tLObject.f23029i = e7Var2.U;
-                tLObject.f23028f = e7Var2.X;
-                tLObject.f23030j = e7Var2.V;
-                tLObject.f23031k = e7Var2.W;
-                tLObject.f23032l = e7Var2.f11904k0;
-                tLObject.f23033m = e7Var2.f11906l0;
-                tLObject.f23034o = e7Var2.f11898h0;
-                tLObject.f23035r = (fi.s) e7Var.S.f12828e.get(i7);
-                arrayList.add(tLObject);
-            }
-            return arrayList;
-        }
-        return null;
+import javax.microedition.khronos.egl.EGL10;
+import org.telegram.ui.ThemeActivity;
+public abstract class i20 {
+    public static int A(float f10, int i7, int i10) {
+        return i10 - (g0.L(f10) * i7);
     }
 
-    @Override
-    public final void readParams(InputSerializedData inputSerializedData, boolean z9) {
-        boolean z10;
-        boolean z11;
-        int readInt32 = inputSerializedData.readInt32(z9);
-        this.f23024a = readInt32;
-        boolean z12 = false;
-        if ((readInt32 & 1) != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.f23025b = z10;
-        if ((readInt32 & 2) != 0) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        this.f23029i = z11;
-        if ((readInt32 & 4) != 0) {
-            z12 = true;
-        }
-        this.f23026c = z12;
-        this.d = inputSerializedData.readString(z9);
-        this.f23027e = inputSerializedData.readFloat(z9);
-        this.f23028f = inputSerializedData.readInt64(z9);
-        this.f23030j = inputSerializedData.readFloat(z9);
-        this.f23031k = inputSerializedData.readFloat(z9);
-        this.f23032l = inputSerializedData.readInt32(z9);
-        this.f23033m = inputSerializedData.readInt32(z9);
-        this.f23034o = inputSerializedData.readInt64(z9);
+    public static int B(float f10, int i7, int i10) {
+        return View.MeasureSpec.makeMeasureSpec(g0.L(f10) + i7, i10);
     }
 
-    @Override
-    public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        int i7;
-        int i10;
-        int i11;
-        if (this.f23025b) {
-            i7 = this.f23024a | 1;
-        } else {
-            i7 = this.f23024a & (-2);
+    public static int C(float f10, int i7, int i10) {
+        return Math.min(i10, i7 - g0.L(f10));
+    }
+
+    public static int D(float f10, int i7, int i10) {
+        return (i7 - g0.L(f10)) + i10;
+    }
+
+    public static int a(org.telegram.ui.c3 c3Var) {
+        int boundLeft = c3Var.getBoundLeft();
+        int boundRight = c3Var.getBoundRight();
+        if (boundLeft >= 0 && boundRight >= 0 && boundRight >= boundLeft) {
+            return boundRight - boundLeft;
         }
-        this.f23024a = i7;
-        if (this.f23029i) {
-            i10 = i7 | 2;
-        } else {
-            i10 = i7 & (-3);
-        }
-        this.f23024a = i10;
-        if (this.f23026c) {
-            i11 = i10 | 4;
-        } else {
-            i11 = i10 & (-5);
-        }
-        this.f23024a = i11;
-        outputSerializedData.writeInt32(i11);
-        outputSerializedData.writeString(this.d);
-        outputSerializedData.writeFloat(this.f23027e);
-        outputSerializedData.writeInt64(this.f23028f);
-        outputSerializedData.writeFloat(this.f23030j);
-        outputSerializedData.writeFloat(this.f23031k);
-        outputSerializedData.writeInt32(this.f23032l);
-        outputSerializedData.writeInt32(this.f23033m);
-        outputSerializedData.writeInt64(this.f23034o);
+        return -1;
+    }
+
+    public static float b(float f10, float f11, float f12, float f13) {
+        return ((f10 + f11) * f12) + f13;
+    }
+
+    public static int c(float f10, int i7, int i10) {
+        return View.MeasureSpec.makeMeasureSpec(i7 - g0.L(f10), i10);
+    }
+
+    public static TextPaint d(TextPaint textPaint, int i7) {
+        textPaint.setTypeface(g0.o());
+        return new TextPaint(i7);
+    }
+
+    public static ImageView e(Context context, int i7) {
+        ImageView imageView = new ImageView(context);
+        imageView.setImageResource(i7);
+        return imageView;
+    }
+
+    public static TextView f(LinearLayout linearLayout, TextView textView, LinearLayout.LayoutParams layoutParams, Context context) {
+        linearLayout.addView(textView, layoutParams);
+        return new TextView(context);
+    }
+
+    public static hi.d g(int i7, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
+        hi.d dVar = new hi.d(context, e6Var, z10);
+        dVar.setRoundRadius(i7);
+        return dVar;
+    }
+
+    public static FloatBuffer h(ByteBuffer byteBuffer) {
+        return byteBuffer.order(ByteOrder.nativeOrder()).asFloatBuffer();
+    }
+
+    public static org.telegram.ui.ActionBar.u2 i(Activity activity, boolean z10, int i7, org.telegram.ui.ActionBar.e6 e6Var) {
+        org.telegram.ui.ActionBar.u2 u2Var = new org.telegram.ui.ActionBar.u2(i7, activity, e6Var, z10);
+        u2Var.O();
+        return u2Var;
+    }
+
+    public static void j(float f10, float f11, float f12, float f13, Canvas canvas) {
+        canvas.translate(f13, f12 - (f10 / f11));
+    }
+
+    public static void k(float f10, ValueAnimator valueAnimator) {
+        valueAnimator.setInterpolator(new OvershootInterpolator(f10));
+    }
+
+    public static void l(int i7, org.telegram.ui.ActionBar.e2 e2Var) {
+        e2Var.presentFragment(new ThemeActivity(i7));
+    }
+
+    public static void m(ViewPropertyAnimator viewPropertyAnimator, float f10, long j3) {
+        viewPropertyAnimator.alpha(f10).setDuration(j3).start();
+    }
+
+    public static void n(ViewPropertyAnimator viewPropertyAnimator, org.telegram.ui.Components.er erVar, long j3) {
+        viewPropertyAnimator.setInterpolator(erVar).setDuration(j3).start();
+    }
+
+    public static void o(TextView textView, int i7, float f10) {
+        textView.setTypeface(g0.o());
+        textView.setTextSize(i7, f10);
+    }
+
+    public static void p(TextView textView, int i7, float f10, int i10, int i11) {
+        textView.setTextSize(i7, f10);
+        textView.setLines(i10);
+        textView.setMaxLines(i11);
+    }
+
+    public static void q(TextView textView, int i7, org.telegram.ui.ActionBar.e6 e6Var, String str, int i10) {
+        org.telegram.ui.ActionBar.q6.U(textView, i7, e6Var);
+        textView.setText(hd.M0(i10, str));
+    }
+
+    public static void r(fh.g gVar, float f10, float f11) {
+        gVar.r(f10);
+        gVar.q(g0.L(f11));
+    }
+
+    public static void s(String str, int i7, org.telegram.ui.Components.cc ccVar) {
+        ccVar.i(hd.M0(i7, str)).j();
+    }
+
+    public static void t(String str, org.telegram.ui.Components.cc ccVar, int i7, int i10) {
+        ccVar.Q(i7, i10, g0.X2(str)).j();
+    }
+
+    public static void u(EGL10 egl10, StringBuilder sb2) {
+        sb2.append(GLUtils.getEGLErrorString(egl10.eglGetError()));
+        a8.d(sb2.toString());
+    }
+
+    public static float v(float f10, float f11, float f12, float f13) {
+        return f13 - ((f10 / f11) * f12);
+    }
+
+    public static int w(float f10, int i7, int i10) {
+        return i10 - (g0.L(f10) + i7);
+    }
+
+    public static float x(float f10, float f11, float f12, float f13) {
+        return (f12 - (f10 / f11)) * f13;
+    }
+
+    public static int y(float f10, int i7, int i10) {
+        return (i7 - g0.L(f10)) / i10;
+    }
+
+    public static float z(float f10, float f11, float f12, float f13) {
+        return Math.max(f13, Math.min(f12, f10 + f11));
     }
 }

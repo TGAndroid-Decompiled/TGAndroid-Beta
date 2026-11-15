@@ -1,157 +1,52 @@
 package u7;
 
-import c8.pc;
 import c8.qc;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.RandomAccess;
-public abstract class r extends o implements List, RandomAccess {
-    public static final p f56398b = new p(s.f56399e, 0);
+public final class r extends s {
+    public final transient int f57895c;
+    public final transient int d;
+    public final s f57896e;
 
-    @Override
-    public final void add(int i7, Object obj) {
-        throw new UnsupportedOperationException();
+    public r(s sVar, int i7, int i10) {
+        this.f57896e = sVar;
+        this.f57895c = i7;
+        this.d = i10;
     }
 
     @Override
-    public final boolean addAll(int i7, Collection collection) {
-        throw new UnsupportedOperationException();
+    public final Object get(int i7) {
+        qc.a(i7, this.d);
+        return this.f57896e.get(i7 + this.f57895c);
     }
 
     @Override
-    public final boolean contains(Object obj) {
-        if (indexOf(obj) >= 0) {
-            return true;
-        }
-        return false;
+    public final int i() {
+        return this.f57896e.j() + this.f57895c + this.d;
     }
 
     @Override
-    public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof List) {
-                List list = (List) obj;
-                int size = size();
-                if (size == list.size()) {
-                    if (list instanceof RandomAccess) {
-                        for (int i7 = 0; i7 < size; i7++) {
-                            if (pc.a(get(i7), list.get(i7))) {
-                            }
-                        }
-                        return true;
-                    }
-                    p listIterator = listIterator(0);
-                    Iterator it = list.iterator();
-                    while (true) {
-                        if (listIterator.hasNext()) {
-                            if (it.hasNext()) {
-                                if (!pc.a(listIterator.next(), it.next())) {
-                                    break;
-                                }
-                            } else {
-                                break;
-                            }
-                        } else if (!it.hasNext()) {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
+    public final int j() {
+        return this.f57896e.j() + this.f57895c;
+    }
+
+    @Override
+    public final boolean k() {
         return true;
     }
 
     @Override
-    public int f(Object[] objArr) {
-        int size = size();
-        for (int i7 = 0; i7 < size; i7++) {
-            objArr[i7] = get(i7);
-        }
-        return size;
+    public final Object[] l() {
+        return this.f57896e.l();
     }
 
     @Override
-    public final int hashCode() {
-        int size = size();
-        int i7 = 1;
-        for (int i10 = 0; i10 < size; i10++) {
-            i7 = (i7 * 31) + get(i10).hashCode();
-        }
-        return i7;
+    public final s subList(int i7, int i10) {
+        qc.b(i7, i10, this.d);
+        int i11 = this.f57895c;
+        return this.f57896e.subList(i7 + i11, i10 + i11);
     }
 
     @Override
-    public final int indexOf(Object obj) {
-        if (obj == null) {
-            return -1;
-        }
-        int size = size();
-        for (int i7 = 0; i7 < size; i7++) {
-            if (obj.equals(get(i7))) {
-                return i7;
-            }
-        }
-        return -1;
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return listIterator(0);
-    }
-
-    @Override
-    public final int lastIndexOf(Object obj) {
-        if (obj == null) {
-            return -1;
-        }
-        for (int size = size() - 1; size >= 0; size--) {
-            if (obj.equals(get(size))) {
-                return size;
-            }
-        }
-        return -1;
-    }
-
-    @Override
-    public final ListIterator listIterator() {
-        return listIterator(0);
-    }
-
-    @Override
-    public r subList(int i7, int i10) {
-        qc.b(i7, i10, size());
-        int i11 = i10 - i7;
-        if (i11 == size()) {
-            return this;
-        }
-        if (i11 == 0) {
-            return s.f56399e;
-        }
-        return new q(this, i7, i11);
-    }
-
-    @Override
-    public final p listIterator(int i7) {
-        int size = size();
-        if (i7 >= 0 && i7 <= size) {
-            if (isEmpty()) {
-                return f56398b;
-            }
-            return new p(this, i7);
-        }
-        throw new IndexOutOfBoundsException(qc.c(i7, size, "index"));
-    }
-
-    @Override
-    public final Object remove(int i7) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final Object set(int i7, Object obj) {
-        throw new UnsupportedOperationException();
+    public final int size() {
+        return this.d;
     }
 }

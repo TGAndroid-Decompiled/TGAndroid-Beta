@@ -5,38 +5,38 @@ import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import java.util.ArrayList;
 public final class h0 extends AnimatorListenerAdapter {
-    public final int f27512a;
-    public final ArrayList f27513b;
-    public final r0 f27514c;
+    public final int f28627a;
+    public final ArrayList f28628b;
+    public final q0 f28629c;
 
-    public h0(r0 r0Var, ArrayList arrayList, int i7) {
-        this.f27512a = i7;
-        this.f27514c = r0Var;
-        this.f27513b = arrayList;
+    public h0(q0 q0Var, ArrayList arrayList, int i7) {
+        this.f28627a = i7;
+        this.f28629c = q0Var;
+        this.f28628b = arrayList;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f27512a) {
+        switch (this.f28627a) {
             case 0:
-                r0 r0Var = this.f27514c;
-                r0Var.F.setAlpha(0.0f);
+                q0 q0Var = this.f28629c;
+                q0Var.G.setAlpha(0.0f);
                 int i7 = 0;
                 while (true) {
-                    ArrayList arrayList = this.f27513b;
+                    ArrayList arrayList = this.f28628b;
                     if (i7 < arrayList.size()) {
                         ((View) arrayList.get(i7)).setAlpha(1.0f);
                         i7++;
                     } else {
-                        r0Var.F.setVisibility(8);
+                        q0Var.G.setVisibility(8);
                         return;
                     }
                 }
             default:
-                this.f27514c.F.setAlpha(1.0f);
+                this.f28629c.G.setAlpha(1.0f);
                 int i10 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f27513b;
+                    ArrayList arrayList2 = this.f28628b;
                     if (i10 < arrayList2.size()) {
                         ((View) arrayList2.get(i10)).setAlpha(0.0f);
                         i10++;

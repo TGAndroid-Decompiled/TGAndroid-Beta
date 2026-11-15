@@ -1,10 +1,10 @@
 package y2;
 public interface m {
-    public static final pb.b C = new pb.b(28);
+    public static final sa.d C = new sa.d(28);
 
-    long E();
+    long S0();
+
+    long k0();
 
     boolean next();
-
-    long w();
 }

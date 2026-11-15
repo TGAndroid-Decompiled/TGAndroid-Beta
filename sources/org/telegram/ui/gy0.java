@@ -1,89 +1,33 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-public final class gy0 implements Runnable {
-    public final int f46178a;
-    public final cn f46179b;
-    public final Activity f46180c;
-    public final org.telegram.ui.ActionBar.h6 d;
-    public final org.telegram.messenger.ij f46181e;
+import android.content.Context;
+public final class gy0 implements hy0 {
+    public final org.telegram.messenger.video.a f47551a;
+    public final org.telegram.ui.Components.cc f47552b;
+    public final Context f47553c;
+    public final fi.i0 d;
+    public final org.telegram.messenger.video.d f47554e;
 
-    public gy0(cn cnVar, Activity activity, org.telegram.ui.ActionBar.h6 h6Var, org.telegram.messenger.ij ijVar, int i7) {
-        this.f46178a = i7;
-        this.f46179b = cnVar;
-        this.f46180c = activity;
-        this.d = h6Var;
-        this.f46181e = ijVar;
+    public gy0(org.telegram.messenger.video.a aVar, org.telegram.ui.Components.cc ccVar, Context context, fi.i0 i0Var, org.telegram.messenger.video.d dVar) {
+        this.f47551a = aVar;
+        this.f47552b = ccVar;
+        this.f47553c = context;
+        this.d = i0Var;
+        this.f47554e = dVar;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f46178a;
-        org.telegram.messenger.ij ijVar = this.f46181e;
-        org.telegram.ui.ActionBar.h6 h6Var = this.d;
-        final Activity activity = this.f46180c;
-        cn cnVar = this.f46179b;
-        switch (i7) {
-            case 0:
-                org.telegram.ui.Components.gc.a0(cnVar).c(org.telegram.messenger.g0.S2(org.telegram.messenger.id.M0(2131754487, null), -1, 2, new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r2) {
-                            case 0:
-                                vf.c.t(activity, "https://promote.telegram.org/guidelines");
-                                return;
-                            case 1:
-                                vf.c.t(activity, "https://promote.telegram.org/guidelines");
-                                return;
-                            default:
-                                vf.c.t(activity, "https://promote.telegram.org/guidelines");
-                                return;
-                        }
-                    }
-                }, h6Var)).j();
-                cnVar.hb(ijVar);
-                cnVar.jb(ijVar);
-                return;
-            case 1:
-                org.telegram.ui.Components.gc.a0(cnVar).c(org.telegram.messenger.g0.S2(org.telegram.messenger.id.M0(2131754487, null), -1, 2, new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r2) {
-                            case 0:
-                                vf.c.t(activity, "https://promote.telegram.org/guidelines");
-                                return;
-                            case 1:
-                                vf.c.t(activity, "https://promote.telegram.org/guidelines");
-                                return;
-                            default:
-                                vf.c.t(activity, "https://promote.telegram.org/guidelines");
-                                return;
-                        }
-                    }
-                }, h6Var)).j();
-                cnVar.hb(ijVar);
-                cnVar.jb(ijVar);
-                return;
-            default:
-                org.telegram.ui.Components.gc.a0(cnVar).c(org.telegram.messenger.g0.S2(org.telegram.messenger.id.M0(2131754487, null), -1, 2, new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r2) {
-                            case 0:
-                                vf.c.t(activity, "https://promote.telegram.org/guidelines");
-                                return;
-                            case 1:
-                                vf.c.t(activity, "https://promote.telegram.org/guidelines");
-                                return;
-                            default:
-                                vf.c.t(activity, "https://promote.telegram.org/guidelines");
-                                return;
-                        }
-                    }
-                }, h6Var)).j();
-                cnVar.hb(ijVar);
-                cnVar.jb(ijVar);
-                return;
-        }
+    public final void a() {
+        org.telegram.messenger.g0.i3(new dy0(this.f47551a, this.f47552b, this.f47553c, this.d, 2), 200L);
+    }
+
+    @Override
+    public final void d() {
+        org.telegram.messenger.g0.i3(new fy0(0, this.f47551a, this.f47552b), 200L);
+    }
+
+    @Override
+    public final void g() {
+        this.f47554e.run();
     }
 }

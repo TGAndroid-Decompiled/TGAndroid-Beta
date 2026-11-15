@@ -1,7 +1,7 @@
 package vc;
 
 import c8.od;
-import g9.l;
+import f5.g;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -13,12 +13,10 @@ import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.telegram.ui.Cells.f1;
-import tc.g;
 public abstract class b {
-    public static final c f57326a = new c();
+    public static final c f58799a = new c();
 
-    public static HttpURLConnection a(String str, l lVar) {
+    public static HttpURLConnection a(String str, g gVar) {
         Throwable th2;
         OutputStream outputStream;
         HttpURLConnection httpURLConnection = (HttpURLConnection) new URL("https://api.stripe.com/v1/tokens").openConnection();
@@ -29,7 +27,7 @@ public abstract class b {
         hashMap.put("Accept-Charset", "UTF-8");
         hashMap.put("Accept", "application/json");
         hashMap.put("User-Agent", "Stripe/v1 JavaBindings/3.5.0");
-        String str2 = lVar.f13593a;
+        String str2 = gVar.f10981a;
         hashMap.put("Authorization", "Bearer " + str2);
         String[] strArr = {"os.name", "os.version", "os.arch", "java.version", "java.vendor", "java.vm.version", "java.vm.vendor"};
         HashMap hashMap2 = new HashMap();
@@ -45,7 +43,7 @@ public abstract class b {
             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
         if (httpURLConnection instanceof HttpsURLConnection) {
-            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f57326a);
+            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f58799a);
         }
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setRequestMethod("POST");
@@ -77,8 +75,8 @@ public abstract class b {
             if (sb2.length() > 0) {
                 sb2.append("&");
             }
-            String str = aVar.f57324a;
-            String str2 = aVar.f57325b;
+            String str = aVar.f58797a;
+            String str2 = aVar.f58798b;
             if (str == null) {
                 encode = null;
             } else {
@@ -94,8 +92,8 @@ public abstract class b {
         return sb2.toString();
     }
 
-    public static org.telegram.ui.ly0 c(java.util.HashMap r7, g9.l r8) {
-        throw new UnsupportedOperationException("Method not decompiled: vc.b.c(java.util.HashMap, g9.l):org.telegram.ui.ly0");
+    public static org.telegram.ui.ld0 c(java.util.HashMap r7, f5.g r8) {
+        throw new UnsupportedOperationException("Method not decompiled: vc.b.c(java.util.HashMap, f5.g):org.telegram.ui.ld0");
     }
 
     public static LinkedList d(String str, Map map) {
@@ -120,13 +118,13 @@ public abstract class b {
         if (obj instanceof List) {
             List<Object> list = (List) obj;
             LinkedList linkedList = new LinkedList();
-            String r10 = rf.b.r(str, "[]");
+            String v = r.b.v(str, "[]");
             if (list.isEmpty()) {
                 linkedList.add(new a(str, ""));
                 return linkedList;
             }
             for (Object obj2 : list) {
-                linkedList.addAll(e(obj2, r10));
+                linkedList.addAll(e(obj2, v));
             }
             return linkedList;
         } else if (!"".equals(obj)) {
@@ -139,12 +137,12 @@ public abstract class b {
             linkedList3.add(new a(str, obj.toString()));
             return linkedList3;
         } else {
-            throw new g(f1.m("You cannot set '", str, "' to an empty string. We interpret empty strings as null in requests. You may set '", str, "' to null to delete the property."), null, null);
+            throw new tc.g(r.b.l("You cannot set '", str, "' to an empty string. We interpret empty strings as null in requests. You may set '", str, "' to null to delete the property."), null, null);
         }
     }
 
-    public static a8.wa f(java.util.HashMap r7, g9.l r8) {
-        throw new UnsupportedOperationException("Method not decompiled: vc.b.f(java.util.HashMap, g9.l):a8.wa");
+    public static a8.xa f(java.util.HashMap r7, f5.g r8) {
+        throw new UnsupportedOperationException("Method not decompiled: vc.b.f(java.util.HashMap, f5.g):a8.xa");
     }
 
     public static void g(int i7, String str, String str2) {
@@ -163,19 +161,19 @@ public abstract class b {
         if (i7 != 429) {
             switch (i7) {
                 case 400:
-                    throw new g(str3, str2, null);
+                    throw new tc.g(str3, str2, null);
                 case 401:
-                    throw new g(str3, str2);
+                    throw new tc.g(str3, str2);
                 case 402:
-                    throw new g(str3, str2, null);
+                    throw new tc.g(str3, str2, null);
                 case 403:
-                    throw new g(str3, str2);
+                    throw new tc.g(str3, str2);
                 case 404:
-                    throw new g(str3, str2, null);
+                    throw new tc.g(str3, str2, null);
                 default:
-                    throw new g(str3, str2, null);
+                    throw new tc.g(str3, str2, null);
             }
         }
-        throw new g(str3, str2, null);
+        throw new tc.g(str3, str2, null);
     }
 }

@@ -1,13 +1,37 @@
 package org.telegram.ui.Components;
-public final class w extends v4.k {
-    public final z F;
 
-    public w(z zVar) {
-        this.F = zVar;
+import android.content.Context;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class w extends org.telegram.ui.n11 {
+    public final org.telegram.ui.e11[] f41205f2;
+    public final y f41206g2;
+
+    public w(y yVar, Context context, Integer num, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.e11[] e11VarArr) {
+        super(null, context, true, num, 15, e6Var);
+        this.f41206g2 = yVar;
+        this.f41205f2 = e11VarArr;
     }
 
     @Override
-    public final void P(v4.d1 d1Var) {
-        this.F.f28672b.invalidate();
+    public final boolean F(TL_stars.TL_starGiftUnique tL_starGiftUnique) {
+        if (tL_starGiftUnique != null && di.v8.y(this.f41206g2.f29679a, false).n(tL_starGiftUnique.f28280id) != null && org.telegram.messenger.np.e1().getInt("statusgiftpage", 0) < 2) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final void p(View view, Long l10, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        y yVar = this.f41206g2;
+        yVar.d2 = l10;
+        yVar.f1();
+        yVar.e1();
+        org.telegram.ui.e11 e11Var = this.f41205f2[0];
+        if (e11Var != null) {
+            yVar.f41821e2 = null;
+            e11Var.dismiss();
+        }
     }
 }

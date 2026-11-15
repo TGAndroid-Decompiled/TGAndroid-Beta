@@ -12,62 +12,62 @@ import org.telegram.tgnet.RequestTimeDelegate;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.WriteToSocketDelegate;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.cb1;
-public final class j1 implements ResultCallback, WriteToSocketDelegate, OnTokenCanceledListener, OnSuccessListener, OnFailureListener, fi.c7, lc, RequestTimeDelegate, im0, org.telegram.ui.ActionBar.r1 {
-    public final int f23468a;
-    public final Object f23469b;
+import org.telegram.ui.Components.mm0;
+import org.telegram.ui.xa1;
+public final class j1 implements ResultCallback, WriteToSocketDelegate, OnTokenCanceledListener, OnSuccessListener, OnFailureListener, hi.b7, kc, RequestTimeDelegate, mm0, org.telegram.ui.ActionBar.q1 {
+    public final int f24499a;
+    public final Object f24500b;
 
     public j1(Object obj, int i7) {
-        this.f23468a = i7;
-        this.f23469b = obj;
+        this.f24499a = i7;
+        this.f24500b = obj;
     }
 
     @Override
-    public void a(float f10) {
-        ij ijVar = ((du) this.f23469b).W;
-        if (ijVar == null) {
+    public void I(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
+        MusicPlayerService musicPlayerService = (MusicPlayerService) this.f24500b;
+        if (z10) {
+            if (!TextUtils.isEmpty(musicPlayerService.f22397n)) {
+                gj gjVar = MediaController.B().f22377v0;
+                if (gjVar != null) {
+                    musicPlayerService.a(gjVar, true);
+                }
+                musicPlayerService.f22397n = null;
+                return;
+            }
             return;
         }
-        ijVar.f23226b0 = f10;
-        MediaController.B().i0(ijVar, f10);
+        boolean z13 = MusicPlayerService.f22390s;
     }
 
     @Override
-    public Bitmap c(BitmapFactory.Options options) {
-        gf gfVar = (gf) this.f23469b;
-        String str = gfVar.f26854i;
+    public Bitmap d(BitmapFactory.Options options) {
+        ff ffVar = (ff) this.f24500b;
+        String str = ffVar.f27713i;
         if (str == null) {
-            str = gfVar.I;
+            str = ffVar.I;
         }
         return BitmapFactory.decodeFile(str, options);
     }
 
     @Override
-    public void f0(ImageReceiver imageReceiver, boolean z9, boolean z10, boolean z11) {
-        MusicPlayerService musicPlayerService = (MusicPlayerService) this.f23469b;
-        if (z9) {
-            if (!TextUtils.isEmpty(musicPlayerService.f21322r)) {
-                ij ijVar = MediaController.B().f21300u0;
-                if (ijVar != null) {
-                    musicPlayerService.a(ijVar, true);
-                }
-                musicPlayerService.f21322r = null;
-                return;
-            }
+    public void e(float f10) {
+        gj gjVar = ((au) this.f24500b).X;
+        if (gjVar == null) {
             return;
         }
-        boolean z12 = MusicPlayerService.f21315w;
+        gjVar.f23777b0 = f10;
+        MediaController.B().i0(gjVar, f10);
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        ((org.telegram.ui.cn) this.f23469b).presentFragment(new cb1(6, null));
+    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        ((org.telegram.ui.an) this.f24500b).presentFragment(new xa1(6, null));
     }
 
     @Override
     public void onCanceled() {
-        Runnable runnable = ((Runnable[]) this.f23469b)[0];
+        Runnable runnable = ((Runnable[]) this.f24500b)[0];
         if (runnable != null) {
             runnable.run();
         }
@@ -75,25 +75,25 @@ public final class j1 implements ResultCallback, WriteToSocketDelegate, OnTokenC
 
     @Override
     public void onComplete(Object obj) {
-        switch (this.f23468a) {
+        switch (this.f24499a) {
             case 1:
-                d4 d4Var = (d4) this.f23469b;
+                d4 d4Var = (d4) this.f24500b;
                 Pair pair = (Pair) obj;
                 if (pair != null) {
-                    d4Var.f21983a.put((Long) pair.first, (Bitmap) pair.second);
+                    d4Var.f23024a.put((Long) pair.first, (Bitmap) pair.second);
                     return;
                 } else {
                     d4Var.getClass();
                     return;
                 }
             default:
-                org.telegram.ui.ActionBar.q3 q3Var = (org.telegram.ui.ActionBar.q3) this.f23469b;
+                org.telegram.ui.ActionBar.n3 n3Var = (org.telegram.ui.ActionBar.n3) this.f24500b;
                 Bitmap bitmap = (Bitmap) obj;
                 if (bitmap != null) {
-                    q3Var.a(new gg.a(bitmap, 0, null));
+                    n3Var.a(new gg.a(bitmap, 0, null));
                     return;
                 } else {
-                    q3Var.a(null);
+                    n3Var.a(null);
                     return;
                 }
         }
@@ -101,45 +101,45 @@ public final class j1 implements ResultCallback, WriteToSocketDelegate, OnTokenC
 
     @Override
     public void onError(Throwable th2) {
-        int i7 = this.f23468a;
+        int i7 = this.f24499a;
         org.telegram.tgnet.k.a(this, th2);
     }
 
     @Override
     public void onFailure(Exception exc) {
-        ((oc) this.f23469b).r(exc);
+        ((nc) this.f24500b).r(exc);
     }
 
     @Override
     public void onSuccess(Object obj) {
-        ((pc) this.f23469b).a((String) obj);
+        ((oc) this.f24500b).a((String) obj);
     }
 
     @Override
     public void run(long j3) {
-        g0.h3(new pd((hz) this.f23469b, j3, 1));
+        g0.h3(new od((fz) this.f24500b, j3, 1));
     }
 
     @Override
     public void onError(TLRPC.TL_error tL_error) {
-        int i7 = this.f23468a;
+        int i7 = this.f24499a;
         org.telegram.tgnet.k.b(this, tL_error);
     }
 
     @Override
     public void run() {
-        Utilities.d.c(new u8((y8) this.f23469b, 3));
+        Utilities.d.c(new u8((y8) this.f24500b, 3));
     }
 
     @Override
-    public void O(ImageReceiver imageReceiver) {
+    public void A(ImageReceiver imageReceiver) {
     }
 
     @Override
-    public void d(float f10) {
+    public void g(float f10) {
     }
 
     @Override
-    public void t0(int i7, Drawable drawable) {
+    public void O(int i7, Drawable drawable) {
     }
 }

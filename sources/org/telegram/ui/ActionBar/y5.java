@@ -1,191 +1,121 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.aj;
-import org.telegram.messenger.ij;
-import org.telegram.messenger.iz;
-public final class y5 extends Drawable {
-    public final int f28795a;
-    public final Paint f28796b;
-    public final RectF f28797c;
-    public final int d;
-    public final Object f28798e;
-    public final View f28799f;
+import android.graphics.drawable.RippleDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
+import android.graphics.drawable.shapes.RoundRectShape;
+import android.util.StateSet;
+public abstract class y5 {
+    public static final int f29895a = j6.f28849d6;
+    public static float[] f29896b;
 
-    public y5(View view, View view2, int i7, Paint paint) {
-        this.f28795a = 0;
-        this.f28798e = view;
-        this.f28799f = view2;
-        this.d = i7;
-        this.f28796b = paint;
-        this.f28797c = new RectF();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f28795a) {
-            case 0:
-                Rect bounds = getBounds();
-                RectF rectF = this.f28797c;
-                rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-                m6.t((View) this.f28798e, this.f28799f, null);
-                float f10 = this.d;
-                Paint paint = this.f28796b;
-                if (paint == null) {
-                    paint = m6.V0("paintChatActionBackground");
-                }
-                canvas.drawRoundRect(rectF, f10, f10, paint);
-                if (m6.d1()) {
-                    canvas.drawRoundRect(rectF, f10, f10, m6.V0("paintChatActionBackgroundDarken"));
-                    return;
-                }
-                return;
-            default:
-                e();
-                canvas.drawPath((Path) this.f28798e, this.f28796b);
-                return;
+    public static float[] a(float... fArr) {
+        if (fArr.length == 0) {
+            return new float[]{0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
         }
+        return fArr.length == 1 ? new float[]{org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0])} : fArr.length == 2 ? new float[]{org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[1]), org.telegram.messenger.g0.L(fArr[1]), org.telegram.messenger.g0.L(fArr[1]), org.telegram.messenger.g0.L(fArr[1])} : fArr.length == 3 ? new float[]{org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[1]), org.telegram.messenger.g0.L(fArr[1]), org.telegram.messenger.g0.L(fArr[2]), org.telegram.messenger.g0.L(fArr[2]), org.telegram.messenger.g0.L(fArr[2]), org.telegram.messenger.g0.L(fArr[2])} : fArr.length < 8 ? new float[]{org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[1]), org.telegram.messenger.g0.L(fArr[1]), org.telegram.messenger.g0.L(fArr[2]), org.telegram.messenger.g0.L(fArr[2]), org.telegram.messenger.g0.L(fArr[3]), org.telegram.messenger.g0.L(fArr[3])} : new float[]{org.telegram.messenger.g0.L(fArr[0]), org.telegram.messenger.g0.L(fArr[1]), org.telegram.messenger.g0.L(fArr[2]), org.telegram.messenger.g0.L(fArr[3]), org.telegram.messenger.g0.L(fArr[4]), org.telegram.messenger.g0.L(fArr[5]), org.telegram.messenger.g0.L(fArr[6]), org.telegram.messenger.g0.L(fArr[7])};
     }
 
-    public void e() {
+    public static int b(int i7) {
         float f10;
-        boolean z9;
-        aj ajVar;
-        org.telegram.ui.Cells.w1 w1Var;
-        int i7;
-        int i10;
-        Rect bounds = getBounds();
-        RectF rectF = this.f28797c;
-        rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-        Path path = (Path) this.f28798e;
-        path.rewind();
-        org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) this.f28799f;
-        int[] iArr = q1Var.K2;
-        int i11 = this.d;
-        int i12 = iArr[i11];
-        if (i12 != 3 && i12 != 4) {
-            float f11 = 0.0f;
-            if (i12 == 2) {
-                ij ijVar = q1Var.P5;
-                if (ijVar != null && ijVar.P3()) {
-                    z9 = true;
-                } else {
-                    z9 = false;
-                }
-                for (int i13 = 0; i13 < 4; i13++) {
-                    if (!q1Var.D2) {
-                        if (z9) {
-                            i7 = 3;
-                        } else {
-                            i7 = 2;
-                        }
-                        if (i13 == i7) {
-                            float[] fArr = org.telegram.ui.Cells.q1.f29781id;
-                            int i14 = i13 * 2;
-                            float L = org.telegram.messenger.g0.L(iz.Y0);
-                            fArr[i14 + 1] = L;
-                            fArr[i14] = L;
-                        } else if (((q1Var.B6 && q1Var.L == null) || q1Var.F) && (i13 == 2 || i13 == 3)) {
-                            float[] fArr2 = org.telegram.ui.Cells.q1.f29781id;
-                            int i15 = i13 * 2;
-                            int i16 = i15 + 1;
-                            if (q1Var.F) {
-                                i10 = Math.min(5, iz.Y0);
-                            } else {
-                                i10 = iz.Y0;
-                            }
-                            float L2 = org.telegram.messenger.g0.L(i10);
-                            fArr2[i16] = L2;
-                            fArr2[i15] = L2;
-                        }
-                    }
-                    float[] fArr3 = org.telegram.ui.Cells.q1.f29781id;
-                    int i17 = i13 * 2;
-                    fArr3[i17 + 1] = 0.0f;
-                    fArr3[i17] = 0.0f;
-                }
-                if (!z9 && !q1Var.J && (ajVar = q1Var.L) == null && (ajVar == null || ((w1Var = q1Var.f30066w2) != null && w1Var.f30716b))) {
-                    path.moveTo(rectF.left + org.telegram.messenger.g0.L(6.0f), rectF.top);
-                    path.lineTo(rectF.left + org.telegram.messenger.g0.L(6.0f), (rectF.bottom - org.telegram.messenger.g0.L(6.0f)) - org.telegram.messenger.g0.L(5.0f));
-                    RectF rectF2 = org.telegram.messenger.g0.P;
-                    rectF2.set(rectF.left + org.telegram.messenger.g0.L(-7.0f), rectF.bottom - org.telegram.messenger.g0.L(23.0f), rectF.left + org.telegram.messenger.g0.L(6.0f), rectF.bottom);
-                    path.arcTo(rectF2, 0.0f, 83.0f, false);
-                    float f12 = rectF.right;
-                    float[] fArr4 = org.telegram.ui.Cells.q1.f29781id;
-                    float f13 = rectF.bottom;
-                    rectF2.set(f12 - (fArr4[4] * 2.0f), f13 - (fArr4[5] * 2.0f), f12, f13);
-                    path.arcTo(rectF2, 90.0f, -90.0f, false);
-                    path.lineTo(rectF.right, rectF.top);
-                    path.close();
-                } else {
-                    path.addRoundRect(rectF, org.telegram.ui.Cells.q1.f29781id, Path.Direction.CW);
-                }
-                path.close();
-                return;
-            }
-            if (i12 == 0) {
-                f11 = org.telegram.messenger.g0.L(6.0f);
-            }
-            path.addRoundRect(rectF, f11, f11, Path.Direction.CW);
-            return;
+        float f11;
+        float f12;
+        if (f29896b == null) {
+            f29896b = new float[3];
         }
-        float centerX = rectF.centerX();
-        float centerY = rectF.centerY();
-        if (iArr[i11] == 3) {
-            f10 = 16.0f;
+        Color.colorToHSV(i7, f29896b);
+        float[] fArr = f29896b;
+        float f13 = fArr[1];
+        if (f13 > 0.01f) {
+            if (j6.I.q()) {
+                f11 = 0.25f;
+            } else {
+                f11 = -0.25f;
+            }
+            fArr[1] = Math.min(1.0f, Math.max(0.0f, f13 + f11));
+            float[] fArr2 = f29896b;
+            float f14 = fArr2[2];
+            if (j6.I.q()) {
+                f12 = 0.05f;
+            } else {
+                f12 = -0.05f;
+            }
+            fArr2[2] = Math.min(1.0f, Math.max(0.0f, f14 + f12));
         } else {
-            f10 = 20.0f;
+            float f15 = fArr[2];
+            if (j6.I.q()) {
+                f10 = 0.1f;
+            } else {
+                f10 = -0.1f;
+            }
+            fArr[2] = Math.min(1.0f, Math.max(0.0f, f15 + f10));
         }
-        path.addCircle(centerX, centerY, org.telegram.messenger.g0.L(f10), Path.Direction.CW);
+        return Color.HSVToColor(127, f29896b);
     }
 
-    @Override
-    public final int getOpacity() {
-        switch (this.f28795a) {
-            case 0:
-                return -2;
-            default:
-                return -2;
+    public static org.telegram.ui.Cells.y c(x5 x5Var, int i7) {
+        ColorStateList colorStateList = new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i7});
+        ?? drawable = new Drawable();
+        drawable.f29874b = -1.0f;
+        if (x5.f29872c == null) {
+            Paint paint = new Paint(1);
+            x5.f29872c = paint;
+            paint.setColor(-1);
         }
+        drawable.f29873a = x5.f29872c;
+        return new RippleDrawable(colorStateList, x5Var, drawable);
     }
 
-    @Override
-    public final void setAlpha(int i7) {
-        int i10 = this.f28795a;
+    public static org.telegram.ui.Cells.y d(int i7, int i10, float... fArr) {
+        ShapeDrawable shapeDrawable;
+        ShapeDrawable shapeDrawable2;
+        if (i7 != 0) {
+            int i11 = 0;
+            while (true) {
+                if (i11 < Math.min(8, fArr.length)) {
+                    if (fArr[i11] > 0.0f) {
+                        ShapeDrawable shapeDrawable3 = new ShapeDrawable(new RoundRectShape(a(fArr), null, null));
+                        shapeDrawable3.getPaint().setColor(i7);
+                        shapeDrawable = shapeDrawable3;
+                        break;
+                    }
+                    i11++;
+                } else {
+                    shapeDrawable = new ColorDrawable(i7);
+                    break;
+                }
+            }
+        } else {
+            shapeDrawable = null;
+        }
+        int i12 = 0;
+        while (true) {
+            if (i12 < Math.min(8, fArr.length)) {
+                if (fArr[i12] > 0.0f) {
+                    shapeDrawable2 = new ShapeDrawable(new RoundRectShape(a(fArr), null, null));
+                    shapeDrawable2.getPaint().setColor(-1);
+                    break;
+                }
+                i12++;
+            } else {
+                shapeDrawable2 = new ShapeDrawable(new RectShape());
+                shapeDrawable2.getPaint().setColor(-1);
+                break;
+            }
+        }
+        return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i10}), shapeDrawable, shapeDrawable2);
     }
 
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        int i7 = this.f28795a;
+    public static org.telegram.ui.Cells.y e(int i7, float... fArr) {
+        return d(i7, b(i7), fArr);
     }
 
-    public y5(org.telegram.ui.Cells.q1 q1Var, int i7) {
-        this.f28795a = 1;
-        this.f28799f = q1Var;
-        this.d = i7;
-        Paint paint = new Paint(1);
-        this.f28796b = paint;
-        paint.setColor(-1);
-        this.f28797c = new RectF();
-        this.f28798e = new Path();
-    }
-
-    private final void a(int i7) {
-    }
-
-    private final void b(int i7) {
-    }
-
-    private final void c(ColorFilter colorFilter) {
-    }
-
-    private final void d(ColorFilter colorFilter) {
+    public static org.telegram.ui.Cells.y f(int i7, float... fArr) {
+        return e(j6.x0(null, i7, false), fArr);
     }
 }

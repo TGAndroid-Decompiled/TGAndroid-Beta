@@ -1,11 +1,11 @@
 package rc;
 
-import com.google.android.gms.internal.clearcut.z0;
+import com.google.android.gms.internal.clearcut.y0;
 public final class n extends v {
-    public final z0 f54474b;
+    public final y0 f55946b;
 
-    public n(int i7, String str, z0 z0Var) {
+    public n(int i7, String str, y0 y0Var) {
         super(i7, str);
-        this.f54474b = z0Var;
+        this.f55946b = y0Var;
     }
 }

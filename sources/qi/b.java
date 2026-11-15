@@ -1,18 +1,25 @@
 package qi;
 public final class b {
-    public static final b f54166c = new b(Float.POSITIVE_INFINITY);
-    public final float f54167a;
-    public final float f54168b;
+    public final String f55598a;
+    public final String f55599b;
 
-    public b(float f10) {
-        if (!Float.isNaN(Float.POSITIVE_INFINITY)) {
-            if (!Float.isNaN(f10) && f10 >= 0.0f) {
-                this.f54167a = Float.POSITIVE_INFINITY;
-                this.f54168b = f10;
-                return;
-            }
-            throw new IllegalArgumentException("epsY must be >= 0");
+    public b(String str, String str2) {
+        this.f55598a = str;
+        this.f55599b = str2;
+    }
+
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof b)) {
+            return false;
         }
-        throw new IllegalArgumentException("epsX must be >= 0");
+        b bVar = (b) obj;
+        if (!this.f55598a.equals(bVar.f55598a) || !this.f55599b.equals(bVar.f55599b)) {
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return this.f55599b.hashCode() + (this.f55598a.hashCode() * 31);
     }
 }

@@ -24,28 +24,28 @@ public abstract class p0 {
         return new File(str).exists();
     }
 
-    public static int C(int i7, int i10, int i11) {
+    public static float C(float f10, float f11, float f12, float f13) {
+        return Math.max(f13, Math.min(f12, f10 / f11));
+    }
+
+    public static int D(int i7, int i10, int i11) {
         return com.google.android.gms.internal.vision.r0.T(i7) + i10 + i11;
     }
 
-    public static String D(String str, String str2, String str3) {
+    public static String E(String str, String str2, String str3) {
         return str + str2 + str3;
-    }
-
-    public static int E(int i7, int i10, int i11) {
-        return (com.google.android.gms.internal.vision.r0.y(i7) * i10) + i11;
     }
 
     public static c4.b a(c4.m mVar, byte[] bArr, int i7) {
         h9.f0 p10 = h9.i0.p();
-        mVar.z(bArr, 0, i7, c4.l.f5293c, new a1.c(p10, 22));
+        mVar.K(bArr, 0, i7, c4.l.f4112c, new a1.c(p10, 17));
         return new c4.b(p10.f());
     }
 
     public static final void b(int i7, View view, ViewGroup container) {
         kotlin.jvm.internal.j.e(view, "view");
         kotlin.jvm.internal.j.e(container, "container");
-        if (androidx.fragment.app.i0.K(2)) {
+        if (androidx.fragment.app.j0.K(2)) {
             Log.v("FragmentManager", "SpecialEffectsController: Calling apply state");
         }
         int c10 = p1.g.c(i7);
@@ -54,7 +54,7 @@ public abstract class p0 {
             if (c10 != 1) {
                 if (c10 != 2) {
                     if (c10 == 3) {
-                        if (androidx.fragment.app.i0.K(2)) {
+                        if (androidx.fragment.app.j0.K(2)) {
                             Log.v("FragmentManager", "SpecialEffectsController: Setting view " + view + " to INVISIBLE");
                         }
                         view.setVisibility(4);
@@ -62,13 +62,13 @@ public abstract class p0 {
                     }
                     return;
                 }
-                if (androidx.fragment.app.i0.K(2)) {
+                if (androidx.fragment.app.j0.K(2)) {
                     Log.v("FragmentManager", "SpecialEffectsController: Setting view " + view + " to GONE");
                 }
                 view.setVisibility(8);
                 return;
             }
-            if (androidx.fragment.app.i0.K(2)) {
+            if (androidx.fragment.app.j0.K(2)) {
                 Log.v("FragmentManager", "SpecialEffectsController: Setting view " + view + " to VISIBLE");
             }
             ViewParent parent = view.getParent();
@@ -76,7 +76,7 @@ public abstract class p0 {
                 viewGroup = (ViewGroup) parent;
             }
             if (viewGroup == null) {
-                if (androidx.fragment.app.i0.K(2)) {
+                if (androidx.fragment.app.j0.K(2)) {
                     Log.v("FragmentManager", "SpecialEffectsController: Adding view " + view + " to Container " + container);
                 }
                 container.addView(view);
@@ -89,7 +89,7 @@ public abstract class p0 {
             viewGroup = (ViewGroup) parent2;
         }
         if (viewGroup != null) {
-            if (androidx.fragment.app.i0.K(2)) {
+            if (androidx.fragment.app.j0.K(2)) {
                 Log.v("FragmentManager", "SpecialEffectsController: Removing view " + view + " from container " + viewGroup);
             }
             viewGroup.removeView(view);
@@ -694,8 +694,8 @@ public abstract class p0 {
         return com.google.android.gms.internal.cast.v4.o(i7) + i10 + i11;
     }
 
-    public static int h(int i7, int i10, int i11, int i12) {
-        return com.google.android.gms.internal.vision.r0.T(i7) + i10 + i11 + i12;
+    public static int h(Float f10, float f11) {
+        return org.telegram.messenger.g0.L(f10.floatValue() * f11);
     }
 
     public static j0 i(HashMap hashMap, int i7) {
@@ -709,9 +709,9 @@ public abstract class p0 {
         return bundle;
     }
 
-    public static Bundle k(String str, boolean z9) {
+    public static Bundle k(String str, boolean z10) {
         Bundle bundle = new Bundle();
-        bundle.putBoolean(str, z9);
+        bundle.putBoolean(str, z10);
         return bundle;
     }
 
@@ -785,18 +785,18 @@ public abstract class p0 {
         return hashMap;
     }
 
-    public static na.c y(int i7, m4.d0 d0Var) {
+    public static na.c y(int i7, ji.j jVar) {
         Map unmodifiableMap;
         c8.s sVar = new c8.s(i7);
-        if (((HashMap) d0Var.f19617b) == null) {
-            d0Var.f19617b = new HashMap();
+        if (((HashMap) jVar.f17556c) == null) {
+            jVar.f17556c = new HashMap();
         }
-        ((HashMap) d0Var.f19617b).put(c8.w.class, sVar);
-        String str = (String) d0Var.f19616a;
-        if (((HashMap) d0Var.f19617b) == null) {
+        ((HashMap) jVar.f17556c).put(c8.w.class, sVar);
+        String str = (String) jVar.f17555b;
+        if (((HashMap) jVar.f17556c) == null) {
             unmodifiableMap = Collections.EMPTY_MAP;
         } else {
-            unmodifiableMap = DesugarCollections.unmodifiableMap(new HashMap((HashMap) d0Var.f19617b));
+            unmodifiableMap = DesugarCollections.unmodifiableMap(new HashMap((HashMap) jVar.f17556c));
         }
         return new na.c(str, unmodifiableMap);
     }

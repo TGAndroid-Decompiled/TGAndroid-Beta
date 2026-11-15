@@ -1,4 +1,10 @@
 package org.telegram.messenger;
-public abstract class kc {
-    public abstract void a(ImageReceiver imageReceiver);
+
+import android.graphics.drawable.Drawable;
+public interface kc {
+    void A(ImageReceiver imageReceiver);
+
+    void I(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12);
+
+    void O(int i7, Drawable drawable);
 }

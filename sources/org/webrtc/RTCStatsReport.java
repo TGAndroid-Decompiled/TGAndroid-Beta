@@ -26,13 +26,13 @@ public class RTCStatsReport {
         StringBuilder sb2 = new StringBuilder("{ timestampUs: ");
         sb2.append(this.timestampUs);
         sb2.append(", stats: [\n");
-        boolean z9 = true;
+        boolean z10 = true;
         for (RTCStats rTCStats : this.stats.values()) {
-            if (!z9) {
+            if (!z10) {
                 sb2.append(",\n");
             }
             sb2.append(rTCStats);
-            z9 = false;
+            z10 = false;
         }
         sb2.append(" ] }");
         return sb2.toString();

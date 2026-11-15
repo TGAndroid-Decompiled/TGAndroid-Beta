@@ -1,27 +1,35 @@
 package q2;
 
-import android.os.Build;
-import java.util.UUID;
-public final class r implements k2.b {
-    public static final boolean f53757c;
-    public final UUID f53758a;
-    public final byte[] f53759b;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.telegram.ui.Components.cf;
+public interface r {
+    void A(byte[] bArr, byte[] bArr2);
 
-    static {
-        boolean z9;
-        if ("Amazon".equals(Build.MANUFACTURER)) {
-            String str = Build.MODEL;
-            if ("AFTM".equals(str) || "AFTB".equals(str)) {
-                z9 = true;
-                f53757c = z9;
-            }
-        }
-        z9 = false;
-        f53757c = z9;
-    }
+    void C(byte[] bArr);
 
-    public r(UUID uuid, byte[] bArr) {
-        this.f53758a = uuid;
-        this.f53759b = bArr;
-    }
+    byte[] D(byte[] bArr, byte[] bArr2);
+
+    void E(byte[] bArr);
+
+    void I(byte[] bArr, m2.j jVar);
+
+    p L(byte[] bArr, List list, int i7, HashMap hashMap);
+
+    int M();
+
+    boolean Y(String str, byte[] bArr);
+
+    Map a(byte[] bArr);
+
+    void f(cf cfVar);
+
+    q n();
+
+    void release();
+
+    k2.b s(byte[] bArr);
+
+    byte[] v();
 }

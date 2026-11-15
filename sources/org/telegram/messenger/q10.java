@@ -1,113 +1,343 @@
 package org.telegram.messenger;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
+import android.text.TextUtils;
+import java.util.Locale;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-public final class q10 implements Runnable {
-    public final int f24671a;
-    public final Object f24672b;
-    public final Serializable f24673c;
-    public final Object d;
-    public final Object f24674e;
-
-    public q10(Object obj, Serializable serializable, Object obj2, Object obj3, int i7) {
-        this.f24671a = i7;
-        this.f24672b = obj;
-        this.f24673c = serializable;
-        this.d = obj2;
-        this.f24674e = obj3;
+import org.telegram.tgnet.tl.TL_account;
+public abstract class q10 {
+    public static boolean A(long j3) {
+        if (j3 != 333000 && j3 != 777000 && j3 != 42777) {
+            return false;
+        }
+        return true;
     }
 
-    @Override
-    public final void run() {
-        org.telegram.ui.ActionBar.f2 Q;
-        int i7 = this.f24671a;
-        int i10 = 0;
-        Object obj = this.f24674e;
-        Object obj2 = this.d;
-        Serializable serializable = this.f24673c;
-        Object obj3 = this.f24672b;
-        switch (i7) {
-            case 0:
-                s10 s10Var = (s10) obj3;
-                String str = (String) serializable;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                TLObject tLObject = (TLObject) obj;
-                int i11 = s10Var.f25408a;
-                ArrayList arrayList = (ArrayList) s10Var.f25410c.remove(str);
-                if (arrayList != null) {
-                    if (tL_error != null) {
-                        String str2 = tL_error.text;
-                        if (str2 != null && "STARREF_EXPIRED".equals(str2)) {
-                            while (i10 < arrayList.size()) {
-                                ((c20) arrayList.get(i10)).a(Long.MAX_VALUE);
-                                i10++;
-                            }
-                            return;
-                        }
-                        while (i10 < arrayList.size()) {
-                            ((c20) arrayList.get(i10)).a(null);
-                            i10++;
-                        }
-                        String str3 = tL_error.text;
-                        if (str3 != null && str3.contains("FLOOD_WAIT") && (Q = LaunchActivity.Q()) != null) {
-                            k5.p(null, 2131750687, org.telegram.ui.Components.gc.a0(Q), null);
-                            return;
-                        }
-                        return;
-                    }
-                    TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
-                    qp.s1(i11).Y3(tL_contacts_resolvedPeer.users, false);
-                    qp.s1(i11).S3(tL_contacts_resolvedPeer.chats, false);
-                    yr.a0(i11).m1(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
-                    long B1 = ij.B1(tL_contacts_resolvedPeer.peer);
-                    s10Var.f25409b.put(str, new r10(B1));
-                    while (i10 < arrayList.size()) {
-                        ((c20) arrayList.get(i10)).a(Long.valueOf(B1));
-                        i10++;
-                    }
-                    return;
-                }
-                return;
-            default:
-                m10 m10Var = (m10) obj3;
-                HashSet hashSet = (HashSet) obj2;
-                ArrayList arrayList2 = (ArrayList) obj;
-                int i12 = m10Var.f23973a;
-                qp.s1(i12).Y3((ArrayList) serializable, true);
-                ArrayList arrayList3 = m10Var.f23974b;
-                boolean isEmpty = arrayList3.isEmpty();
-                int i13 = 0;
-                while (i13 < arrayList3.size()) {
-                    l10 l10Var = (l10) arrayList3.get(i13);
-                    if (l10Var != null) {
-                        m10 m10Var2 = l10Var.f23836i;
-                        if ((ConnectionsManager.getInstance(m10Var2.f23973a).getCurrentTime() + qp.s1(m10Var2.f23973a).f24852n4) - l10Var.d > 0 && !hashSet.contains(Long.valueOf(l10Var.f23832b))) {
-                            i13++;
-                        }
-                    }
-                    arrayList3.remove(i13);
-                    i13--;
-                    i13++;
-                }
-                arrayList3.addAll(arrayList2);
-                boolean isEmpty2 = arrayList3.isEmpty();
-                m10Var.f23975c = true;
-                m10Var.d = false;
-                if (isEmpty != isEmpty2) {
-                    qs.f(i12).k(199, new Object[0]);
-                }
-                m10Var.e();
-                if (m10Var.f23976e) {
-                    m10Var.f23976e = false;
-                    m10Var.d();
-                    return;
-                }
-                return;
+    public static boolean B(TLRPC.User user) {
+        if (user != null) {
+            if ((user instanceof TLRPC.TL_userSelf_old3) || user.self) {
+                return true;
+            }
+            return false;
         }
+        return false;
+    }
+
+    public static boolean a(TLRPC.UserFull userFull, TL_account.RequirementToContact requirementToContact) {
+        if (requirementToContact instanceof TL_account.requirementToContactEmpty) {
+            if (userFull.contact_require_premium || userFull.send_paid_messages_stars != 0) {
+                userFull.contact_require_premium = false;
+                userFull.flags2 &= -16385;
+                userFull.send_paid_messages_stars = 0L;
+                return true;
+            }
+        } else if (requirementToContact instanceof TL_account.requirementToContactPremium) {
+            if (!userFull.contact_require_premium || userFull.send_paid_messages_stars != 0) {
+                userFull.contact_require_premium = true;
+                userFull.flags2 &= -16385;
+                userFull.send_paid_messages_stars = 0L;
+                return true;
+            }
+        } else if (requirementToContact instanceof TL_account.requirementToContactPaidMessages) {
+            long j3 = ((TL_account.requirementToContactPaidMessages) requirementToContact).stars_amount;
+            if (userFull.contact_require_premium || userFull.send_paid_messages_stars != j3) {
+                userFull.contact_require_premium = false;
+                userFull.flags2 |= 16384;
+                userFull.send_paid_messages_stars = j3;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean b(TLRPC.UserFull userFull) {
+        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
+        if ((userFull != null && userFull.f28201id == m10.i(m10.f24934t0).e()) || userFull == null || (disallowedGiftsSettings = userFull.disallowed_stargifts) == null || !disallowedGiftsSettings.disallow_limited_stargifts || !disallowedGiftsSettings.disallow_unlimited_stargifts || !disallowedGiftsSettings.disallow_unique_stargifts || !disallowedGiftsSettings.disallow_premium_gifts) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean c(TL_account.RequirementToContact requirementToContact, TL_account.RequirementToContact requirementToContact2) {
+        if (requirementToContact instanceof TL_account.requirementToContactEmpty) {
+            requirementToContact = null;
+        }
+        if (requirementToContact2 instanceof TL_account.requirementToContactEmpty) {
+            requirementToContact2 = null;
+        }
+        if (requirementToContact == null && requirementToContact2 == null) {
+            return true;
+        }
+        if (requirementToContact != null && requirementToContact2 != null) {
+            if ((requirementToContact instanceof TL_account.requirementToContactPremium) && (requirementToContact2 instanceof TL_account.requirementToContactPremium)) {
+                return true;
+            }
+            if ((requirementToContact instanceof TL_account.requirementToContactPaidMessages) && (requirementToContact2 instanceof TL_account.requirementToContactPaidMessages) && ((TL_account.requirementToContactPaidMessages) requirementToContact).stars_amount == ((TL_account.requirementToContactPaidMessages) requirementToContact2).stars_amount) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static String d(TLRPC.User user) {
+        String n10 = n(user);
+        if (n10 != null) {
+            String lowerCase = n10.toLowerCase(Locale.ROOT);
+            if (lowerCase.endsWith("agent")) {
+                return hd.M0(2131752944, null);
+            }
+            if (lowerCase.endsWith("game")) {
+                return hd.M0(2131752942, null);
+            }
+            if (lowerCase.endsWith("app")) {
+                return hd.M0(2131752943, null);
+            }
+            if (lowerCase.endsWith("ai")) {
+                return hd.M0(2131752945, null);
+            }
+            if (lowerCase.endsWith("gay")) {
+                return hd.M0(2131752941, null);
+            }
+        }
+        return hd.M0(2131753156, null);
+    }
+
+    public static int e(TLRPC.User user) {
+        if (user == null) {
+            return 0;
+        }
+        TLRPC.PeerColor peerColor = user.color;
+        if ((peerColor instanceof TLRPC.TL_peerColor) && (peerColor.flags & 1) != 0) {
+            return peerColor.color;
+        }
+        return (int) (user.f28200id % 7);
+    }
+
+    public static long f(TLRPC.User user) {
+        if (user != null) {
+            TLRPC.PeerColor peerColor = user.color;
+            if ((peerColor instanceof TLRPC.TL_peerColor) && (peerColor.flags & 2) != 0) {
+                return peerColor.background_emoji_id;
+            }
+            return 0L;
+        }
+        return 0L;
+    }
+
+    public static Long g(TLRPC.EmojiStatus emojiStatus) {
+        if (emojiStatus == null) {
+            return null;
+        }
+        if (emojiStatus instanceof TLRPC.TL_emojiStatus) {
+            TLRPC.TL_emojiStatus tL_emojiStatus = (TLRPC.TL_emojiStatus) emojiStatus;
+            if ((tL_emojiStatus.flags & 1) != 0 && tL_emojiStatus.until <= ((int) (System.currentTimeMillis() / 1000))) {
+                return null;
+            }
+            return Long.valueOf(tL_emojiStatus.document_id);
+        } else if (!(emojiStatus instanceof TLRPC.TL_emojiStatusCollectible)) {
+            return null;
+        } else {
+            TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
+            if ((tL_emojiStatusCollectible.flags & 1) != 0 && tL_emojiStatusCollectible.until <= ((int) (System.currentTimeMillis() / 1000))) {
+                return null;
+            }
+            return Long.valueOf(tL_emojiStatusCollectible.document_id);
+        }
+    }
+
+    public static Long h(TLRPC.User user) {
+        if (user == null) {
+            return null;
+        }
+        return g(user.emoji_status);
+    }
+
+    public static String i(TLRPC.User user) {
+        return j(user, true);
+    }
+
+    public static String j(TLRPC.User user, boolean z10) {
+        if (user != null && !x(user)) {
+            String str = user.first_name;
+            if (TextUtils.isEmpty(str)) {
+                str = user.last_name;
+            } else if (!z10 && str.length() <= 2) {
+                return g5.m(0, user.first_name, user.last_name);
+            }
+            if (!TextUtils.isEmpty(str)) {
+                return str;
+            }
+            return hd.M0(2131749328, null);
+        }
+        return "DELETED";
+    }
+
+    public static String k(TLRPC.User user) {
+        if (user != null && !x(user)) {
+            String str = user.first_name;
+            if (TextUtils.isEmpty(str)) {
+                str = user.last_name;
+            }
+            if (str == null) {
+                return hd.M0(2131749328, null);
+            }
+            int indexOf = str.indexOf(" ", 2);
+            if (indexOf >= 0) {
+                return str.substring(0, indexOf);
+            }
+            return str;
+        }
+        return hd.M0(2131749328, null);
+    }
+
+    public static int l(TLRPC.User user) {
+        if (user == null) {
+            return 0;
+        }
+        TLRPC.PeerColor peerColor = user.profile_color;
+        if ((peerColor instanceof TLRPC.TL_peerColor) && (peerColor.flags & 1) != 0) {
+            return peerColor.color;
+        }
+        return -1;
+    }
+
+    public static long m(TLRPC.User user) {
+        TLRPC.PeerColor peerColor;
+        if (user != null) {
+            TLRPC.EmojiStatus emojiStatus = user.emoji_status;
+            if (emojiStatus instanceof TLRPC.TL_emojiStatusCollectible) {
+                return ((TLRPC.TL_emojiStatusCollectible) emojiStatus).pattern_document_id;
+            }
+        }
+        if (user != null && (peerColor = user.profile_color) != null && (peerColor.flags & 2) != 0) {
+            return peerColor.background_emoji_id;
+        }
+        return 0L;
+    }
+
+    public static String n(TLRPC.User user) {
+        if (user != null) {
+            if (!TextUtils.isEmpty(user.username)) {
+                return user.username;
+            }
+            if (user.usernames != null) {
+                for (int i7 = 0; i7 < user.usernames.size(); i7++) {
+                    TLRPC.TL_username tL_username = user.usernames.get(i7);
+                    if (tL_username != null && ((tL_username.active || tL_username.editable) && !TextUtils.isEmpty(tL_username.username))) {
+                        return tL_username.username;
+                    }
+                }
+                return null;
+            }
+            return null;
+        }
+        return null;
+    }
+
+    public static TL_account.RequirementToContact o(TLRPC.UserFull userFull) {
+        if (userFull.send_paid_messages_stars != 0) {
+            TL_account.requirementToContactPaidMessages requirementtocontactpaidmessages = new TL_account.requirementToContactPaidMessages();
+            requirementtocontactpaidmessages.stars_amount = userFull.send_paid_messages_stars;
+            return requirementtocontactpaidmessages;
+        } else if (userFull.contact_require_premium) {
+            return new TL_account.requirementToContactPremium();
+        } else {
+            return null;
+        }
+    }
+
+    public static String p(TLRPC.User user) {
+        if (user != null && !x(user)) {
+            String F2 = g0.F2(g0.D2(g5.m(0, user.first_name, user.last_name)));
+            if (F2.length() == 0 && !TextUtils.isEmpty(user.phone)) {
+                return k5.h(new StringBuilder("+"), user.phone, pf.b.c());
+            }
+            return F2;
+        }
+        return hd.M0(2131749328, null);
+    }
+
+    public static boolean q(TLRPC.UserFull userFull) {
+        TLRPC.Photo photo;
+        if (userFull != null && (photo = userFull.fallback_photo) != null && !(photo instanceof TLRPC.TL_photoEmpty)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean r(String str, TLRPC.User user) {
+        if (user != null && str != null) {
+            if (str.equalsIgnoreCase(user.username)) {
+                return true;
+            }
+            if (user.usernames != null) {
+                for (int i7 = 0; i7 < user.usernames.size(); i7++) {
+                    TLRPC.TL_username tL_username = user.usernames.get(i7);
+                    if (tL_username != null && tL_username.active && str.equalsIgnoreCase(tL_username.username)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean s(TLRPC.User user) {
+        if (user != null && user.f28200id == 2666000) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean t(TLRPC.User user) {
+        if (user != null && user.bot) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean u(TLRPC.User user) {
+        if (user != null && user.bot_forum_view) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean v(TLRPC.User user) {
+        if (user != null && user.bot_forum_view && user.bot_forum_can_manage_topics) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean w(TLRPC.User user) {
+        if (!(user instanceof TLRPC.TL_userContact_old2) && !user.contact && !user.mutual_contact) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean x(TLRPC.User user) {
+        if (user != null && !(user instanceof TLRPC.TL_userDeleted_old2) && !(user instanceof TLRPC.TL_userEmpty) && !user.deleted) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean y(long j3) {
+        if (j3 != 708513 && j3 != 1271266957) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean z(TLRPC.User user) {
+        if (user != null) {
+            long j3 = user.f28200id;
+            if (j3 == 708513 || j3 == 1271266957) {
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 }

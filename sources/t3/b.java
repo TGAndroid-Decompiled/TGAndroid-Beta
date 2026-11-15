@@ -1,12 +1,13 @@
 package t3;
 
+import com.google.android.gms.internal.vision.e2;
 import java.util.Arrays;
 public final class b extends i {
-    public final byte[] f55397b;
+    public final byte[] f56980b;
 
     public b(String str, byte[] bArr) {
         super(str);
-        this.f55397b = bArr;
+        this.f56980b = bArr;
     }
 
     public final boolean equals(Object obj) {
@@ -15,7 +16,7 @@ public final class b extends i {
         }
         if (obj != null && b.class == obj.getClass()) {
             b bVar = (b) obj;
-            if (this.f55414a.equals(bVar.f55414a) && Arrays.equals(this.f55397b, bVar.f55397b)) {
+            if (this.f56997a.equals(bVar.f56997a) && Arrays.equals(this.f56980b, bVar.f56980b)) {
                 return true;
             }
         }
@@ -23,6 +24,6 @@ public final class b extends i {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.f55397b) + com.google.android.recaptcha.internal.a.h(527, 31, this.f55414a);
+        return Arrays.hashCode(this.f56980b) + e2.h(527, 31, this.f56997a);
     }
 }

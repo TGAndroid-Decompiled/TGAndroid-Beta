@@ -1,39 +1,23 @@
 package fi;
-public final class f9 implements r1.c {
-    public final int f11994a;
-    public final float f11995b;
-    public final Object f11996c;
 
-    public f9(Object obj, float f10, int i7) {
-        this.f11994a = i7;
-        this.f11996c = obj;
-        this.f11995b = f10;
-    }
-
-    @Override
-    public final void a(r1.g gVar, boolean z9, float f10, float f11) {
-        switch (this.f11994a) {
-            case 0:
-                va vaVar = (va) this.f11996c;
-                if (!z9) {
-                    vaVar.M0.setTranslationY(this.f11995b);
-                    vaVar.M0.K = false;
-                    vaVar.f12982o2 = null;
-                    vaVar.f12985p2 = null;
-                    return;
-                }
-                return;
-            default:
-                hi.b4 b4Var = (hi.b4) this.f11996c;
-                b4Var.f14571w = null;
-                float f12 = this.f11995b;
-                if (!z9) {
-                    b4Var.f14567f = f12;
-                    b4Var.c();
-                    return;
-                }
-                b4Var.h = f12;
-                return;
-        }
-    }
+import android.graphics.Paint;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Components.gh0;
+public final class f9 {
+    public View f11710a;
+    public ImageReceiver f11711b;
+    public ImageReceiver f11712c;
+    public gh0 d;
+    public d9 f11713e;
+    public c9 f11714f;
+    public View f11715g;
+    public float h;
+    public float f11716i;
+    public Paint f11717j;
+    public float f11718k;
+    public ImageReceiver f11719l;
+    public h7 f11720m;
+    public boolean f11721n;
+    public int f11722o;
 }

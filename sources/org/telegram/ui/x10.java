@@ -1,19 +1,16 @@
 package org.telegram.ui;
 
-import org.telegram.ui.Components.UndoView;
-public final class x10 extends UndoView {
-    public final f40 f51496j0;
-
-    public x10(f40 f40Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.f51496j0 = f40Var;
-    }
-
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class x10 extends v4.n0 {
     @Override
-    public final void k(long j3, int i7, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
-        if (this.f51496j0.f45583t2 != null) {
-            return;
+    public final void e(Rect rect, View view, RecyclerView recyclerView, v4.b1 b1Var) {
+        RecyclerView.R(view);
+        if (!c40.E5) {
+            rect.set(org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f), 0);
+        } else {
+            rect.set(0, org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f));
         }
-        super.k(j3, i7, obj, obj2, runnable, runnable2);
     }
 }

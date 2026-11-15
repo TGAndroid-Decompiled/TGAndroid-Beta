@@ -1,153 +1,173 @@
 package di;
 
-import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Camera;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.View;
-import org.telegram.ui.Components.kf0;
-import org.telegram.ui.Components.qb0;
-public final class o5 implements c5.g {
-    public final int f9442a;
-    public final View f9443b;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.Utilities;
+public final class o5 extends View {
+    public float E;
+    public float F;
+    public final Camera G;
+    public final h6.m H;
+    public final RectF I;
+    public j5 f9154a;
+    public j5 f9155b;
+    public j5 f9156c;
+    public float d;
+    public float f9157e;
+    public float f9158f;
+    public boolean h;
+    public boolean f9159n;
+    public boolean f9160r;
+    public i5 f9161s;
+    public i5 f9162w;
+    public i5 f9163x;
+    public float f9164y;
 
-    public o5(int i7, View view) {
-        this.f9442a = i7;
-        this.f9443b = view;
+    public o5(Context context) {
+        super(context);
+        this.G = new Camera();
+        this.H = new h6.m(29);
+        this.I = new RectF();
     }
 
-    @Override
-    public final void a(int i7) {
-        boolean z9;
-        switch (this.f9442a) {
-            case 0:
-                return;
-            case 1:
-                qb0 qb0Var = (qb0) this.f9443b;
-                c5.g gVar = qb0Var.f37234c;
-                if (gVar != null) {
-                    gVar.a(i7);
-                }
-                for (int i10 = 0; i10 < qb0Var.d.getChildCount(); i10++) {
-                    View childAt = qb0Var.d.getChildAt(i10);
-                    if (i10 == i7) {
-                        z9 = true;
+    public final void a(Canvas canvas, i5 i5Var, float f10, float f11, float f12, int[] iArr, int[] iArr2, int[] iArr3) {
+        float f13;
+        float f14;
+        float f15;
+        if (i5Var != null) {
+            Matrix matrix = i5Var.d;
+            Paint paint = i5Var.f8798c;
+            if (paint != null) {
+                float f16 = (f10 - 0.5f) / 1.5f;
+                float l10 = Utilities.l(1.0f - Math.abs(f16));
+                float max = Math.max(0.8f * f11, org.telegram.messenger.g0.L(180.0f));
+                float x10 = org.telegram.ui.Cells.y0.x(f16, max, 1.8f, f11 / 2.0f);
+                float min = Math.min(org.telegram.messenger.g0.L(176.0f), f12) / 2.0f;
+                float f17 = x10 - max;
+                float f18 = x10 + max;
+                canvas.saveLayerAlpha(f17, 0.0f, f18, f12, 255, 31);
+                matrix.reset();
+                matrix.postTranslate(x10, min);
+                i5Var.f8799e.setLocalMatrix(matrix);
+                paint.setAlpha((int) (l10 * 255.0f));
+                canvas.drawRect(f17, 0.0f, f18, f12, paint);
+                canvas.save();
+                float L = org.telegram.messenger.g0.L(90.0f);
+                RectF rectF = this.I;
+                rectF.set(f17, 0.0f, f17 + L, f12);
+                h6.m mVar = this.H;
+                mVar.m(canvas, rectF, 0, 1.0f);
+                rectF.set(f18 - L, 0.0f, f18, f12);
+                mVar.m(canvas, rectF, 2, 1.0f);
+                canvas.restore();
+                canvas.restore();
+                for (int i7 = 0; i7 < iArr.length; i7++) {
+                    float width = (getWidth() / (iArr.length - 1)) * i7;
+                    if (width >= f17 && width <= f18) {
+                        f15 = Math.min(Utilities.l((width - f17) / max), Utilities.l(1.0f - ((width - (f18 - max)) / max)));
                     } else {
-                        z9 = false;
+                        f15 = 0.0f;
                     }
-                    childAt.setSelected(z9);
+                    iArr[i7] = org.telegram.ui.ActionBar.j6.w(iArr[i7], org.telegram.ui.ActionBar.j6.r1(l10 * f15, i5Var.f8801g));
                 }
-                return;
-            default:
-                return;
+                for (int i10 = 0; i10 < iArr2.length; i10++) {
+                    float width2 = (getWidth() / (iArr2.length - 1)) * i10;
+                    if (width2 >= f17 && width2 <= f18) {
+                        f14 = Math.min(Utilities.l((width2 - f17) / max), Utilities.l(1.0f - ((width2 - (f18 - max)) / max)));
+                    } else {
+                        f14 = 0.0f;
+                    }
+                    iArr2[i10] = org.telegram.ui.ActionBar.j6.w(iArr2[i10], org.telegram.ui.ActionBar.j6.r1(l10 * f14, i5Var.f8800f));
+                }
+                for (int i11 = 0; i11 < iArr3.length; i11++) {
+                    float width3 = (getWidth() / (iArr2.length - 1)) * i11;
+                    if (width3 >= f17 && width3 <= f18) {
+                        f13 = Math.min(Utilities.l((width3 - f17) / max), Utilities.l(1.0f - ((width3 - (f18 - max)) / max)));
+                    } else {
+                        f13 = 0.0f;
+                    }
+                    iArr3[i11] = org.telegram.ui.ActionBar.j6.w(iArr3[i11], org.telegram.ui.ActionBar.j6.r1(l10 * f13, i5Var.h));
+                }
+            }
+        }
+    }
+
+    public final void b(Canvas canvas, j5 j5Var, float f10, boolean z10) {
+        if (j5Var == null) {
+            return;
+        }
+        ImageReceiver imageReceiver = j5Var.d;
+        float f11 = f10;
+        if (z10) {
+            f11 = Math.max(0.5f, f11);
+        }
+        float f12 = imageReceiver.L0;
+        float f13 = imageReceiver.M0;
+        float f14 = imageReceiver.N0;
+        float f15 = imageReceiver.O0;
+        float alpha = imageReceiver.getAlpha();
+        float f16 = (f11 - 0.5f) / 1.5f;
+        float l10 = Utilities.l(1.0f - Math.abs(f16));
+        float width = (getWidth() / 2.0f) - (org.telegram.messenger.g0.L(220.0f) * f16);
+        float L = org.telegram.messenger.g0.L(80.0f);
+        float T1 = org.telegram.messenger.g0.T1(0.85f, 1.0f, l10);
+        float L2 = org.telegram.messenger.g0.L(160.0f);
+        canvas.save();
+        float f17 = ((L2 / 2.0f) * f16) + width;
+        canvas.translate(f17, L);
+        Camera camera = this.G;
+        camera.save();
+        camera.rotateY(f16 * (-30.0f));
+        camera.applyToCanvas(canvas);
+        camera.restore();
+        canvas.translate(-f17, -L);
+        float f18 = L2 * T1;
+        float f19 = f18 / 2.0f;
+        imageReceiver.y0(width - f19, L - f19, f18, f18);
+        imageReceiver.setAlpha(l10);
+        imageReceiver.h(canvas, null);
+        imageReceiver.y0(f12, f13, f14, f15);
+        imageReceiver.setAlpha(alpha);
+        canvas.restore();
+    }
+
+    public final void c() {
+        boolean z10;
+        if (this.f9154a == null && this.f9155b == null && this.f9156c == null && this.f9161s == null && this.f9162w == null && this.f9163x == null) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        this.f9156c = null;
+        this.f9155b = null;
+        this.f9154a = null;
+        this.f9158f = 0.0f;
+        this.f9157e = 0.0f;
+        this.d = 0.0f;
+        this.f9160r = false;
+        this.f9159n = false;
+        this.h = false;
+        this.f9163x = null;
+        this.f9162w = null;
+        this.f9161s = null;
+        this.F = 0.0f;
+        this.E = 0.0f;
+        this.f9164y = 0.0f;
+        if (z10) {
+            invalidate();
         }
     }
 
     @Override
-    public final void b(float f10, int i7, int i10) {
-        float f11;
-        switch (this.f9442a) {
-            case 0:
-                t5 t5Var = (t5) this.f9443b;
-                if (t5Var.f9798x) {
-                    m5 m5Var = t5Var.h;
-                    m5Var.d.abortAnimation();
-                    if (Math.abs(f10) <= 1.0f) {
-                        ValueAnimator valueAnimator = m5Var.M;
-                        if (valueAnimator != null) {
-                            valueAnimator.cancel();
-                            m5Var.M = null;
-                        }
-                        int i11 = m5Var.f9510s;
-                        float f12 = (i11 / 2.0f) + ((-m5Var.getMeasuredWidth()) / 2.0f) + ((i11 + m5Var.f9508n) * i7);
-                        if (f10 > 0.0f) {
-                            int i12 = m5Var.f9510s;
-                            f11 = (i12 / 2.0f) + ((-m5Var.getMeasuredWidth()) / 2.0f) + ((i7 + 1) * (i12 + m5Var.f9508n));
-                        } else {
-                            int i13 = m5Var.f9510s;
-                            f11 = (i13 / 2.0f) + ((-m5Var.getMeasuredWidth()) / 2.0f) + ((i7 - 1) * (i13 + m5Var.f9508n));
-                            f10 = -f10;
-                        }
-                        if (f10 == 0.0f) {
-                            m5Var.f9506e = f12;
-                        } else {
-                            m5Var.f9506e = org.telegram.messenger.g0.T1(f12, f11, f10);
-                        }
-                        m5Var.L = false;
-                        m5Var.invalidate();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                qb0 qb0Var = (qb0) this.f9443b;
-                qb0Var.h = i7;
-                qb0Var.f37237n = f10;
-                if (qb0Var.d.getChildAt(i7) != null) {
-                    qb0.a(qb0Var, i7, (int) (qb0Var.d.getChildAt(i7).getWidth() * f10));
-                    qb0Var.invalidate();
-                    c5.g gVar = qb0Var.f37234c;
-                    if (gVar != null) {
-                        gVar.b(f10, i7, i10);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                kf0 kf0Var = (kf0) this.f9443b;
-                if (!kf0Var.f35305a && Math.abs(i7 - kf0Var.f35314x) == 1) {
-                    int i14 = kf0Var.f35314x;
-                    if (i7 > i14) {
-                        kf0.a(kf0Var, 0, 1, 1);
-                    } else if (i7 < i14) {
-                        kf0.a(kf0Var, 1, 0, 0);
-                        kf0.a(kf0Var, 2, 0, -1);
-                    }
-                }
-                int i15 = kf0Var.f35314x;
-                int i16 = kf0Var.f35315y;
-                kf0Var.f35314x = i7;
-                kf0Var.f35315y = i10;
-                if (i15 != i7 || i16 != i10) {
-                    kf0Var.H = true;
-                    kf0Var.postInvalidateOnAnimation();
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void c(int i7) {
-        switch (this.f9442a) {
-            case 0:
-                t5 t5Var = (t5) this.f9443b;
-                if (i7 == 1) {
-                    t5Var.f9798x = true;
-                    return;
-                }
-                return;
-            case 1:
-                qb0 qb0Var = (qb0) this.f9443b;
-                if (i7 == 0) {
-                    qb0.a(qb0Var, qb0Var.f37235e.getCurrentItem(), 0);
-                }
-                c5.g gVar = qb0Var.f37234c;
-                if (gVar != null) {
-                    gVar.c(i7);
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
-    private final void d(int i7) {
-    }
-
-    private final void e(int i7) {
-    }
-
-    private final void f(int i7) {
+    public final void dispatchDraw(Canvas canvas) {
+        b(canvas, this.f9154a, this.d, this.h);
+        b(canvas, this.f9155b, this.f9157e, this.f9159n);
+        b(canvas, this.f9156c, this.f9158f, this.f9160r);
     }
 }

@@ -1,81 +1,64 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class yc extends org.telegram.ui.Components.ch0 {
-    public final int f52004r;
-    public final Object f52005s;
+import android.view.ContextThemeWrapper;
+import org.telegram.ui.Components.RadialProgressView;
+public final class yc extends RadialProgressView {
+    public final int O;
+    public final Object P;
 
-    public yc(int i7, Context context, Object obj) {
-        super(context);
-        this.f52004r = i7;
-        this.f52005s = obj;
-    }
-
-    @Override
-    public void invalidate(int i7, int i10, int i11, int i12) {
-        switch (this.f52004r) {
-            case 0:
-                super.invalidate(i7, i10, i11, i12);
-                ((bd) this.f52005s).h.invalidate();
-                return;
-            case 1:
-            case 2:
-            default:
-                super.invalidate(i7, i10, i11, i12);
-                return;
-            case 3:
-                super.invalidate(i7, i10, i11, i12);
-                ((g50) this.f52005s).f45981e.invalidate();
-                return;
-            case 4:
-                super.invalidate(i7, i10, i11, i12);
-                ((sc0) this.f52005s).h.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f52004r) {
-            case 1:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                if (((org.telegram.ui.Components.vo) this.f52005s).G1) {
-                    accessibilityNodeInfo.setText(org.telegram.messenger.id.M0(2131754751, null));
-                    return;
-                } else {
-                    accessibilityNodeInfo.setText(org.telegram.messenger.id.M0(2131754750, null));
-                    return;
-                }
-            default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                return;
-        }
+    public yc(org.telegram.ui.Components.l30 l30Var, Context context, int i7) {
+        super(context, null);
+        this.O = i7;
+        this.P = l30Var;
     }
 
     @Override
     public void invalidate() {
-        switch (this.f52004r) {
-            case 0:
+        switch (this.O) {
+            case 3:
                 super.invalidate();
-                ((bd) this.f52005s).h.invalidate();
+                oq0 oq0Var = ((PhotoViewer) this.P).f42763f0;
+                if (oq0Var != null) {
+                    oq0Var.invalidate();
+                    return;
+                }
                 return;
-            case 1:
             default:
                 super.invalidate();
                 return;
+        }
+    }
+
+    @Override
+    public final void setAlpha(float f10) {
+        switch (this.O) {
+            case 0:
+                super.setAlpha(f10);
+                ((ad) this.P).h.invalidate();
+                return;
+            case 1:
+                super.setAlpha(f10);
+                ((c50) this.P).f46020e.invalidate();
+                return;
             case 2:
-                super.invalidate();
-                ((org.telegram.ui.Components.g10) this.f52005s).invalidate();
+                super.setAlpha(f10);
+                ((oc0) this.P).h.invalidate();
                 return;
-            case 3:
-                super.invalidate();
-                ((g50) this.f52005s).f45981e.invalidate();
-                return;
-            case 4:
-                super.invalidate();
-                ((sc0) this.f52005s).h.invalidate();
+            default:
+                super.setAlpha(f10);
+                oq0 oq0Var = ((PhotoViewer) this.P).f42763f0;
+                if (oq0Var != null) {
+                    oq0Var.invalidate();
+                    return;
+                }
                 return;
         }
+    }
+
+    public yc(PhotoViewer photoViewer, ContextThemeWrapper contextThemeWrapper, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(contextThemeWrapper, e6Var);
+        this.O = 3;
+        this.P = photoViewer;
     }
 }

@@ -1,68 +1,131 @@
 package j6;
 
-import a8.ua;
-import android.text.TextUtils;
-import android.util.Log;
-import f6.b0;
-import f6.e0;
-import f6.f0;
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
-public abstract class p {
-    public final b f16541a;
-    public final String f16542b;
-    public h6.m f16543c;
-    public final List d;
+import android.os.Looper;
+import java.util.Locale;
+public final class p {
+    public static final Object f16887i = new Object();
+    public final b f16888a;
+    public final long f16889b;
+    public final String f16890c;
+    public n f16893g;
+    public o h;
+    public long f16891e = -1;
+    public long f16892f = 0;
+    public final com.google.android.gms.internal.cast.y d = new com.google.android.gms.internal.cast.y(Looper.getMainLooper(), 0);
 
-    public p(String str) {
-        a.b(str);
-        this.f16542b = str;
-        this.f16541a = new b("MediaControlChannel", null);
-        this.d = DesugarCollections.synchronizedList(new ArrayList());
+    public p(long j3, String str) {
+        this.f16889b = j3;
+        this.f16890c = str;
+        this.f16888a = new b("RequestTracker", str);
     }
 
-    public final void a(o oVar) {
-        this.d.add(oVar);
-    }
-
-    public final long b() {
-        h6.m mVar = this.f16543c;
-        if (mVar == null) {
-            b bVar = this.f16541a;
-            Log.e(bVar.f16508a, bVar.d("Attempt to generate requestId without a sink", new Object[0]));
-            return 0L;
+    public final void a(long j3, n nVar) {
+        n nVar2;
+        long j10;
+        long j11;
+        long currentTimeMillis = System.currentTimeMillis();
+        Object obj = f16887i;
+        synchronized (obj) {
+            nVar2 = this.f16893g;
+            j10 = this.f16891e;
+            j11 = this.f16892f;
+            this.f16891e = j3;
+            this.f16893g = nVar;
+            this.f16892f = currentTimeMillis;
         }
-        return ((AtomicLong) mVar.f14267c).getAndIncrement();
-    }
-
-    public final void c(long j3, String str) {
-        h6.m mVar = this.f16543c;
-        if (mVar == null) {
-            b bVar = this.f16541a;
-            Log.e(bVar.f16508a, bVar.d("Attempt to send text message without a sink", new Object[0]));
-            return;
+        if (nVar2 != null) {
+            nVar2.h(this.f16890c, j10, j11, currentTimeMillis);
         }
-        f0 f0Var = (f0) mVar.f14266b;
-        if (f0Var != null) {
-            e0 e0Var = (e0) f0Var;
-            String str2 = this.f16542b;
-            a.b(str2);
-            if (!TextUtils.isEmpty(str)) {
-                if (str.length() <= 524288) {
-                    com.google.android.gms.common.api.internal.s b10 = com.google.android.gms.common.api.internal.t.b();
-                    b10.f6685c = new b0(e0Var, str2, str, 1);
-                    b10.f6683a = 8405;
-                    e0Var.e(1, b10.a()).addOnFailureListener(new ua(mVar, j3, 4));
-                    return;
+        synchronized (obj) {
+            try {
+                o oVar = this.h;
+                if (oVar != null) {
+                    this.d.removeCallbacks(oVar);
                 }
-                b bVar2 = e0.H;
-                Log.w(bVar2.f16508a, bVar2.d("Message send failed. Message exceeds maximum size", new Object[0]));
-                throw new IllegalArgumentException("Message exceeds maximum size524288");
+                o oVar2 = new o(this, 0);
+                this.h = oVar2;
+                this.d.postDelayed(oVar2, this.f16889b);
+            } catch (Throwable th2) {
+                throw th2;
             }
-            throw new IllegalArgumentException("The message payload cannot be null or empty");
         }
-        throw new IllegalStateException("Device is not connected");
+    }
+
+    public final void b(long j3, int i7, l lVar) {
+        synchronized (f16887i) {
+            try {
+                if (c(j3)) {
+                    Locale locale = Locale.ROOT;
+                    e("request " + j3 + " completed", i7, lVar);
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+    }
+
+    public final boolean c(long j3) {
+        boolean z10;
+        synchronized (f16887i) {
+            long j10 = this.f16891e;
+            z10 = false;
+            if (j10 != -1 && j10 == j3) {
+                z10 = true;
+            }
+        }
+        return z10;
+    }
+
+    public final boolean d() {
+        boolean z10;
+        synchronized (f16887i) {
+            if (this.f16891e != -1) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+        }
+        return z10;
+    }
+
+    public final void e(String str, int i7, Object obj) {
+        this.f16888a.b(str, new Object[0]);
+        Object obj2 = f16887i;
+        synchronized (obj2) {
+            try {
+                if (this.f16893g != null) {
+                    long currentTimeMillis = System.currentTimeMillis();
+                    n nVar = this.f16893g;
+                    q6.m.g(nVar);
+                    nVar.k(this.f16890c, this.f16891e, i7, obj, this.f16892f, currentTimeMillis);
+                }
+                this.f16891e = -1L;
+                this.f16893g = null;
+                synchronized (obj2) {
+                    o oVar = this.h;
+                    if (oVar != null) {
+                        this.d.removeCallbacks(oVar);
+                        this.h = null;
+                    }
+                }
+            } finally {
+            }
+        }
+    }
+
+    public final boolean f(int i7) {
+        synchronized (f16887i) {
+            try {
+                if (d()) {
+                    Locale locale = Locale.ROOT;
+                    long j3 = this.f16891e;
+                    e("clearing request " + j3, i7, null);
+                    return true;
+                }
+                return false;
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
     }
 }

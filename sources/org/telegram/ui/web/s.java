@@ -1,419 +1,150 @@
 package org.telegram.ui.web;
 
-import a8.ia;
-import a8.wa;
-import android.app.job.JobParameters;
-import android.graphics.Bitmap;
-import android.graphics.RectF;
-import android.graphics.SurfaceTexture;
-import android.net.Uri;
-import android.os.Looper;
-import android.os.RemoteException;
-import android.os.ResultReceiver;
-import android.util.LongSparseArray;
-import android.view.ViewPropertyAnimator;
-import android.widget.ImageView;
-import androidx.car.app.hardware.common.CarResultStub;
-import c8.xa;
-import com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService;
-import di.p7;
-import fi.u2;
-import fi.w3;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.concurrent.CancellationException;
-import java.util.concurrent.ExecutionException;
-import org.telegram.messenger.c20;
-import org.telegram.messenger.df;
-import org.telegram.messenger.fl;
-import org.telegram.messenger.iz;
-import org.telegram.messenger.qp;
-import org.telegram.tgnet.TLObject;
+import android.content.Context;
+import android.os.Bundle;
+import di.k6;
+import fi.i7;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.np;
+import org.telegram.messenger.s10;
+import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.p5;
-import org.telegram.ui.Components.qt;
-import org.telegram.ui.Components.wq;
-import tg.c2;
-public final class s implements Runnable {
-    public final int f51232a;
-    public final Object f51233b;
-    public final Object f51234c;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.ActionBar.e2;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.Components.cc;
+import org.telegram.ui.Components.sq;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.qg0;
+public final class s implements s10 {
+    public final int f52763a;
+    public final v0 f52764b;
+    public final i7 f52765c;
+    public final String d;
 
-    public s(int i7, Object obj, Object obj2) {
-        this.f51232a = i7;
-        this.f51233b = obj;
-        this.f51234c = obj2;
+    public s(v0 v0Var, i7 i7Var, String str, int i7) {
+        this.f52763a = i7;
+        this.f52764b = v0Var;
+        this.f52765c = i7Var;
+        this.d = str;
     }
 
     @Override
-    public final void run() {
-        x0 x0Var;
-        d0 d0Var;
-        p5 p5Var;
-        e2.o0 o0Var;
-        e2.e eVar;
-        g2.d dVar;
+    public final void a(Object obj, Object obj2) {
         int i7;
-        boolean z9;
-        e2.s1 s1Var;
-        p4.m1 m1Var;
-        float f10 = 1.0f;
-        SurfaceTexture surfaceTexture = null;
-        boolean z10 = true;
-        int i10 = 0;
-        switch (this.f51232a) {
+        qg0 qg0Var;
+        int i10 = this.f52763a;
+        String str = this.d;
+        i7 i7Var = this.f52765c;
+        v0 v0Var = this.f52764b;
+        switch (i10) {
             case 0:
-                x0 x0Var2 = (x0) this.f51233b;
-                hi.p pVar = x0Var2.f51309j0;
-                pVar.f14854f = true;
-                pVar.k();
-                x0Var2.v((p7) this.f51234c);
-                return;
-            case 1:
-                BotWebViewContainer$BotWebViewProxy botWebViewContainer$BotWebViewProxy = (BotWebViewContainer$BotWebViewProxy) this.f51233b;
-                ArrayList arrayList = (ArrayList) this.f51234c;
-                if (botWebViewContainer$BotWebViewProxy != null && (x0Var = botWebViewContainer$BotWebViewProxy.f51013a) != null && (d0Var = x0Var.f51299c) != null) {
-                    d0Var.f(arrayList);
-                    return;
-                }
-                return;
-            case 2:
-                ArrayList arrayList2 = (ArrayList) this.f51233b;
-                LongSparseArray longSparseArray = (LongSparseArray) this.f51234c;
-                xa.f5958c.addAll(0, arrayList2);
-                for (int i11 = 0; i11 < longSparseArray.size(); i11++) {
-                    xa.d.put(longSparseArray.keyAt(i11), (y0) longSparseArray.valueAt(i11));
-                }
-                xa.f5957b = true;
-                xa.f5956a = false;
-                ArrayList arrayList3 = xa.f5959e;
-                if (arrayList3 != null) {
-                    int size = arrayList3.size();
-                    while (i10 < size) {
-                        Object obj = arrayList3.get(i10);
-                        i10++;
-                        ((c20) obj).a(arrayList2);
-                    }
-                    xa.f5959e = null;
-                    return;
-                }
-                return;
-            case 3:
-                z0 z0Var = (z0) ((u2) this.f51233b).f12886c;
-                ArrayList arrayList4 = z0Var.h;
-                arrayList4.clear();
-                arrayList4.addAll((ArrayList) this.f51234c);
-                z0Var.f51348n = false;
-                w3 w3Var = z0Var.f36518a;
-                if (w3Var != null) {
-                    w3Var.f37496f3.O(true);
-                    return;
-                }
-                return;
-            case 4:
-                org.telegram.ui.ActionBar.z0 z0Var2 = (org.telegram.ui.ActionBar.z0) this.f51233b;
-                if (((u1) this.f51234c).b() == null) {
-                    z10 = false;
-                }
-                z0Var2.setEnabled(z10);
-                ViewPropertyAnimator animate = z0Var2.animate();
-                if (!z0Var2.isEnabled()) {
-                    f10 = 0.5f;
-                }
-                animate.alpha(f10);
-                return;
-            case 5:
-                ((org.telegram.ui.l0) this.f51233b).f51131f0.a((Integer) this.f51234c);
-                return;
-            case 6:
-                o1 o1Var = (o1) this.f51233b;
-                qp messagesController = o1Var.getMessagesController();
-                messagesController.getClass();
-                TL_account.toggleWebBrowserSettingsException togglewebbrowsersettingsexception = new TL_account.toggleWebBrowserSettingsException();
-                togglewebbrowsersettingsexception.url = (String) this.f51234c;
-                togglewebbrowsersettingsexception.delete = true;
-                messagesController.getConnectionsManager().sendRequestTyped(togglewebbrowsersettingsexception, new fl(messagesController, 3));
-                o1Var.f36518a.f37496f3.O(true);
-                return;
-            case 7:
-                u1 u1Var = (u1) this.f51233b;
-                TLObject tLObject = (TLObject) this.f51234c;
-                int i12 = u1Var.f51259a;
-                u1Var.f51264g = true;
-                if (tLObject instanceof TLRPC.TL_messages_webPage) {
-                    TLRPC.TL_messages_webPage tL_messages_webPage = (TLRPC.TL_messages_webPage) tLObject;
-                    qp.s1(i12).Y3(tL_messages_webPage.users, false);
-                    qp.s1(i12).S3(tL_messages_webPage.chats, false);
-                    u1Var.h = tL_messages_webPage.webpage;
-                } else {
-                    if (tLObject instanceof TLRPC.TL_webPage) {
-                        TLRPC.TL_webPage tL_webPage = (TLRPC.TL_webPage) tLObject;
-                        if (tL_webPage.cached_page instanceof TL_iv.TL_page) {
-                            u1Var.h = tL_webPage;
-                        }
-                    }
-                    u1Var.h = null;
-                }
-                TLRPC.WebPage webPage = u1Var.h;
-                if (webPage != null && webPage.cached_page == null) {
-                    u1Var.h = null;
-                }
-                if (!iz.f23450w0 && u1Var.h != null && (p5Var = u1Var.f51268l) != null) {
-                    p5Var.run();
-                }
-                u1Var.c();
-                return;
-            case 8:
-                ((u1) this.f51233b).f51269m.remove((s) this.f51234c);
-                return;
-            case 9:
-                ((p4.d0) this.f51233b).getClass();
-                ((Runnable) this.f51234c).run();
-                return;
-            case 10:
-                p4.d0 d0Var2 = (p4.d0) this.f51233b;
-                p4.g1 g1Var = (p4.g1) this.f51234c;
-                p4.m0 m0Var = d0Var2.h;
-                d0Var2.f53229t = g1Var;
-                df dfVar = new df(d0Var2, g1Var);
-                g1Var.I0(dfVar);
-                d0Var2.f53230u = dfVar;
-                try {
-                    m0Var.f53377j.p(0, g1Var);
-                } catch (RemoteException e10) {
-                    h2.a.d("MediaSessionImpl", "Exception in using media1 API", e10);
-                }
-                ((q4.l) m0Var.f53381n.f53815b).f53797a.setActive(true);
-                e2.v0 W = g1Var.W();
-                p4.l1 R0 = g1Var.R0();
-                e2.b1 Q0 = g1Var.Q0();
-                e2.b1 Q02 = g1Var.Q0();
-                e2.w0 j3 = g1Var.j();
-                int m10 = g1Var.m();
-                boolean D0 = g1Var.D0();
-                e2.x1 C = g1Var.C();
-                e2.l1 T0 = g1Var.T0();
-                if (g1Var.p0(18)) {
-                    o0Var = g1Var.k0();
-                } else {
-                    o0Var = e2.o0.L;
-                }
-                e2.o0 o0Var2 = o0Var;
-                if (g1Var.p0(22)) {
-                    f10 = g1Var.F();
-                }
-                float f11 = f10;
-                if (g1Var.p0(21)) {
-                    eVar = g1Var.H();
-                } else {
-                    eVar = e2.e.f10220i;
-                }
-                e2.e eVar2 = eVar;
-                if (g1Var.p0(28)) {
-                    dVar = g1Var.l0();
-                } else {
-                    dVar = g2.d.d;
-                }
-                g2.d dVar2 = dVar;
-                e2.o K = g1Var.K();
-                if (g1Var.p0(23)) {
-                    i7 = g1Var.n();
-                } else {
-                    i7 = 0;
-                }
-                if (g1Var.p0(23) && g1Var.z0()) {
-                    z9 = true;
-                } else {
-                    z9 = false;
-                }
-                boolean u10 = g1Var.u();
-                int w02 = g1Var.w0();
-                int i13 = g1Var.i();
-                boolean h = g1Var.h();
-                boolean g10 = g1Var.g();
-                e2.o0 U0 = g1Var.U0();
-                long O0 = g1Var.O0();
-                long Z = g1Var.Z();
-                long z11 = g1Var.z();
-                if (g1Var.p0(30)) {
-                    s1Var = g1Var.j0();
-                } else {
-                    s1Var = e2.s1.f10550b;
-                }
-                d0Var2.f53228s = new p4.e1(W, 0, R0, Q0, Q02, 0, j3, m10, D0, C, T0, 0, o0Var2, f11, 1.0f, eVar2, 0, dVar2, K, i7, z9, u10, 1, w02, i13, h, g10, U0, O0, Z, z11, s1Var, g1Var.E0());
-                d0Var2.f(g1Var.t());
-                return;
-            case 11:
-                ((c0.i) this.f51234c).a(Boolean.valueOf(((p4.d0) this.f51233b).o()));
-                return;
-            case 12:
-                m9.w wVar = (m9.w) this.f51233b;
-                ResultReceiver resultReceiver = (ResultReceiver) this.f51234c;
-                try {
-                    m1Var = (p4.m1) wVar.f20006a;
-                    ia.k(m1Var, "SessionResult must not be null");
-                } catch (InterruptedException e11) {
-                    e = e11;
-                    h2.a.m("MediaSessionLegacyStub", "Custom command failed", e);
-                    m1Var = new p4.m1(-1);
-                } catch (CancellationException e12) {
-                    h2.a.m("MediaSessionLegacyStub", "Custom command cancelled", e12);
-                    m1Var = new p4.m1(1);
-                } catch (ExecutionException e13) {
-                    e = e13;
-                    h2.a.m("MediaSessionLegacyStub", "Custom command failed", e);
-                    m1Var = new p4.m1(-1);
-                }
-                resultReceiver.send(m1Var.f53395a, m1Var.f53396b);
-                return;
-            case 13:
-                ui.e eVar3 = ((p4.c1) this.f51233b).f53195b;
-                p4.v x10 = eVar3.x(((p4.l) this.f51234c).asBinder());
-                if (x10 != null) {
-                    eVar3.T(x10);
-                    return;
-                }
-                return;
-            case 14:
-                ((p4.c1) this.f51233b).f53195b.q((p4.v) this.f51234c);
-                return;
-            case 15:
-                q2.d dVar3 = (q2.d) this.f51233b;
-                e2.u uVar = (e2.u) this.f51234c;
-                q2.e eVar4 = dVar3.d;
-                if (eVar4.E != 0 && !dVar3.f53730c) {
-                    Looper looper = eVar4.I;
-                    looper.getClass();
-                    dVar3.f53729b = eVar4.b(looper, dVar3.f53728a, uVar, false);
-                    eVar4.f53741y.add(dVar3);
-                    return;
-                }
-                return;
-            case 16:
-                CarResultStub.i1((Map.Entry) this.f51233b, this.f51234c);
-                return;
-            case 17:
-                qt qtVar = ((r2.p) this.f51233b).f54369c;
-                Uri uri = ((r2.i) this.f51234c).f54330y;
-                s2.c cVar = (s2.c) ((r2.j) qtVar.f37395b).f54332b.d.get(uri);
-                if (cVar != null) {
-                    s2.c.b(cVar, uri, true);
-                    return;
-                }
-                return;
-            case 18:
-                s2.b bVar = (s2.b) this.f51233b;
-                bVar.f54622s = false;
-                bVar.b((Uri) this.f51234c);
-                return;
-            case 19:
-                sg.j0 j0Var = (sg.j0) this.f51233b;
-                j0Var.v = true;
-                RectF f12 = j0Var.f();
-                Object obj2 = j0Var.f55098a.f38776b;
-                j0Var.f55117w = new wa((ByteBuffer) j0Var.h(j0Var.f(), true, false, false).f55092c, 0, f12);
-                j0Var.a(false);
-                ((sg.q0) this.f51234c).run();
-                return;
-            case 20:
-                Runnable runnable = (Runnable) this.f51234c;
-                sg.t0 t0Var = ((sg.v0) this.f51233b).d;
-                if (t0Var != null && t0Var.f55218f) {
-                    sg.t0.a(t0Var);
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 21:
-                tg.n1 n1Var = (tg.n1) this.f51234c;
-                n1Var.m();
-                ((tg.g0) this.f51233b).r0(n1Var, true);
-                return;
-            case 22:
-                ((tg.n1) this.f51233b).s((Bitmap) this.f51234c);
-                return;
-            case 23:
-                c2 c2Var = (c2) this.f51233b;
-                c2Var.G = false;
-                tg.z1[] z1VarArr = (tg.z1[]) ((ArrayList) this.f51234c).toArray(new tg.z1[0]);
-                c2Var.H = z1VarArr;
-                if (z1VarArr.length > 0) {
-                    c2Var.f55603b0.setScaleX(0.3f);
-                    c2Var.f55603b0.setScaleY(0.3f);
-                    c2Var.f55603b0.setAlpha(0.0f);
-                    c2Var.f55603b0.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).setInterpolator(wq.f40046f).start();
-                    return;
-                }
-                return;
-            case 24:
-                ti.i iVar = (ti.i) this.f51233b;
-                ti.p pVar2 = (ti.p) this.f51234c;
-                ti.m mVar = iVar.f56094b;
-                if (iVar.f56100j == pVar2) {
-                    ImageView imageView = iVar.f56102l;
-                    if (imageView != null && imageView.getVisibility() == 0) {
-                        pVar2.setFirstFrameCallback(new ti.b(iVar, 3));
-                    }
-                    if (mVar.L()) {
-                        mVar.f();
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                v0 v0Var2 = this.f52764b;
+                e6 e6Var = v0Var2.f52818e;
+                TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer = (TL_keyboard.TL_buttonTypeRequestPeer) cg.c.a((TL_keyboard.KeyboardButton) obj, TL_keyboard.TL_buttonTypeRequestPeer.class);
+                i7 i7Var2 = this.f52765c;
+                String str2 = this.d;
+                if (tL_buttonTypeRequestPeer != null) {
+                    TLRPC.RequestPeerType requestPeerType = tL_buttonTypeRequestPeer.peer_type;
+                    if (requestPeerType instanceof TLRPC.TL_requestPeerTypeCreateBot) {
+                        Context context = v0Var2.getContext();
+                        int i11 = v0Var2.N;
+                        TLRPC.User user = v0Var2.V;
+                        bi.o1 o1Var = new bi.o1(v0Var2, i7Var2, str2, tL_buttonTypeRequestPeer, 15);
+                        e6 e6Var2 = v0Var2.f52818e;
+                        sq.e(context, i11, user, (TLRPC.TL_requestPeerTypeCreateBot) requestPeerType, false, o1Var, e6Var2, new cc(v0Var2, e6Var2));
                         return;
-                    } else if (!mVar.h()) {
-                        mVar.c(mVar.l());
+                    } else if ((requestPeerType instanceof TLRPC.TL_requestPeerTypeUser) && (i7 = tL_buttonTypeRequestPeer.max_quantity) > 1) {
+                        TLRPC.TL_requestPeerTypeUser tL_requestPeerTypeUser = (TLRPC.TL_requestPeerTypeUser) requestPeerType;
+                        boolean[] zArr = new boolean[1];
+                        Boolean bool = tL_requestPeerTypeUser.bot;
+                        Boolean bool2 = tL_requestPeerTypeUser.premium;
+                        y yVar = new y(v0Var2, zArr, str2, tL_buttonTypeRequestPeer, i7Var2);
+                        qg0 qg0Var2 = qg0.f50606q2;
+                        e2 Q = LaunchActivity.Q();
+                        if (Q == null) {
+                            qg0Var = null;
+                        } else {
+                            qg0Var = qg0.f50606q2;
+                            if (qg0Var == null) {
+                                qg0 qg0Var3 = new qg0(Q, i7, bool, bool2, yVar);
+                                qg0Var3.show();
+                                qg0.f50606q2 = qg0Var3;
+                                qg0Var = qg0Var3;
+                            }
+                        }
+                        if (qg0Var != null) {
+                            qg0Var.setOnDismissListener(new k6(v0Var2, zArr, i7Var2, str2));
+                            return;
+                        }
                         return;
                     } else {
+                        Bundle j3 = org.telegram.ui.Cells.y0.j(15, "onlySelect", "dialogsType", true);
+                        j3.putLong("requestPeerBotId", v0Var2.V.f28200id);
+                        try {
+                            SerializedData serializedData = new SerializedData(tL_buttonTypeRequestPeer.peer_type.getObjectSize());
+                            tL_buttonTypeRequestPeer.peer_type.serializeToStream(serializedData);
+                            j3.putByteArray("requestPeerType", serializedData.toByteArray());
+                            serializedData.cleanup();
+                        } catch (Exception e10) {
+                            a8.g(e10, true);
+                        }
+                        boolean[] zArr2 = new boolean[1];
+                        b0 b0Var = new b0(v0Var2, j3, zArr2, i7Var2);
+                        b0Var.E2 = new y(v0Var2, zArr2, str2, tL_buttonTypeRequestPeer, i7Var2);
+                        e2 T = LaunchActivity.T();
+                        if (T != 0) {
+                            ?? obj3 = new Object();
+                            obj3.f28476a = true;
+                            T.showAsSheet(b0Var, obj3);
+                            return;
+                        }
                         return;
                     }
-                }
-                return;
-            case 25:
-                ti.i iVar2 = (ti.i) this.f51233b;
-                c20 c20Var = (c20) this.f51234c;
-                iVar2.l();
-                ti.p pVar3 = iVar2.f56100j;
-                iVar2.f56100j = null;
-                if (pVar3 != null) {
-                    org.telegram.messenger.g0.E2(pVar3);
-                    SurfaceTexture surfaceTexture2 = pVar3.f56140a;
-                    pVar3.f56140a = null;
-                    surfaceTexture = surfaceTexture2;
-                }
-                c20Var.a(surfaceTexture);
-                return;
-            case 26:
-                ti.p pVar4 = (ti.p) this.f51233b;
-                SurfaceTexture surfaceTexture3 = (SurfaceTexture) this.f51234c;
-                if (pVar4.f56140a == surfaceTexture3 && pVar4.getSurfaceTexture() == null) {
-                    pVar4.setSurfaceTexture(surfaceTexture3);
+                } else if (tL_error != null) {
+                    new cc(v0Var2, e6Var).f0(tL_error, false);
+                    v0Var2.x(i7Var2, "requested_chat_failed", v0.A(str2, "req_id"));
+                    return;
+                } else {
+                    new cc(v0Var2, e6Var).e0("UNKNOWN_BUTTON", false);
+                    v0Var2.x(i7Var2, "requested_chat_failed", v0.A(str2, "req_id"));
                     return;
                 }
-                return;
-            case 27:
-                u2.c cVar2 = (u2.c) this.f51233b;
-                s sVar = (s) this.f51234c;
-                cVar2.f56235c.i();
-                u2.f fVar = cVar2.f56234b;
-                synchronized (fVar.f56248a) {
-                    fVar.b();
-                    sVar.run();
+            case 1:
+                TLRPC.Updates updates = (TLRPC.Updates) obj;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                e6 e6Var3 = v0Var.f52818e;
+                if (updates != null) {
+                    np.s1(v0Var.N).O3(updates, false);
+                    v0Var.x(i7Var, "requested_chat_sent", v0.A(str, "req_id"));
+                    return;
+                } else if (tL_error2 != null) {
+                    new cc(v0Var, e6Var3).f0(tL_error2, false);
+                    v0Var.x(i7Var, "requested_chat_failed", v0.A(str, "req_id"));
+                    return;
+                } else {
+                    new cc(v0Var, e6Var3).e0("UNKNOWN_BUTTON", false);
+                    v0Var.x(i7Var, "requested_chat_failed", v0.A(str, "req_id"));
+                    return;
                 }
-                return;
-            case 28:
-                u2.r rVar = (u2.r) this.f51233b;
-                rVar.T.set(rVar.w((wf.b) this.f51234c, rVar.N, 0));
-                return;
             default:
-                int i14 = JobInfoSchedulerService.f6454a;
-                ((JobInfoSchedulerService) this.f51233b).jobFinished((JobParameters) this.f51234c, false);
-                return;
+                TLRPC.Updates updates2 = (TLRPC.Updates) obj;
+                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
+                e6 e6Var4 = v0Var.f52818e;
+                if (updates2 != null) {
+                    np.s1(v0Var.N).O3(updates2, false);
+                    v0Var.x(i7Var, "requested_chat_sent", v0.A(str, "req_id"));
+                    return;
+                } else if (tL_error3 != null) {
+                    new cc(v0Var, e6Var4).f0(tL_error3, false);
+                    v0Var.x(i7Var, "requested_chat_failed", v0.A(str, "req_id"));
+                    return;
+                } else {
+                    new cc(v0Var, e6Var4).e0("UNKNOWN_BUTTON", false);
+                    v0Var.x(i7Var, "requested_chat_failed", v0.A(str, "req_id"));
+                    return;
+                }
         }
-    }
-
-    public s(p4.d0 d0Var, p4.v vVar, Runnable runnable) {
-        this.f51232a = 9;
-        this.f51233b = d0Var;
-        this.f51234c = runnable;
     }
 }

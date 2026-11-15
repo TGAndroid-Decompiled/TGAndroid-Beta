@@ -1,187 +1,119 @@
 package jg;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.TextView;
-import j$.util.DesugarCollections;
+import j$.util.Objects;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import org.telegram.SQLite.SQLiteDatabase;
-import org.telegram.messenger.a8;
-import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.xi0;
-public abstract class g {
-    public static boolean A(String str, String str2, String str3) {
-        return str3.contains(str + str2);
+import org.telegram.messenger.s3;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.q01;
+import org.telegram.ui.Components.s01;
+import org.telegram.ui.Components.vw;
+import org.telegram.ui.f40;
+import org.telegram.ui.n11;
+public final class g extends v4.o {
+    public final int f17075b;
+    public final ArrayList f17076c;
+    public final Object d;
+
+    public g(Object obj, ArrayList arrayList, int i7) {
+        this.f17075b = i7;
+        this.d = obj;
+        this.f17076c = arrayList;
     }
 
-    public static int B(int i7, int i10, int i11, int i12) {
-        return Math.max(i12, Math.min(Math.min(i7, i10), i11));
-    }
-
-    public static void C(String str, int i7, AlertDialog$Builder alertDialog$Builder, org.telegram.ui.ActionBar.r1 r1Var) {
-        alertDialog$Builder.k(id.M0(i7, str), r1Var);
-        alertDialog$Builder.p();
-    }
-
-    public static int D(int i7, int i10, int i11, int i12) {
-        return ((i7 - i10) / i11) + i12;
-    }
-
-    public static String E(int i7) {
-        if (i7 != 1) {
-            if (i7 != 2) {
-                if (i7 != 3) {
-                    if (i7 != 4) {
-                        return "null";
-                    }
-                    return "FROSTED_FILTERED";
+    @Override
+    public final boolean a(int i7, int i10) {
+        switch (this.f17075b) {
+            case 0:
+                if (((k) ((m) this.d).O.get(i7)).f56015a == ((k) this.f17076c.get(i10)).f56015a) {
+                    return true;
                 }
-                return "FROSTED_GLASS";
-            }
-            return "GLASS";
-        }
-        return "BLURRED";
-    }
-
-    public static boolean a(int i7) {
-        if (i7 != 0) {
-            if (i7 != 3 && i7 != 4) {
                 return false;
-            }
-            return true;
-        }
-        throw null;
-    }
-
-    public static int b(int i7, int i10, int i11, int i12) {
-        return i7 | i10 | i11 | 128 | i12;
-    }
-
-    public static boolean c(int i7, boolean z9) {
-        int i10 = i7 & 7;
-        if (i10 != 4) {
-            if (!z9 || i10 != 3) {
+            case 1:
+                return true;
+            case 2:
+                return b(i7, i10);
+            case 3:
                 return false;
-            }
-            return true;
+            case 4:
+                return true;
+            default:
+                return true;
         }
-        return true;
     }
 
-    public static double d(double d, double d2, double d10) {
-        return (Math.cos(d) * d2) + d10;
+    @Override
+    public final boolean b(int i7, int i10) {
+        TLRPC.TL_contact tL_contact;
+        TLRPC.TL_contact tL_contact2;
+        TLRPC.RecentMeUrl recentMeUrl;
+        String str;
+        switch (this.f17075b) {
+            case 0:
+                k kVar = (k) ((m) this.d).O.get(i7);
+                k kVar2 = (k) this.f17076c.get(i10);
+                TLRPC.Dialog dialog = kVar.f17163c;
+                int i11 = kVar.f56015a;
+                int i12 = kVar2.f56015a;
+                TLRPC.Dialog dialog2 = kVar2.f17163c;
+                if (i11 != i12 || (i11 != 0 ? !(i11 != 14 ? i11 != 4 ? i11 != 6 ? i11 != 5 ? i11 != 10 : kVar.f17168j == kVar2.f17168j : (tL_contact = kVar.f17164e) != null && (tL_contact2 = kVar2.f17164e) != null && tL_contact.user_id == tL_contact2.user_id : (recentMeUrl = kVar.d) != null && kVar2.d != null && (str = recentMeUrl.url) != null && str.equals(str) : dialog != null && dialog2 != null && dialog.f28055id == dialog2.f28055id && dialog.isFolder == dialog2.isFolder) : !(dialog != null && dialog2 != null && dialog.f28055id == dialog2.f28055id && kVar.h == kVar2.h && kVar.f17165f == kVar2.f17165f && kVar.f17166g == kVar2.f17166g))) {
+                    return false;
+                }
+                return true;
+            case 1:
+                return ((Integer) this.f17076c.get(i7)).equals(((vw) this.d).f41165n.get(i10));
+            case 2:
+                return Objects.equals(this.f17076c.get(i7), ((pj0) this.d).f38320n.get(i10));
+            case 3:
+                if (((s01) this.f17076c.get(i7)).a() == ((s01) ((q01) this.d).f38458c.get(i10)).a()) {
+                    return true;
+                }
+                return false;
+            case 4:
+                f40 f40Var = (f40) this.d;
+                ArrayList arrayList = this.f17076c;
+                if (i7 < arrayList.size() && i10 < f40Var.f46993e.size()) {
+                    return ((s3) arrayList.get(i7)).equals(f40Var.f46993e.get(i10));
+                }
+                return false;
+            default:
+                return ((Long) this.f17076c.get(i7)).equals(((n11) this.d).f49415w0.get(i10));
+        }
     }
 
-    public static int e(float f10, int i7, int i10) {
-        return Math.max(i10, i7 - org.telegram.messenger.g0.L(f10));
+    @Override
+    public final int d() {
+        switch (this.f17075b) {
+            case 0:
+                return this.f17076c.size();
+            case 1:
+                return ((vw) this.d).f41165n.size();
+            case 2:
+                return ((pj0) this.d).f38320n.size();
+            case 3:
+                return ((q01) this.d).f38458c.size();
+            case 4:
+                return ((f40) this.d).f46993e.size();
+            default:
+                return ((n11) this.d).f49415w0.size();
+        }
     }
 
-    public static int f(int i7, int i10, int i11, int i12) {
-        return Math.max(i12, Math.min(Math.max(i7, i10), i11));
-    }
-
-    public static int g(int i7, int i10, ArrayList arrayList) {
-        return i10 - (arrayList.size() + i7);
-    }
-
-    public static Drawable h(Context context, int i7) {
-        return context.getResources().getDrawable(i7).mutate();
-    }
-
-    public static Object i(int i7, ArrayList arrayList) {
-        return arrayList.get(arrayList.size() - i7);
-    }
-
-    public static String j(int i7, String str) {
-        return str + i7;
-    }
-
-    public static String k(int i7, String str, String str2) {
-        return str + i7 + str2;
-    }
-
-    public static String l(int i7, String str, StringBuilder sb2) {
-        sb2.append(id.M0(i7, str));
-        return sb2.toString();
-    }
-
-    public static String m(long j3, char c10, StringBuilder sb2) {
-        sb2.append(id.E(j3, c10));
-        return sb2.toString();
-    }
-
-    public static StringBuilder n(int i7, String str, String str2) {
-        StringBuilder sb2 = new StringBuilder(str);
-        sb2.append(i7);
-        sb2.append(str2);
-        return sb2;
-    }
-
-    public static StringBuilder o(String str, int i7, String str2, int i10, String str3) {
-        StringBuilder sb2 = new StringBuilder(str);
-        sb2.append(i7);
-        sb2.append(str2);
-        sb2.append(i10);
-        sb2.append(str3);
-        return sb2;
-    }
-
-    public static HashMap p(Class cls, qa.a aVar) {
-        HashMap hashMap = new HashMap();
-        hashMap.put(cls, aVar);
-        return hashMap;
-    }
-
-    public static Map q(HashMap hashMap) {
-        return DesugarCollections.unmodifiableMap(new HashMap(hashMap));
-    }
-
-    public static xi0 r(View view, View view2, int i7, int i10) {
-        view.setLayoutParams(new v4.o0(i7, i10));
-        return new v4.d1(view2);
-    }
-
-    public static void s(int i7, StringBuilder sb2) {
-        sb2.append(i7);
-        a8.b(sb2.toString());
-    }
-
-    public static void t(int i7, HashMap hashMap, String str, int i10, String str2) {
-        hashMap.put(Integer.valueOf(i7), str);
-        hashMap.put(Integer.valueOf(i10), str2);
-    }
-
-    public static void u(long j3, StringBuilder sb2) {
-        sb2.append(j3);
-        a8.b(sb2.toString());
-    }
-
-    public static void v(TextView textView, int i7, float f10, String str, int i10) {
-        textView.setTextSize(i7, f10);
-        textView.setText(id.M0(i10, str));
-    }
-
-    public static void w(String str, int i7, AlertDialog$Builder alertDialog$Builder, org.telegram.ui.ActionBar.r1 r1Var) {
-        alertDialog$Builder.h(id.M0(i7, str), r1Var);
-        alertDialog$Builder.p();
-    }
-
-    public static void x(StringBuilder sb2, int i7, String str, int i10, String str2) {
-        sb2.append(i7);
-        sb2.append(str);
-        sb2.append(i10);
-        sb2.append(str2);
-    }
-
-    public static void y(n nVar, int i7, ArrayList arrayList) {
-        arrayList.add(new l(nVar, i7));
-    }
-
-    public static void z(SQLiteDatabase sQLiteDatabase, String str) {
-        sQLiteDatabase.executeFast(str).stepThis().dispose();
+    @Override
+    public final int e() {
+        switch (this.f17075b) {
+            case 0:
+                return ((m) this.d).O.size();
+            case 1:
+                return this.f17076c.size();
+            case 2:
+                return this.f17076c.size();
+            case 3:
+                return this.f17076c.size();
+            case 4:
+                return this.f17076c.size();
+            default:
+                return this.f17076c.size();
+        }
     }
 }

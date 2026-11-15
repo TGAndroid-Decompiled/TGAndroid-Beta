@@ -28,13 +28,13 @@ public class VideoSource extends MediaSource {
             }
 
             @Override
-            public void onCapturerStarted(boolean z9) {
-                VideoSource.this.nativeAndroidVideoTrackSource.setState(z9);
+            public void onCapturerStarted(boolean z10) {
+                VideoSource.this.nativeAndroidVideoTrackSource.setState(z10);
                 synchronized (VideoSource.this.videoProcessorLock) {
                     try {
-                        VideoSource.this.isCapturerRunning = z9;
+                        VideoSource.this.isCapturerRunning = z10;
                         if (VideoSource.this.videoProcessor != null) {
-                            VideoSource.this.videoProcessor.onCapturerStarted(z9);
+                            VideoSource.this.videoProcessor.onCapturerStarted(z10);
                         }
                     } catch (Throwable th2) {
                         throw th2;
@@ -108,8 +108,8 @@ public class VideoSource extends MediaSource {
         return getNativeMediaSource();
     }
 
-    public void setIsScreencast(boolean z9) {
-        this.nativeAndroidVideoTrackSource.setIsScreencast(z9);
+    public void setIsScreencast(boolean z10) {
+        this.nativeAndroidVideoTrackSource.setIsScreencast(z10);
     }
 
     public void setVideoProcessor(VideoProcessor videoProcessor) {

@@ -6,55 +6,55 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ot0;
+import org.telegram.ui.jt0;
 public final class b4 implements Runnable {
-    public final int f21614a;
-    public final Object f21615b;
-    public final Object f21616c;
+    public final int f22653a;
+    public final Object f22654b;
+    public final Object f22655c;
 
     public b4(int i7, Object obj, Object obj2) {
-        this.f21614a = i7;
-        this.f21615b = obj;
-        this.f21616c = obj2;
+        this.f22653a = i7;
+        this.f22654b = obj;
+        this.f22655c = obj2;
     }
 
     private final void a() {
-        g5 g5Var = (g5) this.f21615b;
-        for (Map.Entry entry : ((HashMap) this.f21616c).entrySet()) {
+        g5 g5Var = (g5) this.f22654b;
+        for (Map.Entry entry : ((HashMap) this.f22655c).entrySet()) {
             TLRPC.User user = (TLRPC.User) entry.getKey();
             TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) entry.getValue();
             user.contact = true;
-            g5Var.f22612e0.add(tL_contact);
-            g5Var.f22614f0.put(Long.valueOf(user.f27109id), tL_contact);
+            g5Var.f23679f0.add(tL_contact);
+            g5Var.f23680g0.put(Long.valueOf(user.f28200id), tL_contact);
         }
         g5Var.d(true);
-        qs notificationCenter = g5Var.getNotificationCenter();
-        int i7 = qp.C8;
-        notificationCenter.k(qs.f25067r, 1);
-        g5Var.getNotificationCenter().k(qs.O, new Object[0]);
+        ns notificationCenter = g5Var.getNotificationCenter();
+        int i7 = np.D8;
+        notificationCenter.k(ns.f25559r, 1);
+        g5Var.getNotificationCenter().k(ns.O, new Object[0]);
     }
 
     private final void b() {
         Account[] accountArr;
-        g5 g5Var = (g5) this.f21615b;
-        ot0 ot0Var = (ot0) this.f21616c;
-        AccountManager accountManager = AccountManager.get(t0.f25570b);
+        g5 g5Var = (g5) this.f22654b;
+        jt0 jt0Var = (jt0) this.f22655c;
+        AccountManager accountManager = AccountManager.get(t0.f26600b);
         try {
             Account[] accountsByType = accountManager.getAccountsByType("org.telegram.messenger");
-            g5Var.f22604a = null;
+            g5Var.f23669a = null;
             int i7 = 0;
             while (i7 < accountsByType.length) {
                 Account account = accountsByType[i7];
                 int i10 = 0;
                 while (true) {
                     if (i10 < 4) {
-                        TLRPC.User f10 = p10.i(i10).f();
+                        TLRPC.User f10 = m10.i(i10).f();
                         if (f10 != null) {
                             String str = account.name;
                             StringBuilder sb2 = new StringBuilder();
                             sb2.append("");
                             accountArr = accountsByType;
-                            sb2.append(f10.f27109id);
+                            sb2.append(f10.f28200id);
                             if (str.equals(sb2.toString())) {
                                 accountManager.removeAccount(account, null, null);
                                 break;
@@ -76,28 +76,28 @@ public final class b4 implements Runnable {
         }
         try {
             Account account2 = new Account("" + g5Var.getUserConfig().e(), "org.telegram.messenger");
-            g5Var.f22604a = account2;
+            g5Var.f23669a = account2;
             accountManager.addAccountExplicitly(account2, "", null);
         } catch (Exception unused2) {
         }
         g5Var.getMessagesStorage().Z0(new HashMap(), false, true);
         g5Var.getMessagesStorage().c1(new ArrayList(), true);
-        g5Var.f22605a0.clear();
-        g5Var.f22612e0.clear();
-        g5Var.f22614f0.clear();
-        g5Var.f22615g0.clear();
-        g5Var.f22617i0.clear();
-        g5Var.f22616h0.clear();
-        g5Var.f22607b0.clear();
-        g5Var.f22609c0.clear();
-        g5Var.f22610d0.clear();
-        g5Var.f22625x.clear();
-        g5Var.f22618j0.clear();
-        g5Var.f22619k0.clear();
-        g5Var.f22620l0.clear();
-        g5Var.getNotificationCenter().k(qs.O, new Object[0]);
+        g5Var.f23672b0.clear();
+        g5Var.f23679f0.clear();
+        g5Var.f23680g0.clear();
+        g5Var.f23681h0.clear();
+        g5Var.f23683j0.clear();
+        g5Var.f23682i0.clear();
+        g5Var.f23674c0.clear();
+        g5Var.f23675d0.clear();
+        g5Var.f23677e0.clear();
+        g5Var.f23691x.clear();
+        g5Var.f23684k0.clear();
+        g5Var.f23685l0.clear();
+        g5Var.m0.clear();
+        g5Var.getNotificationCenter().k(ns.O, new Object[0]);
         g5Var.A(0L, false);
-        ot0Var.run();
+        jt0Var.run();
     }
 
     @Override

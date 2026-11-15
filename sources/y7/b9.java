@@ -1,26 +1,27 @@
 package y7;
-public final class b9 {
-    public final String f58995a;
 
-    public b9(String str) {
-        this.f58995a = str;
+import a8.xa;
+import android.content.Context;
+import java.util.ArrayList;
+public final class b9 implements c9 {
+    public final ArrayList f60209a;
+
+    public b9(Context context, a9 a9Var) {
+        ArrayList arrayList = new ArrayList();
+        this.f60209a = arrayList;
+        a9Var.getClass();
+        arrayList.add(new e9(context, a9Var));
     }
 
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+    @Override
+    public final void a(xa xaVar) {
+        ArrayList arrayList = this.f60209a;
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            ((c9) obj).a(xaVar);
         }
-        if ((obj instanceof b9) && this.f58995a.equals(((b9) obj).f58995a)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return ((((this.f58995a.hashCode() ^ 1000003) * 1000003) ^ 1231) * 1000003) ^ 1;
-    }
-
-    public final String toString() {
-        return a8.p0.p("MLKitLoggingOptions{libraryName=", this.f58995a, ", enableFirelog=true, firelogEventType=1}");
     }
 }

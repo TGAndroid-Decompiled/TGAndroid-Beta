@@ -1,8 +1,9 @@
 package f3;
 
+import com.google.android.gms.internal.vision.e2;
 import java.io.EOFException;
-public final class n implements j0 {
-    public final byte[] f11073a = new byte[4096];
+public final class n implements i0 {
+    public final byte[] f10875a = new byte[4096];
 
     @Override
     public final void a(h2.x xVar, int i7, int i10) {
@@ -11,20 +12,20 @@ public final class n implements j0 {
 
     @Override
     public final void b(int i7, h2.x xVar) {
-        com.google.android.recaptcha.internal.a.a(this, xVar, i7);
+        e2.a(this, xVar, i7);
     }
 
     @Override
-    public final int e(e2.n nVar, int i7, boolean z9) {
-        return f(nVar, i7, z9);
+    public final int e(e2.n nVar, int i7, boolean z10) {
+        return f(nVar, i7, z10);
     }
 
     @Override
-    public final int f(e2.n nVar, int i7, boolean z9) {
-        byte[] bArr = this.f11073a;
+    public final int f(e2.n nVar, int i7, boolean z10) {
+        byte[] bArr = this.f10875a;
         int read = nVar.read(bArr, 0, Math.min(bArr.length, i7));
         if (read == -1) {
-            if (z9) {
+            if (z10) {
                 return -1;
             }
             throw new EOFException();
@@ -41,6 +42,6 @@ public final class n implements j0 {
     }
 
     @Override
-    public final void c(long j3, int i7, int i10, int i11, i0 i0Var) {
+    public final void c(long j3, int i7, int i10, int i11, h0 h0Var) {
     }
 }

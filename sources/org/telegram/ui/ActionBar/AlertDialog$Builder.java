@@ -7,30 +7,30 @@ import android.widget.TextView;
 import java.util.HashMap;
 import org.telegram.ui.LaunchActivity;
 public class AlertDialog$Builder {
-    public final u1 f27300a;
-    public final boolean[] f27301b;
+    public final t1 f28392a;
+    public final boolean[] f28393b;
 
     public AlertDialog$Builder(Context context) {
         this(0, context, null);
     }
 
-    public final u1 a() {
-        return this.f27300a;
+    public final t1 a() {
+        return this.f28392a;
     }
 
-    public u1 b(int i7, Context context, h6 h6Var) {
-        return new u1(i7, context, h6Var);
+    public t1 b(int i7, Context context, e6 e6Var) {
+        return new t1(i7, context, e6Var);
     }
 
     public final void c() {
-        int i7 = u1.f28536j1;
-        this.f27300a.getClass();
+        int i7 = t1.f29613k1;
+        this.f28392a.getClass();
     }
 
     public final void d(int i7) {
         int i10 = (-i7) - 1;
         if (i10 >= 0) {
-            boolean[] zArr = this.f27301b;
+            boolean[] zArr = this.f28393b;
             if (i10 < zArr.length) {
                 zArr[i10] = true;
             }
@@ -38,103 +38,103 @@ public class AlertDialog$Builder {
     }
 
     public final void e() {
-        this.f27300a.Q0 = 0.5f;
+        this.f28392a.R0 = 0.5f;
     }
 
     public final void f(CharSequence[] charSequenceArr, DialogInterface.OnClickListener onClickListener) {
-        u1 u1Var = this.f27300a;
-        u1Var.P = charSequenceArr;
-        u1Var.M = onClickListener;
+        t1 t1Var = this.f28392a;
+        t1Var.Q = charSequenceArr;
+        t1Var.N = onClickListener;
     }
 
     public final void g(CharSequence charSequence) {
-        this.f27300a.T = charSequence;
+        this.f28392a.U = charSequence;
     }
 
-    public final void h(String str, r1 r1Var) {
-        u1 u1Var = this.f27300a;
-        u1Var.f28564n0 = str;
-        u1Var.f28565o0 = r1Var;
+    public final void h(String str, q1 q1Var) {
+        t1 t1Var = this.f28392a;
+        t1Var.f29643o0 = str;
+        t1Var.f29644p0 = q1Var;
     }
 
-    public final void i(String str, r1 r1Var) {
-        u1 u1Var = this.f27300a;
-        u1Var.f28569r0 = str;
-        u1Var.f28571s0 = r1Var;
+    public final void i(String str, q1 q1Var) {
+        t1 t1Var = this.f28392a;
+        t1Var.f29649s0 = str;
+        t1Var.f29650t0 = q1Var;
     }
 
     public final void j(DialogInterface.OnDismissListener onDismissListener) {
-        this.f27300a.setOnDismissListener(onDismissListener);
+        this.f28392a.setOnDismissListener(onDismissListener);
     }
 
-    public final void k(CharSequence charSequence, r1 r1Var) {
-        u1 u1Var = this.f27300a;
-        u1Var.f28562l0 = charSequence;
-        u1Var.m0 = r1Var;
+    public final void k(CharSequence charSequence, q1 q1Var) {
+        t1 t1Var = this.f28392a;
+        t1Var.m0 = charSequence;
+        t1Var.f29642n0 = q1Var;
     }
 
     public final void l(CharSequence charSequence) {
-        this.f27300a.R = charSequence;
+        this.f28392a.S = charSequence;
     }
 
     public final void m(int i7, int i10, int i11, HashMap hashMap) {
-        u1 u1Var = this.f27300a;
-        u1Var.X = i7;
-        u1Var.Y = i10;
-        u1Var.S0 = false;
-        u1Var.f28544c0 = i11;
-        u1Var.f28546d0 = -1;
-        u1Var.Z = hashMap;
+        t1 t1Var = this.f28392a;
+        t1Var.Y = i7;
+        t1Var.Z = i10;
+        t1Var.T0 = false;
+        t1Var.f29623d0 = i11;
+        t1Var.f29626e0 = -1;
+        t1Var.f29615a0 = hashMap;
     }
 
-    public final void n(int i7, h6 h6Var) {
-        u1 u1Var = this.f27300a;
-        u1Var.f28546d0 = i7;
-        u1Var.f28549e0 = h6Var;
-        u1Var.f28544c0 = m6.w0(i7, h6Var);
+    public final void n(int i7, e6 e6Var) {
+        t1 t1Var = this.f28392a;
+        t1Var.f29626e0 = i7;
+        t1Var.f29629f0 = e6Var;
+        t1Var.f29623d0 = j6.w0(i7, e6Var);
     }
 
     public final void o(View view) {
-        u1 u1Var = this.f27300a;
-        u1Var.f28540b = view;
-        u1Var.f28548e = -2;
+        t1 t1Var = this.f28392a;
+        t1Var.f29617b = view;
+        t1Var.f29625e = -2;
     }
 
-    public final u1 p() {
+    public final t1 p() {
         TextView textView;
-        u1 u1Var = this.f27300a;
-        u1Var.show();
+        t1 t1Var = this.f28392a;
+        t1Var.show();
         int i7 = 0;
         while (true) {
-            boolean[] zArr = this.f27301b;
+            boolean[] zArr = this.f28393b;
             if (i7 < zArr.length) {
-                if (zArr[i7] && (textView = (TextView) u1Var.d(-(i7 + 1))) != null) {
-                    t6.U(textView, m6.f28131q7, u1Var.f28559i1);
+                if (zArr[i7] && (textView = (TextView) t1Var.d(-(i7 + 1))) != null) {
+                    q6.U(textView, j6.f29090q7, t1Var.f29638j1);
                 }
                 i7++;
             } else {
-                return u1Var;
+                return t1Var;
             }
         }
     }
 
     public AlertDialog$Builder setTopImage(int i7, int i10) {
-        u1 u1Var = this.f27300a;
-        u1Var.U = i7;
-        u1Var.f28544c0 = i10;
-        u1Var.f28546d0 = -1;
+        t1 t1Var = this.f28392a;
+        t1Var.V = i7;
+        t1Var.f29623d0 = i10;
+        t1Var.f29626e0 = -1;
         return this;
     }
 
-    public AlertDialog$Builder(Context context, h6 h6Var) {
-        this(0, context, h6Var);
+    public AlertDialog$Builder(Context context, e6 e6Var) {
+        this(0, context, e6Var);
     }
 
-    public AlertDialog$Builder(int i7, Context context, h6 h6Var) {
-        this.f27301b = new boolean[3];
-        if (context == null && (context = org.telegram.messenger.g0.W(LaunchActivity.G1)) == null) {
-            context = org.telegram.messenger.t0.f25570b;
+    public AlertDialog$Builder(int i7, Context context, e6 e6Var) {
+        this.f28393b = new boolean[3];
+        if (context == null && (context = org.telegram.messenger.g0.W(LaunchActivity.H1)) == null) {
+            context = org.telegram.messenger.t0.f26600b;
         }
-        this.f27300a = b(i7, context, h6Var);
+        this.f28392a = b(i7, context, e6Var);
     }
 }

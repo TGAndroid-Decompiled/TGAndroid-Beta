@@ -1,32 +1,27 @@
 package org.telegram.messenger;
+public final class dn implements Runnable {
+    public final int f23110a;
+    public final c1 f23111b;
+    public final Object f23112c;
+    public final Object d;
+    public final Object f23113e;
+    public final Object f23114f;
+    public final Object h;
+    public final Object f23115n;
 
-import org.telegram.tgnet.TLRPC;
-public final class dn implements sr {
-    public final qp f22066a;
-    public final long f22067b;
-    public final int f22068c;
-    public final boolean d;
-    public final TLRPC.InputPeer f22069e;
-    public final long f22070f;
-
-    public dn(qp qpVar, long j3, int i7, boolean z9, TLRPC.InputPeer inputPeer, long j10) {
-        this.f22066a = qpVar;
-        this.f22067b = j3;
-        this.f22068c = i7;
-        this.d = z9;
-        this.f22069e = inputPeer;
-        this.f22070f = j10;
+    public dn(c1 c1Var, Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i7) {
+        this.f23110a = i7;
+        this.f23111b = c1Var;
+        this.h = obj;
+        this.f23112c = obj2;
+        this.d = obj3;
+        this.f23113e = obj4;
+        this.f23114f = obj5;
+        this.f23115n = obj6;
     }
 
     @Override
-    public final void a(int i7) {
-        qp qpVar = this.f22066a;
-        long e10 = qpVar.getUserConfig().e();
-        long j3 = this.f22067b;
-        if (j3 == e10) {
-            qpVar.G1().b();
-        }
-        qpVar.Y(j3, 2, this.f22068c, Math.max(0, i7), this.d, this.f22069e, this.f22070f);
-        qpVar.J(1);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.dn.run():void");
     }
 }

@@ -2,31 +2,35 @@ package org.telegram.ui.Wallet;
 
 import android.content.Context;
 import android.view.View;
-public final class n5 extends i6 {
-    public final z5 f42862l0;
+import android.widget.FrameLayout;
+public final class n5 extends FrameLayout {
+    public View f44191a;
+    public float f44192b;
+    public int f44193c;
+    public final l5 d;
+    public final y5 f44194e;
 
-    public n5(z5 z5Var, Context context) {
+    public n5(y5 y5Var, Context context) {
         super(context);
-        this.f42862l0 = z5Var;
+        this.f44194e = y5Var;
+        this.d = new l5(1, this);
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
-        super.onMeasure(i7, makeMeasureSpec);
-        z5 z5Var = this.f42862l0;
-        if (z5Var.f43463r > 0 && getMeasuredHeight() > z5Var.f43463r) {
-            int paddingRight = getPaddingRight() + getPaddingLeft();
-            int paddingBottom = getPaddingBottom() + getPaddingTop();
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(paddingRight + ((int) ((getMeasuredWidth() - paddingRight) * (Math.max(0, z5Var.f43463r - paddingBottom) / Math.max(1, getMeasuredHeight() - paddingBottom)))), 1073741824), makeMeasureSpec);
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        getViewTreeObserver().addOnPreDrawListener(this.d);
     }
 
     @Override
-    public final void setStickerStyle(float[] fArr) {
-        super.setStickerStyle(fArr);
-        z5 z5Var = this.f42862l0;
-        z5Var.V0(z5Var.f43473x0);
-        z5Var.W0(fArr);
+    public final void onDetachedFromWindow() {
+        getViewTreeObserver().removeOnPreDrawListener(this.d);
+        super.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        super.onLayout(z10, i7, i10, i11, i12);
+        this.f44194e.U0();
     }
 }

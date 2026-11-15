@@ -4,27 +4,27 @@ import a8.p0;
 import android.app.Notification;
 import android.os.Parcel;
 public final class e0 {
-    public final String f10050a;
-    public final int f10051b;
-    public final String f10052c;
+    public final String f9881a;
+    public final int f9882b;
+    public final String f9883c;
     public final Notification d;
 
     public e0(String str, int i7, String str2, Notification notification) {
-        this.f10050a = str;
-        this.f10051b = i7;
-        this.f10052c = str2;
+        this.f9881a = str;
+        this.f9882b = i7;
+        this.f9883c = str2;
         this.d = notification;
     }
 
     public final void a(b.c cVar) {
-        String str = this.f10050a;
-        int i7 = this.f10051b;
-        String str2 = this.f10052c;
+        String str = this.f9881a;
+        int i7 = this.f9882b;
+        String str2 = this.f9883c;
         b.a aVar = (b.a) cVar;
         aVar.getClass();
         Parcel obtain = Parcel.obtain();
         try {
-            obtain.writeInterfaceToken(b.c.f2887g);
+            obtain.writeInterfaceToken(b.c.f2841g);
             obtain.writeString(str);
             obtain.writeInt(i7);
             obtain.writeString(str2);
@@ -35,7 +35,7 @@ public final class e0 {
             } else {
                 obtain.writeInt(0);
             }
-            aVar.f2885a.transact(1, obtain, null, 1);
+            aVar.f2839a.transact(1, obtain, null, 1);
         } finally {
             obtain.recycle();
         }
@@ -43,10 +43,10 @@ public final class e0 {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("NotifyTask[packageName:");
-        sb2.append(this.f10050a);
+        sb2.append(this.f9881a);
         sb2.append(", id:");
-        sb2.append(this.f10051b);
+        sb2.append(this.f9882b);
         sb2.append(", tag:");
-        return p0.s(sb2, this.f10052c, "]");
+        return p0.s(sb2, this.f9883c, "]");
     }
 }

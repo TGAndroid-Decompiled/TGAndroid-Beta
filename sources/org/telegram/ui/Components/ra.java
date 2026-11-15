@@ -1,36 +1,83 @@
 package org.telegram.ui.Components;
-public final class ra implements q0.a {
-    public final int f37575a;
-    public final Object f37576b;
 
-    public ra(Object obj, int i7) {
-        this.f37575a = i7;
-        this.f37576b = obj;
+import android.view.View;
+import android.widget.FrameLayout;
+import j$.util.Objects;
+import org.telegram.ui.mb1;
+public final class ra implements View.OnLayoutChangeListener {
+    public final boolean f38910a;
+    public final xb f38911b;
+
+    public ra(xb xbVar, boolean z10) {
+        this.f38911b = xbVar;
+        this.f38910a = z10;
     }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f37575a) {
-            case 0:
-                bc bcVar = (bc) this.f37576b;
-                Float f10 = (Float) obj;
-                za zaVar = bcVar.f32209p;
-                if (zaVar != null) {
-                    fb fbVar = bcVar.f32199e;
-                    if (!fbVar.top) {
-                        zaVar.c(fbVar.getHeight() - f10.floatValue());
-                        return;
+    public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
+        wa waVar;
+        int i17;
+        xb xbVar = this.f38911b;
+        cb cbVar = xbVar.f41639e;
+        cbVar.removeOnLayoutChangeListener(this);
+        if (xbVar.f41645l) {
+            cbVar.onShow();
+            org.telegram.ui.ActionBar.e2 e2Var = xbVar.f41641g;
+            boolean z10 = this.f38910a;
+            if (z10 && (e2Var instanceof mb1)) {
+                e2Var = ((mb1) e2Var).c0();
+            }
+            FrameLayout frameLayout = xbVar.h;
+            if (e2Var == null || (waVar = e2Var.getBulletinDelegate()) == null) {
+                if (frameLayout != null) {
+                    Object tag = frameLayout.getTag(2131296351);
+                    if (tag instanceof wa) {
+                        waVar = (wa) tag;
                     }
-                    return;
                 }
-                return;
-            default:
-                ai aiVar = ((ci) this.f37576b).W3;
-                if (aiVar != null) {
-                    aiVar.M0(obj);
-                    return;
+                waVar = null;
+            }
+            xbVar.f41649p = waVar;
+            if (waVar == null && e2Var != null) {
+                xbVar.f41649p = new org.telegram.ui.ActionBar.y1(1, e2Var);
+            }
+            r1.g gVar = xbVar.d;
+            if (gVar == null || !gVar.f55742f) {
+                wa waVar2 = xbVar.f41649p;
+                if (waVar2 != null) {
+                    i17 = waVar2.f(xbVar.f41636a);
+                } else {
+                    i17 = 0;
                 }
+                xbVar.f41648o = i17;
+            }
+            wa waVar3 = xbVar.f41649p;
+            if (waVar3 != null) {
+                waVar3.b(xbVar);
+            }
+            if (org.telegram.messenger.np.e1().getBoolean("view_animations", true) && !xbVar.f41652s) {
+                if (cbVar != null && xbVar.f41650q == null) {
+                    xbVar.f41650q = cbVar.createTransition();
+                }
+                cbVar.transitionRunningEnter = true;
+                cbVar.delegate = xbVar.f41649p;
+                cbVar.invalidate();
+                bb bbVar = xbVar.f41650q;
+                Objects.requireNonNull(cbVar);
+                bbVar.y(cbVar, new na(cbVar, 1), new dg(this, 15), new il(2, this, z10));
                 return;
+            }
+            wa waVar4 = xbVar.f41649p;
+            cbVar.delegate = waVar4;
+            if (waVar4 != null && !z10) {
+                waVar4.c(cbVar.getHeight());
+            }
+            xbVar.l();
+            cbVar.onEnterTransitionStart();
+            cbVar.onEnterTransitionEnd();
+            if (xbVar.f41654u) {
+                xbVar.i(true);
+            }
         }
     }
 }

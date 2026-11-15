@@ -1,20 +1,19 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-import java.io.Serializable;
-public final class n41 implements org.telegram.messenger.a20, org.telegram.messenger.b20 {
-    public final o41 f36241a;
+public final class n41 extends View {
+    public int f37452a;
 
     @Override
-    public Boolean a(x31 x31Var, View view, Integer num, Float f10, Float f11) {
-        return Boolean.valueOf(this.f36241a.c0(x31Var, view));
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f37452a, 1073741824));
     }
 
-    @Override
-    public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        Integer num = (Integer) number;
-        Float f10 = (Float) serializable;
-        Float f11 = (Float) serializable2;
-        this.f36241a.b0((x31) obj, (View) obj2);
+    public void setHeight(int i7) {
+        if (this.f37452a == i7) {
+            return;
+        }
+        this.f37452a = i7;
+        requestLayout();
     }
 }

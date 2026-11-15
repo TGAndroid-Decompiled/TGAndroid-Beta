@@ -1,42 +1,93 @@
 package vi;
 
-import android.os.SystemClock;
-import java.util.concurrent.atomic.AtomicLong;
-import org.telegram.messenger.a8;
-import org.telegram.messenger.r2;
-import w7.s;
+import android.content.Context;
+import android.util.SparseArray;
+import android.util.SparseIntArray;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import org.telegram.tgnet.SerializedData;
 public final class b {
-    public static final AtomicLong d = new AtomicLong(1);
-    public final long f57534a = d.getAndIncrement();
-    public final long f57535b = SystemClock.elapsedRealtime();
-    public final s f57536c;
+    public static SparseIntArray f59012b;
+    public static final b f59013c = new b();
+    public final SparseArray f59014a;
 
-    public b(s sVar) {
-        this.f57536c = sVar;
+    public b() {
+        this.f59014a = new SparseArray();
     }
 
-    public final void a(String str, Throwable th2) {
-        String str2 = "AudioRecorder[" + this.f57534a + "] t+" + (SystemClock.elapsedRealtime() - this.f57535b) + "ms [" + Thread.currentThread().getName() + "] " + str;
-        switch (this.f57536c.f57622a) {
-            case 16:
-                a8.e("AudioRecorderV2 " + str2, th2);
-                return;
-            default:
-                return;
-        }
-    }
-
-    public final void b(String str) {
-        String str2 = "AudioRecorder[" + this.f57534a + "] t+" + (SystemClock.elapsedRealtime() - this.f57535b) + "ms [" + Thread.currentThread().getName() + "] " + str;
-        switch (this.f57536c.f57622a) {
-            case 16:
-                if (r2.f25216a) {
-                    a8.b("AudioRecorderV2 " + str2);
-                    return;
+    public static SparseArray a(Context context, String str, SparseArray sparseArray) {
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(context.getAssets().open(str));
+        try {
+            SerializedData serializedData = new SerializedData(bufferedInputStream);
+            int readInt32 = serializedData.readInt32(true);
+            int i7 = 0;
+            if (sparseArray == null) {
+                sparseArray = new SparseArray(readInt32);
+                while (i7 < readInt32) {
+                    sparseArray.append(serializedData.readInt32(true), serializedData.readString(true));
+                    i7++;
                 }
-                return;
-            default:
-                return;
+            } else {
+                while (i7 < readInt32) {
+                    sparseArray.put(serializedData.readInt32(true), serializedData.readString(true));
+                    i7++;
+                }
+            }
+            bufferedInputStream.close();
+            return sparseArray;
+        } catch (Throwable th2) {
+            try {
+                bufferedInputStream.close();
+            } catch (Throwable th3) {
+                th2.addSuppressed(th3);
+            }
+            throw th2;
         }
+    }
+
+    public final String b(String str) {
+        if (str != null) {
+            return (String) this.f59014a.get(str.hashCode());
+        }
+        return null;
+    }
+
+    public final String c(int i7, Context context, String str) {
+        String str2;
+        if (str != null) {
+            str2 = b(str);
+        } else {
+            str2 = null;
+        }
+        if (str2 == null && i7 != 0) {
+            if (context != null && i7 != 0) {
+                if (f59012b == null) {
+                    try {
+                        BufferedInputStream bufferedInputStream = new BufferedInputStream(context.getResources().getAssets().open("string_resource_ids.bin"));
+                        SerializedData serializedData = new SerializedData(bufferedInputStream);
+                        int readInt32 = serializedData.readInt32(true);
+                        SparseIntArray sparseIntArray = new SparseIntArray(readInt32);
+                        for (int i10 = 0; i10 < readInt32; i10++) {
+                            sparseIntArray.append(serializedData.readInt32(true), serializedData.readInt32(true));
+                        }
+                        bufferedInputStream.close();
+                        f59012b = sparseIntArray;
+                    } catch (IOException e10) {
+                        throw new RuntimeException(e10);
+                    }
+                }
+                int i11 = f59012b.get(i7);
+                if (i11 != 0) {
+                    return (String) this.f59014a.get(i11);
+                }
+            }
+            return null;
+        }
+        return str2;
+    }
+
+    public b(a aVar) {
+        SparseArray sparseArray = aVar.f59011a;
+        this.f59014a = sparseArray == null ? new SparseArray() : sparseArray;
     }
 }

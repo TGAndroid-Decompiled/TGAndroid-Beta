@@ -1,20 +1,20 @@
 package c8;
 public final class gb {
-    public final ue f5687a;
-    public final fb f5688b;
-    public final db f5689c;
+    public final ue f4509a;
+    public final fb f4510b;
+    public final db f4511c;
     public final ae d;
-    public final de f5690e;
-    public final ce f5691f;
-    public final i1 f5692g;
+    public final de f4512e;
+    public final ce f4513f;
+    public final i1 f4514g;
 
     public gb(ga.d dVar) {
-        this.f5687a = (ue) dVar.f13618b;
-        this.f5688b = (fb) dVar.f13619c;
-        this.f5689c = (db) dVar.d;
-        this.d = (ae) dVar.f13620e;
-        this.f5690e = (de) dVar.f13621f;
-        this.f5691f = (ce) dVar.h;
-        this.f5692g = (i1) dVar.f13622n;
+        this.f4509a = (ue) dVar.f12963b;
+        this.f4510b = (fb) dVar.f12964c;
+        this.f4511c = (db) dVar.d;
+        this.d = (ae) dVar.f12965e;
+        this.f4512e = (de) dVar.f12966f;
+        this.f4513f = (ce) dVar.h;
+        this.f4514g = (i1) dVar.f12967n;
     }
 }

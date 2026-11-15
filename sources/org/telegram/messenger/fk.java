@@ -1,117 +1,95 @@
 package org.telegram.messenger;
 
+import android.support.v4.media.MediaDescriptionCompat;
+import android.support.v4.media.session.MediaSessionCompat$QueueItem;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Locale;
+import org.telegram.SQLite.SQLiteCursor;
+import org.telegram.SQLite.SQLiteDatabase;
+import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class fk implements Runnable {
-    public final int f22436a;
-    public final qp f22437b;
-    public final ArrayList f22438c;
-    public final long d;
+    public final int f23501a;
+    public final Object f23502b;
+    public final long f23503c;
+    public final int d;
+    public final Object f23504e;
 
-    public fk(qp qpVar, long j3, ArrayList arrayList, int i7) {
-        this.f22436a = i7;
-        this.f22437b = qpVar;
-        this.d = j3;
-        this.f22438c = arrayList;
+    public fk(int i7, int i10, long j3, Object obj, Object obj2) {
+        this.f23501a = i10;
+        this.f23502b = obj;
+        this.f23504e = obj2;
+        this.f23503c = j3;
+        this.d = i7;
+    }
+
+    private final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.fk.a():void");
+    }
+
+    private final void b() {
+        uz uzVar = (uz) this.f23502b;
+        vr vrVar = (vr) this.f23504e;
+        long j3 = this.f23503c;
+        int i7 = this.d;
+        ArrayList arrayList = new ArrayList();
+        ArrayList arrayList2 = new ArrayList();
+        try {
+            SQLiteDatabase sQLiteDatabase = vrVar.f27222b;
+            Locale locale = Locale.US;
+            SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT data, mid FROM media_v4 WHERE uid = " + j3 + " AND mid > 0 AND type = 4 ORDER BY date DESC, mid DESC", new Object[0]);
+            while (queryFinalized.next()) {
+                NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
+                if (byteBufferValue != null) {
+                    TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                    TLdeserialize.readAttachPath(byteBufferValue, m10.i(i7).f24953n);
+                    byteBufferValue.reuse();
+                    if (gj.K3(TLdeserialize)) {
+                        TLdeserialize.f28072id = queryFinalized.intValue(1);
+                        TLdeserialize.dialog_id = j3;
+                        gj gjVar = new gj(i7, TLdeserialize, false, true);
+                        arrayList.add(gjVar);
+                        arrayList2.add(new MediaSessionCompat$QueueItem(null, new MediaDescriptionCompat(j3 + "_" + arrayList.size(), gjVar.y1(true), gjVar.w1(true), null, null, null, null, null), arrayList2.size()));
+                    }
+                }
+            }
+            queryFinalized.dispose();
+            Collections.reverse(arrayList);
+            Collections.reverse(arrayList2);
+        } catch (Exception e10) {
+            a8.g(e10, true);
+        }
+        g0.h3(new z1(uzVar, i7, j3, arrayList, arrayList2, 6));
     }
 
     @Override
     public final void run() {
-        int i7;
-        long j3;
-        long j10;
-        int i10 = this.f22436a;
-        long j11 = this.d;
-        ArrayList arrayList = this.f22438c;
-        qp qpVar = this.f22437b;
-        switch (i10) {
-            case 0:
-                yr messagesStorage = qpVar.getMessagesStorage();
-                long j12 = this.d;
-                ArrayList arrayList2 = this.f22438c;
-                qpVar.getMessagesStorage().R1(j12, -j12, arrayList2, messagesStorage.P0(j12, arrayList2, false, true, 0, 0));
-                return;
-            case 1:
-                qpVar.getNotificationCenter().k(7, arrayList, Long.valueOf(j11), Boolean.FALSE);
-                if (j11 == 0) {
-                    int size = arrayList.size();
-                    for (int i11 = 0; i11 < size; i11++) {
-                        ij ijVar = (ij) qpVar.U.get(((Integer) arrayList.get(i11)).intValue());
-                        if (ijVar != null) {
-                            ijVar.Z = true;
-                        }
-                    }
-                    return;
-                }
-                ArrayList arrayList3 = (ArrayList) qpVar.R.f(-j11);
-                if (arrayList3 != null) {
-                    for (int i12 = 0; i12 < arrayList3.size(); i12++) {
-                        ij ijVar2 = (ij) arrayList3.get(i12);
-                        int size2 = arrayList.size();
-                        int i13 = 0;
-                        while (true) {
-                            if (i13 >= size2) {
-                                break;
-                            } else if (ijVar2.e1() == ((Integer) arrayList.get(i13)).intValue()) {
-                                ijVar2.Z = true;
-                            } else {
-                                i13++;
-                            }
-                        }
-                    }
-                    return;
-                }
-                return;
-            case 2:
-                if (arrayList != null) {
-                    qpVar.getClass();
-                    for (int i14 = 0; i14 < arrayList.size(); i14++) {
-                        TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) arrayList.get(i14);
-                        qp messagesController = qpVar.getMessagesController();
-                        int i15 = tL_forumTopic.top_message;
-                        TLRPC.Message message = tL_forumTopic.topMessage;
-                        if (message != null) {
-                            i7 = message.date;
-                        } else {
-                            i7 = 0;
-                        }
-                        long j13 = this.d;
-                        if (qpVar.y2(j13)) {
-                            j3 = m5.o(tL_forumTopic.from_id);
-                        } else {
-                            j3 = tL_forumTopic.f27012id;
-                        }
-                        messagesController.j3(j13, i15, 0, i7, false, j3, 0, true, 0);
-                        yr messagesStorage2 = qpVar.getMessagesStorage();
-                        long j14 = -j13;
-                        if (qpVar.y2(j13)) {
-                            j10 = m5.o(tL_forumTopic.from_id);
-                        } else {
-                            j10 = tL_forumTopic.f27012id;
-                        }
-                        messagesStorage2.d2(j14, j10, tL_forumTopic.top_message, 0);
-                    }
-                }
-                qpVar.getMessagesStorage().f26723a.c(new vj(qpVar, 21));
-                return;
-            case 3:
-                qpVar.l5(0, -j11, arrayList);
-                qpVar.getNotificationCenter().k(3, new Object[0]);
-                return;
-            case 4:
-                g0.h3(new fk(this.f22437b, this.d, this.f22438c, 5));
-                return;
-            default:
-                qpVar.l5(0, j11, arrayList);
-                qpVar.getNotificationCenter().k(3, new Object[0]);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.fk.run():void");
     }
 
-    public fk(qp qpVar, ArrayList arrayList, long j3, int i7) {
-        this.f22436a = i7;
-        this.f22437b = qpVar;
-        this.f22438c = arrayList;
-        this.d = j3;
+    public fk(c1 c1Var, long j3, int i7, Object obj, int i10) {
+        this.f23501a = i10;
+        this.f23502b = c1Var;
+        this.f23503c = j3;
+        this.d = i7;
+        this.f23504e = obj;
+    }
+
+    public fk(c1 c1Var, long j3, TLObject tLObject, int i7, int i10) {
+        this.f23501a = i10;
+        this.f23502b = c1Var;
+        this.f23503c = j3;
+        this.f23504e = tLObject;
+        this.d = i7;
+    }
+
+    public fk(vr vrVar, int i7, long j3, TLObject tLObject, int i10) {
+        this.f23501a = i10;
+        this.f23502b = vrVar;
+        this.d = i7;
+        this.f23503c = j3;
+        this.f23504e = tLObject;
     }
 }

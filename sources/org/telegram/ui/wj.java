@@ -1,28 +1,20 @@
 package org.telegram.ui;
+public final class wj extends org.telegram.ui.Components.wi0 {
+    public final an f52919l;
 
-import android.content.Context;
-public final class wj extends lh.e {
-    public final cn L;
-
-    public wj(cn cnVar, Context context, org.telegram.ui.ActionBar.h6 h6Var, qi qiVar, dh.c cVar) {
-        super(context, cVar, qiVar, h6Var);
-        this.L = cnVar;
+    public wj(an anVar, aj ajVar, dj djVar) {
+        super(ajVar, djVar);
+        this.f52919l = anVar;
     }
 
-    @Override
-    public final void setVisibility(int i7) {
-        boolean z9;
-        super.setVisibility(i7);
-        m6.n nVar = this.L.f44526hd;
-        boolean z10 = false;
-        if (i7 == 0) {
-            z9 = true;
-        } else {
-            z9 = false;
+    public final void f(int i7) {
+        if (this.f52919l.mb) {
+            if (i7 == 0) {
+                i7 = 1;
+            } else if (i7 == 1) {
+                i7 = 0;
+            }
         }
-        if (getMeasuredWidth() > 0) {
-            z10 = true;
-        }
-        nVar.h(3, z9, z10);
+        this.f41354b = i7;
     }
 }

@@ -1,39 +1,13 @@
 package org.telegram.ui.Components;
-public final class pr implements Runnable {
-    public final int f37066a;
-    public final org.telegram.ui.ActionBar.u1[] f37067b;
+public final class pr extends v4.k {
+    public final rr F;
 
-    public pr(org.telegram.ui.ActionBar.u1[] u1VarArr, int i7) {
-        this.f37066a = i7;
-        this.f37067b = u1VarArr;
+    public pr(rr rrVar) {
+        this.F = rrVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37066a) {
-            case 0:
-                org.telegram.ui.ActionBar.u1 u1Var = this.f37067b[0];
-                if (u1Var != null) {
-                    u1Var.dismiss();
-                    return;
-                }
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.u1[] u1VarArr = this.f37067b;
-                try {
-                    u1VarArr[0].dismiss();
-                } catch (Throwable unused) {
-                }
-                u1VarArr[0] = null;
-                return;
-            default:
-                org.telegram.ui.ActionBar.u1[] u1VarArr2 = this.f37067b;
-                try {
-                    u1VarArr2[0].dismiss();
-                } catch (Throwable unused2) {
-                }
-                u1VarArr2[0] = null;
-                return;
-        }
+    public final void P(v4.e1 e1Var) {
+        this.F.f29682b.invalidate();
     }
 }

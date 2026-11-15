@@ -1,44 +1,27 @@
 package org.telegram.ui;
 
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class eb0 implements Runnable {
-    public final int f45224a;
-    public final sc0 f45225b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class eb0 implements RequestDelegate {
+    public final int f46663a;
+    public final ob0 f46664b;
+    public final String f46665c;
 
-    public eb0(sc0 sc0Var, int i7) {
-        this.f45224a = i7;
-        this.f45225b = sc0Var;
+    public eb0(ob0 ob0Var, String str, int i7) {
+        this.f46663a = i7;
+        this.f46664b = ob0Var;
+        this.f46665c = str;
     }
 
     @Override
-    public final void run() {
-        switch (this.f45224a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f46663a) {
             case 0:
-                this.f45225b.M.m();
-                return;
-            case 1:
-                sc0 sc0Var = this.f45225b;
-                sc0Var.N = null;
-                sc0Var.O = null;
-                sc0Var.o(true);
-                sc0Var.f49822e.j(null, null, sc0Var.f49823f, null);
-                yc ycVar = sc0Var.f49824n;
-                org.telegram.ui.Components.zg0 zg0Var = sc0Var.J;
-                ycVar.setAnimation(zg0Var);
-                zg0Var.M(0);
-                sc0Var.L = true;
-                return;
-            case 2:
-                this.f45225b.L = true;
+                org.telegram.messenger.g0.h3(new gb0(this.f46664b, tL_error, this.f46665c, tLObject));
                 return;
             default:
-                EditTextBoldCursor editTextBoldCursor = this.f45225b.f49821c;
-                if (editTextBoldCursor != null) {
-                    editTextBoldCursor.requestFocus();
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                    org.telegram.messenger.g0.K3(editTextBoldCursor);
-                    return;
-                }
+                org.telegram.messenger.g0.h3(new gb0(this.f46664b, tL_error, tLObject, this.f46665c));
                 return;
         }
     }

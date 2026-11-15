@@ -3,25 +3,30 @@ package jg;
 import java.util.ArrayList;
 import org.telegram.ui.ur;
 public final class p1 implements y1 {
-    public final ur f16881a;
+    public final ur f17233a;
 
     public p1(ur urVar) {
-        this.f16881a = urVar;
+        this.f17233a = urVar;
     }
 
     @Override
-    public final a0.h X0() {
+    public final a0.h K() {
         return null;
     }
 
     @Override
-    public final boolean k1(int i7) {
+    public final a0.h U() {
+        return null;
+    }
+
+    @Override
+    public final boolean e0(int i7) {
         return true;
     }
 
     @Override
-    public final void q(int i7) {
-        ur urVar = this.f16881a;
+    public final void i(int i7) {
+        ur urVar = this.f17233a;
         urVar.f();
         if (i7 != 0) {
             urVar.F();
@@ -29,11 +34,6 @@ public final class p1 implements y1 {
     }
 
     @Override
-    public final a0.h v0() {
-        return null;
-    }
-
-    @Override
-    public final void m1(ArrayList arrayList) {
+    public final void l0(ArrayList arrayList) {
     }
 }

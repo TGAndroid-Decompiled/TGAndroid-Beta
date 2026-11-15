@@ -1,33 +1,70 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-public final class rj extends AnimatorListenerAdapter {
-    public final int f37674a = 0;
-    public final org.telegram.ui.xp f37675b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.MotionEvent;
+public final class rj extends uj0 {
+    public final int f38988f3;
+    public final Paint f38989g3;
+    public final dk f38990h3;
 
-    public rj(org.telegram.ui.xp xpVar) {
-        this.f37675b = xpVar;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f37674a) {
-            case 0:
-                ((tj) this.f37675b.d).U.e();
+    public rj(dk dkVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i7) {
+        super(context, e6Var);
+        this.f38988f3 = i7;
+        switch (i7) {
+            case 1:
+                this.f38990h3 = dkVar;
+                super(context, e6Var);
+                this.f38989g3 = new Paint();
                 return;
             default:
-                org.telegram.ui.xp xpVar = this.f37675b;
-                View view = xpVar.f51779b;
-                view.setAlpha(1.0f);
-                v4.n0.x0(view);
-                ((tj) xpVar.d).X.f38698r.removeView(view);
+                this.f38990h3 = dkVar;
+                this.f38989g3 = new Paint();
                 return;
         }
     }
 
-    public rj(org.telegram.ui.xp xpVar, v4.n0 n0Var) {
-        this.f37675b = xpVar;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        switch (this.f38988f3) {
+            case 0:
+                if (this.f38990h3.f33964n == 2 && getChildCount() > 0) {
+                    float f10 = 2.1474836E9f;
+                    for (int i7 = 0; i7 < getChildCount(); i7++) {
+                        if (getChildAt(i7).getY() < f10) {
+                            f10 = getChildAt(i7).getY();
+                        }
+                    }
+                    this.f38989g3.setColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28922h5, false));
+                }
+                super.dispatchDraw(canvas);
+                return;
+            default:
+                if (this.f38990h3.f33964n == 1 && getChildCount() > 0) {
+                    float f11 = 2.1474836E9f;
+                    for (int i10 = 0; i10 < getChildCount(); i10++) {
+                        if (getChildAt(i10).getY() < f11) {
+                            f11 = getChildAt(i10).getY();
+                        }
+                    }
+                    this.f38989g3.setColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28922h5, false));
+                }
+                super.dispatchDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f38988f3) {
+            case 0:
+                if (this.f38990h3.f33964n != 0) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
     }
 }

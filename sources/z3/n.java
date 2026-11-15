@@ -1,10 +1,10 @@
 package z3;
+public final class n {
+    public final long f60870a;
+    public final int f60871b;
 
-import f3.g0;
-public final class n implements g0 {
-    public static final n f59669a = new Object();
-
-    public final String toString() {
-        return "NoDeclaredBrand";
+    public n(long j3, int i7) {
+        this.f60870a = j3;
+        this.f60871b = i7;
     }
 }

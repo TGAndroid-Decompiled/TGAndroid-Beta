@@ -1,199 +1,54 @@
 package f5;
 
-import aa.c0;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.os.DeadObjectException;
-import android.os.Parcel;
-import j$.util.Objects;
-import java.util.concurrent.Callable;
-public final class q implements Callable {
-    public final int f11183a;
-    public final Object f11184b;
-    public final Object f11185c;
-    public final Object d;
+import a8.p0;
+import android.text.TextUtils;
+import org.json.JSONObject;
+public final class q {
+    public final String f11003a;
+    public final String f11004b;
+    public final String f11005c;
+    public final int d;
 
-    public q(Object obj, Object obj2, Object obj3, int i7) {
-        this.f11183a = i7;
-        this.f11184b = obj;
-        this.f11185c = obj2;
-        this.d = obj3;
-    }
-
-    private final java.lang.Object a() {
-        throw new UnsupportedOperationException("Method not decompiled: f5.q.a():java.lang.Object");
-    }
-
-    private final java.lang.Object b() {
-        throw new UnsupportedOperationException("Method not decompiled: f5.q.b():java.lang.Object");
-    }
-
-    private final Object c() {
-        Bundle c10;
-        com.google.android.gms.internal.play_billing.c cVar;
-        b bVar = (b) this.f11184b;
-        String str = (String) this.f11185c;
-        String str2 = (String) this.d;
-        try {
-            synchronized (bVar.f11122a) {
-                cVar = bVar.f11128i;
-            }
-            if (cVar == null) {
-                return com.google.android.gms.internal.play_billing.u.c(107, z.h);
-            }
-            return ((com.google.android.gms.internal.play_billing.a) cVar).z1(bVar.f11127g.getPackageName(), str, str2);
-        } catch (DeadObjectException e10) {
-            f fVar = z.h;
-            String a10 = x.a(e10);
-            c10 = com.google.android.gms.internal.play_billing.u.c(5, fVar);
-            if (a10 != null) {
-                c10.putString("ADDITIONAL_LOG_DETAILS", a10);
-            }
-            return c10;
-        } catch (Exception e11) {
-            f fVar2 = z.f11204f;
-            String a11 = x.a(e11);
-            c10 = com.google.android.gms.internal.play_billing.u.c(5, fVar2);
-            if (a11 != null) {
-                c10.putString("ADDITIONAL_LOG_DETAILS", a11);
-            }
-            return c10;
+    public q(String str) {
+        int i7;
+        this.f11003a = str;
+        JSONObject jSONObject = new JSONObject(str);
+        this.f11004b = jSONObject.optString("productId");
+        String optString = jSONObject.optString("type");
+        this.f11005c = optString;
+        if (jSONObject.has("statusCode")) {
+            i7 = jSONObject.optInt("statusCode");
+        } else {
+            i7 = 0;
         }
-    }
-
-    @Override
-    public final Object call() {
-        Exception exc;
-        DeadObjectException deadObjectException;
-        com.google.android.gms.internal.play_billing.c cVar;
-        int readInt;
-        String str;
-        switch (this.f11183a) {
-            case 0:
-                b bVar = (b) this.f11184b;
-                g gVar = (g) this.f11185c;
-                c0 c0Var = (c0) this.d;
-                if (!bVar.n()) {
-                    f fVar = z.h;
-                    bVar.y(2, 4, fVar);
-                    gVar.a(fVar);
-                    return null;
-                }
-                String str2 = "Error consuming purchase with token. Response code: ";
-                String str3 = c0Var.f787a;
-                try {
-                    com.google.android.gms.internal.play_billing.u.g("BillingClient", "Consuming purchase with token: ".concat(str3));
-                    try {
-                        synchronized (bVar.f11122a) {
-                            try {
-                                cVar = bVar.f11128i;
-                            } catch (Throwable th2) {
-                                th = th2;
-                                while (true) {
-                                    try {
-                                        throw th;
-                                    } catch (Throwable th3) {
-                                        th = th3;
-                                    }
-                                }
-                            }
-                        }
-                        try {
-                            if (cVar == null) {
-                                str2 = str3;
-                                try {
-                                    bVar.g(gVar, str2, z.h, 107, "Service has been reset to null.", null);
-                                    return null;
-                                } catch (DeadObjectException e10) {
-                                    e = e10;
-                                    deadObjectException = e;
-                                    bVar.g(gVar, str2, z.h, 29, "Error consuming purchase!", deadObjectException);
-                                    return null;
-                                } catch (Exception e11) {
-                                    e = e11;
-                                    exc = e;
-                                    bVar.g(gVar, str2, z.f11204f, 29, "Error consuming purchase!", exc);
-                                    return null;
-                                }
-                            }
-                            if (bVar.f11133n) {
-                                String packageName = bVar.f11127g.getPackageName();
-                                boolean z9 = bVar.f11133n;
-                                String str4 = bVar.f11124c;
-                                String str5 = bVar.d;
-                                long longValue = bVar.A.longValue();
-                                Bundle bundle = new Bundle();
-                                if (z9) {
-                                    com.google.android.gms.internal.play_billing.u.b(bundle, str4, str5, longValue);
-                                }
-                                Bundle y12 = ((com.google.android.gms.internal.play_billing.a) cVar).y1(packageName, str3, bundle);
-                                readInt = y12.getInt("RESPONSE_CODE");
-                                str = com.google.android.gms.internal.play_billing.u.f("BillingClient", y12);
-                            } else {
-                                String packageName2 = bVar.f11127g.getPackageName();
-                                com.google.android.gms.internal.play_billing.a aVar = (com.google.android.gms.internal.play_billing.a) cVar;
-                                Parcel v12 = aVar.v1();
-                                v12.writeInt(3);
-                                v12.writeString(packageName2);
-                                v12.writeString(str3);
-                                Parcel w12 = aVar.w1(v12, 5);
-                                readInt = w12.readInt();
-                                w12.recycle();
-                                str = "";
-                            }
-                            f a10 = z.a(readInt, str);
-                            if (readInt == 0) {
-                                com.google.android.gms.internal.play_billing.u.g("BillingClient", "Successfully consumed purchase.");
-                                gVar.a(a10);
-                                return null;
-                            }
-                            bVar.g(gVar, str3, a10, 23, "Error consuming purchase with token. Response code: " + readInt, null);
-                            return null;
-                        } catch (DeadObjectException e12) {
-                            deadObjectException = e12;
-                            str2 = str3;
-                            bVar.g(gVar, str2, z.h, 29, "Error consuming purchase!", deadObjectException);
-                            return null;
-                        } catch (Exception e13) {
-                            exc = e13;
-                            str2 = str3;
-                            bVar.g(gVar, str2, z.f11204f, 29, "Error consuming purchase!", exc);
-                            return null;
-                        }
-                    } catch (DeadObjectException e14) {
-                        e = e14;
-                    } catch (Exception e15) {
-                        e = e15;
-                    }
-                } catch (DeadObjectException e16) {
-                    e = e16;
-                    str2 = str3;
-                } catch (Exception e17) {
-                    e = e17;
-                    str2 = str3;
-                }
-            case 1:
-                return a();
-            case 2:
-                return b();
-            case 3:
-                return c();
-            case 4:
-                return Boolean.valueOf(((SharedPreferences) this.f11184b).getBoolean((String) this.f11185c, ((Boolean) this.d).booleanValue()));
-            case 5:
-                return Integer.valueOf(((SharedPreferences) this.f11184b).getInt((String) this.f11185c, ((Integer) this.d).intValue()));
-            case 6:
-                return Long.valueOf(((SharedPreferences) this.f11184b).getLong((String) this.f11185c, ((Long) this.d).longValue()));
-            default:
-                return ((SharedPreferences) this.f11184b).getString((String) this.f11185c, (String) this.d);
+        this.d = i7;
+        if (!TextUtils.isEmpty(optString)) {
+            jSONObject.optString("serializedDocid");
+            return;
         }
+        throw new IllegalArgumentException("Product type cannot be empty.");
     }
 
-    public q(b bVar, m mVar, String str) {
-        this.f11183a = 2;
-        this.f11185c = mVar;
-        this.d = str;
-        Objects.requireNonNull(bVar);
-        this.f11184b = bVar;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof q)) {
+            return false;
+        }
+        return TextUtils.equals(this.f11003a, ((q) obj).f11003a);
+    }
+
+    public final int hashCode() {
+        return this.f11003a.hashCode();
+    }
+
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder("UnfetchedProduct{productId='");
+        sb2.append(this.f11004b);
+        sb2.append("', productType='");
+        sb2.append(this.f11005c);
+        sb2.append("', statusCode=");
+        return p0.n(this.d, "}", sb2);
     }
 }

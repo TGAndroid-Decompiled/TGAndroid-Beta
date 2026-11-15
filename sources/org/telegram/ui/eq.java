@@ -2,30 +2,30 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class eq implements kq {
-    public final rq f45430a;
+public final class eq implements jq {
+    public final qq f46894a;
 
-    public eq(rq rqVar) {
-        this.f45430a = rqVar;
+    public eq(qq qqVar) {
+        this.f46894a = qqVar;
     }
 
     @Override
     public final void c(long j3, TLObject tLObject) {
-        rq rqVar = this.f45430a;
-        if (rqVar.J.f(j3) == null) {
-            lq B0 = rqVar.B0();
-            rqVar.E.add(tLObject);
-            rqVar.J.k(tLObject, j3);
-            rqVar.E0(rqVar.E);
-            rqVar.F0(B0);
+        qq qqVar = this.f46894a;
+        if (qqVar.K.f(j3) == null) {
+            kq B0 = qqVar.B0();
+            qqVar.F.add(tLObject);
+            qqVar.K.k(tLObject, j3);
+            qqVar.E0(qqVar.F);
+            qqVar.F0(B0);
         }
     }
 
     @Override
     public final void d(long j3) {
-        rq rqVar = this.f45430a;
-        if (rqVar.J.f(j3) == null) {
-            lq B0 = rqVar.B0();
+        qq qqVar = this.f46894a;
+        if (qqVar.K.f(j3) == null) {
+            kq B0 = qqVar.B0();
             TLRPC.TL_channelParticipantBanned tL_channelParticipantBanned = new TLRPC.TL_channelParticipantBanned();
             if (j3 > 0) {
                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
@@ -36,13 +36,13 @@ public final class eq implements kq {
                 tL_channelParticipantBanned.peer = tL_peerChannel;
                 tL_peerChannel.channel_id = -j3;
             }
-            tL_channelParticipantBanned.date = rqVar.getConnectionsManager().getCurrentTime();
-            tL_channelParticipantBanned.kicked_by = org.telegram.messenger.p10.i(rqVar.getAccountInstance().f21770a).f24493n;
-            rqVar.f49533r.kicked_count++;
-            rqVar.E.add(tL_channelParticipantBanned);
-            rqVar.J.k(tL_channelParticipantBanned, j3);
-            rqVar.E0(rqVar.E);
-            rqVar.F0(B0);
+            tL_channelParticipantBanned.date = qqVar.getConnectionsManager().getCurrentTime();
+            tL_channelParticipantBanned.kicked_by = org.telegram.messenger.m10.i(qqVar.getAccountInstance().f22778a).f24953n;
+            qqVar.f50746r.kicked_count++;
+            qqVar.F.add(tL_channelParticipantBanned);
+            qqVar.K.k(tL_channelParticipantBanned, j3);
+            qqVar.E0(qqVar.F);
+            qqVar.F0(B0);
         }
     }
 

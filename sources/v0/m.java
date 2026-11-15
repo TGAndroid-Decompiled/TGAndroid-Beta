@@ -1,34 +1,34 @@
 package v0;
 
-import android.os.Bundle;
-import bi.b1;
-import org.json.JSONObject;
-public class m extends b1 {
-    public m(String str, int i7, Bundle data) {
-        super(str, data);
-        switch (i7) {
-            case 2:
-                super("android.credentials.TYPE_PASSWORD_CREDENTIAL", data);
-                if (str.length() > 0) {
-                    return;
-                }
-                throw new IllegalArgumentException("password should not be empty");
-            case 3:
-                super("androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL", data);
-                if (str.length() != 0) {
-                    try {
-                        new JSONObject(str);
-                        return;
-                    } catch (Exception unused) {
+import java.util.Collection;
+import java.util.List;
+public final class m {
+    public final List f58456a;
+    public final boolean f58457b;
+
+    public m(List list, boolean z10) {
+        this.f58456a = list;
+        this.f58457b = z10;
+        if (!list.isEmpty()) {
+            if (list.size() > 1) {
+                List<h> list2 = list;
+                int i7 = 0;
+                if (!(list2 instanceof Collection) || !list2.isEmpty()) {
+                    for (h hVar : list2) {
+                        if ((hVar instanceof o) && (i7 = i7 + 1) < 0) {
+                            throw new ArithmeticException("Count overflow has happened.");
+                        }
                     }
                 }
-                throw new IllegalArgumentException("authenticationResponseJson must not be empty, and must be a valid JSON");
-            default:
-                kotlin.jvm.internal.j.e(data, "data");
-                if (str.length() > 0) {
-                    return;
+                if (i7 > 0 && i7 != this.f58456a.size()) {
+                    throw new IllegalArgumentException("Digital Credential Option cannot be used with other credential option.");
                 }
-                throw new IllegalArgumentException("type should not be empty");
+                for (h hVar2 : this.f58456a) {
+                }
+                return;
+            }
+            return;
         }
+        throw new IllegalArgumentException("credentialOptions should not be empty");
     }
 }

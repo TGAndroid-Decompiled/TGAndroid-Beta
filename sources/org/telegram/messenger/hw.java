@@ -1,13 +1,26 @@
 package org.telegram.messenger;
-public final class hw {
-    public static final hw d = new hw(new Object());
-    public final long f22979a;
-    public final String f22980b;
-    public final int f22981c;
 
-    public hw(li.z zVar) {
-        this.f22979a = zVar.f19041b;
-        this.f22980b = (String) zVar.f19042c;
-        this.f22981c = zVar.f19040a;
+import org.telegram.tgnet.TLRPC;
+public final class hw implements Runnable {
+    public final int f24232a;
+    public final ez f24233b;
+    public final TLRPC.Updates f24234c;
+
+    public hw(ez ezVar, TLRPC.Updates updates, int i7) {
+        this.f24232a = i7;
+        this.f24233b = ezVar;
+        this.f24234c = updates;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f24232a) {
+            case 0:
+                this.f24233b.getMessagesController().O3(this.f24234c, false);
+                return;
+            default:
+                this.f24233b.getMessagesController().O3(this.f24234c, false);
+                return;
+        }
     }
 }

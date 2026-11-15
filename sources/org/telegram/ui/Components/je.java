@@ -1,88 +1,54 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.MotionEvent;
 import android.widget.ImageView;
 public final class je extends ImageView {
-    public final int f34920a;
-    public final ChatActivityEnterView f34921b;
+    public float f35968a;
+    public final ChatActivityEnterView f35969b;
 
-    public je(ChatActivityEnterView chatActivityEnterView, Context context, int i7) {
+    public je(ChatActivityEnterView chatActivityEnterView, Context context) {
         super(context);
-        this.f34920a = i7;
-        this.f34921b = chatActivityEnterView;
+        this.f35969b = chatActivityEnterView;
     }
 
     @Override
-    public void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        switch (this.f34920a) {
-            case 0:
-                super.onLayout(z9, i7, i10, i11, i12);
-                post(new qd(this.f34921b, 5));
-                return;
-            default:
-                super.onLayout(z9, i7, i10, i11, i12);
-                return;
-        }
+    public final float getTranslationX() {
+        return this.f35968a;
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f34920a) {
-            case 2:
-                if (getAlpha() <= 0.0f) {
-                    return false;
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
+    public final void setTranslationX(float f10) {
+        float f11;
+        float alpha;
+        this.f35968a = f10;
+        float f12 = -44.0f;
+        float L = org.telegram.messenger.g0.L(-44.0f) + this.f35968a;
+        ChatActivityEnterView chatActivityEnterView = this.f35969b;
+        float f13 = L + chatActivityEnterView.E + chatActivityEnterView.f32323y;
+        zd zdVar = chatActivityEnterView.f32283s2;
+        float f14 = 0.0f;
+        if (zdVar != null && zdVar.getVisibility() == 0) {
+            f11 = -44.0f;
+        } else {
+            f11 = 0.0f;
         }
-    }
-
-    @Override
-    public final void setAlpha(float f10) {
-        switch (this.f34920a) {
-            case 0:
-                super.setAlpha(f10);
-                he heVar = this.f34921b.J1;
-                if (heVar != null) {
-                    heVar.setTranslationX(heVar.f34319a);
-                    return;
-                }
-                return;
-            case 1:
-                super.setAlpha(f10);
-                he heVar2 = this.f34921b.J1;
-                if (heVar2 != null) {
-                    heVar2.setTranslationX(heVar2.f34319a);
-                    return;
-                }
-                return;
-            default:
-                super.setAlpha(f10);
-                ce ceVar = this.f34921b.Z0;
-                if (ceVar != null) {
-                    ceVar.invalidate();
-                    return;
-                }
-                return;
+        float L2 = org.telegram.messenger.g0.L(f11);
+        zd zdVar2 = chatActivityEnterView.f32283s2;
+        if (zdVar2 == null) {
+            alpha = 0.0f;
+        } else {
+            alpha = zdVar2.getAlpha();
         }
-    }
-
-    @Override
-    public void setVisibility(int i7) {
-        switch (this.f34920a) {
-            case 2:
-                super.setVisibility(i7);
-                ce ceVar = this.f34921b.Z0;
-                if (ceVar != null) {
-                    ceVar.invalidate();
-                    return;
-                }
-                return;
-            default:
-                super.setVisibility(i7);
-                return;
+        float f15 = (L2 * alpha) + f13;
+        zd zdVar3 = chatActivityEnterView.f32194f2;
+        if (zdVar3 == null || zdVar3.getVisibility() != 0) {
+            f12 = 0.0f;
         }
+        float L3 = org.telegram.messenger.g0.L(f12);
+        zd zdVar4 = chatActivityEnterView.f32194f2;
+        if (zdVar4 != null) {
+            f14 = zdVar4.getAlpha();
+        }
+        super.setTranslationX((L3 * f14) + f15);
     }
 }

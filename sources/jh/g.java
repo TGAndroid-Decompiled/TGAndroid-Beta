@@ -1,86 +1,150 @@
 package jh;
 
-import a8.ua;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import e2.r0;
-import org.telegram.ui.Components.uy;
-import org.telegram.ui.ly0;
-import v4.d1;
-import v4.f1;
-import v4.n0;
-import v4.v0;
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
+import v4.e1;
+import v4.p0;
+import v4.w0;
 public final class g {
-    public final RecyclerView f17049a;
+    public final RecyclerView f17401a;
 
     public g(RecyclerView recyclerView) {
-        this.f17049a = recyclerView;
+        this.f17401a = recyclerView;
     }
 
-    public void a(d1 d1Var, r0 r0Var, r0 r0Var2) {
-        int i7;
-        int i10;
-        boolean z9;
-        d1 T;
-        int i11;
-        RecyclerView recyclerView = this.f17049a;
-        recyclerView.f2842b.k(d1Var);
-        recyclerView.h(d1Var);
-        d1Var.q(false);
-        f1 f1Var = (f1) recyclerView.f2845c0;
-        f1Var.getClass();
-        int i12 = r0Var.f10538a;
-        int i13 = r0Var.f10539b;
-        View view = d1Var.f57052a;
-        if (r0Var2 == null) {
-            i7 = view.getLeft();
-        } else {
-            i7 = r0Var2.f10538a;
-        }
-        int i14 = i7;
-        if (r0Var2 == null) {
-            i10 = view.getTop();
-        } else {
-            i10 = r0Var2.f10539b;
-        }
-        int i15 = i10;
-        if (!d1Var.j() && (i12 != i14 || i13 != i15)) {
-            view.layout(i14, i15, view.getWidth() + i14, view.getHeight() + i15);
-            z9 = f1Var.r(d1Var, r0Var, i12, i13, i14, i15);
-        } else {
-            int i16 = d1Var.h;
-            int i17 = -1;
-            if (i16 != -1) {
-                for (int i18 = 0; i18 < recyclerView.getChildCount(); i18++) {
-                    View childAt = recyclerView.getChildAt(i18);
-                    if (childAt != null && (T = recyclerView.T(childAt)) != null && !T.j() && (i11 = T.h) >= 0 && i11 < i16 && i11 > i17) {
-                        i17 = i11;
+    public void a(v4.a aVar) {
+        int i7 = aVar.f58474a;
+        RecyclerView recyclerView = this.f17401a;
+        if (i7 != 1) {
+            if (i7 != 2) {
+                if (i7 != 4) {
+                    if (i7 != 8) {
+                        return;
                     }
+                    recyclerView.f2827y.X(recyclerView, aVar.f58475b, aVar.d);
+                    return;
+                }
+                recyclerView.f2827y.a0(recyclerView, aVar.f58475b, aVar.d, aVar.f58476c);
+                return;
+            }
+            recyclerView.f2827y.Y(recyclerView, aVar.f58475b, aVar.d);
+            return;
+        }
+        recyclerView.f2827y.V(recyclerView, aVar.f58475b, aVar.d);
+    }
+
+    public void b(int i7, int i10, Object obj) {
+        int i11;
+        int i12;
+        RecyclerView recyclerView = this.f17401a;
+        int z10 = recyclerView.f2801e.z();
+        int i13 = i10 + i7;
+        for (int i14 = 0; i14 < z10; i14++) {
+            View y10 = recyclerView.f2801e.y(i14);
+            e1 U = RecyclerView.U(y10);
+            if (U != null && !U.r() && (i12 = U.f58537c) >= i7 && i12 < i13) {
+                U.a(2);
+                if (obj == null) {
+                    U.a(1024);
+                } else if ((1024 & U.f58544l) == 0) {
+                    if (U.f58545m == null) {
+                        ArrayList arrayList = new ArrayList();
+                        U.f58545m = arrayList;
+                        U.f58546n = DesugarCollections.unmodifiableList(arrayList);
+                    }
+                    U.f58545m.add(obj);
+                }
+                ((p0) y10.getLayoutParams()).f58639c = true;
+            }
+        }
+        w0 w0Var = recyclerView.f2796b;
+        ArrayList arrayList2 = (ArrayList) w0Var.f58671e;
+        for (int size = arrayList2.size() - 1; size >= 0; size--) {
+            e1 e1Var = (e1) arrayList2.get(size);
+            if (e1Var != null && (i11 = e1Var.f58537c) >= i7 && i11 < i13) {
+                e1Var.a(2);
+                w0Var.f(size);
+            }
+        }
+        recyclerView.f2829z0 = true;
+    }
+
+    public void c(int i7, int i10) {
+        RecyclerView recyclerView = this.f17401a;
+        int z10 = recyclerView.f2801e.z();
+        for (int i11 = 0; i11 < z10; i11++) {
+            e1 U = RecyclerView.U(recyclerView.f2801e.y(i11));
+            if (U != null && !U.r() && U.f58537c >= i7) {
+                U.n(i10, false);
+                recyclerView.f2822v0.f58504f = true;
+            }
+        }
+        ArrayList arrayList = (ArrayList) recyclerView.f2796b.f58671e;
+        int size = arrayList.size();
+        for (int i12 = 0; i12 < size; i12++) {
+            e1 e1Var = (e1) arrayList.get(i12);
+            if (e1Var != null && e1Var.f58537c >= i7) {
+                e1Var.n(i10, true);
+            }
+        }
+        recyclerView.requestLayout();
+        recyclerView.f2828y0 = true;
+    }
+
+    public void d(int i7, int i10) {
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        RecyclerView recyclerView = this.f17401a;
+        int z10 = recyclerView.f2801e.z();
+        int i18 = -1;
+        if (i7 < i10) {
+            i12 = i7;
+            i11 = i10;
+            i13 = -1;
+        } else {
+            i11 = i7;
+            i12 = i10;
+            i13 = 1;
+        }
+        for (int i19 = 0; i19 < z10; i19++) {
+            e1 U = RecyclerView.U(recyclerView.f2801e.y(i19));
+            if (U != null && (i17 = U.f58537c) >= i12 && i17 <= i11) {
+                if (i17 == i7) {
+                    U.n(i10 - i7, false);
+                } else {
+                    U.n(i13, false);
+                }
+                recyclerView.f2822v0.f58504f = true;
+            }
+        }
+        ArrayList arrayList = (ArrayList) recyclerView.f2796b.f58671e;
+        if (i7 < i10) {
+            i15 = i7;
+            i14 = i10;
+        } else {
+            i14 = i7;
+            i15 = i10;
+            i18 = 1;
+        }
+        int size = arrayList.size();
+        for (int i20 = 0; i20 < size; i20++) {
+            e1 e1Var = (e1) arrayList.get(i20);
+            if (e1Var != null && (i16 = e1Var.f58537c) >= i15 && i16 <= i14) {
+                if (i16 == i7) {
+                    e1Var.n(i10 - i7, false);
+                } else {
+                    e1Var.n(i18, false);
                 }
             }
-            d1Var.f57058i = (d1Var.h - i17) + (i17 * 1000);
-            f1Var.s(d1Var, r0Var);
-            z9 = true;
         }
-        if (z9) {
-            recyclerView.m0();
-        }
-    }
-
-    public void b(d1 d1Var) {
-        RecyclerView recyclerView = this.f17049a;
-        n0 n0Var = recyclerView.f2873y;
-        View view = d1Var.f57052a;
-        v0 v0Var = recyclerView.f2842b;
-        ly0 ly0Var = n0Var.f57139a;
-        uy uyVar = (uy) ly0Var.f47746b;
-        int indexOfChild = ((RecyclerView) uyVar.f38776b).indexOfChild(view);
-        if (indexOfChild >= 0) {
-            if (((ua) ly0Var.f47747c).G(indexOfChild)) {
-                ly0Var.M(view);
-            }
-            uyVar.Q(indexOfChild);
-        }
-        v0Var.g(view);
+        recyclerView.requestLayout();
+        recyclerView.f2828y0 = true;
     }
 }

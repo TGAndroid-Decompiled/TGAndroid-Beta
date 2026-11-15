@@ -1,15 +1,31 @@
 package m;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.view.View;
-public final class o0 extends View.BaseSavedState {
-    public static final Parcelable.Creator<o0> CREATOR = new j7.b(28);
-    public boolean f19194a;
+import android.graphics.drawable.Drawable;
+import android.widget.ListAdapter;
+public interface o0 {
+    boolean a();
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i7) {
-        super.writeToParcel(parcel, i7);
-        parcel.writeByte(this.f19194a ? (byte) 1 : (byte) 0);
-    }
+    int b();
+
+    void c(int i7);
+
+    CharSequence d();
+
+    void dismiss();
+
+    Drawable e();
+
+    void h(CharSequence charSequence);
+
+    void i(Drawable drawable);
+
+    void k(int i7);
+
+    void l(int i7);
+
+    void m(int i7, int i10);
+
+    int n();
+
+    void o(ListAdapter listAdapter);
 }

@@ -1,67 +1,58 @@
 package bi;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.io.Serializable;
-import org.telegram.messenger.a20;
-import org.telegram.ui.Components.et0;
-import org.telegram.ui.Components.gt0;
-import org.telegram.ui.Components.x31;
-import org.telegram.ui.cb1;
-public final class e implements te.b, et0, gt0, org.telegram.ui.ActionBar.r1, a20 {
-    public final z f3731a;
+import android.content.Context;
+import android.widget.FrameLayout;
+import java.util.List;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.r9;
+import org.telegram.ui.Components.ja;
+import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.tj0;
+import org.telegram.ui.Components.uj0;
+public final class e extends ja {
+    public static final int W1 = 0;
+    public final List T1;
+    public final r9 U1;
+    public p41 V1;
 
-    public e(z zVar) {
-        this.f3731a = zVar;
+    public e(Context context, org.telegram.ui.ActionBar.e6 e6Var, r9 r9Var, List list) {
+        super(context, null, false, false, 2, e6Var);
+        this.U1 = r9Var;
+        this.T1 = list;
+        this.f35943v1 = 0.2f;
+        this.G1 = false;
+        this.F1 = org.telegram.messenger.g0.L(12.0f);
+        this.f35937p1.setTitle(O0());
+        O();
+        this.f35936o1.setPadding(this.f29717u0, org.telegram.messenger.g0.L(9.0f), this.f29717u0, org.telegram.messenger.g0.L(64.0f));
+        this.f35936o1.setOnItemClickListener(new a(0));
+        this.f35936o1.setOverScrollMode(2);
+        hi.d dVar = new hi.d(context, e6Var, true);
+        dVar.setOnClickListener(new ah.d(this, 3));
+        dVar.i(hd.M0(2131747831, null), false, true);
+        FrameLayout.LayoutParams d = c8.ja.d(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
+        int i7 = d.leftMargin;
+        int i10 = this.f29717u0;
+        d.leftMargin = i7 + i10;
+        d.rightMargin += i10;
+        this.f29682b.addView(dVar, d);
+        this.V1.O(false);
     }
 
     @Override
-    public void Y(int i7, float f10, float f11, te.c cVar) {
-        this.f3731a.x0();
+    public final tj0 L0(uj0 uj0Var) {
+        p41 p41Var = new p41(this.f35936o1, getContext(), this.f29679a, 0, true, new b(this, 0), this.J0);
+        this.V1 = p41Var;
+        p41Var.f38201r = false;
+        return p41Var;
     }
 
     @Override
-    public int b() {
-        return this.f3731a.f5128n;
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        z zVar = this.f3731a;
-        zVar.getClass();
-        zVar.presentFragment(new cb1(6, null));
-    }
-
-    @Override
-    public float h(RecyclerView recyclerView) {
-        return org.telegram.ui.Cells.f1.c(recyclerView);
-    }
-
-    @Override
-    public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        View view = (View) obj2;
-        Integer num = (Integer) number;
-        Float f10 = (Float) serializable;
-        Float f11 = (Float) serializable2;
-        z.a0(this.f3731a, (x31) obj);
-    }
-
-    @Override
-    public RecyclerView l(View view) {
-        z zVar = this.f3731a;
-        if (zVar.f5111a == 1) {
-            return ((y) view).f5060c;
+    public final CharSequence O0() {
+        List list = this.T1;
+        if (list == null) {
+            return null;
         }
-        zVar.K.getClass();
-        return ((ad) view).f3471a;
-    }
-
-    @Override
-    public void s(RecyclerView recyclerView) {
-        org.telegram.ui.Cells.f1.b(recyclerView);
-    }
-
-    @Override
-    public void F(float f10, int i7) {
+        return hd.G(list.size(), "Gift2AuctionsAcquiredGifts", new Object[0]);
     }
 }

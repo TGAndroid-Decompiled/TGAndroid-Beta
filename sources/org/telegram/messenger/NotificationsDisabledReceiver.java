@@ -20,92 +20,92 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                     t0.w();
                     int intValue = Utilities.z(split[0]).intValue();
                     if (intValue >= 0 && intValue < 4) {
-                        if (r2.f25216a) {
+                        if (r2.f26198a) {
                             a8.b("received disabled notification channel event for " + stringExtra + " state = " + booleanExtra);
                         }
-                        if (SystemClock.elapsedRealtime() - dt.t(c.a(intValue).f21770a).O <= 1000) {
-                            if (r2.f25216a) {
+                        if (SystemClock.elapsedRealtime() - at.t(c.a(intValue).f22778a).P <= 1000) {
+                            if (r2.f26198a) {
                                 a8.b("received disable notification event right after creating notification channel, ignoring");
                                 return;
                             }
                             return;
                         }
-                        SharedPreferences c10 = c.a(intValue).c();
+                        SharedPreferences d = c.a(intValue).d();
                         int i10 = Integer.MAX_VALUE;
                         if (split[1].startsWith("channel")) {
-                            if (stringExtra.equals(c10.getString("channels", null))) {
-                                if (r2.f25216a) {
+                            if (stringExtra.equals(d.getString("channels", null))) {
+                                if (r2.f26198a) {
                                     a8.b("apply channel{channel} " + stringExtra + " state");
                                 }
-                                SharedPreferences.Editor edit = c10.edit();
-                                String q10 = dt.q(2);
+                                SharedPreferences.Editor edit = d.edit();
+                                String q10 = at.q(2);
                                 if (booleanExtra) {
                                     i7 = Integer.MAX_VALUE;
                                 }
                                 edit.putInt(q10, i7).commit();
-                                dt.t(c.a(intValue).f21770a).b0(2);
+                                at.t(c.a(intValue).f22778a).b0(2);
                             } else {
                                 return;
                             }
                         } else if (split[1].startsWith("groups")) {
-                            if (stringExtra.equals(c10.getString("groups", null))) {
-                                if (r2.f25216a) {
+                            if (stringExtra.equals(d.getString("groups", null))) {
+                                if (r2.f26198a) {
                                     a8.b("apply channel{groups} " + stringExtra + " state");
                                 }
-                                SharedPreferences.Editor edit2 = c10.edit();
-                                String q11 = dt.q(0);
+                                SharedPreferences.Editor edit2 = d.edit();
+                                String q11 = at.q(0);
                                 if (!booleanExtra) {
                                     i10 = 0;
                                 }
                                 edit2.putInt(q11, i10).commit();
-                                dt.t(c.a(intValue).f21770a).b0(0);
+                                at.t(c.a(intValue).f22778a).b0(0);
                             } else {
                                 return;
                             }
                         } else if (split[1].startsWith("private")) {
-                            if (stringExtra.equals(c10.getString("private", null))) {
-                                if (r2.f25216a) {
+                            if (stringExtra.equals(d.getString("private", null))) {
+                                if (r2.f26198a) {
                                     a8.b("apply channel{private} " + stringExtra + " state");
                                 }
-                                SharedPreferences.Editor edit3 = c10.edit();
-                                String q12 = dt.q(1);
+                                SharedPreferences.Editor edit3 = d.edit();
+                                String q12 = at.q(1);
                                 if (booleanExtra) {
                                     i7 = Integer.MAX_VALUE;
                                 }
                                 edit3.putInt(q12, i7).commit();
-                                dt.t(c.a(intValue).f21770a).b0(1);
+                                at.t(c.a(intValue).f22778a).b0(1);
                             } else {
                                 return;
                             }
                         } else if (split[1].startsWith("stories")) {
-                            if (stringExtra.equals(c10.getString("stories", null))) {
-                                if (r2.f25216a) {
+                            if (stringExtra.equals(d.getString("stories", null))) {
+                                if (r2.f26198a) {
                                     a8.b("apply channel{stories} " + stringExtra + " state");
                                 }
-                                c10.edit().putBoolean(dt.q(3), !booleanExtra).commit();
-                                dt.t(c.a(intValue).f21770a).b0(1);
+                                d.edit().putBoolean(at.q(3), !booleanExtra).commit();
+                                at.t(c.a(intValue).f22778a).b0(1);
                             } else {
                                 return;
                             }
                         } else {
                             long longValue = Utilities.A(split[1]).longValue();
                             if (longValue != 0) {
-                                String v = dt.v(longValue, 0, false);
-                                if (stringExtra.equals(c10.getString("org.telegram.key" + longValue, null))) {
-                                    if (r2.f25216a) {
+                                String v = at.v(longValue, 0, false);
+                                if (stringExtra.equals(d.getString("org.telegram.key" + longValue, null))) {
+                                    if (r2.f26198a) {
                                         a8.b("apply channel{else} " + stringExtra + " state");
                                     }
-                                    SharedPreferences.Editor edit4 = c10.edit();
-                                    String i11 = rf.b.i("notify2_", v);
+                                    SharedPreferences.Editor edit4 = d.edit();
+                                    String k10 = r.b.k("notify2_", v);
                                     if (booleanExtra) {
                                         i7 = 2;
                                     }
-                                    edit4.putInt(i11, i7);
+                                    edit4.putInt(k10, i7);
                                     if (!booleanExtra) {
                                         edit4.remove("notifyuntil_" + v);
                                     }
                                     edit4.commit();
-                                    dt.t(c.a(intValue).f21770a).c0(longValue, 0L, true);
+                                    at.t(c.a(intValue).f22778a).c0(longValue, 0L, true);
                                 } else {
                                     return;
                                 }
@@ -113,7 +113,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                                 return;
                             }
                         }
-                        ConnectionsManager.getInstance(c.a(intValue).f21770a).resumeNetworkMaybe();
+                        ConnectionsManager.getInstance(c.a(intValue).f22778a).resumeNetworkMaybe();
                     }
                 }
             }

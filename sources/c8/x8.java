@@ -1,38 +1,38 @@
 package c8;
 public final class x8 implements na.d {
-    public static final x8 f5943a = new Object();
-    public static final na.c f5944b = new na.c("appId", jg.g.q(a8.p0.x(w.class, new s(1))));
-    public static final na.c f5945c = new na.c("appVersion", jg.g.q(a8.p0.x(w.class, new s(2))));
-    public static final na.c d = new na.c("firebaseProjectId", jg.g.q(a8.p0.x(w.class, new s(3))));
-    public static final na.c f5946e = new na.c("mlSdkVersion", jg.g.q(a8.p0.x(w.class, new s(4))));
-    public static final na.c f5947f = new na.c("tfliteSchemaVersion", jg.g.q(a8.p0.x(w.class, new s(5))));
-    public static final na.c f5948g = new na.c("gcmSenderId", jg.g.q(a8.p0.x(w.class, new s(6))));
-    public static final na.c h = new na.c("apiKey", jg.g.q(a8.p0.x(w.class, new s(7))));
-    public static final na.c f5949i = new na.c("languages", jg.g.q(a8.p0.x(w.class, new s(8))));
-    public static final na.c f5950j = new na.c("mlSdkInstanceId", jg.g.q(a8.p0.x(w.class, new s(9))));
-    public static final na.c f5951k = new na.c("isClearcutClient", jg.g.q(a8.p0.x(w.class, new s(10))));
-    public static final na.c f5952l = new na.c("isStandaloneMlkit", jg.g.q(a8.p0.x(w.class, new s(11))));
-    public static final na.c f5953m = new na.c("isJsonLogging", jg.g.q(a8.p0.x(w.class, new s(12))));
-    public static final na.c f5954n = new na.c("buildLevel", jg.g.q(a8.p0.x(w.class, new s(13))));
-    public static final na.c f5955o = new na.c("optionalModuleVersion", jg.g.q(a8.p0.x(w.class, new s(14))));
+    public static final x8 f4764a = new Object();
+    public static final na.c f4765b = new na.c("appId", i5.c.p(a8.p0.x(w.class, new s(1))));
+    public static final na.c f4766c = new na.c("appVersion", i5.c.p(a8.p0.x(w.class, new s(2))));
+    public static final na.c d = new na.c("firebaseProjectId", i5.c.p(a8.p0.x(w.class, new s(3))));
+    public static final na.c f4767e = new na.c("mlSdkVersion", i5.c.p(a8.p0.x(w.class, new s(4))));
+    public static final na.c f4768f = new na.c("tfliteSchemaVersion", i5.c.p(a8.p0.x(w.class, new s(5))));
+    public static final na.c f4769g = new na.c("gcmSenderId", i5.c.p(a8.p0.x(w.class, new s(6))));
+    public static final na.c h = new na.c("apiKey", i5.c.p(a8.p0.x(w.class, new s(7))));
+    public static final na.c f4770i = new na.c("languages", i5.c.p(a8.p0.x(w.class, new s(8))));
+    public static final na.c f4771j = new na.c("mlSdkInstanceId", i5.c.p(a8.p0.x(w.class, new s(9))));
+    public static final na.c f4772k = new na.c("isClearcutClient", i5.c.p(a8.p0.x(w.class, new s(10))));
+    public static final na.c f4773l = new na.c("isStandaloneMlkit", i5.c.p(a8.p0.x(w.class, new s(11))));
+    public static final na.c f4774m = new na.c("isJsonLogging", i5.c.p(a8.p0.x(w.class, new s(12))));
+    public static final na.c f4775n = new na.c("buildLevel", i5.c.p(a8.p0.x(w.class, new s(13))));
+    public static final na.c f4776o = new na.c("optionalModuleVersion", i5.c.p(a8.p0.x(w.class, new s(14))));
 
     @Override
     public final void a(Object obj, Object obj2) {
         ue ueVar = (ue) obj;
         na.e eVar = (na.e) obj2;
-        eVar.a(f5944b, ueVar.f5884a);
-        eVar.a(f5945c, ueVar.f5885b);
+        eVar.a(f4765b, ueVar.f4705a);
+        eVar.a(f4766c, ueVar.f4706b);
         eVar.a(d, null);
-        eVar.a(f5946e, ueVar.f5886c);
-        eVar.a(f5947f, ueVar.d);
-        eVar.a(f5948g, null);
+        eVar.a(f4767e, ueVar.f4707c);
+        eVar.a(f4768f, ueVar.d);
+        eVar.a(f4769g, null);
         eVar.a(h, null);
-        eVar.a(f5949i, ueVar.f5887e);
-        eVar.a(f5950j, ueVar.f5888f);
-        eVar.a(f5951k, ueVar.f5889g);
-        eVar.a(f5952l, ueVar.h);
-        eVar.a(f5953m, ueVar.f5890i);
-        eVar.a(f5954n, ueVar.f5891j);
-        eVar.a(f5955o, ueVar.f5892k);
+        eVar.a(f4770i, ueVar.f4708e);
+        eVar.a(f4771j, ueVar.f4709f);
+        eVar.a(f4772k, ueVar.f4710g);
+        eVar.a(f4773l, ueVar.h);
+        eVar.a(f4774m, ueVar.f4711i);
+        eVar.a(f4775n, ueVar.f4712j);
+        eVar.a(f4776o, ueVar.f4713k);
     }
 }

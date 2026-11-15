@@ -1,25 +1,25 @@
 package b2;
 
 import android.media.VolumeProvider;
-import androidx.emoji2.text.p;
-import org.telegram.ui.ly0;
+import androidx.emoji2.text.q;
+import org.telegram.ui.ld0;
 public final class f extends VolumeProvider {
-    public final p f2912a;
+    public final q f2866a;
 
-    public f(p pVar, int i7, int i10, int i11) {
+    public f(q qVar, int i7, int i10, int i11) {
         super(i7, i10, i11);
-        this.f2912a = pVar;
+        this.f2866a = qVar;
     }
 
     @Override
     public final void onAdjustVolume(int i7) {
-        p pVar = this.f2912a;
-        ((s4.e) ((ly0) pVar.f2327f).d).f54799a.post(new s4.c(pVar, i7, 1));
+        q qVar = this.f2866a;
+        ((s4.e) ((ld0) qVar.f2276f).d).f56353a.post(new s4.c(qVar, i7, 1));
     }
 
     @Override
     public final void onSetVolumeTo(int i7) {
-        p pVar = this.f2912a;
-        ((s4.e) ((ly0) pVar.f2327f).d).f54799a.post(new s4.c(pVar, i7, 0));
+        q qVar = this.f2866a;
+        ((s4.e) ((ld0) qVar.f2276f).d).f56353a.post(new s4.c(qVar, i7, 0));
     }
 }

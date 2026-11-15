@@ -1,8 +1,9 @@
 package org.webrtc;
 
+import com.google.android.gms.internal.vision.e2;
 import java.util.Map;
 public class RTCStats {
-    private final String f53043id;
+    private final String f54449id;
     private final Map<String, Object> members;
     private final long timestampUs;
     private final String type;
@@ -10,7 +11,7 @@ public class RTCStats {
     public RTCStats(long j3, String str, String str2, Map<String, Object> map) {
         this.timestampUs = j3;
         this.type = str;
-        this.f53043id = str2;
+        this.f54449id = str2;
         this.members = map;
     }
 
@@ -39,7 +40,7 @@ public class RTCStats {
     }
 
     public String getId() {
-        return this.f53043id;
+        return this.f54449id;
     }
 
     public Map<String, Object> getMembers() {
@@ -55,12 +56,12 @@ public class RTCStats {
     }
 
     public String toString() {
-        StringBuilder m10 = com.google.android.recaptcha.internal.a.m("{ timestampUs: ");
+        StringBuilder m10 = e2.m("{ timestampUs: ");
         m10.append(this.timestampUs);
         m10.append(", type: ");
         m10.append(this.type);
         m10.append(", id: ");
-        m10.append(this.f53043id);
+        m10.append(this.f54449id);
         for (Map.Entry<String, Object> entry : this.members.entrySet()) {
             m10.append(", ");
             m10.append(entry.getKey());

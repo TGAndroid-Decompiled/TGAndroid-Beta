@@ -1,128 +1,164 @@
 package ug;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
+import android.graphics.BitmapShader;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.RectF;
-import java.util.ArrayList;
-import org.telegram.messenger.d20;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-public class p1 {
-    public boolean B;
-    public Matrix[] C;
-    public float[][] D;
-    public int[] E;
-    public float[] F;
-    public boolean G;
-    public boolean N;
-    public h6 P;
-    public long R;
-    public long S;
-    public boolean f56780g;
-    public boolean h;
-    public d20 f56784l;
-    public boolean f56785m;
-    public final int f56788p;
-    public boolean f56789q;
-    public int f56797z;
-    public final RectF f56775a = new RectF();
-    public final RectF f56776b = new RectF();
-    public final RectF f56777c = new RectF();
-    public Bitmap[] d = new Bitmap[3];
-    public boolean[] f56778e = new boolean[3];
-    public boolean[] f56779f = new boolean[3];
-    public final Paint f56781i = new Paint();
-    public float f56782j = 0.0f;
-    public float f56783k = 0.0f;
-    public final ArrayList f56786n = new ArrayList();
-    public float f56787o = 1.0f;
-    public int f56790r = 14;
-    public int f56791s = 12;
-    public int f56792t = 10;
-    public float f56793u = 0.85f;
-    public float v = 0.85f;
-    public float f56794w = 0.9f;
-    public long f56795x = 2000;
-    public int f56796y = 1000;
-    public final float A = 1000.0f / org.telegram.messenger.g0.f22568r;
-    public boolean H = false;
-    public boolean I = true;
-    public boolean J = true;
-    public boolean K = false;
-    public boolean L = false;
-    public boolean M = true;
-    public int O = -1;
-    public int Q = m6.Ik;
-    public int T = 0;
+import android.graphics.Shader;
+import android.util.Pair;
+import java.util.HashMap;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.m10;
+import org.telegram.messenger.np;
+import org.telegram.messenger.qc;
+import org.telegram.messenger.t3;
+import org.telegram.messenger.z10;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.e2;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.fb;
+import org.telegram.ui.Components.vb;
+import org.telegram.ui.Components.xb;
+import org.telegram.ui.LaunchActivity;
+public final class p1 implements z10 {
+    public final int f58256a;
+    public final Object f58257b;
 
-    public p1(int i7) {
-        this.f56788p = i7;
-        this.B = i7 < 50;
+    public p1(Object obj, int i7) {
+        this.f58256a = i7;
+        this.f58257b = obj;
     }
 
-    public final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: ug.p1.a():void");
-    }
-
-    public int b() {
-        if (this.O == 100) {
-            return i0.a.o(m6.w0(this.Q, this.P), 200);
-        }
-        return m6.w0(this.Q, this.P);
-    }
-
-    public final void c() {
-        a();
-        boolean z9 = this.G;
-        int i7 = this.f56788p;
-        if (z9) {
-            int length = this.d.length;
-            this.C = new Matrix[length];
-            this.D = new float[length];
-            this.E = new int[length];
-            this.F = new float[length];
-            for (int i10 = 0; i10 < length; i10++) {
-                this.C[i10] = new Matrix();
-                this.D[i10] = new float[i7 * 2];
-            }
-        }
-        ArrayList arrayList = this.f56786n;
-        if (arrayList.isEmpty()) {
-            for (int i11 = 0; i11 < i7; i11++) {
-                arrayList.add(new o1(this));
-            }
-        }
-    }
-
-    public final void d(Canvas canvas) {
-        e(canvas, 1.0f);
-    }
-
-    public final void e(android.graphics.Canvas r19, float r20) {
-        throw new UnsupportedOperationException("Method not decompiled: ug.p1.e(android.graphics.Canvas, float):void");
-    }
-
-    public final void f() {
-        long currentTimeMillis = System.currentTimeMillis();
-        int i7 = 0;
-        while (true) {
-            ArrayList arrayList = this.f56786n;
-            if (i7 < arrayList.size()) {
-                ((o1) arrayList.get(i7)).b(currentTimeMillis);
-                i7++;
-            } else {
+    @Override
+    public final void a(Object obj) {
+        TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway;
+        boolean z10;
+        float f10;
+        float f11;
+        int i7 = this.f58256a;
+        Object obj2 = this.f58257b;
+        switch (i7) {
+            case 0:
+                s1 s1Var = (s1) obj2;
+                Boolean bool = (Boolean) obj;
+                boolean e10 = qc.e(131072);
+                if (s1Var.f58333e != e10) {
+                    s1Var.f58333e = e10;
+                    s1Var.invalidate();
+                    return;
+                }
                 return;
-            }
-        }
-    }
-
-    public final void g() {
-        int w02 = m6.w0(this.Q, this.P);
-        if (this.f56797z != w02) {
-            this.f56797z = w02;
-            a();
+            case 1:
+                vh.h.d1((vh.h) obj2, (Pair) obj);
+                return;
+            case 2:
+                gj gjVar = (gj) obj2;
+                TLRPC.payments_GiveawayInfo payments_giveawayinfo = (TLRPC.payments_GiveawayInfo) obj;
+                TLRPC.MessageMedia messageMedia = gjVar.f23817k.media;
+                if (messageMedia instanceof TLRPC.TL_messageMediaGiveawayResults) {
+                    TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults = (TLRPC.TL_messageMediaGiveawayResults) messageMedia;
+                    tL_messageMediaGiveaway = new TLRPC.TL_messageMediaGiveaway();
+                    tL_messageMediaGiveaway.prize_description = tL_messageMediaGiveawayResults.prize_description;
+                    tL_messageMediaGiveaway.months = tL_messageMediaGiveawayResults.months;
+                    tL_messageMediaGiveaway.quantity = tL_messageMediaGiveawayResults.winners_count + tL_messageMediaGiveawayResults.unclaimed_count;
+                    tL_messageMediaGiveaway.only_new_subscribers = tL_messageMediaGiveawayResults.only_new_subscribers;
+                    tL_messageMediaGiveaway.until_date = tL_messageMediaGiveawayResults.until_date;
+                    if ((tL_messageMediaGiveawayResults.flags & 32) != 0) {
+                        tL_messageMediaGiveaway.flags |= 32;
+                        tL_messageMediaGiveaway.stars = tL_messageMediaGiveawayResults.stars;
+                    }
+                } else {
+                    tL_messageMediaGiveaway = (TLRPC.TL_messageMediaGiveaway) messageMedia;
+                }
+                TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway2 = tL_messageMediaGiveaway;
+                long j3 = 1000 * gjVar.f23817k.date;
+                e2 Q = LaunchActivity.Q();
+                if (Q != null) {
+                    String b10 = wg.h.b(gjVar);
+                    TLRPC.Chat M0 = np.s1(m10.f24934t0).M0(Long.valueOf(-gjVar.Z0()));
+                    if (M0 != null && t3.V(M0)) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    fb fbVar = new fb(Q.getParentActivity(), Q.getResourceProvider());
+                    if (payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfoResults) {
+                        fbVar.c(2131623982, 30, 30, new String[0]);
+                        fbVar.f34552b.setText(hd.M0(2131753371, null));
+                    } else if (payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfo) {
+                        if (((TLRPC.TL_payments_giveawayInfo) payments_giveawayinfo).participating) {
+                            fbVar.c(2131624029, 30, 30, new String[0]);
+                            fbVar.f34552b.setText(hd.M0(2131753369, null));
+                        } else {
+                            fbVar.c(2131623982, 30, 30, new String[0]);
+                            fbVar.f34552b.setText(hd.M0(2131753370, null));
+                        }
+                    }
+                    fbVar.f34552b.setSingleLine(false);
+                    fbVar.f34552b.setMaxLines(2);
+                    vb vbVar = new vb(Q.getParentActivity(), Q.getResourceProvider(), true);
+                    vbVar.e(hd.M0(2131749010, null));
+                    vbVar.f40369b = new ai.j(payments_giveawayinfo, z10, b10, j3, tL_messageMediaGiveaway2, Q);
+                    fbVar.setButton(vbVar);
+                    xb.g(Q, fbVar, 2750).j();
+                    return;
+                }
+                return;
+            case 3:
+                wg.o0 o0Var = (wg.o0) obj2;
+                o0Var.W1.setLoading(false);
+                wg.h.j(o0Var.getContext(), (TLRPC.TL_error) obj);
+                return;
+            case 4:
+                wh.h hVar = (wh.h) obj2;
+                Bitmap bitmap = (Bitmap) obj;
+                Matrix matrix = hVar.L;
+                if (hVar.U) {
+                    hVar.J.recycle();
+                    return;
+                }
+                hVar.J = bitmap;
+                Bitmap bitmap2 = hVar.J;
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                hVar.K = new BitmapShader(bitmap2, tileMode, tileMode);
+                Paint paint = new Paint(2);
+                hVar.M = paint;
+                paint.setShader(hVar.K);
+                ColorMatrix colorMatrix = new ColorMatrix();
+                if (j6.I.q()) {
+                    f10 = 0.08f;
+                } else {
+                    f10 = 1.25f;
+                }
+                org.telegram.messenger.g0.i(colorMatrix, f10);
+                if (j6.I.q()) {
+                    f11 = 0.02f;
+                } else {
+                    f11 = -0.15f;
+                }
+                org.telegram.messenger.g0.h(colorMatrix, f11);
+                hVar.M.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+                matrix.reset();
+                matrix.setScale(15.0f, 15.0f);
+                hVar.K.setLocalMatrix(matrix);
+                return;
+            case 5:
+                HashMap hashMap = ((xg.b) obj2).f59909x;
+                hashMap.clear();
+                hashMap.putAll((HashMap) obj);
+                return;
+            case 6:
+                ((xg.f) obj2).F((TLObject) obj);
+                return;
+            default:
+                HashMap hashMap2 = ((xg.i) obj2).f59939r;
+                hashMap2.clear();
+                hashMap2.putAll((HashMap) obj);
+                return;
         }
     }
 }

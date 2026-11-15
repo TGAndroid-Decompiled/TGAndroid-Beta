@@ -1,36 +1,32 @@
 package org.telegram.ui.Components;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-public final class th extends org.telegram.ui.qq0 {
-    public final org.telegram.messenger.gf f38308a;
-    public final ci f38309b;
+import org.telegram.tgnet.TLRPC;
+public final class th implements dj {
+    public final ki f39702a;
 
-    public th(ci ciVar, org.telegram.messenger.gf gfVar) {
-        this.f38309b = ciVar;
-        this.f38308a = gfVar;
+    public th(ki kiVar) {
+        this.f39702a = kiVar;
     }
 
     @Override
-    public final void o(int i7, org.telegram.messenger.j20 j20Var, final boolean z9, final int i10, int i11, final boolean z10) {
-        ci ciVar = this.f38309b;
-        ciVar.f32650s4 = true;
-        if (ciVar.W3 == null) {
-            return;
+    public final void a(TLRPC.User user, boolean z10, int i7, long j3) {
+        org.telegram.ui.an anVar = (org.telegram.ui.an) this.f39702a.f36436a2;
+        if (anVar.u7()) {
+            org.telegram.messenger.cz g10 = org.telegram.messenger.cz.g(user, anVar.f45259k6, anVar.E5, anVar.f45281m4, null, null, z10, i7, 0);
+            g10.K = anVar.Y8();
+            g10.O = 0L;
+            g10.L = false;
+            g10.Q = j3;
+            g10.R = anVar.j9();
+            g10.T = anVar.f45422x5;
+            anVar.getSendMessagesHelper().r0(g10);
+            anVar.L6();
         }
-        final org.telegram.messenger.gf gfVar = this.f38308a;
-        gfVar.f26864s = j20Var;
-        u4.X(ciVar.G3, ciVar.X0() + 1, 0L, new org.telegram.messenger.c20() {
-            @Override
-            public final void a(Object obj) {
-                ArrayList arrayList = ChatAttachAlertPhotoLayout.f31207t1;
-                arrayList.clear();
-                HashMap hashMap = ChatAttachAlertPhotoLayout.f31206s1;
-                hashMap.clear();
-                arrayList.add(0);
-                hashMap.put(0, gfVar);
-                th.this.f38309b.W3.o1(7, true, z9, i10, 0, 0L, false, z10, ((Long) obj).longValue());
-            }
-        });
+    }
+
+    @Override
+    public final void c(ArrayList arrayList, String str, boolean z10, int i7, long j3, boolean z11) {
+        ((org.telegram.ui.an) this.f39702a.f36436a2).Jb(arrayList, str, z10, i7, j3, z11);
     }
 }

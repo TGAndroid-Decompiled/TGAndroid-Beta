@@ -1,8 +1,31 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class rk0 extends org.telegram.ui.Cells.y8 {
-    public rk0(Context context) {
-        super(context);
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class rk0 implements hl0 {
+    public final jl0 f50966a;
+
+    public rk0(jl0 jl0Var) {
+        this.f50966a = jl0Var;
+    }
+
+    @Override
+    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
+        return false;
+    }
+
+    @Override
+    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
+        jl0 jl0Var = this.f50966a;
+        jl0Var.J0 = tL_payments_validateRequestedInfo;
+        jl0Var.H0(tL_payments_validateRequestedInfo.info);
+    }
+
+    @Override
+    public final void a(TL_account.Password password) {
+    }
+
+    @Override
+    public final void b() {
     }
 }

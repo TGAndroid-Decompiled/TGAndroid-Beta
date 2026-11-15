@@ -1,27 +1,52 @@
 package m;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.util.AttributeSet;
+import android.app.Activity;
+import android.content.ClipData;
+import android.os.Build;
+import android.text.Selection;
+import android.text.Spannable;
+import android.view.DragEvent;
 import android.view.View;
-import android.widget.RatingBar;
-public final class b0 extends RatingBar {
-    public final z f19075a;
-
-    public b0(Context context, AttributeSet attributeSet) {
-        super(context, attributeSet, 2130968908);
-        a3.a(this, getContext());
-        z zVar = new z(this);
-        this.f19075a = zVar;
-        zVar.b(attributeSet, 2130968908);
+import android.widget.TextView;
+public abstract class b0 {
+    public static boolean a(DragEvent dragEvent, TextView textView, Activity activity) {
+        r0.d dVar;
+        activity.requestDragAndDropPermissions(dragEvent);
+        int offsetForPosition = textView.getOffsetForPosition(dragEvent.getX(), dragEvent.getY());
+        textView.beginBatchEdit();
+        try {
+            Selection.setSelection((Spannable) textView.getText(), offsetForPosition);
+            ClipData clipData = dragEvent.getClipData();
+            if (Build.VERSION.SDK_INT >= 31) {
+                dVar = new m2.i(clipData, 3);
+            } else {
+                r0.e eVar = new r0.e();
+                eVar.f55655b = clipData;
+                eVar.f55656c = 3;
+                dVar = eVar;
+            }
+            r0.i0.h(textView, dVar.build());
+            textView.endBatchEdit();
+            return true;
+        } catch (Throwable th2) {
+            textView.endBatchEdit();
+            throw th2;
+        }
     }
 
-    @Override
-    public final synchronized void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, i10);
-        Bitmap bitmap = (Bitmap) this.f19075a.f19322c;
-        if (bitmap != null) {
-            setMeasuredDimension(View.resolveSizeAndState(bitmap.getWidth() * getNumStars(), i7, 0), getMeasuredHeight());
+    public static boolean b(DragEvent dragEvent, View view, Activity activity) {
+        r0.d dVar;
+        activity.requestDragAndDropPermissions(dragEvent);
+        ClipData clipData = dragEvent.getClipData();
+        if (Build.VERSION.SDK_INT >= 31) {
+            dVar = new m2.i(clipData, 3);
+        } else {
+            r0.e eVar = new r0.e();
+            eVar.f55655b = clipData;
+            eVar.f55656c = 3;
+            dVar = eVar;
         }
+        r0.i0.h(view, dVar.build());
+        return true;
     }
 }

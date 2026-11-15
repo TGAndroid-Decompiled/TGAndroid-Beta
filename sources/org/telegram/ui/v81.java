@@ -1,103 +1,54 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
+import android.view.View;
 import android.widget.TextView;
-import org.telegram.messenger.Utilities;
-public final class v81 extends FrameLayout {
-    public final int f50655a;
-    public float f50656b;
-    public boolean f50657c;
-    public Object d;
+import org.telegram.tgnet.TLRPC;
+public final class v81 implements zh.c, org.telegram.messenger.yo, r0.m, org.telegram.ui.Components.jj0 {
+    public final u91 f52165a;
 
-    public v81(Context context, int i7) {
-        super(context);
-        this.f50655a = i7;
+    public v81(u91 u91Var) {
+        this.f52165a = u91Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        switch (this.f50655a) {
-            case 0:
-                float f10 = ((1.0f - this.f50656b) * 0.2f) + 0.8f;
-                canvas.save();
-                canvas.scale(f10, f10, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f);
-                super.dispatchDraw(canvas);
-                canvas.restore();
-                if (isPressed()) {
-                    float f11 = this.f50656b;
-                    if (f11 != 1.0f) {
-                        this.f50656b = Utilities.i(f11 + 0.16f, 1.0f, 0.0f);
-                        invalidate();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                int i7 = 1;
-                if (this.f50657c) {
-                    float f12 = this.f50656b + 0.013333334f;
-                    this.f50656b = f12;
-                    if (f12 > 1.0f) {
-                        this.f50657c = false;
-                        this.f50656b = 1.0f;
-                    }
-                } else {
-                    float f13 = this.f50656b - 0.013333334f;
-                    this.f50656b = f13;
-                    if (f13 < 0.0f) {
-                        this.f50657c = true;
-                        this.f50656b = 0.0f;
-                    }
-                }
-                TextView textView = (TextView) this.d;
-                float interpolation = org.telegram.ui.Components.wq.f40046f.getInterpolation(this.f50656b) * org.telegram.messenger.g0.L(8.0f);
-                if (org.telegram.messenger.id.f23161a0) {
-                    i7 = -1;
-                }
-                textView.setTranslationX(interpolation * i7);
-                invalidate();
-                return;
+    public r0.k1 M0(View view, r0.k1 k1Var) {
+        int i7 = k1Var.f55682a.f(519).d;
+        u91 u91Var = this.f52165a;
+        u91Var.f51852g1 = i7;
+        q91 q91Var = u91Var.f51874s0;
+        if (q91Var != null) {
+            q91Var.setPadding(0, 0, 0, i7);
         }
+        q81 q81Var = u91Var.f51863n;
+        if (q81Var != null) {
+            ((TextView) q81Var.d).setTranslationY((-u91Var.f51852g1) - u91Var.f51850f1);
+        }
+        u91Var.h.setTranslationY(((-u91Var.Y0) - u91Var.f51852g1) - u91Var.f51850f1);
+        u91Var.F0();
+        return r0.k1.f55681b;
     }
 
     @Override
-    public void setPressed(boolean z9) {
-        ValueAnimator valueAnimator;
-        switch (this.f50655a) {
-            case 0:
-                super.setPressed(z9);
-                if (this.f50657c != z9) {
-                    this.f50657c = z9;
-                    invalidate();
-                    if (z9 && (valueAnimator = (ValueAnimator) this.d) != null) {
-                        valueAnimator.removeAllListeners();
-                        ((ValueAnimator) this.d).cancel();
-                    }
-                    if (!z9) {
-                        float f10 = this.f50656b;
-                        if (f10 != 0.0f) {
-                            ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, 0.0f);
-                            this.d = ofFloat;
-                            ofFloat.addUpdateListener(new kz0(this, 12));
-                            ((ValueAnimator) this.d).addListener(new u81(this, 0));
-                            org.telegram.messenger.camera.q.i(5.0f, (ValueAnimator) this.d);
-                            ((ValueAnimator) this.d).setDuration(350L);
-                            ((ValueAnimator) this.d).start();
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.setPressed(z9);
-                return;
-        }
+    public boolean d(TLRPC.TL_error tL_error) {
+        return u91.Z(this.f52165a, tL_error);
+    }
+
+    @Override
+    public void e(boolean z10, boolean z11) {
+        u91 u91Var = this.f52165a;
+        u91Var.V0.i(u91Var.S0.b(), z10, z11);
+    }
+
+    @Override
+    public boolean mo0f(float f10, float f11, int i7, View view) {
+        return u91.b0(this.f52165a, view, f10);
+    }
+
+    @Override
+    public void q(float f10) {
+    }
+
+    @Override
+    public void i() {
     }
 }

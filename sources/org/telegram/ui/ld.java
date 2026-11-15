@@ -1,146 +1,121 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.util.Pair;
-import java.util.ArrayList;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_bots;
-public final class ld implements RequestDelegate {
-    public final int f47586a;
-    public final Object f47587b;
-    public final Object f47588c;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.TextView;
+public final class ld implements TextView.OnEditorActionListener {
+    public final int f48972a;
+    public final Object f48973b;
+    public final Object f48974c;
 
     public ld(int i7, Object obj, Object obj2) {
-        this.f47586a = i7;
-        this.f47587b = obj;
-        this.f47588c = obj2;
+        this.f48972a = i7;
+        this.f48973b = obj;
+        this.f48974c = obj2;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7;
-        switch (this.f47586a) {
+    public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
+        v4.e1 T;
+        int b10;
+        v4.e1 T2;
+        int b11;
+        switch (this.f48972a) {
             case 0:
-                org.telegram.messenger.g0.h3(new o1((zd) this.f47587b, tLObject, (Context) this.f47588c, 13));
-                return;
+                xd xdVar = (xd) this.f48973b;
+                z41 z41Var = (z41) this.f48974c;
+                if (i7 == 5) {
+                    TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
+                    hd hdVar = new hd(xdVar, twoStepVerificationActivity, 1);
+                    twoStepVerificationActivity.f43426a0 = 1;
+                    twoStepVerificationActivity.f43430c0 = hdVar;
+                    xdVar.H0.setLoading(true);
+                    twoStepVerificationActivity.x0(new id(xdVar, z41Var, twoStepVerificationActivity, 1));
+                    return true;
+                }
+                return false;
             case 1:
-                cn cnVar = (cn) this.f47587b;
-                TLObject tLObject2 = (TLObject) this.f47588c;
-                if (tLObject instanceof TLRPC.messages_Messages) {
-                    TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-                    if (!messages_messages.messages.isEmpty()) {
-                        i7 = ((TLRPC.messages_Messages) tLObject2).offset_id_offset - messages_messages.offset_id_offset;
-                    } else {
-                        i7 = ((TLRPC.messages_Messages) tLObject2).offset_id_offset;
-                    }
-                    org.telegram.messenger.g0.h3(new re(cnVar, i7, 6));
-                    return;
+                org.telegram.ui.ActionBar.t1 t1Var = (org.telegram.ui.ActionBar.t1) this.f48973b;
+                ki.o1 o1Var = (ki.o1) this.f48974c;
+                if ((i7 != 6 && keyEvent.getKeyCode() != 66) || !t1Var.isShowing()) {
+                    return false;
                 }
-                return;
+                o1Var.h(t1Var, 0);
+                return true;
             case 2:
-                org.telegram.messenger.g0.h3(new o1((cn) this.f47587b, tLObject, (TLRPC.User) this.f47588c, 21));
-                return;
-            case 3:
-                org.telegram.messenger.g0.h3(new m6((cn) this.f47587b, tLObject, tL_error, (org.telegram.messenger.yr) this.f47588c, 8));
-                return;
-            case 4:
-                cn cnVar2 = (cn) this.f47587b;
-                TLRPC.TL_messages_sendScheduledMessages tL_messages_sendScheduledMessages = (TLRPC.TL_messages_sendScheduledMessages) this.f47588c;
-                if (tL_error == null) {
-                    cnVar2.getMessagesController().O3((TLRPC.Updates) tLObject, false);
-                    org.telegram.messenger.g0.h3(new oe(10, cnVar2, tL_messages_sendScheduledMessages));
-                    return;
-                } else if (tL_error.text != null) {
-                    org.telegram.messenger.g0.h3(new oe(11, cnVar2, tL_error));
-                    return;
-                } else {
-                    return;
+                org.telegram.ui.Components.hn hnVar = (org.telegram.ui.Components.hn) this.f48974c;
+                org.telegram.ui.Components.jn jnVar = (org.telegram.ui.Components.jn) ((l4) this.f48973b).f48827e;
+                b61 b61Var = jnVar.f36107s;
+                if (i7 == 5) {
+                    View F = b61Var.F(hnVar);
+                    if (F == null) {
+                        T = null;
+                    } else {
+                        T = b61Var.T(F);
+                    }
+                    if (T == null || (b10 = T.b()) == -1) {
+                        return true;
+                    }
+                    int i10 = b10 - jnVar.f36110u0;
+                    int i11 = jnVar.N;
+                    int i12 = i11 - 1;
+                    if (i10 == i12 && i11 < jnVar.K) {
+                        jnVar.U();
+                        return true;
+                    } else if (i10 == i12) {
+                        org.telegram.messenger.g0.v1(hnVar.getTextView());
+                        return true;
+                    } else {
+                        v4.e1 K = b61Var.K(b10 + 1);
+                        if (K == null) {
+                            return true;
+                        }
+                        View view = K.f58535a;
+                        if (!(view instanceof org.telegram.ui.Cells.z5)) {
+                            return true;
+                        }
+                        ((org.telegram.ui.Cells.z5) view).getTextView().requestFocus();
+                        return true;
+                    }
                 }
-            case 5:
-                org.telegram.messenger.g0.h3(new o1((fl) this.f47587b, tLObject, (org.telegram.messenger.ij) this.f47588c, 23));
-                return;
-            case 6:
-                rn rnVar = (rn) this.f47587b;
-                TL_bots.setBotInfo setbotinfo = (TL_bots.setBotInfo) this.f47588c;
-                TLRPC.UserFull userFull = rnVar.D0;
-                if (userFull != null) {
-                    userFull.about = setbotinfo.about;
-                    rnVar.getMessagesStorage().j2(rnVar.D0, false);
-                }
-                org.telegram.messenger.g0.h3(new nn(rnVar, 2));
-                return;
-            case 7:
-                org.telegram.messenger.g0.h3(new oe(23, (uo) this.f47587b, (org.telegram.ui.ActionBar.u1[]) this.f47588c));
-                return;
-            case 8:
-                org.telegram.messenger.g0.h3(new m6((mp) this.f47587b, tL_error, tLObject, (TwoStepVerificationActivity) this.f47588c, 11));
-                return;
-            case 9:
-                org.telegram.ui.Components.d5 d5Var = (org.telegram.ui.Components.d5) this.f47587b;
-                org.telegram.messenger.qs.f(d5Var.f32890e).d(new org.telegram.ui.Components.c5(d5Var, (ArrayList) this.f47588c, tLObject, 0));
-                return;
-            case 10:
-                org.telegram.messenger.g0.h3(new l2.z0((org.telegram.ui.Components.a8) this.f47587b, (org.telegram.ui.ActionBar.u1) this.f47588c, tLObject, 26));
-                return;
-            case 11:
-                org.telegram.messenger.g0.h3(new fq(16, (org.telegram.ui.Components.ci) this.f47587b, (TLRPC.TL_attachMenuBot) this.f47588c));
-                return;
-            case 12:
-                org.telegram.messenger.g0.h3(new fq(15, (org.telegram.ui.Components.ci) this.f47587b, (org.telegram.ui.Components.vh) this.f47588c));
-                return;
-            case 13:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.mg((org.telegram.ui.Components.to) this.f47587b, tLObject, (org.telegram.ui.ActionBar.l6) this.f47588c, 2));
-                return;
-            case 14:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.ro(19, (org.telegram.ui.Components.vz) this.f47587b, (Pair) this.f47588c));
-                return;
-            case 15:
-                org.telegram.messenger.g0.h3(new m6((org.telegram.ui.Components.vz) this.f47587b, tL_error, tLObject, (org.telegram.messenger.c20) this.f47588c, 21));
-                return;
-            case 16:
-                org.telegram.messenger.g0.h3(new m6((org.telegram.ui.Components.h20) this.f47587b, tL_error, tLObject, (TLRPC.TL_channels_getParticipants) this.f47588c, 23));
-                return;
-            case 17:
-                org.telegram.messenger.g0.h3(new m6((org.telegram.ui.Components.q70) this.f47587b, (TLRPC.TL_chatInviteExported) this.f47588c, tL_error, tLObject, 25));
-                return;
-            case 18:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.mg((org.telegram.ui.Components.qe0) this.f47587b, (org.telegram.ui.Components.pe0) this.f47588c, tLObject, 16));
-                return;
-            case 19:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.r80((org.telegram.ui.Components.mo0) this.f47587b, tLObject, (Context) this.f47588c, 13));
-                return;
-            case 20:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.kn0((org.telegram.ui.Components.yv0) this.f47587b, tL_error, tLObject, (org.telegram.messenger.ui) this.f47588c, 1));
-                return;
-            case 21:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.kn0((so0) this.f47587b, tL_error, tLObject, (TLRPC.TL_messages_getAttachedStickers) this.f47588c, 2));
-                return;
-            case 22:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.kn0((org.telegram.ui.Components.ly0) this.f47587b, (org.telegram.ui.ActionBar.u1) this.f47588c, tLObject, tL_error, 3));
-                return;
-            case 23:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.kn0((org.telegram.ui.Components.k21) this.f47587b, tL_error, tLObject, (TLRPC.TL_textWithEntities) this.f47588c, 5));
-                return;
-            case 24:
-                org.telegram.messenger.g0.h3(new tp((lx) this.f47587b, tLObject, (org.telegram.messenger.ij) this.f47588c, 4));
-                return;
-            case 25:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.h41(21, (hy) this.f47587b, (org.telegram.ui.ActionBar.u1) this.f47588c));
-                return;
-            case 26:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.h41(25, (jz) this.f47587b, (org.telegram.ui.ActionBar.u1) this.f47588c));
-                return;
-            case 27:
-                org.telegram.messenger.g0.h3(new tp((dz) this.f47587b, tL_error, (cz) this.f47588c, 8));
-                return;
-            case 28:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.h41(27, (FiltersSetupActivity) this.f47587b, (TLRPC.TL_messages_toggleDialogFilterTags) this.f47588c));
-                return;
+                return false;
             default:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.kn0((o30) this.f47587b, tL_error, tLObject, (String) this.f47588c, 9));
-                return;
+                kr0 kr0Var = (kr0) this.f48974c;
+                nr0 nr0Var = ((lr0) this.f48973b).d;
+                if (i7 == 5) {
+                    b61 b61Var2 = nr0Var.f49618c;
+                    View F2 = b61Var2.F(kr0Var);
+                    if (F2 == null) {
+                        T2 = null;
+                    } else {
+                        T2 = b61Var2.T(F2);
+                    }
+                    if (T2 == null || (b11 = T2.b()) == -1) {
+                        return true;
+                    }
+                    int i13 = b11 - nr0Var.f49633o0;
+                    int i14 = nr0Var.E;
+                    int i15 = i14 - 1;
+                    if (i13 == i15 && i14 < nr0Var.f49631n) {
+                        nr0Var.k0();
+                        return true;
+                    } else if (i13 == i15) {
+                        org.telegram.messenger.g0.v1(kr0Var.getTextView());
+                        return true;
+                    } else {
+                        v4.e1 K2 = nr0Var.f49618c.K(b11 + 1);
+                        if (K2 == null) {
+                            return true;
+                        }
+                        View view2 = K2.f58535a;
+                        if (!(view2 instanceof org.telegram.ui.Cells.z5)) {
+                            return true;
+                        }
+                        ((org.telegram.ui.Cells.z5) view2).getTextView().requestFocus();
+                        return true;
+                    }
+                }
+                return false;
         }
     }
 }

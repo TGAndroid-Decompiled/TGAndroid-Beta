@@ -1,12 +1,16 @@
 package org.telegram.messenger;
 
-import android.graphics.drawable.BitmapDrawable;
-public final class cc {
-    public final BitmapDrawable f21839a;
-    public final String f21840b;
+import org.telegram.tgnet.TLRPC;
+public final class cc extends TLRPC.PhotoSize {
+    public final TLRPC.Photo f22852a;
+    public final TLRPC.TL_inputPhoto f22853b;
 
-    public cc(String str, BitmapDrawable bitmapDrawable) {
-        this.f21840b = str;
-        this.f21839a = bitmapDrawable;
+    public cc(TLRPC.Photo photo) {
+        this.f22852a = photo;
+        TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
+        tL_inputPhoto.f28070id = photo.f28075id;
+        tL_inputPhoto.file_reference = photo.file_reference;
+        tL_inputPhoto.access_hash = photo.access_hash;
+        this.f22853b = tL_inputPhoto;
     }
 }

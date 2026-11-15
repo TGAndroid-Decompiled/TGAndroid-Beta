@@ -7,28 +7,28 @@ public enum u0 extends b2 {
     @Override
     public final void d(l lVar, a aVar) {
         char d = aVar.d();
-        m0 m0Var = b2.W;
+        m0 m0Var = b2.X;
         if (d != '\t' && d != '\n' && d != '\f' && d != '\r' && d != ' ') {
             if (d != '/') {
-                w wVar = b2.f8605a;
+                w wVar = b2.f7989a;
                 if (d != '>') {
                     if (d != 65535) {
                         lVar.m(this);
                         aVar.q();
-                        lVar.f8658c = m0Var;
+                        lVar.f8042c = m0Var;
                         return;
                     }
                     lVar.l(this);
-                    lVar.f8658c = wVar;
+                    lVar.f8042c = wVar;
                     return;
                 }
                 lVar.k();
-                lVar.f8658c = wVar;
+                lVar.f8042c = wVar;
                 return;
             }
-            lVar.f8658c = b2.f8613e0;
+            lVar.f8042c = b2.f7999f0;
             return;
         }
-        lVar.f8658c = m0Var;
+        lVar.f8042c = m0Var;
     }
 }

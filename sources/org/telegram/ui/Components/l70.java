@@ -1,31 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-public final class l70 extends mo0 {
-    public final q70 U2;
+import android.view.KeyEvent;
+public final class l70 implements org.telegram.ui.ActionBar.q1, org.telegram.ui.ActionBar.e1 {
+    public final int f36731a;
+    public final t70 f36732b;
 
-    public l70(q70 q70Var, Context context, String str, String str2, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, null, str, false, str2, false, h6Var);
-        this.U2 = q70Var;
+    public l70(t70 t70Var, int i7) {
+        this.f36731a = i7;
+        this.f36732b = t70Var;
     }
 
     @Override
-    public final void R0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z9) {
-        String a02;
-        if (!z9) {
-            return;
+    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        switch (this.f36731a) {
+            case 0:
+                s70 s70Var = this.f36732b.f39582r;
+                if (s70Var != null) {
+                    s70Var.j();
+                    return;
+                }
+                return;
+            default:
+                s70 s70Var2 = this.f36732b.f39582r;
+                if (s70Var2 != null) {
+                    s70Var2.e();
+                    return;
+                }
+                return;
         }
-        if (hVar != null && hVar.m() == 1) {
-            long j3 = ((TLRPC.Dialog) hVar.n(0)).f26964id;
-            if (j3 != 0 && j3 != org.telegram.messenger.p10.i(this.f28669a).e()) {
-                a02 = org.telegram.messenger.id.a0(null, null, 2131749184, org.telegram.messenger.qp.s1(this.f28669a).B1(j3, true));
-            } else {
-                a02 = org.telegram.messenger.id.M0(2131749185, null);
-            }
-        } else {
-            a02 = org.telegram.messenger.id.a0(null, null, 2131749187, org.telegram.messenger.id.G(i7, "Chats", new Object[0]));
+    }
+
+    @Override
+    public void j(KeyEvent keyEvent) {
+        t70 t70Var = this.f36732b;
+        t70Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && t70Var.f39583s.isShowing()) {
+            t70Var.f39583s.d(true);
         }
-        this.U2.e(org.telegram.messenger.g0.X2(a02));
     }
 }

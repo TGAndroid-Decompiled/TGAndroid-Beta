@@ -1,51 +1,49 @@
 package y7;
 
-import java.util.Set;
-public abstract class m9 extends i9 implements Set {
-    public transient l9 f59113b;
+import c8.yd;
+public final class m9 extends k9 {
+    public static final m9 f60332e = new m9(0, new Object[0]);
+    public final transient Object[] f60333c;
+    public final transient int d;
 
-    @Override
-    public final boolean equals(Object obj) {
-        if (obj == this || obj == this) {
-            return true;
-        }
-        if (obj instanceof Set) {
-            Set set = (Set) obj;
-            try {
-                if (size() == set.size()) {
-                    if (containsAll(set)) {
-                        return true;
-                    }
-                    return false;
-                }
-            } catch (ClassCastException | NullPointerException unused) {
-            }
-        }
-        return false;
+    public m9(int i7, Object[] objArr) {
+        this.f60333c = objArr;
+        this.d = i7;
     }
 
     @Override
-    public final int hashCode() {
-        int i7;
-        int i10 = 0;
-        for (Object obj : this) {
-            if (obj != null) {
-                i7 = obj.hashCode();
-            } else {
-                i7 = 0;
-            }
-            i10 += i7;
-        }
-        return i10;
+    public final int f(Object[] objArr) {
+        Object[] objArr2 = this.f60333c;
+        int i7 = this.d;
+        System.arraycopy(objArr2, 0, objArr, 0, i7);
+        return i7;
     }
 
-    public final l9 l() {
-        l9 l9Var = this.f59113b;
-        if (l9Var == null) {
-            o9 o9Var = new o9((a) this);
-            this.f59113b = o9Var;
-            return o9Var;
-        }
-        return l9Var;
+    @Override
+    public final Object get(int i7) {
+        yd.a(i7, this.d);
+        Object obj = this.f60333c[i7];
+        obj.getClass();
+        return obj;
+    }
+
+    @Override
+    public final int i() {
+        return this.d;
+    }
+
+    @Override
+    public final int j() {
+        return 0;
+    }
+
+    @Override
+    public final Object[] k() {
+        return this.f60333c;
+    }
+
+    @Override
+    public final int size() {
+        return this.d;
     }
 }

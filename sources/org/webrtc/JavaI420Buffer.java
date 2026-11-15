@@ -1,5 +1,6 @@
 package org.webrtc;
 
+import com.google.android.gms.internal.vision.e2;
 import java.nio.ByteBuffer;
 import org.webrtc.VideoFrame;
 public class JavaI420Buffer implements VideoFrame.I420Buffer {
@@ -44,13 +45,13 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
     }
 
     private static void checkCapacity(ByteBuffer byteBuffer, int i7, int i10, int i11) {
-        int e10 = com.google.android.recaptcha.internal.a.e(i10, 1, i11, i7);
-        if (byteBuffer.capacity() >= e10) {
+        int v = e2.v(i10, 1, i11, i7);
+        if (byteBuffer.capacity() >= v) {
             return;
         }
-        StringBuilder n10 = jg.g.n(e10, "Buffer must be at least ", " bytes, but was ");
-        n10.append(byteBuffer.capacity());
-        throw new IllegalArgumentException(n10.toString());
+        StringBuilder m10 = i5.c.m(v, "Buffer must be at least ", " bytes, but was ");
+        m10.append(byteBuffer.capacity());
+        throw new IllegalArgumentException(m10.toString());
     }
 
     public static VideoFrame.Buffer cropAndScaleI420(VideoFrame.I420Buffer i420Buffer, int i7, int i10, int i11, int i12, int i13, int i14) {

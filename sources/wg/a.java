@@ -11,35 +11,35 @@ import android.text.TextPaint;
 import android.text.style.ReplacementSpan;
 import android.util.Pair;
 import org.telegram.ui.Cells.q1;
-import org.telegram.ui.Components.h6;
-import org.telegram.ui.Components.wq;
+import org.telegram.ui.Components.er;
+import org.telegram.ui.Components.g6;
 public final class a extends ReplacementSpan {
-    public final Drawable f57684a;
-    public final Drawable f57685b;
-    public boolean f57686c;
+    public final Drawable f59125a;
+    public final Drawable f59126b;
+    public boolean f59127c;
     public boolean d;
-    public final h6 f57687e;
-    public final TextPaint f57688f;
+    public final g6 f59128e;
+    public final TextPaint f59129f;
     public final int h;
 
     public a(q1 q1Var, TextPaint textPaint, int i7) {
-        this.f57688f = textPaint;
-        h6 h6Var = new h6(false, false, true);
-        this.f57687e = h6Var;
-        h6Var.n(0.3f, 250L, wq.h);
-        h6Var.setCallback(q1Var);
-        h6Var.w(org.telegram.messenger.g0.L(11.5f));
-        h6Var.x(org.telegram.messenger.g0.o());
-        h6Var.t("", true, true);
-        h6Var.f34187b = 17;
+        this.f59129f = textPaint;
+        g6 g6Var = new g6(false, false, true);
+        this.f59128e = g6Var;
+        g6Var.n(0.3f, 250L, er.h);
+        g6Var.setCallback(q1Var);
+        g6Var.w(org.telegram.messenger.g0.L(11.5f));
+        g6Var.x(org.telegram.messenger.g0.o());
+        g6Var.t("", true, true);
+        g6Var.f34829b = 17;
         Drawable mutate = q1Var.getContext().getDrawable(2131231930).mutate();
-        this.f57684a = mutate;
+        this.f59125a = mutate;
         Drawable mutate2 = q1Var.getContext().getDrawable(2131231931).mutate();
-        this.f57685b = mutate2;
+        this.f59126b = mutate2;
         mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
         mutate2.setBounds(0, 0, mutate2.getIntrinsicWidth(), mutate2.getIntrinsicHeight());
         this.h = i7;
-        h6Var.t(i7 > 1 ? String.valueOf(i7) : "", false, true);
+        g6Var.t(i7 > 1 ? String.valueOf(i7) : "", false, true);
     }
 
     public static Pair a(q1 q1Var, TextPaint textPaint, int i7) {
@@ -56,27 +56,27 @@ public final class a extends ReplacementSpan {
         } else {
             i7 = 0;
         }
-        return (int) (this.f57687e.e() + org.telegram.messenger.g0.L(i7 + 16));
+        return (int) (this.f59128e.e() + org.telegram.messenger.g0.L(i7 + 16));
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
         int i14;
-        TextPaint textPaint = this.f57688f;
+        TextPaint textPaint = this.f59129f;
         int color = textPaint.getColor();
-        h6 h6Var = this.f57687e;
-        int color2 = h6Var.f34185a.getColor();
-        Drawable drawable = this.f57685b;
-        Drawable drawable2 = this.f57684a;
+        g6 g6Var = this.f59128e;
+        int color2 = g6Var.f34827a.getColor();
+        Drawable drawable = this.f59126b;
+        Drawable drawable2 = this.f59125a;
         if (color != color2) {
-            h6Var.u(textPaint.getColor());
-            int color3 = h6Var.f34185a.getColor();
+            g6Var.u(textPaint.getColor());
+            int color3 = g6Var.f34827a.getColor();
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
             drawable2.setColorFilter(new PorterDuffColorFilter(color3, mode));
-            drawable.setColorFilter(new PorterDuffColorFilter(h6Var.f34185a.getColor(), mode));
+            drawable.setColorFilter(new PorterDuffColorFilter(g6Var.f34827a.getColor(), mode));
         }
         canvas.save();
-        if (this.d && !this.f57686c) {
+        if (this.d && !this.f59127c) {
             i14 = org.telegram.messenger.g0.L(8.0f);
         } else {
             i14 = 0;
@@ -90,9 +90,9 @@ public final class a extends ReplacementSpan {
         }
         canvas.translate(org.telegram.messenger.g0.L(16.0f), 0.0f);
         Rect rect = org.telegram.messenger.g0.Q;
-        rect.set(0, 0, (int) h6Var.c(), (int) h6Var.f34190e);
-        h6Var.setBounds(rect);
-        h6Var.draw(canvas);
+        rect.set(0, 0, (int) g6Var.c(), (int) g6Var.f34833e);
+        g6Var.setBounds(rect);
+        g6Var.draw(canvas);
         canvas.restore();
     }
 

@@ -1,26 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-import org.telegram.tgnet.TLRPC;
-public final class kf extends org.telegram.ui.cn {
-    public boolean f35301td;
-    public final TLRPC.User f35302ud;
-    public final TLRPC.User f35303vd;
-    public final long f35304wd;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class kf extends AnimatorListenerAdapter {
+    public final boolean f36408a;
+    public final ChatActivityEnterView f36409b;
 
-    public kf(Bundle bundle, TLRPC.User user, TLRPC.User user2, long j3) {
-        super(bundle);
-        this.f35302ud = user;
-        this.f35303vd = user2;
-        this.f35304wd = j3;
+    public kf(ChatActivityEnterView chatActivityEnterView, boolean z10) {
+        this.f36409b = chatActivityEnterView;
+        this.f36408a = z10;
     }
 
     @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.f35301td) {
-            this.f35301td = true;
-            gc.a0(this).I(2131623989, org.telegram.messenger.id.a0(null, null, 2131751739, org.telegram.messenger.t10.p(this.f35302ud)), org.telegram.messenger.g0.U2(org.telegram.messenger.id.a0(null, null, 2131751740, org.telegram.messenger.t10.p(this.f35303vd)), new bi.r3(this, this.f35304wd, 21))).j();
+    public final void onAnimationEnd(Animator animator) {
+        ChatActivityEnterView chatActivityEnterView = this.f36409b;
+        if (animator.equals(chatActivityEnterView.f32165b3)) {
+            chatActivityEnterView.f32165b3 = null;
+        }
+        chatActivityEnterView.K0();
+        chatActivityEnterView.S1.setAlpha(1.0f);
+        chatActivityEnterView.S1.setTranslationX(0.0f);
+        gg ggVar = chatActivityEnterView.f32310w2;
+        if (ggVar != null && org.telegram.messenger.gz.O < 3) {
+            ChatActivityEnterView chatActivityEnterView2 = ggVar.Q0;
+            chatActivityEnterView2.M4 = true;
+            chatActivityEnterView2.N4 = System.currentTimeMillis();
+        }
+        xe xeVar = chatActivityEnterView.F0;
+        if (xeVar != null) {
+            xeVar.setAlpha(0.0f);
+        }
+        if (this.f36408a) {
+            oi0 oi0Var = chatActivityEnterView.f32214i1;
+            if (oi0Var != null) {
+                oi0Var.setVisibility(8);
+            }
+            ud udVar = chatActivityEnterView.f32193f1;
+            if (udVar != null) {
+                udVar.setVisibility(8);
+            }
+            chatActivityEnterView.K0();
         }
     }
 }

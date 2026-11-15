@@ -1,34 +1,34 @@
 package x2;
 
-import a8.ia;
+import a8.ja;
 import android.net.Uri;
 import java.util.Map;
 public final class s implements j2.h {
-    public final j2.h f58467a;
-    public final int f58468b;
-    public final s0 f58469c;
+    public final j2.h f59648a;
+    public final int f59649b;
+    public final s0 f59650c;
     public final byte[] d;
-    public int f58470e;
+    public int f59651e;
 
     public s(j2.h hVar, int i7, s0 s0Var) {
-        boolean z9;
+        boolean z10;
         if (i7 > 0) {
-            z9 = true;
+            z10 = true;
         } else {
-            z9 = false;
+            z10 = false;
         }
-        ia.f(z9);
-        this.f58467a = hVar;
-        this.f58468b = i7;
-        this.f58469c = s0Var;
+        ja.f(z10);
+        this.f59648a = hVar;
+        this.f59649b = i7;
+        this.f59650c = s0Var;
         this.d = new byte[1];
-        this.f58470e = i7;
+        this.f59651e = i7;
     }
 
     @Override
-    public final void addTransferListener(j2.d0 d0Var) {
-        d0Var.getClass();
-        this.f58467a.addTransferListener(d0Var);
+    public final void addTransferListener(j2.c0 c0Var) {
+        c0Var.getClass();
+        this.f59648a.addTransferListener(c0Var);
     }
 
     @Override
@@ -38,12 +38,12 @@ public final class s implements j2.h {
 
     @Override
     public final Map getResponseHeaders() {
-        return this.f58467a.getResponseHeaders();
+        return this.f59648a.getResponseHeaders();
     }
 
     @Override
     public final Uri getUri() {
-        return this.f58467a.getUri();
+        return this.f59648a.getUri();
     }
 
     @Override
@@ -54,8 +54,8 @@ public final class s implements j2.h {
     @Override
     public final int read(byte[] bArr, int i7, int i10) {
         long max;
-        int i11 = this.f58470e;
-        j2.h hVar = this.f58467a;
+        int i11 = this.f59651e;
+        j2.h hVar = this.f59648a;
         if (i11 == 0) {
             byte[] bArr2 = this.d;
             int i12 = 0;
@@ -76,28 +76,28 @@ public final class s implements j2.h {
                     }
                     if (i13 > 0) {
                         h2.x xVar = new h2.x(bArr3, i13);
-                        s0 s0Var = this.f58469c;
-                        if (!s0Var.f58480x) {
-                            max = s0Var.f58477r;
+                        s0 s0Var = this.f59650c;
+                        if (!s0Var.f59661x) {
+                            max = s0Var.f59658r;
                         } else {
-                            max = Math.max(s0Var.f58481y.s(true), s0Var.f58477r);
+                            max = Math.max(s0Var.f59662y.v(true), s0Var.f59658r);
                         }
                         long j3 = max;
                         int a10 = xVar.a();
-                        f3.j0 j0Var = s0Var.f58479w;
-                        j0Var.getClass();
-                        j0Var.b(a10, xVar);
-                        j0Var.c(j3, 1, a10, 0, null);
-                        s0Var.f58480x = true;
+                        f3.i0 i0Var = s0Var.f59660w;
+                        i0Var.getClass();
+                        i0Var.b(a10, xVar);
+                        i0Var.c(j3, 1, a10, 0, null);
+                        s0Var.f59661x = true;
                     }
                 }
-                this.f58470e = this.f58468b;
+                this.f59651e = this.f59649b;
             }
             return -1;
         }
-        int read2 = hVar.read(bArr, i7, Math.min(this.f58470e, i10));
+        int read2 = hVar.read(bArr, i7, Math.min(this.f59651e, i10));
         if (read2 != -1) {
-            this.f58470e -= read2;
+            this.f59651e -= read2;
         }
         return read2;
     }

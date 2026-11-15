@@ -5,27 +5,27 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class h3 implements RequestDelegate {
-    public final int f22840a;
-    public final int f22841b;
-    public final long f22842c;
+    public final int f24049a;
+    public final int f24050b;
+    public final long f24051c;
     public final Object d;
-    public final Object f22843e;
+    public final Object f24052e;
 
     public h3(int i7, int i10, long j3, Object obj, Object obj2) {
-        this.f22840a = i10;
+        this.f24049a = i10;
         this.d = obj;
-        this.f22841b = i7;
-        this.f22843e = obj2;
-        this.f22842c = j3;
+        this.f24050b = i7;
+        this.f24052e = obj2;
+        this.f24051c = j3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         TL_stories.StoryItem storyItem;
-        switch (this.f22840a) {
+        switch (this.f24049a) {
             case 0:
                 i3 i3Var = (i3) this.d;
-                ij ijVar = (ij) this.f22843e;
+                gj gjVar = (gj) this.f24052e;
                 if (tLObject != null) {
                     TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
                     if (tL_stories_stories.stories.size() > 0) {
@@ -38,33 +38,33 @@ public final class h3 implements RequestDelegate {
                     }
                     TL_stories.StoryItem storyItem2 = storyItem;
                     storyItem2.lastUpdateTime = System.currentTimeMillis();
-                    storyItem2.f27199id = this.f22841b;
-                    g0.h3(new jm(i3Var, ijVar, this.f22842c, storyItem2, 2));
+                    storyItem2.f28290id = this.f24050b;
+                    g0.h3(new gm(i3Var, gjVar, this.f24051c, storyItem2, 2));
                     return;
                 }
                 return;
             case 1:
-                g0.h3(new z1((ui) this.d, tLObject, this.f22841b, (c20) this.f22843e, this.f22842c));
+                g0.h3(new z1((si) this.d, tLObject, this.f24050b, (z10) this.f24052e, this.f24051c));
                 return;
             default:
-                qp qpVar = (qp) this.d;
-                TLRPC.TL_help_promoData tL_help_promoData = (TLRPC.TL_help_promoData) this.f22843e;
-                if (this.f22841b == qpVar.f24931w2) {
-                    qpVar.f24921v2 = 0;
+                np npVar = (np) this.d;
+                TLRPC.TL_help_promoData tL_help_promoData = (TLRPC.TL_help_promoData) this.f24052e;
+                if (this.f24050b == npVar.f25433x2) {
+                    npVar.f25423w2 = 0;
                     TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs = (TLRPC.TL_messages_peerDialogs) tLObject;
                     if (tL_messages_peerDialogs != null && !tL_messages_peerDialogs.dialogs.isEmpty()) {
-                        qpVar.getMessagesStorage().m1(tL_help_promoData.users, tL_help_promoData.chats, true, true);
+                        npVar.getMessagesStorage().m1(tL_help_promoData.users, tL_help_promoData.chats, true, true);
                         TLRPC.TL_messages_dialogs tL_messages_dialogs = new TLRPC.TL_messages_dialogs();
                         tL_messages_dialogs.chats = tL_messages_peerDialogs.chats;
                         tL_messages_dialogs.users = tL_messages_peerDialogs.users;
                         tL_messages_dialogs.dialogs = tL_messages_peerDialogs.dialogs;
                         tL_messages_dialogs.messages = tL_messages_peerDialogs.messages;
-                        qpVar.getMessagesStorage().d1(tL_messages_dialogs, 2);
-                        g0.h3(new jm(qpVar, tL_help_promoData, tL_messages_peerDialogs, this.f22842c, 1));
+                        npVar.getMessagesStorage().d1(tL_messages_dialogs, 2);
+                        g0.h3(new gm(npVar, tL_help_promoData, tL_messages_peerDialogs, this.f24051c, 1));
                     } else {
-                        g0.h3(new vj(qpVar, 24));
+                        g0.h3(new tj(npVar, 24));
                     }
-                    qpVar.f24912u2 = false;
+                    npVar.f25413v2 = false;
                     return;
                 }
                 return;

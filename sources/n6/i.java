@@ -4,29 +4,30 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-public class i extends androidx.fragment.app.o {
-    public Dialog A0;
-    public DialogInterface.OnCancelListener B0;
-    public AlertDialog C0;
+import androidx.fragment.app.p;
+public class i extends p {
+    public Dialog B0;
+    public DialogInterface.OnCancelListener C0;
+    public AlertDialog D0;
 
     @Override
     public final Dialog O() {
-        Dialog dialog = this.A0;
+        Dialog dialog = this.B0;
         if (dialog == null) {
-            this.f2456r0 = false;
-            if (this.C0 == null) {
+            this.f2411s0 = false;
+            if (this.D0 == null) {
                 Context n10 = n();
                 q6.m.g(n10);
-                this.C0 = new AlertDialog.Builder(n10).create();
+                this.D0 = new AlertDialog.Builder(n10).create();
             }
-            return this.C0;
+            return this.D0;
         }
         return dialog;
     }
 
     @Override
     public final void onCancel(DialogInterface dialogInterface) {
-        DialogInterface.OnCancelListener onCancelListener = this.B0;
+        DialogInterface.OnCancelListener onCancelListener = this.C0;
         if (onCancelListener != null) {
             onCancelListener.onCancel(dialogInterface);
         }

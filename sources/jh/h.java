@@ -9,37 +9,37 @@ import android.view.View;
 import android.view.ViewGroup;
 import bg.s;
 import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.Components.v31;
-import org.telegram.ui.Components.v61;
-import org.telegram.ui.Components.wq;
-import org.telegram.ui.Wallet.b5;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.er;
+import org.telegram.ui.Components.w61;
+import org.telegram.ui.Components.z31;
+import org.telegram.ui.Wallet.a5;
 public final class h extends View {
-    public final int f17050a = 0;
-    public final Paint f17051b;
-    public final Object f17052c;
+    public final int f17402a = 0;
+    public final Paint f17403b;
+    public final Object f17404c;
     public final Object d;
-    public final Object f17053e;
+    public final Object f17405e;
 
-    public h(Activity activity, h6 h6Var) {
+    public h(Activity activity, e6 e6Var) {
         super(activity);
-        this.f17052c = new te.a(this, wq.h, 380L);
-        this.f17051b = new Paint(1);
-        this.d = h6Var;
-        v31 v31Var = new v31(true);
-        this.f17053e = v31Var;
-        v31Var.setCallback(this);
-        v31Var.b(-1);
-        v31Var.f38841i = true;
+        this.f17404c = new te.a(this, er.h, 380L);
+        this.f17403b = new Paint(1);
+        this.d = e6Var;
+        z31 z31Var = new z31(true);
+        this.f17405e = z31Var;
+        z31Var.setCallback(this);
+        z31Var.b(-1);
+        z31Var.f42235i = true;
     }
 
     @Override
     public void onAttachedToWindow() {
-        switch (this.f17050a) {
+        switch (this.f17402a) {
             case 0:
                 super.onAttachedToWindow();
-                ((v31) this.f17053e).d();
+                ((z31) this.f17405e).d();
                 return;
             default:
                 super.onAttachedToWindow();
@@ -49,10 +49,10 @@ public final class h extends View {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f17050a) {
+        switch (this.f17402a) {
             case 0:
                 super.onDetachedFromWindow();
-                ((v31) this.f17053e).e();
+                ((z31) this.f17405e).e();
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -65,40 +65,40 @@ public final class h extends View {
         int i7;
         int i10;
         View[] viewPages;
-        switch (this.f17050a) {
+        switch (this.f17402a) {
             case 0:
                 float width = getWidth() / 2.0f;
                 float height = getHeight() / 2.0f;
                 super.onDraw(canvas);
-                int w02 = m6.w0(m6.Me, (h6) this.d);
-                Paint paint = this.f17051b;
+                int w02 = j6.w0(j6.Pe, (e6) this.d);
+                Paint paint = this.f17403b;
                 paint.setColor(w02);
                 canvas.drawCircle(width, height, g0.L(19.0f), paint);
-                float f10 = ((te.a) this.f17052c).f55498e;
+                float f10 = ((te.a) this.f17404c).f57081e;
                 float f11 = 1.0f - f10;
                 if (f11 > 0.0f) {
-                    s.b(canvas, (v31) this.f17053e, f11 * 1.35f);
+                    s.b(canvas, (z31) this.f17405e, f11 * 1.35f);
                     invalidate();
                 }
                 if (f10 > 0.0f) {
                     float L = g0.L(6.666f) * f10;
                     float L2 = g0.L(2.666f) * f10;
-                    canvas.drawRoundRect(width - L, height - L, width + L, L + height, L2, L2, m6.n0(-1));
+                    canvas.drawRoundRect(width - L, height - L, width + L, L + height, L2, L2, j6.n0(-1));
                     return;
                 }
                 return;
             default:
-                b5 b5Var = (b5) this.f17053e;
-                int d12 = b5Var.d1();
-                Paint paint2 = this.f17051b;
+                a5 a5Var = (a5) this.f17405e;
+                int d12 = a5Var.d1();
+                Paint paint2 = this.f17403b;
                 paint2.setColor(d12);
-                ViewGroup viewGroup = b5Var.W1;
-                int[] iArr = (int[]) this.f17052c;
+                ViewGroup viewGroup = a5Var.X1;
+                int[] iArr = (int[]) this.f17404c;
                 viewGroup.getLocationInWindow(iArr);
                 int[] iArr2 = (int[]) this.d;
                 getLocationInWindow(iArr2);
                 float f12 = iArr[0] - iArr2[0];
-                View view = ((v61) b5Var.W1).getViewPages()[0];
+                View view = ((w61) a5Var.X1).getViewPages()[0];
                 if (view != null) {
                     i7 = view.getPaddingLeft();
                 } else {
@@ -110,8 +110,8 @@ public final class h extends View {
                     i10 = 0;
                 }
                 canvas.save();
-                canvas.clipRect(i7 + f12, 0.0f, (f12 + b5Var.W1.getWidth()) - i10, getHeight());
-                for (View view2 : ((v61) b5Var.W1).getViewPages()) {
+                canvas.clipRect(i7 + f12, 0.0f, (f12 + a5Var.X1.getWidth()) - i10, getHeight());
+                for (View view2 : ((w61) a5Var.X1).getViewPages()) {
                     if (view2 != null && view2.getVisibility() == 0) {
                         canvas.save();
                         canvas.translate(view2.getLeft() + (iArr[0] - iArr2[0]), view2.getTop() + (iArr[1] - iArr2[1]));
@@ -127,10 +127,10 @@ public final class h extends View {
 
     @Override
     public void onSizeChanged(int i7, int i10, int i11, int i12) {
-        switch (this.f17050a) {
+        switch (this.f17402a) {
             case 0:
                 super.onSizeChanged(i7, i10, i11, i12);
-                s.d((v31) this.f17053e, i7 / 2.0f, i10 / 2.0f, 17);
+                s.d((z31) this.f17405e, i7 / 2.0f, i10 / 2.0f, 17);
                 return;
             default:
                 super.onSizeChanged(i7, i10, i11, i12);
@@ -140,9 +140,9 @@ public final class h extends View {
 
     @Override
     public boolean verifyDrawable(Drawable drawable) {
-        switch (this.f17050a) {
+        switch (this.f17402a) {
             case 0:
-                if (!super.verifyDrawable(drawable) && (drawable != ((v31) this.f17053e) || ((te.a) this.f17052c).f55499f)) {
+                if (!super.verifyDrawable(drawable) && (drawable != ((z31) this.f17405e) || ((te.a) this.f17404c).f57082f)) {
                     return false;
                 }
                 return true;
@@ -151,11 +151,11 @@ public final class h extends View {
         }
     }
 
-    public h(b5 b5Var, Context context) {
+    public h(a5 a5Var, Context context) {
         super(context);
-        this.f17053e = b5Var;
-        this.f17051b = new Paint(1);
-        this.f17052c = new int[2];
+        this.f17405e = a5Var;
+        this.f17403b = new Paint(1);
+        this.f17404c = new int[2];
         this.d = new int[2];
     }
 }

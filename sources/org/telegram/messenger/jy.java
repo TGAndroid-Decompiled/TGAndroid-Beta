@@ -1,29 +1,33 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.tl.TL_update;
+import org.telegram.tgnet.TLRPC;
 public final class jy implements Runnable {
-    public final int f23627a;
-    public final gz f23628b;
-    public final TL_update.TL_updateNewChannelMessage f23629c;
+    public final int f24611a;
+    public final ez f24612b;
+    public final TLRPC.Updates f24613c;
+    public final TLRPC.Message d;
+    public final boolean f24614e;
 
-    public jy(gz gzVar, TL_update.TL_updateNewChannelMessage tL_updateNewChannelMessage, int i7) {
-        this.f23627a = i7;
-        this.f23628b = gzVar;
-        this.f23629c = tL_updateNewChannelMessage;
+    public jy(ez ezVar, TLRPC.Updates updates, TLRPC.Message message, boolean z10, int i7) {
+        this.f24611a = i7;
+        this.f24612b = ezVar;
+        this.f24613c = updates;
+        this.d = message;
+        this.f24614e = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f23627a) {
+        switch (this.f24611a) {
             case 0:
-                qp messagesController = this.f23628b.getMessagesController();
-                TL_update.TL_updateNewChannelMessage tL_updateNewChannelMessage = this.f23629c;
-                messagesController.L3(tL_updateNewChannelMessage.pts, tL_updateNewChannelMessage.pts_count, tL_updateNewChannelMessage.message.peer_id.channel_id);
+                ez ezVar = this.f24612b;
+                ezVar.getMessagesController().O3(this.f24613c, false);
+                g0.h3(new qw(ezVar, this.d, this.f24614e, 0));
                 return;
             default:
-                qp messagesController2 = this.f23628b.getMessagesController();
-                TL_update.TL_updateNewChannelMessage tL_updateNewChannelMessage2 = this.f23629c;
-                messagesController2.L3(tL_updateNewChannelMessage2.pts, tL_updateNewChannelMessage2.pts_count, tL_updateNewChannelMessage2.message.peer_id.channel_id);
+                ez ezVar2 = this.f24612b;
+                ezVar2.getMessagesController().O3(this.f24613c, false);
+                g0.h3(new qw(ezVar2, this.d, this.f24614e, 1));
                 return;
         }
     }

@@ -1,6 +1,6 @@
 package ab;
 public final class c implements na.d {
-    public static final c f910a = new Object();
+    public static final c f906a = new Object();
 
     static {
         na.c.c("messagingClientEventExtension");

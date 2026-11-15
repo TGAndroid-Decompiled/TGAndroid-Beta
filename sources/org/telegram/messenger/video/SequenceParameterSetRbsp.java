@@ -21,11 +21,11 @@ public class SequenceParameterSetRbsp {
         int i7;
         ?? obj = new Object();
         mc.a aVar = new mc.a(0);
-        aVar.f20009b = new char[50];
-        obj.f20904e = aVar;
-        obj.f20901a = inputStream;
-        obj.f20902b = inputStream.read();
-        obj.f20903c = inputStream.read();
+        aVar.f20601b = new char[50];
+        obj.f21422e = aVar;
+        obj.f21419a = inputStream;
+        obj.f21420b = inputStream.read();
+        obj.f21421c = inputStream.read();
         obj.d(4, "sps_video_parameter_set_id");
         this.sps_max_sub_layers_minus1 = (int) obj.d(3, "sps_max_sub_layers_minus1");
         obj.b("sps_temporal_id_nesting_flag");
@@ -96,8 +96,8 @@ public class SequenceParameterSetRbsp {
     }
 
     private void parse_short_term_ref_pic_sets(int i7, oc.a aVar) {
-        boolean z9;
         boolean z10;
+        boolean z11;
         long[] jArr = new long[i7];
         for (int i10 = 0; i10 < i7; i10++) {
             if (i10 != 0 && aVar.a() == 1) {
@@ -106,16 +106,16 @@ public class SequenceParameterSetRbsp {
                 jArr[i10] = 0;
                 for (int i11 = 0; i11 <= jArr[i10 - 1]; i11++) {
                     if (aVar.a() == 1) {
-                        z9 = true;
-                    } else {
-                        z9 = false;
-                    }
-                    if (!z9 && aVar.a() == 1) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    if (z9 || z10) {
+                    if (!z10 && aVar.a() == 1) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    if (z10 || z11) {
                         jArr[i10] = jArr[i10] + 1;
                     }
                 }
@@ -137,20 +137,20 @@ public class SequenceParameterSetRbsp {
         long[] jArr;
         int i10 = i7;
         long d = aVar.d(2, "general_profile_space");
-        InputStream inputStream = aVar.f20901a;
+        InputStream inputStream = aVar.f21419a;
         this.general_profile_space = (int) d;
         this.general_tier_flag = aVar.b("general_tier_flag");
         this.general_profile_idc = (int) aVar.d(5, "general_profile_idc");
         this.general_profile_compatibility_flags = aVar.c(32);
         this.general_constraint_indicator_flags = aVar.c(48);
         if (aVar.d > 0) {
-            aVar.f20902b = aVar.f20903c;
-            aVar.f20903c = inputStream.read();
+            aVar.f21420b = aVar.f21421c;
+            aVar.f21421c = inputStream.read();
             aVar.d = 0;
         }
-        int i11 = aVar.f20902b;
-        aVar.f20902b = aVar.f20903c;
-        aVar.f20903c = inputStream.read();
+        int i11 = aVar.f21420b;
+        aVar.f21420b = aVar.f21421c;
+        aVar.f21421c = inputStream.read();
         aVar.d = 0;
         this.general_level_idc = (byte) i11;
         boolean[] zArr3 = new boolean[i10];

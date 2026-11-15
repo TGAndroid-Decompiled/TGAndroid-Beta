@@ -1,43 +1,28 @@
 package hi;
 
-import org.telegram.messenger.qp;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_bots;
-import org.telegram.ui.ActionBar.r4;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-public final class t2 implements Runnable {
-    public final int f14963a;
-    public final v2 f14964b;
+import androidx.recyclerview.widget.RecyclerView;
+public final class t2 extends v4.t0 {
+    public final int f15142a;
+    public final d3 f15143b;
 
-    public t2(v2 v2Var, int i7) {
-        this.f14963a = i7;
-        this.f14964b = v2Var;
+    public t2(d3 d3Var, int i7) {
+        this.f15142a = i7;
+        this.f15143b = d3Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f14963a) {
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
+        org.telegram.ui.ActionBar.q0 q0Var;
+        switch (this.f15142a) {
             case 0:
-                TL_bots.toggleUserEmojiStatusPermission toggleuseremojistatuspermission = new TL_bots.toggleUserEmojiStatusPermission();
-                v2 v2Var = this.f14964b;
-                a3 a3Var = v2Var.d;
-                toggleuseremojistatuspermission.bot = qp.s1(a3Var.H).o1(a3Var.I);
-                toggleuseremojistatuspermission.enabled = false;
-                ConnectionsManager.getInstance(a3Var.H).sendRequest(toggleuseremojistatuspermission, new u2(v2Var, 1));
-                return;
-            case 1:
-                a3 a3Var2 = this.f14964b.d;
-                r0.e(a3Var2.getContext(), a3Var2.H, a3Var2.I).l(false, null);
+                d3 d3Var = this.f15143b;
+                d3Var.getClass();
+                d3Var.invalidate();
                 return;
             default:
-                a3 a3Var3 = this.f14964b.d;
-                org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
-                if (T != null && T.getParentLayout() != null) {
-                    r4 parentLayout = T.getParentLayout();
-                    T.presentFragment(ProfileActivity.D4(a3Var3.I));
-                    org.telegram.messenger.g0.k3(parentLayout, "botPermissionLocation");
-                    a3Var3.o(true);
+                d3 d3Var2 = this.f15143b;
+                if (d3Var2.f14114n.J1 && (q0Var = d3Var2.H) != null && q0Var.getSearchField() != null) {
+                    org.telegram.messenger.g0.v1(d3Var2.H.getSearchContainer());
                     return;
                 }
                 return;

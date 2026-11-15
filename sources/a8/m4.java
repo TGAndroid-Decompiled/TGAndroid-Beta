@@ -1,9 +1,9 @@
 package a8;
 public final class m4 implements na.d {
-    public static final m4 f536a = new Object();
+    public static final m4 f542a = new Object();
 
     static {
-        rf.b.q(p0.w(n0.class, p0.i(p0.w(n0.class, new j0(1)), 2)));
+        r.b.u(p0.w(n0.class, p0.i(p0.w(n0.class, new j0(1)), 2)));
     }
 
     @Override

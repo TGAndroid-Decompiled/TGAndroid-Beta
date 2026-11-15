@@ -1,96 +1,72 @@
 package ai;
 
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class p extends v4.g0 {
-    public final q0 f1597c;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import org.telegram.messenger.np;
+import org.telegram.ui.Dictation.DictationAsr;
+public final class p implements Runnable {
+    public final int f1427a;
+    public final s f1428b;
 
-    public p(q0 q0Var) {
-        this.f1597c = q0Var;
+    public p(s sVar, int i7) {
+        this.f1427a = i7;
+        this.f1428b = sVar;
     }
 
     @Override
-    public final int b() {
-        return this.f1597c.f1678s;
-    }
-
-    @Override
-    public final int d(int i7) {
-        q0 q0Var = this.f1597c;
-        t tVar = (t) q0Var.f1676n.get(q0Var.f(i7));
-        if (tVar.f1642b != null && i7 == tVar.d) {
-            return 0;
-        }
-        return 1;
-    }
-
-    @Override
-    public final void t(v4.d1 d1Var, int i7) {
-        String str;
-        int i10;
-        q0 q0Var = this.f1597c;
-        t tVar = (t) q0Var.f1676n.get(q0Var.f(i7));
-        int i11 = d1Var.f57056f;
-        View view = d1Var.f57052a;
-        int i12 = 1;
-        int i13 = 0;
-        if (i11 == 0) {
-            s sVar = (s) view;
-            String str2 = tVar.f1642b;
-            if (q0Var.f1680x || tVar.f1641a != 2) {
-                i12 = 0;
-            }
-            TextView textView = sVar.f1611b;
-            TextView textView2 = sVar.f1610a;
-            if (str2 != null) {
-                str = str2.replace('\n', ' ');
-            } else {
-                str = null;
-            }
-            textView2.setText(str);
-            textView2.setTextColor(sVar.f1612c.f1681y);
-            if (i12 != 0) {
-                i10 = 0;
-            } else {
-                i10 = 8;
-            }
-            textView.setVisibility(i10);
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView2.getLayoutParams();
-            int L = org.telegram.messenger.g0.L(15.0f);
-            if (i12 != 0) {
-                i13 = org.telegram.messenger.g0.L(6.0f) + org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.L(12.0f) + ((int) Math.ceil(textView.getPaint().measureText(textView.getText().toString())));
-            }
-            int i14 = L + i13;
-            if (layoutParams.rightMargin != i14) {
-                layoutParams.rightMargin = i14;
-                textView2.setLayoutParams(layoutParams);
+    public final void run() {
+        int i7;
+        CountDownLatch e10;
+        switch (this.f1427a) {
+            case 0:
+                DictationAsr.D(this.f1428b);
                 return;
-            }
-            return;
+            case 1:
+                s sVar = this.f1428b;
+                DictationAsr.r().mkdirs();
+                if (i1.d() && (e10 = i1.e()) != null) {
+                    try {
+                        e10.await(20000L, TimeUnit.MILLISECONDS);
+                    } catch (InterruptedException unused) {
+                    }
+                }
+                ArrayList a10 = i1.a();
+                Future submit = DictationAsr.f42583f.submit(new aa.s(a10, 1));
+                int u10 = DictationAsr.u(sVar.a(), i1.f(a10, sVar.f1531b), sVar);
+                try {
+                    i7 = ((Integer) submit.get()).intValue();
+                } catch (Exception unused2) {
+                    i7 = -1;
+                }
+                int[] iArr = {i7, u10};
+                boolean z10 = true;
+                boolean z11 = false;
+                for (int i10 = 0; i10 < 2; i10++) {
+                    int i11 = iArr[i10];
+                    if (i11 < 0) {
+                        z10 = false;
+                    }
+                    if (i11 > 0) {
+                        z11 = true;
+                    }
+                }
+                sVar.h = false;
+                if (z10) {
+                    np.e1().edit().putLong("tinyasr_checked_" + sVar.f1530a, System.currentTimeMillis()).apply();
+                }
+                if (DictationAsr.w(sVar) && (z11 || sVar.d == 0)) {
+                    sVar.f1535g = true;
+                    DictationAsr.d.execute(new p(sVar, 2));
+                } else if (!DictationAsr.w(sVar)) {
+                    org.telegram.messenger.g0.h3(new q(false, sVar));
+                }
+                DictationAsr.o();
+                return;
+            default:
+                DictationAsr.D(this.f1428b);
+                return;
         }
-        ArrayList arrayList = tVar.f1643c;
-        int i15 = i7 - tVar.d;
-        if (tVar.f1642b == null) {
-            i12 = 0;
-        }
-        ((q) view).set((TLRPC.Document) arrayList.get(i15 - i12));
-    }
-
-    @Override
-    public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        View qVar;
-        q0 q0Var = this.f1597c;
-        if (i7 == 0) {
-            qVar = new s(q0Var, viewGroup.getContext());
-            qVar.setLayoutParams(new v4.o0(-1, org.telegram.messenger.g0.L(44.0f)));
-        } else {
-            qVar = new q(viewGroup.getContext(), q0Var.f1671a);
-            qVar.setLayoutParams(new v4.o0(-1, -2));
-        }
-        return new v4.d1(qVar);
     }
 }

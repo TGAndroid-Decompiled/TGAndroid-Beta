@@ -1,29 +1,29 @@
 package g4;
 
 import android.graphics.PointF;
-import h2.m0;
+import h2.l0;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class c {
-    public static final Pattern f13507a = Pattern.compile("\\{([^}]*)\\}");
-    public static final Pattern f13508b;
-    public static final Pattern f13509c;
+    public static final Pattern f12856a = Pattern.compile("\\{([^}]*)\\}");
+    public static final Pattern f12857b;
+    public static final Pattern f12858c;
     public static final Pattern d;
 
     static {
-        String str = m0.f14114a;
+        String str = l0.f13471a;
         Locale locale = Locale.US;
-        f13508b = Pattern.compile(String.format(locale, "\\\\pos\\((%1$s),(%1$s)\\)", "\\s*\\d+(?:\\.\\d+)?\\s*"));
-        f13509c = Pattern.compile(String.format(locale, "\\\\move\\(%1$s,%1$s,(%1$s),(%1$s)(?:,%1$s,%1$s)?\\)", "\\s*\\d+(?:\\.\\d+)?\\s*"));
+        f12857b = Pattern.compile(String.format(locale, "\\\\pos\\((%1$s),(%1$s)\\)", "\\s*\\d+(?:\\.\\d+)?\\s*"));
+        f12858c = Pattern.compile(String.format(locale, "\\\\move\\(%1$s,%1$s,(%1$s),(%1$s)(?:,%1$s,%1$s)?\\)", "\\s*\\d+(?:\\.\\d+)?\\s*"));
         d = Pattern.compile("\\\\an(\\d+)");
     }
 
     public static PointF a(String str) {
         String group;
         String group2;
-        Matcher matcher = f13508b.matcher(str);
-        Matcher matcher2 = f13509c.matcher(str);
+        Matcher matcher = f12857b.matcher(str);
+        Matcher matcher2 = f12858c.matcher(str);
         boolean find = matcher.find();
         boolean find2 = matcher2.find();
         if (find) {

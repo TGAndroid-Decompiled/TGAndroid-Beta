@@ -1,20 +1,20 @@
 package gh;
 public interface a {
-    int A();
+    float A1();
 
-    int C0();
+    int A2();
 
-    int M();
+    int D1();
 
-    int O();
+    int M0();
 
-    int R0();
+    int U0();
 
-    int e1();
+    int W1();
 
-    float j0();
+    float Y0();
 
-    float o0();
+    float Z0();
 
-    float v0();
+    int t0();
 }

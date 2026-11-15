@@ -5,8 +5,8 @@ import android.util.Pair;
 import java.util.Arrays;
 import java.util.List;
 public abstract class h4 {
-    public static final List f22844a = Arrays.asList("🏻", "🏼", "🏽", "🏾", "🏿");
-    public static final Paint f22845b = new Paint(2);
+    public static final List f24053a = Arrays.asList("🏻", "🏼", "🏽", "🏾", "🏿");
+    public static final Paint f24054b = new Paint(2);
 
     public static f4 a(String str, Integer num, Integer num2) {
         Pair c10;
@@ -19,10 +19,10 @@ public abstract class h4 {
                 num2 = (Integer) c10.second;
             }
             g4 g4Var2 = new g4(num2.intValue(), 1);
-            ?? e6Var = new e6();
-            e6Var.f22366c = g4Var;
-            e6Var.d = g4Var2;
-            return e6Var;
+            ?? f6Var = new f6();
+            f6Var.f23439c = g4Var;
+            f6Var.d = g4Var2;
+            return f6Var;
         }
         return null;
     }
@@ -31,7 +31,7 @@ public abstract class h4 {
         if (str == null) {
             return -1;
         }
-        return f22844a.indexOf(str.substring(str.length() - 2));
+        return f24053a.indexOf(str.substring(str.length() - 2));
     }
 
     public static Pair c(String str) {

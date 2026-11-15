@@ -1,21 +1,21 @@
 package e2;
 
-import a8.ia;
+import a8.ja;
 import android.util.Pair;
 public abstract class l1 {
-    public static final h1 f10359a = new Object();
-    public static final String f10360b;
-    public static final String f10361c;
+    public static final h1 f10190a = new Object();
+    public static final String f10191b;
+    public static final String f10192c;
     public static final String d;
 
     static {
-        String str = h2.m0.f14114a;
-        f10360b = Integer.toString(0, 36);
-        f10361c = Integer.toString(1, 36);
+        String str = h2.l0.f13471a;
+        f10191b = Integer.toString(0, 36);
+        f10192c = Integer.toString(1, 36);
         d = Integer.toString(2, 36);
     }
 
-    public int a(boolean z9) {
+    public int a(boolean z10) {
         if (p()) {
             return -1;
         }
@@ -24,38 +24,38 @@ public abstract class l1 {
 
     public abstract int b(Object obj);
 
-    public int c(boolean z9) {
+    public int c(boolean z10) {
         if (p()) {
             return -1;
         }
         return o() - 1;
     }
 
-    public final int d(int i7, i1 i1Var, k1 k1Var, int i10, boolean z9) {
-        int i11 = f(i7, i1Var, false).f10287c;
-        if (m(i11, k1Var, 0L).f10341o == i7) {
-            int e10 = e(i11, i10, z9);
+    public final int d(int i7, i1 i1Var, k1 k1Var, int i10, boolean z10) {
+        int i11 = f(i7, i1Var, false).f10118c;
+        if (m(i11, k1Var, 0L).f10172o == i7) {
+            int e10 = e(i11, i10, z10);
             if (e10 == -1) {
                 return -1;
             }
-            return m(e10, k1Var, 0L).f10340n;
+            return m(e10, k1Var, 0L).f10171n;
         }
         return i7 + 1;
     }
 
-    public int e(int i7, int i10, boolean z9) {
+    public int e(int i7, int i10, boolean z10) {
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 == 2) {
-                    if (i7 == c(z9)) {
-                        return a(z9);
+                    if (i7 == c(z10)) {
+                        return a(z10);
                     }
                     return i7 + 1;
                 }
                 throw new IllegalStateException();
             }
             return i7;
-        } else if (i7 == c(z9)) {
+        } else if (i7 == c(z10)) {
             return -1;
         } else {
             return i7 + 1;
@@ -108,7 +108,7 @@ public abstract class l1 {
         return true;
     }
 
-    public abstract i1 f(int i7, i1 i1Var, boolean z9);
+    public abstract i1 f(int i7, i1 i1Var, boolean z10);
 
     public i1 g(Object obj, i1 i1Var) {
         return f(b(obj), i1Var, true);
@@ -142,48 +142,48 @@ public abstract class l1 {
     }
 
     public final Pair j(k1 k1Var, i1 i1Var, int i7, long j3, long j10) {
-        ia.j(i7, o());
+        ja.j(i7, o());
         m(i7, k1Var, j10);
         if (j3 == -9223372036854775807L) {
-            j3 = k1Var.f10338l;
+            j3 = k1Var.f10169l;
             if (j3 == -9223372036854775807L) {
                 return null;
             }
         }
-        int i10 = k1Var.f10340n;
+        int i10 = k1Var.f10171n;
         f(i10, i1Var, false);
-        while (i10 < k1Var.f10341o && i1Var.f10288e != j3) {
+        while (i10 < k1Var.f10172o && i1Var.f10119e != j3) {
             int i11 = i10 + 1;
-            if (f(i11, i1Var, false).f10288e > j3) {
+            if (f(i11, i1Var, false).f10119e > j3) {
                 break;
             }
             i10 = i11;
         }
         f(i10, i1Var, true);
-        long j11 = j3 - i1Var.f10288e;
+        long j11 = j3 - i1Var.f10119e;
         long j12 = i1Var.d;
         if (j12 != -9223372036854775807L) {
             j11 = Math.min(j11, j12 - 1);
         }
         long max = Math.max(0L, j11);
-        Object obj = i1Var.f10286b;
+        Object obj = i1Var.f10117b;
         obj.getClass();
         return Pair.create(obj, Long.valueOf(max));
     }
 
-    public int k(int i7, int i10, boolean z9) {
+    public int k(int i7, int i10, boolean z10) {
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 == 2) {
-                    if (i7 == a(z9)) {
-                        return c(z9);
+                    if (i7 == a(z10)) {
+                        return c(z10);
                     }
                     return i7 - 1;
                 }
                 throw new IllegalStateException();
             }
             return i7;
-        } else if (i7 == a(z9)) {
+        } else if (i7 == a(z10)) {
             return -1;
         } else {
             return i7 - 1;

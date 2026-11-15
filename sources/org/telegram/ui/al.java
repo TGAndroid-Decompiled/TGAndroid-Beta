@@ -1,30 +1,47 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.ui.Components.UndoView;
-public final class al extends org.telegram.ui.Components.d10 {
-    public final cn f43714m1;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.ImageView;
+import org.telegram.ui.Components.RadialProgressView;
+public final class al extends AnimatorListenerAdapter {
+    public final boolean f45098a;
+    public final boolean f45099b;
+    public final boolean f45100c;
+    public final an d;
 
-    public al(cn cnVar, Activity activity, org.telegram.ui.ActionBar.f2 f2Var) {
-        super(activity, f2Var);
-        this.f43714m1 = cnVar;
+    public al(an anVar, boolean z10, boolean z11, boolean z12) {
+        this.d = anVar;
+        this.f45098a = z10;
+        this.f45099b = z11;
+        this.f45100c = z12;
     }
 
     @Override
-    public final void I0() {
-        cn cnVar = this.f43714m1;
-        cnVar.g8();
-        UndoView undoView = cnVar.M3;
-        if (undoView == null) {
-            return;
+    public final void onAnimationEnd(Animator animator) {
+        int i7;
+        int i10;
+        an anVar = this.d;
+        anVar.f45136b3 = null;
+        ImageView imageView = anVar.Y2;
+        int i11 = 4;
+        if (this.f45098a) {
+            i7 = 0;
+        } else {
+            i7 = 4;
         }
-        undoView.j(75, 0L, null);
-        cnVar.getMessagesController().k4(cnVar.f44545j6, "CONVERT_GIGAGROUP");
-    }
-
-    @Override
-    public final void J0() {
-        cn cnVar = this.f43714m1;
-        cnVar.getMessagesController().S(cnVar.getParentActivity(), cnVar.f44473e, cnVar, new w0(this, 21));
+        imageView.setVisibility(i7);
+        ImageView imageView2 = anVar.f45121a3;
+        if (this.f45099b) {
+            i10 = 0;
+        } else {
+            i10 = 4;
+        }
+        imageView2.setVisibility(i10);
+        RadialProgressView radialProgressView = anVar.Z2;
+        if (this.f45100c) {
+            i11 = 0;
+        }
+        radialProgressView.setVisibility(i11);
     }
 }

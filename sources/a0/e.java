@@ -130,17 +130,17 @@ public final class e implements Collection {
                 f fVar = (f) this.f11b;
                 int i7 = fVar.f31c;
                 int i10 = 0;
-                boolean z9 = false;
+                boolean z10 = false;
                 while (i10 < i7) {
                     if (collection.contains(fVar.i(i10))) {
                         fVar.g(i10);
                         i10--;
                         i7--;
-                        z9 = true;
+                        z10 = true;
                     }
                     i10++;
                 }
-                return z9;
+                return z10;
             default:
                 throw new UnsupportedOperationException("Operation is not supported for read-only collection");
         }
@@ -153,17 +153,17 @@ public final class e implements Collection {
                 f fVar = (f) this.f11b;
                 int i7 = fVar.f31c;
                 int i10 = 0;
-                boolean z9 = false;
+                boolean z10 = false;
                 while (i10 < i7) {
                     if (!collection.contains(fVar.i(i10))) {
                         fVar.g(i10);
                         i10--;
                         i7--;
-                        z9 = true;
+                        z10 = true;
                     }
                     i10++;
                 }
-                return z9;
+                return z10;
             default:
                 throw new UnsupportedOperationException("Operation is not supported for read-only collection");
         }

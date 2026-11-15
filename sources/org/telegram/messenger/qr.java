@@ -1,4 +1,4 @@
 package org.telegram.messenger;
 public interface qr {
-    void k(boolean z9);
+    void run(long j3);
 }

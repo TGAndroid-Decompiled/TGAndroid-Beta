@@ -1,91 +1,220 @@
 package f5;
 
-import com.google.android.gms.internal.play_billing.f3;
+import a8.i9;
+import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ResolveInfo;
+import android.content.pm.ServiceInfo;
+import com.google.android.gms.internal.play_billing.g2;
 import com.google.android.gms.internal.play_billing.g3;
-import com.google.android.gms.internal.play_billing.h3;
+import com.google.android.gms.internal.play_billing.g4;
 import com.google.android.gms.internal.play_billing.i3;
-import com.google.android.gms.internal.play_billing.j3;
-import com.google.android.gms.internal.play_billing.k3;
+import com.google.android.gms.internal.play_billing.i4;
+import com.google.android.gms.internal.play_billing.j4;
 import com.google.android.gms.internal.play_billing.m3;
-public abstract class x {
-    public static final int f11198a = 0;
+import com.google.android.gms.internal.play_billing.p0;
+import com.google.android.gms.internal.play_billing.p3;
+import com.google.android.gms.internal.play_billing.q0;
+import com.google.android.gms.internal.play_billing.r0;
+import com.google.android.gms.internal.play_billing.t0;
+import j$.util.Objects;
+import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import org.telegram.messenger.j1;
+import org.telegram.messenger.r1;
+public final class x extends b {
+    public final Context C;
+    public volatile int D;
+    public volatile com.google.android.gms.internal.play_billing.g E;
+    public volatile ag.a F;
+    public volatile ScheduledExecutorService G;
 
-    static {
-        int i7 = y.f11199t;
+    public x(w7.s sVar, Context context, androidx.emoji2.text.f fVar) {
+        super(sVar, context, fVar);
+        this.D = 0;
+        this.C = context;
     }
 
-    public static String a(Exception exc) {
-        if (exc == null) {
-            return null;
+    public final t0 E(int i7) {
+        if (!J()) {
+            com.google.android.gms.internal.play_billing.u.h("BillingClientTesting", "Billing Override Service is not ready.");
+            F(94, 28, a0.a(-1, "Billing Override Service connection is disconnected."));
+            return new r0(0);
         }
+        v vVar = new v(this, i7, 0);
+        ?? obj = new Object();
+        obj.f6752c = new Object();
+        j4 j4Var = new j4(obj);
+        obj.f6751b = j4Var;
+        obj.f6750a = v.class;
         try {
-            String simpleName = exc.getClass().getSimpleName();
-            String message = exc.getMessage();
-            if (message == null) {
-                message = "";
-            }
-            String str = simpleName + ":" + message;
-            int i7 = com.google.android.gms.internal.play_billing.u.f7469a;
-            if (str.length() > 40) {
-                return str.substring(0, 40);
-            }
-            return str;
-        } catch (Throwable th2) {
-            com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to get truncated exception info", th2);
-            return null;
-        }
-    }
-
-    public static g3 b(int i7, int i10, f fVar, String str, m3 m3Var) {
-        try {
-            j3 s5 = k3.s();
-            int i11 = fVar.f11156a;
-            s5.c();
-            k3.r((k3) s5.f7472b, i11);
-            String str2 = fVar.f11158c;
-            s5.c();
-            k3.o((k3) s5.f7472b, str2);
-            int i12 = fVar.f11157b;
-            if (i12 != 0) {
-                s5.c();
-                k3.p((k3) s5.f7472b, i12);
-            }
-            if (i7 != 0) {
-                s5.c();
-                k3.q((k3) s5.f7472b, i7);
-            }
-            if (str != null) {
-                s5.c();
-                k3.n((k3) s5.f7472b, str);
-            }
-            f3 u10 = g3.u();
-            u10.d(s5);
-            u10.c();
-            g3.t((g3) u10.f7472b, i10);
-            if (!m3Var.equals(m3.BROADCAST_ACTION_UNSPECIFIED)) {
-                u10.c();
-                g3.p((g3) u10.f7472b, m3Var);
-            }
-            return (g3) u10.a();
-        } catch (Throwable th2) {
-            com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to create logging payload", th2);
-            return null;
-        }
-    }
-
-    public static i3 c(int i7, m3 m3Var) {
-        try {
-            h3 s5 = i3.s();
-            s5.c();
-            i3.r((i3) s5.f7472b, i7);
-            if (!m3Var.equals(m3.BROADCAST_ACTION_UNSPECIFIED)) {
-                s5.c();
-                i3.o((i3) s5.f7472b, m3Var);
-            }
-            return (i3) s5.a();
+            vVar.w(obj);
+            obj.f6750a = "billingOverrideService.getBillingOverride";
+            return j4Var;
         } catch (Exception e10) {
-            com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to create logging payload", e10);
-            return null;
+            g2 g2Var = new g2(e10);
+            i9 i9Var = g4.f6738f;
+            i4 i4Var = j4Var.f6771b;
+            if (i9Var.d(i4Var, null, g2Var)) {
+                g4.d(i4Var);
+            }
+            return j4Var;
         }
+    }
+
+    public final void F(int i7, int i10, f fVar) {
+        int i11 = y.f11021a;
+        g3 b10 = y.b(i7, i10, fVar, null, m3.BROADCAST_ACTION_UNSPECIFIED);
+        Objects.requireNonNull(b10, "ApiFailure should not be null");
+        this.h.W(b10);
+    }
+
+    public final void G(int i7, q0.a aVar, Runnable runnable) {
+        ScheduledExecutorService scheduledExecutorService;
+        t0 E = E(i7);
+        TimeUnit timeUnit = TimeUnit.MILLISECONDS;
+        synchronized (this) {
+            try {
+                if (this.G == null) {
+                    this.G = Executors.newSingleThreadScheduledExecutor();
+                }
+                scheduledExecutorService = this.G;
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+        if (!E.isDone()) {
+            ?? obj = new Object();
+            obj.f6864n = E;
+            ?? obj2 = new Object();
+            obj2.f6854a = obj;
+            obj.f6865r = scheduledExecutorService.schedule((Runnable) obj2, 28500L, timeUnit);
+            E.c(obj2, p0.f6816a);
+            E = obj;
+        }
+        ?? obj3 = new Object();
+        obj3.f20517a = i7;
+        obj3.f20518b = aVar;
+        obj3.f20519c = runnable;
+        obj3.d = this;
+        E.c(new q0(E, obj3), e());
+    }
+
+    public final synchronized boolean J() {
+        if (this.D == 2 && this.E != null) {
+            if (this.F != null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final void a(g gVar, h hVar) {
+        G(4, new u(gVar, hVar), new a9.h(this, gVar, hVar, 3));
+    }
+
+    @Override
+    public final f b(Activity activity, e eVar) {
+        int i7 = 0;
+        try {
+            i7 = ((Integer) E(2).get(28500L, TimeUnit.MILLISECONDS)).intValue();
+        } catch (TimeoutException e10) {
+            F(102, 28, a0.f10940p);
+            com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "Asynchronous call to Billing Override Service timed out.", e10);
+        } catch (Exception e11) {
+            if (e11 instanceof InterruptedException) {
+                Thread.currentThread().interrupt();
+            }
+            F(95, 28, a0.f10940p);
+            com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An error occurred while retrieving billing override.", e11);
+        }
+        if (i7 > 0) {
+            f a10 = a0.a(i7, "Billing override value was set by a license tester.");
+            F(93, 2, a10);
+            D(a10);
+            return a10;
+        }
+        try {
+            return super.b(activity, eVar);
+        } catch (Exception e12) {
+            f fVar = a0.f10931f;
+            F(103, 2, fVar);
+            com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An internal error occurred.", e12);
+            return fVar;
+        }
+    }
+
+    @Override
+    public final void c(cb.c cVar, j1 j1Var) {
+        G(7, new u(j1Var, 0), new a9.h(this, cVar, j1Var, 2));
+    }
+
+    @Override
+    public final void d(r1 r1Var) {
+        synchronized (this) {
+            if (J()) {
+                com.google.android.gms.internal.play_billing.u.g("BillingClientTesting", "Billing Override Service connection is valid. No need to re-initialize.");
+                int i7 = y.f11021a;
+                i3 c10 = y.c(26, m3.BROADCAST_ACTION_UNSPECIFIED);
+                Objects.requireNonNull(c10, "ApiSuccess should not be null");
+                wf.b bVar = this.h;
+                bVar.getClass();
+                bVar.e0(c10, (p3) bVar.f59107b);
+            } else {
+                int i10 = 1;
+                if (this.D == 1) {
+                    com.google.android.gms.internal.play_billing.u.h("BillingClientTesting", "Client is already in the process of connecting to Billing Override Service.");
+                } else if (this.D == 3) {
+                    com.google.android.gms.internal.play_billing.u.h("BillingClientTesting", "Billing Override Service Client was already closed and can't be reused. Please create another instance.");
+                    F(38, 26, a0.a(-1, "Billing Override Service connection is disconnected."));
+                } else {
+                    this.D = 1;
+                    com.google.android.gms.internal.play_billing.u.g("BillingClientTesting", "Starting Billing Override Service setup.");
+                    this.F = new ag.a(this, 2);
+                    Intent intent = new Intent("com.google.android.apps.play.billingtestcompanion.BillingOverrideService.BIND");
+                    intent.setPackage("com.google.android.apps.play.billingtestcompanion");
+                    Context context = this.C;
+                    List<ResolveInfo> queryIntentServices = context.getPackageManager().queryIntentServices(intent, 0);
+                    if (queryIntentServices != null && !queryIntentServices.isEmpty()) {
+                        ServiceInfo serviceInfo = queryIntentServices.get(0).serviceInfo;
+                        if (serviceInfo != null) {
+                            String str = serviceInfo.packageName;
+                            String str2 = serviceInfo.name;
+                            if (Objects.equals(str, "com.google.android.apps.play.billingtestcompanion") && str2 != null) {
+                                ComponentName componentName = new ComponentName(str, str2);
+                                Intent intent2 = new Intent(intent);
+                                intent2.setComponent(componentName);
+                                if (context.bindService(intent2, this.F, 1)) {
+                                    com.google.android.gms.internal.play_billing.u.g("BillingClientTesting", "Billing Override Service was bonded successfully.");
+                                } else {
+                                    com.google.android.gms.internal.play_billing.u.h("BillingClientTesting", "Connection to Billing Override Service is blocked.");
+                                }
+                            } else {
+                                com.google.android.gms.internal.play_billing.u.h("BillingClientTesting", "The device doesn't have valid Play Billing Lab.");
+                            }
+                            i10 = 39;
+                        }
+                    } else {
+                        i10 = 41;
+                    }
+                    this.D = 0;
+                    com.google.android.gms.internal.play_billing.u.g("BillingClientTesting", "Billing Override Service unavailable on device.");
+                    F(i10, 26, a0.a(2, "Billing Override Service unavailable on device."));
+                }
+            }
+        }
+        l(r1Var);
+    }
+
+    public x(w7.s sVar, Context context, o oVar, androidx.emoji2.text.f fVar) {
+        super(sVar, context, oVar, fVar);
+        this.D = 0;
+        this.C = context;
     }
 }

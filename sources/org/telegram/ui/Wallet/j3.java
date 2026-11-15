@@ -1,43 +1,27 @@
 package org.telegram.ui.Wallet;
-public final class j3 implements Runnable {
-    public final int f42674a;
-    public final p3 f42675b;
 
-    public j3(p3 p3Var, int i7) {
-        this.f42674a = i7;
-        this.f42675b = p3Var;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class j3 implements Runnable {
+    public final int f44007a;
+    public final org.telegram.ui.ActionBar.e2 f44008b;
+    public final TL_wallet.card f44009c;
+
+    public j3(org.telegram.ui.ActionBar.e2 e2Var, TL_wallet.card cardVar, int i7) {
+        this.f44007a = i7;
+        this.f44008b = e2Var;
+        this.f44009c = cardVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f42674a) {
+        switch (this.f44007a) {
             case 0:
-                p3 p3Var = this.f42675b;
-                if (!p3Var.S && !p3Var.R) {
-                    ih.d.c(p3Var.E, p3Var.h);
-                    p3Var.F.d();
-                    i6 i6Var = p3Var.f42971r;
-                    j3 j3Var = new j3(p3Var, 1);
-                    d6 d6Var = i6Var.D;
-                    if (d6Var != null) {
-                        if (d6Var.f42352b != null) {
-                            j3Var.run();
-                            return;
-                        } else {
-                            d6Var.d = j3Var;
-                            return;
-                        }
-                    }
-                    j3Var.run();
-                    return;
-                }
+                org.telegram.ui.ActionBar.e2 e2Var = this.f44008b;
+                e2Var.presentFragment(new p9(e2Var.getCurrentAccount(), this.f44009c.address));
                 return;
             default:
-                p3 p3Var2 = this.f42675b;
-                if (!p3Var2.S && !p3Var2.R) {
-                    p3Var2.a(1.0f);
-                    return;
-                }
+                org.telegram.ui.ActionBar.e2 e2Var2 = this.f44008b;
+                e2Var2.presentFragment(new p9(e2Var2.getCurrentAccount(), this.f44009c.address));
                 return;
         }
     }

@@ -60,66 +60,64 @@ public abstract class k5 {
         return textView;
     }
 
-    public static fi.d h(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z9) {
-        fi.d dVar = new fi.d(context, h6Var, z9);
-        dVar.setRoundRadius(i7);
-        return dVar;
-    }
-
-    public static String i(StringBuilder sb2, String str, pf.b bVar) {
+    public static String h(StringBuilder sb2, String str, pf.b bVar) {
         sb2.append(str);
         return bVar.b(sb2.toString());
     }
 
-    public static ArrayList j(a0.h hVar, long j3) {
+    public static ArrayList i(a0.h hVar, long j3) {
         ArrayList arrayList = new ArrayList();
         hVar.k(arrayList, j3);
         return arrayList;
     }
 
-    public static ArrayList k(ij ijVar) {
+    public static ArrayList j(gj gjVar) {
         ArrayList arrayList = new ArrayList();
-        arrayList.add(ijVar);
+        arrayList.add(gjVar);
         return arrayList;
     }
 
-    public static org.telegram.ui.ActionBar.w2 l(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z9) {
-        org.telegram.ui.ActionBar.w2 w2Var = new org.telegram.ui.ActionBar.w2(i7, context, h6Var, z9);
-        w2Var.N();
-        return w2Var;
+    public static org.telegram.ui.ActionBar.u2 k(int i7, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
+        org.telegram.ui.ActionBar.u2 u2Var = new org.telegram.ui.ActionBar.u2(i7, context, e6Var, z10);
+        u2Var.O();
+        return u2Var;
     }
 
-    public static void m(TextView textView, int i7, String str, int i10) {
+    public static void l(TextView textView, int i7, String str, int i10) {
         textView.setGravity(i7);
-        textView.setText(id.M0(i10, str));
+        textView.setText(hd.M0(i10, str));
     }
 
-    public static void n(TextView textView, int i7, org.telegram.ui.ActionBar.h6 h6Var, int i10, float f10) {
-        org.telegram.ui.ActionBar.t6.U(textView, i7, h6Var);
+    public static void m(TextView textView, int i7, org.telegram.ui.ActionBar.e6 e6Var, int i10, float f10) {
+        org.telegram.ui.ActionBar.q6.U(textView, i7, e6Var);
         textView.setTextSize(i10, f10);
         textView.setTypeface(g0.o());
     }
 
-    public static void o(String str, int i7, org.telegram.ui.Components.gc gcVar, int i10, int i11) {
-        gcVar.Q(i10, i11, id.M0(i7, str)).j();
+    public static void n(String str, int i7, org.telegram.ui.Components.cc ccVar, int i10, int i11) {
+        ccVar.Q(i10, i11, hd.M0(i7, str)).j();
     }
 
-    public static void p(String str, int i7, org.telegram.ui.Components.gc gcVar, org.telegram.ui.ActionBar.h6 h6Var) {
-        gcVar.t(id.M0(i7, str), h6Var).j();
+    public static void o(String str, int i7, org.telegram.ui.Components.cc ccVar, org.telegram.ui.ActionBar.e6 e6Var) {
+        ccVar.t(hd.M0(i7, str), e6Var).j();
     }
 
-    public static void q(String str, String str2, int i7, Object[] objArr, SpannableStringBuilder spannableStringBuilder) {
-        spannableStringBuilder.append((CharSequence) g0.X2(id.a0(str, str2, i7, objArr)));
+    public static void p(String str, String str2, int i7, Object[] objArr, SpannableStringBuilder spannableStringBuilder) {
+        spannableStringBuilder.append((CharSequence) g0.X2(hd.a0(str, str2, i7, objArr)));
     }
 
-    public static void r(String str, String str2, int i7, Object[] objArr, TextView textView) {
-        textView.setText(g0.X2(id.a0(str, str2, i7, objArr)));
+    public static void q(String str, String str2, int i7, Object[] objArr, TextView textView) {
+        textView.setText(g0.X2(hd.a0(str, str2, i7, objArr)));
     }
 
-    public static void s(StringBuilder sb2, char c10, char c11, int i7) {
+    public static void r(StringBuilder sb2, char c10, char c11, int i7) {
         sb2.append(c10);
         sb2.append(c11);
-        sb2.append(id.M0(i7, null));
+        sb2.append(hd.M0(i7, null));
+    }
+
+    public static void s(SQLiteDatabase sQLiteDatabase, String str) {
+        sQLiteDatabase.executeFast(str).stepThis().dispose();
     }
 
     public static void t(SQLiteDatabase sQLiteDatabase, String str, String str2) {
@@ -140,8 +138,8 @@ public abstract class k5 {
         sQLiteDatabase.executeFast(str4).stepThis().dispose();
     }
 
-    public static boolean w(String str, long j3, SharedPreferences sharedPreferences, boolean z9) {
-        return sharedPreferences.getBoolean(str + j3, z9);
+    public static boolean w(String str, long j3, SharedPreferences sharedPreferences, boolean z10) {
+        return sharedPreferences.getBoolean(str + j3, z10);
     }
 
     public static boolean x(TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument) {

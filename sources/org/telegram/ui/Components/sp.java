@@ -1,102 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Color;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.View;
-public final class sp implements TextWatcher {
-    public final int f38039a = 1;
-    public final int f38040b;
-    public final View f38041c;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public final class sp extends FrameLayout {
+    public final View f39387a;
+    public final TextView f39388b;
 
-    public sp(vp vpVar, int i7) {
-        this.f38041c = vpVar;
-        this.f38040b = i7;
+    public sp(Context context) {
+        super(context);
+        View view = new View(context);
+        this.f39387a = view;
+        int L = org.telegram.messenger.g0.L(4.0f);
+        int i7 = org.telegram.ui.ActionBar.j6.Fi;
+        int v02 = org.telegram.ui.ActionBar.j6.v0(i7);
+        int i10 = org.telegram.ui.ActionBar.j6.Hi;
+        int v03 = org.telegram.ui.ActionBar.j6.v0(i10);
+        Drawable k02 = org.telegram.ui.ActionBar.j6.k0(L, L, L, L, v02, v03, v03);
+        org.telegram.ui.ActionBar.m6 M = org.telegram.ui.ActionBar.q6.M(i7);
+        org.telegram.ui.ActionBar.m6 M2 = org.telegram.ui.ActionBar.q6.M(i10);
+        view.setBackground(k02);
+        org.telegram.ui.ActionBar.q6.j(view, k02, M, M2, null);
+        addView(view, c8.ja.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
+        TextView textView = new TextView(context);
+        this.f39388b = textView;
+        textView.setLines(1);
+        textView.setSingleLine(true);
+        textView.setGravity(1);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setGravity(17);
+        org.telegram.messenger.k5.m(textView, org.telegram.ui.ActionBar.j6.Ji, null, 1, 14.0f);
+        addView(textView, c8.ja.e(-2, -2, 17));
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i7;
-        int i10 = this.f38039a;
-        int i11 = this.f38040b;
-        View view = this.f38041c;
-        boolean z9 = false;
-        switch (i10) {
-            case 0:
-                vp vpVar = (vp) view;
-                EditTextBoldCursor[] editTextBoldCursorArr = vpVar.E;
-                if (!vpVar.f39705r) {
-                    vpVar.f39705r = true;
-                    int i12 = 0;
-                    while (i12 < editable.length()) {
-                        char charAt = editable.charAt(i12);
-                        if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'f') && (charAt < 'A' || charAt > 'F'))) {
-                            editable.replace(i12, i12 + 1, "");
-                            i12--;
-                        }
-                        i12++;
-                    }
-                    if (editable.length() == 0) {
-                        vpVar.f39705r = false;
-                        return;
-                    }
-                    try {
-                        i7 = Integer.parseInt(editTextBoldCursorArr[i11].getText().toString(), 16) | (-16777216);
-                    } catch (Exception unused) {
-                        i7 = -1;
-                    }
-                    vpVar.setColorInner(i7);
-                    int color = vpVar.getColor();
-                    if (editable.length() == 6) {
-                        editable.replace(0, editable.length(), String.format("%02x%02x%02x", Byte.valueOf((byte) Color.red(color)), Byte.valueOf((byte) Color.green(color)), Byte.valueOf((byte) Color.blue(color))).toUpperCase());
-                        editTextBoldCursorArr[i11].setSelection(editable.length());
-                    }
-                    vpVar.f39707w[vpVar.S].a(color);
-                    vpVar.f39694a.c(color, vpVar.S, true);
-                    vpVar.f39705r = false;
-                    return;
-                }
-                return;
-            default:
-                NumberTextView numberTextView = (NumberTextView) view;
-                int codePointCount = i11 - Character.codePointCount(editable, 0, editable.length());
-                if (codePointCount < 30) {
-                    if (numberTextView.getVisibility() == 0) {
-                        z9 = true;
-                    }
-                    numberTextView.a(codePointCount, z9);
-                    org.telegram.messenger.g0.X3(numberTextView, true);
-                    return;
-                }
-                org.telegram.messenger.g0.X3(numberTextView, false);
-                return;
-        }
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(80.0f), 1073741824));
     }
 
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f38039a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f38039a;
-    }
-
-    public sp(int i7, NumberTextView numberTextView) {
-        this.f38040b = i7;
-        this.f38041c = numberTextView;
-    }
-
-    private final void a(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void b(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
+    public void setText(CharSequence charSequence) {
+        this.f39388b.setText(charSequence);
     }
 }

@@ -1,33 +1,27 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class ps0 extends t11 {
-    public final bi.p5 f48829e2;
-    public final k11[] f48830f2;
-    public final PremiumPreviewFragment f48831g2;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.widget.TextView;
+public final class ps0 extends ug.l1 {
+    public final qs0 O;
 
-    public ps0(PremiumPreviewFragment premiumPreviewFragment, PremiumPreviewFragment premiumPreviewFragment2, Activity activity, Integer num, int i7, org.telegram.ui.ActionBar.h6 h6Var, int i10, bi.p5 p5Var, k11[] k11VarArr) {
-        super(premiumPreviewFragment2, activity, true, num, i7, true, h6Var, i10);
-        this.f48831g2 = premiumPreviewFragment;
-        this.f48829e2 = p5Var;
-        this.f48830f2 = k11VarArr;
+    public ps0(qs0 qs0Var, Context context) {
+        super(context);
+        this.O = qs0Var;
     }
 
     @Override
-    public final float getScrimDrawableTranslationY() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void p(View view, Long l10, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        this.f48829e2.a(l10, num);
-        k11 k11Var = this.f48830f2[0];
-        if (k11Var != null) {
-            this.f48831g2.f41630u0 = null;
-            k11Var.dismiss();
+    public final void dispatchDraw(Canvas canvas) {
+        TextView textView = this.f58208r;
+        if (textView.getVisibility() == 0) {
+            RectF rectF = org.telegram.messenger.g0.P;
+            rectF.set(textView.getLeft(), textView.getTop(), textView.getRight(), textView.getBottom());
+            qs0 qs0Var = this.O;
+            qs0Var.d.f51020n.f42994o0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f58207n.h, qs0Var.d.f51020n.P);
+            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), qs0Var.d.f51020n.f42994o0.f58392f);
         }
+        super.dispatchDraw(canvas);
     }
 }

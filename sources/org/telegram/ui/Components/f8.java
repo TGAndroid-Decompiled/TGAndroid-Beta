@@ -1,37 +1,33 @@
 package org.telegram.ui.Components;
 
-import org.telegram.ui.PremiumPreviewFragment;
-public final class f8 implements Runnable {
-    public final int f33497a;
-    public final s8 f33498b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class f8 extends AnimatorListenerAdapter {
+    public final int f34540a;
+    public final q8 f34541b;
 
-    public f8(s8 s8Var, int i7) {
-        this.f33497a = i7;
-        this.f33498b = s8Var;
+    public f8(q8 q8Var, int i7) {
+        this.f34540a = i7;
+        this.f34541b = q8Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f33497a) {
+    public final void onAnimationEnd(Animator animator) {
+        float f10;
+        switch (this.f34540a) {
             case 0:
-                s8 s8Var = this.f33498b;
-                if (!s8Var.U) {
-                    if (s8Var.N > 0.0f) {
-                        if (s8Var.M != null) {
-                            s8Var.E = 1.0f;
-                            s8Var.F = true;
-                        }
-                        org.telegram.messenger.g0.v1(s8Var.fragmentView);
-                        return;
-                    }
-                    s8Var.l0(!s8Var.f37887a.f37564w, true, false);
-                    return;
-                }
+                super.onAnimationEnd(animator);
+                this.f34541b.f38569f = false;
                 return;
             default:
-                s8 s8Var2 = this.f33498b;
-                s8Var2.getClass();
-                s8Var2.presentFragment(new PremiumPreviewFragment(0, "avatar"));
+                q8 q8Var = this.f34541b;
+                if (q8Var.G) {
+                    f10 = 1.0f;
+                } else {
+                    f10 = 0.0f;
+                }
+                q8Var.n0(false, f10);
+                q8Var.G = false;
                 return;
         }
     }

@@ -1,18 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-public final class ak0 extends FrameLayout {
-    public View f31873a;
-    public TextView f31874b;
+import android.app.Activity;
+import android.widget.ImageView;
+public final class ak0 extends pb {
+    public final bk0 f33006c;
 
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(80.0f), 1073741824));
+    public ak0(Activity activity, String str) {
+        super(activity, null);
+        this.f38262b.setText(str);
+        this.f38262b.setTranslationY(-1.0f);
+        ImageView imageView = this.f38261a;
+        bk0 bk0Var = new bk0();
+        this.f33006c = bk0Var;
+        imageView.setImageDrawable(bk0Var);
     }
 
-    public void setText(CharSequence charSequence) {
-        this.f31874b.setText(charSequence);
+    @Override
+    public final void onEnterTransitionEnd() {
+        super.onEnterTransitionEnd();
+        bk0 bk0Var = this.f33006c;
+        bk0Var.getClass();
+        bk0Var.f33298g = System.currentTimeMillis();
+        bk0Var.invalidateSelf();
+    }
+
+    @Override
+    public final void onExitTransitionEnd() {
+        super.onExitTransitionEnd();
+        bk0 bk0Var = this.f33006c;
+        bk0Var.f33298g = -1L;
+        bk0Var.invalidateSelf();
     }
 }

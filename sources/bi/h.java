@@ -1,30 +1,19 @@
 package bi;
+public final class h implements te.b, bg.p {
+    public final y f3556a;
 
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class h implements Runnable {
-    public final int f3964a;
-    public final z f3965b;
-    public final TwoStepVerificationActivity f3966c;
-
-    public h(z zVar, TwoStepVerificationActivity twoStepVerificationActivity, int i7) {
-        this.f3964a = i7;
-        this.f3965b = zVar;
-        this.f3966c = twoStepVerificationActivity;
+    @Override
+    public void G(int i7, float f10, float f11, te.c cVar) {
+        this.f3556a.j1();
     }
 
     @Override
-    public final void run() {
-        switch (this.f3964a) {
-            case 0:
-                z zVar = this.f3965b;
-                zVar.f5123h0.setLoading(false);
-                zVar.presentFragment(this.f3966c);
-                return;
-            default:
-                z zVar2 = this.f3965b;
-                zVar2.f5112a0.setLoading(false);
-                zVar2.presentFragment(this.f3966c);
-                return;
-        }
+    public void g(long j3) {
+        y yVar = this.f3556a;
+        yVar.k1(j3, yVar.f4002s2);
+    }
+
+    @Override
+    public void E(float f10, int i7) {
     }
 }

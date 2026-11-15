@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 public final class u0 extends c1 {
-    public final m f54039a;
-    public final int f54040b;
+    public final m f55476a;
+    public final int f55477b;
 
     public u0(x xVar) {
         xVar.getClass();
-        this.f54039a = xVar;
+        this.f55476a = xVar;
         int i7 = 0;
         int i10 = 0;
         while (true) {
-            m mVar = this.f54039a;
+            m mVar = this.f55476a;
             if (i7 >= mVar.size()) {
                 break;
             }
@@ -25,7 +25,7 @@ public final class u0 extends c1 {
             i7++;
         }
         int i11 = i10 + 1;
-        this.f54040b = i11;
+        this.f55477b = i11;
         if (i11 <= 8) {
             return;
         }
@@ -34,7 +34,7 @@ public final class u0 extends c1 {
 
     @Override
     public final int a() {
-        return this.f54040b;
+        return this.f55477b;
     }
 
     @Override
@@ -45,8 +45,8 @@ public final class u0 extends c1 {
         if (c10 != zza) {
             return c10 - c1Var.zza();
         }
-        m mVar = ((u0) c1Var).f54039a;
-        m mVar2 = this.f54039a;
+        m mVar = ((u0) c1Var).f55476a;
+        m mVar2 = this.f55476a;
         if (mVar2.size() != mVar.size()) {
             return mVar2.size() - mVar.size();
         }
@@ -66,15 +66,15 @@ public final class u0 extends c1 {
         if (obj == null || u0.class != obj.getClass()) {
             return false;
         }
-        return this.f54039a.equals(((u0) obj).f54039a);
+        return this.f55476a.equals(((u0) obj).f55476a);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(c1.c(Byte.MIN_VALUE)), this.f54039a});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(c1.c(Byte.MIN_VALUE)), this.f55476a});
     }
 
     public final String toString() {
-        m mVar = this.f54039a;
+        m mVar = this.f55476a;
         if (mVar.isEmpty()) {
             return "[]";
         }
@@ -87,10 +87,10 @@ public final class u0 extends c1 {
         Iterator it = arrayList.iterator();
         try {
             if (it.hasNext()) {
-                sb2.append(nb.a.t0(it.next()));
+                sb2.append(sa.d.E2(it.next()));
                 while (it.hasNext()) {
                     sb2.append((CharSequence) ",\n  ");
-                    sb2.append(nb.a.t0(it.next()));
+                    sb2.append(sa.d.E2(it.next()));
                 }
             }
             sb2.append("\n]");

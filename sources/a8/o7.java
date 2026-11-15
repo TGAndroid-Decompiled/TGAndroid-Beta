@@ -11,14 +11,14 @@ public enum o7 implements l0 {
     UI_IMAGE(6),
     CV_PIXEL_BUFFER_REF(9);
     
-    public final int f568a;
+    public final int f573a;
 
     o7(int i7) {
-        this.f568a = i7;
+        this.f573a = i7;
     }
 
     @Override
     public final int zza() {
-        return this.f568a;
+        return this.f573a;
     }
 }

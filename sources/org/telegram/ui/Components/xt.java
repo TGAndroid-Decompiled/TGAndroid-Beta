@@ -1,104 +1,86 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.PopupWindow;
-import java.lang.reflect.Field;
-public final class xt extends PopupWindow {
-    public static Field f40399f;
-    public static final org.telegram.ui.ActionBar.a1 f40400g = new org.telegram.ui.ActionBar.a1(1);
-    public ViewTreeObserver.OnScrollChangedListener f40401a;
-    public ViewTreeObserver f40402b;
-    public final wt f40403c;
-    public boolean d;
-    public final int f40404e;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.ViewParent;
+import android.webkit.WebView;
+public final class xt extends WebView {
+    public final int f41762a;
+    public final Context f41763b;
+    public final KeyEvent.Callback f41764c;
 
-    public xt(wt wtVar) {
-        super(wtVar);
-        float f10;
-        if (org.telegram.messenger.g0.Q1()) {
-            f10 = 40.0f;
-        } else {
-            f10 = 32.0f;
-        }
-        this.f40404e = org.telegram.messenger.g0.L(f10);
-        this.f40403c = wtVar;
-        setOutsideTouchable(true);
-        setClippingEnabled(true);
-        setInputMethodMode(2);
-        setSoftInputMode(0);
-        wtVar.setFocusableInTouchMode(true);
-        wtVar.setOnKeyListener(new um(this, 1));
+    public xt(KeyEvent.Callback callback, Context context, Context context2, int i7) {
+        super(context);
+        this.f41762a = i7;
+        this.f41764c = callback;
+        this.f41763b = context2;
     }
 
-    public final void a(View view) {
-        ViewTreeObserver viewTreeObserver;
-        if (this.f40401a != null) {
-            if (view.getWindowToken() != null) {
-                viewTreeObserver = view.getViewTreeObserver();
-            } else {
-                viewTreeObserver = null;
-            }
-            ViewTreeObserver viewTreeObserver2 = this.f40402b;
-            if (viewTreeObserver != viewTreeObserver2) {
-                if (viewTreeObserver2 != null && viewTreeObserver2.isAlive()) {
-                    this.f40402b.removeOnScrollChangedListener(this.f40401a);
+    @Override
+    public void draw(Canvas canvas) {
+        switch (this.f41762a) {
+            case 1:
+                super.draw(canvas);
+                ViewParent parent = getParent();
+                org.telegram.ui.bq0 bq0Var = (org.telegram.ui.bq0) this.f41764c;
+                if (parent != bq0Var && bq0Var.h.getVisibility() == 0) {
+                    canvas.drawColor(-16777216);
+                    bq0Var.j(canvas, getWidth(), getHeight());
+                    return;
                 }
-                this.f40402b = viewTreeObserver;
-                if (viewTreeObserver != null) {
-                    viewTreeObserver.addOnScrollChangedListener(this.f40401a);
+                return;
+            default:
+                super.draw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        switch (this.f41762a) {
+            case 0:
+                org.telegram.messenger.g0.u(this.f41763b, true);
+                super.onAttachedToWindow();
+                return;
+            default:
+                org.telegram.messenger.g0.u(this.f41763b, true);
+                super.onAttachedToWindow();
+                return;
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        switch (this.f41762a) {
+            case 0:
+                org.telegram.messenger.g0.u(this.f41763b, false);
+                super.onDetachedFromWindow();
+                return;
+            default:
+                org.telegram.messenger.g0.u(this.f41763b, false);
+                super.onDetachedFromWindow();
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f41762a) {
+            case 0:
+                bu buVar = (bu) this.f41764c;
+                boolean onTouchEvent = super.onTouchEvent(motionEvent);
+                if (onTouchEvent) {
+                    if (motionEvent.getAction() == 1) {
+                        buVar.E0 = false;
+                    } else {
+                        buVar.E0 = true;
+                    }
                 }
-            }
+                return onTouchEvent;
+            default:
+                return super.onTouchEvent(motionEvent);
         }
-    }
-
-    @Override
-    public final void dismiss() {
-        ViewTreeObserver viewTreeObserver;
-        setFocusable(false);
-        try {
-            super.dismiss();
-        } catch (Exception unused) {
-        }
-        if (this.f40401a != null && (viewTreeObserver = this.f40402b) != null) {
-            if (viewTreeObserver.isAlive()) {
-                this.f40402b.removeOnScrollChangedListener(this.f40401a);
-            }
-            this.f40402b = null;
-        }
-    }
-
-    @Override
-    public final void showAsDropDown(View view, int i7, int i10) {
-        try {
-            super.showAsDropDown(view, i7, i10);
-            a(view);
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
-        }
-    }
-
-    @Override
-    public final void showAtLocation(View view, int i7, int i10, int i11) {
-        ViewTreeObserver viewTreeObserver;
-        super.showAtLocation(view, i7, i10, i11);
-        if (this.f40401a != null && (viewTreeObserver = this.f40402b) != null) {
-            if (viewTreeObserver.isAlive()) {
-                this.f40402b.removeOnScrollChangedListener(this.f40401a);
-            }
-            this.f40402b = null;
-        }
-    }
-
-    @Override
-    public final void update(View view, int i7, int i10, int i11, int i12) {
-        super.update(view, i7, i10, i11, i12);
-        a(view);
-    }
-
-    @Override
-    public final void update(View view, int i7, int i10) {
-        super.update(view, i7, i10);
-        a(view);
     }
 }

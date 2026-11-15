@@ -1,158 +1,37 @@
 package v6;
 
-import a8.p0;
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Shader;
-import android.os.Parcel;
-import android.util.Log;
-import com.google.android.gms.common.api.internal.p;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.channels.FileChannel;
-import java.nio.channels.FileLock;
-import org.json.JSONException;
-import org.json.JSONObject;
-public final class e implements p {
-    public Object f57252a;
-    public Object f57253b;
+import com.google.android.gms.common.api.internal.t;
+import com.google.android.gms.common.api.internal.u;
+import com.google.android.gms.common.api.j;
+import com.google.android.gms.common.api.n;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import java.util.Arrays;
+import q6.m;
+import sg.h0;
+public final class e extends j {
+    public static final com.google.android.gms.common.api.e f58727l = new com.google.android.gms.common.api.e("ModuleInstall.API", new a9.e(19), new Object());
 
-    public e(Object obj, Object obj2) {
-        this.f57252a = obj;
-        this.f57253b = obj2;
-    }
-
-    public static v6.e a(android.content.Context r5) {
-        throw new UnsupportedOperationException("Method not decompiled: v6.e.a(android.content.Context):v6.e");
-    }
-
-    @Override
-    public void accept(Object obj, Object obj2) {
-        d dVar = new d((f) this.f57252a, (TaskCompletionSource) obj2, 1);
-        c cVar = (c) ((g) obj).n();
-        Parcel j12 = cVar.j1();
-        n7.a.c(j12, dVar);
-        n7.a.b(j12, (a) this.f57253b);
-        j12.writeStrongBinder(null);
-        cVar.k1(j12, 2);
-    }
-
-    public File b() {
-        if (((File) this.f57252a) == null) {
-            synchronized (this) {
-                try {
-                    if (((File) this.f57252a) == null) {
-                        String str = "PersistedInstallation." + ((o9.g) this.f57253b).d() + ".json";
-                        o9.g gVar = (o9.g) this.f57253b;
-                        gVar.a();
-                        File file = new File(gVar.f20880a.getNoBackupFilesDir(), str);
-                        this.f57252a = file;
-                        if (file.exists()) {
-                            return (File) this.f57252a;
-                        }
-                        o9.g gVar2 = (o9.g) this.f57253b;
-                        gVar2.a();
-                        File file2 = new File(gVar2.f20880a.getFilesDir(), str);
-                        if (file2.exists() && !file2.renameTo((File) this.f57252a)) {
-                            Log.e("PersistedInstallation", "Unable to move the file from back up to non back up directory", new IOException("Unable to move the file from back up to non back up directory"));
-                            return file2;
-                        }
-                    }
-                } finally {
-                }
-            }
+    public final Task f(n... nVarArr) {
+        boolean z10;
+        if (nVarArr.length > 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        return (File) this.f57252a;
-    }
-
-    public void c(wa.b bVar) {
-        try {
-            JSONObject jSONObject = new JSONObject();
-            jSONObject.put("Fid", bVar.f57639a);
-            jSONObject.put("Status", p1.g.c(bVar.f57640b));
-            jSONObject.put("AuthToken", bVar.f57641c);
-            jSONObject.put("RefreshToken", bVar.d);
-            jSONObject.put("TokenCreationEpochInSecs", bVar.f57643f);
-            jSONObject.put("ExpiresInSecs", bVar.f57642e);
-            jSONObject.put("FisError", bVar.f57644g);
-            o9.g gVar = (o9.g) this.f57253b;
-            gVar.a();
-            File createTempFile = File.createTempFile("PersistedInstallation", "tmp", gVar.f20880a.getFilesDir());
-            FileOutputStream fileOutputStream = new FileOutputStream(createTempFile);
-            fileOutputStream.write(jSONObject.toString().getBytes("UTF-8"));
-            fileOutputStream.close();
-            if (!createTempFile.renameTo(b())) {
-                throw new IOException("unable to rename the tmpfile to PersistedInstallation");
-            }
-        } catch (IOException | JSONException unused) {
+        m.a("Please provide at least one OptionalModuleApi.", z10);
+        for (n nVar : nVarArr) {
+            m.h(nVar, "Requested API must not be null.");
         }
-    }
-
-    public wa.b d() {
-        JSONObject jSONObject;
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        byte[] bArr = new byte[16384];
-        try {
-            FileInputStream fileInputStream = new FileInputStream(b());
-            while (true) {
-                int read = fileInputStream.read(bArr, 0, 16384);
-                if (read < 0) {
-                    break;
-                }
-                byteArrayOutputStream.write(bArr, 0, read);
-            }
-            jSONObject = new JSONObject(byteArrayOutputStream.toString());
-            fileInputStream.close();
-        } catch (IOException | JSONException unused) {
-            jSONObject = new JSONObject();
+        a b10 = a.b(Arrays.asList(nVarArr), false);
+        if (b10.f58722a.isEmpty()) {
+            return Tasks.forResult(new u6.a(0, true));
         }
-        String optString = jSONObject.optString("Fid", null);
-        int optInt = jSONObject.optInt("Status", 0);
-        String optString2 = jSONObject.optString("AuthToken", null);
-        String optString3 = jSONObject.optString("RefreshToken", null);
-        long optLong = jSONObject.optLong("TokenCreationEpochInSecs", 0L);
-        long optLong2 = jSONObject.optLong("ExpiresInSecs", 0L);
-        String optString4 = jSONObject.optString("FisError", null);
-        int i7 = wa.b.h;
-        byte b10 = (byte) (((byte) (0 | 2)) | 1);
-        int i10 = p1.g.d(5)[optInt];
-        if (i10 != 0) {
-            byte b11 = (byte) (((byte) (b10 | 2)) | 1);
-            if (b11 == 3 && i10 != 0) {
-                return new wa.b(optString, i10, optString2, optString3, optLong2, optLong, optString4);
-            }
-            StringBuilder sb2 = new StringBuilder();
-            if (i10 == 0) {
-                sb2.append(" registrationStatus");
-            }
-            if ((b11 & 1) == 0) {
-                sb2.append(" expiresInSecs");
-            }
-            if ((b11 & 2) == 0) {
-                sb2.append(" tokenCreationEpochInSecs");
-            }
-            throw new IllegalStateException(p0.q("Missing required properties:", sb2));
-        }
-        throw new NullPointerException("Null registrationStatus");
-    }
-
-    public void e() {
-        try {
-            ((FileLock) this.f57253b).release();
-            ((FileChannel) this.f57252a).close();
-        } catch (IOException e10) {
-            Log.e("CrossProcessLock", "encountered error while releasing, ignoring", e10);
-        }
-    }
-
-    public e(int i7) {
-        Bitmap createBitmap = Bitmap.createBitmap(i7, i7, Bitmap.Config.ALPHA_8);
-        this.f57252a = createBitmap;
-        Shader.TileMode tileMode = Shader.TileMode.REPEAT;
-        this.f57253b = new BitmapShader(createBitmap, tileMode, tileMode);
+        t b11 = u.b();
+        b11.d = new n6.c[]{n7.b.d};
+        b11.f6069a = 27301;
+        b11.f6070b = false;
+        b11.f6071c = new h0(7, this, b10);
+        return e(0, b11.a());
     }
 }

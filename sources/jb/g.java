@@ -1,13 +1,13 @@
 package jb;
 
-import c8.k1;
+import c8.m1;
 public final class g implements oe.e {
-    public static final g f16622a;
+    public static final g f16975a;
     private static final me.d descriptor;
 
     static {
         ?? obj = new Object();
-        f16622a = obj;
+        f16975a = obj;
         oe.m mVar = new oe.m("com.google.firebase.sessions.settings.SessionConfigs", obj, 5);
         mVar.k("sessionsEnabled", false);
         mVar.k("sessionSamplingRate", false);
@@ -23,12 +23,12 @@ public final class g implements oe.e {
         kotlin.jvm.internal.j.e(value, "value");
         me.d dVar = descriptor;
         qe.h a10 = hVar.a(dVar);
-        a10.g(dVar, 0, oe.a.f20906a, value.f16623a);
-        a10.g(dVar, 1, oe.c.f20908a, value.f16624b);
-        oe.f fVar = oe.f.f20914a;
-        a10.g(dVar, 2, fVar, value.f16625c);
+        a10.g(dVar, 0, oe.a.f21424a, value.f16976a);
+        a10.g(dVar, 1, oe.c.f21426a, value.f16977b);
+        oe.f fVar = oe.f.f21432a;
+        a10.g(dVar, 2, fVar, value.f16978c);
         a10.g(dVar, 3, fVar, value.d);
-        a10.g(dVar, 4, oe.i.f20920a, value.f16626e);
+        a10.g(dVar, 4, oe.i.f21438a, value.f16979e);
         a10.l(dVar);
     }
 
@@ -43,8 +43,8 @@ public final class g implements oe.e {
         Integer num = null;
         Integer num2 = null;
         Long l10 = null;
-        boolean z9 = true;
-        while (z9) {
+        boolean z10 = true;
+        while (z10) {
             int d2 = c10.d(dVar);
             if (d2 != -1) {
                 if (d2 != 0) {
@@ -52,29 +52,29 @@ public final class g implements oe.e {
                         if (d2 != 2) {
                             if (d2 != 3) {
                                 if (d2 == 4) {
-                                    l10 = (Long) c10.j(dVar, 4, oe.i.f20920a, l10);
+                                    l10 = (Long) c10.j(dVar, 4, oe.i.f21438a, l10);
                                     i7 |= 16;
                                 } else {
                                     throw new ke.d(d2);
                                 }
                             } else {
-                                num2 = (Integer) c10.j(dVar, 3, oe.f.f20914a, num2);
+                                num2 = (Integer) c10.j(dVar, 3, oe.f.f21432a, num2);
                                 i7 |= 8;
                             }
                         } else {
-                            num = (Integer) c10.j(dVar, 2, oe.f.f20914a, num);
+                            num = (Integer) c10.j(dVar, 2, oe.f.f21432a, num);
                             i7 |= 4;
                         }
                     } else {
-                        d = (Double) c10.j(dVar, 1, oe.c.f20908a, d);
+                        d = (Double) c10.j(dVar, 1, oe.c.f21426a, d);
                         i7 |= 2;
                     }
                 } else {
-                    bool = (Boolean) c10.j(dVar, 0, oe.a.f20906a, bool);
+                    bool = (Boolean) c10.j(dVar, 0, oe.a.f21424a, bool);
                     i7 |= 1;
                 }
             } else {
-                z9 = false;
+                z10 = false;
             }
         }
         c10.p(dVar);
@@ -83,10 +83,10 @@ public final class g implements oe.e {
 
     @Override
     public final ke.a[] c() {
-        ke.a a10 = k1.a(oe.a.f20906a);
-        ke.a a11 = k1.a(oe.c.f20908a);
-        oe.f fVar = oe.f.f20914a;
-        return new ke.a[]{a10, a11, k1.a(fVar), k1.a(fVar), k1.a(oe.i.f20920a)};
+        ke.a a10 = m1.a(oe.a.f21424a);
+        ke.a a11 = m1.a(oe.c.f21426a);
+        oe.f fVar = oe.f.f21432a;
+        return new ke.a[]{a10, a11, m1.a(fVar), m1.a(fVar), m1.a(oe.i.f21438a)};
     }
 
     @Override

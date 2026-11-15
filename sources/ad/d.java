@@ -12,48 +12,48 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 public final class d extends g1 {
-    public static final Set f1038g = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("a", "abbr", "acronym", "b", "bdo", "big", "br", "button", "cite", "code", "dfn", "em", "i", "img", "input", "kbd", "label", "map", "object", "q", "samp", "script", "select", "small", "span", "strong", "sub", "sup", "textarea", "time", "tt", "var")));
+    public static final Set f1036g = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("a", "abbr", "acronym", "b", "bdo", "big", "br", "button", "cite", "code", "dfn", "em", "i", "img", "input", "kbd", "label", "map", "object", "q", "samp", "script", "select", "small", "span", "strong", "sub", "sup", "textarea", "time", "tt", "var")));
     public static final Set h = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("area", "base", "br", "col", "embed", "hr", "img", "input", "keygen", "link", "meta", "param", "source", "track", "wbr")));
-    public static final Set f1039i = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("address", "article", "aside", "blockquote", "canvas", "dd", "div", "dl", "dt", "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "hr", "li", "main", "nav", "noscript", "ol", "output", "p", "pre", "section", "table", "tfoot", "ul", "video")));
-    public final nb.a f1040a;
-    public final pb.b f1041b;
-    public final ArrayList f1042c = new ArrayList(0);
+    public static final Set f1037i = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("address", "article", "aside", "blockquote", "canvas", "dd", "div", "dl", "dt", "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "hr", "li", "main", "nav", "noscript", "ol", "output", "p", "pre", "section", "table", "tfoot", "ul", "video")));
+    public final nb.a f1038a;
+    public final pb.b f1039b;
+    public final ArrayList f1040c = new ArrayList(0);
     public a d = new a("", 0, Collections.EMPTY_MAP, null);
-    public boolean f1043e;
-    public boolean f1044f;
+    public boolean f1041e;
+    public boolean f1042f;
 
     public d(nb.a aVar, pb.b bVar) {
-        this.f1040a = aVar;
-        this.f1041b = bVar;
+        this.f1038a = aVar;
+        this.f1039b = bVar;
     }
 
     public static Map a(i iVar) {
-        boolean z9;
-        cd.c cVar = iVar.f8651k;
-        int i7 = cVar.f6086a;
+        boolean z10;
+        cd.c cVar = iVar.f8035k;
+        int i7 = cVar.f4908a;
         if (i7 > 0) {
             HashMap hashMap = new HashMap(i7);
             int i10 = 0;
             while (true) {
-                if (i10 < cVar.f6086a) {
-                    z9 = true;
+                if (i10 < cVar.f4908a) {
+                    z10 = true;
                 } else {
-                    z9 = false;
+                    z10 = false;
                 }
-                if (z9) {
-                    String str = cVar.f6088c[i10];
-                    String str2 = cVar.f6087b[i10];
+                if (z10) {
+                    String str = cVar.f4910c[i10];
+                    String str2 = cVar.f4909b[i10];
                     if (str == null) {
                         str = "";
                     }
                     ?? obj = new Object();
                     if (str2 != null) {
-                        obj.f6080a = str2.trim();
+                        obj.f4902a = str2.trim();
                         if (str2.length() != 0) {
-                            obj.f6081b = str;
-                            obj.f6082c = cVar;
+                            obj.f4903b = str;
+                            obj.f4904c = cVar;
                             i10++;
-                            hashMap.put(obj.f6080a.toLowerCase(Locale.US), obj.f6081b);
+                            hashMap.put(obj.f4902a.toLowerCase(Locale.US), obj.f4903b);
                         } else {
                             throw new IllegalArgumentException("String must not be empty");
                         }

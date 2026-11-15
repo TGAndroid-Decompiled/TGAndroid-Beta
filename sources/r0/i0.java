@@ -18,20 +18,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.WeakHashMap;
 public abstract class i0 {
-    public static WeakHashMap f54202a = null;
-    public static Field f54203b = null;
-    public static boolean f54204c = false;
+    public static WeakHashMap f55671a = null;
+    public static Field f55672b = null;
+    public static boolean f55673c = false;
     public static final u d = new Object();
-    public static final w f54205e = new w();
+    public static final w f55674e = new w();
 
     public static l0 a(View view) {
-        if (f54202a == null) {
-            f54202a = new WeakHashMap();
+        if (f55671a == null) {
+            f55671a = new WeakHashMap();
         }
-        l0 l0Var = (l0) f54202a.get(view);
+        l0 l0Var = (l0) f55671a.get(view);
         if (l0Var == null) {
             l0 l0Var2 = new l0(view);
-            f54202a.put(view, l0Var2);
+            f55671a.put(view, l0Var2);
             return l0Var2;
         }
         return l0Var;
@@ -61,14 +61,14 @@ public abstract class i0 {
             h0 h0Var2 = h0Var;
             if (h0Var == null) {
                 ?? obj = new Object();
-                obj.f54197a = null;
-                obj.f54198b = null;
-                obj.f54199c = null;
+                obj.f55666a = null;
+                obj.f55667b = null;
+                obj.f55668c = null;
                 view.setTag(2131296694, obj);
                 h0Var2 = obj;
             }
             if (keyEvent.getAction() == 0) {
-                WeakHashMap weakHashMap = h0Var2.f54197a;
+                WeakHashMap weakHashMap = h0Var2.f55666a;
                 if (weakHashMap != null) {
                     weakHashMap.clear();
                 }
@@ -76,8 +76,8 @@ public abstract class i0 {
                 if (!arrayList2.isEmpty()) {
                     synchronized (arrayList2) {
                         try {
-                            if (h0Var2.f54197a == null) {
-                                h0Var2.f54197a = new WeakHashMap();
+                            if (h0Var2.f55666a == null) {
+                                h0Var2.f55666a = new WeakHashMap();
                             }
                             for (int size = arrayList2.size() - 1; size >= 0; size--) {
                                 ArrayList arrayList3 = h0.d;
@@ -85,9 +85,9 @@ public abstract class i0 {
                                 if (view2 == null) {
                                     arrayList3.remove(size);
                                 } else {
-                                    h0Var2.f54197a.put(view2, Boolean.TRUE);
+                                    h0Var2.f55666a.put(view2, Boolean.TRUE);
                                     for (ViewParent parent = view2.getParent(); parent instanceof View; parent = parent.getParent()) {
-                                        h0Var2.f54197a.put((View) parent, Boolean.TRUE);
+                                        h0Var2.f55666a.put((View) parent, Boolean.TRUE);
                                     }
                                 }
                             }
@@ -100,10 +100,10 @@ public abstract class i0 {
             if (keyEvent.getAction() == 0) {
                 int keyCode = keyEvent.getKeyCode();
                 if (a10 != null && !KeyEvent.isModifierKey(keyCode)) {
-                    if (h0Var2.f54198b == null) {
-                        h0Var2.f54198b = new SparseArray();
+                    if (h0Var2.f55667b == null) {
+                        h0Var2.f55667b = new SparseArray();
                     }
-                    h0Var2.f54198b.put(keyCode, new WeakReference(a10));
+                    h0Var2.f55667b.put(keyCode, new WeakReference(a10));
                 }
             }
             if (a10 != null) {
@@ -118,41 +118,41 @@ public abstract class i0 {
         if (Build.VERSION.SDK_INT >= 29) {
             return e0.a(view);
         }
-        if (!f54204c) {
-            if (f54203b == null) {
+        if (!f55673c) {
+            if (f55672b == null) {
                 try {
                     Field declaredField = View.class.getDeclaredField("mAccessibilityDelegate");
-                    f54203b = declaredField;
+                    f55672b = declaredField;
                     declaredField.setAccessible(true);
                 } catch (Throwable unused) {
-                    f54204c = true;
+                    f55673c = true;
                     return null;
                 }
             }
             try {
-                Object obj = f54203b.get(view);
+                Object obj = f55672b.get(view);
                 if (obj instanceof View.AccessibilityDelegate) {
                     return (View.AccessibilityDelegate) obj;
                 }
                 return null;
             } catch (Throwable unused2) {
-                f54204c = true;
+                f55673c = true;
                 return null;
             }
         }
         return null;
     }
 
-    public static String[] e(m.t tVar) {
+    public static String[] e(m.s sVar) {
         if (Build.VERSION.SDK_INT >= 31) {
-            return g0.a(tVar);
+            return g0.a(sVar);
         }
-        return (String[]) tVar.getTag(2131296689);
+        return (String[]) sVar.getTag(2131296689);
     }
 
     public static void f(int i7, View view) {
         Object tag;
-        boolean z9;
+        boolean z10;
         AccessibilityManager accessibilityManager = (AccessibilityManager) view.getContext().getSystemService("accessibility");
         if (accessibilityManager.isEnabled()) {
             int i10 = Build.VERSION.SDK_INT;
@@ -166,12 +166,12 @@ public abstract class i0 {
                 }
             }
             if (((CharSequence) tag) != null && view.isShown() && view.getWindowVisibility() == 0) {
-                z9 = true;
+                z10 = true;
             } else {
-                z9 = false;
+                z10 = false;
             }
             int i11 = 32;
-            if (view.getAccessibilityLiveRegion() == 0 && !z9) {
+            if (view.getAccessibilityLiveRegion() == 0 && !z10) {
                 if (i7 == 32) {
                     AccessibilityEvent obtain = AccessibilityEvent.obtain();
                     view.onInitializeAccessibilityEvent(obtain);
@@ -204,12 +204,12 @@ public abstract class i0 {
                 }
             }
             AccessibilityEvent obtain2 = AccessibilityEvent.obtain();
-            if (!z9) {
+            if (!z10) {
                 i11 = 2048;
             }
             obtain2.setEventType(i11);
             obtain2.setContentChangeTypes(i7);
-            if (z9) {
+            if (z10) {
                 List<CharSequence> text2 = obtain2.getText();
                 if (i10 >= 28) {
                     charSequence = d0.a(view);
@@ -281,23 +281,23 @@ public abstract class i0 {
         if (bVar == null) {
             aVar = null;
         } else {
-            aVar = bVar.f54174b;
+            aVar = bVar.f55643b;
         }
         view.setAccessibilityDelegate(aVar);
     }
 
     public static void k(View view, CharSequence charSequence) {
-        boolean z9;
+        boolean z10;
         new v(2131296685, CharSequence.class, 8, 28, 1).d(view, charSequence);
-        w wVar = f54205e;
+        w wVar = f55674e;
         if (charSequence != null) {
-            WeakHashMap weakHashMap = wVar.f54243a;
+            WeakHashMap weakHashMap = wVar.f55712a;
             if (view.isShown() && view.getWindowVisibility() == 0) {
-                z9 = true;
+                z10 = true;
             } else {
-                z9 = false;
+                z10 = false;
             }
-            weakHashMap.put(view, Boolean.valueOf(z9));
+            weakHashMap.put(view, Boolean.valueOf(z10));
             view.addOnAttachStateChangeListener(wVar);
             if (view.isAttachedToWindow()) {
                 view.getViewTreeObserver().addOnGlobalLayoutListener(wVar);
@@ -305,7 +305,7 @@ public abstract class i0 {
             }
             return;
         }
-        wVar.f54243a.remove(view);
+        wVar.f55712a.remove(view);
         view.removeOnAttachStateChangeListener(wVar);
         view.getViewTreeObserver().removeOnGlobalLayoutListener(wVar);
     }

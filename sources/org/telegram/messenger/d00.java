@@ -1,25 +1,33 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-public final class d00 implements Runnable {
-    public final int f21968a;
-    public final k00 f21969b;
-    public final long f21970c;
-    public final ArrayList d;
-    public final boolean f21971e;
-    public final long f21972f;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class d00 implements RequestDelegate {
+    public final long f23006a;
+    public final int f23007b;
+    public final h00 f23008c;
 
-    public d00(k00 k00Var, long j3, ArrayList arrayList, boolean z9, long j10, int i7) {
-        this.f21968a = i7;
-        this.f21969b = k00Var;
-        this.f21970c = j3;
-        this.d = arrayList;
-        this.f21971e = z9;
-        this.f21972f = j10;
+    public d00(h00 h00Var, long j3, int i7) {
+        this.f23008c = h00Var;
+        this.f23006a = j3;
+        this.f23007b = i7;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.d00.run():void");
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tL_error == null) {
+            TLRPC.TL_messages_affectedHistory tL_messages_affectedHistory = (TLRPC.TL_messages_affectedHistory) tLObject;
+            h00 h00Var = this.f23008c;
+            np messagesController = h00Var.getMessagesController();
+            int i7 = tL_messages_affectedHistory.pts;
+            int i10 = tL_messages_affectedHistory.pts_count;
+            long j3 = this.f23006a;
+            messagesController.L3(i7, i10, j3);
+            int i11 = tL_messages_affectedHistory.offset;
+            if (i11 > 0) {
+                h00Var.c(this.f23007b, i11, j3);
+            }
+        }
     }
 }

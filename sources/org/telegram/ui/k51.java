@@ -1,26 +1,40 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class k51 extends org.telegram.ui.Components.p31 {
-    public final StickersActivity f47166b;
+import android.content.Intent;
+public final class k51 implements org.telegram.ui.Components.dj0, org.telegram.ui.ActionBar.q1 {
+    public final int f48592a;
+    public final ThemeActivity f48593b;
 
-    public k51(StickersActivity stickersActivity) {
-        this.f47166b = stickersActivity;
+    public k51(ThemeActivity themeActivity, int i7) {
+        this.f48592a = i7;
+        this.f48593b = themeActivity;
     }
 
     @Override
-    public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z9) {
-        int i7;
-        StickersActivity stickersActivity = this.f47166b;
-        i7 = ((org.telegram.ui.ActionBar.f2) stickersActivity).currentAccount;
-        org.telegram.messenger.ui.b0(i7).f2(stickersActivity.getParentActivity(), stickerSetCovered, 2, stickersActivity, false, false);
+    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        switch (this.f48592a) {
+            case 1:
+                ThemeActivity themeActivity = this.f48593b;
+                if (themeActivity.getParentActivity() != null) {
+                    try {
+                        themeActivity.getParentActivity().startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
+                    } catch (Exception unused) {
+                        return;
+                    }
+                }
+                return;
+            default:
+                ThemeActivity themeActivity2 = this.f48593b;
+                themeActivity2.getClass();
+                org.telegram.ui.Components.t4.T(themeActivity2, 0, null, null);
+                return;
+        }
     }
 
     @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
+    public int run() {
         int i7;
-        StickersActivity stickersActivity = this.f47166b;
-        i7 = ((org.telegram.ui.ActionBar.f2) stickersActivity).currentAccount;
-        org.telegram.messenger.ui.b0(i7).f2(stickersActivity.getParentActivity(), stickerSetCovered, 0, stickersActivity, false, false);
+        i7 = this.f48593b.sensitiveContentRow;
+        return i7;
     }
 }

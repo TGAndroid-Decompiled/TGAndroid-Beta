@@ -13,28 +13,27 @@ import android.os.RemoteException;
 import android.util.Log;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import f5.r;
+import f5.s;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
-import m.f3;
-import org.telegram.ui.Cells.f1;
+import org.telegram.ui.Cells.y0;
 public final class c {
     public static int h;
-    public static PendingIntent f19893i;
-    public static final Pattern f19894j = Pattern.compile("\\|ID\\|([^|]+)\\|:?+(.*)");
-    public final Context f19896b;
-    public final cc.c f19897c;
+    public static PendingIntent f20485i;
+    public static final Pattern f20486j = Pattern.compile("\\|ID\\|([^|]+)\\|:?+(.*)");
+    public final Context f20488b;
+    public final cc.c f20489c;
     public final ScheduledThreadPoolExecutor d;
-    public Messenger f19899f;
-    public g f19900g;
-    public final a0.l f19895a = new a0.l(0);
-    public final Messenger f19898e = new Messenger(new o(this, Looper.getMainLooper()));
+    public Messenger f20491f;
+    public g f20492g;
+    public final a0.l f20487a = new a0.l(0);
+    public final Messenger f20490e = new Messenger(new o(this, Looper.getMainLooper()));
 
     public c(Context context) {
-        this.f19896b = context;
-        this.f19897c = new cc.c(context);
-        ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(1, new r("fcm-rpc-timeout-executor"));
+        this.f20488b = context;
+        this.f20489c = new cc.c(context);
+        ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(1, new s("fcm-rpc-timeout-executor"));
         scheduledThreadPoolExecutor.setKeepAliveTime(60L, TimeUnit.SECONDS);
         scheduledThreadPoolExecutor.allowCoreThreadTimeOut(true);
         this.d = scheduledThreadPoolExecutor;
@@ -43,12 +42,12 @@ public final class c {
     public static synchronized void a(Context context, Intent intent) {
         synchronized (c.class) {
             try {
-                if (f19893i == null) {
+                if (f20485i == null) {
                     Intent intent2 = new Intent();
                     intent2.setPackage("com.google.example.invalidpackage");
-                    f19893i = PendingIntent.getBroadcast(context, 0, intent2, o7.e.f20861a);
+                    f20485i = PendingIntent.getBroadcast(context, 0, intent2, o7.e.f21378a);
                 }
-                intent.putExtra("app", f19893i);
+                intent.putExtra("app", f20485i);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -66,7 +65,7 @@ public final class c {
     }
 
     public final void b(String str, Bundle bundle) {
-        a0.l lVar = this.f19895a;
+        a0.l lVar = this.f20487a;
         synchronized (lVar) {
             try {
                 TaskCompletionSource taskCompletionSource = (TaskCompletionSource) lVar.remove(str);
@@ -87,53 +86,53 @@ public final class c {
     public final Task d(Bundle bundle) {
         String c10 = c();
         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        a0.l lVar = this.f19895a;
+        a0.l lVar = this.f20487a;
         synchronized (lVar) {
             lVar.put(c10, taskCompletionSource);
         }
         Intent intent = new Intent();
         intent.setPackage("com.google.android.gms");
-        if (this.f19897c.h() == 2) {
+        if (this.f20489c.h() == 2) {
             intent.setAction("com.google.iid.TOKEN_REQUEST");
         } else {
             intent.setAction("com.google.android.c2dm.intent.REGISTER");
         }
         intent.putExtras(bundle);
-        a(this.f19896b, intent);
-        intent.putExtra("kid", f1.n("|ID|", c10, "|", new StringBuilder(String.valueOf(c10).length() + 5)));
+        a(this.f20488b, intent);
+        intent.putExtra("kid", y0.m("|ID|", c10, "|", new StringBuilder(String.valueOf(c10).length() + 5)));
         if (Log.isLoggable("Rpc", 3)) {
             Log.d("Rpc", "Sending ".concat(String.valueOf(intent.getExtras())));
         }
-        intent.putExtra("google.messenger", this.f19898e);
-        if (this.f19899f != null || this.f19900g != null) {
+        intent.putExtra("google.messenger", this.f20490e);
+        if (this.f20491f != null || this.f20492g != null) {
             Message obtain = Message.obtain();
             obtain.obj = intent;
             try {
-                Messenger messenger = this.f19899f;
+                Messenger messenger = this.f20491f;
                 if (messenger != null) {
                     messenger.send(obtain);
                 } else {
-                    this.f19900g.f19905a.send(obtain);
+                    this.f20492g.f20497a.send(obtain);
                 }
             } catch (RemoteException unused) {
                 if (Log.isLoggable("Rpc", 3)) {
                     Log.d("Rpc", "Messenger failed, fallback to startService");
                 }
             }
-            taskCompletionSource.getTask().addOnCompleteListener(d.f19901b, new h6.m(this, c10, this.d.schedule(new f3(taskCompletionSource, 1), 30L, TimeUnit.SECONDS), 14));
+            taskCompletionSource.getTask().addOnCompleteListener(d.f20493b, new h6.m(this, c10, this.d.schedule(new j6.o(taskCompletionSource, 3), 30L, TimeUnit.SECONDS), false, 14));
             return taskCompletionSource.getTask();
         }
-        if (this.f19897c.h() == 2) {
-            Context context = this.f19896b;
+        if (this.f20489c.h() == 2) {
+            Context context = this.f20488b;
             if (Build.VERSION.SDK_INT < 34) {
                 context.sendBroadcast(intent);
             } else {
                 context.sendBroadcast(intent, null, BroadcastOptions.makeBasic().setShareIdentityEnabled(true).toBundle());
             }
         } else {
-            this.f19896b.startService(intent);
+            this.f20488b.startService(intent);
         }
-        taskCompletionSource.getTask().addOnCompleteListener(d.f19901b, new h6.m(this, c10, this.d.schedule(new f3(taskCompletionSource, 1), 30L, TimeUnit.SECONDS), 14));
+        taskCompletionSource.getTask().addOnCompleteListener(d.f20493b, new h6.m(this, c10, this.d.schedule(new j6.o(taskCompletionSource, 3), 30L, TimeUnit.SECONDS), false, 14));
         return taskCompletionSource.getTask();
     }
 }

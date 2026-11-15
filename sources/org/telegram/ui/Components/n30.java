@@ -1,11 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.opengl.GLES20;
-public final class n30 extends e4.b {
-    public final int f36205g;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class n30 extends FrameLayout {
+    public View f37445a;
+    public TextView f37446b;
+    public fh0 f37447c;
+    public LinearLayout d;
 
-    public n30() {
-        super(2131624181);
-        this.f36205g = GLES20.glGetUniformLocation(this.f10671a, "texOffset");
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(80.0f), 1073741824));
+    }
+
+    public void setGravity(int i7) {
+        this.f37446b.setGravity(i7);
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.f37446b.setText(charSequence);
+    }
+
+    public void setTextColor(int i7) {
+        TextView textView = this.f37446b;
+        org.telegram.ui.ActionBar.q6.q(textView);
+        textView.setTextColor(i7);
     }
 }

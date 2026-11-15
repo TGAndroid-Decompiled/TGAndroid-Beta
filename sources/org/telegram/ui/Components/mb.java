@@ -1,67 +1,121 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.support.SparseLongArray;
-public final class mb extends jb implements org.telegram.messenger.ls {
-    public final kb d;
-    public SparseLongArray f35914e;
-    public final org.telegram.ui.ActionBar.f2 f35915f;
-    public final int h;
-    public bc f35916n;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import org.telegram.messenger.Utilities;
+public final class mb extends GestureDetector.SimpleOnGestureListener {
+    public final cb f37183a;
+    public final qa f37184b;
 
-    public mb(int i7, org.telegram.ui.ActionBar.f2 f2Var) {
-        super(f2Var.getContext(), f2Var.getResourceProvider());
-        this.f35915f = f2Var;
-        this.h = i7;
-        this.f34883b.setLayoutParams(c8.ha.i(-2.0f, -2.0f, 8388659, 56.0f, 6.0f, 8.0f, 0.0f));
-        this.f34882a.setLayoutParams(c8.ha.h(56.0f, 48.0f, 8388659));
-        kb kbVar = new kb(this, f2Var, getContext(), f2Var.getCurrentAccount(), f2Var.getResourceProvider());
-        this.d = kbVar;
-        kbVar.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(0.0f));
-        this.d.setDelegate(new lb(this));
-        this.d.setTop(true);
-        this.d.setClipChildren(false);
-        this.d.setClipToPadding(false);
-        this.d.setVisibility(0);
-        this.d.setBubbleOffset(-org.telegram.messenger.g0.L(80.0f));
-        this.d.setHint(org.telegram.messenger.id.M0(2131745875, null));
-        addView(this.d, c8.ha.d(-2, 92.5f, 1, 0.0f, 36.0f, 0.0f, 0.0f));
-        this.d.p(null, null, true);
+    public mb(qa qaVar, cb cbVar) {
+        this.f37184b = qaVar;
+        this.f37183a = cbVar;
     }
 
     @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.qs.f25032k3) {
-            this.f35914e = (SparseLongArray) objArr[0];
+    public final boolean onDown(MotionEvent motionEvent) {
+        qa qaVar = this.f37184b;
+        if (qaVar.f38599s) {
+            return false;
         }
+        cb cbVar = this.f37183a;
+        qaVar.f38600w = cb.access$1400(cbVar, true);
+        qaVar.f38601x = cb.access$1400(cbVar, false);
+        return true;
     }
 
-    public final void f() {
-        if (this.d.getReactionsWindow() != null) {
-            this.d.e();
-            if (this.d.getReactionsWindow().f6186a != null) {
-                this.d.getReactionsWindow().f6186a.animate().alpha(0.0f).setDuration(180L).start();
-            }
+    @Override
+    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
+        boolean z10 = false;
+        if (Math.abs(f10) <= 2000.0f) {
+            return false;
         }
+        int i7 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
+        qa qaVar = this.f37184b;
+        if ((i7 < 0 && qaVar.f38600w) || (f10 > 0.0f && qaVar.f38601x)) {
+            z10 = true;
+        }
+        float signum = Math.signum(f10);
+        cb cbVar = this.f37183a;
+        r1.g gVar = new r1.g(cbVar, r1.g.f55731o, signum * cbVar.getWidth() * 2.0f);
+        if (!z10) {
+            gVar.a(new r1.c(this) {
+                public final mb f36359b;
+
+                {
+                    this.f36359b = this;
+                }
+
+                @Override
+                public final void a(r1.g gVar2, boolean z11, float f12, float f13) {
+                    switch (r2) {
+                        case 0:
+                            this.f36359b.f37184b.E.b();
+                            return;
+                        default:
+                            this.f36359b.f37184b.E.b();
+                            return;
+                    }
+                }
+            });
+            gVar.b(new c7(cbVar, 2));
+        }
+        gVar.f55748m.a(1.0f);
+        gVar.f55748m.b(100.0f);
+        gVar.f55738a = f10;
+        gVar.h();
+        if (z10) {
+            r1.g gVar2 = new r1.g((Object) cbVar, (r1.e) r1.g.v, 0.0f);
+            gVar2.a(new r1.c(this) {
+                public final mb f36359b;
+
+                {
+                    this.f36359b = this;
+                }
+
+                @Override
+                public final void a(r1.g gVar22, boolean z11, float f12, float f13) {
+                    switch (r2) {
+                        case 0:
+                            this.f36359b.f37184b.E.b();
+                            return;
+                        default:
+                            this.f36359b.f37184b.E.b();
+                            return;
+                    }
+                }
+            });
+            gVar2.b(new Object());
+            gVar.f55748m.a(1.0f);
+            gVar.f55748m.b(10.0f);
+            gVar.f55738a = f10;
+            gVar2.h();
+        }
+        qaVar.f38599s = true;
+        return true;
     }
 
     @Override
-    public int getMeasuredBackgroundHeight() {
-        return org.telegram.messenger.g0.L(30.0f) + this.f34883b.getMeasuredHeight();
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        org.telegram.messenger.qs.f(org.telegram.messenger.p10.f24474s0).c(this, org.telegram.messenger.qs.f25032k3);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        org.telegram.messenger.qs.f(org.telegram.messenger.p10.f24474s0).n(this, org.telegram.messenger.qs.f25032k3);
-    }
-
-    public void setBulletin(bc bcVar) {
-        this.f35916n = bcVar;
+    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
+        qa qaVar = this.f37184b;
+        float f12 = qaVar.h + f10;
+        qaVar.h = f12;
+        float f13 = qaVar.f38597n + f11;
+        qaVar.f38597n = f13;
+        if (Utilities.t(0.0f, 0.0f, f12, f13) > org.telegram.messenger.g0.f23588e) {
+            qaVar.f38598r = true;
+        }
+        if (!qaVar.d) {
+            return false;
+        }
+        float f14 = qaVar.f38596f - f10;
+        qaVar.f38596f = f14;
+        cb cbVar = this.f37183a;
+        cbVar.setTranslationX(f14);
+        float f15 = qaVar.f38596f;
+        if (f15 == 0.0f || ((f15 < 0.0f && qaVar.f38600w) || (f15 > 0.0f && qaVar.f38601x))) {
+            cbVar.setAlpha(1.0f - (Math.abs(f15) / cbVar.getWidth()));
+        }
+        return true;
     }
 }

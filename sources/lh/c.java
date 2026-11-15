@@ -7,46 +7,46 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import bi.l1;
-import c8.ha;
-import c8.ka;
+import bi.o;
+import c8.ja;
+import c8.na;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.id;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.qi;
+import org.telegram.messenger.hd;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.q6;
+import org.telegram.ui.oi;
 public final class c extends LinearLayout {
-    public static final int f18356e = 0;
-    public final h6 f18357a;
-    public final r7 f18358b;
-    public final r7 f18359c;
+    public static final int f19486e = 0;
+    public final e6 f19487a;
+    public final r7 f19488b;
+    public final r7 f19489c;
     public float d;
 
-    public c(Context context, h6 h6Var, qi qiVar, dh.c cVar) {
+    public c(Context context, e6 e6Var, oi oiVar, dh.c cVar) {
         super(context);
         r7 r7Var = new r7(this);
-        this.f18358b = r7Var;
+        this.f19488b = r7Var;
         r7 r7Var2 = new r7(this);
-        this.f18359c = r7Var2;
-        this.f18357a = h6Var;
-        kh.a c10 = kh.a.c(context, cVar, qiVar, h6Var);
-        r7Var.f614b = c10;
-        c10.setOnClickListener(new l1(5));
-        ka.b((kh.a) r7Var.f614b, 0.065f, 2.0f);
-        kh.a c11 = kh.a.c(context, cVar, qiVar, h6Var);
-        r7Var2.f614b = c11;
-        c11.setOnClickListener(new l1(5));
-        ka.b((kh.a) r7Var2.f614b, 0.065f, 2.0f);
-        a(r7Var, id.M0(2131746263, null), 2131231510, false);
-        a(r7Var2, id.M0(2131750587, null), 2131231502, true);
+        this.f19489c = r7Var2;
+        this.f19487a = e6Var;
+        kh.a c10 = kh.a.c(context, cVar, oiVar, e6Var);
+        r7Var.f617b = c10;
+        c10.setOnClickListener(new o(8));
+        na.b((kh.a) r7Var.f617b, 0.065f, 2.0f);
+        kh.a c11 = kh.a.c(context, cVar, oiVar, e6Var);
+        r7Var2.f617b = c11;
+        c11.setOnClickListener(new o(8));
+        na.b((kh.a) r7Var2.f617b, 0.065f, 2.0f);
+        a(r7Var, hd.M0(2131746263, null), 2131231510, false);
+        a(r7Var2, hd.M0(2131750587, null), 2131231502, true);
         setOrientation(0);
         setClipChildren(false);
-        addView((kh.a) r7Var.f614b, ha.m(1.0f, 0, 56, 1, -1, 0));
-        addView((kh.a) r7Var2.f614b, ha.m(1.0f, 0, 56, -1, 1, 0));
+        addView((kh.a) r7Var.f617b, ja.m(1.0f, 0, 56, 1, -1, 0));
+        addView((kh.a) r7Var2.f617b, ja.m(1.0f, 0, 56, -1, 1, 0));
     }
 
-    public final void a(r7 r7Var, String str, int i7, boolean z9) {
+    public final void a(r7 r7Var, String str, int i7, boolean z10) {
         Drawable drawable;
         TextView textView = new TextView(getContext());
         textView.setText(str);
@@ -54,37 +54,37 @@ public final class c extends LinearLayout {
         textView.setTextSize(1, 15.0f);
         textView.setPadding(g0.L(21.0f), 0, g0.L(21.0f), 0);
         textView.setCompoundDrawablePadding(g0.L(6.0f));
-        int i10 = m6.Ll;
-        h6 h6Var = this.f18357a;
-        t6.U(textView, i10, h6Var);
+        int i10 = j6.Ol;
+        e6 e6Var = this.f19487a;
+        q6.U(textView, i10, e6Var);
         textView.setTypeface(g0.o());
         Drawable mutate = getContext().getResources().getDrawable(i7).mutate();
-        t6.x(this, mutate, m6.Kl, h6Var, PorterDuff.Mode.MULTIPLY);
-        if (z9) {
+        q6.x(this, mutate, j6.Nl, e6Var, PorterDuff.Mode.MULTIPLY);
+        if (z10) {
             drawable = mutate;
         } else {
             drawable = null;
         }
-        if (z9) {
+        if (z10) {
             mutate = null;
         }
         textView.setCompoundDrawablesWithIntrinsicBounds(drawable, (Drawable) null, mutate, (Drawable) null);
-        r7Var.f615c = textView;
-        ((kh.a) r7Var.f614b).addView(textView, ha.e(-2, -2, 17));
+        r7Var.f618c = textView;
+        ((kh.a) r7Var.f617b).addView(textView, ja.e(-2, -2, 17));
     }
 
     public final void b(r7 r7Var) {
         int i7;
-        float f10 = this.d * ((te.a) r7Var.d).f55498e;
+        float f10 = this.d * ((te.a) r7Var.d).f57081e;
         float f11 = (1.0f - f10) * (-g0.L(54.0f));
-        float interpolation = (1.0f - se.a.f55016a.getInterpolation(f10)) * (getMeasuredWidth() / 2.0f);
-        if (r7Var == this.f18358b) {
+        float interpolation = (1.0f - se.a.f56572a.getInterpolation(f10)) * (getMeasuredWidth() / 2.0f);
+        if (r7Var == this.f19488b) {
             interpolation *= -1.0f;
         }
-        ((kh.a) r7Var.f614b).setTranslationX(interpolation);
-        ((kh.a) r7Var.f614b).setTranslationY(f11);
-        ((kh.a) r7Var.f614b).setAlpha(f10);
-        kh.a aVar = (kh.a) r7Var.f614b;
+        ((kh.a) r7Var.f617b).setTranslationX(interpolation);
+        ((kh.a) r7Var.f617b).setTranslationY(f11);
+        ((kh.a) r7Var.f617b).setAlpha(f10);
+        kh.a aVar = (kh.a) r7Var.f617b;
         if (f10 > 0.0f) {
             i7 = 0;
         } else {
@@ -94,29 +94,29 @@ public final class c extends LinearLayout {
     }
 
     public View getForwardButton() {
-        return (kh.a) this.f18359c.f614b;
+        return (kh.a) this.f19489c.f617b;
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        b(this.f18359c);
-        b(this.f18358b);
+        b(this.f19489c);
+        b(this.f19488b);
     }
 
     public void setForwardButtonOnClickListener(View.OnClickListener onClickListener) {
-        ((kh.a) this.f18359c.f614b).setOnClickListener(onClickListener);
+        ((kh.a) this.f19489c.f617b).setOnClickListener(onClickListener);
     }
 
     public void setReplyButtonOnClickListener(View.OnClickListener onClickListener) {
-        ((kh.a) this.f18358b.f614b).setOnClickListener(onClickListener);
+        ((kh.a) this.f19488b.f617b).setOnClickListener(onClickListener);
     }
 
     public void setTotalVisibilityFactor(float f10) {
         if (this.d != f10) {
             this.d = f10;
-            b(this.f18359c);
-            b(this.f18358b);
+            b(this.f19489c);
+            b(this.f19488b);
         }
     }
 }

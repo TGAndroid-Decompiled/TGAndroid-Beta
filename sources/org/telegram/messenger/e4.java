@@ -9,22 +9,22 @@ import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.tgnet.TLRPC;
 public final class e4 implements RemoteViewsService.RemoteViewsFactory {
-    public ArrayList f22186a;
-    public Context f22187b;
-    public int f22188c;
+    public ArrayList f23258a;
+    public Context f23259b;
+    public int f23260c;
     public c d;
-    public Paint f22189e;
-    public RectF f22190f;
-    public a0.h f22191g;
+    public Paint f23261e;
+    public RectF f23262f;
+    public a0.h f23263g;
     public a0.h h;
-    public boolean f22192i;
+    public boolean f23264i;
 
     @Override
     public final int getCount() {
-        if (this.f22192i) {
+        if (this.f23264i) {
             return 1;
         }
-        return this.f22186a.size() + 1;
+        return this.f23258a.size() + 1;
     }
 
     @Override
@@ -59,33 +59,33 @@ public final class e4 implements RemoteViewsService.RemoteViewsFactory {
 
     @Override
     public final void onDataSetChanged() {
-        ArrayList arrayList = this.f22186a;
+        ArrayList arrayList = this.f23258a;
         arrayList.clear();
         a0.h hVar = this.h;
         hVar.b();
         c cVar = this.d;
         if (cVar != null) {
-            int i7 = cVar.f21770a;
-            if (p10.i(i7).p()) {
+            int i7 = cVar.f22778a;
+            if (m10.i(i7).p()) {
                 ArrayList arrayList2 = new ArrayList();
                 ArrayList arrayList3 = new ArrayList();
                 a0.h hVar2 = new a0.h();
-                yr a02 = yr.a0(i7);
-                int i10 = this.f22188c;
-                a0.h hVar3 = this.f22191g;
+                vr a02 = vr.a0(i7);
+                int i10 = this.f23260c;
+                a0.h hVar3 = this.f23263g;
                 CountDownLatch countDownLatch = new CountDownLatch(1);
-                a02.f26723a.c(new bg.c(a02, i10, arrayList, 0, hVar3, hVar2, arrayList3, arrayList2, countDownLatch));
+                a02.f27220a.c(new bg.c(a02, i10, arrayList, 0, hVar3, hVar2, arrayList3, arrayList2, countDownLatch));
                 try {
                     countDownLatch.await();
                 } catch (Exception e10) {
                     a02.o(e10, true);
                 }
-                qp.s1(i7).Y3(arrayList2, true);
-                qp.s1(i7).S3(arrayList3, true);
+                np.s1(i7).Y3(arrayList2, true);
+                np.s1(i7).S3(arrayList3, true);
                 hVar.b();
                 int m10 = hVar2.m();
                 for (int i11 = 0; i11 < m10; i11++) {
-                    hVar.k(new ij(cVar.f21770a, (TLRPC.Message) hVar2.n(i11), (a0.h) null, (a0.h) null, false, true), hVar2.j(i11));
+                    hVar.k(new gj(cVar.f22778a, (TLRPC.Message) hVar2.n(i11), (a0.h) null, (a0.h) null, false, true), hVar2.j(i11));
                 }
             }
         }

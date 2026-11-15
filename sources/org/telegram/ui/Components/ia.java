@@ -1,37 +1,25 @@
 package org.telegram.ui.Components;
+public final class ia {
+    public boolean f35530a;
+    public int f35531b;
+    public boolean f35532c;
+    public boolean d;
+    public boolean f35533e;
+    public int f35534f;
+    public org.telegram.ui.ActionBar.e6 f35535g;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class ia extends org.telegram.ui.ActionBar.l {
-    public final st0 F1;
-    public final ma G1;
-
-    public ia(ma maVar, Context context, st0 st0Var) {
-        super(context, null);
-        this.G1 = maVar;
-        this.F1 = st0Var;
+    public ia(ia iaVar) {
+        this.f35530a = iaVar.f35530a;
+        this.f35531b = iaVar.f35531b;
+        this.f35532c = iaVar.f35532c;
+        this.d = iaVar.d;
+        this.f35533e = iaVar.f35533e;
+        this.f35534f = iaVar.f35534f;
+        this.f35535g = iaVar.f35535g;
     }
 
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        ma maVar = this.G1;
-        if (maVar.F1 && maVar.G1) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void setAlpha(float f10) {
-        if (getAlpha() != f10) {
-            super.setAlpha(f10);
-            this.F1.invalidate();
-        }
-    }
-
-    @Override
-    public final void setTag(Object obj) {
-        super.setTag(obj);
-        this.G1.a1();
+    public ia() {
+        this.f35531b = 1;
+        this.f35534f = 1;
     }
 }

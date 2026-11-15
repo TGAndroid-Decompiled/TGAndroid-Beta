@@ -1,35 +1,29 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-public final class c30 extends org.telegram.ui.ActionBar.l {
-    public final org.telegram.ui.Components.ap F1;
-    public final f40 G1;
+import android.content.DialogInterface;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class c30 implements DialogInterface.OnShowListener {
+    public final int f45888a;
+    public final org.telegram.ui.ActionBar.t1 f45889b;
+    public final EditTextBoldCursor f45890c;
+    public final Object d;
 
-    public c30(f40 f40Var, LaunchActivity launchActivity, org.telegram.ui.Components.ap apVar) {
-        super(launchActivity, null);
-        this.G1 = f40Var;
-        this.F1 = apVar;
+    public c30(Object obj, org.telegram.ui.ActionBar.t1 t1Var, EditTextBoldCursor editTextBoldCursor, int i7) {
+        this.f45888a = i7;
+        this.d = obj;
+        this.f45889b = t1Var;
+        this.f45890c = editTextBoldCursor;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (getAdditionalSubtitleTextView().getVisibility() == 0) {
-            canvas.save();
-            canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - org.telegram.messenger.g0.L(1.0f));
-            org.telegram.ui.Components.ap apVar = this.F1;
-            apVar.f31956f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
-            apVar.draw(canvas);
-            canvas.restore();
-            invalidate();
-        }
-    }
-
-    @Override
-    public final void setAlpha(float f10) {
-        if (getAlpha() != f10) {
-            super.setAlpha(f10);
-            this.G1.f28672b.invalidate();
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f45888a) {
+            case 0:
+                ((h30) this.d).f47598b.v1(null, this.f45889b, this.f45890c, true);
+                return;
+            default:
+                ((d30) this.d).f46298s1.f47598b.v1(null, this.f45889b, this.f45890c, true);
+                return;
         }
     }
 }

@@ -1,44 +1,34 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class sz0 implements r0.m, org.telegram.ui.ActionBar.r1 {
-    public final int f50000a;
-    public final vz0 f50001b;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_account;
+public final class sz0 implements org.telegram.ui.ActionBar.q1, org.telegram.ui.Components.vi0 {
+    public final n11 f51307a;
 
-    public sz0(vz0 vz0Var, int i7) {
-        this.f50000a = i7;
-        this.f50001b = vz0Var;
+    public sz0(n11 n11Var) {
+        this.f51307a = n11Var;
     }
 
     @Override
-    public r0.k1 S0(View view, r0.k1 k1Var) {
-        i0.b I0 = org.telegram.messenger.g0.I0(k1Var, false);
-        vz0 vz0Var = this.f50001b;
-        vz0Var.f50836e = I0;
-        vz0Var.f50833c.setPadding(I0.f15122a, I0.f15123b, I0.f15124c, I0.d);
-        vz0Var.f50831b.requestLayout();
-        return r0.k1.f54212b;
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f50000a) {
-            case 1:
-                org.telegram.ui.ActionBar.u1 u1Var2 = this.f50001b.f50834c0;
-                if (u1Var2 != null) {
-                    u1Var2.dismiss();
-                    return;
-                }
-                return;
-            default:
-                vz0 vz0Var = this.f50001b;
-                org.telegram.ui.ActionBar.u1 u1Var3 = vz0Var.f50834c0;
-                if (u1Var3 != null) {
-                    u1Var3.dismiss();
-                    vz0Var.f50834c0 = null;
-                }
-                vz0Var.dismiss();
-                return;
+    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        n11 n11Var = this.f51307a;
+        int i10 = n11Var.W;
+        ConnectionsManager.getInstance(i10).sendRequest(new TL_account.clearRecentEmojiStatuses(), null);
+        org.telegram.messenger.si b02 = org.telegram.messenger.si.b0(i10);
+        ArrayList[] arrayListArr = b02.F0;
+        ArrayList arrayList = arrayListArr[0];
+        if (arrayList != null) {
+            arrayList.clear();
         }
+        b02.E0[0] = 0;
+        b02.getMessagesStorage().f27220a.c(new org.telegram.messenger.eg(b02, 8));
+        ArrayList arrayList2 = arrayListArr[0];
+        n11Var.B(false, true, true);
+    }
+
+    @Override
+    public void i() {
+        this.f51307a.m();
     }
 }

@@ -10,169 +10,171 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import bi.nc;
-import c8.ha;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-import org.telegram.ui.ActionBar.w2;
+import c8.ja;
+import com.google.android.gms.internal.vision.e2;
+import di.wa;
+import hi.p5;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.u2;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.v61;
-import org.telegram.ui.ik0;
-public final class q extends w2 {
-    public static final int f55190t1 = 0;
-    public final nc l1;
-    public final ImageView f55191m1;
-    public final k n1;
-    public final Path f55192o1;
-    public int f55193p1;
-    public q0.a f55194q1;
-    public androidx.activity.n f55195r1;
-    public boolean f55196s1;
+import org.telegram.ui.Components.w61;
+import org.telegram.ui.sc1;
+public final class q extends u2 {
+    public static final int f56743u1 = 0;
+    public final wa f56744m1;
+    public final ImageView n1;
+    public final k f56745o1;
+    public final Path f56746p1;
+    public int f56747q1;
+    public q0.a f56748r1;
+    public androidx.activity.n f56749s1;
+    public boolean f56750t1;
 
-    public q(Context context, h6 h6Var) {
-        super(1, context, h6Var, true);
-        this.f55192o1 = new Path();
-        O(-14342875);
-        Drawable mutate = context.getResources().getDrawable(2131232728).mutate();
-        this.f28702r0 = mutate;
+    public q(Context context, e6 e6Var) {
+        super(1, context, e6Var, true);
+        this.f56746p1 = new Path();
+        P(-14342875);
+        Drawable mutate = context.getResources().getDrawable(2131232729).mutate();
+        this.f29715s0 = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(-14342875, PorterDuff.Mode.MULTIPLY));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setPadding(0, org.telegram.messenger.g0.L(16.0f), 0, 0);
         ImageView imageView = new ImageView(context);
-        this.f55191m1 = imageView;
-        imageView.setImageResource(2131232538);
+        this.n1 = imageView;
+        imageView.setImageResource(2131232539);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        imageView.setBackground(m6.h0(1090519039, 1, -1));
-        imageView.setOnClickListener(new ik0(24, this, context));
+        imageView.setBackground(j6.h0(1090519039, 1, -1));
+        imageView.setOnClickListener(new sc1(2, this, context));
         ImageView imageView2 = new ImageView(context);
         imageView2.setImageResource(2131231242);
         imageView2.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        imageView2.setBackground(m6.h0(1090519039, 1, -1));
-        imageView2.setOnClickListener(new ii.g(this, 21));
+        imageView2.setBackground(j6.h0(1090519039, 1, -1));
+        imageView2.setOnClickListener(new p5(this, 27));
         k kVar = new k(this, context);
-        this.n1 = kVar;
-        kVar.f55125c = Color.alpha(-65536) / 255.0f;
+        this.f56745o1 = kVar;
+        kVar.f56680c = Color.alpha(-65536) / 255.0f;
         kVar.a();
         kVar.invalidate();
-        nc ncVar = new nc(context, 6);
-        ncVar.setOrientation(1);
+        wa waVar = new wa(context, 6);
+        waVar.setOrientation(1);
         o oVar = new o(this, context);
-        ncVar.f4435b = oVar;
-        oVar.a(this.f55193p1);
-        ncVar.f4436c = new n(this, context);
-        ncVar.d = new p(this, context);
-        v61 v61Var = new v61(context, this.I0);
-        v61Var.setAdapter(new ii.x(ncVar, 4));
-        ncVar.addView(v61Var, ha.l(1.0f, -1, 0));
-        ncVar.addView(kVar, ha.k(12.0f, 0.0f, 12.0f, 0.0f, -1, 48));
+        waVar.f9708b = oVar;
+        oVar.a(this.f56747q1);
+        waVar.f9709c = new n(this, context);
+        waVar.d = new p(this, context);
+        w61 w61Var = new w61(context, this.J0);
+        w61Var.setAdapter(new li.x(waVar, 4));
+        waVar.addView(w61Var, ja.l(1.0f, -1, 0));
+        waVar.addView(kVar, ja.k(12.0f, 0.0f, 12.0f, 0.0f, -1, 48));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
         linearLayout2.setGravity(16);
-        linearLayout2.addView(imageView, ha.o(28, 28));
-        linearLayout2.addView(v61Var.n(8, false), ha.q(-1, 40, 1.0f, 16, 12, 0, 12, 0));
-        linearLayout2.addView(imageView2, ha.o(28, 28));
-        ncVar.addView(linearLayout2, ha.k(14.0f, 0.0f, 14.0f, 0.0f, -1, 48));
-        this.l1 = ncVar;
-        linearLayout.addView(ncVar, ha.o(-1, 0));
+        linearLayout2.addView(imageView, ja.o(28, 28));
+        linearLayout2.addView(w61Var.i(8, false), ja.q(-1, 40, 1.0f, 16, 12, 0, 12, 0));
+        linearLayout2.addView(imageView2, ja.o(28, 28));
+        waVar.addView(linearLayout2, ja.k(14.0f, 0.0f, 14.0f, 0.0f, -1, 48));
+        this.f56744m1 = waVar;
+        linearLayout.addView(waVar, ja.o(-1, 0));
         j jVar = new j(this, context, linearLayout);
         jVar.addView(linearLayout);
-        this.N = jVar;
+        this.O = jVar;
     }
 
     public final void I0(int i7, int i10) {
-        boolean z9;
-        float v;
+        boolean z10;
+        float t6;
         View findFocus;
-        if (!this.f55196s1) {
+        if (!this.f56750t1) {
             if (i10 != 2) {
                 return;
             }
-            this.f55196s1 = true;
+            this.f56750t1 = true;
         }
-        nc ncVar = this.l1;
-        if (i10 != 5 && (findFocus = ncVar.findFocus()) != null) {
+        wa waVar = this.f56744m1;
+        if (i10 != 5 && (findFocus = waVar.findFocus()) != null) {
             findFocus.clearFocus();
             org.telegram.messenger.g0.v1(findFocus);
         }
         if (i10 != 3) {
-            ((o) ncVar.f4435b).a(i7);
+            ((o) waVar.f9708b).a(i7);
         }
         if (i10 != 0) {
-            n nVar = (n) ncVar.f4436c;
+            n nVar = (n) waVar.f9709c;
             if (i10 != 1) {
-                z9 = true;
+                z10 = true;
             } else {
-                z9 = false;
+                z10 = false;
             }
-            nVar.f55164n.f55193p1 = i7;
+            nVar.f56718n.f56747q1 = i7;
             float[] fArr = nVar.h;
             Color.colorToHSV(i7, fArr);
-            if (z9) {
+            if (z10) {
                 float f10 = (fArr[1] * 0.5f) + 1.0f;
                 float f11 = fArr[2];
                 if (f11 <= 0.5f) {
-                    v = 1.0f - (((1.0f - f11) * 0.22000003f) + 0.78f);
+                    t6 = 1.0f - (((1.0f - f11) * 0.22000003f) + 0.78f);
                 } else {
-                    v = com.google.android.recaptcha.internal.a.v(1.0f, f11, 0.22f, 1.0f);
+                    t6 = e2.t(1.0f, f11, 0.22f, 1.0f);
                 }
-                nVar.d = f10 - v;
-                nVar.f55162e = fArr[0] / 360.0f;
+                nVar.d = f10 - t6;
+                nVar.f56716e = fArr[0] / 360.0f;
             }
             nVar.invalidate();
         }
         if (i10 != 1) {
-            k kVar = this.n1;
+            k kVar = this.f56745o1;
             kVar.getClass();
-            kVar.f55125c = Color.alpha(i7) / 255.0f;
+            kVar.f56680c = Color.alpha(i7) / 255.0f;
             kVar.a();
             kVar.invalidate();
         }
-        p pVar = (p) ncVar.d;
-        pVar.f55186e = true;
-        pVar.f55183a.b();
-        pVar.f55184b.b();
-        pVar.f55185c.b();
+        p pVar = (p) waVar.d;
+        pVar.f56739e = true;
+        pVar.f56736a.b();
+        pVar.f56737b.b();
+        pVar.f56738c.b();
         EditTextBoldCursor editTextBoldCursor = pVar.d;
         if (!editTextBoldCursor.isFocused()) {
             int selectionStart = editTextBoldCursor.getSelectionStart();
             int selectionEnd = editTextBoldCursor.getSelectionEnd();
-            StringBuilder sb2 = new StringBuilder(Integer.toHexString(pVar.f55187f.f55193p1));
+            StringBuilder sb2 = new StringBuilder(Integer.toHexString(pVar.f56740f.f56747q1));
             while (sb2.length() < 8) {
                 sb2.insert(0, "0");
             }
             editTextBoldCursor.setText(sb2.toString().toUpperCase().substring(2));
             editTextBoldCursor.setSelection(selectionStart, selectionEnd);
         }
-        pVar.f55186e = false;
+        pVar.f56739e = false;
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        q0.a aVar = this.f55194q1;
+        q0.a aVar = this.f56748r1;
         if (aVar != null) {
-            aVar.accept(Integer.valueOf(this.f55193p1));
+            aVar.accept(Integer.valueOf(this.f56747q1));
         }
     }
 
     @Override
     public final void show() {
-        boolean z9;
-        androidx.activity.n nVar = this.f55195r1;
-        switch (nVar.f1845a) {
+        boolean z10;
+        androidx.activity.n nVar = this.f56749s1;
+        switch (nVar.f1788a) {
             default:
-                if (((Bitmap) nVar.f1847c) != null) {
-                    z9 = true;
+                if (((Bitmap) nVar.f1790c) != null) {
+                    z10 = true;
                     break;
                 }
             case 1:
-                z9 = false;
+                z10 = false;
                 break;
         }
-        if (!z9) {
-            this.f55191m1.setVisibility(8);
+        if (!z10) {
+            this.n1.setVisibility(8);
         }
         super.show();
     }

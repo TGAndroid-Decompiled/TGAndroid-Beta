@@ -1,4 +1,4 @@
 package c8;
 public interface rf {
-    void a(a8.wa waVar);
+    void a(a8.xa xaVar);
 }
